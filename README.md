@@ -85,6 +85,6 @@ Source locators, provenance and unresolved claims are recorded within each task 
 
 This first public snapshot focuses on authored task specifications. It is not a complete mirror of the development archive: bulk binary scenes, asset exports and the early manuscript are not included while their publication and rights review is pending. Historical provenance references may identify resources that are not bundled. Original publisher source packets and scientific datasets are not supplied by this release.
 
-No repository-wide open-source license has been established for this snapshot. Public visibility does not grant a new license or relicense third-party material. Follow applicable file/package notices and the original sources' terms; obtain any required materials from their lawful sources.
+ScienceGym is licensed under the [Apache License 2.0](LICENSE). Third-party publications, datasets and assets remain subject to their own licenses and notices; the project license does not relicense them. Obtain any required third-party materials from their lawful sources.
 
 These specifications are research task designs, not approved laboratory SOPs or instructions to operate real equipment.
