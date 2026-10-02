@@ -32,13 +32,13 @@ These are authored static/kinematic states. Millimetre-scale leg geometry is exp
 
 [Open the offline explorer guide](viewer/task_explorer_v1/README.md) to inspect branches, robot actions, objects, sample states, source evidence and recovery. Download the folder and open index.html locally; GitHub shows HTML as code rather than running it.
 
-Six visual route maps readable directly on GitHub: [Chiral](viewer/task_explorer_v1/docs/chiral.md) · [Deconwolf](viewer/task_explorer_v1/docs/microscopy.md) · [Fibres](viewer/task_explorer_v1/docs/fibre.md) · [Thermoelectric](viewer/task_explorer_v1/docs/thermoelectric.md) · [diSPIM](viewer/task_explorer_v1/docs/dispim.md) · [Acoustics](viewer/task_explorer_v1/docs/acoustic.md).
+Seven visual route maps readable directly on GitHub: [Chiral](viewer/task_explorer_v1/docs/chiral.md) · [Deconwolf](viewer/task_explorer_v1/docs/microscopy.md) · [Fibres](viewer/task_explorer_v1/docs/fibre.md) · [Thermoelectric](viewer/task_explorer_v1/docs/thermoelectric.md) · [diSPIM](viewer/task_explorer_v1/docs/dispim.md) · [Acoustics](viewer/task_explorer_v1/docs/acoustic.md) · [Perovskite](viewer/task_explorer_v1/docs/perovskite.md).
 
 These are task-design references, not executed robot trajectories. Nested loops, repeated operations and unresolved conditions remain explicit. [Verification and limitations](viewer/task_explorer_v1/VERIFICATION.md).
 
 ## Visual task routes
 
-The first visual route shows every listed R01 operation and the complete chiral branch index. Dashed connectors represent the authored reference order, not an executed trajectory or a recovered author chronology. The six-paper offline interactive explorer is available below.
+The first visual route shows every listed R01 operation and the complete chiral branch index. Dashed connectors represent the authored reference order, not an executed trajectory or a recovered author chronology. The seven-paper offline interactive explorer is available below.
 
 [![Chiral metamaterials: complete R01 task route and branch index](docs/visualizations/chiral_r01.svg)](docs/visualizations/chiral_r01.svg)
 
@@ -89,7 +89,7 @@ The seven packages have undergone design review and static consistency checks. T
 
 All published task narratives and structured descriptions are in English. Structured specifications and source identifiers accompany each package.
 
-The perovskite design is not yet integrated into the six-paper logical explorer or the embodied visual player. Configuration, branch and operation counts describe the representation; they are not counts of independent experiments or successful executions.
+The seven-paper logical explorer includes the perovskite design. Embodied visual storyboards currently cover selected chiral and thermoelectric routes only. Configuration, branch and operation counts describe the representation; they are not counts of independent experiments or successful executions.
 
 ## Quick start: inspect a task
 

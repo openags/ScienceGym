@@ -1,6 +1,6 @@
 # Explicit schema adapters and fidelity rules
 
-The explorer does not infer one universal operation schema or invent a global task DAG. `build.py` has a dedicated adapter for each of the six published packages.
+The explorer does not infer one universal operation schema or invent a global task DAG. `build.py` has a dedicated adapter for each of the seven published packages.
 
 ## Chiral
 
@@ -58,3 +58,13 @@ The adapter omits repeated raw records where their fields are already mapped and
 ## Boundaries
 
 This viewer cannot establish scientific correctness, practical safety, source completeness, actor information separation, task-loader validity or robot feasibility. It never mutates a sample state, emits an execution event or marks a branch complete. All reference/evaluator content is public for inspection and must be projected out of any future actor prompt.
+
+## Perovskite solar modules
+
+- Copies all 40 route templates and their 752 authored action definitions, including unexpanded condition and replicate obligations
+- Preserves every top-level unknown ID; these are not nested under provenance in this schema
+- Binds each action to its source service card using the longest matching service-ID prefix; complete service, material and condition records remain available
+- Per-operation target-asset lists are absent in the source schema and are explicitly marked as such, not fabricated
+- Retains all seven textual partial-order predicates as text. A predicate is not converted into an invented pair of operation-ID edges
+- SPIN_MODULES is the default reference route. It does not establish completion of the entire paper
+- The larger perovskite payload has a 1.5 MB guard because it retains 752 definitions and all detailed service/condition contracts; each earlier family retains its 200 kB guard

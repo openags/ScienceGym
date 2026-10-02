@@ -8,13 +8,13 @@ Task-design reference; no task execution or scientific reproduction. Counts desc
 
 **Reading rule:** numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed. An unordered obligation group has no inferred chronological edges. Source-reported scientific facts and authored handling are distinct.
 
-[Immutable source task package](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/) · [Interactive inspector](../index.html)
+[Immutable source task package](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/) · [Interactive inspector](../index.html)
 
 ## FAB_FIG1 — Fig1 example-cell manufacture and archiving
 
 Authored phase order with unexpanded nested loops; values and completion rules retained verbatim
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/0`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/0`
 
 - `PRECHECK` Receive the task and check public states
 - **GROUP: Generate numbered task samples from raw stock**
@@ -103,7 +103,7 @@ Authored phase order with unexpanded nested loops; values and completion rules r
 
 Authored phase order with unexpanded nested loops; values and completion rules retained verbatim
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/1`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/1`
 
 - `PRECHECK` Receive the task and check public states
 - **GROUP: Generate numbered task samples from raw stock**
@@ -225,7 +225,7 @@ Authored phase order with unexpanded nested loops; values and completion rules r
 
 Authored phase order with unexpanded nested loops; values and completion rules retained verbatim
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/2`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/2`
 
 - `PRECHECK` Receive the task and check public states
 - **GROUP: Generate numbered task samples from raw stock**
@@ -334,7 +334,7 @@ Authored phase order with unexpanded nested loops; values and completion rules r
 
 Authored phase order with unexpanded nested loops; values and completion rules retained verbatim
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/3`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/3`
 
 - `PRECHECK` Receive the task and check public states
 - **GROUP: Generate numbered task samples from raw stock**
@@ -496,7 +496,7 @@ Authored phase order with unexpanded nested loops; values and completion rules r
 
 Authored phase order with unexpanded nested loops; values and completion rules retained verbatim
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/4`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/4`
 
 - `PRECHECK` Receive the task and check public states
 - **GROUP: Generate numbered task samples from raw stock**
@@ -669,7 +669,7 @@ Authored phase order with unexpanded nested loops; values and completion rules r
 
 Authored phase order with unexpanded nested loops; values and completion rules retained verbatim
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/5`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/5`
 
 - `PRECHECK` Receive the task and check public states
 - **GROUP: Generate numbered task samples from raw stock**
@@ -881,7 +881,7 @@ Authored phase order with unexpanded nested loops; values and completion rules r
 
 Authored phase order with unexpanded nested loops; values and completion rules retained verbatim
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/6`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/6`
 
 - `PRECHECK` Receive the task and check public states
 - **GROUP: Generate numbered task samples from raw stock**
@@ -1108,7 +1108,7 @@ Authored phase order with unexpanded nested loops; values and completion rules r
 
 Authored phase order with unexpanded nested loops; values and completion rules retained verbatim
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/7`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/acoustic_operations_v2/branches.json) · JSON pointer: `/branches/7`
 
 - `PRECHECK` Receive the task and check public states
 - **GROUP: Generate numbered task samples from raw stock**

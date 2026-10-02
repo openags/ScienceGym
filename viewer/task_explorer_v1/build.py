@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for six public task schemas."""
+"""Deterministic, standard-library-only adapters for seven public task schemas."""
 import argparse, json, pathlib, hashlib, html, textwrap
 ROOT=pathlib.Path(__file__).resolve().parent
-COMMIT='2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27'
+COMMIT='ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
-NAMES={'chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
-COLORS={'chiral':'#8d6bce','microscopy':'#268e96','fibre':'#dc8654','thermoelectric':'#d7aa36','dispim':'#598bd1','acoustic':'#8aaf58'}
+NAMES={'perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
+COLORS={'perovskite':'#ca7188','chiral':'#8d6bce','microscopy':'#268e96','fibre':'#dc8654','thermoelectric':'#d7aa36','dispim':'#598bd1','acoustic':'#8aaf58'}
 
 def read(p,name): return json.loads((p/name).read_text())
 def optional(p,name): return read(p,name) if (p/name).exists() else None
@@ -17,7 +17,7 @@ def unique_shared(f):
     """Losslessly pool repeated operation values; decoded by the inspector."""
     pool=[]; ids={}
     for op in f['operations']:
-        for key in ['provenance','actions','acceptance','recovery','objects']:
+        for key in ['provenance','actions','acceptance','recovery','objects','detail']:
             v=op.get(key)
             if v is None: continue
             encoded=json.dumps(v,ensure_ascii=False,separators=(',',':'))
@@ -90,6 +90,28 @@ def adapt_fibre(p):
     for i,r in enumerate(b['branches']):
         f['routes'].append({'id':r['id'],'label':r['label'],'nodes':refs(r['full_operation_sequence']),
             'basis':'Authored reference linearization; repeated IDs are separate occurrences and remain in order',
+            'detail':without(r,{'id','label','full_operation_sequence'}),'source_file':'branches.json','source_pointer':f'/branches/{i}/full_operation_sequence'})
+    return f
+
+def adapt_perovskite(p):
+    f=core(p,'perovskite'); raw=read(p,'operations.json'); b=read(p,'branches.json')
+    f['default_route']='SPIN_MODULES'
+    f['dependencies']={'partial_order':b['partial_order'], 'count_warning':b['count_warning']}
+    f['context']['branch_policy']=without(b,{'branches','partial_order'})
+    f['context']['service_definitions']=raw['service_definitions']
+    f['context']['identity_binding']=raw['identity_binding']
+    for name in ['control_packages.json','material_cards.json','granularity_gaps.json','RELEASE_BOUNDARY.json','agent_visible.json','coverage_matrix.json']:
+        f['context'][name.removesuffix('.json')]=read(p,name)
+    for o,mapped in zip(raw['operations'],f['operations']):
+        mapped['unknowns']=o.get('unknown_ids',[])
+        mapped['objects']=['No per-operation asset-role list supplied; inspect the bound service card, material cards and identity rules']
+        bound=[s for sid,s in raw['service_definitions'].items() if o['id'].startswith(sid+'_')]
+        if len(bound)>1:
+            bound=sorted(bound,key=lambda s:len(s['id']),reverse=True)[:1]
+        if bound: mapped['detail']['service_card']=bound[0]
+    for i,r in enumerate(b['branches']):
+        f['routes'].append({'id':r['id'],'label':r['label'],'nodes':refs(r['full_operation_sequence']),
+            'basis':'Authored reference order; condition and replicate obligations are not silently expanded',
             'detail':without(r,{'id','label','full_operation_sequence'}),'source_file':'branches.json','source_pointer':f'/branches/{i}/full_operation_sequence'})
     return f
 
@@ -194,7 +216,7 @@ def adapt_microscopy(p):
            'basis':'Listed data obligations; no chronological arrows asserted','detail':without(b,{'id','title','actions'}),'source_file':'operation_sequences.json','source_pointer':f'/data_workstation_branches/{i}'})
     return f
 
-ADAPTERS={'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic}
+ADAPTERS={'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic}
 
 def walk(nodes,depth=0):
     for n in nodes:

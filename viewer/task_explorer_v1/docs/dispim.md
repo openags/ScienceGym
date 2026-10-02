@@ -8,13 +8,13 @@ Static authored task design; no hardware, physics or execution. Counts describe 
 
 **Reading rule:** numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed. An unordered obligation group has no inferred chronological edges. Source-reported scientific facts and authored handling are distinct.
 
-[Immutable source task package](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/dispim_operations_v2/) · [Interactive inspector](../index.html)
+[Immutable source task package](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/dispim_operations_v2/) · [Interactive inspector](../index.html)
 
 ## D-R01 — Complete route from initial assembly through embryos
 
 Authored reference route with source-step mappings; repeated P001/P004 occurrences intentionally retained
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/0`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/0`
 
 - `O001` Inventory identities and static safety states
 - `O002` Check the externally installed optical table
@@ -114,7 +114,7 @@ Authored reference route with source-step mappings; repeated P001/P004 occurrenc
 
 Authored reference route with source-step mappings; repeated P001/P004 occurrences intentionally retained
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/1`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/1`
 
 - `P005` Prepare routine buffers and coating materials
 - `P006` Handle pick and capillary provenance
@@ -166,7 +166,7 @@ Authored reference route with source-step mappings; repeated P001/P004 occurrenc
 
 Authored reference route with source-step mappings; repeated P001/P004 occurrences intentionally retained
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/2`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/2`
 
 - `O001` Inventory identities and static safety states
 - `O002` Check the externally installed optical table
@@ -261,7 +261,7 @@ Authored reference route with source-step mappings; repeated P001/P004 occurrenc
 
 Authored reference route with source-step mappings; repeated P001/P004 occurrences intentionally retained
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/3`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/3`
 
 - `O001` Inventory identities and static safety states
 - `O002` Check the externally installed optical table
@@ -348,7 +348,7 @@ Authored reference route with source-step mappings; repeated P001/P004 occurrenc
 
 Authored reference route with source-step mappings; repeated P001/P004 occurrences intentionally retained
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/4`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/4`
 
 - `O040` Mount beads and localize safely
 - `O041` Configure scouting and inspect both stacks
@@ -382,7 +382,7 @@ Authored reference route with source-step mappings; repeated P001/P004 occurrenc
 
 Authored reference route with source-step mappings; repeated P001/P004 occurrences intentionally retained
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/5`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/5`
 
 - `D001` Convert formats and organize dual-view directories
 - `D002` Crop and subtract matching dark backgrounds
@@ -413,7 +413,7 @@ Authored reference route with source-step mappings; repeated P001/P004 occurrenc
 
 Authored reference route with source-step mappings; repeated P001/P004 occurrences intentionally retained
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/6`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/dispim_operations_v2/BRANCHES.json) · JSON pointer: `/route_templates/6`
 
 - `L001` Custom-launch component topology
 - `L002` Functional polarization and beam-splitting checks

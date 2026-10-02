@@ -1,6 +1,6 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** Six public paper-level task families, with complete reference-route occurrences, nested repetition, objects, state transitions and evidence.
+**See the task before reading its JSON.** Seven public paper-level task families, with complete reference-route occurrences, nested repetition, objects, state transitions and evidence.
 
 This is a **read-only public reference inspector**, including evaluator material. It is not a simulator, a task runner, an actor-facing prompt or evidence that a robot performed any operation. The source release has **zero validated runnable whole-paper tasks**.
 
@@ -13,7 +13,7 @@ This is a **read-only public reference inspector**, including evaluator material
 
 GitHub displays HTML source rather than running it. The diagrams and Markdown routes below are readable directly on GitHub.
 
-## Six visual route maps
+## Seven visual route maps
 
 Each SVG shows every listed step in its designated reference route: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01 and Acoustic WHOLE_PAPER_PRACTICAL. The right-hand index lists every route choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes, not just the pictured route.
 
@@ -45,11 +45,11 @@ Each SVG shows every listed step in its designated reference route: Chiral R01, 
 - `data/<family>.json`: compact, inspectable normalized records
 - `data/<family>.js`: the same JSON as a local-script assignment so `file://` does not require fetch
 - `diagrams/*.svg`, `docs/<family>.md`: GitHub-native alternatives
-- `build.py`: six explicit source-schema adapters, standard library only
+- `build.py`: seven explicit source-schema adapters, standard library only
 - `tests/test_semantics.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 
-The immutable source snapshot is [openags/ScienceGym at 2f926a9d2c2b](https://github.com/openags/ScienceGym/tree/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27). Every source JSON link is pinned to that commit. Per-file SHA-256 values are retained in each data file. The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
+The immutable source snapshot is [openags/ScienceGym at 2f926a9d2c2b](https://github.com/openags/ScienceGym/tree/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca). Every source JSON link is pinned to that commit. Per-file SHA-256 values are retained in each data file. The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
 
 ## Rebuild and test
 

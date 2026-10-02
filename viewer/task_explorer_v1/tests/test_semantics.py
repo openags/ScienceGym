@@ -14,7 +14,7 @@ def get(key):
 def ids(nodes):return [n['id'] for n,d in builder.walk(nodes) if n['type']=='op']
 
 class BundleTests(unittest.TestCase):
- def test_six_families(self):self.assertEqual(len(list((ROOT/'data').glob('*.json'))),6)
+ def test_seven_families(self):self.assertEqual(len(list((ROOT/'data').glob('*.json'))),7)
  def test_all_operation_references_resolve(self):
   for key in builder.ADAPTERS:
    f=get(key);mapping={o['id']:o for o in f['operations']};self.assertEqual(len(mapping),len(f['operations']))
@@ -28,7 +28,7 @@ class BundleTests(unittest.TestCase):
     for field in ['pre','post','sources','objects','recovery','acceptance','unknowns','provenance']:self.assertIn(field,o)
     if o.get('action_macro'):self.assertIn(o['action_macro'],f['macros'])
  def test_compact_payloads(self):
-  for path in (ROOT/'data').glob('*.json'):self.assertLess(path.stat().st_size,200000,path.name)
+  for path in (ROOT/'data').glob('*.json'):self.assertLess(path.stat().st_size,1500000 if path.stem=='perovskite' else 200000,path.name)
  def test_js_payload_matches_json(self):
   for key in builder.ADAPTERS:
    js=(ROOT/'data'/f'{key}.js').read_text();payload=js.split('['+json.dumps(key)+']=',1)[1].rsplit(';',1)[0]
@@ -53,7 +53,7 @@ class BundleTests(unittest.TestCase):
   self.assertGreater(len(loops),5);self.assertTrue(any(d>1 for n,d in loops));self.assertTrue(all('values'in n['meta'] and 'completion_rule'in n['meta'] for n,d in loops))
  @unittest.skipUnless(TASKS,'SCIENCEGYM_TASKS not set; source comparison not run')
  def test_source_routes_exact(self):
-  for key,field in [('chiral','operation_sequence'),('fibre','full_operation_sequence'),('thermoelectric','full_operation_sequence')]:
+  for key,field in [('chiral','operation_sequence'),('fibre','full_operation_sequence'),('thermoelectric','full_operation_sequence'),('perovskite','full_operation_sequence')]:
    raw=json.loads((TASKS/(key+'_operations_v2')/'branches.json').read_text())
    for source,route in zip(raw['branches'],get(key)['routes']):self.assertEqual(source[field],ids(route['nodes']))
   raw=json.loads((TASKS/'dispim_operations_v2'/'BRANCHES.json').read_text())
@@ -82,4 +82,20 @@ class BundleTests(unittest.TestCase):
    for original in b['preparation']:
     op=ops[original['id']];self.assertEqual(op['pre'],[original['precondition_state']]);self.assertEqual(op['post'],[original['output_state']]);self.assertEqual(op['detail']['reported_parameters'],original['reported_parameters'])
   self.assertEqual(f['macros'],json.loads((TASKS/'microscopy_operations_v2'/'interaction_design.json').read_text())['macros'])
+ @unittest.skipUnless(TASKS,'SCIENCEGYM_TASKS not set; source comparison not run')
+ def test_perovskite_unknowns_and_services_exact(self):
+  raw=json.loads((TASKS/'perovskite_operations_v2'/'operations.json').read_text()); f=get('perovskite')
+  self.assertEqual(f['context']['service_definitions'],raw['service_definitions'])
+  self.assertEqual(len(f['operations']),len(raw['operations']))
+  for original,mapped in zip(raw['operations'],f['operations']):
+   for a,b in [('actions','actions'),('preconditions','pre'),('postconditions','post'),('recovery','recovery'),('unknown_ids','unknowns'),('evidence_ids','sources')]:self.assertEqual(original[a],mapped[b])
+   candidates=[s for sid,s in raw['service_definitions'].items() if original['id'].startswith(sid+'_')]
+   if candidates:self.assertEqual(mapped['detail']['service_card'],max(candidates,key=lambda s:len(s['id'])))
+ @unittest.skipUnless(TASKS,'SCIENCEGYM_TASKS not set; source comparison not run')
+ def test_perovskite_condition_contracts_exact(self):
+  raw=json.loads((TASKS/'perovskite_operations_v2'/'branches.json').read_text()); f=get('perovskite')
+  for a,b in zip(raw['branches'],f['routes']):
+   self.assertEqual(b['detail'],builder.without(a,{'id','label','full_operation_sequence'}))
+  for name in ['control_packages','material_cards','granularity_gaps','RELEASE_BOUNDARY','agent_visible','coverage_matrix']:
+   self.assertEqual(f['context'][name],json.loads((TASKS/'perovskite_operations_v2'/(name+'.json')).read_text()))
 if __name__=='__main__':unittest.main()

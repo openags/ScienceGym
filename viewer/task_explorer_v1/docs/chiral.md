@@ -8,13 +8,13 @@ Task-design reference; no task execution or scientific reproduction. Counts desc
 
 **Reading rule:** numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed. An unordered obligation group has no inferred chronological edges. Source-reported scientific facts and authored handling are distinct.
 
-[Immutable source task package](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/) · [Interactive inspector](../index.html)
+[Immutable source task package](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/) · [Interactive inspector](../index.html)
 
 ## R01 — rubber chiral rod / table row1
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/0/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/0/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -129,7 +129,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/1/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/1/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -232,7 +232,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/2/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/2/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -334,7 +334,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/3/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/3/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -436,7 +436,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/4/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/4/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -538,7 +538,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/5/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/5/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -640,7 +640,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/6/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/6/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -742,7 +742,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/7/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/7/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -844,7 +844,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/8/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/8/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -946,7 +946,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/9/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/9/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1048,7 +1048,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/10/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/10/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1150,7 +1150,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/11/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/11/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1261,7 +1261,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/12/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/12/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1368,7 +1368,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/13/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/13/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1469,7 +1469,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/14/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/14/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1571,7 +1571,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/15/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/15/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1678,7 +1678,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/16/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/16/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1785,7 +1785,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/17/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/17/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1881,7 +1881,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/18/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/18/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -1979,7 +1979,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/19/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/19/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -2071,7 +2071,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/20/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/20/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -2162,7 +2162,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/21/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/21/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -2254,7 +2254,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/22/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/22/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -2347,7 +2347,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/23/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/23/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -2438,7 +2438,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/24/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/24/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -2537,7 +2537,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/25/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/25/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -2636,7 +2636,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/26/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/26/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
@@ -2735,7 +2735,7 @@ Authored within-branch reference order; not recovered author chronology
 
 Authored within-branch reference order; not recovered author chronology
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/2f926a9d2c2b8a0c71e8939feaa6ca5696e14c27/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/27/operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/chiral_operations_v2/branches.json) · JSON pointer: `/branches/27/operation_sequence`
 
 - `FAB01` Retrieve material-specific feedstock and an empty build tray
 - `FAB02` Open the printer chamber and load the cartridge
