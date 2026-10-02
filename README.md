@@ -8,6 +8,12 @@ The unit of design is a **paper-level task family**. Its branches, dependencies,
 
 **Current release: six reviewed task-design drafts; zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
 
+## Visual task routes
+
+The first visual route shows every listed R01 operation and the complete chiral branch index. Dashed connectors represent the authored reference order, not an executed trajectory or a recovered author chronology. The six-paper interactive explorer is being integrated.
+
+[![Chiral metamaterials: complete R01 task route and branch index](docs/visualizations/chiral_r01.svg)](docs/visualizations/chiral_r01.svg)
+
 ## Why paper-level tasks?
 
 Scientific work connects many individually simple actions across long intervals and multiple devices. A useful task must preserve those connections:
