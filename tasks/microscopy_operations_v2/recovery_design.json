@@ -1,0 +1,67 @@
+{
+  "provenance": "Authored task behavior, not paper laboratory rescue advice",
+  "cases": [
+    {
+      "failure": "wrong carrier before preparation",
+      "action": "Read geometric/label cue; return wrong carrier and pick correct one",
+      "boundary": "No penalty to specimen lineage if no material transfer occurred"
+    },
+    {
+      "failure": "wrong reagent after dispense",
+      "action": "Record irreversible invalid preparation; quarantine that task specimen, retrieve spare entry and restart affected branch",
+      "boundary": "Cannot delete history or relabel wrong reagent as correct"
+    },
+    {
+      "failure": "wash count incomplete",
+      "action": "Read per-cycle log and perform remaining valid wash cycles before next step",
+      "boundary": "Cannot compress five wash events into one self-report"
+    },
+    {
+      "failure": "incubation interrupted",
+      "action": "Keep accumulated timer state; return same vessel to correct station and continue if task card permits",
+      "boundary": "No source stability claim is inferred; unreported tolerance is authored"
+    },
+    {
+      "failure": "mount bubble or wrong orientation",
+      "action": "Close shutter/retract, unload to prep bench, remount with same lineage and reinspect",
+      "boundary": "Old failed observation retained"
+    },
+    {
+      "failure": "wrong station or camera",
+      "action": "Unload safely, transport to correct configuration variant and reacquire",
+      "boundary": "Do not claim a Zyla record came from iXon"
+    },
+    {
+      "failure": "defocus or wrong FOV",
+      "action": "Inspect preview and navigate/focus until correct cue; reacquire raw attempt",
+      "boundary": "No automatic nominal result from acquire button"
+    },
+    {
+      "failure": "saturation",
+      "action": "Reduce authored exposure preset and reacquire",
+      "boundary": "No fabricated paper exposure value"
+    },
+    {
+      "failure": "paired FOV mismatch",
+      "action": "Use orientation/landmark mapping and return to matched field; reacquire modality with identity recorded",
+      "boundary": "Never substitute visually similar region"
+    },
+    {
+      "failure": "interrupted stack",
+      "action": "Retain partial acquisition record and resume/reacquire under task card with same settings",
+      "boundary": "Partial stack cannot count as complete"
+    },
+    {
+      "failure": "data parent mismatch",
+      "action": "Return to raw manifest and choose correct immutable parent; regenerate derivative record",
+      "boundary": "No handwritten parent IDs accepted"
+    },
+    {
+      "failure": "unresolved source contradiction",
+      "action": "Select explicit labeled task interpretation and retain source conflict flag",
+      "boundary": "No guessed corrected species, fluorophore, unit or missing sequence"
+    }
+  ],
+  "restart": "Fresh task specimen gets new immutable ID and parent entry; failed lineage remains auditable",
+  "spares": "Authored replenishment at receiving, not an assertion of paper sample counts"
+}

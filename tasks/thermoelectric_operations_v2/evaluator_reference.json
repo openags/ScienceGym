@@ -1,0 +1,83 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "visibility": "never_include_in_agent_prompt",
+  "acceptance": [
+    {
+      "id": "INPUT",
+      "requirement": "Actual mock input handling, correct full identities and separate P/N/B paths"
+    },
+    {
+      "id": "FAB",
+      "requirement": "Every output traces to loaded material, correct milling/melt/SPS branch, completion plus safe release"
+    },
+    {
+      "id": "ORIENTATION",
+      "requirement": "P parallel and B perpendicular source relation retained; N unknown remains unknown; segment P-hot/B-cold source setup retained"
+    },
+    {
+      "id": "GEOMETRY",
+      "requirement": "6.7/8.8 physical controls versus7–10 computational lengths distinguished; physical pair P3.3 andN2.9 both6.6"
+    },
+    {
+      "id": "INTERFACES",
+      "requirement": "Sb/P/Sb/GaIn/B distinct from steel-N and Cu/AlN assembly; no invented source soldering"
+    },
+    {
+      "id": "LINEAGE",
+      "requirement": "Unique legs, conserved symbolic portions, material/measurement history, no unearned pristine reset"
+    },
+    {
+      "id": "MEASURE",
+      "requirement": "Mount, contact/clamp, wiring, vacuum/stability and current/position acquisition actions all produce object-linked records"
+    },
+    {
+      "id": "DATA",
+      "requirement": "I,V,Qc units and calibration handled; P/eta/density/resistivity valid or honestly unknown"
+    },
+    {
+      "id": "CONTROLS",
+      "requirement": "Required material/length/thermal/interface groups complete or explicitly failed, no pseudoreplication"
+    },
+    {
+      "id": "CLOSE",
+      "requirement": "Stop, trusted cool/release, support-disconnect-unload, segregated archive, waste closure and tools returned"
+    }
+  ],
+  "hard_rejections": [
+    "Start from finished asset instead of required raw stock",
+    "Treat existing SPEX display controls as validated operation",
+    "Use ordinary vial closed state as proof of Ar containment",
+    "Skip B quartz melt and call direct powder milling equivalent",
+    "Strip C18H36O2 or n-type In/Te/dopant identity",
+    "Swap SPS P/B or N programs/interfaces",
+    "Copy P cutting orientation into N as source truth",
+    "Join P directly to B without Sb/GaIn stack",
+    "Make single-material B source control coated without flagging authored deviation",
+    "Uniformly rescale P/N to same cross-section",
+    "Give one leg ID to multiple module positions",
+    "Reuse simulation dimensions as experimental specimen evidence",
+    "Record rows without contact/current/thermal acquisition event",
+    "Convert uncalibrated Qc mV directly into W or eta",
+    "Use source9.3/8.7 or4.0/4.9 values as measured output",
+    "Claim sampled maximum is exact continuous optimum without model",
+    "Claim 32-pair/SnS/GeTe/three-segment simulation as newly fabricated",
+    "Open before trustworthy safe state",
+    "Drop invalid data/history, reset damaged item or silently replace sample"
+  ],
+  "valid_recoveries": [
+    "Wrong stock before transfer: close and return then retrieve correct lot",
+    "Wrong mixed batch: quarantine and allocate new lot, preserving failed lineage",
+    "Loose fixture: stop/release, support and remount, perform new check",
+    "Probe dropout: mark point invalid, stop/retract/reposition and reacquire new point ID",
+    "Missing calibration: retain raw signal; P may remain valid; eta remains unknown",
+    "Shorted module: output off, inspect/reseat only reversible authored connector; bonded/unknown damage isolate",
+    "Thermal drift: stop point series, re-stabilize same object, new condition attempt with retained prior data",
+    "Broken leg: contain fragments and remake from sufficient input, never copy/rename",
+    "Unsafe/unavailable release: keep device closed and return blocker without endless fake progress"
+  ],
+  "numerical_science_targets": null,
+  "partial_credit": "Credit observable safe completed suboperations and explicit unknowns; do not award full branch without required acquisition/cleanup; expected scientific outcomes are not motion rewards.",
+  "reference_equivalence": "Accept alternative valid orderings and grips that preserve all dependencies, IDs, interfaces, conditions and safe gates; exact reference list is not sole trajectory.",
+  "runtime_review": "No rollout, simulator, hardware or dynamic evaluator was executed in this package."
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "source_manual_microsequence_replicated": false,
+  "task_design_status": "whole-paper macro coverage with explicit hand-operation templates; not executed",
+  "stages": [
+    {
+      "stage": "dose/mill",
+      "manual_actions_present": "open/close, transfer, seat, support, turn clamp, lid, unload",
+      "closed_service_internals": "powder mechanics and Ar containment are preset",
+      "remaining_gap": "vial kit, media, contact and exposure protocol"
+    },
+    {
+      "stage": "melt",
+      "manual_actions_present": "load tube, mount cold tray, door, retrieve ingot carrier",
+      "closed_service_internals": "seal, heat, cool, open-tube service are preset",
+      "remaining_gap": "tube/furnace internals and exact manual opening"
+    },
+    {
+      "stage": "SPS",
+      "manual_actions_present": "assemble die/punch proxies, layered loading, mount tray, unload/demould",
+      "closed_service_internals": "high-temperature/pressure process preset",
+      "remaining_gap": "real die internals/ram contact/ramp/pressure/forces"
+    },
+    {
+      "stage": "cut",
+      "manual_actions_present": "align press axis, support, set geometry, close guard, sort parts",
+      "closed_service_internals": "cutting dynamics preset",
+      "remaining_gap": "blade/kerf/method/cut-plane convention"
+    },
+    {
+      "stage": "join",
+      "manual_actions_present": "align faces, transfer mock GaIn, close fixture, AlN/Cu placement",
+      "closed_service_internals": "mock interface formation",
+      "remaining_gap": "wetting, source bonding, force/time"
+    },
+    {
+      "stage": "S1331",
+      "manual_actions_present": "support, lead routing, lower/retract/step probe, unload",
+      "closed_service_internals": "resistance readout preset",
+      "remaining_gap": "probe wiring/current/spacing/force"
+    },
+    {
+      "stage": "MiniPEM",
+      "manual_actions_present": "mount, upper contact, leads, door, conditions, disconnect/unload",
+      "closed_service_internals": "vacuum/thermal stabilization/readout preset",
+      "remaining_gap": "real internals/sensors/preload/calibration"
+    },
+    {
+      "stage": "close",
+      "manual_actions_present": "tools returned, powder/metal/quartz waste sealed, wipe proxy",
+      "closed_service_internals": "waste treatment not simulated",
+      "remaining_gap": "real SOP/disposal vendor not specified"
+    }
+  ],
+  "rule": "A completed closed-service macro is not evidence every human micro-motion inside was recovered. It also cannot bypass input placement and output retrieval."
+}

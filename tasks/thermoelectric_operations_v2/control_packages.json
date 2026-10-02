@@ -1,0 +1,75 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "visibility": "evaluator_reference_only",
+  "control_packages": [
+    {
+      "id": "FIG3I_LENGTH_MATERIAL",
+      "tasks": [
+        "POWER_SEG_6P7",
+        "POWER_P_6P7",
+        "POWER_B_6P7",
+        "POWER_SEG_8P8",
+        "POWER_P_8P8",
+        "POWER_B_8P8"
+      ],
+      "hold_in_task": [
+        "same authored cross-sectional area",
+        "same authored thermal card",
+        "same mock current grid/measurement configuration"
+      ],
+      "vary": [
+        "material architecture",
+        "reported total length6.7 versus8.8mm"
+      ],
+      "limits": "Real Fig.3i area/thermal boundary/replicate counts unknown; matched mock settings are not source conditions."
+    },
+    {
+      "id": "FIG3H_INTERFACES",
+      "tasks": [
+        "CONTACT_SEG"
+      ],
+      "within_object_interfaces": [
+        "Sb/P",
+        "B/GaIn/Sb"
+      ],
+      "limits": "Not two independent samples. Resistivity not direct R(x) output; area and fit required."
+    },
+    {
+      "id": "THERMAL_SCAN_SEG",
+      "tasks": [
+        "EFFICIENCY_SEG"
+      ],
+      "Th_K": [
+        373,
+        473,
+        573,
+        593
+      ],
+      "Tc_K": 293,
+      "same_object": true
+    },
+    {
+      "id": "THERMAL_SCAN_PAIR",
+      "tasks": [
+        "PAIRED_TWO"
+      ],
+      "Th_K": [
+        373,
+        473,
+        573,
+        593
+      ],
+      "Tc_K": 293,
+      "same_object": true
+    },
+    {
+      "id": "LITERATURE_ONLY",
+      "tasks": [],
+      "read_only_reference": "Fig.4j external material-system devices",
+      "physical_control_count": 0
+    }
+  ],
+  "source_replicate_count": null,
+  "statistical_policy": "Do not convert current points, thermal conditions, two pairs or repeated probe positions into independent fabrication n."
+}

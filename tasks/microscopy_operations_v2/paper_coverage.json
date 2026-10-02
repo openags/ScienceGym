@@ -1,0 +1,252 @@
+{
+  "paper_id": "deconwolf2024",
+  "coverage_unit": "one paper-wide task design with six physical preparation/imaging branches plus seven source data-entry comparison branches",
+  "whole_paper_design": true,
+  "whole_paper_physical_protocol_complete": false,
+  "reason": "Paper itself refers upstream probe methods/data and leaves parameters unspecified. The design accounts for these through explicit inputs/bridges instead of silently omitting branches.",
+  "branches": [
+    {
+      "id": "tubulin",
+      "kind": "physical_preparation_and_imaging",
+      "entry": "U-2 OS stock identity token, not a pre-stained or pre-mounted specimen",
+      "covered": "all retained source-reported manual stages represented; missing source details explicitly bridged",
+      "source_refs": [
+        "M64",
+        "M80",
+        "R_IF"
+      ],
+      "source_gaps": [
+        "No numerical exposure, illumination power, EM gain, oil type or field-coordinate registration procedure supplied",
+        "Support slide/holder, carrier transfer and cleaning mechanics are authored"
+      ]
+    },
+    {
+      "id": "ifish",
+      "kind": "physical_preparation_and_imaging",
+      "entry": "HAP1 stock identity token and separately supplied probe-lot tokens",
+      "covered": "all retained source-reported manual stages represented; missing source details explicitly bridged",
+      "source_refs": [
+        "M64",
+        "M75",
+        "M101",
+        "ED7",
+        "SI78"
+      ],
+      "source_gaps": [
+        "Probe synthesis is a source-cited upstream input, represented as identity-checked probe lots, not invented chemistry",
+        "51-plane boundary example is a separate data subtask, not a global iFISH acquisition setting"
+      ]
+    },
+    {
+      "id": "gapdh",
+      "kind": "physical_preparation_and_imaging",
+      "entry": "SKBR3 stock identity token, source-specific probe lots and empty authored carrier",
+      "covered": "all retained source-reported manual stages represented; missing source details explicitly bridged",
+      "source_refs": [
+        "M64",
+        "M71",
+        "R_FISH",
+        "ED5",
+        "ED6",
+        "SI78"
+      ],
+      "source_gaps": [
+        "Generic pre-hybridization preparation is authored and cannot earn source-reproduction credit",
+        "Prepared microscope/coverslip object alone is not a completion condition"
+      ]
+    },
+    {
+      "id": "tissue",
+      "kind": "physical_preparation_and_imaging",
+      "entry": "Purchased 5 µm frozen TMA section token, US Biomax FMC282e; no donated-person identifying data",
+      "covered": "all retained source-reported manual stages represented; missing source details explicitly bridged",
+      "source_refs": [
+        "M68",
+        "M73",
+        "M103",
+        "R_TISSUE",
+        "ED8",
+        "ED9"
+      ],
+      "source_gaps": [
+        "Ten FOVs acquired in Methods and five analyzed FOVs in figure results are distinct counts",
+        "Directly labeled MKI67 versus inherited secondary step unresolved; both task variants flagged"
+      ]
+    },
+    {
+      "id": "gfap",
+      "kind": "physical_preparation_and_imaging",
+      "entry": "FFPE human cerebral-cortex TMA block token from source-described biobank-derived array",
+      "covered": "all retained source-reported manual stages represented; missing source details explicitly bridged",
+      "source_refs": [
+        "M66",
+        "M78",
+        "R_IF",
+        "SI3",
+        "SI4",
+        "ED3"
+      ],
+      "source_gaps": [
+        "Paper does not order GFAP confocal before widefield; do not import tubulin chronology",
+        "100× caption variant distinct from Methods 60× variant"
+      ]
+    },
+    {
+      "id": "nuclear_pores",
+      "kind": "physical_preparation_and_imaging",
+      "entry": "Source-literal PtK2 identity token with unresolved species label; no live biological material instantiated",
+      "covered": "all retained source-reported manual stages represented; missing source details explicitly bridged",
+      "source_refs": [
+        "M82",
+        "SI4",
+        "SIN13"
+      ],
+      "source_gaps": [
+        "This branch is fully represented as an authored task with explicit source-gap stages, not represented as a complete physical protocol",
+        "No assertion that the contradictory source fluorophore identifiers are experimentally compatible"
+      ]
+    },
+    {
+      "id": "software_benchmark",
+      "kind": "source_data_entry_workstation",
+      "entry": [
+        "synthetic microtubule reference",
+        "synthetic hollow bar reference",
+        "external C. elegans whole-embryo reference"
+      ],
+      "covered": "operator decisions and comparisons represented with preset outputs; no newly invented wet-lab protocol",
+      "source_refs": [
+        "R_BENCH",
+        "ED1",
+        "SIN4"
+      ],
+      "source_gaps": [
+        "No real input arrays, executable comparisons or timing measurements supplied here"
+      ]
+    },
+    {
+      "id": "psf",
+      "kind": "source_data_entry_workstation",
+      "entry": [
+        "ChrX-36plex PSF-comparison source token"
+      ],
+      "covered": "operator decisions and comparisons represented with preset outputs; no newly invented wet-lab protocol",
+      "source_refs": [
+        "R_BENCH",
+        "M87",
+        "SI1",
+        "SIN13"
+      ],
+      "source_gaps": [
+        "Full optical metadata and original image arrays not retained"
+      ]
+    },
+    {
+      "id": "boundary",
+      "kind": "source_data_entry_workstation",
+      "entry": [
+        "external embryo stack",
+        "HAP1 Hoechst boundary-example stack with 51 planes"
+      ],
+      "covered": "operator decisions and comparisons represented with preset outputs; no newly invented wet-lab protocol",
+      "source_refs": [
+        "R_BENCH",
+        "ED2",
+        "SI2",
+        "SIN4"
+      ],
+      "source_gaps": [
+        "Connection between boundary-example HAP1 specimen and iFISH specimen not established; no forced same-sample link"
+      ]
+    },
+    {
+      "id": "synthetic_dots",
+      "kind": "source_data_entry_workstation",
+      "entry": [
+        "authored stand-ins for source synthetic truth/noisy widefield/confocal conditions"
+      ],
+      "covered": "operator decisions and comparisons represented with preset outputs; no newly invented wet-lab protocol",
+      "source_refs": [
+        "M97",
+        "R_FISH",
+        "ED4",
+        "SI56"
+      ],
+      "source_gaps": [
+        "No optical simulation implemented; all task observations are presets"
+      ]
+    },
+    {
+      "id": "isst",
+      "kind": "source_data_entry_workstation",
+      "entry": [
+        "previously generated 120-gene middle-temporal-gyrus image dataset token"
+      ],
+      "covered": "operator decisions and comparisons represented with preset outputs; no newly invented wet-lab protocol",
+      "source_refs": [
+        "M105",
+        "R_ISST",
+        "ED10"
+      ],
+      "source_gaps": [
+        "Raw images and gene table absent; preset data token only",
+        "This paper reused images, so no new ISST wet-lab protocol is invented"
+      ]
+    },
+    {
+      "id": "oligofisseq",
+      "kind": "source_data_entry_workstation",
+      "entry": [
+        "ChrX-46plex O-eLIT source dataset token; seven replicate dataset slots"
+      ],
+      "covered": "operator decisions and comparisons represented with preset outputs; no newly invented wet-lab protocol",
+      "source_refs": [
+        "M107",
+        "R_OLIGO",
+        "R_ISST",
+        "ED10"
+      ],
+      "source_gaps": [
+        "No upstream OligoFISSEQ probe production or sequencing procedure invented",
+        "168 match operations may be task-batched with coverage record, never claimed as observed here"
+      ]
+    },
+    {
+      "id": "rln_comparator",
+      "kind": "source_data_entry_workstation",
+      "entry": [
+        "external U-2 OS mitochondria/actin/tubulin raw token",
+        "published RLN screenshot-reference token"
+      ],
+      "covered": "operator decisions and comparisons represented with preset outputs; no newly invented wet-lab protocol",
+      "source_refs": [
+        "SI9"
+      ],
+      "source_gaps": [
+        "No screenshot or raw image redistributed; task uses authored stand-ins"
+      ]
+    }
+  ],
+  "non_branch_mentions": [
+    {
+      "item": "hTERT RPE-1 culture mention",
+      "handling": "retained as source context, no distinct in-paper acquisition workflow inferred",
+      "source_refs": [
+        "M64"
+      ]
+    },
+    {
+      "item": "general bead-measured PSF possibility",
+      "handling": "optional PSF provenance card, not a performed bead-calibration experiment invented for this paper",
+      "source_refs": [
+        "SIN13"
+      ]
+    }
+  ],
+  "gap_boundaries": [
+    "No hazardous pathogen, viral engineering, genome editing, animal experiment, clinical deployment or patient reidentification",
+    "Missing supplemental oligonucleotide tables prevent sequence-level source reconstruction; probe-lot identity cards represent explicitly supplied inputs",
+    "Exact Leica/Zeiss meshes, objective variants and manual tools are labeled task proxies; missing hardware is not a reason to omit task stages",
+    "No physics, optical forward model, real biological process or numerical reproduction implemented"
+  ]
+}

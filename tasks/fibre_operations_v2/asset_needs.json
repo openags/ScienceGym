@@ -1,0 +1,1436 @@
+{
+  "schema_version": "fibre_asset_needs.v2",
+  "purpose": "可抓可装可交接的场景资产需求，不是已完成CAD或物理资产",
+  "asset_group_count": 38,
+  "scale_policy": "仪器外壳/运输可用粗级独立代理；显微芯/接触必须作为载具子对象，必要时用明确magnified proxy；不能把放大几何当真实尺度",
+  "asset_groups": [
+    {
+      "id": "A_STOCK",
+      "station": "WS_STOCK",
+      "priority": "core",
+      "roles": [
+        "stock_cradle",
+        "lot_labels",
+        "labelled_cart"
+      ],
+      "required_affordances": [
+        "分隔棒料/管材承托",
+        "可抓把手",
+        "材料标签",
+        "空/占用槽"
+      ],
+      "required_states": [
+        "lot_bound",
+        "loaded",
+        "quarantined"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "materials": [
+          "Si",
+          "Ge",
+          "p-Si",
+          "n-Si",
+          "silica",
+          "ASG",
+          "BSG",
+          "PC",
+          "CPC",
+          "Cu",
+          "W"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实料架/包装"
+      ]
+    },
+    {
+      "id": "A_PRETREAT",
+      "station": "WS_PREP",
+      "priority": "core",
+      "roles": [
+        "rod_cassette",
+        "sealed_pretreatment_cell"
+      ],
+      "required_affordances": [
+        "冷态抽屉",
+        "门锁",
+        "封闭样品匣",
+        "mock按钮"
+      ],
+      "required_states": [
+        "idle",
+        "processing",
+        "completed",
+        "safe_release",
+        "residue_unknown"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "macro": "native oxide removal; no actual HF represented"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "化学设施及SOP"
+      ]
+    },
+    {
+      "id": "A_DRY",
+      "station": "WS_POLYMER",
+      "priority": "core",
+      "roles": [
+        "drying_tray",
+        "mock_vacuum_oven",
+        "polymer_storage_box"
+      ],
+      "required_affordances": [
+        "PC/CPC分托盘",
+        "滑轨",
+        "门与工单面板"
+      ],
+      "required_states": [
+        "cold_load",
+        "drying",
+        "dry_complete",
+        "safe_to_touch"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "macro": "polymer predrying and consolidation as separate jobs"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实炉型、湿度、传感器"
+      ]
+    },
+    {
+      "id": "A_SILICA",
+      "station": "WS_PREFORM",
+      "priority": "core",
+      "roles": [
+        "rod_cradle",
+        "silica_tube",
+        "insertion_guide"
+      ],
+      "required_affordances": [
+        "V槽",
+        "同轴插入",
+        "外壁夹持",
+        "端部支撑"
+      ],
+      "required_states": [
+        "empty",
+        "inserted",
+        "seated"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "silica_ID_OD_mm": [
+          2.1,
+          12
+        ],
+        "raw_rod_diameter_mm": "2±0.127"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "公差/力限制"
+      ]
+    },
+    {
+      "id": "A_ASG",
+      "station": "WS_PREFORM",
+      "priority": "core",
+      "roles": [
+        "ASG_stock",
+        "nested_tube_tray",
+        "nesting_fixture",
+        "Ge_rod",
+        "ASG_seal_rod"
+      ],
+      "required_affordances": [
+        "五层可区分套管",
+        "大件抓区",
+        "管/棒编号槽"
+      ],
+      "required_states": [
+        "raw",
+        "resized",
+        "nested",
+        "Ge_inserted"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "ASG_grade": "SCHOTT8253",
+        "nested_ID_OD_mm": [
+          [
+            2.1,
+            3.6
+          ],
+          [
+            3.7,
+            4.8
+          ],
+          [
+            4.9,
+            6.6
+          ],
+          [
+            6.7,
+            8.8
+          ],
+          [
+            8.9,
+            11.1
+          ]
+        ],
+        "seal_rod_mm": 2
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实装配次序和接触"
+      ]
+    },
+    {
+      "id": "A_SEAL",
+      "station": "WS_SEAL",
+      "priority": "core",
+      "roles": [
+        "sealed_sealing_cell",
+        "preform_holder"
+      ],
+      "required_affordances": [
+        "载架交接",
+        "门锁",
+        "安全冷却释放接口"
+      ],
+      "required_states": [
+        "processing",
+        "seal_complete",
+        "leak_mock",
+        "safe_release"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "macro": "vacuum/flame sealing; inert service only"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实密封工程"
+      ]
+    },
+    {
+      "id": "A_DRAW",
+      "station": "WS_GLASS_DRAW",
+      "priority": "core",
+      "roles": [
+        "mock_draw_tower",
+        "cold_feed_dock",
+        "tower_guard",
+        "tower_panel",
+        "glass_resize_holder"
+      ],
+      "required_affordances": [
+        "冷态预制棒对接",
+        "封闭炉形外壳",
+        "外部导轮",
+        "可装卸卷轴"
+      ],
+      "required_states": [
+        "cold_idle",
+        "viscous_flow",
+        "core_crystallization",
+        "cooling",
+        "stopped",
+        "safe_release"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials",
+          "f.main"
+        ],
+        "macro": "molten-core drawing; ASG resizing has separate jobs"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "炉塔几何/引丝/张力"
+      ]
+    },
+    {
+      "id": "A_SPOOL",
+      "station": "route_station",
+      "priority": "core",
+      "roles": [
+        "empty_spool",
+        "spool",
+        "output_spool",
+        "spool_cradle",
+        "feed_cradle"
+      ],
+      "required_affordances": [
+        "键槽轴",
+        "两侧把手",
+        "端夹",
+        "卷绕长度账本"
+      ],
+      "required_states": [
+        "empty",
+        "mounted",
+        "winding",
+        "stopped",
+        "removed"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.main",
+          "f.ed5",
+          "f.ed6"
+        ],
+        "macro": "glass-clad, released and polymer-clad spools kept distinct"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "源卷绕摩擦与张力"
+      ]
+    },
+    {
+      "id": "A_CONTROL_PREFORM",
+      "station": "WS_PREFORM",
+      "priority": "core",
+      "roles": [
+        "control_cladding",
+        "core_rod"
+      ],
+      "required_affordances": [
+        "Si/Ge+silica/BSG独立标牌",
+        "with/without_core状态"
+      ],
+      "required_states": [
+        "assembled",
+        "core_absent",
+        "core_present"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.ed1",
+          "f.ed4",
+          "f.si2"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "BSG牌号、对照尺寸/配方"
+      ]
+    },
+    {
+      "id": "A_NECK",
+      "station": "WS_GLASS_DRAW",
+      "priority": "control",
+      "roles": [
+        "neck_capture_cell",
+        "neck_profile_carrier"
+      ],
+      "required_affordances": [
+        "封闭颈区保留交接",
+        "轮廓观察座"
+      ],
+      "required_states": [
+        "drawn",
+        "quenched",
+        "safe_release",
+        "cracked_from_quench"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.ed4",
+          "f.si2"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "淬冷细节"
+      ]
+    },
+    {
+      "id": "A_INSPECT",
+      "station": "WS_METROLOGY",
+      "priority": "core",
+      "roles": [
+        "optical_microscope",
+        "inspection_carrier",
+        "sample_labels",
+        "camera"
+      ],
+      "required_affordances": [
+        "样品载架入口",
+        "侧视/截面定位",
+        "观察触发"
+      ],
+      "required_states": [
+        "image_ready",
+        "visible_crack",
+        "sphere",
+        "unknown_continuity"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.ed1",
+          "f.ed4",
+          "f.ed5",
+          "f.main"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "光学型号/采样范围"
+      ]
+    },
+    {
+      "id": "A_SEGMENT",
+      "station": "WS_RELEASE",
+      "priority": "core",
+      "roles": [
+        "segment_carrier",
+        "guarded_cutter",
+        "offcut_bin"
+      ],
+      "required_affordances": [
+        "长槽连续承托",
+        "端夹",
+        "带罩切割代理",
+        "有号盖"
+      ],
+      "required_states": [
+        "parent_bound",
+        "clamped",
+        "cut",
+        "child_segments"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "reported_release_segment_cm": 80
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "切缝损耗"
+      ]
+    },
+    {
+      "id": "A_RELEASE",
+      "station": "WS_RELEASE",
+      "priority": "core",
+      "roles": [
+        "sealed_cladding_removal_cell",
+        "fragment_cassette"
+      ],
+      "required_affordances": [
+        "连载具抽屉",
+        "封闭化学状态",
+        "防散片匣"
+      ],
+      "required_states": [
+        "processing",
+        "released",
+        "residue_unknown",
+        "safe_release"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials",
+          "f.ed1",
+          "f.v1"
+        ],
+        "macro": "glass removal; inert/no liquid chemistry"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实释放SOP"
+      ]
+    },
+    {
+      "id": "A_CORE_HANDLE",
+      "station": "WS_HANDLING",
+      "priority": "characterization",
+      "roles": [
+        "released_core",
+        "bobbin",
+        "bend_mandrel",
+        "core_load_fixture",
+        "computer_mouse_dummy",
+        "catch_tray"
+      ],
+      "required_affordances": [
+        "细芯连续支撑",
+        "材料特定弯曲模板",
+        "载荷托架/承接盒"
+      ],
+      "required_states": [
+        "intact",
+        "bent",
+        "load_supported",
+        "wrapped",
+        "broken"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.ed5"
+        ],
+        "diameter_um": 55,
+        "Si_radius_mm": 4,
+        "Ge_radius_mm": 2.5,
+        "computer_mouse_g": [
+          70,
+          86
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实夹持张力"
+      ]
+    },
+    {
+      "id": "A_SECTION",
+      "station": "WS_SECTION",
+      "priority": "characterization",
+      "roles": [
+        "section_holder",
+        "embedding_cassette",
+        "polish_service"
+      ],
+      "required_affordances": [
+        "横/纵有键槽",
+        "封闭制样单元",
+        "样品编号"
+      ],
+      "required_states": [
+        "embedded",
+        "polished",
+        "safe_release"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "embedding": "EpoxiCure2/EpoThin2"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "树脂/抛光工程"
+      ]
+    },
+    {
+      "id": "A_RAMAN",
+      "station": "WS_RAMAN",
+      "priority": "characterization",
+      "roles": [
+        "Raman_stage",
+        "raw_rod_holder"
+      ],
+      "required_affordances": [
+        "截面/原棒载具",
+        "封闭光路",
+        "map/line-scan工单"
+      ],
+      "required_states": [
+        "mounted",
+        "guarded",
+        "acquiring",
+        "unmounted"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials",
+          "f.ed3"
+        ],
+        "model": "Witec UHT S300",
+        "excitation_nm": 532
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "几何/校准/光功率"
+      ]
+    },
+    {
+      "id": "A_ELECTRON_XRAY",
+      "station": "WS_CHARACTERIZATION",
+      "priority": "characterization",
+      "roles": [
+        "SEM_loadlock",
+        "XRD_holder",
+        "XRD_enclosure",
+        "FIB_service",
+        "lamella_grid_carrier",
+        "double_tilt_holder",
+        "TEM_loadlock"
+      ],
+      "required_affordances": [
+        "样品台装卸",
+        "隔离装样舱",
+        "封闭薄片盒",
+        "双倾杆代理"
+      ],
+      "required_states": [
+        "safe_load",
+        "acquiring",
+        "safe_release"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials",
+          "f.ed5"
+        ],
+        "models": [
+          "JEOL JSM-7800F",
+          "Xenocs Nanoinxider",
+          "JEOL2100F"
+        ],
+        "modality": [
+          "SEM",
+          "EDX",
+          "XRD",
+          "FIB",
+          "HRTEM",
+          "SAED"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "各仪器真实几何、网格/杆接口"
+      ]
+    },
+    {
+      "id": "A_POLYMER_BUILD",
+      "station": "WS_POLYMER",
+      "priority": "core",
+      "roles": [
+        "PC_slab",
+        "PC_slab_pair",
+        "CPC_stock",
+        "CPC_insert_pair",
+        "milling_jig",
+        "machining_service",
+        "assembly_jig",
+        "consolidation_carrier"
+      ],
+      "required_affordances": [
+        "板件落座",
+        "三槽",
+        "槽间CPC插片",
+        "合板定位"
+      ],
+      "required_states": [
+        "dried",
+        "milled",
+        "CPC_inserted",
+        "aligned",
+        "consolidated"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials"
+        ],
+        "PC_slab_mm": [
+          24,
+          8,
+          300
+        ],
+        "channel_radius_mm": 2,
+        "channel_count": 3,
+        "gap_mm": 1,
+        "CPC_source_square_mm": 1,
+        "CPC_stock_film_um": 125
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "CPC膜/插片关系、尺寸公差"
+      ]
+    },
+    {
+      "id": "A_CONVERGENCE",
+      "station": "WS_CONVERGENCE",
+      "priority": "core",
+      "roles": [
+        "convergence_tower",
+        "polymer_preform_holder",
+        "Cu_or_W_spools",
+        "core_carrier",
+        "side_feed_guides",
+        "centre_feed_guide",
+        "electrode_spools"
+      ],
+      "required_affordances": [
+        "中央单/双芯可区分进给口",
+        "两侧金属口",
+        "卷盘",
+        "封闭界面形成区"
+      ],
+      "required_states": [
+        "loaded",
+        "threaded",
+        "drawing",
+        "cooled",
+        "released"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.materials",
+          "f.main"
+        ],
+        "single": "Si or Ge + two Cu",
+        "dual": "p-Si+n-Si + two W",
+        "Cu_um": 50,
+        "W_um": 30
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实馈入/衔接机制"
+      ]
+    },
+    {
+      "id": "A_DEVICE",
+      "station": "WS_METROLOGY",
+      "priority": "core",
+      "roles": [
+        "device_spool",
+        "device_carrier"
+      ],
+      "required_affordances": [
+        "带标签代理PC包覆长段",
+        "独立截面观察子件",
+        "破断变体"
+      ],
+      "required_states": [
+        "raw_device",
+        "allocated",
+        "electrode_exposed",
+        "broken",
+        "cycled",
+        "compressed",
+        "recovered"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.main",
+          "f.ed6"
+        ],
+        "single_width_height_um": [
+          300,
+          200
+        ],
+        "macro": "PC/CPC/Cu/Si or Ge; dual distinct W/p/n"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "实际active length/孔径、dual截面公差"
+      ]
+    },
+    {
+      "id": "A_STRIP",
+      "station": "WS_ELECTRICAL",
+      "priority": "core",
+      "roles": [
+        "device_end_holder",
+        "mock_fibre_stripper"
+      ],
+      "required_affordances": [
+        "端部夹持",
+        "可拆端帽模拟剥线",
+        "废片盒"
+      ],
+      "required_states": [
+        "covered",
+        "exposed",
+        "damaged"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "剥线长度/工具"
+      ]
+    },
+    {
+      "id": "A_CONTACT",
+      "station": "WS_ELECTRICAL",
+      "priority": "core",
+      "roles": [
+        "electrical_dock",
+        "contacts",
+        "source_meter"
+      ],
+      "required_affordances": [
+        "有号两端接片",
+        "输出off状态",
+        "接触mock检测"
+      ],
+      "required_states": [
+        "open",
+        "short",
+        "connected",
+        "powered"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure"
+        ],
+        "model": "Keithley6517B"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实接触与标定"
+      ]
+    },
+    {
+      "id": "A_OPTICS",
+      "station": "WS_OPTO",
+      "priority": "core",
+      "roles": [
+        "optical_enclosure",
+        "lens_mounts",
+        "power_meter",
+        "source_selector",
+        "optical_panel",
+        "rotatable_device_carrier",
+        "orientation_marks",
+        "source_panel"
+      ],
+      "required_affordances": [
+        "封闭Si532/Ge1550光源选择",
+        "front/side位",
+        "功率检测位"
+      ],
+      "required_states": [
+        "source_off",
+        "guarded",
+        "dark",
+        "light",
+        "power_valid"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure",
+          "f.main"
+        ],
+        "models": [
+          "Thorlabs DJ-532",
+          "NEC NX5504EK",
+          "PM100"
+        ],
+        "lens_types": [
+          "spherical",
+          "planoconcave"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "孔径/光斑/功率校准/光安全"
+      ]
+    },
+    {
+      "id": "A_DYNAMIC",
+      "station": "WS_OPTO",
+      "priority": "core",
+      "roles": [
+        "TIA_dock",
+        "oscilloscope",
+        "function_generator"
+      ],
+      "required_affordances": [
+        "端接换线",
+        "noise/pulse/frequency模式",
+        "波形记录口"
+      ],
+      "required_states": [
+        "output_off",
+        "wired",
+        "acquiring"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure"
+        ],
+        "TIA": "OPA380",
+        "load_ohm": 5000,
+        "scope": "Tektronix DPO5104B",
+        "generator": "Agilent33250A"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "采样/频率表/算法参数"
+      ]
+    },
+    {
+      "id": "A_MECHANICAL",
+      "station": "WS_MECHANICAL",
+      "priority": "core",
+      "roles": [
+        "mechanical_tester",
+        "tensile_grips",
+        "compression_platens",
+        "force_gauge",
+        "tester_panel",
+        "guard",
+        "grips"
+      ],
+      "required_affordances": [
+        "可换拉伸/压缩夹具",
+        "开罩装样",
+        "关罩加载",
+        "卸荷",
+        "碎片回收"
+      ],
+      "required_states": [
+        "idle",
+        "mounted",
+        "guarded",
+        "loaded",
+        "zero_load",
+        "failure"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure"
+        ],
+        "models": [
+          "Thorlabs NRT150",
+          "Yisida DS2-20N"
+        ],
+        "range_N": 20
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "几何/标距/接触面积/速率"
+      ]
+    },
+    {
+      "id": "A_CHARPY",
+      "station": "WS_MECHANICAL",
+      "priority": "mechanics",
+      "roles": [
+        "Charpy_support",
+        "Charpy_guard",
+        "impact_panel"
+      ],
+      "required_affordances": [
+        "无缺口支座",
+        "封闭摆锤代理",
+        "停稳互锁"
+      ],
+      "required_states": [
+        "mounted",
+        "guarded",
+        "impact",
+        "stopped",
+        "damaged"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure"
+        ],
+        "test": "unnotched_Charpy"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "摆锤与样品尺寸"
+      ]
+    },
+    {
+      "id": "A_TORSION",
+      "station": "WS_MECHANICAL",
+      "priority": "mechanics",
+      "roles": [
+        "torsion_chucks",
+        "torsion_panel",
+        "readout_dock"
+      ],
+      "required_affordances": [
+        "一端固定/一端旋转代理",
+        "功能保持与破断分支",
+        "零扭矩卸样"
+      ],
+      "required_states": [
+        "mounted",
+        "twisted",
+        "unwound",
+        "failed"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure",
+          "f.ed6"
+        ],
+        "macro": "custom tester"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "CAD/扭矩/标距"
+      ]
+    },
+    {
+      "id": "A_BEND",
+      "station": "WS_MECHANICAL",
+      "priority": "durability",
+      "roles": [
+        "bend_fixture",
+        "radius_5mm",
+        "radius_50mm",
+        "cyclic_bend_tester",
+        "cycle_counter"
+      ],
+      "required_affordances": [
+        "半径模板",
+        "可见计数",
+        "中断保留状态"
+      ],
+      "required_states": [
+        "flat",
+        "bent",
+        "cycling",
+        "stopped"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure",
+          "f.ed6"
+        ],
+        "model": "Prtronic FT2000",
+        "radii_mm": [
+          5,
+          50
+        ],
+        "cycles": 10000
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实行程/周期速率"
+      ]
+    },
+    {
+      "id": "A_RECOVERY",
+      "station": "WS_STORAGE",
+      "priority": "durability",
+      "roles": [
+        "recovery_slot",
+        "mock_clock"
+      ],
+      "required_affordances": [
+        "同件存储位",
+        "未处理标签",
+        "虚拟时钟事件"
+      ],
+      "required_states": [
+        "immediate",
+        "overnight_pending",
+        "overnight_elapsed"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.ed6"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "实际过夜时长/环境"
+      ]
+    },
+    {
+      "id": "A_TEXTILE",
+      "station": "WS_TEXTILE",
+      "priority": "core",
+      "roles": [
+        "textile_frame",
+        "fibre_carriers",
+        "rounded_threading_tool"
+      ],
+      "required_affordances": [
+        "衣物支撑框",
+        "可穿过的任务通道",
+        "走线标签"
+      ],
+      "required_states": [
+        "empty",
+        "interknitted_surrogate",
+        "mapped"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.main",
+          "f.wireless"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实织法/材料/间距"
+      ]
+    },
+    {
+      "id": "A_WASH",
+      "station": "WS_WASH",
+      "priority": "durability",
+      "roles": [
+        "mock_washer",
+        "textile_carrier"
+      ],
+      "required_affordances": [
+        "门",
+        "滚筒容器",
+        "十循环记录",
+        "安全干态释放"
+      ],
+      "required_states": [
+        "loaded",
+        "washing",
+        "stopped",
+        "wet",
+        "dry_released"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.measure",
+          "f.ed6"
+        ],
+        "standard": "ISO6330"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "版本/程序/干燥"
+      ]
+    },
+    {
+      "id": "A_THERMAL",
+      "station": "WS_OPTO",
+      "priority": "durability",
+      "roles": [
+        "thermal_camera"
+      ],
+      "required_affordances": [
+        "前后同位置成像",
+        "mock温度图"
+      ],
+      "required_states": [
+        "before",
+        "running",
+        "after5h"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.ed6"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "发射率/型号/标定"
+      ]
+    },
+    {
+      "id": "A_BOARD",
+      "station": "WS_ELECTRONICS",
+      "priority": "core",
+      "roles": [
+        "PCB_8channel_mock",
+        "coin_cell_dummy",
+        "channel_connectors",
+        "phone_mock",
+        "enclosed_test_light"
+      ],
+      "required_affordances": [
+        "八编号接头",
+        "板座",
+        "惰性电池仓",
+        "app界面"
+      ],
+      "required_states": [
+        "off",
+        "connected",
+        "channel_checked",
+        "recording"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.wireless"
+        ],
+        "size_mm": [
+          32,
+          48
+        ],
+        "channels": 8,
+        "components": [
+          "2 GS8554",
+          "ADS7828",
+          "Bluetooth"
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实PCB/软件/电池"
+      ]
+    },
+    {
+      "id": "A_BEANIE",
+      "station": "WS_APPLICATION",
+      "priority": "application",
+      "roles": [
+        "beanie",
+        "mannequin",
+        "enclosed_IR_source"
+      ],
+      "required_affordances": [
+        "帽架",
+        "内顶板槽",
+        "八Ge走线",
+        "封闭光源"
+      ],
+      "required_states": [
+        "assembled",
+        "signal_demo",
+        "stowed"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.main",
+          "f.wireless",
+          "f.v2"
+        ],
+        "fibre_count": 8,
+        "material": "Ge"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实人/公共空间协议"
+      ]
+    },
+    {
+      "id": "A_SWEATER",
+      "station": "WS_APPLICATION",
+      "priority": "application",
+      "roles": [
+        "sweater_frame",
+        "mock_LED_transmitter",
+        "mock_receiver"
+      ],
+      "required_affordances": [
+        "3×3 grid代理",
+        "内容输入/输出",
+        "映射可检查"
+      ],
+      "required_states": [
+        "transmitting",
+        "decoded",
+        "failed_decode"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.main",
+          "f.wireless"
+        ],
+        "grid": [
+          3,
+          3
+        ]
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "纤维条数/板映射/算法"
+      ]
+    },
+    {
+      "id": "A_WATCH",
+      "station": "WS_APPLICATION",
+      "priority": "application",
+      "roles": [
+        "watchband",
+        "wrist_phantom",
+        "green_LED_mock",
+        "BIOFY_comparator_mock"
+      ],
+      "required_affordances": [
+        "同配置可换检测器",
+        "固定脉冲preset",
+        "非人目标"
+      ],
+      "required_states": [
+        "fibre_readout",
+        "comparator_readout",
+        "off"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.main",
+          "f.wireless"
+        ],
+        "comparator": "BIOFY SFH7070",
+        "LED_nm": 532
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "仿体是authored，无人体效度"
+      ]
+    },
+    {
+      "id": "A_SUB",
+      "station": "WS_APPLICATION",
+      "priority": "application",
+      "roles": [
+        "submarine_shell",
+        "8angular_fibre_seats",
+        "waterproof_box",
+        "tank",
+        "mock_direction_light",
+        "recovery_cradle"
+      ],
+      "required_affordances": [
+        "八角度槽",
+        "直角台阶",
+        "底部封闭板盒",
+        "水槽回收架"
+      ],
+      "required_states": [
+        "dry",
+        "sealed",
+        "submerged_mock",
+        "command_received",
+        "recovered"
+      ],
+      "source_identity": {
+        "evidence": [
+          "f.main",
+          "f.wireless",
+          "f.v3"
+        ],
+        "fibre_count": 8,
+        "spacing_deg": 45
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实推进器、密封、防水/水光学"
+      ]
+    },
+    {
+      "id": "A_CLOSE",
+      "station": "WS_CLEAN",
+      "priority": "core",
+      "roles": [
+        "archive_slots",
+        "quarantine_slots",
+        "fragment_cassettes",
+        "tool_rack",
+        "sealed_waste_cassette",
+        "dry_wipe",
+        "cart",
+        "cable_rack"
+      ],
+      "required_affordances": [
+        "按材料/历史分格",
+        "封闭碎片/化学废料",
+        "工装回位"
+      ],
+      "required_states": [
+        "archived",
+        "quarantined",
+        "clean",
+        "reset"
+      ],
+      "source_identity": {
+        "evidence": [],
+        "macro": "authored closure"
+      },
+      "geometry_status": "not_built_in_this_delivery",
+      "physics_status": "no_physics_required_for_mock",
+      "provenance": "独立原创代理资产需求；来源宏观功能/所列尺寸或型号有证据，门、把手、接口、碰撞与状态由任务作者设计",
+      "unknown_parameters": [
+        "真实清洁与废弃SOP"
+      ]
+    }
+  ]
+}

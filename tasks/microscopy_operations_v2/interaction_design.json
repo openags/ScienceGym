@@ -1,0 +1,340 @@
+{
+  "schema": "sciencegym.hands_on_operations.design.v2",
+  "status": "Task design only; no runtime implementation or physics simulation",
+  "provenance": "All navigation, grasp, pipette, container, fixture-QC and cleanup mechanics are authored task connectors; scientific conditions in branch stages are independently source-bound",
+  "station_graph": {
+    "receiving": [
+      "preparation",
+      "culture",
+      "archive"
+    ],
+    "preparation": [
+      "receiving",
+      "culture",
+      "thermal",
+      "widefield",
+      "confocal",
+      "sted",
+      "analysis",
+      "archive"
+    ],
+    "culture": [
+      "preparation"
+    ],
+    "thermal": [
+      "preparation"
+    ],
+    "widefield": [
+      "preparation",
+      "confocal",
+      "analysis",
+      "archive"
+    ],
+    "confocal": [
+      "preparation",
+      "widefield",
+      "analysis",
+      "archive"
+    ],
+    "sted": [
+      "preparation",
+      "analysis",
+      "archive"
+    ],
+    "analysis": [
+      "widefield",
+      "confocal",
+      "sted",
+      "archive"
+    ],
+    "archive": [
+      "preparation",
+      "receiving"
+    ]
+  },
+  "mobile_actor": {
+    "type": "authored wheeled-base plus gripper/pipette tool interface",
+    "scope": "topological navigation and discrete object interaction; no travel physics",
+    "carry_rules": [
+      "one tray or vessel at a time",
+      "vessels closed before travel",
+      "glass in a supported holder/tray, not free-floating",
+      "station docking before fine manipulation",
+      "no teleporting items between stations"
+    ]
+  },
+  "macros": {
+    "exchange": [
+      "navigate to preparation bench",
+      "place specimen vessel in supported work area",
+      "read specimen and reagent labels",
+      "open specimen vessel and correct reagent bottle",
+      "attach fresh tip to pipette",
+      "aspirate spent task liquid into pipette",
+      "dispense spent liquid into designated waste token",
+      "discard used tip",
+      "attach fresh tip",
+      "aspirate required reagent aliquot from its bottle",
+      "dispense into same specimen vessel",
+      "discard used tip",
+      "close reagent bottle",
+      "close specimen vessel"
+    ],
+    "mix": [
+      "navigate to preparation bench",
+      "read required recipe card and component labels",
+      "place labeled empty mixing vial in rack",
+      "open correct component and mixing vial",
+      "attach fresh tip",
+      "transfer one declared component task aliquot",
+      "discard tip and close component",
+      "repeat for every required component; retain parent lot IDs",
+      "mix by task pipette action",
+      "label resultant mix with recipe ID",
+      "close vial"
+    ],
+    "incubate": [
+      "verify specimen vessel closed or source sealing state recorded",
+      "place vessel in transport tray",
+      "close tray and grasp tray",
+      "navigate to named thermal/incubation station",
+      "open station",
+      "seat vessel in correct slot",
+      "set source temperature and duration or explicit authored gap-card timer",
+      "close station",
+      "start task timer",
+      "wait for task timer completion",
+      "inspect completion and specimen ID",
+      "retrieve vessel into tray"
+    ],
+    "wash": [
+      "perform exchange with indicated wash buffer",
+      "if dwell stated, seat vessel and wait stated task time",
+      "drain to correct task waste",
+      "repeat the source number of cycles; record each separate cycle"
+    ],
+    "mount": [
+      "navigate to preparation bench with specimen",
+      "read source medium or authored-medium gap card",
+      "place compatible holder/support on clean work area",
+      "open specimen vessel",
+      "grasp glass by edge using authored forceps",
+      "transfer same specimen-bearing carrier to holder",
+      "apply source medium task aliquot or select premixed mounting token",
+      "seat cover/support and verify orientation marker",
+      "inspect bubble-free/incorrect-orientation preset cue",
+      "secure holder and close transport tray"
+    ],
+    "acquire": [
+      "navigate to correct optical station with closed tray",
+      "read station/objective/detector labels",
+      "stop acquisition and close illumination shutter",
+      "retract objective to task loading position",
+      "open tray and release holder",
+      "seat compatible holder in stage insert and engage clamp",
+      "apply immersion-oil token only for oil objective variant",
+      "close protective cover where the authored station has one",
+      "select detector path and source modality",
+      "set source optical/acquisition parameters; record gap-card presets separately",
+      "use stage controls to find field cue",
+      "adjust fine focus from preview cues",
+      "set exposure/illumination using authored unsaturated preview choice when unreported",
+      "record field identity and stack bounds",
+      "start acquisition",
+      "wait for stack/mosaic completion event",
+      "save raw dataset under specimen/carrier/field/modality lineage"
+    ],
+    "unload": [
+      "finish or cancel active acquisition",
+      "close shutter",
+      "retract objective to task loading position",
+      "release stage clamp",
+      "grasp holder and return to tray",
+      "close tray",
+      "navigate to archive/preparation bench",
+      "store specimen in its labeled slot",
+      "clean objective/oil-contact proxy with designated cleaning token",
+      "dispose of used tips and task waste",
+      "return forceps and pipette",
+      "close reagent containers",
+      "leave stage empty, shutter closed, station idle"
+    ],
+    "authored_gap_connector": [
+      "read card that explicitly says source procedure is missing",
+      "choose the named task-only generic card without asserting missing scientific values",
+      "collect listed neutral task props",
+      "perform card physical transfer/open/close/dispense operations",
+      "record source_gap=true and card ID in specimen history",
+      "complete card timer if supplied; do not replace missing source value with fabricated number"
+    ],
+    "exchange_incubate": [
+      "navigate to preparation bench",
+      "place specimen vessel in supported work area",
+      "read specimen and reagent labels",
+      "open specimen vessel and correct reagent bottle",
+      "attach fresh tip to pipette",
+      "aspirate spent task liquid into pipette",
+      "dispense spent liquid into designated waste token",
+      "discard used tip",
+      "attach fresh tip",
+      "aspirate required reagent aliquot from its bottle",
+      "dispense into same specimen vessel",
+      "discard used tip",
+      "close reagent bottle",
+      "close specimen vessel",
+      "verify specimen vessel closed or source sealing state recorded",
+      "place vessel in transport tray",
+      "close tray and grasp tray",
+      "navigate to named thermal/incubation station",
+      "open station",
+      "seat vessel in correct slot",
+      "set source temperature and duration or explicit authored gap-card timer",
+      "close station",
+      "start task timer",
+      "wait for task timer completion",
+      "inspect completion and specimen ID",
+      "retrieve vessel into tray"
+    ],
+    "mix_exchange_incubate": [
+      "navigate to preparation bench",
+      "read required recipe card and component labels",
+      "place labeled empty mixing vial in rack",
+      "open correct component and mixing vial",
+      "attach fresh tip",
+      "transfer one declared component task aliquot",
+      "discard tip and close component",
+      "repeat for every required component; retain parent lot IDs",
+      "mix by task pipette action",
+      "label resultant mix with recipe ID",
+      "close vial",
+      "navigate to preparation bench",
+      "place specimen vessel in supported work area",
+      "read specimen and reagent labels",
+      "open specimen vessel and correct reagent bottle",
+      "attach fresh tip to pipette",
+      "aspirate spent task liquid into pipette",
+      "dispense spent liquid into designated waste token",
+      "discard used tip",
+      "attach fresh tip",
+      "aspirate required reagent aliquot from its bottle",
+      "dispense into same specimen vessel",
+      "discard used tip",
+      "close reagent bottle",
+      "close specimen vessel",
+      "verify specimen vessel closed or source sealing state recorded",
+      "place vessel in transport tray",
+      "close tray and grasp tray",
+      "navigate to named thermal/incubation station",
+      "open station",
+      "seat vessel in correct slot",
+      "set source temperature and duration or explicit authored gap-card timer",
+      "close station",
+      "start task timer",
+      "wait for task timer completion",
+      "inspect completion and specimen ID",
+      "retrieve vessel into tray"
+    ],
+    "seal_exchange": [
+      "navigate to preparation bench",
+      "place specimen vessel in supported work area",
+      "read specimen and reagent labels",
+      "open specimen vessel and correct reagent bottle",
+      "attach fresh tip to pipette",
+      "aspirate spent task liquid into pipette",
+      "dispense spent liquid into designated waste token",
+      "discard used tip",
+      "attach fresh tip",
+      "aspirate required reagent aliquot from its bottle",
+      "dispense into same specimen vessel",
+      "discard used tip",
+      "close reagent bottle",
+      "close specimen vessel",
+      "apply task sealant tool around carrier boundary",
+      "inspect sealed cue"
+    ],
+    "seed": [
+      "read source cell-stock and carrier identity",
+      "place correct empty carrier in labeled vessel/well",
+      "use fresh-tip transfer from source stock and medium task tokens",
+      "close vessel and record stock→well→carrier lineage"
+    ],
+    "seed_incubate": [
+      "read source cell-stock and carrier identity",
+      "place correct empty carrier in labeled vessel/well",
+      "use fresh-tip transfer from source stock and medium task tokens",
+      "close vessel and record stock→well→carrier lineage",
+      "verify specimen vessel closed or source sealing state recorded",
+      "place vessel in transport tray",
+      "close tray and grasp tray",
+      "navigate to named thermal/incubation station",
+      "open station",
+      "seat vessel in correct slot",
+      "set source temperature and duration or explicit authored gap-card timer",
+      "close station",
+      "start task timer",
+      "wait for task timer completion",
+      "inspect completion and specimen ID",
+      "retrieve vessel into tray"
+    ],
+    "incubate_until": [
+      "verify specimen vessel closed or source sealing state recorded",
+      "place vessel in transport tray",
+      "close tray and grasp tray",
+      "navigate to named thermal/incubation station",
+      "open station",
+      "seat vessel in correct slot",
+      "set source temperature and duration or explicit authored gap-card timer",
+      "close station",
+      "start task timer",
+      "wait for task timer completion",
+      "inspect completion and specimen ID",
+      "retrieve vessel into tray",
+      "inspect confluency cue; continue until source target cue appears"
+    ],
+    "optional_storage": [
+      "select immediate continuation or source-permitted stored variant",
+      "if storing, execute exchange/incubation and date-labeled archive placement",
+      "reject storage older than source limit"
+    ],
+    "section": [
+      "read block identity",
+      "seat block in guarded authored microtome proxy",
+      "set source thickness",
+      "perform guarded sectioning action",
+      "place section on labeled authored slide",
+      "record block→section lineage"
+    ],
+    "select": [
+      "read alternatives and required identity",
+      "pick matching labeled resource",
+      "record chosen lot"
+    ],
+    "source_ambiguity_choice": [
+      "read source-conflict card",
+      "choose a named explicit interpretation fixture",
+      "retain conflict label in all downstream records",
+      "never relabel choice as a resolved source fact"
+    ]
+  },
+  "atomic_action_contract": {
+    "navigate": "changes actor zone only; carried closed object travels with actor",
+    "grasp": "requires accessible free object and empty tool; changes support to held",
+    "place": "requires held object and compatible empty support; updates support relation",
+    "open_close": "requires target present and accessible; changes cap/lid/clamp state",
+    "attach_tip": "requires pipette and fresh tip; tip becomes used upon source contact",
+    "aspirate_dispense": "requires open source/destination, correct task recipe aliquot, compatible tip and same station; transfers material lineage, never arbitrary scientific volume",
+    "set_control": "changes one exposed control while prerequisite interlocks allow it",
+    "wait_timer": "advances virtual elapsed task time; no biological model",
+    "inspect": "returns one authored cue corresponding to world state; does not mutate specimen",
+    "acquire": "engine emits immutable dataset record only if mounting, focus, settings and lineage prerequisites hold",
+    "save": "links immutable acquisition/derivative ID into manifest; cannot fabricate acquisition",
+    "clean": "requires cleaning token and access; consumes token and resets task contact state"
+  },
+  "bad_action_rules": [
+    "Wrong reagent changes recipe lineage and invalidates that preparation stage; no undo button restores consumed specimen",
+    "Wrong specimen cannot be repaired by renaming; remount correct specimen or restart new specimen lineage",
+    "Opening a moving tray or changing objective while clamped at acquisition pose is rejected",
+    "A timer on the wrong station does not complete incubation",
+    "A rendered frame or user-authored success flag never creates an acquisition event"
+  ]
+}

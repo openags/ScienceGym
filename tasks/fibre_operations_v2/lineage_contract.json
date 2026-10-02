@@ -1,0 +1,122 @@
+{
+  "schema_version": "fibre_lineage_contract.v2",
+  "visibility": "evaluator_reference_only",
+  "pipeline_families": [
+    {
+      "id": "Si_single",
+      "nodes": [
+        "stock_Si+silica",
+        "prepared_Si_rod",
+        "Si_silica_preform",
+        "Si_silica_clad_batch",
+        "clad_segment",
+        "released_Si_core",
+        "Si_CPC_Cu_PC_device_segment",
+        "measurement_or_application_child"
+      ],
+      "mandatory_device_parents": [
+        "released_Si_core",
+        "PC_CPC_preform",
+        "Cu_left",
+        "Cu_right"
+      ]
+    },
+    {
+      "id": "Ge_single",
+      "nodes": [
+        "stock_Ge+ASG",
+        "resized_ASG_components",
+        "Ge_ASG_preform",
+        "Ge_ASG_clad_batch",
+        "clad_segment",
+        "released_Ge_core",
+        "Ge_CPC_Cu_PC_device_segment",
+        "measurement_or_application_child"
+      ],
+      "mandatory_device_parents": [
+        "released_Ge_core",
+        "PC_CPC_preform",
+        "Cu_left",
+        "Cu_right"
+      ]
+    },
+    {
+      "id": "pn_dual",
+      "nodes": [
+        [
+          "stock_p_Si",
+          "stock_n_Si"
+        ],
+        [
+          "p_preform",
+          "n_preform"
+        ],
+        [
+          "p_clad_batch",
+          "n_clad_batch"
+        ],
+        [
+          "p_released_core",
+          "n_released_core"
+        ],
+        [
+          "p_n_CPC_W_PC_device_segment"
+        ]
+      ],
+      "mandatory_device_parents": [
+        "p_released_core",
+        "n_released_core",
+        "PC_CPC_preform",
+        "W_left",
+        "W_right"
+      ],
+      "source_gap": "doped前端专属配方未单列；不套用undoped结果做判据"
+    },
+    {
+      "id": "Ge_silica_control",
+      "nodes": [
+        "stock_Ge+silica",
+        "control_preform",
+        "Ge_silica_clad",
+        "cracked_segment",
+        "fragment_set"
+      ],
+      "forbidden_output": "Ge_ASG_intact_core"
+    },
+    {
+      "id": "Ge_BSG_control",
+      "nodes": [
+        "stock_Ge+BSG",
+        "control_preform",
+        "Ge_BSG_clad_or_neck",
+        "spheres_or_perturbed_core"
+      ]
+    },
+    {
+      "id": "PC_CPC",
+      "nodes": [
+        "stock_PC+CPC",
+        "dried_PC_CPC",
+        "machined_PC_pair+CPC_inserts",
+        "assembled_PC_CPC",
+        "consolidated_preform"
+      ],
+      "source_gap": "CPC膜到插片加工关系未知"
+    }
+  ],
+  "state_rules": {
+    "cut": "新子ID+父区间+切缝/余料；区间不重叠",
+    "section": "embedded/polished不可重置完整原件",
+    "lamella": "FIB子样关联样品/ROI，不是新完整纤维",
+    "failure": "failed/cycled/compressed历史不可抹去",
+    "recovery": "可恢复功能，仍保压缩历史",
+    "replacement": "同材料替代使用新ID，保留原失败run"
+  },
+  "quantity_rules": [
+    "芯和两电极有可用长度账本，unknown不是无限源",
+    "八条应用器件需足量父段或重复制造，不可一ID复制",
+    "三项裸芯演示默认三兄弟样；80cm卷绕留足长子样，不足则重新制造",
+    "原棒参考在STOCK独立保留，不能从成品逆变",
+    "破坏性表征与强度试验独立分配"
+  ]
+}

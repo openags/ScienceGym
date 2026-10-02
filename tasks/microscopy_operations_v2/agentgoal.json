@@ -1,0 +1,104 @@
+{
+  "schema": "sciencegym.agentgoal.design.v2",
+  "paper_id": "deconwolf2024",
+  "agent_visible": true,
+  "goal": "Complete the Deconwolf paper-wide task program: prepare each specified specimen from its source entry, acquire and compare all required imaging variants, handle the source-reused data comparisons, retain truthful lineage and source-gap labels, return specimens and clean the work area.",
+  "branch_goals": [
+    {
+      "id": "tubulin",
+      "goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels.",
+      "required_acquisition_ids": [
+        "tub_confocal",
+        "tub_widefield"
+      ],
+      "preparation_entry": "U-2 OS stock identity token, not a pre-stained or pre-mounted specimen"
+    },
+    {
+      "id": "ifish",
+      "goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels.",
+      "required_acquisition_ids": [
+        "if_widefield"
+      ],
+      "preparation_entry": "HAP1 stock identity token and separately supplied probe-lot tokens"
+    },
+    {
+      "id": "gapdh",
+      "goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels.",
+      "required_acquisition_ids": [
+        "gap_widefield"
+      ],
+      "preparation_entry": "SKBR3 stock identity token, source-specific probe lots and empty authored carrier"
+    },
+    {
+      "id": "tissue",
+      "goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels.",
+      "required_acquisition_ids": [
+        "tis20",
+        "tis60"
+      ],
+      "preparation_entry": "Purchased 5 µm frozen TMA section token, US Biomax FMC282e; no donated-person identifying data"
+    },
+    {
+      "id": "gfap",
+      "goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels.",
+      "required_acquisition_ids": [
+        "g60",
+        "g63",
+        "g100"
+      ],
+      "preparation_entry": "FFPE human cerebral-cortex TMA block token from source-described biobank-derived array"
+    },
+    {
+      "id": "nuclear_pores",
+      "goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels.",
+      "required_acquisition_ids": [
+        "p_sted",
+        "p_confocal"
+      ],
+      "preparation_entry": "Source-literal PtK2 identity token with unresolved species label; no live biological material instantiated"
+    }
+  ],
+  "data_goals": [
+    {
+      "id": "software_benchmark",
+      "goal": "Compare deconvolution tools on source-described benchmark inputs"
+    },
+    {
+      "id": "psf",
+      "goal": "Compare PSF calculator versus PSF Generator"
+    },
+    {
+      "id": "boundary",
+      "goal": "Handle lateral and axial boundary comparisons"
+    },
+    {
+      "id": "synthetic_dots",
+      "goal": "Inspect dot-density/noise simulation comparisons through preset outputs"
+    },
+    {
+      "id": "isst",
+      "goal": "Process reused ISST dataset without inventing new wet-lab preparation"
+    },
+    {
+      "id": "oligofisseq",
+      "goal": "Inspect reused ChrX-46plex decoding and tracing comparisons"
+    },
+    {
+      "id": "rln_comparator",
+      "goal": "Inspect downloaded raw image against a published RLN screenshot comparator"
+    }
+  ],
+  "deliverables": [
+    "Prepared-specimen lineage manifest",
+    "Raw acquisition manifest with specimen/carrier/field/station/settings links",
+    "Comparison manifest with immutable raw parents",
+    "Source unknown/conflict choices kept explicit",
+    "Archived specimen locations and cleaned/idle station state"
+  ],
+  "not_given_to_agent": [
+    "evaluator_reference.json",
+    "preset_conditions hidden gate predicates",
+    "reference preparation order as a solved action trace"
+  ],
+  "claim_limit": "Task observations are authored presets. Completing the task is not independent reproduction of the paper or a claim of physical biological success."
+}

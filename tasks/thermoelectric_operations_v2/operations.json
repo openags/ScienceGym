@@ -1,0 +1,2020 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 57,
+  "operations": [
+    {
+      "id": "STOCK",
+      "title": "核对材料并取独立包装",
+      "kind": "hands_on",
+      "location_id": "WS_STOCK",
+      "target_asset_roles": [
+        "stock_bins",
+        "labelled_cart"
+      ],
+      "preconditions": [
+        "episode_bound",
+        "cart_empty"
+      ],
+      "actions": [
+        "读取完整成分/批号，抓容器外壳放对应运输槽",
+        "分别取界面料、空罐、石英管、载具；不拆散身份标签"
+      ],
+      "postconditions": [
+        "lots_bound",
+        "separate_material_slots"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis",
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MOVE",
+      "title": "移动有号载具",
+      "kind": "hands_on",
+      "location_id": "route_destination",
+      "target_asset_roles": [
+        "labelled_cart",
+        "sample_carrier"
+      ],
+      "preconditions": [
+        "secured_payload",
+        "free_destination_slot"
+      ],
+      "actions": [
+        "握载具/车把手跨工位移动",
+        "将载具落在对应导轨槽，保持方向标记可见"
+      ],
+      "postconditions": [
+        "same_object_relocated"
+      ],
+      "recovery": [
+        "掉落/碰撞则停并隔离；不得用瞬移或重新编号抹去历史"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PREP_NEST",
+      "title": "装称量盘和空容器",
+      "kind": "hands_on",
+      "location_id": "WS_PREP",
+      "target_asset_roles": [
+        "prep_nest",
+        "portion_tray",
+        "mill_vial"
+      ],
+      "preconditions": [
+        "lot_known",
+        "inert_mock_station_ready"
+      ],
+      "actions": [
+        "把有号称量盘置读出位；P/N另抓空球磨罐放稳并把盖置专槽",
+        "B原料阶段只设分装盘和石英管托；其球磨空罐在取锭后使用"
+      ],
+      "postconditions": [
+        "open_vial_supported"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "weighing apparatus",
+          "actual mass and tare protocol"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PORTION",
+      "title": "逐种转移模拟材料份额",
+      "kind": "hands_on",
+      "location_id": "WS_PREP",
+      "target_asset_roles": [
+        "mock_scoop",
+        "portion_tray",
+        "stock_bins"
+      ],
+      "preconditions": [
+        "open_vial_supported",
+        "manifest_portions_bound"
+      ],
+      "actions": [
+        "打开正确模拟原料瓶，取专用模拟勺把本号份额转到分装盘；P/N再转入其球磨罐，B保留在盘中待装石英管",
+        "每种原料转移后关原瓶并收回原格；工具回专用槽，记录输入盘/罐与转移数量"
+      ],
+      "postconditions": [
+        "portion_events_bound",
+        "stock_remainder_preserved"
+      ],
+      "recovery": [
+        "投料前错瓶可退回重取；混入后该罐隔离并另起批次，不能从混料中删除标签"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "actual weighing tolerance",
+          "additive order"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "VIAL_CLOSE",
+      "title": "盖罐并置交接盒",
+      "kind": "hands_on",
+      "location_id": "WS_PREP",
+      "target_asset_roles": [
+        "mill_vial",
+        "vial_cap",
+        "handoff_box"
+      ],
+      "preconditions": [
+        "portions_complete",
+        "P_or_N_raw_route"
+      ],
+      "actions": [
+        "拾起对应盖，对准模拟罐口闭合",
+        "将罐连身份卡放有盖交接盒，合盒"
+      ],
+      "postconditions": [
+        "vial_closed_proxy"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "vial seal design"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "AR_HANDOFF",
+      "title": "交接Ar气氛代理",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_ATMOSPHERE",
+      "target_asset_roles": [
+        "atmosphere_handoff"
+      ],
+      "preconditions": [
+        "P_or_N_route",
+        "closed_box"
+      ],
+      "actions": [
+        "打开冷态外侧交接抽屉，将盒放入槽",
+        "关抽屉并选择匹配批号的惰性Ar工单"
+      ],
+      "postconditions": [
+        "atmosphere_job_submitted"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "actual Ar apparatus",
+          "airtight vial kit"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "AR_RETURN",
+      "title": "取回气氛封存罐",
+      "kind": "hands_on",
+      "location_id": "WS_ATMOSPHERE",
+      "target_asset_roles": [
+        "atmosphere_handoff",
+        "sealed_carrier"
+      ],
+      "preconditions": [
+        "service_done",
+        "safe_release"
+      ],
+      "actions": [
+        "开外侧抽屉，承托取出同号罐盒",
+        "观察任务封存状态，把认证引用连到批号而非自己设为Ar"
+      ],
+      "postconditions": [
+        "Ar_mock_certificate_bound"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "gas transfer exposure limits"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "TUBE_LOAD",
+      "title": "石英管装料与封装交接",
+      "kind": "hands_on",
+      "location_id": "WS_MELT",
+      "target_asset_roles": [
+        "quartz_tube",
+        "tube_cradle",
+        "mock_thermal_cell"
+      ],
+      "preconditions": [
+        "B_route",
+        "tube_supported"
+      ],
+      "actions": [
+        "把石英管置V槽，将B路线各模拟原料份额从盘转入管端漏斗代理",
+        "取下漏斗并连管托架交给封装接口；不发明真空/充气封管工艺"
+      ],
+      "postconditions": [
+        "tube_batch_loaded"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "tube size",
+          "sealing/atmosphere",
+          "furnace model"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MELT_LOAD",
+      "title": "把石英管托架装入冷态热处理槽",
+      "kind": "hands_on",
+      "location_id": "WS_MELT",
+      "target_asset_roles": [
+        "mock_thermal_cell",
+        "tube_cradle"
+      ],
+      "preconditions": [
+        "tube_batch_loaded",
+        "cold_load_release"
+      ],
+      "actions": [
+        "开外侧门，沿导轨推入管托架至定位点",
+        "取出搬运支撑件并关门"
+      ],
+      "postconditions": [
+        "melt_load_seated"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MELT_RUN",
+      "title": "启动熔制工单",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_MELT",
+      "target_asset_roles": [
+        "mock_thermal_cell"
+      ],
+      "preconditions": [
+        "melt_load_seated",
+        "guard_closed",
+        "hands_clear"
+      ],
+      "actions": [
+        "核对B路线1273 K/12 h来源标签，选择相应mock工单并按启动",
+        "等待熔制完成与冷却/安全释放分别出现"
+      ],
+      "postconditions": [
+        "melt_job_done"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "heating/cooling ramps",
+          "tube opening procedure"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MELT_UNLOAD",
+      "title": "取锭并转入球磨罐",
+      "kind": "hands_on",
+      "location_id": "WS_MELT",
+      "target_asset_roles": [
+        "tube_cradle",
+        "ingot_tray",
+        "mill_vial"
+      ],
+      "preconditions": [
+        "melt_job_done",
+        "safe_release"
+      ],
+      "actions": [
+        "开外侧门承托取架；交接惰性开管代理",
+        "从输出盘拿同号模拟锭放进B专用球磨罐并盖好，废管入封闭盒"
+      ],
+      "postconditions": [
+        "B_ingot_in_vial"
+      ],
+      "recovery": [
+        "未释放不取；碎管连托盘隔离；不额外假称原文有破碎/淬火步骤"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "real ingot removal",
+          "pre-milling crushing not reported"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MILL_OPEN",
+      "title": "开球磨机罩",
+      "kind": "hands_on",
+      "location_id": "WS_MILL",
+      "target_asset_roles": [
+        "mill_cover",
+        "mill_latch"
+      ],
+      "preconditions": [
+        "mill_stopped",
+        "safe_release"
+      ],
+      "actions": [
+        "拨开外观代理锁扣，握盖把手抬罩",
+        "确认模拟夹位空闲并把运输罐放近侧托座"
+      ],
+      "postconditions": [
+        "mill_open"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "exact lid mechanism",
+          "robot reach"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MILL_SEAT",
+      "title": "逐罐放入夹位",
+      "kind": "hands_on",
+      "location_id": "WS_MILL",
+      "target_asset_roles": [
+        "mill_vial",
+        "mill_clamp",
+        "vial_cradle"
+      ],
+      "preconditions": [
+        "mill_open",
+        "correct_route_vial"
+      ],
+      "actions": [
+        "握罐载架托住罐体并沿引导轴放入指定夹位",
+        "保持罐轴与夹座对齐，不用成品显示位替代实体放置"
+      ],
+      "postconditions": [
+        "vial_seated_proxy"
+      ],
+      "recovery": [
+        "现有模型罐与夹具有约7 mm AABB间隙；仅能用明确新设计的mock座，不认作接触已验证"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "original kit",
+          "balance/load rule"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MILL_CLAMP",
+      "title": "锁紧任务夹位",
+      "kind": "hands_on",
+      "location_id": "WS_MILL",
+      "target_asset_roles": [
+        "mill_clamp"
+      ],
+      "preconditions": [
+        "vial_seated_proxy"
+      ],
+      "actions": [
+        "维持罐的支撑，转动夹紧旋钮代理直到环境报告定位就绪",
+        "轻撤承托工具并读保持状态"
+      ],
+      "postconditions": [
+        "clamp_ready_from_environment"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "real torque",
+          "clamp mating surfaces"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MILL_CLOSE",
+      "title": "关罩并退出",
+      "kind": "hands_on",
+      "location_id": "WS_MILL",
+      "target_asset_roles": [
+        "mill_cover",
+        "mill_latch"
+      ],
+      "preconditions": [
+        "clamp_ready_from_environment"
+      ],
+      "actions": [
+        "移手和工具至外侧，握把手降罩",
+        "扣合锁扣，查看公开guard闭合状态"
+      ],
+      "postconditions": [
+        "mill_guard_ready"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MILL_RUN",
+      "title": "选择本批球磨工单",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_MILL",
+      "target_asset_roles": [
+        "mill_panel"
+      ],
+      "preconditions": [
+        "mill_guard_ready",
+        "route_duration_bound"
+      ],
+      "actions": [
+        "核对P/N的5 h或B锭后的1 h工单",
+        "选择批号并按启动；完整等待预设处理完成事件"
+      ],
+      "postconditions": [
+        "milling_complete_event"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "milling media",
+          "speed/ball loading"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MILL_UNLOAD",
+      "title": "支撑解夹并取回罐",
+      "kind": "hands_on",
+      "location_id": "WS_MILL",
+      "target_asset_roles": [
+        "mill_cover",
+        "mill_clamp",
+        "vial_cradle"
+      ],
+      "preconditions": [
+        "milling_complete_event",
+        "mill_stopped",
+        "safe_release"
+      ],
+      "actions": [
+        "开罩，用托座承托罐后松夹旋钮",
+        "拿罐至独立有盖输出槽，盖好空设备罩"
+      ],
+      "postconditions": [
+        "milled_vial_returned"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "POWDER_DECANT",
+      "title": "封闭接口出粉与余料封存",
+      "kind": "hands_on",
+      "location_id": "WS_POWDER",
+      "target_asset_roles": [
+        "enclosed_powder_tray",
+        "powder_capsule",
+        "mock_scoop"
+      ],
+      "preconditions": [
+        "milled_vial_returned",
+        "contained_transfer_ready"
+      ],
+      "actions": [
+        "把罐置定位座并在惰性代理区开盖",
+        "用专用模拟勺把份额分入有号粉末匣；盖粉末匣/原罐并收工具"
+      ],
+      "postconditions": [
+        "powder_child_ids",
+        "remainder_and_waste_bound"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "real atmosphere during unloading",
+          "powder yield"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "DIE_ASSEMBLE",
+      "title": "安放模具套与下冲代理",
+      "kind": "hands_on",
+      "location_id": "WS_DIE",
+      "target_asset_roles": [
+        "die_sleeve",
+        "lower_punch",
+        "die_tray"
+      ],
+      "preconditions": [
+        "powder_child_known",
+        "die_station_idle"
+      ],
+      "actions": [
+        "把模套置键槽，抓下冲放入并落稳",
+        "转动有号托盘使压制轴箭头朝固定读标侧"
+      ],
+      "postconditions": [
+        "die_axis_registered"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "die geometry/material/liners"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "P_STACK",
+      "title": "装Sb–P–Sb层",
+      "kind": "hands_on",
+      "location_id": "WS_DIE",
+      "target_asset_roles": [
+        "Sb_capsule",
+        "powder_capsule",
+        "mock_scoop"
+      ],
+      "preconditions": [
+        "P_powder",
+        "die_axis_registered"
+      ],
+      "actions": [
+        "从Sb界面匣转入底层模拟份额并收勺",
+        "转入P核心份额，再放上层Sb份额；逐次记录层序与父匣"
+      ],
+      "postconditions": [
+        "stack_Sb_P_Sb"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "Sb layer mass/thickness",
+          "powder levelling method"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "N_STACK",
+      "title": "装不锈钢–N–不锈钢代理层",
+      "kind": "hands_on",
+      "location_id": "WS_DIE",
+      "target_asset_roles": [
+        "steel_capsule",
+        "powder_capsule",
+        "mock_scoop"
+      ],
+      "preconditions": [
+        "N_powder",
+        "die_axis_registered"
+      ],
+      "actions": [
+        "从不锈钢界面匣放入端面模拟份额",
+        "放N核心及另一端界面代理，登记n身份；端面层几何是明确authored实现"
+      ],
+      "postconditions": [
+        "stack_steel_N_steel"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "exact interface layer topology/thickness"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "B_STACK",
+      "title": "装无界面B材料",
+      "kind": "hands_on",
+      "location_id": "WS_DIE",
+      "target_asset_roles": [
+        "powder_capsule",
+        "mock_scoop"
+      ],
+      "preconditions": [
+        "B_powder",
+        "die_axis_registered"
+      ],
+      "actions": [
+        "只把B粉末份额置入模套",
+        "收勺并确认没有Sb或不锈钢界面匣参与"
+      ],
+      "postconditions": [
+        "stack_B_no_interface"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "DIE_CLOSE",
+      "title": "插上冲并装托盘",
+      "kind": "hands_on",
+      "location_id": "WS_DIE",
+      "target_asset_roles": [
+        "upper_punch",
+        "die_tray"
+      ],
+      "preconditions": [
+        "correct_stack_complete"
+      ],
+      "actions": [
+        "扶模套，沿压制轴插入上冲代理",
+        "扣托盘限位件，保留轴箭头及层序卡"
+      ],
+      "postconditions": [
+        "die_closed_with_axis"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "punch insertion force",
+          "die assembly SOP"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "SPS_LOAD",
+      "title": "装入对应烧结工位",
+      "kind": "hands_on",
+      "location_id": "WS_SPS",
+      "target_asset_roles": [
+        "mock_SPS322",
+        "mock_SPS1080",
+        "die_tray"
+      ],
+      "preconditions": [
+        "die_closed_with_axis",
+        "cold_load_release"
+      ],
+      "actions": [
+        "选P/B的322LX或N的1080独立任务门",
+        "开外侧门，将模具托盘沿导轨放入，扣定位并关门"
+      ],
+      "postconditions": [
+        "correct_SPS_loaded"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "SPS_RUN",
+      "title": "执行材料专属烧结工单",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_SPS",
+      "target_asset_roles": [
+        "sinter_panel"
+      ],
+      "preconditions": [
+        "correct_SPS_loaded",
+        "guard_closed",
+        "hands_clear"
+      ],
+      "actions": [
+        "核对P 573 K/5 min、B 693 K/10 min或N 973 K/10 min，均60 MPa来源卡",
+        "启动惰性mock服务并等待工艺完成，再等待冷态释放"
+      ],
+      "postconditions": [
+        "sinter_job_done"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "ramps/vacuum/pressure trajectory",
+          "source tolerances"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "SPS_UNLOAD",
+      "title": "卸模具托盘",
+      "kind": "hands_on",
+      "location_id": "WS_SPS",
+      "target_asset_roles": [
+        "die_tray",
+        "mock_SPS322",
+        "mock_SPS1080"
+      ],
+      "preconditions": [
+        "sinter_job_done",
+        "safe_release",
+        "no_pressure"
+      ],
+      "actions": [
+        "打开外侧门，支撑托盘后解除限位",
+        "把托盘送回脱模槽，关闭空载门"
+      ],
+      "postconditions": [
+        "cold_die_returned"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "DEMOLD",
+      "title": "逐件脱模并保压制轴",
+      "kind": "hands_on",
+      "location_id": "WS_DIE",
+      "target_asset_roles": [
+        "demold_nest",
+        "upper_punch",
+        "die_sleeve",
+        "blank_carrier"
+      ],
+      "preconditions": [
+        "cold_die_returned"
+      ],
+      "actions": [
+        "托模具移走上冲，接取压块至托槽，撤模套代理",
+        "把压制轴从模具卡关联到坯体卡，检查可见层边及缺损"
+      ],
+      "postconditions": [
+        "blank_child_with_press_axis"
+      ],
+      "recovery": [
+        "卡住不可加大未知力；隔离整模或交回服务，保留层序和批号"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "real demoulding motion/force"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CUT_FIXTURE",
+      "title": "安装切割方向座",
+      "kind": "hands_on",
+      "location_id": "WS_CUT",
+      "target_asset_roles": [
+        "direction_jig",
+        "blank_carrier"
+      ],
+      "preconditions": [
+        "blank_child_with_press_axis",
+        "cutter_idle"
+      ],
+      "actions": [
+        "拿本支路定位座装入切割槽，转动坯体载架到P平行/B垂直压制方向",
+        "N只用任务给定索引，不继承P方向；夹两侧支撑"
+      ],
+      "postconditions": [
+        "cut_axis_registered"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "cut-plane interpretation detail",
+          "N source orientation"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CUT_SELECT",
+      "title": "设置分支几何并关闭切罩",
+      "kind": "hands_on",
+      "location_id": "WS_CUT",
+      "target_asset_roles": [
+        "dimension_card",
+        "mock_cutter"
+      ],
+      "preconditions": [
+        "cut_axis_registered"
+      ],
+      "actions": [
+        "选择本物件分支尺寸卡，量取/读取模拟尺值并记录来源类别",
+        "撤工具并关闭切割罩，不能把计算尺寸当物理尺寸"
+      ],
+      "postconditions": [
+        "cut_job_geometry_bound"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.paired"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "segment/control cross-sections",
+          "kerf",
+          "tolerances"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CUT_RUN",
+      "title": "运行封闭切割代理",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_CUT",
+      "target_asset_roles": [
+        "mock_cutter"
+      ],
+      "preconditions": [
+        "cut_job_geometry_bound",
+        "guard_closed"
+      ],
+      "actions": [
+        "按启动并等待指定形状子件事件",
+        "等待刀具停止/释放，保持余料仍有父坯体归属"
+      ],
+      "postconditions": [
+        "cut_done"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "actual cutting instrument"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CUT_UNLOAD",
+      "title": "分格取腿和余料",
+      "kind": "hands_on",
+      "location_id": "WS_CUT",
+      "target_asset_roles": [
+        "leg_tray",
+        "offcut_box"
+      ],
+      "preconditions": [
+        "cut_done",
+        "safe_release"
+      ],
+      "actions": [
+        "开罩先承托切后件，再解夹并把每条腿放独立格",
+        "将边料/破损件放有盖余料盒，保存父坯位置、方向与子ID"
+      ],
+      "postconditions": [
+        "distinct_leg_children"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "reported production yield"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "GA_SETUP",
+      "title": "装分段对合夹具",
+      "kind": "hands_on",
+      "location_id": "WS_JOIN",
+      "target_asset_roles": [
+        "segment_jig",
+        "leg_tray"
+      ],
+      "preconditions": [
+        "P_and_B_legs_available",
+        "jig_empty"
+      ],
+      "actions": [
+        "把P与B载具放左右槽，核对各端界面",
+        "P的Sb端朝向B裸端，装限位块保持共同截面/轴线"
+      ],
+      "postconditions": [
+        "segment_ends_aligned"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "actual joint fixture",
+          "surface preparation"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "GA_APPLY",
+      "title": "给连接端添加Ga–In代理层",
+      "kind": "hands_on",
+      "location_id": "WS_JOIN",
+      "target_asset_roles": [
+        "GaIn_mock_applicator",
+        "joint_patch"
+      ],
+      "preconditions": [
+        "segment_ends_aligned"
+      ],
+      "actions": [
+        "取封装Ga–In模拟涂布器，揭保护盖至专用盖槽",
+        "把可见惰性接合片/模拟液层转移至Sb与B相接面，工具回位"
+      ],
+      "postconditions": [
+        "GaIn_joint_present"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "composition ratio",
+          "amount",
+          "thickness",
+          "wetting/curing"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "SEG_JOIN",
+      "title": "合拢分段并固定转运",
+      "kind": "hands_on",
+      "location_id": "WS_JOIN",
+      "target_asset_roles": [
+        "segment_jig",
+        "segment_carrier"
+      ],
+      "preconditions": [
+        "GaIn_joint_present"
+      ],
+      "actions": [
+        "握载架缓慢对合端面至任务限位，扣临时夹具",
+        "环境确认稳定后将完整Sb/P/Sb/Ga–In/B结构连承托取出"
+      ],
+      "postconditions": [
+        "segmented_object_with_two_parents"
+      ],
+      "recovery": [
+        "错序在未连接前重排；已接合错序或碎裂则隔离，不把显示平移当无损解焊"
+      ],
+      "evidence_ids": [
+        "t.fabrication",
+        "t.setup"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "real bond pressure/dwell"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MODULE_BASE",
+      "title": "放AlN和底铜电极",
+      "kind": "hands_on",
+      "location_id": "WS_MODULE",
+      "target_asset_roles": [
+        "AlN_plate",
+        "copper_electrode",
+        "module_jig"
+      ],
+      "preconditions": [
+        "two_P_two_N_distinct_legs",
+        "base_empty"
+      ],
+      "actions": [
+        "拿AlN板置装配座，沿任务槽放底部铜连接片及端子",
+        "逐片检查对应拓扑标签和接触区，收定位镊代理"
+      ],
+      "postconditions": [
+        "base_electrodes_seated"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "plate size",
+          "copper topology",
+          "bond method"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MODULE_LEGS",
+      "title": "逐条放四腿",
+      "kind": "hands_on",
+      "location_id": "WS_MODULE",
+      "target_asset_roles": [
+        "leg_gripper",
+        "module_jig"
+      ],
+      "preconditions": [
+        "base_electrodes_seated"
+      ],
+      "actions": [
+        "分别从格盘取P1/N1/P2/N2，支持侧壁放入各孔位",
+        "保持P与N横截面不同、同高，记录四个子ID与端界面朝向"
+      ],
+      "postconditions": [
+        "four_leg_ids_placed"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.paired",
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MODULE_BRIDGE",
+      "title": "对合上铜桥及连接代理",
+      "kind": "hands_on",
+      "location_id": "WS_MODULE",
+      "target_asset_roles": [
+        "copper_electrode",
+        "connection_proxy"
+      ],
+      "preconditions": [
+        "four_leg_ids_placed"
+      ],
+      "actions": [
+        "取上铜桥按任务给定串联拓扑跨接",
+        "用明确authored的惰性固定片稳定端接，检查不会把同片电极短接两端"
+      ],
+      "postconditions": [
+        "two_pair_topology_assembled"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.fabrication"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "real solder/braze/bond chemistry",
+          "connection force"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "MODULE_RELEASE",
+      "title": "承托取模组并核对端子",
+      "kind": "hands_on",
+      "location_id": "WS_MODULE",
+      "target_asset_roles": [
+        "module_carrier",
+        "module_jig"
+      ],
+      "preconditions": [
+        "two_pair_topology_assembled",
+        "connection_proxy_stable"
+      ],
+      "actions": [
+        "托住AlN板，解除装配限位并转移到模块载具",
+        "公开低能mock连续性/开短路检查，留真实验证为unknown"
+      ],
+      "postconditions": [
+        "module_available"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.paired"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "actual electrical acceptance limits"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CONTACT_MOUNT",
+      "title": "装接触电阻分布样品",
+      "kind": "hands_on",
+      "location_id": "WS_CONTACT",
+      "target_asset_roles": [
+        "S1331_fixture",
+        "segment_carrier"
+      ],
+      "preconditions": [
+        "segmented_object",
+        "source_off",
+        "probe_retracted"
+      ],
+      "actions": [
+        "把样品横放支撑座并轻合任务夹具",
+        "沿B→Ga–In/Sb→P方向登记坐标原点，接有号电流/电压引线代理"
+      ],
+      "postconditions": [
+        "contact_specimen_mounted"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.setup"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "probe topology/count",
+          "force",
+          "exact wiring"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CONTACT_PROBE",
+      "title": "对准探针并接触首点",
+      "kind": "hands_on",
+      "location_id": "WS_CONTACT",
+      "target_asset_roles": [
+        "S1331_probe",
+        "position_stage"
+      ],
+      "preconditions": [
+        "contact_specimen_mounted",
+        "probe_safe"
+      ],
+      "actions": [
+        "移动样品台/探针至公开坐标起点",
+        "下放探针代理到接触反馈；不以任意视觉点击写入电阻"
+      ],
+      "postconditions": [
+        "probe_contact_valid"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.setup"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "probe spacing",
+          "source current"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CONTACT_SCAN",
+      "title": "逐位置测量并保存",
+      "kind": "hands_on",
+      "location_id": "WS_CONTACT",
+      "target_asset_roles": [
+        "S1331_probe",
+        "position_stage",
+        "acquisition_panel"
+      ],
+      "preconditions": [
+        "probe_contact_valid",
+        "mock_acquisition_ready"
+      ],
+      "actions": [
+        "触发当前点采集，保存x/R/单位/样品/端接/运行号",
+        "抬探针、移动到下一个任务坐标、落针并重复，跨两界面保序"
+      ],
+      "postconditions": [
+        "position_resistance_records"
+      ],
+      "recovery": [
+        "失接触/错位该点标无效；停源抬针后复位，新增重测事件不覆盖旧点"
+      ],
+      "evidence_ids": [
+        "t.segment"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "actual source step size and raw points"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CONTACT_UNLOAD",
+      "title": "停测撤针解线取样",
+      "kind": "hands_on",
+      "location_id": "WS_CONTACT",
+      "target_asset_roles": [
+        "S1331_fixture",
+        "sample_carrier"
+      ],
+      "preconditions": [
+        "scan_complete_or_aborted"
+      ],
+      "actions": [
+        "关闭测量输出，完全抬针，再断引线",
+        "支撑样品后开夹，放回有号格并保探针接触历史"
+      ],
+      "postconditions": [
+        "contact_sample_archived"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.setup"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CONTACT_ANALYSE",
+      "title": "识别两界面并处理电阻率",
+      "kind": "nonmanual_analysis",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "data_terminal"
+      ],
+      "preconditions": [
+        "position_resistance_records"
+      ],
+      "actions": [
+        "把有效曲线段及两界面跳变引用到原始记录",
+        "仅在有面积和处理方法证据时派生接触电阻率，否则保存R(x)并标不足"
+      ],
+      "postconditions": [
+        "contact_analysis_with_validity"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.segment"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "area/calibration/fit method"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_PREP",
+      "title": "打开冷态Mini-PEM并装底托",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "MiniPEM_chamber",
+        "lower_contact",
+        "sample_carrier"
+      ],
+      "preconditions": [
+        "system_idle",
+        "cold",
+        "vented_safe_open",
+        "sources_off"
+      ],
+      "actions": [
+        "打开外罩/门代理，把适配腿或模块的底托放下端槽",
+        "核对下端冷、上端热标签及样品高度卡"
+      ],
+      "postconditions": [
+        "PEM_fixture_ready"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure",
+        "t.setup"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "chamber door mechanism",
+          "mount pressure"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_MOUNT",
+      "title": "摆样并对合上接触",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "upper_contact",
+        "lower_contact",
+        "sample_carrier"
+      ],
+      "preconditions": [
+        "PEM_fixture_ready",
+        "sample_known"
+      ],
+      "actions": [
+        "用侧壁夹具承托物件放在底托中心",
+        "分段样使P/MgAgSb端朝上热端、B端朝下冷端；下降上接触代理并读就绪"
+      ],
+      "postconditions": [
+        "sample_between_contacts"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.setup",
+        "t.measure"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "thermal interface material",
+          "mount load"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_WIRE",
+      "title": "连接有号测量引线",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "measurement_leads",
+        "lead_ports"
+      ],
+      "preconditions": [
+        "sample_between_contacts",
+        "sources_off"
+      ],
+      "actions": [
+        "把输出电压/电流及冷侧热流通道接对应任务端口",
+        "松弛导线入理线夹，核对极性与通道单位/标定卡"
+      ],
+      "postconditions": [
+        "channels_bound"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "physical sensor layout",
+          "raw channel calibration"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_SEAL",
+      "title": "关腔并抽气代理",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "MiniPEM_chamber",
+        "vacuum_mock_panel"
+      ],
+      "preconditions": [
+        "channels_bound",
+        "hands_clear"
+      ],
+      "actions": [
+        "关门并扣锁，确认样品未被线牵拉",
+        "选择mock真空程序并等待设备给出的vacuum_ready"
+      ],
+      "postconditions": [
+        "vacuum_ready"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "pressure target",
+          "pump hardware"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_BOUNDARY",
+      "title": "设热边界并等稳定",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "thermal_mock_panel"
+      ],
+      "preconditions": [
+        "vacuum_ready",
+        "condition_id_bound"
+      ],
+      "actions": [
+        "在公开条件卡选择上端Th与下端293 K或明确authored比较卡",
+        "启动惰性温控，等待环境返回的稳定事件并登记实际mock读值"
+      ],
+      "postconditions": [
+        "thermal_condition_stable"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure",
+        "t.paired",
+        "t.segment"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "stability criterion",
+          "actual Fig.3i boundary"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_CURRENT",
+      "title": "设置一个电流点",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "current_mock_control"
+      ],
+      "preconditions": [
+        "thermal_condition_stable",
+        "requested_point_not_recorded"
+      ],
+      "actions": [
+        "选择任务电流值并触发控制",
+        "等待点就绪事件，不把设定值直接当测量I"
+      ],
+      "postconditions": [
+        "current_point_ready"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "experimental current grid",
+          "settling times"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_ACQUIRE",
+      "title": "取得本点I–V–Qc记录",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "acquisition_panel"
+      ],
+      "preconditions": [
+        "current_point_ready",
+        "calibration_state_visible"
+      ],
+      "actions": [
+        "按采集并保存I/V/Qc或原始热流电压通道",
+        "绑定对象、Th/Tc、vacuum、current、单位、时间、标定与mock标签，保持缺项"
+      ],
+      "postconditions": [
+        "raw_triplet_event_recorded"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_NEXT",
+      "title": "换电流/热条件并保历史",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "current_mock_control",
+        "thermal_mock_panel"
+      ],
+      "preconditions": [
+        "point_saved_or_invalid"
+      ],
+      "actions": [
+        "同热边界遍历其余任务电流点，换边界前把电输出置任务安全空载态",
+        "切换Th后重新等待稳定，保同物件ID与新condition ID；不得重建pristine样"
+      ],
+      "postconditions": [
+        "condition_scan_history"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "ramp trajectory"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_POWERDOWN",
+      "title": "停输出与加热",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "current_mock_control",
+        "thermal_mock_panel"
+      ],
+      "preconditions": [
+        "scan_complete_or_aborted"
+      ],
+      "actions": [
+        "关闭电流控制输出和热端程序，保持冷却代理",
+        "等待冷却、停源与可放气状态事件，记录异常停机"
+      ],
+      "postconditions": [
+        "power_off_and_cooling"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "actual shutdown sequence"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_OPEN",
+      "title": "等待放气释放再开腔",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "MiniPEM_chamber",
+        "vacuum_mock_panel"
+      ],
+      "preconditions": [
+        "power_off_and_cooling",
+        "safe_cool",
+        "no_live_output"
+      ],
+      "actions": [
+        "请求mock放气并等待safe_open，不以计时器代替",
+        "解锁并打开腔门，先放支撑托在样品下"
+      ],
+      "postconditions": [
+        "safe_open_supported"
+      ],
+      "recovery": [
+        "任一温度/真空状态未知则保持封闭，交回停机服务；禁止强开"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PEM_UNLOAD",
+      "title": "解线松压并取样",
+      "kind": "hands_on",
+      "location_id": "WS_PEM",
+      "target_asset_roles": [
+        "measurement_leads",
+        "upper_contact",
+        "sample_carrier"
+      ],
+      "preconditions": [
+        "safe_open_supported"
+      ],
+      "actions": [
+        "断开并盘好引线，抬上接触代理",
+        "托住样品取回有号载具，卸底托归架并关空腔"
+      ],
+      "postconditions": [
+        "measured_object_unloaded"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure",
+        "t.setup"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "PERFORMANCE_ANALYSE",
+      "title": "计算功率效率并标比较口径",
+      "kind": "nonmanual_analysis",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "data_terminal"
+      ],
+      "preconditions": [
+        "raw_triplet_event_recorded"
+      ],
+      "actions": [
+        "按单位算P=I×V，只有Qc经证据为W才算η=P/(P+Qc)",
+        "各条件提取采样P/η最大值；面积已知才算P/面积；保存计算引用与限制"
+      ],
+      "postconditions": [
+        "derived_records_or_explicit_unknown"
+      ],
+      "recovery": [
+        "条件未满足则停止本步骤，保留原对象/无效事件；不自行改写设备真值"
+      ],
+      "evidence_ids": [
+        "t.measure"
+      ],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": [
+          "real raw data",
+          "calibration",
+          "continuous maxima between samples"
+        ]
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "归档样品/余料/数据",
+      "kind": "hands_on",
+      "location_id": "WS_STORAGE",
+      "target_asset_roles": [
+        "labelled_storage",
+        "quarantine_box"
+      ],
+      "preconditions": [
+        "equipment_safe"
+      ],
+      "actions": [
+        "完整未测、已测、探针接触、破损、未知分别入格",
+        "封存余粉、余腿和边料，核对父子数量与运行文件，关闭盒盖"
+      ],
+      "postconditions": [
+        "lineage_and_final_locations_complete"
+      ],
+      "recovery": [
+        "数量或标签对不上则保持缺项和隔离，不能复制样品补账"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    },
+    {
+      "id": "CLEAN",
+      "title": "实际复位工具和台面",
+      "kind": "hands_on",
+      "location_id": "WS_CLEAN",
+      "target_asset_roles": [
+        "tool_rack",
+        "sealed_waste_box",
+        "wipe_proxy"
+      ],
+      "preconditions": [
+        "sources_off",
+        "no_hot_open_parts"
+      ],
+      "actions": [
+        "取回空载具、模套、冲头、定位件与模拟勺到指定槽",
+        "把粉末/金属/石英管代理废物封盒交接，擦允许表面并收擦片；关空设备门"
+      ],
+      "postconditions": [
+        "tools_returned",
+        "waste_contained",
+        "benches_clear"
+      ],
+      "recovery": [
+        "未知残留不吹扫/不混废料/不临时配溶剂；封闭保留交接"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "macro": "source-supported where evidence_ids present; otherwise authored workflow closure",
+        "micro_interface": "All grabs, carriers, knobs, clamps, routing, gates, mock displays and cleanup gestures are task-authored, not recovered author chronology",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "inert_mock_only"
+    }
+  ],
+  "identity_binding": "Each occurrence binds episode/object/material/parents/workorder/condition; MOVE inserted whenever workstation changes. These are task templates, not a claim every original human micromotion is reconstructed."
+}

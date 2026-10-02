@@ -1,0 +1,140 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "records": [
+    {
+      "id": "MODEL_DATA",
+      "label": "COMSOL数据生成",
+      "evidence_ids": [
+        "t.compute"
+      ],
+      "locator": "Main Fig.1; Methods p8",
+      "disposition": "Normal mesh, steady-state; a/b/c 1–12 mm; Sobol dimensions/temperatures; dynamic current bounds; positive-voltage normalization is computational convention, not permission to flip experimental sign.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "TRAIN",
+      "label": "TEGNet结构与分割训练",
+      "evidence_ids": [
+        "t.compute"
+      ],
+      "locator": "Main Fig.1; SI1–2",
+      "disposition": "6 inputs, 3×128 hidden SiLU, 2 outputs; 300/600/1200/1800/2400 cases; 80/10/10 parameter split, 80/20 assessment, five splits, whole-data final fit; no physical micro-actions or fabricated training run.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "SINGLE_MODELS",
+      "label": "单材料预测及跨材料泛化",
+      "evidence_ids": [
+        "t.si_compute"
+      ],
+      "locator": "Main Fig.2; SI3,5–18",
+      "disposition": "MgAgSb, Bi0.4Sb1.6Te3, Mg3Bi1.4Sb0.6, Mg3Sb1.5Bi0.5, NbFeSb, GeTe, PbTe, CoSb3, AgCu(Te,S), Zintl, SnSe, SnS are model/property cases, not all synthesized here.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "EXTRAPOLATE",
+      "label": "域外与新材料模型",
+      "evidence_ids": [
+        "t.si_compute"
+      ],
+      "locator": "SI4,19",
+      "disposition": "Above593 K extrapolation and ±10% illustrative properties/new-material workflow; no extra furnace experiment.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "SEG_OPT",
+      "label": "分段几何计算优化",
+      "evidence_ids": [
+        "t.compute"
+      ],
+      "locator": "Main Fig.3a–g; SI20",
+      "disposition": "Cross-section 3.5×3.5 mm, total c 7/8/9/10 mm, Th573/Tc293 K; equal current and interface heat balance; these dimensions do not define experimental controls.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "HEAT_FLUX",
+      "label": "恒热流边界计算",
+      "evidence_ids": [
+        "t.compute"
+      ],
+      "locator": "ED1",
+      "disposition": "TEGNet constraint search versus COMSOL imposed flux; no new experimental constant-flux branch.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "ELECTRICAL_PARASITIC",
+      "label": "电接触电阻率计算",
+      "evidence_ids": [
+        "t.compute"
+      ],
+      "locator": "ED2; SI24",
+      "disposition": "Model rho_c sweeps remain separate from S1331 experimentally acquired R(x).",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "THERMAL_PARASITIC",
+      "label": "热接触电阻率计算",
+      "evidence_ids": [
+        "t.compute"
+      ],
+      "locator": "ED3",
+      "disposition": "No experimental thermal-contact-resistivity instrument/task is reported.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "PAIR_GEOMETRY",
+      "label": "n–p面积/高度优化",
+      "evidence_ids": [
+        "t.compute"
+      ],
+      "locator": "Main Fig.4a–f; SI23",
+      "disposition": "Ap/An, H/(Ap+An), total area scans; physical module is only the separately bound two-pair case.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "PAIR_COUNT",
+      "label": "1到32对数扩展",
+      "evidence_ids": [
+        "t.si_compute"
+      ],
+      "locator": "SI22",
+      "disposition": "1,2,4,8,16,32 pairs predictions; cannot multiply physical sample instances or hands-on credit.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "COMPOSITION",
+      "label": "多段/新材料组合",
+      "evidence_ids": [
+        "t.si_compute"
+      ],
+      "locator": "Main Fig.4k–l; SI25–26",
+      "disposition": "Mg3Sb1.5Bi0.5–SnS, segmented n Mg3Sb1.5Bi0.5/Mg3Bi1.4Sb0.6 with p GeTe, three-segment, segmented-p topology and all p–n combinations are computational.",
+      "hands_on_credit": 0,
+      "executed": false
+    },
+    {
+      "id": "LITERATURE",
+      "label": "文献与性能参照",
+      "evidence_ids": [
+        "t.credits"
+      ],
+      "locator": "Main Fig.4j references; main/SI reference lists",
+      "disposition": "External reported devices/property curves are reference records, never new specimens made by this paper or this task.",
+      "hands_on_credit": 0,
+      "executed": false
+    }
+  ],
+  "analysis_only": true,
+  "material_property_policy": "No unreported Seebeck/XRD/thermal-conductivity instrument experiment is invented from plotted zT/PF."
+}

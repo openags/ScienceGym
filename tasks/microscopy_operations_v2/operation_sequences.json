@@ -1,0 +1,2729 @@
+{
+  "paper_id": "deconwolf2024",
+  "mode": "paper-wide source-reported manual program plus explicitly authored gap connectors",
+  "preparation_is_in_scope": true,
+  "wet_lab_branches": [
+    {
+      "id": "tubulin",
+      "title": "U-2 OS tubulin: culture → immunostain → matched confocal/widefield",
+      "initial_specimen": "U-2 OS stock identity token, not a pre-stained or pre-mounted specimen",
+      "carrier": "18 mm round #1.5 high-precision coverslip, VWR 630-2200",
+      "materials": [
+        "U-2 OS (CLS 300174)",
+        "DMEM high glucose/GlutaMAX/pyruvate + 10% fetal bovine serum",
+        "PBS",
+        "source-literal 8% formaldehyde solution",
+        "Triton X-100",
+        "BSA",
+        "glycine",
+        "anti-alpha-tubulin T6074",
+        "goat anti-mouse AlexaFluor 555 ab150118",
+        "DAPI D1306",
+        "Prolong Gold P10144"
+      ],
+      "preparation": [
+        {
+          "id": "tubulin__tub_seed",
+          "label": "Place round carrier in an authored culture dish; seed source U-2 OS stock",
+          "kind": "seed",
+          "reported_parameters": {
+            "medium": "DMEM high glucose/GlutaMAX/pyruvate + 10% FBS"
+          },
+          "source_refs": [
+            "M64",
+            "M80"
+          ],
+          "unknowns": [
+            "Seeding density, dish identity and volume unreported"
+          ],
+          "precondition_state": "entry",
+          "output_state": "tubulin__tub_seed__done",
+          "interaction_macro": "seed",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_grow",
+          "label": "Load closed culture carrier into incubator and grow",
+          "kind": "incubate",
+          "reported_parameters": {
+            "temperature_C": 37,
+            "CO2_percent": 5,
+            "duration_days_range": [
+              1,
+              3
+            ]
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [],
+          "precondition_state": "tubulin__tub_seed__done",
+          "output_state": "tubulin__tub_grow__done",
+          "interaction_macro": "incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_fix",
+          "label": "Exchange growth medium for source fixation solution",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "formaldehyde_percent": 8,
+            "solvent": "1× PBS",
+            "solution": "pre-warmed",
+            "duration_min": 10,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [
+            "Pre-warm temperature and volume unreported; preserve 8%, do not silently halve"
+          ],
+          "precondition_state": "tubulin__tub_grow__done",
+          "output_state": "tubulin__tub_fix__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_permeabilize",
+          "label": "Permeabilize same coverslip",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "Triton_X100_percent_volvol": 0.5,
+            "solvent": "1× PBS"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [
+            "Duration unreported"
+          ],
+          "precondition_state": "tubulin__tub_fix__done",
+          "output_state": "tubulin__tub_permeabilize__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_block",
+          "label": "Block same coverslip",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "BSA_percent_wvol": 5,
+            "glycine_M": 0.1,
+            "solvent": "1× PBS",
+            "duration_min": 30,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [],
+          "precondition_state": "tubulin__tub_permeabilize__done",
+          "output_state": "tubulin__tub_block__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_primary",
+          "label": "Apply primary anti-alpha-tubulin antibody",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "antibody": "T6074",
+            "dilution": "1:250",
+            "BSA_percent_wvol": 5,
+            "glycine_M": 0.1,
+            "solvent": "1× PBS",
+            "duration_h": 1,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [],
+          "precondition_state": "tubulin__tub_block__done",
+          "output_state": "tubulin__tub_primary__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_wash1",
+          "label": "Wash primary-labeled specimen",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 5,
+            "buffer": "1× PBS"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [
+            "Wash dwell unreported"
+          ],
+          "precondition_state": "tubulin__tub_primary__done",
+          "output_state": "tubulin__tub_wash1__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_reblock",
+          "label": "Reblock specimen",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "BSA_percent_wvol": 5,
+            "glycine_M": 0.1,
+            "solvent": "1× PBS"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [
+            "Reblock duration unreported"
+          ],
+          "precondition_state": "tubulin__tub_wash1__done",
+          "output_state": "tubulin__tub_reblock__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_secondary",
+          "label": "Apply AF555 secondary and DAPI",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "secondary": "ab150118",
+            "dilution": "1:400",
+            "counterstain": "DAPI D1306",
+            "duration_h": 1,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [
+            "DAPI concentration unreported"
+          ],
+          "precondition_state": "tubulin__tub_reblock__done",
+          "output_state": "tubulin__tub_secondary__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_wash2",
+          "label": "Wash secondary-labeled specimen",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 5,
+            "buffer": "1× PBS"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [
+            "Wash dwell unreported"
+          ],
+          "precondition_state": "tubulin__tub_secondary__done",
+          "output_state": "tubulin__tub_wash2__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tubulin__tub_mount",
+          "label": "Mount stained round coverslip with Prolong Gold",
+          "kind": "mount",
+          "reported_parameters": {
+            "mounting_medium": "Prolong Gold P10144"
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "unknowns": [
+            "Medium volume, support-slide identity, orientation and curing duration unreported"
+          ],
+          "precondition_state": "tubulin__tub_wash2__done",
+          "output_state": "tubulin__tub_mount__done",
+          "interaction_macro": "mount",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        }
+      ],
+      "acquisition_variants": [
+        {
+          "id": "tub_confocal",
+          "station": "zeiss_lsm980_proxy",
+          "detector": "confocal detector, model unreported",
+          "objective": "Plan Apochromat 63× 1.4 NA oil",
+          "params": {
+            "bit_depth": 16,
+            "zoom": 5.0,
+            "xy_pixel_nm": 26.3,
+            "pinhole_AU": 1,
+            "line_average": 2,
+            "scan_speed_setting": 10,
+            "pixel_dwell_us": 0.42,
+            "z_step_um": 0.3,
+            "number_of_steps_source_literal": 52
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "order": "first"
+        },
+        {
+          "id": "tub_widefield",
+          "station": "tie_ixon100",
+          "detector": "iXon Ultra 888 EMCCD",
+          "objective": "Plan Apochromat Lambda 100× 1.45 NA oil",
+          "params": {
+            "bit_depth": 16,
+            "xy_pixel_nm": 129.8,
+            "z_step_um": 0.25,
+            "number_of_steps_source_literal": 81
+          },
+          "source_refs": [
+            "M80"
+          ],
+          "order": "after tub_confocal; same specimen and same FOV"
+        }
+      ],
+      "analysis_actions": [
+        "Preserve paired raw stacks and sampling per modality",
+        "Select the matching widefield PSF metadata and obtain preset DW derivative",
+        "Register the same FOV across modalities; inspect lateral and axial views",
+        "Compare structures and retain low-intensity discrepancies rather than declaring every sharper output true"
+      ],
+      "source_gaps": [
+        "No numerical exposure, illumination power, EM gain, oil type or field-coordinate registration procedure supplied",
+        "Support slide/holder, carrier transfer and cleaning mechanics are authored"
+      ],
+      "source_refs": [
+        "M64",
+        "M80",
+        "R_IF"
+      ],
+      "prepared_state": "tubulin__tub_mount__done",
+      "lineage_rules": [
+        "immutable specimen ID from source entry through preparation",
+        "carrier ID and plate/well/section parent tracked separately",
+        "material recipe/lot ancestry attached to specimen",
+        "each acquisition keeps specimen, carrier, field, station, modality, objective, detector and settings snapshot",
+        "raw immutable; every derivative has explicit raw parent",
+        "no merging specimen identities merely because microscope model is shared"
+      ],
+      "handling_sequence": [
+        "receiving→preparation",
+        "culture/thermal visits dictated by preparation stages",
+        "mount→closed-tray transport→station docking",
+        "acquire each required branch-specific variant",
+        "unload→archive→cleanup",
+        "analysis on saved immutable records"
+      ],
+      "agent_goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels."
+    },
+    {
+      "id": "ifish",
+      "title": "HAP1 chromosome-16 iFISH: culture → two hybridizations → widefield",
+      "initial_specimen": "HAP1 stock identity token and separately supplied probe-lot tokens",
+      "carrier": "22×22 mm #1.5 coverslip, VWR 631-0125; culture in CLS3506 six-well plate",
+      "materials": [
+        "HAP1 (Horizon C859)",
+        "IMDM + 10% FBS",
+        "PBS",
+        "paraformaldehyde",
+        "glycine",
+        "Triton X-100",
+        "HCl",
+        "SSC",
+        "NaN3 storage-buffer token",
+        "formamide",
+        "sodium phosphate buffer",
+        "Denhardt solution",
+        "EDTA",
+        "salmon sperm DNA",
+        "human Cot-1 DNA",
+        "dextran sulfate",
+        "Tween",
+        "E. coli tRNA reagent",
+        "BSA",
+        "Hoechst 33342",
+        "primary chr16 iFISH probe set",
+        "secondary fluorescent oligonucleotide set",
+        "Fixogum"
+      ],
+      "preparation": [
+        {
+          "id": "ifish__if_seed",
+          "label": "Place square coverslip in labeled six-well position and seed HAP1",
+          "kind": "seed",
+          "reported_parameters": {
+            "medium": "IMDM + 10% FBS"
+          },
+          "source_refs": [
+            "M64",
+            "M75"
+          ],
+          "unknowns": [
+            "Seeding density, volume and growth duration unreported"
+          ],
+          "precondition_state": "entry",
+          "output_state": "ifish__if_seed__done",
+          "interaction_macro": "seed",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_grow",
+          "label": "Incubate HAP1 culture and inspect confluency fixture",
+          "kind": "incubate_until",
+          "reported_parameters": {
+            "temperature_C": 37,
+            "CO2_percent": 5,
+            "target_confluency_percent_approx": 90
+          },
+          "source_refs": [
+            "M64",
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_seed__done",
+          "output_state": "ifish__if_grow__done",
+          "interaction_macro": "incubate_until",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_fix",
+          "label": "Fix coverslip culture",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "PBS": "1×",
+            "paraformaldehyde_percent": 4,
+            "duration_min": 10,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_grow__done",
+          "output_state": "ifish__if_fix__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_quench",
+          "label": "Quench unreacted fixative",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "PBS": "1×",
+            "glycine_mM": 125,
+            "duration_min": 5,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_fix__done",
+          "output_state": "ifish__if_quench__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_wash1",
+          "label": "Wash fixed sample",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 3,
+            "each_min": 5,
+            "PBS": "1×",
+            "Triton_X100_percent": 0.05,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_quench__done",
+          "output_state": "ifish__if_wash1__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_perm",
+          "label": "Permeabilize fixed sample",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "PBS": "1×",
+            "Triton_X100_percent": 0.5,
+            "duration_min": 20,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_wash1__done",
+          "output_state": "ifish__if_perm__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_wash2",
+          "label": "Wash after permeabilization",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 3,
+            "each_min": 5,
+            "PBS": "1×",
+            "Triton_X100_percent": 0.05,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_perm__done",
+          "output_state": "ifish__if_wash2__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_acid",
+          "label": "Perform source HCl incubation",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "HCl_N": 0.1,
+            "duration_min": 5,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_wash2__done",
+          "output_state": "ifish__if_acid__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_wash3",
+          "label": "Wash after HCl",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 2,
+            "each_min": 5,
+            "PBS": "1×",
+            "Triton_X100_percent": 0.05,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_acid__done",
+          "output_state": "ifish__if_wash3__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_rinse1",
+          "label": "Rinse in SSC",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "SSC": "2×",
+            "mode": "rinse"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_wash3__done",
+          "output_state": "ifish__if_rinse1__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_store",
+          "label": "Optional stored-sample branch or proceed directly",
+          "kind": "optional_storage",
+          "reported_parameters": {
+            "SSC": "2×",
+            "NaN3_percent": 0.05,
+            "temperature_C": 4,
+            "max_duration": "1 month"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [
+            "Task provides sealed prepared storage buffer; no sodium-azide handling recipe authored"
+          ],
+          "precondition_state": "ifish__if_rinse1__done",
+          "output_state": "ifish__if_store__done",
+          "interaction_macro": "optional_storage",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": "decision required; storage actions only in stored variant",
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_equilibrate",
+          "label": "Pre-hybridization equilibration",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "formamide_percent": 50,
+            "SSC": "2×",
+            "phosphate_buffer_mM": 50,
+            "duration": "overnight",
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_store__done",
+          "output_state": "ifish__if_equilibrate__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_prehyb",
+          "label": "Load pre-hybridization mix into sealed humidity chamber",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "formamide_percent": 50,
+            "SSC": "2×",
+            "Denhardt": "5×",
+            "sodium_phosphate_mM": 50,
+            "EDTA_mM": 1,
+            "salmon_sperm_DNA_source_literal_mg_ml": 100,
+            "human_Cot1_DNA_source_literal_mg_ml": 100,
+            "pH_range": [
+              7.5,
+              8
+            ],
+            "temperature_C": 37,
+            "duration_h": 1
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [
+            "Source reports mg/ml here and µg/ml in hybridization mix: do not normalize; use literal source-labeled task reagent token"
+          ],
+          "precondition_state": "ifish__if_equilibrate__done",
+          "output_state": "ifish__if_prehyb__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_mix",
+          "label": "Select validated supplied chr16 probe lot and prepare primary hybridization mix",
+          "kind": "mix",
+          "reported_parameters": {
+            "probe_dilution": "tenfold in 1.1× hybridization buffer",
+            "stock_buffer": {
+              "formamide_percent": 55,
+              "SSC": "2.2×",
+              "Denhardt": "5.5×",
+              "sodium_phosphate_mM": 55,
+              "EDTA_mM": 1.1,
+              "salmon_sperm_DNA_ug_ml": 100,
+              "human_Cot1_DNA_ug_ml": 100,
+              "dextran_sulfate_percent": 11,
+              "pH_range": [
+                7.5,
+                8
+              ]
+            },
+            "final_probe_nM_per_oligo": 0.06
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [
+            "Probe production delegated by paper to prior iFISH pipeline; sequences not retained",
+            "63 loci in methods/results versus 65 in supplement listing remains unresolved"
+          ],
+          "precondition_state": "ifish__if_prehyb__done",
+          "output_state": "ifish__if_mix__done",
+          "interaction_macro": "mix",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_seal",
+          "label": "Replace pre-hybridization buffer and seal with Fixogum",
+          "kind": "seal_exchange",
+          "reported_parameters": {
+            "sealant": "Fixogum LK071A"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_mix__done",
+          "output_state": "ifish__if_seal__done",
+          "interaction_macro": "seal_exchange",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_denature",
+          "label": "Transfer sealed carrier to denaturation station",
+          "kind": "incubate",
+          "reported_parameters": {
+            "temperature_C": 75,
+            "duration_s": 70
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_seal__done",
+          "output_state": "ifish__if_denature__done",
+          "interaction_macro": "incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_hyb1",
+          "label": "Return carrier to sealed humidity chamber",
+          "kind": "incubate",
+          "reported_parameters": {
+            "temperature_C": 37,
+            "duration": "overnight"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_denature__done",
+          "output_state": "ifish__if_hyb1__done",
+          "interaction_macro": "incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_rinse2",
+          "label": "Rinse primary-hybridized coverslip",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "SSC": "2×",
+            "Tween_percent": 0.02,
+            "mode": "rinse"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_hyb1__done",
+          "output_state": "ifish__if_rinse2__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_hotwash",
+          "label": "Transfer to warmed wash buffer",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 2,
+            "each_min": 5,
+            "SSC": "0.2×",
+            "Tween_percent": 0.2,
+            "temperature_C": 60
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_rinse2__done",
+          "output_state": "ifish__if_hotwash__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_rinse3",
+          "label": "Quick rinse in high SSC buffer",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "SSC": "4×",
+            "Tween_percent": 0.2,
+            "mode": "quick rinse"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_hotwash__done",
+          "output_state": "ifish__if_rinse3__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_rinse4",
+          "label": "Rinse in SSC",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "SSC": "2×",
+            "mode": "rinse"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_rinse3__done",
+          "output_state": "ifish__if_rinse4__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_wash4",
+          "label": "Final wash before second hybridization",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "SSC": "2×",
+            "formamide_percent": 25
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [
+            "Duration unreported"
+          ],
+          "precondition_state": "ifish__if_rinse4__done",
+          "output_state": "ifish__if_wash4__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_hyb2",
+          "label": "Prepare and apply secondary fluorescent oligonucleotide mix",
+          "kind": "mix_exchange_incubate",
+          "reported_parameters": {
+            "secondary_oligo_nM_each": 20,
+            "SSC": "2×",
+            "formamide_percent": 25,
+            "dextran_sulfate_percent": 10,
+            "E_coli_tRNA_mg_ml": 1,
+            "BSA_percent": 0.02,
+            "temperature_C": 30,
+            "duration": "overnight",
+            "environment": "sealed humidity chamber"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_wash4__done",
+          "output_state": "ifish__if_hyb2__done",
+          "interaction_macro": "mix_exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_wash5",
+          "label": "Wash secondary-hybridized sample",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "duration_h": 1,
+            "temperature_C": 30,
+            "SSC": "2×",
+            "formamide_percent": 25
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_hyb2__done",
+          "output_state": "ifish__if_wash5__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_hoechst",
+          "label": "Counterstain specimen",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "Hoechst33342_ng_ml": 1,
+            "SSC": "2×",
+            "formamide_percent": 25,
+            "temperature_C": 30,
+            "duration_min": 30
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_wash5__done",
+          "output_state": "ifish__if_hoechst__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_wash6",
+          "label": "Final SSC washes",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 2,
+            "each_min": 5,
+            "SSC": "2×"
+          },
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [],
+          "precondition_state": "ifish__if_hoechst__done",
+          "output_state": "ifish__if_wash6__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "ifish__if_mount",
+          "label": "Mount square coverslip in carrier adapter",
+          "kind": "mount",
+          "reported_parameters": {},
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [
+            "Mount medium, support geometry, orientation and volume not reported"
+          ],
+          "precondition_state": "ifish__if_wash6__done",
+          "output_state": "ifish__if_mount__done",
+          "interaction_macro": "mount",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        }
+      ],
+      "acquisition_variants": [
+        {
+          "id": "if_widefield",
+          "station": "tie_ixon100",
+          "detector": "iXon Ultra 888 EMCCD",
+          "objective": "CFI Plan Apochromat Lambda 100× 1.45 NA oil",
+          "params": {},
+          "source_refs": [
+            "M75"
+          ],
+          "unknowns": [
+            "Acquisition bit depth, xy sampling, z step and plane count unreported here; never borrow tubulin 81-plane settings"
+          ]
+        }
+      ],
+      "analysis_actions": [
+        "Keep four iFISH channels and nuclear identity separate",
+        "Preserve raw and preset DW derivatives",
+        "Compare per-nucleus/per-channel nearest neighbors at source threshold 260 nm",
+        "Label Raw&DW, DW&Raw, Lost and New; exclude nuclei with no dots in either comparison image",
+        "Retain FWHM/NCR outputs; upscaling to 23 nm for ED7 is display processing, not acquisition sampling"
+      ],
+      "source_gaps": [
+        "Probe synthesis is a source-cited upstream input, represented as identity-checked probe lots, not invented chemistry",
+        "51-plane boundary example is a separate data subtask, not a global iFISH acquisition setting"
+      ],
+      "source_refs": [
+        "M64",
+        "M75",
+        "M101",
+        "ED7",
+        "SI78"
+      ],
+      "prepared_state": "ifish__if_mount__done",
+      "lineage_rules": [
+        "immutable specimen ID from source entry through preparation",
+        "carrier ID and plate/well/section parent tracked separately",
+        "material recipe/lot ancestry attached to specimen",
+        "each acquisition keeps specimen, carrier, field, station, modality, objective, detector and settings snapshot",
+        "raw immutable; every derivative has explicit raw parent",
+        "no merging specimen identities merely because microscope model is shared"
+      ],
+      "handling_sequence": [
+        "receiving→preparation",
+        "culture/thermal visits dictated by preparation stages",
+        "mount→closed-tray transport→station docking",
+        "acquire each required branch-specific variant",
+        "unload→archive→cleanup",
+        "analysis on saved immutable records"
+      ],
+      "agent_goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels."
+    },
+    {
+      "id": "gapdh",
+      "title": "SKBR3 GAPDH: culture → hybridization → widefield and detection controls",
+      "initial_specimen": "SKBR3 stock identity token, source-specific probe lots and empty authored carrier",
+      "carrier": "Source carrier shape/size unspecified; explicitly authored generic slide adapter",
+      "materials": [
+        "SKBR3 ATCC HTB-30",
+        "McCoy 5A + 10% heat-inactivated FBS",
+        "RNA hybridization buffer",
+        "RNA wash buffer",
+        "GAPDH or MKI67 probe lot as appropriate",
+        "secondary fluorescent oligonucleotide lot where applicable",
+        "Hoechst 33342",
+        "oxygen-scavenging mounting-buffer token"
+      ],
+      "preparation": [
+        {
+          "id": "gapdh__gap_culture",
+          "label": "Seed carrier and incubate SKBR3 source stock",
+          "kind": "seed_incubate",
+          "reported_parameters": {
+            "medium": "McCoy 5A + 10% heat-inactivated FBS",
+            "temperature_C": 37,
+            "CO2_percent": 5
+          },
+          "source_refs": [
+            "M64"
+          ],
+          "unknowns": [
+            "Culture duration, carrier and seeding density unspecified"
+          ],
+          "precondition_state": "entry",
+          "output_state": "gapdh__gap_culture__done",
+          "interaction_macro": "seed_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gapdh__gap_unreported_prep",
+          "label": "Execute labeled generic fixation/permeabilization preparation card",
+          "kind": "authored_gap_connector",
+          "reported_parameters": {},
+          "source_refs": [
+            "M71"
+          ],
+          "unknowns": [
+            "Paper begins detailed SKBR3 method at hybridization; no source fixation/permeabilization procedure given"
+          ],
+          "precondition_state": "gapdh__gap_culture__done",
+          "output_state": "gapdh__gap_unreported_prep__done",
+          "interaction_macro": "authored_gap_connector",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gapdh__fish_probe",
+          "label": "Verify target and fluorophore identity of supplied probe lot",
+          "kind": "select",
+          "reported_parameters": {
+            "GAPDH": "indirectly labeled probe produced through prior iFISH pipeline",
+            "MKI67": "classical directly fluorescent-labeled probe"
+          },
+          "source_refs": [
+            "M71",
+            "M73"
+          ],
+          "unknowns": [
+            "Sequence tables and probe production procedures not retained; no invented synthesis"
+          ],
+          "precondition_state": "gapdh__gap_unreported_prep__done",
+          "output_state": "gapdh__fish_probe__done",
+          "interaction_macro": "select",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gapdh__fish_hyb",
+          "label": "Prepare RNA hybridization mix and incubate",
+          "kind": "mix_exchange_incubate",
+          "reported_parameters": {
+            "formamide_percent": 25,
+            "SSC": "2×",
+            "dextran_sulfate_percent": 10,
+            "E_coli_tRNA_mg_ml": 1,
+            "BSA_percent": 0.02,
+            "vanadyl_ribonucleoside_complex_mM": 10,
+            "temperature_C": 30,
+            "duration_h_range": [
+              16,
+              18
+            ],
+            "environment": "humidity chamber"
+          },
+          "source_refs": [
+            "M71"
+          ],
+          "unknowns": [
+            "Primary probe final concentration unreported"
+          ],
+          "precondition_state": "gapdh__fish_probe__done",
+          "output_state": "gapdh__fish_hyb__done",
+          "interaction_macro": "mix_exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gapdh__fish_wash1",
+          "label": "Wash after primary hybridization",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "formamide_percent": 25,
+            "SSC": "2×",
+            "temperature_C": 30,
+            "duration_min": 30
+          },
+          "source_refs": [
+            "M71"
+          ],
+          "unknowns": [],
+          "precondition_state": "gapdh__fish_hyb__done",
+          "output_state": "gapdh__fish_wash1__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gapdh__fish_secondary",
+          "label": "Apply secondary oligonucleotides where required",
+          "kind": "mix_exchange_incubate",
+          "reported_parameters": {
+            "secondary_oligo_nM": 20,
+            "buffer": "RNA hybridization buffer",
+            "temperature_C": 30,
+            "duration_h": 3,
+            "environment": "humidity chamber"
+          },
+          "source_refs": [
+            "M71"
+          ],
+          "unknowns": [],
+          "precondition_state": "gapdh__fish_wash1__done",
+          "output_state": "gapdh__fish_secondary__done",
+          "interaction_macro": "mix_exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gapdh__fish_wash2",
+          "label": "Wash in RNA wash buffer",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "buffer": "RNA wash buffer",
+            "temperature_C": 30
+          },
+          "source_refs": [
+            "M71"
+          ],
+          "unknowns": [
+            "Duration unreported"
+          ],
+          "precondition_state": "gapdh__fish_secondary__done",
+          "output_state": "gapdh__fish_wash2__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gapdh__fish_counterstain",
+          "label": "Counterstain with Hoechst",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "SSC": "2×",
+            "formamide_percent": 25,
+            "Hoechst33342_ng_ml": 1.23,
+            "temperature_C": 30,
+            "duration_min": 30
+          },
+          "source_refs": [
+            "M71"
+          ],
+          "unknowns": [],
+          "precondition_state": "gapdh__fish_wash2__done",
+          "output_state": "gapdh__fish_counterstain__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gapdh__fish_mount",
+          "label": "Select and apply source-described mounting-buffer token",
+          "kind": "mount",
+          "reported_parameters": {
+            "SSC": "2×",
+            "glucose_percent": 0.4,
+            "Tris_HCl_mM": 10,
+            "Trolox_mM": 10,
+            "glucose_oxidase_ng_ul": 37,
+            "catalase_source_literal_mM": 32
+          },
+          "source_refs": [
+            "M71"
+          ],
+          "unknowns": [
+            "Catalase unit is source-literal; not independently verified or normalized",
+            "Mount volume, support geometry and storage duration unreported"
+          ],
+          "precondition_state": "gapdh__fish_counterstain__done",
+          "output_state": "gapdh__fish_mount__done",
+          "interaction_macro": "mount",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        }
+      ],
+      "acquisition_variants": [
+        {
+          "id": "gap_widefield",
+          "station": "tie_zyla100",
+          "detector": "Zyla 4.2P sCMOS",
+          "objective": "CFI Plan Apochromat Lambda 100× 1.45 NA oil",
+          "params": {
+            "z_span_um_range": [
+              8,
+              15
+            ],
+            "z_step_um_range": [
+              0.2,
+              0.6
+            ],
+            "control_software": "NIS Elements"
+          },
+          "source_refs": [
+            "M71"
+          ],
+          "unknowns": [
+            "Exact per-stack depth/step, exposure, bit depth and xy pixel size not reported"
+          ]
+        }
+      ],
+      "analysis_actions": [
+        "Retain matching raw, DW, DL2 and Huygens preset records",
+        "For ED6 display comparison manually choose DW intensity threshold and match raw brightest-dot count",
+        "Separately compare Intensity and DoG detection across paired raw/DW fields; do not collapse the two tests",
+        "Record FWHM and per-FOV counts without requiring raw counts always be lower"
+      ],
+      "source_gaps": [
+        "Generic pre-hybridization preparation is authored and cannot earn source-reproduction credit",
+        "Prepared microscope/coverslip object alone is not a completion condition"
+      ],
+      "source_refs": [
+        "M64",
+        "M71",
+        "R_FISH",
+        "ED5",
+        "ED6",
+        "SI78"
+      ],
+      "prepared_state": "gapdh__fish_mount__done",
+      "lineage_rules": [
+        "immutable specimen ID from source entry through preparation",
+        "carrier ID and plate/well/section parent tracked separately",
+        "material recipe/lot ancestry attached to specimen",
+        "each acquisition keeps specimen, carrier, field, station, modality, objective, detector and settings snapshot",
+        "raw immutable; every derivative has explicit raw parent",
+        "no merging specimen identities merely because microscope model is shared"
+      ],
+      "handling_sequence": [
+        "receiving→preparation",
+        "culture/thermal visits dictated by preparation stages",
+        "mount→closed-tray transport→station docking",
+        "acquire each required branch-specific variant",
+        "unload→archive→cleanup",
+        "analysis on saved immutable records"
+      ],
+      "agent_goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels."
+    },
+    {
+      "id": "tissue",
+      "title": "MKI67 TMA: frozen section preparation → 20× survey → matched 60× fields",
+      "initial_specimen": "Purchased 5 µm frozen TMA section token, US Biomax FMC282e; no donated-person identifying data",
+      "carrier": "Slide support not dimensioned by source; authored generic tissue-slide proxy",
+      "materials": [
+        "RNA hybridization buffer",
+        "RNA wash buffer",
+        "GAPDH or MKI67 probe lot as appropriate",
+        "secondary fluorescent oligonucleotide lot where applicable",
+        "Hoechst 33342",
+        "oxygen-scavenging mounting-buffer token",
+        "4% PFA/PBS",
+        "70% ethanol"
+      ],
+      "preparation": [
+        {
+          "id": "tissue__tis_fix",
+          "label": "Fix supplied frozen tissue section",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "PBS": "1×",
+            "paraformaldehyde_percent": 4,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M73"
+          ],
+          "unknowns": [
+            "Fixation duration unreported"
+          ],
+          "precondition_state": "entry",
+          "output_state": "tissue__tis_fix__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_pbs",
+          "label": "Rinse section twice",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 2,
+            "PBS": "1×",
+            "temperature": "room temperature",
+            "mode": "rinse"
+          },
+          "source_refs": [
+            "M73"
+          ],
+          "unknowns": [],
+          "precondition_state": "tissue__tis_fix__done",
+          "output_state": "tissue__tis_pbs__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_ethanolrinse",
+          "label": "Rinse twice with ice-cold ethanol",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 2,
+            "ethanol_percent": 70,
+            "temperature": "ice cold",
+            "mode": "rinse"
+          },
+          "source_refs": [
+            "M73"
+          ],
+          "unknowns": [],
+          "precondition_state": "tissue__tis_pbs__done",
+          "output_state": "tissue__tis_ethanolrinse__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_ethanol",
+          "label": "Incubate in ethanol",
+          "kind": "incubate",
+          "reported_parameters": {
+            "ethanol_percent": 70,
+            "duration_h": 3,
+            "temperature_C": 4
+          },
+          "source_refs": [
+            "M73"
+          ],
+          "unknowns": [],
+          "precondition_state": "tissue__tis_ethanolrinse__done",
+          "output_state": "tissue__tis_ethanol__done",
+          "interaction_macro": "incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_rehydrate",
+          "label": "Replace ethanol with RNA wash buffer",
+          "kind": "exchange",
+          "reported_parameters": {
+            "buffer": "RNA wash buffer"
+          },
+          "source_refs": [
+            "M73"
+          ],
+          "unknowns": [],
+          "precondition_state": "tissue__tis_ethanol__done",
+          "output_state": "tissue__tis_rehydrate__done",
+          "interaction_macro": "exchange",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_fish_probe",
+          "label": "Verify target and fluorophore identity of supplied probe lot",
+          "kind": "select",
+          "reported_parameters": {
+            "GAPDH": "indirectly labeled probe produced through prior iFISH pipeline",
+            "MKI67": "classical directly fluorescent-labeled probe"
+          },
+          "source_refs": [
+            "M73",
+            "M71"
+          ],
+          "unknowns": [
+            "Sequence tables and probe production procedures not retained; no invented synthesis"
+          ],
+          "precondition_state": "tissue__tis_rehydrate__done",
+          "output_state": "tissue__tis_fish_probe__done",
+          "interaction_macro": "select",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_fish_hyb",
+          "label": "Prepare RNA hybridization mix and incubate",
+          "kind": "mix_exchange_incubate",
+          "reported_parameters": {
+            "formamide_percent": 25,
+            "SSC": "2×",
+            "dextran_sulfate_percent": 10,
+            "E_coli_tRNA_mg_ml": 1,
+            "BSA_percent": 0.02,
+            "vanadyl_ribonucleoside_complex_mM": 10,
+            "temperature_C": 30,
+            "duration_h_range": [
+              16,
+              18
+            ],
+            "environment": "humidity chamber"
+          },
+          "source_refs": [
+            "M73",
+            "M71"
+          ],
+          "unknowns": [
+            "Primary probe final concentration unreported"
+          ],
+          "precondition_state": "tissue__tis_fish_probe__done",
+          "output_state": "tissue__tis_fish_hyb__done",
+          "interaction_macro": "mix_exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_fish_wash1",
+          "label": "Wash after primary hybridization",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "formamide_percent": 25,
+            "SSC": "2×",
+            "temperature_C": 30,
+            "duration_min": 30
+          },
+          "source_refs": [
+            "M73",
+            "M71"
+          ],
+          "unknowns": [],
+          "precondition_state": "tissue__tis_fish_hyb__done",
+          "output_state": "tissue__tis_fish_wash1__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_fish_secondary",
+          "label": "Apply secondary oligonucleotides where required",
+          "kind": "source_ambiguity_choice",
+          "reported_parameters": {
+            "secondary_oligo_nM": 20,
+            "buffer": "RNA hybridization buffer",
+            "temperature_C": 30,
+            "duration_h": 3,
+            "environment": "humidity chamber"
+          },
+          "source_refs": [
+            "M73",
+            "M71"
+          ],
+          "unknowns": [
+            "MKI67 is called directly labeled, yet Methods says all steps from hybridization follow SKBR3; secondary application is ambiguous. Provide two explicitly labeled task branches, not a false single true protocol."
+          ],
+          "task_variants": [
+            "direct-label interpretation: skip secondary-specific application while retaining wash/counterstain",
+            "literal inherited-steps interpretation: execute secondary stage with source ambiguity recorded"
+          ],
+          "precondition_state": "tissue__tis_fish_wash1__done",
+          "output_state": "tissue__tis_fish_secondary__done",
+          "interaction_macro": "source_ambiguity_choice",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_fish_wash2",
+          "label": "Wash in RNA wash buffer",
+          "kind": "wash",
+          "reported_parameters": {
+            "repeats": 1,
+            "buffer": "RNA wash buffer",
+            "temperature_C": 30
+          },
+          "source_refs": [
+            "M73",
+            "M71"
+          ],
+          "unknowns": [
+            "Duration unreported"
+          ],
+          "precondition_state": "tissue__tis_fish_secondary__done",
+          "output_state": "tissue__tis_fish_wash2__done",
+          "interaction_macro": "wash",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_fish_counterstain",
+          "label": "Counterstain with Hoechst",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "SSC": "2×",
+            "formamide_percent": 25,
+            "Hoechst33342_ng_ml": 1.23,
+            "temperature_C": 30,
+            "duration_min": 30
+          },
+          "source_refs": [
+            "M73",
+            "M71"
+          ],
+          "unknowns": [],
+          "precondition_state": "tissue__tis_fish_wash2__done",
+          "output_state": "tissue__tis_fish_counterstain__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "tissue__tis_fish_mount",
+          "label": "Select and apply source-described mounting-buffer token",
+          "kind": "mount",
+          "reported_parameters": {
+            "SSC": "2×",
+            "glucose_percent": 0.4,
+            "Tris_HCl_mM": 10,
+            "Trolox_mM": 10,
+            "glucose_oxidase_ng_ul": 37,
+            "catalase_source_literal_mM": 32
+          },
+          "source_refs": [
+            "M73",
+            "M71"
+          ],
+          "unknowns": [
+            "Catalase unit is source-literal; not independently verified or normalized",
+            "Mount volume, support geometry and storage duration unreported"
+          ],
+          "precondition_state": "tissue__tis_fish_counterstain__done",
+          "output_state": "tissue__tis_fish_mount__done",
+          "interaction_macro": "mount",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        }
+      ],
+      "acquisition_variants": [
+        {
+          "id": "tis20",
+          "station": "tie_tissue20_proxy",
+          "detector": "not independently restated for tissue branch",
+          "objective": "CFI Plan Apo VC 20× 0.75 NA air",
+          "params": {
+            "FOVs": 10
+          },
+          "source_refs": [
+            "M73",
+            "M103"
+          ],
+          "unknowns": [
+            "Camera inheritance from SKBR3 is not independently established",
+            "Stack settings and exposure unknown"
+          ]
+        },
+        {
+          "id": "tis60",
+          "station": "tie_tissue60_proxy",
+          "detector": "not independently restated for tissue branch",
+          "objective": "CFI Plan Apochromat Lambda 60× 1.4 NA oil",
+          "params": {
+            "FOVs": "subset of the 20× regions"
+          },
+          "source_refs": [
+            "M73",
+            "M103"
+          ],
+          "unknowns": [
+            "Exact subset mapping supplied as authored fixture, not paper data"
+          ]
+        }
+      ],
+      "analysis_actions": [
+        "Survey 10 labeled authored FOV slots at 20× and retain matching selected 60× regions",
+        "Use DoG dot detection, 60× nuclear masks and rescale to corresponding 20× sampling",
+        "Review intensity/CNR plots; select local-minimum threshold where the two clouds exist",
+        "20× raw has a distinct tail-selection condition; do not force the same threshold logic",
+        "Compare HQ dots against shared 60× raw/DW reference and retain translation/deformation registration metadata"
+      ],
+      "source_gaps": [
+        "Ten FOVs acquired in Methods and five analyzed FOVs in figure results are distinct counts",
+        "Directly labeled MKI67 versus inherited secondary step unresolved; both task variants flagged"
+      ],
+      "source_refs": [
+        "M68",
+        "M73",
+        "M103",
+        "R_TISSUE",
+        "ED8",
+        "ED9"
+      ],
+      "prepared_state": "tissue__tis_fish_mount__done",
+      "lineage_rules": [
+        "immutable specimen ID from source entry through preparation",
+        "carrier ID and plate/well/section parent tracked separately",
+        "material recipe/lot ancestry attached to specimen",
+        "each acquisition keeps specimen, carrier, field, station, modality, objective, detector and settings snapshot",
+        "raw immutable; every derivative has explicit raw parent",
+        "no merging specimen identities merely because microscope model is shared"
+      ],
+      "handling_sequence": [
+        "receiving→preparation",
+        "culture/thermal visits dictated by preparation stages",
+        "mount→closed-tray transport→station docking",
+        "acquire each required branch-specific variant",
+        "unload→archive→cleanup",
+        "analysis on saved immutable records"
+      ],
+      "agent_goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels."
+    },
+    {
+      "id": "gfap",
+      "title": "GFAP brain TMA: section → bake/dewax/retrieve → stain → mosaic comparison",
+      "initial_specimen": "FFPE human cerebral-cortex TMA block token from source-described biobank-derived array",
+      "carrier": "4 µm section cut during task; authored support slide",
+      "materials": [
+        "FFPE TMA block",
+        "citrate buffer pH 6 C9999",
+        "TNB buffer",
+        "anti-GFAP AMAb91033",
+        "AF555 goat anti-mouse A-21424",
+        "DAPI D1306",
+        "Fluoromount-G 00-4958-02"
+      ],
+      "preparation": [
+        {
+          "id": "gfap__g_cut",
+          "label": "Set section thickness and cut/place section using authored microtome proxy",
+          "kind": "section",
+          "reported_parameters": {
+            "thickness_um": 4
+          },
+          "source_refs": [
+            "M66",
+            "M78"
+          ],
+          "unknowns": [
+            "Sectioning instrument and support-slide identity unspecified"
+          ],
+          "precondition_state": "entry",
+          "output_state": "gfap__g_cut__done",
+          "interaction_macro": "section",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gfap__g_bake",
+          "label": "Transfer section to heating plate",
+          "kind": "incubate",
+          "reported_parameters": {
+            "temperature_C": 55,
+            "duration_min": 25
+          },
+          "source_refs": [
+            "M78"
+          ],
+          "unknowns": [],
+          "precondition_state": "gfap__g_cut__done",
+          "output_state": "gfap__g_bake__done",
+          "interaction_macro": "incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gfap__g_dewax",
+          "label": "Manually dewax section using explicit source-gap task card",
+          "kind": "authored_gap_connector",
+          "reported_parameters": {
+            "operation": "manual dewaxing reported"
+          },
+          "source_refs": [
+            "M78"
+          ],
+          "unknowns": [
+            "Solvent identity, sequence and durations absent"
+          ],
+          "precondition_state": "gfap__g_bake__done",
+          "output_state": "gfap__g_dewax__done",
+          "interaction_macro": "authored_gap_connector",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gfap__g_retrieve",
+          "label": "Load pressure-cooker proxy and run epitope retrieval",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "buffer": "citrate pH 6",
+            "instrument": "Bio SB TintoRetriever",
+            "temperature_C_range": [
+              114,
+              121
+            ],
+            "duration_min": 20
+          },
+          "source_refs": [
+            "M78"
+          ],
+          "unknowns": [
+            "Ramp, cool-down, vessel fill and pressure settings absent; authored safe locked preset"
+          ],
+          "precondition_state": "gfap__g_dewax__done",
+          "output_state": "gfap__g_retrieve__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gfap__g_primary",
+          "label": "Prepare primary GFAP antibody in TNB and apply",
+          "kind": "mix_exchange_incubate",
+          "reported_parameters": {
+            "antibody": "AMAb91033",
+            "dilution": "1:500 vol/vol",
+            "TNB": {
+              "Tris_HCl_M": 0.1,
+              "NaCl_M": 0.15,
+              "blocking_reagent_percent": 0.5,
+              "pH": 7.5
+            },
+            "duration": "overnight",
+            "temperature_C": 4
+          },
+          "source_refs": [
+            "M78"
+          ],
+          "unknowns": [],
+          "precondition_state": "gfap__g_retrieve__done",
+          "output_state": "gfap__g_primary__done",
+          "interaction_macro": "mix_exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gfap__g_secondary",
+          "label": "Apply secondary AF555 antibody and DAPI",
+          "kind": "mix_exchange_incubate",
+          "reported_parameters": {
+            "antibody": "A-21424",
+            "dilution": "1:800 vol/vol",
+            "buffer": "TNB + DAPI",
+            "duration_min": 90,
+            "temperature": "room temperature"
+          },
+          "source_refs": [
+            "M78"
+          ],
+          "unknowns": [
+            "DAPI concentration and intervening wash steps unspecified"
+          ],
+          "precondition_state": "gfap__g_primary__done",
+          "output_state": "gfap__g_secondary__done",
+          "interaction_macro": "mix_exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "gfap__g_mount",
+          "label": "Mount stained section in Fluoromount-G",
+          "kind": "mount",
+          "reported_parameters": {
+            "medium": "Fluoromount-G"
+          },
+          "source_refs": [
+            "M78"
+          ],
+          "unknowns": [
+            "Volume and cure time unreported"
+          ],
+          "precondition_state": "gfap__g_secondary__done",
+          "output_state": "gfap__g_mount__done",
+          "interaction_macro": "mount",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        }
+      ],
+      "acquisition_variants": [
+        {
+          "id": "g60",
+          "station": "tie_zyla60_proxy",
+          "detector": "Zyla 4.2P sCMOS",
+          "objective": "CFI Plan Apochromat Lambda 60× 1.4 NA oil",
+          "params": {
+            "bit_depth": 16,
+            "z_step_um": 0.25,
+            "number_of_steps_source_literal": 41,
+            "mosaic": [
+              4,
+              4
+            ],
+            "overlap_percent": 10
+          },
+          "source_refs": [
+            "M78"
+          ]
+        },
+        {
+          "id": "g63",
+          "station": "leica_sp8_proxy",
+          "detector": "confocal detector, source gain 10 V",
+          "objective": "HC PL APO 63× 1.40 oil CS2",
+          "params": {
+            "bit_depth": 16,
+            "zoom": 1.4,
+            "pinhole_AU": 1,
+            "line_average": 4,
+            "z_step_um": 0.25,
+            "number_of_steps_source_literal": 61,
+            "antibody_detector_gain_V": 10,
+            "mosaic": [
+              4,
+              4
+            ],
+            "overlap_percent": 10
+          },
+          "source_refs": [
+            "M78"
+          ]
+        },
+        {
+          "id": "g100",
+          "station": "tie_gfap100_caption_proxy",
+          "detector": "unknown in caption-supported variant",
+          "objective": "100× 1.45 NA oil",
+          "params": {},
+          "source_refs": [
+            "R_IF",
+            "ED3",
+            "SI3"
+          ],
+          "unknowns": [
+            "No inheritance of camera, 41 planes or 60× sampling permitted"
+          ]
+        }
+      ],
+      "analysis_actions": [
+        "Acquire same ROI mosaic on 60× widefield and 63× confocal; either order is allowed",
+        "Create separate 100× comparison branch with unknown settings labeled task presets",
+        "Preserve raw/DW/DL2 comparisons and axial views",
+        "Record structural agreement and loss of low-intensity details as separate observations"
+      ],
+      "source_gaps": [
+        "Paper does not order GFAP confocal before widefield; do not import tubulin chronology",
+        "100× caption variant distinct from Methods 60× variant"
+      ],
+      "source_refs": [
+        "M66",
+        "M78",
+        "R_IF",
+        "SI3",
+        "SI4",
+        "ED3"
+      ],
+      "prepared_state": "gfap__g_mount__done",
+      "lineage_rules": [
+        "immutable specimen ID from source entry through preparation",
+        "carrier ID and plate/well/section parent tracked separately",
+        "material recipe/lot ancestry attached to specimen",
+        "each acquisition keeps specimen, carrier, field, station, modality, objective, detector and settings snapshot",
+        "raw immutable; every derivative has explicit raw parent",
+        "no merging specimen identities merely because microscope model is shared"
+      ],
+      "handling_sequence": [
+        "receiving→preparation",
+        "culture/thermal visits dictated by preparation stages",
+        "mount→closed-tray transport→station docking",
+        "acquire each required branch-specific variant",
+        "unload→archive→cleanup",
+        "analysis on saved immutable records"
+      ],
+      "agent_goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels."
+    },
+    {
+      "id": "nuclear_pores",
+      "title": "Nup153 nuclear pores: immunolabel → STED → confocal",
+      "initial_specimen": "Source-literal PtK2 identity token with unresolved species label; no live biological material instantiated",
+      "carrier": "Source carrier unspecified; authored generic slide proxy",
+      "materials": [
+        "Nup153 primary ab24700",
+        "goat anti-mouse IgG ST635P-1002-500UG",
+        "source-literal Oregon Green 488 imaging-channel label"
+      ],
+      "preparation": [
+        {
+          "id": "nuclear_pores__p_identity",
+          "label": "Read unresolved source identity/fluorophore warning and register task specimen",
+          "kind": "source_ambiguity_choice",
+          "reported_parameters": {
+            "source_wording": "human PtK2",
+            "identity_resolution": null
+          },
+          "source_refs": [
+            "M82"
+          ],
+          "unknowns": [
+            "Human/PtK2 labeling and secondary versus Oregon Green fluorophore wording conflict; do not resolve by guess"
+          ],
+          "precondition_state": "entry",
+          "output_state": "nuclear_pores__p_identity__done",
+          "interaction_macro": "source_ambiguity_choice",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "nuclear_pores__p_upstream",
+          "label": "Run explicit generic preparation card for source-unreported culture/fixation/permeabilization",
+          "kind": "authored_gap_connector",
+          "reported_parameters": {},
+          "source_refs": [
+            "M82"
+          ],
+          "unknowns": [
+            "No upstream cell culture, fixation, permeabilization, block or mounting recipe provided"
+          ],
+          "precondition_state": "nuclear_pores__p_identity__done",
+          "output_state": "nuclear_pores__p_upstream__done",
+          "interaction_macro": "authored_gap_connector",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "nuclear_pores__p_primary",
+          "label": "Apply reported Nup153 primary",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "antibody": "ab24700",
+            "concentration_ug_ml": 1
+          },
+          "source_refs": [
+            "M82"
+          ],
+          "unknowns": [
+            "Dwell, temperature and buffer unreported"
+          ],
+          "precondition_state": "nuclear_pores__p_upstream__done",
+          "output_state": "nuclear_pores__p_primary__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "nuclear_pores__p_secondary",
+          "label": "Apply reported goat anti-mouse IgG secondary",
+          "kind": "exchange_incubate",
+          "reported_parameters": {
+            "antibody": "ST635P-1002-500UG",
+            "dilution": "1:400"
+          },
+          "source_refs": [
+            "M82"
+          ],
+          "unknowns": [
+            "Dwell, temperature, washes and fluorescence compatibility unresolved"
+          ],
+          "precondition_state": "nuclear_pores__p_primary__done",
+          "output_state": "nuclear_pores__p_secondary__done",
+          "interaction_macro": "exchange_incubate",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        },
+        {
+          "id": "nuclear_pores__p_mount",
+          "label": "Mount task specimen with authored medium token",
+          "kind": "mount",
+          "reported_parameters": {},
+          "source_refs": [
+            "M82"
+          ],
+          "unknowns": [
+            "Source mounting medium and geometry unreported"
+          ],
+          "precondition_state": "nuclear_pores__p_secondary__done",
+          "output_state": "nuclear_pores__p_mount__done",
+          "interaction_macro": "mount",
+          "transition_evidence": [
+            "engine object-support relations",
+            "material transfer/lot log",
+            "source parameter or explicit gap-card control history",
+            "timer/inspection event where applicable"
+          ],
+          "reported_parameter_status": "source_reported except explicit authored task choices",
+          "required_for_branch": true,
+          "unknown_parameter_policy": "null source value; named generic task card may bridge operation; no source completeness credit for guessed values"
+        }
+      ],
+      "acquisition_variants": [
+        {
+          "id": "p_sted",
+          "station": "leica_sp8_3x_sted_proxy",
+          "detector": "Leica Hybrid Detectors",
+          "objective": "HC PL APO 100×/1.40 OIL STED WHITE",
+          "params": {
+            "excitation_nm": 490,
+            "depletion_nm": 592,
+            "depletion_mode": "continuous wave",
+            "pinhole_AU": 0.9,
+            "frame_pixels": [
+              1024,
+              1024
+            ],
+            "line_rate_Hz": 200,
+            "line_average": 4,
+            "pixel_nm": 25,
+            "filters": "dichroic plus notch STED filter"
+          },
+          "source_refs": [
+            "M82"
+          ],
+          "order": "first; source-literal preset channel, compatibility unresolved"
+        },
+        {
+          "id": "p_confocal",
+          "station": "leica_sp8_3x_sted_proxy",
+          "detector": "Leica Hybrid Detectors",
+          "objective": "HC PL APO 100×/1.40 OIL STED WHITE",
+          "params": {
+            "line_rate_Hz": 1000
+          },
+          "source_refs": [
+            "M82"
+          ],
+          "order": "thereafter, same specimen",
+          "unknowns": [
+            "Do not assume STED 25 nm sampling applies to confocal"
+          ]
+        }
+      ],
+      "analysis_actions": [
+        "Keep STED-first and thereafter-confocal acquisitions linked to one specimen",
+        "Compare raw/Huygens/DW results with correct modality-specific PSF card",
+        "Keep widefield Born-Wolf, confocal and STED PSF choices distinct",
+        "Report unresolved physical fluorescence compatibility; task preset is not experimental validation"
+      ],
+      "source_gaps": [
+        "This branch is fully represented as an authored task with explicit source-gap stages, not represented as a complete physical protocol",
+        "No assertion that the contradictory source fluorophore identifiers are experimentally compatible"
+      ],
+      "source_refs": [
+        "M82",
+        "SI4",
+        "SIN13"
+      ],
+      "prepared_state": "nuclear_pores__p_mount__done",
+      "lineage_rules": [
+        "immutable specimen ID from source entry through preparation",
+        "carrier ID and plate/well/section parent tracked separately",
+        "material recipe/lot ancestry attached to specimen",
+        "each acquisition keeps specimen, carrier, field, station, modality, objective, detector and settings snapshot",
+        "raw immutable; every derivative has explicit raw parent",
+        "no merging specimen identities merely because microscope model is shared"
+      ],
+      "handling_sequence": [
+        "receiving→preparation",
+        "culture/thermal visits dictated by preparation stages",
+        "mount→closed-tray transport→station docking",
+        "acquire each required branch-specific variant",
+        "unload→archive→cleanup",
+        "analysis on saved immutable records"
+      ],
+      "agent_goal": "Produce the required prepared specimen, modality/field-linked raw and comparison records, return the specimen and leave stations clean; preserve all source unknown/conflict labels."
+    }
+  ],
+  "data_workstation_branches": [
+    {
+      "id": "software_benchmark",
+      "title": "Compare deconvolution tools on source-described benchmark inputs",
+      "inputs": [
+        "synthetic microtubule reference",
+        "synthetic hollow bar reference",
+        "external C. elegans whole-embryo reference"
+      ],
+      "actions": [
+        "Select source-matched raw/truth pair; preserve identity",
+        "Choose DW SHB versus unaccelerated RL iteration series",
+        "Compare DW, DL2, Huygens and RedLionfish preset results without executing proprietary software",
+        "Inspect MSE-versus-iteration and time records with hardware context",
+        "Use wrap boundary assumption only on source synthetic inputs identified as wrapped"
+      ],
+      "source_refs": [
+        "R_BENCH",
+        "ED1",
+        "SIN4"
+      ],
+      "unknowns": [
+        "No real input arrays, executable comparisons or timing measurements supplied here"
+      ]
+    },
+    {
+      "id": "psf",
+      "title": "Compare PSF calculator versus PSF Generator",
+      "inputs": [
+        "ChrX-36plex PSF-comparison source token"
+      ],
+      "actions": [
+        "Verify 36plex identity, distinct from 46plex tracing data",
+        "Select two PSF-method cards with all other DW parameters held equal",
+        "Link raw to both preset derivatives",
+        "Compare dot FWHM/PSF displays",
+        "Record main Lanczos-3 versus SI Lanczos-5 discrepancy without silently choosing"
+      ],
+      "source_refs": [
+        "R_BENCH",
+        "M87",
+        "SI1",
+        "SIN13"
+      ],
+      "unknowns": [
+        "Full optical metadata and original image arrays not retained"
+      ]
+    },
+    {
+      "id": "boundary",
+      "title": "Handle lateral and axial boundary comparisons",
+      "inputs": [
+        "external embryo stack",
+        "HAP1 Hoechst boundary-example stack with 51 planes"
+      ],
+      "actions": [
+        "Select original and derived cropped copies; preserve raw full stack",
+        "Split embryo into four cuboids for lateral comparison",
+        "Create distinct HAP1 derivative after removing bottom 12 planes for Fig. 2 comparison",
+        "Select DW versus DL2 boundary/padding/apodization presets",
+        "Inspect lateral/axial profiles and label crops; never treat crop as sample removal"
+      ],
+      "source_refs": [
+        "R_BENCH",
+        "ED2",
+        "SI2",
+        "SIN4"
+      ],
+      "unknowns": [
+        "Connection between boundary-example HAP1 specimen and iFISH specimen not established; no forced same-sample link"
+      ]
+    },
+    {
+      "id": "synthetic_dots",
+      "title": "Inspect dot-density/noise simulation comparisons through preset outputs",
+      "inputs": [
+        "authored stand-ins for source synthetic truth/noisy widefield/confocal conditions"
+      ],
+      "actions": [
+        "Choose declared density/noise condition",
+        "Keep truth separate from observed noisy input",
+        "Choose widefield/confocal and DW/DL2 derivative records",
+        "Compare detection overlap against truth and inspect MSE",
+        "Tag source synthetic result as best-case matched-PSF condition; do not present as empirical specimen result"
+      ],
+      "source_refs": [
+        "M97",
+        "R_FISH",
+        "ED4",
+        "SI56"
+      ],
+      "unknowns": [
+        "No optical simulation implemented; all task observations are presets"
+      ]
+    },
+    {
+      "id": "isst",
+      "title": "Process reused ISST dataset without inventing new wet-lab preparation",
+      "inputs": [
+        "previously generated 120-gene middle-temporal-gyrus image dataset token"
+      ],
+      "actions": [
+        "Import raw cycle/FOV/channel lineage",
+        "Select raw and preset DW branches",
+        "Align cycles and stitch FOVs using operator workstation cards",
+        "Select FindSpots masking radius 15 and compare threshold sweep",
+        "Record source selected normalized threshold 2% and decode assigned versus improper barcode outputs",
+        "Compare cell-typing results for 18 types with identical underlying cell inventory"
+      ],
+      "source_refs": [
+        "M105",
+        "R_ISST",
+        "ED10"
+      ],
+      "unknowns": [
+        "Raw images and gene table absent; preset data token only",
+        "This paper reused images, so no new ISST wet-lab protocol is invented"
+      ]
+    },
+    {
+      "id": "oligofisseq",
+      "title": "Inspect reused ChrX-46plex decoding and tracing comparisons",
+      "inputs": [
+        "ChrX-46plex O-eLIT source dataset token; seven replicate dataset slots"
+      ],
+      "actions": [
+        "Keep five imaging/sequencing cycles in source data lineage",
+        "Select raw, NIS and DW derivatives",
+        "Manually match nucleus-pair records using fixture identification cues; source reports 168 nuclei",
+        "Run two-tier every-pixel analysis card on the paired dataset tokens",
+        "Inspect tracing nodes and interpolation flags",
+        "Compare contact maps against linked Hi-C reference",
+        "Keep seven biological replicate datasets distinct from 1,000 bootstrap resamples"
+      ],
+      "source_refs": [
+        "M107",
+        "R_OLIGO",
+        "R_ISST",
+        "ED10"
+      ],
+      "unknowns": [
+        "No upstream OligoFISSEQ probe production or sequencing procedure invented",
+        "168 match operations may be task-batched with coverage record, never claimed as observed here"
+      ]
+    },
+    {
+      "id": "rln_comparator",
+      "title": "Inspect downloaded raw image against a published RLN screenshot comparator",
+      "inputs": [
+        "external U-2 OS mitochondria/actin/tubulin raw token",
+        "published RLN screenshot-reference token"
+      ],
+      "actions": [
+        "Keep this external U-2 OS sample separate from in-paper alpha-tubulin specimen",
+        "Prepare visualization-only derivative in image-viewer card",
+        "Select DW 50-iteration preset derivative",
+        "Inspect paired zoom regions",
+        "Mark comparator as screenshot from published figure, not rerun RLN"
+      ],
+      "source_refs": [
+        "SI9"
+      ],
+      "unknowns": [
+        "No screenshot or raw image redistributed; task uses authored stand-ins"
+      ]
+    }
+  ],
+  "scientific_backend": "preset outputs only",
+  "real_world_execution": false
+}

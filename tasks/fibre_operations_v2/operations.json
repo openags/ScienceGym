@@ -1,0 +1,2567 @@
+{
+  "schema_version": "fibre_manual_operations.v2",
+  "doi": "10.1038/s41586-023-06946-0",
+  "visibility": "evaluator_reference_only",
+  "purpose": "whole reported hands-on task family; no new simulator, validation framework or CLI",
+  "operation_count": 68,
+  "identity_binding": "Every occurrence binds explicit episode, material, parent batch, object/child ID, condition, stage and run; MOVE is inserted at each changed workstation",
+  "operations": [
+    {
+      "id": "STOCK",
+      "title": "取出本材料路线原料并装车",
+      "kind": "hands_on",
+      "location_id": "WS_STOCK",
+      "target_asset_roles": [
+        "stock_cradle",
+        "labelled_cart",
+        "lot_labels"
+      ],
+      "preconditions": [
+        "episode与材料族已绑定",
+        "运输槽空且设备不运行"
+      ],
+      "actions": [
+        "读取Si、Ge、p-Si、n-Si和cladding标签，抓原棒包装/管架，分别放入有隔槽运输车",
+        "按单芯/双芯配方另取PC、CPC及Cu或W线盘，保持掺杂与金属线身份分离"
+      ],
+      "postconditions": [
+        "stock_lots_bound",
+        "no_material_substitution"
+      ],
+      "recovery": [
+        "不明标签保持原包装并隔离；发现错料在投料前放回，不改标签"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源列出原棒、silica/ASG管、PC/CPC、Cu/W材料与p/n-Si原料",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "MOVE",
+      "title": "支撑载具跨工位搬运",
+      "kind": "hands_on",
+      "location_id": "route_destination",
+      "target_asset_roles": [
+        "labelled_cart",
+        "segment_carrier",
+        "spool"
+      ],
+      "preconditions": [
+        "物件已放入匹配载具",
+        "目的工位有空槽"
+      ],
+      "actions": [
+        "抓车/载具把手，在收臂状态移动到当前路由目的工位",
+        "将载具落座到匹配槽，保持纤维被连续支撑，不夹持细芯作为整卷抓点"
+      ],
+      "postconditions": [
+        "same_object_at_destination",
+        "orientation_and_history_retained"
+      ],
+      "recovery": [
+        "碰撞、掉落、绕线缠结则停止并隔离；缺路径不瞬移样品"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_supported_macro_operation": "论文未报告移动机器人运输；是闭合实验流程连接",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "OXIDE_IN",
+      "title": "将原棒匣交接封闭表面预处理单元",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_PREP",
+      "target_asset_roles": [
+        "rod_cassette",
+        "sealed_pretreatment_cell"
+      ],
+      "preconditions": [
+        "raw_rod_lot_known",
+        "service_idle"
+      ],
+      "actions": [
+        "连原棒载架放入冷态交接抽屉并锁定样品号",
+        "关抽屉，以mock工单触发表面预处理，不开化学腔体"
+      ],
+      "postconditions": [
+        "pretreatment_started_with_same_lot"
+      ],
+      "recovery": [
+        "单元未释放则保持封闭；不在台面配酸或处理裸液体"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Si/Ge原棒使用前去除native oxide；仅保留宏观处理阶段",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实化学服务SOP、清洗干燥判据及安全审批"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "OXIDE_OUT",
+      "title": "取回预处理完成的原棒载架",
+      "kind": "hands_on",
+      "location_id": "WS_PREP",
+      "target_asset_roles": [
+        "rod_cassette",
+        "sealed_pretreatment_cell"
+      ],
+      "preconditions": [
+        "pretreatment_complete",
+        "safe_release"
+      ],
+      "actions": [
+        "拉出释放抽屉，抓载架把手放回原隔槽",
+        "核对处理记录与棒料身份，检查完整外形mock观察"
+      ],
+      "postconditions": [
+        "prepared_rod_available"
+      ],
+      "recovery": [
+        "残留/未完成标志则退回封闭等待；不拿有疑似残留的裸棒"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "去除native oxide后的原棒用于制备",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "处理后保管、转移时间窗"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "DRY_IN",
+      "title": "将PC与CPC托盘放入干燥单元",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_POLYMER",
+      "target_asset_roles": [
+        "PC_slab",
+        "CPC_stock",
+        "drying_tray",
+        "mock_vacuum_oven"
+      ],
+      "preconditions": [
+        "polymer_lots_known",
+        "oven_cold_load_released"
+      ],
+      "actions": [
+        "将PC板与CPC各置有号托盘，打开冷态抽屉沿导轨推入",
+        "关闭门并选择PC/CPC预干燥工单；不把金属线或玻璃路线误选为聚合物"
+      ],
+      "postconditions": [
+        "polymer_dry_job_started"
+      ],
+      "recovery": [
+        "缺工单保留unknown配方槽，mock仍可执行；真实模式不启动"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "PC与CPC在会聚拉丝前预干燥",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实工况由受审SOP提供；本任务不下发热工配方"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "DRY_OUT",
+      "title": "取出干燥后聚合物并保持标识",
+      "kind": "hands_on",
+      "location_id": "WS_POLYMER",
+      "target_asset_roles": [
+        "drying_tray",
+        "polymer_storage_box"
+      ],
+      "preconditions": [
+        "dry_complete",
+        "safe_to_touch"
+      ],
+      "actions": [
+        "抽出托盘并送到预制棒加工台",
+        "PC与CPC分开放入带盖材料槽，保留干燥批次"
+      ],
+      "postconditions": [
+        "dried_PC_CPC_ready"
+      ],
+      "recovery": [
+        "受污染或身份丢失的批次隔离，不能把原料直接宣称已干燥"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "预干燥材料进入会聚预制棒制备",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "储存湿度/干燥失效时限"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SILICA_INSERT",
+      "title": "将Si原棒插入silica管的轴向承托座",
+      "kind": "hands_on",
+      "location_id": "WS_PREFORM",
+      "target_asset_roles": [
+        "rod_cradle",
+        "silica_tube",
+        "insertion_guide"
+      ],
+      "preconditions": [
+        "prepared_Si_or_doped_Si_rod",
+        "correct_silica_tube"
+      ],
+      "actions": [
+        "把silica管放入V形定位座并夹其粗外壁",
+        "托住原棒两端，将棒沿同轴导向慢送入管内；退出推杆后保持整件支撑"
+      ],
+      "postconditions": [
+        "core_in_silica_preform",
+        "dopant_identity_preserved"
+      ],
+      "recovery": [
+        "端部相碰或卡滞则退回重对准；不猛推脆棒"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Si原棒插入fused silica管；p/n原棒身份有来源，但p/n前端工艺详尽参数未分别报告",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "p/n-Si前端拉丝的专属条件",
+          "公差与定位长度"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "ASG_SIZE_IN",
+      "title": "将不同ASG原管/棒送入缩径拉制模块",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_GLASS_DRAW",
+      "target_asset_roles": [
+        "ASG_stock",
+        "glass_resize_holder",
+        "mock_draw_tower"
+      ],
+      "preconditions": [
+        "ASG_lots_known",
+        "cold_load_release"
+      ],
+      "actions": [
+        "按工单把大口径ASG管和棒分别放入缩径上料架",
+        "为每一目标尺寸选择独立子工单并关闭外罩，触发mock缩径"
+      ],
+      "postconditions": [
+        "ASG_resize_jobs_bound"
+      ],
+      "recovery": [
+        "错用BSG/silica立即停止；缺件可补新料但建立新子ID"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "大ASG管拉成五尺寸套管组合所需管件，ASG棒拉成封口棒",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "缩径设备真实几何与控制",
+          "各套管制造批次分配"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "ASG_SIZE_OUT",
+      "title": "取回缩径ASG件并按套层分格",
+      "kind": "hands_on",
+      "location_id": "WS_GLASS_DRAW",
+      "target_asset_roles": [
+        "glass_resize_holder",
+        "nested_tube_tray"
+      ],
+      "preconditions": [
+        "resize_complete",
+        "safe_to_touch"
+      ],
+      "actions": [
+        "从释放架逐件取下ASG管/棒，读尺寸卡放入指定大小格",
+        "记录五套管尺寸族和封口棒身份，破裂件另放封闭碎片匣"
+      ],
+      "postconditions": [
+        "five_tube_sizes_and_seal_rod_available"
+      ],
+      "recovery": [
+        "尺寸不符不靠强塞完成套层，转隔离并调用替代工单"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源报告多尺寸ASG套管与2 mm封口棒",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "玻璃件测量误差与加工公差"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "ASG_NEST",
+      "title": "套装五层ASG管并插入Ge芯棒",
+      "kind": "hands_on",
+      "location_id": "WS_PREFORM",
+      "target_asset_roles": [
+        "nested_tube_tray",
+        "nesting_fixture",
+        "Ge_rod",
+        "ASG_seal_rod"
+      ],
+      "preconditions": [
+        "prepared_Ge_rod",
+        "five_matching_ASG_tubes"
+      ],
+      "actions": [
+        "在承托座按内外径从最外管逐层插入内管，保持同轴并记录五件子ID",
+        "将Ge棒插入中心通道，放上指定ASG封口棒的待封持架"
+      ],
+      "postconditions": [
+        "Ge_ASG_preform_assembled"
+      ],
+      "recovery": [
+        "层序错误逐层抽回；不把未装内套的Ge+大管标为论文预制棒"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "五尺寸ASG管jacket成预制棒后插入Ge棒，以ASG棒参与密封",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "作者套层实际装配次序",
+          "接触/间隙、公差"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CONTROL_PREFORM",
+      "title": "装配Ge/silica、Ge/BSG或有无芯颈区对照预制棒",
+      "kind": "hands_on",
+      "location_id": "WS_PREFORM",
+      "target_asset_roles": [
+        "control_cladding",
+        "core_rod",
+        "preform_holder"
+      ],
+      "preconditions": [
+        "control_condition_id_bound",
+        "required_stock_present"
+      ],
+      "actions": [
+        "取本对照指定cladding放入承托座，按with_core或without_core卡决定是否插入芯棒",
+        "贴条件牌并独立交接后续服务；同一个空管不能在数据上同时称有芯和无芯"
+      ],
+      "postconditions": [
+        "control_preform_ready",
+        "condition_not_defaulted_to_ASG"
+      ],
+      "recovery": [
+        "来源未给工艺处保留unknown，不复制主路线温度到对照"
+      ],
+      "evidence_ids": [
+        "f.ed1",
+        "f.ed4",
+        "f.si2"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Ge/silica裂纹、Ge/BSG失稳、有芯/无芯silica颈区对照有来源",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "对照预制棒全部尺寸、Ge/silica和Ge/BSG完整制备设置"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SEAL_IN",
+      "title": "将组装预制棒装入封闭密封服务载架",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_SEAL",
+      "target_asset_roles": [
+        "preform_holder",
+        "sealed_sealing_cell"
+      ],
+      "preconditions": [
+        "assembled_preform",
+        "cold_load_release"
+      ],
+      "actions": [
+        "保持管棒轴线水平，将整套载架放进封闭单元并锁入导轨",
+        "关闭交接门并触发对应mock密封工单"
+      ],
+      "postconditions": [
+        "seal_service_started"
+      ],
+      "recovery": [
+        "互锁未关闭不触发；不操作明火或真空热封装置内部"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Si/silica及Ge/ASG预制棒有真空密封宏阶段",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实火焰/真空设备工程安全与运行细节"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SEAL_OUT",
+      "title": "取回密封预制棒并送往拉丝上料",
+      "kind": "hands_on",
+      "location_id": "WS_SEAL",
+      "target_asset_roles": [
+        "preform_holder",
+        "sealed_sealing_cell"
+      ],
+      "preconditions": [
+        "seal_complete",
+        "safe_release"
+      ],
+      "actions": [
+        "抽出载架，将预制棒外壁粗抓握区放进运输V槽",
+        "读取密封状态mock反馈与材料ID，运输至玻璃拉丝冷态上料台"
+      ],
+      "postconditions": [
+        "sealed_preform_ready"
+      ],
+      "recovery": [
+        "漏封、裂损或状态未知则隔离，不进入拉丝"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "已密封预制棒进入molten-core拉丝",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "GLASS_LOAD",
+      "title": "把预制棒和空卷盘装到玻璃拉丝代理",
+      "kind": "hands_on",
+      "location_id": "WS_GLASS_DRAW",
+      "target_asset_roles": [
+        "preform_holder",
+        "mock_draw_tower",
+        "empty_spool",
+        "cold_feed_dock"
+      ],
+      "preconditions": [
+        "sealed_or_control_preform_ready",
+        "tower_stopped",
+        "cold_load_release"
+      ],
+      "actions": [
+        "将预制棒载架沿上料轨道推到定位位并扣住保持件",
+        "把空收卷盘装到带键轴；把任务引出端导带穿过外部冷态导轮并固定到卷盘夹口"
+      ],
+      "postconditions": [
+        "preform_and_spool_mounted",
+        "source_parent_bound"
+      ],
+      "recovery": [
+        "卷盘歪斜/导带绕错则停止并重穿；不接近热颈区"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "预制棒通过molten-core拉丝并收集长纤维；具体冷态引丝代理为authored",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实引丝、张力、炉口、设备动作顺序"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "GLASS_RUN",
+      "title": "关罩启动熔芯拉丝并保留三阶段记录",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_GLASS_DRAW",
+      "target_asset_roles": [
+        "tower_guard",
+        "tower_panel",
+        "spool"
+      ],
+      "preconditions": [
+        "GLASS_LOAD_complete",
+        "guard_closed",
+        "robot_outside"
+      ],
+      "actions": [
+        "选择Si/silica或Ge/ASG或独立对照工单，按mock启动",
+        "只观察viscous_flow→core_crystallization→cooling服务事件及卷盘计长记录；不把结晶/冷却做成机器人手动操作"
+      ],
+      "postconditions": [
+        "clad_fibre_created_by_service",
+        "three_stage_history_present"
+      ],
+      "recovery": [
+        "服务中断保持原卷盘历史，未完成段隔离；不能用更高温度临时修补"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "molten-core三阶段与主材料选择有来源；mock不计算应力或失稳",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "热区配方、控制曲线及对照缺参"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "GLASS_UNLOAD",
+      "title": "停止收卷并取出冷却的玻璃包覆纤维",
+      "kind": "hands_on",
+      "location_id": "WS_GLASS_DRAW",
+      "target_asset_roles": [
+        "spool",
+        "spool_cradle",
+        "tower_guard"
+      ],
+      "preconditions": [
+        "draw_complete_or_safe_stop",
+        "cooling_complete",
+        "spindle_stopped",
+        "safe_release"
+      ],
+      "actions": [
+        "开外罩，将输出端扣入端头夹，解除卷盘轴锁",
+        "用双侧把手托出卷盘，放原编号架并送至检验/切段台"
+      ],
+      "postconditions": [
+        "cooled_clad_spool_available",
+        "length_record_retained"
+      ],
+      "recovery": [
+        "未停轴不抓盘；断端封入碎片匣并记录未完成长度"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "冷却后的玻璃包覆纤维进入表征及释放",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CLAD_INSPECT",
+      "title": "支撑展开玻璃包覆纤维进行形态检查",
+      "kind": "hands_on",
+      "location_id": "WS_METROLOGY",
+      "target_asset_roles": [
+        "spool",
+        "inspection_carrier",
+        "optical_microscope"
+      ],
+      "preconditions": [
+        "cooled_clad_fibre",
+        "scope_load_ready"
+      ],
+      "actions": [
+        "将一段纤维从盘缘送入连续支撑槽并固定两端",
+        "把载具放光学观察台，切换侧视/横截面样品，记录裂纹、扰动、球化或完整mock图像，再收回载具"
+      ],
+      "postconditions": [
+        "morphology_with_parent_and_condition"
+      ],
+      "recovery": [
+        "观察到裂纹是研究对照结果而非一律失败；不得将碎片归为完整Ge芯"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.ed1",
+        "f.ed4",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "光学图像显示完整芯、裂纹或毛细失稳形态",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "成像区域采样与全长连续性判定"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SEGMENT",
+      "title": "在支撑槽中分段并登记父卷位置",
+      "kind": "hands_on",
+      "location_id": "WS_RELEASE",
+      "target_asset_roles": [
+        "segment_carrier",
+        "guarded_cutter",
+        "spool",
+        "offcut_bin"
+      ],
+      "preconditions": [
+        "cooled_spool",
+        "segment_plan_bound",
+        "cutter_stopped"
+      ],
+      "actions": [
+        "沿带刻度托槽展开目标段，夹住两侧载具端夹，合上切割罩触发mock切段",
+        "把子段移入独立带盖长槽，父卷、区间、切缝与余料分别登记"
+      ],
+      "postconditions": [
+        "child_segments_created_without_length_gain"
+      ],
+      "recovery": [
+        "分段失败保留两段新ID与损失量；不把短段标签写成80 cm"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "去包层前按槽限制切为80 cm的来源段；episode可选有明确父区间的短任务段",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "实际切割方式/损耗/有效长度"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "RELEASE_IN",
+      "title": "送玻璃包覆段进入封闭去包层服务",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_RELEASE",
+      "target_asset_roles": [
+        "segment_carrier",
+        "sealed_cladding_removal_cell"
+      ],
+      "preconditions": [
+        "clad_segment_lineage_known",
+        "cell_idle"
+      ],
+      "actions": [
+        "整条支撑载具插入封闭交接槽并扫描Si/silica、Ge/ASG或Ge/silica对照身份",
+        "关门并选择mock去玻璃服务，保持纤维载具承托，不将裸芯悬空搬运"
+      ],
+      "postconditions": [
+        "release_service_started"
+      ],
+      "recovery": [
+        "无有效工单或安全状态则等待；不配制、转移、加热或开盖接触HF"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed1",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "化学去除玻璃包层是已报告宏阶段",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实去包层SOP、残留/冲洗/干燥与安全判据"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "RELEASE_OUT",
+      "title": "取回裸芯或对照碎片载具",
+      "kind": "hands_on",
+      "location_id": "WS_RELEASE",
+      "target_asset_roles": [
+        "segment_carrier",
+        "fragment_cassette",
+        "sealed_cladding_removal_cell"
+      ],
+      "preconditions": [
+        "release_complete",
+        "safe_release"
+      ],
+      "actions": [
+        "拉出释放托盘，按mock观察保持连续裸芯支撑或将碎片连匣移出",
+        "同载具运至检验台，保留原cladding来源，不把Ge/silica碎片换成Ge/ASG标签"
+      ],
+      "postconditions": [
+        "released_core_or_fragment_set_available"
+      ],
+      "recovery": [
+        "连续性未知则标unknown；破碎载具不倒出寻找可拼接长芯"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed1",
+        "f.v1",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Si/Ge裸芯与Ge/silica碎片对照",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CORE_INSPECT",
+      "title": "检查裸芯连续性并分配用途",
+      "kind": "hands_on",
+      "location_id": "WS_METROLOGY",
+      "target_asset_roles": [
+        "segment_carrier",
+        "optical_microscope",
+        "sample_labels"
+      ],
+      "preconditions": [
+        "RELEASE_OUT_complete"
+      ],
+      "actions": [
+        "将载具置显微观察座，按可见段检查并保留观察范围",
+        "分配完整裸芯给会聚拉丝/演示/表征，碎片仅给裂纹对照；标出未来破坏性样的子ID"
+      ],
+      "postconditions": [
+        "lineage_and_use_allocation",
+        "unknown_full_length_not_invented"
+      ],
+      "recovery": [
+        "若有断裂则更改状态为fragmented；若需替换使用同族新样，不覆盖历史"
+      ],
+      "evidence_ids": [
+        "f.ed1",
+        "f.ed5",
+        "f.v1"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "裸芯连续性与机械可操作性有来源",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "全长检验方法、独立样本和批次分配"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CORE_BOBBIN",
+      "title": "把有支撑裸芯卷到演示线轴",
+      "kind": "hands_on",
+      "location_id": "WS_HANDLING",
+      "target_asset_roles": [
+        "released_core",
+        "bobbin",
+        "feed_cradle"
+      ],
+      "preconditions": [
+        "intact_core",
+        "correct_material",
+        "fixture_idle"
+      ],
+      "actions": [
+        "把裸芯端头固定在任务软夹，缓慢转代理卷轴同时移动支撑导槽",
+        "收完可用长度后固定尾端，连盘放回编号托架"
+      ],
+      "postconditions": [
+        "wrapped_released_core",
+        "input_length_preserved"
+      ],
+      "recovery": [
+        "出现缠结停止转盘，将整载具隔离；不拉直裂口"
+      ],
+      "evidence_ids": [
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "80 cm Si/Ge裸芯可在bobbin收集；具体导槽/夹具为authored",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "源作者卷绕张力、盘径和手部顺序"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CORE_BEND",
+      "title": "将专用裸芯样放到弯曲半径支撑件",
+      "kind": "hands_on",
+      "location_id": "WS_HANDLING",
+      "target_asset_roles": [
+        "bend_mandrel",
+        "segment_carrier",
+        "camera"
+      ],
+      "preconditions": [
+        "dedicated_intact_core",
+        "material_radius_card"
+      ],
+      "actions": [
+        "将可动支撑端绕对应半径模板落座，避免用夹爪捏折中段",
+        "拍当前形态并解除模板，让样品回到带号载具"
+      ],
+      "postconditions": [
+        "bend_observation_saved"
+      ],
+      "recovery": [
+        "若断裂保留断裂状态和观察，不强行完成半径"
+      ],
+      "evidence_ids": [
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "55 μm Si弯曲半径4 mm，Ge为2.5 mm的展示",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "维持弯曲时间、弯曲速率、夹具"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CORE_LOAD",
+      "title": "在封闭承接箱上方挂放演示载荷",
+      "kind": "hands_on",
+      "location_id": "WS_HANDLING",
+      "target_asset_roles": [
+        "core_load_fixture",
+        "computer_mouse_dummy",
+        "catch_tray"
+      ],
+      "preconditions": [
+        "dedicated_core",
+        "catch_tray_present",
+        "guard_interlocked"
+      ],
+      "actions": [
+        "把裸芯固定于代理上下承托接口，将电脑鼠标外形惰性载荷接到下挂点",
+        "关罩后解除载荷托架，记录mock承载，再升回托架并解除连接"
+      ],
+      "postconditions": [
+        "supported_load_demonstration",
+        "load_removed"
+      ],
+      "recovery": [
+        "断裂载荷落入承接箱后等待停止再回收；禁止活体动物"
+      ],
+      "evidence_ids": [
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Si承托70 g电脑鼠标，Ge为86 g；不是动物实验",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实固定方法与载荷保持时间"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "QUENCH",
+      "title": "封闭保留对照颈区并取回观察",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_GLASS_DRAW",
+      "target_asset_roles": [
+        "neck_capture_cell",
+        "preform_holder",
+        "neck_profile_carrier"
+      ],
+      "preconditions": [
+        "core_present_absent_pair_ready",
+        "guard_closed"
+      ],
+      "actions": [
+        "将对应预制棒装入颈区保留服务，按mock形成/保留工单",
+        "完成与安全释放后取出带颈区载架，放到轮廓观察槽；标注quench_history"
+      ],
+      "postconditions": [
+        "preserved_neck_profile",
+        "quench_cracks_separate_from_as_drawn_cracks"
+      ],
+      "recovery": [
+        "裂纹保留为冷却干预历史；不把它算作主路线自发裂纹"
+      ],
+      "evidence_ids": [
+        "f.ed4",
+        "f.si2"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "有芯/无芯预制棒拉制后淬冷保留颈形以对照计算",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "淬冷介质、热动作细节、真实仪器安全"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SECTION",
+      "title": "取专用兄弟样并制备横向/纵向截面",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_SECTION",
+      "target_asset_roles": [
+        "section_holder",
+        "embedding_cassette",
+        "polish_service"
+      ],
+      "preconditions": [
+        "dedicated_section_child_id",
+        "specimen_not_for_later_intact_test"
+      ],
+      "actions": [
+        "将本材料专用截段按transverse或lateral方向放入带方向槽的包埋匣",
+        "把包埋匣放入封闭制样服务，收到固化/研磨/抛光完成与安全释放后取回截面座"
+      ],
+      "postconditions": [
+        "section_is_embedded_and_polished",
+        "preparation_history_recorded"
+      ],
+      "recovery": [
+        "错方向可重新从兄弟样制备，不能通过改数据标签补救；制样件不回用于完整器件"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "环氧包埋及分级SiC研磨用于截面；抛光会改变残余应力",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "配料、固化、压力与抛光安全SOP"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "RAMAN",
+      "title": "装入材料序列并采光谱/映射/中心线",
+      "kind": "hands_on",
+      "location_id": "WS_RAMAN",
+      "target_asset_roles": [
+        "Raman_stage",
+        "section_holder",
+        "raw_rod_holder"
+      ],
+      "preconditions": [
+        "correct_reference_and_sections",
+        "optical_enclosure_closed_before_measurement"
+      ],
+      "actions": [
+        "逐个把原棒参考、包覆截面、释放芯的载具装到Raman台并对齐定位标记",
+        "关罩选择单谱、截面map或穿中心line-scan工单，采集mock反馈后安全卸样"
+      ],
+      "postconditions": [
+        "spectra_and_maps_bound_to_sample_state"
+      ],
+      "recovery": [
+        "谱与样品标签不一致重新采集；不得从Raman推断未经抛光的原始应力或独立两阶段贡献"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.si_tables"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源532 nm Raman，原棒/包覆/释放比较及map/line scan",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "激光功率、积分、mapping步长、峰拟合与标定"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SEM_EDX",
+      "title": "装入截面座并取显微形态/元素线扫",
+      "kind": "hands_on",
+      "location_id": "WS_CHARACTERIZATION",
+      "target_asset_roles": [
+        "SEM_loadlock",
+        "section_holder"
+      ],
+      "preconditions": [
+        "polished_section_available",
+        "safe_load_release"
+      ],
+      "actions": [
+        "把截面座固定到代理样品台，推入装样舱并关门",
+        "选择横/纵形态及EDX线扫工单；取回样品时核对原截面号"
+      ],
+      "postconditions": [
+        "SEM_EDX_records",
+        "oxygen_result_not_assumed_zero"
+      ],
+      "recovery": [
+        "仪器不ready则不跳过记录；充电/漂移mock标志保留为无效采集"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "SEM/EDX用于Si/silica与Ge/ASG横截面材料表征",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "样品导电处理、视野分配与原始元素标定"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "XRD",
+      "title": "装样并采集衍射参考与纤维数据",
+      "kind": "hands_on",
+      "location_id": "WS_CHARACTERIZATION",
+      "target_asset_roles": [
+        "XRD_holder",
+        "raw_rod_holder",
+        "XRD_enclosure"
+      ],
+      "preconditions": [
+        "fibre_and_raw_rod_reference_allocated"
+      ],
+      "actions": [
+        "把原棒或纤维固定到相应有号样品座，关仪器防护门",
+        "触发mock二维WAXS/旋转工单并保存衍射记录，结束后取回到原槽"
+      ],
+      "postconditions": [
+        "raw_and_fibre_diffraction_pair"
+      ],
+      "recovery": [
+        "无原棒参考不能声称比较已完成；保留散射数据与后续方位积分区别"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "二维WAXS数据方位积分得到XRD，比较原料与纤维结晶",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "样品支撑方式、背景扣除、峰判据"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "FIB",
+      "title": "将兄弟样交接薄片制备并取回专用载具",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_CHARACTERIZATION",
+      "target_asset_roles": [
+        "FIB_service",
+        "lamella_grid_carrier"
+      ],
+      "preconditions": [
+        "dedicated_child_sample",
+        "parent_section_known"
+      ],
+      "actions": [
+        "将专用截段载具放FIB交接舱并选取任务ROI",
+        "收到mock薄片完成与安全释放后取出封闭网格载具，建立lamella子ID"
+      ],
+      "postconditions": [
+        "lamella_parent_linked"
+      ],
+      "recovery": [
+        "薄片损坏重新制备须新子ID；不能从其他材料补图"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "TEM薄片由FIB制备",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "薄片厚度、具体铣削/保护层配方、ROI选择"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "TEM",
+      "title": "装双倾样品杆并获取HRTEM/SAED",
+      "kind": "hands_on",
+      "location_id": "WS_CHARACTERIZATION",
+      "target_asset_roles": [
+        "double_tilt_holder",
+        "lamella_grid_carrier",
+        "TEM_loadlock"
+      ],
+      "preconditions": [
+        "lamella_parent_linked",
+        "loadlock_safe"
+      ],
+      "actions": [
+        "以放大操作代理把封闭网格载具装到双倾样品杆承接口",
+        "将样品杆交接到mock装样舱，关门采集HRTEM/SAED，再安全取回"
+      ],
+      "postconditions": [
+        "HRTEM_SAED_record",
+        "polycrystalline_context_preserved"
+      ],
+      "recovery": [
+        "不把局部晶格图宣称整根单晶；损坏薄片独立归档"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "HRTEM、SAED与双倾holder有来源",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实网格装配尺寸、倾角/束流和取区"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "PC_MILL",
+      "title": "把两块PC板放入封闭开槽单元",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_POLYMER",
+      "target_asset_roles": [
+        "PC_slab_pair",
+        "milling_jig",
+        "machining_service"
+      ],
+      "preconditions": [
+        "dried_PC",
+        "milling_job_bound"
+      ],
+      "actions": [
+        "将两PC板分别放定位座并固定外缘",
+        "关罩触发三条半圆槽及槽间加工mock工单；安全释放后取回并检查槽方向"
+      ],
+      "postconditions": [
+        "machined_PC_pair",
+        "three_channels_present"
+      ],
+      "recovery": [
+        "槽数/朝向错则隔离板，不能在后续用标签修正"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "两PC板各开三半圆槽并加工槽间空间",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实刀具路径、夹紧力、切屑处理、公差"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CPC_INSERT",
+      "title": "取CPC插片并嵌入槽间间隙",
+      "kind": "hands_on",
+      "location_id": "WS_POLYMER",
+      "target_asset_roles": [
+        "CPC_insert_pair",
+        "PC_slab_pair",
+        "assembly_jig"
+      ],
+      "preconditions": [
+        "dried_CPC",
+        "machined_PC_pair"
+      ],
+      "actions": [
+        "将来源描述的两CPC插片从编号小盒取出，分别放进PC槽间空间",
+        "用任务软端压片压到座面，保持三个通道畅通"
+      ],
+      "postconditions": [
+        "CPC_pair_positioned"
+      ],
+      "recovery": [
+        "CPC挡住中心/侧通道则取出重放；不臆造导电胶"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "两块1 mm square CPC slabs置于三槽之间的加工空间",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "125 μm膜到1 mm square插片的加工/叠层关系不明确"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "PC_CLOSE",
+      "title": "对合PC双板并交接整合服务",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_POLYMER",
+      "target_asset_roles": [
+        "PC_slab_pair",
+        "consolidation_carrier",
+        "mock_vacuum_oven"
+      ],
+      "preconditions": [
+        "CPC_pair_positioned"
+      ],
+      "actions": [
+        "将上PC板按通道方向对合下板，把双板放入有号整合载架",
+        "送入封闭mock整合单元，关门启动；完成与冷态释放后取出预制棒"
+      ],
+      "postconditions": [
+        "consolidated_polymer_preform"
+      ],
+      "recovery": [
+        "错向或错片装配先拆回定位座；加工完成后不假设能无损逆转"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "预制棒真空热整合后用于会聚拉丝",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实整合压力/接触状态/容差"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CONVERGE_LOAD",
+      "title": "装聚合物预制棒与输入芯/电极线盘",
+      "kind": "hands_on",
+      "location_id": "WS_CONVERGENCE",
+      "target_asset_roles": [
+        "convergence_tower",
+        "polymer_preform_holder",
+        "core_carrier",
+        "Cu_or_W_spools",
+        "output_spool"
+      ],
+      "preconditions": [
+        "consolidated_polymer_preform",
+        "intact_input_core_identity",
+        "tower_cold_idle"
+      ],
+      "actions": [
+        "将聚合物预制棒锁入冷态进给架，安放空输出盘",
+        "单芯路线准备一条Si或Ge及两Cu线盘；双芯路线准备p-Si和n-Si两条芯及两W线盘，逐项检查标签"
+      ],
+      "postconditions": [
+        "correct_single_or_dual_feed_inventory"
+      ],
+      "recovery": [
+        "铜钨混用、缺p或缺n则不启动；不得将未释放玻璃包覆芯喂入"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "单芯Cu/Si或Ge与双芯W/p-n Si的结构有来源",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "p/n裸芯前端详细工单与线盘长度",
+          "输出50m与输入80cm连续性桥接"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CONVERGE_THREAD",
+      "title": "把导入端送入两个侧通道与中央通道",
+      "kind": "hands_on",
+      "location_id": "WS_CONVERGENCE",
+      "target_asset_roles": [
+        "side_feed_guides",
+        "centre_feed_guide",
+        "core_carrier",
+        "electrode_spools"
+      ],
+      "preconditions": [
+        "CONVERGE_LOAD_complete",
+        "cold_feed_interface_accessible"
+      ],
+      "actions": [
+        "将两金属线任务端头夹分别推到两侧通道导入口",
+        "将单条芯或独立p/n两芯的支撑端送入中央通道，固定各送料承托；不手动熔接芯线"
+      ],
+      "postconditions": [
+        "feed_channels_correct",
+        "p_and_n_not_collapsed_to_one_identity"
+      ],
+      "recovery": [
+        "穿错通道退回对应端夹重穿，卡住时不牵拉细芯"
+      ],
+      "evidence_ids": [
+        "f.materials"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "拉丝时金属线从两侧、芯从中央输入；双芯由缩径自行对齐",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实导入/张力/接芯/微操方法"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CONVERGE_RUN",
+      "title": "关罩启动会聚拉丝并取回器件段",
+      "kind": "enclosed_mock_service_handoff",
+      "location_id": "WS_CONVERGENCE",
+      "target_asset_roles": [
+        "tower_guard",
+        "tower_panel",
+        "output_spool"
+      ],
+      "preconditions": [
+        "CONVERGE_THREAD_complete",
+        "guard_closed",
+        "robot_retracted"
+      ],
+      "actions": [
+        "触发mock会聚工单，保留聚合物流动、固体芯与线保持固态、界面形成事件",
+        "结束后等待冷却/停轴/释放，扣住输出端，将成品盘取入带号托架"
+      ],
+      "postconditions": [
+        "polymer_clad_device_created",
+        "input_output_lineage",
+        "no_core_length_created"
+      ],
+      "recovery": [
+        "断芯或电极不连续则隔离对应区间；未报告接续方式不自行补齐长芯"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main",
+        "f.ed6"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "会聚形成PC/CPC/半导体/金属界面，单芯和双芯不同",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "连续进芯与长卷的材料桥接、界面几何",
+          "实际制造公差"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "DEVICE_ALLOCATE",
+      "title": "检查器件截面并分配同源兄弟样",
+      "kind": "hands_on",
+      "location_id": "WS_METROLOGY",
+      "target_asset_roles": [
+        "device_spool",
+        "segment_carrier",
+        "guarded_cutter",
+        "optical_microscope"
+      ],
+      "preconditions": [
+        "device_spool_complete"
+      ],
+      "actions": [
+        "从有父区间的成品段分出截面检查子样，放显微座确认PC/CPC/芯/金属位置",
+        "按episode分配光电、破坏性力学、耐久、织物应用子样；每个区间只能占用一次，截面件不能回变完整件"
+      ],
+      "postconditions": [
+        "device_children_allocated",
+        "cross_section_and_electrode_identity"
+      ],
+      "recovery": [
+        "结构错位或断路保留失败件；换新兄弟样必须新子ID"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.ed6",
+        "f.measure"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源器件截面及多类测试；具体兄弟样分配是authored，作者实际复用未知",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "有效光孔/active length、独立样本分配、公差"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "STRIP",
+      "title": "固定器件端并剥露金属电极",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRICAL",
+      "target_asset_roles": [
+        "device_end_holder",
+        "mock_fibre_stripper",
+        "offcut_bin"
+      ],
+      "preconditions": [
+        "allocated_device",
+        "bias_off",
+        "ends_supported"
+      ],
+      "actions": [
+        "把器件端放剥线座，夹紧聚合物外侧粗托架",
+        "合拢mock剥线工具移去端部包覆片露出两金属电极，将余片放分类盒"
+      ],
+      "postconditions": [
+        "electrode_ends_exposed",
+        "active_region_unmodified"
+      ],
+      "recovery": [
+        "切伤电极或芯则该段隔离；不偷偷裁短后保留旧有效长度"
+      ],
+      "evidence_ids": [
+        "f.measure"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "纤维剥线器露出金属电极建立连接",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "剥露长度、工具设置、接头与实际接触方法"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CONTACT",
+      "title": "连接电极并检查通道/极性",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRICAL",
+      "target_asset_roles": [
+        "electrical_dock",
+        "contacts",
+        "source_meter",
+        "device_carrier"
+      ],
+      "preconditions": [
+        "exposed_electrodes",
+        "source_output_off"
+      ],
+      "actions": [
+        "把两端子接入有标号夹片，机械承托固定在器件外载具上",
+        "按面板执行mock连接检查，单芯、双芯p/n及正负端映射分别记录"
+      ],
+      "postconditions": [
+        "electrical_connection_checked"
+      ],
+      "recovery": [
+        "开路/短路先断电再复位接触；仍异常将样品标invalid，不抄预设曲线"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "金属电极电连接、电流电压测量有来源",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实探针/接线和接触电阻判据"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "OPTICAL_MOUNT",
+      "title": "将器件与功率检测端放入封闭光路",
+      "kind": "hands_on",
+      "location_id": "WS_OPTO",
+      "target_asset_roles": [
+        "optical_enclosure",
+        "device_carrier",
+        "lens_mounts",
+        "power_meter",
+        "source_selector"
+      ],
+      "preconditions": [
+        "connected_device",
+        "illumination_off"
+      ],
+      "actions": [
+        "将器件载具固定在光路中心座，按Si/Ge卡装532/1550 nm模拟光源模块",
+        "安放球面/平凹镜代理及功率检测位，调整载具到覆盖感光区的任务对准标记后关罩"
+      ],
+      "postconditions": [
+        "wavelength_material_pair_correct",
+        "power_context_recorded"
+      ],
+      "recovery": [
+        "光孔/方向不明则记录unknown并请求相应任务配置；不在开放空间调真激光"
+      ],
+      "evidence_ids": [
+        "f.measure"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "透镜整形覆盖孔径并用功率计监测；源选择有来源",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "光孔、光斑、对准公差、真实激光安全"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "DARK_LIGHT",
+      "title": "采暗态及光照光响应并保存功率记录",
+      "kind": "hands_on",
+      "location_id": "WS_OPTO",
+      "target_asset_roles": [
+        "source_meter",
+        "optical_panel",
+        "power_meter"
+      ],
+      "preconditions": [
+        "OPTICAL_MOUNT_complete",
+        "enclosure_closed",
+        "bias_recipe_bound"
+      ],
+      "actions": [
+        "先保持光源关状态触发mock暗电流读取，再启用指定光照条件与功率同步读取",
+        "以独立condition保存dark及light，测完关光断偏压；不得把暗电流省略为零"
+      ],
+      "postconditions": [
+        "paired_dark_light_record",
+        "power_normalization_inputs"
+      ],
+      "recovery": [
+        "功率缺失则响应度未有效，保持raw current可归档；重测须保留run历史"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main",
+        "f.ed6"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "光照/暗态、功率监测与2 V测试偏压有来源",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "实时功率与有效面积、采样率/容差、真实偏压施加方案"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "IV",
+      "title": "执行选定器件的电压扫描",
+      "kind": "hands_on",
+      "location_id": "WS_OPTO",
+      "target_asset_roles": [
+        "source_meter",
+        "optical_panel"
+      ],
+      "preconditions": [
+        "CONTACT_complete",
+        "sweep_card_bound",
+        "guard_closed"
+      ],
+      "actions": [
+        "选择single_Si、single_Ge或dual_pn工单及dark/illumination状态",
+        "触发mock双向数据采样后返回输出off，保存实际扫描范围字段，不用固定2V代替整条I-V"
+      ],
+      "postconditions": [
+        "IV_trace_with_device_type_and_condition"
+      ],
+      "recovery": [
+        "极性/器件身份错误则该run invalid；重接先关输出"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.measure",
+        "f.ed6"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "单芯明暗I-V与双芯p-n I-V分别报告",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "步长、停留、扫向、限流；2V是测试偏压而非I-V全程恒压"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "DYNAMIC",
+      "title": "接入波形链并采噪声/瞬态/频响",
+      "kind": "hands_on",
+      "location_id": "WS_OPTO",
+      "target_asset_roles": [
+        "TIA_dock",
+        "oscilloscope",
+        "function_generator"
+      ],
+      "preconditions": [
+        "CONTACT_complete",
+        "optical_mount_complete",
+        "source_off_before_rewire"
+      ],
+      "actions": [
+        "断输出后把电极接入TIA/示波器代理，连接调制器到光源控制接口",
+        "分别选择dark_noise、pulse_response、frequency_response工单，关罩采集带频率/时间轴的mock波形，结束关光断电"
+      ],
+      "postconditions": [
+        "noise_transient_frequency_records_separate"
+      ],
+      "recovery": [
+        "采样率或带宽unknown则不报告新测rise-time/NEP精度；保留数据缺口"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "TIA、示波器及调制，rise-time/pwelch分析有来源；频响采集细节不全",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "原始采样率、噪声谱窗、调制深度与频率表"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "DIRECTION",
+      "title": "改变入射相对方向并复测同一Si器件",
+      "kind": "hands_on",
+      "location_id": "WS_OPTO",
+      "target_asset_roles": [
+        "rotatable_device_carrier",
+        "orientation_marks"
+      ],
+      "preconditions": [
+        "Si_single_core",
+        "source_and_bias_off",
+        "baseline_front_record"
+      ],
+      "actions": [
+        "开罩将载具从front标记转至side标记，保持同件和端接映射",
+        "关罩重新采dark/light功率配对记录，最后回原姿态"
+      ],
+      "postconditions": [
+        "front_side_pair_same_object"
+      ],
+      "recovery": [
+        "翻转导致接触松动先修复并重测基线；不能把换件当仅方向变化"
+      ],
+      "evidence_ids": [
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Si器件在532 nm前/侧入射响应",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "角度数值、遮挡孔径与实际样品复用细节"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "TEST_MOUNT",
+      "title": "选择力学夹具并固定有号兄弟样",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "mechanical_tester",
+        "tensile_grips",
+        "compression_platens",
+        "Charpy_support",
+        "torsion_chucks",
+        "bend_fixture"
+      ],
+      "preconditions": [
+        "unloaded_stopped_tester",
+        "allocated_sample",
+        "prior_history_known"
+      ],
+      "actions": [
+        "从工装架取所选试验夹具装到键槽，移除前一条件遗留的夹具",
+        "将纤维连载具定位，两端夹持或支撑中段后撤掉运输支撑；记录标距、截面或接触面积字段，未知不硬填"
+      ],
+      "postconditions": [
+        "sample_seated_in_correct_fixture",
+        "geometry_and_history_bound"
+      ],
+      "recovery": [
+        "错夹具、滑移或夹断则停止并取新兄弟样；不能重复使用已断样"
+      ],
+      "evidence_ids": [
+        "f.measure"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "拉伸/压缩平移台、unnotched Charpy、自制扭转、弯曲测试有来源",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "夹具几何、标距、夹持力、速率、接触面积、标定"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "TENSILE",
+      "title": "关罩并拉伸至该样的失效终态",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "tensile_grips",
+        "tester_panel",
+        "force_gauge"
+      ],
+      "preconditions": [
+        "TEST_MOUNT_complete",
+        "tensile_branch",
+        "guard_closed",
+        "robot_retracted"
+      ],
+      "actions": [
+        "触发mock拉伸程序，记录力/位移/失效事件",
+        "程序停止后回撤驱动并解除外载，保留broken状态和几何字段"
+      ],
+      "postconditions": [
+        "destructive_tensile_record",
+        "specimen_not_reusable_as_pristine"
+      ],
+      "recovery": [
+        "夹端滑移属于无效试验，样品history保留；裂断是所测终点不自动为操作失败"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main",
+        "f.ed5"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "裸芯强度及聚合物器件拉伸强度分开报告",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "原始加载曲线、标准、速率与终点判据"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "IMPACT",
+      "title": "在封闭摆锤代理中完成无缺口冲击",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "Charpy_support",
+        "Charpy_guard",
+        "impact_panel"
+      ],
+      "preconditions": [
+        "unnotched_sibling_sample",
+        "TEST_MOUNT_complete",
+        "guard_closed"
+      ],
+      "actions": [
+        "核对无缺口样身份，在罩外选择mock unnotched Charpy工单",
+        "触发摆锤服务并等待停稳，记录能量/截面及失效状态"
+      ],
+      "postconditions": [
+        "impact_record",
+        "postimpact_damage_state"
+      ],
+      "recovery": [
+        "误用带缺口样则不得计入来源条件；摆锤未停不回收碎片"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源是无缺口Charpy，不是任意敲击",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "摆锤、跨距、试样形状尺寸与能量修正"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "TORSION_FAIL",
+      "title": "扭转专用兄弟样到失效并卸扭",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "torsion_chucks",
+        "torsion_panel"
+      ],
+      "preconditions": [
+        "strength_sibling",
+        "TEST_MOUNT_complete",
+        "guard_closed"
+      ],
+      "actions": [
+        "固定一端、另一端由mock驱动旋转，保留角度/扭矩/标距记录",
+        "在failure事件后停止并安全卸除储存扭转载荷"
+      ],
+      "postconditions": [
+        "torsional_strength_record",
+        "failed_sample_state"
+      ],
+      "recovery": [
+        "滑脱不计破断；卸扭前不打开夹具"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源自制扭转设备测破断前扭转强度",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "扭矩传感器、标距/扭率、设备实际结构"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "TORSION_FUNCTION",
+      "title": "设置功能扭转条件后读取响应",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "torsion_chucks",
+        "readout_dock"
+      ],
+      "preconditions": [
+        "functional_sibling_separate_from_failure_test",
+        "baseline_saved"
+      ],
+      "actions": [
+        "将专用器件固定到扭转座，按有标距任务卡设三圈/mm条件的mock形态",
+        "在安全保持姿态下获取光响应，再关光断电、卸扭并取回载具"
+      ],
+      "postconditions": [
+        "twisted_function_record",
+        "not_strength_failure_record"
+      ],
+      "recovery": [
+        "裂断时停止功能测量且标损伤；不能把failure曲线当成功功能数据"
+      ],
+      "evidence_ids": [
+        "f.ed6",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "高扭曲三圈/mm仍保持功能的独立展示",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "原作者是否与强度样共用、具体夹具和保持时间"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "BEND_CONDITION",
+      "title": "安装平直/半径模板并采配对响应",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "bend_fixture",
+        "radius_5mm",
+        "radius_50mm",
+        "readout_dock"
+      ],
+      "preconditions": [
+        "same_device_baseline",
+        "tester_stopped"
+      ],
+      "actions": [
+        "按条件放置平直、5 mm或50 mm模板，支撑器件而不压感光区",
+        "闭合mock边界、采对应光响应，关光断电后解除本模板"
+      ],
+      "postconditions": [
+        "radius_labelled_response_pair"
+      ],
+      "recovery": [
+        "模板错配则该条件无效；保留同件历史再重做"
+      ],
+      "evidence_ids": [
+        "f.ed6",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "平直、5 mm、50 mm弯曲响应对比",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "方向、标距、保持时间、不同材料图示分配"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "BEND_CYCLES",
+      "title": "完成弯曲循环并复测",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "cyclic_bend_tester",
+        "cycle_counter"
+      ],
+      "preconditions": [
+        "dedicated_cyclic_device",
+        "pristine_record_saved",
+        "5mm_fixture_seated"
+      ],
+      "actions": [
+        "关罩触发mock循环程序，累计事件明确区分已完成与计划10000循环",
+        "程序停稳后转电测座复测同件响应，保留cycle_count=10000条件"
+      ],
+      "postconditions": [
+        "before_after_10000_cycles_pair"
+      ],
+      "recovery": [
+        "中断只登记实际mock完成计数；不可直接修改为10000"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "5 mm半径10000次弯曲后的响应",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "循环速度、波形、环境和fixture细节"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "COMPRESS",
+      "title": "压缩器件并采即时受损响应",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "compression_platens",
+        "force_gauge",
+        "readout_dock"
+      ],
+      "preconditions": [
+        "baseline_saved",
+        "compression_sibling",
+        "guard_closed"
+      ],
+      "actions": [
+        "运行mock压缩历史并同时保存力/接触面积或已声明压力字段",
+        "达到本工单终点后卸荷，按immediate时间标签采暗电流与光响应，不提前改为recovered"
+      ],
+      "postconditions": [
+        "compression_history",
+        "immediate_state_record"
+      ],
+      "recovery": [
+        "面积unknown则压力为unknown；30 MPa来源峰值不能代替测量；滑脱先停机"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源压缩最高30 MPa，立即暗电流升高、光响应降低；不等于深海部署",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "完整压力程序、接触面积、恢复起算和照明同步"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "OVERNIGHT",
+      "title": "保存同件过夜恢复后重新测量",
+      "kind": "hands_on",
+      "location_id": "WS_STORAGE",
+      "target_asset_roles": [
+        "recovery_slot",
+        "device_carrier",
+        "mock_clock"
+      ],
+      "preconditions": [
+        "compression_unloaded",
+        "immediate_record_saved"
+      ],
+      "actions": [
+        "断输出后把同件置于专用恢复格并保留未处理状态",
+        "等待mock overnight标签事件，取回原载具并重复相同暗态/光照测量"
+      ],
+      "postconditions": [
+        "baseline_immediate_overnight_triplet"
+      ],
+      "recovery": [
+        "样品被更换、处理或时间状态缺失则不称自然恢复；不得用下一次光响应覆盖即时记录"
+      ],
+      "evidence_ids": [
+        "f.ed6",
+        "f.main"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "一夜无额外处理后响应恢复；overnight不是已知精确小时数",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "精确时长、保存环境"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "TEXTILE_MOUNT",
+      "title": "把器件穿入选定织物定位架",
+      "kind": "hands_on",
+      "location_id": "WS_TEXTILE",
+      "target_asset_roles": [
+        "textile_frame",
+        "fibre_carriers",
+        "rounded_threading_tool"
+      ],
+      "preconditions": [
+        "intact_device_segments",
+        "textile_branch_and_pattern_card"
+      ],
+      "actions": [
+        "把织物放框架，逐条将支撑端/圆头引导件穿过任务预留通道",
+        "布置纤维到选定grid、beanie或watchband位置并固定端部承托，保留走线与电极可接近性"
+      ],
+      "postconditions": [
+        "textile_integrated_fibre_mapping"
+      ],
+      "recovery": [
+        "绕线交叉/折损则先退回对应通道；不把单芯变双芯或把grid交点当器件数量"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源纤维织入/编织入服装；预留通道和机器人穿线方法为authored",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "织法、针距、纤维总条数/长度、固定手法"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "WASH",
+      "title": "洗涤功能织物并保留十周期记录",
+      "kind": "hands_on",
+      "location_id": "WS_WASH",
+      "target_asset_roles": [
+        "mock_washer",
+        "textile_carrier",
+        "cycle_counter"
+      ],
+      "preconditions": [
+        "fabric_baseline_saved",
+        "external_electronics_disconnected",
+        "washer_idle"
+      ],
+      "actions": [
+        "将带有号标签的功能织物放入洗衣机代理并关门",
+        "选来源ISO6330十周期mock标签，完成后停稳取出至干燥/检查载具；只有安全干态事件后复接电测"
+      ],
+      "postconditions": [
+        "ten_wash_cycles_record",
+        "postwash_response_linked"
+      ],
+      "recovery": [
+        "中断保留实际周期；edition/program未知不声称按真实标准认证"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "功能织物商业洗衣机按ISO6330十循环",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "ISO版本、程序、洗涤剂/水温/载荷、干燥方法和干态判据"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "THERMAL",
+      "title": "连续运行前后摆放热像观察",
+      "kind": "hands_on",
+      "location_id": "WS_OPTO",
+      "target_asset_roles": [
+        "thermal_camera",
+        "device_carrier",
+        "mock_clock"
+      ],
+      "preconditions": [
+        "same_device",
+        "continuous_operation_card"
+      ],
+      "actions": [
+        "将热像相机对准载具，取得before热像，再开始mock连续运行",
+        "保持同一热边界与通道到5 h事件，取after热像并关光断电"
+      ],
+      "postconditions": [
+        "before_after_5h_thermal_record"
+      ],
+      "recovery": [
+        "相机/发射率unknown不推导精确无温升；中断运行另建run"
+      ],
+      "evidence_ids": [
+        "f.ed6"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "5小时运行前后热像比较",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "环境/相机标定、发射率、运行功率"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "TEST_UNLOAD",
+      "title": "卸荷断电后取出器件或碎片",
+      "kind": "hands_on",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "guard",
+        "grips",
+        "segment_carrier",
+        "fragment_cassette"
+      ],
+      "preconditions": [
+        "drive_stopped",
+        "zero_load_or_zero_torque",
+        "illumination_off",
+        "bias_off"
+      ],
+      "actions": [
+        "开罩，先用载具托住试样两侧，再松夹具/移开支撑",
+        "完整件放原槽；破坏性样的两断段/碎片放封闭匣并记child IDs"
+      ],
+      "postconditions": [
+        "machine_empty",
+        "posttest_state_retained"
+      ],
+      "recovery": [
+        "仍夹滞先等待/复位卸荷；不边扯样边卸载"
+      ],
+      "evidence_ids": [
+        "f.measure"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "卸样闭环为authored，需保留来源破坏与恢复状态",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "PCB_ASSEMBLE",
+      "title": "将有号纤维接入八通道接口板",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRONICS",
+      "target_asset_roles": [
+        "PCB_8channel_mock",
+        "coin_cell_dummy",
+        "channel_connectors",
+        "phone_mock"
+      ],
+      "preconditions": [
+        "device_contacts_checked",
+        "board_power_off"
+      ],
+      "actions": [
+        "把32×48 mm接口板代理固定到板座，按channel map连接最多八条指定纤维",
+        "放入惰性电池代理并扣合电池盖，连接mock Bluetooth/app面板；不焊接未知电路"
+      ],
+      "postconditions": [
+        "channel_device_map",
+        "power_and_signal_chain_bound"
+      ],
+      "recovery": [
+        "通道重复/材料错配先断电重接；接线图unknown时使用明确authored map而非伪称原板复刻"
+      ],
+      "evidence_ids": [
+        "f.wireless"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "两GS8554、ADS7828、coin cell、Bluetooth与app八通道系统",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "PCB布线、真实固件/算法、电池规格和端接"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "PCB_CHECK",
+      "title": "逐通道检查信号路由与保存",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRONICS",
+      "target_asset_roles": [
+        "PCB_8channel_mock",
+        "phone_mock",
+        "enclosed_test_light"
+      ],
+      "preconditions": [
+        "PCB_ASSEMBLE_complete"
+      ],
+      "actions": [
+        "逐个启用安全封闭mock刺激，观察对应app通道而不是只看总信号",
+        "保存channel-device-coordinate表，停止刺激并关闭板电源"
+      ],
+      "postconditions": [
+        "all_used_channels_addressable"
+      ],
+      "recovery": [
+        "串道则先查映射与接头；不能通过重命名通道掩盖错误接线"
+      ],
+      "evidence_ids": [
+        "f.wireless"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "板支持采集及手机可视化；逐通道核对是authored对照",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "BEANIE",
+      "title": "把八Ge器件帽装到人台并作信号演示",
+      "kind": "hands_on",
+      "location_id": "WS_APPLICATION",
+      "target_asset_roles": [
+        "beanie",
+        "mannequin",
+        "PCB_8channel_mock",
+        "phone_mock",
+        "enclosed_IR_source"
+      ],
+      "preconditions": [
+        "8_Ge_device_ids",
+        "PCB_CHECK_complete",
+        "textile_mounted"
+      ],
+      "actions": [
+        "把板固定于帽内顶处，将帽放人台支架并整理八条走线",
+        "在封闭模拟昼光场景触发IR信号，记录手机通道/提示，再关闭电源取回帽"
+      ],
+      "postconditions": [
+        "8_Ge_beanie_demo",
+        "no_human_navigation_claim"
+      ],
+      "recovery": [
+        "无信号先检查Ge/IR匹配与通道；禁止把真实人导向道路或开放激光"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless",
+        "f.v2"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "八Ge beanie、内顶部板及户外视频人台示范；任务以封闭mock替代公共空间",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实公共空间光安全、提示算法、伦理与导航有效性"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SWEATER",
+      "title": "摆好3×3 grid毛衣并传送内容",
+      "kind": "hands_on",
+      "location_id": "WS_APPLICATION",
+      "target_asset_roles": [
+        "sweater_frame",
+        "mock_LED_transmitter",
+        "mock_receiver",
+        "phone_mock"
+      ],
+      "preconditions": [
+        "Si_fibre_textile",
+        "source_grid_3x3_identity",
+        "receiver_map_declared_authored"
+      ],
+      "actions": [
+        "将毛衣展于衣架，保持3×3 grid结构及纤维走线",
+        "装载任务自有测试图内容，触发LED编码mock；保存发送与解码接收内容并比较，再断开系统"
+      ],
+      "postconditions": [
+        "sent_received_content_pair",
+        "grid_not_9channel_assumption"
+      ],
+      "recovery": [
+        "只有电流闪动不足以判传输成功；丢帧保留并重试独立run"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Si毛衣3×3 fibre grid接收图像，定制编码/解码；源演示40 KB/s仅reference",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实代码未取、grid总纤维数、与8通道板映射、误码率"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "WATCHBAND",
+      "title": "在腕部仿体上装纤维与商业比较器",
+      "kind": "hands_on",
+      "location_id": "WS_APPLICATION",
+      "target_asset_roles": [
+        "watchband",
+        "wrist_phantom",
+        "green_LED_mock",
+        "BIOFY_comparator_mock"
+      ],
+      "preconditions": [
+        "Si_watchband_ready",
+        "no_human_subject",
+        "fixture_power_off"
+      ],
+      "actions": [
+        "把Si纤维watchband及绿LED放腕部仿体支撑位，保持可重复的光学几何",
+        "同配置切换到BIOFY SFH7070代理，分别采同一preset pulse输入的输出，再关光断电"
+      ],
+      "postconditions": [
+        "paired_PPG_mock",
+        "same_phantom_input",
+        "not_clinical_evidence"
+      ],
+      "recovery": [
+        "位置不一致则重装并重测；不收集真实参与者生理数据"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "来源Si+green LED watchband与商业器件同配置PPG；仿体为authored安全替代",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "人类试验审批、参与者/皮肤条件、LED真实工况"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SUB_ATTACH",
+      "title": "在迷你潜艇外壳装八方向Si纤维",
+      "kind": "hands_on",
+      "location_id": "WS_APPLICATION",
+      "target_asset_roles": [
+        "submarine_shell",
+        "8angular_fibre_seats",
+        "waterproof_box",
+        "PCB_8channel_mock"
+      ],
+      "preconditions": [
+        "8_Si_device_ids",
+        "PCB_CHECK_complete",
+        "dry_shell"
+      ],
+      "actions": [
+        "沿外壳每45°有号位置布置一条Si纤维，贴合任务直角台阶；用可逆固定片代理来源粘接",
+        "将板置入防水盒并固定外壳下方，整理穿线口后关闭箱盖"
+      ],
+      "postconditions": [
+        "8_direction_map",
+        "sealed_box_state"
+      ],
+      "recovery": [
+        "位置或材料错配先断电重装；防水mock未通过不得入槽"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "Si纤维每45°、沿直角曲面粘贴；PCB盒在下方",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实胶种/固化、防水等级、密封接头"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "SUB_TANK",
+      "title": "入槽测试方向与命令并回收",
+      "kind": "hands_on",
+      "location_id": "WS_APPLICATION",
+      "target_asset_roles": [
+        "tank",
+        "submarine_shell",
+        "mock_direction_light",
+        "phone_mock",
+        "recovery_cradle"
+      ],
+      "preconditions": [
+        "sealed_box_state",
+        "direction_map_saved",
+        "tank_mock_mode"
+      ],
+      "actions": [
+        "抓潜艇承托架放入水槽支撑位，依八方向给mock信号并核对对应通道",
+        "包含135°命令例，保存接收命令和模型运动状态；停止后用承托架移出到滴水托盘"
+      ],
+      "postconditions": [
+        "direction_command_record",
+        "tank_recovered"
+      ],
+      "recovery": [
+        "进水或失联事件先停止并回收隔离；不把视频0.25X时长当真实延迟"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless",
+        "f.v3"
+      ],
+      "provenance": {
+        "source_supported_macro_operation": "水槽mini-sub方向演示，135°例；全八方向核对是authored完整性测试",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": [
+          "真实水深/光学参数、通信延迟、推进控制与防水方案"
+        ]
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "POWER_DOWN",
+      "title": "关闭所有信号源并拆下外接线",
+      "kind": "hands_on",
+      "location_id": "route_station",
+      "target_asset_roles": [
+        "source_panel",
+        "PCB_8channel_mock",
+        "contacts",
+        "cable_rack"
+      ],
+      "preconditions": [
+        "data_saved",
+        "drives_stopped"
+      ],
+      "actions": [
+        "先关照明与偏压/板电源，再解除外部接头，收线到架",
+        "将带电池代理的部件按任务存储规则断开并扣回盖"
+      ],
+      "postconditions": [
+        "sources_off",
+        "cables_stowed"
+      ],
+      "recovery": [
+        "输出状态不一致则保持罩闭、标blocked，不直接拔裸接头"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_supported_macro_operation": "实验安全收尾连接为authored",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "归档完整、已循环、恢复后或破损样",
+      "kind": "hands_on",
+      "location_id": "WS_STORAGE",
+      "target_asset_roles": [
+        "archive_slots",
+        "quarantine_slots",
+        "fragment_cassettes"
+      ],
+      "preconditions": [
+        "power_off",
+        "unloaded",
+        "sample_identity_and_history"
+      ],
+      "actions": [
+        "把载具放所选材料与状态格，完整/已循环/压缩恢复/破坏性样各有标签",
+        "保存谱系、条件、原始mock文件与缺失字段索引，不抹去失败run"
+      ],
+      "postconditions": [
+        "samples_accounted",
+        "data_lineage_closed"
+      ],
+      "recovery": [
+        "归档格占用改用标号备用格；未知样保隔离"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_supported_macro_operation": "作者归档流程未报告；闭环为任务要求",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    },
+    {
+      "id": "CLEAN",
+      "title": "归还夹具、余料与封闭废料匣并复位",
+      "kind": "hands_on",
+      "location_id": "WS_CLEAN",
+      "target_asset_roles": [
+        "tool_rack",
+        "offcut_bin",
+        "sealed_waste_cassette",
+        "dry_wipe",
+        "cart"
+      ],
+      "preconditions": [
+        "all_specimens_archived",
+        "machines_stopped_and_safe"
+      ],
+      "actions": [
+        "回收线盘与未用原料到各自格，将干燥可触的台面/托盘用干擦布整理",
+        "玻璃碎片、切屑和化学服务废料保持封闭交接，不在台面中和或开放清洗",
+        "夹具、载具和相机回标记位，设备外罩关闭，运输车停回位"
+      ],
+      "postconditions": [
+        "workspace_reset",
+        "waste_and_stock_accounted"
+      ],
+      "recovery": [
+        "不明残留停止局部清理并隔离；不扫散碎芯或开启化学废料匣"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_supported_macro_operation": "论文未给清理SOP；物理收尾为authored安全代理",
+        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "unknown_source_parameters": []
+      },
+      "execution_mode": "mock_research_task_only"
+    }
+  ]
+}

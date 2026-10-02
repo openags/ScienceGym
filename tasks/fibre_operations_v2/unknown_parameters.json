@@ -1,0 +1,151 @@
+{
+  "schema_version": "fibre_unknown_parameters.v2",
+  "policy": "未知妨碍真实执行就绪，不妨碍完整mock操作任务设计",
+  "parameters": [
+    {
+      "id": "U_MOTION",
+      "unknown": "机器人可达、抓持力、对位公差、路径/避障和仪器实物几何",
+      "surrogate": "粗级载具/键槽/标签/封闭单元",
+      "affected": [
+        "MOVE",
+        "SILICA_INSERT",
+        "ASG_NEST",
+        "CONVERGE_THREAD"
+      ],
+      "real_execution": "not_ready"
+    },
+    {
+      "id": "U_HAZARD",
+      "unknown": "受审真实化学、热工、明火/真空、淬冷、辐射及激光安全SOP和互锁工程",
+      "surrogate": "封闭惰性服务工单+safe_release事件",
+      "note": "不是说原文未报告任何温度/浓度；相关已报告值留在固定来源，当前任务不下发实物执行配方",
+      "affected": [
+        "OXIDE_IN",
+        "SEAL_IN",
+        "GLASS_RUN",
+        "RELEASE_IN",
+        "QUENCH",
+        "CONVERGE_RUN"
+      ]
+    },
+    {
+      "id": "U_COMPARE",
+      "unknown": "Ge/silica及Ge/BSG完整前端参数、BSG牌号与几何",
+      "surrogate": "独立condition工单，缺项null，不套用Ge/ASG参数",
+      "affected": [
+        "CONTROL_PREFORM",
+        "GLASS_RUN"
+      ]
+    },
+    {
+      "id": "U_PN",
+      "unknown": "p/n-Si前端分开的详细制芯条件",
+      "surrogate": "两条保留掺杂身份的Si前端mock子路线，配方显式unknown",
+      "affected": [
+        "SILICA_INSERT",
+        "GLASS_RUN",
+        "CONVERGE_LOAD"
+      ]
+    },
+    {
+      "id": "U_LENGTH",
+      "unknown": "80cm去玻璃输入段与约50m会聚卷盘之间的连续进芯/接续机制",
+      "surrogate": "只有父芯已覆盖的有限器件段可用于任务；长卷只作source reference",
+      "affected": [
+        "SEGMENT",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN"
+      ],
+      "do_not_invent": [
+        "splicing",
+        "welding",
+        "unreported_stretching"
+      ]
+    },
+    {
+      "id": "U_CPC",
+      "unknown": "125μm CPC膜与1mm square CPC slabs的具体加工/厚度/层叠关系",
+      "surrogate": "插片形状代理+任务供应的已识别CPC子件；不称原作者层压工艺",
+      "affected": [
+        "CPC_INSERT"
+      ]
+    },
+    {
+      "id": "U_INTERFACE",
+      "unknown": "active length、光孔/遮挡、接触长度、剥线长度和电极连接细节",
+      "surrogate": "端帽/接触座/孔径字段nullable；不由文献值补造测量",
+      "affected": [
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT"
+      ]
+    },
+    {
+      "id": "U_ACQ",
+      "unknown": "实际校准、采样率、扫描步长/停留、噪声处理细节、端点容差",
+      "surrogate": "明确mock读数、有效性标记和缺项",
+      "affected": [
+        "RAMAN",
+        "DARK_LIGHT",
+        "IV",
+        "DYNAMIC",
+        "TENSILE",
+        "IMPACT",
+        "TORSION_FAIL"
+      ]
+    },
+    {
+      "id": "U_ALLOC",
+      "unknown": "除Fig3c n值外的独立样本数、批次、各测试复用/分配与耐久图具体材料分配",
+      "surrogate": "authored独立兄弟样；同件before/after只在任务内保证",
+      "affected": [
+        "DEVICE_ALLOCATE",
+        "CORE_BEND",
+        "CORE_LOAD",
+        "CORE_BOBBIN",
+        "WASH",
+        "THERMAL"
+      ]
+    },
+    {
+      "id": "U_RECOVERY",
+      "unknown": "overnight精确时长、温湿环境、完整压力历史与接触面积",
+      "surrogate": "overnight虚拟时钟事件；30MPa只reference，不由未知力面积推出",
+      "affected": [
+        "COMPRESS",
+        "OVERNIGHT"
+      ]
+    },
+    {
+      "id": "U_WASH",
+      "unknown": "ISO6330版本/程序/洗涤/干燥参数",
+      "surrogate": "十周期mock标签，未获真实标准认证",
+      "affected": [
+        "WASH"
+      ]
+    },
+    {
+      "id": "U_TEXTILE",
+      "unknown": "织法、条数、间距、3×3grid与8ch板映射",
+      "surrogate": "明确authored可穿线衣物通道/接收映射",
+      "affected": [
+        "TEXTILE_MOUNT",
+        "SWEATER",
+        "PCB_ASSEMBLE"
+      ]
+    },
+    {
+      "id": "U_APPLICATION",
+      "unknown": "PCB详细电路/固件、LiFi代码、PPG伦理/参与者协议、公共光安全、真实水下控制",
+      "surrogate": "惰性板、内容fixture、人台/腕仿体、封闭水槽通信",
+      "affected": [
+        "PCB_ASSEMBLE",
+        "BEANIE",
+        "SWEATER",
+        "WATCHBAND",
+        "SUB_TANK"
+      ]
+    }
+  ]
+}
