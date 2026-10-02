@@ -1,0 +1,322 @@
+{
+  "schema_version": "perovskite_task_design.v2",
+  "doi": "10.1038/s41586-024-07228-z",
+  "issues": [
+    {
+      "id": "Q01",
+      "title": "Sn modification dilution conflict",
+      "source_issue": "SnCl2/ethanol stock is described, while the dilution parenthesis names aqueous TiCl4 and water.",
+      "evidence_ids": [
+        "ETL"
+      ],
+      "task_treatment": "Mock-only unresolved-source card; never pick a real recipe or silently fix the text."
+    },
+    {
+      "id": "Q02",
+      "title": "Model crystal formula conflict",
+      "source_issue": "Preparation heading uses [Bcmim]2Pb3Cl2I6·2DMF; characterization, main discussion and SI use [Bcmim]4Pb3Cl2I6·2DMF.",
+      "evidence_ids": [
+        "CRYSTAL",
+        "S28",
+        "T5"
+      ],
+      "task_treatment": "Use reaction-parent lineage plus neutral crystal-family ID; preserve both labels without choosing a formula."
+    },
+    {
+      "id": "Q03",
+      "title": "Device illumination unit conflict",
+      "source_issue": "Device Methods report 100 mA cm^-2 as light intensity, whereas ageing reports 100 mW cm^-2.",
+      "evidence_ids": [
+        "PV",
+        "AGE"
+      ],
+      "task_treatment": "Keep device value as reported and mark irradiance unresolved; PCE requires separately valid mock irradiance card."
+    },
+    {
+      "id": "Q04",
+      "title": "This-work stack conflict",
+      "source_issue": "SI Table S1 this-work row contains Br, PDCBT and Cr labels differing from main composition and PEDOT:complex/MoO3/ITO/Au Methods.",
+      "evidence_ids": [
+        "T1",
+        "CELL",
+        "F1"
+      ],
+      "task_treatment": "Main Methods define task fabrication route; record table disagreement, do not merge the stacks."
+    },
+    {
+      "id": "Q05",
+      "title": "S12 control panel temperatures",
+      "source_issue": "S12 caption labels both control panels c and d as 60 C, but the plotted panel c is labelled Control at 25 C and panel d Control at 60 C.",
+      "evidence_ids": [
+        "S12",
+        "NMR"
+      ],
+      "task_treatment": "Preserve caption-versus-panel disagreement. Methods independently define 25 C and 60 C routes; no hidden correction is made."
+    },
+    {
+      "id": "Q06",
+      "title": "Transport table cross-reference",
+      "source_issue": "S20 text points to Table S2, while transport fitting values are in Table S4.",
+      "evidence_ids": [
+        "S20",
+        "T4"
+      ],
+      "task_treatment": "Cite actual labelled table; preserve incorrect cross-reference as a source issue."
+    },
+    {
+      "id": "Q07",
+      "title": "Crystallographic table cross-reference",
+      "source_issue": "S28 text points to Table S3; crystallographic table is S5.",
+      "evidence_ids": [
+        "S28",
+        "T5"
+      ],
+      "task_treatment": "Cite actual S5; do not infer unseen measurements."
+    },
+    {
+      "id": "Q08",
+      "title": "Operando additive concentration conflict",
+      "source_issue": "Fabrication specifies 0.0078 M [Bcmim]Cl; operando Methods state 0.6 mol%, 0.78 mM.",
+      "evidence_ids": [
+        "CELL",
+        "NMR"
+      ],
+      "task_treatment": "Preserve nominal target and both numeric claims; mock operando card is unresolved, not normalized to fabrication."
+    },
+    {
+      "id": "Q09",
+      "title": "pH concentration and panel membership conflict",
+      "source_issue": "Methods give 0.0075 mmol in 10.0 ml, arithmetically 0.00075 M; Table S3 says 0.0075 M and includes [Bcmim]BF4 omitted from the Methods list.",
+      "evidence_ids": [
+        "PH",
+        "T3"
+      ],
+      "task_treatment": "Use six labelled comparison groups; flag BF4 preparation and concentration unresolved. No acidity target values awarded."
+    },
+    {
+      "id": "Q10",
+      "title": "Apparent kinetic units",
+      "source_issue": "S11 calls values apparent first-order rate constants but reports mM s^-1 units.",
+      "evidence_ids": [
+        "S11"
+      ],
+      "task_treatment": "Retain raw concentration/time records; do not label a fitted first-order constant in inverse-time units without a defined model."
+    },
+    {
+      "id": "Q11",
+      "title": "NMR control nominal percentages",
+      "source_issue": "Note 1 reports final LiCl 0.0065 M against 0.15 M MACl as 5 mol%; listed additions/final volumes are not fully self-consistent; TFA with [Bcmim] is mentioned in prose but not a numbered table row.",
+      "evidence_ids": [
+        "N1",
+        "T2"
+      ],
+      "task_treatment": "Keep stated labels and numbers separate; include paired-TFA comparison as a reported-prose, underdetermined route, not a resolved recipe."
+    },
+    {
+      "id": "U01",
+      "title": "External additive syntheses",
+      "source_issue": "[Bcmim]Cl, exchanged counterions and [C1SCNmim]Cl rely on references 33/34; no complete synthesis within retained paper/SI.",
+      "evidence_ids": [
+        "MATERIALS"
+      ],
+      "task_treatment": "Closed incoming-material provenance service with supplied symbolic raw lots. Synthesis completion is not credited; no guessed reaction route."
+    },
+    {
+      "id": "U02",
+      "title": "Missing handling and apparatus interfaces",
+      "source_issue": "Transfer vessels, sample counts, grips, switches, carriers, cleaning details and almost all safety interlocks are not reported.",
+      "evidence_ids": [
+        "ETL",
+        "CELL",
+        "FILM_MEASURE",
+        "NMR"
+      ],
+      "task_treatment": "Explicit authored robotic interfaces; Hooke supplies scenes. No claim of recovered human microtrajectory."
+    },
+    {
+      "id": "U03",
+      "title": "Cleaning duration allocation",
+      "source_issue": "Sequential acetone/isopropanol/water ultrasonic cleaning is described with 15 min; allocation per solvent is not explicit.",
+      "evidence_ids": [
+        "ETL"
+      ],
+      "task_treatment": "Use ordered three-stage proxy cycle; retain reported duration as unallocated metadata."
+    },
+    {
+      "id": "U04",
+      "title": "Rapid-drying apparatus and coating details",
+      "source_issue": "Reference 35 supplies rapid-vacuum apparatus details; pressure, ramp, blade gap/speed and gas-pump/N2-knife settings are not provided here.",
+      "evidence_ids": [
+        "CELL",
+        "BLADE_MODULE"
+      ],
+      "task_treatment": "Closed services expose only mock completion; unspecified numeric values stay null."
+    },
+    {
+      "id": "U05",
+      "title": "Replicate and allocation counts",
+      "source_issue": "Scatter distributions are shown but independent-device/sample counts and cross-assay reuse lineage are not stated unambiguously.",
+      "evidence_ids": [
+        "F1",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S7"
+      ],
+      "task_treatment": "Default one distinct symbolic specimen per condition, with configurable authored replicate count. Never count scans/points as independent samples."
+    },
+    {
+      "id": "U06",
+      "title": "Molar-percent denominator",
+      "source_issue": "Concentration-series prose and Methods do not use a universally explicit common denominator; crystallization microscopy explicitly references 1.0 M PbI2.",
+      "evidence_ids": [
+        "CELL",
+        "FILM_MEASURE",
+        "S3",
+        "S4"
+      ],
+      "task_treatment": "Store mol% labels and absolute source concentrations independently; do not convert between them without a resolved card."
+    },
+    {
+      "id": "U07",
+      "title": "Film-specific substrate preparation",
+      "source_issue": "Quartz, sapphire and FTO/c-TiO2/m-TiO2 optical substrates are named; the complete mesoporous-layer fabrication route is not provided.",
+      "evidence_ids": [
+        "S20",
+        "TRMC",
+        "T4"
+      ],
+      "task_treatment": "Separate raw-substrate-to-optical-film proxy with unresolved preparation metadata, not a claim that the device stack is equivalent."
+    },
+    {
+      "id": "U08",
+      "title": "Phase snapshot acquisition geometry",
+      "source_issue": "Fig.4 gives 100 C snapshots at 2,5,10,15,20,30 s; in situ acquisition versus withdrawn sister coupons is not specified.",
+      "evidence_ids": [
+        "F4"
+      ],
+      "task_treatment": "Authored independent sister-film checkpoints; preserve this choice and never assert source chronology."
+    },
+    {
+      "id": "U09",
+      "title": "Destructive measurement preparation",
+      "source_issue": "SEM cross-section cutting method, protective coatings, HIM region reuse and ToF depth calibration details are absent.",
+      "evidence_ids": [
+        "F1",
+        "FILM_MEASURE",
+        "HIM",
+        "TOF"
+      ],
+      "task_treatment": "Closed destructive-preparation proxy, independent sister specimens/regions by default; no pristine reuse."
+    },
+    {
+      "id": "U10",
+      "title": "Calibration and derived quantities",
+      "source_issue": "PV irradiance, EQE integration spectrum, PLQY detailed reference procedure, TRMC K/FA/I/beta and absolute depth calibration are incompletely supplied.",
+      "evidence_ids": [
+        "PV",
+        "FILM_MEASURE",
+        "TRMC",
+        "TOF"
+      ],
+      "task_treatment": "Records may remain raw or derived-unknown. External method refs 36/38 are dependencies, not silently imported procedures."
+    },
+    {
+      "id": "U11",
+      "title": "Ageing allocation and environment details",
+      "source_issue": "Ten-day PPS storage temperature/conditions, film removal/reinsertion schedule, long-run cadence and full ISOS implementation details are not specified.",
+      "evidence_ids": [
+        "S13",
+        "S31",
+        "S32",
+        "S33",
+        "AGE"
+      ],
+      "task_treatment": "Use explicitly authored sealed storage and service clock; predeclare same-specimen versus sister-specimen sampling, record gaps."
+    },
+    {
+      "id": "U12",
+      "title": "Certification is external evidence",
+      "source_issue": "NPVM certificate is reported; shipping/selection chain and full external test procedure are absent.",
+      "evidence_ids": [
+        "S5",
+        "S6",
+        "F1"
+      ],
+      "task_treatment": "Authored mock dispatch/receipt task may assess chain of custody; never imply new certification or send anything externally."
+    },
+    {
+      "id": "U13",
+      "title": "Unreported model solutions",
+      "source_issue": "S27 names NaPbI3 and comparison solutions but does not give a complete preparation route for each.",
+      "evidence_ids": [
+        "S27"
+      ],
+      "task_treatment": "Closed model-solution proxy with source-known identities, unresolved concentration/preparation; not a newly invented synthesis."
+    },
+    {
+      "id": "U14",
+      "title": "Source interpretation is not direct observation",
+      "source_issue": "Depth distribution, grain-boundary location, acidity mechanism, defect passivation and nucleation mechanism include interpretations and different evidence strengths.",
+      "evidence_ids": [
+        "S24",
+        "S25",
+        "S26",
+        "S28",
+        "S29",
+        "S30",
+        "N2"
+      ],
+      "task_treatment": "Keep mock observations separate from optional interpretation; no reward for repeating causal claims as measured facts."
+    },
+    {
+      "id": "U15",
+      "title": "NMR clock endpoints",
+      "source_issue": "Methods specify 96 time points at 15 min across 24 h; inclusive start/end convention is not explicit.",
+      "evidence_ids": [
+        "NMR",
+        "S11",
+        "S12"
+      ],
+      "task_treatment": "Record timestamp grid from issued clock card; do not silently turn 96 acquisitions into 97."
+    },
+    {
+      "id": "U16",
+      "title": "Crystal radiation identifier",
+      "source_issue": "Instrument name includes Cu, while S5 explicitly lists Mo K-alpha and wavelength 0.71073 A.",
+      "evidence_ids": [
+        "CRYSTAL",
+        "T5"
+      ],
+      "task_treatment": "Preserve instrument identifier and explicit radiation entry separately; no inferred source selection."
+    },
+    {
+      "id": "U17",
+      "title": "Missing tolerances and service yield",
+      "source_issue": "No task-ready acceptance tolerances, processing yields, exact stock consumption or minimum film size for every test are given.",
+      "evidence_ids": [
+        "CELL",
+        "FILM_MEASURE",
+        "NMR"
+      ],
+      "task_treatment": "Symbolic inventory conservation and observable mock success are authored. No quantitative chemical mass/yield claim."
+    },
+    {
+      "id": "U18",
+      "title": "Shared fabrication route versus assay-specific preparation",
+      "source_issue": "Most film assay descriptions do not repeat a complete per-assay preparation route or every substrate/interface. Growth observation gives a different explicit PbI2 basis.",
+      "evidence_ids": [
+        "CELL",
+        "FILM_MEASURE",
+        "S13",
+        "S18",
+        "S20",
+        "S25",
+        "S30"
+      ],
+      "task_treatment": "Reusing a common fabrication prefix on compatible assay substrates is an authored connection. Source-specific named stacks and the growth precursor override it; unreported settings remain unknown."
+    }
+  ],
+  "resolution_policy": "No silent source corrections. Mock-only services may use an explicitly unresolved-source card. Source-reproduction mode remains blocked. Authored values are labelled and never converted into reported facts."
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "perovskite_task_design.v2",
+  "doi": "10.1038/s41586-024-07228-z",
+  "authority": "Authored benchmark contract; neither author sample ledger nor chemical mass-balance claim.",
+  "entities": {
+    "lot": [
+      "lot_id",
+      "declared_identity",
+      "source_card",
+      "symbolic_portions_initial",
+      "symbolic_portions_remaining",
+      "storage_history"
+    ],
+    "specimen": [
+      "specimen_id",
+      "parent_ids",
+      "formulation_label",
+      "substrate_identity",
+      "source_exceptions",
+      "layer_history",
+      "thermal_history",
+      "beam_history",
+      "section_history",
+      "age_history",
+      "current_location",
+      "current_carrier",
+      "usable_state"
+    ],
+    "job": [
+      "job_id",
+      "attempt_id",
+      "input_object_ids",
+      "consumed_portion_ids",
+      "station_id",
+      "condition_card_id",
+      "start_clock",
+      "completion_clock",
+      "safe_release_receipt",
+      "outputs",
+      "failure"
+    ],
+    "acquisition": [
+      "record_id",
+      "job_id",
+      "specimen_id",
+      "region_id_if_applicable",
+      "condition_id",
+      "nucleus_or_channel",
+      "timestamp",
+      "raw_value_or_array",
+      "units",
+      "calibration_id_or_unknown",
+      "validity",
+      "mock_true"
+    ],
+    "derived": [
+      "derived_id",
+      "input_record_ids",
+      "expression_or_model",
+      "unit_conversions",
+      "assumptions",
+      "calibration_dependencies",
+      "validity"
+    ]
+  },
+  "invariants": [
+    "One object occupies one location/carrier at a time; station occupancy cannot overlap unless the scene explicitly supplies multiple nests.",
+    "Mixed product has all consumed parent IDs; symbolic portions are debited exactly once and residuals remain traceable.",
+    "Aliquot and sister-film IDs are new children, never copies with no inventory cost.",
+    "Batch, specimen, region, scan, time point and repeat IDs represent different levels; multiple scans do not increase independent-sample count.",
+    "Layer addition, scribing, cured seal, film formation, solution ageing, heating, sectioning and sputtering append irreversible state.",
+    "Source-ambiguous formula uses neutral family ID plus parent reagents; never fixes identity by inference.",
+    "Returning an item to storage preserves age, damage, phase checkpoint, solvent history and calibration history.",
+    "A fresh condition, temperature-independent comparison or destructive assay requires reserved sibling stock if the previous sample is incompatible.",
+    "Quarantined failed attempts and invalid acquisition records remain in final manifest.",
+    "Compound labelled model salts may enter as traceable reference stock or from an explicitly linked model-crystal route; unreported dissolution/preparation remains a gap."
+  ],
+  "assembly_dependencies": [
+    "substrate -> Ti -> Sn-modified layer -> PMMA:PCBM -> perovskite -> PEAI -> HTL -> MoO3 -> ITO -> Au",
+    "module adds P1 before layer stack; P2 before electrodes; P3 after Au",
+    "encapsulated module child has module, contact, cover and sealant parents"
+  ],
+  "source_specific_exceptions": [
+    "S24 names perovskite/SnO2@TiO2/FTO; do not force the full device stack onto that profile.",
+    "Quartz, sapphire and mesoporous-FTO optical films are separate material lineages.",
+    "Fig.4 snapshot films, S30 wet-film videos and device-fabrication films have distinct state histories.",
+    "S13 precursor ageing and S31/S32 film ageing are different clocks.",
+    "ISOS-L-1 and L-2 are independent condition branches; one module cannot be reset between them."
+  ]
+}

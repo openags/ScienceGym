@@ -1,0 +1,943 @@
+{
+  "schema_version": "perovskite_task_design.v2",
+  "doi": "10.1038/s41586-024-07228-z",
+  "cards": {
+    "SPIN_PPS": {
+      "evidence_ids": [
+        "CELL"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "base_M": {
+        "CsCl": 0.065,
+        "MAI": 0.065,
+        "FAI": 1.17,
+        "PbI2": 1.365
+      },
+      "solvent": {
+        "DMF:DMSO_volume_ratio": "4:1"
+      },
+      "variants": {
+        "pristine": {},
+        "Bcmim_only": {
+          "[Bcmim]Cl_M": 0.0078
+        },
+        "control": {
+          "MACl_M": 0.26
+        },
+        "target": {
+          "MACl_M": 0.26,
+          "[Bcmim]Cl_M": 0.0078
+        }
+      },
+      "stir": {
+        "temperature_C": 60,
+        "duration_h": 3
+      },
+      "unknown_ids": [
+        "U06"
+      ]
+    },
+    "BLADE_PPS": {
+      "evidence_ids": [
+        "BLADE_MODULE"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "base_M": {
+        "CsCl": 0.04,
+        "MAI": 0.04,
+        "FAI": 0.72,
+        "PbI2": 0.84,
+        "MACl": 0.16
+      },
+      "target_extra_M": {
+        "[Bcmim]Cl": 0.0048
+      },
+      "solvent_ratio": "DMF:DMSO 4:1 v/v",
+      "stir_conditions": null,
+      "unknown_ids": [
+        "U04"
+      ]
+    },
+    "ETL": {
+      "evidence_ids": [
+        "ETL"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "FTO": {
+        "sheet_resistance_ohm_per_square": "12–13",
+        "issued_substrate": "Patterned FTO for standalone transport layers and cells; module raw FTO receives explicit P1 task"
+      },
+      "clean": {
+        "solvent_order": [
+          "acetone",
+          "isopropanol",
+          "deionized water"
+        ],
+        "reported_duration_min": 15,
+        "duration_allocation": "unresolved"
+      },
+      "Ti_stock": {
+        "concentration_M": 2,
+        "preparation_temperature_C": 0,
+        "storage_temperature_C": 5
+      },
+      "Ti_bath": {
+        "dilution_reported": "1:20 molar ratio of 2 M TiCl4 stock and water",
+        "temperature_C": 70,
+        "duration_h": 1,
+        "container": "sealed glass"
+      },
+      "Ti_rinse": {
+        "solvents": [
+          "ethanol",
+          "deionized water"
+        ],
+        "reported_cycles": 3
+      },
+      "Ti_anneal": {
+        "temperature_C": 120,
+        "duration_h": 1
+      },
+      "Sn_stock": {
+        "identity": "SnCl2 in ethanol",
+        "concentration_M": 2,
+        "storage_temperature_C": 5
+      },
+      "Sn_bath": {
+        "dilution_reported": "1:50; parenthesis names 2 M aqueous TiCl4 stock and cold water",
+        "temperature_C": 70,
+        "duration_h": 1
+      },
+      "Sn_rinse": {
+        "solvents": [
+          "ethanol",
+          "deionized water"
+        ],
+        "reported_cycles": 3
+      },
+      "Sn_anneal": {
+        "temperature_C": 180,
+        "duration_h": 1
+      },
+      "unknown_ids": [
+        "Q01",
+        "U03"
+      ]
+    },
+    "LAYER_SOLUTIONS": {
+      "evidence_ids": [
+        "CELL",
+        "BLADE_MODULE"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "PMMA_PCBM": {
+        "PMMA_mg": 1,
+        "PCBM_mg": 3,
+        "chlorobenzene_ml": 1
+      },
+      "PEAI_spin": {
+        "concentration_mg_per_ml": 5,
+        "solvent": "isopropanol",
+        "reported_deposition_ul": 60
+      },
+      "PEAI_blade": {
+        "solvent_ratio": "isopropanol:chlorobenzene 7:3 v/v",
+        "concentration": null
+      },
+      "HTL": {
+        "Spiro_OMeTAD_mg": 32,
+        "PEDOT_complex_HTL_Solar3_ml": 0.5,
+        "tris_pentafluorophenyl_borane_mg": 8,
+        "chlorobenzene_ml": 1
+      }
+    },
+    "COATING": {
+      "evidence_ids": [
+        "CELL",
+        "BLADE_MODULE"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "PMMA_PCBM_spin": {
+        "rpm": 5000,
+        "seconds": 15
+      },
+      "PMMA_PCBM_anneal": {
+        "temperature_C": 100,
+        "minutes": 10
+      },
+      "PPS_spin": [
+        {
+          "rpm": 1000,
+          "seconds": 10
+        },
+        {
+          "accelerate_to_rpm": 4000,
+          "seconds": 3
+        },
+        {
+          "rpm": 4000,
+          "seconds": 20
+        }
+      ],
+      "device_vacuum_dry_seconds": 20,
+      "anneal": [
+        {
+          "temperature_C": 100,
+          "minutes": 60
+        },
+        {
+          "temperature_C": 150,
+          "minutes": 10
+        }
+      ],
+      "PEAI_spin": {
+        "rpm": 5000,
+        "seconds": 30
+      },
+      "HTL_spin": {
+        "rpm": 3000,
+        "seconds": 30
+      },
+      "blade": {
+        "gap": null,
+        "speed": null,
+        "perovskite_drying": "gas pump",
+        "PEAI_and_HTL_drying": "N2 air knife"
+      },
+      "unknown_ids": [
+        "U04"
+      ]
+    },
+    "MODULE": {
+      "evidence_ids": [
+        "SPIN_MODULE",
+        "PACKAGE"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "substrate_cm": [
+        6.5,
+        7.0
+      ],
+      "series_subcells": 8,
+      "laser": {
+        "wavelength_nm": 1064,
+        "nominal_power_W": 20,
+        "frequency_kHz": 65,
+        "pulse_ns": 120
+      },
+      "P1": {
+        "width_um": 40,
+        "power_percent": 60,
+        "speed_mm_per_s": 300
+      },
+      "P2": {
+        "width_um": 100,
+        "power_percent": 15,
+        "speed_mm_per_s": 1000
+      },
+      "P3": {
+        "width_um": 40,
+        "power_percent": 18,
+        "speed_mm_per_s": 1000
+      },
+      "P1_P3_distance_um_approx": 280,
+      "geometric_fill_factor_percent_approx": 95.74,
+      "layers_nm": {
+        "MoO3": 5,
+        "ITO": 100,
+        "Au_approx": 50
+      },
+      "cover_glass_mm": [
+        60,
+        65
+      ],
+      "sealant": "ThreeBond 3035B",
+      "UV_lamp": "DELOLUX 20",
+      "UV": {
+        "power_percent_of_max": 25,
+        "seconds": 120,
+        "environment": "glovebox"
+      },
+      "contacts": "indium solder at edge FTO and Au electrodes"
+    },
+    "PV": {
+      "evidence_ids": [
+        "PV",
+        "S5",
+        "S6"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "solar_simulator": "Oriel 450 W xenon AAA",
+      "source_meter": "Keithley 2400",
+      "reference": "KG3 Newport Si reference cell",
+      "reported_light_intensity": {
+        "value": 100,
+        "unit": "mA cm^-2",
+        "status": "dimensionally unresolved"
+      },
+      "PSC": {
+        "mask_cm2": 0.06,
+        "voltage_endpoints_V": [
+          0,
+          1.2
+        ],
+        "step_mV": 10,
+        "delay_ms": 500
+      },
+      "PSM": {
+        "mask_cm2": 27.22,
+        "voltage_endpoints_V": [
+          0,
+          9.5
+        ],
+        "step_mV": 50,
+        "delay_ms": 200
+      },
+      "directions": [
+        "forward",
+        "reverse"
+      ],
+      "EQE": {
+        "instrument": "IQE-200B",
+        "bias_light": false
+      },
+      "certificate": {
+        "consecutive_scan_pairs": 3,
+        "MPP_seconds": 300,
+        "external_body": "NPVM"
+      },
+      "unknown_ids": [
+        "Q03",
+        "U10",
+        "U12"
+      ]
+    },
+    "CRYSTALS": {
+      "evidence_ids": [
+        "CRYSTAL",
+        "T5"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "common": {
+        "[Bcmim]Cl_mg": 18.3,
+        "PbI2_mg": 46.1,
+        "each_mmol": 0.1,
+        "DMF_ml": 1,
+        "heat_temperature_C": 65,
+        "heat_h": 1,
+        "evaporation": "slow at room temperature; duration unknown"
+      },
+      "variants": {
+        "binary": {},
+        "MAI": {
+          "MAI_mg": 15.9,
+          "MAI_mmol": 0.1
+        },
+        "FAI": {
+          "FAI_mg": 17.9,
+          "FAI_mmol": 0.1
+        }
+      },
+      "SCXRD": {
+        "instrument": "SuperNova Dual Cu at home/near Atlas",
+        "temperature_K": "140.00(10)",
+        "radiation_from_T5": "Mo K-alpha",
+        "wavelength_A": 0.71073,
+        "dimensions_mm_reported": [
+          [
+            0.42,
+            0.07,
+            0.04
+          ],
+          [
+            0.4,
+            0.05,
+            0.04
+          ]
+        ]
+      },
+      "unknown_ids": [
+        "Q02",
+        "Q07",
+        "U16"
+      ]
+    },
+    "NMR_MODEL": {
+      "evidence_ids": [
+        "NMR",
+        "F3",
+        "S14"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "stock_M": {
+        "MACl": 0.3,
+        "[Bcmim]Cl": 0.3
+      },
+      "solvent": "d6-DMSO",
+      "tube_mm": 5,
+      "final_volume_ml": 0.6,
+      "ionic_liquids": [
+        "[Bcmim]Cl",
+        "[Cmmim]Cl",
+        "[Dmim]Cl",
+        "[Bmim]Cl"
+      ],
+      "main_figure_ratio_percent": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        20,
+        40,
+        60,
+        80,
+        100
+      ],
+      "MAI_substitution_controls": [
+        "[Dmim]Cl",
+        "[Bcmim]Cl"
+      ],
+      "self_dilution": {
+        "stock_M": 0.15,
+        "aliquots_ul": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "final_volume_ml": 0.5,
+        "final_M": [
+          0.0015,
+          0.003,
+          0.0045,
+          0.006,
+          0.0075
+        ]
+      },
+      "unknown_ids": [
+        "U06"
+      ]
+    },
+    "NMR_OPERANDO": {
+      "evidence_ids": [
+        "NMR"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "instrument": "Bruker 400 MHz, 9.4 T, AVIII HD",
+      "tube": "custom 10-mm sapphire, 130 mm length, 8 mm inner diameter",
+      "nonspinning": true,
+      "solvent": "d7-DMF:d6-DMSO 4:1 v/v",
+      "preparation_ml": 2,
+      "base_M": {
+        "CsCl": 0.065,
+        "MAI": 0.065,
+        "FAI": 1.17,
+        "PbI2": 1.365,
+        "MACl": 0.26
+      },
+      "target_reported": {
+        "mol_percent": 0.6,
+        "mM": 0.78,
+        "status": "Q08 unresolved"
+      },
+      "variable_temperature_C": {
+        "from": 25,
+        "to": 100,
+        "step": 5
+      },
+      "equilibrate_seconds": 600,
+      "time_series": {
+        "temperature_C": [
+          25,
+          60
+        ],
+        "duration_h": 24,
+        "interval_min": 15,
+        "reported_points": 96
+      },
+      "scans": {
+        "1H": 1,
+        "13C": 16,
+        "207Pb": 32
+      },
+      "pulse_us": {
+        "1H": 25,
+        "13C": 15,
+        "207Pb": 15
+      },
+      "recovery_delay_s": {
+        "1H": 600,
+        "13C": 3,
+        "207Pb": 2
+      },
+      "Pb_window_ppm": [
+        -3500,
+        2000
+      ],
+      "Pb_subwindow_width_ppm": 1000,
+      "unknown_ids": [
+        "Q08",
+        "U15"
+      ]
+    },
+    "NMR_GENERAL": {
+      "evidence_ids": [
+        "NMR"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "lock": "d6-DMSO deuterium",
+      "reference_H_ppm": 2.5,
+      "reference_C_ppm_reported": [
+        39.52,
+        39.51
+      ],
+      "standard_sequences": [
+        "1D 1H",
+        "1D 13C",
+        "1D 11B",
+        "1D 31P",
+        "1D 207Pb",
+        "COSY",
+        "HSQC",
+        "HMBC"
+      ],
+      "COSY": {
+        "scans": 16,
+        "indirect_points": 128
+      },
+      "HSQC_HMBC": {
+        "scans": 16,
+        "indirect_points": 512
+      },
+      "EXSY": {
+        "indirect_points": 1024,
+        "increment_us": 208.27,
+        "scans": 16,
+        "direct_points": 2048,
+        "acquisition_s": 0.21,
+        "mixing_s": 0.3,
+        "recycle_delay_s": 2
+      },
+      "software_reported": [
+        "MestreNova 14.2.1",
+        "TopSpin 4.2.0"
+      ],
+      "software_execution": false
+    },
+    "HBA": {
+      "evidence_ids": [
+        "NMR",
+        "S15"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "samples": [
+        "[Bcmim]Cl",
+        "[Bcmim]TFSI",
+        "external PPA reference"
+      ],
+      "ionic_liquid": {
+        "equivalents": 3,
+        "mmol": 0.0275,
+        "dry_DMSO_ml": 0.4
+      },
+      "PPA": {
+        "equivalents": 1,
+        "mmol": 0.0092,
+        "stock_M": 0.0611,
+        "stock_ml": 0.15
+      },
+      "external_PPA_M": 0.0166,
+      "tube_mm": 5,
+      "nucleus": "31P",
+      "scans": 16,
+      "temperature": "room",
+      "interpretation": "relative chemical-shift comparison only"
+    },
+    "NMR_CONTROLS": {
+      "evidence_ids": [
+        "N1",
+        "T2",
+        "S27"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "MACl_M": 0.15,
+      "nominal_addition_mol_percent": {
+        "Note1_LiCl_HCl_TFA_and_Bcmim_pairs": 5,
+        "TableS2_BF4_or_MAI_rows": null
+      },
+      "groups": [
+        "MACl+LiCl",
+        "MACl+HCl",
+        "MACl+TFA",
+        "MACl+LiCl+[Bcmim]Cl",
+        "MACl+HCl+[Bcmim]Cl",
+        "MACl+[Bcmim]BF4",
+        "MAI+[Bcmim]Cl",
+        "MACl+TFA+[Bcmim]Cl (prose-only preparation gap)"
+      ],
+      "reported_final_M": {
+        "LiCl": 0.0065,
+        "TFA": 0.0078,
+        "HCl": 0.0075,
+        "Bcmim_in_LiCl": 0.0076,
+        "Bcmim_in_HCl": 0.0077
+      },
+      "unknown_ids": [
+        "Q11",
+        "U06"
+      ]
+    },
+    "PH": {
+      "evidence_ids": [
+        "PH",
+        "T3"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "groups": [
+        "[Dmim]Cl",
+        "[Bmim]Cl",
+        "[Cmmim]Cl",
+        "[Bcmim]Cl",
+        "[Bcmim]BF4",
+        "[Bcmim]TFSI"
+      ],
+      "Methods_mmol": 0.0075,
+      "Methods_water_ml": 10,
+      "table_M": 0.0075,
+      "instrument": "Metrohm 780",
+      "temperature_correction_C": 25,
+      "unknown_ids": [
+        "Q09"
+      ]
+    },
+    "STRUCTURE": {
+      "evidence_ids": [
+        "FILM_MEASURE",
+        "F4",
+        "S18",
+        "S19",
+        "S21",
+        "S22",
+        "S23"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "XRD": {
+        "instrument": "Bruker D8 Advance",
+        "radiation": "Cu K-alpha",
+        "wavelength_A": 1.5418
+      },
+      "GIWAXS": {
+        "beamline": "SPring-8 BL46XU",
+        "energy_keV": 12.39,
+        "wavelength_A": 1,
+        "incidence_deg_approx": 2,
+        "detector": "Pilatus 300K"
+      },
+      "SEM": {
+        "instrument": "FEI Sirion 200",
+        "voltage_kV": 5,
+        "current_nA": 0.1
+      },
+      "Bcmim_mol_percent": [
+        0,
+        0.2,
+        0.6,
+        1.0,
+        1.4
+      ],
+      "MACl_mol_percent": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60
+      ],
+      "phase_snapshots": {
+        "temperature_C": 100,
+        "seconds": [
+          2,
+          5,
+          10,
+          15,
+          20,
+          30
+        ],
+        "groups": [
+          "pristine",
+          "Bcmim_only",
+          "control",
+          "target"
+        ]
+      },
+      "MACl_series_XRD_anneal": {
+        "temperature_C": 100,
+        "minutes": 60
+      },
+      "unknown_ids": [
+        "U06",
+        "U08",
+        "U09"
+      ],
+      "reported_phase_peak_positions_2theta_deg": {
+        "S1": [
+          6.79,
+          7.41
+        ],
+        "S2": [
+          9.41
+        ],
+        "2H_delta": [
+          11.99
+        ],
+        "4H": [
+          13.39
+        ],
+        "3C_alpha": [
+          14.15
+        ],
+        "PbI2_001": [
+          12.7
+        ]
+      },
+      "phase_assignment_scope": "Source Figure4 assignment metadata, not an expected mock spectrum or reward target"
+    },
+    "HIM": {
+      "evidence_ids": [
+        "HIM",
+        "F5"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "initial_film_gas_pump_seconds": 120,
+      "final_anneal": [
+        {
+          "temperature_C": 100,
+          "minutes": 60
+        },
+        {
+          "temperature_C": 150,
+          "minutes": 10
+        }
+      ],
+      "SE": {
+        "ion": "He",
+        "energy_keV": 20,
+        "current_pA": 1
+      },
+      "SIMS": {
+        "ion": "Ne+",
+        "energy_keV": 20,
+        "current_pA": 3
+      },
+      "matrix_pixels": [
+        512,
+        512
+      ],
+      "field_um": [
+        10,
+        10
+      ],
+      "pixel_nm": 19.5,
+      "negative_channels": [
+        "[C-N]-",
+        "Cl-",
+        "I-"
+      ],
+      "positive_channels": [
+        "Cs+",
+        "Pb+"
+      ],
+      "unknown_ids": [
+        "U09"
+      ]
+    },
+    "TOF": {
+      "evidence_ids": [
+        "TOF",
+        "S24"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "analysis": {
+        "ion": "Bi+",
+        "energy_keV": 25,
+        "current_pA": 0.37,
+        "area_um": [
+          200,
+          200
+        ]
+      },
+      "sputter": {
+        "ion": "Cs+",
+        "energy_keV": 2,
+        "current_nA": 20,
+        "area_um": [
+          500,
+          500
+        ]
+      },
+      "monitored_examples": [
+        "Pb+",
+        "[Bcmim]+",
+        "CsI+",
+        "CsCl+"
+      ],
+      "depth_calibration": null,
+      "unknown_ids": [
+        "U09",
+        "U10"
+      ]
+    },
+    "OPTICS": {
+      "evidence_ids": [
+        "FILM_MEASURE",
+        "TRMC",
+        "S20",
+        "T4"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "PL": {
+        "excitation_nm": 488,
+        "power_mW": 0.4,
+        "OD_filter_reported": "1%",
+        "map_area_mm": [
+          1,
+          1
+        ]
+      },
+      "TRPL": {
+        "excitation_nm": 480,
+        "method": "TCSPC"
+      },
+      "PLQY": {
+        "excitation_nm": "635 ± 10",
+        "emission_nm": [
+          700,
+          870
+        ],
+        "reference_protocol": "external ref36 three-step method"
+      },
+      "TRMC": {
+        "substrate": "sapphire",
+        "resonance_GHz": 9,
+        "excitation_nm": 532,
+        "environment": "air at room temperature",
+        "required_calibrations": [
+          "K",
+          "FA",
+          "I",
+          "beta"
+        ],
+        "output": "phi times sum mobility; phi near unity is an assumption at low fluence"
+      },
+      "substrates": {
+        "PL_PLQY": "quartz",
+        "TRPL": [
+          "quartz",
+          "FTO/c-TiO2/m-TiO2"
+        ],
+        "TRMC": "sapphire"
+      },
+      "unknown_ids": [
+        "U07",
+        "U10"
+      ]
+    },
+    "XPS": {
+      "evidence_ids": [
+        "FILM_MEASURE",
+        "S25"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "instrument": "VersaProbe II",
+      "source": "Al K-alpha",
+      "energy_eV": 1486.6,
+      "reference": "adventitious-carbon C-C component",
+      "regions": [
+        "N 1s",
+        "Pb 4f",
+        "I 3d"
+      ]
+    },
+    "GROWTH": {
+      "evidence_ids": [
+        "FILM_MEASURE",
+        "S29",
+        "S30"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "DLS_instrument": "Malvern Zetasizer Nano ZS",
+      "DLS_concentration": "equivalent to device fabrication",
+      "growth_substrate": "FTO",
+      "growth_temperature_C": 100,
+      "video_window_seconds": [
+        0,
+        5.4
+      ],
+      "Bcmim_mol_percent": [
+        0,
+        0.2,
+        0.6,
+        1.0,
+        1.4
+      ],
+      "growth_denominator": "with respect to 1.0 M PbI2",
+      "microscope": "Leica DM2500P",
+      "stage": "Linkam LTSE420",
+      "camera": "QImaging MicroPublisher 5.0 RTV",
+      "unknown_ids": [
+        "U06"
+      ],
+      "other_precursor_components_M": null,
+      "growth_spin_program": null,
+      "growth_precursor_conditioning": null
+    },
+    "AGE": {
+      "evidence_ids": [
+        "AGE",
+        "S13",
+        "S31",
+        "S32",
+        "S33"
+      ],
+      "authority": "reported condition metadata only; inert proxy, never a real-hardware command",
+      "PPS_storage_days": [
+        0,
+        10
+      ],
+      "PPS_storage_environment": null,
+      "film": {
+        "temperature_C": "60 ± 5",
+        "environment": "N2 glovebox",
+        "checkpoints_h": [
+          0,
+          48,
+          96,
+          192,
+          360,
+          600
+        ]
+      },
+      "module": {
+        "conditions": [
+          "room temperature",
+          "65 C"
+        ],
+        "illumination": "AM1.5G, 100 mW cm^-2",
+        "window_h": 1000,
+        "mode": "MPP tracking",
+        "photodiode": "adjacent Si reference",
+        "ADC_bits": 22,
+        "sampling_interval": null
+      },
+      "unknown_ids": [
+        "U11"
+      ]
+    }
+  },
+  "scope": "Source facts and unresolved values for inert task condition cards; not executable chemistry instructions."
+}

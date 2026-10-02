@@ -4,12 +4,12 @@ ScienceGym develops long-horizon robot experimental task families from scientifi
 
 ## Included
 
-Six authored task-design packages: chiral metamaterials, microscopy (Deconwolf), semiconductor fibres, thermoelectric devices, diSPIM microscopy, and helical acoustic metamaterials. These are paper-grounded design specifications and semantic/mock contracts. They are not six runnable environments, physical robot trials, complete experimental reproductions, or a certified benchmark release. Public evaluator files are reference specifications; a future evaluation harness must keep them separate from agent-facing input.
+Seven authored task-design packages: chiral metamaterials, microscopy (Deconwolf), semiconductor fibres, thermoelectric devices, diSPIM microscopy, helical acoustic metamaterials, and perovskite solar modules. These are paper-grounded design specifications and semantic/mock contracts. They are not seven runnable environments, physical robot trials, complete experimental reproductions, or a certified benchmark release. Public evaluator files are reference specifications; a future evaluation harness must keep them separate from agent-facing input.
 
 ## Deliberately absent
 
 - Publisher main text, supplements, extracted full text, original videos, source screenshots, manufacturer CAD, source datasets and credentials
-- Scene/asset binaries, static viewers, simulator dependencies, controllers, prior demo bundles and manuscript drafts
+- Editable source scene/model binaries, physics engines, robot controllers, prior demo bundles and manuscript drafts; the logical viewer and rendered R01 storyboard are included
 - Original delivery allowlists and historical check reports whose hashes or asset-availability checks referred to the complete authoring workspace
 
 Paths into scenes/, assets/, research/, materials_routes/ and other absent directories describe supporting artifacts from the original workspace. They are not provided by this snapshot and are not automatically downloaded. A successful export-integrity check does not establish that these dependencies exist.
@@ -20,7 +20,7 @@ DOIs, public source URLs, source-page/figure locators, original-source SHA-256 v
 
 The task-design documents carry an explicit export-scope notice. The microscopy README clarifies that referenced models are absent. One internal Git-delivery flag has been removed. Scientific provenance and unknown-parameter records remain unchanged apart from locator replacement.
 
-Source-file hashes and preserved-draft hashes inside task provenance refer to historical source bytes. EXPORT_MANIFEST.json contains the current hashes for this public snapshot. It lists all files covered by this snapshot explicitly, including the README and LICENSE. The manifest cannot hash itself. No local Git history or original-source archive is included.
+Source-file hashes and preserved-draft hashes inside task provenance refer to historical source bytes. EXPORT_MANIFEST.json contains the current hashes for this public snapshot. It lists all files covered by this snapshot explicitly, including the README and LICENSE. The manifest cannot hash itself. No original-source archive or private development history is included in these files. The repository retains its existing public Git history.
 
 ## Verification
 
@@ -35,3 +35,5 @@ This snapshot contains authored descriptions and factual source locators, not th
 Task narratives and structured descriptions have been translated into English. Task IDs, source identifiers, numeric values and source-versus-authored distinctions are preserved. The microscopy guide is now GUIDE.md. English-only checking detects CJK text and decoded JSON values; it does not certify scientific or translation accuracy.
 
 The diSPIM and acoustic English schemas rename language-tagged descriptive keys from `_zh` to `_en`; this is an explicit schema change, not a change to task/evidence identifiers or numeric values.
+
+The embodied R01 visual package includes authored task illustrations and licensed G1 model renders, with a separate retained model notice. These additions do not include publisher source media or real robot execution. The perovskite package is a task-design reference without a corresponding visual environment in this snapshot.

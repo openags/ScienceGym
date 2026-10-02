@@ -1,0 +1,776 @@
+{
+  "schema_version": "perovskite_task_design.v2",
+  "doi": "10.1038/s41586-024-07228-z",
+  "packages": [
+    {
+      "branch_id": "ADDITIVE_INTAKE",
+      "condition_package": {
+        "families": [
+          "[Bcmim]Cl",
+          "[Bcmim]TFSI",
+          "[Bcmim]BF4",
+          "[Bcmim]I",
+          "[Bcmim]PF6",
+          "[Bcmim]SCN",
+          "[C1SCNmim]Cl"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "CRYSTAL_MODELS",
+      "condition_package": {
+        "reaction_groups": [
+          "[Bcmim]Cl+PbI2",
+          "[Bcmim]Cl+PbI2+MAI",
+          "[Bcmim]Cl+PbI2+FAI"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "ETL_PREPARATION",
+      "condition_package": {
+        "substrate": "FTO"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "CELL_CONTROL_TARGET",
+      "condition_package": {
+        "groups": [
+          "control",
+          "target"
+        ],
+        "architecture": "small-area n-i-p"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "CATION_SCREEN",
+      "condition_package": {
+        "MACl_mol_percent": 20,
+        "ionic_liquid_mol_percent": 0.6,
+        "ionic_liquids": [
+          "none (control)",
+          "[Im]Cl",
+          "[Dmim]Cl",
+          "[C1SCNmim]Cl",
+          "[Bmim]Cl",
+          "[Cmmim]Cl",
+          "[Bcmim]Cl"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "ANION_SCREEN",
+      "condition_package": {
+        "MACl_mol_percent": 20,
+        "ionic_liquid_mol_percent": 0.6,
+        "ionic_liquids": [
+          "none (control)",
+          "[Bcmim]BF4",
+          "[Bcmim]PF6",
+          "[Bcmim]I",
+          "[Bcmim]SCN"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "MACL_SCREEN",
+      "condition_package": {
+        "MACl_mol_percent": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "Bcmim": "absent"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "BCMIM_SCREEN",
+      "condition_package": {
+        "MACl_mol_percent": 20,
+        "Bcmim_mol_percent": [
+          0,
+          0.2,
+          0.6,
+          1.0,
+          1.4
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "SPIN_MODULES",
+      "condition_package": {
+        "groups": [
+          "control",
+          "target"
+        ],
+        "series_subcells": 8
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "BLADE_MODULES",
+      "condition_package": {
+        "groups": [
+          "control",
+          "target"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "ENCAPSULATION",
+      "condition_package": {
+        "groups": [
+          "control",
+          "target"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "CERTIFICATION_HANDOFF",
+      "condition_package": {
+        "group": "target",
+        "certificate_scan_pairs": 3,
+        "stabilized_output_seconds": 300
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": "NPVM three consecutive scan pairs refer to repeated tests on a certified module, not three independent modules.",
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "NMR_TEMPERATURE",
+      "condition_package": {
+        "groups": [
+          "control",
+          "target"
+        ],
+        "temperature_C": [
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "NMR_TIMECOURSE",
+      "condition_package": {
+        "groups": [
+          "control",
+          "target"
+        ],
+        "temperature_C": [
+          25,
+          60
+        ],
+        "duration_h": 24,
+        "reported_timepoints": 96
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "PPS_STORAGE_FILMS",
+      "condition_package": {
+        "age_days": [
+          0,
+          10
+        ],
+        "Bcmim_mol_percent": [
+          0,
+          0.2,
+          0.6,
+          1.0,
+          1.4
+        ],
+        "MACl_mol_percent": 20
+      },
+      "route_variant_ids": [
+        "PPS_STORAGE_FILMS__0D",
+        "PPS_STORAGE_FILMS__10D"
+      ],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "NMR_INTERACTIONS",
+      "condition_package": {
+        "MA_salt": [
+          "MACl"
+        ],
+        "ionic_liquids": [
+          "[Bcmim]Cl",
+          "[Cmmim]Cl",
+          "[Dmim]Cl",
+          "[Bmim]Cl"
+        ],
+        "ratio_percent": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          10,
+          20,
+          40,
+          60,
+          80,
+          100
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "NMR_MAI_CONTROLS",
+      "condition_package": {
+        "MA_salt": "MAI",
+        "ionic_liquids": [
+          "[Dmim]Cl",
+          "[Bcmim]Cl"
+        ],
+        "ratio_domain": "0–100% reported; exact SI S14 grid retained as unresolved unless explicitly issued"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "NMR_SELF_DILUTION",
+      "condition_package": {
+        "solute": "[Bcmim]Cl",
+        "concentration_M": [
+          0.0015,
+          0.003,
+          0.0045,
+          0.006,
+          0.0075
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "NMR_ALTERNATIVES",
+      "condition_package": {
+        "groups": [
+          "MACl+LiCl",
+          "MACl+HCl",
+          "MACl+TFA",
+          "MACl+LiCl+[Bcmim]Cl",
+          "MACl+HCl+[Bcmim]Cl",
+          "MACl+[Bcmim]BF4",
+          "MAI+[Bcmim]Cl",
+          "MACl+TFA+[Bcmim]Cl (prose-only preparation gap)"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "HBA_COMPARISON",
+      "condition_package": {
+        "groups": [
+          "[Bcmim]Cl+PPA",
+          "[Bcmim]TFSI+PPA",
+          "PPA external reference"
+        ],
+        "nucleus": "31P"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "EXSY_COMPARISON",
+      "condition_package": {
+        "model_additives_at_1_mol_percent": [
+          "[Bcmim]Cl",
+          "[Bcmim]BF4",
+          "[Bcmim]PF6",
+          "[Bcmim]I",
+          "[Bcmim]SCN"
+        ],
+        "additional_group": "target PPS"
+      },
+      "route_variant_ids": [
+        "EXSY_COMPARISON__MODEL",
+        "EXSY_COMPARISON__PPS"
+      ],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "NMR_ASSIGNMENTS",
+      "condition_package": {
+        "sequences": [
+          "1H",
+          "13C",
+          "COSY",
+          "HSQC",
+          "HMBC"
+        ],
+        "sample_mapping": "not fully reported"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "LEAD_INTERACTIONS",
+      "condition_package": {
+        "Pb207_groups": [
+          "control PPS",
+          "target PPS",
+          "PbI2",
+          "NaPbI3",
+          "[Bcmim]PbI3",
+          "equimolar PbI2+[Bcmim]PbI3",
+          "PbI2+0.6 mol% [Bcmim]BF4",
+          "PbI2+50 mol% [Bcmim]BF4"
+        ],
+        "B11_groups": [
+          "[Bcmim]BF4",
+          "PbI2+0.6 mol% [Bcmim]BF4",
+          "PbI2+50 mol% [Bcmim]BF4"
+        ]
+      },
+      "route_variant_ids": [
+        "LEAD_INTERACTIONS__PPS",
+        "LEAD_INTERACTIONS__MODEL_PB",
+        "LEAD_INTERACTIONS__MODEL_B"
+      ],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "ACIDITY_COMPARISON",
+      "condition_package": {
+        "ionic_liquids": [
+          "[Dmim]Cl",
+          "[Bmim]Cl",
+          "[Cmmim]Cl",
+          "[Bcmim]Cl",
+          "[Bcmim]BF4",
+          "[Bcmim]TFSI"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "FILM_STRUCTURE",
+      "condition_package": {
+        "Bcmim_mol_percent": [
+          0,
+          0.2,
+          0.6,
+          1.0,
+          1.4
+        ],
+        "MACl_mol_percent": 20
+      },
+      "route_variant_ids": [
+        "FILM_STRUCTURE__XRD",
+        "FILM_STRUCTURE__ROCK",
+        "FILM_STRUCTURE__GIWAXS",
+        "FILM_STRUCTURE__SEM_TOP"
+      ],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "FILM_ANIONS",
+      "condition_package": {
+        "ionic_liquids": [
+          "none (control)",
+          "[Bcmim]PF6",
+          "[Bcmim]BF4",
+          "[Bcmim]I",
+          "[Bcmim]SCN"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "FILM_MACL",
+      "condition_package": {
+        "MACl_mol_percent": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "Bcmim_mol_percent": [
+          0,
+          0.6
+        ]
+      },
+      "route_variant_ids": [
+        "FILM_MACL__XRD",
+        "FILM_MACL__SEM_TOP"
+      ],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "PHASE_EVOLUTION",
+      "condition_package": {
+        "formulations": [
+          "pristine",
+          "Bcmim_only",
+          "control",
+          "target"
+        ],
+        "seconds": [
+          2,
+          5,
+          10,
+          15,
+          20,
+          30
+        ],
+        "temperature_C": 100
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "PHASE_ENDPOINTS",
+      "condition_package": {
+        "formulations": [
+          "pristine",
+          "Bcmim_only",
+          "control",
+          "target"
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "LATERAL_MAPS",
+      "condition_package": {
+        "formulations": [
+          "control",
+          "target"
+        ],
+        "thermal_state": [
+          "initial",
+          "final annealed"
+        ]
+      },
+      "route_variant_ids": [
+        "LATERAL_MAPS__INITIAL_HIM_NEG",
+        "LATERAL_MAPS__INITIAL_HIM_POS",
+        "LATERAL_MAPS__FINAL_HIM_NEG",
+        "LATERAL_MAPS__FINAL_HIM_POS"
+      ],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "DEPTH_PROFILES",
+      "condition_package": {
+        "formulations": [
+          "control",
+          "target"
+        ],
+        "substrate_stack": "perovskite/SnO2@TiO2/FTO"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "SURFACE_SPECTRA",
+      "condition_package": {
+        "groups": [
+          "control",
+          "Bcmim-modified"
+        ],
+        "exact_Bcmim_series": "not fully enumerated by S25"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "LUMINESCENCE",
+      "condition_package": {
+        "formulations": [
+          "control",
+          "target"
+        ],
+        "quartz_assays": [
+          "PL_MAP",
+          "PLQY",
+          "TRPL"
+        ],
+        "mesoporous_FTO_assays": [
+          "TRPL"
+        ]
+      },
+      "route_variant_ids": [
+        "LUMINESCENCE__quartz_PL_MAP",
+        "LUMINESCENCE__quartz_PLQY",
+        "LUMINESCENCE__quartz_TRPL",
+        "LUMINESCENCE__mesoporous_FTO_TRPL"
+      ],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "MICROWAVE_CARRIERS",
+      "condition_package": {
+        "formulations": [
+          "control",
+          "target"
+        ],
+        "substrate": "sapphire"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "AGGREGATE_SIZES",
+      "condition_package": {
+        "Bcmim_mol_percent": [
+          0,
+          0.2,
+          0.6,
+          1.0,
+          1.4
+        ],
+        "concentration": "device-fabrication-equivalent"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "CRYSTAL_GROWTH",
+      "condition_package": {
+        "Bcmim_mol_percent": [
+          0,
+          0.2,
+          0.6,
+          1.0,
+          1.4
+        ],
+        "substrate": "FTO",
+        "temperature_C": 100,
+        "video_window_s": [
+          0,
+          5.4
+        ]
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "FILM_THERMAL_AGE",
+      "condition_package": {
+        "formulations": [
+          "control",
+          "target"
+        ],
+        "cumulative_age_h": [
+          0,
+          48,
+          96,
+          192,
+          360,
+          600
+        ],
+        "environment": "N2",
+        "temperature_C": "60 ± 5"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "MODULE_OPERATIONAL_AGE",
+      "condition_package": {
+        "formulations": [
+          "control",
+          "target"
+        ],
+        "temperature": [
+          "room temperature",
+          "65 C"
+        ],
+        "window_h": 1000
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "DEVICE_CROSS_SECTION",
+      "condition_package": {
+        "group": "target"
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    },
+    {
+      "branch_id": "STABILIZED_MODULE_OUTPUT",
+      "condition_package": {
+        "group": "target",
+        "MPP_window_s": 300
+      },
+      "route_variant_ids": [],
+      "source_replicate_count": null,
+      "authored_default_independent_replicates": 1,
+      "source_repeat_exception": null,
+      "policy": "Issue all required groups for the chosen comparison; a compact smoke test is labelled subset and receives no whole-panel completion credit."
+    }
+  ],
+  "statistics": "Neither dots in plots nor repeated scans are converted into an inferred source n. Report actual authored mock n and paired/batch relationships."
+}
