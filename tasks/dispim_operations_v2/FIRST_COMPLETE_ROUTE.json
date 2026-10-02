@@ -1,0 +1,249 @@
+{
+  "schema": "sciencegym.dispim_route_design.v2",
+  "route_id": "D-R01",
+  "title_en": "Complete task from dual-arm assembly through embryo dual-view time series and archiving",
+  "status": "design_only_not_executed",
+  "provenance": {
+    "doi": "10.1038/nprot.2014.172",
+    "title": "Dual-view plane illumination microscopy for rapid and spatially isotropic imaging",
+    "main_version": "Green OA NIH/HHS author accepted manuscript; NOT publisher version of record",
+    "main": {
+      "file": "main_accepted.pdf",
+      "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+      "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+      "pdf_pages_1based": [
+        1
+      ],
+      "locator": "Version identification"
+    },
+    "supplement": {
+      "file": "supp_01.pdf",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+      "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+      "pdf_pages_1based": [
+        1,
+        43
+      ],
+      "locator": "Publisher supplementary notes and tables"
+    },
+    "inventory_reference": "source-archive:///sciencegym-staging/sources/biology_batch_03/dispim/program_inventory.json",
+    "rights": "Only newly authored facts, task specifications, and provenance links. Do not redistribute source PDFs, images, video, archives, or source code."
+  },
+  "goal_for_agent": "Using authorized virtual diSPIM parts and routine materials, deliver paired, traceable, quality-checked embryo dual-view time series and reconstruction results; leave the instrument and bench in a safe closeout state.",
+  "initial_state": {
+    "world": "Newly authored static bench; commercial light-source option; heavy optical table installed externally; no real lasers, power supplies, biological materials or animals",
+    "instrument": "The frame, lower observation path, dual-arm module, cameras and chamber are assemblable parts; camera identities and interface labels are readable",
+    "consumables": "Virtual stocks of clean coverslips, O-rings, markers, beads and dye; authorized preparation scene representing routine worm stocks",
+    "training_clock": "Virtual timers and cross-stage checkpoints; no claim that real days or physical time compression have been implemented",
+    "unknowns": "The sample XY-stage model, mechanical fits, torque, real drivers and robot specifications are unknown; use explicitly authored placeholder interfaces without inferring paper geometry"
+  },
+  "ordered_stage_contracts": [
+    [
+      "R01-01",
+      "Check component identities and safety boundaries",
+      "Establish component identities, modes, non-real-operation boundaries and provenance records"
+    ],
+    [
+      "R01-02",
+      "Install the lower observation path",
+      "Correctly associate the frame, Z axis, mirror cube, filters, tube lens, bottom camera, 10x objective and XY stage"
+    ],
+    [
+      "R01-03",
+      "Connect and check three cameras and dual-arm controls",
+      "Connect with power off; check channel mapping and identity individually; save virtual test evidence"
+    ],
+    [
+      "R01-04",
+      "Establish coverslip and bottom-camera references",
+      "Verify coverslip orientation and chamber sealing; record XY/Z references rather than supplying a preset winning pose"
+    ],
+    [
+      "R01-05",
+      "Assemble scanners and dichroic components",
+      "Maintain symmetric arms without swapping identities; pass filter-orientation and optical-connectivity checks"
+    ],
+    [
+      "R01-06",
+      "Assemble objectives and piezos",
+      "Validate objective models, A/B axes, collision exclusion zones and observation positions"
+    ],
+    [
+      "R01-07",
+      "Prepare bead and dye standards",
+      "Virtual coating, waiting, washing and labeling actions leave state evidence"
+    ],
+    [
+      "R01-08",
+      "Coarse alignment and camera installation",
+      "All three cameras show their corresponding preset optical feedback; assemblies have no unsupported connections"
+    ],
+    [
+      "R01-09",
+      "Closed-loop fine alignment and ROI centering",
+      "Adjust one control at a time from preset observations; save both arm offsets, camera ROIs and bottom-view localization image"
+    ],
+    [
+      "R01-10",
+      "Bead synchronization and mismatch diagnosis",
+      "Distinguish defocus, leading/lagging sheets, edge blur and aggregates; retain final dual-arm calibration"
+    ],
+    [
+      "R01-11",
+      "PSF and matching backgrounds",
+      "Complete both views, same-settings dark backgrounds, single-bead selections and unit traceability"
+    ],
+    [
+      "R01-12",
+      "Sheet-thickness checks across the field",
+      "Correctly fix the collection plane while scanning illumination; collect evidence at multiple positions in both arms"
+    ],
+    [
+      "R01-13",
+      "Routine embryo preparation and chamber loading",
+      "Record virtual isolation, transfer without mouth pipetting, central adhesion, orientation and stock provenance"
+    ],
+    [
+      "R01-14",
+      "Embryo scouting and dual-arm coverage",
+      "Both views cover the target with complete sheet and volume coverage; do not compensate using synchronization-breaking Z offsets"
+    ],
+    [
+      "R01-15",
+      "Paired time-series acquisition",
+      "Complete each pair of task-manifest timepoints without confusing backgrounds, parameters or data identities"
+    ],
+    [
+      "R01-16",
+      "Conversion, cropping and background subtraction",
+      "Correctly pair A/B and timepoints; retain raw data and complete derived-file lineage"
+    ],
+    [
+      "R01-17",
+      "Registration strategy and fusion reconstruction",
+      "Select once, per-segment or per-timepoint registration from drift evidence; verify voxels, orientation, transforms and pairing"
+    ],
+    [
+      "R01-18",
+      "Quality recheck and closeout",
+      "Check dual-view and reconstruction evidence, then archive, stop acquisition, withdraw samples and sort items; honestly report failed checks"
+    ]
+  ],
+  "completion_evaluator": {
+    "hidden_from_agent": [
+      "operation graph",
+      "initial fault labels",
+      "valid pose IDs",
+      "preset response lookup keys",
+      "numeric success gates chosen by benchmark authors"
+    ],
+    "required": [
+      "assembly_connected_and_identified",
+      "calibration_two_arms_passed",
+      "paired_background_present",
+      "psf_units_traceable",
+      "sheet_thickness_both_arms_sampled",
+      "embryo_source_and_mount_recorded",
+      "all_requested_times_have_A_B",
+      "registration_validated_with_both_views",
+      "lineage_manifest_written",
+      "safe_shutdown_and_no_unlogged_loss"
+    ],
+    "disqualifiers": [
+      "unmarked_device_substitution",
+      "source_media_repackaged",
+      "collision_state",
+      "real_hardware_command",
+      "mouth_pipetting_or_open_flame_action",
+      "faked_scientific_result",
+      "processed_Data8_claimed_validated"
+    ],
+    "numerical_result_policy": "Evaluate task procedure and evidence, without requiring reproduction of the paper's FWHM, duration, embryo development or cell results. All images/readings are clearly labeled authored presets, not actual measurements."
+  },
+  "source_step_coverage": "All main steps 1–95 + 96A(i–xxiv) + 97–106, plus reagent/equipment setup and authored cleanup; the cell and custom launch alternatives are separately specified in the full family.",
+  "operation_sequence": [
+    "O001",
+    "O002",
+    "O003",
+    "O004",
+    "O005",
+    "O006",
+    "O007",
+    "P001",
+    "P004",
+    "O008",
+    "O009",
+    "O010",
+    "O011",
+    "O012",
+    "O013",
+    "O014",
+    "O015",
+    "O016",
+    "O017",
+    "O018",
+    "O019",
+    "O020",
+    "O021",
+    "O022",
+    "O023",
+    "O024",
+    "O025",
+    "O026",
+    "P002",
+    "P003",
+    "O027",
+    "O028",
+    "O029",
+    "O030",
+    "O031",
+    "O032",
+    "O033",
+    "O034",
+    "O035",
+    "O036",
+    "O037",
+    "O038",
+    "O039",
+    "O040",
+    "O041",
+    "O042",
+    "O043",
+    "O044",
+    "O045",
+    "O046",
+    "O047",
+    "O048",
+    "O049",
+    "O050",
+    "O051",
+    "P005",
+    "P006",
+    "E001",
+    "E002",
+    "P001",
+    "P004",
+    "E003",
+    "E004",
+    "E005",
+    "E006",
+    "E007",
+    "E008",
+    "E009",
+    "E010",
+    "D001",
+    "D002",
+    "D003",
+    "D004",
+    "D005",
+    "D006",
+    "D007",
+    "D008",
+    "S001",
+    "S002",
+    "S003",
+    "S004",
+    "S005"
+  ],
+  "authored_sequence_note": "The sequence is newly authored task topology, not a verbatim source copy. Every operation remains subject to its preconditions; diagnostic loops may return to relevant checkpoints."
+}

@@ -1,0 +1,1228 @@
+{
+  "schema": "sciencegym.dispim_family.v2",
+  "provenance": {
+    "doi": "10.1038/nprot.2014.172",
+    "title": "Dual-view plane illumination microscopy for rapid and spatially isotropic imaging",
+    "main_version": "Green OA NIH/HHS author accepted manuscript; NOT publisher version of record",
+    "main": {
+      "file": "main_accepted.pdf",
+      "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+      "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+      "pdf_pages_1based": [
+        1
+      ],
+      "locator": "Version identification"
+    },
+    "supplement": {
+      "file": "supp_01.pdf",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+      "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+      "pdf_pages_1based": [
+        1,
+        43
+      ],
+      "locator": "Publisher supplementary notes and tables"
+    },
+    "inventory_reference": "source-archive:///sciencegym-staging/sources/biology_batch_03/dispim/program_inventory.json",
+    "rights": "Only newly authored facts, task specifications, and provenance links. Do not redistribute source PDFs, images, video, archives, or source code."
+  },
+  "status": "source_grounded_task_design_only",
+  "coverage_claim": "Every reported manual stage has a source mapping; hazardous historical practices have explicit substitutes. Physical equipment, physics simulation, drivers and scientific reproduction are unfinished. Not every branch is implemented.",
+  "branches": [
+    {
+      "branch_id": "B01",
+      "name_en": "Initial bench, computing-platform and camera checks",
+      "operation_ids": [
+        "O001",
+        "O002",
+        "O003",
+        "O004",
+        "O005",
+        "O006",
+        "O007"
+      ],
+      "entry_predicates": [],
+      "exit_predicates": [
+        "table_ready",
+        "camera_pair_tested",
+        "bottom_camera_tested"
+      ],
+      "goal_for_agent": "Establish a virtual dual-view acquisition platform with unambiguous component identities",
+      "initial_state_for_agent": "The heavy optical table was installed externally; cards and cables await connection",
+      "controls_or_comparisons": [
+        "Independent counts for the two cameras",
+        "AO input/output comparison"
+      ],
+      "failure_cases": [
+        "Wrong camera",
+        "Wrong channel",
+        "Duplicate filename",
+        "Failed test"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B01",
+        "D-B03"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B02",
+      "name_en": "Lower observation path and reference",
+      "operation_ids": [
+        "P001",
+        "P004",
+        "O008",
+        "O009",
+        "O010",
+        "O011",
+        "O012",
+        "O013",
+        "O014"
+      ],
+      "entry_predicates": [
+        "table_ready",
+        "bottom_camera_tested",
+        "inventory_verified"
+      ],
+      "exit_predicates": [
+        "lower_reference_saved"
+      ],
+      "goal_for_agent": "Establish a reusable coverslip-localization reference",
+      "initial_state_for_agent": "The frame, air objective and bottom camera are assemblable; the marked coverslip awaits installation",
+      "controls_or_comparisons": [
+        "Separate F and Z axes",
+        "Check coverslip orientation"
+      ],
+      "failure_cases": [
+        "Incorrectly installing a 40x objective",
+        "Swapped F/Z axes",
+        "Cracked glass",
+        "Marked surface inverted"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B01"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B03",
+      "name_en": "Dual scanner and module assembly",
+      "operation_ids": [
+        "O015",
+        "O016",
+        "O017",
+        "O018",
+        "O019",
+        "O020",
+        "O021",
+        "O022"
+      ],
+      "entry_predicates": [
+        "launch_selected_and_checked",
+        "inventory_verified"
+      ],
+      "exit_predicates": [
+        "coarse_objective_alignment"
+      ],
+      "goal_for_agent": "Complete the dual-arm excitation and objective structure and record optical-path checks",
+      "initial_state_for_agent": "Both arms are unassembled; optical responses use labeled preset observations only",
+      "controls_or_comparisons": [
+        "Near/far collimation comparison",
+        "Check symmetric A/B roles"
+      ],
+      "failure_cases": [
+        "Fully closed iris",
+        "Reversed optic",
+        "No intersection",
+        "Collision"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B01",
+        "D-B02",
+        "D-B04"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B04",
+      "name_en": "Reference-sample preparation and chamber",
+      "operation_ids": [
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005",
+        "P006"
+      ],
+      "entry_predicates": [
+        "inventory_verified"
+      ],
+      "exit_predicates": [
+        "bead_coverslip_ready",
+        "dye_reference_ready",
+        "chamber_assembled",
+        "routine_reagents_ready",
+        "safe_transfer_tools_ready"
+      ],
+      "goal_for_agent": "Obtain fully labeled, loadable routine reference materials and safe tools",
+      "initial_state_for_agent": "Clean coverslips and virtual material stocks await handling",
+      "controls_or_comparisons": [
+        "Dry/not-dry states",
+        "Single bead/aggregate"
+      ],
+      "failure_cases": [
+        "Skipped wash",
+        "Wrong reagent",
+        "Leak",
+        "Request for historical sharps or mouth-pipetting practices"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B10"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B05",
+      "name_en": "Three-camera closed-loop alignment",
+      "operation_ids": [
+        "O023",
+        "O024",
+        "O025",
+        "O026",
+        "O027",
+        "O028",
+        "O029",
+        "O030",
+        "O031",
+        "O032",
+        "O033",
+        "O034",
+        "O035",
+        "O036",
+        "O037",
+        "O038",
+        "O039"
+      ],
+      "entry_predicates": [
+        "lower_reference_saved",
+        "coarse_objective_alignment",
+        "bead_coverslip_ready",
+        "dye_reference_ready",
+        "ao_test_recorded",
+        "camera_pair_tested",
+        "objectives_and_piezos_mounted"
+      ],
+      "exit_predicates": [
+        "calibration_bundle_ready"
+      ],
+      "goal_for_agent": "Calibrate both arms from visible feedback and save a reusable reference",
+      "initial_state_for_agent": "Randomize one or more distinguishable mismatches; the agent does not know the fault truth",
+      "controls_or_comparisons": [
+        "Single-arm/dual-arm excitation",
+        "Bottom/A/B cameras",
+        "Before/after adjustment"
+      ],
+      "failure_cases": [
+        "Confocal misalignment",
+        "Tilted sheet line",
+        "Off-center ROI",
+        "Reset origin",
+        "Incorrect camera-rotation direction"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B03",
+        "D-B04"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B06",
+      "name_en": "Bead synchronization and mismatch diagnosis",
+      "operation_ids": [
+        "O040",
+        "O041",
+        "O042",
+        "O043"
+      ],
+      "entry_predicates": [
+        "calibration_bundle_ready",
+        "bead_coverslip_ready"
+      ],
+      "exit_predicates": [
+        "synchronization_verified"
+      ],
+      "goal_for_agent": "Obtain calibration evidence that both views are consistently sharp throughout the stack",
+      "initial_state_for_agent": "Injectable collection-focus offset, leading sheet, lagging sheet or conversion-factor mismatch",
+      "controls_or_comparisons": [
+        "Stationary-light-sheet diagnostic",
+        "Leading/lagging/synchronized",
+        "Center and edges"
+      ],
+      "failure_cases": [
+        "Mistaking aggregation for defocus",
+        "Incorrectly freezing the piezo",
+        "Vibration caused by approaching",
+        "Blindly changing multiple parameters"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B05",
+        "D-B07"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B07",
+      "name_en": "Dual-view PSF and dark background",
+      "operation_ids": [
+        "O044",
+        "O045",
+        "O046",
+        "O047",
+        "O048"
+      ],
+      "entry_predicates": [
+        "synchronization_verified"
+      ],
+      "exit_predicates": [
+        "psf_evidence_complete"
+      ],
+      "goal_for_agent": "Deliver dual-view PSF evidence with provenance and units",
+      "initial_state_for_agent": "The bead sample has a known identity; matching camera backgrounds have not been acquired",
+      "controls_or_comparisons": [
+        "Raw A/B views",
+        "Excitation/dark background",
+        "Lateral/axial",
+        "Single bead/aggregate"
+      ],
+      "failure_cases": [
+        "Mismatched background settings",
+        "Incorrect voxel conversion",
+        "Selecting aggregated particles",
+        "Presenting paper metrics as new measurements"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B05"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B08",
+      "name_en": "Light-sheet thickness across the field in both arms",
+      "operation_ids": [
+        "O049",
+        "O050",
+        "O051"
+      ],
+      "entry_predicates": [
+        "synchronization_verified"
+      ],
+      "exit_predicates": [
+        "sheet_field_evidence_complete"
+      ],
+      "goal_for_agent": "Compare sheet thickness at different positions in both arms and diagnose abnormalities",
+      "initial_state_for_agent": "The task freezes the position list; none are measured yet; both arm identities are visible",
+      "controls_or_comparisons": [
+        "Stationary collection plane/scanning sheet",
+        "Each position/both arms"
+      ],
+      "failure_cases": [
+        "Wrong mode",
+        "Measuring only the waist",
+        "Sheet too thick",
+        "Missing position labels"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B06"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B09",
+      "name_en": "Routine model-embryo isolation, transfer and orientation",
+      "operation_ids": [
+        "P005",
+        "P006",
+        "E001",
+        "E002",
+        "P001",
+        "P004",
+        "E003",
+        "E004"
+      ],
+      "entry_predicates": [
+        "inventory_verified"
+      ],
+      "exit_predicates": [
+        "embryo_mounted_oriented"
+      ],
+      "goal_for_agent": "Complete virtual routine embryo preparation and orient the models as required in the central region",
+      "initial_state_for_agent": "Models represent existing routine worm stocks; no real animals or culture",
+      "controls_or_comparisons": [
+        "Centered/off-center",
+        "Adhering/drifting",
+        "Correct/incorrect orientation"
+      ],
+      "failure_cases": [
+        "Lost sample",
+        "Mouth pipetting",
+        "Unknown provenance",
+        "Mechanical pipette not connected"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "Routine static C. elegans surrogates only; no real animal procedures or genetic-engineering constructs",
+      "source_branch_ids": [
+        "D-B08",
+        "D-B10"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B10",
+      "name_en": "Long embryo dual-view time series",
+      "operation_ids": [
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010"
+      ],
+      "entry_predicates": [
+        "embryo_mounted_oriented",
+        "calibration_bundle_ready",
+        "psf_evidence_complete",
+        "sheet_field_evidence_complete",
+        "synchronization_verified"
+      ],
+      "exit_predicates": [
+        "raw_series_ready"
+      ],
+      "goal_for_agent": "Acquire the task-specified paired embryo time series and matching backgrounds",
+      "initial_state_for_agent": "The target awaits localization; calibration history is readable, hidden faults are not disclosed",
+      "controls_or_comparisons": [
+        "Structure/intensity in the two views",
+        "Illumination coverage/volume coverage",
+        "Early/middle/late observations and timepoint counts"
+      ],
+      "failure_cases": [
+        "Using Z offset to compensate for coverage",
+        "Drift",
+        "One arm missing",
+        "Filename overwrite",
+        "Write error during acquisition"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B08"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B11",
+      "name_en": "Record all cell-preparation stages",
+      "operation_ids": [
+        "C001",
+        "C002",
+        "C003",
+        "C004",
+        "C005"
+      ],
+      "entry_predicates": [
+        "inventory_verified"
+      ],
+      "exit_predicates": [
+        "cells_ready_for_imaging"
+      ],
+      "goal_for_agent": "Fully record the source cell-preparation stages and select a qualified existing reporter sample",
+      "initial_state_for_agent": "Cleaning and culture handling use passive models; unverified stocks must not be invented",
+      "controls_or_comparisons": [
+        "Clean/contaminated",
+        "Healthy/abnormal",
+        "Reporter signal present/absent"
+      ],
+      "failure_cases": [
+        "Skipping sample-state checks",
+        "Fabricating successful transfection",
+        "Unknown cell-line identifier"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "Static routine noninfectious cell handling; reporter construction is a source-stage reference only, with pre-labeled inputs; no sequences, real engineering or optimization",
+      "source_branch_ids": [
+        "D-B09",
+        "D-B10"
+      ],
+      "benchmark_status": "design_not_implemented",
+      "excluded_from_execution": [
+        "live culture",
+        "construct synthesis",
+        "real transfection",
+        "hazardous chemical processing"
+      ]
+    },
+    {
+      "branch_id": "B12",
+      "name_en": "Cell dual-view time series",
+      "operation_ids": [
+        "C006",
+        "C007",
+        "C008",
+        "C009"
+      ],
+      "entry_predicates": [
+        "cells_ready_for_imaging",
+        "calibration_bundle_ready",
+        "psf_evidence_complete",
+        "synchronization_verified"
+      ],
+      "exit_predicates": [
+        "raw_series_ready"
+      ],
+      "goal_for_agent": "Acquire paired time series covering the same cell target and save backgrounds",
+      "initial_state_for_agent": "A static cell sample is prepared; each arm must be checked separately",
+      "controls_or_comparisons": [
+        "A/B target coverage",
+        "Before/after plane-range adjustment"
+      ],
+      "failure_cases": [
+        "Changing only XY to compensate for depth",
+        "One blurry arm",
+        "Confusing the source counts 350/351",
+        "Claiming Data8 reconstruction was validated"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B09"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B13",
+      "name_en": "Format conversion and lineage-preserving preprocessing",
+      "operation_ids": [
+        "D001",
+        "D002",
+        "D003"
+      ],
+      "entry_predicates": [
+        "raw_series_ready",
+        "software_setup_recorded"
+      ],
+      "exit_predicates": [
+        "preprocessed_pairs_ready",
+        "processing_interface_ready"
+      ],
+      "goal_for_agent": "Produce traceable paired volumes and prepare the processing interface",
+      "initial_state_for_agent": "Separate A/B acquisition directories, backgrounds, calibration and parameter records",
+      "controls_or_comparisons": [
+        "Raw/derived",
+        "Single-page/multipage",
+        "A/B background settings"
+      ],
+      "failure_cases": [
+        "Out of order",
+        "Missing planes",
+        "Cropping out the target",
+        "Subtracting background twice",
+        "Falsely claiming historical software was run"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B11"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B14",
+      "name_en": "Registration, fusion and failure recovery",
+      "operation_ids": [
+        "D004",
+        "D005",
+        "D006",
+        "D007",
+        "D008"
+      ],
+      "entry_predicates": [
+        "preprocessed_pairs_ready",
+        "processing_interface_ready",
+        "psf_evidence_complete"
+      ],
+      "exit_predicates": [
+        "reconstruction_QA_recorded"
+      ],
+      "goal_for_agent": "Validate registration and reconstruction over the full task time range and report failed checks",
+      "initial_state_for_agent": "Visible early/middle/late preset views have different drift and available strategies",
+      "controls_or_comparisons": [
+        "Raw A/B/transformed/fused/deconvolved",
+        "Once/per segment/per timepoint"
+      ],
+      "failure_cases": [
+        "Wrong matrix",
+        "Swapped axes/units",
+        "Memory warning",
+        "Mismatched timepoints",
+        "Reconstruction artifacts"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B11"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B15",
+      "name_en": "Archive, stop and reset the bench",
+      "operation_ids": [
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "entry_predicates": [
+        "reconstruction_QA_recorded"
+      ],
+      "exit_predicates": [
+        "task_closed"
+      ],
+      "goal_for_agent": "Save trustworthy deliverables and leave the bench in an explicit safe closeout state",
+      "initial_state_for_agent": "Results, acquisition cache and used consumables await archiving or disposition",
+      "controls_or_comparisons": [
+        "Archive readback",
+        "Off-state indicator",
+        "Separate clean/used/broken items"
+      ],
+      "failure_cases": [
+        "Moving the chamber without raising the objectives",
+        "Silently deleting source data",
+        "Excitation left on",
+        "Unauthorized real waste disposal"
+      ],
+      "scope": "authored_closeout_extension",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [],
+      "benchmark_status": "design_not_implemented",
+      "source_limit": "The paper supplies no complete cleanup SOP; this branch is explicitly authored task closeout"
+    },
+    {
+      "branch_id": "B16",
+      "name_en": "Static assembly of the custom light-source alternative",
+      "operation_ids": [
+        "L001",
+        "L002",
+        "O006"
+      ],
+      "entry_predicates": [
+        "inventory_verified",
+        "static_only_guard",
+        "ao_test_recorded"
+      ],
+      "exit_predicates": [
+        "launch_selected_and_checked"
+      ],
+      "goal_for_agent": "Establish the source custom-launch topology and records of functional checks",
+      "initial_state_for_agent": "Custom and commercial options are mutually exclusive; passive parts are in separate trays",
+      "controls_or_comparisons": [
+        "Presets before/after polarization adjustment",
+        "Balance between two fiber outputs"
+      ],
+      "failure_cases": [
+        "Missing beam dump",
+        "Incorrect fiber-port connection",
+        "Inferring real laser distances from an unscaled diagram"
+      ],
+      "scope": "static_manipulation_and_UI",
+      "risk_screening": "Passive topology and virtual indicators only; no open-laser alignment",
+      "source_branch_ids": [
+        "D-B02"
+      ],
+      "benchmark_status": "design_not_implemented"
+    },
+    {
+      "branch_id": "B17",
+      "name_en": "Excitation-color options and completeness checks",
+      "operation_ids": [
+        "O006",
+        "O025",
+        "O041",
+        "E009",
+        "C009"
+      ],
+      "entry_predicates": [
+        "use only inside an applicable validated acquisition route"
+      ],
+      "exit_predicates": [
+        "channel_mode_recorded"
+      ],
+      "goal_for_agent": "Correctly identify GFP488 and mCherry561 acquisition modes and save metadata",
+      "initial_state_for_agent": "Configure only source-supported modes; do not assume simultaneous dual-channel biological examples",
+      "controls_or_comparisons": [
+        "488/561 mode identity",
+        "Excitation/filter/label correspondence"
+      ],
+      "failure_cases": [
+        "Mistaking dual views for simultaneous dual-color acquisition",
+        "Inventing results without a reporter"
+      ],
+      "scope": "source_supported_mode_option",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B03"
+      ],
+      "benchmark_status": "design_not_implemented",
+      "source_evidence": [
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            37,
+            38
+          ],
+          "locator": "diSPIM Control modes"
+        }
+      ],
+      "coverage_note": "source describes modes; full simultaneous two-color biological validation is not claimed",
+      "operation_ids_are": "mode-related operation references, not a standalone sequential route"
+    },
+    {
+      "branch_id": "B18",
+      "name_en": "Nonexperimental design boundary",
+      "operation_ids": [],
+      "entry_predicates": [],
+      "exit_predicates": [],
+      "goal_for_agent": "Identify the evidence boundary of the light-sheet waist/field-of-view option table",
+      "initial_state_for_agent": "Provide the source table and labels distinguishing theoretical options from reported instances",
+      "controls_or_comparisons": [
+        "Theoretical design/actual example"
+      ],
+      "failure_cases": [
+        "Counting the 10x theoretical option as a second validated experiment"
+      ],
+      "scope": "reference_only_no_hands_on_credit",
+      "risk_screening": "benign_static_surrogate",
+      "source_branch_ids": [
+        "D-B12"
+      ],
+      "benchmark_status": "design_not_implemented",
+      "source_evidence": [
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            29
+          ],
+          "locator": "Supplementary Table1"
+        }
+      ]
+    }
+  ],
+  "route_templates": [
+    {
+      "route_id": "D-R01",
+      "name_en": "Complete route from initial assembly through embryos",
+      "initial_predicates": [],
+      "operation_sequence": [
+        "O001",
+        "O002",
+        "O003",
+        "O004",
+        "O005",
+        "O006",
+        "O007",
+        "P001",
+        "P004",
+        "O008",
+        "O009",
+        "O010",
+        "O011",
+        "O012",
+        "O013",
+        "O014",
+        "O015",
+        "O016",
+        "O017",
+        "O018",
+        "O019",
+        "O020",
+        "O021",
+        "O022",
+        "O023",
+        "O024",
+        "O025",
+        "O026",
+        "P002",
+        "P003",
+        "O027",
+        "O028",
+        "O029",
+        "O030",
+        "O031",
+        "O032",
+        "O033",
+        "O034",
+        "O035",
+        "O036",
+        "O037",
+        "O038",
+        "O039",
+        "O040",
+        "O041",
+        "O042",
+        "O043",
+        "O044",
+        "O045",
+        "O046",
+        "O047",
+        "O048",
+        "O049",
+        "O050",
+        "O051",
+        "P005",
+        "P006",
+        "E001",
+        "E002",
+        "P001",
+        "P004",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "D001",
+        "D002",
+        "D003",
+        "D004",
+        "D005",
+        "D006",
+        "D007",
+        "D008",
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "terminal": "task_closed"
+    },
+    {
+      "route_id": "D-R02",
+      "name_en": "Daily embryo route",
+      "initial_predicates": [
+        "inventory_verified",
+        "calibration_bundle_ready",
+        "synchronization_verified",
+        "psf_evidence_complete",
+        "sheet_field_evidence_complete",
+        "software_setup_recorded"
+      ],
+      "operation_sequence": [
+        "P005",
+        "P006",
+        "E001",
+        "E002",
+        "P001",
+        "P004",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "D001",
+        "D002",
+        "D003",
+        "D004",
+        "D005",
+        "D006",
+        "D007",
+        "D008",
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "terminal": "task_closed"
+    },
+    {
+      "route_id": "D-R03",
+      "name_en": "Complete route from initial assembly through routine cells",
+      "initial_predicates": [],
+      "operation_sequence": [
+        "O001",
+        "O002",
+        "O003",
+        "O004",
+        "O005",
+        "O006",
+        "O007",
+        "P001",
+        "P004",
+        "O008",
+        "O009",
+        "O010",
+        "O011",
+        "O012",
+        "O013",
+        "O014",
+        "O015",
+        "O016",
+        "O017",
+        "O018",
+        "O019",
+        "O020",
+        "O021",
+        "O022",
+        "O023",
+        "O024",
+        "O025",
+        "O026",
+        "P002",
+        "P003",
+        "O027",
+        "O028",
+        "O029",
+        "O030",
+        "O031",
+        "O032",
+        "O033",
+        "O034",
+        "O035",
+        "O036",
+        "O037",
+        "O038",
+        "O039",
+        "O040",
+        "O041",
+        "O042",
+        "O043",
+        "O044",
+        "O045",
+        "O046",
+        "O047",
+        "O048",
+        "O049",
+        "O050",
+        "O051",
+        "C001",
+        "C002",
+        "C003",
+        "C004",
+        "C005",
+        "C006",
+        "C007",
+        "C008",
+        "C009",
+        "D001",
+        "D002",
+        "D003",
+        "D004",
+        "D005",
+        "D006",
+        "D007",
+        "D008",
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "terminal": "task_closed"
+    },
+    {
+      "route_id": "D-R04",
+      "name_en": "Complete dual-arm bead and sheet-thickness calibration route",
+      "initial_predicates": [],
+      "operation_sequence": [
+        "O001",
+        "O002",
+        "O003",
+        "O004",
+        "O005",
+        "O006",
+        "O007",
+        "P001",
+        "P004",
+        "O008",
+        "O009",
+        "O010",
+        "O011",
+        "O012",
+        "O013",
+        "O014",
+        "O015",
+        "O016",
+        "O017",
+        "O018",
+        "O019",
+        "O020",
+        "O021",
+        "O022",
+        "O023",
+        "O024",
+        "O025",
+        "O026",
+        "P002",
+        "P003",
+        "O027",
+        "O028",
+        "O029",
+        "O030",
+        "O031",
+        "O032",
+        "O033",
+        "O034",
+        "O035",
+        "O036",
+        "O037",
+        "O038",
+        "O039",
+        "O040",
+        "O041",
+        "O042",
+        "O043",
+        "O044",
+        "O045",
+        "O046",
+        "O047",
+        "O048",
+        "O049",
+        "O050",
+        "O051",
+        "O052",
+        "D001",
+        "D002",
+        "D003",
+        "D004",
+        "D005",
+        "D006",
+        "D007",
+        "D008",
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "terminal": "task_closed"
+    },
+    {
+      "route_id": "D-R05",
+      "name_en": "Calibration-mismatch diagnosis and recovery",
+      "initial_predicates": [
+        "inventory_verified",
+        "calibration_bundle_ready",
+        "bead_coverslip_ready"
+      ],
+      "operation_sequence": [
+        "O040",
+        "O041",
+        "O042",
+        "O043",
+        "O044",
+        "O045",
+        "O046",
+        "O047",
+        "O048",
+        "O049",
+        "O050",
+        "O051"
+      ],
+      "terminal": "psf_evidence_complete AND sheet_field_evidence_complete"
+    },
+    {
+      "route_id": "D-R06",
+      "name_en": "Reprocess existing data and recover from incorrect registration",
+      "initial_predicates": [
+        "raw_series_ready",
+        "software_setup_recorded",
+        "psf_evidence_complete"
+      ],
+      "operation_sequence": [
+        "D001",
+        "D002",
+        "D003",
+        "D004",
+        "D005",
+        "D006",
+        "D007",
+        "D008",
+        "S001"
+      ],
+      "terminal": "archive_verified"
+    },
+    {
+      "route_id": "D-R07",
+      "name_en": "Alternative custom-launch topology",
+      "initial_predicates": [
+        "inventory_verified",
+        "static_only_guard",
+        "ao_test_recorded"
+      ],
+      "operation_sequence": [
+        "L001",
+        "L002",
+        "O006"
+      ],
+      "terminal": "launch_selected_and_checked",
+      "note": "Can replace the commercial-launch entry in the main route; does not create another paper or additional validated-experiment credit"
+    }
+  ],
+  "source_issues": [
+    {
+      "id": "D-Q01",
+      "issue": "Main Fig1a sample stage is labelled MS-2500; SI Table3 lists IX-8102.",
+      "status": "PDF-pixel-confirmed identity difference; unresolved",
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "locator": "Fig1a",
+          "pdf_pages_1based": [
+            31
+          ]
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "locator": "Table3",
+          "pdf_pages_1based": [
+            32
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D-Q02",
+      "issue": "Supplementary Data8 deconv.tif is present and hash-bound but the installed image reader cannot decode it.",
+      "status": "data-read limitation; not an assertion of source corruption",
+      "evidence": [
+        {
+          "file": "supp_23.zip",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM475_ESM.zip",
+          "sha256": "849715550308da961f389d31eefec067713b8889260509cb388f9ce0fa6f43fa",
+          "locator": "Supplementary Data8/deconv.tif",
+          "pdf_pages_1based": []
+        }
+      ],
+      "effect": "Raw A/B files were sampled; processed dataset not visually reviewed or reproduced."
+    },
+    {
+      "id": "D-Q03",
+      "issue": "Some source captions and steps use different illustrative sizes/counts/step references across manuscript and publisher SI.",
+      "status": "provisional version/locator differences; no silent reconciliation",
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "locator": "5mm mark;350 volumes;351-time-point caption",
+          "pdf_pages_1based": [
+            11,
+            26,
+            34
+          ]
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "locator": "4mm mark;reference to step108",
+          "pdf_pages_1based": [
+            6,
+            28
+          ]
+        }
+      ],
+      "effect": "No stage coordinates, specimen marking size or exact time-point count promoted into executable control."
+    },
+    {
+      "id": "D-Q04",
+      "issue": "Dimensions in apparatus diagrams and measured image scales are not interchangeable.",
+      "status": "explicit source limitation",
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "locator": "Fig2 caption:schematics not to scale",
+          "pdf_pages_1based": [
+            32
+          ]
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "locator": "SF15:not to scale",
+          "pdf_pages_1based": [
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D-Q05",
+      "issue": "SI Note2 p41 states that each card has 8 AO channels but also says AO0 through AO8; p42 maps only the explicitly used channels.",
+      "status": "literal source inconsistency; do not invent an extra channel"
+    },
+    {
+      "id": "D-Q06",
+      "issue": "The embryo examples of 14 h, 1000 volumes and 60 s cannot simply be combined into an unambiguous total duration; retain the source wording and software-delay semantics.",
+      "status": "new task timing comes from a frozen authored manifest, not a fabricated reconciliation"
+    }
+  ],
+  "evaluation_separation": {
+    "agent_visible": [
+      "goal",
+      "part labels",
+      "mode labels",
+      "author-provided task manifest",
+      "observations",
+      "recorded calibration history",
+      "source reference sheets without oracle answers"
+    ],
+    "evaluator_only": [
+      "correct attachment graph",
+      "seeded fault categories",
+      "preset transition table",
+      "completion and safety predicates",
+      "trajectory consistency checks"
+    ],
+    "not_acceptable": [
+      "goal text containing exact solution sequence",
+      "hidden state readable through UI labels",
+      "identical A/B views",
+      "automatic calibration pass without inspection",
+      "assigning experimental success merely from operations count"
+    ]
+  }
+}

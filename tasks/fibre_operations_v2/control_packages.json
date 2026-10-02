@@ -1,7 +1,7 @@
 {
   "schema_version": "fibre_control_packages.v2",
   "visibility": "evaluator_reference_only",
-  "rule": "单episode可用于操作课程；选对照包须完成其全部条件和配对记录，不能只挑成功病例",
+  "rule": "A single episode may be used for an operations curriculum; a selected control package requires all of its conditions and paired records, without cherry-picking successful cases",
   "control_packages": [
     {
       "id": "C_CLADDING_INTEGRITY",
@@ -9,7 +9,7 @@
         "GE_SILICA_CRACK",
         "RELEASE_GE"
       ],
-      "comparison_and_qualification": "Ge/silica包覆裂纹和释放碎片 vs Ge/ASG释放芯；工艺缺参，不声称严格单变量定量归因"
+      "comparison_and_qualification": "Ge/silica cladding cracks and released fragments versus the released Ge/ASG core; process parameters are missing, so do not claim strict quantitative single-variable attribution"
     },
     {
       "id": "C_CAPILLARY",
@@ -17,7 +17,7 @@
         "GE_BSG_BREAKUP",
         "GLASS_GE_ASG"
       ],
-      "comparison_and_qualification": "Ge/BSG球化/扰动 vs Ge/ASG；不编造统一matched settings"
+      "comparison_and_qualification": "Ge/BSG spheroidization/perturbations versus Ge/ASG; do not fabricate uniform matched settings"
     },
     {
       "id": "C_NECK",
@@ -25,7 +25,7 @@
         "NECK_WITH_CORE",
         "NECK_NO_CORE"
       ],
-      "comparison_and_qualification": "有芯/无芯silica颈形，保留quench裂纹历史"
+      "comparison_and_qualification": "Silica neck profiles with/without a core, retaining quench-crack history"
     },
     {
       "id": "C_RAMAN_SI",
@@ -34,7 +34,7 @@
         "RAMAN_CLAD_SI",
         "RAMAN_REL_SI"
       ],
-      "comparison_and_qualification": "原棒/包覆/释放；抛光状态保留"
+      "comparison_and_qualification": "Original rod/clad/released; retain polishing state"
     },
     {
       "id": "C_RAMAN_GE",
@@ -44,7 +44,7 @@
         "RAMAN_CLAD_GE_ASG",
         "RAMAN_REL_GE"
       ],
-      "comparison_and_qualification": "原Ge/两cladding/释放；不是pristine应力真值"
+      "comparison_and_qualification": "Original Ge/two claddings/released; not pristine stress ground truth"
     },
     {
       "id": "C_CHARACTERIZATION",
@@ -52,7 +52,7 @@
         "CHAR_SI",
         "CHAR_GE"
       ],
-      "comparison_and_qualification": "各保原棒参考、专用截面和lamella子谱系"
+      "comparison_and_qualification": "Each retains its original-rod reference, dedicated cross-sections, and lamella child lineage"
     },
     {
       "id": "C_SINGLE_OPTO",
@@ -60,14 +60,14 @@
         "OPTO_SI",
         "OPTO_GE"
       ],
-      "comparison_and_qualification": "Si532nm、Ge1550nm，不擅改同波长称来源条件"
+      "comparison_and_qualification": "Si532nm and Ge1550nm; do not arbitrarily change to a common wavelength and call it a source condition"
     },
     {
       "id": "C_DIRECTION",
       "branch_ids": [
         "DIRECTION_SI"
       ],
-      "comparison_and_qualification": "同件front/side，仅改变相对入射方向"
+      "comparison_and_qualification": "Same-object front/side, changing only the relative direction of incidence"
     },
     {
       "id": "C_MECHANICAL",
@@ -79,7 +79,7 @@
         "TORSION_FAIL_SI",
         "TORSION_FAIL_GE"
       ],
-      "comparison_and_qualification": "两单芯器件三指标，独立破坏性兄弟样"
+      "comparison_and_qualification": "Three metrics for the two single-core devices, with independent destructive sibling samples"
     },
     {
       "id": "C_DURABILITY",
@@ -93,22 +93,22 @@
         "THERMAL_SI",
         "THERMAL_GE"
       ],
-      "comparison_and_qualification": "各episode内部before/after；Si/Ge对称展开是任务选择，不声称8独立来源实验"
+      "comparison_and_qualification": "before/after within each episode; symmetric Si/Ge expansion is a task choice and does not imply 8 independent source experiments"
     },
     {
       "id": "C_PPG",
       "branch_ids": [
         "APP_WATCHBAND"
       ],
-      "comparison_and_qualification": "同仿体preset输入下纤维/商业代理比较，非人体实验复刻"
+      "comparison_and_qualification": "Comparison of fibre/commercial proxies under the same phantom preset input, not reproduction of a human experiment"
     }
   ],
   "statistical_pack": {
     "source": "Fig3c",
     "responsivity_NEP_n_per_material": 9,
     "other_Fig3c_metrics_n_per_material": 6,
-    "authored_allocation": "默认不同指标组独立兄弟样；非破坏组共享时显式交叉索引，不推定作者分配",
-    "requirement": "不同样本ID不能由同件重复采集伪造；未完成统计包不称覆盖n值"
+    "authored_allocation": "Default to independent sibling samples for different metric groups; explicitly cross-reference shared nondestructive groups without assuming the authors' allocation",
+    "requirement": "Distinct sample IDs cannot be fabricated from repeated acquisition on the same object; an incomplete statistical package does not establish coverage of the n values"
   },
-  "count_warning": "控制包、循环、任务配置不能相加为作者实验总数"
+  "count_warning": "Control packages, cycles, and task configurations cannot be added together as the authors' total experiment count"
 }

@@ -1,0 +1,105 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "visibility": "environment_and_evaluator_only",
+  "purpose": "Evaluate manipulation order, object lineage, measurement conditions and data honesty; no scientific backend is required",
+  "response_modes": [
+    "inert_preset_waveforms_and_complex_pressures",
+    "explicit_missing_or_invalid_record"
+  ],
+  "not_implemented_here": true,
+  "binding_keys": {
+    "tube": [
+      "sample_id",
+      "geometry_id",
+      "frequency_hz",
+      "load_id",
+      "port_id",
+      "probe_serial",
+      "phase_reference_id",
+      "acquisition_card_id"
+    ],
+    "pulse": [
+      "path_condition",
+      "sample_id_or_air",
+      "receiver_frame_id",
+      "pulse_card_id",
+      "trigger_id",
+      "record_window"
+    ],
+    "field": [
+      "lens_manifest_hash",
+      "array_manifest_hash",
+      "frequency_hz",
+      "obstacle_id_or_none",
+      "source_to_scene_transform_id",
+      "scan_point_id",
+      "probe_serial",
+      "acquisition_card_id"
+    ]
+  },
+  "required_public_feedback": [
+    "outputs_off",
+    "printer_guard_closed",
+    "complete",
+    "safe_release",
+    "sample_seated",
+    "port_occupied",
+    "channel_reference_ready",
+    "source_stable",
+    "stage_position",
+    "stage_settled",
+    "point_reachable",
+    "record_valid"
+  ],
+  "record_schema": {
+    "required": [
+      "episode_id",
+      "run_id",
+      "attempt_id",
+      "raw_record_id",
+      "entity_ids",
+      "condition_key",
+      "time_or_frequency_axis",
+      "quantity_kind",
+      "units",
+      "validity",
+      "invalid_reason_if_any",
+      "is_mock",
+      "preset_fixture_version"
+    ],
+    "is_mock": true,
+    "raw_mutability": "append_only",
+    "empty_value": "missing_is_not_zero"
+  },
+  "preset_rules": [
+    "Fixtures may show non-paper trends and plausible faults; do not award procedural credit based on proximity to expected scientific conclusions",
+    "Calling a macro must not cause the environment to invent missing upstream assembly/acquisition events",
+    "Keep raw records separate for air, A/B, each hole/load and baseline/obstacle; do not relabel one as another",
+    "Waveform content and acquisition protocols are required future fixture inputs; this package has neither author waveforms nor purported completed acquisitions"
+  ],
+  "derived_quantities": {
+    "tube": "Derive complex t and phase from complete two-load/four-position complex-pressure records; do not confuse names/units of |t| and |t|²",
+    "pulse": "Task-defined arrival-time differences; sample-speed calculations must explicitly account for replaced-air propagation time and geometric length, not treat extra delay as total transit time",
+    "field": "Pressure magnitude with coordinate masks; retain intensity separately as source processing terminology, without claiming real energy-flux intensity absent calibration/conversion"
+  },
+  "source_results_for_audit_only": {
+    "source_peak_hz_approx": 4170,
+    "source_air_transit_ms_approx": 4.745,
+    "source_extra_delay_ms_A_B": [
+      0.206,
+      0.216
+    ],
+    "source_speed_m_s_A_B": [
+      50.3,
+      52.8
+    ],
+    "evidence_ids": [
+      "a.spectrum",
+      "a.pulse"
+    ],
+    "not_agent_targets": true
+  },
+  "nonclaim": "Similar obstacle/no-obstacle curves in preset scenes establish only preset-branch selection/data handling, not physical self-healing"
+}

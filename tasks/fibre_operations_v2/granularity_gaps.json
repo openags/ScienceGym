@@ -2,33 +2,33 @@
   "schema_version": "fibre_action_granularity.v2",
   "source_manual_microsequence_replicated": false,
   "task_design_status": "complete_first_design_at_reported_macro_stage_level",
-  "claim": "封闭服务节点仅闭合宏阶段依赖，不证明该阶段所有原人工操作均被复刻；authored具体操作也不是原作者动作转录。",
+  "claim": "Enclosed service nodes only close macro-stage dependencies; they do not demonstrate that every original manual operation in that stage has been reproduced. Authored detailed operations are also not transcriptions of the original authors' actions.",
   "stages": [
     {
-      "stage": "原棒native-oxide处理",
+      "stage": "Native-oxide treatment of the original rod",
       "operation_ids": [
         "OXIDE_IN",
         "OXIDE_OUT"
       ],
       "coverage_level": "handoff_only",
-      "expanded": "原棒连匣装入、关门、工单身份、安全释放与取回",
-      "not_expanded": "真实化学处理、容器/工具、转移、残留检查、冲洗和干燥人工微操作",
-      "source_support": "f.materials只用于宏阶段；具体机器人交接是authored"
+      "expanded": "Load the original rod together with its cassette, close the door, establish work-order identity, obtain safe release, and retrieve it",
+      "not_expanded": "Real chemical treatment and manual micro-operations involving vessels/tools, transfers, residue checks, rinsing, and drying",
+      "source_support": "f.materials is used only for macro stages; the specific robotic handoffs are authored"
     },
     {
-      "stage": "PC/CPC预干燥与热整合",
+      "stage": "PC/CPC pre-drying and thermal consolidation",
       "operation_ids": [
         "DRY_IN",
         "DRY_OUT",
         "PC_CLOSE"
       ],
       "coverage_level": "load_unload_plus_authored_assembly",
-      "expanded": "分托盘、装抽屉、合PC板、交接与取回",
-      "not_expanded": "真实抽真空/热循环、密封、温度校准和热处理内部操作",
+      "expanded": "Separate trays, load the drawer, mate the PC plates, hand off, and retrieve",
+      "not_expanded": "Real vacuum/thermal cycles, sealing, temperature calibration, and internal heat-treatment operations",
       "source_support": "f.materials"
     },
     {
-      "stage": "Si/silica与Ge/ASG装配",
+      "stage": "Si/silica and Ge/ASG assembly",
       "operation_ids": [
         "SILICA_INSERT",
         "ASG_SIZE_IN",
@@ -36,131 +36,131 @@
         "ASG_NEST"
       ],
       "coverage_level": "assembly_expanded_with_resize_service",
-      "expanded": "管/棒取放、同轴插棒、五层管套装、尺寸分格",
-      "not_expanded": "缩径拉制内部手工、原作者工具和动作轨迹/公差",
-      "source_support": "插棒和jacket宏结构有来源；V槽/推杆/套装次序是authored"
+      "expanded": "Pick and place tubes/rods, insert the rod coaxially, fit five layers of tubing, and sort by dimensions",
+      "not_expanded": "Internal manual operations during diameter-reduction drawing, the original authors' tools, and action trajectories/tolerances",
+      "source_support": "Rod insertion and the jacket macrostructure are source-supported; the V-groove, push rod, and assembly order are authored"
     },
     {
-      "stage": "对照预制棒",
+      "stage": "Control preforms",
       "operation_ids": [
         "CONTROL_PREFORM"
       ],
       "coverage_level": "authored_assembly_with_source_recipe_gap",
-      "expanded": "cladding选择、有无芯放置、独立条件载架",
-      "not_expanded": "Ge/silica、Ge/BSG完整制作步骤及确切密封工艺",
-      "source_support": "f.ed1/f.ed4；借用密封服务接口是authored，不证明源对照采用相同密封法"
+      "expanded": "Select cladding, place or omit the core, and use separate condition carriers",
+      "not_expanded": "Complete preparation steps and exact sealing processes for Ge/silica and Ge/BSG",
+      "source_support": "f.ed1/f.ed4; reuse of the sealing-service interface is authored and does not establish that the source controls used the same sealing method"
     },
     {
-      "stage": "真空/火焰密封",
+      "stage": "Vacuum/flame sealing",
       "operation_ids": [
         "SEAL_IN",
         "SEAL_OUT"
       ],
       "coverage_level": "handoff_only",
-      "expanded": "组装件连架装入与取出",
-      "not_expanded": "真实火焰对准/旋转、真空管连接、热封、检漏内部微操作",
+      "expanded": "Load and unload the assembly together with its carrier",
+      "not_expanded": "Real internal micro-operations for flame alignment/rotation, vacuum-line connection, heat sealing, and leak testing",
       "source_support": "f.materials"
     },
     {
-      "stage": "熔芯拉丝/冷却",
+      "stage": "Molten-core drawing/cooling",
       "operation_ids": [
         "GLASS_LOAD",
         "GLASS_RUN",
         "GLASS_UNLOAD"
       ],
       "coverage_level": "external_load_unload_only",
-      "expanded": "预制棒冷态进给座、卷盘安装、外部导带、门/面板与卸盘",
-      "not_expanded": "真实引丝、热颈区操控、炉内温度/张力/结晶控制与调节手法",
-      "source_support": "f.materials/f.main；外部导带不是作者引丝录像"
+      "expanded": "Cold-state preform feed seat, reel installation, external leader routing, door/panel operation, and reel unloading",
+      "not_expanded": "Real fibre initiation, hot-neck manipulation, and methods of controlling/adjusting in-furnace temperature, tension, and crystallization",
+      "source_support": "f.materials/f.main; external leader routing is not footage of the authors initiating the fibre"
     },
     {
-      "stage": "纤维切段",
+      "stage": "Fibre segment cutting",
       "operation_ids": [
         "SEGMENT"
       ],
       "coverage_level": "authored_guarded_tool_proxy",
-      "expanded": "支撑展开、两侧端夹、关闭罩、切割触发、分格与余料",
-      "not_expanded": "作者切割工具、刀具接触轨迹/耗损",
-      "source_support": "来源只明确切80cm段；代理刀具不是原工具"
+      "expanded": "Deploy supports, clamp both ends, close the cover, trigger cutting, and compartmentalize segments and remainder",
+      "not_expanded": "The authors' cutting tools, blade contact trajectories, and wear",
+      "source_support": "The source explicitly states only that 80cm segments are cut; the proxy cutter is not the original tool"
     },
     {
-      "stage": "去玻璃",
+      "stage": "Glass removal",
       "operation_ids": [
         "RELEASE_IN",
         "RELEASE_OUT"
       ],
       "coverage_level": "handoff_only",
-      "expanded": "长槽整体放入与安全取回、碎片连匣保持",
-      "not_expanded": "真实化学去包层、容器工具、冲洗、干燥、废液处理",
+      "expanded": "Load the entire long trough, retrieve it safely, and retain fragments in their cassette",
+      "not_expanded": "Real chemical de-cladding, vessels/tools, rinsing, drying, and liquid-waste handling",
       "source_support": "f.materials/f.ed1/f.ed5"
     },
     {
-      "stage": "淬冷颈形保留",
+      "stage": "Retention of quenched neck profiles",
       "operation_ids": [
         "QUENCH"
       ],
       "coverage_level": "handoff_only",
-      "expanded": "对照预制棒交接、保留样取回与轮廓载架",
-      "not_expanded": "真实提离炉区、淬冷动作与介质",
+      "expanded": "Hand off control preforms, retrieve retained specimens, and use profile carriers",
+      "not_expanded": "Real withdrawal from the furnace zone, quenching actions, and quenching media",
       "source_support": "f.si2/f.ed4"
     },
     {
-      "stage": "截面和FIB",
+      "stage": "Cross-section preparation and FIB",
       "operation_ids": [
         "SECTION",
         "FIB"
       ],
       "coverage_level": "orientation_and_handoff_only",
-      "expanded": "横/纵方向落座、包埋匣交接、薄片载具取回与子谱系",
-      "not_expanded": "真实树脂混合/固化、逐级磨抛工具与手法、FIB铣削轨迹",
+      "expanded": "Seat transversely/longitudinally, hand off embedding cassettes, retrieve lamella carriers, and preserve child lineage",
+      "not_expanded": "Real resin mixing/curing, successive grinding/polishing tools and techniques, and FIB milling trajectories",
       "source_support": "f.materials"
     },
     {
-      "stage": "PC板开槽",
+      "stage": "PC plate slotting",
       "operation_ids": [
         "PC_MILL"
       ],
       "coverage_level": "fixture_load_unload_only",
-      "expanded": "两板放定位座、固定外缘、工单、取回与检查",
-      "not_expanded": "真实铣刀运动/进给、切屑移除及原作者装夹",
+      "expanded": "Place two plates in the locating seat, secure their outer edges, issue the work order, retrieve, and inspect",
+      "not_expanded": "Real milling-cutter motion/feed, chip removal, and the original authors' fixturing",
       "source_support": "f.materials"
     },
     {
-      "stage": "CPC放置和PC对合",
+      "stage": "CPC placement and PC mating",
       "operation_ids": [
         "CPC_INSERT",
         "PC_CLOSE"
       ],
       "coverage_level": "authored_hand_actions_expanded",
-      "expanded": "两插片从小盒取出、落入槽间、软压片定位、上板对合",
-      "not_expanded": "膜到插片原始加工关系、原作者工具/接触力、精确动作",
-      "source_support": "来源支持插片与整合；软压片和键槽为authored"
+      "expanded": "Remove two inserts from the small box, seat them between the slots, position them with a soft pressure tab, and mate the upper plate",
+      "not_expanded": "The original manufacturing relationship between film and inserts, the authors' tools/contact forces, and exact actions",
+      "source_support": "The source supports the inserts and consolidation; the soft pressure tab and keyed slots are authored"
     },
     {
-      "stage": "会聚拉丝",
+      "stage": "Convergence drawing",
       "operation_ids": [
         "CONVERGE_LOAD",
         "CONVERGE_THREAD",
         "CONVERGE_RUN"
       ],
       "coverage_level": "external_feeding_expanded_internal_process_service",
-      "expanded": "预制棒/芯载具/线盘安装；两侧金属和中央单/双芯导入；收卷/卸盘",
-      "not_expanded": "真实微细穿芯、张力、进芯接续、热颈区调控、自对齐接触微动作",
-      "source_support": "f.materials/f.main；任务端头夹/导口为authored"
+      "expanded": "Install the preform/core carrier/wire reels; feed metal from both sides and single/dual cores centrally; wind and unload the reel",
+      "not_expanded": "Real fine-core threading, tensioning, core-feed continuation, hot-neck regulation, and self-alignment/contact micro-actions",
+      "source_support": "f.materials/f.main; the task end clamps/feed guides are authored"
     },
     {
-      "stage": "剥线与接触",
+      "stage": "Stripping and contact formation",
       "operation_ids": [
         "STRIP",
         "CONTACT"
       ],
       "coverage_level": "authored_hand_actions_expanded",
-      "expanded": "端部夹持、代理剥线、碎片收集、双端接片、连接检查",
-      "not_expanded": "原作者剥线器型号/行程、接线接头、接触电阻标定",
-      "source_support": "来源报告fibre stripper及金属电极连接"
+      "expanded": "Clamp the end, perform proxy stripping, collect fragments, attach both terminal tabs, and check the connections",
+      "not_expanded": "The original authors' fibre-stripper model/stroke, wiring connectors, and contact-resistance calibration",
+      "source_support": "The source reports a fibre stripper and metal-electrode connections"
     },
     {
-      "stage": "光/谱/电子/衍射测量",
+      "stage": "Optical/spectroscopic/electron/diffraction measurements",
       "operation_ids": [
         "RAMAN",
         "SEM_EDX",
@@ -173,12 +173,12 @@
         "DIRECTION"
       ],
       "coverage_level": "mount_align_connect_and_mock_acquire",
-      "expanded": "样品载架、方向、镜组/接线、门、条件切换、安全卸样",
-      "not_expanded": "真实显微调焦扫描、电子束/辐射操作、光学精密对准、探针标定与仪器内部手法",
-      "source_support": "f.materials/f.measure；全部具体机器人界面authored"
+      "expanded": "Sample carriers, orientation, lens assemblies/wiring, doors, condition switching, and safe sample unloading",
+      "not_expanded": "Real microscope focusing/scanning, electron-beam/radiation operations, precise optical alignment, probe calibration, and internal instrument techniques",
+      "source_support": "f.materials/f.measure; all specific robotic interfaces are authored"
     },
     {
-      "stage": "力学与耐久",
+      "stage": "Mechanical and durability testing",
       "operation_ids": [
         "CORE_BEND",
         "CORE_LOAD",
@@ -197,12 +197,12 @@
         "TEST_UNLOAD"
       ],
       "coverage_level": "fixture_handling_expanded_scientific_load_service",
-      "expanded": "装夹/半径件/挂载/卷绕/洗衣投料/同件恢复存储/卸样",
-      "not_expanded": "原夹具完整CAD、真实夹持力/张力、摆锤/扭转细节和控制微动作",
-      "source_support": "宏测试类型有来源，夹具/按钮和操作路径authored"
+      "expanded": "Fixturing/radius fixtures/load attachment/winding/laundry loading/same-object recovery storage/sample unloading",
+      "not_expanded": "Complete CAD of the original fixtures, real clamping forces/tensions, pendulum/torsion details, and control micro-actions",
+      "source_support": "The macro test types are source-supported; the fixtures/buttons and operation paths are authored"
     },
     {
-      "stage": "织物/电子与四应用",
+      "stage": "Textiles/electronics and four applications",
       "operation_ids": [
         "TEXTILE_MOUNT",
         "PCB_ASSEMBLE",
@@ -214,12 +214,12 @@
         "SUB_TANK"
       ],
       "coverage_level": "authored_external_assembly_and_safe_demo",
-      "expanded": "穿任务通道、接有号板、戴帽人台、衣架/仿体、八角度外壳和板盒、入槽回收",
-      "not_expanded": "原作者针织手法/胶接工艺/焊板、真实公共空间/人类试验和水下航控",
-      "source_support": "应用结构有来源；任务通道/惰性板/仿体/可逆片明确替代"
+      "expanded": "Thread the task channels, connect numbered boards, fit a cap to the mannequin, use a garment stand/phantom, assemble the eight-angle shell and board box, and place in/retrieve from the tank",
+      "not_expanded": "The original authors' knitting methods/adhesive bonding/board soldering, real public-space/human trials, and underwater navigation control",
+      "source_support": "The application structures are source-supported; task channels/inert boards/phantoms/reversible tabs are explicit substitutes"
     },
     {
-      "stage": "运输、归档与清理",
+      "stage": "Transport, archiving, and cleanup",
       "operation_ids": [
         "STOCK",
         "MOVE",
@@ -228,9 +228,9 @@
         "CLEAN"
       ],
       "coverage_level": "authored_hand_actions_expanded",
-      "expanded": "托架、抓取、移动、关闭源、断线、分格、余料/工具回位和封闭废料交接",
-      "not_expanded": "作者真实运输路线/存储/清理SOP未报告",
-      "source_support": "实验闭环设计，不归因作者历史"
+      "expanded": "Carriers, grasping, movement, source shutdown, cable disconnection, compartmentalization, return of remainder/tools, and enclosed waste handoff",
+      "not_expanded": "The authors' actual transport routes/storage/cleanup SOPs are not reported",
+      "source_support": "Designed to close the experimental workflow; not attributed to the authors' historical actions"
     }
   ]
 }

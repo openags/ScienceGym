@@ -1,0 +1,2791 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 8,
+  "hands_on_family_count": 7,
+  "counting_rule": "8 task configurations/7 hands-on families; 40 cells, 60 sources and N points are loop instances, not additional papers, independent experiments or unique asset types",
+  "branches": [
+    {
+      "id": "FAB_FIG1",
+      "label": "Fig1 example-cell manufacture and archiving",
+      "initial_state": "labelled_inert_raw_stock_empty_trays_stopped_sample_free_stations",
+      "specimen_geometry_ids": [
+        "FIG1"
+      ],
+      "family_ids": [
+        "fabrication"
+      ],
+      "evidence_ids": [
+        "a.fig1",
+        "a.fabrication"
+      ],
+      "prelude": [
+        "PRECHECK"
+      ],
+      "phases": [
+        {
+          "phase_id": "fabricate",
+          "title_en": "Generate numbered task samples from raw stock",
+          "requires_outputs": [
+            "raw_stock_available"
+          ],
+          "steps": [
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "FIG1"
+              ],
+              "body": [
+                "STOCK_SELECT",
+                "TRAY_ID",
+                "PRINTER_OPEN",
+                "MATERIAL_LOAD",
+                "TRAY_DOCK",
+                "JOB_SELECT",
+                "PRINTER_CLOSE",
+                "BUILD_START",
+                "BUILD_WAIT",
+                "PRINT_UNLOAD",
+                "POST_HANDOFF",
+                "POST_RETURN",
+                "CELL_RELEASE",
+                "CELL_INSPECT",
+                "CELL_LABEL",
+                "MATERIAL_RETURN"
+              ],
+              "completion_rule": "Each work order creates one entity, looping individually; one item per order is authored discretization, not the paper's print-batch count. Conserve remaining symbolic stock and entity-generation events."
+            }
+          ],
+          "produces_outputs": [
+            "identified_cells"
+          ]
+        }
+      ],
+      "epilogue": [
+        "DISCONNECT",
+        "ARCHIVE",
+        "DATA_ARCHIVE",
+        "CLEAN",
+        "FINAL_CHECK"
+      ],
+      "transport_rule": "Insert MOVE between stations. Loops are reference-expansion rules; one call cannot complete all 40/60/N entity operations.",
+      "condition_cards": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "success": "Complete authorized inert-object operations, lineage, condition records, appropriate analysis and terminal states; record failures/blockers honestly. Episodes lacking required interfaces can evaluate safe blocking only, not experiment completion.",
+      "not_claimed": "No robot trajectory execution, acoustic physics simulation, real manufacture, real acoustic output or reproduction of author raw data",
+      "resource_policy": {
+        "tube_probe": "MIC01 one legacy Type4958 in all tube port measurements",
+        "field_probe": "authored reuse MIC01 after tube/pulse removal and transfer; field source does not establish a specific model",
+        "exclusivity": "MIC01 has one current location; active tube/pulse/field acquisition is mutually exclusive, without duplicating assets across stations",
+        "shared_source_chain": "The same DS345/amplifier chain serves tube and array; stop output and verify/reconnect role ports before changing use, without simultaneously driving two unspecified loads"
+      }
+    },
+    {
+      "id": "TRANSMISSION_PAIR",
+      "label": "A/B cell transmission-spectrum comparison",
+      "initial_state": "labelled_inert_raw_stock_empty_trays_stopped_sample_free_stations",
+      "specimen_geometry_ids": [
+        "A",
+        "B"
+      ],
+      "family_ids": [
+        "fabrication",
+        "unit_transmission"
+      ],
+      "evidence_ids": [
+        "a.spectrum",
+        "a.tube",
+        "a.si_tube"
+      ],
+      "prelude": [
+        "PRECHECK"
+      ],
+      "phases": [
+        {
+          "phase_id": "fabricate",
+          "title_en": "Generate numbered task samples from raw stock",
+          "requires_outputs": [
+            "raw_stock_available"
+          ],
+          "steps": [
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "A",
+                "B"
+              ],
+              "body": [
+                "STOCK_SELECT",
+                "TRAY_ID",
+                "PRINTER_OPEN",
+                "MATERIAL_LOAD",
+                "TRAY_DOCK",
+                "JOB_SELECT",
+                "PRINTER_CLOSE",
+                "BUILD_START",
+                "BUILD_WAIT",
+                "PRINT_UNLOAD",
+                "POST_HANDOFF",
+                "POST_RETURN",
+                "CELL_RELEASE",
+                "CELL_INSPECT",
+                "CELL_LABEL",
+                "MATERIAL_RETURN"
+              ],
+              "completion_rule": "Each work order creates one entity, looping individually; one item per order is authored discretization, not the paper's print-batch count. Conserve remaining symbolic stock and entity-generation events."
+            }
+          ],
+          "produces_outputs": [
+            "identified_cells"
+          ]
+        },
+        {
+          "phase_id": "tube_spectrum",
+          "title_en": "Per-sample two-load/four-position characterization",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "A",
+                "B"
+              ],
+              "body": [
+                "TUBE_OFF",
+                "TUBE_ACCESS",
+                "TUBE_INSERT",
+                "TUBE_SECURE",
+                "TUBE_CLOSE",
+                {
+                  "loop_variable": "frequency_hz",
+                  "values": "condition_card.frequency_grid_hz.value",
+                  "body": [
+                    "SIGNAL_SET",
+                    "CHECK_CHANNEL",
+                    {
+                      "loop_variable": "load",
+                      "values": [
+                        "open",
+                        "rubber_sealed"
+                      ],
+                      "body": [
+                        "TUBE_OFF",
+                        "LOAD_SET",
+                        {
+                          "loop_variable": "port_id",
+                          "values": [
+                            "x1",
+                            "x2",
+                            "x3",
+                            "x4"
+                          ],
+                          "body": [
+                            "PROBE_RELEASE",
+                            "PORT_PREP",
+                            "PROBE_INSERT",
+                            "PORT_SEAL",
+                            "ACQUIRE_PRESSURE",
+                            "SAVE_PRESSURE",
+                            "PROBE_RETRACT"
+                          ],
+                          "completion_rule": "Operate the same probe_serial pointwise in four holes, recording each load/frequency separately"
+                        }
+                      ],
+                      "completion_rule": "A frequency is complete only after records exist for both physical loads"
+                    },
+                    "TRANSMISSION_ANALYZE"
+                  ],
+                  "completion_rule": "At least eight condition-consistent valid records per frequency, or explicit incomplete status"
+                },
+                "TUBE_UNLOAD"
+              ],
+              "completion_rule": "Individually mount each cell, acquire transmission/phase records and return it to its original carrier"
+            }
+          ],
+          "produces_outputs": [
+            "indexed_characterization"
+          ]
+        }
+      ],
+      "epilogue": [
+        "DISCONNECT",
+        "ARCHIVE",
+        "DATA_ARCHIVE",
+        "CLEAN",
+        "FINAL_CHECK"
+      ],
+      "transport_rule": "Insert MOVE between stations. Loops are reference-expansion rules; one call cannot complete all 40/60/N entity operations.",
+      "condition_cards": {
+        "frequency_grid_hz": {
+          "value": null,
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "success": "Complete authorized inert-object operations, lineage, condition records, appropriate analysis and terminal states; record failures/blockers honestly. Episodes lacking required interfaces can evaluate safe blocking only, not experiment completion.",
+      "not_claimed": "No robot trajectory execution, acoustic physics simulation, real manufacture, real acoustic output or reproduction of author raw data",
+      "resource_policy": {
+        "tube_probe": "MIC01 one legacy Type4958 in all tube port measurements",
+        "field_probe": "authored reuse MIC01 after tube/pulse removal and transfer; field source does not establish a specific model",
+        "exclusivity": "MIC01 has one current location; active tube/pulse/field acquisition is mutually exclusive, without duplicating assets across stations",
+        "shared_source_chain": "The same DS345/amplifier chain serves tube and array; stop output and verify/reconnect role ports before changing use, without simultaneously driving two unspecified loads"
+      }
+    },
+    {
+      "id": "PULSE_PAIR",
+      "label": "Air/A/B pulse-delay comparison",
+      "initial_state": "labelled_inert_raw_stock_empty_trays_stopped_sample_free_stations",
+      "specimen_geometry_ids": [
+        "A",
+        "B"
+      ],
+      "family_ids": [
+        "fabrication",
+        "pulse_control"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "prelude": [
+        "PRECHECK"
+      ],
+      "phases": [
+        {
+          "phase_id": "fabricate",
+          "title_en": "Generate numbered task samples from raw stock",
+          "requires_outputs": [
+            "raw_stock_available"
+          ],
+          "steps": [
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "A",
+                "B"
+              ],
+              "body": [
+                "STOCK_SELECT",
+                "TRAY_ID",
+                "PRINTER_OPEN",
+                "MATERIAL_LOAD",
+                "TRAY_DOCK",
+                "JOB_SELECT",
+                "PRINTER_CLOSE",
+                "BUILD_START",
+                "BUILD_WAIT",
+                "PRINT_UNLOAD",
+                "POST_HANDOFF",
+                "POST_RETURN",
+                "CELL_RELEASE",
+                "CELL_INSPECT",
+                "CELL_LABEL",
+                "MATERIAL_RETURN"
+              ],
+              "completion_rule": "Each work order creates one entity, looping individually; one item per order is authored discretization, not the paper's print-batch count. Conserve remaining symbolic stock and entity-generation events."
+            }
+          ],
+          "produces_outputs": [
+            "identified_cells"
+          ]
+        },
+        {
+          "phase_id": "pulse_compare",
+          "title_en": "Empty-path and A/B pulse comparison",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            "PULSE_CLEAR",
+            "PULSE_RX",
+            "PULSE_CONFIG",
+            {
+              "loop_variable": "path_condition",
+              "values": [
+                "air",
+                "A",
+                "B"
+              ],
+              "body": [
+                "PULSE_SWAP",
+                "PULSE_TRIGGER",
+                "PULSE_SAVE"
+              ],
+              "completion_rule": "Share receiver fixture and trigger conditions, save separate waveforms and require physical events for sample changes"
+            },
+            {
+              "set_condition": "air",
+              "steps": [
+                "PULSE_SWAP"
+              ]
+            },
+            "PULSE_ANALYZE",
+            "PULSE_RX_REMOVE"
+          ],
+          "produces_outputs": [
+            "pulse_comparison"
+          ]
+        }
+      ],
+      "epilogue": [
+        "DISCONNECT",
+        "ARCHIVE",
+        "DATA_ARCHIVE",
+        "CLEAN",
+        "FINAL_CHECK"
+      ],
+      "transport_rule": "Insert MOVE between stations. Loops are reference-expansion rules; one call cannot complete all 40/60/N entity operations.",
+      "condition_cards": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "success": "Complete authorized inert-object operations, lineage, condition records, appropriate analysis and terminal states; record failures/blockers honestly. Episodes lacking required interfaces can evaluate safe blocking only, not experiment completion.",
+      "not_claimed": "No robot trajectory execution, acoustic physics simulation, real manufacture, real acoustic output or reproduction of author raw data",
+      "resource_policy": {
+        "tube_probe": "MIC01 one legacy Type4958 in all tube port measurements",
+        "field_probe": "authored reuse MIC01 after tube/pulse removal and transfer; field source does not establish a specific model",
+        "exclusivity": "MIC01 has one current location; active tube/pulse/field acquisition is mutually exclusive, without duplicating assets across stations",
+        "shared_source_chain": "The same DS345/amplifier chain serves tube and array; stop output and verify/reconnect role ports before changing use, without simultaneously driving two unspecified loads"
+      }
+    },
+    {
+      "id": "CELL_40_CHARACTERIZATION",
+      "label": "Individual transmission/phase characterization of forty distinct cells",
+      "initial_state": "labelled_inert_raw_stock_empty_trays_stopped_sample_free_stations",
+      "specimen_geometry_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "family_ids": [
+        "fabrication",
+        "indexed_cell_characterization"
+      ],
+      "evidence_ids": [
+        "a.lens_design",
+        "a.si_table",
+        "a.tube"
+      ],
+      "prelude": [
+        "PRECHECK"
+      ],
+      "phases": [
+        {
+          "phase_id": "fabricate",
+          "title_en": "Generate numbered task samples from raw stock",
+          "requires_outputs": [
+            "raw_stock_available"
+          ],
+          "steps": [
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "STOCK_SELECT",
+                "TRAY_ID",
+                "PRINTER_OPEN",
+                "MATERIAL_LOAD",
+                "TRAY_DOCK",
+                "JOB_SELECT",
+                "PRINTER_CLOSE",
+                "BUILD_START",
+                "BUILD_WAIT",
+                "PRINT_UNLOAD",
+                "POST_HANDOFF",
+                "POST_RETURN",
+                "CELL_RELEASE",
+                "CELL_INSPECT",
+                "CELL_LABEL",
+                "MATERIAL_RETURN"
+              ],
+              "completion_rule": "Each work order creates one entity, looping individually; one item per order is authored discretization, not the paper's print-batch count. Conserve remaining symbolic stock and entity-generation events."
+            }
+          ],
+          "produces_outputs": [
+            "identified_cells"
+          ]
+        },
+        {
+          "phase_id": "tube_lens_cells",
+          "title_en": "Per-sample two-load/four-position characterization",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "TUBE_OFF",
+                "TUBE_ACCESS",
+                "TUBE_INSERT",
+                "TUBE_SECURE",
+                "TUBE_CLOSE",
+                {
+                  "loop_variable": "frequency_hz",
+                  "values": [
+                    4170
+                  ],
+                  "body": [
+                    "SIGNAL_SET",
+                    "CHECK_CHANNEL",
+                    {
+                      "loop_variable": "load",
+                      "values": [
+                        "open",
+                        "rubber_sealed"
+                      ],
+                      "body": [
+                        "TUBE_OFF",
+                        "LOAD_SET",
+                        {
+                          "loop_variable": "port_id",
+                          "values": [
+                            "x1",
+                            "x2",
+                            "x3",
+                            "x4"
+                          ],
+                          "body": [
+                            "PROBE_RELEASE",
+                            "PORT_PREP",
+                            "PROBE_INSERT",
+                            "PORT_SEAL",
+                            "ACQUIRE_PRESSURE",
+                            "SAVE_PRESSURE",
+                            "PROBE_RETRACT"
+                          ],
+                          "completion_rule": "Operate the same probe_serial pointwise in four holes, recording each load/frequency separately"
+                        }
+                      ],
+                      "completion_rule": "A frequency is complete only after records exist for both physical loads"
+                    },
+                    "TRANSMISSION_ANALYZE"
+                  ],
+                  "completion_rule": "At least eight condition-consistent valid records per frequency, or explicit incomplete status"
+                },
+                "TUBE_UNLOAD"
+              ],
+              "completion_rule": "Individually mount each cell, acquire transmission/phase records and return it to its original carrier"
+            }
+          ],
+          "produces_outputs": [
+            "indexed_characterization"
+          ]
+        }
+      ],
+      "epilogue": [
+        "DISCONNECT",
+        "ARCHIVE",
+        "DATA_ARCHIVE",
+        "CLEAN",
+        "FINAL_CHECK"
+      ],
+      "transport_rule": "Insert MOVE between stations. Loops are reference-expansion rules; one call cannot complete all 40/60/N entity operations.",
+      "condition_cards": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "success": "Complete authorized inert-object operations, lineage, condition records, appropriate analysis and terminal states; record failures/blockers honestly. Episodes lacking required interfaces can evaluate safe blocking only, not experiment completion.",
+      "not_claimed": "No robot trajectory execution, acoustic physics simulation, real manufacture, real acoustic output or reproduction of author raw data",
+      "resource_policy": {
+        "tube_probe": "MIC01 one legacy Type4958 in all tube port measurements",
+        "field_probe": "authored reuse MIC01 after tube/pulse removal and transfer; field source does not establish a specific model",
+        "exclusivity": "MIC01 has one current location; active tube/pulse/field acquisition is mutually exclusive, without duplicating assets across stations",
+        "shared_source_chain": "The same DS345/amplifier chain serves tube and array; stop output and verify/reconnect role ports before changing use, without simultaneously driving two unspecified loads"
+      }
+    },
+    {
+      "id": "LENS_BUILD",
+      "label": "Forty-cell manufacture, characterization and lens assembly",
+      "initial_state": "labelled_inert_raw_stock_empty_trays_stopped_sample_free_stations",
+      "specimen_geometry_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "family_ids": [
+        "fabrication",
+        "indexed_cell_characterization",
+        "lens_assembly"
+      ],
+      "evidence_ids": [
+        "a.lens_assembly",
+        "a.si_lens",
+        "a.si_table"
+      ],
+      "prelude": [
+        "PRECHECK"
+      ],
+      "phases": [
+        {
+          "phase_id": "fabricate",
+          "title_en": "Generate numbered task samples from raw stock",
+          "requires_outputs": [
+            "raw_stock_available"
+          ],
+          "steps": [
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "STOCK_SELECT",
+                "TRAY_ID",
+                "PRINTER_OPEN",
+                "MATERIAL_LOAD",
+                "TRAY_DOCK",
+                "JOB_SELECT",
+                "PRINTER_CLOSE",
+                "BUILD_START",
+                "BUILD_WAIT",
+                "PRINT_UNLOAD",
+                "POST_HANDOFF",
+                "POST_RETURN",
+                "CELL_RELEASE",
+                "CELL_INSPECT",
+                "CELL_LABEL",
+                "MATERIAL_RETURN"
+              ],
+              "completion_rule": "Each work order creates one entity, looping individually; one item per order is authored discretization, not the paper's print-batch count. Conserve remaining symbolic stock and entity-generation events."
+            }
+          ],
+          "produces_outputs": [
+            "identified_cells"
+          ]
+        },
+        {
+          "phase_id": "tube_lens_cells",
+          "title_en": "Per-sample two-load/four-position characterization",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "TUBE_OFF",
+                "TUBE_ACCESS",
+                "TUBE_INSERT",
+                "TUBE_SECURE",
+                "TUBE_CLOSE",
+                {
+                  "loop_variable": "frequency_hz",
+                  "values": [
+                    4170
+                  ],
+                  "body": [
+                    "SIGNAL_SET",
+                    "CHECK_CHANNEL",
+                    {
+                      "loop_variable": "load",
+                      "values": [
+                        "open",
+                        "rubber_sealed"
+                      ],
+                      "body": [
+                        "TUBE_OFF",
+                        "LOAD_SET",
+                        {
+                          "loop_variable": "port_id",
+                          "values": [
+                            "x1",
+                            "x2",
+                            "x3",
+                            "x4"
+                          ],
+                          "body": [
+                            "PROBE_RELEASE",
+                            "PORT_PREP",
+                            "PROBE_INSERT",
+                            "PORT_SEAL",
+                            "ACQUIRE_PRESSURE",
+                            "SAVE_PRESSURE",
+                            "PROBE_RETRACT"
+                          ],
+                          "completion_rule": "Operate the same probe_serial pointwise in four holes, recording each load/frequency separately"
+                        }
+                      ],
+                      "completion_rule": "A frequency is complete only after records exist for both physical loads"
+                    },
+                    "TRANSMISSION_ANALYZE"
+                  ],
+                  "completion_rule": "At least eight condition-consistent valid records per frequency, or explicit incomplete status"
+                },
+                "TUBE_UNLOAD"
+              ],
+              "completion_rule": "Individually mount each cell, acquire transmission/phase records and return it to its original carrier"
+            }
+          ],
+          "produces_outputs": [
+            "indexed_characterization"
+          ]
+        },
+        {
+          "phase_id": "lens_assemble",
+          "title_en": "Assemble forty cells into the lens by number",
+          "requires_outputs": [
+            "identified_cells",
+            "indexed_characterization"
+          ],
+          "steps": [
+            "HOLDER_PREP",
+            {
+              "loop_variable": "slot_number",
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "body": [
+                "CELL_PICK",
+                "LENS_INSERT",
+                "LENS_SEAT"
+              ],
+              "completion_rule": "Slot k must bind Lk and that entity's characterization records; these are not 40 new tasks"
+            },
+            "LENS_CHECK",
+            "LENS_LOCK"
+          ],
+          "produces_outputs": [
+            "assembled_lens"
+          ]
+        }
+      ],
+      "epilogue": [
+        "DISCONNECT",
+        "ARCHIVE",
+        "DATA_ARCHIVE",
+        "CLEAN",
+        "FINAL_CHECK"
+      ],
+      "transport_rule": "Insert MOVE between stations. Loops are reference-expansion rules; one call cannot complete all 40/60/N entity operations.",
+      "condition_cards": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "success": "Complete authorized inert-object operations, lineage, condition records, appropriate analysis and terminal states; record failures/blockers honestly. Episodes lacking required interfaces can evaluate safe blocking only, not experiment completion.",
+      "not_claimed": "No robot trajectory execution, acoustic physics simulation, real manufacture, real acoustic output or reproduction of author raw data",
+      "resource_policy": {
+        "tube_probe": "MIC01 one legacy Type4958 in all tube port measurements",
+        "field_probe": "authored reuse MIC01 after tube/pulse removal and transfer; field source does not establish a specific model",
+        "exclusivity": "MIC01 has one current location; active tube/pulse/field acquisition is mutually exclusive, without duplicating assets across stations",
+        "shared_source_chain": "The same DS345/amplifier chain serves tube and array; stop output and verify/reconnect role ports before changing use, without simultaneously driving two unspecified loads"
+      }
+    },
+    {
+      "id": "FIELD_BASELINE",
+      "label": "Obstacle-free field for the lens and synchronized array",
+      "initial_state": "labelled_inert_raw_stock_empty_trays_stopped_sample_free_stations",
+      "specimen_geometry_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "family_ids": [
+        "fabrication",
+        "indexed_cell_characterization",
+        "lens_assembly",
+        "field_baseline"
+      ],
+      "evidence_ids": [
+        "a.field",
+        "a.si_scan"
+      ],
+      "prelude": [
+        "PRECHECK"
+      ],
+      "phases": [
+        {
+          "phase_id": "fabricate",
+          "title_en": "Generate numbered task samples from raw stock",
+          "requires_outputs": [
+            "raw_stock_available"
+          ],
+          "steps": [
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "STOCK_SELECT",
+                "TRAY_ID",
+                "PRINTER_OPEN",
+                "MATERIAL_LOAD",
+                "TRAY_DOCK",
+                "JOB_SELECT",
+                "PRINTER_CLOSE",
+                "BUILD_START",
+                "BUILD_WAIT",
+                "PRINT_UNLOAD",
+                "POST_HANDOFF",
+                "POST_RETURN",
+                "CELL_RELEASE",
+                "CELL_INSPECT",
+                "CELL_LABEL",
+                "MATERIAL_RETURN"
+              ],
+              "completion_rule": "Each work order creates one entity, looping individually; one item per order is authored discretization, not the paper's print-batch count. Conserve remaining symbolic stock and entity-generation events."
+            }
+          ],
+          "produces_outputs": [
+            "identified_cells"
+          ]
+        },
+        {
+          "phase_id": "tube_lens_cells",
+          "title_en": "Per-sample two-load/four-position characterization",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "TUBE_OFF",
+                "TUBE_ACCESS",
+                "TUBE_INSERT",
+                "TUBE_SECURE",
+                "TUBE_CLOSE",
+                {
+                  "loop_variable": "frequency_hz",
+                  "values": [
+                    4170
+                  ],
+                  "body": [
+                    "SIGNAL_SET",
+                    "CHECK_CHANNEL",
+                    {
+                      "loop_variable": "load",
+                      "values": [
+                        "open",
+                        "rubber_sealed"
+                      ],
+                      "body": [
+                        "TUBE_OFF",
+                        "LOAD_SET",
+                        {
+                          "loop_variable": "port_id",
+                          "values": [
+                            "x1",
+                            "x2",
+                            "x3",
+                            "x4"
+                          ],
+                          "body": [
+                            "PROBE_RELEASE",
+                            "PORT_PREP",
+                            "PROBE_INSERT",
+                            "PORT_SEAL",
+                            "ACQUIRE_PRESSURE",
+                            "SAVE_PRESSURE",
+                            "PROBE_RETRACT"
+                          ],
+                          "completion_rule": "Operate the same probe_serial pointwise in four holes, recording each load/frequency separately"
+                        }
+                      ],
+                      "completion_rule": "A frequency is complete only after records exist for both physical loads"
+                    },
+                    "TRANSMISSION_ANALYZE"
+                  ],
+                  "completion_rule": "At least eight condition-consistent valid records per frequency, or explicit incomplete status"
+                },
+                "TUBE_UNLOAD"
+              ],
+              "completion_rule": "Individually mount each cell, acquire transmission/phase records and return it to its original carrier"
+            }
+          ],
+          "produces_outputs": [
+            "indexed_characterization"
+          ]
+        },
+        {
+          "phase_id": "lens_assemble",
+          "title_en": "Assemble forty cells into the lens by number",
+          "requires_outputs": [
+            "identified_cells",
+            "indexed_characterization"
+          ],
+          "steps": [
+            "HOLDER_PREP",
+            {
+              "loop_variable": "slot_number",
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "body": [
+                "CELL_PICK",
+                "LENS_INSERT",
+                "LENS_SEAT"
+              ],
+              "completion_rule": "Slot k must bind Lk and that entity's characterization records; these are not 40 new tasks"
+            },
+            "LENS_CHECK",
+            "LENS_LOCK"
+          ],
+          "produces_outputs": [
+            "assembled_lens"
+          ]
+        },
+        {
+          "phase_id": "guide_array_setup",
+          "title_en": "Assemble waveguide boundaries and sixty-source array",
+          "requires_outputs": [
+            "assembled_lens",
+            "field_interface_contract_present"
+          ],
+          "steps": [
+            "GUIDE_PREP",
+            "SPACER_PLACE",
+            "FOAM_PLACE",
+            "LENS_DOCK",
+            "ARRAY_RAIL",
+            {
+              "loop_variable": "speaker_number",
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60
+              ],
+              "body": [
+                "SPEAKER_PICK",
+                "SPEAKER_SEAT",
+                "SPEAKER_WIRE",
+                "SPEAKER_CHECK"
+              ],
+              "completion_rule": "Bind each distinct speaker_id to position and harness channel; do not invent real amplifier-wiring topology"
+            },
+            "CONNECT_SOURCE",
+            "ARRAY_CONNECT",
+            "ARRAY_SYNC",
+            "PROBE_MOUNT",
+            "PROBE_ROUTE",
+            "UPPER_CLOSE",
+            "ACCESS_CHECK",
+            "FRAME_REGISTER",
+            "SCAN_PLAN"
+          ],
+          "produces_outputs": [
+            "assembled_field_station"
+          ]
+        },
+        {
+          "phase_id": "field_baseline",
+          "title_en": "Obstacle-free scan over the limited main lobe",
+          "requires_outputs": [
+            "assembled_field_station"
+          ],
+          "steps": [
+            {
+              "verify_condition": "no_obstacle",
+              "evidence": "obstacle physically in carrier; lens and source installed"
+            },
+            "FIELD_SOURCE",
+            {
+              "loop_variable": "scan_point_id",
+              "values": "condition_card.scan_point_ids",
+              "body": [
+                "SCAN_MOVE",
+                "SCAN_SAMPLE",
+                "SCAN_SAVE"
+              ],
+              "completion_rule": "Acquire each reachable point independently for this condition; retain masks for unreachable/invalid points without fabricated values"
+            },
+            "FIELD_STOP",
+            "FIELD_ANALYZE"
+          ],
+          "produces_outputs": [
+            "baseline_raw"
+          ]
+        },
+        {
+          "phase_id": "field_close",
+          "title_en": "Unload the field station",
+          "requires_outputs": [
+            "baseline_raw"
+          ],
+          "steps": [
+            "FIELD_UNLOAD"
+          ],
+          "produces_outputs": [
+            "field_payloads_returned"
+          ]
+        }
+      ],
+      "epilogue": [
+        "DISCONNECT",
+        "ARCHIVE",
+        "DATA_ARCHIVE",
+        "CLEAN",
+        "FINAL_CHECK"
+      ],
+      "transport_rule": "Insert MOVE between stations. Loops are reference-expansion rules; one call cannot complete all 40/60/N entity operations.",
+      "condition_cards": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "scan_point_ids": null,
+        "scan_point_input_requirement": "Authors must first provide a public point table matching these IDs, a source-to-scene transform and a reachability mask. null means absent input and blocks field-loop expansion; do not guess coordinates from display assets or source figures.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "success": "Complete authorized inert-object operations, lineage, condition records, appropriate analysis and terminal states; record failures/blockers honestly. Episodes lacking required interfaces can evaluate safe blocking only, not experiment completion.",
+      "not_claimed": "No robot trajectory execution, acoustic physics simulation, real manufacture, real acoustic output or reproduction of author raw data",
+      "resource_policy": {
+        "tube_probe": "MIC01 one legacy Type4958 in all tube port measurements",
+        "field_probe": "authored reuse MIC01 after tube/pulse removal and transfer; field source does not establish a specific model",
+        "exclusivity": "MIC01 has one current location; active tube/pulse/field acquisition is mutually exclusive, without duplicating assets across stations",
+        "shared_source_chain": "The same DS345/amplifier chain serves tube and array; stop output and verify/reconnect role ports before changing use, without simultaneously driving two unspecified loads"
+      }
+    },
+    {
+      "id": "FIELD_OBSTACLE_COMPARISON",
+      "label": "Field comparison with/without an aluminum-alloy obstacle",
+      "initial_state": "labelled_inert_raw_stock_empty_trays_stopped_sample_free_stations",
+      "specimen_geometry_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "family_ids": [
+        "fabrication",
+        "indexed_cell_characterization",
+        "lens_assembly",
+        "field_baseline",
+        "field_obstacle"
+      ],
+      "evidence_ids": [
+        "a.field",
+        "a.obstacle",
+        "a.si_scan"
+      ],
+      "prelude": [
+        "PRECHECK"
+      ],
+      "phases": [
+        {
+          "phase_id": "fabricate",
+          "title_en": "Generate numbered task samples from raw stock",
+          "requires_outputs": [
+            "raw_stock_available"
+          ],
+          "steps": [
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "STOCK_SELECT",
+                "TRAY_ID",
+                "PRINTER_OPEN",
+                "MATERIAL_LOAD",
+                "TRAY_DOCK",
+                "JOB_SELECT",
+                "PRINTER_CLOSE",
+                "BUILD_START",
+                "BUILD_WAIT",
+                "PRINT_UNLOAD",
+                "POST_HANDOFF",
+                "POST_RETURN",
+                "CELL_RELEASE",
+                "CELL_INSPECT",
+                "CELL_LABEL",
+                "MATERIAL_RETURN"
+              ],
+              "completion_rule": "Each work order creates one entity, looping individually; one item per order is authored discretization, not the paper's print-batch count. Conserve remaining symbolic stock and entity-generation events."
+            }
+          ],
+          "produces_outputs": [
+            "identified_cells"
+          ]
+        },
+        {
+          "phase_id": "tube_lens_cells",
+          "title_en": "Per-sample two-load/four-position characterization",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "TUBE_OFF",
+                "TUBE_ACCESS",
+                "TUBE_INSERT",
+                "TUBE_SECURE",
+                "TUBE_CLOSE",
+                {
+                  "loop_variable": "frequency_hz",
+                  "values": [
+                    4170
+                  ],
+                  "body": [
+                    "SIGNAL_SET",
+                    "CHECK_CHANNEL",
+                    {
+                      "loop_variable": "load",
+                      "values": [
+                        "open",
+                        "rubber_sealed"
+                      ],
+                      "body": [
+                        "TUBE_OFF",
+                        "LOAD_SET",
+                        {
+                          "loop_variable": "port_id",
+                          "values": [
+                            "x1",
+                            "x2",
+                            "x3",
+                            "x4"
+                          ],
+                          "body": [
+                            "PROBE_RELEASE",
+                            "PORT_PREP",
+                            "PROBE_INSERT",
+                            "PORT_SEAL",
+                            "ACQUIRE_PRESSURE",
+                            "SAVE_PRESSURE",
+                            "PROBE_RETRACT"
+                          ],
+                          "completion_rule": "Operate the same probe_serial pointwise in four holes, recording each load/frequency separately"
+                        }
+                      ],
+                      "completion_rule": "A frequency is complete only after records exist for both physical loads"
+                    },
+                    "TRANSMISSION_ANALYZE"
+                  ],
+                  "completion_rule": "At least eight condition-consistent valid records per frequency, or explicit incomplete status"
+                },
+                "TUBE_UNLOAD"
+              ],
+              "completion_rule": "Individually mount each cell, acquire transmission/phase records and return it to its original carrier"
+            }
+          ],
+          "produces_outputs": [
+            "indexed_characterization"
+          ]
+        },
+        {
+          "phase_id": "lens_assemble",
+          "title_en": "Assemble forty cells into the lens by number",
+          "requires_outputs": [
+            "identified_cells",
+            "indexed_characterization"
+          ],
+          "steps": [
+            "HOLDER_PREP",
+            {
+              "loop_variable": "slot_number",
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "body": [
+                "CELL_PICK",
+                "LENS_INSERT",
+                "LENS_SEAT"
+              ],
+              "completion_rule": "Slot k must bind Lk and that entity's characterization records; these are not 40 new tasks"
+            },
+            "LENS_CHECK",
+            "LENS_LOCK"
+          ],
+          "produces_outputs": [
+            "assembled_lens"
+          ]
+        },
+        {
+          "phase_id": "guide_array_setup",
+          "title_en": "Assemble waveguide boundaries and sixty-source array",
+          "requires_outputs": [
+            "assembled_lens",
+            "field_interface_contract_present"
+          ],
+          "steps": [
+            "GUIDE_PREP",
+            "SPACER_PLACE",
+            "FOAM_PLACE",
+            "LENS_DOCK",
+            "ARRAY_RAIL",
+            {
+              "loop_variable": "speaker_number",
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60
+              ],
+              "body": [
+                "SPEAKER_PICK",
+                "SPEAKER_SEAT",
+                "SPEAKER_WIRE",
+                "SPEAKER_CHECK"
+              ],
+              "completion_rule": "Bind each distinct speaker_id to position and harness channel; do not invent real amplifier-wiring topology"
+            },
+            "CONNECT_SOURCE",
+            "ARRAY_CONNECT",
+            "ARRAY_SYNC",
+            "PROBE_MOUNT",
+            "PROBE_ROUTE",
+            "UPPER_CLOSE",
+            "ACCESS_CHECK",
+            "FRAME_REGISTER",
+            "SCAN_PLAN"
+          ],
+          "produces_outputs": [
+            "assembled_field_station"
+          ]
+        },
+        {
+          "phase_id": "field_baseline",
+          "title_en": "Obstacle-free scan over the limited main lobe",
+          "requires_outputs": [
+            "assembled_field_station"
+          ],
+          "steps": [
+            {
+              "verify_condition": "no_obstacle",
+              "evidence": "obstacle physically in carrier; lens and source installed"
+            },
+            "FIELD_SOURCE",
+            {
+              "loop_variable": "scan_point_id",
+              "values": "condition_card.scan_point_ids",
+              "body": [
+                "SCAN_MOVE",
+                "SCAN_SAMPLE",
+                "SCAN_SAVE"
+              ],
+              "completion_rule": "Acquire each reachable point independently for this condition; retain masks for unreachable/invalid points without fabricated values"
+            },
+            "FIELD_STOP",
+            "FIELD_ANALYZE"
+          ],
+          "produces_outputs": [
+            "baseline_raw"
+          ]
+        },
+        {
+          "phase_id": "field_obstacle",
+          "title_en": "Obstacle scan and paired comparison",
+          "requires_outputs": [
+            "assembled_field_station",
+            "baseline_raw"
+          ],
+          "steps": [
+            "OBSTACLE_INSTALL",
+            "FIELD_SOURCE",
+            {
+              "loop_variable": "scan_point_id",
+              "values": "condition_card.scan_point_ids",
+              "body": [
+                "SCAN_MOVE",
+                "SCAN_SAMPLE",
+                "SCAN_SAVE"
+              ],
+              "completion_rule": "Acquire each reachable point independently for this condition; retain masks for unreachable/invalid points without fabricated values"
+            },
+            "FIELD_STOP",
+            "FIELD_ANALYZE",
+            "FIELD_COMPARE",
+            "OBSTACLE_REMOVE"
+          ],
+          "produces_outputs": [
+            "paired_field_results"
+          ]
+        },
+        {
+          "phase_id": "field_close",
+          "title_en": "Unload the field station",
+          "requires_outputs": [
+            "paired_field_results"
+          ],
+          "steps": [
+            "FIELD_UNLOAD"
+          ],
+          "produces_outputs": [
+            "field_payloads_returned"
+          ]
+        }
+      ],
+      "epilogue": [
+        "DISCONNECT",
+        "ARCHIVE",
+        "DATA_ARCHIVE",
+        "CLEAN",
+        "FINAL_CHECK"
+      ],
+      "transport_rule": "Insert MOVE between stations. Loops are reference-expansion rules; one call cannot complete all 40/60/N entity operations.",
+      "condition_cards": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "scan_point_ids": null,
+        "scan_point_input_requirement": "Authors must first provide a public point table matching these IDs, a source-to-scene transform and a reachability mask. null means absent input and blocks field-loop expansion; do not guess coordinates from display assets or source figures.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "success": "Complete authorized inert-object operations, lineage, condition records, appropriate analysis and terminal states; record failures/blockers honestly. Episodes lacking required interfaces can evaluate safe blocking only, not experiment completion.",
+      "not_claimed": "No robot trajectory execution, acoustic physics simulation, real manufacture, real acoustic output or reproduction of author raw data",
+      "resource_policy": {
+        "tube_probe": "MIC01 one legacy Type4958 in all tube port measurements",
+        "field_probe": "authored reuse MIC01 after tube/pulse removal and transfer; field source does not establish a specific model",
+        "exclusivity": "MIC01 has one current location; active tube/pulse/field acquisition is mutually exclusive, without duplicating assets across stations",
+        "shared_source_chain": "The same DS345/amplifier chain serves tube and array; stop output and verify/reconnect role ports before changing use, without simultaneously driving two unspecified loads"
+      }
+    },
+    {
+      "id": "WHOLE_PAPER_PRACTICAL",
+      "label": "Whole-paper experimental-operation chain and archiving",
+      "initial_state": "labelled_inert_raw_stock_empty_trays_stopped_sample_free_stations",
+      "specimen_geometry_ids": [
+        "FIG1",
+        "A",
+        "B",
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "family_ids": [
+        "fabrication",
+        "unit_transmission",
+        "pulse_control",
+        "indexed_cell_characterization",
+        "lens_assembly",
+        "field_baseline",
+        "field_obstacle"
+      ],
+      "evidence_ids": [
+        "a.fig1",
+        "a.dispersion",
+        "a.fabrication",
+        "a.spectrum",
+        "a.pulse",
+        "a.lens_design",
+        "a.lens_assembly",
+        "a.field",
+        "a.obstacle",
+        "a.tube",
+        "a.numerical",
+        "a.data",
+        "a.si_tube",
+        "a.si_lens",
+        "a.si_scan",
+        "a.si_table",
+        "a.si_limits"
+      ],
+      "prelude": [
+        "PRECHECK"
+      ],
+      "phases": [
+        {
+          "phase_id": "fabricate",
+          "title_en": "Generate numbered task samples from raw stock",
+          "requires_outputs": [
+            "raw_stock_available"
+          ],
+          "steps": [
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "FIG1",
+                "A",
+                "B",
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "STOCK_SELECT",
+                "TRAY_ID",
+                "PRINTER_OPEN",
+                "MATERIAL_LOAD",
+                "TRAY_DOCK",
+                "JOB_SELECT",
+                "PRINTER_CLOSE",
+                "BUILD_START",
+                "BUILD_WAIT",
+                "PRINT_UNLOAD",
+                "POST_HANDOFF",
+                "POST_RETURN",
+                "CELL_RELEASE",
+                "CELL_INSPECT",
+                "CELL_LABEL",
+                "MATERIAL_RETURN"
+              ],
+              "completion_rule": "Each work order creates one entity, looping individually; one item per order is authored discretization, not the paper's print-batch count. Conserve remaining symbolic stock and entity-generation events."
+            }
+          ],
+          "produces_outputs": [
+            "identified_cells"
+          ]
+        },
+        {
+          "phase_id": "tube_spectrum",
+          "title_en": "Per-sample two-load/four-position characterization",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "A",
+                "B"
+              ],
+              "body": [
+                "TUBE_OFF",
+                "TUBE_ACCESS",
+                "TUBE_INSERT",
+                "TUBE_SECURE",
+                "TUBE_CLOSE",
+                {
+                  "loop_variable": "frequency_hz",
+                  "values": "condition_card.frequency_grid_hz.value",
+                  "body": [
+                    "SIGNAL_SET",
+                    "CHECK_CHANNEL",
+                    {
+                      "loop_variable": "load",
+                      "values": [
+                        "open",
+                        "rubber_sealed"
+                      ],
+                      "body": [
+                        "TUBE_OFF",
+                        "LOAD_SET",
+                        {
+                          "loop_variable": "port_id",
+                          "values": [
+                            "x1",
+                            "x2",
+                            "x3",
+                            "x4"
+                          ],
+                          "body": [
+                            "PROBE_RELEASE",
+                            "PORT_PREP",
+                            "PROBE_INSERT",
+                            "PORT_SEAL",
+                            "ACQUIRE_PRESSURE",
+                            "SAVE_PRESSURE",
+                            "PROBE_RETRACT"
+                          ],
+                          "completion_rule": "Operate the same probe_serial pointwise in four holes, recording each load/frequency separately"
+                        }
+                      ],
+                      "completion_rule": "A frequency is complete only after records exist for both physical loads"
+                    },
+                    "TRANSMISSION_ANALYZE"
+                  ],
+                  "completion_rule": "At least eight condition-consistent valid records per frequency, or explicit incomplete status"
+                },
+                "TUBE_UNLOAD"
+              ],
+              "completion_rule": "Individually mount each cell, acquire transmission/phase records and return it to its original carrier"
+            }
+          ],
+          "produces_outputs": [
+            "indexed_characterization"
+          ]
+        },
+        {
+          "phase_id": "pulse_compare",
+          "title_en": "Empty-path and A/B pulse comparison",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            "PULSE_CLEAR",
+            "PULSE_RX",
+            "PULSE_CONFIG",
+            {
+              "loop_variable": "path_condition",
+              "values": [
+                "air",
+                "A",
+                "B"
+              ],
+              "body": [
+                "PULSE_SWAP",
+                "PULSE_TRIGGER",
+                "PULSE_SAVE"
+              ],
+              "completion_rule": "Share receiver fixture and trigger conditions, save separate waveforms and require physical events for sample changes"
+            },
+            {
+              "set_condition": "air",
+              "steps": [
+                "PULSE_SWAP"
+              ]
+            },
+            "PULSE_ANALYZE",
+            "PULSE_RX_REMOVE"
+          ],
+          "produces_outputs": [
+            "pulse_comparison"
+          ]
+        },
+        {
+          "phase_id": "tube_lens_cells",
+          "title_en": "Per-sample two-load/four-position characterization",
+          "requires_outputs": [
+            "identified_cells"
+          ],
+          "steps": [
+            "TUBE_OFF",
+            "CONNECT_SOURCE",
+            "CONNECT_TUBE",
+            "CONNECT_MIC",
+            {
+              "loop_variable": "cell_geometry_id",
+              "values": [
+                "L01",
+                "L02",
+                "L03",
+                "L04",
+                "L05",
+                "L06",
+                "L07",
+                "L08",
+                "L09",
+                "L10",
+                "L11",
+                "L12",
+                "L13",
+                "L14",
+                "L15",
+                "L16",
+                "L17",
+                "L18",
+                "L19",
+                "L20",
+                "L21",
+                "L22",
+                "L23",
+                "L24",
+                "L25",
+                "L26",
+                "L27",
+                "L28",
+                "L29",
+                "L30",
+                "L31",
+                "L32",
+                "L33",
+                "L34",
+                "L35",
+                "L36",
+                "L37",
+                "L38",
+                "L39",
+                "L40"
+              ],
+              "body": [
+                "TUBE_OFF",
+                "TUBE_ACCESS",
+                "TUBE_INSERT",
+                "TUBE_SECURE",
+                "TUBE_CLOSE",
+                {
+                  "loop_variable": "frequency_hz",
+                  "values": [
+                    4170
+                  ],
+                  "body": [
+                    "SIGNAL_SET",
+                    "CHECK_CHANNEL",
+                    {
+                      "loop_variable": "load",
+                      "values": [
+                        "open",
+                        "rubber_sealed"
+                      ],
+                      "body": [
+                        "TUBE_OFF",
+                        "LOAD_SET",
+                        {
+                          "loop_variable": "port_id",
+                          "values": [
+                            "x1",
+                            "x2",
+                            "x3",
+                            "x4"
+                          ],
+                          "body": [
+                            "PROBE_RELEASE",
+                            "PORT_PREP",
+                            "PROBE_INSERT",
+                            "PORT_SEAL",
+                            "ACQUIRE_PRESSURE",
+                            "SAVE_PRESSURE",
+                            "PROBE_RETRACT"
+                          ],
+                          "completion_rule": "Operate the same probe_serial pointwise in four holes, recording each load/frequency separately"
+                        }
+                      ],
+                      "completion_rule": "A frequency is complete only after records exist for both physical loads"
+                    },
+                    "TRANSMISSION_ANALYZE"
+                  ],
+                  "completion_rule": "At least eight condition-consistent valid records per frequency, or explicit incomplete status"
+                },
+                "TUBE_UNLOAD"
+              ],
+              "completion_rule": "Individually mount each cell, acquire transmission/phase records and return it to its original carrier"
+            }
+          ],
+          "produces_outputs": [
+            "indexed_characterization"
+          ]
+        },
+        {
+          "phase_id": "lens_assemble",
+          "title_en": "Assemble forty cells into the lens by number",
+          "requires_outputs": [
+            "identified_cells",
+            "indexed_characterization"
+          ],
+          "steps": [
+            "HOLDER_PREP",
+            {
+              "loop_variable": "slot_number",
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "body": [
+                "CELL_PICK",
+                "LENS_INSERT",
+                "LENS_SEAT"
+              ],
+              "completion_rule": "Slot k must bind Lk and that entity's characterization records; these are not 40 new tasks"
+            },
+            "LENS_CHECK",
+            "LENS_LOCK"
+          ],
+          "produces_outputs": [
+            "assembled_lens"
+          ]
+        },
+        {
+          "phase_id": "guide_array_setup",
+          "title_en": "Assemble waveguide boundaries and sixty-source array",
+          "requires_outputs": [
+            "assembled_lens",
+            "field_interface_contract_present"
+          ],
+          "steps": [
+            "GUIDE_PREP",
+            "SPACER_PLACE",
+            "FOAM_PLACE",
+            "LENS_DOCK",
+            "ARRAY_RAIL",
+            {
+              "loop_variable": "speaker_number",
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60
+              ],
+              "body": [
+                "SPEAKER_PICK",
+                "SPEAKER_SEAT",
+                "SPEAKER_WIRE",
+                "SPEAKER_CHECK"
+              ],
+              "completion_rule": "Bind each distinct speaker_id to position and harness channel; do not invent real amplifier-wiring topology"
+            },
+            "CONNECT_SOURCE",
+            "ARRAY_CONNECT",
+            "ARRAY_SYNC",
+            "PROBE_MOUNT",
+            "PROBE_ROUTE",
+            "UPPER_CLOSE",
+            "ACCESS_CHECK",
+            "FRAME_REGISTER",
+            "SCAN_PLAN"
+          ],
+          "produces_outputs": [
+            "assembled_field_station"
+          ]
+        },
+        {
+          "phase_id": "field_baseline",
+          "title_en": "Obstacle-free scan over the limited main lobe",
+          "requires_outputs": [
+            "assembled_field_station"
+          ],
+          "steps": [
+            {
+              "verify_condition": "no_obstacle",
+              "evidence": "obstacle physically in carrier; lens and source installed"
+            },
+            "FIELD_SOURCE",
+            {
+              "loop_variable": "scan_point_id",
+              "values": "condition_card.scan_point_ids",
+              "body": [
+                "SCAN_MOVE",
+                "SCAN_SAMPLE",
+                "SCAN_SAVE"
+              ],
+              "completion_rule": "Acquire each reachable point independently for this condition; retain masks for unreachable/invalid points without fabricated values"
+            },
+            "FIELD_STOP",
+            "FIELD_ANALYZE"
+          ],
+          "produces_outputs": [
+            "baseline_raw"
+          ]
+        },
+        {
+          "phase_id": "field_obstacle",
+          "title_en": "Obstacle scan and paired comparison",
+          "requires_outputs": [
+            "assembled_field_station",
+            "baseline_raw"
+          ],
+          "steps": [
+            "OBSTACLE_INSTALL",
+            "FIELD_SOURCE",
+            {
+              "loop_variable": "scan_point_id",
+              "values": "condition_card.scan_point_ids",
+              "body": [
+                "SCAN_MOVE",
+                "SCAN_SAMPLE",
+                "SCAN_SAVE"
+              ],
+              "completion_rule": "Acquire each reachable point independently for this condition; retain masks for unreachable/invalid points without fabricated values"
+            },
+            "FIELD_STOP",
+            "FIELD_ANALYZE",
+            "FIELD_COMPARE",
+            "OBSTACLE_REMOVE"
+          ],
+          "produces_outputs": [
+            "paired_field_results"
+          ]
+        },
+        {
+          "phase_id": "field_close",
+          "title_en": "Unload the field station",
+          "requires_outputs": [
+            "paired_field_results"
+          ],
+          "steps": [
+            "FIELD_UNLOAD"
+          ],
+          "produces_outputs": [
+            "field_payloads_returned"
+          ]
+        }
+      ],
+      "epilogue": [
+        "DISCONNECT",
+        "ARCHIVE",
+        "DATA_ARCHIVE",
+        "CLEAN",
+        "FINAL_CHECK"
+      ],
+      "transport_rule": "Insert MOVE between stations. Loops are reference-expansion rules; one call cannot complete all 40/60/N entity operations.",
+      "condition_cards": {
+        "frequency_grid_hz": {
+          "value": null,
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "scan_point_ids": null,
+        "scan_point_input_requirement": "Authors must first provide a public point table matching these IDs, a source-to-scene transform and a reachability mask. null means absent input and blocks field-loop expansion; do not guess coordinates from display assets or source figures.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "success": "Complete authorized inert-object operations, lineage, condition records, appropriate analysis and terminal states; record failures/blockers honestly. Episodes lacking required interfaces can evaluate safe blocking only, not experiment completion.",
+      "not_claimed": "No robot trajectory execution, acoustic physics simulation, real manufacture, real acoustic output or reproduction of author raw data",
+      "resource_policy": {
+        "tube_probe": "MIC01 one legacy Type4958 in all tube port measurements",
+        "field_probe": "authored reuse MIC01 after tube/pulse removal and transfer; field source does not establish a specific model",
+        "exclusivity": "MIC01 has one current location; active tube/pulse/field acquisition is mutually exclusive, without duplicating assets across stations",
+        "shared_source_chain": "The same DS345/amplifier chain serves tube and array; stop output and verify/reconnect role ports before changing use, without simultaneously driving two unspecified loads"
+      }
+    }
+  ]
+}

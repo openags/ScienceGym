@@ -8,7 +8,7 @@
   "operations": [
     {
       "id": "STOCK",
-      "title": "取出本材料路线原料并装车",
+      "title": "Retrieve the raw materials for this material route and load the cart",
       "kind": "hands_on",
       "location_id": "WS_STOCK",
       "target_asset_roles": [
@@ -17,33 +17,33 @@
         "lot_labels"
       ],
       "preconditions": [
-        "episode与材料族已绑定",
-        "运输槽空且设备不运行"
+        "The episode is already bound to a material family",
+        "Transport slots are empty and equipment is not running"
       ],
       "actions": [
-        "读取Si、Ge、p-Si、n-Si和cladding标签，抓原棒包装/管架，分别放入有隔槽运输车",
-        "按单芯/双芯配方另取PC、CPC及Cu或W线盘，保持掺杂与金属线身份分离"
+        "Read the Si, Ge, p-Si, n-Si, and cladding labels; grasp the original-rod packaging/tube racks and place them separately in the compartmentalized transport cart",
+        "Also retrieve PC, CPC, and Cu or W wire reels according to the single-core/dual-core recipe, keeping doping and metal-wire identities separate"
       ],
       "postconditions": [
         "stock_lots_bound",
         "no_material_substitution"
       ],
       "recovery": [
-        "不明标签保持原包装并隔离；发现错料在投料前放回，不改标签"
+        "Keep ambiguously labeled materials in their original packaging and isolate them; return incorrect materials before loading without changing their labels"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源列出原棒、silica/ASG管、PC/CPC、Cu/W材料与p/n-Si原料",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source lists original rods, silica/ASG tubes, PC/CPC, Cu/W materials, and p/n-Si feedstock",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "MOVE",
-      "title": "支撑载具跨工位搬运",
+      "title": "Transport supported carriers between stations",
       "kind": "hands_on",
       "location_id": "route_destination",
       "target_asset_roles": [
@@ -52,31 +52,31 @@
         "spool"
       ],
       "preconditions": [
-        "物件已放入匹配载具",
-        "目的工位有空槽"
+        "The object has been placed in a matching carrier",
+        "The destination station has an empty slot"
       ],
       "actions": [
-        "抓车/载具把手，在收臂状态移动到当前路由目的工位",
-        "将载具落座到匹配槽，保持纤维被连续支撑，不夹持细芯作为整卷抓点"
+        "Grasp the cart/carrier handle and move to the current route's destination station with the arm retracted",
+        "Seat the carrier in the matching slot while continuously supporting the fibre; do not grasp a fine core as the grasp point for an entire reel"
       ],
       "postconditions": [
         "same_object_at_destination",
         "orientation_and_history_retained"
       ],
       "recovery": [
-        "碰撞、掉落、绕线缠结则停止并隔离；缺路径不瞬移样品"
+        "Stop and isolate after collision, dropping, or wire entanglement; do not teleport samples when no path exists"
       ],
       "evidence_ids": [],
       "provenance": {
-        "source_supported_macro_operation": "论文未报告移动机器人运输；是闭合实验流程连接",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The paper does not report mobile-robot transport; this is a connection that closes the experimental workflow",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "OXIDE_IN",
-      "title": "将原棒匣交接封闭表面预处理单元",
+      "title": "Hand off the original-rod cassette to the enclosed surface-pretreatment unit",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_PREP",
       "target_asset_roles": [
@@ -88,30 +88,30 @@
         "service_idle"
       ],
       "actions": [
-        "连原棒载架放入冷态交接抽屉并锁定样品号",
-        "关抽屉，以mock工单触发表面预处理，不开化学腔体"
+        "Place the original rod together with its carrier in the cold-state handoff drawer and lock in the sample number",
+        "Close the drawer and trigger surface pretreatment through a mock work order without opening the chemical chamber"
       ],
       "postconditions": [
         "pretreatment_started_with_same_lot"
       ],
       "recovery": [
-        "单元未释放则保持封闭；不在台面配酸或处理裸液体"
+        "Keep the unit enclosed until release; do not mix acids or handle exposed liquids on the bench"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Si/Ge原棒使用前去除native oxide；仅保留宏观处理阶段",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Native oxide is removed from Si/Ge original rods before use; only the macro treatment stage is retained",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实化学服务SOP、清洗干燥判据及安全审批"
+          "Real chemical-service SOPs, cleaning/drying criteria, and safety approval"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "OXIDE_OUT",
-      "title": "取回预处理完成的原棒载架",
+      "title": "Retrieve the original-rod carrier after pretreatment",
       "kind": "hands_on",
       "location_id": "WS_PREP",
       "target_asset_roles": [
@@ -123,30 +123,30 @@
         "safe_release"
       ],
       "actions": [
-        "拉出释放抽屉，抓载架把手放回原隔槽",
-        "核对处理记录与棒料身份，检查完整外形mock观察"
+        "Pull out the released drawer, grasp the carrier handle, and return it to its original compartment",
+        "Check the treatment record against the rod identity and inspect the mock observation of intact appearance"
       ],
       "postconditions": [
         "prepared_rod_available"
       ],
       "recovery": [
-        "残留/未完成标志则退回封闭等待；不拿有疑似残留的裸棒"
+        "If residue/incomplete flags appear, return it to enclosed waiting; do not handle a bare rod with suspected residue"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "去除native oxide后的原棒用于制备",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Original rods with native oxide removed are used for preparation",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "处理后保管、转移时间窗"
+          "Post-treatment storage and transfer time windows"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "DRY_IN",
-      "title": "将PC与CPC托盘放入干燥单元",
+      "title": "Place PC and CPC trays in the drying unit",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_POLYMER",
       "target_asset_roles": [
@@ -160,30 +160,30 @@
         "oven_cold_load_released"
       ],
       "actions": [
-        "将PC板与CPC各置有号托盘，打开冷态抽屉沿导轨推入",
-        "关闭门并选择PC/CPC预干燥工单；不把金属线或玻璃路线误选为聚合物"
+        "Place PC plates and CPC in their respective numbered trays, open the cold-state drawer, and push them in along the rails",
+        "Close the door and select the PC/CPC pre-drying work order; do not mistakenly select metal-wire or glass routes as polymers"
       ],
       "postconditions": [
         "polymer_dry_job_started"
       ],
       "recovery": [
-        "缺工单保留unknown配方槽，mock仍可执行；真实模式不启动"
+        "If a work order is missing, retain an unknown recipe field; the mock can still run, but real mode must not start"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "PC与CPC在会聚拉丝前预干燥",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "PC and CPC are pre-dried before convergence drawing",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实工况由受审SOP提供；本任务不下发热工配方"
+          "Real operating conditions must come from reviewed SOPs; this task does not issue thermal-processing recipes"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "DRY_OUT",
-      "title": "取出干燥后聚合物并保持标识",
+      "title": "Remove the dried polymers and preserve their identification",
       "kind": "hands_on",
       "location_id": "WS_POLYMER",
       "target_asset_roles": [
@@ -195,30 +195,30 @@
         "safe_to_touch"
       ],
       "actions": [
-        "抽出托盘并送到预制棒加工台",
-        "PC与CPC分开放入带盖材料槽，保留干燥批次"
+        "Pull out the trays and deliver them to the preform-processing bench",
+        "Place PC and CPC separately in covered material slots, retaining the drying-batch identity"
       ],
       "postconditions": [
         "dried_PC_CPC_ready"
       ],
       "recovery": [
-        "受污染或身份丢失的批次隔离，不能把原料直接宣称已干燥"
+        "Isolate contaminated batches or those with lost identity; do not directly declare raw materials dried"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "预干燥材料进入会聚预制棒制备",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Pre-dried materials enter convergence-preform preparation",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "储存湿度/干燥失效时限"
+          "Storage humidity/drying-validity time limit"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SILICA_INSERT",
-      "title": "将Si原棒插入silica管的轴向承托座",
+      "title": "Insert the original Si rod into the axial support seat of the silica tube",
       "kind": "hands_on",
       "location_id": "WS_PREFORM",
       "target_asset_roles": [
@@ -231,32 +231,32 @@
         "correct_silica_tube"
       ],
       "actions": [
-        "把silica管放入V形定位座并夹其粗外壁",
-        "托住原棒两端，将棒沿同轴导向慢送入管内；退出推杆后保持整件支撑"
+        "Place the silica tube in the V-shaped locating seat and clamp its thick outer wall",
+        "Support both ends of the original rod and slowly feed it into the tube along the coaxial guide; maintain support for the entire assembly after retracting the push rod"
       ],
       "postconditions": [
         "core_in_silica_preform",
         "dopant_identity_preserved"
       ],
       "recovery": [
-        "端部相碰或卡滞则退回重对准；不猛推脆棒"
+        "If the ends collide or jam, retract and realign; do not forcefully push the brittle rod"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Si原棒插入fused silica管；p/n原棒身份有来源，但p/n前端工艺详尽参数未分别报告",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The original Si rod is inserted into a fused silica tube; p/n original-rod identities are source-supported, but detailed p/n front-end process parameters are not separately reported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "p/n-Si前端拉丝的专属条件",
-          "公差与定位长度"
+          "Dedicated conditions for p/n-Si front-end drawing",
+          "Tolerances and positioning lengths"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "ASG_SIZE_IN",
-      "title": "将不同ASG原管/棒送入缩径拉制模块",
+      "title": "Deliver the different original ASG tubes/rods to the diameter-reduction drawing module",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_GLASS_DRAW",
       "target_asset_roles": [
@@ -269,31 +269,31 @@
         "cold_load_release"
       ],
       "actions": [
-        "按工单把大口径ASG管和棒分别放入缩径上料架",
-        "为每一目标尺寸选择独立子工单并关闭外罩，触发mock缩径"
+        "Place the large-diameter ASG tubes and rods separately in the diameter-reduction loading rack according to the work order",
+        "Select a separate child work order for each target dimension, close the outer cover, and trigger mock diameter reduction"
       ],
       "postconditions": [
         "ASG_resize_jobs_bound"
       ],
       "recovery": [
-        "错用BSG/silica立即停止；缺件可补新料但建立新子ID"
+        "Stop immediately if BSG/silica is used incorrectly; missing pieces may be replenished with new material, but create new child IDs"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "大ASG管拉成五尺寸套管组合所需管件，ASG棒拉成封口棒",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Large ASG tubes are drawn into the tubing needed for the five-size sleeve combination, and ASG rods are drawn into sealing rods",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "缩径设备真实几何与控制",
-          "各套管制造批次分配"
+          "Real geometry and controls of the diameter-reduction equipment",
+          "Manufacturing-batch allocation for each sleeve"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "ASG_SIZE_OUT",
-      "title": "取回缩径ASG件并按套层分格",
+      "title": "Retrieve diameter-reduced ASG parts and compartmentalize them by sleeve layer",
       "kind": "hands_on",
       "location_id": "WS_GLASS_DRAW",
       "target_asset_roles": [
@@ -305,30 +305,30 @@
         "safe_to_touch"
       ],
       "actions": [
-        "从释放架逐件取下ASG管/棒，读尺寸卡放入指定大小格",
-        "记录五套管尺寸族和封口棒身份，破裂件另放封闭碎片匣"
+        "Remove ASG tubes/rods one by one from the release rack, read their dimension cards, and place them in the specified size compartments",
+        "Record the five sleeve-size families and sealing-rod identities; place cracked pieces separately in enclosed fragment cassettes"
       ],
       "postconditions": [
         "five_tube_sizes_and_seal_rod_available"
       ],
       "recovery": [
-        "尺寸不符不靠强塞完成套层，转隔离并调用替代工单"
+        "Do not force mismatched dimensions together to complete the layers; isolate them and invoke a replacement work order"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源报告多尺寸ASG套管与2 mm封口棒",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source reports multiple ASG sleeve sizes and a 2 mm sealing rod",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "玻璃件测量误差与加工公差"
+          "Glass-part measurement errors and processing tolerances"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "ASG_NEST",
-      "title": "套装五层ASG管并插入Ge芯棒",
+      "title": "Fit five layers of ASG tubing and insert the Ge core rod",
       "kind": "hands_on",
       "location_id": "WS_PREFORM",
       "target_asset_roles": [
@@ -342,31 +342,31 @@
         "five_matching_ASG_tubes"
       ],
       "actions": [
-        "在承托座按内外径从最外管逐层插入内管，保持同轴并记录五件子ID",
-        "将Ge棒插入中心通道，放上指定ASG封口棒的待封持架"
+        "At the support seat, insert inner tubes layer by layer from the outermost tube according to inner/outer diameters, maintaining coaxial alignment and recording all five child IDs",
+        "Insert the Ge rod into the central channel and place the specified ASG sealing rod on the holder awaiting sealing"
       ],
       "postconditions": [
         "Ge_ASG_preform_assembled"
       ],
       "recovery": [
-        "层序错误逐层抽回；不把未装内套的Ge+大管标为论文预制棒"
+        "If the layer order is wrong, withdraw the tubes layer by layer; do not label Ge plus a large tube without inner sleeves as the paper's preform"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "五尺寸ASG管jacket成预制棒后插入Ge棒，以ASG棒参与密封",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Five sizes of ASG tubes are jacketed into a preform, then the Ge rod is inserted and an ASG rod is used in sealing",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "作者套层实际装配次序",
-          "接触/间隙、公差"
+          "The authors' actual layer-assembly order",
+          "Contacts/gaps and tolerances"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CONTROL_PREFORM",
-      "title": "装配Ge/silica、Ge/BSG或有无芯颈区对照预制棒",
+      "title": "Assemble Ge/silica, Ge/BSG, or with-/without-core neck-region control preforms",
       "kind": "hands_on",
       "location_id": "WS_PREFORM",
       "target_asset_roles": [
@@ -379,15 +379,15 @@
         "required_stock_present"
       ],
       "actions": [
-        "取本对照指定cladding放入承托座，按with_core或without_core卡决定是否插入芯棒",
-        "贴条件牌并独立交接后续服务；同一个空管不能在数据上同时称有芯和无芯"
+        "Place the cladding specified for this control in the support seat and use the with_core or without_core card to decide whether to insert a core rod",
+        "Attach the condition label and hand off separately to subsequent services; the same empty tube cannot be labeled both with-core and without-core in the data"
       ],
       "postconditions": [
         "control_preform_ready",
         "condition_not_defaulted_to_ASG"
       ],
       "recovery": [
-        "来源未给工艺处保留unknown，不复制主路线温度到对照"
+        "Where the source provides no process details, retain unknown; do not copy main-route temperatures into the controls"
       ],
       "evidence_ids": [
         "f.ed1",
@@ -395,17 +395,17 @@
         "f.si2"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Ge/silica裂纹、Ge/BSG失稳、有芯/无芯silica颈区对照有来源",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Ge/silica cracking, Ge/BSG instability, and with-/without-core silica neck-region controls are source-supported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "对照预制棒全部尺寸、Ge/silica和Ge/BSG完整制备设置"
+          "All control-preform dimensions and complete preparation settings for Ge/silica and Ge/BSG"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SEAL_IN",
-      "title": "将组装预制棒装入封闭密封服务载架",
+      "title": "Load the assembled preform into the enclosed sealing-service carrier",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_SEAL",
       "target_asset_roles": [
@@ -417,30 +417,30 @@
         "cold_load_release"
       ],
       "actions": [
-        "保持管棒轴线水平，将整套载架放进封闭单元并锁入导轨",
-        "关闭交接门并触发对应mock密封工单"
+        "Keep the tube/rod axis horizontal, place the entire carrier in the enclosed unit, and lock it into the rails",
+        "Close the handoff door and trigger the corresponding mock sealing work order"
       ],
       "postconditions": [
         "seal_service_started"
       ],
       "recovery": [
-        "互锁未关闭不触发；不操作明火或真空热封装置内部"
+        "Do not trigger until the interlock is closed; do not operate inside open-flame or vacuum heat-sealing equipment"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Si/silica及Ge/ASG预制棒有真空密封宏阶段",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Si/silica and Ge/ASG preforms have a macro vacuum-sealing stage",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实火焰/真空设备工程安全与运行细节"
+          "Engineering safety and operating details of real flame/vacuum equipment"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SEAL_OUT",
-      "title": "取回密封预制棒并送往拉丝上料",
+      "title": "Retrieve the sealed preform and deliver it to drawing feed loading",
       "kind": "hands_on",
       "location_id": "WS_SEAL",
       "target_asset_roles": [
@@ -452,28 +452,28 @@
         "safe_release"
       ],
       "actions": [
-        "抽出载架，将预制棒外壁粗抓握区放进运输V槽",
-        "读取密封状态mock反馈与材料ID，运输至玻璃拉丝冷态上料台"
+        "Pull out the carrier and place the preform's thick outer-wall grasp region in the transport V-groove",
+        "Read the mock sealing-state feedback and material ID, then transport it to the cold-state glass-drawing loading bench"
       ],
       "postconditions": [
         "sealed_preform_ready"
       ],
       "recovery": [
-        "漏封、裂损或状态未知则隔离，不进入拉丝"
+        "Isolate incompletely sealed, cracked, or unknown-state pieces; do not enter drawing"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "已密封预制棒进入molten-core拉丝",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Sealed preforms enter molten-core drawing",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "GLASS_LOAD",
-      "title": "把预制棒和空卷盘装到玻璃拉丝代理",
+      "title": "Load the preform and an empty reel onto the glass-drawing proxy",
       "kind": "hands_on",
       "location_id": "WS_GLASS_DRAW",
       "target_asset_roles": [
@@ -488,32 +488,32 @@
         "cold_load_release"
       ],
       "actions": [
-        "将预制棒载架沿上料轨道推到定位位并扣住保持件",
-        "把空收卷盘装到带键轴；把任务引出端导带穿过外部冷态导轮并固定到卷盘夹口"
+        "Push the preform carrier along the loading rail into the locating position and fasten the retainer",
+        "Mount the empty take-up reel on the keyed shaft; route the task's output-end leader through the external cold-state guide wheels and secure it in the reel clamp"
       ],
       "postconditions": [
         "preform_and_spool_mounted",
         "source_parent_bound"
       ],
       "recovery": [
-        "卷盘歪斜/导带绕错则停止并重穿；不接近热颈区"
+        "Stop and rethread if the reel is tilted or the leader is misrouted; do not approach the hot neck region"
       ],
       "evidence_ids": [
         "f.materials",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "预制棒通过molten-core拉丝并收集长纤维；具体冷态引丝代理为authored",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The preform undergoes molten-core drawing and the long fibre is collected; the specific cold-state fibre-initiation proxy is authored",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实引丝、张力、炉口、设备动作顺序"
+          "Real fibre initiation, tension, furnace opening, and equipment-operation sequence"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "GLASS_RUN",
-      "title": "关罩启动熔芯拉丝并保留三阶段记录",
+      "title": "Close the cover, start molten-core drawing, and retain the three-stage record",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_GLASS_DRAW",
       "target_asset_roles": [
@@ -527,32 +527,32 @@
         "robot_outside"
       ],
       "actions": [
-        "选择Si/silica或Ge/ASG或独立对照工单，按mock启动",
-        "只观察viscous_flow→core_crystallization→cooling服务事件及卷盘计长记录；不把结晶/冷却做成机器人手动操作"
+        "Select the Si/silica, Ge/ASG, or separate control work order and press mock start",
+        "Only observe viscous_flow→core_crystallization→cooling service events and the reel's length ledger; do not turn crystallization/cooling into manual robot operations"
       ],
       "postconditions": [
         "clad_fibre_created_by_service",
         "three_stage_history_present"
       ],
       "recovery": [
-        "服务中断保持原卷盘历史，未完成段隔离；不能用更高温度临时修补"
+        "If the service is interrupted, preserve the original reel's history and isolate unfinished segments; do not improvise a higher-temperature repair"
       ],
       "evidence_ids": [
         "f.materials",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "molten-core三阶段与主材料选择有来源；mock不计算应力或失稳",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The three molten-core stages and main material choices are source-supported; the mock does not compute stress or instability",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "热区配方、控制曲线及对照缺参"
+          "Hot-zone recipes, control curves, and missing control parameters"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "GLASS_UNLOAD",
-      "title": "停止收卷并取出冷却的玻璃包覆纤维",
+      "title": "Stop winding and remove the cooled glass-clad fibre",
       "kind": "hands_on",
       "location_id": "WS_GLASS_DRAW",
       "target_asset_roles": [
@@ -567,15 +567,15 @@
         "safe_release"
       ],
       "actions": [
-        "开外罩，将输出端扣入端头夹，解除卷盘轴锁",
-        "用双侧把手托出卷盘，放原编号架并送至检验/切段台"
+        "Open the outer cover, secure the output end in the end clamp, and release the reel-shaft lock",
+        "Lift the reel by its two side handles, place it in its original numbered rack, and deliver it to the inspection/cutting bench"
       ],
       "postconditions": [
         "cooled_clad_spool_available",
         "length_record_retained"
       ],
       "recovery": [
-        "未停轴不抓盘；断端封入碎片匣并记录未完成长度"
+        "Do not grasp the reel before the shaft stops; enclose broken ends in a fragment cassette and record the unfinished length"
       ],
       "evidence_ids": [
         "f.materials",
@@ -583,15 +583,15 @@
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "冷却后的玻璃包覆纤维进入表征及释放",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Cooled glass-clad fibres enter characterization and release",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CLAD_INSPECT",
-      "title": "支撑展开玻璃包覆纤维进行形态检查",
+      "title": "Deploy the glass-clad fibre on supports for morphology inspection",
       "kind": "hands_on",
       "location_id": "WS_METROLOGY",
       "target_asset_roles": [
@@ -604,14 +604,14 @@
         "scope_load_ready"
       ],
       "actions": [
-        "将一段纤维从盘缘送入连续支撑槽并固定两端",
-        "把载具放光学观察台，切换侧视/横截面样品，记录裂纹、扰动、球化或完整mock图像，再收回载具"
+        "Feed a fibre segment from the reel edge into a continuous support trough and secure both ends",
+        "Place the carrier on the optical-observation stage, switch between side-view/cross-section samples, record mock images of cracks, perturbations, spheroidization, or intact morphology, then retrieve the carrier"
       ],
       "postconditions": [
         "morphology_with_parent_and_condition"
       ],
       "recovery": [
-        "观察到裂纹是研究对照结果而非一律失败；不得将碎片归为完整Ge芯"
+        "Observed cracks are research-control outcomes rather than automatic failures; do not classify fragments as intact Ge cores"
       ],
       "evidence_ids": [
         "f.main",
@@ -620,17 +620,17 @@
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "光学图像显示完整芯、裂纹或毛细失稳形态",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Optical images show intact-core, cracking, or capillary-instability morphologies",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "成像区域采样与全长连续性判定"
+          "Imaged-region sampling and assessment of full-length continuity"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SEGMENT",
-      "title": "在支撑槽中分段并登记父卷位置",
+      "title": "Cut segments in the support trough and record positions on the parent reel",
       "kind": "hands_on",
       "location_id": "WS_RELEASE",
       "target_asset_roles": [
@@ -645,30 +645,30 @@
         "cutter_stopped"
       ],
       "actions": [
-        "沿带刻度托槽展开目标段，夹住两侧载具端夹，合上切割罩触发mock切段",
-        "把子段移入独立带盖长槽，父卷、区间、切缝与余料分别登记"
+        "Unwind the target segment along the graduated support trough, secure the carrier end clamps on both sides, close the cutting cover, and trigger mock cutting",
+        "Move child segments into separate covered long troughs and record the parent reel, intervals, kerf, and remainder separately"
       ],
       "postconditions": [
         "child_segments_created_without_length_gain"
       ],
       "recovery": [
-        "分段失败保留两段新ID与损失量；不把短段标签写成80 cm"
+        "If cutting fails, retain the two new segment IDs and the amount lost; do not label a short segment 80 cm"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "去包层前按槽限制切为80 cm的来源段；episode可选有明确父区间的短任务段",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Before de-cladding, source segments are cut to 80 cm because of the trough limit; an episode may select shorter task segments with explicit parent intervals",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "实际切割方式/损耗/有效长度"
+          "Actual cutting method/loss/effective length"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "RELEASE_IN",
-      "title": "送玻璃包覆段进入封闭去包层服务",
+      "title": "Send glass-clad segments into the enclosed de-cladding service",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_RELEASE",
       "target_asset_roles": [
@@ -680,14 +680,14 @@
         "cell_idle"
       ],
       "actions": [
-        "整条支撑载具插入封闭交接槽并扫描Si/silica、Ge/ASG或Ge/silica对照身份",
-        "关门并选择mock去玻璃服务，保持纤维载具承托，不将裸芯悬空搬运"
+        "Insert the entire support carrier into the enclosed handoff slot and scan the Si/silica, Ge/ASG, or Ge/silica control identity",
+        "Close the door and select the mock glass-removal service, retaining fibre-carrier support rather than transporting the bare core unsupported"
       ],
       "postconditions": [
         "release_service_started"
       ],
       "recovery": [
-        "无有效工单或安全状态则等待；不配制、转移、加热或开盖接触HF"
+        "Wait if there is no valid work order or safe state; do not prepare, transfer, heat, or open a cover to contact HF"
       ],
       "evidence_ids": [
         "f.materials",
@@ -695,17 +695,17 @@
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "化学去除玻璃包层是已报告宏阶段",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Chemical removal of the glass cladding is a reported macro stage",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实去包层SOP、残留/冲洗/干燥与安全判据"
+          "Real de-cladding SOPs, residue/rinsing/drying, and safety criteria"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "RELEASE_OUT",
-      "title": "取回裸芯或对照碎片载具",
+      "title": "Retrieve the bare-core or control-fragment carrier",
       "kind": "hands_on",
       "location_id": "WS_RELEASE",
       "target_asset_roles": [
@@ -718,14 +718,14 @@
         "safe_release"
       ],
       "actions": [
-        "拉出释放托盘，按mock观察保持连续裸芯支撑或将碎片连匣移出",
-        "同载具运至检验台，保留原cladding来源，不把Ge/silica碎片换成Ge/ASG标签"
+        "Pull out the released tray and, according to mock observations, maintain continuous support for the bare core or remove fragments together with their cassette",
+        "Transport it in the same carrier to the inspection bench, retaining its original cladding provenance; do not relabel Ge/silica fragments as Ge/ASG"
       ],
       "postconditions": [
         "released_core_or_fragment_set_available"
       ],
       "recovery": [
-        "连续性未知则标unknown；破碎载具不倒出寻找可拼接长芯"
+        "Mark unknown continuity as unknown; do not tip fragments from their carrier to search for a spliceable long core"
       ],
       "evidence_ids": [
         "f.materials",
@@ -734,15 +734,15 @@
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Si/Ge裸芯与Ge/silica碎片对照",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Si/Ge bare cores and Ge/silica fragment controls",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CORE_INSPECT",
-      "title": "检查裸芯连续性并分配用途",
+      "title": "Inspect bare-core continuity and allocate uses",
       "kind": "hands_on",
       "location_id": "WS_METROLOGY",
       "target_asset_roles": [
@@ -754,15 +754,15 @@
         "RELEASE_OUT_complete"
       ],
       "actions": [
-        "将载具置显微观察座，按可见段检查并保留观察范围",
-        "分配完整裸芯给会聚拉丝/演示/表征，碎片仅给裂纹对照；标出未来破坏性样的子ID"
+        "Place the carrier in the microscopy-observation seat, inspect the visible segments, and retain the observation scope",
+        "Allocate intact bare cores to convergence drawing/demonstrations/characterization and fragments only to cracking controls; identify child IDs for future destructive samples"
       ],
       "postconditions": [
         "lineage_and_use_allocation",
         "unknown_full_length_not_invented"
       ],
       "recovery": [
-        "若有断裂则更改状态为fragmented；若需替换使用同族新样，不覆盖历史"
+        "If fracture is present, change the state to fragmented; if replacement is needed, use a new sample of the same family without overwriting history"
       ],
       "evidence_ids": [
         "f.ed1",
@@ -770,17 +770,17 @@
         "f.v1"
       ],
       "provenance": {
-        "source_supported_macro_operation": "裸芯连续性与机械可操作性有来源",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Bare-core continuity and mechanical handleability are source-supported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "全长检验方法、独立样本和批次分配"
+          "Full-length inspection methods, independent samples, and batch allocation"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CORE_BOBBIN",
-      "title": "把有支撑裸芯卷到演示线轴",
+      "title": "Wind the supported bare core onto the demonstration spool",
       "kind": "hands_on",
       "location_id": "WS_HANDLING",
       "target_asset_roles": [
@@ -794,31 +794,31 @@
         "fixture_idle"
       ],
       "actions": [
-        "把裸芯端头固定在任务软夹，缓慢转代理卷轴同时移动支撑导槽",
-        "收完可用长度后固定尾端，连盘放回编号托架"
+        "Secure the bare-core end in the task's soft clamp, slowly turn the proxy spool, and move the supporting guide trough at the same time",
+        "After winding the available length, secure the tail end and return the entire reel to its numbered carrier"
       ],
       "postconditions": [
         "wrapped_released_core",
         "input_length_preserved"
       ],
       "recovery": [
-        "出现缠结停止转盘，将整载具隔离；不拉直裂口"
+        "If entanglement occurs, stop the reel and isolate the entire carrier; do not pull a cracked section straight"
       ],
       "evidence_ids": [
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "80 cm Si/Ge裸芯可在bobbin收集；具体导槽/夹具为authored",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "80 cm Si/Ge bare cores can be collected on a bobbin; the specific guide troughs/clamps are authored",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "源作者卷绕张力、盘径和手部顺序"
+          "The original authors' winding tension, spool diameter, and hand-operation sequence"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CORE_BEND",
-      "title": "将专用裸芯样放到弯曲半径支撑件",
+      "title": "Place the dedicated bare-core sample on the bend-radius support",
       "kind": "hands_on",
       "location_id": "WS_HANDLING",
       "target_asset_roles": [
@@ -831,30 +831,30 @@
         "material_radius_card"
       ],
       "actions": [
-        "将可动支撑端绕对应半径模板落座，避免用夹爪捏折中段",
-        "拍当前形态并解除模板，让样品回到带号载具"
+        "Seat the movable support end around the corresponding radius template, avoiding gripping and folding the middle section with the gripper",
+        "Image the current morphology, release the template, and return the sample to its numbered carrier"
       ],
       "postconditions": [
         "bend_observation_saved"
       ],
       "recovery": [
-        "若断裂保留断裂状态和观察，不强行完成半径"
+        "If fracture occurs, retain the fractured state and observation; do not force completion of the radius"
       ],
       "evidence_ids": [
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "55 μm Si弯曲半径4 mm，Ge为2.5 mm的展示",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Demonstration of a 4 mm bending radius for 55 μm Si and 2.5 mm for Ge",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "维持弯曲时间、弯曲速率、夹具"
+          "Bend-hold duration, bending rate, and fixtures"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CORE_LOAD",
-      "title": "在封闭承接箱上方挂放演示载荷",
+      "title": "Suspend the demonstration load above the enclosed catch box",
       "kind": "hands_on",
       "location_id": "WS_HANDLING",
       "target_asset_roles": [
@@ -868,31 +868,31 @@
         "guard_interlocked"
       ],
       "actions": [
-        "把裸芯固定于代理上下承托接口，将电脑鼠标外形惰性载荷接到下挂点",
-        "关罩后解除载荷托架，记录mock承载，再升回托架并解除连接"
+        "Secure the bare core to the proxy upper/lower support interfaces and attach an inert computer-mouse-shaped load to the lower suspension point",
+        "Close the cover, disengage the load support, record mock load bearing, then raise the support again and disconnect"
       ],
       "postconditions": [
         "supported_load_demonstration",
         "load_removed"
       ],
       "recovery": [
-        "断裂载荷落入承接箱后等待停止再回收；禁止活体动物"
+        "If the fibre breaks and the load falls into the catch box, wait until it stops before recovery; live animals are prohibited"
       ],
       "evidence_ids": [
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Si承托70 g电脑鼠标，Ge为86 g；不是动物实验",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Si supports a 70 g computer mouse and Ge an 86 g one; this is not an animal experiment",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实固定方法与载荷保持时间"
+          "Real attachment method and load-hold duration"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "QUENCH",
-      "title": "封闭保留对照颈区并取回观察",
+      "title": "Retain the control neck region in an enclosed service and retrieve it for observation",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_GLASS_DRAW",
       "target_asset_roles": [
@@ -905,32 +905,32 @@
         "guard_closed"
       ],
       "actions": [
-        "将对应预制棒装入颈区保留服务，按mock形成/保留工单",
-        "完成与安全释放后取出带颈区载架，放到轮廓观察槽；标注quench_history"
+        "Load the corresponding preform into the neck-retention service and select the mock formation/retention work order",
+        "After completion and safe release, remove the carrier holding the neck region, place it in the profile-observation slot, and record quench_history"
       ],
       "postconditions": [
         "preserved_neck_profile",
         "quench_cracks_separate_from_as_drawn_cracks"
       ],
       "recovery": [
-        "裂纹保留为冷却干预历史；不把它算作主路线自发裂纹"
+        "Retain cracks as cooling-intervention history; do not count them as spontaneous cracking on the main route"
       ],
       "evidence_ids": [
         "f.ed4",
         "f.si2"
       ],
       "provenance": {
-        "source_supported_macro_operation": "有芯/无芯预制棒拉制后淬冷保留颈形以对照计算",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "After drawing, with-/without-core preforms are quenched to preserve neck profiles for comparison with calculations",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "淬冷介质、热动作细节、真实仪器安全"
+          "Quenching media, thermal-operation details, and real instrument safety"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SECTION",
-      "title": "取专用兄弟样并制备横向/纵向截面",
+      "title": "Take dedicated sibling samples and prepare transverse/longitudinal cross-sections",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_SECTION",
       "target_asset_roles": [
@@ -943,15 +943,15 @@
         "specimen_not_for_later_intact_test"
       ],
       "actions": [
-        "将本材料专用截段按transverse或lateral方向放入带方向槽的包埋匣",
-        "把包埋匣放入封闭制样服务，收到固化/研磨/抛光完成与安全释放后取回截面座"
+        "Place this material's dedicated segment in the direction-keyed embedding cassette with transverse or lateral orientation",
+        "Place the embedding cassette in the enclosed sample-preparation service; retrieve the section holder after curing/grinding/polishing completion and safe release"
       ],
       "postconditions": [
         "section_is_embedded_and_polished",
         "preparation_history_recorded"
       ],
       "recovery": [
-        "错方向可重新从兄弟样制备，不能通过改数据标签补救；制样件不回用于完整器件"
+        "An incorrectly oriented section may be remade from a sibling sample, but cannot be repaired by changing its data label; prepared specimens must not return to intact-device use"
       ],
       "evidence_ids": [
         "f.materials",
@@ -959,17 +959,17 @@
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "环氧包埋及分级SiC研磨用于截面；抛光会改变残余应力",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Epoxy embedding and graded SiC grinding are used for cross-sections; polishing changes residual stress",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "配料、固化、压力与抛光安全SOP"
+          "Mixing, curing, pressure, and polishing safety SOPs"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "RAMAN",
-      "title": "装入材料序列并采光谱/映射/中心线",
+      "title": "Load the material sequence and acquire spectra/maps/centerline scans",
       "kind": "hands_on",
       "location_id": "WS_RAMAN",
       "target_asset_roles": [
@@ -982,14 +982,14 @@
         "optical_enclosure_closed_before_measurement"
       ],
       "actions": [
-        "逐个把原棒参考、包覆截面、释放芯的载具装到Raman台并对齐定位标记",
-        "关罩选择单谱、截面map或穿中心line-scan工单，采集mock反馈后安全卸样"
+        "Load the original-rod reference, clad cross-section, and released-core carriers onto the Raman stage one at a time and align their locating marks",
+        "Close the cover and select a single-spectrum, cross-section map, or through-center line-scan work order; safely unload after acquiring mock feedback"
       ],
       "postconditions": [
         "spectra_and_maps_bound_to_sample_state"
       ],
       "recovery": [
-        "谱与样品标签不一致重新采集；不得从Raman推断未经抛光的原始应力或独立两阶段贡献"
+        "Reacquire if spectra and sample labels disagree; do not infer unpolished original stress or independent contributions from the two stages from Raman"
       ],
       "evidence_ids": [
         "f.materials",
@@ -997,17 +997,17 @@
         "f.si_tables"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源532 nm Raman，原棒/包覆/释放比较及map/line scan",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source reports 532 nm Raman, original-rod/clad/released comparisons, and map/line scan",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "激光功率、积分、mapping步长、峰拟合与标定"
+          "Laser power, integration, mapping step, peak fitting, and calibration"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SEM_EDX",
-      "title": "装入截面座并取显微形态/元素线扫",
+      "title": "Load the section holder and acquire microscopic morphology/elemental line scans",
       "kind": "hands_on",
       "location_id": "WS_CHARACTERIZATION",
       "target_asset_roles": [
@@ -1019,32 +1019,32 @@
         "safe_load_release"
       ],
       "actions": [
-        "把截面座固定到代理样品台，推入装样舱并关门",
-        "选择横/纵形态及EDX线扫工单；取回样品时核对原截面号"
+        "Secure the section holder to the proxy sample stage, push it into the loading chamber, and close the door",
+        "Select the transverse/longitudinal morphology and EDX line-scan work order; verify the original section number when retrieving the sample"
       ],
       "postconditions": [
         "SEM_EDX_records",
         "oxygen_result_not_assumed_zero"
       ],
       "recovery": [
-        "仪器不ready则不跳过记录；充电/漂移mock标志保留为无效采集"
+        "Do not skip records if the instrument is not ready; retain charging/drift mock flags as invalid acquisitions"
       ],
       "evidence_ids": [
         "f.materials",
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "SEM/EDX用于Si/silica与Ge/ASG横截面材料表征",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "SEM/EDX are used for cross-sectional material characterization of Si/silica and Ge/ASG",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "样品导电处理、视野分配与原始元素标定"
+          "Sample conductive treatment, field-of-view allocation, and original elemental calibration"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "XRD",
-      "title": "装样并采集衍射参考与纤维数据",
+      "title": "Load samples and acquire diffraction references and fibre data",
       "kind": "hands_on",
       "location_id": "WS_CHARACTERIZATION",
       "target_asset_roles": [
@@ -1056,31 +1056,31 @@
         "fibre_and_raw_rod_reference_allocated"
       ],
       "actions": [
-        "把原棒或纤维固定到相应有号样品座，关仪器防护门",
-        "触发mock二维WAXS/旋转工单并保存衍射记录，结束后取回到原槽"
+        "Secure the original rod or fibre to its corresponding numbered sample holder and close the instrument's protective door",
+        "Trigger the mock two-dimensional WAXS/rotation work order, save diffraction records, and return the sample to its original slot when finished"
       ],
       "postconditions": [
         "raw_and_fibre_diffraction_pair"
       ],
       "recovery": [
-        "无原棒参考不能声称比较已完成；保留散射数据与后续方位积分区别"
+        "Without an original-rod reference, do not claim the comparison is complete; preserve the distinction between scattering data and subsequent azimuthal integration"
       ],
       "evidence_ids": [
         "f.materials",
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "二维WAXS数据方位积分得到XRD，比较原料与纤维结晶",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Azimuthal integration of two-dimensional WAXS data yields XRD for comparison of feedstock and fibre crystallinity",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "样品支撑方式、背景扣除、峰判据"
+          "Sample support, background subtraction, and peak criteria"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "FIB",
-      "title": "将兄弟样交接薄片制备并取回专用载具",
+      "title": "Hand off sibling samples for lamella preparation and retrieve their dedicated carriers",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_CHARACTERIZATION",
       "target_asset_roles": [
@@ -1092,30 +1092,30 @@
         "parent_section_known"
       ],
       "actions": [
-        "将专用截段载具放FIB交接舱并选取任务ROI",
-        "收到mock薄片完成与安全释放后取出封闭网格载具，建立lamella子ID"
+        "Place the dedicated segment carrier in the FIB handoff chamber and select the task ROI",
+        "After mock lamella completion and safe release, remove the enclosed grid carrier and create a lamella child ID"
       ],
       "postconditions": [
         "lamella_parent_linked"
       ],
       "recovery": [
-        "薄片损坏重新制备须新子ID；不能从其他材料补图"
+        "Remaking a damaged lamella requires a new child ID; do not substitute images from another material"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "TEM薄片由FIB制备",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "TEM lamellae are prepared by FIB",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "薄片厚度、具体铣削/保护层配方、ROI选择"
+          "Lamella thickness, specific milling/protective-layer recipes, and ROI selection"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "TEM",
-      "title": "装双倾样品杆并获取HRTEM/SAED",
+      "title": "Load the double-tilt sample holder and acquire HRTEM/SAED",
       "kind": "hands_on",
       "location_id": "WS_CHARACTERIZATION",
       "target_asset_roles": [
@@ -1128,32 +1128,32 @@
         "loadlock_safe"
       ],
       "actions": [
-        "以放大操作代理把封闭网格载具装到双倾样品杆承接口",
-        "将样品杆交接到mock装样舱，关门采集HRTEM/SAED，再安全取回"
+        "Use the magnified operation proxy to fit the enclosed grid carrier onto the double-tilt sample-holder interface",
+        "Hand the sample holder into the mock loading chamber, close the door, acquire HRTEM/SAED, and then retrieve it safely"
       ],
       "postconditions": [
         "HRTEM_SAED_record",
         "polycrystalline_context_preserved"
       ],
       "recovery": [
-        "不把局部晶格图宣称整根单晶；损坏薄片独立归档"
+        "Do not claim an entire fibre is single-crystalline from a local lattice image; archive damaged lamellae separately"
       ],
       "evidence_ids": [
         "f.materials",
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "HRTEM、SAED与双倾holder有来源",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "HRTEM, SAED, and the double-tilt holder are source-supported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实网格装配尺寸、倾角/束流和取区"
+          "Real grid-assembly dimensions, tilt angles/beam current, and selected regions"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "PC_MILL",
-      "title": "把两块PC板放入封闭开槽单元",
+      "title": "Place two PC plates in the enclosed slotting unit",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_POLYMER",
       "target_asset_roles": [
@@ -1166,31 +1166,31 @@
         "milling_job_bound"
       ],
       "actions": [
-        "将两PC板分别放定位座并固定外缘",
-        "关罩触发三条半圆槽及槽间加工mock工单；安全释放后取回并检查槽方向"
+        "Place each PC plate in a locating seat and secure its outer edges",
+        "Close the cover and trigger the mock work order for three semicircular slots and machining between them; retrieve after safe release and inspect slot direction"
       ],
       "postconditions": [
         "machined_PC_pair",
         "three_channels_present"
       ],
       "recovery": [
-        "槽数/朝向错则隔离板，不能在后续用标签修正"
+        "Isolate plates with incorrect slot counts/orientations; do not correct them later through labels"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "两PC板各开三半圆槽并加工槽间空间",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Each of the two PC plates receives three semicircular slots and machined spaces between the slots",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实刀具路径、夹紧力、切屑处理、公差"
+          "Real tool paths, clamping forces, chip handling, and tolerances"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CPC_INSERT",
-      "title": "取CPC插片并嵌入槽间间隙",
+      "title": "Retrieve CPC inserts and fit them into the inter-slot gaps",
       "kind": "hands_on",
       "location_id": "WS_POLYMER",
       "target_asset_roles": [
@@ -1203,30 +1203,30 @@
         "machined_PC_pair"
       ],
       "actions": [
-        "将来源描述的两CPC插片从编号小盒取出，分别放进PC槽间空间",
-        "用任务软端压片压到座面，保持三个通道畅通"
+        "Remove the two CPC inserts described in the source from their numbered small box and place them separately in the spaces between the PC slots",
+        "Use the task's soft-ended pressure tab to press them onto the seating surface while keeping all three channels open"
       ],
       "postconditions": [
         "CPC_pair_positioned"
       ],
       "recovery": [
-        "CPC挡住中心/侧通道则取出重放；不臆造导电胶"
+        "If CPC blocks the central/side channels, remove and reposition it; do not invent conductive adhesive"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "两块1 mm square CPC slabs置于三槽之间的加工空间",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Two 1 mm square CPC slabs are placed in the machined spaces between the three slots",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "125 μm膜到1 mm square插片的加工/叠层关系不明确"
+          "The processing/stacking relationship between 125 μm film and 1 mm square inserts is unclear"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "PC_CLOSE",
-      "title": "对合PC双板并交接整合服务",
+      "title": "Mate the two PC plates and hand them off to the consolidation service",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_POLYMER",
       "target_asset_roles": [
@@ -1238,30 +1238,30 @@
         "CPC_pair_positioned"
       ],
       "actions": [
-        "将上PC板按通道方向对合下板，把双板放入有号整合载架",
-        "送入封闭mock整合单元，关门启动；完成与冷态释放后取出预制棒"
+        "Mate the upper PC plate to the lower plate according to channel direction and place both in a numbered consolidation carrier",
+        "Deliver to the enclosed mock consolidation unit, close the door, and start; remove the preform after completion and cold-state release"
       ],
       "postconditions": [
         "consolidated_polymer_preform"
       ],
       "recovery": [
-        "错向或错片装配先拆回定位座；加工完成后不假设能无损逆转"
+        "First disassemble incorrectly oriented or mismatched plates back into the locating seat; do not assume the process can be reversed without damage after processing"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "预制棒真空热整合后用于会聚拉丝",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The preform is used for convergence drawing after vacuum thermal consolidation",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实整合压力/接触状态/容差"
+          "Real consolidation pressure/contact state/tolerances"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CONVERGE_LOAD",
-      "title": "装聚合物预制棒与输入芯/电极线盘",
+      "title": "Load the polymer preform and input core/electrode-wire reels",
       "kind": "hands_on",
       "location_id": "WS_CONVERGENCE",
       "target_asset_roles": [
@@ -1277,32 +1277,32 @@
         "tower_cold_idle"
       ],
       "actions": [
-        "将聚合物预制棒锁入冷态进给架，安放空输出盘",
-        "单芯路线准备一条Si或Ge及两Cu线盘；双芯路线准备p-Si和n-Si两条芯及两W线盘，逐项检查标签"
+        "Lock the polymer preform into the cold-state feed rack and install an empty output reel",
+        "For the single-core route, prepare one Si or Ge core and two Cu wire reels; for the dual-core route, prepare p-Si and n-Si cores and two W wire reels, checking every label"
       ],
       "postconditions": [
         "correct_single_or_dual_feed_inventory"
       ],
       "recovery": [
-        "铜钨混用、缺p或缺n则不启动；不得将未释放玻璃包覆芯喂入"
+        "Do not start with mixed copper/tungsten, missing p, or missing n; do not feed an unreleased glass-clad core"
       ],
       "evidence_ids": [
         "f.materials",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "单芯Cu/Si或Ge与双芯W/p-n Si的结构有来源",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The single-core Cu/Si or Ge and dual-core W/p-n Si structures are source-supported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "p/n裸芯前端详细工单与线盘长度",
-          "输出50m与输入80cm连续性桥接"
+          "Detailed p/n bare-core front-end work orders and reel lengths",
+          "Continuity bridge between the 50m output and 80cm input"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CONVERGE_THREAD",
-      "title": "把导入端送入两个侧通道与中央通道",
+      "title": "Feed the input ends into the two side channels and the central channel",
       "kind": "hands_on",
       "location_id": "WS_CONVERGENCE",
       "target_asset_roles": [
@@ -1316,31 +1316,31 @@
         "cold_feed_interface_accessible"
       ],
       "actions": [
-        "将两金属线任务端头夹分别推到两侧通道导入口",
-        "将单条芯或独立p/n两芯的支撑端送入中央通道，固定各送料承托；不手动熔接芯线"
+        "Push the two metal wires' task end clamps to the feed entrances of the two side channels separately",
+        "Feed the supported end of the single core or the independent p/n cores into the central channel and secure each feed support; do not manually fusion-splice the cores"
       ],
       "postconditions": [
         "feed_channels_correct",
         "p_and_n_not_collapsed_to_one_identity"
       ],
       "recovery": [
-        "穿错通道退回对应端夹重穿，卡住时不牵拉细芯"
+        "If a channel is misthreaded, retract the corresponding end clamp and rethread; do not pull on fine cores if they jam"
       ],
       "evidence_ids": [
         "f.materials"
       ],
       "provenance": {
-        "source_supported_macro_operation": "拉丝时金属线从两侧、芯从中央输入；双芯由缩径自行对齐",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "During drawing, metal wires feed from both sides and cores from the center; the dual cores self-align through diameter reduction",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实导入/张力/接芯/微操方法"
+          "Real insertion/tension/core-joining/micromanipulation methods"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CONVERGE_RUN",
-      "title": "关罩启动会聚拉丝并取回器件段",
+      "title": "Close the cover, start convergence drawing, and retrieve the device segment",
       "kind": "enclosed_mock_service_handoff",
       "location_id": "WS_CONVERGENCE",
       "target_asset_roles": [
@@ -1354,8 +1354,8 @@
         "robot_retracted"
       ],
       "actions": [
-        "触发mock会聚工单，保留聚合物流动、固体芯与线保持固态、界面形成事件",
-        "结束后等待冷却/停轴/释放，扣住输出端，将成品盘取入带号托架"
+        "Trigger the mock convergence work order, retaining events for polymer flow, cores and wires remaining solid, and interface formation",
+        "After completion, wait for cooling/shaft stop/release, secure the output end, and remove the finished reel into a numbered carrier"
       ],
       "postconditions": [
         "polymer_clad_device_created",
@@ -1363,7 +1363,7 @@
         "no_core_length_created"
       ],
       "recovery": [
-        "断芯或电极不连续则隔离对应区间；未报告接续方式不自行补齐长芯"
+        "Isolate intervals with broken cores or discontinuous electrodes; do not fill in a long core when the continuation method is unreported"
       ],
       "evidence_ids": [
         "f.materials",
@@ -1371,18 +1371,18 @@
         "f.ed6"
       ],
       "provenance": {
-        "source_supported_macro_operation": "会聚形成PC/CPC/半导体/金属界面，单芯和双芯不同",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Convergence forms PC/CPC/semiconductor/metal interfaces, with different single-core and dual-core structures",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "连续进芯与长卷的材料桥接、界面几何",
-          "实际制造公差"
+          "Material bridge between continuous core feeding and long reels, and interface geometry",
+          "Actual fabrication tolerances"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "DEVICE_ALLOCATE",
-      "title": "检查器件截面并分配同源兄弟样",
+      "title": "Inspect device cross-sections and allocate sibling samples of shared provenance",
       "kind": "hands_on",
       "location_id": "WS_METROLOGY",
       "target_asset_roles": [
@@ -1395,15 +1395,15 @@
         "device_spool_complete"
       ],
       "actions": [
-        "从有父区间的成品段分出截面检查子样，放显微座确认PC/CPC/芯/金属位置",
-        "按episode分配光电、破坏性力学、耐久、织物应用子样；每个区间只能占用一次，截面件不能回变完整件"
+        "Split off a cross-section inspection child sample from a finished segment with a parent interval and place it in the microscopy seat to confirm PC/CPC/core/metal positions",
+        "Allocate optoelectronic, destructive-mechanical, durability, and textile-application child samples by episode; each interval can be used only once, and a sectioned object cannot revert to an intact one"
       ],
       "postconditions": [
         "device_children_allocated",
         "cross_section_and_electrode_identity"
       ],
       "recovery": [
-        "结构错位或断路保留失败件；换新兄弟样必须新子ID"
+        "Retain failed objects with structural misalignment or open circuits; replacement sibling samples require new child IDs"
       ],
       "evidence_ids": [
         "f.main",
@@ -1411,17 +1411,17 @@
         "f.measure"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源器件截面及多类测试；具体兄弟样分配是authored，作者实际复用未知",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source reports device cross-sections and multiple test types; the specific sibling-sample allocation is authored, and the authors' actual reuse is unknown",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "有效光孔/active length、独立样本分配、公差"
+          "Effective optical aperture/active length, independent sample allocation, and tolerances"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "STRIP",
-      "title": "固定器件端并剥露金属电极",
+      "title": "Secure the device end and strip it to expose the metal electrodes",
       "kind": "hands_on",
       "location_id": "WS_ELECTRICAL",
       "target_asset_roles": [
@@ -1435,31 +1435,31 @@
         "ends_supported"
       ],
       "actions": [
-        "把器件端放剥线座，夹紧聚合物外侧粗托架",
-        "合拢mock剥线工具移去端部包覆片露出两金属电极，将余片放分类盒"
+        "Place the device end in the stripping seat and clamp the thick support outside the polymer",
+        "Close the mock stripping tool to remove the end cladding piece and expose both metal electrodes; place the removed pieces in the sorting box"
       ],
       "postconditions": [
         "electrode_ends_exposed",
         "active_region_unmodified"
       ],
       "recovery": [
-        "切伤电极或芯则该段隔离；不偷偷裁短后保留旧有效长度"
+        "Isolate the segment if an electrode or core is nicked; do not secretly trim it shorter while retaining the old effective length"
       ],
       "evidence_ids": [
         "f.measure"
       ],
       "provenance": {
-        "source_supported_macro_operation": "纤维剥线器露出金属电极建立连接",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "A fibre stripper exposes metal electrodes to establish connections",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "剥露长度、工具设置、接头与实际接触方法"
+          "Exposed length, tool settings, connectors, and actual contact method"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CONTACT",
-      "title": "连接电极并检查通道/极性",
+      "title": "Connect the electrodes and check channels/polarity",
       "kind": "hands_on",
       "location_id": "WS_ELECTRICAL",
       "target_asset_roles": [
@@ -1473,31 +1473,31 @@
         "source_output_off"
       ],
       "actions": [
-        "把两端子接入有标号夹片，机械承托固定在器件外载具上",
-        "按面板执行mock连接检查，单芯、双芯p/n及正负端映射分别记录"
+        "Connect both terminals to numbered clips and secure the mechanical support to the device's outer carrier",
+        "Use the panel to execute a mock connection check and separately record the single-core, dual-core p/n, and positive/negative terminal mappings"
       ],
       "postconditions": [
         "electrical_connection_checked"
       ],
       "recovery": [
-        "开路/短路先断电再复位接触；仍异常将样品标invalid，不抄预设曲线"
+        "For an open/short circuit, disconnect power before resetting contacts; if the fault persists, mark the sample invalid rather than copying a preset curve"
       ],
       "evidence_ids": [
         "f.measure",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "金属电极电连接、电流电压测量有来源",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Electrical connections to metal electrodes and current/voltage measurements are source-supported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实探针/接线和接触电阻判据"
+          "Real probes/wiring and contact-resistance criteria"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "OPTICAL_MOUNT",
-      "title": "将器件与功率检测端放入封闭光路",
+      "title": "Place the device and power detector in the enclosed optical path",
       "kind": "hands_on",
       "location_id": "WS_OPTO",
       "target_asset_roles": [
@@ -1512,31 +1512,31 @@
         "illumination_off"
       ],
       "actions": [
-        "将器件载具固定在光路中心座，按Si/Ge卡装532/1550 nm模拟光源模块",
-        "安放球面/平凹镜代理及功率检测位，调整载具到覆盖感光区的任务对准标记后关罩"
+        "Secure the device carrier in the central optical-path seat and install the 532/1550 nm simulated source module according to the Si/Ge card",
+        "Install the spherical/plano-concave lens proxies and power-detection position, adjust the carrier to the task alignment marks covering the photosensitive region, and close the cover"
       ],
       "postconditions": [
         "wavelength_material_pair_correct",
         "power_context_recorded"
       ],
       "recovery": [
-        "光孔/方向不明则记录unknown并请求相应任务配置；不在开放空间调真激光"
+        "If the optical aperture/direction is unclear, record unknown and request the corresponding task configuration; do not adjust a real laser in open space"
       ],
       "evidence_ids": [
         "f.measure"
       ],
       "provenance": {
-        "source_supported_macro_operation": "透镜整形覆盖孔径并用功率计监测；源选择有来源",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Lens shaping to cover the aperture, power-meter monitoring, and source choices are source-supported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "光孔、光斑、对准公差、真实激光安全"
+          "Optical aperture, spot, alignment tolerances, and real laser safety"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "DARK_LIGHT",
-      "title": "采暗态及光照光响应并保存功率记录",
+      "title": "Acquire dark-state and illuminated photoresponses and save power records",
       "kind": "hands_on",
       "location_id": "WS_OPTO",
       "target_asset_roles": [
@@ -1550,15 +1550,15 @@
         "bias_recipe_bound"
       ],
       "actions": [
-        "先保持光源关状态触发mock暗电流读取，再启用指定光照条件与功率同步读取",
-        "以独立condition保存dark及light，测完关光断偏压；不得把暗电流省略为零"
+        "First keep the light source off and trigger a mock dark-current reading, then enable the specified illumination condition and acquire synchronously with power",
+        "Save dark and light as separate conditions, then switch off illumination and disconnect bias after measurement; do not omit dark current by setting it to zero"
       ],
       "postconditions": [
         "paired_dark_light_record",
         "power_normalization_inputs"
       ],
       "recovery": [
-        "功率缺失则响应度未有效，保持raw current可归档；重测须保留run历史"
+        "Responsivity is not valid when power is missing, though raw current may be archived; remeasurement must retain run history"
       ],
       "evidence_ids": [
         "f.measure",
@@ -1566,17 +1566,17 @@
         "f.ed6"
       ],
       "provenance": {
-        "source_supported_macro_operation": "光照/暗态、功率监测与2 V测试偏压有来源",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Illumination/dark state, power monitoring, and a 2 V test bias are source-supported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "实时功率与有效面积、采样率/容差、真实偏压施加方案"
+          "Real-time power and effective area, sampling rate/tolerances, and real bias-application scheme"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "IV",
-      "title": "执行选定器件的电压扫描",
+      "title": "Execute the voltage scan for the selected device",
       "kind": "hands_on",
       "location_id": "WS_OPTO",
       "target_asset_roles": [
@@ -1589,14 +1589,14 @@
         "guard_closed"
       ],
       "actions": [
-        "选择single_Si、single_Ge或dual_pn工单及dark/illumination状态",
-        "触发mock双向数据采样后返回输出off，保存实际扫描范围字段，不用固定2V代替整条I-V"
+        "Select the single_Si, single_Ge, or dual_pn work order and dark/illumination state",
+        "Trigger mock bidirectional data acquisition, then return the output to off; save the actual scan-range field rather than replacing the entire I-V with a fixed 2V"
       ],
       "postconditions": [
         "IV_trace_with_device_type_and_condition"
       ],
       "recovery": [
-        "极性/器件身份错误则该run invalid；重接先关输出"
+        "Mark the run invalid if polarity/device identity is wrong; switch the output off before reconnecting"
       ],
       "evidence_ids": [
         "f.main",
@@ -1604,17 +1604,17 @@
         "f.ed6"
       ],
       "provenance": {
-        "source_supported_macro_operation": "单芯明暗I-V与双芯p-n I-V分别报告",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Single-core dark/light I-V and dual-core p-n I-V are reported separately",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "步长、停留、扫向、限流；2V是测试偏压而非I-V全程恒压"
+          "Step, dwell, scan direction, and current limit; 2V is a test bias rather than a constant voltage throughout the I-V"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "DYNAMIC",
-      "title": "接入波形链并采噪声/瞬态/频响",
+      "title": "Connect the waveform chain and acquire noise/transient/frequency response",
       "kind": "hands_on",
       "location_id": "WS_OPTO",
       "target_asset_roles": [
@@ -1628,31 +1628,31 @@
         "source_off_before_rewire"
       ],
       "actions": [
-        "断输出后把电极接入TIA/示波器代理，连接调制器到光源控制接口",
-        "分别选择dark_noise、pulse_response、frequency_response工单，关罩采集带频率/时间轴的mock波形，结束关光断电"
+        "After switching off the output, connect the electrodes to the TIA/oscilloscope proxies and connect the modulator to the light-source control interface",
+        "Select dark_noise, pulse_response, and frequency_response work orders separately, close the cover, acquire mock waveforms with frequency/time axes, then switch off light and power"
       ],
       "postconditions": [
         "noise_transient_frequency_records_separate"
       ],
       "recovery": [
-        "采样率或带宽unknown则不报告新测rise-time/NEP精度；保留数据缺口"
+        "If sampling rate or bandwidth is unknown, do not report new measured rise-time/NEP precision; retain the data gaps"
       ],
       "evidence_ids": [
         "f.measure",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "TIA、示波器及调制，rise-time/pwelch分析有来源；频响采集细节不全",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "TIA, oscilloscope, modulation, and rise-time/pwelch analysis are source-supported; frequency-response acquisition details are incomplete",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "原始采样率、噪声谱窗、调制深度与频率表"
+          "Original sampling rate, noise-spectrum window, modulation depth, and frequency list"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "DIRECTION",
-      "title": "改变入射相对方向并复测同一Si器件",
+      "title": "Change the relative direction of incidence and remeasure the same Si device",
       "kind": "hands_on",
       "location_id": "WS_OPTO",
       "target_asset_roles": [
@@ -1665,30 +1665,30 @@
         "baseline_front_record"
       ],
       "actions": [
-        "开罩将载具从front标记转至side标记，保持同件和端接映射",
-        "关罩重新采dark/light功率配对记录，最后回原姿态"
+        "Open the cover and rotate the carrier from the front mark to the side mark, retaining the same object and terminal mapping",
+        "Close the cover, reacquire paired dark/light power records, and finally restore the original orientation"
       ],
       "postconditions": [
         "front_side_pair_same_object"
       ],
       "recovery": [
-        "翻转导致接触松动先修复并重测基线；不能把换件当仅方向变化"
+        "If rotation loosens a contact, repair it and remeasure the baseline first; do not treat replacement of the object as only a direction change"
       ],
       "evidence_ids": [
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Si器件在532 nm前/侧入射响应",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Front/side incidence response of the Si device at 532 nm",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "角度数值、遮挡孔径与实际样品复用细节"
+          "Numeric angles, occluding apertures, and actual sample-reuse details"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "TEST_MOUNT",
-      "title": "选择力学夹具并固定有号兄弟样",
+      "title": "Select mechanical fixtures and secure numbered sibling samples",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -1705,31 +1705,31 @@
         "prior_history_known"
       ],
       "actions": [
-        "从工装架取所选试验夹具装到键槽，移除前一条件遗留的夹具",
-        "将纤维连载具定位，两端夹持或支撑中段后撤掉运输支撑；记录标距、截面或接触面积字段，未知不硬填"
+        "Take the selected test fixture from the fixture rack and install it in the keyed slot; remove the fixture left from the previous condition",
+        "Position the fibre together with its carrier, clamp both ends or support the middle, then retract the transport support; record gauge length, cross-section, or contact-area fields without forcing values into unknown fields"
       ],
       "postconditions": [
         "sample_seated_in_correct_fixture",
         "geometry_and_history_bound"
       ],
       "recovery": [
-        "错夹具、滑移或夹断则停止并取新兄弟样；不能重复使用已断样"
+        "Stop for an incorrect fixture, slipping, or clamp-induced fracture and take a new sibling sample; do not reuse a fractured sample"
       ],
       "evidence_ids": [
         "f.measure"
       ],
       "provenance": {
-        "source_supported_macro_operation": "拉伸/压缩平移台、unnotched Charpy、自制扭转、弯曲测试有来源",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Tensile/compression translation stages, unnotched Charpy, custom torsion, and bending tests are source-supported",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "夹具几何、标距、夹持力、速率、接触面积、标定"
+          "Fixture geometry, gauge length, clamping forces, rates, contact areas, and calibration"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "TENSILE",
-      "title": "关罩并拉伸至该样的失效终态",
+      "title": "Close the cover and stretch the sample to its failure terminal state",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -1744,15 +1744,15 @@
         "robot_retracted"
       ],
       "actions": [
-        "触发mock拉伸程序，记录力/位移/失效事件",
-        "程序停止后回撤驱动并解除外载，保留broken状态和几何字段"
+        "Trigger the mock tensile program and record force/displacement/failure events",
+        "After the program stops, retract the drive and remove the external load, retaining the broken state and geometry fields"
       ],
       "postconditions": [
         "destructive_tensile_record",
         "specimen_not_reusable_as_pristine"
       ],
       "recovery": [
-        "夹端滑移属于无效试验，样品history保留；裂断是所测终点不自动为操作失败"
+        "Slipping at a clamp is an invalid test, while sample history remains; fracture is the measured endpoint rather than an automatic operation failure"
       ],
       "evidence_ids": [
         "f.measure",
@@ -1760,17 +1760,17 @@
         "f.ed5"
       ],
       "provenance": {
-        "source_supported_macro_operation": "裸芯强度及聚合物器件拉伸强度分开报告",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Bare-core strength and polymer-device tensile strength are reported separately",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "原始加载曲线、标准、速率与终点判据"
+          "Original loading curves, standards, rates, and endpoint criteria"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "IMPACT",
-      "title": "在封闭摆锤代理中完成无缺口冲击",
+      "title": "Complete unnotched impact testing in the enclosed pendulum proxy",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -1784,32 +1784,32 @@
         "guard_closed"
       ],
       "actions": [
-        "核对无缺口样身份，在罩外选择mock unnotched Charpy工单",
-        "触发摆锤服务并等待停稳，记录能量/截面及失效状态"
+        "Check the unnotched sample identity and select the mock unnotched Charpy work order from outside the cover",
+        "Trigger the pendulum service, wait until it stops stably, and record energy/cross-section and failure state"
       ],
       "postconditions": [
         "impact_record",
         "postimpact_damage_state"
       ],
       "recovery": [
-        "误用带缺口样则不得计入来源条件；摆锤未停不回收碎片"
+        "An incorrectly used notched sample must not count toward the source condition; do not recover fragments while the pendulum is moving"
       ],
       "evidence_ids": [
         "f.measure",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源是无缺口Charpy，不是任意敲击",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source uses unnotched Charpy, not arbitrary striking",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "摆锤、跨距、试样形状尺寸与能量修正"
+          "Pendulum, span, specimen shape/dimensions, and energy corrections"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "TORSION_FAIL",
-      "title": "扭转专用兄弟样到失效并卸扭",
+      "title": "Twist a dedicated sibling sample to failure and release torque",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -1822,32 +1822,32 @@
         "guard_closed"
       ],
       "actions": [
-        "固定一端、另一端由mock驱动旋转，保留角度/扭矩/标距记录",
-        "在failure事件后停止并安全卸除储存扭转载荷"
+        "Fix one end and rotate the other with the mock drive, retaining angle/torque/gauge-length records",
+        "Stop after the failure event and safely release the stored torsional load"
       ],
       "postconditions": [
         "torsional_strength_record",
         "failed_sample_state"
       ],
       "recovery": [
-        "滑脱不计破断；卸扭前不打开夹具"
+        "Slipping does not count as fracture; do not open the clamps before releasing torque"
       ],
       "evidence_ids": [
         "f.measure",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源自制扭转设备测破断前扭转强度",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source's custom torsion equipment measures torsional strength before fracture",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "扭矩传感器、标距/扭率、设备实际结构"
+          "Torque sensor, gauge length/twist rate, and actual equipment structure"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "TORSION_FUNCTION",
-      "title": "设置功能扭转条件后读取响应",
+      "title": "Set the functional-torsion condition and read the response",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -1859,32 +1859,32 @@
         "baseline_saved"
       ],
       "actions": [
-        "将专用器件固定到扭转座，按有标距任务卡设三圈/mm条件的mock形态",
-        "在安全保持姿态下获取光响应，再关光断电、卸扭并取回载具"
+        "Secure the dedicated device to the torsion seat and set the mock three-turns/mm configuration using a task card with gauge length",
+        "Acquire the photoresponse while safely holding the pose, then switch off light and power, release torque, and retrieve the carrier"
       ],
       "postconditions": [
         "twisted_function_record",
         "not_strength_failure_record"
       ],
       "recovery": [
-        "裂断时停止功能测量且标损伤；不能把failure曲线当成功功能数据"
+        "Stop functional measurements and mark damage if fracture occurs; do not treat a failure curve as successful functional data"
       ],
       "evidence_ids": [
         "f.ed6",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "高扭曲三圈/mm仍保持功能的独立展示",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "A separate demonstration of retained function under high twisting of three turns/mm",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "原作者是否与强度样共用、具体夹具和保持时间"
+          "Whether the original authors reused strength samples, and the specific fixtures and hold duration"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "BEND_CONDITION",
-      "title": "安装平直/半径模板并采配对响应",
+      "title": "Install straight/radius templates and acquire paired responses",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -1898,31 +1898,31 @@
         "tester_stopped"
       ],
       "actions": [
-        "按条件放置平直、5 mm或50 mm模板，支撑器件而不压感光区",
-        "闭合mock边界、采对应光响应，关光断电后解除本模板"
+        "Place the straight, 5 mm, or 50 mm template according to the condition, supporting the device without pressing on the photosensitive region",
+        "Close the mock boundary, acquire the corresponding photoresponse, then switch off light and power before releasing the template"
       ],
       "postconditions": [
         "radius_labelled_response_pair"
       ],
       "recovery": [
-        "模板错配则该条件无效；保留同件历史再重做"
+        "A mismatched template invalidates the condition; retain same-object history and repeat"
       ],
       "evidence_ids": [
         "f.ed6",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "平直、5 mm、50 mm弯曲响应对比",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Comparison of straight, 5 mm, and 50 mm bending responses",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "方向、标距、保持时间、不同材料图示分配"
+          "Direction, gauge length, hold duration, and allocation of different materials in the figures"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "BEND_CYCLES",
-      "title": "完成弯曲循环并复测",
+      "title": "Complete bending cycles and remeasure",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -1935,31 +1935,31 @@
         "5mm_fixture_seated"
       ],
       "actions": [
-        "关罩触发mock循环程序，累计事件明确区分已完成与计划10000循环",
-        "程序停稳后转电测座复测同件响应，保留cycle_count=10000条件"
+        "Close the cover and trigger the mock cycling program; cumulative events must clearly distinguish completed cycles from the planned 10000 cycles",
+        "After the program stops stably, move to the electrical-measurement seat and remeasure the same object's response, retaining the cycle_count=10000 condition"
       ],
       "postconditions": [
         "before_after_10000_cycles_pair"
       ],
       "recovery": [
-        "中断只登记实际mock完成计数；不可直接修改为10000"
+        "After interruption, record only the actually completed mock count; do not directly change it to 10000"
       ],
       "evidence_ids": [
         "f.measure",
         "f.ed6"
       ],
       "provenance": {
-        "source_supported_macro_operation": "5 mm半径10000次弯曲后的响应",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Response after 10000 bending cycles at a 5 mm radius",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "循环速度、波形、环境和fixture细节"
+          "Cycling speed, waveform, environment, and fixture details"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "COMPRESS",
-      "title": "压缩器件并采即时受损响应",
+      "title": "Compress the device and acquire its immediate degraded response",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -1973,32 +1973,32 @@
         "guard_closed"
       ],
       "actions": [
-        "运行mock压缩历史并同时保存力/接触面积或已声明压力字段",
-        "达到本工单终点后卸荷，按immediate时间标签采暗电流与光响应，不提前改为recovered"
+        "Run the mock compression history while saving force/contact area or an explicitly declared pressure field",
+        "Unload after reaching this work order's endpoint, then acquire dark current and photoresponse with the immediate time label; do not prematurely change the state to recovered"
       ],
       "postconditions": [
         "compression_history",
         "immediate_state_record"
       ],
       "recovery": [
-        "面积unknown则压力为unknown；30 MPa来源峰值不能代替测量；滑脱先停机"
+        "If area is unknown, pressure is unknown; the source peak of 30 MPa cannot replace a measurement; stop the machine first if slipping occurs"
       ],
       "evidence_ids": [
         "f.measure",
         "f.ed6"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源压缩最高30 MPa，立即暗电流升高、光响应降低；不等于深海部署",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source reports compression up to 30 MPa, with immediate dark-current increase and photoresponse decrease; this does not establish deep-sea deployment",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "完整压力程序、接触面积、恢复起算和照明同步"
+          "Complete pressure program, contact area, recovery start time, and illumination synchronization"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "OVERNIGHT",
-      "title": "保存同件过夜恢复后重新测量",
+      "title": "Store the same object for overnight recovery and remeasure",
       "kind": "hands_on",
       "location_id": "WS_STORAGE",
       "target_asset_roles": [
@@ -2011,31 +2011,31 @@
         "immediate_record_saved"
       ],
       "actions": [
-        "断输出后把同件置于专用恢复格并保留未处理状态",
-        "等待mock overnight标签事件，取回原载具并重复相同暗态/光照测量"
+        "After switching the output off, place the same object in its dedicated recovery compartment and retain untreated status",
+        "Wait for the mock overnight-label event, retrieve the original carrier, and repeat the same dark/illumination measurements"
       ],
       "postconditions": [
         "baseline_immediate_overnight_triplet"
       ],
       "recovery": [
-        "样品被更换、处理或时间状态缺失则不称自然恢复；不得用下一次光响应覆盖即时记录"
+        "If the sample was replaced, treated, or has missing time state, do not call it natural recovery; do not overwrite the immediate record with the next photoresponse"
       ],
       "evidence_ids": [
         "f.ed6",
         "f.main"
       ],
       "provenance": {
-        "source_supported_macro_operation": "一夜无额外处理后响应恢复；overnight不是已知精确小时数",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Response recovers after one night without additional treatment; overnight is not a known exact number of hours",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "精确时长、保存环境"
+          "Exact duration and storage environment"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "TEXTILE_MOUNT",
-      "title": "把器件穿入选定织物定位架",
+      "title": "Thread the device into the selected textile locating frame",
       "kind": "hands_on",
       "location_id": "WS_TEXTILE",
       "target_asset_roles": [
@@ -2048,31 +2048,31 @@
         "textile_branch_and_pattern_card"
       ],
       "actions": [
-        "把织物放框架，逐条将支撑端/圆头引导件穿过任务预留通道",
-        "布置纤维到选定grid、beanie或watchband位置并固定端部承托，保留走线与电极可接近性"
+        "Place the textile in the frame and thread each supported end/round-ended guide through the task's reserved channels",
+        "Route fibres to the selected grid, beanie, or watchband positions and secure the end supports, preserving routing and electrode accessibility"
       ],
       "postconditions": [
         "textile_integrated_fibre_mapping"
       ],
       "recovery": [
-        "绕线交叉/折损则先退回对应通道；不把单芯变双芯或把grid交点当器件数量"
+        "For crossing or folding damage, first retract through the corresponding channel; do not turn a single core into dual cores or treat grid intersections as device counts"
       ],
       "evidence_ids": [
         "f.main",
         "f.wireless"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源纤维织入/编织入服装；预留通道和机器人穿线方法为authored",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source incorporates/weaves fibres into garments; reserved channels and the robotic threading method are authored",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "织法、针距、纤维总条数/长度、固定手法"
+          "Weave, stitch spacing, total fibre count/length, and attachment techniques"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "WASH",
-      "title": "洗涤功能织物并保留十周期记录",
+      "title": "Wash the functional textile and retain the ten-cycle record",
       "kind": "hands_on",
       "location_id": "WS_WASH",
       "target_asset_roles": [
@@ -2086,32 +2086,32 @@
         "washer_idle"
       ],
       "actions": [
-        "将带有号标签的功能织物放入洗衣机代理并关门",
-        "选来源ISO6330十周期mock标签，完成后停稳取出至干燥/检查载具；只有安全干态事件后复接电测"
+        "Place the functional textile with its numbered label in the washing-machine proxy and close the door",
+        "Select the source ISO6330 ten-cycle mock label; after completion, wait for a stable stop and retrieve into the drying/inspection carrier; reconnect electrical measurement only after a safe-dry-state event"
       ],
       "postconditions": [
         "ten_wash_cycles_record",
         "postwash_response_linked"
       ],
       "recovery": [
-        "中断保留实际周期；edition/program未知不声称按真实标准认证"
+        "Retain the actual cycle count after interruption; do not claim real standards certification when edition/program is unknown"
       ],
       "evidence_ids": [
         "f.measure",
         "f.ed6"
       ],
       "provenance": {
-        "source_supported_macro_operation": "功能织物商业洗衣机按ISO6330十循环",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Ten cycles in a commercial washing machine under ISO6330 for the functional textile",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "ISO版本、程序、洗涤剂/水温/载荷、干燥方法和干态判据"
+          "ISO edition, program, detergent/water temperature/load, drying method, and dry-state criteria"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "THERMAL",
-      "title": "连续运行前后摆放热像观察",
+      "title": "Position for thermal imaging before and after continuous operation",
       "kind": "hands_on",
       "location_id": "WS_OPTO",
       "target_asset_roles": [
@@ -2124,30 +2124,30 @@
         "continuous_operation_card"
       ],
       "actions": [
-        "将热像相机对准载具，取得before热像，再开始mock连续运行",
-        "保持同一热边界与通道到5 h事件，取after热像并关光断电"
+        "Aim the thermal camera at the carrier, acquire the before thermal image, and then start mock continuous operation",
+        "Maintain the same thermal boundary and channel until the 5 h event, acquire the after thermal image, and switch off light and power"
       ],
       "postconditions": [
         "before_after_5h_thermal_record"
       ],
       "recovery": [
-        "相机/发射率unknown不推导精确无温升；中断运行另建run"
+        "If camera/emissivity is unknown, do not infer precisely zero temperature rise; create a separate run after interrupted operation"
       ],
       "evidence_ids": [
         "f.ed6"
       ],
       "provenance": {
-        "source_supported_macro_operation": "5小时运行前后热像比较",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Thermal-image comparison before and after 5 hours of operation",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "环境/相机标定、发射率、运行功率"
+          "Environment/camera calibration, emissivity, and operating power"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "TEST_UNLOAD",
-      "title": "卸荷断电后取出器件或碎片",
+      "title": "Remove the device or fragments after unloading and disconnecting power",
       "kind": "hands_on",
       "location_id": "WS_MECHANICAL",
       "target_asset_roles": [
@@ -2163,29 +2163,29 @@
         "bias_off"
       ],
       "actions": [
-        "开罩，先用载具托住试样两侧，再松夹具/移开支撑",
-        "完整件放原槽；破坏性样的两断段/碎片放封闭匣并记child IDs"
+        "Open the cover, first support both sides of the specimen with the carrier, then loosen the clamps/remove the supports",
+        "Place intact objects in their original slots; put both broken segments/fragments of destructive samples into an enclosed cassette and record child IDs"
       ],
       "postconditions": [
         "machine_empty",
         "posttest_state_retained"
       ],
       "recovery": [
-        "仍夹滞先等待/复位卸荷；不边扯样边卸载"
+        "If still jammed, wait/reset unloading first; do not pull the sample while unloading force"
       ],
       "evidence_ids": [
         "f.measure"
       ],
       "provenance": {
-        "source_supported_macro_operation": "卸样闭环为authored，需保留来源破坏与恢复状态",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The unloading closure is authored and must retain the source-supported destruction and recovery states",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "PCB_ASSEMBLE",
-      "title": "将有号纤维接入八通道接口板",
+      "title": "Connect numbered fibres to the eight-channel interface board",
       "kind": "hands_on",
       "location_id": "WS_ELECTRONICS",
       "target_asset_roles": [
@@ -2199,31 +2199,31 @@
         "board_power_off"
       ],
       "actions": [
-        "把32×48 mm接口板代理固定到板座，按channel map连接最多八条指定纤维",
-        "放入惰性电池代理并扣合电池盖，连接mock Bluetooth/app面板；不焊接未知电路"
+        "Secure the 32×48 mm interface-board proxy in its seat and connect up to eight specified fibres according to the channel map",
+        "Install the inert battery proxy, close the battery cover, and connect the mock Bluetooth/app panel; do not solder unknown circuits"
       ],
       "postconditions": [
         "channel_device_map",
         "power_and_signal_chain_bound"
       ],
       "recovery": [
-        "通道重复/材料错配先断电重接；接线图unknown时使用明确authored map而非伪称原板复刻"
+        "For duplicate channels/material mismatch, power off before reconnecting; if the wiring diagram is unknown, use an explicitly authored map rather than falsely claiming an original-board reproduction"
       ],
       "evidence_ids": [
         "f.wireless"
       ],
       "provenance": {
-        "source_supported_macro_operation": "两GS8554、ADS7828、coin cell、Bluetooth与app八通道系统",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "An eight-channel system with two GS8554, ADS7828, coin cell, Bluetooth, and app",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "PCB布线、真实固件/算法、电池规格和端接"
+          "PCB routing, real firmware/algorithms, battery specifications, and terminals"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "PCB_CHECK",
-      "title": "逐通道检查信号路由与保存",
+      "title": "Check and save signal routing channel by channel",
       "kind": "hands_on",
       "location_id": "WS_ELECTRONICS",
       "target_asset_roles": [
@@ -2235,28 +2235,28 @@
         "PCB_ASSEMBLE_complete"
       ],
       "actions": [
-        "逐个启用安全封闭mock刺激，观察对应app通道而不是只看总信号",
-        "保存channel-device-coordinate表，停止刺激并关闭板电源"
+        "Enable safe enclosed mock stimuli one at a time and observe the corresponding app channel rather than only the aggregate signal",
+        "Save the channel-device-coordinate table, stop stimuli, and switch off board power"
       ],
       "postconditions": [
         "all_used_channels_addressable"
       ],
       "recovery": [
-        "串道则先查映射与接头；不能通过重命名通道掩盖错误接线"
+        "For crosstalk/misrouting, first inspect the mapping and connectors; do not conceal incorrect wiring by renaming channels"
       ],
       "evidence_ids": [
         "f.wireless"
       ],
       "provenance": {
-        "source_supported_macro_operation": "板支持采集及手机可视化；逐通道核对是authored对照",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The board supports acquisition and phone visualization; channel-by-channel checking is an authored control",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "BEANIE",
-      "title": "把八Ge器件帽装到人台并作信号演示",
+      "title": "Fit the cap with eight Ge devices to the mannequin and demonstrate signals",
       "kind": "hands_on",
       "location_id": "WS_APPLICATION",
       "target_asset_roles": [
@@ -2272,15 +2272,15 @@
         "textile_mounted"
       ],
       "actions": [
-        "把板固定于帽内顶处，将帽放人台支架并整理八条走线",
-        "在封闭模拟昼光场景触发IR信号，记录手机通道/提示，再关闭电源取回帽"
+        "Secure the board inside the crown of the cap, place the cap on the mannequin stand, and arrange all eight routing paths",
+        "Trigger the IR signal in the enclosed simulated-daylight scene, record phone channels/prompts, then switch off power and retrieve the cap"
       ],
       "postconditions": [
         "8_Ge_beanie_demo",
         "no_human_navigation_claim"
       ],
       "recovery": [
-        "无信号先检查Ge/IR匹配与通道；禁止把真实人导向道路或开放激光"
+        "If there is no signal, first check Ge/IR compatibility and channels; do not guide real people onto roads or use an open laser"
       ],
       "evidence_ids": [
         "f.main",
@@ -2288,17 +2288,17 @@
         "f.v2"
       ],
       "provenance": {
-        "source_supported_macro_operation": "八Ge beanie、内顶部板及户外视频人台示范；任务以封闭mock替代公共空间",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "An eight-Ge beanie, inner-crown board, and outdoor-video mannequin demonstration; the task replaces public space with an enclosed mock",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实公共空间光安全、提示算法、伦理与导航有效性"
+          "Real public-space optical safety, prompting algorithms, ethics, and navigation validity"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SWEATER",
-      "title": "摆好3×3 grid毛衣并传送内容",
+      "title": "Position the 3×3 grid sweater and transmit content",
       "kind": "hands_on",
       "location_id": "WS_APPLICATION",
       "target_asset_roles": [
@@ -2313,32 +2313,32 @@
         "receiver_map_declared_authored"
       ],
       "actions": [
-        "将毛衣展于衣架，保持3×3 grid结构及纤维走线",
-        "装载任务自有测试图内容，触发LED编码mock；保存发送与解码接收内容并比较，再断开系统"
+        "Display the sweater on a garment stand, preserving the 3×3 grid structure and fibre routing",
+        "Load task-owned test-image content and trigger the LED-encoding mock; save and compare sent content and decoded received content, then disconnect the system"
       ],
       "postconditions": [
         "sent_received_content_pair",
         "grid_not_9channel_assumption"
       ],
       "recovery": [
-        "只有电流闪动不足以判传输成功；丢帧保留并重试独立run"
+        "Current flickering alone is insufficient to establish successful transmission; retain dropped frames and retry as a separate run"
       ],
       "evidence_ids": [
         "f.main",
         "f.wireless"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Si毛衣3×3 fibre grid接收图像，定制编码/解码；源演示40 KB/s仅reference",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "A Si sweater with a 3×3 fibre grid receives images using custom encoding/decoding; the source demonstration's 40 KB/s is a reference only",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实代码未取、grid总纤维数、与8通道板映射、误码率"
+          "Real code not obtained, total grid fibre count, mapping to the 8-channel board, and bit-error rate"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "WATCHBAND",
-      "title": "在腕部仿体上装纤维与商业比较器",
+      "title": "Mount the fibre and commercial comparator on the wrist phantom",
       "kind": "hands_on",
       "location_id": "WS_APPLICATION",
       "target_asset_roles": [
@@ -2353,8 +2353,8 @@
         "fixture_power_off"
       ],
       "actions": [
-        "把Si纤维watchband及绿LED放腕部仿体支撑位，保持可重复的光学几何",
-        "同配置切换到BIOFY SFH7070代理，分别采同一preset pulse输入的输出，再关光断电"
+        "Place the Si-fibre watchband and green LED at the wrist-phantom support position, maintaining reproducible optical geometry",
+        "Switch to the BIOFY SFH7070 proxy under the same configuration, acquire both outputs for the same preset pulse input, then switch off light and power"
       ],
       "postconditions": [
         "paired_PPG_mock",
@@ -2362,24 +2362,24 @@
         "not_clinical_evidence"
       ],
       "recovery": [
-        "位置不一致则重装并重测；不收集真实参与者生理数据"
+        "If positions differ, reinstall and remeasure; do not collect physiological data from real participants"
       ],
       "evidence_ids": [
         "f.main",
         "f.wireless"
       ],
       "provenance": {
-        "source_supported_macro_operation": "来源Si+green LED watchband与商业器件同配置PPG；仿体为authored安全替代",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The source compares the Si+green LED watchband with a commercial device for PPG under the same configuration; the phantom is an authored safe substitute",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "人类试验审批、参与者/皮肤条件、LED真实工况"
+          "Human-trial approval, participant/skin conditions, and real LED operating conditions"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SUB_ATTACH",
-      "title": "在迷你潜艇外壳装八方向Si纤维",
+      "title": "Mount Si fibres in eight directions on the miniature-submarine shell",
       "kind": "hands_on",
       "location_id": "WS_APPLICATION",
       "target_asset_roles": [
@@ -2394,32 +2394,32 @@
         "dry_shell"
       ],
       "actions": [
-        "沿外壳每45°有号位置布置一条Si纤维，贴合任务直角台阶；用可逆固定片代理来源粘接",
-        "将板置入防水盒并固定外壳下方，整理穿线口后关闭箱盖"
+        "Position one Si fibre at each numbered 45° position around the shell and fit it along the task's right-angle step; use reversible attachment tabs as proxies for the source's adhesive bonding",
+        "Place the board in the waterproof box and secure it beneath the shell; arrange the cable ports and close the lid"
       ],
       "postconditions": [
         "8_direction_map",
         "sealed_box_state"
       ],
       "recovery": [
-        "位置或材料错配先断电重装；防水mock未通过不得入槽"
+        "For position/material mismatch, power off before reinstalling; do not enter the tank until the waterproofing mock passes"
       ],
       "evidence_ids": [
         "f.main",
         "f.wireless"
       ],
       "provenance": {
-        "source_supported_macro_operation": "Si纤维每45°、沿直角曲面粘贴；PCB盒在下方",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Si fibres at every 45°, bonded along right-angle curved surfaces; the PCB box is underneath",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实胶种/固化、防水等级、密封接头"
+          "Real adhesive type/curing, waterproof rating, and sealed connectors"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "SUB_TANK",
-      "title": "入槽测试方向与命令并回收",
+      "title": "Test directions and commands in the tank and retrieve the assembly",
       "kind": "hands_on",
       "location_id": "WS_APPLICATION",
       "target_asset_roles": [
@@ -2435,15 +2435,15 @@
         "tank_mock_mode"
       ],
       "actions": [
-        "抓潜艇承托架放入水槽支撑位，依八方向给mock信号并核对对应通道",
-        "包含135°命令例，保存接收命令和模型运动状态；停止后用承托架移出到滴水托盘"
+        "Grasp the submarine support frame and place it at the tank support position; provide mock signals from all eight directions and check the corresponding channels",
+        "Include the 135° command example and save the received command and model movement state; after stopping, use the support frame to lift it out onto the drip tray"
       ],
       "postconditions": [
         "direction_command_record",
         "tank_recovered"
       ],
       "recovery": [
-        "进水或失联事件先停止并回收隔离；不把视频0.25X时长当真实延迟"
+        "For water ingress or loss of communication, stop first, retrieve, and isolate; do not treat the video's 0.25X duration as real latency"
       ],
       "evidence_ids": [
         "f.main",
@@ -2451,17 +2451,17 @@
         "f.v3"
       ],
       "provenance": {
-        "source_supported_macro_operation": "水槽mini-sub方向演示，135°例；全八方向核对是authored完整性测试",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "Tank mini-sub direction demonstration with a 135° example; checking all eight directions is an authored completeness test",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": [
-          "真实水深/光学参数、通信延迟、推进控制与防水方案"
+          "Real water depth/optical parameters, communication latency, propulsion control, and waterproofing scheme"
         ]
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "POWER_DOWN",
-      "title": "关闭所有信号源并拆下外接线",
+      "title": "Switch off all signal sources and disconnect external cables",
       "kind": "hands_on",
       "location_id": "route_station",
       "target_asset_roles": [
@@ -2475,27 +2475,27 @@
         "drives_stopped"
       ],
       "actions": [
-        "先关照明与偏压/板电源，再解除外部接头，收线到架",
-        "将带电池代理的部件按任务存储规则断开并扣回盖"
+        "First switch off illumination and bias/board power, then disconnect external connectors and wind cables onto the rack",
+        "Disconnect components containing battery proxies according to the task's storage rules and refasten the covers"
       ],
       "postconditions": [
         "sources_off",
         "cables_stowed"
       ],
       "recovery": [
-        "输出状态不一致则保持罩闭、标blocked，不直接拔裸接头"
+        "If output states disagree, keep the cover closed and mark blocked; do not directly unplug exposed connectors"
       ],
       "evidence_ids": [],
       "provenance": {
-        "source_supported_macro_operation": "实验安全收尾连接为authored",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The experimental safety-shutdown connection is authored",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "ARCHIVE",
-      "title": "归档完整、已循环、恢复后或破损样",
+      "title": "Archive intact, cycled, recovered, or damaged samples",
       "kind": "hands_on",
       "location_id": "WS_STORAGE",
       "target_asset_roles": [
@@ -2509,27 +2509,27 @@
         "sample_identity_and_history"
       ],
       "actions": [
-        "把载具放所选材料与状态格，完整/已循环/压缩恢复/破坏性样各有标签",
-        "保存谱系、条件、原始mock文件与缺失字段索引，不抹去失败run"
+        "Place carriers in the selected material/state compartments, with separate labels for intact/cycled/compression-recovered/destructive samples",
+        "Save lineage, conditions, original mock files, and the index of missing fields without erasing failed runs"
       ],
       "postconditions": [
         "samples_accounted",
         "data_lineage_closed"
       ],
       "recovery": [
-        "归档格占用改用标号备用格；未知样保隔离"
+        "If the archive compartment is occupied, use a numbered spare compartment; keep unknown samples isolated"
       ],
       "evidence_ids": [],
       "provenance": {
-        "source_supported_macro_operation": "作者归档流程未报告；闭环为任务要求",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The authors' archiving process is not reported; closure is a task requirement",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"
     },
     {
       "id": "CLEAN",
-      "title": "归还夹具、余料与封闭废料匣并复位",
+      "title": "Return fixtures, remainders, and enclosed waste cassettes and reset",
       "kind": "hands_on",
       "location_id": "WS_CLEAN",
       "target_asset_roles": [
@@ -2544,21 +2544,21 @@
         "machines_stopped_and_safe"
       ],
       "actions": [
-        "回收线盘与未用原料到各自格，将干燥可触的台面/托盘用干擦布整理",
-        "玻璃碎片、切屑和化学服务废料保持封闭交接，不在台面中和或开放清洗",
-        "夹具、载具和相机回标记位，设备外罩关闭，运输车停回位"
+        "Return wire reels and unused feedstock to their respective compartments; tidy dry, touch-safe benchtops/trays with a dry cloth",
+        "Keep glass fragments, chips, and chemical-service waste enclosed for handoff; do not neutralize or openly wash them on the bench",
+        "Return fixtures, carriers, and cameras to their marked positions, close equipment covers, and park the transport cart in its home position"
       ],
       "postconditions": [
         "workspace_reset",
         "waste_and_stock_accounted"
       ],
       "recovery": [
-        "不明残留停止局部清理并隔离；不扫散碎芯或开启化学废料匣"
+        "Stop local cleanup and isolate unknown residues; do not sweep loose core fragments or open chemical-waste cassettes"
       ],
       "evidence_ids": [],
       "provenance": {
-        "source_supported_macro_operation": "论文未给清理SOP；物理收尾为authored安全代理",
-        "authored_interface": "搬运路径、抓握位、定位座、载具、门锁、按钮、服务单元、离散反馈及恢复顺序为任务作者设计；不声称原作者采用这些机器人接口",
+        "source_supported_macro_operation": "The paper provides no cleanup SOP; physical closure is an authored safe proxy",
+        "authored_interface": "Transport paths, grasp positions, locating seats, carriers, door locks, buttons, service units, discrete feedback, and recovery sequences are task-authored; no claim is made that the original authors used these robotic interfaces",
         "unknown_source_parameters": []
       },
       "execution_mode": "mock_research_task_only"

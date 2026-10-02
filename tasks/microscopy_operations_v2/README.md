@@ -1,6 +1,6 @@
 # Microscopy operations v2
 
-中文入口：[GUIDE_ZH.md](GUIDE_ZH.md)。 Detailed specification: [TASK_DESIGN.md](TASK_DESIGN.md).
+Reading guide: [GUIDE.md](GUIDE.md). Detailed specification: [TASK_DESIGN.md](TASK_DESIGN.md).
 
 One Deconwolf paper-wide task-design package: six preparation/imaging branches and seven source-data comparison branches. Unlike the earlier single-route contract, routine sample preparation, transport, mounting, controls, acquisition and cleanup are explicitly in scope. Missing source facts are labeled task bridges, not invented paper facts. Scientific outputs are preset by design; no physics is required.
 

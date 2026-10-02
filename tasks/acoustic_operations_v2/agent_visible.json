@@ -1,0 +1,731 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "visibility": "agent_only_one_selected_episode",
+  "episode_goals": [
+    {
+      "id": "FAB_FIG1",
+      "goal": "Starting with numbered inert raw materials and an empty sample station, complete Fig1 example-cell manufacture and archiving. Save entity-identified records and derived results with conditions, units and mock labels; archive objects and reset. Stop affected work and identify any missing execution-critical interface or parameter.",
+      "initial_state": {
+        "materials": "The work order supplies sufficient sealed inert resin proxies, empty trays and carriers; no samples are completed",
+        "instruments": "Outputs are stopped; available interfaces and public ready/guard/safe_release feedback are supplied by the environment",
+        "structural_parts": "Equipment housings, supports and large plates are laboratory equipment; 60 field-task speakers and the 40-slot holder await installation, and the probe is not in a measured position",
+        "records": "No episode measurement results, hidden defects or future states are supplied"
+      },
+      "specimen_geometry_ids": [
+        "FIG1"
+      ],
+      "public_specimen_card_file": "specimen_cards.json",
+      "condition_card": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "probe_resource_policy": {
+          "serial": "MIC01",
+          "tube": "one legacy Type4958 moved between four ports",
+          "field": "authored reuse after transfer; source field microphone model unspecified"
+        },
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "visible_controls": [
+        "Observe public labels and states",
+        "Supported grasping, transport, opening/closing, alignment, fixation, connection and withdrawal",
+        "Operate public keypad, scan-stage and inert-processing controls",
+        "Read receipts and save raw records",
+        "Pause, quarantine and request missing execution contracts"
+      ],
+      "deliverables": [
+        "Entity/parent-lot lineage and final locations",
+        "Independent raw records, conditions and missing-input lists required by the goal",
+        "Derived results with explicit units referencing only acquired records",
+        "Stopped equipment, docked probe, supported plates and returned tools"
+      ],
+      "not_given": [
+        "Reference action order",
+        "Reference success assertions and hidden fault seeds",
+        "Expected mock values or paper results as target rewards",
+        "Complete operation graphs for other task configurations"
+      ]
+    },
+    {
+      "id": "TRANSMISSION_PAIR",
+      "goal": "Starting with numbered inert raw materials and an empty sample station, complete the A/B cell transmission-spectrum comparison. Save entity-identified records and derived results with conditions, units and mock labels; archive objects and reset. Stop affected work and identify any missing execution-critical interface or parameter.",
+      "initial_state": {
+        "materials": "The work order supplies sufficient sealed inert resin proxies, empty trays and carriers; no samples are completed",
+        "instruments": "Outputs are stopped; available interfaces and public ready/guard/safe_release feedback are supplied by the environment",
+        "structural_parts": "Equipment housings, supports and large plates are laboratory equipment; 60 field-task speakers and the 40-slot holder await installation, and the probe is not in a measured position",
+        "records": "No episode measurement results, hidden defects or future states are supplied"
+      },
+      "specimen_geometry_ids": [
+        "A",
+        "B"
+      ],
+      "public_specimen_card_file": "specimen_cards.json",
+      "condition_card": {
+        "frequency_grid_hz": {
+          "value": null,
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "probe_resource_policy": {
+          "serial": "MIC01",
+          "tube": "one legacy Type4958 moved between four ports",
+          "field": "authored reuse after transfer; source field microphone model unspecified"
+        },
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "visible_controls": [
+        "Observe public labels and states",
+        "Supported grasping, transport, opening/closing, alignment, fixation, connection and withdrawal",
+        "Operate public keypad, scan-stage and inert-processing controls",
+        "Read receipts and save raw records",
+        "Pause, quarantine and request missing execution contracts"
+      ],
+      "deliverables": [
+        "Entity/parent-lot lineage and final locations",
+        "Independent raw records, conditions and missing-input lists required by the goal",
+        "Derived results with explicit units referencing only acquired records",
+        "Stopped equipment, docked probe, supported plates and returned tools"
+      ],
+      "not_given": [
+        "Reference action order",
+        "Reference success assertions and hidden fault seeds",
+        "Expected mock values or paper results as target rewards",
+        "Complete operation graphs for other task configurations"
+      ]
+    },
+    {
+      "id": "PULSE_PAIR",
+      "goal": "Starting with numbered inert raw materials and an empty sample station, compare pulse delays for air, A and B. Save entity-identified records and derived results with conditions, units and mock labels; archive objects and reset. Stop affected work and identify any missing execution-critical interface or parameter.",
+      "initial_state": {
+        "materials": "The work order supplies sufficient sealed inert resin proxies, empty trays and carriers; no samples are completed",
+        "instruments": "Outputs are stopped; available interfaces and public ready/guard/safe_release feedback are supplied by the environment",
+        "structural_parts": "Equipment housings, supports and large plates are laboratory equipment; 60 field-task speakers and the 40-slot holder await installation, and the probe is not in a measured position",
+        "records": "No episode measurement results, hidden defects or future states are supplied"
+      },
+      "specimen_geometry_ids": [
+        "A",
+        "B"
+      ],
+      "public_specimen_card_file": "specimen_cards.json",
+      "condition_card": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "probe_resource_policy": {
+          "serial": "MIC01",
+          "tube": "one legacy Type4958 moved between four ports",
+          "field": "authored reuse after transfer; source field microphone model unspecified"
+        },
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "visible_controls": [
+        "Observe public labels and states",
+        "Supported grasping, transport, opening/closing, alignment, fixation, connection and withdrawal",
+        "Operate public keypad, scan-stage and inert-processing controls",
+        "Read receipts and save raw records",
+        "Pause, quarantine and request missing execution contracts"
+      ],
+      "deliverables": [
+        "Entity/parent-lot lineage and final locations",
+        "Independent raw records, conditions and missing-input lists required by the goal",
+        "Derived results with explicit units referencing only acquired records",
+        "Stopped equipment, docked probe, supported plates and returned tools"
+      ],
+      "not_given": [
+        "Reference action order",
+        "Reference success assertions and hidden fault seeds",
+        "Expected mock values or paper results as target rewards",
+        "Complete operation graphs for other task configurations"
+      ]
+    },
+    {
+      "id": "CELL_40_CHARACTERIZATION",
+      "goal": "Starting with numbered inert raw materials and an empty sample station, individually characterize transmission and phase of forty distinct cells. Save entity-identified records and derived results with conditions, units and mock labels; archive objects and reset. Stop affected work and identify any missing execution-critical interface or parameter.",
+      "initial_state": {
+        "materials": "The work order supplies sufficient sealed inert resin proxies, empty trays and carriers; no samples are completed",
+        "instruments": "Outputs are stopped; available interfaces and public ready/guard/safe_release feedback are supplied by the environment",
+        "structural_parts": "Equipment housings, supports and large plates are laboratory equipment; 60 field-task speakers and the 40-slot holder await installation, and the probe is not in a measured position",
+        "records": "No episode measurement results, hidden defects or future states are supplied"
+      },
+      "specimen_geometry_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "public_specimen_card_file": "specimen_cards.json",
+      "condition_card": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "probe_resource_policy": {
+          "serial": "MIC01",
+          "tube": "one legacy Type4958 moved between four ports",
+          "field": "authored reuse after transfer; source field microphone model unspecified"
+        },
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "visible_controls": [
+        "Observe public labels and states",
+        "Supported grasping, transport, opening/closing, alignment, fixation, connection and withdrawal",
+        "Operate public keypad, scan-stage and inert-processing controls",
+        "Read receipts and save raw records",
+        "Pause, quarantine and request missing execution contracts"
+      ],
+      "deliverables": [
+        "Entity/parent-lot lineage and final locations",
+        "Independent raw records, conditions and missing-input lists required by the goal",
+        "Derived results with explicit units referencing only acquired records",
+        "Stopped equipment, docked probe, supported plates and returned tools"
+      ],
+      "not_given": [
+        "Reference action order",
+        "Reference success assertions and hidden fault seeds",
+        "Expected mock values or paper results as target rewards",
+        "Complete operation graphs for other task configurations"
+      ]
+    },
+    {
+      "id": "LENS_BUILD",
+      "goal": "Starting with numbered inert raw materials and an empty sample station, manufacture and characterize forty cells and assemble the lens. Save entity-identified records and derived results with conditions, units and mock labels; archive objects and reset. Stop affected work and identify any missing execution-critical interface or parameter.",
+      "initial_state": {
+        "materials": "The work order supplies sufficient sealed inert resin proxies, empty trays and carriers; no samples are completed",
+        "instruments": "Outputs are stopped; available interfaces and public ready/guard/safe_release feedback are supplied by the environment",
+        "structural_parts": "Equipment housings, supports and large plates are laboratory equipment; 60 field-task speakers and the 40-slot holder await installation, and the probe is not in a measured position",
+        "records": "No episode measurement results, hidden defects or future states are supplied"
+      },
+      "specimen_geometry_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "public_specimen_card_file": "specimen_cards.json",
+      "condition_card": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "probe_resource_policy": {
+          "serial": "MIC01",
+          "tube": "one legacy Type4958 moved between four ports",
+          "field": "authored reuse after transfer; source field microphone model unspecified"
+        },
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "visible_controls": [
+        "Observe public labels and states",
+        "Supported grasping, transport, opening/closing, alignment, fixation, connection and withdrawal",
+        "Operate public keypad, scan-stage and inert-processing controls",
+        "Read receipts and save raw records",
+        "Pause, quarantine and request missing execution contracts"
+      ],
+      "deliverables": [
+        "Entity/parent-lot lineage and final locations",
+        "Independent raw records, conditions and missing-input lists required by the goal",
+        "Derived results with explicit units referencing only acquired records",
+        "Stopped equipment, docked probe, supported plates and returned tools"
+      ],
+      "not_given": [
+        "Reference action order",
+        "Reference success assertions and hidden fault seeds",
+        "Expected mock values or paper results as target rewards",
+        "Complete operation graphs for other task configurations"
+      ]
+    },
+    {
+      "id": "FIELD_BASELINE",
+      "goal": "Starting with numbered inert raw materials and an empty sample station, obtain the obstacle-free field for the lens and synchronized array. Save entity-identified records and derived results with conditions, units and mock labels; archive objects and reset. Stop affected work and identify any missing execution-critical interface or parameter.",
+      "initial_state": {
+        "materials": "The work order supplies sufficient sealed inert resin proxies, empty trays and carriers; no samples are completed",
+        "instruments": "Outputs are stopped; available interfaces and public ready/guard/safe_release feedback are supplied by the environment",
+        "structural_parts": "Equipment housings, supports and large plates are laboratory equipment; 60 field-task speakers and the 40-slot holder await installation, and the probe is not in a measured position",
+        "records": "No episode measurement results, hidden defects or future states are supplied"
+      },
+      "specimen_geometry_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "public_specimen_card_file": "specimen_cards.json",
+      "condition_card": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "probe_resource_policy": {
+          "serial": "MIC01",
+          "tube": "one legacy Type4958 moved between four ports",
+          "field": "authored reuse after transfer; source field microphone model unspecified"
+        },
+        "scan_point_ids": null,
+        "scan_point_input_requirement": "Authors must first provide a public point table matching these IDs, a source-to-scene transform and a reachability mask. null means absent input and blocks field-loop expansion; do not guess coordinates from display assets or source figures.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "visible_controls": [
+        "Observe public labels and states",
+        "Supported grasping, transport, opening/closing, alignment, fixation, connection and withdrawal",
+        "Operate public keypad, scan-stage and inert-processing controls",
+        "Read receipts and save raw records",
+        "Pause, quarantine and request missing execution contracts"
+      ],
+      "deliverables": [
+        "Entity/parent-lot lineage and final locations",
+        "Independent raw records, conditions and missing-input lists required by the goal",
+        "Derived results with explicit units referencing only acquired records",
+        "Stopped equipment, docked probe, supported plates and returned tools"
+      ],
+      "not_given": [
+        "Reference action order",
+        "Reference success assertions and hidden fault seeds",
+        "Expected mock values or paper results as target rewards",
+        "Complete operation graphs for other task configurations"
+      ]
+    },
+    {
+      "id": "FIELD_OBSTACLE_COMPARISON",
+      "goal": "Starting with numbered inert raw materials and an empty sample station, compare fields with and without the aluminum-alloy obstacle. Save entity-identified records and derived results with conditions, units and mock labels; archive objects and reset. Stop affected work and identify any missing execution-critical interface or parameter.",
+      "initial_state": {
+        "materials": "The work order supplies sufficient sealed inert resin proxies, empty trays and carriers; no samples are completed",
+        "instruments": "Outputs are stopped; available interfaces and public ready/guard/safe_release feedback are supplied by the environment",
+        "structural_parts": "Equipment housings, supports and large plates are laboratory equipment; 60 field-task speakers and the 40-slot holder await installation, and the probe is not in a measured position",
+        "records": "No episode measurement results, hidden defects or future states are supplied"
+      },
+      "specimen_geometry_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "public_specimen_card_file": "specimen_cards.json",
+      "condition_card": {
+        "frequency_grid_hz": {
+          "value": [
+            4170
+          ],
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "probe_resource_policy": {
+          "serial": "MIC01",
+          "tube": "one legacy Type4958 moved between four ports",
+          "field": "authored reuse after transfer; source field microphone model unspecified"
+        },
+        "scan_point_ids": null,
+        "scan_point_input_requirement": "Authors must first provide a public point table matching these IDs, a source-to-scene transform and a reachability mask. null means absent input and blocks field-loop expansion; do not guess coordinates from display assets or source figures.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "visible_controls": [
+        "Observe public labels and states",
+        "Supported grasping, transport, opening/closing, alignment, fixation, connection and withdrawal",
+        "Operate public keypad, scan-stage and inert-processing controls",
+        "Read receipts and save raw records",
+        "Pause, quarantine and request missing execution contracts"
+      ],
+      "deliverables": [
+        "Entity/parent-lot lineage and final locations",
+        "Independent raw records, conditions and missing-input lists required by the goal",
+        "Derived results with explicit units referencing only acquired records",
+        "Stopped equipment, docked probe, supported plates and returned tools"
+      ],
+      "not_given": [
+        "Reference action order",
+        "Reference success assertions and hidden fault seeds",
+        "Expected mock values or paper results as target rewards",
+        "Complete operation graphs for other task configurations"
+      ]
+    },
+    {
+      "id": "WHOLE_PAPER_PRACTICAL",
+      "goal": "Starting with numbered inert raw materials and an empty sample station, connect the whole paper's experimental operations through archiving. Save entity-identified records and derived results with conditions, units and mock labels; archive objects and reset. Stop affected work and identify any missing execution-critical interface or parameter.",
+      "initial_state": {
+        "materials": "The work order supplies sufficient sealed inert resin proxies, empty trays and carriers; no samples are completed",
+        "instruments": "Outputs are stopped; available interfaces and public ready/guard/safe_release feedback are supplied by the environment",
+        "structural_parts": "Equipment housings, supports and large plates are laboratory equipment; 60 field-task speakers and the 40-slot holder await installation, and the probe is not in a measured position",
+        "records": "No episode measurement results, hidden defects or future states are supplied"
+      },
+      "specimen_geometry_ids": [
+        "FIG1",
+        "A",
+        "B",
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40"
+      ],
+      "public_specimen_card_file": "specimen_cards.json",
+      "condition_card": {
+        "frequency_grid_hz": {
+          "value": null,
+          "status": "task_authored_required_grid_not_recovered_source_sampling"
+        },
+        "tube_loads": [
+          "open",
+          "rubber_sealed"
+        ],
+        "tube_positions": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "pulse_center_hz": 4170,
+        "field_frequency_hz": 4170,
+        "source_scan_side_lengths_m": [
+          2.3,
+          1.0
+        ],
+        "scan_axis_assignment_origin_step": "unknown_in_source_explicit_authored_card_required",
+        "source_operating_domain_note": "The main A/B transmission-spectrum section reports maximum lead below 1/7 of that experiment's shortest incident wavelength; this is not a universal acceptance condition for all lens cells. Retain SI Table1's large leads and do not extrapolate dispersion-free behavior to infinite frequency.",
+        "probe_resource_policy": {
+          "serial": "MIC01",
+          "tube": "one legacy Type4958 moved between four ports",
+          "field": "authored reuse after transfer; source field microphone model unspecified"
+        },
+        "scan_point_ids": null,
+        "scan_point_input_requirement": "Authors must first provide a public point table matching these IDs, a source-to-scene transform and a reachability mask. null means absent input and blocks field-loop expansion; do not guess coordinates from display assets or source figures.",
+        "unresolved_input_rule": "Do not expand a loop if its selected stage references a null condition input; report the exact missing input rather than substituting an empty list or default as completion."
+      },
+      "visible_controls": [
+        "Observe public labels and states",
+        "Supported grasping, transport, opening/closing, alignment, fixation, connection and withdrawal",
+        "Operate public keypad, scan-stage and inert-processing controls",
+        "Read receipts and save raw records",
+        "Pause, quarantine and request missing execution contracts"
+      ],
+      "deliverables": [
+        "Entity/parent-lot lineage and final locations",
+        "Independent raw records, conditions and missing-input lists required by the goal",
+        "Derived results with explicit units referencing only acquired records",
+        "Stopped equipment, docked probe, supported plates and returned tools"
+      ],
+      "not_given": [
+        "Reference action order",
+        "Reference success assertions and hidden fault seeds",
+        "Expected mock values or paper results as target rewards",
+        "Complete operation graphs for other task configurations"
+      ]
+    }
+  ],
+  "release_rule": "Release only the selected goal, matching public material/condition cards and current observations; do not include operations, branches, evaluator or mock fault sets in agent context"
+}

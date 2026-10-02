@@ -1,7 +1,7 @@
 {
   "schema_version": "fibre_branch_bindings.v2",
   "visibility": "evaluator_reference_only",
-  "count_warning": "这些记录是任务配置/源条件展开，不是独立作者实验数；Si/Ge耐久对称变体不证明图中逐材料独立样本。",
+  "count_warning": "These records expand task configurations/source conditions; they are not counts of independent experiments by the paper's authors. Symmetric Si/Ge durability variants do not establish that the figures contain independent specimens for each material.",
   "manufacturing_prefixes": {
     "si_glass": [
       "STOCK",
@@ -207,7 +207,7 @@
   "branches": [
     {
       "id": "GLASS_SI",
-      "label": "Si/silica玻璃包覆纤维完整制造",
+      "label": "Complete manufacture of Si/silica glass-clad fibre",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.preparation",
@@ -235,7 +235,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.GLASS_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -251,16 +251,16 @@
         "GLASS_GE_ASG",
         "GE_SILICA_CRACK"
       ],
-      "object_history_policy": "该episode独立作者设计样本；同件条件保持object ID，破坏性测试用独立兄弟样。论文的真实分配/复用不可由本ID推断。",
+      "object_history_policy": "This episode uses an independent specimen defined by the task author; retain the object ID for same-specimen conditions, and use independent sibling specimens for destructive tests. The paper's actual allocation/reuse cannot be inferred from this ID.",
       "expected_mock_observations": [
         "continuous_visible_core"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "GLASS_GE_ASG",
-      "label": "Ge/ASG多层预制棒到玻璃包覆纤维",
+      "label": "Ge/ASG multilayer preform to glass-clad fibre",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.preparation",
@@ -290,7 +290,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.GLASS_GE_ASG",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -329,16 +329,16 @@
         "GE_SILICA_CRACK",
         "GE_BSG_BREAKUP"
       ],
-      "object_history_policy": "该episode独立作者设计样本；同件条件保持object ID，破坏性测试用独立兄弟样。论文的真实分配/复用不可由本ID推断。",
+      "object_history_policy": "This episode uses an independent specimen defined by the task author; retain the object ID for same-specimen conditions, and use independent sibling specimens for destructive tests. The paper's actual allocation/reuse cannot be inferred from this ID.",
       "expected_mock_observations": [
         "continuous_visible_core"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "GE_SILICA_CRACK",
-      "label": "Ge/silica成形与释放碎片对照",
+      "label": "Ge/silica formation and released-fragment control",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.preparation",
@@ -370,7 +370,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.GE_SILICA_CRACK",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -381,17 +381,17 @@
       "control_peer_ids": [
         "RELEASE_GE"
       ],
-      "object_history_policy": "必须记录包覆态裂纹和释放后碎片两态；保留碎片集合，不能挑碎片改为完整芯",
+      "object_history_policy": "Both states must be recorded: cracks in the clad state and fragments after release; retain the fragment collection, and do not select a fragment and relabel it as an intact core",
       "expected_mock_observations": [
         "clad_cracks",
         "released_fragments"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "GE_BSG_BREAKUP",
-      "label": "Ge/BSG毛细失稳对照",
+      "label": "Ge/BSG capillary-instability control",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.preparation",
@@ -418,7 +418,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.GE_BSG_BREAKUP",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -429,17 +429,17 @@
       "control_peer_ids": [
         "GLASS_GE_ASG"
       ],
-      "object_history_policy": "该episode独立作者设计样本；同件条件保持object ID，破坏性测试用独立兄弟样。论文的真实分配/复用不可由本ID推断。",
+      "object_history_policy": "This episode uses an independent specimen defined by the task author; retain the object ID for same-specimen conditions, and use independent sibling specimens for destructive tests. The paper's actual allocation/reuse cannot be inferred from this ID.",
       "expected_mock_observations": [
         "spheres_in_neck",
         "perturbed_core"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "NECK_WITH_CORE",
-      "label": "有芯silica颈形保留对照",
+      "label": "Cored silica neck-shape retention control",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.capillary_control"
@@ -459,7 +459,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.NECK_WITH_CORE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -470,17 +470,17 @@
       "control_peer_ids": [
         "NECK_NO_CORE"
       ],
-      "object_history_policy": "颈形样本经历quench；颈区裂纹不能归为正常拉丝故障",
+      "object_history_policy": "The neck-shape specimen undergoes quenching; cracks in the neck region must not be classified as faults during normal fibre drawing",
       "expected_mock_observations": [
         "preserved_neck",
         "possible_quench_cracks"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "NECK_NO_CORE",
-      "label": "无芯silica颈形保留对照",
+      "label": "Coreless silica neck-shape retention control",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.capillary_control"
@@ -500,7 +500,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.NECK_NO_CORE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -510,16 +510,16 @@
       "control_peer_ids": [
         "NECK_WITH_CORE"
       ],
-      "object_history_policy": "不插芯；具有独立预制棒和颈形身份",
+      "object_history_policy": "Do not insert a core; retain separate identities for the preform and neck shape",
       "expected_mock_observations": [
         "preserved_neck"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RELEASE_SI",
-      "label": "SI完整裸芯释放",
+      "label": "Complete SI bare-core release",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.release"
@@ -549,7 +549,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RELEASE_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -557,16 +557,16 @@
         "not_test_gauge_length": true
       },
       "control_peer_ids": [],
-      "object_history_policy": "父包层身份不可丢；80cm父段不得凭空生长成50m有源芯",
+      "object_history_policy": "Do not lose the parent cladding identity; an 80cm parent segment must not spontaneously grow into a 50m active core",
       "expected_mock_observations": [
         "released_intact_or_flagged_fragment"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "CORE_HANDLING_SI",
-      "label": "SI裸芯弯曲/载荷/线轴处理包",
+      "label": "SI bare-core bending/load/spool handling package",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.standalone_strength"
@@ -598,7 +598,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.CORE_HANDLING_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -608,18 +608,18 @@
         "bobbin_segment_cm": 80
       },
       "control_peer_ids": [],
-      "object_history_policy": "三项展示默认从同批分配三个独立子样，不推定作者同件执行；每个子样均追溯本释放路线",
+      "object_history_policy": "By default, allocate three independent subspecimens from the same batch for the three demonstrations; do not assume that the paper's authors performed them on the same specimen. Each subspecimen must be traceable to this release route",
       "expected_mock_observations": [
         "bend_shape",
         "supported_dummy_load",
         "bobbin"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "CORE_TENSILE_SI",
-      "label": "SI裸芯强度测试",
+      "label": "SI bare-core strength test",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.standalone_strength"
@@ -651,7 +651,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.CORE_TENSILE_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -660,16 +660,16 @@
       "control_peer_ids": [
         "TENSILE_SI"
       ],
-      "object_history_policy": "此强度不能与PC包覆器件强度混同；破坏性样不可送会聚",
+      "object_history_policy": "Do not conflate this strength with the strength of PC-clad devices; destructive-test specimens must not be sent for convergence",
       "expected_mock_observations": [
         "broken"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "CHAR_SI",
-      "label": "SI横纵截面和材料表征",
+      "label": "SI transverse/longitudinal sections and material characterization",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.characterize"
@@ -700,7 +700,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.CHAR_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -712,18 +712,18 @@
         "TEM_holder": "double_tilt"
       },
       "control_peer_ids": [],
-      "object_history_policy": "SECTION、SEM/EDX、XRD和FIB/TEM可用已分配兄弟子样；源报告polycrystalline，不由局部晶格图升格为整根单晶",
+      "object_history_policy": "SECTION, SEM/EDX, XRD and FIB/TEM may use allocated sibling subspecimens; the source reports polycrystalline material, and a local lattice image does not justify reclassifying the entire fibre as a single crystal",
       "expected_mock_observations": [
         "composition",
         "diffraction",
         "HRTEM_SAED"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RELEASE_GE",
-      "label": "GE完整裸芯释放",
+      "label": "Complete GE bare-core release",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.release"
@@ -755,7 +755,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RELEASE_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -765,16 +765,16 @@
       "control_peer_ids": [
         "GE_SILICA_CRACK"
       ],
-      "object_history_policy": "父包层身份不可丢；80cm父段不得凭空生长成50m有源芯",
+      "object_history_policy": "Do not lose the parent cladding identity; an 80cm parent segment must not spontaneously grow into a 50m active core",
       "expected_mock_observations": [
         "released_intact_or_flagged_fragment"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "CORE_HANDLING_GE",
-      "label": "GE裸芯弯曲/载荷/线轴处理包",
+      "label": "GE bare-core bending/load/spool handling package",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.standalone_strength"
@@ -808,7 +808,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.CORE_HANDLING_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -818,18 +818,18 @@
         "bobbin_segment_cm": 80
       },
       "control_peer_ids": [],
-      "object_history_policy": "三项展示默认从同批分配三个独立子样，不推定作者同件执行；每个子样均追溯本释放路线",
+      "object_history_policy": "By default, allocate three independent subspecimens from the same batch for the three demonstrations; do not assume that the paper's authors performed them on the same specimen. Each subspecimen must be traceable to this release route",
       "expected_mock_observations": [
         "bend_shape",
         "supported_dummy_load",
         "bobbin"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "CORE_TENSILE_GE",
-      "label": "GE裸芯强度测试",
+      "label": "GE bare-core strength test",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.standalone_strength"
@@ -863,7 +863,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.CORE_TENSILE_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -872,16 +872,16 @@
       "control_peer_ids": [
         "TENSILE_GE"
       ],
-      "object_history_policy": "此强度不能与PC包覆器件强度混同；破坏性样不可送会聚",
+      "object_history_policy": "Do not conflate this strength with the strength of PC-clad devices; destructive-test specimens must not be sent for convergence",
       "expected_mock_observations": [
         "broken"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "CHAR_GE",
-      "label": "GE横纵截面和材料表征",
+      "label": "GE transverse/longitudinal sections and material characterization",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.characterize"
@@ -914,7 +914,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.CHAR_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -926,18 +926,18 @@
         "TEM_holder": "double_tilt"
       },
       "control_peer_ids": [],
-      "object_history_policy": "SECTION、SEM/EDX、XRD和FIB/TEM可用已分配兄弟子样；源报告polycrystalline，不由局部晶格图升格为整根单晶",
+      "object_history_policy": "SECTION, SEM/EDX, XRD and FIB/TEM may use allocated sibling subspecimens; the source reports polycrystalline material, and a local lattice image does not justify reclassifying the entire fibre as a single crystal",
       "expected_mock_observations": [
         "composition",
         "diffraction",
         "HRTEM_SAED"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RAMAN_RAW_SI",
-      "label": "Si raw reference Raman条件",
+      "label": "Si raw reference Raman condition",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.Raman"
@@ -956,7 +956,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RAMAN_RAW_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -970,16 +970,16 @@
         "RAMAN_CLAD_SI",
         "RAMAN_REL_SI"
       ],
-      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "object_history_policy": "Retain the stock-rod, clad, released, and polished states separately; polishing and existing cracks mean that pristine residual stress cannot be directly recovered from these measurements",
       "expected_mock_observations": [
         "mock_spectrum"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RAMAN_CLAD_SI",
-      "label": "Si/silica polished Raman条件",
+      "label": "Si/silica polished Raman condition",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.Raman"
@@ -1008,7 +1008,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RAMAN_CLAD_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1024,16 +1024,16 @@
         "RAMAN_RAW_SI",
         "RAMAN_REL_SI"
       ],
-      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "object_history_policy": "Retain the stock-rod, clad, released, and polished states separately; polishing and existing cracks mean that pristine residual stress cannot be directly recovered from these measurements",
       "expected_mock_observations": [
         "mock_spectrum"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RAMAN_REL_SI",
-      "label": "released Si Raman条件",
+      "label": "released Si Raman condition",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.Raman"
@@ -1065,7 +1065,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RAMAN_REL_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1079,16 +1079,16 @@
         "RAMAN_RAW_SI",
         "RAMAN_CLAD_SI"
       ],
-      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "object_history_policy": "Retain the stock-rod, clad, released, and polished states separately; polishing and existing cracks mean that pristine residual stress cannot be directly recovered from these measurements",
       "expected_mock_observations": [
         "mock_spectrum"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RAMAN_RAW_GE",
-      "label": "Ge raw reference Raman条件",
+      "label": "Ge raw reference Raman condition",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.Raman"
@@ -1107,7 +1107,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RAMAN_RAW_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1122,16 +1122,16 @@
         "RAMAN_CLAD_GE_ASG",
         "RAMAN_REL_GE"
       ],
-      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "object_history_policy": "Retain the stock-rod, clad, released, and polished states separately; polishing and existing cracks mean that pristine residual stress cannot be directly recovered from these measurements",
       "expected_mock_observations": [
         "mock_spectrum"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RAMAN_CLAD_GE_SILICA",
-      "label": "Ge/silica polished Raman条件",
+      "label": "Ge/silica polished Raman condition",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.Raman"
@@ -1160,7 +1160,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RAMAN_CLAD_GE_SILICA",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1177,16 +1177,16 @@
         "RAMAN_CLAD_SI",
         "RAMAN_REL_SI"
       ],
-      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "object_history_policy": "Retain the stock-rod, clad, released, and polished states separately; polishing and existing cracks mean that pristine residual stress cannot be directly recovered from these measurements",
       "expected_mock_observations": [
         "mock_spectrum"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RAMAN_CLAD_GE_ASG",
-      "label": "Ge/ASG polished Raman条件",
+      "label": "Ge/ASG polished Raman condition",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.Raman"
@@ -1217,7 +1217,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RAMAN_CLAD_GE_ASG",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1234,16 +1234,16 @@
         "RAMAN_CLAD_GE_SILICA",
         "RAMAN_REL_GE"
       ],
-      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "object_history_policy": "Retain the stock-rod, clad, released, and polished states separately; polishing and existing cracks mean that pristine residual stress cannot be directly recovered from these measurements",
       "expected_mock_observations": [
         "mock_spectrum"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "RAMAN_REL_GE",
-      "label": "released Ge Raman条件",
+      "label": "released Ge Raman condition",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.Raman"
@@ -1277,7 +1277,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.RAMAN_REL_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1292,16 +1292,16 @@
         "RAMAN_CLAD_GE_SILICA",
         "RAMAN_CLAD_GE_ASG"
       ],
-      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "object_history_policy": "Retain the stock-rod, clad, released, and polished states separately; polishing and existing cracks mean that pristine residual stress cannot be directly recovered from these measurements",
       "expected_mock_observations": [
         "mock_spectrum"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "DEVICE_SI",
-      "label": "SI单芯光电纤维制造",
+      "label": "SI single-core optoelectronic fibre manufacture",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.convergence_single"
@@ -1341,7 +1341,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.DEVICE_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1357,16 +1357,16 @@
         "PC_cladding": true
       },
       "control_peer_ids": [],
-      "object_history_policy": "单Si或Ge/CPC/Cu/PC结构；不得使用W或玻璃芯代替裸芯",
+      "object_history_policy": "Single Si or Ge/CPC/Cu/PC structure; do not substitute W or a glass core for the bare core",
       "expected_mock_observations": [
         "single_core_interfaces"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "OPTO_SI",
-      "label": "SI基础光电与动态读出",
+      "label": "SI basic optoelectronic and dynamic readout",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.opto_readout"
@@ -1413,7 +1413,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.OPTO_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1423,7 +1423,7 @@
         "Fig3c_other_metrics_n": 6
       },
       "control_peer_ids": [],
-      "object_history_policy": "n=9/n=6是source Figure3c统计；mock课程可为一次对象episode，声称覆盖Fig3c统计时须配置所需不同样本ID且不得将重复读数充数",
+      "object_history_policy": "n=9/n=6 are statistics from the source Figure3c; a mock curriculum may use one object episode. Any claim to cover the Fig3c statistics requires the necessary distinct specimen IDs to be configured, and repeated readings must not be counted as additional specimens",
       "expected_mock_observations": [
         "dark_light",
         "IV",
@@ -1431,12 +1431,12 @@
         "transient",
         "frequency"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "TENSILE_SI",
-      "label": "SI单芯器件破坏性拉伸",
+      "label": "SI single-core device destructive tensile testing",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.tensile"
@@ -1478,7 +1478,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.TENSILE_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1487,16 +1487,16 @@
       "control_peer_ids": [
         "CORE_TENSILE_SI"
       ],
-      "object_history_policy": "器件强度条件单独兄弟样；图表yield strength与正文tensile strength词项并存不强行统一",
+      "object_history_policy": "Use a separate sibling specimen for the device-strength condition; preserve both the term yield strength in the figure/chart and tensile strength in the main text without forcing them to be consistent",
       "expected_mock_observations": [
         "broken"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "IMPACT_SI",
-      "label": "SI器件无缺口Charpy冲击",
+      "label": "SI device unnotched Charpy impact",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.impact"
@@ -1538,7 +1538,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.IMPACT_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1546,16 +1546,16 @@
         "source_Fig3c_n": 6
       },
       "control_peer_ids": [],
-      "object_history_policy": "独立破坏性兄弟样",
+      "object_history_policy": "Independent sibling specimen for destructive testing",
       "expected_mock_observations": [
         "impact_damaged"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "TORSION_FAIL_SI",
-      "label": "SI器件扭转至破断",
+      "label": "SI device torsion to failure",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.torsion"
@@ -1597,7 +1597,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.TORSION_FAIL_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1606,16 +1606,16 @@
       "control_peer_ids": [
         "TORSION_FUNC_SI"
       ],
-      "object_history_policy": "不是三圈/mm保持功能样的默认后续",
+      "object_history_policy": "Not the default follow-on for the specimen retaining functionality at three turns/mm",
       "expected_mock_observations": [
         "torsion_failed"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "TORSION_FUNC_SI",
-      "label": "SI三圈每毫米功能扭曲",
+      "label": "SI functional twisting at three turns per millimetre",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.torsion"
@@ -1661,7 +1661,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.TORSION_FUNC_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1671,16 +1671,16 @@
       "control_peer_ids": [
         "TORSION_FAIL_SI"
       ],
-      "object_history_policy": "这两材料变体是任务设计对称展开，不声称ED6f分别给了两组独立实测",
+      "object_history_policy": "These two material variants are a symmetric expansion in the task design; this does not claim that ED6f provides two separately measured, independent datasets",
       "expected_mock_observations": [
         "twisted_function"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "BEND_SI",
-      "label": "SI平直/两半径及循环弯曲",
+      "label": "SI straight/two-radius and cyclic bending",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.bending"
@@ -1727,7 +1727,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.BEND_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1742,17 +1742,17 @@
         "source_material_specific_display_allocation": "unknown; do not infer independent panels"
       },
       "control_peer_ids": [],
-      "object_history_policy": "半径比较和耐久默认独立兄弟样；各before/after内部用同件，不能把已循环件标pristine",
+      "object_history_policy": "By default, use independent sibling specimens for the radius comparison and durability tests; use the same specimen within each before/after pair, and do not label a specimen that has undergone cycling as pristine",
       "expected_mock_observations": [
         "radius_response",
         "after_cycles"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "COMPRESS_SI",
-      "label": "SI压缩即时改变与过夜恢复",
+      "label": "SI immediate change under compression and overnight recovery",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.compression"
@@ -1800,7 +1800,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.COMPRESS_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1810,18 +1810,18 @@
         "actual_deepwater_deployment": false
       },
       "control_peer_ids": [],
-      "object_history_policy": "before→immediate→overnight同一对象；mock可以虚拟时钟，但明确不等同实夜",
+      "object_history_policy": "Use the same object for before→immediate→overnight; a mock may use a virtual clock, but it must be clear that this is not equivalent to a real overnight interval",
       "expected_mock_observations": [
         "baseline",
         "impaired_immediate",
         "overnight_recovery"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "WASH_SI",
-      "label": "SI功能织物十次洗涤配对",
+      "label": "SI functional textile paired comparison across ten wash cycles",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.washing"
@@ -1867,7 +1867,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.WASH_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1878,16 +1878,16 @@
         "material_specific_source_allocation": "unknown; task variants explicit"
       },
       "control_peer_ids": [],
-      "object_history_policy": "同一织物洗前洗后；外部电路断开、干态再测是authored安全连接",
+      "object_history_policy": "Use the same textile before and after washing; disconnecting the external circuit and retesting in the dry state are authored safety links",
       "expected_mock_observations": [
         "before_after_wash"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "THERMAL_SI",
-      "label": "SI五小时运行前后热观察",
+      "label": "SI thermal observations before and after five hours of operation",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.thermal"
@@ -1929,7 +1929,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.THERMAL_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -1937,16 +1937,16 @@
         "material_specific_source_allocation": "unknown; task variants explicit"
       },
       "control_peer_ids": [],
-      "object_history_policy": "同件同热观察配置；mock无热物理",
+      "object_history_policy": "Use the same specimen and thermal-observation configuration; the mock has no thermal physics",
       "expected_mock_observations": [
         "before_after_thermal"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "BOARD_SI",
-      "label": "SI器件八通道接口板集成",
+      "label": "SI device eight-channel interface-board integration",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.wireless_board"
@@ -1988,7 +1988,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.BOARD_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2001,16 +2001,16 @@
         ]
       },
       "control_peer_ids": [],
-      "object_history_policy": "实际使用条数由episode≤8指定；多条器件重复完整制造/分配模块而非凭空复制",
+      "object_history_policy": "The episode specifies the actual number used, ≤8; for multiple devices, repeat the complete manufacture/allocation module rather than creating copies out of nothing",
       "expected_mock_observations": [
         "addressed_channels"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "DEVICE_GE",
-      "label": "GE单芯光电纤维制造",
+      "label": "GE single-core optoelectronic fibre manufacture",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.convergence_single"
@@ -2052,7 +2052,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.DEVICE_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2068,16 +2068,16 @@
         "PC_cladding": true
       },
       "control_peer_ids": [],
-      "object_history_policy": "单Si或Ge/CPC/Cu/PC结构；不得使用W或玻璃芯代替裸芯",
+      "object_history_policy": "Single Si or Ge/CPC/Cu/PC structure; do not substitute W or a glass core for the bare core",
       "expected_mock_observations": [
         "single_core_interfaces"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "OPTO_GE",
-      "label": "GE基础光电与动态读出",
+      "label": "GE basic optoelectronic and dynamic readout",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.opto_readout"
@@ -2126,7 +2126,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.OPTO_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2136,7 +2136,7 @@
         "Fig3c_other_metrics_n": 6
       },
       "control_peer_ids": [],
-      "object_history_policy": "n=9/n=6是source Figure3c统计；mock课程可为一次对象episode，声称覆盖Fig3c统计时须配置所需不同样本ID且不得将重复读数充数",
+      "object_history_policy": "n=9/n=6 are statistics from the source Figure3c; a mock curriculum may use one object episode. Any claim to cover the Fig3c statistics requires the necessary distinct specimen IDs to be configured, and repeated readings must not be counted as additional specimens",
       "expected_mock_observations": [
         "dark_light",
         "IV",
@@ -2144,12 +2144,12 @@
         "transient",
         "frequency"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "TENSILE_GE",
-      "label": "GE单芯器件破坏性拉伸",
+      "label": "GE single-core device destructive tensile testing",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.tensile"
@@ -2193,7 +2193,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.TENSILE_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2202,16 +2202,16 @@
       "control_peer_ids": [
         "CORE_TENSILE_GE"
       ],
-      "object_history_policy": "器件强度条件单独兄弟样；图表yield strength与正文tensile strength词项并存不强行统一",
+      "object_history_policy": "Use a separate sibling specimen for the device-strength condition; preserve both the term yield strength in the figure/chart and tensile strength in the main text without forcing them to be consistent",
       "expected_mock_observations": [
         "broken"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "IMPACT_GE",
-      "label": "GE器件无缺口Charpy冲击",
+      "label": "GE device unnotched Charpy impact",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.impact"
@@ -2255,7 +2255,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.IMPACT_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2263,16 +2263,16 @@
         "source_Fig3c_n": 6
       },
       "control_peer_ids": [],
-      "object_history_policy": "独立破坏性兄弟样",
+      "object_history_policy": "Independent sibling specimen for destructive testing",
       "expected_mock_observations": [
         "impact_damaged"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "TORSION_FAIL_GE",
-      "label": "GE器件扭转至破断",
+      "label": "GE device torsion to failure",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.torsion"
@@ -2316,7 +2316,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.TORSION_FAIL_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2325,16 +2325,16 @@
       "control_peer_ids": [
         "TORSION_FUNC_GE"
       ],
-      "object_history_policy": "不是三圈/mm保持功能样的默认后续",
+      "object_history_policy": "Not the default follow-on for the specimen retaining functionality at three turns/mm",
       "expected_mock_observations": [
         "torsion_failed"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "TORSION_FUNC_GE",
-      "label": "GE三圈每毫米功能扭曲",
+      "label": "GE functional twisting at three turns per millimetre",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.torsion"
@@ -2382,7 +2382,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.TORSION_FUNC_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2392,16 +2392,16 @@
       "control_peer_ids": [
         "TORSION_FAIL_GE"
       ],
-      "object_history_policy": "这两材料变体是任务设计对称展开，不声称ED6f分别给了两组独立实测",
+      "object_history_policy": "These two material variants are a symmetric expansion in the task design; this does not claim that ED6f provides two separately measured, independent datasets",
       "expected_mock_observations": [
         "twisted_function"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "BEND_GE",
-      "label": "GE平直/两半径及循环弯曲",
+      "label": "GE straight/two-radius and cyclic bending",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.bending"
@@ -2450,7 +2450,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.BEND_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2465,17 +2465,17 @@
         "source_material_specific_display_allocation": "unknown; do not infer independent panels"
       },
       "control_peer_ids": [],
-      "object_history_policy": "半径比较和耐久默认独立兄弟样；各before/after内部用同件，不能把已循环件标pristine",
+      "object_history_policy": "By default, use independent sibling specimens for the radius comparison and durability tests; use the same specimen within each before/after pair, and do not label a specimen that has undergone cycling as pristine",
       "expected_mock_observations": [
         "radius_response",
         "after_cycles"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "COMPRESS_GE",
-      "label": "GE压缩即时改变与过夜恢复",
+      "label": "GE immediate change under compression and overnight recovery",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.compression"
@@ -2525,7 +2525,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.COMPRESS_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2535,18 +2535,18 @@
         "actual_deepwater_deployment": false
       },
       "control_peer_ids": [],
-      "object_history_policy": "before→immediate→overnight同一对象；mock可以虚拟时钟，但明确不等同实夜",
+      "object_history_policy": "Use the same object for before→immediate→overnight; a mock may use a virtual clock, but it must be clear that this is not equivalent to a real overnight interval",
       "expected_mock_observations": [
         "baseline",
         "impaired_immediate",
         "overnight_recovery"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "WASH_GE",
-      "label": "GE功能织物十次洗涤配对",
+      "label": "GE functional textile paired comparison across ten wash cycles",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.washing"
@@ -2594,7 +2594,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.WASH_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2605,16 +2605,16 @@
         "material_specific_source_allocation": "unknown; task variants explicit"
       },
       "control_peer_ids": [],
-      "object_history_policy": "同一织物洗前洗后；外部电路断开、干态再测是authored安全连接",
+      "object_history_policy": "Use the same textile before and after washing; disconnecting the external circuit and retesting in the dry state are authored safety links",
       "expected_mock_observations": [
         "before_after_wash"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "THERMAL_GE",
-      "label": "GE五小时运行前后热观察",
+      "label": "GE thermal observations before and after five hours of operation",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.thermal"
@@ -2658,7 +2658,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.THERMAL_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2666,16 +2666,16 @@
         "material_specific_source_allocation": "unknown; task variants explicit"
       },
       "control_peer_ids": [],
-      "object_history_policy": "同件同热观察配置；mock无热物理",
+      "object_history_policy": "Use the same specimen and thermal-observation configuration; the mock has no thermal physics",
       "expected_mock_observations": [
         "before_after_thermal"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "BOARD_GE",
-      "label": "GE器件八通道接口板集成",
+      "label": "GE device eight-channel interface-board integration",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.wireless_board"
@@ -2719,7 +2719,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.BOARD_GE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2732,16 +2732,16 @@
         ]
       },
       "control_peer_ids": [],
-      "object_history_policy": "实际使用条数由episode≤8指定；多条器件重复完整制造/分配模块而非凭空复制",
+      "object_history_policy": "The episode specifies the actual number used, ≤8; for multiple devices, repeat the complete manufacture/allocation module rather than creating copies out of nothing",
       "expected_mock_observations": [
         "addressed_channels"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "DIRECTION_SI",
-      "label": "Si同件正侧入射对照",
+      "label": "Si front/side incidence comparison on the same specimen",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.directionality"
@@ -2785,7 +2785,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.DIRECTION_SI",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2793,16 +2793,16 @@
         "test_bias_V": 2
       },
       "control_peer_ids": [],
-      "object_history_policy": "同一任务器件姿态改变；不改变材料、端接和条件号",
+      "object_history_policy": "Change the orientation of the same task device; do not change its material, terminations, or condition number",
       "expected_mock_observations": [
         "front_side"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "DEVICE_PN",
-      "label": "双芯p-n Si/W光电纤维与I–V",
+      "label": "Dual-core p-n Si/W optoelectronic fibre and I–V",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.convergence_dual",
@@ -2859,7 +2859,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.DEVICE_PN",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2874,17 +2874,17 @@
         "doping_operation": false
       },
       "control_peer_ids": [],
-      "object_history_policy": "p,n原棒分别经过独立Si前端子路线后汇聚；具体掺杂芯制备参数未单列，沿用前端类型是authored接口，不在现场掺杂。中央两芯自对齐而非机器人焊结",
+      "object_history_policy": "The p,n stock rods each follow an independent Si front-end subroute before converging; specific doped-core preparation parameters are not separately listed. Reusing the front-end type is an authored interface, and doping is not performed on site. The two central cores self-align rather than being welded together by the robot",
       "expected_mock_observations": [
         "pn_interface",
         "pn_IV"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "APP_BEANIE",
-      "label": "八Ge帽与人台信号演示",
+      "label": "Eight-Ge-fibre beanie and mannequin signal demonstration",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.beanie",
@@ -2933,7 +2933,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.APP_BEANIE",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -2943,16 +2943,16 @@
         "task_demo": "enclosed_mock_mannequin"
       },
       "control_peer_ids": [],
-      "object_history_policy": "八个可追溯器件ID；制造模块须重复或足量父芯分段，禁止一个ID当八条",
+      "object_history_policy": "Eight traceable device IDs; repeat the manufacturing module or segment a parent core of sufficient length. Do not use one ID to represent eight fibres",
       "expected_mock_observations": [
         "8_channels_phone"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "APP_SWEATER",
-      "label": "Si 3×3 grid毛衣内容传输",
+      "label": "Si 3×3 grid sweater content transmission",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.sweater",
@@ -2998,7 +2998,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.APP_SWEATER",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -3011,16 +3011,16 @@
         "source_transfer_speed_KB_s": 40
       },
       "control_peer_ids": [],
-      "object_history_policy": "实际纤维条数、grid/board通道映射unknown；mock采用明确任务映射，不声称复原源PCB",
+      "object_history_policy": "The actual number of fibres and grid/board channel mapping are unknown; the mock uses an explicit task mapping and does not claim to reconstruct the source PCB",
       "expected_mock_observations": [
         "sent_received_image"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "APP_WATCHBAND",
-      "label": "Si腕带PPG仿体与商业比较器",
+      "label": "Si wristband PPG phantom and commercial comparator",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.watchband",
@@ -3066,7 +3066,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.APP_WATCHBAND",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -3075,16 +3075,16 @@
         "task_target": "nonhuman_wrist_phantom"
       },
       "control_peer_ids": [],
-      "object_history_policy": "源为人体腕部PPG，本任务只做非人体preset。不能说仿体数据证明临床/心率精度",
+      "object_history_policy": "The source uses human-wrist PPG; this task uses only a non-human preset. Do not claim that phantom data demonstrate clinical/heart-rate accuracy",
       "expected_mock_observations": [
         "paired_preset_pulse"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     },
     {
       "id": "APP_UNDERWATER",
-      "label": "八Si方向水槽潜艇通信",
+      "label": "Eight-Si-fibre directional tank submarine communication",
       "visibility": "evaluator_reference_only",
       "source_branch_ids": [
         "f.underwater",
@@ -3131,7 +3131,7 @@
         "ARCHIVE",
         "CLEAN"
       ],
-      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "transport_binding": "Insert MOVE wherever location_id changes between adjacent operations; different carriers at the same location must retain their corresponding slots and object labels. The sequence is one linearization of the reference partial order, not the only trajectory.",
       "object_id": "obj.APP_UNDERWATER",
       "initial_state": "raw_stock_and_empty_equipment",
       "source_reported_parameters": {
@@ -3150,12 +3150,12 @@
         "source_example_deg": 135
       },
       "control_peer_ids": [],
-      "object_history_policy": "独立八器件身份，几何方向、通道、命令映射分开；水槽不是深海",
+      "object_history_policy": "Maintain eight independent device identities and separate mappings for geometric directions, channels, and commands; the tank is not the deep sea",
       "expected_mock_observations": [
         "direction_channel_command"
       ],
-      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
-      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+      "success": "Complete preparation, manufacture, physical interactions, records, shared-origin identity tracking, and safe closeout for this source condition; scientific responses are mock, and matching the literature's numerical values is not required",
+      "not_asserted": "Not a count of independent experiments by the paper's authors; not a micro-action reproduction of the paper; not completed real-robot execution"
     }
   ],
   "pn_prefix_binding": {
@@ -3171,7 +3171,7 @@
       "cladding": "silica"
     },
     "merger": "CONVERGE_LOAD/THREAD merges two released-core identities with W and PC/CPC",
-    "source_gap": "p/n前端专属参数未分别报告；不能把未掺杂Si数据当p/n制造验收"
+    "source_gap": "Dedicated p/n front-end parameters were not reported separately; undoped Si data must not be used as acceptance criteria for p/n manufacture"
   },
-  "cardinality_policy": "APP_BEANIE/APP_UNDERWATER需八个物件，完整制造前缀按需要重复；只有来自足量已制造有源长度的兄弟段可共享父卷。单次前缀不是凭空增殖八条的许可。"
+  "cardinality_policy": "APP_BEANIE/APP_UNDERWATER require eight objects; repeat the complete manufacturing prefix as needed. Only sibling segments from a sufficient length of already-manufactured active material may share a parent spool. A single prefix execution does not permit eight fibres to multiply out of nothing."
 }

@@ -1,0 +1,85 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "visibility": "evaluator_reference_only",
+  "partial_order": [
+    {
+      "before": "raw_load_and_job_binding",
+      "after": "build_start"
+    },
+    {
+      "before": "build_complete_and_independent_safe_release",
+      "after": "print_unload"
+    },
+    {
+      "before": "postprocess_return",
+      "after": "cell_release"
+    },
+    {
+      "before": "cell_id_and_geometry_verified",
+      "after": "tube_or_lens_mount"
+    },
+    {
+      "before": "outputs_off",
+      "after": "tube_sample_probe_plug_or_obstacle_manipulation"
+    },
+    {
+      "before": "two_loads_times_four_positions_valid_at_one_frequency",
+      "after": "complete_transmission_result"
+    },
+    {
+      "before": "fixed_air_reference_and_matching_A_B_conditions",
+      "after": "pulse_delay_comparison"
+    },
+    {
+      "before": "40_individual_characterizations_and_slot_bindings",
+      "after": "lens_manifest_verified"
+    },
+    {
+      "before": "60_individual_speaker_mount_wire_checks",
+      "after": "array_sync_contract_ready"
+    },
+    {
+      "before": "plate_support_probe_access_and_adapter_contracts",
+      "after": "field_run"
+    },
+    {
+      "before": "frame_transform_and_scan_points_verified",
+      "after": "scan_move"
+    },
+    {
+      "before": "position_settled_and_source_stable",
+      "after": "field_point_record"
+    },
+    {
+      "before": "baseline_raw_preserved_and_output_off",
+      "after": "obstacle_install"
+    },
+    {
+      "before": "both_condition_maps_with_common_mask",
+      "after": "field_compare"
+    },
+    {
+      "before": "output_off_motion_stopped_and_safe_access",
+      "after": "field_unload_disconnect"
+    },
+    {
+      "before": "payload_archive_and_append_only_data_archive",
+      "after": "final_check"
+    }
+  ],
+  "branch_expansion": "See nested loops in branches.json. Independent station preparation may run in parallel, but the single shared probe/source chain requires mutual exclusion; do not duplicate resources.",
+  "state_aliases": {
+    "outputs_off": "Public output/amplifier-proxy state is stopped; agent assertion alone is insufficient",
+    "tube_safe_to_handle": "This tube chain has stopped output and idle acquisition; separately check other station resources",
+    "field_safe_to_handle": "Array output, acquisition and stage are stopped, and the probe is docked",
+    "all_payloads_supported": "The sample occupies a tube seat, carrier, assembly holder or archive rack, never unsupported free space"
+  },
+  "recovery_templates": [
+    "QUARANTINE",
+    "SCAN_RESUME",
+    "MOVE"
+  ],
+  "not_a_runtime": true
+}

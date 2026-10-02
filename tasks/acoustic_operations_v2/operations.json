@@ -1,0 +1,3241 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 86,
+  "operations": [
+    {
+      "id": "PRECHECK",
+      "title": "Receive the task and check public states",
+      "kind": "hands_on",
+      "location_id": "WS_ENTRY",
+      "target_asset_roles": [
+        "task_card",
+        "status_board"
+      ],
+      "preconditions": [
+        "episode_selected"
+      ],
+      "actions": [
+        "Read the current goal, geometry table, condition cards and available stations",
+        "Check stopped outputs, guards, tools/carriers and empty archive slots; record missing interfaces first"
+      ],
+      "postconditions": [
+        "episode_bound",
+        "station_readiness_known"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_macro": "authored_workflow_closure",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_DYNAMIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "MOVE",
+      "title": "Supported transport to the next station",
+      "kind": "hands_on",
+      "location_id": "between_stations",
+      "target_asset_roles": [
+        "carrier",
+        "transport_cart"
+      ],
+      "preconditions": [
+        "payload_secured",
+        "destination_free"
+      ],
+      "actions": [
+        "Move using carrier or trolley handles, keeping labels readable",
+        "Rest the carrier base on the target support before releasing; do not grasp blades or pull microphone cables"
+      ],
+      "postconditions": [
+        "same_object_relocated"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_macro": "authored_workflow_closure",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_DYNAMIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "STOCK_SELECT",
+      "title": "Take numbered inert stock and an empty tray",
+      "kind": "hands_on",
+      "location_id": "WS_STOCK",
+      "target_asset_roles": [
+        "resin_mock",
+        "build_tray",
+        "carrier"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Verify material name/lot, grasp the sealed simulated-stock cartridge and place it in a separate slot",
+        "Take an empty build tray and numbered carrier; record stock withdrawal and work-order quantity"
+      ],
+      "postconditions": [
+        "raw_lot_selected",
+        "empty_tray_selected"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_RESIN"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TRAY_ID",
+      "title": "Bind the build tray to the geometry list",
+      "kind": "hands_on",
+      "location_id": "WS_PREP",
+      "target_asset_roles": [
+        "build_tray",
+        "job_panel"
+      ],
+      "preconditions": [
+        "raw_lot_selected",
+        "empty_tray_selected"
+      ],
+      "actions": [
+        "Place the tray on the registration dock",
+        "Bind each output slot to a geometry ID on the public work order; check that output count matches the symbolic input allocation"
+      ],
+      "postconditions": [
+        "tray_job_bound"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fig1",
+        "a.si_table"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PRINTER_OPEN",
+      "title": "Open the stopped printer-proxy chamber",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "printer_proxy"
+      ],
+      "preconditions": [
+        "tray_job_bound",
+        "printer_idle",
+        "safe_access"
+      ],
+      "actions": [
+        "Open the proxy door by its handle",
+        "Confirm that the tray dock and sealed-stock interface are empty and unobstructed by hands"
+      ],
+      "postconditions": [
+        "printer_access_open"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "MATERIAL_LOAD",
+      "title": "Load the sealed inert-stock cartridge",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "printer_proxy",
+        "resin_mock"
+      ],
+      "preconditions": [
+        "printer_access_open"
+      ],
+      "actions": [
+        "Support the cartridge bottom with its locating edge facing the mark",
+        "Slide it into the keyed dock, latch the proxy and read lot-connection feedback"
+      ],
+      "postconditions": [
+        "material_lot_docked"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_RESIN"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TRAY_DOCK",
+      "title": "Load the build tray",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "printer_proxy",
+        "build_tray"
+      ],
+      "preconditions": [
+        "material_lot_docked"
+      ],
+      "actions": [
+        "Support tray edges with two hands/a fixture and slide along task rails to the seating surface",
+        "Operate the proxy latch and verify that the tray is supported and labels unobstructed"
+      ],
+      "postconditions": [
+        "tray_docked"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "JOB_SELECT",
+      "title": "Select the complete geometry work order",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "job_panel"
+      ],
+      "preconditions": [
+        "tray_docked"
+      ],
+      "actions": [
+        "Select the episode's geometry list and material lot",
+        "Verify every P/L and source status; do not apply the Fig1 example to A/B or all lens cells"
+      ],
+      "postconditions": [
+        "job_geometry_checked"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication",
+        "a.si_table"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_GEOM"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PRINTER_CLOSE",
+      "title": "Withdraw hands and close the chamber",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "printer_proxy"
+      ],
+      "preconditions": [
+        "job_geometry_checked"
+      ],
+      "actions": [
+        "Withdraw tools and hands",
+        "Close the door by its handle until latched and read the interlock; hiding graphics does not close the door"
+      ],
+      "postconditions": [
+        "printer_guard_closed"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "BUILD_START",
+      "title": "Start the numbered build proxy",
+      "kind": "instrument_interaction",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "job_panel"
+      ],
+      "preconditions": [
+        "printer_guard_closed",
+        "material_lot_docked",
+        "tray_docked"
+      ],
+      "actions": [
+        "Press the public work-order start control",
+        "Record build_id, inputs, slots and expected geometry; only processing starts, with no qualification certificate issued"
+      ],
+      "postconditions": [
+        "build_active"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "BUILD_WAIT",
+      "title": "Wait for processing completion and independent safe release",
+      "kind": "equipment_wait",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "status_board"
+      ],
+      "preconditions": [
+        "build_active"
+      ],
+      "actions": [
+        "Inspect processing status",
+        "Wait for separate public complete and safe_release events; a fixed elapsed time alone does not permit opening"
+      ],
+      "postconditions": [
+        "build_complete",
+        "print_safe_release"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PRINT_UNLOAD",
+      "title": "Open, unlock and unload the build tray",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "printer_proxy",
+        "build_tray",
+        "carrier"
+      ],
+      "preconditions": [
+        "build_complete",
+        "print_safe_release"
+      ],
+      "actions": [
+        "After opening, support tray edges and release its latch",
+        "Withdraw along the rails, place on a rimmed carrier before releasing and preserve the same tray ID"
+      ],
+      "postconditions": [
+        "built_tray_in_carrier"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "POST_HANDOFF",
+      "title": "Hand off to the closed postprocessing proxy",
+      "kind": "hands_on",
+      "location_id": "WS_POST",
+      "target_asset_roles": [
+        "postprocess_proxy",
+        "build_tray"
+      ],
+      "preconditions": [
+        "built_tray_in_carrier"
+      ],
+      "actions": [
+        "Place the tray and work order in the proxy handoff drawer",
+        "Close the drawer and start the explicitly authored inert-release service; do not enter invented real cleaning/curing recipes"
+      ],
+      "postconditions": [
+        "postprocess_pending"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "POST_RETURN",
+      "title": "Receive the safely released tray",
+      "kind": "hands_on",
+      "location_id": "WS_POST",
+      "target_asset_roles": [
+        "postprocess_proxy",
+        "build_tray"
+      ],
+      "preconditions": [
+        "postprocess_pending"
+      ],
+      "actions": [
+        "Confirm processing receipt and safe_release",
+        "Open the drawer, support and withdraw the tray, and verify every slot; do not release parts without a receipt"
+      ],
+      "postconditions": [
+        "released_tray_available"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CELL_RELEASE",
+      "title": "Release parts individually from the task fixture",
+      "kind": "hands_on",
+      "location_id": "WS_PREP",
+      "target_asset_roles": [
+        "release_fixture",
+        "build_tray",
+        "carrier",
+        "single_cell"
+      ],
+      "preconditions": [
+        "released_tray_available"
+      ],
+      "actions": [
+        "Latch the tray onto the release dock and grip the cell's external support sleeve",
+        "Release this slot's proxy catch, withdraw along the authorized path and place in a separate padded support; do not grasp thin blades"
+      ],
+      "postconditions": [
+        "released_cell_in_identified_nest"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_FAB",
+          "U_GEOM"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CELL_INSPECT",
+      "title": "Inspect identity and geometry",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECT",
+      "target_asset_roles": [
+        "inspection_nest",
+        "gauge_proxy",
+        "carrier",
+        "single_cell"
+      ],
+      "preconditions": [
+        "released_cell_in_identified_nest"
+      ],
+      "actions": [
+        "Rotate the support sleeve to inspect faces, blades and exterior; verify the P/L work order",
+        "Check defined envelopes using task gauges; distinguish source dimensions, authored tolerances and unchecked items"
+      ],
+      "postconditions": [
+        "cell_inspection_recorded"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "QUARANTINE damaged, incorrectly shaped or unidentified items; missing source parameters remain unknown, and appearance acceptance does not establish manufacturing accuracy"
+      ],
+      "evidence_ids": [
+        "a.fig1",
+        "a.spectrum",
+        "a.si_table"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_GEOM"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CELL_LABEL",
+      "title": "Attach the entity label to its separate carrier",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECT",
+      "target_asset_roles": [
+        "carrier",
+        "identity_tag",
+        "single_cell"
+      ],
+      "preconditions": [
+        "cell_inspection_recorded"
+      ],
+      "actions": [
+        "Clip the entity-ID card onto the outside of this item's carrier",
+        "Compare raw-material lot, build_id, tray slot, geometry_id and current entity ID; do not insert labels into the acoustic channel"
+      ],
+      "postconditions": [
+        "cell_lineage_bound"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.fabrication"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_GEOM"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TUBE_OFF",
+      "title": "Confirm the tube measurement chain is off",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "generator",
+        "amplifier_proxy",
+        "status_board"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Operate the task stop control and verify output state",
+        "Confirm amplifier-proxy mute and inactive acquisition before touching samples, probes or end plugs"
+      ],
+      "postconditions": [
+        "tube_safe_to_handle"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TUBE_ACCESS",
+      "title": "Open the task sample interface",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "tube",
+        "sample_access_proxy"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle"
+      ],
+      "actions": [
+        "Support the interface cover before releasing its task latch",
+        "Place the cover in its dedicated slot to expose the sample seat; transparent/hidden sectors do not replace physical opening"
+      ],
+      "postconditions": [
+        "tube_sample_access_open"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.si_tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_TUBE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TUBE_INSERT",
+      "title": "Insert the numbered cell axially",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "tube",
+        "carrier",
+        "sample_access_proxy",
+        "single_cell"
+      ],
+      "preconditions": [
+        "tube_sample_access_open",
+        "cell_lineage_bound"
+      ],
+      "actions": [
+        "Take its support sleeve and align the front face with the x=0 mark",
+        "Insert along the proxy mounting path onto the central support; confirm 0<x<L and upstream/downstream relationships"
+      ],
+      "postconditions": [
+        "cell_in_tube_supported"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.si_tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_TUBE",
+          "U_POS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TUBE_SECURE",
+      "title": "Secure the sample and record mounting state",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "sample_access_proxy",
+        "single_cell"
+      ],
+      "preconditions": [
+        "cell_in_tube_supported"
+      ],
+      "actions": [
+        "Close the task locating clamp, support the cell and withdraw the transport sleeve",
+        "Read seating and mock-seal states; visual overlap alone is unacceptable"
+      ],
+      "postconditions": [
+        "tube_cell_mounted"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_TUBE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TUBE_CLOSE",
+      "title": "Close the sample interface",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "sample_access_proxy"
+      ],
+      "preconditions": [
+        "tube_cell_mounted"
+      ],
+      "actions": [
+        "Retrieve the cover, align locating edges and close the latch",
+        "Confirm the channel cover and sample ID are unchanged"
+      ],
+      "postconditions": [
+        "tube_ready_for_connection"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_TUBE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CONNECT_SOURCE",
+      "title": "Connect the signal source to the amplifier proxy",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRONICS",
+      "target_asset_roles": [
+        "generator",
+        "amplifier_proxy",
+        "signal_cable"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle",
+        "outputs_off"
+      ],
+      "actions": [
+        "If reusing an already connected chain, verify entity/port/cable IDs and record existing_connection_verified; do not insert another connector into an occupied port. New connections and corrections require stopped output.",
+        "Grip connector housings and connect the FUNCTION signal role to the amplifier-input role",
+        "Check the port graph; a BNC shape does not make SYNC the acoustic-source output; mate/lock according to task interfaces"
+      ],
+      "postconditions": [
+        "generator_to_amp_connected"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube",
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CONNECT_TUBE",
+      "title": "Connect the amplifier to the tube-end source",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "amplifier_proxy",
+        "tube_source",
+        "signal_cable"
+      ],
+      "preconditions": [
+        "outputs_off",
+        "generator_to_amp_connected"
+      ],
+      "actions": [
+        "If reusing an already connected chain, verify entity/port/cable IDs and record existing_connection_verified; do not insert another connector into an occupied port. New connections and corrections require stopped output.",
+        "Connect the numbered output cable to the tube-source input role",
+        "Secure strain relief and keep cables clear of the sample opening; the tube-source model remains unknown"
+      ],
+      "postconditions": [
+        "amp_to_tube_connected"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CONNECT_MIC",
+      "title": "Connect the single tube-measurement microphone",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "microphone",
+        "acquisition_proxy",
+        "mic_cable"
+      ],
+      "preconditions": [
+        "outputs_off"
+      ],
+      "actions": [
+        "If reusing an already connected chain, verify entity/port/cable IDs and record existing_connection_verified; do not insert another connector into an occupied port. New connections and corrections require stopped output.",
+        "Hold the legacy Type4958 probe body and connector to mate with the task acquisition interface",
+        "Leave a cable slack loop in the guide; instantiate only one active tube-measurement probe on the bench"
+      ],
+      "postconditions": [
+        "mic_signal_connected"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ACQ",
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SIGNAL_SET",
+      "title": "Set frequency and waveform using the keypad",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRONICS",
+      "target_asset_roles": [
+        "generator",
+        "condition_card"
+      ],
+      "preconditions": [
+        "outputs_off",
+        "generator_to_amp_connected"
+      ],
+      "actions": [
+        "Enter this point's Hz value with frequency, numeric and unit-confirmation keys",
+        "Read back frequency, waveform and task amplitude/gain cards; request missing amplitude instead of turning a nonexistent arbitrary frequency knob"
+      ],
+      "postconditions": [
+        "signal_card_readback_matches"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CHECK_CHANNEL",
+      "title": "Check channel and phase reference",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRONICS",
+      "target_asset_roles": [
+        "acquisition_proxy",
+        "condition_card"
+      ],
+      "preconditions": [
+        "mic_signal_connected",
+        "signal_card_readback_matches"
+      ],
+      "actions": [
+        "Bind the unique probe serial_id, phase reference and current acquisition card",
+        "Perform the task's public channel check and record mock calibration status; do not claim real calibration unreported by the paper"
+      ],
+      "postconditions": [
+        "channel_reference_ready"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ACQ"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "LOAD_SET",
+      "title": "Physically switch between open and rubber-plug terminations",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "tube",
+        "termination_plug",
+        "plug_tray"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle"
+      ],
+      "actions": [
+        "For open, withdraw the plug by its handle into its slot; for sealed, align the numbered rubber plug with the termination seat and insert to the mock seated state",
+        "Read physical presence/absence and load labels; retain the corresponding image or state evidence"
+      ],
+      "postconditions": [
+        "requested_load_physically_set"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube",
+        "a.si_tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_TUBE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PROBE_RELEASE",
+      "title": "Release the probe while supporting its cable",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "microphone",
+        "probe_clamp_proxy",
+        "mic_cable"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle"
+      ],
+      "actions": [
+        "Hold the probe body and release this hole's proxy clamp",
+        "Lift from the cradle if docked; verify cable slack before lifting and do not slide horizontally through tube walls between holes"
+      ],
+      "postconditions": [
+        "probe_supported_and_free"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_POS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PORT_PREP",
+      "title": "Open the target point and reseal the previous hole",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "tube",
+        "port_caps",
+        "probe_clamp_proxy"
+      ],
+      "preconditions": [
+        "probe_supported_and_free",
+        "requested_load_physically_set"
+      ],
+      "actions": [
+        "After leaving a hole, replace its numbered cap; remove the target cap into its numbered slot",
+        "Verify x1/x2 lie before the sample and x3/x4 after it, and read the scene-coordinate card"
+      ],
+      "postconditions": [
+        "target_port_open"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube",
+        "a.si_tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_POS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PROBE_INSERT",
+      "title": "Insert the same probe to the target-depth proxy stop",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "microphone",
+        "tube",
+        "probe_clamp_proxy"
+      ],
+      "preconditions": [
+        "target_port_open"
+      ],
+      "actions": [
+        "Raise the probe clear outside the hole before moving to the target hole",
+        "Insert along the hole axis to the task stop, holding the body without pressing the sensitive grille; verify serial_id matches the previous position"
+      ],
+      "postconditions": [
+        "probe_at_requested_port"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_POS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PORT_SEAL",
+      "title": "Lock the probe and check unused holes",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "probe_clamp_proxy",
+        "port_caps"
+      ],
+      "preconditions": [
+        "probe_at_requested_port"
+      ],
+      "actions": [
+        "Close the lightweight task clamp and mock hole seal",
+        "Check the other three holes, withdraw hands and read stability/seating feedback; clamping force and real airtightness remain unverified"
+      ],
+      "postconditions": [
+        "all_ports_valid",
+        "probe_stable"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_POS",
+          "U_TUBE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "ACQUIRE_PRESSURE",
+      "title": "Acquire one pressure record at the current hole/load",
+      "kind": "instrument_interaction",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "generator",
+        "acquisition_proxy"
+      ],
+      "preconditions": [
+        "all_ports_valid",
+        "probe_stable",
+        "channel_reference_ready",
+        "requested_load_physically_set"
+      ],
+      "actions": [
+        "Enable task signal output and wait for a public stability receipt",
+        "Trigger this point's acquisition, distinguish source_active, signal_detected and record_valid, and stop output immediately after saving"
+      ],
+      "postconditions": [
+        "pressure_attempt_exists",
+        "tube_safe_to_handle"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ACQ"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SAVE_PRESSURE",
+      "title": "Save numbered raw pressure and conditions",
+      "kind": "data_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "data_panel"
+      ],
+      "preconditions": [
+        "pressure_attempt_exists"
+      ],
+      "actions": [
+        "Save record_id, sample_id, load, port_id, coordinates, frequency, probe_serial, phase_reference_id, time window and mock label",
+        "Retain invalid/missing acquisition records and reasons; do not fill gaps with another hole's data"
+      ],
+      "postconditions": [
+        "pressure_record_committed"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ACQ",
+          "U_REDUCE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PROBE_RETRACT",
+      "title": "Withdraw the probe safely and cap the hole",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "microphone",
+        "probe_clamp_proxy",
+        "port_caps",
+        "mic_cradle"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle"
+      ],
+      "actions": [
+        "Support and unclamp the probe, lift along the hole axis to clearance height, then move to the external cradle",
+        "Replace the cap and seat the cable in its guide; do not teleport to the next hole by directly editing coordinates"
+      ],
+      "postconditions": [
+        "probe_in_cradle",
+        "all_idle_ports_capped"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_POS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TRANSMISSION_ANALYZE",
+      "title": "Derive results from two-load/four-position records",
+      "kind": "analysis_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "reflex_role",
+        "data_panel"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle"
+      ],
+      "actions": [
+        "Load eight valid records for open/sealed x1 through x4, grouped by sample_id and frequency",
+        "Check shared phase reference, coordinates and conditions before invoking mock-labeled transmission/phase processing; output unknown and a missing-measurement list if incomplete"
+      ],
+      "postconditions": [
+        "transmission_or_explicit_incomplete"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube",
+        "a.si_tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_REDUCE",
+          "U_ACQ"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "TUBE_UNLOAD",
+      "title": "Unload the sample to its numbered carrier",
+      "kind": "hands_on",
+      "location_id": "WS_TUBE",
+      "target_asset_roles": [
+        "tube",
+        "sample_access_proxy",
+        "carrier",
+        "single_cell"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle",
+        "probe_in_cradle"
+      ],
+      "actions": [
+        "Open the sample interface and support the cell before releasing its locating clamp",
+        "Withdraw along the original authorized path into its separate carrier, close the interface and record face/damage state"
+      ],
+      "postconditions": [
+        "cell_returned_to_carrier"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.tube"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_TUBE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PULSE_CLEAR",
+      "title": "Establish a genuinely empty-path control",
+      "kind": "hands_on",
+      "location_id": "WS_PULSE",
+      "target_asset_roles": [
+        "tube",
+        "sample_access_proxy",
+        "empty_path_card"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle",
+        "probe_in_cradle"
+      ],
+      "actions": [
+        "Open the sample seat and confirm no metamaterial cell remains; execute TUBE_UNLOAD if needed",
+        "Retain the task-specified tube/support configuration and record air state; another cell is not an air control"
+      ],
+      "postconditions": [
+        "air_path_physically_empty"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PULSE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PULSE_RX",
+      "title": "Place the receiver probe in the fixed pulse-reception position",
+      "kind": "hands_on",
+      "location_id": "WS_PULSE",
+      "target_asset_roles": [
+        "microphone",
+        "pulse_receiver_fixture",
+        "mic_cable"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle"
+      ],
+      "actions": [
+        "Hold the body, seat it in the public pulse-receiver fixture and close the proxy clamp",
+        "Record transmitter/receiver frames and probe coordinates consistently across all three conditions; do not assume an arbitrary tube hole is the paper's receiver position"
+      ],
+      "postconditions": [
+        "pulse_rx_fixed"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PULSE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PULSE_CONFIG",
+      "title": "Enter a shared pulse/trigger condition card",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRONICS",
+      "target_asset_roles": [
+        "generator",
+        "condition_card",
+        "acquisition_proxy"
+      ],
+      "preconditions": [
+        "outputs_off",
+        "pulse_rx_fixed"
+      ],
+      "actions": [
+        "Use keypad controls for center frequency 4170 Hz and task-provided envelope/sampling/trigger identifiers",
+        "Read back shared air/A/B settings; do not infer unknown card entries from literature arrival times"
+      ],
+      "postconditions": [
+        "pulse_condition_bound"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PULSE",
+          "U_ACQ"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PULSE_TRIGGER",
+      "title": "Trigger and acquire the current pulse condition",
+      "kind": "instrument_interaction",
+      "location_id": "WS_PULSE",
+      "target_asset_roles": [
+        "generator",
+        "acquisition_proxy"
+      ],
+      "preconditions": [
+        "pulse_condition_bound",
+        "receiver_frame_unchanged",
+        "path_condition_verified"
+      ],
+      "actions": [
+        "Trigger this mock pulse and await an acquisition receipt",
+        "Do not move the receiver; stop output afterward and retain the complete window and trigger timestamp"
+      ],
+      "postconditions": [
+        "pulse_attempt_exists",
+        "tube_safe_to_handle"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PULSE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PULSE_SAVE",
+      "title": "Save a separate air/sample waveform",
+      "kind": "data_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "data_panel"
+      ],
+      "preconditions": [
+        "pulse_attempt_exists"
+      ],
+      "actions": [
+        "Save the air/A/B condition and raw mock-waveform reference",
+        "Save trigger rule, path, receiver position, sampling units and validity; do not rename a spectrum record as a waveform"
+      ],
+      "postconditions": [
+        "pulse_raw_committed"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_REDUCE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PULSE_ANALYZE",
+      "title": "Compare against air and report delays",
+      "kind": "analysis_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "data_panel"
+      ],
+      "preconditions": [
+        "air_A_B_records_present_or_incomplete_flag"
+      ],
+      "actions": [
+        "Verify equal conditions for all three waveforms, then compute additional delays using the same task-specified arrival-time algorithm",
+        "Retain ringing, window clipping, negative delay and other anomalies; separate paper reference values. Derived sound speed must account for the replaced air-path length rather than simply dividing L by extra delay"
+      ],
+      "postconditions": [
+        "pulse_comparison_or_explicit_incomplete"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_REDUCE",
+          "U_PULSE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "HOLDER_PREP",
+      "title": "Secure the numbered empty lens holder",
+      "kind": "hands_on",
+      "location_id": "WS_LENS",
+      "target_asset_roles": [
+        "lens_holder",
+        "holder_cradle"
+      ],
+      "preconditions": [
+        "all_required_lens_cells_released"
+      ],
+      "actions": [
+        "Support the long holder and place it on the assembly support",
+        "Verify slots 01 through 40 and orientation marks; record the source's 60 mm center spacing separately from authored placement tolerances"
+      ],
+      "postconditions": [
+        "holder_registered"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.si_lens"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_LENS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CELL_PICK",
+      "title": "Select the characterized cell for this slot",
+      "kind": "hands_on",
+      "location_id": "WS_LENS",
+      "target_asset_roles": [
+        "carrier",
+        "lens_cells"
+      ],
+      "preconditions": [
+        "holder_registered",
+        "cell_lineage_bound",
+        "cell_characterization_complete_or_explicit_quality_hold"
+      ],
+      "actions": [
+        "Read slot number and cell label, then grip its support sleeve",
+        "Verify geometry ID, P/L and measurement-record references; approximate length similarity is insufficient"
+      ],
+      "postconditions": [
+        "requested_cell_supported"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.lens_design",
+        "a.si_table"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_LENS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "LENS_INSERT",
+      "title": "Insert into the numbered empty slot",
+      "kind": "hands_on",
+      "location_id": "WS_LENS",
+      "target_asset_roles": [
+        "lens_holder",
+        "lens_cells"
+      ],
+      "preconditions": [
+        "requested_cell_supported",
+        "target_slot_empty"
+      ],
+      "actions": [
+        "Align the cell axis with the task incident-direction mark",
+        "Insert along the task mounting path into its numbered slot; a cell20 display-lifting animation does not establish access to every slot"
+      ],
+      "postconditions": [
+        "requested_cell_in_correct_slot"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.si_lens"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_LENS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "LENS_SEAT",
+      "title": "Secure this slot and return the support sleeve",
+      "kind": "hands_on",
+      "location_id": "WS_LENS",
+      "target_asset_roles": [
+        "lens_holder",
+        "lens_cells",
+        "carrier"
+      ],
+      "preconditions": [
+        "requested_cell_in_correct_slot"
+      ],
+      "actions": [
+        "Support the cell before closing this slot's proxy clamp",
+        "Read seating state before withdrawing the sleeve; save the slot_id-to-sample_id mapping"
+      ],
+      "postconditions": [
+        "lens_slot_committed"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.si_lens"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_LENS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "LENS_CHECK",
+      "title": "Verify all forty slot identities and phase records",
+      "kind": "hands_on",
+      "location_id": "WS_LENS",
+      "target_asset_roles": [
+        "lens_holder",
+        "data_panel"
+      ],
+      "preconditions": [
+        "all_40_slot_attempts_recorded"
+      ],
+      "actions": [
+        "Check occupancy, orientation, geometry and characterization records for each slot",
+        "Check for missing numbers, duplicated entities, reversed 01/40 order and #02/#15/#26 confusion; record unchecked parameters"
+      ],
+      "postconditions": [
+        "lens_manifest_verified"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.lens_design",
+        "a.si_table",
+        "a.si_lens"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_LENS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "LENS_LOCK",
+      "title": "Place the lens in the long carrier",
+      "kind": "hands_on",
+      "location_id": "WS_LENS",
+      "target_asset_roles": [
+        "lens_holder",
+        "lens_transport_cradle"
+      ],
+      "preconditions": [
+        "lens_manifest_verified"
+      ],
+      "actions": [
+        "Support both holder ends and seat the assembly on the long carrier's locating pads",
+        "Lock transport catches and keep direction visible; do not move the entire lens by gripping one cell"
+      ],
+      "postconditions": [
+        "lens_transport_ready"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.lens_assembly"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_LENS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "GUIDE_PREP",
+      "title": "Check waveguide base and large-plate handling interfaces",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "waveguide",
+        "plate_lift_proxy"
+      ],
+      "preconditions": [
+        "episode_bound",
+        "outputs_off"
+      ],
+      "actions": [
+        "Check the fixed base, load boundaries and large-plate handling-proxy receipts",
+        "Confirm the lower plate is positioned by supports; unknown weight/grasp conditions prohibit free robotic handling of a 3 m plate"
+      ],
+      "postconditions": [
+        "lower_plate_supported"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PLATE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SPACER_PLACE",
+      "title": "Install task spacers and check plate separation",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "waveguide",
+        "spacer_proxy",
+        "gap_gauge"
+      ],
+      "preconditions": [
+        "lower_plate_supported"
+      ],
+      "actions": [
+        "Place numbered spacers in public edge seats and secure proxy latches",
+        "Read the 28 mm design gap with a task gauge; the source dimension does not establish uniform actual clearance everywhere"
+      ],
+      "postconditions": [
+        "spacers_seated"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PLATE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "FOAM_PLACE",
+      "title": "Secure absorbing-foam proxies at the boundary",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "boundary_foam",
+        "foam_attachment_proxy"
+      ],
+      "preconditions": [
+        "lower_plate_supported",
+        "outputs_off"
+      ],
+      "actions": [
+        "Handle foam bases and position them in boundary slots",
+        "Attach reversible task strips while preserving lens entry and scan access; wedge shape and mounting are authored"
+      ],
+      "postconditions": [
+        "boundary_foam_installed"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PLATE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "LENS_DOCK",
+      "title": "Seat the lens in the waveguide locating fixture",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "lens_transport_cradle",
+        "lens_holder",
+        "waveguide"
+      ],
+      "preconditions": [
+        "lens_transport_ready",
+        "lower_plate_supported",
+        "outputs_off"
+      ],
+      "actions": [
+        "Move the long carrier to the mounting edge and engage task support rails",
+        "Release transport catches, follow the verified task path to the seat and lock the holder without twisting cells; retain the source-to-scene transform"
+      ],
+      "postconditions": [
+        "lens_in_waveguide"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.lens_assembly",
+        "a.si_lens"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_LENS",
+          "U_PROBE_ACCESS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "ARRAY_RAIL",
+      "title": "Secure the empty speaker-array locating rail",
+      "kind": "hands_on",
+      "location_id": "WS_ARRAY",
+      "target_asset_roles": [
+        "speaker_rail"
+      ],
+      "preconditions": [
+        "outputs_off"
+      ],
+      "actions": [
+        "Support the long rail on task supports and lock its end proxy clamps",
+        "Verify 60 numbered seats and 44 mm center spacing; this proxy structure is not specified by the source"
+      ],
+      "postconditions": [
+        "array_rail_ready"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_COUPLING"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SPEAKER_PICK",
+      "title": "Select each numbered speaker",
+      "kind": "hands_on",
+      "location_id": "WS_ARRAY",
+      "target_asset_roles": [
+        "speaker_instances",
+        "speaker_carrier"
+      ],
+      "preconditions": [
+        "array_rail_ready"
+      ],
+      "actions": [
+        "Verify AS04004PR-R identity and serial number",
+        "Grip rear housing/outer frame without pressing the cone or terminals; the cone is not a gripping surface"
+      ],
+      "postconditions": [
+        "speaker_supported"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SPEAKER_SEAT",
+      "title": "Place the speaker in its matching seat",
+      "kind": "hands_on",
+      "location_id": "WS_ARRAY",
+      "target_asset_roles": [
+        "speaker_instances",
+        "speaker_rail"
+      ],
+      "preconditions": [
+        "speaker_supported",
+        "target_speaker_slot_empty"
+      ],
+      "actions": [
+        "Orient its radiating face and lower it into the numbered seat",
+        "Close the task retaining ring and confirm that support for the 40 mm unit does not compress its cone"
+      ],
+      "postconditions": [
+        "speaker_mounted"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_COUPLING"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SPEAKER_WIRE",
+      "title": "Connect this speaker's inert wiring harness",
+      "kind": "hands_on",
+      "location_id": "WS_ARRAY",
+      "target_asset_roles": [
+        "speaker_instances",
+        "array_harness"
+      ],
+      "preconditions": [
+        "speaker_mounted",
+        "outputs_off"
+      ],
+      "actions": [
+        "Grip prefabricated task connectors and mate the numbered harness with matching terminal roles",
+        "Provide strain relief and direction labels, recording channel-to-speaker_id; do not supply real series/parallel wiring, soldering or amplifier-load design"
+      ],
+      "postconditions": [
+        "speaker_connection_recorded"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SPEAKER_CHECK",
+      "title": "Check each circuit and position",
+      "kind": "hands_on",
+      "location_id": "WS_ARRAY",
+      "target_asset_roles": [
+        "array_harness",
+        "status_board"
+      ],
+      "preconditions": [
+        "speaker_connection_recorded"
+      ],
+      "actions": [
+        "Read numbered-seat occupancy and task continuity/phase-channel receipts",
+        "Correct missing wiring, duplicated channels or reversed connections with output stopped, then recheck; completed installation does not establish a synchronized acoustic field"
+      ],
+      "postconditions": [
+        "speaker_individual_check_recorded"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "ARRAY_CONNECT",
+      "title": "Connect the shared signal chain and narrow-gap adapter",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "generator",
+        "amplifier_proxy",
+        "array_harness",
+        "speaker_adapter_proxy"
+      ],
+      "preconditions": [
+        "all_60_individual_checks_valid",
+        "outputs_off"
+      ],
+      "actions": [
+        "If the amplifier remains connected to the tube source, stop output, unlock/withdraw the connector by its housing and return the cable. Confirm the output role is free before connecting the array, retaining disconnect/reconnection events.",
+        "Connect the array harness's shared task input to the amplifier-output role",
+        "Install and read seating of an explicitly authored 40 mm-source-to-28 mm-gap adapter; stop if the interface is absent"
+      ],
+      "postconditions": [
+        "array_signal_path_ready"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_COUPLING",
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "ARRAY_SYNC",
+      "title": "Check the same-signal synchronous-drive contract",
+      "kind": "instrument_interaction",
+      "location_id": "WS_ELECTRONICS",
+      "target_asset_roles": [
+        "generator",
+        "amplifier_proxy",
+        "acquisition_proxy"
+      ],
+      "preconditions": [
+        "array_signal_path_ready",
+        "outputs_off"
+      ],
+      "actions": [
+        "Set a continuous 4170 Hz signal with numeric keys and read back",
+        "Use the public synchronization check to verify matching waveform/frequency/phase labels for all 60 channels; this is a mock wiring contract, not measured plane-wave uniformity"
+      ],
+      "postconditions": [
+        "array_sync_contract_ready"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC",
+          "U_ACQ"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PROBE_MOUNT",
+      "title": "Mount the field probe on the scanner from outside the plates",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "field_microphone",
+        "scan_stage",
+        "probe_mount_proxy"
+      ],
+      "preconditions": [
+        "outputs_off",
+        "scan_stage_safe"
+      ],
+      "actions": [
+        "Verify the single MIC01 was removed from the tube/pulse fixture and transported in a numbered cradle; the previous station cannot retain occupancy or continue acquisition.",
+        "Support the probe body, place it in the task fixture and close its clamp along the authorized mounting path",
+        "Keep the sensitive grille clear of plate surfaces; the source identifies the field probe only as a microphone, so reuse of 4958 must be explicitly authored"
+      ],
+      "postconditions": [
+        "field_probe_mounted"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PROBE_ACCESS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PROBE_ROUTE",
+      "title": "Route probe entry and moving cable",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "probe_access_proxy",
+        "mic_cable",
+        "scan_stage"
+      ],
+      "preconditions": [
+        "field_probe_mounted",
+        "outputs_off"
+      ],
+      "actions": [
+        "Guide the probe/shaft into measurement position through a public collision-checked entry",
+        "Leave full-travel slack in cable guides and keep routing clear of acoustic paths; undefined entry does not permit passing through the upper plate"
+      ],
+      "postconditions": [
+        "field_probe_access_verified"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field",
+        "a.si_scan"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PROBE_ACCESS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "UPPER_CLOSE",
+      "title": "Place the upper plate using its support proxy",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "waveguide",
+        "plate_lift_proxy"
+      ],
+      "preconditions": [
+        "spacers_seated",
+        "boundary_foam_installed",
+        "lens_in_waveguide",
+        "field_probe_access_verified",
+        "outputs_off"
+      ],
+      "actions": [
+        "Withdraw hands/tools and use external controls to support the upper plate onto the task spacers",
+        "Lock edge proxy catches and read gap/no-pinched-cable states; visibility toggles do not count toward completion"
+      ],
+      "postconditions": [
+        "waveguide_closed_verified"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PLATE",
+          "U_PROBE_ACCESS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "ACCESS_CHECK",
+      "title": "Check reachability inside the closed plate gap",
+      "kind": "instrument_interaction",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "scan_stage",
+        "probe_access_proxy",
+        "status_board"
+      ],
+      "preconditions": [
+        "waveguide_closed_verified",
+        "outputs_off"
+      ],
+      "actions": [
+        "Perform the task's low-risk empty-travel check and read per-point reachability/collision/cable-slack feedback",
+        "Retain unreachable points and reasons; probe diameter below 28 mm does not prove shaft/cable access over the full travel"
+      ],
+      "postconditions": [
+        "access_mask_bound"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.si_scan"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PROBE_ACCESS",
+          "U_SCAN"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "FRAME_REGISTER",
+      "title": "Register the source-to-scene coordinate transform",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "coordinate_fiducials",
+        "data_panel"
+      ],
+      "preconditions": [
+        "lens_in_waveguide",
+        "outputs_off"
+      ],
+      "actions": [
+        "Inspect lens direction, x/z labels and task reference points",
+        "Save an explicit source (z,x)-to-scene transform and error state; do not guess from mesh Y-up/Z-up conventions"
+      ],
+      "postconditions": [
+        "field_frame_registered"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.lens_design",
+        "a.obstacle"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_LENS",
+          "U_SCAN"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SCAN_PLAN",
+      "title": "Bind this run's point table and measured mask",
+      "kind": "data_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "condition_card",
+        "data_panel"
+      ],
+      "preconditions": [
+        "field_frame_registered",
+        "access_mask_bound"
+      ],
+      "actions": [
+        "Load an authored-labeled point table, axis/origin/spacing/order and the 2.3 x 1.0 m extent statement",
+        "Verify reachability masks and limited-main-lobe labels point by point; report missing contracts as blockers rather than claiming a complete field"
+      ],
+      "postconditions": [
+        "scan_plan_valid_or_blocked"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field",
+        "a.si_scan"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_SCAN"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "FIELD_SOURCE",
+      "title": "Start the continuous array-source proxy",
+      "kind": "instrument_interaction",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "generator",
+        "amplifier_proxy"
+      ],
+      "preconditions": [
+        "array_sync_contract_ready",
+        "waveguide_closed_verified",
+        "valid_scan_plan",
+        "probe_safe",
+        "field_condition_verified"
+      ],
+      "actions": [
+        "Enable mock continuous output for the current obstacle-free/obstacle condition",
+        "Await an independent stability receipt and record conditions; array startup does not automatically generate a complete map"
+      ],
+      "postconditions": [
+        "field_source_stable"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ACQ"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SCAN_MOVE",
+      "title": "Move the probe stage pointwise from external controls",
+      "kind": "instrument_interaction",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "scan_stage",
+        "stage_control"
+      ],
+      "preconditions": [
+        "field_source_stable",
+        "next_point_reachable",
+        "acquisition_idle"
+      ],
+      "actions": [
+        "Enter/select the current coordinates with external controls and move the stage",
+        "Await actual position readback and stability; the robot arm does not sweep inside the 28 mm gap, and acquisition is prohibited during motion"
+      ],
+      "postconditions": [
+        "probe_at_scan_point"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field",
+        "a.si_scan"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PROBE_ACCESS",
+          "U_SCAN"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SCAN_SAMPLE",
+      "title": "Acquire local pressure at the current point",
+      "kind": "instrument_interaction",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "acquisition_proxy",
+        "field_microphone"
+      ],
+      "preconditions": [
+        "probe_at_scan_point",
+        "field_source_stable",
+        "point_stable"
+      ],
+      "actions": [
+        "Read coordinates, obstacle state and lens/array versions",
+        "Acquire one task-pressure signal and check saturation, packet loss and reference state; missing values are not zeros"
+      ],
+      "postconditions": [
+        "field_point_attempt_exists"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ACQ"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SCAN_SAVE",
+      "title": "Commit this point's record and mask",
+      "kind": "data_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "data_panel"
+      ],
+      "preconditions": [
+        "field_point_attempt_exists"
+      ],
+      "actions": [
+        "Save raw_id, coordinates, time, frequency, units, mic_id, lens_manifest, array_manifest and obstacle_id or none",
+        "Update this condition's measured/invalid/unreachable mask for the current sampled point only"
+      ],
+      "postconditions": [
+        "field_point_committed"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field",
+        "a.si_scan"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_REDUCE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "SCAN_RESUME",
+      "title": "After interruption, identify unmeasured points from records",
+      "kind": "data_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "data_panel",
+        "stage_control"
+      ],
+      "preconditions": [
+        "scan_interrupted",
+        "outputs_off_or_stable_revalidated"
+      ],
+      "actions": [
+        "Retain all pre-interruption raw records and condition signatures",
+        "Recheck probe position, synchronization and plate-gap state, then measure only missing points; changed conditions require a new run_id"
+      ],
+      "postconditions": [
+        "resume_list_or_new_run_bound"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_SCAN",
+          "U_ACQ"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "FIELD_STOP",
+      "title": "Stop array output and dock the probe",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "generator",
+        "amplifier_proxy",
+        "scan_stage"
+      ],
+      "preconditions": [
+        "field_run_active_or_finished"
+      ],
+      "actions": [
+        "Stop acquisition, then task sound output, and verify states",
+        "Withdraw the probe along a valid path to an external safe dock; do not remove obstacles/plates with output active"
+      ],
+      "postconditions": [
+        "field_safe_to_handle"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PROBE_ACCESS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "OBSTACLE_INSTALL",
+      "title": "Place the numbered aluminum-alloy cylinder condition",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "obstacle",
+        "obstacle_carrier",
+        "probe_access_proxy"
+      ],
+      "preconditions": [
+        "field_safe_to_handle",
+        "baseline_raw_preserved",
+        "field_frame_registered"
+      ],
+      "actions": [
+        "Support the 40 mm-diameter cylinder using the task's specified plate-opening or separate entry interface",
+        "Position through the transform from source (z,x)=(1.211,0.175) m, secure the proxy clamp and recheck plate/probe access; do not present its height as a paper value"
+      ],
+      "postconditions": [
+        "obstacle_condition_physically_set"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.obstacle"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_OBSTACLE",
+          "U_PROBE_ACCESS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "OBSTACLE_REMOVE",
+      "title": "Remove the obstacle and verify restored conditions",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "obstacle",
+        "obstacle_carrier",
+        "probe_access_proxy"
+      ],
+      "preconditions": [
+        "field_safe_to_handle"
+      ],
+      "actions": [
+        "Support the cylinder before unclamping and withdraw it along the defined path to its carrier",
+        "Record the physical none state; reclose/recheck plates if opened, without equating hidden visibility to removal"
+      ],
+      "postconditions": [
+        "obstacle_condition_clear"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.obstacle"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_OBSTACLE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "FIELD_ANALYZE",
+      "title": "Plot pressure magnitude only at measured points",
+      "kind": "analysis_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "labshop_role",
+        "data_panel"
+      ],
+      "preconditions": [
+        "field_records_present",
+        "field_safe_to_handle"
+      ],
+      "actions": [
+        "Verify coordinate/amplitude units for the current condition and generate a pressure-magnitude map with validity mask",
+        "Identify the PULSE Labshop processing role; claiming intensity additionally requires dimensions, conversion definitions and supporting data, otherwise retain pressure magnitude"
+      ],
+      "postconditions": [
+        "field_map_with_mask"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field",
+        "a.si_scan"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_REDUCE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "FIELD_COMPARE",
+      "title": "Compare obstacle-free and obstacle conditions",
+      "kind": "analysis_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "labshop_role",
+        "data_panel"
+      ],
+      "preconditions": [
+        "baseline_and_obstacle_maps_present_or_incomplete_flag"
+      ],
+      "actions": [
+        "Compare the main-lobe region only with matching coordinates, frequency, lens/array configuration and normalization definitions",
+        "Separate the paper's Fig5d experiment from these mock results; similar preset maps do not experimentally demonstrate self-healing"
+      ],
+      "postconditions": [
+        "paired_field_comparison_or_incomplete"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.obstacle"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_REDUCE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "FIELD_UNLOAD",
+      "title": "Release the field station and unload the lens",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "waveguide",
+        "plate_lift_proxy",
+        "lens_transport_cradle",
+        "mic_cradle"
+      ],
+      "preconditions": [
+        "field_safe_to_handle",
+        "obstacle_condition_clear"
+      ],
+      "actions": [
+        "Withdraw the probe through the verified interface, open the upper plate with its support proxy, unlock the lens and return it to the long carrier",
+        "Keep large plates stably supported; retain long-term equipment assembly according to terminal state, without freely lifting plates or pulling 40 cells through the middle"
+      ],
+      "postconditions": [
+        "field_payloads_returned"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.field"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PLATE",
+          "U_PROBE_ACCESS"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "DISCONNECT",
+      "title": "Disconnect cables after stopping output",
+      "kind": "hands_on",
+      "location_id": "WS_ELECTRONICS",
+      "target_asset_roles": [
+        "signal_cable",
+        "mic_cable",
+        "array_harness",
+        "amplifier_proxy"
+      ],
+      "preconditions": [
+        "outputs_off",
+        "acquisition_idle"
+      ],
+      "actions": [
+        "Grip connector housings, unlock and withdraw specified detachable interfaces",
+        "Loosely coil cables into numbered slots; do not pull cables or disassemble undocumented internal circuits"
+      ],
+      "postconditions": [
+        "external_cables_stowed"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_macro": "authored_workflow_closure",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_ELECTRIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive entities by identity and state",
+      "kind": "hands_on",
+      "location_id": "WS_ARCHIVE",
+      "target_asset_roles": [
+        "archive_rack",
+        "carrier",
+        "lens_transport_cradle"
+      ],
+      "preconditions": [
+        "all_payloads_supported",
+        "outputs_off"
+      ],
+      "actions": [
+        "Verify IDs, work orders, damage states and parent lots individually or using the complete lens manifest",
+        "Place carriers in qualified/pending/quarantine slots and record final locations; one entity cannot simultaneously occupy the lens and individual storage"
+      ],
+      "postconditions": [
+        "physical_archive_complete"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_macro": "authored_workflow_closure",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_CLEAN"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "DATA_ARCHIVE",
+      "title": "Save raw/derived-record lineage",
+      "kind": "data_interaction",
+      "location_id": "WS_DATA",
+      "target_asset_roles": [
+        "data_panel"
+      ],
+      "preconditions": [
+        "all_attempts_registered"
+      ],
+      "actions": [
+        "Mark raw mock data task-read-only and generate an index/checksum identifier",
+        "Save derived plots, missing-data masks, source facts and authored conditions separately; do not overwrite failed acquisitions or impersonate author data"
+      ],
+      "postconditions": [
+        "data_archive_complete"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.data"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_REDUCE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "CLEAN",
+      "title": "Return tools and tidy the inert workspace",
+      "kind": "hands_on",
+      "location_id": "WS_CLEAN",
+      "target_asset_roles": [
+        "tool_rack",
+        "inert_waste_bin",
+        "cleaning_proxy"
+      ],
+      "preconditions": [
+        "outputs_off",
+        "all_payloads_supported"
+      ],
+      "actions": [
+        "Return empty trays, plugs, caps, fixtures and tools to numbered slots",
+        "Place simulated release remnants in a lidded inert-waste compartment and use dry-cleaning proxies; do not specify real resin cleaners or waste-treatment recipes"
+      ],
+      "postconditions": [
+        "tools_returned",
+        "mock_bench_clear"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_macro": "authored_workflow_closure",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_CLEAN"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "FINAL_CHECK",
+      "title": "Check task terminal state",
+      "kind": "inspection",
+      "location_id": "WS_EXIT",
+      "target_asset_roles": [
+        "status_board",
+        "data_panel"
+      ],
+      "preconditions": [
+        "physical_archive_complete",
+        "data_archive_complete",
+        "tools_returned"
+      ],
+      "actions": [
+        "Verify stopped outputs, inactive acquisition/motion, docked probe, supported plates and complete tool inventory",
+        "Submit a completion or explicit-blocker report with unresolved issues; scientific numerical results do not determine procedural success"
+      ],
+      "postconditions": [
+        "episode_report_ready"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_macro": "authored_workflow_closure",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_DYNAMIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "QUARANTINE",
+      "title": "Quarantine damaged or unidentified objects",
+      "kind": "hands_on",
+      "location_id": "WS_ARCHIVE",
+      "target_asset_roles": [
+        "quarantine_bin",
+        "carrier"
+      ],
+      "preconditions": [
+        "anomaly_observed",
+        "outputs_off_or_local_safe_state"
+      ],
+      "actions": [
+        "Support the object on a separate quarantine tray and attach an issue label",
+        "Retain the original entity ID, discovery time and affected records; revoke subsequent availability; replacement requires a new traceable work order"
+      ],
+      "postconditions": [
+        "quarantine_recorded"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_macro": "authored_workflow_closure",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_DYNAMIC"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PULSE_SWAP",
+      "title": "Switch sample/air conditions without moving the receiver",
+      "kind": "hands_on",
+      "location_id": "WS_PULSE",
+      "target_asset_roles": [
+        "tube",
+        "sample_access_proxy",
+        "carrier",
+        "single_cell"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle",
+        "pulse_rx_fixed"
+      ],
+      "actions": [
+        "Confirm the receiver clamp/coordinates are unchanged, then open the independent sample interface",
+        "Support and remove the old sample; leave the seat empty for air, or verify A/B identity before axial insertion and locking; record this condition's physical entity"
+      ],
+      "postconditions": [
+        "path_condition_verified",
+        "receiver_frame_unchanged"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PULSE",
+          "U_TUBE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "PULSE_RX_REMOVE",
+      "title": "Remove the receiver after completing comparisons",
+      "kind": "hands_on",
+      "location_id": "WS_PULSE",
+      "target_asset_roles": [
+        "microphone",
+        "pulse_receiver_fixture",
+        "mic_cradle"
+      ],
+      "preconditions": [
+        "tube_safe_to_handle",
+        "pulse_raw_committed"
+      ],
+      "actions": [
+        "After all required conditions are acquired or explicitly terminated, support the probe body and release the receiver clamp",
+        "Withdraw along the external path into the same numbered cradle and save the receiver-frame termination event"
+      ],
+      "postconditions": [
+        "probe_in_cradle"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [
+        "a.pulse"
+      ],
+      "provenance": {
+        "source_macro": "source_supported",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_PULSE"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    },
+    {
+      "id": "MATERIAL_RETURN",
+      "title": "Return unused inert stock and reset the printer proxy",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "target_asset_roles": [
+        "printer_proxy",
+        "resin_mock",
+        "carrier"
+      ],
+      "preconditions": [
+        "print_safe_release",
+        "printer_idle"
+      ],
+      "actions": [
+        "Confirm the build tray is removed, open the proxy door and support the stock cartridge",
+        "Unlock and retrieve the same numbered cartridge, save symbolic remaining quantity and return it to inventory; close the empty chamber without inventing replenishment"
+      ],
+      "postconditions": [
+        "printer_empty_ready",
+        "raw_remainder_recorded"
+      ],
+      "observable_completion": "Completion must derive from public object-location/interface-state/acquisition-receipt feedback; invoking an action or displaying an image is not completion",
+      "recovery": [
+        "When prerequisites fail, stop safely, retain invalid records and identify missing inputs; do not directly rewrite device truth or copy qualification labels"
+      ],
+      "evidence_ids": [],
+      "provenance": {
+        "source_macro": "authored_workflow_closure",
+        "hand_motion": "authored_not_recovered_author_trajectory",
+        "unknown_ids": [
+          "U_RESIN",
+          "U_FAB"
+        ]
+      },
+      "execution_mode": "inert_mock_design_only",
+      "object_identity_rule": "Bind grasping, movement, acquisition and archiving to the same entity ID; new entities require an input batch, work order and generation event"
+    }
+  ],
+  "transport_rule": "Every location change requires supported MOVE transport; omission of repeated MOVE entries in the reference stages does not authorize teleportation",
+  "motion_boundary": "All actions are explicitly authored manual/external-equipment interface designs; no real experimental instructions are executed and no dynamics are validated"
+}

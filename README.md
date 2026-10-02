@@ -6,7 +6,7 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Current release: four reviewed task-design drafts; zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
+**Current release: six reviewed task-design drafts; zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
 
 ## Why paper-level tasks?
 
@@ -41,7 +41,7 @@ Reported literature values, authored mock outputs and unknown or invalid observa
 
 ## Included task families
 
-The four packages have undergone design review and static consistency checks. These are draft representations of reported scope, not human expert certification or completed robotic reproductions.
+The six packages have undergone design review and static consistency checks. These are draft representations of reported scope, not human expert certification or completed robotic reproductions.
 
 | Task family | Reported program represented | Entry point |
 | --- | --- | --- |
@@ -49,10 +49,12 @@ The four packages have undergone design review and static consistency checks. Th
 | Deconwolf microscopy | Six preparation/imaging branches and seven source-data comparison branches, with paired acquisitions and data lineage | [Task design](tasks/microscopy_operations_v2/TASK_DESIGN.md) |
 | Semiconductor fibres | Manufacturing routes, device preparation, characterization, measurement and application branches, including destructive sibling specimens | [Task design](tasks/fibre_operations_v2/TASK_DESIGN.md) |
 | Thermoelectric devices | Material routes, interfaces and cutting directions, segmented and single-leg controls, module assembly, contact and thermal/electrical measurements | [Task design](tasks/thermoelectric_operations_v2/TASK_DESIGN.md) |
+| diSPIM microscopy | Instrument assembly, three-camera alignment, reference calibration, routine sample preparation, dual-view acquisition and archiving | [Task design](tasks/dispim_operations_v2/TASK_DESIGN.md) |
+| Helical acoustic metamaterials | Fabrication, transmission and pulse measurements, 40-cell lens assembly, field scans with and without obstacles, records and reset | [Task design](tasks/acoustic_operations_v2/TASK_DESIGN.md) |
 
-Most detailed design narratives are currently in Chinese; the Deconwolf design is in English. Structured specifications and source identifiers accompany each package.
+All published task narratives and structured descriptions are in English. Structured specifications and source identifiers accompany each package.
 
-The diSPIM and acoustics designs remain pending review/integration and are not included in the four-task count. Configuration, branch and operation counts describe the representation; they are not counts of independent experiments or successful executions.
+Configuration, branch and operation counts describe the representation; they are not counts of independent experiments or successful executions.
 
 ## Quick start: inspect a task
 
@@ -66,6 +68,8 @@ python3 -B -m json.tool tasks/microscopy_operations_v2/initialstate.json
 python3 -B -m json.tool tasks/microscopy_operations_v2/paper_coverage.json
 python3 -B -m json.tool tasks/microscopy_operations_v2/recovery_design.json
 ```
+
+Run `python3 scripts/check_english.py` to check for untranslated CJK text, including escaped JSON values. This checks language hygiene, not translation accuracy.
 
 These commands parse and print the specifications. They do not validate source completeness, run an episode or operate equipment. There is no supported whole-paper execution command in this release.
 

@@ -1,0 +1,37 @@
+{
+  "schema": "sciencegym.task_release_boundary.v1",
+  "package_type": "public_authoring_design_reference_not_runtime",
+  "actor_candidate_files": [
+    "agent_visible.json",
+    "specimen_cards.json"
+  ],
+  "actor_projection": "Select only one episode and its relevant public instance cards; do not load all episodes from the file. Select only corresponding material entities; observations come from an independent environment.",
+  "authoring_or_evaluator_only_files": [
+    "EXPORT_SCOPE.md",
+    "RELEASE_BOUNDARY.json",
+    "TASK_DESIGN.md",
+    "asset_bindings.json",
+    "branches.json",
+    "coverage_matrix.json",
+    "dependencies.json",
+    "evaluator_reference.json",
+    "granularity_gaps.json",
+    "lineage_contract.json",
+    "mock_contract.json",
+    "nonmanual_scope.json",
+    "operations.json",
+    "provenance.json",
+    "unknown_parameters.json"
+  ],
+  "allow_current_observations": true,
+  "disallow": [
+    "reference operation sequences",
+    "hidden fault truth",
+    "preset response keys",
+    "evaluator predicates",
+    "future observation values"
+  ],
+  "public_reference_caveat": "Evaluator references are public for review, not a secret test set. Future evaluation must isolate actor inputs and use independent test instances; this public text does not implement leakage prevention.",
+  "loader_implemented": false,
+  "evaluation_executed": false
+}

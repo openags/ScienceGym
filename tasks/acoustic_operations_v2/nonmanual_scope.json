@@ -1,0 +1,80 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "items": [
+    {
+      "id": "NM_EFFECTIVE_MEDIUM",
+      "scope": "Main Fig1c–f and Fig2; SI Fig1–3,6 and Note1/3",
+      "treatment": "Explanation/source reference; no hands-on experiment-completion credit",
+      "reason": "Geometric acoustic paths, effective-medium theory, inversion formulas and parameter dispersion are theoretical/numerical analysis; this task does not rerun solvers",
+      "evidence_ids": [
+        "a.fig1",
+        "a.dispersion",
+        "a.si_limits",
+        "a.numerical"
+      ]
+    },
+    {
+      "id": "NM_FEM_VALIDATION",
+      "scope": "SI Fig5 and Note2 numerical validation; Methods COMSOL/PML",
+      "treatment": "Separate numerical-validation facts from physical measurements",
+      "reason": "Sound speed 81.17+0.2i, density 27.49+0.3i, thickness 41.1 mm and 7 cm probe spacing configure that numerical test; do not automatically apply them to the physical tube",
+      "evidence_ids": [
+        "a.si_tube",
+        "a.numerical"
+      ]
+    },
+    {
+      "id": "NM_RIGIDITY_LOSS",
+      "scope": "Material-rigidity comparison on SI page 7, mistakenly captioned Fig6, and SI Fig8 thermoviscous loss",
+      "treatment": "Material rigidity is a simulation reference; the A/B experimental family already covers Fig8, and fitting losses does not create another physical experiment",
+      "reason": "A photopolymer rigidity simulation cannot replace real clamping checks or complete manufacturing parameters",
+      "evidence_ids": [
+        "a.si_limits",
+        "a.spectrum"
+      ]
+    },
+    {
+      "id": "NM_PHASE_DESIGN",
+      "scope": "Main Eq5, Fig4c design curve and prescribed parabolic trajectory",
+      "treatment": "Accept the source design table and individual phase-measurement requirements; do not add phase optimization or device-search tasks",
+      "reason": "Preserve physical cell identities and measurement correspondence for the given 40 geometries; recomputing the entire design is not required",
+      "evidence_ids": [
+        "a.lens_design",
+        "a.si_table"
+      ]
+    },
+    {
+      "id": "NM_FIELD_SIMULATION",
+      "scope": "Main Fig5a/c; SI Fig11 coupling comparison",
+      "treatment": "List simulations separately from experiments b/d",
+      "reason": "No physics backend was called; preset images do not reproduce propagation or prove negligible neighboring coupling",
+      "evidence_ids": [
+        "a.field",
+        "a.obstacle",
+        "a.si_limits"
+      ]
+    },
+    {
+      "id": "NM_DISCUSSION",
+      "scope": "Introduction, Discussion, prospective applications, references and author contributions",
+      "treatment": "Background and suggestions; do not invent experimental branches",
+      "reason": "Gradually varying lead, nonlinear/nonreciprocal behavior, acoustic cloaking and particle manipulation are discussion/prospects, not additional completed experiments",
+      "evidence_ids": [
+        "a.spectrum",
+        "a.numerical"
+      ]
+    },
+    {
+      "id": "NM_RAW_DATA",
+      "scope": "Data availability",
+      "treatment": "Explicitly state that authors' original data are unavailable locally",
+      "reason": "Image digitization, source-reported values and mock waveforms are not authors' original acquisitions",
+      "evidence_ids": [
+        "a.data"
+      ]
+    }
+  ],
+  "rule": "Whole-paper coverage must identify each section's disposition rather than turning every figure into repeated assembly or disguising computation as hands-on work. This separation does not remove source-explicit experimental sections."
+}

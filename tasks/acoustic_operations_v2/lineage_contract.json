@@ -1,0 +1,39 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "entities": [
+    "raw_lot",
+    "symbolic_material_portion",
+    "build_job",
+    "build_tray_slot",
+    "sample_id",
+    "geometry_id",
+    "carrier_id",
+    "tube_mount_event",
+    "lens_slot",
+    "lens_manifest",
+    "speaker_id",
+    "array_channel",
+    "array_manifest",
+    "probe_serial",
+    "scan_point",
+    "raw_attempt",
+    "derived_record",
+    "archive_slot"
+  ],
+  "invariants": [
+    "Each sample_id has exactly one current physical location",
+    "A geometry_id may have multiple entities; a sample_id must not be duplicated into multiple samples",
+    "Source cell numbers are design-parameter keys, not substitutes for task entity IDs",
+    "All raw records bind snapshots of actual entity/hole/load/coordinate states at acquisition",
+    "Derived records reference only saved raw IDs and do not rewrite failed raw records",
+    "Replacing speakers, swapping lens cells, moving obstacles or reregistering coordinates changes the condition signature; retain old data without silently combining conditions",
+    "Record every state transition required by the selected branch for each entity; measurement/assembly are required only when assigned to that entity. Do not skip required branch events and directly mark completion."
+  ],
+  "coordinates": {
+    "tube": "The source defines x=0 at the sample's left face and 0<x<L; register fixed scene-hole coordinates and sample L each time. Label the source's 7 cm numerical-validation spacing separately from default scene-port coordinates.",
+    "field": "The source plane is x-z and obstacle coordinates are ordered (z,x); source_to_scene is mandatory. Authored cards must specify axes/origin/spacing for 2.3 x 1.0, without inheriting asset axes."
+  },
+  "default_geometry_mapping": "A/B and L26/L16 are separate entities by default. Future explicit reuse must bind the same entity ID and preserve actual prior operations/location; matching parameters do not establish reuse."
+}

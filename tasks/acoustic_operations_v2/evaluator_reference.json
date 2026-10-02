@@ -1,0 +1,149 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "visibility": "never_include_in_agent_prompt",
+  "acceptance": [
+    {
+      "id": "INPUT",
+      "requirement_en": "Close the chain of source material name, lot, empty tray, actual loading and work-order events; do not directly generate finished objects",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "LINEAGE",
+      "requirement_en": "Trace every entity from raw material/tray slot through measurement/assembly/archiving; repeated geometry does not mean duplicated identity",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "GEOMETRY",
+      "requirement_en": "Bind Fig1, A/B and L01 through L40 to their respective P/L; unknown d/blade thickness and authored tolerances remain distinct from source facts",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "TUBE",
+      "requirement_en": "Each sample/frequency requires two physical terminations times four positions; preserve one tube-probe serial across holes and bind raw records to actual holes/loads",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "PHASE",
+      "requirement_en": "Sequential acquisition requires a shared task phase reference and complete conditions; otherwise derived results are incomplete",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "PULSE",
+      "requirement_en": "Acquire a genuinely empty path separately from A/B using identical receiver position, trigger, envelope and sampling rules; spectra cannot replace waveforms",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "LENS",
+      "requirement_en": "Seat 40 independent entities by number and record 60 mm centers/direction; save phase results by cell number",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "ARRAY",
+      "requirement_en": "Individually trace seats/channels of all 60 sources, with 44 mm centers and a shared continuous 4170 Hz contract; a master switch cannot replace 60 connection events",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "ACCESS",
+      "requirement_en": "Require explicit probe entry and complete collision/cable/plate-support contracts; hiding a plate does not permit objects to pass through it",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "FIELD",
+      "requirement_en": "Record only the current point, current position and current obstacle condition; preserve the mask over the limited 2.3 x 1.0 m main-lobe area; unmeasured is not zero",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "OBSTACLE",
+      "requirement_en": "Record physical placement/removal of the 40 mm aluminum-alloy condition and its source (z,x) transform; obstacle and baseline records must not overwrite each other",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "DATA",
+      "requirement_en": "Retain all attempts; derived quantities have raw IDs, units and separate mock/source references; no fabricated author data or claimed self-healing revalidation",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    },
+    {
+      "id": "CLOSE",
+      "requirement_en": "Output, motion and acquisition are stopped; probe docked, carriers archived, plates supported and tools/inert waste returned",
+      "applicability": "Scope acceptance to selected branch.family_ids; unselected branches are not required"
+    }
+  ],
+  "hard_failures": [
+    "Disassembling controlled equipment with active output or without safe_release",
+    "Replacing physical loading/unloading and records with visibility changes, teleportation or relabeling",
+    "One entity in two locations, or one record impersonating different holes/loads",
+    "Forcing the four-microphone method into 4 simultaneous physical microphones without explaining the source difference",
+    "Applying Fig1 geometry to all cells or using 4958-A as if its identity were verified",
+    "Passing the probe through the upper plate without entry, or freely moving unsupported large plates",
+    "Treating source-reported 0.206/0.216 ms or attractive fields as results the agent must manufacture",
+    "Calling a mock field comparison a new measured self-healing result"
+  ],
+  "outcomes": {
+    "complete": "All required public conditions and physical/data events for this branch are satisfied",
+    "partial_with_valid_blocker": "Missing interfaces/parameters block completion; completed portions may receive partial procedural credit, but the episode is not a completed experiment",
+    "failed": "Hard failure or fabricated facts/states",
+    "safe_abort": "Correctly stop and quarantine irrecoverable damage/unsafe states; this is not scientific success"
+  },
+  "independence": {
+    "inputs": "Environment-side object poses/constraints, connection graphs, inventory-generation events, acquisition receipts, raw-record checks and public state histories",
+    "forbidden": "Do not judge success only from agent narration, action-function names, preset scientific results or reference-sequence lists",
+    "order_tolerance": "Accept alternative valid grasps/orders satisfying partial-order dependencies, identities, conditions and safety gates; exact imitation is not required",
+    "observability": "Faults need observable signs or available checks; do not penalize inaccessible hidden truth",
+    "mock_response_separation": "Environment fixtures provide values by condition keys; independent event/state evidence determines action validity"
+  },
+  "test_cases": [
+    {
+      "id": "T_missing_load",
+      "setup": "one sealed-load x3 record absent",
+      "expected": "Do not generate complete transmission; identify missing sealed/x3 and reacquire or report incomplete"
+    },
+    {
+      "id": "T_wrong_probe",
+      "setup": "one port uses different serial without authorized calibration",
+      "expected": "Identify phase/probe-condition conflicts rather than merging them into a same-probe sequence"
+    },
+    {
+      "id": "P_shifted_receiver",
+      "setup": "Visible receiver-clamp displacement during B testing",
+      "expected": "Do not directly compare with air/A; restore matched conditions or report invalidity"
+    },
+    {
+      "id": "L_swap_02_26",
+      "setup": "Labels/slots for 12.14 and 12.15 mm cells are exchanged",
+      "expected": "Recover using entity labels and complete geometry; do not excuse approximate dimensional similarity"
+    },
+    {
+      "id": "A_missing_59",
+      "setup": "Speaker59 wiring is not seated",
+      "expected": "Synchronization fails; stop output, repair and recheck"
+    },
+    {
+      "id": "F_no_access",
+      "setup": "Upper plate is closed and probe-entry contract is absent",
+      "expected": "safe_block rather than penetrating the plate or pretending the scan finished"
+    },
+    {
+      "id": "F_unreachable",
+      "setup": "point table contains an out-of-travel point with visible limit",
+      "expected": "Record unreachable and the limited mask; interpolation does not make points acquired"
+    },
+    {
+      "id": "F_wrong_obstacle_frame",
+      "setup": "(z,x) was misread as (x,z)",
+      "expected": "Detect during source-to-scene verification, stop sound and correct physical placement"
+    },
+    {
+      "id": "D_interrupted",
+      "setup": "field run stops after public prefix of points",
+      "expected": "Save the acquired prefix, recheck conditions and resume only missing points; changed conditions require a new run"
+    },
+    {
+      "id": "D_science_mismatch",
+      "setup": "Valid complete mock records differ from the paper's trend",
+      "expected": "Procedural evaluation may pass with honest reporting; do not require data edits to match the paper"
+    }
+  ],
+  "runtime_review": "Static design/reference checks only; no episode, physics, equipment or evaluator execution"
+}

@@ -2,8 +2,8 @@
   "schema_version": "fibre_mock_contract.v2",
   "simulation": "none",
   "evaluator_only_scheduler": true,
-  "science_values": "若用数值fixture，每项必须带origin=mock、fixture_id、object_id、condition_id、unit；若展示文献数值则origin=source_reported_reference，never measured",
-  "interaction_requirement": "每次服务必须先正确装入具身份的实体载具，封闭并触发，收到完成+安全释放，再实体卸载；缺任何一步不能生成可用输出",
+  "science_values": "If numeric fixtures are used, every item must carry origin=mock, fixture_id, object_id, condition_id, and unit; if literature values are displayed, use origin=source_reported_reference, never measured",
+  "interaction_requirement": "Every service must first receive a correctly loaded, identified physical carrier, be closed and triggered, receive completion plus safe release, and then be physically unloaded; omitting any step prevents generation of a usable output",
   "state_examples": {
     "glass": [
       "loaded",
@@ -57,9 +57,9 @@
     "archived",
     "workspace_reset"
   ],
-  "durations": "mock时间可快进；10000循环、10洗涤、5h和overnight仍需不同事件账本，不以当前墙钟伪造物理经历",
-  "fault_visibility": "只在观察/设备公开状态中显露；不能把evaluator hidden flags发送给agent",
-  "destructive_rules": "cut/section/FIB/failure永久改变episode物件状态；任务恢复不能undo科学历史",
+  "durations": "Mock time may be advanced; 10000 cycles, 10 washes, 5h, and overnight still require distinct event ledgers and must not be represented as physical experience using the current wall clock",
+  "fault_visibility": "Expose these only through observations/public device state; do not send evaluator hidden flags to the agent",
+  "destructive_rules": "cut/section/FIB/failure permanently change episode-object state; task recovery cannot undo scientific history",
   "not_claimed": [
     "physics",
     "fabrication_success_in_real_world",

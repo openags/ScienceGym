@@ -1,0 +1,26 @@
+{
+  "schema": "sciencegym.dispim_agent_projection.v1",
+  "status": "actor_payload_draft_not_runtime",
+  "episode_goals": [
+    {
+      "route_id": "D-R01",
+      "goal": "Using authorized virtual diSPIM parts and routine materials, deliver paired, traceable, quality-checked embryo dual-view time series and reconstruction results; leave the instrument and bench in a safe closeout state.",
+      "initial_state": {
+        "world": "Newly authored static bench; commercial light-source option; heavy optical table installed externally; no real lasers, power supplies, biological materials or animals",
+        "instrument": "The frame, lower observation path, dual-arm module, cameras and chamber are assemblable parts; camera identities and interface labels are readable",
+        "consumables": "Virtual stocks of clean coverslips, O-rings, markers, beads and dye; authorized preparation scene representing routine worm stocks",
+        "training_clock": "Virtual timers and cross-stage checkpoints; no claim that real days or physical time compression have been implemented",
+        "unknowns": "The sample XY-stage model, mechanical fits, torque, real drivers and robot specifications are unknown; use explicitly authored placeholder interfaces without inferring paper geometry"
+      },
+      "required_public_inputs": {
+        "task_timepoint_manifest": null,
+        "part_and_sample_identity_cards": null,
+        "observable_interface_and_safety_cards": null,
+        "authored_observation_resources": null
+      },
+      "missing_input_policy": "Pause dependent work when task manifests, visible interfaces or observation resources are missing; retain completed records and report the exact missing inputs."
+    }
+  ],
+  "release_rule": "Release only the selected episode, public task cards and current observations; do not release the reference operation chain, hidden faults, preset lookup keys or evaluator.",
+  "scope_note": "This file extracts the existing goal and initial state for D-R01 only; the other six routes remain design templates whose actor cards require separate authoring and verification."
+}

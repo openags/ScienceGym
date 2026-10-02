@@ -4,14 +4,14 @@
   "assets": [
     {
       "role_id": "material_cartridge",
-      "title": "材料密封料匣",
+      "title": "Sealed material cartridge",
       "location_binding": "WS_STOCK",
       "affordances": [
         "handle",
         "keyed docking port"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "橡胶与TC4分柜；真实原料形态未知",
+      "source_limit": "Rubber and TC4 are stored in separate cabinets; the actual feedstock form is unknown",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "FAB01",
@@ -21,7 +21,7 @@
     },
     {
       "role_id": "build_tray",
-      "title": "构建托盘/盒",
+      "title": "Build tray/box",
       "location_binding": "material_printer",
       "affordances": [
         "handle",
@@ -29,7 +29,7 @@
         "detachable part seats"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "不预设真实打印设备规格",
+      "source_limit": "No actual printer specifications are assumed",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "FAB01",
@@ -41,7 +41,7 @@
     },
     {
       "role_id": "printer_door",
-      "title": "打印舱门",
+      "title": "Printer chamber door",
       "location_binding": "material_printer",
       "affordances": [
         "handle",
@@ -60,13 +60,13 @@
     },
     {
       "role_id": "material_port",
-      "title": "料匣插槽",
+      "title": "Cartridge slot",
       "location_binding": "material_printer",
       "affordances": [
         "keyed insertion target"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "不打开密封TC4工艺介质",
+      "source_limit": "Do not open the sealed TC4 process media",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "FAB02"
@@ -74,7 +74,7 @@
     },
     {
       "role_id": "printer_panel",
-      "title": "打印控制面板",
+      "title": "Printer control panel",
       "location_binding": "material_printer",
       "affordances": [
         "job selection",
@@ -82,7 +82,7 @@
         "stop"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "不得以UI已点过声称真实制造完成",
+      "source_limit": "Do not claim actual fabrication is complete merely because the UI was clicked",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "FAB03"
@@ -90,14 +90,14 @@
     },
     {
       "role_id": "printed_components",
-      "title": "已打印组件状态",
+      "title": "Printed component state",
       "location_binding": "material_printer",
       "affordances": [
         "part seats",
         "grab-able rigid ends"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "由mock制造完成事件出现；有来源状态转移",
+      "source_limit": "Appears through a mock fabrication-complete event; its state transition has a source",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "FAB04"
@@ -105,7 +105,7 @@
     },
     {
       "role_id": "closed_post_cell",
-      "title": "封闭后处理服务单元",
+      "title": "Enclosed postprocessing service unit",
       "location_binding": "WS_POST",
       "affordances": [
         "cassette dock",
@@ -113,7 +113,7 @@
         "safe release"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "实际工艺配方未知",
+      "source_limit": "The actual process recipe is unknown",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "POST_M"
@@ -121,7 +121,7 @@
     },
     {
       "role_id": "post_panel",
-      "title": "后处理面板",
+      "title": "Postprocessing panel",
       "location_binding": "WS_POST",
       "affordances": [
         "start",
@@ -129,7 +129,7 @@
         "released event"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "代理操作",
+      "source_limit": "Surrogate operation",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "POST_M"
@@ -137,14 +137,14 @@
     },
     {
       "role_id": "post_holder",
-      "title": "托盘定位座",
+      "title": "Tray locating base",
       "location_binding": "WS_POST",
       "affordances": [
         "cassette support",
         "release tabs access"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "代理操作",
+      "source_limit": "Surrogate operation",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "POST_R"
@@ -152,13 +152,13 @@
     },
     {
       "role_id": "release_tabs",
-      "title": "可选支撑代理片",
+      "title": "Optional surrogate support tab",
       "location_binding": "WS_POST",
       "affordances": [
         "predefined detachable interfaces"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "默认不启用；不声称论文有支撑",
+      "source_limit": "Disabled by default; no claim that the paper used supports",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "POST_R"
@@ -166,14 +166,14 @@
     },
     {
       "role_id": "component_tray",
-      "title": "编号分格组件盒",
+      "title": "Numbered compartment box for components",
       "location_binding": "WS_POST",
       "affordances": [
         "slots",
         "handles"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "组件身份持续到装配",
+      "source_limit": "Component identity persists through assembly",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "POST_R",
@@ -182,14 +182,14 @@
     },
     {
       "role_id": "chiral_unit",
-      "title": "圆杆或方梁手性代理单元",
+      "title": "Chiral surrogate unit with circular rods or square beams",
       "location_binding": "WS_ASSEMBLY",
       "affordances": [
         "rigid torus grasp zone",
         "assembly seats"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "主rubber N8/r1.5；TC4圆杆N20/r.6；连接CAD未知",
+      "source_limit": "Main rubber N8/r1.5; TC4 circular rods N20/r.6; connection CAD unknown",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ASM02",
@@ -198,14 +198,14 @@
     },
     {
       "role_id": "base_plate",
-      "title": "底承压板",
+      "title": "Bottom load-bearing plate",
       "location_binding": "WS_ASSEMBLY",
       "affordances": [
         "edge grasp zones",
         "support seats"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "任务装配代理",
+      "source_limit": "Task assembly surrogate",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ASM01",
@@ -214,14 +214,14 @@
     },
     {
       "role_id": "cap_plate",
-      "title": "顶承压板",
+      "title": "Top load-bearing plate",
       "location_binding": "WS_ASSEMBLY",
       "affordances": [
         "edge grasp zones",
         "aligned seats"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "任务装配代理",
+      "source_limit": "Task assembly surrogate",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ASM04"
@@ -229,14 +229,14 @@
     },
     {
       "role_id": "interface_ring",
-      "title": "中间端环接口",
+      "title": "Intermediate end-ring interface",
       "location_binding": "WS_ASSEMBLY",
       "affordances": [
         "rigid grasp surface",
         "optional connection seat"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "无转角预测；mock rotation state",
+      "source_limit": "No rotation-angle prediction; mock rotation state",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ASM03",
@@ -247,14 +247,14 @@
     },
     {
       "role_id": "surrogate_clip",
-      "title": "可逆接合片",
+      "title": "Reversible joining tab",
       "location_binding": "WS_ASSEMBLY",
       "affordances": [
         "snap interface",
         "release tab"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "纯authored，不等于真实作者胶接/螺钉",
+      "source_limit": "Entirely authored; does not represent the actual authors' adhesive/screw connections",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ASM04"
@@ -262,13 +262,13 @@
     },
     {
       "role_id": "assembly_nest",
-      "title": "装配定位座",
+      "title": "Assembly locating base",
       "location_binding": "WS_ASSEMBLY",
       "affordances": [
         "3×3 or single-column positions"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "设计几何分件不证明来源BOM",
+      "source_limit": "Design-level geometric decomposition does not establish a source BOM",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ASM01",
@@ -277,14 +277,14 @@
     },
     {
       "role_id": "alignment_comb",
-      "title": "可拔定位梳",
+      "title": "Removable locating comb",
       "location_binding": "WS_ASSEMBLY",
       "affordances": [
         "handle",
         "insertion sockets"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "测试前全部移出",
+      "source_limit": "Remove all before testing",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ASM01",
@@ -294,7 +294,7 @@
     },
     {
       "role_id": "balance",
-      "title": "称量台",
+      "title": "Weighing station",
       "location_binding": "WS_METROLOGY",
       "affordances": [
         "pan",
@@ -302,7 +302,7 @@
         "mock readout"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "整件质量和屈曲质量分开",
+      "source_limit": "Keep whole-specimen mass separate from buckling mass",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "MET01"
@@ -310,14 +310,14 @@
     },
     {
       "role_id": "weighing_tray",
-      "title": "称量托盘",
+      "title": "Weighing tray",
       "location_binding": "WS_METROLOGY",
       "affordances": [
         "pan fit",
         "specimen support"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "干净不挤压",
+      "source_limit": "Clean and non-compressive",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "MET01"
@@ -325,14 +325,14 @@
     },
     {
       "role_id": "measurement_nest",
-      "title": "尺寸参考座",
+      "title": "Dimensional reference base",
       "location_binding": "WS_METROLOGY",
       "affordances": [
         "base reference",
         "dimensions targets"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "分离整体H和单元h0",
+      "source_limit": "Separate overall H from unit h0",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "MET02"
@@ -340,7 +340,7 @@
     },
     {
       "role_id": "caliper",
-      "title": "卡尺/测量尺",
+      "title": "Calipers/measuring rule",
       "location_binding": "WS_METROLOGY",
       "affordances": [
         "handle",
@@ -348,7 +348,7 @@
         "readout"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "未知容差保持unknown",
+      "source_limit": "Unknown tolerances remain unknown",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "MET02"
@@ -356,13 +356,13 @@
     },
     {
       "role_id": "specimen",
-      "title": "本branch试样对象",
+      "title": "Specimen object for this branch",
       "location_binding": "WS_ASSEMBLY",
       "affordances": [
         "end plates/tori or robust lattice nodes"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "不得抓细杆承受整件重量",
+      "source_limit": "Do not grasp thin rods to support the weight of the whole specimen",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "MET01",
@@ -379,14 +379,14 @@
     },
     {
       "role_id": "lower_platen",
-      "title": "下压板",
+      "title": "Lower platen",
       "location_binding": "WS_TEST",
       "affordances": [
         "placement target",
         "flat load surface"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "夹具CAD/摩擦未知",
+      "source_limit": "Fixture CAD/friction unknown",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "TEST03"
@@ -394,14 +394,14 @@
     },
     {
       "role_id": "upper_platen",
-      "title": "上压板",
+      "title": "Upper platen",
       "location_binding": "WS_TEST",
       "affordances": [
         "axial travel state",
         "unloaded clearance"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "不宣称旋转压头",
+      "source_limit": "No claim of a rotating loading head",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "TEST02",
@@ -411,14 +411,14 @@
     },
     {
       "role_id": "guard",
-      "title": "加载机防护罩",
+      "title": "Testing-machine safety guard",
       "location_binding": "WS_TEST",
       "affordances": [
         "handle",
         "door interlock"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "设计安全接口",
+      "source_limit": "Designed safety interface",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "TEST02",
@@ -428,14 +428,14 @@
     },
     {
       "role_id": "lateral_box_base",
-      "title": "侧向箱底框",
+      "title": "Lateral-box base frame",
       "location_binding": "WS_TEST",
       "affordances": [
         "wall sockets",
         "load-through opening"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "对应盒高可替换",
+      "source_limit": "Replaceable to match the box height",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "BND_BOX"
@@ -443,14 +443,14 @@
     },
     {
       "role_id": "removable_box_walls",
-      "title": "侧向约束箱壁",
+      "title": "Lateral-confinement box walls",
       "location_binding": "WS_TEST",
       "affordances": [
         "handles",
         "reversible latches"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "盒隙/摩擦未知；无箱控制必须搬走",
+      "source_limit": "Box clearance/friction unknown; remove for the unboxed control",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "BND_BOX",
@@ -459,7 +459,7 @@
     },
     {
       "role_id": "rotation_lock",
-      "title": "防转臂",
+      "title": "Anti-rotation arm",
       "location_binding": "WS_TEST",
       "affordances": [
         "ring key",
@@ -467,7 +467,7 @@
         "axial sliding allowance"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "锁转几何authored",
+      "source_limit": "Rotation-locking geometry is authored",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "BND_FREE",
@@ -477,13 +477,13 @@
     },
     {
       "role_id": "fixture_socket",
-      "title": "防转臂机架座",
+      "title": "Anti-rotation arm frame mount",
       "location_binding": "WS_TEST",
       "affordances": [
         "keyed dock"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "不能锁住加载轴向自由度",
+      "source_limit": "Must not lock the axial loading degree of freedom",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "BND_LOCK"
@@ -491,13 +491,13 @@
     },
     {
       "role_id": "specimen_end_ring",
-      "title": "单层锁转件端环",
+      "title": "End ring of the single-layer rotation-locked specimen",
       "location_binding": "WS_TEST",
       "affordances": [
         "lock key surrogate"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "M16/M17同谱系未知",
+      "source_limit": "Whether M16/M17 share a lineage is unknown",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "BND_LOCK"
@@ -505,7 +505,7 @@
     },
     {
       "role_id": "camera",
-      "title": "变形相机代理",
+      "title": "Deformation-camera surrogate",
       "location_binding": "WS_TEST",
       "affordances": [
         "look direction",
@@ -513,7 +513,7 @@
         "image fixture"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "局部von Mises应力不是相机传感器输出",
+      "source_limit": "Local von Mises stress is not camera-sensor output",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "OBS01",
@@ -524,13 +524,13 @@
     },
     {
       "role_id": "camera_stand",
-      "title": "相机支架",
+      "title": "Camera mount",
       "location_binding": "WS_TEST",
       "affordances": [
         "pose adjustment handles"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "在运动包络外",
+      "source_limit": "Outside the motion envelope",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "OBS01"
@@ -538,14 +538,14 @@
     },
     {
       "role_id": "blunt_probe",
-      "title": "软端演示探针",
+      "title": "Soft-tipped demonstration probe",
       "location_binding": "WS_TEST",
       "affordances": [
         "handle",
         "symbolic contact point"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "只替代Video5未知工具；未知力参数",
+      "source_limit": "Only substitutes for the unknown tool in Video5; force parameters unknown",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "HAND_TOOL"
@@ -553,13 +553,13 @@
     },
     {
       "role_id": "archive_slot",
-      "title": "样品归档格",
+      "title": "Specimen archive slot",
       "location_binding": "WS_STORAGE",
       "affordances": [
         "labeled compartment"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "保留循环和损伤历史",
+      "source_limit": "Preserve cycle and damage history",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ARCHIVE"
@@ -567,13 +567,13 @@
     },
     {
       "role_id": "quarantine_slot",
-      "title": "隔离格",
+      "title": "Quarantine slot",
       "location_binding": "WS_STORAGE",
       "affordances": [
         "separated compartment"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "破损/历史不明，非直接销毁",
+      "source_limit": "For damage/unknown history, not immediate destruction",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "ARCHIVE"
@@ -581,13 +581,13 @@
     },
     {
       "role_id": "dry_wipe",
-      "title": "干擦布",
+      "title": "Dry wipe",
       "location_binding": "WS_CLEAN",
       "affordances": [
         "graspable corner"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "不编造清洁溶剂",
+      "source_limit": "Do not invent a cleaning solvent",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "CLEAN01"
@@ -595,14 +595,14 @@
     },
     {
       "role_id": "waste_bins",
-      "title": "分类废片盒",
+      "title": "Sorted scrap bins",
       "location_binding": "WS_CLEAN",
       "affordances": [
         "lid",
         "material-segregated openings"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "不等于真实TC4粉末处理指南",
+      "source_limit": "Not an actual TC4 powder-handling guide",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": [
         "CLEAN01"
@@ -610,13 +610,13 @@
     },
     {
       "role_id": "material_printer",
-      "title": "材料专属打印机",
+      "title": "Material-specific printer",
       "location_binding": "material_printer",
       "affordances": [
         "enclosed supply/build/output interfaces"
       ],
       "provenance": "task-design surrogate unless source geometry identified",
-      "source_limit": "橡胶、TC4两台逻辑分开",
+      "source_limit": "Rubber and TC4 use two logically separate machines",
       "mechanical_fidelity": "not certified",
       "referenced_by_operations": []
     },

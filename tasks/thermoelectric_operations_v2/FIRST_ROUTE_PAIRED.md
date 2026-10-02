@@ -1,40 +1,40 @@
-# 热电器件 首条原料到双对模块测量的任务草稿
+# Thermoelectric Devices: Initial Task Draft from Raw Materials to Two-Couple Module Measurement
 
-来源：Composable neural emulators accelerate thermoelectric generator design，Nature，DOI 10.1038/s41586-026-10223-1。此草稿基于已保留的主文 Methods（PDF p8）、主文器件尺寸清单及 SI Fig21（PDF p13）。主文 Methods 和 SI 装置图已再次读取；尚未完成整篇任务映射，不能计作新增完成论文。
+Source: Composable neural emulators accelerate thermoelectric generator design, Nature, DOI 10.1038/s41586-026-10223-1. This draft is based on the retained main-paper Methods (PDF p8), main-paper device-dimension inventory, and SI Fig21 (PDF p13). The main-paper Methods and SI apparatus figure have been reread; whole-paper task mapping is not yet complete, so this cannot count as another completed paper.
 
-## 给机器人的目标
+## Goal Given to the Robot
 
-从按身份封存的材料开始制备指定的两对 n–p 热电器件，在不同热边界和电流任务条件下取得对象可追溯的测量记录，完成后卸载归档并清理。科学读数由明确的模拟数据接口提供，不要求本阶段算出真实材料性能。
+Starting from materials sealed with their identities, prepare the specified two-couple n–p thermoelectric device, obtain object-traceable measurement records under different thermal boundaries and task current conditions, then unload, archive, and clean up. Scientific readings are supplied by an explicit simulated-data interface; this stage does not require calculating actual material performance.
 
-初态没有成品模块。准备台上有封闭材料批次、空任务容器、AlN 支撑板及铜电极；球磨、烧结、切割、装配和测量工位各自空闲。真实气氛容器和设备互锁尚未验证，所有操作均为静态任务设计。
+The initial state contains no finished module. The preparation bench holds sealed material batches, empty task containers, an AlN support plate, and copper electrodes; the ball-milling, sintering, cutting, assembly, and measurement stations are each idle. Actual atmosphere containers and equipment interlocks are not yet validated; all operations are static task designs.
 
-## 评测侧参考操作链
+## Evaluation-Side Reference Operation Chain
 
-1. 到材料柜取正确 p 型与 n 型材料批次，分别放入独立运输槽。保留论文的成分全称与简写映射；不得把 MgAgSb 的添加物或 n 型材料实际掺杂成分从谱系中删除
-2. 在称量/分装代理台逐个开合标号材料容器，把任务规定份额转入各自球磨容器，关盖，移走余料。任务份额是带来源/未知标签的输入，不凭空编造未报告配方
-3. 把容器交接到标注为任务设计的 Ar 气氛封闭接口。惰性状态只由环境提供，不由机器人自己写一个布尔量。当前标准球磨罐不能被宣称已经气密，真实接口仍为缺项
-4. 到 SPEX 8000D 外观参考工位，开罩、将两类容器分别就位、完成夹持、撤手、关罩、选批次工单并启动。机械动作与夹持机构是设计代理，尚未验证真实安装接触
-5. 等待非物理加工完成和安全释放事件，开罩、承托取罐，移至封闭出料台。每个粉末输出保留材料与父罐身份，错批或掉落进入隔离而不是重新贴标签
-6. 取 p 型批次和 Sb 界面材料，在装模代理台建立来源支持的层次顺序。将模具托盘放入 SPS-322LX 烧结代理工位，关门/启动/等待冷却释放，取出具有可追踪压制方向的坯体
-7. 对 n 型批次另取不锈钢界面材料，使用独立 SPS-1080 工单，不复用 p 型的界面或工艺标签。真实模具装配细节未报告，保留为代理接口
-8. 把坯体支撑在切割定位座，选择对应腿尺寸并加工任务形状。p 腿目标 3.3×3.3×6.6 mm，n 腿 2.9×2.9×6.6 mm。两类尺寸不能靠整体等比例缩放统一成相同腿
-9. 把切后小腿分配到有方向标记的分格盘，保留来源支持的加工取向。模块 n 腿的切割方向不能从 p 型支路擅自继承；未给出的局部细节留 unknown
-10. 搬运 AlN 板、铜电极及两条 p 腿、两条 n 腿至装配台。用定位夹具依次抓取、放置、对齐，构成两对模块。具体电极几何、板厚、界面连接方法是未报告或待核内容，不补写成作者采用的焊接工艺
-11. 取下临时定位件，将已装配模块支撑于载具中，记录四腿身份、方向及电极拓扑。任务要求形成指定串联电路时，这是评测场景设定；不能凭外观证明原文接线细节已完全复原
-12. 搬到 Mini-PEM 外观/功能角色代理工位。在冷态、安全空载且腔体可打开时，放置模块、调整上下接触、接好测量导线，并核对热端/冷端与极性标签
-13. 撤手、关闭腔体，执行抽气/热边界稳定的虚拟设备程序。源文是上端热、下端冷且真空测量；实际真空管线、夹紧压力和稳定判据未提供，不能把代理设定作为现实操作规范
-14. 在每个指定热边界下遍历任务电流条件，保存原始 I、V0 与冷侧 Q0 通道及对应模块/时点/边界。预设记录与论文数值参考分开，按按钮不直接判定得到有效数据
-15. 换边界前保留当前历史，不把同一模块条件扫描冒充独立制造重复。出处中的文献器件仅作资料对照，不能为它们生成本篇新的实验成功记录
-16. 在数据工位计算 P=I×V0 与 η=P/(P+Q0)，提取各边界的最大值；必须先有绑定到采集事件的记录。未经标定的 mV 通道不能擅自当作 W，保留原始信号、标定状态和物理量区别
-17. 结束后关停驱动和加热，等待受信的冷却、卸载与腔体可打开事件，开腔、支撑模块、断开导线再取样
-18. 将模块与余腿按未用/已测/破损状态分格归档，归还电极夹具，封存粉末余料和废料容器，清理台面，留下空载关闭的设备状态
+1. Go to the material cabinet and retrieve the correct p-type and n-type material batches, placing them in separate transport slots. Preserve the paper's mapping between full composition names and abbreviations; do not remove the MgAgSb additive or the n-type material's actual dopant composition from lineage
+2. At the weighing/portioning proxy bench, open and close the labeled material containers individually, transfer the task-specified portions into their respective ball-milling containers, close the lids, and move away remaining material. Task portions are inputs labeled with provenance/unknown status, not invented unreported recipes
+3. Hand the containers to the enclosed Ar-atmosphere interface labeled as a task design. The inert state is supplied only by the environment, not by the robot writing a Boolean itself. The current standard ball-milling jar cannot be claimed to be gas-tight; the real interface remains missing
+4. Go to the SPEX 8000D visual-reference station, open the cover, seat the two container types separately, complete clamping, withdraw hands, close the cover, select the batch work order, and start. Mechanical actions and clamping mechanisms are design proxies; actual mounting contact has not been validated
+5. Wait for nonphysical processing-completion and safe-release events, open the cover, support and retrieve the jars, and move them to the enclosed discharge bench. Each powder output retains its material and parent-jar identity; a wrong batch or dropped item enters isolation rather than being relabeled
+6. Retrieve the p-type batch and Sb interface material, and establish the source-supported layer order at the die-loading proxy bench. Place the die tray in the SPS-322LX sintering proxy station, close the door/start/wait for cooling release, and retrieve a billet with a traceable pressing direction
+7. Separately retrieve stainless-steel interface material for the n-type batch and use an independent SPS-1080 work order, without reusing the p-type interface or process labels. Actual die-assembly details are unreported and remain proxy interfaces
+8. Support the billet in the cutting-positioning seat, select the corresponding leg dimensions, and process the task shapes. Target p-leg dimensions are 3.3×3.3×6.6 mm; n-leg dimensions are 2.9×2.9×6.6 mm. The two dimension sets cannot be unified into identical legs by overall proportional scaling
+9. Distribute the small cut legs into a compartment tray with orientation markings, preserving source-supported processing orientations. The module n legs must not arbitrarily inherit the p-type branch's cutting direction; unspecified local details remain unknown
+10. Transport the AlN plate, copper electrodes, two p legs, and two n legs to the assembly bench. Use positioning fixtures to grasp, place, and align them in sequence to form a two-couple module. Specific electrode geometry, plate thickness, and interface-joining methods are unreported or pending verification; do not fill them in as soldering processes used by the authors
+11. Remove temporary positioning parts, support the assembled module in its carrier, and record the four leg identities, orientations, and electrode topology. Where the task requires a specified series circuit, this is an evaluation-scene setting; appearance alone cannot demonstrate complete reconstruction of the source's wiring details
+12. Move to the Mini-PEM visual/functional-role proxy station. When cold, safely unloaded, and with the chamber permitted to open, place the module, adjust the upper and lower contacts, connect the measurement leads, and check hot-end/cold-end and polarity labels
+13. Withdraw hands, close the chamber, and execute the virtual equipment program for evacuation/thermal-boundary stabilization. The source uses an upper hot end, lower cold end, and vacuum measurement; actual vacuum plumbing, clamping pressure, and stability criteria are not supplied, so proxy settings cannot be treated as real-world operating specifications
+14. At each specified thermal boundary, traverse the task current conditions, saving raw I, V0, and cold-side Q0 channels with the corresponding module/time/boundary. Preset records are kept separate from paper-value references; pressing a button does not directly establish valid data
+15. Preserve current history before changing boundaries; do not represent a condition sweep on the same module as independent manufacturing replicates. Literature devices mentioned in the source serve only as documentary comparisons; do not generate new successful experimental records for them in this paper
+16. At the data station, calculate P=I×V0 and η=P/(P+Q0), and extract the maximum values for each boundary; records bound to acquisition events must exist first. Uncalibrated mV channels must not arbitrarily be treated as W; retain raw signals, calibration status, and distinctions between physical quantities
+17. At the end, shut down the drive and heating, wait for trusted cooling, unloading, and chamber-openability events, open the chamber, support the module, disconnect the leads, and then retrieve the sample
+18. Archive the module and remaining legs in compartments by unused/measured/damaged status, return electrode fixtures, seal powder remnants and waste containers, clean the bench, and leave the equipment empty and closed
 
-## 必须继续补齐的同篇分支
+## Same-Paper Branches Still Requiring Completion
 
-- Bi0.4Sb1.6Te3 的石英管熔制后球磨支路，不能套用上述直接球磨路线
-- 分段器件的 Sb/MgAgSb/Sb 与 Bi0.4Sb1.6Te3 的不同切割取向、Ga–In 接合、不同分段长度和单材料对照
-- S1331 接触电阻空间分布测量，接触电阻率属于派生量
-- 单腿、分段腿、双对模块的不同尺寸和热边界比较
-- 纯计算的 TEGNet/COMSOL、SI 多材料/多对数设计与文献比较，只计资料/计算分支，不虚构为新实物实验
+- The Bi0.4Sb1.6Te3 route of quartz-tube melting followed by ball milling cannot reuse the direct ball-milling route above
+- Different cutting orientations for Sb/MgAgSb/Sb and Bi0.4Sb1.6Te3 in segmented devices, Ga–In joining, different segment lengths, and single-material controls
+- S1331 spatial contact-resistance-distribution measurement, with contact resistivity treated as a derived quantity
+- Comparisons of different dimensions and thermal boundaries for single legs, segmented legs, and two-couple modules
+- Purely computational TEGNet/COMSOL, SI multi-material/multi-couple-count designs, and literature comparisons count only as documentary/computational branches, without invented new physical experiments
 
-完整宏阶段表示也不等于复刻所有人工微动作。热区、粉末气氛和烧结内部步骤目前只设计上料/交接/卸料，细粒度接口仍需逐项补全。此草稿无机器人运行、物理仿真或真实设备操作。
+Even a complete macro-stage representation does not replicate every manual micro-action. For hot zones, powder atmospheres, and sintering internals, only loading/handoff/unloading is currently designed; fine-grained interfaces still require completion one by one. This draft includes no robot execution, physics simulation, or real equipment operation.

@@ -1,0 +1,4363 @@
+{
+  "schema": "sciencegym.dispim_operations.v2",
+  "provenance": {
+    "doi": "10.1038/nprot.2014.172",
+    "title": "Dual-view plane illumination microscopy for rapid and spatially isotropic imaging",
+    "main_version": "Green OA NIH/HHS author accepted manuscript; NOT publisher version of record",
+    "main": {
+      "file": "main_accepted.pdf",
+      "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+      "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+      "pdf_pages_1based": [
+        1
+      ],
+      "locator": "Version identification"
+    },
+    "supplement": {
+      "file": "supp_01.pdf",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+      "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+      "pdf_pages_1based": [
+        1,
+        43
+      ],
+      "locator": "Publisher supplementary notes and tables"
+    },
+    "inventory_reference": "source-archive:///sciencegym-staging/sources/biology_batch_03/dispim/program_inventory.json",
+    "rights": "Only newly authored facts, task specifications, and provenance links. Do not redistribute source PDFs, images, video, archives, or source code."
+  },
+  "operation_count": 92,
+  "operations": [
+    {
+      "op_id": "O001",
+      "stage": "intake",
+      "name_en": "Inventory identities and static safety states",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            8,
+            9
+          ],
+          "locator": "Inventory identities and static safety states"
+        }
+      ],
+      "source_fact": "The source lists specific ASI diSPIM hardware, two Nikon objectives, two Flash4.0 cameras and a bottom observation camera.",
+      "authored_robot_handling": "The robot reads component and port labels, establishes A/B and lower paths, and checks virtual safety locks.",
+      "preconditions": [],
+      "postconditions": [
+        "inventory_verified",
+        "static_only_guard"
+      ],
+      "observable_evidence": [
+        "inventory_manifest",
+        "safety_state"
+      ],
+      "failure_or_recovery": [
+        "Pause the affected assembly for missing parts or model conflicts; do not rename TiE/iXon assets as this instrument"
+      ],
+      "asset_ids": [
+        "D-A02",
+        "D-A07",
+        "D-A13"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "authored_task_scaffolding",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O002",
+      "stage": "setup",
+      "name_en": "Check the externally installed optical table",
+      "source_steps": [
+        1
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            11
+          ],
+          "locator": "Steps 1"
+        }
+      ],
+      "source_fact": "The paper begins with installation and floating of the optical table and warns about heavy components.",
+      "authored_robot_handling": "Treat professional installation as an external prerequisite; the robot checks tabletop and isolation-state cards without lifting the heavy table.",
+      "preconditions": [
+        "inventory_verified"
+      ],
+      "postconditions": [
+        "table_ready"
+      ],
+      "observable_evidence": [
+        "mounting_state",
+        "isolation_indicator"
+      ],
+      "failure_or_recovery": [
+        "Request authorized maintenance if preset isolation is unacceptable; an image cannot establish real isolation performance"
+      ],
+      "asset_ids": [
+        "D-A01"
+      ],
+      "unknown_parameters": [
+        "Load, foundation, levelness and professional-installation records"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O003",
+      "stage": "setup",
+      "name_en": "Computer cards and BNC connections",
+      "source_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            11
+          ],
+          "locator": "Steps 2,3,4"
+        }
+      ],
+      "source_fact": "The computer, DAQ card/chassis, software-installation order and BNC blocks form the acquisition platform.",
+      "authored_robot_handling": "Seat cards and make labeled connections in an unpowered virtual chassis; represent software installation with historical-version status pages.",
+      "preconditions": [
+        "table_ready"
+      ],
+      "postconditions": [
+        "daq_connected",
+        "software_setup_recorded"
+      ],
+      "observable_evidence": [
+        "port_connection_graph",
+        "software_manifest"
+      ],
+      "failure_or_recovery": [
+        "Flag interface/version mismatches; do not download or execute obsolete software"
+      ],
+      "asset_ids": [
+        "D-A15",
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Driver compatibility, currently available installers and slot geometry"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O004",
+      "stage": "setup",
+      "name_en": "Check oscilloscope traces channel by channel",
+      "source_steps": [
+        5
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            11
+          ],
+          "locator": "Step5"
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            41,
+            42
+          ],
+          "locator": "Note2 DAQ connections"
+        }
+      ],
+      "source_fact": "AO channels are tested using NI MAX and an oscilloscope.",
+      "authored_robot_handling": "Select each virtual channel, connect the probe, read its preset waveform and record the pairing; a global pass button is insufficient.",
+      "preconditions": [
+        "daq_connected"
+      ],
+      "postconditions": [
+        "ao_test_recorded"
+      ],
+      "observable_evidence": [
+        "channel_probe_pair",
+        "waveform_card"
+      ],
+      "failure_or_recovery": [
+        "Return to port checks for swapped channels or missing waveforms"
+      ],
+      "asset_ids": [
+        "D-A15",
+        "D-A18"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O005",
+      "stage": "setup",
+      "name_en": "Connect and test both Flash cameras",
+      "source_steps": [
+        6,
+        7,
+        8
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            11
+          ],
+          "locator": "Steps6–8"
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            34,
+            35,
+            36
+          ],
+          "locator": "Camera Test.vi"
+        }
+      ],
+      "source_fact": "Install camera cards, connect both cameras and verify acquisition with Camera Test.vi.",
+      "authored_robot_handling": "Handle each camera cable and port separately to establish A/B identities; read preset long-duration test counts, dropped frames and path states.",
+      "preconditions": [
+        "daq_connected"
+      ],
+      "postconditions": [
+        "camera_pair_tested"
+      ],
+      "observable_evidence": [
+        "camera_serial_role_map",
+        "test_counter_pair"
+      ],
+      "failure_or_recovery": [
+        "Correct swapped cameras, unequal counts or write failures before retesting"
+      ],
+      "asset_ids": [
+        "D-A13",
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Actual serial numbers and long-duration test results"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O006",
+      "stage": "setup",
+      "name_en": "Select and verify the excitation option",
+      "source_steps": [
+        9
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12
+          ],
+          "locator": "Steps 9"
+        }
+      ],
+      "source_fact": "Commercial excitation and a custom AOTF launch are alternatives; both require on/off and intensity-control checks.",
+      "authored_robot_handling": "The main route installs a commercial-source housing and fibers; the custom route uses a separate topology-assembly branch. Replace open lasers with a closed virtual optical path and preset indicators.",
+      "preconditions": [
+        "ao_test_recorded",
+        "static_only_guard"
+      ],
+      "postconditions": [
+        "launch_selected_and_checked"
+      ],
+      "observable_evidence": [
+        "launch_choice",
+        "shutter_and_intensity_state"
+      ],
+      "failure_or_recovery": [
+        "Do not assume both source options exist simultaneously; do not enter excitation scenes with unknown interlocks"
+      ],
+      "asset_ids": [
+        "D-A09",
+        "D-A10",
+        "D-A15"
+      ],
+      "unknown_parameters": [
+        "Actual commercial/custom choice, laser safety class and interlocks"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O007",
+      "stage": "setup",
+      "name_en": "Test the bottom camera",
+      "source_steps": [
+        10
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12
+          ],
+          "locator": "Steps 10"
+        }
+      ],
+      "source_fact": "The bottom camera is connected and tested with vendor software.",
+      "authored_robot_handling": "Independently verify its identity and live-view card; it is not a third SPIM acquisition view.",
+      "preconditions": [
+        "software_setup_recorded"
+      ],
+      "postconditions": [
+        "bottom_camera_tested"
+      ],
+      "observable_evidence": [
+        "bottom_camera_live_card"
+      ],
+      "failure_or_recovery": [
+        "Check its separate connection first if no image appears"
+      ],
+      "asset_ids": [
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O008",
+      "stage": "lower_path",
+      "name_en": "Secure the frame and lower Z-axis mirror cube",
+      "source_steps": [
+        11,
+        12,
+        13
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12
+          ],
+          "locator": "Steps 11,12,13"
+        }
+      ],
+      "source_fact": "The RAMM attaches to the table; the lower LS-50 is installed and connected to the mirror cube.",
+      "authored_robot_handling": "Align authored locating holes, place the base, linear stage and mirror cube, tighten in stages and check connections.",
+      "preconditions": [
+        "table_ready"
+      ],
+      "postconditions": [
+        "lower_structure_connected"
+      ],
+      "observable_evidence": [
+        "attachment_graph",
+        "fastener_state"
+      ],
+      "failure_or_recovery": [
+        "Return to the previous safely supported state for looseness or incorrect holes"
+      ],
+      "asset_ids": [
+        "D-A02",
+        "D-A03"
+      ],
+      "unknown_parameters": [
+        "Hole spacing, fastener dimensions, torque and loads"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O009",
+      "stage": "lower_path",
+      "name_en": "Lower filter assembly",
+      "source_steps": [
+        14
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12
+          ],
+          "locator": "Steps 14"
+        }
+      ],
+      "source_fact": "The lower dichroic cube contains a 488 long-pass and a 561 notch filter.",
+      "authored_robot_handling": "Insert both filters using readable labels and orientation marks, then connect the lower mirror cube.",
+      "preconditions": [
+        "lower_structure_connected"
+      ],
+      "postconditions": [
+        "lower_filters_installed"
+      ],
+      "observable_evidence": [
+        "filter_identity_and_orientation"
+      ],
+      "failure_or_recovery": [
+        "Retrieve and reinstall wrong or reversed filters; do not guess from housing color"
+      ],
+      "asset_ids": [
+        "D-A11"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O010",
+      "stage": "lower_path",
+      "name_en": "Connect the lower tube lens and camera",
+      "source_steps": [
+        15,
+        16
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12
+          ],
+          "locator": "Steps 15,16"
+        }
+      ],
+      "source_fact": "The tube lens passes through its bracket and attaches to the filter cube; the bottom camera uses a C-mount connection.",
+      "authored_robot_handling": "Support the tube lens, align the insertion seat and camera interface, and complete virtual locking.",
+      "preconditions": [
+        "lower_filters_installed",
+        "bottom_camera_tested"
+      ],
+      "postconditions": [
+        "lower_detection_path_connected"
+      ],
+      "observable_evidence": [
+        "lens_seat_state",
+        "camera_mount_state"
+      ],
+      "failure_or_recovery": [
+        "Do not force misaligned interfaces"
+      ],
+      "asset_ids": [
+        "D-A12",
+        "D-A13",
+        "D-A16"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O011",
+      "stage": "lower_path",
+      "name_en": "Install the 10x observation objective",
+      "source_steps": [
+        17
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12
+          ],
+          "locator": "Steps 17"
+        }
+      ],
+      "source_fact": "An Olympus 10x/NA0.3 air objective provides bottom localization.",
+      "authored_robot_handling": "Choose the lower objective rather than either 40x water-dipping objective and connect it to the specified adapter.",
+      "preconditions": [
+        "lower_structure_connected"
+      ],
+      "postconditions": [
+        "lower_objective_installed"
+      ],
+      "observable_evidence": [
+        "objective_role_tag"
+      ],
+      "failure_or_recovery": [
+        "Reject installation of an incorrect objective identity"
+      ],
+      "asset_ids": [
+        "D-A08",
+        "D-A03"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O012",
+      "stage": "lower_path",
+      "name_en": "Connect XY, F and Z axes",
+      "source_steps": [
+        18
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12
+          ],
+          "locator": "Steps 18"
+        }
+      ],
+      "source_fact": "The XY stage and two LS-50 stages connect to the controller; Z denotes the lower objective and F the diSPIM module.",
+      "authored_robot_handling": "Connect by port labels and perform bounded direction tests; retain the source_conflict label for the XY model.",
+      "preconditions": [
+        "lower_structure_connected"
+      ],
+      "postconditions": [
+        "stage_roles_verified"
+      ],
+      "observable_evidence": [
+        "F_Z_XY_mapping"
+      ],
+      "failure_or_recovery": [
+        "Swapped F/Z axes immediately block downward motion"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A04",
+        "D-A15"
+      ],
+      "unknown_parameters": [
+        "MS-2500 versus IX-8102 source conflict; travel endpoints, origins and real cables"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O013",
+      "stage": "lower_path",
+      "name_en": "Verify lower-objective motion direction",
+      "source_steps": [
+        19
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12
+          ],
+          "locator": "Steps 19"
+        }
+      ],
+      "source_fact": "The lower objective moves upward toward the coverslip and downward away from it.",
+      "authored_robot_handling": "With an empty chamber and safe clearance, gently adjust the virtual knob and observe relative motion.",
+      "preconditions": [
+        "stage_roles_verified",
+        "lower_objective_installed"
+      ],
+      "postconditions": [
+        "lower_direction_verified"
+      ],
+      "observable_evidence": [
+        "relative_motion_observation"
+      ],
+      "failure_or_recovery": [
+        "Return to axis-connection checks if the direction is wrong"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A08"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O014",
+      "stage": "lower_path",
+      "name_en": "Establish the marked-coverslip reference",
+      "source_steps": [
+        20
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12,
+            13
+          ],
+          "locator": "Steps 20"
+        }
+      ],
+      "source_fact": "The coverslip mark and bottom camera establish XY and lower-focus references.",
+      "authored_robot_handling": "Take a clean coverslip, mark its top surface, mount and center it, focus using bottom-view feedback and record XY/Z.",
+      "preconditions": [
+        "lower_detection_path_connected",
+        "lower_direction_verified",
+        "chamber_assembled"
+      ],
+      "postconditions": [
+        "lower_reference_saved"
+      ],
+      "observable_evidence": [
+        "marker_focus_image",
+        "XY_Z_record"
+      ],
+      "failure_or_recovery": [
+        "The top-surface mark and underside square of the embryo chamber are different object states; remark if confused"
+      ],
+      "asset_ids": [
+        "D-A17",
+        "D-A08",
+        "D-A13"
+      ],
+      "unknown_parameters": [
+        "Actual coordinates and differences between source marking-size versions"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O015",
+      "stage": "scanner",
+      "name_en": "Scanner fibers and beam centering",
+      "source_steps": [
+        21,
+        22
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            13
+          ],
+          "locator": "Steps 21,22"
+        }
+      ],
+      "source_fact": "Connect fibers to both scanners and check beam centering on the MEMS mirrors.",
+      "authored_robot_handling": "Virtually connect fiber ports and adjust labeled centering screws using enclosed target-card feedback.",
+      "preconditions": [
+        "launch_selected_and_checked"
+      ],
+      "postconditions": [
+        "scanner_beams_centered"
+      ],
+      "observable_evidence": [
+        "A_B_beam_target_cards"
+      ],
+      "failure_or_recovery": [
+        "Iterate here while off-center; do not proceed to tube-lens assembly"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A09"
+      ],
+      "unknown_parameters": [
+        "Actual fiber-connector form and adjustment-screw motion mapping"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O016",
+      "stage": "scanner",
+      "name_en": "Adjust iris opening",
+      "source_steps": [
+        23
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            13
+          ],
+          "locator": "Steps 23"
+        }
+      ],
+      "source_fact": "Keep the MEMS boundary out of the beam profile without closing the iris completely.",
+      "authored_robot_handling": "Turn the virtual iris ring and compare cropped, centered and fully closed preset feedback.",
+      "preconditions": [
+        "scanner_beams_centered"
+      ],
+      "postconditions": [
+        "iris_state_acceptable"
+      ],
+      "observable_evidence": [
+        "beam_boundary_card",
+        "iris_position"
+      ],
+      "failure_or_recovery": [
+        "Backtrack for a fully closed iris or severe clipping"
+      ],
+      "asset_ids": [
+        "D-A06"
+      ],
+      "unknown_parameters": [
+        "Absolute aperture size"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O017",
+      "stage": "scanner",
+      "name_en": "Install tube lenses and recheck collimation",
+      "source_steps": [
+        24
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            13
+          ],
+          "locator": "Steps 24"
+        }
+      ],
+      "source_fact": "After installing tube lenses, check beam centering and collimation; return to centering if unacceptable.",
+      "authored_robot_handling": "Assemble tube lenses and brackets, inspect preset profiles at two authored target planes, then recheck MEMS centering after adjustment.",
+      "preconditions": [
+        "iris_state_acceptable"
+      ],
+      "postconditions": [
+        "scanner_collimation_checked"
+      ],
+      "observable_evidence": [
+        "near_far_target_pair",
+        "recheck_record"
+      ],
+      "failure_or_recovery": [
+        "Return to O015 if collimation passes but centering fails; do not assume a one-pass alignment"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A12",
+        "D-A16"
+      ],
+      "unknown_parameters": [
+        "Real beam propagation, spatial distances and collimation tolerance"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O018",
+      "stage": "optical_module",
+      "name_en": "Dual-arm dichroics and emission filters",
+      "source_steps": [
+        25,
+        26,
+        27
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            13,
+            14
+          ],
+          "locator": "Steps 25,26,27"
+        }
+      ],
+      "source_fact": "Remove the filter-cube top plate, insert the dichroic and transmission-side filters, face the reflecting surface toward the laser input and avoid overtightening.",
+      "authored_robot_handling": "Insert optics by orientation labels, close the cover and attach the top plate; allow only authored safe discrete locking states.",
+      "preconditions": [
+        "inventory_verified"
+      ],
+      "postconditions": [
+        "dual_filter_cubes_assembled"
+      ],
+      "observable_evidence": [
+        "coating_side_marker",
+        "filter_seating",
+        "fastener_state"
+      ],
+      "failure_or_recovery": [
+        "Reassemble for preset faults involving reversed surfaces, incorrect filters or overtightening"
+      ],
+      "asset_ids": [
+        "D-A11",
+        "D-A02"
+      ],
+      "unknown_parameters": [
+        "Optic loading tolerances and thread parameters"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O019",
+      "stage": "optical_module",
+      "name_en": "Connect scanners to dual-arm filter cubes",
+      "source_steps": [
+        28
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            14
+          ],
+          "locator": "Steps 28"
+        }
+      ],
+      "source_fact": "Scanners connect to the dichroic filter-cube holders.",
+      "authored_robot_handling": "Mate specified scanner/tube-lens subassemblies with A/B module ports and record mating identities.",
+      "preconditions": [
+        "scanner_collimation_checked",
+        "dual_filter_cubes_assembled"
+      ],
+      "postconditions": [
+        "scanners_attached"
+      ],
+      "observable_evidence": [
+        "port_attachment_graph"
+      ],
+      "failure_or_recovery": [
+        "The wrong arm will not pass identity checks"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A12",
+        "D-A02"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O020",
+      "stage": "optical_module",
+      "name_en": "Check beam intersection",
+      "source_steps": [
+        29
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            14,
+            35
+          ],
+          "locator": "Step29 and troubleshooting"
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            10
+          ],
+          "locator": "Note1 SF7"
+        }
+      ],
+      "source_fact": "Before objective installation, both beams should emerge through aperture centers and intersect above the XY stage.",
+      "authored_robot_handling": "Inspect the enclosed virtual verification window; reinstall scanners or adjust filter-cube top plates as needed.",
+      "preconditions": [
+        "scanners_attached"
+      ],
+      "postconditions": [
+        "beam_intersection_checked"
+      ],
+      "observable_evidence": [
+        "intersection_state"
+      ],
+      "failure_or_recovery": [
+        "Return to O019 or O018 according to the cause of nonintersection; this observation does not establish final objective confocality"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A11"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O021",
+      "stage": "optical_module",
+      "name_en": "Assemble both objectives and piezos",
+      "source_steps": [
+        30,
+        31,
+        32
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            14
+          ],
+          "locator": "Steps 30,31,32"
+        }
+      ],
+      "source_fact": "Install piezos on both arms, an objective adjuster on arm B and Nikon MRD07420 objectives on both arms.",
+      "authored_robot_handling": "Support and connect objectives and piezo mounts separately; give the additional B-arm adjuster its own identity.",
+      "preconditions": [
+        "beam_intersection_checked"
+      ],
+      "postconditions": [
+        "objectives_and_piezos_mounted"
+      ],
+      "observable_evidence": [
+        "A_B_objective_mounts"
+      ],
+      "failure_or_recovery": [
+        "Do not represent both objectives as one noninteractive decoration"
+      ],
+      "asset_ids": [
+        "D-A07",
+        "D-A14",
+        "D-A02"
+      ],
+      "unknown_parameters": [
+        "Actual mounting holes, joint limits and gripping surfaces"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O022",
+      "stage": "optical_module",
+      "name_en": "Coarse objective separation and pupil centering",
+      "source_steps": [
+        33,
+        34,
+        35
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            14
+          ],
+          "locator": "Steps 33,34,35"
+        }
+      ],
+      "source_fact": "The source coarsely aligns both objectives at equal height, approximately 0.7 mm apart, and checks centered output from each objective.",
+      "authored_robot_handling": "Constrain adjustment with an authored anticollision fixture; save only after relative-height, separation and centering feedback all pass.",
+      "preconditions": [
+        "objectives_and_piezos_mounted"
+      ],
+      "postconditions": [
+        "coarse_objective_alignment"
+      ],
+      "observable_evidence": [
+        "gap_category",
+        "height_match",
+        "pupil_card"
+      ],
+      "failure_or_recovery": [
+        "Any contact immediately fails and requires withdrawal; do not treat 0.7 mm as a directly usable CAD constraint"
+      ],
+      "asset_ids": [
+        "D-A07",
+        "D-A11"
+      ],
+      "unknown_parameters": [
+        "Tip shape, real clearance and hazard envelope"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O023",
+      "stage": "optical_module",
+      "name_en": "Load the water-filled marked-reference chamber",
+      "source_steps": [
+        36
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            14
+          ],
+          "locator": "Steps 36"
+        }
+      ],
+      "source_fact": "Remount the marked coverslip, add water and place the chamber on the sample stage.",
+      "authored_robot_handling": "Confirm a clear path, grasp the chamber body and check coverslip orientation, liquid level and a dry exterior.",
+      "preconditions": [
+        "lower_reference_saved",
+        "coarse_objective_alignment"
+      ],
+      "postconditions": [
+        "water_reference_chamber_loaded"
+      ],
+      "observable_evidence": [
+        "chamber_latch",
+        "liquid_state"
+      ],
+      "failure_or_recovery": [
+        "Return to chamber assembly for leaks or breakage"
+      ],
+      "asset_ids": [
+        "D-A17"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O024",
+      "stage": "control",
+      "name_en": "Connect piezos and DAQ with power off",
+      "source_steps": [
+        37,
+        38
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            14,
+            15
+          ],
+          "locator": "Steps37–38"
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            41,
+            42
+          ],
+          "locator": "Note2 channel map"
+        }
+      ],
+      "source_fact": "Connect piezos to Tiger; unplug Tiger before connecting it to DAQ.",
+      "authored_robot_handling": "Switch to virtual power-off before connecting specified channels, then review the channel graph.",
+      "preconditions": [
+        "ao_test_recorded",
+        "objectives_and_piezos_mounted"
+      ],
+      "postconditions": [
+        "piezo_control_wired"
+      ],
+      "observable_evidence": [
+        "power_off_before_connection",
+        "channel_graph"
+      ],
+      "failure_or_recovery": [
+        "Connecting while powered is a procedural error; identify both piezo channels using the source mapping"
+      ],
+      "asset_ids": [
+        "D-A14",
+        "D-A15"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O025",
+      "stage": "control",
+      "name_en": "Verify neutral settings and piezo feedback",
+      "source_steps": [
+        39,
+        40
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            15
+          ],
+          "locator": "Steps 39,40"
+        }
+      ],
+      "source_fact": "In parameter-adjustment mode, set scanners to zero and piezos to midrange, then compare sensor readback with input.",
+      "authored_robot_handling": "Select the virtual front-panel mode, read parameters back and compare preset input/sensor cards for each arm.",
+      "preconditions": [
+        "piezo_control_wired"
+      ],
+      "postconditions": [
+        "neutral_control_verified"
+      ],
+      "observable_evidence": [
+        "mode_card",
+        "setpoint_readback_pair"
+      ],
+      "failure_or_recovery": [
+        "Stop the affected arm for a mismatch; successful writing does not imply successful movement"
+      ],
+      "asset_ids": [
+        "D-A14",
+        "D-A15",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Real voltage calibration, channel offsets and hardware implementation"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O026",
+      "stage": "alignment",
+      "name_en": "Bounded lowering and F-reference recording",
+      "source_steps": [
+        41,
+        42,
+        43
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            15
+          ],
+          "locator": "Steps 41,42,43"
+        }
+      ],
+      "source_fact": "Lower the module until the beam intersection matches the coverslip reference; use CDZ for lateral offset and save F.",
+      "authored_robot_handling": "Observe coverslip/chamber-wall clearance during discrete small steps, center with CDZ and save F with its origin version.",
+      "preconditions": [
+        "neutral_control_verified",
+        "water_reference_chamber_loaded"
+      ],
+      "postconditions": [
+        "F_reference_saved"
+      ],
+      "observable_evidence": [
+        "clearance_view",
+        "beam_marker_overlap",
+        "F_origin_version"
+      ],
+      "failure_or_recovery": [
+        "Withdraw on near-wall/near-glass warnings; changing the origin invalidates the F record"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A05",
+        "D-A07",
+        "D-A17"
+      ],
+      "unknown_parameters": [
+        "Lowering distance, fixture envelope and absolute F coordinate"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O027",
+      "stage": "alignment",
+      "name_en": "Withdraw the module and exchange the bead chamber",
+      "source_steps": [
+        44
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            15
+          ],
+          "locator": "Steps 44"
+        }
+      ],
+      "source_fact": "Raise the module before replacing the sample with beads; return to the recorded position and check bottom-view fluorescence.",
+      "authored_robot_handling": "Complete the visible chain: raise, verify clearance, remove the old chamber, insert the bead chamber and reposition.",
+      "preconditions": [
+        "F_reference_saved",
+        "bead_coverslip_ready"
+      ],
+      "postconditions": [
+        "bead_reference_loaded"
+      ],
+      "observable_evidence": [
+        "module_raised_before_swap",
+        "sample_identity",
+        "bottom_fluorescence_card"
+      ],
+      "failure_or_recovery": [
+        "Swapping without raising fails; check the reference-origin version before returning"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A17",
+        "D-S01"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O028",
+      "stage": "alignment",
+      "name_en": "Add the dye reference",
+      "source_steps": [
+        45
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            15
+          ],
+          "locator": "Steps 45"
+        }
+      ],
+      "source_fact": "Dye makes both beams visible in the bottom camera.",
+      "authored_robot_handling": "Select the correct virtual dye container, simulate transfer, inspect the two-spot feedback and record material identity.",
+      "preconditions": [
+        "bead_reference_loaded",
+        "dye_reference_ready"
+      ],
+      "postconditions": [
+        "spots_visible"
+      ],
+      "observable_evidence": [
+        "dye_identity",
+        "bottom_spot_pair"
+      ],
+      "failure_or_recovery": [
+        "Check optical paths and labels if invisible; do not increase dose indefinitely"
+      ],
+      "asset_ids": [
+        "D-S02",
+        "D-A17"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O029",
+      "stage": "alignment",
+      "name_en": "Coarse spot overlap and size adjustment",
+      "source_steps": [
+        46,
+        47,
+        48
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            16
+          ],
+          "locator": "Steps 46,47,48"
+        }
+      ],
+      "source_fact": "Use the objective adjuster and F position to bring both spots close, sharp and similarly sized; repeated iteration is required.",
+      "authored_robot_handling": "Change one control at a time and save before/after bottom-view cards; first fix the lower reference, then independently compare spot sizes as described by the source.",
+      "preconditions": [
+        "spots_visible"
+      ],
+      "postconditions": [
+        "coarse_overlap_saved"
+      ],
+      "observable_evidence": [
+        "before_after_pairs",
+        "F_record",
+        "spot_size_comparison"
+      ],
+      "failure_or_recovery": [
+        "Using the lower objective to mask confocal mismatch is detected; adjust virtual exposure/intensity first for saturation"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A07",
+        "D-A13"
+      ],
+      "unknown_parameters": [
+        "Independent benchmark design must establish acceptable error; source examples are not universal thresholds"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O030",
+      "stage": "cameras",
+      "name_en": "Install spacer tubes and mirror cubes",
+      "source_steps": [
+        49,
+        50,
+        51
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            16
+          ],
+          "locator": "Steps 49,50,51"
+        }
+      ],
+      "source_fact": "Install 65 mm spacer assemblies and rear-facing camera mirror cubes on both arms.",
+      "authored_robot_handling": "Return to the safe reference position, connect the 50+15 mm tubes and mirror cubes separately, and check orientation.",
+      "preconditions": [
+        "coarse_overlap_saved"
+      ],
+      "postconditions": [
+        "camera_mirror_paths_installed"
+      ],
+      "observable_evidence": [
+        "spacer_identity_sum",
+        "rear_port_orientation"
+      ],
+      "failure_or_recovery": [
+        "Reinstall if a tube segment is missing or a mirror cube is reversed"
+      ],
+      "asset_ids": [
+        "D-A12",
+        "D-A16"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O031",
+      "stage": "cameras",
+      "name_en": "Install camera tube lenses and supports",
+      "source_steps": [
+        52,
+        53,
+        54,
+        55
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            16
+          ],
+          "locator": "Steps 52,53,54,55"
+        }
+      ],
+      "source_fact": "Cameras and tube lenses mount on independent supports with clearance from mirror cubes.",
+      "authored_robot_handling": "Connect tube lenses, brackets, posts and clamping forks; establish a horizontal orientation, adjust height/clearance and secure them.",
+      "preconditions": [
+        "camera_pair_tested",
+        "camera_mirror_paths_installed"
+      ],
+      "postconditions": [
+        "camera_mounts_secure"
+      ],
+      "observable_evidence": [
+        "post_clamp_state",
+        "noncontact_gap"
+      ],
+      "failure_or_recovery": [
+        "Missing fixation or insufficient clearance blocks module motion"
+      ],
+      "asset_ids": [
+        "D-A12",
+        "D-A13",
+        "D-A16"
+      ],
+      "unknown_parameters": [
+        "Camera-housing/post geometry, mounting torque and actual clearance"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O032",
+      "stage": "cameras",
+      "name_en": "Rotate both cameras after module clearance",
+      "source_steps": [
+        56,
+        57,
+        58
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            16,
+            17
+          ],
+          "locator": "Steps 56,57,58"
+        }
+      ],
+      "source_fact": "Viewed from the rear, rotate A clockwise and B counterclockwise by 45 degrees; first raise the module, then return it.",
+      "authored_robot_handling": "Verify mirror-cube/tube-lens clearance first, then rotate A/B in the rear-view coordinate frame and reposition.",
+      "preconditions": [
+        "camera_mounts_secure"
+      ],
+      "postconditions": [
+        "camera_orientations_verified"
+      ],
+      "observable_evidence": [
+        "rear_view_orientation",
+        "raise_rotate_return_log"
+      ],
+      "failure_or_recovery": [
+        "Using a front-view direction incorrectly fails; stop if a camera contacts a mirror cube"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A13",
+        "D-A16"
+      ],
+      "unknown_parameters": [
+        "Visual pose tolerance"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O033",
+      "stage": "cameras",
+      "name_en": "Cross-check single-arm and dual-arm excitation",
+      "source_steps": [
+        59,
+        60,
+        61
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            17
+          ],
+          "locator": "Steps 59,60,61"
+        }
+      ],
+      "source_fact": "Alternately block inputs and inspect the horizontal pencil beam and same-side excitation spot in the opposing SPIM camera.",
+      "authored_robot_handling": "Use operable virtual beam blocks and record A-excitation/B-observation and B-excitation/A-observation evidence separately.",
+      "preconditions": [
+        "camera_orientations_verified"
+      ],
+      "postconditions": [
+        "cross_arm_paths_verified"
+      ],
+      "observable_evidence": [
+        "illumination_detector_pairs",
+        "blocked_unblocked_cards"
+      ],
+      "failure_or_recovery": [
+        "Distinguish absent single-arm signal from lack of confocality; do not confuse illumination and detection arms"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A07",
+        "D-A13"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": "both_cross_arm_pairs",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O034",
+      "stage": "cameras",
+      "name_en": "Center each camera spot",
+      "source_steps": [
+        62
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            17
+          ],
+          "locator": "Steps 62"
+        }
+      ],
+      "source_fact": "Fine-adjust the camera support or mirror cube to place the spot at the sensor center.",
+      "authored_robot_handling": "Adjust the corresponding control from preset camera images and retain independent results for both arms.",
+      "preconditions": [
+        "cross_arm_paths_verified"
+      ],
+      "postconditions": [
+        "camera_centers_verified"
+      ],
+      "observable_evidence": [
+        "camera_center_cards"
+      ],
+      "failure_or_recovery": [
+        "Incorrect changes to sample or objective references invalidate earlier calibration"
+      ],
+      "asset_ids": [
+        "D-A13",
+        "D-A16"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O035",
+      "stage": "alignment",
+      "name_en": "Check sheet lines in three cameras",
+      "source_steps": [
+        63
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            17,
+            35
+          ],
+          "locator": "Step63 and troubleshooting"
+        }
+      ],
+      "source_fact": "Y scanning creates the light sheet; distinguishable sheet lines appear in the bottom and both SPIM cameras.",
+      "authored_robot_handling": "Select parameter-adjustment mode and switch among all three cameras; one line can be correct at confocality, requiring a small diagnostic perturbation.",
+      "preconditions": [
+        "camera_centers_verified"
+      ],
+      "postconditions": [
+        "sheet_line_pattern_checked"
+      ],
+      "observable_evidence": [
+        "three_camera_state_cards"
+      ],
+      "failure_or_recovery": [
+        "Do not automatically fail a single visible line; probe and restore according to source troubleshooting"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O036",
+      "stage": "alignment",
+      "name_en": "Bottom-view line direction and overlap",
+      "source_steps": [
+        64,
+        65,
+        66
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            17,
+            18
+          ],
+          "locator": "Steps 64,65,66"
+        }
+      ],
+      "source_fact": "F position and Y offset affect bottom-view line positions differently; tilted lines relate to scanner angle.",
+      "authored_robot_handling": "Diagnose tilt, longitudinal offset and lateral offset from images before adjusting only the corresponding virtual control.",
+      "preconditions": [
+        "sheet_line_pattern_checked"
+      ],
+      "postconditions": [
+        "bottom_sheet_overlap"
+      ],
+      "observable_evidence": [
+        "fault_observation",
+        "single_change_history"
+      ],
+      "failure_or_recovery": [
+        "An adjustment in the wrong dimension cannot pass merely from the final image; preserve calibration consistency"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A06",
+        "D-A13"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O037",
+      "stage": "alignment",
+      "name_en": "Make both focal planes confocal with the sheets",
+      "source_steps": [
+        67,
+        68,
+        69,
+        70
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            18
+          ],
+          "locator": "Steps 67,68,69,70"
+        }
+      ],
+      "source_fact": "Block each arm in turn to inspect the opposing sheet-line focus, then sequentially adjust Z-scan offset, collection piezo and F position to overlap and record them.",
+      "authored_robot_handling": "Observe, select one control, fine-adjust and recheck all three cameras; save A/B offsets and the F version when complete.",
+      "preconditions": [
+        "bottom_sheet_overlap"
+      ],
+      "postconditions": [
+        "fine_alignment_saved"
+      ],
+      "observable_evidence": [
+        "blocked_unblocked_pairs",
+        "parameter_change_log",
+        "A_B_offset_record"
+      ],
+      "failure_or_recovery": [
+        "Blind multi-parameter changes prevent diagnosis; return to the nearest verifiable checkpoint"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A06",
+        "D-A14",
+        "D-A13"
+      ],
+      "unknown_parameters": [
+        "Neither control increments nor their relationship to actual motion have been verified on hardware"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": "A_and_B",
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O038",
+      "stage": "alignment",
+      "name_en": "Center the rolling-shutter ROI",
+      "source_steps": [
+        71,
+        72,
+        73
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            18,
+            19
+          ],
+          "locator": "Steps 71,72,73"
+        }
+      ],
+      "source_fact": "Flash4.0 acquisition speed depends on ROI position; the source example uses 500x500 and Y offset 774.",
+      "authored_robot_handling": "Select the ROI on the camera front panel, check the sensor center and sheet-line position, and retain X/Y offsets together with ROI dimensions.",
+      "preconditions": [
+        "fine_alignment_saved"
+      ],
+      "postconditions": [
+        "ROI_pair_saved"
+      ],
+      "observable_evidence": [
+        "sensor_roi_overlay",
+        "roi_metadata"
+      ],
+      "failure_or_recovery": [
+        "Do not generalize example values to other ROIs; changing ROI requires speed and coverage rechecks"
+      ],
+      "asset_ids": [
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Actual camera ROI readback and frame rate"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O039",
+      "stage": "alignment",
+      "name_en": "Save complete calibration and the bottom-view reference",
+      "source_steps": [
+        74
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            19
+          ],
+          "locator": "Steps 74"
+        }
+      ],
+      "source_fact": "Save all front-panel parameters, camera offsets and the bottom-view localization image of both beams.",
+      "authored_robot_handling": "Generate a non-overwritable calibration snapshot with component identities, origin version, date and authored observation IDs.",
+      "preconditions": [
+        "ROI_pair_saved"
+      ],
+      "postconditions": [
+        "calibration_bundle_ready"
+      ],
+      "observable_evidence": [
+        "calibration_manifest",
+        "bottom_reference_card"
+      ],
+      "failure_or_recovery": [
+        "Routine samples cannot directly reuse calibration if either arm or the origin version is missing"
+      ],
+      "asset_ids": [
+        "D-A20",
+        "D-A13"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O040",
+      "stage": "bead",
+      "name_en": "Mount beads and localize safely",
+      "source_steps": [
+        75
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            19
+          ],
+          "locator": "Steps 75"
+        }
+      ],
+      "source_fact": "Mount the bead coverslip in water and return the module near the previous F reference.",
+      "authored_robot_handling": "Verify bead identity and reference version, then exchange chambers, check liquid level and approach with bounded motion.",
+      "preconditions": [
+        "calibration_bundle_ready",
+        "bead_coverslip_ready"
+      ],
+      "postconditions": [
+        "bead_calibration_mounted"
+      ],
+      "observable_evidence": [
+        "sample_manifest",
+        "clearance"
+      ],
+      "failure_or_recovery": [
+        "Remake aggregated, contaminated or broken samples rather than treating them as parameter-adjustment problems"
+      ],
+      "asset_ids": [
+        "D-S01",
+        "D-A17"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O041",
+      "stage": "bead",
+      "name_en": "Configure scouting and inspect both stacks",
+      "source_steps": [
+        76,
+        77,
+        78
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            19
+          ],
+          "locator": "Steps 76,77,78"
+        }
+      ],
+      "source_fact": "Acquire one volume in scouting mode and inspect each view separately in ImageJ.",
+      "authored_robot_handling": "Select a source-labeled optical example configuration rather than hardware commands; save both preset volume cards and the actual task configuration.",
+      "preconditions": [
+        "bead_calibration_mounted"
+      ],
+      "postconditions": [
+        "bead_scout_pair"
+      ],
+      "observable_evidence": [
+        "mode",
+        "A_B_stack_ids",
+        "metadata_pair"
+      ],
+      "failure_or_recovery": [
+        "One missing arm cannot pass on evidence from the other arm alone"
+      ],
+      "asset_ids": [
+        "D-A20",
+        "D-A13"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O042",
+      "stage": "bead",
+      "name_en": "Focus diagnosis with a stationary sheet",
+      "source_steps": [
+        79
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            19,
+            20
+          ],
+          "locator": "Steps 79"
+        }
+      ],
+      "source_fact": "Disable sheet Z scanning to locate collection focus within the volume; separately check module position if no frame is in focus.",
+      "authored_robot_handling": "Select the frozen-sheet diagnostic mode, compare the best-focus frame with the center, adjust collection focus and recheck.",
+      "preconditions": [
+        "bead_scout_pair"
+      ],
+      "postconditions": [
+        "focus_diagnostic_passed"
+      ],
+      "observable_evidence": [
+        "focus_sequence_card",
+        "best_focus_location"
+      ],
+      "failure_or_recovery": [
+        "Stop approaching upon vibration/contact image cards; do not mask acquisition faults with postprocessing"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A14",
+        "D-A03",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O043",
+      "stage": "bead",
+      "name_en": "Diagnose synchronization and conversion-factor mismatch",
+      "source_steps": [
+        80,
+        81
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            20,
+            35
+          ],
+          "locator": "Steps80–81 and troubleshooting"
+        },
+        {
+          "file": "supp_08.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM460_ESM.pdf",
+          "sha256": "7c72323138edb85c68535cae339e625358cc6fb7f07eabcc2d950aed5fdbbadd",
+          "pdf_pages_1based": [
+            1
+          ],
+          "locator": "Supplementary Figure7"
+        },
+        {
+          "file": "supp_09.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM461_ESM.pdf",
+          "sha256": "d81448ad57ce6c801df1d0f2eb918434fc9fbe8b2fa8d4d54faa9b7c7a3d99fb",
+          "pdf_pages_1based": [
+            1
+          ],
+          "locator": "Supplementary Figure8"
+        }
+      ],
+      "source_fact": "A leading/lagging sheet and sharp-center/blurry-edge pattern indicate different calibration mismatches; iterate until the entire stack is sharp.",
+      "authored_robot_handling": "Diagnose from preset normal, leading, lagging and scale-mismatch images; change only the relevant offset or conversion control before reacquisition.",
+      "preconditions": [
+        "focus_diagnostic_passed"
+      ],
+      "postconditions": [
+        "synchronization_verified"
+      ],
+      "observable_evidence": [
+        "fault_response_history",
+        "final_A_B_stack_cards"
+      ],
+      "failure_or_recovery": [
+        "Do not attribute bead aggregation, focus offset and excessive sheet thickness to the same knob"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A14",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O044",
+      "stage": "bead",
+      "name_en": "Acquire the dual-view bead reference",
+      "source_steps": [
+        82
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            20
+          ],
+          "locator": "Steps 82"
+        }
+      ],
+      "source_fact": "Acquire bead volumes with calibrated settings.",
+      "authored_robot_handling": "Acquire A/B volumes using saved calibration, attaching parameters and light-source/camera identities.",
+      "preconditions": [
+        "synchronization_verified"
+      ],
+      "postconditions": [
+        "bead_reference_pair_saved"
+      ],
+      "observable_evidence": [
+        "A_B_reference_ids"
+      ],
+      "failure_or_recovery": [
+        "Vibration calls for checks of isolation, contact, chamber fixation and camera mounting"
+      ],
+      "asset_ids": [
+        "D-S01",
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O045",
+      "stage": "bead",
+      "name_en": "Acquire dark backgrounds with identical parameters",
+      "source_steps": [
+        83
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            20
+          ],
+          "locator": "Steps 83"
+        }
+      ],
+      "source_fact": "Block excitation while preserving acquisition settings to obtain backgrounds.",
+      "authored_robot_handling": "Make blocking visible, keep mode/ROI/sampling unchanged and save a separate background for each arm.",
+      "preconditions": [
+        "bead_reference_pair_saved"
+      ],
+      "postconditions": [
+        "bead_background_pair_saved"
+      ],
+      "observable_evidence": [
+        "dark_state",
+        "matched_metadata",
+        "A_B_background_ids"
+      ],
+      "failure_or_recovery": [
+        "Exposure/ROI changes require reacquisition of mismatched backgrounds"
+      ],
+      "asset_ids": [
+        "D-A20",
+        "D-A13"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O046",
+      "stage": "bead",
+      "name_en": "Select single beads and subtract background",
+      "source_steps": [
+        84,
+        85,
+        86
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            20,
+            21
+          ],
+          "locator": "Steps 84,85,86"
+        }
+      ],
+      "source_fact": "Read the stack, subtract mean background and select a single-bead region.",
+      "authored_robot_handling": "Distinguish single beads from aggregates in authored images, choose a valid ROI and record derivation without changing originals.",
+      "preconditions": [
+        "bead_background_pair_saved"
+      ],
+      "postconditions": [
+        "single_bead_rois"
+      ],
+      "observable_evidence": [
+        "selected_roi",
+        "background_lineage"
+      ],
+      "failure_or_recovery": [
+        "Change regions or remake the sample for aggregation/saturation; selections without context do not pass"
+      ],
+      "asset_ids": [
+        "D-S01",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O047",
+      "stage": "bead",
+      "name_en": "Voxel scaling and reslicing",
+      "source_steps": [
+        87,
+        88,
+        89
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            21
+          ],
+          "locator": "Steps 87,88,89"
+        }
+      ],
+      "source_fact": "Clear the original scale, use Z step and pixel size for isotropic resampling, then reslice.",
+      "authored_robot_handling": "Enter spatial units from the same acquisition manifest, check scale and axis order, then display preset reslices.",
+      "preconditions": [
+        "single_bead_rois"
+      ],
+      "postconditions": [
+        "reslice_units_verified"
+      ],
+      "observable_evidence": [
+        "voxel_metadata",
+        "reslice_axes"
+      ],
+      "failure_or_recovery": [
+        "Do not retain the old scale and apply scaling again; return here for unit errors"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Actual file voxel metadata and resampling implementation"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O048",
+      "stage": "bead",
+      "name_en": "Read lateral and axial PSF evidence",
+      "source_steps": [
+        90
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            21
+          ],
+          "locator": "Steps 90"
+        }
+      ],
+      "source_fact": "Measure bead lateral/axial profiles and FWHM in each view; the source shows subsequent improvement from fusion.",
+      "authored_robot_handling": "Save measurement method, units and dual-view differences from preset profiles; paper values belong only in a reference column, not as robot measurements.",
+      "preconditions": [
+        "reslice_units_verified"
+      ],
+      "postconditions": [
+        "psf_evidence_complete"
+      ],
+      "observable_evidence": [
+        "profile_cards",
+        "FWHM_value_source",
+        "units"
+      ],
+      "failure_or_recovery": [
+        "Missing axial evidence or either arm prevents a PSF pass; do not force agreement with paper results"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Measurement distributions, error model and numerical thresholds"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O049",
+      "stage": "sheet",
+      "name_en": "Scan sheet thickness with a fixed collection plane",
+      "source_steps": [
+        91,
+        92
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            21
+          ],
+          "locator": "Steps 91,92"
+        }
+      ],
+      "source_fact": "Keep the collection objective stationary and scan only the sheet while reading the stack.",
+      "authored_robot_handling": "Select fixed-piezo rather than fixed-sheet mode and acquire independent preset tests for both arms.",
+      "preconditions": [
+        "synchronization_verified"
+      ],
+      "postconditions": [
+        "sheet_profile_stacks"
+      ],
+      "observable_evidence": [
+        "fixed_vs_scanned_roles",
+        "stack_ids"
+      ],
+      "failure_or_recovery": [
+        "The roles are opposite to O042; reacquire after selecting the wrong mode"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A14",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O050",
+      "stage": "sheet",
+      "name_en": "Check thickness profiles and units",
+      "source_steps": [
+        93,
+        94
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            21
+          ],
+          "locator": "Steps 93,94"
+        }
+      ],
+      "source_fact": "Select an in-focus bead and multiply its Z-profile FWHM by the sampling step to obtain sheet thickness.",
+      "authored_robot_handling": "Read preset profiles, bind them to acquisition steps and retain both raw values and conversions.",
+      "preconditions": [
+        "sheet_profile_stacks"
+      ],
+      "postconditions": [
+        "sheet_thickness_recorded"
+      ],
+      "observable_evidence": [
+        "profile",
+        "step_size",
+        "unit_conversion"
+      ],
+      "failure_or_recovery": [
+        "Confusing pixel size with Z step is a diagnosable error"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O051",
+      "stage": "sheet",
+      "name_en": "Repeat across the field and in the other arm",
+      "source_steps": [
+        95
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            21,
+            22
+          ],
+          "locator": "Steps 95"
+        }
+      ],
+      "source_fact": "Repeat thickness tests at multiple collection-focus planes, then repeat in the other arm.",
+      "authored_robot_handling": "Perform authored discrete sampling at the task manifest's 8 or 10 positions and compare each arm without fabricating measurements.",
+      "preconditions": [
+        "sheet_thickness_recorded"
+      ],
+      "postconditions": [
+        "sheet_field_evidence_complete"
+      ],
+      "observable_evidence": [
+        "position_arm_matrix",
+        "coverage_map"
+      ],
+      "failure_or_recovery": [
+        "Diagnose excessive thickness by module, excitation-objective or iris causes; redo affected measurements after changes"
+      ],
+      "asset_ids": [
+        "D-A06",
+        "D-A07",
+        "D-A14",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "The paper's 8 or 10 positions are not a fixed count for new tasks; freeze the specific task manifest"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "P001",
+      "stage": "preparation",
+      "name_en": "Receive and label clean coverslips",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            10,
+            11
+          ],
+          "locator": "Reagent and equipment setup"
+        }
+      ],
+      "source_fact": "Beads and embryos use clean 24x50 mm no.1.5 coverslips; cleaning details are cited to an external reference.",
+      "authored_robot_handling": "Choose virtually clean coverslips with qualification labels; do not invent unreported cleaning chemistry.",
+      "preconditions": [
+        "inventory_verified"
+      ],
+      "postconditions": [
+        "clean_coverslip_available"
+      ],
+      "observable_evidence": [
+        "stock_label",
+        "surface_condition"
+      ],
+      "failure_or_recovery": [
+        "Replace dirty/cracked coverslips; unreported source conditions remain unknown"
+      ],
+      "asset_ids": [
+        "D-A17"
+      ],
+      "unknown_parameters": [
+        "Coverslip-cleaning details in the cited external reference"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "P002",
+      "stage": "preparation",
+      "name_en": "Prepare a bead layer",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            10
+          ],
+          "locator": "Preparation of coverslips with fluorescent bead layer"
+        }
+      ],
+      "source_fact": "The source includes poly-L-lysine coating, waiting, adding diluted beads, drying and water washing.",
+      "authored_robot_handling": "Handle coverslips and labeled containers through a non-real-liquid coating, timing, bead-addition, drying and washing chain; use the correct consumables at each stage.",
+      "preconditions": [
+        "clean_coverslip_available"
+      ],
+      "postconditions": [
+        "bead_coverslip_ready"
+      ],
+      "observable_evidence": [
+        "material_lineage",
+        "coat_dry_wash_events",
+        "surface_coverage_card"
+      ],
+      "failure_or_recovery": [
+        "Remake after skipped waits/washes or obvious aggregation; do not give a prebuilt standard that bypasses all preparation branches"
+      ],
+      "asset_ids": [
+        "D-S01",
+        "X-A01",
+        "X-A02"
+      ],
+      "unknown_parameters": [
+        "Actual coating uniformity, particle density and environmental conditions"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "P003",
+      "stage": "preparation",
+      "name_en": "Prepare the dye reference",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            10
+          ],
+          "locator": "Dye solution"
+        }
+      ],
+      "source_fact": "Diluted Alexa Fluor488 streptavidin in water is used to observe sheet shape.",
+      "authored_robot_handling": "Read labels, select stock/diluent containers and perform virtual transfer; task cards supply recipe slots without real biological activity.",
+      "preconditions": [
+        "inventory_verified"
+      ],
+      "postconditions": [
+        "dye_reference_ready"
+      ],
+      "observable_evidence": [
+        "container_identity",
+        "mix_record"
+      ],
+      "failure_or_recovery": [
+        "Unknown concentration does not establish validated optical intensity"
+      ],
+      "asset_ids": [
+        "D-S02",
+        "X-A01"
+      ],
+      "unknown_parameters": [
+        "Specific stock and current concentration"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "P004",
+      "stage": "preparation",
+      "name_en": "Assemble the sealed coverslip chamber",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            10,
+            11
+          ],
+          "locator": "Mounting coverslips into chamber"
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            6
+          ],
+          "locator": "Note1 SF4"
+        }
+      ],
+      "source_fact": "The O-ring and coverslip sit between the chamber halves and are secured with screws; overtightening breaks the glass.",
+      "authored_robot_handling": "Check O-ring seating, support the coverslip, assemble upper/lower chamber halves, use authored locking states and perform a virtual leak test.",
+      "preconditions": [
+        "clean_coverslip_available"
+      ],
+      "postconditions": [
+        "chamber_assembled"
+      ],
+      "observable_evidence": [
+        "oring_seat",
+        "glass_state",
+        "leak_indicator"
+      ],
+      "failure_or_recovery": [
+        "Return to the relevant action for the wrong O-ring, skewed clamping or breakage; do not blindly tighten further to compensate for leaks"
+      ],
+      "asset_ids": [
+        "D-A17",
+        "X-A03"
+      ],
+      "unknown_parameters": [
+        "Groove dimensions, seal compression, torque and actual liquid capacity"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "P005",
+      "stage": "preparation",
+      "name_en": "Prepare routine buffers and coating materials",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            10
+          ],
+          "locator": "Reagent setup"
+        }
+      ],
+      "source_fact": "The source lists preparation/storage of M9, poly-L-lysine and methyl cellulose.",
+      "authored_robot_handling": "Use traceable virtual stocks and state cards for material selection, labels and waiting checks; do not create new culture or genetic-modification tasks.",
+      "preconditions": [
+        "inventory_verified"
+      ],
+      "postconditions": [
+        "routine_reagents_ready"
+      ],
+      "observable_evidence": [
+        "stock_id",
+        "validity_state",
+        "material_use_record"
+      ],
+      "failure_or_recovery": [
+        "Treat unknown lot or qualification status as a missing input"
+      ],
+      "asset_ids": [
+        "X-A01",
+        "X-A02"
+      ],
+      "unknown_parameters": [
+        "Actual stocks, preparation batches and quality acceptance"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "P006",
+      "stage": "preparation",
+      "name_en": "Handle pick and capillary provenance",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            10,
+            11
+          ],
+          "locator": "Worm-pick creation; Sharp microcapillary pipette"
+        }
+      ],
+      "source_fact": "The source includes flame-made picks, pulled glass capillaries and mouth-pipette use.",
+      "authored_robot_handling": "Retain the need for a pick/fine capillary, but provide prefabricated blunt models and a mechanically controlled virtual pipette. Do not generate executable flame, mouth-pipetting or sharps-breaking actions.",
+      "preconditions": [
+        "inventory_verified"
+      ],
+      "postconditions": [
+        "safe_transfer_tools_ready"
+      ],
+      "observable_evidence": [
+        "tool_identity",
+        "safe_adapter"
+      ],
+      "failure_or_recovery": [
+        "Return safe substitutes for mouth-pipetting/flame requests; do not claim equivalence to the original procedure"
+      ],
+      "asset_ids": [
+        "X-A04",
+        "X-A05"
+      ],
+      "unknown_parameters": [
+        "Robot cell/embryo handling tools and micromanipulation precision"
+      ],
+      "provenance_kind": "source_reported_with_authored_safety_substitution",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E001",
+      "stage": "embryo_preparation",
+      "name_en": "Set up the routine worm observation dish",
+      "source_steps": [
+        "96A.i",
+        "96A.ii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            22
+          ],
+          "locator": "Steps 96A.i,96A.ii"
+        }
+      ],
+      "source_fact": "Transfer adult worms from their culture plate to an observation dish and localize with a stereomicroscope.",
+      "authored_robot_handling": "Only in a virtual routine model, identify species/existing reporter-stock labels, take an observation dish and viscous-medium proxy, and transfer models with a prefabricated pick.",
+      "preconditions": [
+        "routine_reagents_ready",
+        "safe_transfer_tools_ready"
+      ],
+      "postconditions": [
+        "worm_observation_ready"
+      ],
+      "observable_evidence": [
+        "sample_stock_id",
+        "watch_glass_location",
+        "microscope_view"
+      ],
+      "failure_or_recovery": [
+        "Do not continue with unknown provenance or a nonroutine unsafe model; do not culture or construct reporter strains"
+      ],
+      "asset_ids": [
+        "D-S03",
+        "D-A21",
+        "X-A04",
+        "X-A06"
+      ],
+      "unknown_parameters": [
+        "Actual reporter stocks, ethics and local experimental conditions"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E002",
+      "stage": "embryo_preparation",
+      "name_en": "Simulate embryo isolation",
+      "source_steps": [
+        "96A.iii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            22
+          ],
+          "locator": "Steps 96A.iii"
+        }
+      ],
+      "source_fact": "The source isolates embryos from adults.",
+      "authored_robot_handling": "Manipulate only separable nonbiological models or use preset microscopy images to trigger an isolation state and record the manual stage; real animal handling is outside this task's authorization.",
+      "preconditions": [
+        "worm_observation_ready"
+      ],
+      "postconditions": [
+        "embryo_models_available"
+      ],
+      "observable_evidence": [
+        "separation_state",
+        "specimen_lineage"
+      ],
+      "failure_or_recovery": [
+        "Real biological procedures require separate professional review; do not present prebuilt inputs as embryos already isolated by the robot"
+      ],
+      "asset_ids": [
+        "D-S03",
+        "X-A04",
+        "X-A06"
+      ],
+      "unknown_parameters": [
+        "Model-separation interface, ethical authorization and real operating skill"
+      ],
+      "provenance_kind": "source_reported_static_surrogate",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E003",
+      "stage": "embryo_preparation",
+      "name_en": "Coat and buffer the embryo chamber",
+      "source_steps": [
+        "96A.iv"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            22
+          ],
+          "locator": "Steps 96A.iv"
+        }
+      ],
+      "source_fact": "Add M9 after the central coating on the embryo-chamber coverslip dries.",
+      "authored_robot_handling": "Verify the chamber seal before virtual coating, timing, addition of the specified buffer and central-target-region inspection.",
+      "preconditions": [
+        "chamber_assembled",
+        "routine_reagents_ready"
+      ],
+      "postconditions": [
+        "embryo_chamber_ready"
+      ],
+      "observable_evidence": [
+        "coating_timer",
+        "buffer_identity",
+        "fill_state"
+      ],
+      "failure_or_recovery": [
+        "Retain the 4 mm versus 5 mm coverslip-square discrepancy in the manifest; do not fix it as measured geometry"
+      ],
+      "asset_ids": [
+        "D-A17",
+        "X-A01",
+        "X-A02"
+      ],
+      "unknown_parameters": [
+        "Source marking-size conflict and robotic liquid-level measurement"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E004",
+      "stage": "embryo_preparation",
+      "name_en": "Mechanical capillary transfer and orientation",
+      "source_steps": [
+        "96A.v",
+        "96A.vi",
+        "96A.vii",
+        "96A.viii",
+        "96A.ix"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            22
+          ],
+          "locator": "Steps 96A.v,96A.vi,96A.vii,96A.viii,96A.ix"
+        }
+      ],
+      "source_fact": "Transfer embryos to the coverslip center and orient their long axes perpendicular to the coverslip's long axis.",
+      "authored_robot_handling": "Replace mouth pipetting with mechanical virtual aspiration/dispensing; observe intake, transport, release, placement and fine orientation, retaining detachment/loss branches.",
+      "preconditions": [
+        "embryo_models_available",
+        "embryo_chamber_ready",
+        "safe_transfer_tools_ready"
+      ],
+      "postconditions": [
+        "embryo_mounted_oriented"
+      ],
+      "observable_evidence": [
+        "transfer_count",
+        "central_roi",
+        "axis_orientation",
+        "adhesion_state"
+      ],
+      "failure_or_recovery": [
+        "Reorient incorrectly placed models; drifting requires renewed adhesion rather than unlimited later tracking"
+      ],
+      "asset_ids": [
+        "D-S03",
+        "D-A17",
+        "X-A05"
+      ],
+      "unknown_parameters": [
+        "Capillary opening, aspiration/dispensing response and adhesion force are all unknown"
+      ],
+      "provenance_kind": "source_reported_with_authored_safety_substitution",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E005",
+      "stage": "embryo_imaging",
+      "name_en": "Stage loading and bottom-view localization",
+      "source_steps": [
+        "96A.x",
+        "96A.xi",
+        "96A.xii",
+        "96A.xiii",
+        "96A.xiv"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            22,
+            23
+          ],
+          "locator": "Steps 96A.x,96A.xi,96A.xii,96A.xiii,96A.xiv"
+        }
+      ],
+      "source_fact": "Load the chamber, find an embryo in the bottom view, move to the existing reference and bring the module to its previous position.",
+      "authored_robot_handling": "Raise the module before swapping chambers; select a target in the bottom view, record sample identity, verify the F origin and localize with bounded motion.",
+      "preconditions": [
+        "embryo_mounted_oriented",
+        "calibration_bundle_ready",
+        "synchronization_verified",
+        "psf_evidence_complete",
+        "sheet_field_evidence_complete"
+      ],
+      "postconditions": [
+        "embryo_positioned"
+      ],
+      "observable_evidence": [
+        "sample_id",
+        "bottom_localization",
+        "reference_version"
+      ],
+      "failure_or_recovery": [
+        "Check adhesion first for target loss/drift; do not merely reset the origin to follow it"
+      ],
+      "asset_ids": [
+        "D-S03",
+        "D-A03",
+        "D-A04",
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E006",
+      "stage": "embryo_imaging",
+      "name_en": "Scout ROI and dual-view coverage",
+      "source_steps": [
+        "96A.xv",
+        "96A.xvi",
+        "96A.xvii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            23
+          ],
+          "locator": "Steps 96A.xv,96A.xvi,96A.xvii"
+        }
+      ],
+      "source_fact": "Set scouting and camera ROIs, acquire both stacks and use small XY shifts to place the embryo within both views.",
+      "authored_robot_handling": "Assess target boundaries in authored dual views, adjust sample XY and reacquire until both arms cover the target.",
+      "preconditions": [
+        "embryo_positioned"
+      ],
+      "postconditions": [
+        "embryo_in_both_FOVs"
+      ],
+      "observable_evidence": [
+        "paired_scouts",
+        "FOV_boundary_check"
+      ],
+      "failure_or_recovery": [
+        "Visibility in A alone does not pass; insufficient exposure and missing field coverage are different causes"
+      ],
+      "asset_ids": [
+        "D-A04",
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E007",
+      "stage": "embryo_imaging",
+      "name_en": "Diagnose illumination and volume coverage separately",
+      "source_steps": [
+        "96A.xviii",
+        "96A.xix"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            23
+          ],
+          "locator": "Steps 96A.xviii,96A.xix"
+        }
+      ],
+      "source_fact": "Y offset handles illumination coverage and F position handles volume truncation; the source warns against breaking synchronization by changing Z offset.",
+      "authored_robot_handling": "First distinguish unilluminated from unacquired regions, adjust the corresponding control and reacquire both stacks each time.",
+      "preconditions": [
+        "embryo_in_both_FOVs"
+      ],
+      "postconditions": [
+        "embryo_full_illumination_and_stack"
+      ],
+      "observable_evidence": [
+        "coverage_masks",
+        "control_choice_history"
+      ],
+      "failure_or_recovery": [
+        "Changing sheet Z offset invalidates synchronization and requires recalibration; do not repair only one view"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A06",
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E008",
+      "stage": "embryo_imaging",
+      "name_en": "Recheck focus and signal in both arms",
+      "source_steps": [
+        "96A.xx",
+        "96A.xxi",
+        "96A.xxii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            23,
+            24
+          ],
+          "locator": "Steps 96A.xx,96A.xxi,96A.xxii"
+        }
+      ],
+      "source_fact": "Compare individual planes, projections, arm intensities and structures; acquire dark backgrounds.",
+      "authored_robot_handling": "Adjust collection focus separately from preset images, compare matching structures/signals, and save matching dual backgrounds and recheck evidence.",
+      "preconditions": [
+        "embryo_full_illumination_and_stack"
+      ],
+      "postconditions": [
+        "embryo_pair_accepted",
+        "embryo_background_saved"
+      ],
+      "observable_evidence": [
+        "A_B_quality_comparison",
+        "matched_dark_pair"
+      ],
+      "failure_or_recovery": [
+        "Investigate the imaging chain first for intensity differences; do not fake identical pixels in both arms"
+      ],
+      "asset_ids": [
+        "D-S03",
+        "D-A14",
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "The source's 20% guidance is not a validated universal threshold"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E009",
+      "stage": "embryo_imaging",
+      "name_en": "Name files and acquire the long time series",
+      "source_steps": [
+        "96A.xxiii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            24
+          ],
+          "locator": "Steps 96A.xxiii"
+        }
+      ],
+      "source_fact": "The source records a long GFP-mode time series with distinct filenames.",
+      "authored_robot_handling": "The task supplies an explicit timepoint list; the robot configures names, paths and timing, starts an authored preset series and checks both arm counts.",
+      "preconditions": [
+        "embryo_pair_accepted",
+        "embryo_background_saved"
+      ],
+      "postconditions": [
+        "embryo_time_series_complete"
+      ],
+      "observable_evidence": [
+        "acquisition_manifest",
+        "A_B_timepoint_index",
+        "status_history"
+      ],
+      "failure_or_recovery": [
+        "Resolve duplicate names/disk shortage first; never manufacture replacement frames; honestly deliver partial state after an interrupted observation window"
+      ],
+      "asset_ids": [
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "The source's 14 h/1000-volume/60 s combination is not a directly convertible new task duration; no real time series was executed"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "E010",
+      "stage": "embryo_imaging",
+      "name_en": "Hand embryo data to processing",
+      "source_steps": [
+        "96A.xxiv"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            24
+          ],
+          "locator": "Steps 96A.xxiv"
+        }
+      ],
+      "source_fact": "Process embryo data according to 97–106.",
+      "authored_robot_handling": "Freeze the complete raw A/B, background and calibration manifests and hand the completed series to the successful processing branch. If interrupted, retain and separately report the records actually acquired; do not set complete-series or raw_series_ready success predicates.",
+      "preconditions": [
+        "embryo_time_series_complete"
+      ],
+      "postconditions": [
+        "raw_series_ready"
+      ],
+      "observable_evidence": [
+        "data_handoff_manifest"
+      ],
+      "failure_or_recovery": [
+        "Incomplete acquisition cannot be reported as a fully processed time series"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C001",
+      "stage": "cell_preparation",
+      "name_en": "Record coverslip-cleaning stages",
+      "source_steps": [
+        "96B.i",
+        "96B.ii",
+        "96B.iii",
+        "96B.iv",
+        "96B.v"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            24
+          ],
+          "locator": "Steps 96B.i,96B.ii,96B.iii,96B.iv,96B.v"
+        }
+      ],
+      "source_fact": "The source includes water washing, heating, acid treatment, rewashing and graded ethanol treatment, switching to sterile handling partway through.",
+      "authored_robot_handling": "Use sealed/empty container models and stage cards for transfers, waits, labels and clean/dirty separation; do not operate acids, heat sources or real organic solvents.",
+      "preconditions": [
+        "inventory_verified"
+      ],
+      "postconditions": [
+        "cell_coverslips_ready"
+      ],
+      "observable_evidence": [
+        "wash_stage_log",
+        "hood_transition",
+        "clean_dirty_zones"
+      ],
+      "failure_or_recovery": [
+        "Return to explicit checkpoints for skipped stages or cross-contamination states; chemical conditions are not an executable recipe in this design"
+      ],
+      "asset_ids": [
+        "D-A17",
+        "X-A07",
+        "X-A08"
+      ],
+      "unknown_parameters": [
+        "Hazardous-chemical SOP, surface chemistry and actual sterilization validation"
+      ],
+      "provenance_kind": "source_reported_static_surrogate",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C002",
+      "stage": "cell_preparation",
+      "name_en": "Record coverslip placement and routine cell seeding",
+      "source_steps": [
+        "96B.vi",
+        "96B.vii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            24
+          ],
+          "locator": "Steps 96B.vi,96B.vii"
+        }
+      ],
+      "source_fact": "Seed existing cells after coverslip drying; the source mentions routine digestion, termination and resuspension in medium.",
+      "authored_robot_handling": "Use registered virtual cell stocks to simulate sterile gripping, dish placement, drying, closed transfer and batch recording; no real culture.",
+      "preconditions": [
+        "cell_coverslips_ready"
+      ],
+      "postconditions": [
+        "cell_plating_recorded"
+      ],
+      "observable_evidence": [
+        "stock_id",
+        "sterile_transfer_log",
+        "plate_map"
+      ],
+      "failure_or_recovery": [
+        "Stop if cell identity/cleanliness is unknown; do not invent an exact cell-line accession"
+      ],
+      "asset_ids": [
+        "D-S04",
+        "X-A01",
+        "X-A08"
+      ],
+      "unknown_parameters": [
+        "Specific human lung fibroblast line/batch, culture status and local approval"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C003",
+      "stage": "cell_preparation",
+      "name_en": "Record readiness checks and medium replacement",
+      "source_steps": [
+        "96B.viii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            24
+          ],
+          "locator": "Steps 96B.viii"
+        }
+      ],
+      "source_fact": "Check attachment and growth the next day and replace medium before reporter-label handling.",
+      "authored_robot_handling": "Inspect preset phase-contrast images and task stages, choose healthy/pending/unacceptable states and simulate sterile medium replacement.",
+      "preconditions": [
+        "cell_plating_recorded"
+      ],
+      "postconditions": [
+        "cell_readiness_checked"
+      ],
+      "observable_evidence": [
+        "phase_image_card",
+        "culture_state_decision",
+        "medium_lineage"
+      ],
+      "failure_or_recovery": [
+        "Unacceptable states cannot proceed to imaging; do not infer real viability"
+      ],
+      "asset_ids": [
+        "D-A21",
+        "X-A01",
+        "X-A08"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C004",
+      "stage": "cell_preparation",
+      "name_en": "Retain the reporter-label handling stage",
+      "source_steps": [
+        "96B.ix",
+        "96B.x",
+        "96B.xi",
+        "96B.xii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            25
+          ],
+          "locator": "Steps 96B.ix,96B.x,96B.xi,96B.xii"
+        }
+      ],
+      "source_fact": "The source includes a GFP-tagged H-Ras reporter construct and lipid-reagent handling, distribution and waiting.",
+      "authored_robot_handling": "The full family retains closed-material receipt, label checks and virtual mixing/distribution/timing nodes; use authorized pre-labeled stocks as inputs to a future runnable static scene. No sequences, construct design, transfection optimization or real genetic procedures.",
+      "preconditions": [
+        "cell_readiness_checked"
+      ],
+      "postconditions": [
+        "reporter_preparation_recorded"
+      ],
+      "observable_evidence": [
+        "prepared_stock_lineage",
+        "reagent_identity",
+        "handling_stage_log"
+      ],
+      "failure_or_recovery": [
+        "If construct or stock provenance is insufficient, require external input at this node; do not falsely claim successful construction"
+      ],
+      "asset_ids": [
+        "D-S04",
+        "X-A01",
+        "X-A08",
+        "X-A09"
+      ],
+      "unknown_parameters": [
+        "Specific construct version, cell line, expression and toxicity validation"
+      ],
+      "provenance_kind": "source_reported_nonexecuting_preparation_stage",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C005",
+      "stage": "cell_preparation",
+      "name_en": "Check cell health, expression and medium adaptation",
+      "source_steps": [
+        "96B.xiii",
+        "96B.xiv",
+        "96B.xv"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            25
+          ],
+          "locator": "Steps 96B.xiii,96B.xiv,96B.xv"
+        }
+      ],
+      "source_fact": "The source images only apparently healthy cells with detectable reporter signal, with a wait after changing to imaging medium.",
+      "authored_robot_handling": "Select from preset culture/fluorescence observations and simulate medium replacement and stage timing; healthy appearance is not measured biological function.",
+      "preconditions": [
+        "reporter_preparation_recorded"
+      ],
+      "postconditions": [
+        "cells_ready_for_imaging"
+      ],
+      "observable_evidence": [
+        "health_image",
+        "reporter_image",
+        "imaging_medium_identity",
+        "wait_state"
+      ],
+      "failure_or_recovery": [
+        "Return to sample selection if either health or expression is unacceptable; imaging parameters cannot revive cells"
+      ],
+      "asset_ids": [
+        "D-S04",
+        "D-A21",
+        "X-A01",
+        "X-A08"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C006",
+      "stage": "cell_imaging",
+      "name_en": "Mount and localize the cell coverslip",
+      "source_steps": [
+        "96B.xvi",
+        "96B.xvii",
+        "96B.xviii",
+        "96B.xix"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            25
+          ],
+          "locator": "Steps 96B.xvi,96B.xvii,96B.xviii,96B.xix"
+        }
+      ],
+      "source_fact": "Mount the cell-bearing coverslip, add imaging medium, select cells in the bottom view and return to calibrated positions.",
+      "authored_robot_handling": "Do not grip the cell region; check the seal, raise the module for chamber exchange, localize from below and verify the F origin.",
+      "preconditions": [
+        "cells_ready_for_imaging",
+        "calibration_bundle_ready",
+        "synchronization_verified"
+      ],
+      "postconditions": [
+        "cell_positioned"
+      ],
+      "observable_evidence": [
+        "sample_id",
+        "chamber_state",
+        "bottom_target_record"
+      ],
+      "failure_or_recovery": [
+        "Do not approach the objectives before seal and sample-integrity checks pass"
+      ],
+      "asset_ids": [
+        "D-S04",
+        "D-A17",
+        "D-A03",
+        "D-A04"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C007",
+      "stage": "cell_imaging",
+      "name_en": "Scout cell dual views and acquisition depth",
+      "source_steps": [
+        "96B.xx",
+        "96B.xxi",
+        "96B.xxii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            25
+          ],
+          "locator": "Steps 96B.xx,96B.xxi,96B.xxii"
+        }
+      ],
+      "source_fact": "Check the target ROI after scouting; move XY or add acquisition planes if necessary.",
+      "authored_robot_handling": "Use both stacks to distinguish lateral from depth loss, adjust once and reacquire; update acquisition metadata.",
+      "preconditions": [
+        "cell_positioned"
+      ],
+      "postconditions": [
+        "cell_volume_coverage_verified"
+      ],
+      "observable_evidence": [
+        "paired_scouts",
+        "coverage_decision",
+        "plane_count_metadata"
+      ],
+      "failure_or_recovery": [
+        "Changing depth requires sheet/piezo-range checks; do not exceed authored travel boundaries"
+      ],
+      "asset_ids": [
+        "D-A04",
+        "D-A13",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C008",
+      "stage": "cell_imaging",
+      "name_en": "Recheck cell focus in both arms",
+      "source_steps": [
+        "96B.xxiii"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            25
+          ],
+          "locator": "Steps 96B.xxiii"
+        }
+      ],
+      "source_fact": "Adjust the corresponding collection focus if either view is blurry.",
+      "authored_robot_handling": "Adjust the affected arm using preset focus sequences and recheck target completeness.",
+      "preconditions": [
+        "cell_volume_coverage_verified"
+      ],
+      "postconditions": [
+        "cell_pair_accepted"
+      ],
+      "observable_evidence": [
+        "A_B_focus_cards"
+      ],
+      "failure_or_recovery": [
+        "Do not replace a blurry arm with the other arm's image"
+      ],
+      "asset_ids": [
+        "D-A14",
+        "D-A13"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "C009",
+      "stage": "cell_imaging",
+      "name_en": "Cell time series and processing handoff",
+      "source_steps": [
+        "96B.xxiv",
+        "96B.xxv"
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            25,
+            26
+          ],
+          "locator": "Steps 96B.xxiv,96B.xxv"
+        }
+      ],
+      "source_fact": "The source cell example uses 350 volumes at 5-second intervals, followed by processing in 97–106.",
+      "authored_robot_handling": "Use the task manifest as the actual requirement; save both arm timepoints, separate backgrounds, configuration and handoff records.",
+      "preconditions": [
+        "cell_pair_accepted"
+      ],
+      "postconditions": [
+        "cell_time_series_complete",
+        "raw_series_ready"
+      ],
+      "observable_evidence": [
+        "timepoint_pair_index",
+        "background_pair",
+        "handoff_manifest"
+      ],
+      "failure_or_recovery": [
+        "Retain the difference between 350 in the text and 351 in the caption; do not fabricate missing frames"
+      ],
+      "asset_ids": [
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Source discrepancy of 350/351; the processed Data8 TIFF has not been successfully decoded"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "D001",
+      "stage": "processing",
+      "name_en": "Convert formats and organize dual-view directories",
+      "source_steps": [
+        97
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            26
+          ],
+          "locator": "Step97"
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            39,
+            40,
+            41,
+            43
+          ],
+          "locator": "Conversion and macro workflow"
+        }
+      ],
+      "source_fact": "The main text requires multipage TIFF volumes in separate A/B directories; SI describes converting HCIMG to single pages before merging.",
+      "authored_robot_handling": "Virtually select input/output locations and check each volume's plane order, count, channel and view metadata; generate authored examples only.",
+      "preconditions": [
+        "raw_series_ready"
+      ],
+      "postconditions": [
+        "raw_pairs_indexed"
+      ],
+      "observable_evidence": [
+        "conversion_manifest",
+        "ordered_plane_lists",
+        "A_B_directory_roles"
+      ],
+      "failure_or_recovery": [
+        "Do not blindly merge missing pages, incorrect order or name conflicts; preserve original files"
+      ],
+      "asset_ids": [
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "HCIMG parser, external VI and actual conversion testing"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "D002",
+      "stage": "processing",
+      "name_en": "Crop and subtract matching dark backgrounds",
+      "source_steps": [
+        98
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            26
+          ],
+          "locator": "Step98"
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            43
+          ],
+          "locator": "Note3 macro semantics; do not copy source code"
+        }
+      ],
+      "source_fact": "Crop and subtract dark background for each volume.",
+      "authored_robot_handling": "Process both views using regions of the same target; record each derived volume's raw parent, background parent, coordinates and units.",
+      "preconditions": [
+        "raw_pairs_indexed"
+      ],
+      "postconditions": [
+        "preprocessed_pairs_ready"
+      ],
+      "observable_evidence": [
+        "lineage_graph",
+        "crop_regions",
+        "matching_settings"
+      ],
+      "failure_or_recovery": [
+        "Cropping out the target, using the wrong arm's background or subtracting twice all fail"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "D003",
+      "stage": "processing",
+      "name_en": "Check historical processing software and plug-ins",
+      "source_steps": [
+        99,
+        100,
+        101
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            26
+          ],
+          "locator": "Steps 99,100,101"
+        }
+      ],
+      "source_fact": "The source uses 64bit MIPAV7.1.0 and generate fusion544e with memory configuration.",
+      "authored_robot_handling": "Show independently authored historical UI/installation states and check versions/resources without downloading, installing or running source code.",
+      "preconditions": [
+        "software_setup_recorded"
+      ],
+      "postconditions": [
+        "processing_interface_ready"
+      ],
+      "observable_evidence": [
+        "software_version_manifest",
+        "memory_budget_card"
+      ],
+      "failure_or_recovery": [
+        "Flag unknown current compatibility; this is not a recommended installer for 2026"
+      ],
+      "asset_ids": [
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Available installers, GPU runtime, licensing and plug-in implementation"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "D004",
+      "stage": "processing",
+      "name_en": "Select registration strategy from drift",
+      "source_steps": [
+        102
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            26,
+            27
+          ],
+          "locator": "Steps 102"
+        }
+      ],
+      "source_fact": "The source offers external-matrix import without registration, one-time registration and per-timepoint registration, and also describes segmented processing.",
+      "authored_robot_handling": "Inspect early/middle/late overlays and drift evidence; select a strategy and identify its scope, reference timepoint or external-transform provenance.",
+      "preconditions": [
+        "preprocessed_pairs_ready",
+        "processing_interface_ready"
+      ],
+      "postconditions": [
+        "registration_plan_saved"
+      ],
+      "observable_evidence": [
+        "drift_evidence",
+        "strategy",
+        "matrix_scope"
+      ],
+      "failure_or_recovery": [
+        "Do not choose one-time registration solely for speed; without an external matrix, no-registration cannot skip the requirement"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "D005",
+      "stage": "processing",
+      "name_en": "Define angular search and coordinate mapping",
+      "source_steps": [
+        103,
+        104
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            27
+          ],
+          "locator": "Steps 103,104"
+        }
+      ],
+      "source_fact": "Transform B into A coordinates, including a 90-degree Y rotation and angular-search configuration; specify base/transform roles and time range.",
+      "authored_robot_handling": "Configure mapping, search slots and ranges from view identities and axis labels, then inspect the transform preview.",
+      "preconditions": [
+        "registration_plan_saved"
+      ],
+      "postconditions": [
+        "registration_inputs_validated"
+      ],
+      "observable_evidence": [
+        "base_transform_roles",
+        "axis_orientation",
+        "time_range"
+      ],
+      "failure_or_recovery": [
+        "Return to view mapping for swapped A/B or the wrong rotation axis; do not infer coordinates from source images"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Actual transform matrices, interpolation rules and angular-search thresholds"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "D006",
+      "stage": "processing",
+      "name_en": "Configure voxels, PSFs and resources",
+      "source_steps": [
+        105
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            27
+          ],
+          "locator": "Steps 105"
+        }
+      ],
+      "source_fact": "Fusion settings include voxels, concurrency, intermediate outputs, deconvolution iterations and both view PSFs.",
+      "authored_robot_handling": "Read the task's own calibration instead of inserting paper examples; verify A/B PSF axis correspondence, select resources from the memory card and retain intermediate outputs.",
+      "preconditions": [
+        "registration_inputs_validated",
+        "psf_evidence_complete"
+      ],
+      "postconditions": [
+        "fusion_config_validated"
+      ],
+      "observable_evidence": [
+        "voxel_PSF_units",
+        "memory_estimate",
+        "output_paths"
+      ],
+      "failure_or_recovery": [
+        "Correct wrong voxels, swapped PSF axes and preset memory warnings"
+      ],
+      "asset_ids": [
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Actual algorithms, PSF estimation, numerical precision and GPU resource usage"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "D007",
+      "stage": "processing",
+      "name_en": "Confirm each pair and run preset reconstruction",
+      "source_steps": [
+        106
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            27,
+            28
+          ],
+          "locator": "Steps 106"
+        }
+      ],
+      "source_fact": "Check the base/transform pairing list before running fusion and deconvolution after confirmation.",
+      "authored_robot_handling": "Check A/B sample and time IDs pair by pair and display preset results in an authored processing scene; do not claim to rerun the paper's algorithm.",
+      "preconditions": [
+        "fusion_config_validated"
+      ],
+      "postconditions": [
+        "reconstruction_bundle_available"
+      ],
+      "observable_evidence": [
+        "pair_confirmation_log",
+        "processing_status",
+        "derived_result_ids"
+      ],
+      "failure_or_recovery": [
+        "Any mismatched pair blocks the batch; do not overwrite raw or completed results"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "D008",
+      "stage": "processing",
+      "name_en": "Recheck registration artifacts and the full time series",
+      "source_steps": [
+        106
+      ],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            35,
+            36
+          ],
+          "locator": "Table1 Step106"
+        },
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            1
+          ],
+          "locator": "Note1 SF1 misregistration"
+        }
+      ],
+      "source_fact": "The source troubleshooting table calls for inspecting raw dual views, transforms, spatial-resolution parameters and deconvolution settings.",
+      "authored_robot_handling": "Inspect raw, overlay, fusion and reconstruction cards; if late drift invalidates a single matrix, return to D004 for segmented/per-timepoint registration and retain failed-attempt evidence.",
+      "preconditions": [
+        "reconstruction_bundle_available"
+      ],
+      "postconditions": [
+        "reconstruction_QA_recorded"
+      ],
+      "observable_evidence": [
+        "raw_vs_transform_vs_result",
+        "early_mid_late_checks",
+        "failure_history"
+      ],
+      "failure_or_recovery": [
+        "Attractive deconvolution cannot establish successful registration; unknown Data8 content is not passing evidence"
+      ],
+      "asset_ids": [
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "S001",
+      "stage": "closeout",
+      "name_en": "Archive raw data, derived results and unresolved issues",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            26,
+            27
+          ],
+          "locator": "Archive raw data, derived results and unresolved issues"
+        }
+      ],
+      "source_fact": "The source specifies data locations and processing outputs; this task adds a complete archive manifest.",
+      "authored_robot_handling": "Write manifests for samples, instruments, parameters, time pairing, backgrounds, calibration, processing and exceptions; retain raw data as read-only.",
+      "preconditions": [
+        "reconstruction_QA_recorded"
+      ],
+      "postconditions": [
+        "archive_verified"
+      ],
+      "observable_evidence": [
+        "archive_manifest",
+        "readback_checksum_or_asset_id"
+      ],
+      "failure_or_recovery": [
+        "Label all preset results synthetic/authored; do not claim paper reproduction"
+      ],
+      "asset_ids": [
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "authored_closeout",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "S002",
+      "stage": "closeout",
+      "name_en": "Stop acquisition and block excitation",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            12,
+            15
+          ],
+          "locator": "Stop acquisition and block excitation"
+        }
+      ],
+      "source_fact": "The source warns about laser safety and unpowered wiring but supplies no separate complete closeout SOP.",
+      "authored_robot_handling": "Stop virtual acquisition, turn off virtual excitation and confirm states; disable control outputs as defined by the scene.",
+      "preconditions": [
+        "archive_verified"
+      ],
+      "postconditions": [
+        "acquisition_stopped_and_light_off"
+      ],
+      "observable_evidence": [
+        "stop_state",
+        "light_off_indicator"
+      ],
+      "failure_or_recovery": [
+        "Do not record merely \"off\" without state confirmation"
+      ],
+      "asset_ids": [
+        "D-A09",
+        "D-A15",
+        "D-A20"
+      ],
+      "unknown_parameters": [
+        "Real shutdown order requires manufacturer/institutional SOPs"
+      ],
+      "provenance_kind": "authored_closeout",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "S003",
+      "stage": "closeout",
+      "name_en": "Withdraw the module and remove the chamber",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            15,
+            16
+          ],
+          "locator": "Withdraw the module and remove the chamber"
+        }
+      ],
+      "source_fact": "Source sample exchange first raises the module and requires avoiding contact with glass and objectives.",
+      "authored_robot_handling": "Observe clearance, raise the module, remove the chamber to its designated sample tray and retain identity lineage.",
+      "preconditions": [
+        "acquisition_stopped_and_light_off"
+      ],
+      "postconditions": [
+        "sample_removed_safely"
+      ],
+      "observable_evidence": [
+        "raise_before_remove",
+        "specimen_storage_tag"
+      ],
+      "failure_or_recovery": [
+        "Insufficient withdrawal prohibits lateral chamber removal; real sample disposition follows local rules"
+      ],
+      "asset_ids": [
+        "D-A03",
+        "D-A17"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "authored_closeout",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "S004",
+      "stage": "closeout",
+      "name_en": "Sort consumables and reset the bench",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            10,
+            11,
+            24,
+            25
+          ],
+          "locator": "Sort consumables and reset the bench"
+        }
+      ],
+      "source_fact": "The source includes glass, samples and chemicals but provides no waste-disposal procedure.",
+      "authored_robot_handling": "Sort virtual clean items, used items, broken glass and sample-bearing consumables into labeled containers; wipe only authored surfaces.",
+      "preconditions": [
+        "sample_removed_safely"
+      ],
+      "postconditions": [
+        "workspace_reset"
+      ],
+      "observable_evidence": [
+        "waste_sort_state",
+        "tool_return_state",
+        "bench_image"
+      ],
+      "failure_or_recovery": [
+        "Do not invent chemical/biological treatment recipes unsupported by the source"
+      ],
+      "asset_ids": [
+        "X-A10",
+        "X-A11"
+      ],
+      "unknown_parameters": [
+        "Local waste regulations, cleaning agents, inactivation and objective-care SOPs"
+      ],
+      "provenance_kind": "authored_closeout",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "S005",
+      "stage": "closeout",
+      "name_en": "Retain cache or release it safely",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            39
+          ],
+          "locator": "Camera File Path and filename error"
+        }
+      ],
+      "source_fact": "SI advises handling RAID acquisition directories before new experiments and avoiding duplicate filenames.",
+      "authored_robot_handling": "Mark scene cache as eligible for cleanup only after successful archive readback; this static task performs no irreversible deletion.",
+      "preconditions": [
+        "archive_verified",
+        "workspace_reset"
+      ],
+      "postconditions": [
+        "task_closed"
+      ],
+      "observable_evidence": [
+        "cache_disposition_record",
+        "final_exception_report"
+      ],
+      "failure_or_recovery": [
+        "Do not permanently delete without confirmation; explicitly list undecoded data and missing frames as unresolved"
+      ],
+      "asset_ids": [
+        "D-A19",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported_with_authored_safety_substitution",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "L001",
+      "stage": "custom_launch",
+      "name_en": "Custom-launch component topology",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            2,
+            3
+          ],
+          "locator": "Note1 SF2"
+        }
+      ],
+      "source_fact": "SI lists two lasers, waveplates, a combining dichroic, AOTF, beam splitter, fiber couplers and beam dump.",
+      "authored_robot_handling": "Install labeled components only on passive static fixtures and inspect path topology and supports.",
+      "preconditions": [
+        "inventory_verified",
+        "static_only_guard"
+      ],
+      "postconditions": [
+        "custom_launch_topology"
+      ],
+      "observable_evidence": [
+        "component_port_graph"
+      ],
+      "failure_or_recovery": [
+        "Without dimensions and laser-protection design, do not generate executable open-beam actions"
+      ],
+      "asset_ids": [
+        "D-A10",
+        "X-A12"
+      ],
+      "unknown_parameters": [
+        "Actual spatial positions, laser class, protection and thermal management"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "L002",
+      "stage": "custom_launch",
+      "name_en": "Functional polarization and beam-splitting checks",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "supp_01.pdf",
+          "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnprot.2014.172/MediaObjects/41596_2014_BFnprot2014172_MOESM453_ESM.pdf",
+          "sha256": "8159919e19ac4a4ae192b65a1121af20f192589982befb476e844267190520dc",
+          "pdf_pages_1based": [
+            3
+          ],
+          "locator": "Note1 SF2 component functions"
+        }
+      ],
+      "source_fact": "The source adjusts waveplates to improve AOTF transmission and dual-arm split balance.",
+      "authored_robot_handling": "Turn virtual waveplate rings, read preset balance indicators and record the mode; no real optical-power optimization.",
+      "preconditions": [
+        "custom_launch_topology"
+      ],
+      "postconditions": [
+        "custom_launch_checked"
+      ],
+      "observable_evidence": [
+        "polarization_state_card",
+        "split_balance_card"
+      ],
+      "failure_or_recovery": [
+        "Preset results cannot establish that a custom optical path achieves source performance"
+      ],
+      "asset_ids": [
+        "D-A10",
+        "D-A18"
+      ],
+      "unknown_parameters": [
+        "Actual polarization, transmission and splitting ratio"
+      ],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    },
+    {
+      "op_id": "O052",
+      "stage": "bead",
+      "name_en": "Hand off bead data for processing",
+      "source_steps": [],
+      "evidence": [
+        {
+          "file": "main_accepted.pdf",
+          "url": "https://www.mbl.edu/sites/default/files/2022-12/diSPIM_Kumar_etal2014_NatureProtocols.pdf",
+          "sha256": "eafbf424538423d04890480435773ef3a8c3cbe36ae36a8cd747b10f73ccd900",
+          "pdf_pages_1based": [
+            21
+          ],
+          "locator": "Step90 processing handoff"
+        }
+      ],
+      "source_fact": "The source permits dual-view bead registration and joint deconvolution using 97–106.",
+      "authored_robot_handling": "Freeze both stacks, backgrounds and PSF evidence as an identified raw_series_ready input bundle; biological samples are unnecessary.",
+      "preconditions": [
+        "bead_reference_pair_saved",
+        "bead_background_pair_saved",
+        "psf_evidence_complete"
+      ],
+      "postconditions": [
+        "raw_series_ready"
+      ],
+      "observable_evidence": [
+        "bead_handoff_manifest"
+      ],
+      "failure_or_recovery": [
+        "Do not mistake a cropped single bead for a complete raw view"
+      ],
+      "asset_ids": [
+        "D-S01",
+        "D-A20"
+      ],
+      "unknown_parameters": [],
+      "provenance_kind": "source_reported",
+      "repeat": null,
+      "execution_status": "design_only",
+      "motion_contract": "Discrete grasping/alignment/connection/adjustment/observation/recording using authored interfaces and static feedback; no physics or hardware drivers."
+    }
+  ],
+  "global_unknowns": [
+    "robot embodiment, gripper geometry, reach and dexterity",
+    "manufacturer CAD, joint limits, port dimensions, fastener torque",
+    "physical optical propagation and fluid/biological processes: not modeled",
+    "actual hardware controls and live software: not connected",
+    "source-reference identity differences remain unresolved"
+  ],
+  "global_rules": [
+    "all observed scientific images/readings are labeled source_reference or authored_preset",
+    "unknown values are null or named inputs, never filled from unscaled photographs",
+    "numerical optical examples are provenance facts, not validated robot setpoints",
+    "clinical/pathogenic/weaponizable biological agents and constructing new reporter strains are outside this design",
+    "routine specimen handling is represented explicitly; hazardous historical practices are substituted transparently",
+    "a safe rejection or blocked input is an honest terminal outcome, not experiment success"
+  ]
+}

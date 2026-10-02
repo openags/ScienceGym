@@ -1,0 +1,103 @@
+{
+  "schema_version": "helical_acoustic_task_design.v2",
+  "paper_id": "helical_acoustics2016",
+  "doi": "10.1038/ncomms11731",
+  "task_design_status": "whole_paper_operation_family_authored_not_executed",
+  "source_manual_microsequence_replicated": false,
+  "stages": [
+    {
+      "stage": "fabrication",
+      "manual_actions_present": "Take stock/tray, open chamber, load, lock tray, select geometry, close door, start, await release, unload tray, hand off and release individual parts",
+      "closed_service": "Inert manufacturing and postprocessing outputs",
+      "gap_ids": [
+        "U_FAB",
+        "U_RESIN",
+        "U_GEOM"
+      ],
+      "severity": "runtime_proxy_and_true_manufacture_unresolved"
+    },
+    {
+      "stage": "tube",
+      "manual_actions_present": "Load sample, align faces, lock, wire, configure with numeric keys, manipulate the end plug, and lift/reposition/insert/secure/acquire/seal using the same probe",
+      "closed_service": "Pressure signals and mock derived quantities",
+      "gap_ids": [
+        "U_TUBE",
+        "U_POS",
+        "U_ACQ",
+        "U_ELECTRIC"
+      ],
+      "severity": "dynamic_interface_unbuilt"
+    },
+    {
+      "stage": "pulse",
+      "manual_actions_present": "Establish an empty path, preserve receiver position, physically exchange A/B, trigger and save separate waveforms",
+      "closed_service": "Mock time-domain data",
+      "gap_ids": [
+        "U_PULSE",
+        "U_ACQ"
+      ],
+      "severity": "condition_card_required"
+    },
+    {
+      "stage": "lens",
+      "manual_actions_present": "Characterize 40 cells individually, select/insert/secure by number and support the complete holder",
+      "closed_service": "Preset phases and displays",
+      "gap_ids": [
+        "U_LENS",
+        "U_GEOM"
+      ],
+      "severity": "holder_and_insertion_constraints_unbuilt"
+    },
+    {
+      "stage": "array",
+      "manual_actions_present": "Grasp each of 60 speakers by its rear housing, seat it, connect prefabricated inert wiring, verify each channel and drive them together",
+      "closed_service": "Wiring and synchronization receipts",
+      "gap_ids": [
+        "U_ELECTRIC",
+        "U_COUPLING"
+      ],
+      "severity": "blocking_adapter_and_wiring_contract"
+    },
+    {
+      "stage": "waveguide",
+      "manual_actions_present": "Support lower plate, place spacers/foam/lens and control upper-plate lifting from outside",
+      "closed_service": "Large-plate transport proxy",
+      "gap_ids": [
+        "U_PLATE"
+      ],
+      "severity": "blocking_lift_support_contract"
+    },
+    {
+      "stage": "scan",
+      "manual_actions_present": "Mount the probe outside the plates, route entry, move pointwise with external stage controls, read coordinates back, sample each point and resume interrupted scans",
+      "closed_service": "Preset local-pressure responses",
+      "gap_ids": [
+        "U_PROBE_ACCESS",
+        "U_SCAN"
+      ],
+      "severity": "blocking_no_verified_entry_or_full_travel",
+      "existing_asset_problem": "scan_long_axis range [-0.6,1.1] m spans only 1.7 m and scan_lateral [-1.2,0.8] m only 2.0 m; neither directly establishes 2.3 m coverage. Display ranges or main-lobe images cannot prove scan reachability."
+    },
+    {
+      "stage": "obstacle",
+      "manual_actions_present": "Stop sound, insert/secure a 40 mm aluminum cylinder, verify coordinates, repeat the same grid and remove the obstacle",
+      "closed_service": "Mock obstacle-condition data",
+      "gap_ids": [
+        "U_OBSTACLE",
+        "U_PROBE_ACCESS"
+      ],
+      "severity": "blocking_access_and_frame_contract"
+    },
+    {
+      "stage": "analysis_archive",
+      "manual_actions_present": "Select/confirm data, save raw/derived lineage, stop output, withdraw probe, unload, return to storage and clean up",
+      "closed_service": "Mock analysis roles",
+      "gap_ids": [
+        "U_REDUCE",
+        "U_CLEAN"
+      ],
+      "severity": "real_data_and_real_SOP_unavailable"
+    }
+  ],
+  "global_gate": "A complete design package does not establish dynamic interfaces. Instantiate an executable benchmark only after adding explicitly authored scene contracts, contact/constraint/feedback interfaces and reachability checks; do not hide these gaps."
+}

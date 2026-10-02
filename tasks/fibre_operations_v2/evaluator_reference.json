@@ -4,77 +4,77 @@
   "acceptance": [
     {
       "id": "E_MAKE",
-      "required": "原材料谱系实际经过所需宏制造服务与实体装卸，不能从stock跳成品"
+      "required": "The raw-material lineage must actually pass through the required macro fabrication services and physical loading/unloading; it cannot jump from stock to finished product"
     },
     {
       "id": "E_IDENTITY",
-      "required": "Si/silica、Ge/ASG、Ge/silica、Ge/BSG、p/n以及Cu/W、single/dual身份不可互换"
+      "required": "Si/silica, Ge/ASG, Ge/silica, Ge/BSG, p/n, Cu/W, and single/dual identities are not interchangeable"
     },
     {
       "id": "E_LINEAGE",
-      "required": "split保父区间、合流保双芯父节点；不隐式复制物件或增长芯长度"
+      "required": "Splits retain parent intervals, and convergence retains both core parents; do not implicitly duplicate objects or increase core length"
     },
     {
       "id": "E_CONTROL",
-      "required": "所选对照包全部条件完成，same-object配对内部保持样品与非变因素"
+      "required": "Complete every condition in the selected control package; same-object pairs retain the sample and unchanged factors internally"
     },
     {
       "id": "E_DAMAGE",
-      "required": "破坏性样/截面/薄片不可重置为pristine；裂纹/球化/即时性能变差可以是正常研究观察"
+      "required": "Destructive specimens/cross-sections/lamellae cannot be reset to pristine; cracking/spheroidization/immediate performance deterioration may be normal research observations"
     },
     {
       "id": "E_DATA",
-      "required": "dark/power、对象、波长、方向、cycle/time/sample维度不可缺或混；unknown和invalid不伪装数值"
+      "required": "dark/power, object, wavelength, direction, and cycle/time/sample dimensions must not be omitted or mixed; unknown and invalid must not masquerade as numbers"
     },
     {
       "id": "E_SAFETY",
-      "required": "每次取样需stopped/zero_load或torque/source_off/safe_release适用条件；无危险真实执行"
+      "required": "Each sample retrieval requires the applicable stopped/zero_load or torque/source_off/safe_release conditions; no hazardous real execution"
     },
     {
       "id": "E_RECOVERY",
-      "required": "故障保持历史、停止隔离、替换新ID；不覆盖失败run"
+      "required": "Preserve failure history, stop and isolate, replace with a new ID, and do not overwrite failed runs"
     },
     {
       "id": "E_CLOSE",
-      "required": "所有样品/碎片/余料/线盘/废料有归宿，门关、驱动停、源off、工具回位"
+      "required": "All samples/fragments/remainders/wire reels/waste have destinations; doors closed, drives stopped, sources off, and tools returned"
     }
   ],
   "hard_rejections": [
-    "只有一次按钮没有前后装卸",
-    "把成品当初始原料完成制造",
-    "把源码数值抄成新测量",
-    "用一条id占八位置",
-    "80cm芯自动变50m",
-    "用Ge/silica碎片装完整Ge器件",
-    "把W/Cu或p/n混同",
-    "让破断/薄片样再参与完整光电器件",
-    "以30MPa声明实际3000m部署",
-    "以人台/仿体mock声明人体有效性",
-    "把视频播放时间当物理响应"
+    "Only a single button press without loading and unloading before and after",
+    "Complete fabrication by treating a finished product as the starting material",
+    "Copy source values as new measurements",
+    "Use one id to occupy eight positions",
+    "Automatically turn an 80cm core into 50m",
+    "Use Ge/silica fragments to assemble an intact Ge device",
+    "Conflate W/Cu or p/n",
+    "Reuse fractured/lamella specimens in an intact optoelectronic device",
+    "Claim actual deployment at 3000m on the basis of 30MPa",
+    "Claim human validity from a mannequin/phantom mock",
+    "Treat video playback time as physical response time"
   ],
   "valid_recovery_examples": [
     {
       "fault": "convergence_contact_open",
-      "response": "断输出、重新接触检查；若材料断芯隔离本区间，用有来源的新兄弟样"
+      "response": "Disconnect the output and recheck contact; if the material core has fractured, isolate this interval and use a new, traceable sibling sample"
     },
     {
       "fault": "wrong_orientation",
-      "response": "测量前重放；若已采则标原run无效，保历史重测"
+      "response": "Reposition before measurement; if data have already been acquired, mark the original run invalid, retain its history, and remeasure"
     },
     {
       "fault": "unavailable_real_recipe",
-      "response": "仍可完成惰性mock设计；不得声称真实执行就绪"
+      "response": "The inert mock design can still be completed; do not claim readiness for real execution"
     },
     {
       "fault": "compression_immediate_response_decreased",
-      "response": "保留该现象，继续同件overnight恢复路径，不视为操作失败"
+      "response": "Retain this phenomenon and continue the same-object overnight recovery path; do not treat it as an operation failure"
     },
     {
       "fault": "Ge_silica_fragments",
-      "response": "按对照保留片集合，不拼造完整芯"
+      "response": "Retain the set of fragments according to the control; do not splice together a fabricated intact core"
     }
   ],
   "numerical_science_targets": "none; source reported results are separate and never episode rewards",
-  "partial_credit": "可按完成的制造/操作/记录/闭环阶段给分；源条件包缺关键对照不可称整包成功",
-  "reference_route_equivalence": "允许满足依赖、安全与身份约束的等价规划，不要求逐步复刻唯一轨迹"
+  "partial_credit": "Scores may be awarded for completed fabrication/operation/recording/closure stages; a source-condition package missing key controls cannot be called a complete-package success",
+  "reference_route_equivalence": "Allow equivalent plans that satisfy dependency, safety, and identity constraints; do not require step-by-step reproduction of a single trajectory"
 }

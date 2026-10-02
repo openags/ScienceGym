@@ -1,25 +1,24 @@
-# 首条完整路线：原料到Si光电器件，再到归档
+# First complete route: raw materials to a Si optoelectronic device and archiving
 
-来源：[High-quality semiconductor fibres via mechanical design](https://www.nature.com/articles/s41586-023-06946-0)，主文PDF pp.1–6、Methods pp.8–9、ED5 pp.14–15、ED6 p.16。此路线是评测参考，不给机器人作完整答案。
+Source: [High-quality semiconductor fibres via mechanical design](https://www.nature.com/articles/s41586-023-06946-0), main PDF pp.1–6, Methods pp.8–9, ED5 pp.14–15, ED6 p.16. This route is an evaluator reference, not a complete answer supplied to the robot.
 
-1. 从材料架取未掺杂Si原棒、silica管、PC、CPC与Cu线，装入分隔载具；原始场景没有成品纤维
-2. 将棒料匣交接封闭表面预处理代理，取回安全释放后的同号原棒
-3. 在轴向定位座中把Si棒插入silica管，连载架交接封闭密封服务；取回密封预制棒
-4. 装入玻璃拉丝冷态进给接口，装空卷盘和外部导带；关罩，启动mock molten-core工单
-5. 保留黏性流动、芯结晶、冷却三个服务事件；停轴、冷却、安全释放后取出玻璃包覆纤维卷盘
-6. 支撑展开并检查可见芯段；按带父区间的切段计划分段。来源80 cm是去包层槽限制，不是所有测试标距
-7. 整段连支撑载具送入封闭去包层服务；取回安全释放的裸Si芯，检查连续性并保留父Si/silica身份
-8. 把PC/CPC托盘送预干燥代理；取回后加工两PC板的三个半圆槽与槽间空间
-9. 两CPC插片置入槽间，合拢PC板并交接封闭整合服务，取回聚合物预制棒
-10. 冷态安装预制棒、裸Si支撑载具、两Cu线盘及空输出盘。两Cu分别走侧通道，Si走中央通道
-11. 关罩启动mock会聚；聚合物流动，Si/Cu仍为固体，界面形成。停稳后收取输出器件段；不得凭空增长芯长度
-12. 分出专用截面样检查结构，按用途给余段分配兄弟样。默认光电样与破坏性力学样不同ID
-13. 将光电样端部固定于剥线座，露出金属电极后接触检查；记录有效光孔/长度unknown而非编造
-14. 在封闭光路中装Si样、532 nm模块、镜组与功率计。先采暗态，再采光照和功率配对mock记录
-15. 可选同件front/side方向、I–V、噪声/瞬态/频响；若选择拉伸，另用分配的兄弟样，完成夹持、关罩拉至破断、卸荷和碎片回收
-16. 关闭光源和偏压，先承托后松夹卸样。完整/已循环/破断样分别归档，余料与线盘回位，夹具归架，封闭废料匣交接，工作台复位
+1. Retrieve an undoped Si stock rod, silica tube, PC, CPC and Cu wire from the material shelves and place them in a compartmented carrier; the initial scene contains no finished fibre
+2. Hand the rod cassette to a closed surface-pretreatment proxy; retrieve the same identified rod after safe release
+3. Insert the Si rod into the silica tube in an axial locating nest and hand the supported assembly to a closed sealing service; retrieve the sealed preform
+4. Load the glass-drawing cold-feed interface, install an empty spool and external guide, close the guard and start the mock molten-core work order
+5. Retain separate viscous-flow, core-crystallization and cooling service events; remove the glass-clad fibre spool only after shaft stop, cooling and safe release
+6. Support the unwound fibre and inspect visible core sections; segment it according to a cutting plan retaining parent intervals. The source's 80 cm limit belongs to the decladding trough, not every test gauge length
+7. Send the supported segment to the closed decladding service; retrieve the safely released bare Si core, inspect continuity and retain its parent Si/silica identity
+8. Send the PC/CPC tray to a predrying proxy; after retrieval, machine three semicircular grooves and the inter-groove spaces in the two PC plates
+9. Place two CPC inserts between the grooves, close the PC plates and hand them to a closed consolidation service; retrieve the polymer preform
+10. Cold-load the preform, supported bare Si carrier, two Cu-wire spools and empty output spool. Route the two Cu wires through the side channels and Si through the central channel
+11. Close the guard and start mock convergence: polymer flows, Si/Cu remain solid and interfaces form. Collect the output device segment after a stable stop; core length cannot grow without an input source
+12. Allocate a dedicated cross-section specimen for structural inspection and assign remaining segments as purpose-specific siblings. The default optoelectronic and destructive mechanical specimens have different IDs
+13. Secure the optoelectronic specimen end in a stripping nest, expose metal electrodes and check contact; record the effective optical aperture/length as unknown rather than inventing it
+14. Load the Si specimen, 532 nm module, lens assembly and power meter into the enclosed optical path. Acquire dark-state records first, followed by paired illuminated and power mock records
+15. Optional same-specimen front/side orientation, I–V, noise/transient/frequency-response conditions are separate selections. If tensile testing is selected, use the allocated sibling, clamp it, close the guard, pull to fracture, unload and recover fragments
+16. Turn off the light source and bias; support the specimen before unclamping and unloading. Archive intact, cycled and fractured specimens separately, return remnants and wire spools, rack the fixtures, hand off the closed waste cassette and reset the bench
 
-宏阶段有来源；抓握、移动、载具、按钮、互锁、封闭服务接口与恢复顺序均为authored。当前科学输出明确为mock，无真实高温、明火、化学、激光或物理仿真。
+Macro-stages have source support; grasps, movement, carriers, buttons, interlocks, closed-service interfaces and recovery sequences are authored. Current scientific outputs are explicitly mock. No real high temperature, open flame, chemistry, laser operation or physical simulation is performed.
 
-长度边界：主文约百米玻璃包覆纤维、Methods 80 cm去包层段、ED6a约50 m光电纤维卷盘是不同来源记录。来源未交代80 cm固体芯与长会聚卷盘的衔接，任务不发明焊接/拼接；初始完整episode以父芯长度覆盖的器件段为输出，50 m只作reported reference。
-
+Length boundary: approximately hundred-metre glass-clad fibres in the main text, 80 cm decladding segments in Methods, and the approximately 50 m optoelectronic fibre spool in ED6a are distinct source records. The source does not explain how the 80 cm solid core connects to the long converged spool; the task invents no welding or splicing. The initial complete episode outputs a device segment supported by its parent core length; 50 m remains a reported reference only.

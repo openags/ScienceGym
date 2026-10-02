@@ -1,156 +1,156 @@
-# 热电器件：整篇论文驱动的长程移动操作任务族
+# Thermoelectric Devices: A Whole-Paper-Driven Family of Long-Horizon Mobile Manipulation Tasks
 
 > Public task-specification snapshot: source packets, scenes, models and runtime dependencies referenced below are not included. See ../../EXPORT_NOTES.md for current export boundaries. This is a design specification, not an executable or experimentally validated benchmark.
 
-来源：[Composable neural emulators accelerate thermoelectric generator design](https://www.nature.com/articles/s41586-026-10223-1)，Nature 652，643–649（2026），DOI 10.1038/s41586-026-10223-1。
+Source: [Composable neural emulators accelerate thermoelectric generator design](https://www.nature.com/articles/s41586-026-10223-1), Nature 652, 643–649 (2026), DOI 10.1038/s41586-026-10223-1.
 
-本轮重新阅读保留的主文12页和SI16页文本、全部图注与Methods，并复查主文PDF p4的Fig.3和SI PDF p13的Fig.21/22像素。来源定位、文件哈希和资产来源分开记录于provenance.json；没有逐点数字化所有图。首次草稿FIRST_ROUTE_PAIRED.md原样保留，不作为来源权威；本文件与配套JSON替代其未完成范围。
+This round reread the retained text of the 12-page main paper and 16-page SI, all figure captions, and Methods, and reexamined the pixels of Fig.3 on main-paper PDF p4 and Fig.21/22 on SI PDF p13. Source locations, file hashes, and asset provenance are recorded separately in provenance.json; not all plots have been digitized point by point. The initial draft FIRST_ROUTE_PAIRED.md is retained unchanged and is not a source authority; this document and its accompanying JSON supersede its incomplete scope.
 
-## 1. 这次交付的范围
+## 1. Scope of This Deliverable
 
-从原料分装开始，包含三种材料路线、不同界面/烧结/切向、分段连接、单材料腿对照、双对模块、空间接触电阻和电流/热边界测量，以及恢复、归档与清理。来源inventory的7个分支全部有去向：6个有动手内容，1个纯计算族另行展开为12个非手工记录。
+Starting with raw-material portioning, the scope includes three material routes, different interfaces/sintering/cutting orientations, segment joining, single-material-leg controls, a two-couple module, spatial contact resistance, and current/thermal-boundary measurements, along with recovery, archiving, and cleaning. All 7 branches in the source inventory have an explicit disposition: 6 contain hands-on work, and 1 purely computational family is expanded separately into 12 nonmanual records.
 
-任务编排为15个配置、57个操作模板。6个制造配置对应三种粉末及三种烧结坯体；9个测量配置对应6个材料×长度功率比较、1个接触扫描、1个分段效率扫描、1个双对模块扫描。这不是15篇论文、15个原作者独立实验，也不是已运行15条机器人轨迹。
+The task is organized into 15 configurations and 57 operation templates. The 6 manufacturing configurations correspond to three powders and three sintered billets; the 9 measurement configurations correspond to 6 material-by-length power comparisons, 1 contact scan, 1 segmented efficiency sweep, and 1 two-couple module sweep. These are not 15 papers, 15 independent experiments by the original authors, or 15 executed robot trajectories.
 
-本阶段使用明确标记的惰性mock物料和预设科学读数。没有真实设备运行、热/电/粉末加工、机器人轨迹、物理仿真、TEGNet或COMSOL执行。现有参考资产保持不变。
+This stage uses explicitly labeled inert mock materials and preset scientific readings. No real equipment operation, thermal/electrical/powder processing, robot trajectories, physics simulation, TEGNet execution, or COMSOL execution has taken place. Existing reference assets remain unchanged.
 
-## 2. 给agent的目标，不给完整参考答案
+## 2. Give the Agent a Goal, Not the Complete Reference Answer
 
-只向agent下发agent_visible.json中选中的一个episode：目标、原材料卡、初态、条件约束与公开接口。例：
+Give the agent only one selected episode from agent_visible.json: its goal, raw-material cards, initial state, condition constraints, and public interfaces. For example:
 
-> 从正确成分的封闭原料、空罐和空载工位开始，制备两对n–p热电模块，在指定热边界下取得带样品身份的mock电流、电压与冷侧热流记录。保留未知标定状态，保存物件与数据并复位工位。
+> Starting from sealed raw materials of the correct compositions, empty jars, and unloaded stations, prepare a two-couple n–p thermoelectric module and obtain mock current, voltage, and cold-side heat-flow records associated with the sample identity under the specified thermal boundaries. Preserve unknown calibration status, save the objects and data, and reset the stations.
 
-初态不能放一个已经制好的模块让机器人直接测量。材料、空模具、未装载夹具和空测量腔体可以预置；加工输出只有在实体输入、正确工单及设备事件完成后才出现。
+The initial state must not supply a finished module for the robot to measure directly. Materials, empty dies, unloaded fixtures, and empty measurement chambers may be prepositioned; processing outputs appear only after the physical inputs, correct work order, and equipment events have been completed.
 
-operations.json、branches.json、evaluator_reference.json与隐藏mock fixture属于评测侧。不能把完整工艺链、隐藏故障、源文9.3%/8.7%和4.0/4.9 μΩ cm²答案一起塞给agent。材料和条件卡可以包含来源报告的尺寸/温度/时长，属于任务约束；没有报告的值保留unknown或明确authored，不暗填为论文参数。
+operations.json, branches.json, evaluator_reference.json, and hidden mock fixtures belong to the evaluation side. Do not give the agent the complete process chain, hidden faults, and source answers of 9.3%/8.7% and 4.0/4.9 μΩ cm² together. Material and condition cards may contain source-reported dimensions/temperatures/durations as task constraints; unreported values remain unknown or explicitly authored, rather than being silently filled in as paper parameters.
 
-成功主要判断拿取、支撑、转移、对准、装卸、夹持、接线、条件切换、数据关联和收尾。等价且安全、保谱系的路径可接受；不是只有一串按钮顺序能得分。科学曲线可以预设，但按按钮本身不等于有效采集。
+Success primarily evaluates retrieval, support, transfer, alignment, loading/unloading, clamping, wiring, condition changes, data association, and closeout. Equivalent paths that are safe and preserve lineage are acceptable; scoring is not restricted to a single button sequence. Scientific curves may be preset, but pressing a button alone does not constitute valid acquisition.
 
-## 3. 场景与源事实的边界
+## 3. Boundaries Between the Scene and Source Facts
 
-WS_STOCK → WS_PREP/WS_ATMOSPHERE 或 WS_MELT → WS_MILL → WS_POWDER → WS_DIE/WS_SPS → WS_CUT → WS_JOIN 或 WS_MODULE → WS_CONTACT/WS_PEM → WS_DATA → WS_STORAGE/WS_CLEAN。
+WS_STOCK → WS_PREP/WS_ATMOSPHERE or WS_MELT → WS_MILL → WS_POWDER → WS_DIE/WS_SPS → WS_CUT → WS_JOIN or WS_MODULE → WS_CONTACT/WS_PEM → WS_DATA → WS_STORAGE/WS_CLEAN.
 
-不同工位间必须插入MOVE：抓有号载具把手、跨工位移动、落入目的槽，不瞬移对象。微小腿可以有显式放大操纵代理，科学几何仍以毫米元数据保留；不能把放大比例当作论文样品尺寸。
+A MOVE must be inserted between different stations: grasp the numbered carrier's handle, move between stations, and place it in the destination slot; do not teleport objects. Small legs may have explicit enlarged manipulation proxies, while scientific geometry remains recorded as millimeter metadata; the enlargement factor must not be treated as the paper's sample dimensions.
 
-原文支持材料、宏加工和测量类别。运输车、盖槽、模具键槽、夹具旋钮、冷态交接门、代理按钮、抓握姿态、气氛证书、稳定事件、恢复和清理微动作都是任务作者设计，不能说是原作者真实操作。
+The source supports the materials, macro-scale processing, and measurement categories. Transport carts, lid slots, die keyways, fixture knobs, cold-state handoff doors, proxy buttons, grasp poses, atmosphere certificates, stability events, and recovery and cleaning micro-actions are all designed by the task authors; they must not be represented as the original authors' actual operations.
 
-封闭服务仍保留实体操作：装正确输入，关闭外部交接接口，提交对象绑定工单，等处理完成，再等安全释放，打开允许的外部口，承托卸载同源输出。高温、压制、粉末动力学、抽真空和科学响应由mock事件代替。没有把“服务内部关闭”宣称成“全部人工微动作已复刻”；granularity_gaps.json逐段列出缺口。
+Enclosed services still retain physical operations: load the correct input, close the external handoff interface, submit an object-bound work order, wait for processing to complete, then wait for safe release, open the permitted external port, and support and unload the output with the same lineage. High temperatures, pressing, powder dynamics, evacuation, and scientific responses are replaced by mock events. Closing off service internals does not establish that all manual micro-actions have been replicated; granularity_gaps.json lists the gaps stage by stage.
 
-## 4. 三种制造路线不能互换
+## 4. The Three Manufacturing Routes Are Not Interchangeable
 
-### 4.1 P：MgAgSb不是无添加纯材料
+### 4.1 P: MgAgSb Is Not an Additive-Free Pure Material
 
-Methods中的全称为MgAgSb + 0.625 wt% C18H36O2。添加物的具体异构体、纯度和加料时序未报告，不根据化学式自动补名称。Mg、Ag、Sb原料与添加物均保持独立批次，再合成粉末子谱系。[Materials synthesis，主文PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
+The full designation in Methods is MgAgSb + 0.625 wt% C18H36O2. The additive's specific isomer, purity, and addition sequence are not reported; do not automatically infer its name from the molecular formula. The Mg, Ag, and Sb raw materials and the additive all retain separate batches before forming the powder's child lineage. [Materials synthesis, main-paper PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
 
-STOCK/PREP_NEST/PORTION：分别打开原料瓶，用模拟勺转至带号盘/罐，逐瓶关盖归位。来源没有真实批质量、球料比和称量公差；mock份额由任务manifest明确分配。不是把未知份额写成可实做配方。
+STOCK/PREP_NEST/PORTION: Open each raw-material bottle separately, transfer material with a simulated scoop into a numbered tray/jar, and close and return each bottle individually. The source provides no actual batch mass, ball-to-powder ratio, or weighing tolerance; the task manifest explicitly assigns mock portions. Unknown portions are not converted into an executable real-world recipe.
 
-VIAL_CLOSE/AR_HANDOFF/AR_RETURN：合罐置交接盒，把盒装Ar代理外侧抽屉、关门，等可信封存状态再领回。论文报告Ar中球磨5 h；普通盖罐外观不证明气密，也不证明Ar状态。气氛状态由环境事件给出，不能让agent自行改成true。
+VIAL_CLOSE/AR_HANDOFF/AR_RETURN: Close the jar and place it in the handoff box, load the box into the outer drawer of the Ar proxy, close the door, wait for a trusted sealing status, and retrieve it. The paper reports ball milling for 5 h in Ar; the appearance of an ordinary closed jar proves neither gas tightness nor an Ar atmosphere. Atmosphere status is supplied by environment events; the agent must not set it to true itself.
 
-MILL_OPEN/SEAT/CLAMP/CLOSE/RUN/UNLOAD：开锁扣抬罩、承托罐放入任务夹座、转夹紧代理、退出并关罩、选择本批5 h工单。结束后必须停机和释放，先承托再松夹取罐。出粉在封闭代理区执行开盖、转移、分装和封盖，留下余料账本。
+MILL_OPEN/SEAT/CLAMP/CLOSE/RUN/UNLOAD: Open the latch and lift the cover, support the jar while placing it in the task clamp seat, turn the clamping proxy, withdraw and close the cover, and select the 5 h work order for this batch. After completion, the equipment must stop and release; support the jar before loosening the clamp and retrieving it. Powder discharge comprises opening, transfer, portioning, and closing within the enclosed proxy area, retaining a remaining-material ledger.
 
-### 4.2 N：简称中隐藏In与Te
+### 4.2 N: The Abbreviation Hides In and Te
 
-主文简称Mg3Bi1.4Sb0.6实际对应Mg3.2In0.02Sb0.595Bi1.4Te0.005。不能在原料、粉末或最终模块谱系中删除In/Te、Mg过量或Sb分数。N也走Ar球磨5 h，但粉末、罐和工单与P不同。作者贡献说明N材料由合作作者提供，不能把本任务统一操作台当成原作者同一人原位制造的证据。[主文PDF pp8–9](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
+The main paper's abbreviation Mg3Bi1.4Sb0.6 actually corresponds to Mg3.2In0.02Sb0.595Bi1.4Te0.005. In/Te, excess Mg, and the Sb fraction must not be removed from raw-material, powder, or final-module lineage. N also undergoes ball milling in Ar for 5 h, but its powder, jars, and work orders differ from P's. The author-contribution statement indicates that N material was supplied by collaborators; the task's unified workbench must not be treated as evidence that the original work was manufactured in place by a single person. [Main-paper PDF pp8–9](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
 
-### 4.3 B：Bi0.4Sb1.6Te3先熔锭，后球磨
+### 4.3 B: Bi0.4Sb1.6Te3 Is Melted into an Ingot Before Ball Milling
 
-B的Bi/Sb/Te先分装到盘，装进石英管的V槽托架，交接封装代理。TUBE_LOAD/MELT_LOAD/RUN/UNLOAD明确包含拿管、装料、冷态上料、关门、等待完成与冷却、取架、通过开管代理取得同号锭，再放入B专用球磨罐。来源为1273 K熔制12 h，随后锭球磨1 h。[Materials synthesis，主文PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
+B's Bi/Sb/Te is first portioned onto a tray, loaded into a quartz tube in a V-groove rack, and handed to the encapsulation proxy. TUBE_LOAD/MELT_LOAD/RUN/UNLOAD explicitly includes picking up the tube, loading material, cold-state loading, closing the door, waiting for completion and cooling, retrieving the rack, obtaining the ingot with the same ID through the tube-opening proxy, and then placing it in the B-specific ball-milling jar. The source reports melting at 1273 K for 12 h, followed by ball milling of the ingot for 1 h. [Materials synthesis, main-paper PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
 
-石英管尺寸、密封法、炉型、气氛、冷却以及真实开管/取锭动作未知。不擅加真空封管、淬火、破碎，也不把P/N的Ar气氛无条件继承给B。B不能跳过熔锭直接复用P/N的5 h球磨路线。
+Quartz-tube dimensions, sealing method, furnace type, atmosphere, cooling, and actual tube-opening/ingot-retrieval actions are unknown. Do not add vacuum tube sealing, quenching, or crushing, or unconditionally transfer the P/N Ar atmosphere to B. B must not skip ingot melting and directly reuse the P/N 5 h ball-milling route.
 
-## 5. 装模、烧结、切向和子样
+## 5. Die Loading, Sintering, Cutting Orientation, and Subsamples
 
-DIE_ASSEMBLE：装下冲和模套代理，给压制轴建立不可丢失的方向标识。P_STACK逐层放Sb、P和Sb；B_STACK只装B、不加界面料。N使用不锈钢界面粉末；任务以两端代理层实现，具体端层几何和厚度并非来源复原。
+DIE_ASSEMBLE: Install the lower-punch and die-sleeve proxies and establish a pressing-axis orientation identifier that cannot be lost. P_STACK places Sb, P, and Sb layer by layer; B_STACK loads only B, without interface material. N uses stainless-steel interface powder; the task implements this as proxy layers at both ends, but their specific geometry and thickness are not reconstructed from the source.
 
-DIE_CLOSE/SPS_LOAD/RUN/UNLOAD/DEMOLD：插上冲、限位托盘、装正确设备外侧接口、关门启动、等工艺及冷态释放、取盘，回脱模槽逐件撤冲/模套并承托坯体。原文条件：
+DIE_CLOSE/SPS_LOAD/RUN/UNLOAD/DEMOLD: Insert the upper punch, secure the tray with stops, load it through the correct equipment's external interface, close the door and start, wait for process completion and cold-state release, retrieve the tray, return to the demolding slot, and remove each punch/die sleeve while supporting the billet. Source conditions:
 
-- P：SPS-322LX，573 K，5 min，60 MPa，Sb界面
-- B：SPS-322LX，693 K，10 min，60 MPa，无界面材料
-- N：SPS-1080 System，973 K，10 min，60 MPa，不锈钢界面
+- P: SPS-322LX, 573 K, 5 min, 60 MPa, Sb interfaces
+- B: SPS-322LX, 693 K, 10 min, 60 MPa, no interface material
+- N: SPS-1080 System, 973 K, 10 min, 60 MPa, stainless-steel interfaces
 
-这些是来源工单标签，不是已经批准的真实设备SOP。模具材质/几何、内衬、升降温、压力轨迹和脱模力仍未知。[TE generator fabrication，主文PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
+These are source work-order labels, not approved real-equipment SOPs. Die material/geometry, liners, heating and cooling, pressure trajectories, and demolding forces remain unknown. [TE generator fabrication, main-paper PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
 
-CUT_FIXTURE/SELECT/RUN/UNLOAD：拿方向座、安放坯体、对准方向、两侧支撑、选尺寸、撤手关罩、启动封闭切割、停止释放后逐腿分格。P的Sb/P/Sb件平行压制方向切，B垂直；N切向未报告，不能套P规则。原文“cut parallel/perpendicular”的局部切面/长轴工程解释未完整给出，任务夹具实现单独标authored。
+CUT_FIXTURE/SELECT/RUN/UNLOAD: Retrieve the orientation seat, place the billet, align its orientation, support both sides, select dimensions, withdraw hands and close the cover, start enclosed cutting, and place each leg into a separate compartment after stopping and release. P's Sb/P/Sb piece is cut parallel to the pressing direction, whereas B is cut perpendicular; N's cutting orientation is unreported and must not inherit the P rule. The source does not fully specify the local cutting-plane/long-axis engineering interpretation of "cut parallel/perpendicular"; the task fixture implementation is separately labeled authored.
 
-切割输出有独立子ID、父坯体与原位置、方向、尺寸来源、余料和破损状态。制造四腿时要有两条不同P和两条不同N；不能把一个ID放四个槽。真实产率/质量未知，mock只做明确份额和数量账本。
+Cutting outputs have independent child IDs, parent billets and original positions, orientations, dimension sources, and remaining-material and damage states. Manufacturing four legs requires two distinct P legs and two distinct N legs; the same ID must not occupy four slots. Actual yield/mass is unknown; the mock maintains only explicitly assigned portions and quantity ledgers.
 
-## 6. 分段、单腿和双对模块各自成路线
+## 6. Segmented Legs, Single Legs, and Two-Couple Modules Have Separate Routes
 
-### 6.1 分段连接有两类界面
+### 6.1 Segment Joining Includes Two Types of Interface
 
-GA_SETUP把P和B分别装对合夹具，选P的Sb端朝B裸端。GA_APPLY取有号Ga–In惰性涂布代理，在相接面转移模拟层，归还工具。SEG_JOIN对准共同轴线合拢、限位，稳定后连承托取出。
+GA_SETUP loads P and B into the alignment fixture separately, with P's Sb end facing B's bare end. GA_APPLY retrieves the numbered inert Ga–In applicator proxy, transfers a simulated layer to the mating surface, and returns the tool. SEG_JOIN aligns the common axis, brings the pieces together against the stops, and retrieves them with their support after stabilization.
 
-最终结构是Sb/P/Sb/Ga–In/B；MgAgSb/Bi0.4Sb1.6Te3只是简称。Ga–In不是Sb界面的替代，也不是双对Cu电极的已知焊料。用量、Ga/In比例、润湿/压力/停留和真实表面处理未报告，禁止写成作者采用的工艺。[主文PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
+The final structure is Sb/P/Sb/Ga–In/B; MgAgSb/Bi0.4Sb1.6Te3 is only an abbreviation. Ga–In does not replace the Sb interface, nor is it a known solder for the two-couple Cu electrodes. Amount, Ga/In ratio, wetting/pressure/dwell, and actual surface treatment are unreported and must not be written as processes used by the authors. [Main-paper PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
 
-源文选择P长度占总长度0.5。接口厚度及报告总长是否包括界面未澄清，不能用额外“40 μm”把源长拆成精确核心长度。任务在分段phase单独绑定组件尺寸：6.7/8.8 mm成品各用两半长代理组件，8 mm未知源几何任务用4+4 mm；接口在mock里是包络内逻辑面、不额外加长。这是实现0.5比例和总长约束的任务分配，不是已知的真实核心厚度。
+The source selects a P length of 0.5 of the total length. Interface thickness and whether the reported total length includes interfaces are unclear; do not use an additional "40 μm" to split the source length into exact core lengths. The task binds component dimensions separately during the segmented phase: finished pieces of 6.7/8.8 mm each use two half-length proxy components, and the 8 mm task with unknown source geometry uses 4+4 mm; interfaces are logical surfaces within the mock envelope and add no extra length. This is a task allocation implementing the 0.5 ratio and total-length constraint, not known actual core thicknesses.
 
-### 6.2 六个实验功率密度比较配置
+### 6.2 Six Experimental Power-Density Comparison Configurations
 
-Fig.3i中B单腿、P/B分段腿、P单腿各有总长6.7与8.8 mm，共六个配置。它们的实验横截面和该图具体热边界没有独立给出。Fig.3d/e的a=b=3.5 mm、c=7/8/9/10 mm是计算，不得移植为这些实物几何。[Fig.3，主文PDF p4](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=4)
+In Fig.3i, the B single leg, P/B segmented leg, and P single leg each have total lengths of 6.7 and 8.8 mm, yielding six configurations. Their experimental cross sections and the specific thermal boundaries in that panel are not separately provided. The a=b=3.5 mm and c=7/8/9/10 mm in Fig.3d/e are computational dimensions and must not be transplanted into the physical sample geometries. [Fig.3, main-paper PDF p4](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=4)
 
-为让任务夹持和对照可执行，六个mock配置使用明确authored的4×4 mm截面及Th=473 K/Tc=293 K匹配条件；这不声称还原Fig.3i原始边界。源长6.7/8.8 mm保留。单材料控制的端接/制样细节未分别说明，本任务复用相应组件制造前缀，但标为任务复用，不将其升格为原作者单腿SOP。
+To make task clamping and controls executable, the six mock configurations use an explicitly authored 4×4 mm cross section and matched Th=473 K/Tc=293 K conditions; this does not claim to reconstruct the original boundaries of Fig.3i. The source lengths of 6.7/8.8 mm are retained. Termination/sample-preparation details for the single-material controls are not separately described. The task reuses the corresponding component-manufacturing prefixes but labels this as task reuse, without elevating it to the original authors' single-leg SOP.
 
-### 6.3 分段效率与接触扫描不偷用尺寸
+### 6.3 Segmented Efficiency and Contact Scans Do Not Borrow Unreported Dimensions
 
-Fig.3j效率扫描有Th=373、473、573、593 K，Tc=293 K。该面板样品尺寸及它与Fig.3i样品是否复用未知。CONTACT_SEG和EFFICIENCY_SEG使用明确authored的4×4×8 mm代理与独立兄弟谱系，不把两个面板硬拼为同一个已验证样品。接触扫描图的横坐标也不当作完整几何测量。
+The Fig.3j efficiency sweep uses Th=373, 473, 573, 593 K and Tc=293 K. The sample dimensions in this panel, and whether samples from Fig.3i were reused, are unknown. CONTACT_SEG and EFFICIENCY_SEG use explicitly authored 4×4×8 mm proxies with independent sibling lineages; the two panels are not forced into one purportedly validated sample. The horizontal axis of the contact-scan plot is not treated as a complete geometry measurement either.
 
-### 6.4 双对模块保留P/N尺寸差
+### 6.4 The Two-Couple Module Preserves the P/N Dimension Difference
 
-P两腿分别3.3×3.3×6.6 mm，N两腿分别2.9×2.9×6.6 mm。不能用相同腿复制缩放成“差不多的双对”。MODULE_BASE拿AlN板、放底铜片与端子；MODULE_LEGS逐腿放P1/N1/P2/N2；MODULE_BRIDGE对上铜桥并用惰性代理连接；MODULE_RELEASE承托板、撤临时定位件、取入运输架。[主文PDF pp5–6、8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=6)
+Each of the two P legs is 3.3×3.3×6.6 mm, and each of the two N legs is 2.9×2.9×6.6 mm. Do not duplicate and scale identical legs into an "approximately two-couple" module. MODULE_BASE retrieves the AlN plate and places the lower copper pieces and terminals; MODULE_LEGS places P1/N1/P2/N2 one leg at a time; MODULE_BRIDGE aligns the upper copper bridges and connects them with inert proxies; MODULE_RELEASE supports the plate, removes temporary positioning parts, and retrieves it into the transport rack. [Main-paper PDF pp5–6, 8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=6)
 
-来源说AlN板和铜电极，架构电串联/热并联；精确铜片拓扑、板厚、接合法、热接触材料与装配载荷未知。现有网格的10×10×0.8 mm AlN、40 μm端皮和铜拓扑是基准设计时的资产假设，不是论文加工尺寸。模块拆解显示控件不能当真实可重复无损拆焊。
+The source specifies AlN plates and copper electrodes, with an electrically series/thermally parallel architecture; exact copper-piece topology, plate thickness, joining method, thermal-contact materials, and assembly loads are unknown. The existing mesh's 10×10×0.8 mm AlN, 40 μm end skins, and copper topology are asset assumptions made during benchmark design, not paper-reported manufacturing dimensions. Module-explosion display controls must not be treated as real, repeatable, nondestructive desoldering.
 
-## 7. S1331：真实任务是沿位置取得电阻
+## 7. S1331: The Actual Task Is to Acquire Resistance Along Position
 
-CONTACT_MOUNT把完整分段样横放座内、夹持，登记B→Ga–In/Sb→P的空间方向及原点，停源状态接任务引线。CONTACT_PROBE将探针移到首点并落到公开接触反馈。CONTACT_SCAN每个点都采集x、R、单位、样品和运行号，抬针、移动、再落针，跨界面保持顺序。结束停源、撤针、断线，承托解夹取样。[Fig.3h主文PDF p4；SI Fig.21 PDF p13](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10223-1/MediaObjects/41586_2026_10223_MOESM1_ESM.pdf#page=13)
+CONTACT_MOUNT places the complete segmented sample horizontally in its seat, clamps it, registers the B→Ga–In/Sb→P spatial direction and origin, and connects task leads with the source off. CONTACT_PROBE moves the probe to the first point and lowers it until publicly visible contact feedback appears. CONTACT_SCAN acquires x, R, units, sample, and run number at every point, then raises, moves, and lowers the probe, preserving order across interfaces. At the end, stop the source, withdraw the probe, disconnect leads, and support the sample while unclamping and retrieving it. [Fig.3h, main-paper PDF p4; SI Fig.21, PDF p13](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10223-1/MediaObjects/41586_2026_10223_MOESM1_ESM.pdf#page=13)
 
-实际探针数量/电路、接触力、电流、间距、位置步长、标定和拟合细节未知；JSON里的0–8 mm整数格只是mock坐标。不能凭一张装置照片补一个四探针SOP。
+The actual probe count/circuit, contact force, current, spacing, position step, calibration, and fitting details are unknown; the integer grid from 0–8 mm in the JSON is only a mock coordinate system. Do not infer a four-probe SOP from a single apparatus photograph.
 
-Sb/P和B/Ga–In/Sb是同件内不同界面。来源接触电阻率4.0与4.9 μΩ cm²是参考事实，不是仪器直接返回的两个按钮值。原始是R(x)；派生电阻率需要界面电阻处理方法和面积。缺面积/标定则保存曲线、标unknown，不拿论文数值填满结果。
+Sb/P and B/Ga–In/Sb are different interfaces within the same piece. The source contact resistivities of 4.0 and 4.9 μΩ cm² are reference facts, not two button values directly returned by the instrument. The raw quantity is R(x); deriving resistivity requires an interface-resistance processing method and area. If area/calibration is missing, save the curve and mark it unknown instead of filling the results with paper values.
 
-## 8. Mini-PEM：装载、真空、热边界、逐点采集
+## 8. Mini-PEM: Loading, Vacuum, Thermal Boundaries, and Pointwise Acquisition
 
-PEM_PREP在空载、停源、冷态且安全放气后开腔，装对应腿/模块底托。PEM_MOUNT承托样品放下接触，上接触下降到任务就绪。分段样的P/MgAgSb端在上热侧，B端在下冷侧，与SI21照片一致。真实载荷和热界面材料未知。
+PEM_PREP opens the chamber only when it is unloaded, source-off, cold, and safely vented, and installs the appropriate lower support for a leg/module. PEM_MOUNT supports the sample while placing it on the lower contact, then lowers the upper contact to task-ready status. The segmented sample's P/MgAgSb end is on the upper hot side, and its B end is on the lower cold side, consistent with the SI21 photograph. Actual loading force and thermal-interface materials are unknown.
 
-PEM_WIRE逐根连有号端口并理线，核对极性/通道/标定。PEM_SEAL关腔、退出，启动mock真空，等环境给vacuum_ready。PEM_BOUNDARY选择条件并等稳定，不能自行填真空/稳定成功。来源测量下端293 K，上端373–593 K；Fig.3j和Fig.4h/i明确显示373、473、573、593 K四条件。[TE generator measurement主文PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
+PEM_WIRE connects the numbered ports one lead at a time and arranges the wiring, checking polarity/channels/calibration. PEM_SEAL closes the chamber, withdraws, starts the mock vacuum, and waits for the environment to provide vacuum_ready. PEM_BOUNDARY selects the conditions and waits for stability; the agent cannot declare vacuum/stability successful itself. The source measurements use a lower end at 293 K and an upper end at 373–593 K; Fig.3j and Fig.4h/i explicitly show the four conditions 373, 473, 573, 593 K. [TE generator measurement, main-paper PDF p8](https://www.nature.com/articles/s41586-026-10223-1.pdf#page=8)
 
-每个热边界内，PEM_CURRENT选一个任务电流点、等点就绪，再PEM_ACQUIRE采集实际mock I/V/Qc（或原始热流传感电压）。遍历电流点后再切热边界并重新稳定。源电流格点/停留判据未给出，不能直接把图坐标刻度当全部实验步长。更换边界仍是同一个物件和新condition ID，不成为新的独立制造n。
+Within each thermal boundary, PEM_CURRENT selects one task current point and waits for point-ready status, then PEM_ACQUIRE acquires the actual mock I/V/Qc (or raw heat-flow sensor voltage). Traverse the current points before changing thermal boundaries and restabilizing. The source current grid/dwell criterion is not provided; plot-axis ticks must not be treated directly as the complete experimental step sequence. Changing the boundary still involves the same object and a new condition ID, not a new independent manufacturing n.
 
-结束PEM_POWERDOWN停输出/加热并冷却，PEM_OPEN等可信冷态、放气、安全开门，再PEM_UNLOAD断线、托样、松上接触、取样、卸底托并关空腔。到时间不等于可触碰，不得因为mock程序完成就省略释放。
+At the end, PEM_POWERDOWN stops output/heating and cools; PEM_OPEN waits for trusted cold-state, venting, and safe-door-opening status; PEM_UNLOAD then disconnects leads, supports the sample, releases the upper contact, retrieves the sample, removes the lower support, and closes the empty chamber. Elapsed time does not mean an object can be touched; release must not be omitted simply because the mock program has finished.
 
-## 9. 计算是数据处理，不再造手动作
+## 9. Calculations Are Data Processing, Not Invented Manual Actions
 
-P=I×V；η=P/(P+Qc)。I用A、V用mV得到mW；和Qc合算效率前必须统一单位。P/面积只有登记真实来源或明确mock截面时才有效；不能把模块外部板面积当腿截面积。每个条件取采样点的Pmax/ηmax，未拟合时不声称找到了连续曲线精确极值。
+P=I×V; η=P/(P+Qc). I in A and V in mV yield mW; units must be unified before calculating efficiency with Qc. P/area is valid only when a source-supported or explicitly mock cross section is registered; the module's external plate area must not be treated as the leg cross-sectional area. Take Pmax/ηmax over sampled points for each condition; without fitting, do not claim to have found the exact extrema of a continuous curve.
 
-热流单位要特别留真：Fig.2a把Q0标mV，Fig.2b标W，Methods称冷侧热流，这是未解决的源图标签不一致。Fig.2属于计算，不因此证明Mini-PEM输出某个mV传感信号。任务若提供raw mV热流通道且无标定，保留原始信号，η未知；只有明确标定的mock Qc[W]才支持mock效率。两类样例在mock_contract.json分开，不静默将mV改W。
+Heat-flow units require particular fidelity: Fig.2a labels Q0 in mV, Fig.2b labels it in W, and Methods describes cold-side heat flow; this is an unresolved inconsistency in the source figure labels. Fig.2 is computational and therefore does not establish that Mini-PEM outputs a particular mV sensor signal. If the task supplies a raw mV heat-flow channel without calibration, preserve the raw signal and leave η unknown; only explicitly calibrated mock Qc[W] supports mock efficiency. The two example types are separated in mock_contract.json, without silently changing mV to W.
 
-9.3%分段效率、8.7%双对效率、4.0/4.9 μΩ cm²接触电阻率都不作为机械操作数值奖励。没有有效采集事件的“正确数字”不及格；有效采集后结果未知或较差不自动算操作失败。
+The 9.3% segmented efficiency, 8.7% two-couple efficiency, and 4.0/4.9 μΩ cm² contact resistivities are not numerical rewards for mechanical operations. A "correct number" without a valid acquisition event fails; an unknown or poorer result after valid acquisition does not automatically constitute an operation failure.
 
-## 10. 全部纯计算与文献内容的处置
+## 10. Disposition of All Purely Computational and Literature Content
 
-nonmanual_scope.json保留模型数据/训练、材料泛化、域外与新材料、分段几何、恒热流、电/热接触寄生、n–p几何、对数扩展、复杂组合与文献比较12类。覆盖主文Fig.1–4的计算部分、ED1–3、SI1–20和22–26；SI21单独属于实际测量装置。
+nonmanual_scope.json retains 12 categories: model data/training, material generalization, out-of-domain and new materials, segmented geometry, constant heat flux, electrical/thermal contact parasitics, n–p geometry, couple-count scaling, complex combinations, and literature comparisons. These cover the computational portions of main-paper Fig.1–4, ED1–3, SI1–20, and 22–26; SI21 separately belongs to the actual measurement apparatus.
 
-- 1/2/4/8/16/32对扩展是SI22计算，只有双对模块的实际制造被报道
-- Mg3Sb1.5Bi0.5–SnS、分段n腿与GeTe、三段与分段p腿、全部材料组合都不变成新增实物
-- ED3热接触电阻率扫描不生成一台未报道的实验测热阻仪
-- zT/PF曲线不让任务凭空增加Seebeck/XRD/热导率实测流程
-- 文献器件/材料性质是参照，不能生成“本篇新做的对照”样品
-- 计算中将n/p电压转换为正值的约定，不能成为篡改实测极性的许可
+- Scaling to 1/2/4/8/16/32 couples is a computation in SI22; only actual manufacture of the two-couple module is reported
+- Mg3Sb1.5Bi0.5–SnS, segmented n legs and GeTe, three-segment and segmented p legs, and all material combinations do not become additional physical specimens
+- The ED3 thermal-contact-resistivity sweep does not generate an unreported experimental thermal-resistance instrument
+- zT/PF curves do not permit the task to invent actual Seebeck/XRD/thermal-conductivity measurement procedures
+- Literature devices/material properties are references and cannot generate samples described as "new controls made in this paper"
+- The computational convention of converting n/p voltages to positive values does not authorize altering measured polarity
 
-## 11. 恢复和清理也是动作
+## 11. Recovery and Cleaning Are Actions Too
 
-错料投前可关盖退回重取；投后混料隔离另起批，不删除父料。夹持不牢先停机/释放、承托再重装。错切向已切成件不可通过旋转标签恢复，必须隔离重制。错接Ga–In层、破腿或已粘结未知损伤不以显示分离当无损修复。
+Before adding the wrong material, close its lid, return it, and retrieve the correct material; after addition, isolate the mixture and start a new batch without deleting parent materials. If clamping is insecure, stop/release first, then support and reinstall. After cutting in the wrong orientation, rotating a label cannot restore the piece; isolate it and manufacture it again. An incorrectly joined Ga–In layer, broken leg, or unknown damage after bonding cannot be repaired nondestructively through display separation.
 
-接触丢点记录无效，停源抬针后重定位、另建重测事件。热漂移打断当前采集，保留同物件历史、重新稳定后新attempt。缺标定照样保存raw，不将参考图点当补值。释放状态不来就保持封闭并报告阻塞。
+Record a missed contact point as invalid, stop the source and raise the probe before repositioning, and create a separate remeasurement event. Thermal drift interrupts the current acquisition; retain the object's history and create a new attempt after restabilizing. Save raw data even when calibration is missing; do not substitute reference-figure points. If release status does not arrive, keep the equipment closed and report the blocker.
 
-ARCHIVE把未用、已测、探针接触、破损和未知分格，封余粉/腿/边料并核数量。CLEAN逐件归还模套、冲头、限位件、模拟勺、载具和线；粉末、金属、石英管代理废物分别封盒交接，擦允许表面后收擦片，留下空载关闭工位。没有吹散粉末、扫裸碎管或临时配化学清洗液。
+ARCHIVE separates unused, measured, probe-contacted, damaged, and unknown items into compartments, seals remaining powder/legs/offcuts, and reconciles quantities. CLEAN returns each die sleeve, punch, stop, simulated scoop, carrier, and lead; seals powder, metal, and quartz-tube proxy waste in separate boxes for handoff; wipes permitted surfaces and puts away the wipes; and leaves empty, closed stations. It does not disperse powder, sweep exposed broken tubes, or improvise chemical cleaning solutions.
 
-## 12. 已有资产与尚缺接口
+## 12. Existing Assets and Missing Interfaces
 
-asset_bindings.json逐操作绑定66类资产角色。已存在SPEX8000D与双对模块网格，重用确实存在的part ID；其他角色只是任务资产需求，不声明已建成。
+asset_bindings.json binds 66 asset-role categories operation by operation. SPEX8000D and two-couple module meshes already exist, and their genuinely existing part IDs are reused; other roles are task asset requirements only, without a claim that they have been built.
 
-SPEX工作站结论仍为LIMITED：罐与夹具存在约7 mm AABB间隙、罩壳接触未解、气密/夹紧/连续运动/机器人可达性未验证。现有开盖/提罐/按键是静态显示。若动态任务使用新mock定位座，必须标authored并单独实现，不能用当前图像宣布抓取装载已经成立。
+The SPEX workstation assessment remains LIMITED: an approximately 7 mm AABB gap exists between jars and fixtures, cover-shell contact is unresolved, and gas tightness/clamping/continuous motion/robot reachability are unvalidated. Existing cover opening/jar lifting/button pressing are static displays. If a dynamic task uses a new mock positioning seat, it must be labeled authored and implemented separately; current images cannot establish successful grasping and loading.
 
-文件入口：agent_visible.json用于单episode目标；operations.json与branches.json用于参考动作与分支；material_cards.json、lineage_contract.json和control_packages.json维持身份与对照；mock_contract.json和evaluator_reference.json限定读数与验收；asset_bindings.json、unknown_parameters.json与granularity_gaps.json记录实现需要；coverage_matrix.json和provenance.json审计整篇范围。
+File entry points: agent_visible.json supplies single-episode goals; operations.json and branches.json supply reference actions and branches; material_cards.json, lineage_contract.json, and control_packages.json maintain identity and controls; mock_contract.json and evaluator_reference.json constrain readings and acceptance; asset_bindings.json, unknown_parameters.json, and granularity_gaps.json record implementation needs; coverage_matrix.json and provenance.json audit whole-paper scope.
 
-本包达到“整篇任务设计与来源分流就绪”，不是“现实实验/机器人执行/全部人工微动作复刻就绪”。下一步应实现选定episode的外部操作接口并做轨迹验证；本轮不把这份设计自动升格为已运行资产或已复现科学结果。
+This package has reached "whole-paper task design and source-content routing ready," not "real experiments/robot execution/replication of all manual micro-actions ready." The next step is to implement the external operation interfaces for a selected episode and validate trajectories; this round does not automatically elevate the design into an executed asset or a reproduced scientific result.

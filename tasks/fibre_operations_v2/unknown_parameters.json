@@ -1,11 +1,11 @@
 {
   "schema_version": "fibre_unknown_parameters.v2",
-  "policy": "未知妨碍真实执行就绪，不妨碍完整mock操作任务设计",
+  "policy": "Unknowns prevent readiness for real execution but do not prevent complete mock-operation task design",
   "parameters": [
     {
       "id": "U_MOTION",
-      "unknown": "机器人可达、抓持力、对位公差、路径/避障和仪器实物几何",
-      "surrogate": "粗级载具/键槽/标签/封闭单元",
+      "unknown": "Robot reachability, grasping forces, alignment tolerances, paths/collision avoidance, and physical instrument geometry",
+      "surrogate": "Coarse carriers/keyed slots/labels/enclosed units",
       "affected": [
         "MOVE",
         "SILICA_INSERT",
@@ -16,9 +16,9 @@
     },
     {
       "id": "U_HAZARD",
-      "unknown": "受审真实化学、热工、明火/真空、淬冷、辐射及激光安全SOP和互锁工程",
-      "surrogate": "封闭惰性服务工单+safe_release事件",
-      "note": "不是说原文未报告任何温度/浓度；相关已报告值留在固定来源，当前任务不下发实物执行配方",
+      "unknown": "Reviewed real chemical, thermal, open-flame/vacuum, quenching, radiation, and laser safety SOPs and interlock engineering",
+      "surrogate": "Enclosed inert-service work orders plus safe_release events",
+      "note": "This does not mean that the source reports no temperatures/concentrations; relevant reported values remain in the fixed sources, while the current task does not issue a recipe for physical execution",
       "affected": [
         "OXIDE_IN",
         "SEAL_IN",
@@ -30,8 +30,8 @@
     },
     {
       "id": "U_COMPARE",
-      "unknown": "Ge/silica及Ge/BSG完整前端参数、BSG牌号与几何",
-      "surrogate": "独立condition工单，缺项null，不套用Ge/ASG参数",
+      "unknown": "Complete front-end parameters for Ge/silica and Ge/BSG, and BSG grade and geometry",
+      "surrogate": "Separate condition work orders with null for missing items; do not apply Ge/ASG parameters",
       "affected": [
         "CONTROL_PREFORM",
         "GLASS_RUN"
@@ -39,8 +39,8 @@
     },
     {
       "id": "U_PN",
-      "unknown": "p/n-Si前端分开的详细制芯条件",
-      "surrogate": "两条保留掺杂身份的Si前端mock子路线，配方显式unknown",
+      "unknown": "Detailed, separately specified p/n-Si front-end core-preparation conditions",
+      "surrogate": "Two Si front-end mock subroutes retaining doping identity, with recipes explicitly unknown",
       "affected": [
         "SILICA_INSERT",
         "GLASS_RUN",
@@ -49,8 +49,8 @@
     },
     {
       "id": "U_LENGTH",
-      "unknown": "80cm去玻璃输入段与约50m会聚卷盘之间的连续进芯/接续机制",
-      "surrogate": "只有父芯已覆盖的有限器件段可用于任务；长卷只作source reference",
+      "unknown": "The continuous core-feed/continuation mechanism between the 80cm glass-removal input segment and the approximately 50m convergence-drawn reel",
+      "surrogate": "Only finite device segments covered by parent-core lengths may be used in the task; the long reel is only a source reference",
       "affected": [
         "SEGMENT",
         "CONVERGE_THREAD",
@@ -64,16 +64,16 @@
     },
     {
       "id": "U_CPC",
-      "unknown": "125μm CPC膜与1mm square CPC slabs的具体加工/厚度/层叠关系",
-      "surrogate": "插片形状代理+任务供应的已识别CPC子件；不称原作者层压工艺",
+      "unknown": "The specific processing/thickness/stacking relationship between 125μm CPC film and 1mm square CPC slabs",
+      "surrogate": "Insert-shape proxies plus task-supplied, identified CPC child parts; do not call this the original authors' lamination process",
       "affected": [
         "CPC_INSERT"
       ]
     },
     {
       "id": "U_INTERFACE",
-      "unknown": "active length、光孔/遮挡、接触长度、剥线长度和电极连接细节",
-      "surrogate": "端帽/接触座/孔径字段nullable；不由文献值补造测量",
+      "unknown": "active length, optical aperture/occlusion, contact length, stripping length, and electrode-connection details",
+      "surrogate": "End-cap/contact-seat/aperture fields are nullable; do not fabricate measurements by filling them with literature values",
       "affected": [
         "DEVICE_ALLOCATE",
         "STRIP",
@@ -83,8 +83,8 @@
     },
     {
       "id": "U_ACQ",
-      "unknown": "实际校准、采样率、扫描步长/停留、噪声处理细节、端点容差",
-      "surrogate": "明确mock读数、有效性标记和缺项",
+      "unknown": "Actual calibration, sampling rates, scan steps/dwell times, noise-processing details, and endpoint tolerances",
+      "surrogate": "Explicit mock readings, validity flags, and missing items",
       "affected": [
         "RAMAN",
         "DARK_LIGHT",
@@ -97,8 +97,8 @@
     },
     {
       "id": "U_ALLOC",
-      "unknown": "除Fig3c n值外的独立样本数、批次、各测试复用/分配与耐久图具体材料分配",
-      "surrogate": "authored独立兄弟样；同件before/after只在任务内保证",
+      "unknown": "Independent sample counts other than the n values in Fig3c, batches, reuse/allocation among tests, and specific material allocation in durability figures",
+      "surrogate": "Authored independent sibling samples; same-object before/after pairing is guaranteed only within the task",
       "affected": [
         "DEVICE_ALLOCATE",
         "CORE_BEND",
@@ -110,8 +110,8 @@
     },
     {
       "id": "U_RECOVERY",
-      "unknown": "overnight精确时长、温湿环境、完整压力历史与接触面积",
-      "surrogate": "overnight虚拟时钟事件；30MPa只reference，不由未知力面积推出",
+      "unknown": "Exact duration of overnight, temperature/humidity environment, complete pressure history, and contact area",
+      "surrogate": "An overnight virtual-clock event; 30MPa is a reference only and is not derived from unknown force/area",
       "affected": [
         "COMPRESS",
         "OVERNIGHT"
@@ -119,16 +119,16 @@
     },
     {
       "id": "U_WASH",
-      "unknown": "ISO6330版本/程序/洗涤/干燥参数",
-      "surrogate": "十周期mock标签，未获真实标准认证",
+      "unknown": "ISO6330 edition/program/washing/drying parameters",
+      "surrogate": "Ten-cycle mock labels, without actual standards certification",
       "affected": [
         "WASH"
       ]
     },
     {
       "id": "U_TEXTILE",
-      "unknown": "织法、条数、间距、3×3grid与8ch板映射",
-      "surrogate": "明确authored可穿线衣物通道/接收映射",
+      "unknown": "Weave, fibre count, spacing, and mapping between the 3×3grid and the 8ch board",
+      "surrogate": "Explicitly authored threadable garment channels/receiver mapping",
       "affected": [
         "TEXTILE_MOUNT",
         "SWEATER",
@@ -137,8 +137,8 @@
     },
     {
       "id": "U_APPLICATION",
-      "unknown": "PCB详细电路/固件、LiFi代码、PPG伦理/参与者协议、公共光安全、真实水下控制",
-      "surrogate": "惰性板、内容fixture、人台/腕仿体、封闭水槽通信",
+      "unknown": "Detailed PCB circuits/firmware, LiFi code, PPG ethics/participant protocols, public optical safety, and real underwater control",
+      "surrogate": "Inert boards, content fixtures, mannequin/wrist phantom, and enclosed-tank communication",
       "affected": [
         "PCB_ASSEMBLE",
         "BEANIE",

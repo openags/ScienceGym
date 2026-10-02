@@ -6,7 +6,7 @@
   "operations": [
     {
       "id": "FAB01",
-      "title": "拿取专属原料与空构建托盘",
+      "title": "Retrieve material-specific feedstock and an empty build tray",
       "kind": "hands_on",
       "location_id": "WS_STOCK",
       "target_asset_roles": [
@@ -20,15 +20,15 @@
         "empty cart slots"
       ],
       "actions": [
-        "抓料匣把手，从橡胶或TC4指定货格取出封闭料匣放入运输槽",
-        "把空构建托盘推入另一槽，驾车到该材料打印工位"
+        "Grasp the cartridge handle, retrieve the sealed cartridge from its designated rubber or TC4 shelf slot, and place it in the transport slot",
+        "Slide the empty build tray into another slot and drive the cart to the printer station for that material"
       ],
       "postconditions": [
         "correct material cartridge and tray at selected printer",
         "no TC4/rubber cross-use"
       ],
       "recovery": [
-        "错料未装机则放回原格重新取料；身份不明料匣进入隔离区"
+        "Return incorrect material to its original slot and retrieve the correct material if not yet loaded; send cartridges of unknown identity to quarantine"
       ],
       "source_route_ids": [
         "I.material",
@@ -36,17 +36,17 @@
         "P.print_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "论文采用橡胶和TC4材料3D打印",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The paper uses rubber and TC4 materials in 3D printing",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "原料形态、配方、批次及供应商"
+          "Feedstock form, formulation, batch, and supplier"
         ]
       },
       "loop": null
     },
     {
       "id": "FAB02",
-      "title": "打开打印舱并装入料匣",
+      "title": "Open the printer chamber and load the cartridge",
       "kind": "hands_on",
       "location_id": "material_printer",
       "target_asset_roles": [
@@ -61,32 +61,32 @@
         "FAB01 done"
       ],
       "actions": [
-        "握门把手打开舱门",
-        "沿场景键槽推入料匣直至到位；关闭独立供料盖"
+        "Grasp the door handle and open the chamber door",
+        "Slide the cartridge along the scene's keyed slot until seated; close the separate feed cover"
       ],
       "postconditions": [
         "material cartridge docked",
         "no loose stock on floor"
       ],
       "recovery": [
-        "料匣卡滞则退回托盘；不要带力硬插或拆开TC4密封匣"
+        "If the cartridge jams, return it to the tray; do not force it in or open the sealed TC4 cartridge"
       ],
       "source_route_ids": [
         "P.print_rubber",
         "P.print_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "材料专属3D打印存在",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Material-specific 3D printing is reported",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "真实打印工艺及设备；不推定熔融/树脂/粉床技术"
+          "Actual printing process and equipment; do not assume melt/resin/powder-bed technology"
         ]
       },
       "loop": null
     },
     {
       "id": "FAB03",
-      "title": "放入构建托盘并启动本分支打印",
+      "title": "Insert the build tray and start printing for this branch",
       "kind": "hands_on",
       "location_id": "material_printer",
       "target_asset_roles": [
@@ -100,15 +100,15 @@
         "branch build recipe surrogate available"
       ],
       "actions": [
-        "握托盘把手推入构建导轨",
-        "撤手关舱门，在面板选择本branch构建工单并按启动"
+        "Grasp the tray handle and slide it onto the build rails",
+        "Withdraw the hand, close the chamber door, select this branch's build work order on the panel, and press start"
       ],
       "postconditions": [
         "machine in printing state",
         "build job binds components to object lineage"
       ],
       "recovery": [
-        "门未关不启动；选错工单在制造前取消重选；已制造错件隔离，不换标签"
+        "Do not start with the door open; cancel and reselect an incorrect work order before fabrication; quarantine an incorrectly fabricated part rather than relabeling it"
       ],
       "source_route_ids": [
         "P.design",
@@ -116,17 +116,17 @@
         "P.print_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "分离手性单元和其他杆/梁/板格构通过3D打印制造",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Separate chiral units and other rod/beam/plate lattices are fabricated by 3D printing",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "CAD、打印朝向、层厚、温度/功率、速度及支撑均unknown"
+          "CAD, print orientation, layer thickness, temperature/power, speed, and supports are all unknown"
         ]
       },
       "loop": null
     },
     {
       "id": "FAB04",
-      "title": "从打印舱取出完成的构建托盘",
+      "title": "Remove the completed build tray from the printer chamber",
       "kind": "hands_on",
       "location_id": "material_printer",
       "target_asset_roles": [
@@ -141,32 +141,32 @@
         "not based on elapsed wall-clock alone"
       ],
       "actions": [
-        "开门，抓托盘把手沿导轨抽出",
-        "保持托盘水平放入运输槽，移到后处理台"
+        "Open the door, grasp the tray handle, and slide the tray out along the rails",
+        "Keep the tray level, place it in the transport slot, and move to the postprocessing station"
       ],
       "postconditions": [
         "completed build at WS_POST",
         "manufacturing stage cannot be skipped"
       ],
       "recovery": [
-        "缺件/断件连托盘转隔离；仅在外部mock工单授权的新构建中重打并产生新lot/object ID"
+        "Quarantine missing/broken parts together with the tray; reprint only as a new build authorized by an external mock work order, producing new lot/object ID"
       ],
       "source_route_ids": [
         "P.print_rubber",
         "P.print_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "打印阶段有已制备样品输出",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The printing stage produces fabricated specimens",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "实际冷却、固化、除粉及释放时间"
+          "Actual cooling, curing, depowdering, and release times"
         ]
       },
       "loop": null
     },
     {
       "id": "POST_R",
-      "title": "橡胶件释放与分格",
+      "title": "Release rubber parts and place them in compartments",
       "kind": "hands_on",
       "location_id": "WS_POST",
       "target_asset_roles": [
@@ -182,32 +182,32 @@
         "safe_to_release event"
       ],
       "actions": [
-        "把构建托盘锁入后处理定位座",
-        "若本设计启用支撑片，夹片从预制易脱接口取下投入对应废料盒",
-        "抓单元环或格构刚性节点，从托盘取下并逐件放入编号分格盒"
+        "Lock the build tray into the postprocessing locating base",
+        "If this design enables support tabs, grasp each tab, remove it at the prefabricated easy-release interface, and place it in the corresponding scrap bin",
+        "Grasp unit rings or rigid lattice nodes, remove the parts from the tray, and place them individually in the numbered compartment box"
       ],
       "postconditions": [
         "rubber components free and sorted",
         "unused/removed supports in bin"
       ],
       "recovery": [
-        "薄杆被压扁/撕裂则停止抓杆，改抓环；损伤件隔离并重制替换，保留原号"
+        "If thin rods are flattened/torn, stop grasping the rods and grasp the rings instead; quarantine damaged parts and remanufacture replacements while retaining the original IDs"
       ],
       "source_route_ids": [
         "P.print_rubber"
       ],
       "provenance": {
-        "source_supported_stage": "原文只证明橡胶3D打印，未报告释放方法",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The original text establishes only rubber 3D printing; it does not report the release method",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "真实清洗、固化、脱模/支撑流程；任务可拆片不是来源事实"
+          "Actual washing, curing, demolding/support workflows; task-level removable tabs are not source facts"
         ]
       },
       "loop": "each released component"
     },
     {
       "id": "POST_M",
-      "title": "TC4构建转入封闭后处理并取件",
+      "title": "Transfer the TC4 build to enclosed postprocessing and retrieve the parts",
       "kind": "hands_on",
       "location_id": "WS_POST",
       "target_asset_roles": [
@@ -222,32 +222,32 @@
         "FAB04 done"
       ],
       "actions": [
-        "把构建盒插入封闭后处理单元并关门",
-        "按本工单的后处理按钮；mock以完成事件释放样品，真实配方外部注入",
-        "仅在安全释放后取出内托盘，抓刚性端环/端板，将金属件放入编号槽"
+        "Insert the build box into the enclosed postprocessing unit and close the door",
+        "Press the postprocessing button for this work order; the mock releases specimens through a completion event, with the actual recipe supplied externally",
+        "Only after safe release, remove the inner tray, grasp rigid end rings/end plates, and place the metal parts in numbered slots"
       ],
       "postconditions": [
         "metal components released with no loose process media",
         "postprocessing state retained in lineage"
       ],
       "recovery": [
-        "后处理未释放不绕过门锁；样品有毛刺/残余支撑标志则退回加工等待，不能上试验机"
+        "Do not bypass the door interlock before postprocessing release; if a specimen is flagged for burrs/residual supports, return it to processing and wait rather than mounting it in the tester"
       ],
       "source_route_ids": [
         "P.print_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "TC4打印存在；后处理接口是合理任务连接",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "TC4 printing is reported; the postprocessing interface is a reasonable task connector",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "不能声称作者使用特定除粉、热处理、切割或喷砂；温度/残留判据待定"
+          "Do not claim the authors used any specific depowdering, heat treatment, cutting, or sandblasting; temperature/residue criteria remain to be determined"
         ]
       },
       "loop": null
     },
     {
       "id": "ASM01",
-      "title": "铺设底板与装配定位器",
+      "title": "Place the bottom plate and assembly locators",
       "kind": "hands_on",
       "location_id": "WS_ASSEMBLY",
       "target_asset_roles": [
@@ -261,32 +261,32 @@
         "assembly recipe bound"
       ],
       "actions": [
-        "将底承压板放入装配台定位座",
-        "把临时定位梳插入定位孔，搬分格件盒到伸手区"
+        "Place the bottom load-bearing plate in the assembly table's locating base",
+        "Insert temporary locating combs into the locating holes and move the compartment box within reach"
       ],
       "postconditions": [
         "base plate supported",
         "component slots accessible"
       ],
       "recovery": [
-        "定位座摆错时先抬起底板重新定位；不得用弯杆抵住定位"
+        "If the locating base is misplaced, lift the bottom plate and reposition it; do not use bent rods as locating stops"
       ],
       "source_route_ids": [
         "P.assemble_rubber",
         "P.assemble_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "分离手性单元需组装成层叠结构",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Separate chiral units must be assembled into a layered structure",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "真实定位/连接工装"
+          "Actual positioning/connection tooling"
         ]
       },
       "loop": null
     },
     {
       "id": "ASM02",
-      "title": "放置第一层分离单元",
+      "title": "Place the first layer of separate units",
       "kind": "hands_on",
       "location_id": "WS_ASSEMBLY",
       "target_asset_roles": [
@@ -300,32 +300,32 @@
         "bottom slots empty"
       ],
       "actions": [
-        "按配方坐标从分格盒抓取单元刚性环",
-        "保持方位标记朝向对应符号，竖直落到各底层承接位并释放"
+        "Grasp the rigid ring of a unit from the compartment box according to the recipe coordinates",
+        "Keep the orientation mark facing the corresponding symbol, lower vertically into each bottom-layer seat, and release"
       ],
       "postconditions": [
         "bottom layer occupied",
         "no bending-member gripped or broken"
       ],
       "recovery": [
-        "错方向未接合则提起重放；掉落转隔离；补件使用新组件ID"
+        "If orientation is wrong before joining, lift and replace; quarantine dropped parts; use new component IDs for replacements"
       ],
       "source_route_ids": [
         "P.assemble_rubber",
         "P.assemble_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "图示层叠手性；橡胶3×3平面阵列，上下镜像任务半单元",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Layered chiral geometry shown in the figures; rubber 3×3 in-plane array with upper/lower mirrored task half-units",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "真实制造分件边界与手性配对方向"
+          "Actual manufactured-part boundaries and paired chirality orientations"
         ]
       },
       "loop": "rubber R01: 9 sites; TC4 layered: 1 site; surrogate counts"
     },
     {
       "id": "ASM03",
-      "title": "堆叠第二层与对合接口",
+      "title": "Stack the second layer and align the interfaces",
       "kind": "hands_on",
       "location_id": "WS_ASSEMBLY",
       "target_asset_roles": [
@@ -339,32 +339,32 @@
         "matching upper pieces"
       ],
       "actions": [
-        "抓上层端环，对准已放下层的接合位",
-        "按任务配方的镜像/方向标记落座；暂时保留定位梳以防倾倒"
+        "Grasp an upper-layer end ring and align it with the joining site on the placed lower layer",
+        "Seat it according to the task recipe's mirror/orientation marks; temporarily retain the locating combs to prevent tipping"
       ],
       "postconditions": [
         "two-layer arrangement stable",
         "each pair has declared lineage"
       ],
       "recovery": [
-        "无法落座先提回托盘并校正；不得扭曲杆强行拼合"
+        "If it cannot seat, lift it back into the tray and correct alignment; do not distort rods to force assembly"
       ],
       "source_route_ids": [
         "P.assemble_rubber",
         "P.assemble_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "Fig4a/b及ED10a/b/c显示层叠；原文从分离单元组装",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Fig4a/b and ED10a/b/c show layering; the original text describes assembly from separate units",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "分件数量、真实连接形式；18=144/8为图示支持的任务半单元拆件解释，真实制造BOM未知"
+          "Part count and actual connection form; 18=144/8 is a figure-supported interpretation of task half-unit decomposition, while the actual manufacturing BOM is unknown"
         ]
       },
       "loop": "all column pairs"
     },
     {
       "id": "ASM04",
-      "title": "完成可逆接合并安放顶板",
+      "title": "Complete reversible joining and place the top plate",
       "kind": "hands_on",
       "location_id": "WS_ASSEMBLY",
       "target_asset_roles": [
@@ -377,32 +377,32 @@
         "ASM03 done"
       ],
       "actions": [
-        "在粗大环的任务接口扣入可逆连接片，不逐杆粘接",
-        "抓顶承压板，对齐端部座并放下，使其承托全部列端面"
+        "Clip reversible joining tabs into the task interfaces on the thick rings; do not bond individual rods",
+        "Grasp the top load-bearing plate, align it with the end seats, and lower it so that it bears on all column end faces"
       ],
       "postconditions": [
         "assembly can be lifted by designated support",
         "interfaces seated"
       ],
       "recovery": [
-        "接合未到位取下顶板重做；不得用永久胶/焊接填补未知"
+        "If a joint is not seated, remove the top plate and redo it; do not fill unknown details with permanent adhesive/welding"
       ],
       "source_route_ids": [
         "P.assemble_rubber",
         "P.assemble_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "层叠结构组装存在",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Assembly of layered structures is reported",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "接头/紧固力矩/胶接焊接均未报告"
+          "Joints/fastening torque/adhesive bonding/welding are all unreported"
         ]
       },
       "loop": null
     },
     {
       "id": "ASM05",
-      "title": "抽掉临时定位工装并释放中间环",
+      "title": "Remove temporary locating tooling and free the intermediate rings",
       "kind": "hands_on",
       "location_id": "WS_ASSEMBLY",
       "target_asset_roles": [
@@ -415,30 +415,30 @@
         "ASM04 done"
       ],
       "actions": [
-        "依序抽出定位梳并放回工具架",
-        "装仅托住底板的运输支架，不跨接中间环；整理上方可抓空间"
+        "Pull out the locating combs in sequence and return them to the tool rack",
+        "Install a transport support that holds only the bottom plate without bridging the intermediate rings; clear the upper grasping space"
       ],
       "postconditions": [
         "independent middle-ring degrees of freedom remain unbridged",
         "fixture removed from deforming volume"
       ],
       "recovery": [
-        "工装难拔先回托底板再卸力，不拉薄杆；锁死则重新拆除后再运输"
+        "If tooling is difficult to extract, first support the bottom plate again and release the load; do not pull thin rods; if locked, remove the tooling again before transport"
       ],
       "source_route_ids": [
         "P.assemble_rubber",
         "P.assemble_tc4"
       ],
       "provenance": {
-        "source_supported_stage": "手性变形需相对扭转；不等于商用旋转压头",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Chiral deformation requires relative twisting; this does not establish a commercial rotating loading head",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "MET01",
-      "title": "将样品放秤并取回",
+      "title": "Place the specimen on the balance and retrieve it",
       "kind": "hands_on",
       "location_id": "WS_METROLOGY",
       "target_asset_roles": [
@@ -453,32 +453,32 @@
         "mock mass fixture bound"
       ],
       "actions": [
-        "将空托盘放秤归零",
-        "托住端板/刚性节点把样品放在托盘中央，读取示值并拿回编号托盘"
+        "Place the empty tray on the balance and tare it",
+        "Support the end plate/rigid nodes, place the specimen at the tray center, read the indication, and return it to the numbered tray"
       ],
       "postconditions": [
         "whole_mass measured_mock field distinct from published and buckling mass",
         "sample not squeezed"
       ],
       "recovery": [
-        "量程/漂移错误则保持样品并标readout_invalid；不能抄文献数冒充新测量"
+        "For range/drift errors, retain the specimen and mark readout_invalid; do not copy literature values as new measurements"
       ],
       "source_route_ids": [
         "I.denominators",
         "A.reduce"
       ],
       "provenance": {
-        "source_supported_stage": "论文区分整件密度和屈曲部件质量；称量操作未报道",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The paper distinguishes whole-specimen density from buckling-component mass; the weighing operation is unreported",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "作者称量方法和校准"
+          "The authors' weighing method and calibration"
         ]
       },
       "loop": null
     },
     {
       "id": "MET02",
-      "title": "在尺寸座测量外形与参考高度",
+      "title": "Measure the envelope and reference height at the dimensional base",
       "kind": "hands_on",
       "location_id": "WS_METROLOGY",
       "target_asset_roles": [
@@ -491,32 +491,32 @@
         "MET01 done"
       ],
       "actions": [
-        "把样品放尺寸座，用测量尺/卡尺接触端板外缘，记录长宽整体高度",
-        "取回样品；将单元h0/杆L0与整体H分别保留，不对软杆施加夹持载荷"
+        "Place the specimen in the dimensional base, touch the end-plate outer edges with a measuring rule/calipers, and record length, width, and overall height",
+        "Retrieve the specimen; retain unit h0/rod L0 separately from overall H, without applying a clamping load to soft rods"
       ],
       "postconditions": [
         "reference H/A/V lineage declared",
         "caliper returned"
       ],
       "recovery": [
-        "软体被夹变形则松开重新非压迫读数；测不到就unknown，不强填h0=整体H"
+        "If clamping deforms the soft body, release and repeat the reading without compression; if unmeasurable, retain unknown rather than forcing h0=overall H"
       ],
       "source_route_ids": [
         "I.denominators",
         "A.reduce"
       ],
       "provenance": {
-        "source_supported_stage": "整件及单元归一化是不同分母",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Whole-specimen and unit normalizations use different denominators",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "真实几何测量方式、误差和屈曲质量分母来源"
+          "Actual geometry-measurement method, errors, and source of the buckling-mass denominator"
         ]
       },
       "loop": null
     },
     {
       "id": "TEST01",
-      "title": "托盘运送样品到试验台",
+      "title": "Transport the specimen by tray to the testing station",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -530,29 +530,29 @@
         "machine unloaded and stopped"
       ],
       "actions": [
-        "将样品端板置于运输托架，收回机械臂并移动至试验台",
-        "把运输托盘放装样待放区，机械臂从侧面接近"
+        "Place the specimen end plate in the transport support, retract the robot arm, and move to the testing station",
+        "Place the transport tray in the loading staging area and approach from the side with the robot arm"
       ],
       "postconditions": [
         "sample staged at tester",
         "identity persists across transport"
       ],
       "recovery": [
-        "倾倒或碰撞则托盘转隔离，结束该未损伤分支"
+        "If tipping or collision occurs, quarantine the tray and end this undamaged branch"
       ],
       "source_route_ids": [
         "H.*"
       ],
       "provenance": {
-        "source_supported_stage": "必须装入压缩装置；运输路线为authored",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The specimen must be mounted in a compression device; the transport route is authored",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "TEST02",
-      "title": "开罩回撤压板并清空装样区",
+      "title": "Open the guard, retract the platen, and clear the loading area",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -567,29 +567,29 @@
         "sample outside machine"
       ],
       "actions": [
-        "在面板执行安全回撤",
-        "开护罩，把上一个条件的侧箱壁/防转臂取下放架上，擦除接触面可见碎屑"
+        "Execute safe retraction on the panel",
+        "Open the guard, remove the previous condition's lateral-box walls/anti-rotation arms to the rack, and wipe away visible debris on the contact surfaces"
       ],
       "postconditions": [
         "clear loading volume",
         "no inherited boundary from previous branch"
       ],
       "recovery": [
-        "未卸荷不伸手；传感器/互锁不一致则停止当前物理接口而非跳过阶段"
+        "Do not reach in before unloading; if sensors/interlocks disagree, stop the current physical interface rather than skip the stage"
       ],
       "source_route_ids": [
         "I.fixtures"
       ],
       "provenance": {
-        "source_supported_stage": "压缩边界控制存在；安全装样流程为authored",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Compression boundary control is reported; the safe specimen-loading workflow is authored",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "TEST03",
-      "title": "将试样落座下压板",
+      "title": "Seat the specimen on the lower platen",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -603,29 +603,29 @@
         "upper clearance adequate"
       ],
       "actions": [
-        "抓底端板/环或双侧粗节点，将样品放到下压板中心的任务定位标记",
-        "解除运输托架并移出加载区域，不把夹持器当作边界约束"
+        "Grasp the bottom end plate/ring or thick nodes on both sides and place the specimen on the task locating mark at the center of the lower platen",
+        "Release the transport support and remove it from the loading area; do not use the gripper as a boundary constraint"
       ],
       "postconditions": [
         "sample seated with declared orientation",
         "robot released specimen"
       ],
       "recovery": [
-        "未坐稳提起重放；不得用压板强行压平歪斜样品"
+        "If not seated stably, lift and reseat; do not force a tilted specimen flat with the platen"
       ],
       "source_route_ids": [
         "H.*"
       ],
       "provenance": {
-        "source_supported_stage": "试样位于相对加载表面间",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The specimen sits between opposing loading surfaces",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "BND_BOX",
-      "title": "安装侧向约束箱",
+      "title": "Install the lateral-confinement box",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -639,15 +639,15 @@
         "branch requires lateral_box"
       ],
       "actions": [
-        "从工装架拿对应高度的侧壁，逐片插入底框槽",
-        "闭合任务锁扣；顶部压板行程保持通畅，侧壁在目标横向方向抑制鼓出"
+        "Take sidewalls of the corresponding height from the tooling rack and insert them individually into the base-frame slots",
+        "Close the task latches; keep the upper platen's travel clear while the sidewalls suppress bulging in the target lateral direction"
       ],
       "postconditions": [
         "boxed condition set",
         "loading direction unblocked"
       ],
       "recovery": [
-        "错用高度/侧壁接触加载行程则拆回对应槽，换正确版本"
+        "If the wrong height is used or a sidewall intersects the loading travel, return it to its slot and select the correct version"
       ],
       "source_route_ids": [
         "I.fixtures",
@@ -657,17 +657,17 @@
         "H.table14"
       ],
       "provenance": {
-        "source_supported_stage": "p10、ED9c和ED10e支持侧箱约束",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "p10, ED9c, and ED10e support lateral-box confinement",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "箱间隙、摩擦、固定形式；不可把任务值说成原文"
+          "Box clearance, friction, and mounting form; do not present task values as original-text values"
         ]
       },
       "loop": null
     },
     {
       "id": "BND_FREE",
-      "title": "移除跨环约束并保持手性自由度",
+      "title": "Remove ring-bridging constraints and preserve chiral degrees of freedom",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -681,15 +681,15 @@
         "branch free_internal_rotation"
       ],
       "actions": [
-        "将残余运输卡扣/防转臂从环附近拿走放工装架",
-        "撤出临时侧支撑，保留端面承压和内部环相对转动空间"
+        "Remove remaining transport clips/anti-rotation arms from near the rings and place them on the tooling rack",
+        "Withdraw temporary lateral supports, retaining end-face loading and space for relative rotation of the internal rings"
       ],
       "postconditions": [
         "free internal twist boundary",
         "no added rotary platen claim"
       ],
       "recovery": [
-        "发现环卡住则卸样返回装配台，不能靠更大压缩强迫扭转"
+        "If a ring is jammed, remove the specimen and return it to the assembly table; do not force twisting through greater compression"
       ],
       "source_route_ids": [
         "I.fixtures",
@@ -698,15 +698,15 @@
         "H.table13"
       ],
       "provenance": {
-        "source_supported_stage": "可转手性变形边界",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Boundary permitting rotational chiral deformation",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "BND_LOCK",
-      "title": "装入防转工装",
+      "title": "Install the anti-rotation tooling",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -720,15 +720,15 @@
         "locked-chiral branch"
       ],
       "actions": [
-        "从架上拿防转臂，将其键接到任务端环接口与机架座",
-        "扣上可逆锁片，保持轴向压缩行程而约束相对转动"
+        "Take the anti-rotation arm from the rack and key it to the task end-ring interface and frame mount",
+        "Fasten the reversible locking tab, retaining axial compression travel while constraining relative rotation"
       ],
       "postconditions": [
         "rotation_locked condition",
         "not mislabeled free chiral"
       ],
       "recovery": [
-        "锁片不到位则卸下重装；未解决则该条件无有效输出"
+        "If the locking tab is not seated, remove and reinstall it; if unresolved, this condition has no valid output"
       ],
       "source_route_ids": [
         "I.fixtures",
@@ -736,17 +736,17 @@
         "H.table17"
       ],
       "provenance": {
-        "source_supported_stage": "非可转手性件出现非手性弯曲",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Non-rotatable chiral specimens exhibit nonchiral bending",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "原作者锁转夹具形式未知；滑动键连接是代理"
+          "The original authors' rotation-locking fixture is unknown; the sliding keyed connection is a surrogate"
         ]
       },
       "loop": null
     },
     {
       "id": "BND_OPEN",
-      "title": "移走侧箱保持开放侧面",
+      "title": "Remove the lateral box and keep the sides open",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -759,30 +759,30 @@
         "unboxed or no-added-box branch"
       ],
       "actions": [
-        "若侧壁仍在加载区则逐片取出放回架上",
-        "把相机和工具架移到外侧，使横向鼓出/逐层屈曲不撞到任务家具"
+        "If sidewalls remain in the loading area, remove them individually and return them to the rack",
+        "Move the camera and tool rack outward so lateral bulging/layer-by-layer buckling does not collide with task furniture"
       ],
       "postconditions": [
         "lateral deformation region clear",
         "boundary explicitly open"
       ],
       "recovery": [
-        "侧面仍碰触工装则停止并移除，不把干涉当材料行为"
+        "If a side still contacts tooling, stop and remove the interference; do not treat interference as material behavior"
       ],
       "source_route_ids": [
         "H.prism_unboxed",
         "I.fixtures"
       ],
       "provenance": {
-        "source_supported_stage": "无侧约束棱柱是报告控制；其他无加箱选择依branch说明",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The laterally unconfined prism is a reported control; other choices without an added box follow the branch notes",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "OBS01",
-      "title": "摆相机并拍初始形态",
+      "title": "Position the camera and capture the initial shape",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -796,30 +796,30 @@
         "machine idle"
       ],
       "actions": [
-        "调相机支架使视野包括全部层和端板",
-        "拍下当前形态：材料/样品/循环/边界ID和手性角、杆形、层状态"
+        "Adjust the camera mount so the field of view includes all layers and end plates",
+        "Capture the current shape: material/specimen/cycle/boundary IDs and chiral angle, rod shape, and layer state"
       ],
       "postconditions": [
         "initial image fixture linked",
         "camera outside moving volume"
       ],
       "recovery": [
-        "遮挡则移动相机重拍，不转动已设定边界的样品"
+        "For occlusion, move the camera and recapture; do not rotate a specimen whose boundary has already been set"
       ],
       "source_route_ids": [
         "I.acquisition",
         "H.*"
       ],
       "provenance": {
-        "source_supported_stage": "论文包含变形图像/视频；相机型号和摆放方式未知",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The paper includes deformation images/videos; camera model and positioning method are unknown",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "TEST04",
-      "title": "关罩并设加载程序",
+      "title": "Close the guard and configure the loading program",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -832,8 +832,8 @@
         "robot retracted from pinch zone"
       ],
       "actions": [
-        "关护罩",
-        "在面板选branch及condition，设本任务给定endpoint事件/应变与循环标记；保持速度/采样率为unknown参数槽"
+        "Close the guard",
+        "Select the branch and condition on the panel and set this task's endpoint event/strain and cycle label; leave speed/sampling rate as unknown parameter slots"
       ],
       "postconditions": [
         "guard closed",
@@ -841,24 +841,24 @@
         "scientific recipe not fabricated"
       ],
       "recovery": [
-        "控制ID错误则启动前清除重选；真实模式遇缺配方不可运行，但任务设计仍保留完整动作"
+        "If a control ID is wrong, clear and reselect before starting; do not run real mode with a missing recipe, while retaining the complete actions in the task design"
       ],
       "source_route_ids": [
         "I.acquisition",
         "H.*"
       ],
       "provenance": {
-        "source_supported_stage": "循环压缩有来源；具体控制输入为任务选择",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Cyclic compression is source-supported; specific control inputs are task choices",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "速率、预载、保载时间、采样率、标定和停止容差"
+          "Rate, preload, hold time, sampling rate, calibration, and stopping tolerance"
         ]
       },
       "loop": null
     },
     {
       "id": "LOAD",
-      "title": "触发一次压缩并记录变形",
+      "title": "Trigger one compression and record deformation",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -873,31 +873,31 @@
         "guard closed"
       ],
       "actions": [
-        "按开始压缩按钮；机器人停在压板危险区外",
-        "由mock加载机沿轴向缩小压板间距至branch目标事件，同时接收力/位移/图像事件"
+        "Press the start-compression button; keep the robot outside the platen hazard zone",
+        "The mock testing machine decreases platen spacing axially until the branch target event, while force/displacement/image events are received"
       ],
       "postconditions": [
         "load segment stored for this object/cycle/boundary",
         "observed mode retained without forcing ideality"
       ],
       "recovery": [
-        "错边界/物体滑脱/掉落触发停止；若是目标鼓出、接触或非同步屈曲，则保留为正常观察，不判失败"
+        "An incorrect boundary/object slippage/drop triggers a stop; target bulging, contact, or asynchronous buckling is retained as a normal observation rather than classified as failure"
       ],
       "source_route_ids": [
         "H.*"
       ],
       "provenance": {
-        "source_supported_stage": "压缩屈曲及形变观察是来源事实",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Compression buckling and deformation observations are source facts",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "比较应变不是完整真实加载终点；曲线与速度不由视频秒数推定"
+          "Comparison strain is not the complete actual loading endpoint; do not infer curves or rates from video duration"
         ]
       },
       "loop": null
     },
     {
       "id": "UNLOAD",
-      "title": "卸载并拉开压板",
+      "title": "Unload and separate the platens",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -910,29 +910,29 @@
         "guard closed"
       ],
       "actions": [
-        "按卸载，使上压板回撤直到外部载荷解除",
-        "继续记录卸载段，待zero_load及safe_clearance事件后结束循环"
+        "Press unload to retract the upper platen until the external load is removed",
+        "Continue recording the unloading segment and finish the cycle after zero_load and safe_clearance events"
       ],
       "postconditions": [
         "unloading segment separate from loading",
         "safe unloaded specimen state"
       ],
       "recovery": [
-        "卸载中夹滞则保持护罩关闭并停止驱动；不可边撬样边计回收能量"
+        "If jamming occurs during unloading, keep the guard closed and stop the drive; do not pry the specimen while counting recovered energy"
       ],
       "source_route_ids": [
         "H.*"
       ],
       "provenance": {
-        "source_supported_stage": "循环压缩及橡胶回弹、TC4卸载有来源；视频不全显示每件卸载",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Cyclic compression, rubber rebound, and TC4 unloading are source-supported; the videos do not fully show unloading of every specimen",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "OBS_RESIDUAL",
-      "title": "拍卸载残余态",
+      "title": "Capture the post-unloading residual state",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -946,30 +946,30 @@
         "no external load"
       ],
       "actions": [
-        "保持机内位置拍端环、杆形和残余高度",
-        "金属分别写入初次卸载后的残余塑性/α0改变；橡胶保留当前恢复程度，不覆盖为完美复原"
+        "Keep the specimen positioned in the machine and capture the end rings, rod shape, and residual height",
+        "For metals, record residual plasticity/α0 changes after the first unloading separately; for rubber, retain the current degree of recovery rather than overwriting it as perfect restoration"
       ],
       "postconditions": [
         "post-unload state exists",
         "pristine state not reused after metal first cycle"
       ],
       "recovery": [
-        "未卸荷照片不能冒充残余态；重等卸荷事件再拍"
+        "Do not present a photo taken before unloading as a residual state; wait again for the unloading event and recapture"
       ],
       "source_route_ids": [
         "H.*",
         "A.tc4_cycles"
       ],
       "provenance": {
-        "source_supported_stage": "TC4初次循环残余塑性与角度增大是来源事实",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Residual plasticity and increased angle after the first TC4 cycle are source facts",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "RELOAD",
-      "title": "同一物件后续压缩/卸载",
+      "title": "Subsequent compression/unloading of the same object",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -984,32 +984,32 @@
         "cycle_index incremented"
       ],
       "actions": [
-        "不取换试样，在面板选下一循环，保持本条件边界和目标幅度",
-        "再次执行LOAD→UNLOAD→OBS_RESIDUAL，分别存段；默认总2周期是authored最小示范"
+        "Without removing or replacing the specimen, select the next cycle on the panel and retain this condition's boundary and target amplitude",
+        "Repeat LOAD→UNLOAD→OBS_RESIDUAL, saving separate segments; the default total of 2 cycles is an authored minimum demonstration"
       ],
       "postconditions": [
         "repeat segment separately addressable",
         "same object lineage for repeats"
       ],
       "recovery": [
-        "换了对象或幅值就创建新condition/run，不把它叫原同件重复"
+        "If the object or amplitude changes, create a new condition/run rather than calling it a repeat on the original same specimen"
       ],
       "source_route_ids": [
         "H.*",
         "A.tc4_cycles"
       ],
       "provenance": {
-        "source_supported_stage": "后续循环的可重复性有来源；总周期数未知",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Repeatability in subsequent cycles is source-supported; the total cycle count is unknown",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "重复数、长期疲劳/耐久性未报告"
+          "Repeat count and long-term fatigue/durability are unreported"
         ]
       },
       "loop": "design_cycles-1; default 1; never source total cycles"
     },
     {
       "id": "TEST_REMOVE",
-      "title": "开罩托住样品并卸下",
+      "title": "Open the guard, support the specimen, and remove it",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -1026,29 +1026,29 @@
         "guard release"
       ],
       "actions": [
-        "开罩，先托住底板/粗节点，再解除防转夹或拆开侧箱可拆壁",
-        "将样品竖直提起放入原编号运输槽，撤出机械臂"
+        "Open the guard, first support the bottom plate/thick nodes, then release the anti-rotation clamp or detach the removable lateral-box walls",
+        "Lift the specimen vertically into its original numbered transport slot and retract the robot arm"
       ],
       "postconditions": [
         "machine empty",
         "object retains complete cycle history"
       ],
       "recovery": [
-        "样品附着不强拽；重新全卸荷，侧向解除代理接触后托举；损伤隔离"
+        "Do not pull hard on an adhering specimen; fully unload again, release surrogate contact laterally, then support and lift; quarantine damage"
       ],
       "source_route_ids": [
         "H.*"
       ],
       "provenance": {
-        "source_supported_stage": "卸样是闭合流程的authored连接动作",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Specimen removal is an authored connecting action closing the workflow",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "ARCHIVE",
-      "title": "把样品送入编号归档格",
+      "title": "Deliver the specimen to its numbered archive slot",
       "kind": "hands_on",
       "location_id": "WS_STORAGE",
       "target_asset_roles": [
@@ -1061,30 +1061,30 @@
         "TEST_REMOVE done"
       ],
       "actions": [
-        "搬托盘到对应材料架",
-        "将完整样品放归档格，金属标签保留cycled/residual；干预演示件放演示专用格；损伤/历史不明件放隔离格"
+        "Move the tray to the corresponding material rack",
+        "Place intact specimens in archive slots, retaining cycled/residual labels for metals; put intervention-demo specimens in dedicated demonstration slots and damaged/unknown-history specimens in quarantine slots"
       ],
       "postconditions": [
         "sample archived or quarantined",
         "no reclassification as pristine"
       ],
       "recovery": [
-        "格位被占则用该branch备用格，不能覆盖其他样品身份"
+        "If a slot is occupied, use this branch's backup slot; do not overwrite another specimen's identity"
       ],
       "source_route_ids": [
         "I.design",
         "H.*"
       ],
       "provenance": {
-        "source_supported_stage": "作者具体存储未报告；保留状态是任务要求",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The authors' specific storage procedure is unreported; state preservation is a task requirement",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "CLEAN01",
-      "title": "清掉工位碎屑并归还工装",
+      "title": "Clear station debris and return tooling",
       "kind": "hands_on",
       "location_id": "WS_CLEAN",
       "target_asset_roles": [
@@ -1099,9 +1099,9 @@
         "sample archived"
       ],
       "actions": [
-        "将支撑代理/废片按材料分入废料盒",
-        "用干净干擦布擦托盘、装配台和压板可触区域",
-        "将定位梳、侧箱壁、防转臂、相机工具归还标记格位"
+        "Sort surrogate supports/scraps into scrap bins by material",
+        "Use a clean dry wipe on the tray, assembly table, and accessible platen surfaces",
+        "Return locating combs, lateral-box walls, anti-rotation arms, and camera tools to their marked slots"
       ],
       "postconditions": [
         "empty clean work surfaces",
@@ -1109,19 +1109,19 @@
         "no specimen disposed accidentally"
       ],
       "recovery": [
-        "不明残留保持封闭并隔离处理；不擅用溶剂/压缩空气清TC4工艺粉末"
+        "Keep unknown residues enclosed and quarantined for handling; do not independently use solvents/compressed air to clean TC4 process powder"
       ],
       "source_route_ids": [],
       "provenance": {
-        "source_supported_stage": "收尾由任务作者补全，论文未描述清洁配方",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Closing work is supplied by the task author; the paper does not describe a cleaning recipe",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "CLEAN02",
-      "title": "回收余料并复位机器",
+      "title": "Recover leftover material and reset the machines",
       "kind": "hands_on",
       "location_id": "WS_CLEAN",
       "target_asset_roles": [
@@ -1136,8 +1136,8 @@
         "CLEAN01 done"
       ],
       "actions": [
-        "按释放按钮取回未耗尽封闭料匣，放专属余料格",
-        "打印舱门关好，压板保持安全回撤，推回空运输车"
+        "Press the release button, retrieve the partially used sealed cartridge, and place it in its dedicated leftover-material slot",
+        "Close the printer chamber door, leave the platen safely retracted, and return the empty transport cart"
       ],
       "postconditions": [
         "materials accounted",
@@ -1146,19 +1146,19 @@
         "workspace reset"
       ],
       "recovery": [
-        "仍在加工的舱室不强开；保留等待状态直到安全释放"
+        "Do not force open a chamber still processing; remain in the waiting state until safe release"
       ],
       "source_route_ids": [],
       "provenance": {
-        "source_supported_stage": "任务闭环复位是authored",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "The task's closed-loop reset is authored",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": []
       },
       "loop": null
     },
     {
       "id": "HAND_TOOL",
-      "title": "取演示探针靠近、交互、退出",
+      "title": "Retrieve the demonstration probe, approach, interact, and withdraw",
       "kind": "hands_on",
       "location_id": "WS_TEST",
       "target_asset_roles": [
@@ -1174,9 +1174,9 @@
         "no real loaded-machine access without separate engineering safety design"
       ],
       "actions": [
-        "从架上拿mock软端探针，经侧面演示孔靠近格构",
-        "在场景指定接触点触发一次tool_contact事件，再退回并把探针放架上",
-        "演示继续记录鼓出状态；tool_contact不自动等于导致鼓出"
+        "Take the mock soft-tipped probe from the rack and approach the lattice through the side demonstration opening",
+        "Trigger one tool_contact event at the scene-designated contact point, then withdraw and return the probe to the rack",
+        "Continue recording the bulging state during the demonstration; tool_contact does not automatically imply that it caused the bulging"
       ],
       "postconditions": [
         "approach/contact/withdraw events recorded",
@@ -1184,16 +1184,16 @@
         "no pollution of quantitative unboxed curves"
       ],
       "recovery": [
-        "接触点/运动未知则只保留符号任务路径，不编造力幅；若真实测试禁入，保持guard关闭并使用专门远端工具接口"
+        "If the contact point/motion is unknown, retain only the symbolic task path without inventing force amplitude; if real testing prohibits entry, keep the guard closed and use a dedicated remote tool interface"
       ],
       "source_route_ids": [
         "H.prism_handling"
       ],
       "provenance": {
-        "source_supported_stage": "Video5约4.66–5.50s可见手持工具交互",
-        "authored_connector": "此操作的抓握、路径、门/按钮/托盘接口、夹具机械实现及离散成功条件均为任务设计；不是论文微动作转录",
+        "source_supported_stage": "Handheld tool interaction is visible in Video5 at approximately 4.66–5.50s",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
         "unknown_source_parameters": [
-          "工具种类、作用目的、方向、力度、与曲线因果关系未知"
+          "Tool type, purpose, direction, force, and causal relationship to the curve are unknown"
         ]
       },
       "loop": null

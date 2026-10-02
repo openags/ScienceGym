@@ -4,7 +4,7 @@
     {
       "id": "N_SOLIDIFICATION",
       "source_branch_id": "f.model_solidification",
-      "title": "凝固/黏弹应力模型",
+      "title": "Solidification/viscoelastic stress model",
       "cases": [
         "Si/silica",
         "Ge/silica",
@@ -19,12 +19,12 @@
         "f.si_tables",
         "f.ed7"
       ],
-      "disposition": "非手工：归档假设/材料参数/模型输出要求，不执行FE"
+      "disposition": "Nonmanual: archive assumptions/material parameters/model-output requirements; do not execute FE"
     },
     {
       "id": "N_COOLING",
       "source_branch_id": "f.model_cooling",
-      "title": "热失配解析/FE比较",
+      "title": "Analytical/FE comparison of thermal mismatch",
       "cases": [
         "three_material_pairs",
         "radial_hoop_axial_stress",
@@ -39,12 +39,12 @@
         "f.ed2",
         "f.main"
       ],
-      "disposition": "非手工：保留解析/FE对照及26/27°C不同上下文"
+      "disposition": "Nonmanual: retain the analytical/FE comparison and the distinct contexts of 26/27°C"
     },
     {
       "id": "N_SENSITIVITY",
       "source_branch_id": "f.model_sensitivity",
-      "title": "半径/时间离散敏感性",
+      "title": "Radius/time discretization sensitivity",
       "cases": [
         "core_radius_50um",
         "fibre_radius_200_450_700um",
@@ -55,12 +55,12 @@
         "f.ed7",
         "f.sim"
       ],
-      "disposition": "非手工：保留case索引，不产生机器人操作"
+      "disposition": "Nonmanual: retain case indices without generating robot operations"
     },
     {
       "id": "N_NECK",
       "source_branch_id": "f.model_neck",
-      "title": "毛细失稳/耦合颈区模型",
+      "title": "Capillary-instability/coupled neck-region model",
       "cases": [
         "Ge_BSG_vs_Ge_ASG",
         "Rayleigh_Tomotika_cylinders",
@@ -75,12 +75,12 @@
         "f.ed4",
         "f.main"
       ],
-      "disposition": "非手工理论 + NECK_WITH_CORE/NECK_NO_CORE实物表征对应，不运行模型"
+      "disposition": "Nonmanual theory plus corresponding NECK_WITH_CORE/NECK_NO_CORE physical characterization; do not run the model"
     },
     {
       "id": "N_FIELD",
       "source_branch_id": "f.model_electric",
-      "title": "器件电场模型",
+      "title": "Device electric-field model",
       "cases": [
         "COMSOL_electrostatics",
         "reported_extremely_fine_mesh",
@@ -90,16 +90,16 @@
         "f.sim",
         "f.ed6"
       ],
-      "disposition": "非手工：reported mesh不等于独立网格收敛证明"
+      "disposition": "Nonmanual: a reported mesh is not independent proof of mesh convergence"
     }
   ],
   "analysis_only": [
-    "Raman峰拟合/应力解释",
-    "XRD方位积分",
-    "responsivity/NEP/rise-time/PSD/bandwidth计算",
-    "力学强度归一",
-    "sent/received内容比较",
-    "原文外部数据代码仓10.21979/N9/BTLRFM未获取"
+    "Raman peak fitting/stress interpretation",
+    "XRD azimuthal integration",
+    "responsivity/NEP/rise-time/PSD/bandwidth calculations",
+    "Mechanical-strength normalization",
+    "Comparison of sent/received content",
+    "The source's external data/code repository 10.21979/N9/BTLRFM has not been obtained"
   ],
-  "rule": "非手工内容保留来源处置，不为了凑机器人动作制造手动等价物"
+  "rule": "Retain source-based treatment of nonmanual content; do not invent manual equivalents merely to add robot actions"
 }
