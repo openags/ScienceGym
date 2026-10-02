@@ -1,0 +1,87 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "visibility": "evaluator_reference_only",
+  "status": "contract_only_no_runtime_implemented",
+  "scientific_response": "Preset fixture records, not physical calculation; no paper-valued reward target.",
+  "required_record_fields": [
+    "mock=true",
+    "fixture_version",
+    "episode",
+    "object",
+    "parent_history_hash",
+    "condition",
+    "acquisition_event",
+    "I_value_unit",
+    "V_value_unit",
+    "Qc_value_unit_or_raw_sensor_value_unit",
+    "calibration_id_or_unknown",
+    "vacuum_state",
+    "Th_Tc_set_and_observed",
+    "timestamp",
+    "validity"
+  ],
+  "units": {
+    "P": "I[A] × V[V] → W; I[A] × V[mV] → mW; convert before eta",
+    "eta": "P/(P+Qc), both powers same unit; eta×100 for percent",
+    "density": "P divided by registered cross-sectional area, not arbitrary footprint",
+    "contact": "R[ohm] times interface area after appropriate jump/fit model; source4.0/4.9 microohm cm² kept as references only"
+  },
+  "source_unit_issue": {
+    "locator": "Main Fig.2a Q0 labelled mV; Fig.2b Q0 labelled W; Methods heat flow",
+    "resolution": "unresolved source plot label mismatch; Fig.2 is modelling, not evidence of Mini-PEM raw sensor format. Never silently relabel mV as W."
+  },
+  "raw_sensor_rule": "If a task fixture exposes a Qc-related raw mV signal without calibration, archive raw signal and mark eta unknown. An explicitly W-labelled calibrated mock Qc field can support mock eta, never real calibration.",
+  "illustrative_records": [
+    {
+      "mock": true,
+      "purpose": "unit-path example only; not real data or automatic branch fixture",
+      "I_A": 0.4,
+      "V_mV": 30,
+      "Qc_W": 0.288,
+      "P_mW": 12,
+      "eta_percent": 4.0,
+      "calibration": "authored mock calibrated channel"
+    },
+    {
+      "mock": true,
+      "purpose": "calibration-fault example",
+      "I_A": 0.4,
+      "V_mV": 30,
+      "Qc_sensor_mV": 8,
+      "calibration": null,
+      "P_mW": 12,
+      "eta_percent": null,
+      "validity": "power valid mock, heat conversion/eta unavailable"
+    }
+  ],
+  "gates": [
+    "sealed loaded input + correct workorder + hands-clear precedes processing",
+    "process_complete and safe_release are different trusted events",
+    "guard/pressure/temperature/atmosphere states are environment-owned, never writable agent success bits",
+    "external button action only logs request; no automatic object fabrication",
+    "probe contact/current/thermal stability gates precede acquisition",
+    "readout belongs to physical object/position/condition that triggered it"
+  ],
+  "faults": [
+    "wrong material label",
+    "loose clamp proxy",
+    "missing atmosphere certificate",
+    "wrong pressing-axis relation",
+    "missing GaIn interface",
+    "shorted copper bridge",
+    "probe loses contact",
+    "raw heat signal without calibration",
+    "thermal stability lost midscan",
+    "safe-release absent",
+    "damaged leg"
+  ],
+  "duration_policy": "Source durations remain in work-order metadata. Mock clock can accelerate them with explicit simulated-time events; elapsed wall time is not science completion or permission to open.",
+  "not_claimed": [
+    "real sensors",
+    "validated laboratory safety",
+    "TEGNet/COMSOL execution",
+    "manufacturer interlock implementation",
+    "robot rollouts"
+  ]
+}

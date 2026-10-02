@@ -1,0 +1,554 @@
+{
+  "schema_version": "chiral_nonmanual_scope.v2",
+  "records": [
+    {
+      "id": "N.I.design",
+      "source_route_id": "I.design",
+      "title": "Configuration-specific geometry and CAD",
+      "classification": "design_input",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Reported parameters include material, primitive, dimensions, envelope and some chiral angles/radii; Table 1 has 17 result rows."
+      ],
+      "source_locators": [
+        "main.pdf p9 Samples",
+        "main.pdf p21 Table 1",
+        "main.pdf p5 Fig4c"
+      ],
+      "unknown": [
+        "Native CAD, torus/node geometry, tolerances, print orientation and most joints are not supplied.",
+        "Seventeen result rows are not proof of seventeen independent specimen configurations or lots."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.I.material",
+      "source_route_id": "I.material",
+      "title": "Per-specimen material identity and constitutive inputs",
+      "classification": "design_input",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Rubber and TC4 titanium alloy are used. Table lists densities 1000 and 4500 kg/m3 for constituent materials.",
+        "Rubber modulus about 5.5 MPa applies to Fig4e samples; other rubber samples are described as about 15 MPa. TC4 FEA panel i labels Es=100 GPa."
+      ],
+      "source_locators": [
+        "main.pdf p9 Samples",
+        "main.pdf p20 ED10i",
+        "main.pdf p21 Table 1"
+      ],
+      "unknown": [
+        "Formulation, supplier, lot, processing history and independent constitutive calibration procedure are unreported.",
+        "Do not assign one common modulus/lot to every rubber result."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.I.fabrication",
+      "source_route_id": "I.fabrication",
+      "title": "Fabrication recipe and process equipment",
+      "classification": "design_input",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Three-dimensional printing is reported for rubber and TC4 rod/beam/plate specimens."
+      ],
+      "source_locators": [
+        "main.pdf p5 Experiments"
+      ],
+      "unknown": [
+        "Printer model/process, feedstock, layer settings, supports, heat treatment, curing/postprocessing, tolerances and acceptance criteria are unreported."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.I.fixtures",
+      "source_route_id": "I.fixtures",
+      "title": "Loading, lateral constraint and rotation boundary fixtures",
+      "classification": "design_input",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Opposed compression loading surfaces are visible; prism box constraints and a non-rotatable chiral boundary are reported."
+      ],
+      "source_locators": [
+        "main.pdf p10 Experiments",
+        "main.pdf p19 ED9",
+        "main.pdf p20 ED10",
+        "Supplementary Videos 4-7"
+      ],
+      "unknown": [
+        "Fixture CAD, box clearances/friction, fastening and alignment are unreported.",
+        "Free rotation means the chiral deformation degree of freedom; a commercial rotary platen/bearing model is not established."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.I.acquisition",
+      "source_route_id": "I.acquisition",
+      "title": "Compression acquisition settings and calibration",
+      "classification": "design_input",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Cyclic compression, force/strain or stress/strain traces, and deformation observations are reported."
+      ],
+      "source_locators": [
+        "main.pdf p10 Experiments",
+        "main.pdf p5 Fig4",
+        "main.pdf p19 ED9",
+        "main.pdf p20 ED10"
+      ],
+      "unknown": [
+        "Machine model, load cell, speed, sampling, preload, zeroing, calibration, uncertainty, environment, total cycle count and stopping rules are unreported.",
+        "Calibration is a required operational input; no calibration experiment is claimed as reported."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.I.denominators",
+      "source_route_id": "I.denominators",
+      "title": "Geometry, full-sample density and buckling-mass basis",
+      "classification": "design_input",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Equivalent stress uses projected area; strain uses reference height. Enthalpy uses volume. Energy per mass uses buckling-rod mass.",
+        "Table density includes both buckled and non-buckled sample parts; Nbk counts buckled elements."
+      ],
+      "source_locators": [
+        "main.pdf p9 Performance evaluation",
+        "main.pdf p6 energy per mass",
+        "main.pdf p21 Table1 footnote"
+      ],
+      "unknown": [
+        "Acquisition method for dimensions, mass, displacement reference and raw per-specimen measurements is not specified.",
+        "Do not invent a balance/caliper measurement procedure as a reported author action."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.I.models",
+      "source_route_id": "I.models",
+      "title": "Analytical/FE model inputs and source reconciliation",
+      "classification": "design_input",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "ANSYS with nonlinear geometric deformation is reported; equations and model assumptions are provided."
+      ],
+      "source_locators": [
+        "main.pdf pp8-10 Methods",
+        "supp_01.pdf pp6-31"
+      ],
+      "unknown": [
+        "Native ANSYS projects, full mesh/convergence/constitutive choices, numerical solver settings and analytical code are absent.",
+        "Equation variants need reconciliation before computational reproduction."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.P.design",
+      "source_route_id": "P.design",
+      "title": "Set experiment configurations from comparison criteria",
+      "classification": "design_input",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Physical specimens were designed with Fig3e,h guidance for approximately comparable peak rod stress at specified global strain."
+      ],
+      "source_locators": [
+        "main.pdf p5 Experiments",
+        "main.pdf p9 Samples"
+      ],
+      "unknown": [
+        "Original design files and complete specification-to-specimen mapping are absent."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.rod",
+      "source_route_id": "T.rod",
+      "title": "Vertical rod, imperfection and buckling-order baseline",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Pure compression then bending; perfect versus midpoint 2-degree imperfect rods; stress/energy/force curves; radius and buckling-order comparisons.",
+        "The n=1 and n=2 energy example in SI is analytical; n=1/2 is a boundary-mode comparison."
+      ],
+      "source_locators": [
+        "main.pdf pp1,8",
+        "main.pdf p12 ED2",
+        "supp_01.pdf pp6-10 Note1.1-1.2; FigS1"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.oblique",
+      "source_route_id": "T.oblique",
+      "title": "Oblique rods and nonchiral lattice normalization",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Oblique-angle sweeps, node-spacing correction, prism and octahedron unit-cell reduction and area/volume normalization."
+      ],
+      "source_locators": [
+        "main.pdf pp3-4 Fig2a-b/Fig3",
+        "main.pdf p9 Performance evaluation",
+        "supp_01.pdf pp10-12 Note1.3-1.4; FigS2"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.linear",
+      "source_route_id": "T.linear",
+      "title": "General 3D chiral geometry and small-deformation limit",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Coaxial radii may be unequal; initial chirality, geometry and straight-arm approximation define a restricted linear relation."
+      ],
+      "source_locators": [
+        "main.pdf p11 ED1",
+        "supp_01.pdf pp13-14 Note2; FigS3"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.twist",
+      "source_route_id": "T.twist",
+      "title": "Nonlinear twist-buckling model and four modes",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "In-plane and out-of-plane bending, in-rod twist and compression; helix correction; compatibility; force-equilibrium and energy methods; iterative solution; maximum stress.",
+        "The author mentions trying methods but does not report a reproducible exploratory chronology."
+      ],
+      "source_locators": [
+        "main.pdf pp2-3,8-9",
+        "supp_01.pdf pp15-27 Note3; FigsS4-S7"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.geometry",
+      "source_route_id": "T.geometry",
+      "title": "Chiral radii, angle, thickness and model/FE comparisons",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Unequal/equal torus radii, initial angle and rod radius effects; thin r=0.6 mm case; three typical equal-radius geometries; energy-mode fractions; force/energy/twist/stress response."
+      ],
+      "source_locators": [
+        "main.pdf p3 Fig2c-f",
+        "main.pdf pp13-15 ED3-ED5"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.thick",
+      "source_route_id": "T.thick",
+      "title": "Thick-rod and boundary-order regime qualification",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "2r/L0=0.27, L0=30 mm; n=1 versus n=1/2 nonchiral bending and chiral initial-angle changes including 0.1 degrees."
+      ],
+      "source_locators": [
+        "main.pdf p16 ED6",
+        "main.pdf p3 Mechanism/preceding text"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.phased",
+      "source_route_id": "T.phased",
+      "title": "Three FE loading controls for energy attribution",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Imposed compression/free rotation; imposed rotation/free compression; alternating held-compression/held-angle increments on the same model.",
+        "Global external work and internal in-rod twisting energy are different decompositions."
+      ],
+      "source_locators": [
+        "main.pdf p17 ED7a-c"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.lattice",
+      "source_route_id": "T.lattice",
+      "title": "Rod-lattice performance and Kelvin/tensegrity comparisons",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Rotatable/non-rotatable chiral, prism, octahedron, Kelvin and tensegrity models; density, modulus, plateau strength, limit strain and enthalpy maps.",
+        "Kelvin 1/8 model and connection nodes; tensegrity radius/density sweep and near-end stress sampling that excludes crossing stress concentration."
+      ],
+      "source_locators": [
+        "main.pdf p4 Fig3a-e",
+        "main.pdf p18 ED8a-m",
+        "main.pdf p9 Performance evaluation"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.section",
+      "source_route_id": "T.section",
+      "title": "Rod, crossed, flat-wide and square-beam/plate alternatives",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Rotation-locked rod bending; rotatable round and crossed-beam twisting; flat-wide-beam loss of robust twist; square-beam chiral versus plate-prism models.",
+        "The crossed/flat-wide video cases are rendered numerical demonstrations, not reported fabricated physical specimens."
+      ],
+      "source_locators": [
+        "main.pdf pp4-5 Fig3f-h",
+        "Supplementary Videos 1-3"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.micropolar",
+      "source_route_id": "T.micropolar",
+      "title": "Two nonlinear micropolar representations",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Linear constitutive context, free-rotation reduction, dynamic-coefficient and nine-constant polynomial fits.",
+        "The two fits give different energy partitions but the same qualitative trend."
+      ],
+      "source_locators": [
+        "supp_01.pdf pp28-31 Note4.1-4.3; FigS8"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.T.tc4_match",
+      "source_route_id": "T.tc4_match",
+      "title": "TC4 FE stress/energy boundary matching",
+      "classification": "theory_or_numerical_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Identical TC4 model with rotatable and non-rotatable boundary conditions; stress-energy and stress-global-strain comparisons.",
+        "Equal global strain and equal peak rod stress are separate comparisons; FE-derived local stress is not a direct experimental stress-sensor reading."
+      ],
+      "source_locators": [
+        "main.pdf p20 ED10i-j",
+        "main.pdf p21 Table1 rows12,16,17"
+      ],
+      "unknown": [
+        "Route is source-covered but equations/FE computations are not independently reproduced here."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.A.reduce",
+      "source_route_id": "A.reduce",
+      "title": "Reduce traces with explicit phase and denominator identity",
+      "classification": "analysis_data_handoff",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Equivalent strain/stress, small-strain modulus, buckling strength, volume-based enthalpy and buckling-mass-based energy are distinct outputs.",
+        "Preserve initial versus repeat loading; titanium Fig4h,j uses initial-loading values."
+      ],
+      "source_locators": [
+        "main.pdf p9 Performance evaluation",
+        "main.pdf p10 Experiments",
+        "main.pdf p5 Fig4e-j",
+        "main.pdf p21 Table1"
+      ],
+      "unknown": [
+        "Raw traces, measurement uncertainty and complete numeric reproduction are not delivered by this audit."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.A.rubber",
+      "source_route_id": "A.rubber",
+      "title": "Compare rubber geometries and thickness controls",
+      "classification": "analysis_data_handoff",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Compare chiral, prism rod/plate, octahedron thicknesses, Kelvin thicknesses and all four tensegrity radii.",
+        "Rubber row1-7 energies use strain0.25; tensegrity rows8-11 use0.4. These are not equal-global-strain comparisons."
+      ],
+      "source_locators": [
+        "main.pdf pp5-6 Fig4e,g,i",
+        "main.pdf p19 ED9j-k",
+        "main.pdf p21 rows1-11"
+      ],
+      "unknown": [
+        "Raw traces, measurement uncertainty and complete numeric reproduction are not delivered by this audit."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.A.layers",
+      "source_route_id": "A.layers",
+      "title": "Compare layer number and lateral-boundary failure mode",
+      "classification": "analysis_data_handoff",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "One/two/four in-plane layer curves and the two-layer in-plane versus bulge-out contrast are separate controls."
+      ],
+      "source_locators": [
+        "main.pdf p19 ED9h-i",
+        "main.pdf p10 Experiments",
+        "Supplementary Video5"
+      ],
+      "unknown": [
+        "Raw traces, measurement uncertainty and complete numeric reproduction are not delivered by this audit."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.A.small",
+      "source_route_id": "A.small",
+      "title": "Compare two small-cell curves to corresponding theory",
+      "classification": "analysis_data_handoff",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Keep the20/50-degree geometry, modulus and contact regime distinct."
+      ],
+      "source_locators": [
+        "main.pdf p5 Fig4c",
+        "main.pdf p9 Samples"
+      ],
+      "unknown": [
+        "Raw traces, measurement uncertainty and complete numeric reproduction are not delivered by this audit."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.A.tc4_cycles",
+      "source_route_id": "A.tc4_cycles",
+      "title": "Separate TC4 initial, residual and repeat-cycle evidence",
+      "classification": "analysis_data_handoff",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Metal first loading includes irreversible deformation; compare initial and repeat responses without treating them as interchangeable recovered-energy measures.",
+        "Four-sample display and repeated cycles within a sample are different kinds of repetition."
+      ],
+      "source_locators": [
+        "main.pdf pp5-6 Fig4f,h,j",
+        "main.pdf p10 Experiments",
+        "main.pdf p20 ED10g-h",
+        "main.pdf p21 rows12-17"
+      ],
+      "unknown": [
+        "Raw traces, measurement uncertainty and complete numeric reproduction are not delivered by this audit."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.A.tc4_match",
+      "source_route_id": "A.tc4_match",
+      "title": "Compare equal-stress and equal-strain TC4 boundaries",
+      "classification": "analysis_data_handoff",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Local stress assignment comes from FE matching; locked controls at different endpoints cannot be merged."
+      ],
+      "source_locators": [
+        "main.pdf p20 ED10i-j",
+        "main.pdf p21 rows12,16,17"
+      ],
+      "unknown": [
+        "Raw traces, measurement uncertainty and complete numeric reproduction are not delivered by this audit."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.A.mechanism",
+      "source_route_id": "A.mechanism",
+      "title": "Integrate model and experiment conclusions with limitations",
+      "classification": "analysis_data_handoff",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Torsional contribution, attainable strain, density and boundary stability support qualified comparisons.",
+        "Idealized first-order nonchiral bending differs from observed nonuniform/global buckling; do not silently repair the physical control to match theory."
+      ],
+      "source_locators": [
+        "main.pdf pp3-6",
+        "supp_01.pdf pp28-31"
+      ],
+      "unknown": [
+        "Raw traces, measurement uncertainty and complete numeric reproduction are not delivered by this audit."
+      ],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    },
+    {
+      "id": "N.X.applications",
+      "source_route_id": "X.applications",
+      "title": "Proposed engineering applications",
+      "classification": "application_proposal_only",
+      "manual_action_required": false,
+      "sourcefacts": [
+        "Lightweight/miniaturized design, energy storage, impact protection, torsional modulation/actuation and low-frequency vibration isolation are suggested."
+      ],
+      "source_locators": [
+        "main.pdf p6 Conclusions",
+        "main.pdf p1 introduction/abstract"
+      ],
+      "unknown": [],
+      "current_task_mode": "read-only reference / explicit mock fixture; no solver execution",
+      "output_contract": "typed configuration/data record; never counted as manufactured/tested object"
+    }
+  ],
+  "exclusions": [
+    "Do not fabricate rod-2degree-imperfection experiments from theory",
+    "Do not fabricate crossed/flat-wide-beam physical specimens from Videos1–3",
+    "Do not add impact/isolation/actuator/jumping/device demos from proposed applications",
+    "Do not count SI equations or model sweeps as robot hands-on work"
+  ]
+}

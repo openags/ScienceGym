@@ -1,0 +1,88 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "materials": {
+    "P": {
+      "short_name": "MgAgSb",
+      "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+      "type": "p",
+      "raw_materials": [
+        "Mg turnings (99.95%)",
+        "Ag powders (99.99%)",
+        "Sb shots (99.999%)",
+        "C18H36O2 additive; isomer/purity not reported"
+      ],
+      "interface": "Sb powder",
+      "milling": {
+        "atmosphere": "Ar",
+        "duration_h": 5
+      },
+      "sinter": {
+        "model": "SPS-322LX",
+        "temperature_K": 573,
+        "hold_min": 5,
+        "pressure_MPa": 60
+      },
+      "cut_relation": "parallel_to_pressing_direction"
+    },
+    "N": {
+      "short_name": "Mg3Bi1.4Sb0.6",
+      "full_identity": "Mg3.2In0.02Sb0.595Bi1.4Te0.005",
+      "type": "n",
+      "raw_materials": [
+        "Mg turnings (99.95%)",
+        "In powders (99.99%)",
+        "Sb shots (99.999%)",
+        "Bi shots (99.999%)",
+        "Te shots (99.999%)"
+      ],
+      "interface": "stainless-steel powder",
+      "milling": {
+        "atmosphere": "Ar",
+        "duration_h": 5
+      },
+      "sinter": {
+        "model": "SPS-1080 System",
+        "temperature_K": 973,
+        "hold_min": 10,
+        "pressure_MPa": 60
+      },
+      "cut_relation": "source_unknown; task-authored indexed fixture only"
+    },
+    "B": {
+      "short_name": "Bi0.4Sb1.6Te3",
+      "full_identity": "Bi0.4Sb1.6Te3",
+      "type": "p",
+      "raw_materials": [
+        "Bi shots (99.999%)",
+        "Sb shots (99.999%)",
+        "Te shots (99.999%)"
+      ],
+      "interface": "none during SPS",
+      "melt": {
+        "container": "quartz tube",
+        "temperature_K": 1273,
+        "duration_h": 12,
+        "atmosphere": "unknown",
+        "seal_method": "unknown"
+      },
+      "milling": {
+        "duration_h": 1,
+        "atmosphere": "not independently specified for this route"
+      },
+      "sinter": {
+        "model": "SPS-322LX",
+        "temperature_K": 693,
+        "hold_min": 10,
+        "pressure_MPa": 60
+      },
+      "cut_relation": "perpendicular_to_pressing_direction"
+    }
+  },
+  "evidence_ids": [
+    "t.synthesis",
+    "t.fabrication"
+  ],
+  "dose_policy": "Actual batch mass, mill-ball count, ball:powder ratio, vial kit and additive staging are unreported. Mock inputs use manifest-issued symbolic portions with parent identity and explicit authored status, not an invented real recipe.",
+  "reported_parameters_use": "Numbers above are source facts, not approved real equipment instructions. Task executes inert mock work orders only."
+}

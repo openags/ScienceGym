@@ -1,0 +1,99 @@
+{
+  "schema_version": "chiral_unknowns_and_surrogates.v2",
+  "policy": "Unknown recipe/calibration blocks a claim of real execution readiness, not delivery of a full task design",
+  "parameters": [
+    {
+      "id": "U.CAD",
+      "unknown_source_parameter": "原始CAD/节点、环、接头、制造分件、公差",
+      "authored_surrogate": "分支来源尺寸约束的可抓代理；形状不声称力学真实",
+      "affected_operations": [
+        "FAB03",
+        "ASM01",
+        "ASM02",
+        "ASM03",
+        "ASM04"
+      ],
+      "task_design_status": "specified_with_placeholder",
+      "real_execution_status": "requires_external_recipe_or_engineering_validation"
+    },
+    {
+      "id": "U.FAB",
+      "unknown_source_parameter": "打印工艺、原料形态/配方、朝向、机器参数",
+      "authored_surrogate": "橡胶与TC4分开的封闭料匣/托盘机床；mock制造状态转移",
+      "affected_operations": [
+        "FAB02",
+        "FAB03",
+        "FAB04"
+      ],
+      "task_design_status": "specified_with_placeholder",
+      "real_execution_status": "requires_external_recipe_or_engineering_validation"
+    },
+    {
+      "id": "U.POST",
+      "unknown_source_parameter": "固化、清洗、去支撑、金属后处理",
+      "authored_surrogate": "可移交封闭后处理盒；默认无可拆支撑；真实步骤由外部配方填入",
+      "affected_operations": [
+        "POST_R",
+        "POST_M"
+      ],
+      "task_design_status": "specified_with_placeholder",
+      "real_execution_status": "requires_external_recipe_or_engineering_validation"
+    },
+    {
+      "id": "U.FIX",
+      "unknown_source_parameter": "侧箱隙/摩擦、加载面和锁转实现",
+      "authored_surrogate": "可拆侧壁、防转臂及对齐标记",
+      "affected_operations": [
+        "TEST02",
+        "BND_BOX",
+        "BND_LOCK"
+      ],
+      "task_design_status": "specified_with_placeholder",
+      "real_execution_status": "requires_external_recipe_or_engineering_validation"
+    },
+    {
+      "id": "U.ACQ",
+      "unknown_source_parameter": "载荷速率/预载/校准/采样/保载/公差",
+      "authored_surrogate": "按钮、门互锁与fixture完成事件，无伪数值",
+      "affected_operations": [
+        "TEST04",
+        "LOAD",
+        "UNLOAD"
+      ],
+      "task_design_status": "specified_with_placeholder",
+      "real_execution_status": "requires_external_recipe_or_engineering_validation"
+    },
+    {
+      "id": "U.CYCLE",
+      "unknown_source_parameter": "原作者循环数和独立样本/批次谱系",
+      "authored_surrogate": "默认2周期；四ED10g标签独立寻址，不声称统计独立",
+      "affected_operations": [
+        "RELOAD",
+        "ARCHIVE"
+      ],
+      "task_design_status": "specified_with_placeholder",
+      "real_execution_status": "requires_external_recipe_or_engineering_validation"
+    },
+    {
+      "id": "U.TOOL",
+      "unknown_source_parameter": "Video5工具/方向/力度/目的/曲线联系",
+      "authored_surrogate": "隔离演示物件+软端探针+符号接触，不编造因果",
+      "affected_operations": [
+        "HAND_TOOL"
+      ],
+      "task_design_status": "specified_with_placeholder",
+      "real_execution_status": "requires_external_recipe_or_engineering_validation"
+    },
+    {
+      "id": "U.METRIC",
+      "unknown_source_parameter": "原始轨迹/质量/体积/局部应力来源细节",
+      "authored_surrogate": "数据字段分别标reported、mock、unknown；局部应力只引用FE",
+      "affected_operations": [
+        "MET01",
+        "MET02"
+      ],
+      "task_design_status": "specified_with_placeholder",
+      "real_execution_status": "requires_external_recipe_or_engineering_validation"
+    }
+  ]
+}

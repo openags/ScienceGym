@@ -1,0 +1,1087 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "visibility": "agent_only_one_selected_episode",
+  "episode_goals": [
+    {
+      "id": "POWDER_P",
+      "goal": "从所给原材料和空工位完成“P型完整身份粉末制造”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "material_card": "P"
+      },
+      "material_cards": {
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "BLANK_P",
+      "goal": "从所给原材料和空工位完成“Sb/P/Sb烧结坯体”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "material_card": "P",
+        "sinter": {
+          "model": "SPS-322LX",
+          "temperature_K": 573,
+          "hold_min": 5,
+          "pressure_MPa": 60
+        }
+      },
+      "material_cards": {
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "POWDER_N",
+      "goal": "从所给原材料和空工位完成“N型实际掺杂配方粉末制造”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "material_card": "N"
+      },
+      "material_cards": {
+        "N": {
+          "short_name": "Mg3Bi1.4Sb0.6",
+          "full_identity": "Mg3.2In0.02Sb0.595Bi1.4Te0.005",
+          "type": "n",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "In powders (99.99%)",
+            "Sb shots (99.999%)",
+            "Bi shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "stainless-steel powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-1080 System",
+            "temperature_K": 973,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "source_unknown; task-authored indexed fixture only"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "BLANK_N",
+      "goal": "从所给原材料和空工位完成“不锈钢界面N烧结坯体”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "material_card": "N",
+        "sinter": {
+          "model": "SPS-1080 System",
+          "temperature_K": 973,
+          "hold_min": 10,
+          "pressure_MPa": 60
+        }
+      },
+      "material_cards": {
+        "N": {
+          "short_name": "Mg3Bi1.4Sb0.6",
+          "full_identity": "Mg3.2In0.02Sb0.595Bi1.4Te0.005",
+          "type": "n",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "In powders (99.99%)",
+            "Sb shots (99.999%)",
+            "Bi shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "stainless-steel powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-1080 System",
+            "temperature_K": 973,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "source_unknown; task-authored indexed fixture only"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "POWDER_B",
+      "goal": "从所给原材料和空工位完成“石英管熔锭后B型球磨”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "material_card": "B"
+      },
+      "material_cards": {
+        "B": {
+          "short_name": "Bi0.4Sb1.6Te3",
+          "full_identity": "Bi0.4Sb1.6Te3",
+          "type": "p",
+          "raw_materials": [
+            "Bi shots (99.999%)",
+            "Sb shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "none during SPS",
+          "melt": {
+            "container": "quartz tube",
+            "temperature_K": 1273,
+            "duration_h": 12,
+            "atmosphere": "unknown",
+            "seal_method": "unknown"
+          },
+          "milling": {
+            "duration_h": 1,
+            "atmosphere": "not independently specified for this route"
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 693,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "perpendicular_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "BLANK_B",
+      "goal": "从所给原材料和空工位完成“无界面B烧结坯体”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "material_card": "B",
+        "sinter": {
+          "model": "SPS-322LX",
+          "temperature_K": 693,
+          "hold_min": 10,
+          "pressure_MPa": 60
+        }
+      },
+      "material_cards": {
+        "B": {
+          "short_name": "Bi0.4Sb1.6Te3",
+          "full_identity": "Bi0.4Sb1.6Te3",
+          "type": "p",
+          "raw_materials": [
+            "Bi shots (99.999%)",
+            "Sb shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "none during SPS",
+          "melt": {
+            "container": "quartz tube",
+            "temperature_K": 1273,
+            "duration_h": 12,
+            "atmosphere": "unknown",
+            "seal_method": "unknown"
+          },
+          "milling": {
+            "duration_h": 1,
+            "atmosphere": "not independently specified for this route"
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 693,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "perpendicular_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "POWER_SEG_6P7",
+      "goal": "从所给原材料和空工位完成“分段腿6.7 mm功率密度比较”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_reported_total_length_mm": 6.7,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": 0.5,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": null
+      },
+      "material_cards": {
+        "B": {
+          "short_name": "Bi0.4Sb1.6Te3",
+          "full_identity": "Bi0.4Sb1.6Te3",
+          "type": "p",
+          "raw_materials": [
+            "Bi shots (99.999%)",
+            "Sb shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "none during SPS",
+          "melt": {
+            "container": "quartz tube",
+            "temperature_K": 1273,
+            "duration_h": 12,
+            "atmosphere": "unknown",
+            "seal_method": "unknown"
+          },
+          "milling": {
+            "duration_h": 1,
+            "atmosphere": "not independently specified for this route"
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 693,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "perpendicular_to_pressing_direction"
+        },
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "POWER_P_6P7",
+      "goal": "从所给原材料和空工位完成“P单材料腿6.7 mm功率密度比较”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_reported_total_length_mm": 6.7,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": null,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": "unreported independently; reuse component preparation in task only"
+      },
+      "material_cards": {
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "POWER_B_6P7",
+      "goal": "从所给原材料和空工位完成“B单材料腿6.7 mm功率密度比较”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_reported_total_length_mm": 6.7,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": null,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": "unreported independently; reuse component preparation in task only"
+      },
+      "material_cards": {
+        "B": {
+          "short_name": "Bi0.4Sb1.6Te3",
+          "full_identity": "Bi0.4Sb1.6Te3",
+          "type": "p",
+          "raw_materials": [
+            "Bi shots (99.999%)",
+            "Sb shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "none during SPS",
+          "melt": {
+            "container": "quartz tube",
+            "temperature_K": 1273,
+            "duration_h": 12,
+            "atmosphere": "unknown",
+            "seal_method": "unknown"
+          },
+          "milling": {
+            "duration_h": 1,
+            "atmosphere": "not independently specified for this route"
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 693,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "perpendicular_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "POWER_SEG_8P8",
+      "goal": "从所给原材料和空工位完成“分段腿8.8 mm功率密度比较”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_reported_total_length_mm": 8.8,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": 0.5,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": null
+      },
+      "material_cards": {
+        "B": {
+          "short_name": "Bi0.4Sb1.6Te3",
+          "full_identity": "Bi0.4Sb1.6Te3",
+          "type": "p",
+          "raw_materials": [
+            "Bi shots (99.999%)",
+            "Sb shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "none during SPS",
+          "melt": {
+            "container": "quartz tube",
+            "temperature_K": 1273,
+            "duration_h": 12,
+            "atmosphere": "unknown",
+            "seal_method": "unknown"
+          },
+          "milling": {
+            "duration_h": 1,
+            "atmosphere": "not independently specified for this route"
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 693,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "perpendicular_to_pressing_direction"
+        },
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "POWER_P_8P8",
+      "goal": "从所给原材料和空工位完成“P单材料腿8.8 mm功率密度比较”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_reported_total_length_mm": 8.8,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": null,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": "unreported independently; reuse component preparation in task only"
+      },
+      "material_cards": {
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "POWER_B_8P8",
+      "goal": "从所给原材料和空工位完成“B单材料腿8.8 mm功率密度比较”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_reported_total_length_mm": 8.8,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": null,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": "unreported independently; reuse component preparation in task only"
+      },
+      "material_cards": {
+        "B": {
+          "short_name": "Bi0.4Sb1.6Te3",
+          "full_identity": "Bi0.4Sb1.6Te3",
+          "type": "p",
+          "raw_materials": [
+            "Bi shots (99.999%)",
+            "Sb shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "none during SPS",
+          "melt": {
+            "container": "quartz tube",
+            "temperature_K": 1273,
+            "duration_h": 12,
+            "atmosphere": "unknown",
+            "seal_method": "unknown"
+          },
+          "milling": {
+            "duration_h": 1,
+            "atmosphere": "not independently specified for this route"
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 693,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "perpendicular_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "CONTACT_SEG",
+      "goal": "从所给原材料和空工位完成“分段腿两界面空间电阻比较”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_geometry_mm": null,
+        "task_proxy_geometry_mm": [
+          4,
+          4,
+          8
+        ],
+        "scan_axis": "B → GaIn/Sb → P",
+        "source_scan_grid": null,
+        "mock_scan_grid_mm": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "material_cards": {
+        "B": {
+          "short_name": "Bi0.4Sb1.6Te3",
+          "full_identity": "Bi0.4Sb1.6Te3",
+          "type": "p",
+          "raw_materials": [
+            "Bi shots (99.999%)",
+            "Sb shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "none during SPS",
+          "melt": {
+            "container": "quartz tube",
+            "temperature_K": 1273,
+            "duration_h": 12,
+            "atmosphere": "unknown",
+            "seal_method": "unknown"
+          },
+          "milling": {
+            "duration_h": 1,
+            "atmosphere": "not independently specified for this route"
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 693,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "perpendicular_to_pressing_direction"
+        },
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "EFFICIENCY_SEG",
+      "goal": "从所给原材料和空工位完成“分段腿四热边界效率扫描”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_specimen_geometry_mm": null,
+        "task_proxy_geometry_mm": [
+          4,
+          4,
+          8
+        ],
+        "source_P_length_ratio": 0.5,
+        "source_Th_K": [
+          373,
+          473,
+          573,
+          593
+        ],
+        "source_Tc_K": 293,
+        "top_material": "P",
+        "bottom_material": "B"
+      },
+      "material_cards": {
+        "B": {
+          "short_name": "Bi0.4Sb1.6Te3",
+          "full_identity": "Bi0.4Sb1.6Te3",
+          "type": "p",
+          "raw_materials": [
+            "Bi shots (99.999%)",
+            "Sb shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "none during SPS",
+          "melt": {
+            "container": "quartz tube",
+            "temperature_K": 1273,
+            "duration_h": 12,
+            "atmosphere": "unknown",
+            "seal_method": "unknown"
+          },
+          "milling": {
+            "duration_h": 1,
+            "atmosphere": "not independently specified for this route"
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 693,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "perpendicular_to_pressing_direction"
+        },
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    },
+    {
+      "id": "PAIRED_TWO",
+      "goal": "从所给原材料和空工位完成“四腿双对模块制造与四热边界测量”，保存带对象、条件、单位和标定状态的mock记录，归档物件并复位工位。",
+      "initial_state": {
+        "materials": "按本任务材料卡提供封闭原料、空罐/模具/载具、足量明确authored的模拟份额；没有完成粉末、腿或模块",
+        "equipment": "所有工位空载停止，只有公开ready/guard/safe_release反馈",
+        "data": "无本episode采集记录；不提供隐藏缺陷、未来观察或参考操作链"
+      },
+      "condition_card": {
+        "source_p_leg_xyz_mm": [
+          3.3,
+          3.3,
+          6.6
+        ],
+        "source_n_leg_xyz_mm": [
+          2.9,
+          2.9,
+          6.6
+        ],
+        "P_count": 2,
+        "N_count": 2,
+        "source_Th_K": [
+          373,
+          473,
+          573,
+          593
+        ],
+        "source_Tc_K": 293,
+        "AlN_dimensions": null,
+        "Cu_topology": "authored series implementation consistent with source series/thermal-parallel architecture; detailed route unreported",
+        "N_cut_direction": null
+      },
+      "material_cards": {
+        "N": {
+          "short_name": "Mg3Bi1.4Sb0.6",
+          "full_identity": "Mg3.2In0.02Sb0.595Bi1.4Te0.005",
+          "type": "n",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "In powders (99.99%)",
+            "Sb shots (99.999%)",
+            "Bi shots (99.999%)",
+            "Te shots (99.999%)"
+          ],
+          "interface": "stainless-steel powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-1080 System",
+            "temperature_K": 973,
+            "hold_min": 10,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "source_unknown; task-authored indexed fixture only"
+        },
+        "P": {
+          "short_name": "MgAgSb",
+          "full_identity": "MgAgSb + 0.625 wt% C18H36O2",
+          "type": "p",
+          "raw_materials": [
+            "Mg turnings (99.95%)",
+            "Ag powders (99.99%)",
+            "Sb shots (99.999%)",
+            "C18H36O2 additive; isomer/purity not reported"
+          ],
+          "interface": "Sb powder",
+          "milling": {
+            "atmosphere": "Ar",
+            "duration_h": 5
+          },
+          "sinter": {
+            "model": "SPS-322LX",
+            "temperature_K": 573,
+            "hold_min": 5,
+            "pressure_MPa": 60
+          },
+          "cut_relation": "parallel_to_pressing_direction"
+        }
+      },
+      "visible_actions": [
+        "检查标签/状态",
+        "移动/抓取/开合/装卸/支撑/夹持/接线",
+        "启动授权惰性mock工单",
+        "保存公开采集与无效记录",
+        "停止/隔离/请求缺项"
+      ],
+      "deliverables": [
+        "样品与父子谱系",
+        "采集和条件清单",
+        "有效派生量或unknown理由",
+        "物件最终位置、工具及废物复位状态"
+      ]
+    }
+  ],
+  "forbidden_to_include": [
+    "branches.json",
+    "operations.json",
+    "evaluator_reference.json",
+    "mock fixture hidden values",
+    "source performance target as success answer"
+  ],
+  "note": "Condition/material cards are public constraints, not a recipe answer. Render only selected episode, never whole evaluator packet."
+}

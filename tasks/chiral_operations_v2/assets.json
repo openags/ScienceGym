@@ -1,0 +1,764 @@
+{
+  "schema_version": "chiral_operation_asset_contracts.v2",
+  "scene_link": "../../scenes/chiral_scene_plan_v2/SCENE_PLAN_ZH.md",
+  "assets": [
+    {
+      "role_id": "material_cartridge",
+      "title": "材料密封料匣",
+      "location_binding": "WS_STOCK",
+      "affordances": [
+        "handle",
+        "keyed docking port"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "橡胶与TC4分柜；真实原料形态未知",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "FAB01",
+        "FAB02",
+        "CLEAN02"
+      ]
+    },
+    {
+      "role_id": "build_tray",
+      "title": "构建托盘/盒",
+      "location_binding": "material_printer",
+      "affordances": [
+        "handle",
+        "rails",
+        "detachable part seats"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "不预设真实打印设备规格",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "FAB01",
+        "FAB03",
+        "FAB04",
+        "POST_R",
+        "POST_M"
+      ]
+    },
+    {
+      "role_id": "printer_door",
+      "title": "打印舱门",
+      "location_binding": "material_printer",
+      "affordances": [
+        "handle",
+        "open/close",
+        "release interlock"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored surrogate",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "FAB02",
+        "FAB03",
+        "FAB04",
+        "CLEAN02"
+      ]
+    },
+    {
+      "role_id": "material_port",
+      "title": "料匣插槽",
+      "location_binding": "material_printer",
+      "affordances": [
+        "keyed insertion target"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "不打开密封TC4工艺介质",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "FAB02"
+      ]
+    },
+    {
+      "role_id": "printer_panel",
+      "title": "打印控制面板",
+      "location_binding": "material_printer",
+      "affordances": [
+        "job selection",
+        "start",
+        "stop"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "不得以UI已点过声称真实制造完成",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "FAB03"
+      ]
+    },
+    {
+      "role_id": "printed_components",
+      "title": "已打印组件状态",
+      "location_binding": "material_printer",
+      "affordances": [
+        "part seats",
+        "grab-able rigid ends"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "由mock制造完成事件出现；有来源状态转移",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "FAB04"
+      ]
+    },
+    {
+      "role_id": "closed_post_cell",
+      "title": "封闭后处理服务单元",
+      "location_binding": "WS_POST",
+      "affordances": [
+        "cassette dock",
+        "door",
+        "safe release"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "实际工艺配方未知",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "POST_M"
+      ]
+    },
+    {
+      "role_id": "post_panel",
+      "title": "后处理面板",
+      "location_binding": "WS_POST",
+      "affordances": [
+        "start",
+        "stop",
+        "released event"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "代理操作",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "POST_M"
+      ]
+    },
+    {
+      "role_id": "post_holder",
+      "title": "托盘定位座",
+      "location_binding": "WS_POST",
+      "affordances": [
+        "cassette support",
+        "release tabs access"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "代理操作",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "POST_R"
+      ]
+    },
+    {
+      "role_id": "release_tabs",
+      "title": "可选支撑代理片",
+      "location_binding": "WS_POST",
+      "affordances": [
+        "predefined detachable interfaces"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "默认不启用；不声称论文有支撑",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "POST_R"
+      ]
+    },
+    {
+      "role_id": "component_tray",
+      "title": "编号分格组件盒",
+      "location_binding": "WS_POST",
+      "affordances": [
+        "slots",
+        "handles"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "组件身份持续到装配",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "POST_R",
+        "POST_M"
+      ]
+    },
+    {
+      "role_id": "chiral_unit",
+      "title": "圆杆或方梁手性代理单元",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "rigid torus grasp zone",
+        "assembly seats"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "主rubber N8/r1.5；TC4圆杆N20/r.6；连接CAD未知",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ASM02",
+        "ASM03"
+      ]
+    },
+    {
+      "role_id": "base_plate",
+      "title": "底承压板",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "edge grasp zones",
+        "support seats"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "任务装配代理",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ASM01",
+        "ASM02"
+      ]
+    },
+    {
+      "role_id": "cap_plate",
+      "title": "顶承压板",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "edge grasp zones",
+        "aligned seats"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "任务装配代理",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ASM04"
+      ]
+    },
+    {
+      "role_id": "interface_ring",
+      "title": "中间端环接口",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "rigid grasp surface",
+        "optional connection seat"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "无转角预测；mock rotation state",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ASM03",
+        "ASM04",
+        "ASM05",
+        "BND_FREE"
+      ]
+    },
+    {
+      "role_id": "surrogate_clip",
+      "title": "可逆接合片",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "snap interface",
+        "release tab"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "纯authored，不等于真实作者胶接/螺钉",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ASM04"
+      ]
+    },
+    {
+      "role_id": "assembly_nest",
+      "title": "装配定位座",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "3×3 or single-column positions"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "设计几何分件不证明来源BOM",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ASM01",
+        "ASM02"
+      ]
+    },
+    {
+      "role_id": "alignment_comb",
+      "title": "可拔定位梳",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "handle",
+        "insertion sockets"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "测试前全部移出",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ASM01",
+        "ASM03",
+        "ASM05"
+      ]
+    },
+    {
+      "role_id": "balance",
+      "title": "称量台",
+      "location_binding": "WS_METROLOGY",
+      "affordances": [
+        "pan",
+        "tare button",
+        "mock readout"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "整件质量和屈曲质量分开",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "MET01"
+      ]
+    },
+    {
+      "role_id": "weighing_tray",
+      "title": "称量托盘",
+      "location_binding": "WS_METROLOGY",
+      "affordances": [
+        "pan fit",
+        "specimen support"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "干净不挤压",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "MET01"
+      ]
+    },
+    {
+      "role_id": "measurement_nest",
+      "title": "尺寸参考座",
+      "location_binding": "WS_METROLOGY",
+      "affordances": [
+        "base reference",
+        "dimensions targets"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "分离整体H和单元h0",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "MET02"
+      ]
+    },
+    {
+      "role_id": "caliper",
+      "title": "卡尺/测量尺",
+      "location_binding": "WS_METROLOGY",
+      "affordances": [
+        "handle",
+        "jaws",
+        "readout"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "未知容差保持unknown",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "MET02"
+      ]
+    },
+    {
+      "role_id": "specimen",
+      "title": "本branch试样对象",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "end plates/tori or robust lattice nodes"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "不得抓细杆承受整件重量",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "MET01",
+        "MET02",
+        "TEST01",
+        "TEST03",
+        "BND_BOX",
+        "OBS01",
+        "OBS_RESIDUAL",
+        "RELOAD",
+        "TEST_REMOVE",
+        "HAND_TOOL"
+      ]
+    },
+    {
+      "role_id": "lower_platen",
+      "title": "下压板",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "placement target",
+        "flat load surface"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "夹具CAD/摩擦未知",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "TEST03"
+      ]
+    },
+    {
+      "role_id": "upper_platen",
+      "title": "上压板",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "axial travel state",
+        "unloaded clearance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "不宣称旋转压头",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "TEST02",
+        "LOAD",
+        "UNLOAD"
+      ]
+    },
+    {
+      "role_id": "guard",
+      "title": "加载机防护罩",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "handle",
+        "door interlock"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "设计安全接口",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "TEST02",
+        "TEST04",
+        "TEST_REMOVE"
+      ]
+    },
+    {
+      "role_id": "lateral_box_base",
+      "title": "侧向箱底框",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "wall sockets",
+        "load-through opening"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "对应盒高可替换",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "BND_BOX"
+      ]
+    },
+    {
+      "role_id": "removable_box_walls",
+      "title": "侧向约束箱壁",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "handles",
+        "reversible latches"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "盒隙/摩擦未知；无箱控制必须搬走",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "BND_BOX",
+        "BND_OPEN"
+      ]
+    },
+    {
+      "role_id": "rotation_lock",
+      "title": "防转臂",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "ring key",
+        "reversible clip",
+        "axial sliding allowance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "锁转几何authored",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "BND_FREE",
+        "BND_LOCK",
+        "TEST_REMOVE"
+      ]
+    },
+    {
+      "role_id": "fixture_socket",
+      "title": "防转臂机架座",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "keyed dock"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "不能锁住加载轴向自由度",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "BND_LOCK"
+      ]
+    },
+    {
+      "role_id": "specimen_end_ring",
+      "title": "单层锁转件端环",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "lock key surrogate"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "M16/M17同谱系未知",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "BND_LOCK"
+      ]
+    },
+    {
+      "role_id": "camera",
+      "title": "变形相机代理",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "look direction",
+        "trigger",
+        "image fixture"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "局部von Mises应力不是相机传感器输出",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "OBS01",
+        "LOAD",
+        "OBS_RESIDUAL",
+        "RELOAD"
+      ]
+    },
+    {
+      "role_id": "camera_stand",
+      "title": "相机支架",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "pose adjustment handles"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "在运动包络外",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "OBS01"
+      ]
+    },
+    {
+      "role_id": "blunt_probe",
+      "title": "软端演示探针",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "handle",
+        "symbolic contact point"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "只替代Video5未知工具；未知力参数",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "HAND_TOOL"
+      ]
+    },
+    {
+      "role_id": "archive_slot",
+      "title": "样品归档格",
+      "location_binding": "WS_STORAGE",
+      "affordances": [
+        "labeled compartment"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "保留循环和损伤历史",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ARCHIVE"
+      ]
+    },
+    {
+      "role_id": "quarantine_slot",
+      "title": "隔离格",
+      "location_binding": "WS_STORAGE",
+      "affordances": [
+        "separated compartment"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "破损/历史不明，非直接销毁",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ARCHIVE"
+      ]
+    },
+    {
+      "role_id": "dry_wipe",
+      "title": "干擦布",
+      "location_binding": "WS_CLEAN",
+      "affordances": [
+        "graspable corner"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "不编造清洁溶剂",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "CLEAN01"
+      ]
+    },
+    {
+      "role_id": "waste_bins",
+      "title": "分类废片盒",
+      "location_binding": "WS_CLEAN",
+      "affordances": [
+        "lid",
+        "material-segregated openings"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "不等于真实TC4粉末处理指南",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "CLEAN01"
+      ]
+    },
+    {
+      "role_id": "material_printer",
+      "title": "材料专属打印机",
+      "location_binding": "material_printer",
+      "affordances": [
+        "enclosed supply/build/output interfaces"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "橡胶、TC4两台逻辑分开",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": []
+    },
+    {
+      "role_id": "cart",
+      "title": "cart",
+      "location_binding": "WS_STOCK",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "CLEAN02"
+      ]
+    },
+    {
+      "role_id": "transport_support",
+      "title": "transport_support",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "ASM05",
+        "TEST03"
+      ]
+    },
+    {
+      "role_id": "tester_stage",
+      "title": "tester_stage",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "TEST01"
+      ]
+    },
+    {
+      "role_id": "removable_fixture",
+      "title": "removable_fixture",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "TEST02"
+      ]
+    },
+    {
+      "role_id": "transport_clip",
+      "title": "transport_clip",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "BND_FREE"
+      ]
+    },
+    {
+      "role_id": "box_walls",
+      "title": "box_walls",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "TEST_REMOVE"
+      ]
+    },
+    {
+      "role_id": "tester_panel",
+      "title": "tester_panel",
+      "location_binding": "WS_TEST",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "TEST02",
+        "TEST04",
+        "LOAD",
+        "UNLOAD",
+        "OBS_RESIDUAL",
+        "RELOAD",
+        "CLEAN02"
+      ]
+    },
+    {
+      "role_id": "tool_rack",
+      "title": "tool_rack",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "BND_OPEN",
+        "CLEAN01",
+        "HAND_TOOL"
+      ]
+    },
+    {
+      "role_id": "transport_tray",
+      "title": "transport_tray",
+      "location_binding": "WS_ASSEMBLY",
+      "affordances": [
+        "support or tool-storage affordance"
+      ],
+      "provenance": "task-design surrogate unless source geometry identified",
+      "source_limit": "authored generic connector",
+      "mechanical_fidelity": "not certified",
+      "referenced_by_operations": [
+        "FAB01",
+        "TEST01",
+        "TEST_REMOVE",
+        "ARCHIVE",
+        "CLEAN01"
+      ]
+    }
+  ],
+  "scene_link_semantics": "path within deliverable package, not current authoring directory"
+}

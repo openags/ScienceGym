@@ -1,0 +1,3177 @@
+{
+  "schema_version": "fibre_branch_bindings.v2",
+  "visibility": "evaluator_reference_only",
+  "count_warning": "这些记录是任务配置/源条件展开，不是独立作者实验数；Si/Ge耐久对称变体不证明图中逐材料独立样本。",
+  "manufacturing_prefixes": {
+    "si_glass": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "SILICA_INSERT",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT"
+    ],
+    "ge_asg_glass": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "ASG_SIZE_IN",
+      "ASG_SIZE_OUT",
+      "ASG_NEST",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT"
+    ],
+    "ge_silica_glass": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "CONTROL_PREFORM",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT"
+    ],
+    "ge_bsg_glass": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "CONTROL_PREFORM",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT"
+    ],
+    "si_released": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "SILICA_INSERT",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT",
+      "SEGMENT",
+      "RELEASE_IN",
+      "RELEASE_OUT",
+      "CORE_INSPECT"
+    ],
+    "ge_released": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "ASG_SIZE_IN",
+      "ASG_SIZE_OUT",
+      "ASG_NEST",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT",
+      "SEGMENT",
+      "RELEASE_IN",
+      "RELEASE_OUT",
+      "CORE_INSPECT"
+    ],
+    "ge_silica_fragments": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "CONTROL_PREFORM",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT",
+      "SEGMENT",
+      "RELEASE_IN",
+      "RELEASE_OUT",
+      "CORE_INSPECT"
+    ],
+    "raw": [
+      "STOCK"
+    ],
+    "neck": [
+      "STOCK",
+      "CONTROL_PREFORM",
+      "QUENCH",
+      "CLAD_INSPECT"
+    ],
+    "si_device": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "SILICA_INSERT",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT",
+      "SEGMENT",
+      "RELEASE_IN",
+      "RELEASE_OUT",
+      "CORE_INSPECT",
+      "DRY_IN",
+      "DRY_OUT",
+      "PC_MILL",
+      "CPC_INSERT",
+      "PC_CLOSE",
+      "CONVERGE_LOAD",
+      "CONVERGE_THREAD",
+      "CONVERGE_RUN",
+      "DEVICE_ALLOCATE"
+    ],
+    "ge_device": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "ASG_SIZE_IN",
+      "ASG_SIZE_OUT",
+      "ASG_NEST",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT",
+      "SEGMENT",
+      "RELEASE_IN",
+      "RELEASE_OUT",
+      "CORE_INSPECT",
+      "DRY_IN",
+      "DRY_OUT",
+      "PC_MILL",
+      "CPC_INSERT",
+      "PC_CLOSE",
+      "CONVERGE_LOAD",
+      "CONVERGE_THREAD",
+      "CONVERGE_RUN",
+      "DEVICE_ALLOCATE"
+    ],
+    "pn_device": [
+      "STOCK",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "SILICA_INSERT",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT",
+      "SEGMENT",
+      "RELEASE_IN",
+      "RELEASE_OUT",
+      "CORE_INSPECT",
+      "OXIDE_IN",
+      "OXIDE_OUT",
+      "SILICA_INSERT",
+      "SEAL_IN",
+      "SEAL_OUT",
+      "GLASS_LOAD",
+      "GLASS_RUN",
+      "GLASS_UNLOAD",
+      "CLAD_INSPECT",
+      "SEGMENT",
+      "RELEASE_IN",
+      "RELEASE_OUT",
+      "CORE_INSPECT",
+      "DRY_IN",
+      "DRY_OUT",
+      "PC_MILL",
+      "CPC_INSERT",
+      "PC_CLOSE",
+      "CONVERGE_LOAD",
+      "CONVERGE_THREAD",
+      "CONVERGE_RUN",
+      "DEVICE_ALLOCATE"
+    ]
+  },
+  "branch_count": 49,
+  "branches": [
+    {
+      "id": "GLASS_SI",
+      "label": "Si/silica玻璃包覆纤维完整制造",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.preparation",
+        "f.draw_Si"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main",
+        "f.ed5"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_glass",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.GLASS_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "core": "undoped_Si",
+        "cladding": "fused_silica",
+        "stock_rod_diameter_mm": "2 ± 0.127",
+        "silica_ID_OD_mm": [
+          2.1,
+          12
+        ]
+      },
+      "control_peer_ids": [
+        "GLASS_GE_ASG",
+        "GE_SILICA_CRACK"
+      ],
+      "object_history_policy": "该episode独立作者设计样本；同件条件保持object ID，破坏性测试用独立兄弟样。论文的真实分配/复用不可由本ID推断。",
+      "expected_mock_observations": [
+        "continuous_visible_core"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "GLASS_GE_ASG",
+      "label": "Ge/ASG多层预制棒到玻璃包覆纤维",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.preparation",
+        "f.draw_Ge"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main",
+        "f.ed5"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_asg_glass",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.GLASS_GE_ASG",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "core": "Ge",
+        "cladding": "SCHOTT_8253_ASG",
+        "jacketed_tube_ID_OD_mm": [
+          [
+            2.1,
+            3.6
+          ],
+          [
+            3.7,
+            4.8
+          ],
+          [
+            4.9,
+            6.6
+          ],
+          [
+            6.7,
+            8.8
+          ],
+          [
+            8.9,
+            11.1
+          ]
+        ],
+        "preform_ID_OD_mm": [
+          2.1,
+          11.1
+        ],
+        "ASG_sealing_rod_diameter_mm": 2,
+        "deoxidizer_reported_used": false
+      },
+      "control_peer_ids": [
+        "GE_SILICA_CRACK",
+        "GE_BSG_BREAKUP"
+      ],
+      "object_history_policy": "该episode独立作者设计样本；同件条件保持object ID，破坏性测试用独立兄弟样。论文的真实分配/复用不可由本ID推断。",
+      "expected_mock_observations": [
+        "continuous_visible_core"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "GE_SILICA_CRACK",
+      "label": "Ge/silica成形与释放碎片对照",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.preparation",
+        "f.crack_control"
+      ],
+      "evidence_ids": [
+        "f.ed1",
+        "f.materials",
+        "f.v1"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_silica_fragments",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "CONTROL_PREFORM",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.GE_SILICA_CRACK",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "core": "Ge",
+        "cladding": "silica",
+        "fabrication_parameters": "unknown_not_copy_ASG"
+      },
+      "control_peer_ids": [
+        "RELEASE_GE"
+      ],
+      "object_history_policy": "必须记录包覆态裂纹和释放后碎片两态；保留碎片集合，不能挑碎片改为完整芯",
+      "expected_mock_observations": [
+        "clad_cracks",
+        "released_fragments"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "GE_BSG_BREAKUP",
+      "label": "Ge/BSG毛细失稳对照",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.preparation",
+        "f.capillary_control"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.ed4"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_bsg_glass",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "CONTROL_PREFORM",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.GE_BSG_BREAKUP",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "core": "Ge",
+        "cladding": "BSG",
+        "grade_and_recipe": null
+      },
+      "control_peer_ids": [
+        "GLASS_GE_ASG"
+      ],
+      "object_history_policy": "该episode独立作者设计样本；同件条件保持object ID，破坏性测试用独立兄弟样。论文的真实分配/复用不可由本ID推断。",
+      "expected_mock_observations": [
+        "spheres_in_neck",
+        "perturbed_core"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "NECK_WITH_CORE",
+      "label": "有芯silica颈形保留对照",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.capillary_control"
+      ],
+      "evidence_ids": [
+        "f.ed4",
+        "f.si2"
+      ],
+      "task_material_identity": null,
+      "preparation_route": "neck",
+      "full_operation_sequence": [
+        "STOCK",
+        "CONTROL_PREFORM",
+        "QUENCH",
+        "CLAD_INSPECT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.NECK_WITH_CORE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "cladding": "silica",
+        "core_present": true,
+        "core_identity_if_unresolved": null
+      },
+      "control_peer_ids": [
+        "NECK_NO_CORE"
+      ],
+      "object_history_policy": "颈形样本经历quench；颈区裂纹不能归为正常拉丝故障",
+      "expected_mock_observations": [
+        "preserved_neck",
+        "possible_quench_cracks"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "NECK_NO_CORE",
+      "label": "无芯silica颈形保留对照",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.capillary_control"
+      ],
+      "evidence_ids": [
+        "f.ed4",
+        "f.si2"
+      ],
+      "task_material_identity": null,
+      "preparation_route": "neck",
+      "full_operation_sequence": [
+        "STOCK",
+        "CONTROL_PREFORM",
+        "QUENCH",
+        "CLAD_INSPECT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.NECK_NO_CORE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "cladding": "silica",
+        "core_present": false
+      },
+      "control_peer_ids": [
+        "NECK_WITH_CORE"
+      ],
+      "object_history_policy": "不插芯；具有独立预制棒和颈形身份",
+      "expected_mock_observations": [
+        "preserved_neck"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RELEASE_SI",
+      "label": "SI完整裸芯释放",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.release"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed5"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_released",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RELEASE_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "reported_release_segment_cm": 80,
+        "not_test_gauge_length": true
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "父包层身份不可丢；80cm父段不得凭空生长成50m有源芯",
+      "expected_mock_observations": [
+        "released_intact_or_flagged_fragment"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "CORE_HANDLING_SI",
+      "label": "SI裸芯弯曲/载荷/线轴处理包",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.standalone_strength"
+      ],
+      "evidence_ids": [
+        "f.ed5"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_released",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "CORE_BEND",
+        "CORE_LOAD",
+        "CORE_BOBBIN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.CORE_HANDLING_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "source_diameter_um": 55,
+        "bend_radius_mm": 4,
+        "computer_mouse_g": 70,
+        "bobbin_segment_cm": 80
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "三项展示默认从同批分配三个独立子样，不推定作者同件执行；每个子样均追溯本释放路线",
+      "expected_mock_observations": [
+        "bend_shape",
+        "supported_dummy_load",
+        "bobbin"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "CORE_TENSILE_SI",
+      "label": "SI裸芯强度测试",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.standalone_strength"
+      ],
+      "evidence_ids": [
+        "f.ed5"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_released",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "TEST_MOUNT",
+        "TENSILE",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.CORE_TENSILE_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "specimen_state": "standalone_core"
+      },
+      "control_peer_ids": [
+        "TENSILE_SI"
+      ],
+      "object_history_policy": "此强度不能与PC包覆器件强度混同；破坏性样不可送会聚",
+      "expected_mock_observations": [
+        "broken"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "CHAR_SI",
+      "label": "SI横纵截面和材料表征",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.characterize"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed5"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_glass",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SECTION",
+        "SEM_EDX",
+        "XRD",
+        "FIB",
+        "TEM",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.CHAR_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "section_orientations": [
+          "transverse",
+          "lateral"
+        ],
+        "source_materials_claim": "polycrystalline_with_limited_oxygen",
+        "TEM_holder": "double_tilt"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "SECTION、SEM/EDX、XRD和FIB/TEM可用已分配兄弟子样；源报告polycrystalline，不由局部晶格图升格为整根单晶",
+      "expected_mock_observations": [
+        "composition",
+        "diffraction",
+        "HRTEM_SAED"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RELEASE_GE",
+      "label": "GE完整裸芯释放",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.release"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed5"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_released",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RELEASE_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "reported_release_segment_cm": 80,
+        "not_test_gauge_length": true
+      },
+      "control_peer_ids": [
+        "GE_SILICA_CRACK"
+      ],
+      "object_history_policy": "父包层身份不可丢；80cm父段不得凭空生长成50m有源芯",
+      "expected_mock_observations": [
+        "released_intact_or_flagged_fragment"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "CORE_HANDLING_GE",
+      "label": "GE裸芯弯曲/载荷/线轴处理包",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.standalone_strength"
+      ],
+      "evidence_ids": [
+        "f.ed5"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_released",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "CORE_BEND",
+        "CORE_LOAD",
+        "CORE_BOBBIN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.CORE_HANDLING_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "source_diameter_um": 55,
+        "bend_radius_mm": 2.5,
+        "computer_mouse_g": 86,
+        "bobbin_segment_cm": 80
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "三项展示默认从同批分配三个独立子样，不推定作者同件执行；每个子样均追溯本释放路线",
+      "expected_mock_observations": [
+        "bend_shape",
+        "supported_dummy_load",
+        "bobbin"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "CORE_TENSILE_GE",
+      "label": "GE裸芯强度测试",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.standalone_strength"
+      ],
+      "evidence_ids": [
+        "f.ed5"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_released",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "TEST_MOUNT",
+        "TENSILE",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.CORE_TENSILE_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "specimen_state": "standalone_core"
+      },
+      "control_peer_ids": [
+        "TENSILE_GE"
+      ],
+      "object_history_policy": "此强度不能与PC包覆器件强度混同；破坏性样不可送会聚",
+      "expected_mock_observations": [
+        "broken"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "CHAR_GE",
+      "label": "GE横纵截面和材料表征",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.characterize"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed5"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_asg_glass",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SECTION",
+        "SEM_EDX",
+        "XRD",
+        "FIB",
+        "TEM",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.CHAR_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "section_orientations": [
+          "transverse",
+          "lateral"
+        ],
+        "source_materials_claim": "polycrystalline_with_limited_oxygen",
+        "TEM_holder": "double_tilt"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "SECTION、SEM/EDX、XRD和FIB/TEM可用已分配兄弟子样；源报告polycrystalline，不由局部晶格图升格为整根单晶",
+      "expected_mock_observations": [
+        "composition",
+        "diffraction",
+        "HRTEM_SAED"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RAMAN_RAW_SI",
+      "label": "Si raw reference Raman条件",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.Raman"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.si_tables"
+      ],
+      "task_material_identity": null,
+      "preparation_route": "raw",
+      "full_operation_sequence": [
+        "STOCK",
+        "RAMAN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RAMAN_RAW_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "sample": "Si raw reference",
+        "excitation_nm": 532,
+        "measurement_modes": [
+          "spectrum"
+        ]
+      },
+      "control_peer_ids": [
+        "RAMAN_CLAD_SI",
+        "RAMAN_REL_SI"
+      ],
+      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "expected_mock_observations": [
+        "mock_spectrum"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RAMAN_CLAD_SI",
+      "label": "Si/silica polished Raman条件",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.Raman"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.si_tables"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_glass",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SECTION",
+        "RAMAN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RAMAN_CLAD_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "sample": "Si/silica polished",
+        "excitation_nm": 532,
+        "measurement_modes": [
+          "spectrum",
+          "cross_section_map",
+          "centre_line_scan"
+        ]
+      },
+      "control_peer_ids": [
+        "RAMAN_RAW_SI",
+        "RAMAN_REL_SI"
+      ],
+      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "expected_mock_observations": [
+        "mock_spectrum"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RAMAN_REL_SI",
+      "label": "released Si Raman条件",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.Raman"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.si_tables"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_released",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "RAMAN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RAMAN_REL_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "sample": "released Si",
+        "excitation_nm": 532,
+        "measurement_modes": [
+          "spectrum"
+        ]
+      },
+      "control_peer_ids": [
+        "RAMAN_RAW_SI",
+        "RAMAN_CLAD_SI"
+      ],
+      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "expected_mock_observations": [
+        "mock_spectrum"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RAMAN_RAW_GE",
+      "label": "Ge raw reference Raman条件",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.Raman"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.si_tables"
+      ],
+      "task_material_identity": null,
+      "preparation_route": "raw",
+      "full_operation_sequence": [
+        "STOCK",
+        "RAMAN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RAMAN_RAW_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "sample": "Ge raw reference",
+        "excitation_nm": 532,
+        "measurement_modes": [
+          "spectrum"
+        ]
+      },
+      "control_peer_ids": [
+        "RAMAN_CLAD_GE_SILICA",
+        "RAMAN_CLAD_GE_ASG",
+        "RAMAN_REL_GE"
+      ],
+      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "expected_mock_observations": [
+        "mock_spectrum"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RAMAN_CLAD_GE_SILICA",
+      "label": "Ge/silica polished Raman条件",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.Raman"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.si_tables"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_silica_glass",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "CONTROL_PREFORM",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SECTION",
+        "RAMAN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RAMAN_CLAD_GE_SILICA",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "sample": "Ge/silica polished",
+        "excitation_nm": 532,
+        "measurement_modes": [
+          "spectrum",
+          "cross_section_map",
+          "centre_line_scan"
+        ]
+      },
+      "control_peer_ids": [
+        "RAMAN_RAW_SI",
+        "RAMAN_CLAD_SI",
+        "RAMAN_REL_SI"
+      ],
+      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "expected_mock_observations": [
+        "mock_spectrum"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RAMAN_CLAD_GE_ASG",
+      "label": "Ge/ASG polished Raman条件",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.Raman"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.si_tables"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_asg_glass",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SECTION",
+        "RAMAN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RAMAN_CLAD_GE_ASG",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "sample": "Ge/ASG polished",
+        "excitation_nm": 532,
+        "measurement_modes": [
+          "spectrum",
+          "cross_section_map",
+          "centre_line_scan"
+        ]
+      },
+      "control_peer_ids": [
+        "RAMAN_RAW_GE",
+        "RAMAN_CLAD_GE_SILICA",
+        "RAMAN_REL_GE"
+      ],
+      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "expected_mock_observations": [
+        "mock_spectrum"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "RAMAN_REL_GE",
+      "label": "released Ge Raman条件",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.Raman"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.ed3",
+        "f.si_tables"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_released",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "RAMAN",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.RAMAN_REL_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "sample": "released Ge",
+        "excitation_nm": 532,
+        "measurement_modes": [
+          "spectrum"
+        ]
+      },
+      "control_peer_ids": [
+        "RAMAN_RAW_GE",
+        "RAMAN_CLAD_GE_SILICA",
+        "RAMAN_CLAD_GE_ASG"
+      ],
+      "object_history_policy": "原棒、包覆、释放及已抛光状态分别保留；polish及已有裂纹使pristine residual stress不可从此直接恢复",
+      "expected_mock_observations": [
+        "mock_spectrum"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "DEVICE_SI",
+      "label": "SI单芯光电纤维制造",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.convergence_single"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main",
+        "f.ed6"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.DEVICE_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "semiconductor": "SI",
+        "core_count": 1,
+        "electrode_material": "Cu",
+        "Cu_diameter_um": 50,
+        "device_width_height_um": [
+          300,
+          200
+        ],
+        "CPC_contact": true,
+        "PC_cladding": true
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "单Si或Ge/CPC/Cu/PC结构；不得使用W或玻璃芯代替裸芯",
+      "expected_mock_observations": [
+        "single_core_interfaces"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "OPTO_SI",
+      "label": "SI基础光电与动态读出",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.opto_readout"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main",
+        "f.ed6",
+        "f.si_tables"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "IV",
+        "DYNAMIC",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.OPTO_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "wavelength_nm": 532,
+        "reported_test_bias_V": 2,
+        "Fig3c_responsivity_NEP_n": 9,
+        "Fig3c_other_metrics_n": 6
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "n=9/n=6是source Figure3c统计；mock课程可为一次对象episode，声称覆盖Fig3c统计时须配置所需不同样本ID且不得将重复读数充数",
+      "expected_mock_observations": [
+        "dark_light",
+        "IV",
+        "noise",
+        "transient",
+        "frequency"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "TENSILE_SI",
+      "label": "SI单芯器件破坏性拉伸",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.tensile"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "TEST_MOUNT",
+        "TENSILE",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.TENSILE_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "source_Fig3c_n": 6
+      },
+      "control_peer_ids": [
+        "CORE_TENSILE_SI"
+      ],
+      "object_history_policy": "器件强度条件单独兄弟样；图表yield strength与正文tensile strength词项并存不强行统一",
+      "expected_mock_observations": [
+        "broken"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "IMPACT_SI",
+      "label": "SI器件无缺口Charpy冲击",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.impact"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "TEST_MOUNT",
+        "IMPACT",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.IMPACT_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "unnotched": true,
+        "source_Fig3c_n": 6
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "独立破坏性兄弟样",
+      "expected_mock_observations": [
+        "impact_damaged"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "TORSION_FAIL_SI",
+      "label": "SI器件扭转至破断",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.torsion"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "TEST_MOUNT",
+        "TORSION_FAIL",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.TORSION_FAIL_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "source_Fig3c_n": 6
+      },
+      "control_peer_ids": [
+        "TORSION_FUNC_SI"
+      ],
+      "object_history_policy": "不是三圈/mm保持功能样的默认后续",
+      "expected_mock_observations": [
+        "torsion_failed"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "TORSION_FUNC_SI",
+      "label": "SI三圈每毫米功能扭曲",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.torsion"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.ed6"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "TEST_MOUNT",
+        "TORSION_FUNCTION",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.TORSION_FUNC_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "reported_turn_density_turn_per_mm": 3,
+        "material_specific_display_allocation": "unknown; source states optoelectronic fibres"
+      },
+      "control_peer_ids": [
+        "TORSION_FAIL_SI"
+      ],
+      "object_history_policy": "这两材料变体是任务设计对称展开，不声称ED6f分别给了两组独立实测",
+      "expected_mock_observations": [
+        "twisted_function"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "BEND_SI",
+      "label": "SI平直/两半径及循环弯曲",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.bending"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "TEST_MOUNT",
+        "BEND_CONDITION",
+        "BEND_CYCLES",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.BEND_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "conditions": [
+          "flat",
+          "radius_5mm",
+          "radius_50mm",
+          "pristine",
+          "after_10000_cycles"
+        ],
+        "cyclic_radius_mm": 5,
+        "source_material_specific_display_allocation": "unknown; do not infer independent panels"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "半径比较和耐久默认独立兄弟样；各before/after内部用同件，不能把已循环件标pristine",
+      "expected_mock_observations": [
+        "radius_response",
+        "after_cycles"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "COMPRESS_SI",
+      "label": "SI压缩即时改变与过夜恢复",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.compression"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6",
+        "f.main"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "TEST_MOUNT",
+        "COMPRESS",
+        "TEST_UNLOAD",
+        "OVERNIGHT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.COMPRESS_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "reported_peak_MPa": 30,
+        "overnight_hours": null,
+        "depth_equivalence_m": 3000,
+        "actual_deepwater_deployment": false
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "before→immediate→overnight同一对象；mock可以虚拟时钟，但明确不等同实夜",
+      "expected_mock_observations": [
+        "baseline",
+        "impaired_immediate",
+        "overnight_recovery"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "WASH_SI",
+      "label": "SI功能织物十次洗涤配对",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.washing"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "POWER_DOWN",
+        "TEXTILE_MOUNT",
+        "WASH",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.WASH_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "standard": "ISO6330",
+        "edition": null,
+        "program": null,
+        "cycles": 10,
+        "material_specific_source_allocation": "unknown; task variants explicit"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "同一织物洗前洗后；外部电路断开、干态再测是authored安全连接",
+      "expected_mock_observations": [
+        "before_after_wash"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "THERMAL_SI",
+      "label": "SI五小时运行前后热观察",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.thermal"
+      ],
+      "evidence_ids": [
+        "f.ed6"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "THERMAL",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.THERMAL_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "duration_h": 5,
+        "material_specific_source_allocation": "unknown; task variants explicit"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "同件同热观察配置；mock无热物理",
+      "expected_mock_observations": [
+        "before_after_thermal"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "BOARD_SI",
+      "label": "SI器件八通道接口板集成",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.wireless_board"
+      ],
+      "evidence_ids": [
+        "f.wireless"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "PCB_ASSEMBLE",
+        "PCB_CHECK",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.BOARD_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "capacity_channels": 8,
+        "op_amps": "2 × GS8554",
+        "ADC": "ADS7828",
+        "board_mm": [
+          32,
+          48
+        ]
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "实际使用条数由episode≤8指定；多条器件重复完整制造/分配模块而非凭空复制",
+      "expected_mock_observations": [
+        "addressed_channels"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "DEVICE_GE",
+      "label": "GE单芯光电纤维制造",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.convergence_single"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main",
+        "f.ed6"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.DEVICE_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "semiconductor": "GE",
+        "core_count": 1,
+        "electrode_material": "Cu",
+        "Cu_diameter_um": 50,
+        "device_width_height_um": [
+          300,
+          200
+        ],
+        "CPC_contact": true,
+        "PC_cladding": true
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "单Si或Ge/CPC/Cu/PC结构；不得使用W或玻璃芯代替裸芯",
+      "expected_mock_observations": [
+        "single_core_interfaces"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "OPTO_GE",
+      "label": "GE基础光电与动态读出",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.opto_readout"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main",
+        "f.ed6",
+        "f.si_tables"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "IV",
+        "DYNAMIC",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.OPTO_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "wavelength_nm": 1550,
+        "reported_test_bias_V": 2,
+        "Fig3c_responsivity_NEP_n": 9,
+        "Fig3c_other_metrics_n": 6
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "n=9/n=6是source Figure3c统计；mock课程可为一次对象episode，声称覆盖Fig3c统计时须配置所需不同样本ID且不得将重复读数充数",
+      "expected_mock_observations": [
+        "dark_light",
+        "IV",
+        "noise",
+        "transient",
+        "frequency"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "TENSILE_GE",
+      "label": "GE单芯器件破坏性拉伸",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.tensile"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "TEST_MOUNT",
+        "TENSILE",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.TENSILE_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "source_Fig3c_n": 6
+      },
+      "control_peer_ids": [
+        "CORE_TENSILE_GE"
+      ],
+      "object_history_policy": "器件强度条件单独兄弟样；图表yield strength与正文tensile strength词项并存不强行统一",
+      "expected_mock_observations": [
+        "broken"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "IMPACT_GE",
+      "label": "GE器件无缺口Charpy冲击",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.impact"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "TEST_MOUNT",
+        "IMPACT",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.IMPACT_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "unnotched": true,
+        "source_Fig3c_n": 6
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "独立破坏性兄弟样",
+      "expected_mock_observations": [
+        "impact_damaged"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "TORSION_FAIL_GE",
+      "label": "GE器件扭转至破断",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.torsion"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.main"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "TEST_MOUNT",
+        "TORSION_FAIL",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.TORSION_FAIL_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "source_Fig3c_n": 6
+      },
+      "control_peer_ids": [
+        "TORSION_FUNC_GE"
+      ],
+      "object_history_policy": "不是三圈/mm保持功能样的默认后续",
+      "expected_mock_observations": [
+        "torsion_failed"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "TORSION_FUNC_GE",
+      "label": "GE三圈每毫米功能扭曲",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.torsion"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.ed6"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "TEST_MOUNT",
+        "TORSION_FUNCTION",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.TORSION_FUNC_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "reported_turn_density_turn_per_mm": 3,
+        "material_specific_display_allocation": "unknown; source states optoelectronic fibres"
+      },
+      "control_peer_ids": [
+        "TORSION_FAIL_GE"
+      ],
+      "object_history_policy": "这两材料变体是任务设计对称展开，不声称ED6f分别给了两组独立实测",
+      "expected_mock_observations": [
+        "twisted_function"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "BEND_GE",
+      "label": "GE平直/两半径及循环弯曲",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.bending"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "TEST_MOUNT",
+        "BEND_CONDITION",
+        "BEND_CYCLES",
+        "TEST_UNLOAD",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.BEND_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "conditions": [
+          "flat",
+          "radius_5mm",
+          "radius_50mm",
+          "pristine",
+          "after_10000_cycles"
+        ],
+        "cyclic_radius_mm": 5,
+        "source_material_specific_display_allocation": "unknown; do not infer independent panels"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "半径比较和耐久默认独立兄弟样；各before/after内部用同件，不能把已循环件标pristine",
+      "expected_mock_observations": [
+        "radius_response",
+        "after_cycles"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "COMPRESS_GE",
+      "label": "GE压缩即时改变与过夜恢复",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.compression"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6",
+        "f.main"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "TEST_MOUNT",
+        "COMPRESS",
+        "TEST_UNLOAD",
+        "OVERNIGHT",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.COMPRESS_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "reported_peak_MPa": 30,
+        "overnight_hours": null,
+        "depth_equivalence_m": 3000,
+        "actual_deepwater_deployment": false
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "before→immediate→overnight同一对象；mock可以虚拟时钟，但明确不等同实夜",
+      "expected_mock_observations": [
+        "baseline",
+        "impaired_immediate",
+        "overnight_recovery"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "WASH_GE",
+      "label": "GE功能织物十次洗涤配对",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.washing"
+      ],
+      "evidence_ids": [
+        "f.measure",
+        "f.ed6"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "POWER_DOWN",
+        "TEXTILE_MOUNT",
+        "WASH",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.WASH_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "standard": "ISO6330",
+        "edition": null,
+        "program": null,
+        "cycles": 10,
+        "material_specific_source_allocation": "unknown; task variants explicit"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "同一织物洗前洗后；外部电路断开、干态再测是authored安全连接",
+      "expected_mock_observations": [
+        "before_after_wash"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "THERMAL_GE",
+      "label": "GE五小时运行前后热观察",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.thermal"
+      ],
+      "evidence_ids": [
+        "f.ed6"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "THERMAL",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.THERMAL_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "duration_h": 5,
+        "material_specific_source_allocation": "unknown; task variants explicit"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "同件同热观察配置；mock无热物理",
+      "expected_mock_observations": [
+        "before_after_thermal"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "BOARD_GE",
+      "label": "GE器件八通道接口板集成",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.wireless_board"
+      ],
+      "evidence_ids": [
+        "f.wireless"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "PCB_ASSEMBLE",
+        "PCB_CHECK",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.BOARD_GE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "capacity_channels": 8,
+        "op_amps": "2 × GS8554",
+        "ADC": "ADS7828",
+        "board_mm": [
+          32,
+          48
+        ]
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "实际使用条数由episode≤8指定；多条器件重复完整制造/分配模块而非凭空复制",
+      "expected_mock_observations": [
+        "addressed_channels"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "DIRECTION_SI",
+      "label": "Si同件正侧入射对照",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.directionality"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.measure"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "OPTICAL_MOUNT",
+        "DARK_LIGHT",
+        "DIRECTION",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.DIRECTION_SI",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "wavelength_nm": 532,
+        "test_bias_V": 2
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "同一任务器件姿态改变；不改变材料、端接和条件号",
+      "expected_mock_observations": [
+        "front_side"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "DEVICE_PN",
+      "label": "双芯p-n Si/W光电纤维与I–V",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.convergence_dual",
+        "f.pn_IV"
+      ],
+      "evidence_ids": [
+        "f.materials",
+        "f.main",
+        "f.measure"
+      ],
+      "task_material_identity": "p-Si+n-Si",
+      "preparation_route": "pn_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "IV",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.DEVICE_PN",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "cores": [
+          "p_type_Si",
+          "n_type_Si"
+        ],
+        "core_count": 2,
+        "electrodes": "W",
+        "W_diameter_um": 30,
+        "stock_resistivity_ohm_cm": "<0.02",
+        "doping_operation": false
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "p,n原棒分别经过独立Si前端子路线后汇聚；具体掺杂芯制备参数未单列，沿用前端类型是authored接口，不在现场掺杂。中央两芯自对齐而非机器人焊结",
+      "expected_mock_observations": [
+        "pn_interface",
+        "pn_IV"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "APP_BEANIE",
+      "label": "八Ge帽与人台信号演示",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.beanie",
+        "f.wireless_board"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless",
+        "f.v2"
+      ],
+      "task_material_identity": "Ge",
+      "preparation_route": "ge_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "ASG_SIZE_IN",
+        "ASG_SIZE_OUT",
+        "ASG_NEST",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "TEXTILE_MOUNT",
+        "PCB_ASSEMBLE",
+        "PCB_CHECK",
+        "BEANIE",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.APP_BEANIE",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "fibre_count": 8,
+        "material": "Ge",
+        "source_demo": "outdoor_mannequin",
+        "task_demo": "enclosed_mock_mannequin"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "八个可追溯器件ID；制造模块须重复或足量父芯分段，禁止一个ID当八条",
+      "expected_mock_observations": [
+        "8_channels_phone"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "APP_SWEATER",
+      "label": "Si 3×3 grid毛衣内容传输",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.sweater",
+        "f.wireless_board"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "TEXTILE_MOUNT",
+        "PCB_ASSEMBLE",
+        "PCB_CHECK",
+        "SWEATER",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.APP_SWEATER",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "grid": [
+          3,
+          3
+        ],
+        "grid_is_fibre_count": false,
+        "grid_is_channel_count": false,
+        "source_transfer_speed_KB_s": 40
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "实际纤维条数、grid/board通道映射unknown；mock采用明确任务映射，不声称复原源PCB",
+      "expected_mock_observations": [
+        "sent_received_image"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "APP_WATCHBAND",
+      "label": "Si腕带PPG仿体与商业比较器",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.watchband",
+        "f.wireless_board"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "TEXTILE_MOUNT",
+        "PCB_ASSEMBLE",
+        "PCB_CHECK",
+        "WATCHBAND",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.APP_WATCHBAND",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "green_LED_nm": 532,
+        "comparator": "BIOFY SFH7070",
+        "task_target": "nonhuman_wrist_phantom"
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "源为人体腕部PPG，本任务只做非人体preset。不能说仿体数据证明临床/心率精度",
+      "expected_mock_observations": [
+        "paired_preset_pulse"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    },
+    {
+      "id": "APP_UNDERWATER",
+      "label": "八Si方向水槽潜艇通信",
+      "visibility": "evaluator_reference_only",
+      "source_branch_ids": [
+        "f.underwater",
+        "f.wireless_board"
+      ],
+      "evidence_ids": [
+        "f.main",
+        "f.wireless",
+        "f.v3"
+      ],
+      "task_material_identity": "Si",
+      "preparation_route": "si_device",
+      "full_operation_sequence": [
+        "STOCK",
+        "OXIDE_IN",
+        "OXIDE_OUT",
+        "SILICA_INSERT",
+        "SEAL_IN",
+        "SEAL_OUT",
+        "GLASS_LOAD",
+        "GLASS_RUN",
+        "GLASS_UNLOAD",
+        "CLAD_INSPECT",
+        "SEGMENT",
+        "RELEASE_IN",
+        "RELEASE_OUT",
+        "CORE_INSPECT",
+        "DRY_IN",
+        "DRY_OUT",
+        "PC_MILL",
+        "CPC_INSERT",
+        "PC_CLOSE",
+        "CONVERGE_LOAD",
+        "CONVERGE_THREAD",
+        "CONVERGE_RUN",
+        "DEVICE_ALLOCATE",
+        "STRIP",
+        "CONTACT",
+        "PCB_ASSEMBLE",
+        "PCB_CHECK",
+        "SUB_ATTACH",
+        "SUB_TANK",
+        "POWER_DOWN",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "transport_binding": "在相邻操作location_id变化处插入MOVE；同一地点的不同载具需保持对应槽与对象标签。序列表示参考偏序的一条线性化，不是唯一轨迹。",
+      "object_id": "obj.APP_UNDERWATER",
+      "initial_state": "raw_stock_and_empty_equipment",
+      "source_reported_parameters": {
+        "fibre_count": 8,
+        "spacing_deg": 45,
+        "angles_deg": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          -135,
+          -90,
+          -45
+        ],
+        "source_example_deg": 135
+      },
+      "control_peer_ids": [],
+      "object_history_policy": "独立八器件身份，几何方向、通道、命令映射分开；水槽不是深海",
+      "expected_mock_observations": [
+        "direction_channel_command"
+      ],
+      "success": "完成本源条件的准备、制造、实体交互、记录、同源身份与安全收尾；科学响应为mock且不要求命中文献数值",
+      "not_asserted": "不是独立作者实验数；不是论文微动作复刻；不是已完成真实机器人执行"
+    }
+  ],
+  "pn_prefix_binding": {
+    "source_route": "pn_device",
+    "first_Si_prefix": {
+      "material": "p-Si",
+      "object_suffix": ".p",
+      "cladding": "silica"
+    },
+    "second_Si_prefix": {
+      "material": "n-Si",
+      "object_suffix": ".n",
+      "cladding": "silica"
+    },
+    "merger": "CONVERGE_LOAD/THREAD merges two released-core identities with W and PC/CPC",
+    "source_gap": "p/n前端专属参数未分别报告；不能把未掺杂Si数据当p/n制造验收"
+  },
+  "cardinality_policy": "APP_BEANIE/APP_UNDERWATER需八个物件，完整制造前缀按需要重复；只有来自足量已制造有源长度的兄弟段可共享父卷。单次前缀不是凭空增殖八条的许可。"
+}

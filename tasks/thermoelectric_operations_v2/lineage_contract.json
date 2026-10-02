@@ -1,0 +1,47 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "visibility": "evaluator_reference_only",
+  "required_fields": [
+    "episode_id",
+    "object_id",
+    "material_full_identity",
+    "short_name",
+    "parent_ids",
+    "container_id",
+    "workorder_id",
+    "process_history",
+    "press_axis",
+    "cut_relation",
+    "geometry_value_and_origin",
+    "interface_stack",
+    "condition_id",
+    "record_ids",
+    "location",
+    "status"
+  ],
+  "pipelines": {
+    "P": "raw Mg/Ag/Sb/additive lots → Ar mill batch → P powder → Sb/P/Sb blank → indexed cut legs",
+    "N": "raw Mg/In/Sb/Bi/Te lots → Ar mill batch → N powder → steel-interface blank → cut N legs; source cut relation unknown",
+    "B": "raw Bi/Sb/Te lots → quartz melt batch → ingot → mill powder → bare B blank → perpendicular-indexed legs",
+    "SEG": "P_leg + B_leg + GaIn application event → Sb/P/Sb/GaIn/B specimen",
+    "PAIR": "P1+N1+P2+N2+AlN+Cu connection events → new two-pair module"
+  },
+  "rules": [
+    "Full composition never overwritten by shorthand",
+    "Every cut child consumes an explicit parent interval/portion; unknown real yield remains unknown",
+    "P1/P2 and N1/N2 have different IDs; separate portions can share a batch but not occupy four physical locations as one object",
+    "Pressing axis is established at die and travels with blank/leg; P/B cutting labels cannot swap; N direction is not invented as source",
+    "Same-object thermal/current scans retain object ID; each condition/point produces new record ID, not a fresh independent sample",
+    "Separate 6.7/8.8 mm controls and contact/efficiency episode objects are task-authored allocation, not claimed author chronology",
+    "Contact-probed or measured specimens retain their history; unknown damage does not reset to pristine",
+    "Failed/aborted events immutable; remeasure produces a linked new run",
+    "No resynthesis from a plot, no phantom output without loaded inputs",
+    "Unused/remainder/waste quantities balanced symbolically; real grams/moles not fabricated"
+  ],
+  "quantity_basis": {
+    "source": "batch masses, yields and replicate counts unreported",
+    "task": "manifest-issued symbolic portions and count/parent constraints",
+    "not_allowed": "claim a real chemical mass balance without data"
+  }
+}

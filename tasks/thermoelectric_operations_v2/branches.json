@@ -1,0 +1,2184 @@
+{
+  "schema_version": "thermoelectric_task_design.v2",
+  "doi": "10.1038/s41586-026-10223-1",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 15,
+  "branches": [
+    {
+      "id": "POWDER_P",
+      "label": "P型完整身份粉末制造",
+      "source_branch_ids": [
+        "T-B01"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown."
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "material_card": "P"
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "BLANK_P",
+      "label": "Sb/P/Sb烧结坯体",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02"
+      ],
+      "evidence_ids": [
+        "t.synthesis",
+        "t.fabrication"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "P_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown."
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "P_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "material_card": "P",
+        "sinter": {
+          "model": "SPS-322LX",
+          "temperature_K": 573,
+          "hold_min": 5,
+          "pressure_MPa": 60
+        }
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "POWDER_N",
+      "label": "N型实际掺杂配方粉末制造",
+      "source_branch_ids": [
+        "T-B01"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "N",
+          "instance_binding": "N_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown."
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "material_card": "N"
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "BLANK_N",
+      "label": "不锈钢界面N烧结坯体",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B03"
+      ],
+      "evidence_ids": [
+        "t.synthesis",
+        "t.fabrication"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "N",
+          "instance_binding": "N_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "N_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown."
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "N_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "material_card": "N",
+        "sinter": {
+          "model": "SPS-1080 System",
+          "temperature_K": 973,
+          "hold_min": 10,
+          "pressure_MPa": 60
+        }
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "POWDER_B",
+      "label": "石英管熔锭后B型球磨",
+      "source_branch_ids": [
+        "T-B01"
+      ],
+      "evidence_ids": [
+        "t.synthesis"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "B",
+          "instance_binding": "B_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "TUBE_LOAD",
+            "MELT_LOAD",
+            "MELT_RUN",
+            "MELT_UNLOAD",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown."
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "TUBE_LOAD",
+        "MELT_LOAD",
+        "MELT_RUN",
+        "MELT_UNLOAD",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "material_card": "B"
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "BLANK_B",
+      "label": "无界面B烧结坯体",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02"
+      ],
+      "evidence_ids": [
+        "t.synthesis",
+        "t.fabrication"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "B",
+          "instance_binding": "B_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "TUBE_LOAD",
+            "MELT_LOAD",
+            "MELT_RUN",
+            "MELT_UNLOAD",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "B_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown."
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "TUBE_LOAD",
+        "MELT_LOAD",
+        "MELT_RUN",
+        "MELT_UNLOAD",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "B_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "material_card": "B",
+        "sinter": {
+          "model": "SPS-322LX",
+          "temperature_K": 693,
+          "hold_min": 10,
+          "pressure_MPa": 60
+        }
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "POWER_SEG_6P7",
+      "label": "分段腿6.7 mm功率密度比较",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02",
+        "T-B05"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.fabrication",
+        "t.measure"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "P_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              3.35
+            ],
+            "reported_finished_total_length_mm": 6.7,
+            "status": "cross-section authored; component length partition authored to implement source0.5ratio and preserve total",
+            "interface_thickness_partition": "unresolved in source; mock represents interface as logical surface within envelope, no added length"
+          }
+        },
+        {
+          "material": "B",
+          "instance_binding": "B_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "TUBE_LOAD",
+            "MELT_LOAD",
+            "MELT_RUN",
+            "MELT_UNLOAD",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "B_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              3.35
+            ],
+            "reported_finished_total_length_mm": 6.7,
+            "status": "cross-section authored; component length partition authored to implement source0.5ratio and preserve total",
+            "interface_thickness_partition": "unresolved in source; mock represents interface as logical surface within envelope, no added length"
+          }
+        },
+        {
+          "material": "SEG",
+          "instance_binding": "new_object(P_leg,B_leg,GaIn)",
+          "operations": [
+            "GA_SETUP",
+            "GA_APPLY",
+            "SEG_JOIN"
+          ]
+        },
+        {
+          "material": "SEG",
+          "instance_binding": "measured_POWER_SEG_6P7",
+          "operations": [
+            "PEM_PREP",
+            "PEM_MOUNT",
+            "PEM_WIRE",
+            "PEM_SEAL",
+            "PEM_BOUNDARY",
+            "PEM_CURRENT",
+            "PEM_ACQUIRE",
+            "PEM_NEXT",
+            "PEM_POWERDOWN",
+            "PEM_OPEN",
+            "PEM_UNLOAD",
+            "PERFORMANCE_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "P_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "TUBE_LOAD",
+        "MELT_LOAD",
+        "MELT_RUN",
+        "MELT_UNLOAD",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "B_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "GA_SETUP",
+        "GA_APPLY",
+        "SEG_JOIN",
+        "PEM_PREP",
+        "PEM_MOUNT",
+        "PEM_WIRE",
+        "PEM_SEAL",
+        "PEM_BOUNDARY",
+        "PEM_CURRENT",
+        "PEM_ACQUIRE",
+        "PEM_NEXT",
+        "PEM_POWERDOWN",
+        "PEM_OPEN",
+        "PEM_UNLOAD",
+        "PERFORMANCE_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_reported_total_length_mm": 6.7,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": 0.5,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": null
+      },
+      "control_peer_ids": [
+        "POWER_P_6P7",
+        "POWER_B_6P7"
+      ],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Fig.3i gives two total lengths for all three categories. Cross-section and boundary are not stated; mock equal-area/equal-boundary fixture is an authored matched comparison. 3.5×3.5 mm and 7–10 mm in Fig.3d/e are computational, not this specimen.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "POWER_P_6P7",
+      "label": "P单材料腿6.7 mm功率密度比较",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02",
+        "T-B05"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.fabrication",
+        "t.measure"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "P_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              6.7
+            ],
+            "reported_finished_total_length_mm": 6.7,
+            "status": "cross-section authored; finished length source-reported",
+            "interface_thickness_partition": "unresolved in source; mock represents interface as logical surface within envelope, no added length"
+          }
+        },
+        {
+          "material": "P",
+          "instance_binding": "measured_POWER_P_6P7",
+          "operations": [
+            "PEM_PREP",
+            "PEM_MOUNT",
+            "PEM_WIRE",
+            "PEM_SEAL",
+            "PEM_BOUNDARY",
+            "PEM_CURRENT",
+            "PEM_ACQUIRE",
+            "PEM_NEXT",
+            "PEM_POWERDOWN",
+            "PEM_OPEN",
+            "PEM_UNLOAD",
+            "PERFORMANCE_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "P_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PEM_PREP",
+        "PEM_MOUNT",
+        "PEM_WIRE",
+        "PEM_SEAL",
+        "PEM_BOUNDARY",
+        "PEM_CURRENT",
+        "PEM_ACQUIRE",
+        "PEM_NEXT",
+        "PEM_POWERDOWN",
+        "PEM_OPEN",
+        "PEM_UNLOAD",
+        "PERFORMANCE_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_reported_total_length_mm": 6.7,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": null,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": "unreported independently; reuse component preparation in task only"
+      },
+      "control_peer_ids": [
+        "POWER_SEG_6P7",
+        "POWER_B_6P7"
+      ],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Fig.3i gives two total lengths for all three categories. Cross-section and boundary are not stated; mock equal-area/equal-boundary fixture is an authored matched comparison. 3.5×3.5 mm and 7–10 mm in Fig.3d/e are computational, not this specimen.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "POWER_B_6P7",
+      "label": "B单材料腿6.7 mm功率密度比较",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02",
+        "T-B05"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.fabrication",
+        "t.measure"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "B",
+          "instance_binding": "B_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "TUBE_LOAD",
+            "MELT_LOAD",
+            "MELT_RUN",
+            "MELT_UNLOAD",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "B_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              6.7
+            ],
+            "reported_finished_total_length_mm": 6.7,
+            "status": "cross-section authored; finished length source-reported",
+            "interface_thickness_partition": "unresolved in source; mock represents interface as logical surface within envelope, no added length"
+          }
+        },
+        {
+          "material": "B",
+          "instance_binding": "measured_POWER_B_6P7",
+          "operations": [
+            "PEM_PREP",
+            "PEM_MOUNT",
+            "PEM_WIRE",
+            "PEM_SEAL",
+            "PEM_BOUNDARY",
+            "PEM_CURRENT",
+            "PEM_ACQUIRE",
+            "PEM_NEXT",
+            "PEM_POWERDOWN",
+            "PEM_OPEN",
+            "PEM_UNLOAD",
+            "PERFORMANCE_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "TUBE_LOAD",
+        "MELT_LOAD",
+        "MELT_RUN",
+        "MELT_UNLOAD",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "B_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PEM_PREP",
+        "PEM_MOUNT",
+        "PEM_WIRE",
+        "PEM_SEAL",
+        "PEM_BOUNDARY",
+        "PEM_CURRENT",
+        "PEM_ACQUIRE",
+        "PEM_NEXT",
+        "PEM_POWERDOWN",
+        "PEM_OPEN",
+        "PEM_UNLOAD",
+        "PERFORMANCE_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_reported_total_length_mm": 6.7,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": null,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": "unreported independently; reuse component preparation in task only"
+      },
+      "control_peer_ids": [
+        "POWER_SEG_6P7",
+        "POWER_P_6P7"
+      ],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Fig.3i gives two total lengths for all three categories. Cross-section and boundary are not stated; mock equal-area/equal-boundary fixture is an authored matched comparison. 3.5×3.5 mm and 7–10 mm in Fig.3d/e are computational, not this specimen.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "POWER_SEG_8P8",
+      "label": "分段腿8.8 mm功率密度比较",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02",
+        "T-B05"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.fabrication",
+        "t.measure"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "P_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              4.4
+            ],
+            "reported_finished_total_length_mm": 8.8,
+            "status": "cross-section authored; component length partition authored to implement source0.5ratio and preserve total",
+            "interface_thickness_partition": "unresolved in source; mock represents interface as logical surface within envelope, no added length"
+          }
+        },
+        {
+          "material": "B",
+          "instance_binding": "B_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "TUBE_LOAD",
+            "MELT_LOAD",
+            "MELT_RUN",
+            "MELT_UNLOAD",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "B_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              4.4
+            ],
+            "reported_finished_total_length_mm": 8.8,
+            "status": "cross-section authored; component length partition authored to implement source0.5ratio and preserve total",
+            "interface_thickness_partition": "unresolved in source; mock represents interface as logical surface within envelope, no added length"
+          }
+        },
+        {
+          "material": "SEG",
+          "instance_binding": "new_object(P_leg,B_leg,GaIn)",
+          "operations": [
+            "GA_SETUP",
+            "GA_APPLY",
+            "SEG_JOIN"
+          ]
+        },
+        {
+          "material": "SEG",
+          "instance_binding": "measured_POWER_SEG_8P8",
+          "operations": [
+            "PEM_PREP",
+            "PEM_MOUNT",
+            "PEM_WIRE",
+            "PEM_SEAL",
+            "PEM_BOUNDARY",
+            "PEM_CURRENT",
+            "PEM_ACQUIRE",
+            "PEM_NEXT",
+            "PEM_POWERDOWN",
+            "PEM_OPEN",
+            "PEM_UNLOAD",
+            "PERFORMANCE_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "P_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "TUBE_LOAD",
+        "MELT_LOAD",
+        "MELT_RUN",
+        "MELT_UNLOAD",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "B_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "GA_SETUP",
+        "GA_APPLY",
+        "SEG_JOIN",
+        "PEM_PREP",
+        "PEM_MOUNT",
+        "PEM_WIRE",
+        "PEM_SEAL",
+        "PEM_BOUNDARY",
+        "PEM_CURRENT",
+        "PEM_ACQUIRE",
+        "PEM_NEXT",
+        "PEM_POWERDOWN",
+        "PEM_OPEN",
+        "PEM_UNLOAD",
+        "PERFORMANCE_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_reported_total_length_mm": 8.8,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": 0.5,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": null
+      },
+      "control_peer_ids": [
+        "POWER_P_8P8",
+        "POWER_B_8P8"
+      ],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Fig.3i gives two total lengths for all three categories. Cross-section and boundary are not stated; mock equal-area/equal-boundary fixture is an authored matched comparison. 3.5×3.5 mm and 7–10 mm in Fig.3d/e are computational, not this specimen.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "POWER_P_8P8",
+      "label": "P单材料腿8.8 mm功率密度比较",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02",
+        "T-B05"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.fabrication",
+        "t.measure"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "P_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              8.8
+            ],
+            "reported_finished_total_length_mm": 8.8,
+            "status": "cross-section authored; finished length source-reported",
+            "interface_thickness_partition": "unresolved in source; mock represents interface as logical surface within envelope, no added length"
+          }
+        },
+        {
+          "material": "P",
+          "instance_binding": "measured_POWER_P_8P8",
+          "operations": [
+            "PEM_PREP",
+            "PEM_MOUNT",
+            "PEM_WIRE",
+            "PEM_SEAL",
+            "PEM_BOUNDARY",
+            "PEM_CURRENT",
+            "PEM_ACQUIRE",
+            "PEM_NEXT",
+            "PEM_POWERDOWN",
+            "PEM_OPEN",
+            "PEM_UNLOAD",
+            "PERFORMANCE_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "P_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PEM_PREP",
+        "PEM_MOUNT",
+        "PEM_WIRE",
+        "PEM_SEAL",
+        "PEM_BOUNDARY",
+        "PEM_CURRENT",
+        "PEM_ACQUIRE",
+        "PEM_NEXT",
+        "PEM_POWERDOWN",
+        "PEM_OPEN",
+        "PEM_UNLOAD",
+        "PERFORMANCE_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_reported_total_length_mm": 8.8,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": null,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": "unreported independently; reuse component preparation in task only"
+      },
+      "control_peer_ids": [
+        "POWER_SEG_8P8",
+        "POWER_B_8P8"
+      ],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Fig.3i gives two total lengths for all three categories. Cross-section and boundary are not stated; mock equal-area/equal-boundary fixture is an authored matched comparison. 3.5×3.5 mm and 7–10 mm in Fig.3d/e are computational, not this specimen.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "POWER_B_8P8",
+      "label": "B单材料腿8.8 mm功率密度比较",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02",
+        "T-B05"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.fabrication",
+        "t.measure"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "B",
+          "instance_binding": "B_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "TUBE_LOAD",
+            "MELT_LOAD",
+            "MELT_RUN",
+            "MELT_UNLOAD",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "B_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              8.8
+            ],
+            "reported_finished_total_length_mm": 8.8,
+            "status": "cross-section authored; finished length source-reported",
+            "interface_thickness_partition": "unresolved in source; mock represents interface as logical surface within envelope, no added length"
+          }
+        },
+        {
+          "material": "B",
+          "instance_binding": "measured_POWER_B_8P8",
+          "operations": [
+            "PEM_PREP",
+            "PEM_MOUNT",
+            "PEM_WIRE",
+            "PEM_SEAL",
+            "PEM_BOUNDARY",
+            "PEM_CURRENT",
+            "PEM_ACQUIRE",
+            "PEM_NEXT",
+            "PEM_POWERDOWN",
+            "PEM_OPEN",
+            "PEM_UNLOAD",
+            "PERFORMANCE_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "TUBE_LOAD",
+        "MELT_LOAD",
+        "MELT_RUN",
+        "MELT_UNLOAD",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "B_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PEM_PREP",
+        "PEM_MOUNT",
+        "PEM_WIRE",
+        "PEM_SEAL",
+        "PEM_BOUNDARY",
+        "PEM_CURRENT",
+        "PEM_ACQUIRE",
+        "PEM_NEXT",
+        "PEM_POWERDOWN",
+        "PEM_OPEN",
+        "PEM_UNLOAD",
+        "PERFORMANCE_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_reported_total_length_mm": 8.8,
+        "source_physical_cross_section_mm": null,
+        "task_proxy_cross_section_mm": [
+          4,
+          4
+        ],
+        "task_proxy_cross_section_status": "authored_for_fixture_only_not_inferred_from_computation",
+        "source_segment_P_length_ratio": null,
+        "source_Fig3i_thermal_boundary": null,
+        "task_thermal_card": {
+          "Th_K": 473,
+          "Tc_K": 293,
+          "status": "authored_matched_comparison_not_Fig3i_reconstruction"
+        },
+        "single_control_contact_architecture": "unreported independently; reuse component preparation in task only"
+      },
+      "control_peer_ids": [
+        "POWER_SEG_8P8",
+        "POWER_P_8P8"
+      ],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Fig.3i gives two total lengths for all three categories. Cross-section and boundary are not stated; mock equal-area/equal-boundary fixture is an authored matched comparison. 3.5×3.5 mm and 7–10 mm in Fig.3d/e are computational, not this specimen.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "CONTACT_SEG",
+      "label": "分段腿两界面空间电阻比较",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02",
+        "T-B04"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.fabrication",
+        "t.setup"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "P_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              4
+            ],
+            "status": "authored component geometry; two4mm components form8mm mock specimen; exact source specimen unknown",
+            "interface_thickness_partition": "logical surface with no added mock length; not real fabrication fact"
+          }
+        },
+        {
+          "material": "B",
+          "instance_binding": "B_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "TUBE_LOAD",
+            "MELT_LOAD",
+            "MELT_RUN",
+            "MELT_UNLOAD",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "B_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              4
+            ],
+            "status": "authored component geometry; two4mm components form8mm mock specimen; exact source specimen unknown",
+            "interface_thickness_partition": "logical surface with no added mock length; not real fabrication fact"
+          }
+        },
+        {
+          "material": "SEG",
+          "instance_binding": "new_object(P_leg,B_leg,GaIn)",
+          "operations": [
+            "GA_SETUP",
+            "GA_APPLY",
+            "SEG_JOIN"
+          ]
+        },
+        {
+          "material": "SEG",
+          "instance_binding": "contact_only_segment",
+          "operations": [
+            "CONTACT_MOUNT",
+            "CONTACT_PROBE",
+            "CONTACT_SCAN",
+            "CONTACT_UNLOAD",
+            "CONTACT_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "P_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "TUBE_LOAD",
+        "MELT_LOAD",
+        "MELT_RUN",
+        "MELT_UNLOAD",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "B_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "GA_SETUP",
+        "GA_APPLY",
+        "SEG_JOIN",
+        "CONTACT_MOUNT",
+        "CONTACT_PROBE",
+        "CONTACT_SCAN",
+        "CONTACT_UNLOAD",
+        "CONTACT_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_geometry_mm": null,
+        "task_proxy_geometry_mm": [
+          4,
+          4,
+          8
+        ],
+        "source_contact_resistivity_reference_microohm_cm2": {
+          "Sb/P": 4.0,
+          "B/GaIn/Sb": 4.9
+        },
+        "scan_axis": "B → GaIn/Sb → P",
+        "source_scan_grid": null,
+        "mock_scan_grid_mm": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Reference values are not supplied as new measurements or grading targets. Coordinate grid and fixture geometry are authored, no exact raw source points are claimed.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "EFFICIENCY_SEG",
+      "label": "分段腿四热边界效率扫描",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B02",
+        "T-B05"
+      ],
+      "evidence_ids": [
+        "t.segment",
+        "t.measure",
+        "t.setup"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "P_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              4
+            ],
+            "status": "authored component geometry; two4mm components form8mm mock specimen; exact source specimen unknown",
+            "interface_thickness_partition": "logical surface with no added mock length; not real fabrication fact"
+          }
+        },
+        {
+          "material": "B",
+          "instance_binding": "B_parent_phase",
+          "output_count_required": 1,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "TUBE_LOAD",
+            "MELT_LOAD",
+            "MELT_RUN",
+            "MELT_UNLOAD",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "B_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "task_envelope_mm": [
+              4,
+              4,
+              4
+            ],
+            "status": "authored component geometry; two4mm components form8mm mock specimen; exact source specimen unknown",
+            "interface_thickness_partition": "logical surface with no added mock length; not real fabrication fact"
+          }
+        },
+        {
+          "material": "SEG",
+          "instance_binding": "new_object(P_leg,B_leg,GaIn)",
+          "operations": [
+            "GA_SETUP",
+            "GA_APPLY",
+            "SEG_JOIN"
+          ]
+        },
+        {
+          "material": "SEG",
+          "instance_binding": "efficiency_segment",
+          "operations": [
+            "PEM_PREP",
+            "PEM_MOUNT",
+            "PEM_WIRE",
+            "PEM_SEAL",
+            "PEM_BOUNDARY",
+            "PEM_CURRENT",
+            "PEM_ACQUIRE",
+            "PEM_NEXT",
+            "PEM_POWERDOWN",
+            "PEM_OPEN",
+            "PEM_UNLOAD",
+            "PERFORMANCE_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "P_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "TUBE_LOAD",
+        "MELT_LOAD",
+        "MELT_RUN",
+        "MELT_UNLOAD",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "B_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "GA_SETUP",
+        "GA_APPLY",
+        "SEG_JOIN",
+        "PEM_PREP",
+        "PEM_MOUNT",
+        "PEM_WIRE",
+        "PEM_SEAL",
+        "PEM_BOUNDARY",
+        "PEM_CURRENT",
+        "PEM_ACQUIRE",
+        "PEM_NEXT",
+        "PEM_POWERDOWN",
+        "PEM_OPEN",
+        "PEM_UNLOAD",
+        "PERFORMANCE_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_specimen_geometry_mm": null,
+        "task_proxy_geometry_mm": [
+          4,
+          4,
+          8
+        ],
+        "source_P_length_ratio": 0.5,
+        "source_Th_K": [
+          373,
+          473,
+          573,
+          593
+        ],
+        "source_Tc_K": 293,
+        "top_material": "P",
+        "bottom_material": "B",
+        "source_eta_percent_reference": 9.3
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Fig.3j specimen dimensions and relationship to Fig.3i specimens are unknown. Task uses an independent mock sibling, not an invented author replicate or inherited geometry.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    },
+    {
+      "id": "PAIRED_TWO",
+      "label": "四腿双对模块制造与四热边界测量",
+      "source_branch_ids": [
+        "T-B01",
+        "T-B03",
+        "T-B06"
+      ],
+      "evidence_ids": [
+        "t.synthesis",
+        "t.fabrication",
+        "t.paired",
+        "t.measure"
+      ],
+      "initial_state": "raw_stock_and_empty_stopped_equipment",
+      "phases": [
+        {
+          "material": "P",
+          "instance_binding": "P_parent_phase",
+          "output_count_required": 2,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "P_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "leg_envelope_mm": [
+              3.3,
+              3.3,
+              6.6
+            ],
+            "count": 2,
+            "status": "source reported leg envelope; source treatment of interface thickness unknown"
+          }
+        },
+        {
+          "material": "N",
+          "instance_binding": "N_parent_phase",
+          "output_count_required": 2,
+          "operations": [
+            "STOCK",
+            "PREP_NEST",
+            "PORTION",
+            "VIAL_CLOSE",
+            "AR_HANDOFF",
+            "AR_RETURN",
+            "MILL_OPEN",
+            "MILL_SEAT",
+            "MILL_CLAMP",
+            "MILL_CLOSE",
+            "MILL_RUN",
+            "MILL_UNLOAD",
+            "POWDER_DECANT",
+            "DIE_ASSEMBLE",
+            "N_STACK",
+            "DIE_CLOSE",
+            "SPS_LOAD",
+            "SPS_RUN",
+            "SPS_UNLOAD",
+            "DEMOLD",
+            "CUT_FIXTURE",
+            "CUT_SELECT",
+            "CUT_RUN",
+            "CUT_UNLOAD"
+          ],
+          "quantity_rule": "Enough issued symbolic portions for this phase; count cannot be created by relabelling. Real masses/yield unknown.",
+          "geometry_binding": {
+            "leg_envelope_mm": [
+              2.9,
+              2.9,
+              6.6
+            ],
+            "count": 2,
+            "status": "source reported leg envelope; source treatment of interface thickness unknown"
+          }
+        },
+        {
+          "material": "PAIR",
+          "instance_binding": "new_module(P1,N1,P2,N2,AlN,Cu)",
+          "operations": [
+            "MODULE_BASE",
+            "MODULE_LEGS",
+            "MODULE_BRIDGE",
+            "MODULE_RELEASE"
+          ]
+        },
+        {
+          "material": "PAIR",
+          "instance_binding": "same_measured_module",
+          "operations": [
+            "PEM_PREP",
+            "PEM_MOUNT",
+            "PEM_WIRE",
+            "PEM_SEAL",
+            "PEM_BOUNDARY",
+            "PEM_CURRENT",
+            "PEM_ACQUIRE",
+            "PEM_NEXT",
+            "PEM_POWERDOWN",
+            "PEM_OPEN",
+            "PEM_UNLOAD",
+            "PERFORMANCE_ANALYSE"
+          ]
+        }
+      ],
+      "full_operation_sequence": [
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "P_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "STOCK",
+        "PREP_NEST",
+        "PORTION",
+        "VIAL_CLOSE",
+        "AR_HANDOFF",
+        "AR_RETURN",
+        "MILL_OPEN",
+        "MILL_SEAT",
+        "MILL_CLAMP",
+        "MILL_CLOSE",
+        "MILL_RUN",
+        "MILL_UNLOAD",
+        "POWDER_DECANT",
+        "DIE_ASSEMBLE",
+        "N_STACK",
+        "DIE_CLOSE",
+        "SPS_LOAD",
+        "SPS_RUN",
+        "SPS_UNLOAD",
+        "DEMOLD",
+        "CUT_FIXTURE",
+        "CUT_SELECT",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "MODULE_BASE",
+        "MODULE_LEGS",
+        "MODULE_BRIDGE",
+        "MODULE_RELEASE",
+        "PEM_PREP",
+        "PEM_MOUNT",
+        "PEM_WIRE",
+        "PEM_SEAL",
+        "PEM_BOUNDARY",
+        "PEM_CURRENT",
+        "PEM_ACQUIRE",
+        "PEM_NEXT",
+        "PEM_POWERDOWN",
+        "PEM_OPEN",
+        "PEM_UNLOAD",
+        "PERFORMANCE_ANALYSE",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "parameters": {
+        "source_p_leg_xyz_mm": [
+          3.3,
+          3.3,
+          6.6
+        ],
+        "source_n_leg_xyz_mm": [
+          2.9,
+          2.9,
+          6.6
+        ],
+        "P_count": 2,
+        "N_count": 2,
+        "source_Th_K": [
+          373,
+          473,
+          573,
+          593
+        ],
+        "source_Tc_K": 293,
+        "source_eta_percent_reference": 8.7,
+        "AlN_dimensions": null,
+        "Cu_topology": "authored series implementation consistent with source series/thermal-parallel architecture; detailed route unreported",
+        "N_cut_direction": null
+      },
+      "control_peer_ids": [],
+      "physical_item_identity": "Each phase binds distinct material/object IDs; merge creates a new ID with all component parents.",
+      "transport_binding": "Insert MOVE at every changed location; carry supported object, never teleport.",
+      "condition_loop": "PEM_CURRENT/PEM_ACQUIRE repeat over current grid; PEM_BOUNDARY repeated for each thermal condition. Each repeat has unique run/point ID; PEM_NEXT is a branching template, not a one-click complete scan.",
+      "source_vs_task_note": "Source dimensions kept distinct. Same module across boundaries is authored condition-scan identity; source fabrication replicate counts unreported.",
+      "success": "完成实体操作、谱系、条件/原始读数和复位；mock数值无需命中文献性能",
+      "not_claimed": "not author replicate count, not physical execution, not a recovered human microtrajectory"
+    }
+  ],
+  "count_warning": "15 task configurations from 6 hands-on inventory families, not 15 papers or independent original experiments.",
+  "manufacturing_prefixes": {
+    "P_powder": [
+      "STOCK",
+      "PREP_NEST",
+      "PORTION",
+      "VIAL_CLOSE",
+      "AR_HANDOFF",
+      "AR_RETURN",
+      "MILL_OPEN",
+      "MILL_SEAT",
+      "MILL_CLAMP",
+      "MILL_CLOSE",
+      "MILL_RUN",
+      "MILL_UNLOAD",
+      "POWDER_DECANT"
+    ],
+    "N_powder": [
+      "STOCK",
+      "PREP_NEST",
+      "PORTION",
+      "VIAL_CLOSE",
+      "AR_HANDOFF",
+      "AR_RETURN",
+      "MILL_OPEN",
+      "MILL_SEAT",
+      "MILL_CLAMP",
+      "MILL_CLOSE",
+      "MILL_RUN",
+      "MILL_UNLOAD",
+      "POWDER_DECANT"
+    ],
+    "B_powder": [
+      "STOCK",
+      "PREP_NEST",
+      "PORTION",
+      "TUBE_LOAD",
+      "MELT_LOAD",
+      "MELT_RUN",
+      "MELT_UNLOAD",
+      "MILL_OPEN",
+      "MILL_SEAT",
+      "MILL_CLAMP",
+      "MILL_CLOSE",
+      "MILL_RUN",
+      "MILL_UNLOAD",
+      "POWDER_DECANT"
+    ]
+  },
+  "partial_order": "Independent P/B or P/N manufacture may run in either order, provided safe resource exclusion and lineage are maintained."
+}

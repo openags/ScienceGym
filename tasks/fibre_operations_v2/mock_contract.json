@@ -1,0 +1,69 @@
+{
+  "schema_version": "fibre_mock_contract.v2",
+  "simulation": "none",
+  "evaluator_only_scheduler": true,
+  "science_values": "若用数值fixture，每项必须带origin=mock、fixture_id、object_id、condition_id、unit；若展示文献数值则origin=source_reported_reference，never measured",
+  "interaction_requirement": "每次服务必须先正确装入具身份的实体载具，封闭并触发，收到完成+安全释放，再实体卸载；缺任何一步不能生成可用输出",
+  "state_examples": {
+    "glass": [
+      "loaded",
+      "viscous_flow",
+      "core_crystallization",
+      "cooling",
+      "safe_release"
+    ],
+    "release": [
+      "loaded",
+      "processing",
+      "safe_release",
+      "intact_or_fragment_observation"
+    ],
+    "convergence": [
+      "single_or_dual_feeds_checked",
+      "polymer_viscous_solid_feeds",
+      "interface_formed",
+      "cooling",
+      "safe_release"
+    ],
+    "measurement": [
+      "sample_mounted",
+      "source_off_or_guarded",
+      "acquiring",
+      "data_saved",
+      "safe_unload"
+    ],
+    "recovery": [
+      "baseline",
+      "compressed",
+      "immediate",
+      "stored_untreated",
+      "overnight_elapsed",
+      "remeasured"
+    ]
+  },
+  "events": [
+    "ready",
+    "guard_closed",
+    "job_started",
+    "complete",
+    "safe_to_touch",
+    "safe_release",
+    "spindle_stopped",
+    "zero_load",
+    "zero_torque",
+    "source_off",
+    "sample_observation",
+    "data_ready",
+    "archived",
+    "workspace_reset"
+  ],
+  "durations": "mock时间可快进；10000循环、10洗涤、5h和overnight仍需不同事件账本，不以当前墙钟伪造物理经历",
+  "fault_visibility": "只在观察/设备公开状态中显露；不能把evaluator hidden flags发送给agent",
+  "destructive_rules": "cut/section/FIB/failure永久改变episode物件状态；任务恢复不能undo科学历史",
+  "not_claimed": [
+    "physics",
+    "fabrication_success_in_real_world",
+    "scientific_reproduction",
+    "human_validity"
+  ]
+}

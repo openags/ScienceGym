@@ -1,0 +1,810 @@
+{
+  "schema": "sciencegym.evaluator_reference.design.v2",
+  "agent_visible": false,
+  "independent_of_agent_self_report": true,
+  "authority": "Trusted world event/state history, immutable acquisition records and material/object lineage; never submitted success booleans",
+  "branch_requirements": [
+    {
+      "branch_id": "tubulin",
+      "entry": "U-2 OS stock identity token, not a pre-stained or pre-mounted specimen",
+      "required_stage_ids": [
+        "tubulin__tub_seed",
+        "tubulin__tub_grow",
+        "tubulin__tub_fix",
+        "tubulin__tub_permeabilize",
+        "tubulin__tub_block",
+        "tubulin__tub_primary",
+        "tubulin__tub_wash1",
+        "tubulin__tub_reblock",
+        "tubulin__tub_secondary",
+        "tubulin__tub_wash2",
+        "tubulin__tub_mount"
+      ],
+      "sequence_edges": [
+        [
+          "tubulin__tub_seed",
+          "tubulin__tub_grow"
+        ],
+        [
+          "tubulin__tub_grow",
+          "tubulin__tub_fix"
+        ],
+        [
+          "tubulin__tub_fix",
+          "tubulin__tub_permeabilize"
+        ],
+        [
+          "tubulin__tub_permeabilize",
+          "tubulin__tub_block"
+        ],
+        [
+          "tubulin__tub_block",
+          "tubulin__tub_primary"
+        ],
+        [
+          "tubulin__tub_primary",
+          "tubulin__tub_wash1"
+        ],
+        [
+          "tubulin__tub_wash1",
+          "tubulin__tub_reblock"
+        ],
+        [
+          "tubulin__tub_reblock",
+          "tubulin__tub_secondary"
+        ],
+        [
+          "tubulin__tub_secondary",
+          "tubulin__tub_wash2"
+        ],
+        [
+          "tubulin__tub_wash2",
+          "tubulin__tub_mount"
+        ]
+      ],
+      "required_acquisition_ids": [
+        "tub_confocal",
+        "tub_widefield"
+      ],
+      "allowed_optional_choices": {},
+      "analysis_requirements": [
+        "Preserve paired raw stacks and sampling per modality",
+        "Select the matching widefield PSF metadata and obtain preset DW derivative",
+        "Register the same FOV across modalities; inspect lateral and axial views",
+        "Compare structures and retain low-intensity discrepancies rather than declaring every sharper output true"
+      ]
+    },
+    {
+      "branch_id": "ifish",
+      "entry": "HAP1 stock identity token and separately supplied probe-lot tokens",
+      "required_stage_ids": [
+        "ifish__if_seed",
+        "ifish__if_grow",
+        "ifish__if_fix",
+        "ifish__if_quench",
+        "ifish__if_wash1",
+        "ifish__if_perm",
+        "ifish__if_wash2",
+        "ifish__if_acid",
+        "ifish__if_wash3",
+        "ifish__if_rinse1",
+        "ifish__if_store",
+        "ifish__if_equilibrate",
+        "ifish__if_prehyb",
+        "ifish__if_mix",
+        "ifish__if_seal",
+        "ifish__if_denature",
+        "ifish__if_hyb1",
+        "ifish__if_rinse2",
+        "ifish__if_hotwash",
+        "ifish__if_rinse3",
+        "ifish__if_rinse4",
+        "ifish__if_wash4",
+        "ifish__if_hyb2",
+        "ifish__if_wash5",
+        "ifish__if_hoechst",
+        "ifish__if_wash6",
+        "ifish__if_mount"
+      ],
+      "sequence_edges": [
+        [
+          "ifish__if_seed",
+          "ifish__if_grow"
+        ],
+        [
+          "ifish__if_grow",
+          "ifish__if_fix"
+        ],
+        [
+          "ifish__if_fix",
+          "ifish__if_quench"
+        ],
+        [
+          "ifish__if_quench",
+          "ifish__if_wash1"
+        ],
+        [
+          "ifish__if_wash1",
+          "ifish__if_perm"
+        ],
+        [
+          "ifish__if_perm",
+          "ifish__if_wash2"
+        ],
+        [
+          "ifish__if_wash2",
+          "ifish__if_acid"
+        ],
+        [
+          "ifish__if_acid",
+          "ifish__if_wash3"
+        ],
+        [
+          "ifish__if_wash3",
+          "ifish__if_rinse1"
+        ],
+        [
+          "ifish__if_rinse1",
+          "ifish__if_store"
+        ],
+        [
+          "ifish__if_store",
+          "ifish__if_equilibrate"
+        ],
+        [
+          "ifish__if_equilibrate",
+          "ifish__if_prehyb"
+        ],
+        [
+          "ifish__if_prehyb",
+          "ifish__if_mix"
+        ],
+        [
+          "ifish__if_mix",
+          "ifish__if_seal"
+        ],
+        [
+          "ifish__if_seal",
+          "ifish__if_denature"
+        ],
+        [
+          "ifish__if_denature",
+          "ifish__if_hyb1"
+        ],
+        [
+          "ifish__if_hyb1",
+          "ifish__if_rinse2"
+        ],
+        [
+          "ifish__if_rinse2",
+          "ifish__if_hotwash"
+        ],
+        [
+          "ifish__if_hotwash",
+          "ifish__if_rinse3"
+        ],
+        [
+          "ifish__if_rinse3",
+          "ifish__if_rinse4"
+        ],
+        [
+          "ifish__if_rinse4",
+          "ifish__if_wash4"
+        ],
+        [
+          "ifish__if_wash4",
+          "ifish__if_hyb2"
+        ],
+        [
+          "ifish__if_hyb2",
+          "ifish__if_wash5"
+        ],
+        [
+          "ifish__if_wash5",
+          "ifish__if_hoechst"
+        ],
+        [
+          "ifish__if_hoechst",
+          "ifish__if_wash6"
+        ],
+        [
+          "ifish__if_wash6",
+          "ifish__if_mount"
+        ]
+      ],
+      "required_acquisition_ids": [
+        "if_widefield"
+      ],
+      "allowed_optional_choices": {
+        "ifish__if_store": [
+          "immediate",
+          "source-permitted storage"
+        ]
+      },
+      "analysis_requirements": [
+        "Keep four iFISH channels and nuclear identity separate",
+        "Preserve raw and preset DW derivatives",
+        "Compare per-nucleus/per-channel nearest neighbors at source threshold 260 nm",
+        "Label Raw&DW, DW&Raw, Lost and New; exclude nuclei with no dots in either comparison image",
+        "Retain FWHM/NCR outputs; upscaling to 23 nm for ED7 is display processing, not acquisition sampling"
+      ]
+    },
+    {
+      "branch_id": "gapdh",
+      "entry": "SKBR3 stock identity token, source-specific probe lots and empty authored carrier",
+      "required_stage_ids": [
+        "gapdh__gap_culture",
+        "gapdh__gap_unreported_prep",
+        "gapdh__fish_probe",
+        "gapdh__fish_hyb",
+        "gapdh__fish_wash1",
+        "gapdh__fish_secondary",
+        "gapdh__fish_wash2",
+        "gapdh__fish_counterstain",
+        "gapdh__fish_mount"
+      ],
+      "sequence_edges": [
+        [
+          "gapdh__gap_culture",
+          "gapdh__gap_unreported_prep"
+        ],
+        [
+          "gapdh__gap_unreported_prep",
+          "gapdh__fish_probe"
+        ],
+        [
+          "gapdh__fish_probe",
+          "gapdh__fish_hyb"
+        ],
+        [
+          "gapdh__fish_hyb",
+          "gapdh__fish_wash1"
+        ],
+        [
+          "gapdh__fish_wash1",
+          "gapdh__fish_secondary"
+        ],
+        [
+          "gapdh__fish_secondary",
+          "gapdh__fish_wash2"
+        ],
+        [
+          "gapdh__fish_wash2",
+          "gapdh__fish_counterstain"
+        ],
+        [
+          "gapdh__fish_counterstain",
+          "gapdh__fish_mount"
+        ]
+      ],
+      "required_acquisition_ids": [
+        "gap_widefield"
+      ],
+      "allowed_optional_choices": {},
+      "analysis_requirements": [
+        "Retain matching raw, DW, DL2 and Huygens preset records",
+        "For ED6 display comparison manually choose DW intensity threshold and match raw brightest-dot count",
+        "Separately compare Intensity and DoG detection across paired raw/DW fields; do not collapse the two tests",
+        "Record FWHM and per-FOV counts without requiring raw counts always be lower"
+      ]
+    },
+    {
+      "branch_id": "tissue",
+      "entry": "Purchased 5 µm frozen TMA section token, US Biomax FMC282e; no donated-person identifying data",
+      "required_stage_ids": [
+        "tissue__tis_fix",
+        "tissue__tis_pbs",
+        "tissue__tis_ethanolrinse",
+        "tissue__tis_ethanol",
+        "tissue__tis_rehydrate",
+        "tissue__tis_fish_probe",
+        "tissue__tis_fish_hyb",
+        "tissue__tis_fish_wash1",
+        "tissue__tis_fish_secondary",
+        "tissue__tis_fish_wash2",
+        "tissue__tis_fish_counterstain",
+        "tissue__tis_fish_mount"
+      ],
+      "sequence_edges": [
+        [
+          "tissue__tis_fix",
+          "tissue__tis_pbs"
+        ],
+        [
+          "tissue__tis_pbs",
+          "tissue__tis_ethanolrinse"
+        ],
+        [
+          "tissue__tis_ethanolrinse",
+          "tissue__tis_ethanol"
+        ],
+        [
+          "tissue__tis_ethanol",
+          "tissue__tis_rehydrate"
+        ],
+        [
+          "tissue__tis_rehydrate",
+          "tissue__tis_fish_probe"
+        ],
+        [
+          "tissue__tis_fish_probe",
+          "tissue__tis_fish_hyb"
+        ],
+        [
+          "tissue__tis_fish_hyb",
+          "tissue__tis_fish_wash1"
+        ],
+        [
+          "tissue__tis_fish_wash1",
+          "tissue__tis_fish_secondary"
+        ],
+        [
+          "tissue__tis_fish_secondary",
+          "tissue__tis_fish_wash2"
+        ],
+        [
+          "tissue__tis_fish_wash2",
+          "tissue__tis_fish_counterstain"
+        ],
+        [
+          "tissue__tis_fish_counterstain",
+          "tissue__tis_fish_mount"
+        ]
+      ],
+      "required_acquisition_ids": [
+        "tis20",
+        "tis60"
+      ],
+      "allowed_optional_choices": {
+        "tissue__tis_fish_secondary": [
+          "direct-label interpretation: skip secondary-specific application while retaining wash/counterstain",
+          "literal inherited-steps interpretation: execute secondary stage with source ambiguity recorded"
+        ]
+      },
+      "analysis_requirements": [
+        "Survey 10 labeled authored FOV slots at 20× and retain matching selected 60× regions",
+        "Use DoG dot detection, 60× nuclear masks and rescale to corresponding 20× sampling",
+        "Review intensity/CNR plots; select local-minimum threshold where the two clouds exist",
+        "20× raw has a distinct tail-selection condition; do not force the same threshold logic",
+        "Compare HQ dots against shared 60× raw/DW reference and retain translation/deformation registration metadata"
+      ]
+    },
+    {
+      "branch_id": "gfap",
+      "entry": "FFPE human cerebral-cortex TMA block token from source-described biobank-derived array",
+      "required_stage_ids": [
+        "gfap__g_cut",
+        "gfap__g_bake",
+        "gfap__g_dewax",
+        "gfap__g_retrieve",
+        "gfap__g_primary",
+        "gfap__g_secondary",
+        "gfap__g_mount"
+      ],
+      "sequence_edges": [
+        [
+          "gfap__g_cut",
+          "gfap__g_bake"
+        ],
+        [
+          "gfap__g_bake",
+          "gfap__g_dewax"
+        ],
+        [
+          "gfap__g_dewax",
+          "gfap__g_retrieve"
+        ],
+        [
+          "gfap__g_retrieve",
+          "gfap__g_primary"
+        ],
+        [
+          "gfap__g_primary",
+          "gfap__g_secondary"
+        ],
+        [
+          "gfap__g_secondary",
+          "gfap__g_mount"
+        ]
+      ],
+      "required_acquisition_ids": [
+        "g60",
+        "g63",
+        "g100"
+      ],
+      "allowed_optional_choices": {},
+      "analysis_requirements": [
+        "Acquire same ROI mosaic on 60× widefield and 63× confocal; either order is allowed",
+        "Create separate 100× comparison branch with unknown settings labeled task presets",
+        "Preserve raw/DW/DL2 comparisons and axial views",
+        "Record structural agreement and loss of low-intensity details as separate observations"
+      ]
+    },
+    {
+      "branch_id": "nuclear_pores",
+      "entry": "Source-literal PtK2 identity token with unresolved species label; no live biological material instantiated",
+      "required_stage_ids": [
+        "nuclear_pores__p_identity",
+        "nuclear_pores__p_upstream",
+        "nuclear_pores__p_primary",
+        "nuclear_pores__p_secondary",
+        "nuclear_pores__p_mount"
+      ],
+      "sequence_edges": [
+        [
+          "nuclear_pores__p_identity",
+          "nuclear_pores__p_upstream"
+        ],
+        [
+          "nuclear_pores__p_upstream",
+          "nuclear_pores__p_primary"
+        ],
+        [
+          "nuclear_pores__p_primary",
+          "nuclear_pores__p_secondary"
+        ],
+        [
+          "nuclear_pores__p_secondary",
+          "nuclear_pores__p_mount"
+        ]
+      ],
+      "required_acquisition_ids": [
+        "p_sted",
+        "p_confocal"
+      ],
+      "allowed_optional_choices": {
+        "nuclear_pores__p_identity": [
+          "immediate",
+          "source-permitted storage"
+        ]
+      },
+      "analysis_requirements": [
+        "Keep STED-first and thereafter-confocal acquisitions linked to one specimen",
+        "Compare raw/Huygens/DW results with correct modality-specific PSF card",
+        "Keep widefield Born-Wolf, confocal and STED PSF choices distinct",
+        "Report unresolved physical fluorescence compatibility; task preset is not experimental validation"
+      ]
+    }
+  ],
+  "data_requirements": [
+    {
+      "id": "software_benchmark",
+      "title": "Compare deconvolution tools on source-described benchmark inputs",
+      "inputs": [
+        "synthetic microtubule reference",
+        "synthetic hollow bar reference",
+        "external C. elegans whole-embryo reference"
+      ],
+      "actions": [
+        "Select source-matched raw/truth pair; preserve identity",
+        "Choose DW SHB versus unaccelerated RL iteration series",
+        "Compare DW, DL2, Huygens and RedLionfish preset results without executing proprietary software",
+        "Inspect MSE-versus-iteration and time records with hardware context",
+        "Use wrap boundary assumption only on source synthetic inputs identified as wrapped"
+      ],
+      "source_refs": [
+        "R_BENCH",
+        "ED1",
+        "SIN4"
+      ],
+      "unknowns": [
+        "No real input arrays, executable comparisons or timing measurements supplied here"
+      ]
+    },
+    {
+      "id": "psf",
+      "title": "Compare PSF calculator versus PSF Generator",
+      "inputs": [
+        "ChrX-36plex PSF-comparison source token"
+      ],
+      "actions": [
+        "Verify 36plex identity, distinct from 46plex tracing data",
+        "Select two PSF-method cards with all other DW parameters held equal",
+        "Link raw to both preset derivatives",
+        "Compare dot FWHM/PSF displays",
+        "Record main Lanczos-3 versus SI Lanczos-5 discrepancy without silently choosing"
+      ],
+      "source_refs": [
+        "R_BENCH",
+        "M87",
+        "SI1",
+        "SIN13"
+      ],
+      "unknowns": [
+        "Full optical metadata and original image arrays not retained"
+      ]
+    },
+    {
+      "id": "boundary",
+      "title": "Handle lateral and axial boundary comparisons",
+      "inputs": [
+        "external embryo stack",
+        "HAP1 Hoechst boundary-example stack with 51 planes"
+      ],
+      "actions": [
+        "Select original and derived cropped copies; preserve raw full stack",
+        "Split embryo into four cuboids for lateral comparison",
+        "Create distinct HAP1 derivative after removing bottom 12 planes for Fig. 2 comparison",
+        "Select DW versus DL2 boundary/padding/apodization presets",
+        "Inspect lateral/axial profiles and label crops; never treat crop as sample removal"
+      ],
+      "source_refs": [
+        "R_BENCH",
+        "ED2",
+        "SI2",
+        "SIN4"
+      ],
+      "unknowns": [
+        "Connection between boundary-example HAP1 specimen and iFISH specimen not established; no forced same-sample link"
+      ]
+    },
+    {
+      "id": "synthetic_dots",
+      "title": "Inspect dot-density/noise simulation comparisons through preset outputs",
+      "inputs": [
+        "authored stand-ins for source synthetic truth/noisy widefield/confocal conditions"
+      ],
+      "actions": [
+        "Choose declared density/noise condition",
+        "Keep truth separate from observed noisy input",
+        "Choose widefield/confocal and DW/DL2 derivative records",
+        "Compare detection overlap against truth and inspect MSE",
+        "Tag source synthetic result as best-case matched-PSF condition; do not present as empirical specimen result"
+      ],
+      "source_refs": [
+        "M97",
+        "R_FISH",
+        "ED4",
+        "SI56"
+      ],
+      "unknowns": [
+        "No optical simulation implemented; all task observations are presets"
+      ]
+    },
+    {
+      "id": "isst",
+      "title": "Process reused ISST dataset without inventing new wet-lab preparation",
+      "inputs": [
+        "previously generated 120-gene middle-temporal-gyrus image dataset token"
+      ],
+      "actions": [
+        "Import raw cycle/FOV/channel lineage",
+        "Select raw and preset DW branches",
+        "Align cycles and stitch FOVs using operator workstation cards",
+        "Select FindSpots masking radius 15 and compare threshold sweep",
+        "Record source selected normalized threshold 2% and decode assigned versus improper barcode outputs",
+        "Compare cell-typing results for 18 types with identical underlying cell inventory"
+      ],
+      "source_refs": [
+        "M105",
+        "R_ISST",
+        "ED10"
+      ],
+      "unknowns": [
+        "Raw images and gene table absent; preset data token only",
+        "This paper reused images, so no new ISST wet-lab protocol is invented"
+      ]
+    },
+    {
+      "id": "oligofisseq",
+      "title": "Inspect reused ChrX-46plex decoding and tracing comparisons",
+      "inputs": [
+        "ChrX-46plex O-eLIT source dataset token; seven replicate dataset slots"
+      ],
+      "actions": [
+        "Keep five imaging/sequencing cycles in source data lineage",
+        "Select raw, NIS and DW derivatives",
+        "Manually match nucleus-pair records using fixture identification cues; source reports 168 nuclei",
+        "Run two-tier every-pixel analysis card on the paired dataset tokens",
+        "Inspect tracing nodes and interpolation flags",
+        "Compare contact maps against linked Hi-C reference",
+        "Keep seven biological replicate datasets distinct from 1,000 bootstrap resamples"
+      ],
+      "source_refs": [
+        "M107",
+        "R_OLIGO",
+        "R_ISST",
+        "ED10"
+      ],
+      "unknowns": [
+        "No upstream OligoFISSEQ probe production or sequencing procedure invented",
+        "168 match operations may be task-batched with coverage record, never claimed as observed here"
+      ]
+    },
+    {
+      "id": "rln_comparator",
+      "title": "Inspect downloaded raw image against a published RLN screenshot comparator",
+      "inputs": [
+        "external U-2 OS mitochondria/actin/tubulin raw token",
+        "published RLN screenshot-reference token"
+      ],
+      "actions": [
+        "Keep this external U-2 OS sample separate from in-paper alpha-tubulin specimen",
+        "Prepare visualization-only derivative in image-viewer card",
+        "Select DW 50-iteration preset derivative",
+        "Inspect paired zoom regions",
+        "Mark comparator as screenshot from published figure, not rerun RLN"
+      ],
+      "source_refs": [
+        "SI9"
+      ],
+      "unknowns": [
+        "No screenshot or raw image redistributed; task uses authored stand-ins"
+      ]
+    }
+  ],
+  "hard_gates": [
+    "No required reported preparation step omitted; an initial downstream specimen cannot substitute",
+    "Every source-unreported operation executed through an explicit authored gap card, without claiming scientific provenance",
+    "Required reagent identity and ordered wash/incubation events match branch reference",
+    "Source temperatures/times/concentrations and acquisition parameters preserved exactly when reported",
+    "No glass/carrier/specimen identity swap",
+    "Same-FOV and modality controls satisfied from fixture mapping and immutable metadata",
+    "Every required acquisition saved and every derivative parent valid",
+    "All six specimens archived with location and no active optical exposure",
+    "All touched station shutters closed, objectives in load/park state, mounts cleared, tools returned and waste/tips accounted"
+  ],
+  "specific_controls": [
+    {
+      "id": "C_tub_pair",
+      "rule": "tub_confocal acquisition precedes tub_widefield, same specimen and same FOV",
+      "source_refs": [
+        "M80"
+      ]
+    },
+    {
+      "id": "C_gfap_pair",
+      "rule": "g60/g63 use same 4×4 ROI mosaic with 10% overlap; no prescribed inter-modality chronology",
+      "source_refs": [
+        "M78"
+      ]
+    },
+    {
+      "id": "C_g100",
+      "rule": "g100 uses separate caption-supported configuration, unresolved camera/stack not silently inherited",
+      "source_refs": [
+        "R_IF",
+        "SI3",
+        "ED3"
+      ]
+    },
+    {
+      "id": "C_tissue_pair",
+      "rule": "10 20× FOVs and matched selected 60× subset; exact fixture field map is authored",
+      "source_refs": [
+        "M103"
+      ]
+    },
+    {
+      "id": "C_pore_order",
+      "rule": "STED first, then confocal; preserve unresolved source identity/fluorophore annotations",
+      "source_refs": [
+        "M82"
+      ]
+    },
+    {
+      "id": "C_ifish",
+      "rule": "four channel/nucleus groups; raw and DW pairs; empty-nucleus exclusions; no 51-plane global assumption",
+      "source_refs": [
+        "M101",
+        "ED2"
+      ]
+    },
+    {
+      "id": "C_psf",
+      "rule": "ChrX-36plex PSF comparison separated from ChrX-46plex tracing",
+      "source_refs": [
+        "SI1",
+        "M107"
+      ]
+    },
+    {
+      "id": "C_rln",
+      "rule": "screenshot comparator cannot be marked rerun RLN",
+      "source_refs": [
+        "SI9"
+      ]
+    }
+  ],
+  "source_unknown_policy": "Unknown is a legitimate source value. Completion may use named authored bridge cards but must retain the unknown and task-choice provenance. Never award source-complete reproduction for those bridged details.",
+  "completion_labels": {
+    "design_complete": "All declared paper branches have initial states, goals, object actions, output bindings, evaluator conditions and gap labels in this design",
+    "task_episode_complete": "Requires future trusted runtime event history satisfying all hard gates; not established by this delivery",
+    "paper_experiment_reproduced": "Not claimable from preset-output task"
+  },
+  "not_accepted_as_evidence": [
+    "Rendered geometry",
+    "agent plan text alone",
+    "agent writes passed=true",
+    "agent edits saved manifest to invent event IDs",
+    "reused specimen ID with renamed carrier",
+    "published image/result pasted as newly acquired output"
+  ],
+  "required_field_records": {
+    "tub_confocal": [
+      "TUB_F1"
+    ],
+    "tub_widefield": [
+      "TUB_F1"
+    ],
+    "if_widefield": [
+      "IF_F1"
+    ],
+    "gap_widefield": [
+      "GAP_F1",
+      "GAP_F2"
+    ],
+    "tis20": [
+      "TIS_F1",
+      "TIS_F2",
+      "TIS_F3",
+      "TIS_F4",
+      "TIS_F5",
+      "TIS_F6",
+      "TIS_F7",
+      "TIS_F8",
+      "TIS_F9",
+      "TIS_F10"
+    ],
+    "tis60": [
+      "TIS_F1",
+      "TIS_F2",
+      "TIS_F3",
+      "TIS_F4",
+      "TIS_F5"
+    ],
+    "g60": [
+      "GFAP_R1C1",
+      "GFAP_R1C2",
+      "GFAP_R1C3",
+      "GFAP_R1C4",
+      "GFAP_R2C1",
+      "GFAP_R2C2",
+      "GFAP_R2C3",
+      "GFAP_R2C4",
+      "GFAP_R3C1",
+      "GFAP_R3C2",
+      "GFAP_R3C3",
+      "GFAP_R3C4",
+      "GFAP_R4C1",
+      "GFAP_R4C2",
+      "GFAP_R4C3",
+      "GFAP_R4C4"
+    ],
+    "g63": [
+      "GFAP_R1C1",
+      "GFAP_R1C2",
+      "GFAP_R1C3",
+      "GFAP_R1C4",
+      "GFAP_R2C1",
+      "GFAP_R2C2",
+      "GFAP_R2C3",
+      "GFAP_R2C4",
+      "GFAP_R3C1",
+      "GFAP_R3C2",
+      "GFAP_R3C3",
+      "GFAP_R3C4",
+      "GFAP_R4C1",
+      "GFAP_R4C2",
+      "GFAP_R4C3",
+      "GFAP_R4C4"
+    ],
+    "g100": [
+      "GFAP_R2C2"
+    ],
+    "p_sted": [
+      "PORE_F1"
+    ],
+    "p_confocal": [
+      "PORE_F1"
+    ]
+  },
+  "source_reported_steps_convention": "Methods numbers labeled number_of_steps_source_literal retain the source wording. Do not assume whether a controller counts planes or intervals; a named task-controller adapter may choose a frame convention, recorded as authored rather than paper fact.",
+  "preparation_material_transfer_requirements": {
+    "seed": "Stock specimen ancestry moves to the chosen carrier in the work vessel; stock vial and derived specimen are separate objects",
+    "section": "Block remains at sectioning station; new section gets a child identity and its own support slide",
+    "wash": "Material buffer ancestry updates but specimen and carrier remain unchanged",
+    "mount": "Same prepared specimen-bearing carrier becomes supported by holder; do not spawn a duplicate final sample",
+    "repeat_or_restart": "Fresh replacement starts a new child specimen ID; its failed sibling remains in quarantine"
+  }
+}
