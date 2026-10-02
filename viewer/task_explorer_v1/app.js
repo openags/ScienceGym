@@ -1,0 +1,64 @@
+/* Read-only, no fetch, no dependencies. Local script data supports file://. */
+'use strict';
+(()=>{
+ const data=window.SCIENCEGYM_DATA||{};
+ const $=id=>document.getElementById(id);
+ const state={family:null,route:null,op:null,occurrence:0,tab:'route',steps:[]};
+ const E=(tag,attrs={},text)=>{const e=document.createElement(tag);for(const [k,v] of Object.entries(attrs)){if(k==='class')e.className=v;else e.setAttribute(k,v);}if(text!==undefined)e.textContent=String(text);return e;};
+ function resolve(f,v){if(v&&typeof v==='object'&&'$shared'in v)return resolve(f,f.shared[v.$shared]);if(Array.isArray(v))return v.map(x=>resolve(f,x));if(v&&typeof v==='object')return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,resolve(f,x)]));return v;}
+ for(const k of Object.keys(data))data[k]=resolve(data[k],data[k]);
+ const list=v=>v==null?[]:Array.isArray(v)?v:[v];
+ const format=v=>typeof v==='string'?v:JSON.stringify(v,null,2);
+ function values(v,parent,ordered=false){const xs=list(v);if(!xs.length){parent.append(E('p',{class:'empty'},'Not specified in this source record'));return;}const ul=E(ordered?'ol':'ul');xs.forEach(x=>ul.append(E('li',{},format(x))));parent.append(ul);}
+ function fields(v,parent){if(v===null||v===undefined){parent.append(E('p',{class:'empty'},'Not supplied in this task package'));return;}if(typeof v!=='object'||Array.isArray(v)){values(v,parent);return;}for(const [key,value]of Object.entries(v)){const box=E('div',{class:'kv'});box.append(E('span',{class:'key'},key.replaceAll('_',' ')),E('div',{class:'value'},format(value)));parent.append(box);}}
+ function section(parent,title,value,ordered=false,cls=''){const box=E('section',{class:cls});box.append(E('h3',{},title));values(value,box,ordered);parent.append(box);return box;}
+ function fullActions(op){return op.action_macro?data[state.family].macros[op.action_macro]||['Unresolved macro: '+op.action_macro]:op.actions;}
+ function setHash(f,r,o='',occ=0){location.hash=[f,r,o,occ].map(encodeURIComponent).join('/');}
+ function displayTab(name){state.tab=name;document.querySelectorAll('[role=tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===name?'true':'false'));$('routeView').hidden=name!=='route';$('dependenciesView').hidden=name!=='dependencies';$('contractView').hidden=name!=='contract';}
+ function buildNav(){const nav=$('families');for(const [id,f]of Object.entries(data)){const b=E('button',{'data-family':id,'aria-label':'Open '+f.label});const dot=E('span',{class:'family-dot'});dot.style.background=f.color;b.append(dot,E('span',{},f.label));b.onclick=()=>setHash(id,f.default_route||f.routes[0].id);nav.append(b);}}
+ function familyViews(f){
+  $('familyTitle').textContent=f.label;$('paperTitle').textContent=f.title;$('paperLink').href='https://doi.org/'+f.doi;document.documentElement.style.setProperty('--accent',f.color);
+  $('stats').replaceChildren();for(const [number,label]of [[f.routes.length,'route / branch records'],[f.operations.length,'operation definitions'],[0,'validated runnable whole-paper tasks']]){const s=E('span');s.append(E('strong',{},number),document.createTextNode(label));$('stats').append(s);}
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.family===f.id));
+  $('routeSelect').replaceChildren();for(const r of f.routes)$('routeSelect').append(E('option',{value:r.id},r.id+' · '+r.label));
+  if(window.SCIENCEGYM_SVGS){if(state.svgUrl)URL.revokeObjectURL(state.svgUrl);state.svgUrl=URL.createObjectURL(new Blob([window.SCIENCEGYM_SVGS[f.id]],{type:'image/svg+xml'}));$('svgLink').href=state.svgUrl;$('svgLink').setAttribute('download',f.id+'.svg');}else{$('svgLink').href='diagrams/'+f.id+'.svg';}
+  const dep=$('dependenciesView');dep.replaceChildren(E('h2',{},'Explicit constraints and branch choices'),E('p',{},'These records come from the task package. No global chronology is inferred across independent branches.'));
+  const constraints=f.dependencies.partial_order;
+  if(Array.isArray(constraints)){const grid=E('div',{class:'dependency-grid'});constraints.forEach(x=>{const row=E('div',{class:'dependency-edge'});row.append(E('span',{},x.before),E('span',{},'→'),E('span',{},x.after));grid.append(row);});dep.append(grid);}
+  const d=E('details');d.append(E('summary',{},'All dependency, resource, branch and comparison contracts'));const inner=E('div');fields(f.dependencies,inner);d.append(inner);dep.append(d);
+  if(f.context.branch_policy){const c=E('details');c.append(E('summary',{},'Branch counting, reference order and repetition policy'));const v=E('div');fields(f.context.branch_policy,v);c.append(v);dep.append(c);}
+  const contract=$('contractView');contract.replaceChildren(E('h2',{},'Acceptance, recovery and explicit unknowns'),E('p',{},'Intended evaluator contracts only. This inspector does not evaluate completion or produce scientific results.'));
+  for(const [key,value]of Object.entries(f.context)){const d=E('details');d.append(E('summary',{},key.replaceAll('_',' ')));const b=E('div');fields(value,b);d.append(b);contract.append(d);}
+  const files=E('details');files.append(E('summary',{},'Immutable source files and checksums'));const filebox=E('div');for(const [name,v]of Object.entries(f.source_files)){const p=E('p');p.append(E('a',{href:v.url,target:'_blank',rel:'noreferrer'},name),E('br'),E('span',{class:'source-pointer'},v.sha256));filebox.append(p);}files.append(filebox);contract.append(files);
+ }
+ function nodeLabel(n){if(n.type==='loop'){const values=n.meta.values;return 'Binding: '+format(values)+' · '+(n.meta.completion_rule||'Repeat body under each binding; count not expanded');}if(n.type==='obligations')return n.meta.order||'No chronological edges asserted between these obligations';return Object.entries(n.meta||{}).map(([k,v])=>k.replaceAll('_',' ')+': '+format(v)).join('\n');}
+ function drawNodes(nodes,parent,ordered=true){const f=data[state.family],map=new Map(f.operations.map(o=>[o.id,o]));nodes=nodes.map(n=>typeof n==='string'?{type:'op',id:n}:n);nodes.forEach((n,i)=>{
+   if(n.type==='op'){const op=map.get(n.id);if(!op)throw Error('Unresolved operation '+n.id);const index=state.steps.length;state.steps.push({id:op.id,op,index});const wrap=E('div',{class:'step-wrap'}),b=E('button',{class:'operation','data-op':op.id,'data-occurrence':index,'aria-label':`${index+1}. ${op.id}: ${op.title}`});const m=E('div',{class:'op-meta'});m.append(E('span',{class:'op-id'},String(index+1).padStart(2,'0')+' / '+op.id));if(op.loop)m.append(E('span',{class:'repeated'},'↻ repeat contract'));b.append(m,E('span',{class:'op-title'},op.title),E('span',{class:'op-stage'},op.stage));b.onclick=()=>setHash(state.family,state.route,op.id,index);wrap.append(b);parent.append(wrap);if(ordered&&i<nodes.length-1&&nodes[i+1].type==='op')parent.append(E('div',{class:'connector','aria-hidden':'true'},'⇣'));
+   }else if(n.children){const group=E('section',{class:'group '+n.type});group.append(E('div',{class:'group-label'},(n.type==='loop'?'↻ ':n.type==='obligations'?'◇ ':'')+n.label));const meta=E('div',{class:'group-meta'},nodeLabel(n));group.append(meta);const children=E('div',{class:'group-children'});drawNodes(n.children,children,n.type!=='obligations');group.append(children);parent.append(group);
+   }else{const box=E('div',{class:'condition'});box.append(E('strong',{},n.label),E('div',{class:'group-meta'},format(n.meta)));parent.append(box);}
+  });}
+ function routeViews(r){$('routeSelect').value=r.id;$('routeBadge').textContent='REFERENCE '+r.id;$('routeTitle').textContent=r.label;$('routeBasis').textContent=r.basis;$('routeDetails').replaceChildren();fields(r.detail,$('routeDetails'));$('routeCanvas').replaceChildren();state.steps=[];drawNodes(r.nodes,$('routeCanvas'));$('rawLink').href=data[state.family].source_files[r.source_file].url;$('operationSearch').value='';$('searchCount').textContent='';}
+ function inspect(op,index){
+   const f=data[state.family],box=$('inspector');box.replaceChildren();state.op=op.id;state.occurrence=index;
+   document.querySelectorAll('.operation').forEach(b=>{const selected=Number(b.dataset.occurrence)===index;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',selected?'true':'false');});
+   const controls=E('div',{class:'inspector-actions'});for(const [name,offset]of [['← Previous',-1],['Next →',1]]){const b=E('button',{},name);b.disabled=!state.steps[index+offset];b.onclick=()=>{const next=state.steps[index+offset];setHash(state.family,state.route,next.id,next.index);};controls.append(b);}box.append(controls,E('span',{class:'op-id'},op.id+' · occurrence '+(index+1)),E('h2',{},op.title));
+   const objects=E('div',{class:'object-tags'});list(op.objects).forEach(v=>objects.append(E('span',{class:'tag'},format(v))));box.append(objects);
+   const pre=E('div',{class:'statebox'});pre.append(E('h3',{},'Required pre-state'));values(op.pre,pre);box.append(pre,E('div',{class:'state-arrow','aria-hidden':'true'},'↓'));
+   section(box,op.action_macro?'Authored robot macro: '+op.action_macro:'Robot / task actions',fullActions(op),true);
+   box.append(E('div',{class:'state-arrow','aria-hidden':'true'},'↓'));const post=E('div',{class:'statebox'});post.append(E('h3',{},'Required post-state'));values(op.post,post);box.append(post);
+   if(op.loop)section(box,'Repeat obligation · not expanded or executed',op.loop,false,'unknown-box');
+   section(box,'Acceptance / observable evidence',op.acceptance);section(box,'Recovery · task design',op.recovery);
+   if(list(op.unknowns).length)section(box,'Unknowns / unresolved source parameters',op.unknowns,false,'unknown-box');
+   const provenance=E('details');provenance.open=true;provenance.append(E('summary',{},'Source-reported vs authored'));const p=E('div');fields(op.provenance,p);provenance.append(p);box.append(provenance);
+   const more=E('details');more.append(E('summary',{},'Parameters and additional contract'));const v=E('div');fields(op.detail,v);more.append(v);box.append(more);
+   box.append(E('h3',{},'Source binding'));const sourceFile=f.source_files[op.source_file];box.append(E('a',{href:sourceFile.url,target:'_blank',rel:'noreferrer'},op.source_file+' ↗'),E('p',{class:'source-pointer'},op.source_pointer));
+   list(op.sources).forEach(s=>{const id=typeof s==='string'?s:null;const ev=id?f.evidence[id]||s:s;const container=E('details');container.append(E('summary',{},id||ev.locator||'Source evidence'));const body=E('div');fields(ev,body);if(ev&&typeof ev==='object'&&ev.url)body.append(E('a',{href:ev.url,target:'_blank',rel:'noreferrer'},'Open referenced source ↗'));container.append(body);box.append(container);});
+   box.scrollTop=0;
+ }
+ function loadHash(){if(location.hash==='#standaloneGuide'&&state.family)return;let parts;try{parts=location.hash.slice(1).split('/').map(decodeURIComponent);}catch{parts=[];}const fid=data[parts[0]]?parts[0]:'chiral';const f=data[fid];let r=f.routes.find(x=>x.id===parts[1])||f.routes.find(x=>x.id===f.default_route)||f.routes[0];const familyChange=state.family!==fid,routeChange=familyChange||state.route!==r.id;state.family=fid;state.route=r.id;if(familyChange)familyViews(f);if(routeChange){routeViews(r);displayTab('route');}
+  let index=Number(parts[3]);if(!Number.isInteger(index)||!state.steps[index]||state.steps[index].id!==parts[2])index=Math.max(0,state.steps.findIndex(x=>x.id===parts[2]));const step=state.steps[index]||state.steps[0];if(step)inspect(step.op,step.index);
+ }
+ $('routeSelect').onchange=e=>setHash(state.family,e.target.value);$('operationSearch').oninput=e=>{const q=e.target.value.trim().toLowerCase();let count=0;document.querySelectorAll('.operation').forEach(b=>{const op=state.steps[Number(b.dataset.occurrence)].op;const match=q&&JSON.stringify(op).toLowerCase().includes(q)||q&&JSON.stringify(fullActions(op)).toLowerCase().includes(q);b.classList.toggle('match',!!match);if(match)count++;});$('searchCount').textContent=q?count+' matches':'';};
+ document.querySelectorAll('[role=tab]').forEach(b=>b.onclick=()=>displayTab(b.dataset.tab));window.addEventListener('hashchange',loadHash);buildNav();loadHash();
+ window.ScienceGymExplorer={resolve,loadHash,state,data};
+})();
