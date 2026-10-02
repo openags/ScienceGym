@@ -10,7 +10,7 @@ from pathlib import Path
 import re
 
 CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\U00020000-\U0002fa1f]")
-TEXT_SUFFIXES = {".md", ".txt", ".json", ".py", ".tex", ".html", ".js", ".css", ".yaml", ".yml", ".toml"}
+TEXT_SUFFIXES = {".md", ".txt", ".json", ".py", ".tex", ".html", ".js", ".css", ".yaml", ".yml", ".toml", ".svg"}
 
 def strings(value):
     if isinstance(value, str):

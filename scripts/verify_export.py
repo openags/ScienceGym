@@ -24,6 +24,8 @@ for entry in manifest["files"]:
     data = path.read_bytes()
     if len(data) != entry["bytes"] or hashlib.sha256(data).hexdigest() != entry["sha256"]:
         errors.append(f"Byte/hash mismatch: {rel}")
+    if rel.suffix.lower() not in {".md", ".txt", ".json", ".py", ".js", ".css", ".html", ".svg", ".tex", ".yaml", ".yml", ".toml"} and rel.name != "LICENSE":
+        continue
     text = data.decode("utf-8")
     if re.search(r"/(?:workspace|home|Users|root|mnt)/", text):
         errors.append(f"Machine-root path: {rel}")
