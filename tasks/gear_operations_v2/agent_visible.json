@@ -1,0 +1,31 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "actor_surface": "Goal, current inventory/state, qualified input-card values, permitted operation affordances and observations already acquired",
+  "allowed_fields": [
+    "selected_goal_and_scope",
+    "current_specimen_identity_and_location",
+    "qualified_material/geometry_cards",
+    "qualified_operating_limits",
+    "current_phase/mount/calibration_receipts",
+    "acquired_observation_refs",
+    "safe_device_readbacks",
+    "unresolved_gates"
+  ],
+  "forbidden_fields": [
+    "literature_target_outcomes",
+    "evaluator_reference",
+    "hidden_fault_schedule",
+    "future_observations",
+    "reference_solution_route",
+    "synthetic_expected_answers"
+  ],
+  "not_loaded_into_actor": [
+    "source_outcomes.json",
+    "evaluator_reference.json",
+    "tests/",
+    "independent_review/"
+  ],
+  "loader_implemented": false,
+  "package_visibility_warning": "This is a review package, not a runtime sandbox. Distribution of the whole author package to an actor would violate this boundary; future loader must project allowed fields."
+}

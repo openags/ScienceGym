@@ -1,0 +1,69 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "kind": "Typed recipe dependency graph",
+  "chronology": "Authored valid order, not historical author chronology",
+  "preparation_route_ids": [
+    "PREP_TAIJI",
+    "PREP_FRAME",
+    "PREP_MICRO_TAIJI",
+    "PREP_STEEL_PLANET",
+    "PREP_MACRO_PLANET",
+    "PREP_MICRO_PLANET",
+    "PREP_SOFT",
+    "PREP_MICRO_TAIJI_TEST"
+  ],
+  "condition_entry": "Start from accepted specimen in metrology or explicit arrival receipt there; stored eligible reuse requires fresh transfer and phase/mount inspection.",
+  "within_route": "Listed operations are ordered; virtual analysis/records/observation do not change physical location. TRANSFER specifies a destination. Every occurrence key is unique.",
+  "occurrence_key_fields": [
+    "campaign_id",
+    "branch_id",
+    "specimen_id",
+    "specimen_version",
+    "condition_id",
+    "attempt_id",
+    "cycle_or_repeat_id",
+    "operation_id",
+    "occurrence_index"
+  ],
+  "analysis_dependencies": [
+    {
+      "id": "DAMPING_ANALYSIS",
+      "operations": [
+        "ANALYZE_DAMP"
+      ],
+      "requires_branch_ids": [
+        "TAIJI_PLUS"
+      ],
+      "source_evidence_ids": [
+        "E_DAMP"
+      ],
+      "input_type": "measured eligible post-initial cyclic records; retain strain amplitude",
+      "mandatory_for_whole_paper": true
+    },
+    {
+      "id": "COMPARISON_ARCHIVE",
+      "operations": [
+        "COMPARE",
+        "ARCHIVE"
+      ],
+      "requires_control_package_ids": [
+        "CP_TAIJI_FRAME",
+        "CP_PLANETARY",
+        "CP_SOFT_FRAME",
+        "CP_DAMP",
+        "CP_IMPACT"
+      ],
+      "mandatory_for_whole_paper": true
+    }
+  ],
+  "not_allowed": [
+    "measurement before preparation qualification",
+    "condition change by label only",
+    "zero or empty unknown repeat success",
+    "destroyed specimen reuse",
+    "in-situ observation causing teleport",
+    "numerical result used as physical parent"
+  ],
+  "scheduler_implemented": false
+}

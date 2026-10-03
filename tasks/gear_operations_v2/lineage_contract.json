@@ -1,0 +1,91 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "identity_fields": [
+    "campaign_id",
+    "specimen_id",
+    "specimen_family_id",
+    "material_card_id",
+    "material_lot_ids",
+    "array_shape",
+    "array_unit",
+    "CAD_revision",
+    "fabrication_job_id",
+    "component_ids",
+    "assembly_version",
+    "phase_state_version",
+    "fixture_mount_id",
+    "calibration_id",
+    "condition_id",
+    "cycle_id",
+    "attempt_id",
+    "current_location",
+    "damage_disposition"
+  ],
+  "family_immutable": true,
+  "specimen_shape_immutable": true,
+  "component_change": "Replacement creates new component identity and increments assembly version; invalidate downstream phase/mount/zero receipts.",
+  "phase_change": "Physical indexing and measured phase receipt increment phase_state_version; commands and labels alone are insufficient.",
+  "single_location": true,
+  "occurrence_identity_fields": [
+    "campaign_id",
+    "branch_id",
+    "specimen_id",
+    "specimen_version",
+    "condition_id",
+    "attempt_id",
+    "cycle_or_repeat_id",
+    "operation_id",
+    "occurrence_index"
+  ],
+  "micro_taiji_families_are_distinct": [
+    "F_MICRO_TAIJI_BUILD",
+    "F_MICRO_TAIJI_COMP",
+    "F_MICRO_TAIJI_ACT"
+  ],
+  "macro_taiji_video_family_is_distinct": "F_TAIJI_VIDEO1",
+  "history_claim": "Family labels express source scope, not historical specimen serial numbers or chronology.",
+  "reuse": {
+    "default": "no unqualified reuse",
+    "impact": "terminal quarantine immediately after event; each later condition requires a distinct instance",
+    "other": "qualified post-inspection and compatible material/topology/phase/mount card; repeated cycles are technical measurements, not independent samples"
+  },
+  "independent_replicate_count": null,
+  "cycle_count": null,
+  "no_actual_records_created": true,
+  "required_analysis_parents": {
+    "modulus": [
+      "specimen/version",
+      "raw force/displacement/time",
+      "actual dimensions",
+      "calibration/mount/phase receipts",
+      "initial-cycle exclusion",
+      "slope-window bounds"
+    ],
+    "finite_shear": [
+      "span",
+      "axial width",
+      "fixture boundary",
+      "raw curve"
+    ],
+    "damping": [
+      "measured raw loops",
+      "strain amplitude",
+      "cycle IDs",
+      "loading-curve area"
+    ],
+    "impact": [
+      "material/lot",
+      "service event",
+      "actual phase",
+      "calibration/bandwidth",
+      "force trace"
+    ]
+  },
+  "record_namespace": [
+    "measured",
+    "modeled",
+    "synthetic_bookkeeping"
+  ],
+  "component_material_policy": "Every component role and lot must match its family binding, including Taiji steel frames and micro steel shafts. An unknown shaft material is a required U_MATERIAL input, never a tacit match."
+}

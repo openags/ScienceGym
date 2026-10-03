@@ -1,0 +1,611 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "cards": [
+    {
+      "id": "M_TAIJI_METAL",
+      "source_evidence_ids": [
+        "E_TAIJI"
+      ],
+      "source_facts": {
+        "main_name": "copper",
+        "si_name": "brass (copper alloy)",
+        "continuum_modulus_GPa": 100,
+        "poisson_ratio": 0.34,
+        "density_kg_m3": 8900,
+        "gear_pitch_diameter_mm": 42,
+        "teeth": 60,
+        "module_mm": 0.7,
+        "axial_width_mm": 20,
+        "pressure_angle_deg": 20,
+        "central_hole_radius_mm": 5,
+        "irregular_hole_inner_circle_radius_mm": 10,
+        "shoulder_span_deg": 25,
+        "minimum_arm_mm": 0.424,
+        "minimum_arm_position_deg": 12
+      },
+      "unknowns": [
+        "alloy grade",
+        "certified CAD",
+        "machining tolerance",
+        "lubrication state"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_CAD"
+      ]
+    },
+    {
+      "id": "M_STEEL_FRAME",
+      "source_evidence_ids": [
+        "E_FRAME"
+      ],
+      "source_facts": {
+        "material": "steel",
+        "manufacture": "wire-electrode cutting",
+        "continuum_modulus_GPa": 210,
+        "poisson_ratio": 0.3,
+        "density_kg_m3": 7850,
+        "cell_diameter_mm": 42.3,
+        "radial_thickness_mm": 0.5,
+        "axial_width_mm": 5,
+        "si_measured_effective_modulus_MPa": {
+          "value": 2.0,
+          "reported_variation": 0.4,
+          "uncertainty_type": "not promoted to replicate standard deviation"
+        },
+        "main_effective_modulus_MPa": 2.06
+      },
+      "unknowns": [
+        "steel grade",
+        "certified drawing",
+        "frame control specimen identity"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_CAD"
+      ]
+    },
+    {
+      "id": "M_STEEL_PLANET",
+      "source_evidence_ids": [
+        "E_PLANET"
+      ],
+      "source_facts": {
+        "material": "steel",
+        "ring_radius_mm": 12,
+        "sun_radius_mm": 6,
+        "planet_radius_mm": 3,
+        "ring_thickness_mm": 1,
+        "sun_axial_width_mm": 20,
+        "lattice_pitch_mm": 27,
+        "sun_module_mm": 0.3,
+        "table_ring_module_mm_unresolved": 0.5
+      },
+      "unknowns": [
+        "alloy grade",
+        "certified transmission/ring module mapping",
+        "joint and shaft geometry"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_PLANET_CAD"
+      ]
+    },
+    {
+      "id": "M_MACRO_RESIN",
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_PLANET"
+      ],
+      "source_facts": {
+        "model_modulus_GPa": 2.5,
+        "printer": "Stratasys Objet260",
+        "printer_precision_um_approx": 50,
+        "process": "two-resin model/support polymer printing; support removed",
+        "minimum_reserved_tooth_clearance_um": 86,
+        "ring_radius_mm": 12,
+        "sun_radius_mm": 6,
+        "planet_radius_mm": 3,
+        "ring_thickness_mm": 1.1,
+        "sun_axial_width_mm": 20,
+        "lattice_pitch_mm": 27,
+        "sun_module_mm": 0.5,
+        "table_ring_module_mm_unresolved": 1.0,
+        "connecting_shaft": "conical; no certified drawing supplied"
+      },
+      "unknowns": [
+        "resin grades",
+        "support-removal process",
+        "cure",
+        "qualified CAD"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_FAB",
+        "U_PLANET_CAD"
+      ]
+    },
+    {
+      "id": "M_MICRO_RESIN",
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_MICRO_TAIJI",
+        "E_PLANET"
+      ],
+      "source_facts": {
+        "modulus_GPa": 3.5,
+        "printer": "BMF NanoArch S130",
+        "precision_um_approx": 5,
+        "taiji": {
+          "pitch_diameter_mm": 3.6,
+          "tooth_thickness_um": 235,
+          "thickest_arm_um": 75,
+          "teeth": 24,
+          "minimum_clearance_um": 32
+        },
+        "planetary": {
+          "minimum_clearance_um": 21,
+          "ring_radius_mm": 2.4,
+          "ring_thickness_mm": 0.3,
+          "sun_axial_width_mm": 6,
+          "lattice_pitch_mm": 5.4,
+          "sun_radius_mm_by_source": {
+            "main": 0.6,
+            "si_table_1": 1.2
+          },
+          "planet_radius_mm_si_table_1_unresolved": 0.06,
+          "sun_module_mm": 0.1,
+          "table_ring_module_mm_unresolved": 0.2,
+          "printed_support": "no separate support required for the described micro planetary architecture; conical shaft retained"
+        }
+      },
+      "unknowns": [
+        "resin grade",
+        "print/cure settings",
+        "micro planetary dimensions and module row identity"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_FAB",
+        "U_CAD",
+        "U_MICRO_GEOM",
+        "U_PLANET_CAD"
+      ]
+    },
+    {
+      "id": "M_RUBBER",
+      "source_evidence_ids": [
+        "E_SOFT"
+      ],
+      "source_facts": {
+        "process": "3D printed rubber frame",
+        "modulus_MPa": 30,
+        "poisson_ratio": 0.4,
+        "beam_thickness_mm": 2.5,
+        "beam_width_mm": 10,
+        "shaft_diameter_mm": 6
+      },
+      "unknowns": [
+        "rubber product",
+        "print and cure",
+        "geometry file"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_CAD",
+        "U_FAB"
+      ]
+    },
+    {
+      "id": "M_SOFT_ASSEMBLY",
+      "source_evidence_ids": [
+        "E_SOFT"
+      ],
+      "source_facts": {
+        "gears": "aluminum alloy",
+        "gear_pitch_diameter_mm": 10.5,
+        "teeth": 21,
+        "gear_axial_width_mm": 30,
+        "tooth_thickness_mm_expression": "0.25*pi",
+        "frame_material_card": "M_RUBBER"
+      },
+      "unknowns": [
+        "alloy grade",
+        "certified sparse topology",
+        "assembly force limit"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_CAD",
+        "U_ROBOT"
+      ]
+    },
+    {
+      "id": "M_IMPACT_RESIN",
+      "source_evidence_ids": [
+        "E_IMPACT"
+      ],
+      "source_facts": {
+        "modulus_GPa_approx": 2.0,
+        "description": "printed polymer sustaining large deformation",
+        "source_geometry_relation": "configuration described as corresponding to main Fig. 3d; does not establish identical resin or certified fabrication file"
+      },
+      "unknowns": [
+        "product",
+        "support/cure service",
+        "impact-qualified dimensions and damage policy"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_PLANET_CAD",
+        "U_FAB",
+        "U_IMPACT"
+      ]
+    },
+    {
+      "id": "M_MICRO_STEEL_SHAFT",
+      "source_evidence_ids": [
+        "E_MICRO_TAIJI"
+      ],
+      "source_facts": {
+        "material": "steel micro shaft",
+        "purpose": "Connect gear central hole to polymer frame or actuation motor, SI Fig. 8b"
+      },
+      "unknowns": [
+        "steel grade",
+        "dimensions and fit",
+        "attachment/retention"
+      ],
+      "gate_ids": [
+        "U_MATERIAL",
+        "U_CAD",
+        "U_ROBOT"
+      ]
+    }
+  ],
+  "specimen_families": [
+    {
+      "id": "F_TAIJI_PLUS",
+      "array_shape": [
+        5,
+        5
+      ],
+      "array_unit": "gears",
+      "material_card_id": "M_TAIJI_METAL",
+      "preparation_route_id": "PREP_TAIJI",
+      "source_conditions": {
+        "polarity": "positive",
+        "relative_phase_deg": 3
+      },
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "gears": "M_TAIJI_METAL",
+        "front_and_back_frames": "M_STEEL_FRAME",
+        "shafts": null
+      },
+      "unknown_component_materials": [
+        "shaft material/grade requires qualified card"
+      ]
+    },
+    {
+      "id": "F_TAIJI_MINUS",
+      "array_shape": [
+        5,
+        5
+      ],
+      "array_unit": "gears",
+      "material_card_id": "M_TAIJI_METAL",
+      "preparation_route_id": "PREP_TAIJI",
+      "source_conditions": {
+        "polarity": "negative",
+        "relative_phase_deg": 15
+      },
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "gears": "M_TAIJI_METAL",
+        "front_and_back_frames": "M_STEEL_FRAME",
+        "shafts": null
+      },
+      "unknown_component_materials": [
+        "shaft material/grade requires qualified card"
+      ]
+    },
+    {
+      "id": "F_STEEL_FRAME",
+      "array_shape": null,
+      "array_unit": "frame control; source does not establish an independently countable array for this record",
+      "material_card_id": "M_STEEL_FRAME",
+      "preparation_route_id": "PREP_FRAME",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_STEEL_FRAME"
+      }
+    },
+    {
+      "id": "F_MICRO_TAIJI_BUILD",
+      "array_shape": [
+        5,
+        6
+      ],
+      "array_unit": "gears",
+      "material_card_id": "M_MICRO_RESIN",
+      "preparation_route_id": "PREP_MICRO_TAIJI",
+      "source_conditions": {
+        "polarity": "positive",
+        "relative_phase_deg": 0
+      },
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_MICRO_RESIN"
+      }
+    },
+    {
+      "id": "F_MICRO_TAIJI_COMP",
+      "array_shape": [
+        4,
+        4
+      ],
+      "array_unit": "gears",
+      "material_card_id": "M_MICRO_RESIN",
+      "preparation_route_id": "PREP_MICRO_TAIJI_TEST",
+      "source_conditions": {
+        "polarity": "positive",
+        "relative_phase_deg": 0
+      },
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "gears_and_polymer_frame": "M_MICRO_RESIN",
+        "micro_shafts": "M_MICRO_STEEL_SHAFT"
+      }
+    },
+    {
+      "id": "F_MICRO_TAIJI_ACT",
+      "array_shape": [
+        5,
+        5
+      ],
+      "array_unit": "gears",
+      "material_card_id": "M_MICRO_RESIN",
+      "preparation_route_id": "PREP_MICRO_TAIJI_TEST",
+      "source_conditions": {
+        "polarity": "positive",
+        "relative_phase_deg": 0
+      },
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "gears_and_polymer_frame": "M_MICRO_RESIN",
+        "micro_shafts": "M_MICRO_STEEL_SHAFT"
+      }
+    },
+    {
+      "id": "F_STEEL_PLANET_COMP",
+      "array_shape": [
+        3,
+        3
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_STEEL_PLANET",
+      "preparation_route_id": "PREP_STEEL_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_STEEL_PLANET"
+      }
+    },
+    {
+      "id": "F_STEEL_PLANET_TENSION",
+      "array_shape": [
+        2,
+        2
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_STEEL_PLANET",
+      "preparation_route_id": "PREP_STEEL_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_STEEL_PLANET"
+      }
+    },
+    {
+      "id": "F_MACRO_PLANET_COMP",
+      "array_shape": [
+        6,
+        6
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_MACRO_RESIN",
+      "preparation_route_id": "PREP_MACRO_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_MACRO_RESIN"
+      }
+    },
+    {
+      "id": "F_MACRO_PLANET_TENSION",
+      "array_shape": [
+        2,
+        6
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_MACRO_RESIN",
+      "preparation_route_id": "PREP_MACRO_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_MACRO_RESIN"
+      }
+    },
+    {
+      "id": "F_MACRO_PLANET_ACT",
+      "array_shape": [
+        6,
+        6
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_MACRO_RESIN",
+      "preparation_route_id": "PREP_MACRO_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_MACRO_RESIN"
+      }
+    },
+    {
+      "id": "F_MICRO_PLANET_COMP",
+      "array_shape": [
+        3,
+        4
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_MICRO_RESIN",
+      "preparation_route_id": "PREP_MICRO_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_MICRO_RESIN"
+      }
+    },
+    {
+      "id": "F_MICRO_PLANET_TENSION",
+      "array_shape": [
+        2,
+        3
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_MICRO_RESIN",
+      "preparation_route_id": "PREP_MICRO_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_MICRO_RESIN"
+      }
+    },
+    {
+      "id": "F_MICRO_PLANET_ACT",
+      "array_shape": [
+        3,
+        4
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_MICRO_RESIN",
+      "preparation_route_id": "PREP_MICRO_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_MICRO_RESIN"
+      }
+    },
+    {
+      "id": "F_FINITE_SHEAR",
+      "array_shape": [
+        3,
+        3
+      ],
+      "array_unit": "gears",
+      "material_card_id": "M_TAIJI_METAL",
+      "preparation_route_id": "PREP_TAIJI",
+      "source_conditions": {
+        "polarity": "positive",
+        "relative_phase_deg": 3
+      },
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "gears": "M_TAIJI_METAL",
+        "front_and_back_frames": "M_STEEL_FRAME",
+        "shafts": null
+      },
+      "unknown_component_materials": [
+        "shaft material/grade requires qualified card"
+      ]
+    },
+    {
+      "id": "F_SOFT_SHEAR",
+      "array_shape": [
+        4,
+        4
+      ],
+      "array_unit": "metacells; do not infer total gear count from this",
+      "material_card_id": "M_SOFT_ASSEMBLY",
+      "preparation_route_id": "PREP_SOFT",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "aluminum_gears": "M_SOFT_ASSEMBLY",
+        "rubber_frame_and_integral_shafts": "M_RUBBER"
+      }
+    },
+    {
+      "id": "F_RUBBER_FRAME",
+      "array_shape": null,
+      "array_unit": "matching rubber frame control; exact independent geometry requires card",
+      "material_card_id": "M_RUBBER",
+      "preparation_route_id": "PREP_FRAME",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_RUBBER"
+      }
+    },
+    {
+      "id": "F_IMPACT",
+      "array_shape": [
+        3,
+        3
+      ],
+      "array_unit": "metacells",
+      "material_card_id": "M_IMPACT_RESIN",
+      "preparation_route_id": "PREP_MACRO_PLANET",
+      "source_conditions": {},
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "primary": "M_IMPACT_RESIN"
+      }
+    },
+    {
+      "id": "F_TAIJI_VIDEO1",
+      "array_shape": [
+        4,
+        4
+      ],
+      "array_unit": "gears; illustrative manual demonstration only",
+      "material_card_id": "M_TAIJI_METAL",
+      "preparation_route_id": null,
+      "source_conditions": {
+        "quantitative_testing": false
+      },
+      "actual_specimen_ids": [],
+      "historical_identity_inferred": false,
+      "component_material_bindings": {
+        "gears": "M_TAIJI_METAL",
+        "front_and_back_frames": "M_STEEL_FRAME",
+        "shafts": null
+      },
+      "unknown_component_materials": [
+        "shaft material/grade requires qualified card"
+      ]
+    }
+  ],
+  "rule": "A family is a design classification. Every manufactured and measured object receives a distinct instance ID; identical shape does not imply a shared historical specimen."
+}

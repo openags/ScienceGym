@@ -1,0 +1,430 @@
+{
+  "schema_version": "hydrogel_optical_task.v1",
+  "doi": "10.1038/s41563-023-01649-3",
+  "stations": [
+    {
+      "id": "WS_FORM",
+      "title": "Closed formulation service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Qualified service owns recipe selection, mixing, batch QC and chemical waste. No recipe quantities or process instructions are encoded.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_GEL_CURE",
+      "title": "Closed standalone hydrogel cure service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service performs qualified enclosed UV curing of standalone hydrogel sheets before coupon cutting; cure dose and release acceptance require qualified cards.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_PRINT",
+      "title": "Guarded two-photon fabrication service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service verifies calibrated substrate, resist-specific qualified job and dose-map identity; laser motion/exposure remains inaccessible.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_DEVELOP",
+      "title": "Closed material-specific development service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service owns solvent handling, wash, drying and waste; use a material-specific development card.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_SPACER",
+      "title": "Closed glass and spacer assembly service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service places qualified supported glass and bead spacers and performs enclosed spacer-glue curing.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_CURE",
+      "title": "Closed infiltration and UV cure service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service performs capillary infiltration and qualified enclosed cure; wavelength/time alone do not qualify dose.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_COVER",
+      "title": "Closed coverslip separation service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service supports composite, separates cover and inspects for tear, detachment and retained debris.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_CHAMBER",
+      "title": "Closed water-chamber assembly service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service installs and seals qualified PDMS water observation chamber with contamination and leak checks.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_RELEASE",
+      "title": "Closed thermal substrate-release service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service owns thermal program and readback; completion requires optical self-peeling/free-motion evidence, not a setpoint.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_CUT",
+      "title": "Guarded hydrogel coupon cutting service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service owns laser cutting, coupon release and geometry inspection with separate child identity.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_THERMAL",
+      "title": "Closed thermal microscopy service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service performs qualified bounded thermal schedule and acquires registered temperature/time/image data; physical response is measured, never prescribed.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_AFM",
+      "title": "Qualified AFM metrology service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service acquires calibrated beam cross sections; sample contact and safe release remain service-owned.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_SPECTRA",
+      "title": "Qualified transmission measurement service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service acquires qualified optical transmission data and matching temperature records.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_RHEO",
+      "title": "Qualified rheometry service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service owns contact/thermal loading; allocate separate specimen unless qualified nondestructive reuse is demonstrated.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_SEM",
+      "title": "Qualified electron microscopy service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service owns all sample preparation, vacuum and beam operation; compatibility and destructive allocation require explicit cards.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_CONFOCAL",
+      "title": "Qualified confocal imaging service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service owns contained imaging; no stain or acquisition recipe is invented.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_POLAR",
+      "title": "Qualified polarized optical service",
+      "port_id": "closed_carrier_exchange",
+      "frame": null,
+      "implemented": false,
+      "closed_service": true,
+      "service_boundary": "Service owns calibrated polarizer/analyzer setup and acquisition; intensity changes require matched illumination/registration controls.",
+      "safe_exchange_readbacks": [
+        "service_identity",
+        "guard_closed",
+        "hazard_isolated",
+        "released_to_handle",
+        "fixture_identity",
+        "payload_identity"
+      ],
+      "robot_scope": [
+        "move",
+        "load",
+        "handoff",
+        "readout",
+        "unload"
+      ]
+    },
+    {
+      "id": "WS_STOCK",
+      "title": "Retained inventory",
+      "port_id": "identified_storage_slot",
+      "implemented": false,
+      "frame": null,
+      "closed_service": false
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "title": "Isolated archival storage",
+      "port_id": "identified_storage_slot",
+      "implemented": false,
+      "frame": null,
+      "closed_service": false
+    }
+  ]
+}

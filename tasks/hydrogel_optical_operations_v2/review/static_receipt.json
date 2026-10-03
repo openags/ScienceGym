@@ -1,0 +1,878 @@
+{
+  "review_utc": "2026-10-03T20:11:08.648324+00:00",
+  "scope": "Original static source-audit alignment and closed-service contract checks; source media not independently reinspected",
+  "files_sha256": {
+    "evaluator_reference.json": "ba66a5b25e1c018ad0f69a1e5fbfbd4d0379bd5024d7b2c5836310ba73d395f4",
+    "adversarial_cases.json": "a35f49d06f0febc6701c8189a5e875477a8c6fe11c315060dc4e57b2c5f50619",
+    "asset_needs.json": "f31adf73cc1d5176189faf07a08a6c5dceb0cf88ba8fd26fd7d65fda3a1f0605",
+    "source_conflicts.json": "8e997f20eb0855a301c255cd4f3aac292c2a899ac3348742f82de8a1f17b9957",
+    "branches.json": "5c093e18fd4117bbc8ea252f87b4b4819715017308975fea0454a2658a619589",
+    "station_contracts.json": "1a6946b017e76def489874b3a37588dd90c72f5355077494b009f62e0c64083f",
+    "provenance.json": "ec26c04c6241c27d160bfb1f5d2958e01a175faf148fca8e3a30cd98f5b0c377",
+    "lineage_contract.json": "d250605c09e30066e1d4cf6df1c2fba41e9cda31ff88d71e8b9a50b79453f708",
+    "agent_visible.json": "c61961dca72c5b2da780cf90138863a17c7112c44d376ac60adade539aae60f4",
+    "dependencies.json": "9b3e02d68b4242d22df8d43a03bebbc4d2e462189be780c4d0bb6f71cbea5fae",
+    "transport_routes.json": "c4c58b0e37e2f012220cbe19f864d5172389d32bf2c5b24bc95b5b75df2d2fb8",
+    "source_outcomes.json": "1e8495e556f3db2cb207b3180e0b5ec8f61682560d85a472c3c6cc8d39df3f1a",
+    "source_access_audit.json": "e058ebe3111acf2fbe4be22c19cef8c12c7a6b567df68636a5affb8c7fc1c60e",
+    "unknown_parameters.json": "88d60697e94ee4e728239c72bed30ede79367830b91360641fb4d21e8bbb3d5c",
+    "RELEASE_BOUNDARY.json": "76e8f06aae6ecd6b57b601367196d5bd5e399152e9ae5b8f1597ff5abc6e05a6",
+    "coverage_matrix.json": "7d0afa8f6e1b025170f6bd9cdbfa3f018aac56b0d5b86e23c9fb5cf5bca4b7e0",
+    "design_assumptions.json": "de1d2aae726ebea0adaef7cc7098263b398bb87f88f6004e4abe707c5307f562",
+    "mock_contract.json": "dd7a43f2b6c16a1245495d4069f48b4028f232a549233d81a0d320155ab47ae0",
+    "state_contract.json": "8b0ba2106c65e3b3a793c643cfb5889bdd87e78ae7fbc00b1109a15cfdfeb200",
+    "episode_input_contract.json": "c020c54f9df1f426050eb58426f4f526d10782ea5db58c1d757b620184201eda",
+    "control_packages.json": "70aad0f52b7e9a19577936bc9a48fcf3b03c06c78d58d0cc98e33fa6a9108138",
+    "nonmanual_scope.json": "87dd9bd20112cc8a6158006de5f39a3d3f0381a5a1f6165bd285719de61420ba",
+    "operations.json": "9a0ca0a74eaf05cab8782b45ea76e123380f2ccf7ff144ace2f526b5c8f37be8",
+    "material_cards.json": "63744f6631f9821b28973b68cfcce4a8dd117f35c877f977403172fb44ccd184"
+  },
+  "checks": [
+    {
+      "name": "unique_branch_ids",
+      "passed": true
+    },
+    {
+      "name": "unique_operation_ids",
+      "passed": true
+    },
+    {
+      "name": "branch_count_metadata",
+      "passed": true
+    },
+    {
+      "name": "all_services_have_six_phases",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_FORM",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_GEL_CURE",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_PRINT",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_DEVELOP",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_SPACER",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_CURE",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_COVER",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_CHAMBER",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_RELEASE",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_CUT",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_THERMAL",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_AFM",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_SPECTRA",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_RHEO",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_SEM",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_CONFOCAL",
+      "passed": true
+    },
+    {
+      "name": "closed_boundary_WS_POLAR",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_FORM_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_FORM_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_FORM_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_FORM_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_FORM_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_FORM_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_GEL_CURE_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_GEL_CURE_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_GEL_CURE_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_GEL_CURE_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_GEL_CURE_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_GEL_CURE_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_PRINT_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_PRINT_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_PRINT_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_PRINT_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_PRINT_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_PRINT_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_DEVELOP_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_DEVELOP_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_DEVELOP_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_DEVELOP_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_DEVELOP_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_DEVELOP_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPACER_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPACER_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPACER_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPACER_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPACER_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPACER_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CURE_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CURE_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CURE_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CURE_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CURE_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CURE_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_COVER_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_COVER_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_COVER_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_COVER_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_COVER_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_COVER_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CHAMBER_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CHAMBER_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CHAMBER_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CHAMBER_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CHAMBER_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CHAMBER_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RELEASE_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RELEASE_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RELEASE_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RELEASE_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RELEASE_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RELEASE_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CUT_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CUT_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CUT_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CUT_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CUT_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CUT_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_THERMAL_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_THERMAL_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_THERMAL_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_THERMAL_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_THERMAL_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_THERMAL_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_AFM_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_AFM_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_AFM_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_AFM_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_AFM_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_AFM_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPECTRA_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPECTRA_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPECTRA_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPECTRA_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPECTRA_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SPECTRA_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RHEO_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RHEO_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RHEO_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RHEO_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RHEO_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_RHEO_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SEM_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SEM_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SEM_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SEM_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SEM_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_SEM_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CONFOCAL_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CONFOCAL_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CONFOCAL_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CONFOCAL_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CONFOCAL_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CONFOCAL_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_POLAR_LOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_POLAR_VERIFY",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_POLAR_HANDOFF",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_POLAR_READOUT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_POLAR_UNLOAD",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_POLAR_COMMIT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_PLAN",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_MOVE",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_INSPECT",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_ARCHIVE",
+      "passed": true
+    },
+    {
+      "name": "operation_contract_CLEAN",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_FORM",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_GEL_CURE",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_PRINT",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_DEVELOP",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_SPACER",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_CURE",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_COVER",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_CHAMBER",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_RELEASE",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_PREP_COUPON",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_HYDROGEL_CONTROLS",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_MONOMER_SWEEP",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_COMPOSITION_SWEEP",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_RHEOMETRY",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_BEAM_AFM",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_BEAM_POWER",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_BEAM_SPEED",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_BEAM_LINEAGES",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_RESIST_COMPARISON",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_CROSS_MODES",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_SQUARE_LATTICES",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_INCOMPATIBLE_CONTROL",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_LATTICE_CYCLES",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_TRIANGULAR",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_CIRCLES",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_ANISOTROPIC_GRID",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_THREE_D",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_MICRO_SCALE",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_MACRO_SCALE",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_POWER_IMAGE",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_IMAGE_CYCLES",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_POLAR_GRATING",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_ANGLE_IMAGE_MAIN",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_ANGLE_IMAGE_VIDEO",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_DUAL_IMAGE",
+      "passed": true
+    },
+    {
+      "name": "branch_contract_HYDROGEL_TRANSMISSION",
+      "passed": true
+    },
+    {
+      "name": "standalone_coupon_cure_retained",
+      "passed": true
+    },
+    {
+      "name": "all_inert_resist_variants_retained",
+      "passed": true
+    },
+    {
+      "name": "three_d_source_material_IP_S",
+      "passed": true
+    },
+    {
+      "name": "incompatible_control_required",
+      "passed": true
+    },
+    {
+      "name": "distinct_25_27_cycles",
+      "passed": true
+    },
+    {
+      "name": "distinct_15_50_beams",
+      "passed": true
+    },
+    {
+      "name": "scan_speed_no_invented_thermal_series",
+      "passed": true
+    },
+    {
+      "name": "spectral_material_subset",
+      "passed": true
+    },
+    {
+      "name": "spectral_temperature_context",
+      "passed": true
+    },
+    {
+      "name": "source_program_material_controls",
+      "passed": true
+    },
+    {
+      "name": "source_program_beam_controls",
+      "passed": true
+    },
+    {
+      "name": "source_program_resist_comparison",
+      "passed": true
+    },
+    {
+      "name": "source_program_cross_lattice",
+      "passed": true
+    },
+    {
+      "name": "source_program_geometry_scales",
+      "passed": true
+    },
+    {
+      "name": "source_program_power_image",
+      "passed": true
+    },
+    {
+      "name": "source_program_angle_optics",
+      "passed": true
+    },
+    {
+      "name": "source_program_dual_encoding",
+      "passed": true
+    },
+    {
+      "name": "numerical_analytic_fits_not_executed",
+      "passed": true
+    },
+    {
+      "name": "coverage_53_records",
+      "passed": true
+    },
+    {
+      "name": "coverage_MAIN_",
+      "passed": true
+    },
+    {
+      "name": "coverage_SI_",
+      "passed": true
+    },
+    {
+      "name": "coverage_ED_",
+      "passed": true
+    },
+    {
+      "name": "coverage_VIDEO_",
+      "passed": true
+    },
+    {
+      "name": "coverage_METHOD_",
+      "passed": true
+    },
+    {
+      "name": "coverage_DATA_",
+      "passed": true
+    },
+    {
+      "name": "every_coverage_branch_exists",
+      "passed": true
+    },
+    {
+      "name": "four_ED_gaps_explicit",
+      "passed": true
+    },
+    {
+      "name": "audit_inspection_scope",
+      "passed": true
+    },
+    {
+      "name": "audit_visual_and_pdf_limits",
+      "passed": true
+    },
+    {
+      "name": "ten_preserved_conflicts",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C1",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C2",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C3",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C4",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C5",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C6",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C7",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C8",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C9",
+      "passed": true
+    },
+    {
+      "name": "source_conflict_C10",
+      "passed": true
+    },
+    {
+      "name": "actor_no_future_or_source_targets",
+      "passed": true
+    },
+    {
+      "name": "actor_forbids_chemical_actuation",
+      "passed": true
+    },
+    {
+      "name": "evaluator_separation",
+      "passed": true
+    },
+    {
+      "name": "all_unknowns_remain_gated",
+      "passed": true
+    },
+    {
+      "name": "assets_not_implemented",
+      "passed": true
+    },
+    {
+      "name": "no_universal_source_threshold",
+      "passed": true
+    },
+    {
+      "name": "honest_release_boundary",
+      "passed": true
+    }
+  ],
+  "passed": 211,
+  "failed": 0
+}

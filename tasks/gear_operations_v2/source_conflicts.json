@@ -1,0 +1,124 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "conflicts": [
+    {
+      "id": "C_SUN",
+      "topic": "Micro planetary sun radius",
+      "reported_values": "Main: 0.6 mm; SI Table 1: 1.2 mm; SI Fig. 10c tooth-count/module check supports diagnosing inconsistency, not correcting it.",
+      "affected_branch_ids": [
+        "MICRO_PLANET_COMP",
+        "MICRO_PLANET_TENSION",
+        "MICRO_PLANET_ACT"
+      ],
+      "gate_id": "U_MICRO_GEOM",
+      "status": "preserved_unresolved",
+      "resolution": "Certified dimensional drawing/build geometry and explicit metrology acceptance, or author clarification adopted into a certified drawing; material certificate or analysis declaration cannot close this fabrication gate."
+    },
+    {
+      "id": "C_PLANET",
+      "topic": "Micro planetary planet radius",
+      "reported_values": "SI Table 1 prints 0.06 mm; do not repair a decimal from presumed geometry.",
+      "affected_branch_ids": [
+        "MICRO_PLANET_COMP",
+        "MICRO_PLANET_TENSION",
+        "MICRO_PLANET_ACT"
+      ],
+      "gate_id": "U_MICRO_GEOM",
+      "status": "preserved_unresolved",
+      "resolution": "Certified dimensional drawing/build geometry and explicit metrology acceptance, or author clarification adopted into a certified drawing; material certificate or analysis declaration cannot close this fabrication gate."
+    },
+    {
+      "id": "C_MODULE",
+      "topic": "Planetary module row identity",
+      "reported_values": "SI Table 1 ring module differs from sun module despite same-module meshing rule; transmission layer uses different modules. Row identity unresolved for all scales.",
+      "affected_branch_ids": [
+        "STEEL_PLANET_COMP",
+        "STEEL_PLANET_TENSION",
+        "MACRO_PLANET_COMP",
+        "MACRO_PLANET_TENSION",
+        "MACRO_PLANET_ACT",
+        "MICRO_PLANET_COMP",
+        "MICRO_PLANET_TENSION",
+        "MICRO_PLANET_ACT",
+        "IMPACT"
+      ],
+      "gate_id": "U_PLANET_CAD",
+      "status": "preserved_unresolved",
+      "resolution": "Certified dimensional drawing/build geometry and explicit metrology acceptance, or author clarification adopted into a certified drawing; material certificate or analysis declaration cannot close this fabrication gate."
+    },
+    {
+      "id": "C_MICRO_ARRAY",
+      "topic": "Micro Taiji specimen scope",
+      "reported_values": "5×6 fabrication photograph, 4×4 compression, 5×5 actuation are distinct lineage families, not one specimen.",
+      "affected_branch_ids": [
+        "MICRO_TAIJI_BUILD",
+        "MICRO_TAIJI_COMP",
+        "MICRO_TAIJI_ACT"
+      ],
+      "gate_id": "U_ALLOCATION",
+      "status": "preserved_unresolved",
+      "resolution": "Distinct family and specimen instance allocations; no merge. This is a lineage rule, not a dimension repair."
+    },
+    {
+      "id": "C_METAL",
+      "topic": "Metal identity",
+      "reported_values": "Main says copper; SI says brass (copper alloy) with 100-GPa modulus. Alloy grade not specified; pure copper procurement not inferred.",
+      "affected_branch_ids": [
+        "TAIJI_PLUS",
+        "TAIJI_MINUS",
+        "FINITE_SHEAR"
+      ],
+      "gate_id": "U_MATERIAL",
+      "status": "preserved_unresolved",
+      "resolution": "Qualified material identity certificate and branch-specific lot acceptance; retain source wording and declared modulus separately."
+    },
+    {
+      "id": "C_RATIO",
+      "topic": "Steel planetary ratio",
+      "reported_values": "Experimental prose: 0.11–5.2 GPa, reported 46×; Fig. 3h model annotation: 73×. Do not collapse.",
+      "affected_branch_ids": [
+        "STEEL_PLANET_COMP"
+      ],
+      "gate_id": "U_ANALYSIS",
+      "status": "preserved_unresolved",
+      "resolution": "Source-specific analysis provenance and labels; never an authority to unlock manufacturing or change source data."
+    },
+    {
+      "id": "C_CROSSREF",
+      "topic": "Incorrect source figure pointers",
+      "reported_values": "Use topic plus verified figure: shape-morphing oscillations Fig. 4f; damping SI Fig. 22; design catalog SI Fig. 23.",
+      "affected_branch_ids": [
+        "SOFT_SHEAR",
+        "DAMPING_ANALYSIS"
+      ],
+      "gate_id": "U_ANALYSIS",
+      "status": "preserved_unresolved",
+      "resolution": "Source-specific analysis provenance and labels; never an authority to unlock manufacturing or change source data."
+    },
+    {
+      "id": "C_FRAME",
+      "topic": "Frame modulus values",
+      "reported_values": "SI independently reports 2.0±0.4 MPa; main uses 2.06 MPa. They are separately reported, not exactly identical.",
+      "affected_branch_ids": [
+        "STEEL_FRAME_CONTROL",
+        "TAIJI_PLUS",
+        "TAIJI_MINUS"
+      ],
+      "gate_id": "U_ANALYSIS",
+      "status": "preserved_unresolved",
+      "resolution": "Source-specific analysis provenance and labels; never an authority to unlock manufacturing or change source data."
+    },
+    {
+      "id": "C_IMPACT_MATERIAL",
+      "topic": "Polymer declaration",
+      "reported_values": "Impact/skin polymer is about 2.0 GPa; general macro printed planetary model resin is 2.5 GPa. Separate lots/material cards required.",
+      "affected_branch_ids": [
+        "IMPACT"
+      ],
+      "gate_id": "U_MATERIAL",
+      "status": "preserved_unresolved",
+      "resolution": "Qualified material identity certificate and branch-specific lot acceptance; retain source wording and declared modulus separately."
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "cards": [
+    {
+      "id": "allocation_card",
+      "required_fields": [
+        "selected_scope",
+        "nonempty_branch_ids",
+        "specimen_instance_ids",
+        "nonempty_condition_ids",
+        "condition_order",
+        "bounded_cycle_counts",
+        "independent_specimen_count",
+        "technical_repeats",
+        "damage/reuse_policy",
+        "attempt_limits"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "material_card",
+      "required_fields": [
+        "lot_ids",
+        "certified_grade/product",
+        "SDS/service_handling",
+        "source_material_conflict_disposition"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "geometry_card",
+      "required_fields": [
+        "certified_CAD_revision",
+        "part_membership",
+        "array_shape_and_unit",
+        "actual_dimensions",
+        "tolerances",
+        "planetary_module_row_resolution",
+        "micro_planetary_radius_resolutions",
+        "source_conflict_evidence"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "fabrication_card",
+      "required_fields": [
+        "approved_service",
+        "job_hash",
+        "printer_or_machine",
+        "material_loading",
+        "enclosure",
+        "process_settings",
+        "postprocessing",
+        "support_or_plate_release",
+        "acceptance",
+        "safe_release"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "robot_card",
+      "required_fields": [
+        "robot_identity",
+        "payload",
+        "qualified_grasp_regions",
+        "supported_carriers",
+        "station_frames",
+        "tools",
+        "fixture_attachment_interfaces",
+        "collision_routes",
+        "force_limits"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "phase_card",
+      "required_fields": [
+        "datum",
+        "front_back_polarity",
+        "relative_phase",
+        "finite_angle_schedule",
+        "actual_angle_method",
+        "registration_tolerance",
+        "adapter_release"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "fixture_card",
+      "required_fields": [
+        "fixture_identity",
+        "compression_contact_surfaces",
+        "tension_tails_and_clamps",
+        "shear_pins_and_rollers",
+        "diagonal_grooves",
+        "seating_limits",
+        "slip_detection",
+        "actual_gauge_geometry"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "calibration_card",
+      "required_fields": [
+        "machine_and_sensor_serials",
+        "reference_identity",
+        "qualified_check_method",
+        "validity",
+        "units",
+        "acceptance",
+        "zero_policy"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "loading_card",
+      "required_fields": [
+        "mode",
+        "rates",
+        "load_and_strain_limits",
+        "finite_cycle_count",
+        "clearance_take_up_policy",
+        "unload_stop_predicates",
+        "interlocks",
+        "interlock_or_slip_abort_policy"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "acquisition_card",
+      "required_fields": [
+        "channels",
+        "force_displacement_units",
+        "bandwidth",
+        "sample_cadence",
+        "clock_sync",
+        "image_trigger",
+        "raw_destination",
+        "missing_data_policy"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "motor_card",
+      "required_fields": [
+        "motor_IDs",
+        "count_type_size",
+        "positions",
+        "coupler_and_harness",
+        "home_routine",
+        "command_to_actual_phase_calibration",
+        "synchronization_tolerance",
+        "limits",
+        "isolation"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "impact_service_card",
+      "required_fields": [
+        "service_identity",
+        "independent_approval",
+        "enclosed_capacity",
+        "load_stack",
+        "guard_and_exclusion_interlocks",
+        "secured_mass_state",
+        "arming_and_reset",
+        "sensor_bandwidth",
+        "safe_release_token"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "analysis_card",
+      "required_fields": [
+        "actual_geometry_normalization",
+        "initial_cycle_exclusion",
+        "post_initial_cycle_selection",
+        "nonempty_fit_intervals_near_maximum_strain",
+        "window_variability_method",
+        "damping_integration",
+        "finite_shear_label",
+        "diagonal_transform",
+        "impact_peak_method",
+        "outlier_and_uncertainty_policy"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "cleanup_card",
+      "required_fields": [
+        "safe_release_proof",
+        "deenergization",
+        "waste_routing",
+        "cleaning_method",
+        "tool_inspection",
+        "reuse_or_quarantine",
+        "storage"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    },
+    {
+      "id": "numerical_card",
+      "required_fields": [
+        "software_revision",
+        "deck",
+        "mesh",
+        "convergence",
+        "contact_models",
+        "friction_locations",
+        "boundary_mode",
+        "material_laws",
+        "solver_output_namespace"
+      ],
+      "defaults": null,
+      "qualified_provider_required": true
+    }
+  ],
+  "implemented_loader": false,
+  "gate_resolution": {
+    "U_CAD": "certified dimensional card",
+    "U_PLANET_CAD": "certified dimensional card resolving layer/module identity",
+    "U_MICRO_GEOM": "certified dimensional card resolving both micro radii",
+    "U_MATERIAL": "material certificate",
+    "all_others": "qualified branch-scoped operating card"
+  },
+  "unknown_count_policy": "Reject null, Boolean, zero, negative, noninteger or unbounded required counts; modulus/shear fitting needs at least one cycle after excluded initial cycle. This minimum is an authored data-validity constraint, not a source repeat count.",
+  "scope_modes": [
+    "selected_branch_episode",
+    "whole_paper_design",
+    "whole_paper_physical_execution"
+  ],
+  "no_execution_defaults": true
+}

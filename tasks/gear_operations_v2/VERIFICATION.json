@@ -1,0 +1,85 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "verification_date_utc": "2026-10-03",
+  "environment": {
+    "python": "3.12.14",
+    "execution": "local task workspace",
+    "repository_revision": "standalone package; not integrated into release repository"
+  },
+  "scope": "Source-grounded authored contracts, static references, hashed export integrity and synthetic bookkeeping only",
+  "checks": [
+    {
+      "command": "python -B -m unittest discover -s tests -v",
+      "tests_run": 65,
+      "passed": 65,
+      "failed": 0,
+      "skipped": 0,
+      "positive_branch_subcases": 18
+    },
+    {
+      "command": "python -B independent_review/check_static.py",
+      "checks": 85,
+      "passed": 85,
+      "failed": 0
+    },
+    {
+      "command": "python -B independent_review/probe_adversarial.py",
+      "invalid_mutations": 40,
+      "rejected": 40,
+      "accepted_invalid": 0
+    },
+    {
+      "command": "python -B independent_review/probe_structural_mutations.py",
+      "baseline_branches_accepted": 18,
+      "deleted_event_mutations_rejected": 615,
+      "adjacent_handling_swap_mutations_rejected": 563,
+      "total_invalid_mutations_rejected": 1178,
+      "unexpected_acceptances": 0
+    },
+    {
+      "check": "Independent review and reviewer/contract snapshot hashes",
+      "result": "pass",
+      "report": "independent_review/audit.json"
+    },
+    {
+      "command": "python -B verify_package.py",
+      "result": "pass",
+      "scope": "Explicit authored-file allowlist, SHA-256, JSON parse, safe relative paths and static references"
+    }
+  ],
+  "not_run": [
+    {
+      "stage": "repository scripts/verify_release.py",
+      "reason": "Package is not integrated; downstream maintainer must run repository checks on integration"
+    },
+    {
+      "stage": "physical experiment, hardware safety or robot feasibility",
+      "reason": "No robot, qualified equipment cards or trusted logger instantiated"
+    },
+    {
+      "stage": "numerical reproduction or physics simulation",
+      "reason": "No solver decks or runs created"
+    },
+    {
+      "stage": "actor projection confidentiality/runtime",
+      "reason": "Contract only; no loader/sandbox implemented"
+    },
+    {
+      "stage": "full-motion/audio supplementary-video review",
+      "reason": "Inherited audit inspected eight distributed keyframes per video only"
+    },
+    {
+      "stage": "new correction/version lookup",
+      "reason": "Only existing lawful packet; denied publisher main route not retried"
+    }
+  ],
+  "remaining_limitations": [
+    "Unresolved material/dimensional source conflicts and unknown CAD/process/calibration/control parameters",
+    "Synthetic IDs and guard values are not authenticated hardware receipts",
+    "Checker covers declared handling recipes plus permitted post-acquisition analysis ordering; arbitrary equivalent routes unimplemented",
+    "No scientific replication or between-batch reproducibility claim"
+  ],
+  "publication_performed": false,
+  "source_bytes_exported": false
+}

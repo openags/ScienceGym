@@ -1,0 +1,39 @@
+{
+  "schema_version": "hydrogel_optical_task.v1",
+  "doi": "10.1038/s41563-023-01649-3",
+  "required_keys": [
+    "specimen_id",
+    "version",
+    "parent_batch_ids",
+    "substrate_id",
+    "cover_id",
+    "carrier_id",
+    "resist_material",
+    "hydrogel_material",
+    "geometry_hash",
+    "dose_map_hash",
+    "orientation_map_hash",
+    "development_card_revision",
+    "chamber_id",
+    "service_job_ids",
+    "thermal_history",
+    "damage_state",
+    "allocation_role"
+  ],
+  "two_parent_embedding": true,
+  "cover_and_substrate_are_distinct": true,
+  "branch_records_do_not_imply_same_historical_specimen": true,
+  "repeat_count_semantics": {
+    "source_n": "measured features/data points unless independent specimens explicitly evidenced",
+    "cycles": "repeat observations of identified specimen",
+    "time_samples": "acquisition samples, never material replicas",
+    "fit_points": "nonphysical derived samples"
+  },
+  "forbidden_merges": [
+    "main_angle_10000_with_video9_27000",
+    "square_27_cycles_with_image_25_cycles",
+    "SI_15mW_beam_with_main_50mW_beam"
+  ],
+  "transition_rule": "Every service event binds input version and authoritative output version; material-changing stages increment version. Non-changing measurement may preserve version but appends exposure/damage history.",
+  "destructive_reservation": "SEM/rheometry require separately allocated sibling or explicit compatibility/reuse card; destroyed or quarantined specimens cannot reenter active routes."
+}

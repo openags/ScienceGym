@@ -1,0 +1,167 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "numerical_branches": [
+    {
+      "id": "N_CONTACT",
+      "scope": "Arm/contact stiffness and high-load contact nonlinearity",
+      "source_evidence_ids": [
+        "E_FEA"
+      ],
+      "operation_ids": [
+        "NUMERICAL_CONFIG",
+        "NUMERICAL_RUN",
+        "NUMERICAL_REPORT"
+      ],
+      "required_input_ids": [
+        "U_FEA",
+        "U_ANALYSIS"
+      ],
+      "executed": false,
+      "output_namespace": "modeled"
+    },
+    {
+      "id": "N_MODEL_COMPARISON",
+      "scope": "2D versus 3D; bonded linear versus nonlinear; teeth-removed approximation",
+      "source_evidence_ids": [
+        "E_FEA"
+      ],
+      "operation_ids": [
+        "NUMERICAL_CONFIG",
+        "NUMERICAL_RUN",
+        "NUMERICAL_REPORT"
+      ],
+      "required_input_ids": [
+        "U_FEA",
+        "U_ANALYSIS"
+      ],
+      "executed": false,
+      "output_namespace": "modeled"
+    },
+    {
+      "id": "N_POLARITY",
+      "scope": "Taiji angle, polarity, relative-phase and Ex/Ey anisotropy sweeps",
+      "source_evidence_ids": [
+        "E_FEA"
+      ],
+      "operation_ids": [
+        "NUMERICAL_CONFIG",
+        "NUMERICAL_RUN",
+        "NUMERICAL_REPORT"
+      ],
+      "required_input_ids": [
+        "U_FEA",
+        "U_ANALYSIS"
+      ],
+      "executed": false,
+      "output_namespace": "modeled"
+    },
+    {
+      "id": "N_PLANETARY",
+      "scope": "Planetary compression/tension supports and periodic unit-cell response",
+      "source_evidence_ids": [
+        "E_FEA"
+      ],
+      "operation_ids": [
+        "NUMERICAL_CONFIG",
+        "NUMERICAL_RUN",
+        "NUMERICAL_REPORT"
+      ],
+      "required_input_ids": [
+        "U_FEA",
+        "U_ANALYSIS"
+      ],
+      "executed": false,
+      "output_namespace": "modeled"
+    },
+    {
+      "id": "N_BOUNDARY",
+      "scope": "Free versus constrained finite planetary frame boundaries/friction explanation",
+      "source_evidence_ids": [
+        "E_FEA"
+      ],
+      "operation_ids": [
+        "NUMERICAL_CONFIG",
+        "NUMERICAL_RUN",
+        "NUMERICAL_REPORT"
+      ],
+      "required_input_ids": [
+        "U_FEA",
+        "U_ANALYSIS"
+      ],
+      "executed": false,
+      "output_namespace": "modeled"
+    },
+    {
+      "id": "N_SHEAR",
+      "scope": "Finite 4×4/3×3 shear versus periodic-cell strain-energy shear; separate quantities",
+      "source_evidence_ids": [
+        "E_SHEAR",
+        "E_FEA"
+      ],
+      "operation_ids": [
+        "NUMERICAL_CONFIG",
+        "NUMERICAL_RUN",
+        "NUMERICAL_REPORT"
+      ],
+      "required_input_ids": [
+        "U_FEA",
+        "U_ANALYSIS"
+      ],
+      "executed": false,
+      "output_namespace": "modeled"
+    },
+    {
+      "id": "N_FRICTION",
+      "scope": "3D hysteresis with tooth friction and shaft-hole friction varied separately",
+      "source_evidence_ids": [
+        "E_DAMP",
+        "E_FEA"
+      ],
+      "operation_ids": [
+        "NUMERICAL_CONFIG",
+        "NUMERICAL_RUN",
+        "NUMERICAL_REPORT"
+      ],
+      "required_input_ids": [
+        "U_FEA",
+        "U_ANALYSIS"
+      ],
+      "executed": false,
+      "output_namespace": "modeled"
+    }
+  ],
+  "analysis_branches": [
+    {
+      "id": "DAMPING_ANALYSIS",
+      "measured_parent_branch": "TAIJI_PLUS",
+      "operation_id": "ANALYZE_DAMP",
+      "source_evidence_ids": [
+        "E_DAMP"
+      ],
+      "required_for_whole_paper": true
+    },
+    {
+      "id": "COMPARISON_ARCHIVE",
+      "operation_ids": [
+        "COMPARE",
+        "ARCHIVE"
+      ],
+      "required_for_whole_paper": true
+    }
+  ],
+  "illustrative_only": [
+    {
+      "id": "I_MACRO_VIDEO",
+      "family_id": "F_TAIJI_VIDEO1",
+      "scope": "4×4 manually rotated demonstrator with body-weight loading",
+      "restriction": "No person-standing robotic prescription, force inference, quantitative success score or fusion with 5×5 tests"
+    },
+    {
+      "id": "I_APPLICATION",
+      "scope": "Robot skeleton/leg, aeroengine pylon, wing, variable-stiffness skin, cloaking/acoustic uses and design catalog",
+      "restriction": "No invented whole-robot, implant, flight, skin-comfort or acoustic-performance trial"
+    }
+  ],
+  "rule": "Numerical scope and concepts remain represented but cannot substitute for any required physical branch. No simulation was run."
+}

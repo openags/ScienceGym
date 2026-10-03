@@ -1,0 +1,1597 @@
+{
+  "review_utc": "2026-10-03T20:11:08.572400+00:00",
+  "scope": "Required-field synthetic-record structural mutation tests only",
+  "contract_sha256": "7127f9c7f36070386d5621866a109d5e2333968f9bd7269d5614b4d7e31a1f2e",
+  "cases": [
+    {
+      "name": "delete_job_job_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: job_id",
+        "job identity mismatch",
+        "missing or invalid job binding job_id"
+      ]
+    },
+    {
+      "name": "null_job_job_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: job_id",
+        "job identity mismatch",
+        "missing or invalid job binding job_id"
+      ]
+    },
+    {
+      "name": "delete_job_branch_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "crossed specimen between condition allocations",
+        "event/context binding mismatch: branch_id",
+        "job not bound to allocated specimen"
+      ]
+    },
+    {
+      "name": "null_job_branch_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "crossed specimen between condition allocations",
+        "event/context binding mismatch: branch_id",
+        "job not bound to allocated specimen"
+      ]
+    },
+    {
+      "name": "delete_job_condition_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed synthetic contract: KeyError"
+      ]
+    },
+    {
+      "name": "null_job_condition_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed synthetic contract: TypeError"
+      ]
+    },
+    {
+      "name": "delete_job_cycle",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: cycle",
+        "missing or extra condition/cycle/service cell",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_cycle",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: cycle",
+        "missing or extra condition/cycle/service cell"
+      ]
+    },
+    {
+      "name": "delete_job_service_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed synthetic contract: KeyError"
+      ]
+    },
+    {
+      "name": "null_job_service_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: service_id",
+        "job not bound to allocated specimen",
+        "missing or extra condition/cycle/service cell"
+      ]
+    },
+    {
+      "name": "delete_job_specimen_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "carrier lineage mismatch",
+        "crossed specimen between condition allocations",
+        "event/context binding mismatch: specimen_id"
+      ]
+    },
+    {
+      "name": "null_job_specimen_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "carrier lineage mismatch",
+        "crossed specimen between condition allocations",
+        "event/context binding mismatch: specimen_id"
+      ]
+    },
+    {
+      "name": "delete_job_input_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed synthetic contract: KeyError"
+      ]
+    },
+    {
+      "name": "null_job_input_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: input_version",
+        "invalid version transition",
+        "lineage initial version mismatch"
+      ]
+    },
+    {
+      "name": "delete_job_output_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: output_version",
+        "invalid version transition",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_output_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: output_version",
+        "invalid version transition"
+      ]
+    },
+    {
+      "name": "delete_job_attempt_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: attempt_id",
+        "missing or invalid job binding attempt_id",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_attempt_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: attempt_id",
+        "missing or invalid job binding attempt_id",
+        "unqualified attempt"
+      ]
+    },
+    {
+      "name": "delete_job_card_revision",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: card_revision",
+        "missing or invalid job binding card_revision",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_card_revision",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: card_revision",
+        "missing or invalid job binding card_revision",
+        "stale job card revision"
+      ]
+    },
+    {
+      "name": "delete_job_fixture_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: fixture_id",
+        "missing or invalid job binding fixture_id",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_fixture_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: fixture_id",
+        "missing or invalid job binding fixture_id",
+        "unregistered fixture"
+      ]
+    },
+    {
+      "name": "delete_job_calibration_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: calibration_id",
+        "missing or invalid job binding calibration_id",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_calibration_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: calibration_id",
+        "missing or invalid job binding calibration_id",
+        "unregistered calibration"
+      ]
+    },
+    {
+      "name": "delete_job_station_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: station_id",
+        "missing or invalid job binding station_id",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_station_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: station_id",
+        "missing or invalid job binding station_id",
+        "wrong station"
+      ]
+    },
+    {
+      "name": "delete_job_carrier_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "carrier lineage mismatch",
+        "event/context binding mismatch: carrier_id",
+        "missing or invalid job binding carrier_id"
+      ]
+    },
+    {
+      "name": "null_job_carrier_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "carrier lineage mismatch",
+        "event/context binding mismatch: carrier_id",
+        "missing or invalid job binding carrier_id"
+      ]
+    },
+    {
+      "name": "delete_job_raw_record_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: raw_record_id",
+        "invalid raw-record identity/hash",
+        "missing or invalid job binding raw_record_id"
+      ]
+    },
+    {
+      "name": "null_job_raw_record_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: raw_record_id",
+        "invalid raw-record identity/hash",
+        "missing or invalid job binding raw_record_id"
+      ]
+    },
+    {
+      "name": "delete_job_record_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: record_hash",
+        "invalid raw-record identity/hash",
+        "missing or invalid job binding record_hash"
+      ]
+    },
+    {
+      "name": "null_job_record_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: record_hash",
+        "invalid raw-record identity/hash",
+        "missing or invalid job binding record_hash"
+      ]
+    },
+    {
+      "name": "delete_job_authority_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: authority_id",
+        "job authority mismatch",
+        "missing or invalid job binding authority_id"
+      ]
+    },
+    {
+      "name": "null_job_authority_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: authority_id",
+        "job authority mismatch",
+        "missing or invalid job binding authority_id"
+      ]
+    },
+    {
+      "name": "delete_job_source_kind",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: source_kind",
+        "missing or invalid job binding source_kind",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_source_kind",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: source_kind",
+        "missing or invalid job binding source_kind",
+        "source/future data passed as observed evidence"
+      ]
+    },
+    {
+      "name": "delete_job_parents",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_parents",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed synthetic contract: TypeError"
+      ]
+    },
+    {
+      "name": "delete_job_qualified",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field",
+        "unqualified or open service"
+      ]
+    },
+    {
+      "name": "null_job_qualified",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "unqualified or open service"
+      ]
+    },
+    {
+      "name": "delete_job_closed_service",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field",
+        "unqualified or open service"
+      ]
+    },
+    {
+      "name": "null_job_closed_service",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "unqualified or open service"
+      ]
+    },
+    {
+      "name": "delete_job_safe_release",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field",
+        "unsafe or rejected service job"
+      ]
+    },
+    {
+      "name": "null_job_safe_release",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "unsafe or rejected service job"
+      ]
+    },
+    {
+      "name": "delete_job_accepted",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field",
+        "unsafe or rejected service job"
+      ]
+    },
+    {
+      "name": "null_job_accepted",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "unsafe or rejected service job"
+      ]
+    },
+    {
+      "name": "delete_job_optical_self_peeling",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid non-release flags",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_optical_self_peeling",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid non-release flags"
+      ]
+    },
+    {
+      "name": "delete_job_optical_free_movement",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid non-release flags",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_optical_free_movement",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid non-release flags"
+      ]
+    },
+    {
+      "name": "delete_job_destroyed",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "destroyed specimen used",
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "null_job_destroyed",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "destroyed specimen used"
+      ]
+    },
+    {
+      "name": "delete_job_damage_state",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field",
+        "quarantined service specimen"
+      ]
+    },
+    {
+      "name": "null_job_damage_state",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "quarantined service specimen"
+      ]
+    },
+    {
+      "name": "delete_job_optical_release_specimen_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "delete_job_optical_release_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "delete_job_optical_release_record_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown job field"
+      ]
+    },
+    {
+      "name": "delete_event_event_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or duplicate event ID",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_event_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or duplicate event ID"
+      ]
+    },
+    {
+      "name": "delete_event_sequence",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown actor event field",
+        "noncontiguous event sequence"
+      ]
+    },
+    {
+      "name": "null_event_sequence",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "noncontiguous event sequence"
+      ]
+    },
+    {
+      "name": "delete_event_phase",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete job J1",
+        "missing or unknown actor event field",
+        "out-of-order or duplicate phase"
+      ]
+    },
+    {
+      "name": "null_event_phase",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete job J1",
+        "out-of-order or duplicate phase"
+      ]
+    },
+    {
+      "name": "delete_event_job_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete job J1",
+        "missing or unknown actor event field",
+        "out-of-order or duplicate phase"
+      ]
+    },
+    {
+      "name": "null_event_job_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete job J1",
+        "out-of-order or duplicate phase",
+        "untrusted job reference"
+      ]
+    },
+    {
+      "name": "delete_event_branch_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: branch_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_branch_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: branch_id"
+      ]
+    },
+    {
+      "name": "delete_event_condition_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: condition_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_condition_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: condition_id"
+      ]
+    },
+    {
+      "name": "delete_event_cycle",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: cycle",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_cycle",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: cycle"
+      ]
+    },
+    {
+      "name": "delete_event_service_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: service_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_service_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: service_id"
+      ]
+    },
+    {
+      "name": "delete_event_specimen_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: specimen_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_specimen_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: specimen_id"
+      ]
+    },
+    {
+      "name": "delete_event_input_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: input_version",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_input_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: input_version"
+      ]
+    },
+    {
+      "name": "delete_event_output_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: output_version",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_output_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: output_version"
+      ]
+    },
+    {
+      "name": "delete_event_attempt_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: attempt_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_attempt_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: attempt_id"
+      ]
+    },
+    {
+      "name": "delete_event_card_revision",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: card_revision",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_card_revision",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: card_revision"
+      ]
+    },
+    {
+      "name": "delete_event_fixture_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: fixture_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_fixture_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: fixture_id"
+      ]
+    },
+    {
+      "name": "delete_event_calibration_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: calibration_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_calibration_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: calibration_id"
+      ]
+    },
+    {
+      "name": "delete_event_station_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: station_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_station_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: station_id"
+      ]
+    },
+    {
+      "name": "delete_event_carrier_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: carrier_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_carrier_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: carrier_id"
+      ]
+    },
+    {
+      "name": "delete_event_raw_record_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: raw_record_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_raw_record_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: raw_record_id"
+      ]
+    },
+    {
+      "name": "delete_event_record_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: record_hash",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_record_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: record_hash"
+      ]
+    },
+    {
+      "name": "delete_event_authority_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: authority_id",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_authority_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: authority_id"
+      ]
+    },
+    {
+      "name": "delete_event_source_kind",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: source_kind",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_source_kind",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "event/context binding mismatch: source_kind"
+      ]
+    },
+    {
+      "name": "delete_event_safe_exchange",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown actor event field",
+        "unsafe boundary readback"
+      ]
+    },
+    {
+      "name": "null_event_safe_exchange",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "unsafe boundary readback"
+      ]
+    },
+    {
+      "name": "delete_event_hazard_isolated",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown actor event field",
+        "unsafe boundary readback"
+      ]
+    },
+    {
+      "name": "null_event_hazard_isolated",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "unsafe boundary readback"
+      ]
+    },
+    {
+      "name": "delete_event_guard_closed",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown actor event field",
+        "unsafe boundary readback"
+      ]
+    },
+    {
+      "name": "null_event_guard_closed",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "unsafe boundary readback"
+      ]
+    },
+    {
+      "name": "delete_event_receipt_status",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "failed receipt is not completion",
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "null_event_receipt_status",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "failed receipt is not completion"
+      ]
+    },
+    {
+      "name": "delete_event_public_note",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "missing or unknown actor event field"
+      ]
+    },
+    {
+      "name": "delete_lineage_specimen_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field specimen_id"
+      ]
+    },
+    {
+      "name": "null_lineage_specimen_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field specimen_id",
+        "lineage specimen mismatch"
+      ]
+    },
+    {
+      "name": "delete_lineage_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage version"
+      ]
+    },
+    {
+      "name": "null_lineage_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage version",
+        "lineage initial version mismatch"
+      ]
+    },
+    {
+      "name": "delete_lineage_parent_batch_ids",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid parent batch list"
+      ]
+    },
+    {
+      "name": "null_lineage_parent_batch_ids",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed synthetic contract: TypeError"
+      ]
+    },
+    {
+      "name": "delete_lineage_substrate_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field substrate_id"
+      ]
+    },
+    {
+      "name": "null_lineage_substrate_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field substrate_id"
+      ]
+    },
+    {
+      "name": "delete_lineage_cover_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field cover_id"
+      ]
+    },
+    {
+      "name": "null_lineage_cover_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field cover_id"
+      ]
+    },
+    {
+      "name": "delete_lineage_carrier_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "carrier lineage mismatch",
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields"
+      ]
+    },
+    {
+      "name": "null_lineage_carrier_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "carrier lineage mismatch",
+        "incomplete lineage fields",
+        "invalid lineage field carrier_id"
+      ]
+    },
+    {
+      "name": "delete_lineage_resist_material",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field resist_material"
+      ]
+    },
+    {
+      "name": "null_lineage_resist_material",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field resist_material",
+        "resist lineage mismatch"
+      ]
+    },
+    {
+      "name": "delete_lineage_hydrogel_material",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "hydrogel lineage mismatch",
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields"
+      ]
+    },
+    {
+      "name": "null_lineage_hydrogel_material",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "hydrogel lineage mismatch",
+        "incomplete lineage fields",
+        "invalid lineage field hydrogel_material"
+      ]
+    },
+    {
+      "name": "delete_lineage_geometry_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field geometry_hash"
+      ]
+    },
+    {
+      "name": "null_lineage_geometry_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field geometry_hash",
+        "missing material/map ancestry"
+      ]
+    },
+    {
+      "name": "delete_lineage_dose_map_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field dose_map_hash"
+      ]
+    },
+    {
+      "name": "null_lineage_dose_map_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field dose_map_hash",
+        "missing material/map ancestry"
+      ]
+    },
+    {
+      "name": "delete_lineage_orientation_map_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field orientation_map_hash"
+      ]
+    },
+    {
+      "name": "null_lineage_orientation_map_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field orientation_map_hash",
+        "missing material/map ancestry"
+      ]
+    },
+    {
+      "name": "delete_lineage_development_card_revision",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field development_card_revision"
+      ]
+    },
+    {
+      "name": "null_lineage_development_card_revision",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field development_card_revision",
+        "obsolete development card"
+      ]
+    },
+    {
+      "name": "delete_lineage_chamber_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field chamber_id"
+      ]
+    },
+    {
+      "name": "null_lineage_chamber_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field chamber_id"
+      ]
+    },
+    {
+      "name": "delete_lineage_service_job_ids",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "job absent from lineage history"
+      ]
+    },
+    {
+      "name": "null_lineage_service_job_ids",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed synthetic contract: TypeError"
+      ]
+    },
+    {
+      "name": "delete_lineage_thermal_history",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "thermal exposure history missing or mismatched"
+      ]
+    },
+    {
+      "name": "null_lineage_thermal_history",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "thermal exposure history missing or mismatched"
+      ]
+    },
+    {
+      "name": "delete_lineage_damage_state",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "damaged or destroyed lineage reused",
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields"
+      ]
+    },
+    {
+      "name": "null_lineage_damage_state",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "damaged or destroyed lineage reused",
+        "incomplete lineage fields",
+        "invalid lineage field damage_state"
+      ]
+    },
+    {
+      "name": "delete_lineage_allocation_role",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "incomplete or extra lineage fields",
+        "invalid lineage field allocation_role"
+      ]
+    },
+    {
+      "name": "null_lineage_allocation_role",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "incomplete lineage fields",
+        "invalid lineage field allocation_role",
+        "unreserved or incompatible specimen role"
+      ]
+    },
+    {
+      "name": "delete_lineage_allocation_key",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "crossed allocation lineage",
+        "crossed specimen between condition allocations",
+        "hydrogel lineage mismatch"
+      ]
+    },
+    {
+      "name": "null_lineage_allocation_key",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "crossed allocation lineage",
+        "crossed specimen between condition allocations",
+        "hydrogel lineage mismatch"
+      ]
+    },
+    {
+      "name": "invalid_lineage_version",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid lineage version",
+        "lineage initial version mismatch"
+      ]
+    },
+    {
+      "name": "invalid_lineage_substrate_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid lineage field substrate_id"
+      ]
+    },
+    {
+      "name": "invalid_lineage_cover_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid lineage field cover_id"
+      ]
+    },
+    {
+      "name": "invalid_lineage_chamber_id",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid lineage field chamber_id"
+      ]
+    },
+    {
+      "name": "invalid_lineage_development_card_revision",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "obsolete development card"
+      ]
+    },
+    {
+      "name": "invalid_lineage_geometry_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid lineage field geometry_hash"
+      ]
+    },
+    {
+      "name": "invalid_lineage_dose_map_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid lineage field dose_map_hash"
+      ]
+    },
+    {
+      "name": "invalid_lineage_orientation_map_hash",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid lineage field orientation_map_hash"
+      ]
+    },
+    {
+      "name": "invalid_lineage_thermal_history",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "thermal exposure history missing or mismatched"
+      ]
+    },
+    {
+      "name": "invented_job_in_lineage",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "lineage job registry mismatch"
+      ]
+    },
+    {
+      "name": "missing_allocation_provenance",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "allocation provenance missing or misattributed",
+        "allocation schema mismatch"
+      ]
+    },
+    {
+      "name": "source_allocation_provenance",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "allocation provenance missing or misattributed"
+      ]
+    },
+    {
+      "name": "three_d_unreserved_allocation",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "unreserved or incompatible specimen role"
+      ]
+    },
+    {
+      "name": "three_d_wrong_resist",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "resist lineage mismatch"
+      ]
+    }
+  ],
+  "passed": 158,
+  "failed": 0
+}

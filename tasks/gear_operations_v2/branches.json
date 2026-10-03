@@ -1,0 +1,2454 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "branches": [
+    {
+      "id": "TAIJI_PLUS",
+      "specimen_family_id": "F_TAIJI_PLUS",
+      "mode": "compression",
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure P+(3°) modulus versus actual rotation angle.",
+      "preparation_route_id": "PREP_TAIJI",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "COMP_SEAT"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "TAIJI_MINUS",
+      "specimen_family_id": "F_TAIJI_MINUS",
+      "mode": "compression",
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure P−(15°) modulus versus actual rotation angle.",
+      "preparation_route_id": "PREP_TAIJI",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "COMP_SEAT"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "STEEL_FRAME_CONTROL",
+      "specimen_family_id": "F_STEEL_FRAME",
+      "mode": "compression",
+      "source_evidence_ids": [
+        "E_FRAME",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure frame-only response with documented geometry and boundary conditions.",
+      "preparation_route_id": "PREP_FRAME",
+      "per_condition_operations": [
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "COMP_SEAT"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MICRO_TAIJI_BUILD",
+      "specimen_family_id": "F_MICRO_TAIJI_BUILD",
+      "mode": "build_demonstration",
+      "source_evidence_ids": [
+        "E_MICRO_TAIJI",
+        "E_FAB"
+      ],
+      "purpose": "Document 5×6 integrated fabrication/boxing/baseplate release; do not use as the 4×4 measurement specimen.",
+      "preparation_route_id": "PREP_MICRO_TAIJI",
+      "per_condition_operations": [
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MICRO_TAIJI_COMP",
+      "specimen_family_id": "F_MICRO_TAIJI_COMP",
+      "mode": "compression",
+      "source_evidence_ids": [
+        "E_MICRO_TAIJI",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure 4×4 printed micro-Taiji compression.",
+      "preparation_route_id": "PREP_MICRO_TAIJI_TEST",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "COMP_SEAT"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MICRO_TAIJI_ACT",
+      "specimen_family_id": "F_MICRO_TAIJI_ACT",
+      "mode": "actuation",
+      "source_evidence_ids": [
+        "E_ACTUATION",
+        "E_VIDEO_SAMPLED"
+      ],
+      "purpose": "Demonstrate motorized 5×5 micro-Taiji actuation separately from modulus tests.",
+      "preparation_route_id": "PREP_MICRO_TAIJI_TEST",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_ACT"
+        },
+        {
+          "op_id": "MOTOR_MOUNT"
+        },
+        {
+          "op_id": "MOTOR_CONNECT"
+        },
+        {
+          "op_id": "MOTOR_HOME"
+        },
+        {
+          "op_id": "ACT_ACQ_ARM"
+        },
+        {
+          "op_id": "MOTOR_RUN"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "MOTOR_STOP"
+        },
+        {
+          "op_id": "ACT_ACQ_CLOSE"
+        },
+        {
+          "op_id": "ACT_RELEASE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_ACT"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MATERIAL",
+        "U_MOTOR",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "motor_configuration": {
+        "type": "d.c. brushless",
+        "count": 4,
+        "diameter_mm": 8,
+        "array_positions_1_based": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "STEEL_PLANET_COMP",
+      "specimen_family_id": "F_STEEL_PLANET_COMP",
+      "mode": "compression",
+      "source_evidence_ids": [
+        "E_PLANET",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure 3×3 steel planetary compression with boundary friction recorded.",
+      "preparation_route_id": "PREP_STEEL_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "COMP_SEAT"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "STEEL_PLANET_TENSION",
+      "specimen_family_id": "F_STEEL_PLANET_TENSION",
+      "mode": "tension",
+      "source_evidence_ids": [
+        "E_PLANET",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure clamp-limited 2×2 steel planetary tension; retain finite boundary effect.",
+      "preparation_route_id": "PREP_STEEL_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "TENSION_CLAMP"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MACRO_PLANET_COMP",
+      "specimen_family_id": "F_MACRO_PLANET_COMP",
+      "mode": "compression",
+      "source_evidence_ids": [
+        "E_PLANET",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure 6×6 macro polymer planetary compression.",
+      "preparation_route_id": "PREP_MACRO_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "COMP_SEAT"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MACRO_PLANET_TENSION",
+      "specimen_family_id": "F_MACRO_PLANET_TENSION",
+      "mode": "tension",
+      "source_evidence_ids": [
+        "E_PLANET",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure long 2×6 macro polymer strip tension; preserve its boundary rationale.",
+      "preparation_route_id": "PREP_MACRO_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "TENSION_CLAMP"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MACRO_PLANET_ACT",
+      "specimen_family_id": "F_MACRO_PLANET_ACT",
+      "mode": "actuation",
+      "source_evidence_ids": [
+        "E_ACTUATION",
+        "E_VIDEO_SAMPLED"
+      ],
+      "purpose": "Demonstrate four-motor 6×6 macro planetary actuation.",
+      "preparation_route_id": "PREP_MACRO_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_ACT"
+        },
+        {
+          "op_id": "MOTOR_MOUNT"
+        },
+        {
+          "op_id": "MOTOR_CONNECT"
+        },
+        {
+          "op_id": "MOTOR_HOME"
+        },
+        {
+          "op_id": "ACT_ACQ_ARM"
+        },
+        {
+          "op_id": "MOTOR_RUN"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "MOTOR_STOP"
+        },
+        {
+          "op_id": "ACT_ACQ_CLOSE"
+        },
+        {
+          "op_id": "ACT_RELEASE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_ACT"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MATERIAL",
+        "U_MOTOR",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "motor_configuration": {
+        "type": "step motor",
+        "count": 4,
+        "diameter_mm": 20,
+        "array_positions_1_based": null
+      },
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MICRO_PLANET_COMP",
+      "specimen_family_id": "F_MICRO_PLANET_COMP",
+      "mode": "compression",
+      "source_evidence_ids": [
+        "E_PLANET",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure 3×4 micro planetary compression after geometry conflict resolution.",
+      "preparation_route_id": "PREP_MICRO_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "COMP_SEAT"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_MICRO_GEOM",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MICRO_PLANET_TENSION",
+      "specimen_family_id": "F_MICRO_PLANET_TENSION",
+      "mode": "tension",
+      "source_evidence_ids": [
+        "E_PLANET",
+        "E_YOUNG"
+      ],
+      "purpose": "Measure 2×3 micro planetary strip tension after geometry conflict resolution.",
+      "preparation_route_id": "PREP_MICRO_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "TENSION_CLAMP"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_Y"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_MICRO_GEOM",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "MICRO_PLANET_ACT",
+      "specimen_family_id": "F_MICRO_PLANET_ACT",
+      "mode": "actuation",
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "purpose": "Demonstrate five-motor 3×4 micro planetary actuation.",
+      "preparation_route_id": "PREP_MICRO_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_ACT"
+        },
+        {
+          "op_id": "MOTOR_MOUNT"
+        },
+        {
+          "op_id": "MOTOR_CONNECT"
+        },
+        {
+          "op_id": "MOTOR_HOME"
+        },
+        {
+          "op_id": "ACT_ACQ_ARM"
+        },
+        {
+          "op_id": "MOTOR_RUN"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "MOTOR_STOP"
+        },
+        {
+          "op_id": "ACT_ACQ_CLOSE"
+        },
+        {
+          "op_id": "ACT_RELEASE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_ACT"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MATERIAL",
+        "U_MICRO_GEOM",
+        "U_MOTOR",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "motor_configuration": {
+        "type": "step motor",
+        "count": 5,
+        "diameter_mm": 5,
+        "array_positions_1_based": null
+      },
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "FINITE_SHEAR",
+      "specimen_family_id": "F_FINITE_SHEAR",
+      "mode": "finite_shear",
+      "source_evidence_ids": [
+        "E_SHEAR"
+      ],
+      "purpose": "Measure generalized finite-structure shear stiffness of 3×3 Taiji lattice.",
+      "preparation_route_id": "PREP_TAIJI",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "SHEAR_PIN"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_SHEAR"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "SOFT_SHEAR",
+      "specimen_family_id": "F_SOFT_SHEAR",
+      "mode": "diagonal_shear",
+      "source_evidence_ids": [
+        "E_SOFT",
+        "E_VIDEO_SAMPLED"
+      ],
+      "purpose": "Measure ultrasoft/interlocked 4×4-metacell shape response, preserving sequential tooth-slip oscillations.",
+      "preparation_route_id": "PREP_SOFT",
+      "per_condition_operations": [
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "SOFT_GROOVE"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_SOFT"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "RUBBER_FRAME_CONTROL",
+      "specimen_family_id": "F_RUBBER_FRAME",
+      "mode": "diagonal_shear",
+      "source_evidence_ids": [
+        "E_SOFT"
+      ],
+      "purpose": "Measure rubber frame-only response with paired diagonal geometry.",
+      "preparation_route_id": "PREP_FRAME",
+      "per_condition_operations": [
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_TEST"
+        },
+        {
+          "op_id": "FIXTURE_SELECT"
+        },
+        {
+          "op_id": "CALIBRATE"
+        },
+        {
+          "op_id": "SOFT_GROOVE"
+        },
+        {
+          "op_id": "MOUNT_QC"
+        },
+        {
+          "op_id": "ZERO"
+        },
+        {
+          "op_id": "ACQ_ARM"
+        },
+        {
+          "op_id": "LOAD_CYCLE"
+        },
+        {
+          "op_id": "IMAGE"
+        },
+        {
+          "op_id": "ACQ_CLOSE"
+        },
+        {
+          "op_id": "UNLOAD"
+        },
+        {
+          "op_id": "RELEASE_FIXTURE"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_METROLOGY"
+        },
+        {
+          "op_id": "POST_INSPECT"
+        },
+        {
+          "op_id": "ANALYZE_SOFT"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_LOAD",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "provider": "qualified allocation and phase card",
+        "default": null,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "qualified reuse only; missing reuse evidence requires separate allocated specimen",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    },
+    {
+      "id": "IMPACT",
+      "specimen_family_id": "F_IMPACT",
+      "mode": "guarded_impact",
+      "source_evidence_ids": [
+        "E_IMPACT"
+      ],
+      "purpose": "Compare transmitted impact force in a qualified guarded service, with terminal allocation after every event.",
+      "preparation_route_id": "PREP_MACRO_PLANET",
+      "per_condition_operations": [
+        {
+          "op_id": "PHASE_SET"
+        },
+        {
+          "op_id": "MESH_CHECK"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_IMPACT"
+        },
+        {
+          "op_id": "IMPACT_LOAD"
+        },
+        {
+          "op_id": "IMPACT_GUARD"
+        },
+        {
+          "op_id": "IMPACT_RUN"
+        },
+        {
+          "op_id": "IMPACT_SAFE"
+        },
+        {
+          "op_id": "IMPACT_UNLOAD"
+        },
+        {
+          "op_id": "ANALYZE_IMPACT"
+        },
+        {
+          "op_id": "TRANSFER",
+          "destination_station": "WS_CLEAN"
+        },
+        {
+          "op_id": "CLEAN"
+        },
+        {
+          "op_id": "STORE"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACQ",
+        "U_ALLOCATION",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_CAL",
+        "U_CLEAN",
+        "U_FAB",
+        "U_FIXTURE",
+        "U_IMPACT",
+        "U_MATERIAL",
+        "U_PHASE",
+        "U_PLANET_CAD",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "source_angles_deg": [
+          0,
+          7.5,
+          15,
+          22.5,
+          30
+        ],
+        "required_for_reported_comparison": true,
+        "nonempty": true,
+        "bounded": true
+      },
+      "repeat_count": null,
+      "independent_specimen_count": null,
+      "condition_transition": {
+        "label_only_change_allowed": false,
+        "path": "Safe unload/stop, release, post-inspect and carrier storage; select new specimen or explicitly eligible reuse, transfer to metrology, set and verify actual phase, then mount afresh. Frame controls use no gear phase operation.",
+        "reuse_requires": [
+          "same compatible family",
+          "qualified reuse card",
+          "current post-inspection",
+          "new phase/mount/zero receipts"
+        ],
+        "original_chronology_claimed": false
+      },
+      "destructive_allocation": "terminal after each impact; replacement instance for next condition",
+      "completion_scope": "All finite allocated conditions and required control/comparison parents, with raw receipts and safe shutdown; operation counts are not completion",
+      "source_impact_condition": {
+        "mass_kg": 10,
+        "release_gap_mm": 20,
+        "interpretation": "source condition, not executable instruction"
+      },
+      "gate_binding_rule": "Operation template gates are parameterized: U_PLANET_CAD applies only planetary/impact families; U_MICRO_GEOM only micro planetary; all other listed branch gates must close."
+    }
+  ],
+  "preparation_routes": {
+    "PREP_TAIJI": [
+      {
+        "op_id": "PLAN"
+      },
+      {
+        "op_id": "RECEIVE"
+      },
+      {
+        "op_id": "MATERIAL_ACCEPT"
+      },
+      {
+        "op_id": "DESIGN_BIND"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_FAB"
+      },
+      {
+        "op_id": "FAB_STAGE"
+      },
+      {
+        "op_id": "FAB_RUN"
+      },
+      {
+        "op_id": "FAB_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "INCOMING_QC"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_ASSEMBLY"
+      },
+      {
+        "op_id": "TAIJI_STAGE"
+      },
+      {
+        "op_id": "FRAME_FIRST"
+      },
+      {
+        "op_id": "GEAR_INSERT"
+      },
+      {
+        "op_id": "FRAME_CLOSE"
+      },
+      {
+        "op_id": "PATTERN_QC"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "PHASE_REGISTER"
+      },
+      {
+        "op_id": "MESH_CHECK"
+      },
+      {
+        "op_id": "ASSEMBLY_QC"
+      }
+    ],
+    "PREP_FRAME": [
+      {
+        "op_id": "PLAN"
+      },
+      {
+        "op_id": "RECEIVE"
+      },
+      {
+        "op_id": "MATERIAL_ACCEPT"
+      },
+      {
+        "op_id": "DESIGN_BIND"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_FAB"
+      },
+      {
+        "op_id": "FAB_STAGE"
+      },
+      {
+        "op_id": "FAB_RUN"
+      },
+      {
+        "op_id": "FAB_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "INCOMING_QC"
+      },
+      {
+        "op_id": "ASSEMBLY_QC"
+      }
+    ],
+    "PREP_MICRO_TAIJI": [
+      {
+        "op_id": "PLAN"
+      },
+      {
+        "op_id": "RECEIVE"
+      },
+      {
+        "op_id": "MATERIAL_ACCEPT"
+      },
+      {
+        "op_id": "DESIGN_BIND"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_FAB"
+      },
+      {
+        "op_id": "FAB_STAGE"
+      },
+      {
+        "op_id": "FAB_RUN"
+      },
+      {
+        "op_id": "FAB_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_PREP"
+      },
+      {
+        "op_id": "MICRO_BOX"
+      },
+      {
+        "op_id": "BASEPLATE_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "INCOMING_QC"
+      },
+      {
+        "op_id": "PHASE_REGISTER"
+      },
+      {
+        "op_id": "MESH_CHECK"
+      },
+      {
+        "op_id": "ASSEMBLY_QC"
+      }
+    ],
+    "PREP_STEEL_PLANET": [
+      {
+        "op_id": "PLAN"
+      },
+      {
+        "op_id": "RECEIVE"
+      },
+      {
+        "op_id": "MATERIAL_ACCEPT"
+      },
+      {
+        "op_id": "DESIGN_BIND"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_FAB"
+      },
+      {
+        "op_id": "FAB_STAGE"
+      },
+      {
+        "op_id": "FAB_RUN"
+      },
+      {
+        "op_id": "FAB_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "INCOMING_QC"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_ASSEMBLY"
+      },
+      {
+        "op_id": "PLANET_STAGE"
+      },
+      {
+        "op_id": "RING_JOIN"
+      },
+      {
+        "op_id": "PLANET_INSERT"
+      },
+      {
+        "op_id": "TRANSMISSION_JOIN"
+      },
+      {
+        "op_id": "PATTERN_QC"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "PHASE_REGISTER"
+      },
+      {
+        "op_id": "MESH_CHECK"
+      },
+      {
+        "op_id": "ASSEMBLY_QC"
+      }
+    ],
+    "PREP_MACRO_PLANET": [
+      {
+        "op_id": "PLAN"
+      },
+      {
+        "op_id": "RECEIVE"
+      },
+      {
+        "op_id": "MATERIAL_ACCEPT"
+      },
+      {
+        "op_id": "DESIGN_BIND"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_FAB"
+      },
+      {
+        "op_id": "FAB_STAGE"
+      },
+      {
+        "op_id": "FAB_RUN"
+      },
+      {
+        "op_id": "FAB_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_PREP"
+      },
+      {
+        "op_id": "SUPPORT_CLEAR"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "INCOMING_QC"
+      },
+      {
+        "op_id": "PHASE_REGISTER"
+      },
+      {
+        "op_id": "MESH_CHECK"
+      },
+      {
+        "op_id": "ASSEMBLY_QC"
+      }
+    ],
+    "PREP_MICRO_PLANET": [
+      {
+        "op_id": "PLAN"
+      },
+      {
+        "op_id": "RECEIVE"
+      },
+      {
+        "op_id": "MATERIAL_ACCEPT"
+      },
+      {
+        "op_id": "DESIGN_BIND"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_FAB"
+      },
+      {
+        "op_id": "FAB_STAGE"
+      },
+      {
+        "op_id": "FAB_RUN"
+      },
+      {
+        "op_id": "FAB_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "INCOMING_QC"
+      },
+      {
+        "op_id": "PHASE_REGISTER"
+      },
+      {
+        "op_id": "MESH_CHECK"
+      },
+      {
+        "op_id": "ASSEMBLY_QC"
+      }
+    ],
+    "PREP_SOFT": [
+      {
+        "op_id": "PLAN"
+      },
+      {
+        "op_id": "RECEIVE"
+      },
+      {
+        "op_id": "MATERIAL_ACCEPT"
+      },
+      {
+        "op_id": "DESIGN_BIND"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_FAB"
+      },
+      {
+        "op_id": "FAB_STAGE"
+      },
+      {
+        "op_id": "FAB_RUN"
+      },
+      {
+        "op_id": "FAB_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "INCOMING_QC"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_ASSEMBLY"
+      },
+      {
+        "op_id": "SOFT_FRAME"
+      },
+      {
+        "op_id": "SOFT_INSERT"
+      },
+      {
+        "op_id": "PATTERN_QC"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "PHASE_REGISTER"
+      },
+      {
+        "op_id": "MESH_CHECK"
+      },
+      {
+        "op_id": "ASSEMBLY_QC"
+      }
+    ],
+    "PREP_MICRO_TAIJI_TEST": [
+      {
+        "op_id": "PLAN"
+      },
+      {
+        "op_id": "RECEIVE"
+      },
+      {
+        "op_id": "MATERIAL_ACCEPT"
+      },
+      {
+        "op_id": "DESIGN_BIND"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_FAB"
+      },
+      {
+        "op_id": "FAB_STAGE"
+      },
+      {
+        "op_id": "FAB_RUN"
+      },
+      {
+        "op_id": "FAB_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_PREP"
+      },
+      {
+        "op_id": "MICRO_BOX"
+      },
+      {
+        "op_id": "BASEPLATE_RELEASE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_ASSEMBLY"
+      },
+      {
+        "op_id": "MICRO_SHAFT_CAPTURE"
+      },
+      {
+        "op_id": "TRANSFER",
+        "destination_station": "WS_METROLOGY"
+      },
+      {
+        "op_id": "INCOMING_QC"
+      },
+      {
+        "op_id": "PHASE_REGISTER"
+      },
+      {
+        "op_id": "MESH_CHECK"
+      },
+      {
+        "op_id": "ASSEMBLY_QC"
+      }
+    ]
+  },
+  "physical_branch_count": 18,
+  "whole_paper_physical_branch_ids": [
+    "TAIJI_PLUS",
+    "TAIJI_MINUS",
+    "STEEL_FRAME_CONTROL",
+    "MICRO_TAIJI_BUILD",
+    "MICRO_TAIJI_COMP",
+    "MICRO_TAIJI_ACT",
+    "STEEL_PLANET_COMP",
+    "STEEL_PLANET_TENSION",
+    "MACRO_PLANET_COMP",
+    "MACRO_PLANET_TENSION",
+    "MACRO_PLANET_ACT",
+    "MICRO_PLANET_COMP",
+    "MICRO_PLANET_TENSION",
+    "MICRO_PLANET_ACT",
+    "FINITE_SHEAR",
+    "SOFT_SHEAR",
+    "RUBBER_FRAME_CONTROL",
+    "IMPACT"
+  ],
+  "illustrative_specimen_family_ids": [
+    "F_TAIJI_VIDEO1"
+  ],
+  "reuse_vs_independence": "Allocate explicitly; repeated cycles, repeated angles and video frames never increase independent specimen count.",
+  "repeat_expansion": "Preparation once per allocated object; condition route once per condition/attempt with the qualified finite LOAD_CYCLE schedule. Unknown counts cannot expand as empty success.",
+  "initial_condition_entry": [
+    {
+      "op_id": "TRANSFER",
+      "destination_station": "WS_METROLOGY"
+    }
+  ],
+  "alternative_incoming_route": {
+    "allowed_only_when": "Scope explicitly declares qualified fabrication outsourced; certified part/service receipts satisfy same material, geometry and prep evidence gates",
+    "does_not_mean": "Unseen fabrication was robot-performed; no omission from whole-paper scope"
+  },
+  "source_reported_angle_periods_deg": {
+    "Taiji": 180,
+    "planetary": 90
+  }
+}

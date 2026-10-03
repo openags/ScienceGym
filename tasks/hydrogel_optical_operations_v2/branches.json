@@ -1,0 +1,2079 @@
+{
+  "schema_version": "hydrogel_optical_task.v1",
+  "doi": "10.1038/s41563-023-01649-3",
+  "branch_count": 36,
+  "physical_branches": 36,
+  "branches": [
+    {
+      "id": "PREP_FORM",
+      "title": "Qualify distinct hydrogel batches",
+      "required_branch_ids": [],
+      "service_ids": [
+        "FORM"
+      ],
+      "source_evidence_ids": [
+        "E_FORM"
+      ],
+      "condition_axes": {
+        "material": [
+          "PNIPAM",
+          "PNIPAM_PVA",
+          "LIHAM"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_CONFLICT"
+      ],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "FORM_LOAD",
+        "FORM_VERIFY",
+        "FORM_HANDOFF",
+        "FORM_READOUT",
+        "FORM_UNLOAD",
+        "FORM_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_SCENE"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_GEL_CURE",
+      "title": "Cure standalone hydrogel material",
+      "required_branch_ids": [
+        "PREP_FORM"
+      ],
+      "service_ids": [
+        "GEL_CURE"
+      ],
+      "source_evidence_ids": [
+        "E_FORM"
+      ],
+      "condition_axes": {
+        "material": [
+          "PNIPAM",
+          "PNIPAM_PVA",
+          "LIHAM"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "GEL_CURE_LOAD",
+        "GEL_CURE_VERIFY",
+        "GEL_CURE_HANDOFF",
+        "GEL_CURE_READOUT",
+        "GEL_CURE_UNLOAD",
+        "GEL_CURE_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_SCENE",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_PRINT",
+      "title": "Calibrate substrate and fabricate structures",
+      "required_branch_ids": [],
+      "service_ids": [
+        "PRINT"
+      ],
+      "source_evidence_ids": [
+        "E_PREP"
+      ],
+      "condition_axes": {
+        "resist": [
+          "gelatin_methacryloyl",
+          "DEGRAD_INX_N100",
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_MAPPING"
+      ],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "PRINT_LOAD",
+        "PRINT_VERIFY",
+        "PRINT_HANDOFF",
+        "PRINT_READOUT",
+        "PRINT_UNLOAD",
+        "PRINT_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_DEVELOP",
+      "title": "Develop material-specific structures",
+      "required_branch_ids": [
+        "PREP_PRINT"
+      ],
+      "service_ids": [
+        "DEVELOP"
+      ],
+      "source_evidence_ids": [
+        "E_PREP",
+        "E_RESIST"
+      ],
+      "condition_axes": {
+        "resist": [
+          "gelatin_methacryloyl",
+          "DEGRAD_INX_N100",
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "DEVELOP_LOAD",
+        "DEVELOP_VERIFY",
+        "DEVELOP_HANDOFF",
+        "DEVELOP_READOUT",
+        "DEVELOP_UNLOAD",
+        "DEVELOP_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_SPACER",
+      "title": "Assemble supported capillary cell",
+      "required_branch_ids": [
+        "PREP_DEVELOP"
+      ],
+      "service_ids": [
+        "SPACER"
+      ],
+      "source_evidence_ids": [
+        "E_PREP"
+      ],
+      "condition_axes": {
+        "resist": [
+          "gelatin_methacryloyl",
+          "DEGRAD_INX_N100",
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "SPACER_LOAD",
+        "SPACER_VERIFY",
+        "SPACER_HANDOFF",
+        "SPACER_READOUT",
+        "SPACER_UNLOAD",
+        "SPACER_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_CURE",
+      "title": "Infiltrate and cure embedding matrix",
+      "required_branch_ids": [
+        "PREP_FORM",
+        "PREP_SPACER"
+      ],
+      "service_ids": [
+        "CURE"
+      ],
+      "source_evidence_ids": [
+        "E_PREP"
+      ],
+      "condition_axes": {
+        "resist": [
+          "gelatin_methacryloyl",
+          "DEGRAD_INX_N100",
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "CURE_LOAD",
+        "CURE_VERIFY",
+        "CURE_HANDOFF",
+        "CURE_READOUT",
+        "CURE_UNLOAD",
+        "CURE_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_COVER",
+      "title": "Remove cover and inspect composite",
+      "required_branch_ids": [
+        "PREP_CURE"
+      ],
+      "service_ids": [
+        "COVER"
+      ],
+      "source_evidence_ids": [
+        "E_PREP"
+      ],
+      "condition_axes": {
+        "resist": [
+          "gelatin_methacryloyl",
+          "DEGRAD_INX_N100",
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "COVER_LOAD",
+        "COVER_VERIFY",
+        "COVER_HANDOFF",
+        "COVER_READOUT",
+        "COVER_UNLOAD",
+        "COVER_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_CHAMBER",
+      "title": "Build sealed water chamber",
+      "required_branch_ids": [
+        "PREP_COVER"
+      ],
+      "service_ids": [
+        "CHAMBER"
+      ],
+      "source_evidence_ids": [
+        "E_PREP"
+      ],
+      "condition_axes": {
+        "resist": [
+          "gelatin_methacryloyl",
+          "DEGRAD_INX_N100",
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "CHAMBER_LOAD",
+        "CHAMBER_VERIFY",
+        "CHAMBER_HANDOFF",
+        "CHAMBER_READOUT",
+        "CHAMBER_UNLOAD",
+        "CHAMBER_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_RELEASE",
+      "title": "Verify thermal self-release",
+      "required_branch_ids": [
+        "PREP_CHAMBER"
+      ],
+      "service_ids": [
+        "RELEASE"
+      ],
+      "source_evidence_ids": [
+        "E_RELEASE"
+      ],
+      "condition_axes": {
+        "resist": [
+          "gelatin_methacryloyl",
+          "DEGRAD_INX_N100",
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "RELEASE_LOAD",
+        "RELEASE_VERIFY",
+        "RELEASE_HANDOFF",
+        "RELEASE_READOUT",
+        "RELEASE_UNLOAD",
+        "RELEASE_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "PREP_COUPON",
+      "title": "Cut identified hydrogel coupons",
+      "required_branch_ids": [
+        "PREP_GEL_CURE"
+      ],
+      "service_ids": [
+        "CUT"
+      ],
+      "source_evidence_ids": [
+        "E_FORM"
+      ],
+      "condition_axes": {
+        "material": [
+          "PNIPAM",
+          "PNIPAM_PVA",
+          "LIHAM"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "CUT_LOAD",
+        "CUT_VERIFY",
+        "CUT_HANDOFF",
+        "CUT_READOUT",
+        "CUT_UNLOAD",
+        "CUT_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_CUT",
+        "U_SCENE",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "HYDROGEL_CONTROLS",
+      "title": "Compare hydrogel transparency and deformation",
+      "required_branch_ids": [
+        "PREP_COUPON"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_FORM"
+      ],
+      "condition_axes": {
+        "material": [
+          "PNIPAM",
+          "PNIPAM_PVA",
+          "LIHAM"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_CUT",
+        "U_SCENE",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "MONOMER_SWEEP",
+      "title": "Measure total-monomer concentration effects",
+      "required_branch_ids": [
+        "PREP_COUPON"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_FORM"
+      ],
+      "condition_axes": {
+        "concentration_M": [
+          0.69,
+          1.1,
+          2.76
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_CUT",
+        "U_SCENE",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "COMPOSITION_SWEEP",
+      "title": "Measure monomer-ratio effects",
+      "required_branch_ids": [
+        "PREP_COUPON"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_FORM"
+      ],
+      "condition_axes": {
+        "NIPAM_HEMA_AM_weight_ratio": [
+          "1:0.06:0.06",
+          "1:0.20:0.20",
+          "1:0.40:0.40"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_CUT",
+        "U_SCENE",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "RHEOMETRY",
+      "title": "Measure temperature-dependent hydrogel modulus",
+      "required_branch_ids": [
+        "PREP_COUPON"
+      ],
+      "service_ids": [
+        "RHEO"
+      ],
+      "source_evidence_ids": [
+        "E_RHEO"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "RHEO_LOAD",
+        "RHEO_VERIFY",
+        "RHEO_HANDOFF",
+        "RHEO_READOUT",
+        "RHEO_UNLOAD",
+        "RHEO_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_CUT",
+        "U_RHEO",
+        "U_SCENE",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "Separate reserved sibling for SEM/rheometry unless qualified reuse is evidenced.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "BEAM_AFM",
+      "title": "Measure printed beam cross sections",
+      "required_branch_ids": [
+        "PREP_DEVELOP"
+      ],
+      "service_ids": [
+        "AFM"
+      ],
+      "source_evidence_ids": [
+        "E_BEAM"
+      ],
+      "condition_axes": {
+        "power_mW": [
+          10,
+          15,
+          20,
+          30,
+          40,
+          50
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_CONFLICT"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "AFM_LOAD",
+        "AFM_VERIFY",
+        "AFM_HANDOFF",
+        "AFM_READOUT",
+        "AFM_UNLOAD",
+        "AFM_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_AFM",
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CONFLICT",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "BEAM_POWER",
+      "title": "Measure dose-dependent buckling",
+      "required_branch_ids": [
+        "PREP_RELEASE",
+        "BEAM_AFM"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_BEAM"
+      ],
+      "condition_axes": {
+        "power_mW": [
+          10,
+          15,
+          20,
+          30,
+          40,
+          50
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_CONFLICT"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_AFM",
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "BEAM_SPEED",
+      "title": "Measure scan-speed geometry response",
+      "required_branch_ids": [
+        "PREP_DEVELOP"
+      ],
+      "service_ids": [
+        "AFM"
+      ],
+      "source_evidence_ids": [
+        "E_BEAM"
+      ],
+      "condition_axes": {
+        "scan_speed_um_s": [
+          20000,
+          40000,
+          60000,
+          80000,
+          100000
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "AFM_LOAD",
+        "AFM_VERIFY",
+        "AFM_HANDOFF",
+        "AFM_READOUT",
+        "AFM_UNLOAD",
+        "AFM_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_AFM",
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion. This scan-speed branch measures printed cross-section geometry; it does not add an unreported scan-speed thermal series.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "BEAM_LINEAGES",
+      "title": "Keep distinct displayed beam histories",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_BEAM"
+      ],
+      "condition_axes": {
+        "reported_beam": [
+          "SI_Fig4_15mW",
+          "main_Fig3cd_50mW"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "RESIST_COMPARISON",
+      "title": "Compare inert material classes",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_RESIST"
+      ],
+      "condition_axes": {
+        "resist": [
+          "gelatin_methacryloyl",
+          "DEGRAD_INX_N100",
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "CROSS_MODES",
+      "title": "Measure cross-mode transformations",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_LATTICE"
+      ],
+      "condition_axes": {
+        "half_wave_count": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_CONFLICT"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "SQUARE_LATTICES",
+      "title": "Compare chiral and achiral lattices",
+      "required_branch_ids": [
+        "PREP_RELEASE",
+        "INCOMPATIBLE_CONTROL"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_LATTICE"
+      ],
+      "condition_axes": {
+        "morphology_class": [
+          "half_wave_achiral",
+          "full_wave_chiral"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_CONFLICT"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "INCOMPATIBLE_CONTROL",
+      "title": "Retain incompatible-spacing defect control",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_LATTICE"
+      ],
+      "condition_axes": {
+        "compatibility": [
+          "incompatible"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_CONFLICT"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "LATTICE_CYCLES",
+      "title": "Track square-lattice repeat history",
+      "required_branch_ids": [
+        "SQUARE_LATTICES"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_LATTICE"
+      ],
+      "condition_axes": {
+        "morphology_class": [
+          "half_wave_achiral",
+          "full_wave_chiral"
+        ]
+      },
+      "source_cycles": 27,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_CONFLICT"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "TRIANGULAR",
+      "title": "Measure triangular lattice response",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_EXTEND"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_ED"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_ED",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "CIRCLES",
+      "title": "Measure alternating ellipse transformation",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_EXTEND"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_ED"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_ED",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "ANISOTROPIC_GRID",
+      "title": "Measure direction-dependent wave counts",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_EXTEND"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_ED"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_ED",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "THREE_D",
+      "title": "Inspect three-dimensional architecture",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "SEM",
+        "CONFOCAL"
+      ],
+      "source_evidence_ids": [
+        "E_EXTEND"
+      ],
+      "condition_axes": {
+        "resist": [
+          "IP_S"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_ED"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "SEM_LOAD",
+        "SEM_VERIFY",
+        "SEM_HANDOFF",
+        "SEM_READOUT",
+        "SEM_UNLOAD",
+        "SEM_COMMIT",
+        "CONFOCAL_LOAD",
+        "CONFOCAL_VERIFY",
+        "CONFOCAL_HANDOFF",
+        "CONFOCAL_READOUT",
+        "CONFOCAL_UNLOAD",
+        "CONFOCAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_CONFOCAL",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_ED",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SEM",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "Separate reserved sibling for SEM/rheometry unless qualified reuse is evidenced.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "MICRO_SCALE",
+      "title": "Inspect dense micro-scale lattice",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_EXTEND"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "MACRO_SCALE",
+      "title": "Inspect centimetre-scale lattice",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_EXTEND"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "POWER_IMAGE",
+      "title": "Measure power-encoded image emergence",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_IMAGE"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_MAPPING",
+        "U_CONFLICT"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "IMAGE_CYCLES",
+      "title": "Track image-lattice repeat history",
+      "required_branch_ids": [
+        "POWER_IMAGE"
+      ],
+      "service_ids": [
+        "THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_IMAGE"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": 25,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_MAPPING",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "POLAR_GRATING",
+      "title": "Calibrate orientation-sensitive optics",
+      "required_branch_ids": [
+        "PREP_RELEASE"
+      ],
+      "service_ids": [
+        "POLAR"
+      ],
+      "source_evidence_ids": [
+        "E_POLAR"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_POLAR",
+        "U_ED"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "POLAR_LOAD",
+        "POLAR_VERIFY",
+        "POLAR_HANDOFF",
+        "POLAR_READOUT",
+        "POLAR_UNLOAD",
+        "POLAR_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_ED",
+        "U_MAPPING",
+        "U_POLAR",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "ANGLE_IMAGE_MAIN",
+      "title": "Measure main orientation-encoded image",
+      "required_branch_ids": [
+        "PREP_RELEASE",
+        "POLAR_GRATING"
+      ],
+      "service_ids": [
+        "THERMAL",
+        "POLAR"
+      ],
+      "source_evidence_ids": [
+        "E_POLAR"
+      ],
+      "condition_axes": {
+        "specimen_class": [
+          "main_100x100_10000_units"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_MAPPING"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "POLAR_LOAD",
+        "POLAR_VERIFY",
+        "POLAR_HANDOFF",
+        "POLAR_READOUT",
+        "POLAR_UNLOAD",
+        "POLAR_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_ED",
+        "U_MAPPING",
+        "U_POLAR",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "ANGLE_IMAGE_VIDEO",
+      "title": "Retain separate video image specimen",
+      "required_branch_ids": [
+        "PREP_RELEASE",
+        "POLAR_GRATING"
+      ],
+      "service_ids": [
+        "THERMAL",
+        "POLAR"
+      ],
+      "source_evidence_ids": [
+        "E_POLAR"
+      ],
+      "condition_axes": {
+        "specimen_class": [
+          "video9_150x180_27000_units"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_MAPPING"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "POLAR_LOAD",
+        "POLAR_VERIFY",
+        "POLAR_HANDOFF",
+        "POLAR_READOUT",
+        "POLAR_UNLOAD",
+        "POLAR_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_ED",
+        "U_MAPPING",
+        "U_POLAR",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "DUAL_IMAGE",
+      "title": "Measure combined power and angle encoding",
+      "required_branch_ids": [
+        "PREP_RELEASE",
+        "POLAR_GRATING"
+      ],
+      "service_ids": [
+        "THERMAL",
+        "POLAR"
+      ],
+      "source_evidence_ids": [
+        "E_DUAL"
+      ],
+      "condition_axes": {
+        "condition": [
+          "qualified_instance"
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [
+        "U_MAPPING",
+        "U_ED"
+      ],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_HANDOFF",
+        "THERMAL_READOUT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "POLAR_LOAD",
+        "POLAR_VERIFY",
+        "POLAR_HANDOFF",
+        "POLAR_READOUT",
+        "POLAR_UNLOAD",
+        "POLAR_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHAMBER",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_COVER",
+        "U_DEVELOP",
+        "U_ED",
+        "U_MAPPING",
+        "U_POLAR",
+        "U_PRINT",
+        "U_SCENE",
+        "U_SPACER",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    },
+    {
+      "id": "HYDROGEL_TRANSMISSION",
+      "title": "Measure reported transmission comparison",
+      "required_branch_ids": [
+        "PREP_COUPON"
+      ],
+      "service_ids": [
+        "SPECTRA"
+      ],
+      "source_evidence_ids": [
+        "E_FORM"
+      ],
+      "condition_axes": {
+        "material": [
+          "PNIPAM",
+          "LIHAM"
+        ],
+        "reported_temperature_C": [
+          25,
+          60
+        ]
+      },
+      "source_cycles": null,
+      "source_independent_specimens": null,
+      "extra_unknown_ids": [],
+      "classification": "physical_measurement_or_control",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "INSPECT",
+        "SPECTRA_LOAD",
+        "SPECTRA_VERIFY",
+        "SPECTRA_HANDOFF",
+        "SPECTRA_READOUT",
+        "SPECTRA_UNLOAD",
+        "SPECTRA_COMMIT",
+        "ARCHIVE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required membership; each service phase has distinct occurrence binding, condition, cycle and attempt. Branch graph defines prerequisites, not historical author chronology.",
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CHEM",
+        "U_CONFLICT",
+        "U_CUT",
+        "U_SCENE",
+        "U_SPECTRA",
+        "U_THERMAL",
+        "U_UV"
+      ],
+      "condition_values_are": "Reported comparison labels; qualified instance cards supply executable details. No automatic Cartesian crossing with other branches.",
+      "completion": "Every required condition cell, authorized nonempty cycle schedule, prerequisite lineage, service receipt, control record and archive/cleanup record must be validated. Literature resemblance alone earns no completion.",
+      "execution_ready": false,
+      "destructive_allocation": "No destructive reuse permitted; unknown compatibility requires new sibling or qualified reuse receipt.",
+      "expected_results_actor_visible": false
+    }
+  ]
+}

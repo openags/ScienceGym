@@ -1,0 +1,2470 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "operations": [
+    {
+      "id": "PLAN",
+      "actor": "robot",
+      "station_id": "WS_RECORDS",
+      "objects": [
+        "work order",
+        "allocation card"
+      ],
+      "tool": "terminal",
+      "interface": "campaign selector",
+      "preconditions": [
+        "branch IDs valid",
+        "finite schedule supplied"
+      ],
+      "action": "Bind selected scope to a finite nonempty branch/condition allocation and explicit gate-resolution cards.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "versioned episode manifest"
+      ],
+      "completion_evidence": [
+        "allocation receipt",
+        "scope declaration"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_ALLOCATION",
+        "U_REUSE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "RECEIVE",
+      "actor": "robot",
+      "station_id": "WS_STOCK",
+      "objects": [
+        "lots",
+        "part sets",
+        "carriers"
+      ],
+      "tool": "scanner and qualified gripper",
+      "interface": "indexed receiving trays",
+      "preconditions": [
+        "safe handling cards present"
+      ],
+      "action": "Scan incoming lots, part sets and carriers; inspect labels and package condition; separate accepted and quarantined inventory.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "inventory IDs assigned; uncertain lots quarantined"
+      ],
+      "completion_evidence": [
+        "lot and carrier map",
+        "incoming inspection"
+      ],
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_TAIJI",
+        "E_PLANET",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_MATERIAL",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "TRANSFER",
+      "actor": "robot",
+      "station_id": "WS_ROUTE",
+      "objects": [
+        "supported carrier",
+        "current object"
+      ],
+      "tool": "mobile base and supported end effector",
+      "interface": "source dock to reserved destination dock",
+      "preconditions": [
+        "unloaded",
+        "untethered",
+        "destination reserved",
+        "transport eligibility current"
+      ],
+      "action": "Restrain the identified specimen or part set in supported carrier, release source dock, traverse qualified route and confirm destination seating.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "one current location at destination"
+      ],
+      "completion_evidence": [
+        "departure receipt",
+        "arrival receipt",
+        "restraint inspection"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MATERIAL_ACCEPT",
+      "actor": "robot",
+      "station_id": "WS_STOCK",
+      "objects": [
+        "material lots",
+        "certificates"
+      ],
+      "tool": "scanner",
+      "interface": "lot acceptance API",
+      "preconditions": [
+        "lot identified",
+        "branch material declared"
+      ],
+      "action": "Match lot certificates and declared grades to branch material card; reject substitution of impact, macro-print or micro-print resin.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "accepted material-version record"
+      ],
+      "completion_evidence": [
+        "certificate association",
+        "unresolved conflict disposition"
+      ],
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_FAB",
+        "E_PLANET",
+        "E_SOFT",
+        "E_IMPACT"
+      ],
+      "unknown_input_ids": [
+        "U_MATERIAL"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "DESIGN_BIND",
+      "actor": "analysis_agent",
+      "station_id": "WS_DESIGN",
+      "objects": [
+        "CAD revision",
+        "material card",
+        "branch allocation"
+      ],
+      "tool": "terminal",
+      "interface": "design acceptance API",
+      "preconditions": [
+        "certified files supplied",
+        "all relevant geometry conflicts resolved"
+      ],
+      "action": "Bind approved part/build files and drawings to branch size, topology, phase scheme and certified dimensional conflict resolutions.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "frozen manufacture/assembly manifest"
+      ],
+      "completion_evidence": [
+        "CAD hashes",
+        "resolved conflict IDs"
+      ],
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_PLANET",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_CAD",
+        "U_PLANET_CAD",
+        "U_MICRO_GEOM"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "FAB_STAGE",
+      "actor": "robot",
+      "station_id": "WS_FAB",
+      "objects": [
+        "material lot",
+        "build plate",
+        "job"
+      ],
+      "tool": "qualified cartridge/plate gripper",
+      "interface": "service dock",
+      "preconditions": [
+        "service card approved",
+        "job matches design"
+      ],
+      "action": "Load identified accepted stock or cartridge and supported build plate into the approved service; select branch-specific job and inspect seating.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "service ready with material/job binding"
+      ],
+      "completion_evidence": [
+        "lot readback",
+        "job digest",
+        "plate occupancy"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_FAB",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "FAB_RUN",
+      "actor": "qualified_service",
+      "station_id": "WS_FAB",
+      "objects": [
+        "staged job",
+        "stock"
+      ],
+      "tool": "enclosed fabrication equipment",
+      "interface": "approved job API",
+      "preconditions": [
+        "enclosure safe",
+        "service qualification current"
+      ],
+      "action": "Request the qualified manufacturing service and monitor its progress and fault readbacks.",
+      "device_process": "Per approved card: machine metallic parts/frames or print integrated assembly; no layer, cure, machining or support-removal recipe invented.",
+      "postconditions": [
+        "manufactured object awaiting safe release"
+      ],
+      "completion_evidence": [
+        "job log",
+        "completion receipt"
+      ],
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_FRAME"
+      ],
+      "unknown_input_ids": [
+        "U_FAB"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "FAB_RELEASE",
+      "actor": "robot",
+      "station_id": "WS_FAB",
+      "objects": [
+        "manufactured parts",
+        "build plate"
+      ],
+      "tool": "qualified gripper and carrier",
+      "interface": "release dock",
+      "preconditions": [
+        "completed job",
+        "safe-release receipt"
+      ],
+      "action": "Verify service safe-release state; retrieve supported parts/build plate and preserve job and lot identity.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "manufactured objects in carrier"
+      ],
+      "completion_evidence": [
+        "release readback",
+        "retrieval receipt"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_FAB",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MICRO_BOX",
+      "actor": "robot",
+      "station_id": "WS_PREP",
+      "objects": [
+        "micro-Taiji print",
+        "baseplate",
+        "surrounding box"
+      ],
+      "tool": "supported plate nest and box jig",
+      "interface": "box-to-assembly support interface",
+      "preconditions": [
+        "assembly still on plate",
+        "correct size/phase file"
+      ],
+      "action": "Present the retained micro-Taiji assembly on its baseplate to the approved box/frame; engage the constraint fixture before detachment.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "boxed assembly remains registered on plate"
+      ],
+      "completion_evidence": [
+        "box occupancy image",
+        "phase inspection"
+      ],
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_MICRO_TAIJI"
+      ],
+      "unknown_input_ids": [
+        "U_FAB",
+        "U_PHASE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "BASEPLATE_RELEASE",
+      "actor": "robot",
+      "station_id": "WS_PREP",
+      "objects": [
+        "boxed assembly",
+        "baseplate"
+      ],
+      "tool": "qualified release fixture",
+      "interface": "supported baseplate interface",
+      "preconditions": [
+        "box engagement confirmed",
+        "release card qualified"
+      ],
+      "action": "Use qualified release tooling/service to separate box and constrained assembly together; inspect for cracks, displaced gears and lost phase.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "boxed assembly detached; baseplate retained separately"
+      ],
+      "completion_evidence": [
+        "release force/readback per card",
+        "before/after phase images"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_FAB",
+        "U_PHASE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "SUPPORT_CLEAR",
+      "actor": "qualified_service",
+      "station_id": "WS_PREP",
+      "objects": [
+        "macro planetary print",
+        "support material"
+      ],
+      "tool": "qualified service carrier",
+      "interface": "enclosed support-removal interface",
+      "preconditions": [
+        "material-specific service card",
+        "print identity bound"
+      ],
+      "action": "Dock the macro integrated print in approved support-removal service; retrieve only after service-safe release and inspect tooth spaces.",
+      "device_process": "Approved material-specific support removal; chemistry, duration and post-cure remain qualified inputs, not source recipes.",
+      "postconditions": [
+        "support removed with free tooth spaces"
+      ],
+      "completion_evidence": [
+        "service receipt",
+        "clearance images",
+        "residue check"
+      ],
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_FAB",
+        "U_MATERIAL"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "INCOMING_QC",
+      "actor": "robot",
+      "station_id": "WS_METROLOGY",
+      "objects": [
+        "manufactured part set",
+        "metrology card"
+      ],
+      "tool": "microscope and qualified gauges",
+      "interface": "datum fixture",
+      "preconditions": [
+        "calibration current",
+        "part versions fixed"
+      ],
+      "action": "Measure supplied drawing features, inspect tooth/shaft clearances and part integrity, and bind results to actual specimen version.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "accepted or quarantined part set"
+      ],
+      "completion_evidence": [
+        "dimension/clearance results",
+        "defect images"
+      ],
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_MICRO_TAIJI",
+        "E_PLANET",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_CAL",
+        "U_CAD",
+        "U_PHASE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "TAIJI_STAGE",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "Taiji gears",
+        "two frames",
+        "shafts"
+      ],
+      "tool": "qualified gripper",
+      "interface": "indexed supported nests",
+      "preconditions": [
+        "part set accepted",
+        "size and polarity map supplied"
+      ],
+      "action": "Place identified gears, front/back frames and shafts into supported assembly nests in the specified polarity order.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "staged arrangement"
+      ],
+      "completion_evidence": [
+        "part-to-pocket map",
+        "front/back orientation images"
+      ],
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_FRAME"
+      ],
+      "unknown_input_ids": [
+        "U_ROBOT",
+        "U_PHASE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "FRAME_FIRST",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "first frame",
+        "shafts"
+      ],
+      "tool": "shaft tool and support jig",
+      "interface": "frame holes and supported shaft interface",
+      "preconditions": [
+        "first-frame identity confirmed"
+      ],
+      "action": "Support the first frame and engage qualified shaft supports while maintaining the prescribed lattice datum.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "first frame and shafts provisionally captured"
+      ],
+      "completion_evidence": [
+        "shaft seating evidence",
+        "datum inspection"
+      ],
+      "source_evidence_ids": [
+        "E_FRAME"
+      ],
+      "unknown_input_ids": [
+        "U_CAD",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "GEAR_INSERT",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "gears",
+        "shafted frame"
+      ],
+      "tool": "qualified micro/macro gripper",
+      "interface": "gear bore and shaft interface",
+      "preconditions": [
+        "current part map",
+        "qualified insertion limit"
+      ],
+      "action": "Insert each assigned gear onto its supported shaft, present neighbor teeth in mesh, and verify front/back polarity without forcing contact.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "gear membership and engagement recorded"
+      ],
+      "completion_evidence": [
+        "seating readback",
+        "mesh image",
+        "part IDs"
+      ],
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_MICRO_TAIJI"
+      ],
+      "unknown_input_ids": [
+        "U_ROBOT",
+        "U_PHASE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "FRAME_CLOSE",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "second frame",
+        "gear array",
+        "shafts"
+      ],
+      "tool": "supported retention tool",
+      "interface": "frame closure interface",
+      "preconditions": [
+        "no tooth interference",
+        "first frame supported"
+      ],
+      "action": "Present the second frame over registered shafts, secure with approved retention and inspect spin clearance and component capture.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "closed captured assembly version"
+      ],
+      "completion_evidence": [
+        "retention inspection",
+        "free-rotation check"
+      ],
+      "source_evidence_ids": [
+        "E_FRAME"
+      ],
+      "unknown_input_ids": [
+        "U_CAD",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "PLANET_STAGE",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "planetary parts",
+        "shafts",
+        "rings"
+      ],
+      "tool": "qualified gripper",
+      "interface": "layered assembly nests",
+      "preconditions": [
+        "certified geometry conflicts resolved"
+      ],
+      "action": "Stage the assigned ring, sun, four planets per metacell, transmission gears and connecting shafts in layer-specific pockets.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "layer/member map established"
+      ],
+      "completion_evidence": [
+        "part count",
+        "layer occupancy"
+      ],
+      "source_evidence_ids": [
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_PLANET_CAD",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "RING_JOIN",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "ring array"
+      ],
+      "tool": "qualified joining tool",
+      "interface": "approved ring-block joints",
+      "preconditions": [
+        "join method qualified",
+        "ring IDs known"
+      ],
+      "action": "Join neighboring ring blocks with the approved rigid interface while maintaining the lattice datum and access to internal gears.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "connected ring topology"
+      ],
+      "completion_evidence": [
+        "joint inspection",
+        "lattice datum record"
+      ],
+      "source_evidence_ids": [
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_PLANET_CAD",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "PLANET_INSERT",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "sun gears",
+        "planet gears",
+        "ring array"
+      ],
+      "tool": "qualified gripper",
+      "interface": "ring/sun/planet mesh interfaces",
+      "preconditions": [
+        "ring array captured",
+        "phase card supplied"
+      ],
+      "action": "Seat sun and four orthogonal planets within each ring, preserving engagement and support; verify the actual planetary angle.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "metacells assembled with phase map"
+      ],
+      "completion_evidence": [
+        "mesh inspection",
+        "planet count and phase map"
+      ],
+      "source_evidence_ids": [
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_PLANET_CAD",
+        "U_PHASE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "TRANSMISSION_JOIN",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "metacells",
+        "transmission layer",
+        "shafts"
+      ],
+      "tool": "shaft/coupler tooling",
+      "interface": "sun-to-transmission interface",
+      "preconditions": [
+        "layer geometry qualified",
+        "system unpowered"
+      ],
+      "action": "Connect sun shafts to the separate transmission layer, engage neighbor transmission gears and inspect retention and synchronization.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "coupled planetary lattice"
+      ],
+      "completion_evidence": [
+        "shaft seating",
+        "layer image",
+        "synchronization inspection"
+      ],
+      "source_evidence_ids": [
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_PLANET_CAD",
+        "U_ROBOT",
+        "U_PHASE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "SOFT_FRAME",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "rubber frame"
+      ],
+      "tool": "compliant support jig",
+      "interface": "frame support regions",
+      "preconditions": [
+        "frame qualified",
+        "no tears or residual processing hazard"
+      ],
+      "action": "Support the printed rubber frame in a compliant nest and inspect beams and integral shafts before gear installation.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "supported frame ready"
+      ],
+      "completion_evidence": [
+        "frame condition and dimensions"
+      ],
+      "source_evidence_ids": [
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_MATERIAL",
+        "U_CAD",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "SOFT_INSERT",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "rubber frame",
+        "aluminum gears"
+      ],
+      "tool": "qualified gripper and shaft support",
+      "interface": "gear bores and rubber shafts",
+      "preconditions": [
+        "topology certified",
+        "insertion limits qualified"
+      ],
+      "action": "Install identified aluminum gears on compliant shafts according to the sparse topology; preserve deliberately absent gears and inspect engagement.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "sparse shape-morphing assembly version"
+      ],
+      "completion_evidence": [
+        "membership map",
+        "shaft integrity images"
+      ],
+      "source_evidence_ids": [
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_CAD",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "PATTERN_QC",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "current assembly"
+      ],
+      "tool": "camera",
+      "interface": "topology inspection",
+      "preconditions": [
+        "assembly captured"
+      ],
+      "action": "Check every required occupied and intentionally vacant position against the branch topology.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "verified topology record"
+      ],
+      "completion_evidence": [
+        "occupied/vacant map",
+        "component list"
+      ],
+      "source_evidence_ids": [
+        "E_SOFT",
+        "E_TAIJI",
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_CAD"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "PHASE_REGISTER",
+      "actor": "robot",
+      "station_id": "WS_METROLOGY",
+      "objects": [
+        "current assembly"
+      ],
+      "tool": "camera and angular datum fixture",
+      "interface": "observable gear marks/features",
+      "preconditions": [
+        "assembly topology verified",
+        "calibration current"
+      ],
+      "action": "Identify datum gear, front/back polarity, local axes and relevant Taiji or planetary angle using qualified metrology.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "phase datum tied to assembly version"
+      ],
+      "completion_evidence": [
+        "datum image",
+        "polarity and angle record"
+      ],
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_PHASE",
+        "U_CAL"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "PHASE_SET",
+      "actor": "robot",
+      "station_id": "WS_METROLOGY",
+      "objects": [
+        "current assembly",
+        "rotation adapter"
+      ],
+      "tool": "qualified indexing tool",
+      "interface": "designated drive gear/shaft",
+      "preconditions": [
+        "unloaded unless specifically qualified",
+        "requested condition valid",
+        "phase datum current"
+      ],
+      "action": "Engage the qualified unpowered rotation adapter, rotate to the scheduled condition and measure achieved phase; release adapter only after capture.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "new phase-state version"
+      ],
+      "completion_evidence": [
+        "requested/achieved angle",
+        "adapter engagement/release"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_PHASE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MESH_CHECK",
+      "actor": "robot",
+      "station_id": "WS_METROLOGY",
+      "objects": [
+        "phase-set assembly"
+      ],
+      "tool": "microscope/camera",
+      "interface": "mesh observation positions",
+      "preconditions": [
+        "phase-set receipt current"
+      ],
+      "action": "Inspect tooth engagement, clearance and phase transmission after rotation; stop if interference, disengagement or damaged teeth are observed.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "qualified engagement for condition"
+      ],
+      "completion_evidence": [
+        "mesh images",
+        "rotation/phase consistency"
+      ],
+      "source_evidence_ids": [
+        "E_TAIJI",
+        "E_PLANET",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_PHASE",
+        "U_REUSE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ASSEMBLY_QC",
+      "actor": "robot",
+      "station_id": "WS_METROLOGY",
+      "objects": [
+        "assembled specimen"
+      ],
+      "tool": "metrology tools",
+      "interface": "specimen acceptance API",
+      "preconditions": [
+        "all required inspections current"
+      ],
+      "action": "Accept final member list, dimensions, state and branch-family identity, preserving failed attempts and all part replacements.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "accepted specimen version"
+      ],
+      "completion_evidence": [
+        "assembly certificate",
+        "full lineage record"
+      ],
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_TAIJI",
+        "E_PLANET",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_CAL",
+        "U_REUSE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "CALIBRATE",
+      "actor": "qualified_service",
+      "station_id": "WS_TEST",
+      "objects": [
+        "machine",
+        "sensors",
+        "approved references"
+      ],
+      "tool": "qualified calibration fixture",
+      "interface": "calibration service API",
+      "preconditions": [
+        "qualification card supplied",
+        "no specimen under active load"
+      ],
+      "action": "Invoke approved calibration/verification for the chosen machine channels and fixture, inspect reference readings and bind validity to this session.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "current calibration certificate"
+      ],
+      "completion_evidence": [
+        "reference readings",
+        "acceptance and expiry"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_SHEAR"
+      ],
+      "unknown_input_ids": [
+        "U_CAL"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "FIXTURE_SELECT",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "machine",
+        "fixture set"
+      ],
+      "tool": "qualified fixture gripper",
+      "interface": "machine fixture interface",
+      "preconditions": [
+        "safe machine state",
+        "fixture qualified"
+      ],
+      "action": "With machine isolated, fit the branch-specific platen, tail clamps, shear guide or right-angle grooves and verify identity and secure seating.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "selected fixture mode"
+      ],
+      "completion_evidence": [
+        "fixture ID",
+        "retention and clearance inspection"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_SHEAR",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "COMP_SEAT",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "compression specimen"
+      ],
+      "tool": "supported gripper",
+      "interface": "platen-to-frame/ring-block interface",
+      "preconditions": [
+        "machine unloaded",
+        "correct fixture",
+        "phase checked"
+      ],
+      "action": "Place the supported sample between registered parallel loading faces; planetary loads contact ring blocks, not drive-layer teeth.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "compression specimen seated"
+      ],
+      "completion_evidence": [
+        "contact-face image",
+        "alignment record"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "TENSION_CLAMP",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "tension specimen",
+        "tails"
+      ],
+      "tool": "tail support and clamp interface",
+      "interface": "tail-to-jaw interface",
+      "preconditions": [
+        "correct strip family",
+        "machine unloaded",
+        "clamp card qualified"
+      ],
+      "action": "Support the specimen strip, insert designated tails into both qualified clamps, close under approved limits and verify seating/slip markers.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "tension specimen attached"
+      ],
+      "completion_evidence": [
+        "tail capture",
+        "jaw readback",
+        "gauge geometry"
+      ],
+      "source_evidence_ids": [
+        "E_PLANET"
+      ],
+      "unknown_input_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "SHEAR_PIN",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "3×3 Taiji sample",
+        "fixed fixture",
+        "sliding block"
+      ],
+      "tool": "shaft insertion tool",
+      "interface": "two-column shaft interfaces",
+      "preconditions": [
+        "fixture isolated",
+        "pins and guide qualified"
+      ],
+      "action": "Connect one shaft column to the fixed fixture and the opposite column to the roller-guided sliding block; inspect pin capture and guide freedom.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "finite shear boundary mounted"
+      ],
+      "completion_evidence": [
+        "pin seating",
+        "guide zero",
+        "free-guide check"
+      ],
+      "source_evidence_ids": [
+        "E_SHEAR"
+      ],
+      "unknown_input_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "SOFT_GROOVE",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "soft lattice or frame control"
+      ],
+      "tool": "compliant gripper",
+      "interface": "opposed grooves",
+      "preconditions": [
+        "grooves qualified",
+        "initial state inspected"
+      ],
+      "action": "Support the soft lattice or frame control in opposed right-angle grooves; register diagonal loading geometry without pre-locking the gear topology.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "diagonal specimen seated"
+      ],
+      "completion_evidence": [
+        "groove contact image",
+        "initial shape"
+      ],
+      "source_evidence_ids": [
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MOUNT_QC",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "mounted specimen"
+      ],
+      "tool": "camera and fixture readbacks",
+      "interface": "mount inspection",
+      "preconditions": [
+        "fixture and specimen versions agree"
+      ],
+      "action": "Bind fixture mode, actual dimensions, phase and specimen version; inspect alignment, free motion and forbidden contacts.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "current mount receipt"
+      ],
+      "completion_evidence": [
+        "boundary-condition declaration",
+        "alignment evidence"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_SHEAR",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_FIXTURE",
+        "U_PHASE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ZERO",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "mounted sample",
+        "sensors"
+      ],
+      "tool": "acquisition interface",
+      "interface": "zero/verification API",
+      "preconditions": [
+        "current calibration and mount receipt"
+      ],
+      "action": "Acquire unloaded references, machine position and force/displacement baseline; verify usable channels without overwriting raw offsets.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "zero receipt for this mount/session"
+      ],
+      "completion_evidence": [
+        "raw baseline",
+        "offset values and acceptance"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_SHEAR"
+      ],
+      "unknown_input_ids": [
+        "U_CAL",
+        "U_ACQ"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ACQ_ARM",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "mounted sample",
+        "acquisition channels"
+      ],
+      "tool": "DAQ",
+      "interface": "trigger and data sink interface",
+      "preconditions": [
+        "zero valid",
+        "finite loading card",
+        "storage ready"
+      ],
+      "action": "Register channels, units, timing and immutable data destination; arm force/displacement and synchronized imaging before loading.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "armed synchronized acquisition"
+      ],
+      "completion_evidence": [
+        "channel map",
+        "arm readback"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_SHEAR"
+      ],
+      "unknown_input_ids": [
+        "U_ACQ",
+        "U_LOAD"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "LOAD_CYCLE",
+      "actor": "device",
+      "station_id": "WS_TEST",
+      "objects": [
+        "mounted specimen"
+      ],
+      "tool": "enclosed loading machine",
+      "interface": "qualified machine controller",
+      "preconditions": [
+        "armed acquisition",
+        "current phase and calibration",
+        "limits approved"
+      ],
+      "action": "Request the bounded branch-specific loading/unloading schedule and monitor force, displacement, interlocks and fault state.",
+      "device_process": "Apply approved compression, tension, finite shear or diagonal loading cycles; rates, amplitudes and counts are supplied qualifications, not inferred from plots.",
+      "postconditions": [
+        "completed or interrupted cycle trace"
+      ],
+      "completion_evidence": [
+        "raw force/displacement/time",
+        "cycle markers",
+        "device completion"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_SHEAR",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_LOAD",
+        "U_ACQ"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "IMAGE",
+      "actor": "device",
+      "station_id": "WS_OBSERVE",
+      "objects": [
+        "mounted specimen",
+        "camera"
+      ],
+      "tool": "in-situ imager",
+      "interface": "current physical-station image stream",
+      "preconditions": [
+        "valid clock association",
+        "correct specimen version"
+      ],
+      "action": "Acquire images tied to current mounted specimen, phase and load-time record without moving the specimen.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "timestamped observation artifact"
+      ],
+      "completion_evidence": [
+        "image reference",
+        "station/version/time binding"
+      ],
+      "source_evidence_ids": [
+        "E_MICRO_TAIJI",
+        "E_ACTUATION",
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_ACQ"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ACQ_CLOSE",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "raw stream"
+      ],
+      "tool": "DAQ",
+      "interface": "close and checksum interface",
+      "preconditions": [
+        "acquisition completion or interrupt receipt"
+      ],
+      "action": "Seal acquisition after safe cycle completion, preserve all raw cycles and mark interruptions/missing channels without deleting transients.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "immutable acquired record"
+      ],
+      "completion_evidence": [
+        "sample counts",
+        "time bounds",
+        "checksum"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_DAMP"
+      ],
+      "unknown_input_ids": [
+        "U_ACQ"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "UNLOAD",
+      "actor": "device",
+      "station_id": "WS_TEST",
+      "objects": [
+        "mounted specimen"
+      ],
+      "tool": "loading machine",
+      "interface": "safe unload interface",
+      "preconditions": [
+        "loading complete or controlled abort"
+      ],
+      "action": "Request zero applied load and verified stopped motion; retain support while checking residual force and stored elastic energy.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "safe-release load state"
+      ],
+      "completion_evidence": [
+        "force/motion readback",
+        "unload receipt"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_SHEAR"
+      ],
+      "unknown_input_ids": [
+        "U_LOAD"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "RELEASE_FIXTURE",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "specimen",
+        "fixture",
+        "carrier"
+      ],
+      "tool": "qualified gripper and release tool",
+      "interface": "fixture release interfaces",
+      "preconditions": [
+        "authoritative safe unload",
+        "motor disconnected if fitted"
+      ],
+      "action": "Support the unloaded object before opening clamps or releasing pins/grooves, then place it in a restrained carrier.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "specimen detached and carrier-supported"
+      ],
+      "completion_evidence": [
+        "release readback",
+        "carrier occupancy"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "POST_INSPECT",
+      "actor": "robot",
+      "station_id": "WS_METROLOGY",
+      "objects": [
+        "tested specimen"
+      ],
+      "tool": "camera and metrology",
+      "interface": "post-test inspection",
+      "preconditions": [
+        "unloaded supported specimen",
+        "attempt preserved"
+      ],
+      "action": "Inspect teeth, shafts, frame, joints, residual shape and phase; classify eligible reuse, repair or quarantine under a qualified damage rule.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "conditioned specimen with explicit disposition"
+      ],
+      "completion_evidence": [
+        "damage images",
+        "reuse disposition",
+        "updated version"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG",
+        "E_SOFT",
+        "E_IMPACT"
+      ],
+      "unknown_input_ids": [
+        "U_REUSE",
+        "U_CAL"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MOTOR_MOUNT",
+      "actor": "robot",
+      "station_id": "WS_ACT",
+      "objects": [
+        "actuation specimen",
+        "motors",
+        "couplers"
+      ],
+      "tool": "qualified coupler tool",
+      "interface": "motor-to-designated shaft/groove interface",
+      "preconditions": [
+        "unpowered",
+        "family and motor map match"
+      ],
+      "action": "Support the correct actuation family and attach the specified motor count and locations using qualified couplers; inspect gear engagement.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "motors physically coupled"
+      ],
+      "completion_evidence": [
+        "motor IDs/count/positions",
+        "coupler inspection"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_MOTOR",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MOTOR_CONNECT",
+      "actor": "robot",
+      "station_id": "WS_ACT",
+      "objects": [
+        "coupled motors",
+        "controller",
+        "cables"
+      ],
+      "tool": "qualified electrical interface",
+      "interface": "keyed harness ports",
+      "preconditions": [
+        "electrical card and isolation valid"
+      ],
+      "action": "Connect approved keyed electrical interfaces, add strain relief and verify channel-to-motor map before enabling power.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "wired controller map"
+      ],
+      "completion_evidence": [
+        "connection and isolation test",
+        "port map"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_MOTOR"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MOTOR_HOME",
+      "actor": "device",
+      "station_id": "WS_ACT",
+      "objects": [
+        "wired actuation assembly"
+      ],
+      "tool": "motor controller and imager",
+      "interface": "home interface",
+      "preconditions": [
+        "guards and qualified mapping valid"
+      ],
+      "action": "Run only the approved homing/registration routine and measure achieved gear phase and synchronization before the demonstration.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "home and phase-sync receipt"
+      ],
+      "completion_evidence": [
+        "measured angle map",
+        "synchronization result"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_MOTOR",
+        "U_PHASE"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MOTOR_RUN",
+      "actor": "device",
+      "station_id": "WS_ACT",
+      "objects": [
+        "homed assembly"
+      ],
+      "tool": "controller",
+      "interface": "bounded command interface",
+      "preconditions": [
+        "home valid",
+        "synchronization qualified",
+        "no unsupported external load"
+      ],
+      "action": "Execute the finite approved phase schedule with synchronized observations and fault monitoring; retain actual angles separately from command pulses.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "actuation trace"
+      ],
+      "completion_evidence": [
+        "commands",
+        "readbacks",
+        "images",
+        "fault log"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_MOTOR",
+        "U_ACQ"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MOTOR_STOP",
+      "actor": "robot",
+      "station_id": "WS_ACT",
+      "objects": [
+        "actuation assembly",
+        "controller"
+      ],
+      "tool": "controller and release tool",
+      "interface": "stop/isolation/release interface",
+      "preconditions": [
+        "run ended or abort acknowledged"
+      ],
+      "action": "Stop the motors, verify no motion and de-energize while leaving sensor/coupler attachment intact for acquisition closure.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "motors stopped and de-energized; attachments retained"
+      ],
+      "completion_evidence": [
+        "motion stopped readback",
+        "power isolation proof"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_MOTOR",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "IMPACT_LOAD",
+      "actor": "qualified_service",
+      "station_id": "WS_IMPACT",
+      "objects": [
+        "impact specimen",
+        "carrier"
+      ],
+      "tool": "service carrier",
+      "interface": "guarded loading dock",
+      "preconditions": [
+        "impact qualification current",
+        "mass secured independently",
+        "service safe-loading state"
+      ],
+      "action": "Deliver the accepted 3×3 impact specimen to the enclosed service carrier; qualified service seats it on the specified support stack.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "specimen installed by service"
+      ],
+      "completion_evidence": [
+        "stack and phase inspection",
+        "loading receipt"
+      ],
+      "source_evidence_ids": [
+        "E_IMPACT"
+      ],
+      "unknown_input_ids": [
+        "U_IMPACT",
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "IMPACT_GUARD",
+      "actor": "qualified_service",
+      "station_id": "WS_IMPACT",
+      "objects": [
+        "impact station",
+        "mounted specimen"
+      ],
+      "tool": "approved service controller",
+      "interface": "preflight/arm API",
+      "preconditions": [
+        "service capacity approved",
+        "valid calibration",
+        "all guards acknowledged"
+      ],
+      "action": "Request service preflight covering specimen identity, declared source condition, calibrated acquisition, exclusion and all independent interlocks.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "arm eligibility token or refused state"
+      ],
+      "completion_evidence": [
+        "current guard token",
+        "preflight receipt"
+      ],
+      "source_evidence_ids": [
+        "E_IMPACT"
+      ],
+      "unknown_input_ids": [
+        "U_IMPACT",
+        "U_CAL",
+        "U_ACQ"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "IMPACT_RUN",
+      "actor": "qualified_service",
+      "station_id": "WS_IMPACT",
+      "objects": [
+        "guarded impact specimen"
+      ],
+      "tool": "approved impact service",
+      "interface": "token-bound execute API",
+      "preconditions": [
+        "fresh arm token",
+        "no access in exclusion zone",
+        "condition matches source/qualified card"
+      ],
+      "action": "Submit the condition-bound request to the approved service; service alone controls release and captures transmitted force.",
+      "device_process": "Closed approved service owns mass lift, electromagnetic release and arrest. Source reports 10 kg and 20 mm; this design supplies no open-robot drop procedure.",
+      "postconditions": [
+        "impact record; specimen pending quarantine"
+      ],
+      "completion_evidence": [
+        "authoritative service event",
+        "force/time record",
+        "completion/abort"
+      ],
+      "source_evidence_ids": [
+        "E_IMPACT"
+      ],
+      "unknown_input_ids": [
+        "U_IMPACT",
+        "U_ACQ"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "IMPACT_SAFE",
+      "actor": "qualified_service",
+      "station_id": "WS_IMPACT",
+      "objects": [
+        "impact station",
+        "tested sample"
+      ],
+      "tool": "impact-service controller",
+      "interface": "safe-release API",
+      "preconditions": [
+        "impact complete or secured abort"
+      ],
+      "action": "Obtain the service safe-state proof including mass secured, energy isolated and access enabled before any retrieval.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "safe retrieval token"
+      ],
+      "completion_evidence": [
+        "mass-secured and isolation readbacks",
+        "safe token"
+      ],
+      "source_evidence_ids": [
+        "E_IMPACT"
+      ],
+      "unknown_input_ids": [
+        "U_IMPACT"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "IMPACT_UNLOAD",
+      "actor": "qualified_service",
+      "station_id": "WS_IMPACT",
+      "objects": [
+        "impacted specimen",
+        "quarantine carrier"
+      ],
+      "tool": "supported service interface",
+      "interface": "safe unloading dock",
+      "preconditions": [
+        "valid safe token",
+        "no stored-energy exposure"
+      ],
+      "action": "With current safe token, transfer the tested specimen from service carrier to labeled quarantine carrier; preserve fragments and identity.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "quarantined terminal impact specimen"
+      ],
+      "completion_evidence": [
+        "retrieval receipt",
+        "fragment/part inventory"
+      ],
+      "source_evidence_ids": [
+        "E_IMPACT"
+      ],
+      "unknown_input_ids": [
+        "U_IMPACT",
+        "U_REUSE"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ANALYZE_Y",
+      "actor": "analysis_agent",
+      "station_id": "WS_ANALYSIS",
+      "objects": [
+        "immutable acquired records",
+        "analysis card"
+      ],
+      "tool": "analysis program",
+      "interface": "versioned input/output API",
+      "preconditions": [
+        "raw records sealed",
+        "analysis qualification supplied",
+        "correct measurement lineage"
+      ],
+      "action": "Compute branch-specific stress/strain from recorded actual dimensions; exclude the initial cycle from fitting, then report slopes near maximum strain across the qualified interval set. Retain cycle IDs, interval bounds and window sensitivity.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "analysis artifact with source/record lineage"
+      ],
+      "completion_evidence": [
+        "input hashes",
+        "method and window policy",
+        "output units"
+      ],
+      "source_evidence_ids": [
+        "E_YOUNG"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ANALYZE_SHEAR",
+      "actor": "analysis_agent",
+      "station_id": "WS_ANALYSIS",
+      "objects": [
+        "immutable acquired records",
+        "analysis card"
+      ],
+      "tool": "analysis program",
+      "interface": "versioned input/output API",
+      "preconditions": [
+        "raw records sealed",
+        "analysis qualification supplied",
+        "correct measurement lineage"
+      ],
+      "action": "For finite 3×3 fixture, compute gamma=relative displacement/loaded span and generalized stiffness G_prime=(dF/dDelta)/axial width with recorded finite geometry. Never relabel as periodic homogenized G.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "analysis artifact with source/record lineage"
+      ],
+      "completion_evidence": [
+        "input hashes",
+        "method and window policy",
+        "output units"
+      ],
+      "source_evidence_ids": [
+        "E_SHEAR"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ANALYZE_SOFT",
+      "actor": "analysis_agent",
+      "station_id": "WS_ANALYSIS",
+      "objects": [
+        "immutable acquired records",
+        "analysis card"
+      ],
+      "tool": "analysis program",
+      "interface": "versioned input/output API",
+      "preconditions": [
+        "raw records sealed",
+        "analysis qualification supplied",
+        "correct measurement lineage"
+      ],
+      "action": "Use the qualified diagonal-load geometry transformation and actual dimensions to report effective shear response; retain oscillations, slips and images rather than automatically smoothing them away.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "analysis artifact with source/record lineage"
+      ],
+      "completion_evidence": [
+        "input hashes",
+        "method and window policy",
+        "output units"
+      ],
+      "source_evidence_ids": [
+        "E_SOFT"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ANALYZE_DAMP",
+      "actor": "analysis_agent",
+      "station_id": "WS_ANALYSIS",
+      "objects": [
+        "immutable acquired records",
+        "analysis card"
+      ],
+      "tool": "analysis program",
+      "interface": "versioned input/output API",
+      "preconditions": [
+        "raw records sealed",
+        "analysis qualification supplied",
+        "correct measurement lineage"
+      ],
+      "action": "For eligible measured P+(3°) cyclic records, integrate enclosed hysteresis area divided by the loading-curve-to-strain-axis area; preserve strain amplitude and measured lineage. Keep FEA curves separate.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "analysis artifact with source/record lineage"
+      ],
+      "completion_evidence": [
+        "input hashes",
+        "method and window policy",
+        "output units"
+      ],
+      "source_evidence_ids": [
+        "E_DAMP"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ANALYZE_IMPACT",
+      "actor": "analysis_agent",
+      "station_id": "WS_ANALYSIS",
+      "objects": [
+        "immutable acquired records",
+        "analysis card"
+      ],
+      "tool": "analysis program",
+      "interface": "versioned input/output API",
+      "preconditions": [
+        "raw records sealed",
+        "analysis qualification supplied",
+        "correct measurement lineage"
+      ],
+      "action": "Extract transmitted peak force under the qualified filtering/bandwidth policy; compare the actual 0°, 7.5°, 15°, 22.5°, 30° conditions and retain raw traces, material identity and baseline.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "analysis artifact with source/record lineage"
+      ],
+      "completion_evidence": [
+        "input hashes",
+        "method and window policy",
+        "output units"
+      ],
+      "source_evidence_ids": [
+        "E_IMPACT"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ANALYZE_ACT",
+      "actor": "analysis_agent",
+      "station_id": "WS_ANALYSIS",
+      "objects": [
+        "immutable acquired records",
+        "analysis card"
+      ],
+      "tool": "analysis program",
+      "interface": "versioned input/output API",
+      "preconditions": [
+        "raw records sealed",
+        "analysis qualification supplied",
+        "correct measurement lineage"
+      ],
+      "action": "Associate actual gear phases and synchronization with motor commands and images; report qualified demonstration completion without inventing response time, torque or speed measurements.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "analysis artifact with source/record lineage"
+      ],
+      "completion_evidence": [
+        "input hashes",
+        "method and window policy",
+        "output units"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "COMPARE",
+      "actor": "analysis_agent",
+      "station_id": "WS_ANALYSIS",
+      "objects": [
+        "analysis artifacts",
+        "control records"
+      ],
+      "tool": "analysis program",
+      "interface": "comparison-package API",
+      "preconditions": [
+        "required parents present",
+        "scope matches campaign"
+      ],
+      "action": "Assemble condition-matched experimental comparisons and paired controls; identify finite/periodic, measured/modeled and material differences rather than forcing agreement.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "comparison package"
+      ],
+      "completion_evidence": [
+        "parent IDs",
+        "conditions",
+        "uncertainty declaration"
+      ],
+      "source_evidence_ids": [
+        "E_FRAME",
+        "E_PLANET",
+        "E_SOFT",
+        "E_DAMP"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ARCHIVE",
+      "actor": "analysis_agent",
+      "station_id": "WS_RECORDS",
+      "objects": [
+        "campaign artifacts"
+      ],
+      "tool": "terminal",
+      "interface": "archive API",
+      "preconditions": [
+        "all scope obligations accounted for"
+      ],
+      "action": "Commit immutable raw and derived artifact references, gate receipts, failed attempts and safe terminal states to the campaign report.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "sealed report with scoped completion"
+      ],
+      "completion_evidence": [
+        "manifest/checksums",
+        "branch closure ledger"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_ALLOCATION"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "CLEAN",
+      "actor": "robot",
+      "station_id": "WS_CLEAN",
+      "objects": [
+        "fixtures",
+        "tools",
+        "residue",
+        "parts"
+      ],
+      "tool": "qualified cleaning tools",
+      "interface": "cleaning and waste interfaces",
+      "preconditions": [
+        "safe unloaded de-energized state",
+        "waste card supplied"
+      ],
+      "action": "Inspect tools and station after isolation, recover loose parts and route residue/support waste using qualified material-specific procedures.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "station released; waste and parts tracked"
+      ],
+      "completion_evidence": [
+        "isolation proof",
+        "cleanliness and waste receipts"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_CLEAN",
+        "U_MATERIAL",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "STORE",
+      "actor": "robot",
+      "station_id": "WS_CLEAN",
+      "objects": [
+        "specimens",
+        "carriers"
+      ],
+      "tool": "supported gripper",
+      "interface": "storage/quarantine docks",
+      "preconditions": [
+        "post-test disposition current"
+      ],
+      "action": "Place accepted reusable objects or quarantined terminal objects in distinct labeled supports; preserve last phase, damage and location.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "one terminal storage location"
+      ],
+      "completion_evidence": [
+        "storage and disposition receipt"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_CLEAN",
+        "U_REUSE",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "NUMERICAL_CONFIG",
+      "actor": "analysis_agent",
+      "station_id": "WS_NUMERICAL",
+      "objects": [
+        "solver deck",
+        "model inputs"
+      ],
+      "tool": "numerical service",
+      "interface": "configuration API",
+      "preconditions": [
+        "complete deck supplied",
+        "physical/numerical namespace distinct"
+      ],
+      "action": "Bind qualified solver deck, contacts, material law, mesh, convergence and boundary mode to the named numerical branch.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "frozen numerical configuration"
+      ],
+      "completion_evidence": [
+        "deck hash",
+        "boundary/contact labels"
+      ],
+      "source_evidence_ids": [
+        "E_FEA"
+      ],
+      "unknown_input_ids": [
+        "U_FEA"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "NUMERICAL_RUN",
+      "actor": "device",
+      "station_id": "WS_NUMERICAL",
+      "objects": [
+        "qualified model"
+      ],
+      "tool": "solver",
+      "interface": "numerical job API",
+      "preconditions": [
+        "valid config",
+        "numerical scope selected"
+      ],
+      "action": "Run only the qualified numerical case and retain residuals/convergence and solver output as modeled data.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "modeled output or explicit failure"
+      ],
+      "completion_evidence": [
+        "solver receipt",
+        "convergence log"
+      ],
+      "source_evidence_ids": [
+        "E_FEA"
+      ],
+      "unknown_input_ids": [
+        "U_FEA"
+      ],
+      "translation_kind": "device_process",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "NUMERICAL_REPORT",
+      "actor": "analysis_agent",
+      "station_id": "WS_NUMERICAL",
+      "objects": [
+        "modeled outputs"
+      ],
+      "tool": "analysis program",
+      "interface": "modeled-result API",
+      "preconditions": [
+        "solver output integrity verified"
+      ],
+      "action": "Extract branch-specific contact, effective stiffness, anisotropy or damping results with finite/periodic boundary and friction attribution intact.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "separate modeled report"
+      ],
+      "completion_evidence": [
+        "input hashes",
+        "units",
+        "model limitations"
+      ],
+      "source_evidence_ids": [
+        "E_FEA",
+        "E_DAMP"
+      ],
+      "unknown_input_ids": [
+        "U_FEA",
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "analysis_only",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ACT_ACQ_ARM",
+      "actor": "robot",
+      "station_id": "WS_ACT",
+      "objects": [
+        "mounted sample",
+        "acquisition channels"
+      ],
+      "tool": "DAQ",
+      "interface": "trigger and data sink interface",
+      "preconditions": [
+        "home and phase-sync receipt valid",
+        "finite actuation schedule supplied",
+        "qualified sensor timing and storage ready"
+      ],
+      "action": "Initialize synchronized phase imagery, motor command/readback channels and immutable raw destination; require successful acquisition-ready receipt before enabling motion.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "actuation acquisition armed"
+      ],
+      "completion_evidence": [
+        "channel/clock map",
+        "storage and acquisition-ready readbacks"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_ACQ",
+        "U_MOTOR"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ACT_ACQ_CLOSE",
+      "actor": "robot",
+      "station_id": "WS_ACT",
+      "objects": [
+        "raw stream"
+      ],
+      "tool": "DAQ",
+      "interface": "close and checksum interface",
+      "preconditions": [
+        "motion stopped",
+        "active acquisition identity matches current specimen"
+      ],
+      "action": "After controller motion has stopped, seal command, phase and image streams into one immutable actuation record; retain all faults and missing observations.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "sealed actuation raw artifact"
+      ],
+      "completion_evidence": [
+        "raw artifact checksum",
+        "start/end time and completeness",
+        "acquisition-closed receipt"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_ACQ"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "MICRO_SHAFT_CAPTURE",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "boxed micro-Taiji array",
+        "micro steel shafts",
+        "polymer frame or actuation attachment interface"
+      ],
+      "tool": "qualified micro/macro gripper",
+      "interface": "gear bore and shaft interface",
+      "preconditions": [
+        "boxed released array supported",
+        "micro shaft material and fit qualified",
+        "attachment card specifies non-damaging sequence"
+      ],
+      "action": "With the boxed micro array supported, engage each qualified micro steel shaft through the gear bore into the polymer-frame or motor interface, according to the branch attachment card; preserve phase and inspect retention.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "test/actuation micro array captured by identified shafts"
+      ],
+      "completion_evidence": [
+        "shaft IDs and material certificates",
+        "seating/retention inspection",
+        "before/after phase images"
+      ],
+      "source_evidence_ids": [
+        "E_MICRO_TAIJI"
+      ],
+      "unknown_input_ids": [
+        "U_MATERIAL",
+        "U_CAD",
+        "U_ROBOT",
+        "U_PHASE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "SI Fig. 8 specifies micro steel shafts connecting gears to frame/motor. Placement after constrained plate release is an authored route requiring qualified attachment choreography, not a source-described chronology.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    },
+    {
+      "id": "ACT_RELEASE",
+      "actor": "robot",
+      "station_id": "WS_ACT",
+      "objects": [
+        "actuation assembly",
+        "controller"
+      ],
+      "tool": "controller and release tool",
+      "interface": "stop/isolation/release interface",
+      "preconditions": [
+        "motion stopped and power isolated",
+        "actuation raw record sealed"
+      ],
+      "action": "After acquisition closure, support cables and detach electrical harnesses and couplers using the qualified release sequence; place specimen in supported carrier.",
+      "device_process": "None; robot does not implicitly execute an enclosed device process.",
+      "postconditions": [
+        "safe uncoupled carrier-supported specimen"
+      ],
+      "completion_evidence": [
+        "harness/coupler release receipts",
+        "carrier occupancy"
+      ],
+      "source_evidence_ids": [
+        "E_ACTUATION"
+      ],
+      "unknown_input_ids": [
+        "U_MOTOR",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "source_boundary": "Evidence supports the scientific operation; robot motion/interface and receipts are authored. Numeric limits not listed are unknown.",
+      "failure_and_recovery": "Stop on identity/version mismatch, unsupported contact, missing qualification, stale calibration, exceeded limit or device fault. Preserve raw evidence and attempt ID; support and isolate specimen. Qualified recovery requires a new attempt and fresh dependent inspections.",
+      "ownership": "Robot handles only safe released objects. Enclosed service owns energized/loaded motion. Observations never teleport the specimen."
+    }
+  ],
+  "operation_ids_are": "Reusable templates, not evidence of historical serial order. Recipes instantiate each occurrence with branch, condition, specimen/version, attempt and repeat context.",
+  "operation_count": 69,
+  "no_execution_performed": true
+}

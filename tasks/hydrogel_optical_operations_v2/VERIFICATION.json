@@ -1,0 +1,64 @@
+{
+  "schema_version": "hydrogel_optical_verification.v1",
+  "doi": "10.1038/s41563-023-01649-3",
+  "verified_utc": "2026-10-03T20:13:37.653047+00:00",
+  "python": "3.12.14",
+  "status": "passed_static_and_synthetic_contract_checks",
+  "author_unit_methods": 17,
+  "selected_branch_positive_fixtures": 36,
+  "whole_campaign_positive_fixtures": 1,
+  "authored_negative_cases": 83,
+  "independent_checks": {
+    "static": 211,
+    "adversarial": 43,
+    "structural": 158,
+    "export_logic": 17,
+    "failures": 0
+  },
+  "results": [
+    {
+      "command": "python3 -B -m unittest discover -s tests -v",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_actor_boundary (test_contract.ContractTests.test_actor_boundary) ... ok\ntest_all_selected_branches (test_contract.ContractTests.test_all_selected_branches) ... ok\ntest_cycle_lineages (test_contract.ContractTests.test_cycle_lineages) ... ok\ntest_negative_mutations (test_contract.ContractTests.test_negative_mutations) ... ok\ntest_reference_integrity (test_contract.ContractTests.test_reference_integrity) ... ok\ntest_source_gaps (test_contract.ContractTests.test_source_gaps) ... ok\ntest_whole_campaign (test_contract.ContractTests.test_whole_campaign) ... ok\ntest_whole_omission (test_contract.ContractTests.test_whole_omission) ... ok\ntest_exact_export (test_export.ExportTests.test_exact_export) ... ok\ntest_export_mutations (test_export.ExportTests.test_export_mutations) ... ok\ntest_symlink (test_export.ExportTests.test_symlink) ... ok\ntest_image_count_merge (test_lineage.LineageTests.test_image_count_merge) ... ok\ntest_incompatible_control_dependency (test_lineage.LineageTests.test_incompatible_control_dependency) ... ok\ntest_ip_s_required (test_lineage.LineageTests.test_ip_s_required) ... ok\ntest_lineage_mutations (test_lineage.LineageTests.test_lineage_mutations) ... ok\ntest_parent_condition_swap (test_lineage.LineageTests.test_parent_condition_swap) ... ok\ntest_sem_reuse (test_lineage.LineageTests.test_sem_reuse) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.459s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B tests/verify_package.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"check\": \"static_package\",\n  \"passed\": true,\n  \"errors\": [],\n  \"branches\": 36,\n  \"operations\": 107,\n  \"coverage\": 53,\n  \"no_execution_or_simulation\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 -B tests/verify_export.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"check\": \"exact_export\",\n  \"passed\": true,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    }
+  ],
+  "code_hashes": {
+    "tests/test_contract.py": "15aedf8de8513dddd1cb68f99b90e7561646fd12d43a132d5bb3f3a2af8199bf",
+    "tests/verify_export.py": "5d4e8f5b5231ccf4399709fff7501df405ebd8b318e32b210dbcc82b5dc81293",
+    "tests/test_lineage.py": "c18acb42d5c24065e10635926be2835525f75227f1357dd52037e4c00e6285ce",
+    "tests/verify_package.py": "cc5076f247c6fd660432361ccb8016b533b4aac5652d66be1de92d31242b0f05",
+    "tests/test_export.py": "47c682cda9ada45a5360454ef1ebdb81f440c422b3d6c5c76f59d559a133b90d",
+    "tests/contract.py": "7127f9c7f36070386d5621866a109d5e2333968f9bd7269d5614b4d7e31a1f2e"
+  },
+  "independent_receipts": [
+    "review/audit.json",
+    "review/REPORT.md",
+    "review/static_receipt.json",
+    "review/adversarial_receipt.json",
+    "review/structural_receipt.json",
+    "review/export_receipt.json"
+  ],
+  "verification_limits": [
+    "Synthetic fixture authority only; no signature verifier or production event logger",
+    "No hardware or robot actuation",
+    "No physical simulation or numerical reproduction",
+    "No scientific replication",
+    "No actual scene, geometry, grasp, sensor analysis or operating-card qualification",
+    "Four Extended Data image inspections absent",
+    "No external write or publisher-source export"
+  ],
+  "final_freeze_protocol": "After this receipt and STATUS were written, the exact allowlist was regenerated and the same three read-only commands were rerun. A subsequent independent read-only check is requested without changing payload receipts."
+}

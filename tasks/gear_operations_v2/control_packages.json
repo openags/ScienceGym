@@ -1,0 +1,93 @@
+{
+  "schema_version": "gear_paper_task.v1",
+  "doi": "10.1038/s41563-022-01269-3",
+  "packages": [
+    {
+      "id": "CP_TAIJI_FRAME",
+      "required_branch_ids": [
+        "TAIJI_PLUS",
+        "TAIJI_MINUS",
+        "STEEL_FRAME_CONTROL"
+      ],
+      "match": [
+        "load axis",
+        "actual geometry",
+        "phase/polarity",
+        "boundary mode",
+        "material/lot declaration"
+      ],
+      "warning": "Frame effective modulus and gear-lattice modulus remain separate records; no guessed subtraction."
+    },
+    {
+      "id": "CP_PLANETARY",
+      "required_branch_ids": [
+        "STEEL_PLANET_COMP",
+        "STEEL_PLANET_TENSION",
+        "MACRO_PLANET_COMP",
+        "MACRO_PLANET_TENSION",
+        "MICRO_PLANET_COMP",
+        "MICRO_PLANET_TENSION"
+      ],
+      "match": [
+        "material family",
+        "actual phase",
+        "loading mode",
+        "specimen shape",
+        "contact/clamp boundaries"
+      ],
+      "warning": "Do not pair short steel tension with long polymer tension as identical boundary controls."
+    },
+    {
+      "id": "CP_SOFT_FRAME",
+      "required_branch_ids": [
+        "SOFT_SHEAR",
+        "RUBBER_FRAME_CONTROL"
+      ],
+      "match": [
+        "frame geometry and material",
+        "diagonal fixture",
+        "rate/card",
+        "analysis transform"
+      ],
+      "warning": "Preserve slips/interlock and frame-only curve. Gear membership differs deliberately."
+    },
+    {
+      "id": "CP_DAMP",
+      "required_branch_ids": [
+        "TAIJI_PLUS"
+      ],
+      "required_analysis_ids": [
+        "DAMPING_ANALYSIS"
+      ],
+      "match": [
+        "post-initial cycle identity",
+        "angle",
+        "strain amplitude",
+        "raw trace and integration bounds"
+      ],
+      "warning": "Measured points and 3D FEA curve have distinct parents; ratio uses loading-curve area denominator."
+    },
+    {
+      "id": "CP_IMPACT",
+      "required_branch_ids": [
+        "IMPACT"
+      ],
+      "match": [
+        "impact material identity",
+        "3×3 geometry",
+        "10-kg/20-mm declared source condition",
+        "sensor stack/calibration/bandwidth",
+        "actual angles"
+      ],
+      "required_angles_deg": [
+        0,
+        7.5,
+        15,
+        22.5,
+        30
+      ],
+      "warning": "Different terminal specimens at conditions must be tracked; source does not establish independent replicate counts."
+    }
+  ],
+  "control_record_policy": "No control record or comparison is fabricated by this design. Required parents are immutable acquired artifacts or declared separate modeled comparison artifacts."
+}

@@ -1,0 +1,164 @@
+{
+  "review_utc": "2026-10-03T20:11:08.613812+00:00",
+  "scope": "Original sentinel export-root checks; no publisher assets or actual export",
+  "verifier_sha256": "5d4e8f5b5231ccf4399709fff7501df405ebd8b318e32b210dbcc82b5dc81293",
+  "cases": [
+    {
+      "name": "baseline",
+      "expected": "accept",
+      "actual": "accept",
+      "passed": true,
+      "diagnostic": []
+    },
+    {
+      "name": "unlisted_extra.json",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "file-set mismatch: ['extra.json']"
+      ]
+    },
+    {
+      "name": "unlisted_unlisted.pdf",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "file-set mismatch: ['unlisted.pdf']"
+      ]
+    },
+    {
+      "name": "unlisted_.hidden.md",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "file-set mismatch: ['.hidden.md']"
+      ]
+    },
+    {
+      "name": "unlisted___pycache___unlisted.pdf",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "file-set mismatch: ['__pycache__/unlisted.pdf']"
+      ]
+    },
+    {
+      "name": "unlisted_nested___pycache___unlisted.json",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "file-set mismatch: ['nested/__pycache__/unlisted.json']"
+      ]
+    },
+    {
+      "name": "unlisted_directory_symlink",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "symlink present in export root",
+        "file-set mismatch: ['unlisted_link']"
+      ]
+    },
+    {
+      "name": "listed_file_symlink",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "symlink linked.md",
+        "symlink present in export root"
+      ]
+    },
+    {
+      "name": "hash_mismatch",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "hash mismatch agent_visible.json"
+      ]
+    },
+    {
+      "name": "actor_allowlist_expanded",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "actor export boundary changed"
+      ]
+    },
+    {
+      "name": "publisher_boundary_changed",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "publisher boundary changed"
+      ]
+    },
+    {
+      "name": "duplicate_manifest_entry",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "empty or duplicate allowlist"
+      ]
+    },
+    {
+      "name": "path_traversal",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "invalid export path ../outside.json",
+        "file-set mismatch: ['../outside.json']",
+        "hash key mismatch"
+      ]
+    },
+    {
+      "name": "malformed_files_None",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed allowlist files"
+      ]
+    },
+    {
+      "name": "malformed_files_{}",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed allowlist files"
+      ]
+    },
+    {
+      "name": "malformed_files_[None]",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed allowlist files"
+      ]
+    },
+    {
+      "name": "malformed_files_[{}]",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "diagnostic": [
+        "malformed allowlist files"
+      ]
+    }
+  ],
+  "passed": 17,
+  "failed": 0
+}
