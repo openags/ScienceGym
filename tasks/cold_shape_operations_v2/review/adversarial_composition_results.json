@@ -1,0 +1,58 @@
+{
+  "scope": "Synthetic composition probes only; no runtime/device action.",
+  "contract_sha256": "85f203744a6ab3479505bc226004ed4bb2c979169c6430ebec2d32c9b31903c0",
+  "results": [
+    {
+      "name": "campaign_ignores_explicit_bad_service_bindings",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": {
+        "scope": "selected_episode",
+        "result": "synthetic_bookkeeping_pass",
+        "physical_execution_validated": false
+      },
+      "reason": "evaluate_campaign calls validate_service_trace, not validate_service_binding; explicit identity/location/material/calibration errors are ignored."
+    },
+    {
+      "name": "campaign_does_not_validate_transfer",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": {
+        "scope": "selected_episode",
+        "result": "synthetic_bookkeeping_pass",
+        "physical_execution_validated": false
+      },
+      "reason": "Transport helper exists but campaign MOVE receipts need neither route/context nor safe-transfer validation."
+    },
+    {
+      "name": "campaign_has_no_raw_measurement_requirement",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": {
+        "scope": "selected_episode",
+        "result": "synthetic_bookkeeping_pass",
+        "physical_execution_validated": false
+      },
+      "reason": "Unmodified positive campaign fixture contains phase/operation/service receipt labels but no raw measurement records, hashes, units or measured-class checks."
+    },
+    {
+      "name": "campaign_ignores_reversed_operation_execution_order",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": {
+        "scope": "selected_episode",
+        "result": "synthetic_bookkeeping_pass",
+        "physical_execution_validated": false
+      },
+      "reason": "Membership alone permits inverse operation order; no occurrence-level event/phase mapping enforces operation ordering."
+    },
+    {
+      "name": "bound_service_wrong_object_material",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": true,
+      "reason": "Expected B1 service is accepted for object context explicitly marked B2."
+    }
+  ],
+  "unexpected_acceptances": 5
+}

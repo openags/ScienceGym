@@ -1,0 +1,42 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "status": "synthetic_record_model_only",
+  "scope": "Logical evidence dependencies and occurrence accounting. No trusted event logger, motion controller or acoustic backend is implemented.",
+  "occurrence_fields": [
+    "id",
+    "operation_id",
+    "scope",
+    "entity_id",
+    "campaign_id",
+    "sequence",
+    "revision",
+    "status",
+    "prerequisite_events"
+  ],
+  "scopes": {
+    "shared": "Campaign-wide prerequisites and closure",
+    "job": "Each finite fabrication job identified by the qualified part manifest",
+    "part": "Each printed component after fabrication",
+    "microphone": "Separate calibration load, acquisition and release for each of two physical microphones",
+    "condition": "Separate source isolation, panel state, start, closure and reference-stability evidence for each condition",
+    "point": "Each of 190 registered positions within each condition",
+    "readout": "Every selected or failed raw-readout attempt",
+    "route": "Stock-carrier transfer",
+    "part_route": "Printer, finishing, inspection and assembly transfers",
+    "panel_route": "Assembly, inspection and apparatus transfers",
+    "mic_route": "Stock, calibration and apparatus transfers"
+  },
+  "test_function": "tests/contract.py: occurrence_graph and validate_occurrences",
+  "receipt_semantics": "Synthetic accepted receipts establish only bookkeeping for tests. Production receipt status must come from independently authenticated event infrastructure.",
+  "limits": [
+    "No timestamp-to-hardware synchronization is validated",
+    "No reachability, payload support, acoustic boundary condition or collision is validated",
+    "Qualified cards in test fixtures are explicit synthetic placeholders; test passing does not resolve any of the seventeen execution gates",
+    "Exact occurrence ancestry is checked, but sensor truth and measurement uncertainty require a future trusted implementation"
+  ],
+  "branch_scope": "One paired campaign with all declared fabrication and setup prerequisites, both condition episodes and final cleanup. Numerical branches are not executed.",
+  "location_aware_cleanup": {
+    "final_condition_with": "Support and remove installed panel, inspect, retain and return",
+    "final_condition_without": "Verify panel already retained, inspect and return without reinstalling"
+  }
+}

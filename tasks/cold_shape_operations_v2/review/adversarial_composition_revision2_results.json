@@ -1,0 +1,86 @@
+{
+  "scope": "Synthetic binding/transport/raw-record composition regression only; no runtime or physics.",
+  "contract_sha256": "403eea6a7103dc112fb258c40ef3125f5df82e45d195ca967ed8e2e6f57ae0a0",
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "name": "valid_composed_campaign",
+      "expected": "accept",
+      "actual": "accept",
+      "passed": true,
+      "detail": {
+        "scope": "selected_episode",
+        "result": "synthetic_bookkeeping_pass",
+        "physical_execution_validated": false
+      }
+    },
+    {
+      "name": "explicit_bad_service_bindings",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "detail": "service binding version"
+    },
+    {
+      "name": "invented_transfer_route",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "detail": "route mismatch"
+    },
+    {
+      "name": "connected_transfer_tethers",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "detail": "connected payload transfer"
+    },
+    {
+      "name": "no_raw_measurements",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "detail": "missing raw observations"
+    },
+    {
+      "name": "numerical_record_masquerading_as_raw",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "detail": "not measured raw data"
+    },
+    {
+      "name": "context_material_contradiction",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "detail": "specimen does not match material cell"
+    },
+    {
+      "name": "service_before_required_transfer",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "detail": "wrong specimen location/version"
+    },
+    {
+      "name": "operation_membership_list_is_intentionally_unordered",
+      "expected": "accept",
+      "actual": "accept",
+      "passed": true,
+      "detail": {
+        "scope": "selected_episode",
+        "result": "synthetic_bookkeeping_pass",
+        "physical_execution_validated": false
+      }
+    },
+    {
+      "name": "standalone_bound_service_context_material",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "detail": "context material substitution"
+    }
+  ]
+}

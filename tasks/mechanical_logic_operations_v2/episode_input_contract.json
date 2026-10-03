@@ -1,0 +1,33 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "required_inputs": [
+    "nonempty_selected_branch_ids",
+    "finite_nonempty_condition_schedule",
+    "unique_specimen_and_case_allocation",
+    "qualified_gate_cards",
+    "calibration_and_uncertainty_plan",
+    "current_component_graph",
+    "station_custody_and_transport_cards",
+    "raw_event_backend"
+  ],
+  "unresolved_defaults_forbidden": true,
+  "scope_modes": [
+    "selected_route_design_episode",
+    "whole_paper_physical_campaign"
+  ],
+  "whole_paper_rule": "All physical branches plus prerequisite/control/cleanup closure; does not imply source_complete or scientific replication",
+  "qualified_handoff": {
+    "allowed": true,
+    "required": [
+      "provider_identity",
+      "object_ids_and_revisions",
+      "station_pose",
+      "energy_and_attachment_state",
+      "qualification_scope",
+      "timestamp",
+      "remaining_terminal_work"
+    ]
+  },
+  "case_counts": "Boolean truth-table combinations specified by function; repeats and campaigns remain inputs, never zero-filled."
+}

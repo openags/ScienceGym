@@ -1,0 +1,80 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "packages": [
+    {
+      "id": "CP_RESPONSE",
+      "branches": [
+        "NORMAL_TEST",
+        "SMALL_TEST",
+        "MEMORY_TEST"
+      ],
+      "requires": [
+        "current_force_displacement_calibration",
+        "no_load_baseline",
+        "role_specific_reset",
+        "integrity_inspection",
+        "uncertainty_plan"
+      ]
+    },
+    {
+      "id": "CP_LOGIC",
+      "branches": [
+        "NOR",
+        "NOT",
+        "OR",
+        "AND",
+        "DEFECT_ROUTING"
+      ],
+      "requires": [
+        "fresh_case_reset",
+        "verified_mask",
+        "actual_input_observation",
+        "row_contact_history",
+        "hardware_excitation_window",
+        "calibrated_datum_and_deadband",
+        "post_case_reset"
+      ]
+    },
+    {
+      "id": "CP_STORAGE",
+      "branches": [
+        "VOLATILE_STORAGE"
+      ],
+      "requires": [
+        "post_write_pre_upstream_release_baseline_same_hold_epoch",
+        "two_rows_continuously_energized",
+        "upstream_release_observation",
+        "after_state_observation",
+        "full_clear_receipt"
+      ]
+    },
+    {
+      "id": "CP_MECHANICAL",
+      "branches": [
+        "MECHANICAL_NOR"
+      ],
+      "requires": [
+        "fresh_mechanical_reset",
+        "verified_memory_passages",
+        "actual_input_observation",
+        "bar_force_travel_bounds",
+        "post_case_release",
+        "proof_specific_loading_and_readout_calibration"
+      ]
+    },
+    {
+      "id": "CP_MESO",
+      "branches": [
+        "MESOSCALE_FAB"
+      ],
+      "requires": [
+        "material_job_identity",
+        "scale_reference",
+        "fabrication_integrity_record"
+      ]
+    }
+  ],
+  "control_replications": null,
+  "source_numeric_curve_is_calibration": false
+}

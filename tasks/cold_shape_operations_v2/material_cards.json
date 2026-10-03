@@ -1,0 +1,74 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "cards": [
+    {
+      "id": "PRIMARY_RESIN",
+      "classification": "source_reported_material_family",
+      "components": [
+        "2-hydroxyethyl acrylate",
+        "isobornyl acrylate",
+        "aliphatic urethane diacrylate",
+        "photoinitiator",
+        "photoabsorber"
+      ],
+      "recipe_delivery": "Only a qualified enclosed service receives an approved complete recipe. No executable chemical procedure is supplied.",
+      "gates": [
+        "U_CHEM"
+      ]
+    },
+    {
+      "id": "PRINTED_CLASSES",
+      "classification": "source_reported_material_classes",
+      "B1": "glassy high-exposure state",
+      "B2": "glassy intermediate-exposure state",
+      "B3": "soft organogel low-exposure state",
+      "source_warning": "Unreacted monomer phase and UV sensitivity are material identity features; generic post-curing may destroy intended behavior.",
+      "gates": [
+        "U_PRINT",
+        "U_CAD"
+      ]
+    },
+    {
+      "id": "HINGES",
+      "classification": "source_reported_structural_families",
+      "material_map": {
+        "H13": [
+          "B1",
+          "B3"
+        ],
+        "H12": [
+          "B1",
+          "B2"
+        ],
+        "H23": [
+          "B2",
+          "B3"
+        ]
+      },
+      "geometry": "symbolic only until qualified CAD",
+      "gates": [
+        "U_CAD"
+      ]
+    },
+    {
+      "id": "CONDUCTOR",
+      "classification": "source_reported",
+      "material": "eutectic gallium-indium",
+      "delivery": "sealed qualified filling service only",
+      "gates": [
+        "U_ELECTRIC"
+      ]
+    },
+    {
+      "id": "ALT_RESIN",
+      "classification": "source_reported_variant_with_identity_ambiguity",
+      "exact_recipe": null,
+      "primary_formula_inheritance": false,
+      "gates": [
+        "U_ALT"
+      ]
+    }
+  ],
+  "storage_requirements": "Qualified containment, exposure protection and safe handling only; durations and conditions require cards."
+}

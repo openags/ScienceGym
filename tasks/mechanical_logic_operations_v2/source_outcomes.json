@@ -1,0 +1,50 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "visibility": "evaluator_reference_only",
+  "data_class": "source_reference_not_measurement",
+  "truth_functions": {
+    "NOR": "not(a or b)",
+    "NOT": "not a",
+    "OR": "a or b",
+    "AND": "a and b"
+  },
+  "numerical_cases": {
+    "NAND": {
+      "excitation_N": 5,
+      "hardware_setting": false
+    },
+    "NOR_model": {
+      "excitation_N": 3,
+      "hardware_setting": false
+    },
+    "HALF_ADDER": {
+      "sum": "a xor b",
+      "carry": "a and b",
+      "physical": false
+    },
+    "LARGE_CROSSOVER": {
+      "elements": 176,
+      "physical": false
+    },
+    "COMPACT_CROSSOVER": {
+      "elements": 25,
+      "clock_phases": 2,
+      "physical": false
+    },
+    "SR_LATCH": {
+      "clock_phases": 4,
+      "invalid_input": [
+        1,
+        1
+      ],
+      "physical": false
+    }
+  },
+  "reported_counts": {
+    "normal_signal": 12,
+    "small_signal": 2,
+    "instruction_memory": 14
+  },
+  "values_are_actor_inputs": false
+}

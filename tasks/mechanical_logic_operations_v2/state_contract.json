@@ -1,0 +1,43 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "signal": {
+    "type": "monostable",
+    "zero": "midpoint_above_connector_center_datum",
+    "one": "midpoint_below_datum",
+    "near_datum": "unknown_until_qualified_deadband",
+    "release": "verify_zero; cannot assert_reset_from_power_command"
+  },
+  "instruction_memory": {
+    "type": "bistable",
+    "on": "upward_buckle_in_electrical_variant",
+    "off": "downward_buckle_in_electrical_variant",
+    "power_loss": "does_not_deliberately_erase_program",
+    "mechanical_variant": "horizontal_obstruction_mapping_requires_proof_card"
+  },
+  "volatile_storage": {
+    "pair_size": 2,
+    "rows": 2,
+    "adjacent": true,
+    "hold_requires_continuous_excitation": true,
+    "power_gap": "invalidates_hold_epoch_and_retention_claim",
+    "clear": "release_both_then_verify_signal_zero",
+    "one_element_hold": "not_valid_for_retaining_zero"
+  },
+  "switch": {
+    "maximum_active_rows": 3,
+    "initial_active_rows": 0,
+    "store_active_rows": 2
+  },
+  "case_lifecycle": [
+    "fresh_reset",
+    "verified_program",
+    "bound_case",
+    "verified_actual_inputs",
+    "ordered_row_events",
+    "actual_output_observation",
+    "immutable_archive",
+    "release_reset"
+  ],
+  "acceptance": "Every qualification derived from actual readback,conditional on criteria; unknown is neither0 nor1."
+}

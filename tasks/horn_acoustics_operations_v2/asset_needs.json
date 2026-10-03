@@ -1,0 +1,224 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "assets": [
+    {
+      "id": "A_WS_RECORDS",
+      "role": "Records and analysis console",
+      "required_interfaces": [
+        "card reader",
+        "archive interface"
+      ],
+      "observables": [
+        "Current card revisions",
+        "Immutable dataset hashes"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "PLAN",
+        "PAIR_CHECK",
+        "NORMALIZE",
+        "INTERPOLATE",
+        "ARCHIVE"
+      ]
+    },
+    {
+      "id": "A_WS_STOCK",
+      "role": "Identified inventory and carriers",
+      "required_interfaces": [
+        "indexed storage docks",
+        "identity reader"
+      ],
+      "observables": [
+        "Payload identity",
+        "Occupancy and retention"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "STOCK",
+        "CARRIER",
+        "BOARD_RETRIEVE",
+        "MIC_RETRIEVE"
+      ]
+    },
+    {
+      "id": "A_BETWEEN",
+      "role": "Qualified station transport",
+      "required_interfaces": [
+        "cart docks",
+        "retention sensors"
+      ],
+      "observables": [
+        "Origin and destination",
+        "Payload retained"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "MOVE"
+      ]
+    },
+    {
+      "id": "A_WS_PRINT",
+      "role": "Enclosed ABS printer",
+      "required_interfaces": [
+        "stock port",
+        "tray dock",
+        "job console",
+        "interlocks"
+      ],
+      "observables": [
+        "Job progress",
+        "Ventilation",
+        "Safe release"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD"
+      ]
+    },
+    {
+      "id": "A_WS_FINISH",
+      "role": "Supported finishing fixture",
+      "required_interfaces": [
+        "part nests",
+        "qualified removal tools",
+        "waste collection"
+      ],
+      "observables": [
+        "Support removal",
+        "Part integrity",
+        "Waste contained"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "POSTPROCESS",
+        "CLEAN"
+      ]
+    },
+    {
+      "id": "A_WS_INSPECT",
+      "role": "Geometry inspection station",
+      "required_interfaces": [
+        "metrology fixture",
+        "measurement tool"
+      ],
+      "observables": [
+        "Dimensions",
+        "Tolerance card",
+        "Current revision"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "METROLOGY",
+        "PANEL_INSPECT"
+      ]
+    },
+    {
+      "id": "A_WS_ASSEMBLY",
+      "role": "Panel assembly fixture",
+      "required_interfaces": [
+        "indexed part nests",
+        "joining interfaces"
+      ],
+      "observables": [
+        "Membership",
+        "Orientation",
+        "Join state"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "PANEL_ASSEMBLE"
+      ]
+    },
+    {
+      "id": "A_WS_RIG",
+      "role": "Parallel plywood acoustic domain",
+      "required_interfaces": [
+        "rated sheet supports",
+        "source fixture",
+        "panel mount",
+        "probe carriage",
+        "reference lock"
+      ],
+      "observables": [
+        "Gap",
+        "Source and microphone poses",
+        "Panel condition",
+        "Boundary state"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "BASE_PLACE",
+        "SPACERS_PLACE",
+        "SOURCE_MOUNT",
+        "TOP_PLACE",
+        "DOMAIN_INSPECT",
+        "REF_MOUNT",
+        "PROBE_MOUNT",
+        "GRID_REGISTER",
+        "CONDITION_ISOLATE",
+        "PANEL_ABSENT",
+        "PANEL_INSTALL",
+        "PROBE_MOVE",
+        "DRIFT_CHECK",
+        "PANEL_RETURN",
+        "MIC_RETURN"
+      ]
+    },
+    {
+      "id": "A_WS_CAL",
+      "role": "Microphone calibration station",
+      "required_interfaces": [
+        "calibrator coupler",
+        "channel connectors"
+      ],
+      "observables": [
+        "Microphone identity",
+        "Reference status",
+        "Calibration validity"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_RELEASE"
+      ]
+    },
+    {
+      "id": "A_WS_DAQ",
+      "role": "Signal acquisition and control",
+      "required_interfaces": [
+        "two microphone channels",
+        "source controller",
+        "readout console"
+      ],
+      "observables": [
+        "Frequency",
+        "Level and overload",
+        "Readout completeness",
+        "Source-off"
+      ],
+      "status": "unbuilt",
+      "operation_ids": [
+        "DAQ_CONNECT",
+        "SOURCE_SET",
+        "CONDITION_START",
+        "POINT_READ",
+        "POINT_AVERAGE",
+        "CONDITION_CLOSE",
+        "SHUTDOWN"
+      ]
+    }
+  ],
+  "special_needs": [
+    "Payload-rated support for 2.5 m plywood sheets; no unsupported one-arm lift assumption",
+    "Geometry and channel-aware grasp exclusions for horn-like panel",
+    "Probe carriage with capsule frame, cable retention, 190-point travel envelope and noncontact position feedback",
+    "Reference microphone lock with detectable pose changes",
+    "Panel installation fixture preserving acoustic source/grid/reference frames",
+    "Printer job/material/tray bindings and safe-release feedback"
+  ],
+  "CAD_or_robot_bindings_included": false
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "profile": "gated_source_reproduction_design",
+  "required_cards": [
+    "U_ALLOC",
+    "U_CAD",
+    "U_SCALE",
+    "U_FAB",
+    "U_TOL",
+    "U_JOIN",
+    "U_RIG",
+    "U_ROBOT",
+    "U_CAL",
+    "U_GRID",
+    "U_SOURCE",
+    "U_DAQ",
+    "U_PHASE",
+    "U_NORMALIZE",
+    "U_COMPARE",
+    "U_ARCHIVE",
+    "U_SAFETY"
+  ],
+  "card_fields": [
+    "id",
+    "revision",
+    "qualification_receipt",
+    "parameter_payload",
+    "valid_scope"
+  ],
+  "required_runtime_inputs": [
+    "Finite print-job and segment manifest",
+    "Explicit two-microphone identities and channel map",
+    "All thirty design-position assignments",
+    "190 registered grid coordinates and physical-frame mapping",
+    "Safe drive-level and acquisition parameter payloads",
+    "Condition allocation for with and without",
+    "Authenticated event and data interfaces"
+  ],
+  "gating": "Null, empty or a bare true/qualified flag is insufficient. Synthetic validator verifies structural receipts only, never physical qualification.",
+  "defaults_for_missing_inputs": "None: affected actions and completion remain blocked.",
+  "reported_counts": {
+    "positions_per_condition": 190,
+    "readouts_per_point": 10,
+    "conditions": [
+      "without",
+      "with"
+    ],
+    "frequency_hz": 1000
+  },
+  "absolute_sound_speed_m_s": null,
+  "unknown_replication": null,
+  "condition_order": "Either order, with explicit source-off reconfiguration and preserved matched-state keys."
+}

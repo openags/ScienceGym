@@ -1,0 +1,78 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "controls": [
+    {
+      "id": "C_MATERIAL",
+      "kind": "source_comparison",
+      "scope": [
+        "TENSILE_RT",
+        "DMA_SWEEP"
+      ],
+      "conditions": "B1/B2/B3 retain distinct identities, exposure classes and common analysis definitions."
+    },
+    {
+      "id": "C_MEMORY",
+      "kind": "source_comparison",
+      "scope": [
+        "MEMORY_HOT",
+        "MEMORY_COLD"
+      ],
+      "conditions": "Same material classes and metric definitions, separate program histories; do not assume paired historical samples."
+    },
+    {
+      "id": "C_LOCAL",
+      "kind": "authored_observability",
+      "scope": [
+        "LOCAL_HAND",
+        "LOCAL_STRIP"
+      ],
+      "conditions": "Observe target joint and protected neighbors before/after; local control is not established by a global silhouette."
+    },
+    {
+      "id": "C_LAYOUT",
+      "kind": "source_comparison",
+      "scope": [
+        "MODULAR_STRIPS",
+        "HELIX_STRIPS",
+        "DUAL_AXIS_PANEL",
+        "SYMMETRIC_PANEL"
+      ],
+      "conditions": "Keep material, hinge orientation, axis datum and imposed-strain definitions separate."
+    },
+    {
+      "id": "C_THERMAL",
+      "kind": "source_comparison",
+      "scope": [
+        "THERMAL_HINGES",
+        "HYBRID_STRIPS"
+      ],
+      "conditions": "Current measured temperature and equilibration evidence must accompany each configuration."
+    },
+    {
+      "id": "C_LIGHT",
+      "kind": "authored_QA_from_source_warning",
+      "scope": [
+        "FABRICATE",
+        "ALT_FABRICATE"
+      ],
+      "conditions": "Track incidental UV and do not apply automatic post-cure."
+    },
+    {
+      "id": "C_BASELINE",
+      "kind": "authored_QA",
+      "scope": "all specimen branches",
+      "conditions": "Own-specimen baseline geometry, instrument calibration and actual condition readbacks precede analysis."
+    },
+    {
+      "id": "C_DAMAGE",
+      "kind": "source_motivated_authored_QA",
+      "scope": [
+        "HINGE_FORTY_CYCLES",
+        "MEMORY_TEN_CYCLES"
+      ],
+      "conditions": "Keep failed cycles, residual deformation and exposure history; selected checkpoint photographs do not prove all cycles."
+    }
+  ],
+  "replication": "Only the hinge-angle error bars state five experimental results. Ten and forty refer to repeated cycles, not independent specimen counts."
+}

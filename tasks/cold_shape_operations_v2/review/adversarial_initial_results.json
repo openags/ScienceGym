@@ -1,0 +1,92 @@
+{
+  "scope": "Synthetic adversarial validator probes only; no live evidence, device, simulation, or publisher copying.",
+  "contract_sha256": "4c36b17ccc50a3c2558602c137957ac060c8323b31b3a4f1fd06d03513adfbb5",
+  "results": [
+    {
+      "name": "gate_cards_omit_contract_required_fields",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": true,
+      "reason": "A status and receipt string substitute for all required scene, geometry, schedule, qualification-scope and calibration fields."
+    },
+    {
+      "name": "whole_paper_without_scientific_conditions_or_phase_evidence",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": {
+        "scope": "whole_paper",
+        "result": "synthetic_bookkeeping_pass",
+        "physical_execution_validated": false
+      },
+      "reason": "31 arbitrary condition labels and summary booleans substitute for all source material/layout/temperature conditions, phases, controls, allocated specimens and ancestor evidence."
+    },
+    {
+      "name": "replicate_count_not_enforced_by_campaign",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": {
+        "scope": "selected_episode",
+        "result": "synthetic_bookkeeping_pass",
+        "physical_execution_validated": false
+      },
+      "reason": "A seven-replicate plan is accepted with one cell summary and no sample IDs."
+    },
+    {
+      "name": "forty_cycles_reuse_four_receipts",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": true,
+      "reason": "Forty cycle indices do not establish forty distinct program/release/recovery/integrity occurrences; same four receipts are replayed."
+    },
+    {
+      "name": "program_substitution_after_verification",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": true,
+      "reason": "A completed phase can claim a different program from the verified job."
+    },
+    {
+      "name": "unsafe_state_reappears_at_unload",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": true,
+      "reason": "safe_to_unload earlier is accepted despite explicit unsafe readbacks on unloaded event."
+    },
+    {
+      "name": "impossible_timestamp",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": true,
+      "reason": "ISO-shaped but impossible date passes regex-only validation."
+    },
+    {
+      "name": "duplicate_card_hides_missing_model_card",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": {
+        "operations": 76,
+        "physical_branches": 31,
+        "gates": 19,
+        "nonmanual": 6,
+        "loops": 7,
+        "transport_routes": 18
+      },
+      "reason": "Card count equals gate count but duplicate unknown_id leaves one gate with no resolution schema."
+    },
+    {
+      "name": "missing_transport_route_count",
+      "expected": "reject",
+      "actual": "ACCEPTED",
+      "return": {
+        "operations": 76,
+        "physical_branches": 31,
+        "gates": 19,
+        "nonmanual": 6,
+        "loops": 7,
+        "transport_routes": 17
+      },
+      "reason": "Removing a route does not fail declared STATUS transport_route_count=18 or full inventory consistency."
+    }
+  ],
+  "unexpected_acceptances": 9
+}

@@ -1,0 +1,1619 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "operation_count": 44,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Bind campaign and qualification cards",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "work_order",
+        "status_console"
+      ],
+      "tool_or_interface": "status_console",
+      "actions": [
+        "Read campaign allocation and available cards",
+        "bind exact revisions",
+        "report missing inputs before dependent work"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "qualified_campaign"
+      ],
+      "observable_completion": "Card identities, scope and signed qualification receipts",
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ROBOT"
+      ],
+      "authorship": "Authored workflow and safety closure",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "STOCK",
+      "title": "Retrieve ABS and identified tools",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_STOCK",
+      "object_roles": [
+        "ABS_stock",
+        "tools",
+        "carrier"
+      ],
+      "tool_or_interface": "carrier",
+      "actions": [
+        "Read stock lot and tool identities",
+        "place material and tools in retained carrier",
+        "record issue"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "stock_issued"
+      ],
+      "observable_completion": "Inventory and carrier occupancy observations",
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "CARRIER",
+      "title": "Prepare supported specimen carrier",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_STOCK",
+      "object_roles": [
+        "carrier",
+        "support_inserts"
+      ],
+      "tool_or_interface": "support_inserts",
+      "actions": [
+        "Inspect carrier",
+        "fit supports at qualified non-channel contacts",
+        "latch and check payload rating"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "carrier_ready"
+      ],
+      "observable_completion": "Latch and support inspection",
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "authorship": "Authored workflow and safety closure",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "MOVE",
+      "title": "Transport retained objects between stations",
+      "actor": "robot",
+      "kind": "transport",
+      "station_id": "BETWEEN",
+      "object_roles": [
+        "carrier",
+        "cart",
+        "payload"
+      ],
+      "tool_or_interface": "payload",
+      "actions": [
+        "Verify payload identity and retention",
+        "follow qualified route",
+        "dock",
+        "recheck occupancy before handoff"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "custody_transferred"
+      ],
+      "observable_completion": "Origin, destination, payload and dock receipts",
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "authorship": "Authored workflow and safety closure",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PRINT_LOAD",
+      "title": "Load printer materials and fixture",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_PRINT",
+      "object_roles": [
+        "ABS_stock",
+        "build_tray",
+        "printer"
+      ],
+      "tool_or_interface": "printer",
+      "actions": [
+        "Dock carrier",
+        "load qualified stock and tray through printer interfaces",
+        "verify job to part-manifest binding and enclosure"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "printer_loaded"
+      ],
+      "observable_completion": "Stock, tray, job and enclosure readbacks",
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_FAB"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PRINT_START",
+      "title": "Start qualified fabrication job",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_PRINT",
+      "object_roles": [
+        "printer",
+        "job_console"
+      ],
+      "tool_or_interface": "job_console",
+      "actions": [
+        "Select verified job revision and parameter card",
+        "check ventilation and interlocks",
+        "request start"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "print_running"
+      ],
+      "observable_completion": "Device start and job identity receipt",
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_FAB",
+        "U_SAFETY"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PRINT_PROCESS",
+      "title": "Fabricate and cool printed parts",
+      "actor": "automated_printer",
+      "kind": "automated_device_process",
+      "station_id": "WS_PRINT",
+      "object_roles": [
+        "printer",
+        "ABS_stock",
+        "build_tray"
+      ],
+      "tool_or_interface": "build_tray",
+      "actions": [
+        "Automatic printer deposition and qualified safe-release process",
+        "retain interruption state without treating request as completion"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "print_released"
+      ],
+      "observable_completion": "Device completion, cooling and safe-release readbacks",
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_SAFETY"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PRINT_UNLOAD",
+      "title": "Unload identified printed parts",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_PRINT",
+      "object_roles": [
+        "printed_parts",
+        "build_tray",
+        "carrier"
+      ],
+      "tool_or_interface": "carrier",
+      "actions": [
+        "Verify safe release",
+        "support and detach parts using qualified removal tool",
+        "place in indexed carrier nests"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "parts_unloaded"
+      ],
+      "observable_completion": "Part identities and carrier occupancy",
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_ROBOT"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "POSTPROCESS",
+      "title": "Clear support and inspect channels",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_FINISH",
+      "object_roles": [
+        "printed_parts",
+        "qualified_tools",
+        "waste_tray"
+      ],
+      "tool_or_interface": "waste_tray",
+      "actions": [
+        "Apply qualified support-removal and finishing card at fixture",
+        "collect waste",
+        "preserve channels and identify any damaged part"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "parts_finished"
+      ],
+      "observable_completion": "Finishing record and channel inspection",
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_TOL"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "METROLOGY",
+      "title": "Measure printed geometry",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_INSPECT",
+      "object_roles": [
+        "printed_parts",
+        "metrology_fixture",
+        "measuring_tool"
+      ],
+      "tool_or_interface": "measuring_tool",
+      "actions": [
+        "Seat each manifested part",
+        "measure specified dimensions and channel openness against qualified CAD tolerance card",
+        "quarantine failures"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "parts_accepted"
+      ],
+      "observable_completion": "Measured dimensions and pass or reject per part and revision",
+      "evidence_ids": [
+        "E_DESIGN",
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_TOL"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PANEL_ASSEMBLE",
+      "title": "Assemble focusing design membership",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_ASSEMBLY",
+      "object_roles": [
+        "printed_parts",
+        "panel_fixture",
+        "joining_tools"
+      ],
+      "tool_or_interface": "joining_tools",
+      "actions": [
+        "Seat manifested parts in fixture",
+        "bind all thirty design positions to focusing rows with 1-to-30 mirror order",
+        "join only under qualified card"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "panel_assembled"
+      ],
+      "observable_completion": "Physical part membership, pose and join inspections",
+      "evidence_ids": [
+        "E_DESIGN",
+        "E_PHYSICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_JOIN"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PANEL_INSPECT",
+      "title": "Inspect versioned focusing panel",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_INSPECT",
+      "object_roles": [
+        "panel",
+        "inspection_fixture"
+      ],
+      "tool_or_interface": "inspection_fixture",
+      "actions": [
+        "Check orientation, all thirty positions, open acoustic passages and mounting surfaces",
+        "record panel revision and accepted status"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "panel_accepted"
+      ],
+      "observable_completion": "Panel inspection tied to current membership and CAD revision",
+      "evidence_ids": [
+        "E_DESIGN",
+        "E_PHYSICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_TOL",
+        "U_JOIN"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "BOARD_RETRIEVE",
+      "title": "Retrieve supported domain sheets",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_STOCK",
+      "object_roles": [
+        "plywood_sheets",
+        "lifting_fixture",
+        "cart"
+      ],
+      "tool_or_interface": "cart",
+      "actions": [
+        "Identify two sheets and inspect dimensions",
+        "secure each to rated lifting fixture",
+        "transfer to assembly dock under qualified load plan"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "sheets_at_rig"
+      ],
+      "observable_completion": "Sheet identities, size and retained-load receipts",
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_RIG",
+        "U_ROBOT",
+        "U_SAFETY"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "BASE_PLACE",
+      "title": "Seat lower plywood sheet",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "lower_sheet",
+        "rig_supports",
+        "lifting_fixture"
+      ],
+      "tool_or_interface": "lifting_fixture",
+      "actions": [
+        "Place lower sheet on supports",
+        "engage restraints",
+        "inspect stable seating and declared frame fiducials before releasing lift"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "base_seated"
+      ],
+      "observable_completion": "Support contacts, restraint and frame inspection",
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_RIG",
+        "U_ROBOT"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "SPACERS_PLACE",
+      "title": "Fit gap supports and boundaries",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "gap_spacers",
+        "absorbing_foam",
+        "attachment_tools"
+      ],
+      "tool_or_interface": "attachment_tools",
+      "actions": [
+        "Install qualified gap supports and five-centimeter absorbing boundary material",
+        "inspect orientation and uninterrupted perimeter specification"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "boundaries_installed"
+      ],
+      "observable_completion": "Spacer and absorber placement inspection",
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_RIG",
+        "U_JOIN"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "SOURCE_MOUNT",
+      "title": "Mount localized acoustic source",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "loudspeaker",
+        "narrow_tube",
+        "source_fixture"
+      ],
+      "tool_or_interface": "source_fixture",
+      "actions": [
+        "Seat speaker and tube in fixture",
+        "couple outlet",
+        "connect cables with source isolated",
+        "inspect outlet placement and source-to-panel datum"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "source_mounted"
+      ],
+      "observable_completion": "Mount, connection and source pose receipts",
+      "evidence_ids": [
+        "E_RIG",
+        "E_PHYSICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_SCALE",
+        "U_RIG"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "TOP_PLACE",
+      "title": "Close two-dimensional domain",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "upper_sheet",
+        "lifting_fixture",
+        "rig_restraints"
+      ],
+      "tool_or_interface": "rig_restraints",
+      "actions": [
+        "Place supported upper sheet onto gap supports",
+        "lock restraints",
+        "verify two-centimeter separation and microphone access under qualified card"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "domain_closed"
+      ],
+      "observable_completion": "Gap measurements, restraint readbacks and access inspection",
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_RIG",
+        "U_ROBOT",
+        "U_SAFETY"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "DOMAIN_INSPECT",
+      "title": "Verify acoustic domain configuration",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "domain",
+        "measuring_tools"
+      ],
+      "tool_or_interface": "measuring_tools",
+      "actions": [
+        "Check parallel sheets, boundary layout, source registration and no obstructed passages",
+        "record rig and frame revisions"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "rig_accepted"
+      ],
+      "observable_completion": "Versioned domain inspection",
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_RIG",
+        "U_TOL"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "MIC_RETRIEVE",
+      "title": "Retrieve and identify two microphones",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_STOCK",
+      "object_roles": [
+        "reference_microphone",
+        "scan_microphone",
+        "cables",
+        "calibration_fixture"
+      ],
+      "tool_or_interface": "calibration_fixture",
+      "actions": [
+        "Read microphone and cable identifiers",
+        "inspect connectors and capsules",
+        "transfer in supported holders to calibration station"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "microphones_issued"
+      ],
+      "observable_completion": "Two distinct microphone identities and condition inspections",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "CAL_MOUNT",
+      "title": "Mount microphone for calibration",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_CAL",
+      "object_roles": [
+        "microphone",
+        "calibration_fixture",
+        "reference_device"
+      ],
+      "tool_or_interface": "reference_device",
+      "actions": [
+        "With signal isolated, seat one identified microphone in qualified calibrator fixture and connect its assigned acquisition channel"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "calibration_loaded"
+      ],
+      "observable_completion": "Mic, calibrator, channel and fixture readback",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_DAQ"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "CAL_ACQUIRE",
+      "title": "Acquire calibration observations",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_CAL",
+      "object_roles": [
+        "microphone",
+        "calibrator",
+        "DAQ"
+      ],
+      "tool_or_interface": "DAQ",
+      "actions": [
+        "Invoke qualified calibration sequence",
+        "read response and retain calibration measurements under microphone and channel identity"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "calibration_observed"
+      ],
+      "observable_completion": "Calibrator and DAQ records with validity range",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_DAQ"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "CAL_RELEASE",
+      "title": "Validate calibration and unload probe",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_CAL",
+      "object_roles": [
+        "microphone",
+        "calibrator",
+        "holder"
+      ],
+      "tool_or_interface": "holder",
+      "actions": [
+        "Check acceptance card",
+        "stop calibration signal",
+        "disconnect and transfer microphone to holder",
+        "issue bounded-validity calibration receipt or quarantine"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "microphone_calibrated"
+      ],
+      "observable_completion": "Acceptance decision, channel binding, expiry and unload receipt",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "REF_MOUNT",
+      "title": "Mount fixed reference microphone",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "reference_microphone",
+        "reference_fixture",
+        "cable"
+      ],
+      "tool_or_interface": "cable",
+      "actions": [
+        "Seat calibrated reference at qualified pose",
+        "lock fixture",
+        "route cable without disturbing source or field",
+        "record pose and calibration epochs"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "reference_fixed"
+      ],
+      "observable_completion": "Reference identity, pose, fixture lock and connection receipts",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_CAL"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PROBE_MOUNT",
+      "title": "Mount movable microphone",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "scan_microphone",
+        "probe_carriage",
+        "cable"
+      ],
+      "tool_or_interface": "cable",
+      "actions": [
+        "Seat calibrated scanning microphone in carriage",
+        "retain cable with safe travel slack",
+        "connect mapped DAQ channel",
+        "inspect capsule access"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "probe_mounted"
+      ],
+      "observable_completion": "Probe identity, channel and carriage seating receipts",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_ROBOT"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "GRID_REGISTER",
+      "title": "Register 190 measurement locations",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "probe_carriage",
+        "grid_fiducials",
+        "registration_tool"
+      ],
+      "tool_or_interface": "registration_tool",
+      "actions": [
+        "Observe qualified fiducials",
+        "register X1-X10 and Y1-Y19 to physical coordinates with nine-centimeter spacing",
+        "verify approximately forty-centimeter boundary offset definition"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "grid_registered"
+      ],
+      "observable_completion": "190 unique coordinates, frame transformation and position acceptance card",
+      "evidence_ids": [
+        "E_SCAN",
+        "E_TABLE2"
+      ],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_TOL"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "DAQ_CONNECT",
+      "title": "Connect and verify signal chain",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_DAQ",
+      "object_roles": [
+        "DAQ",
+        "microphone_cables",
+        "source_controller"
+      ],
+      "tool_or_interface": "source_controller",
+      "actions": [
+        "Connect designated channels and source interface",
+        "verify microphone identities, phase polarity, clock and overload readbacks against operating card"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "DAQ_ready"
+      ],
+      "observable_completion": "Channel map, acquisition settings and signal checks",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_DAQ",
+        "U_SOURCE",
+        "U_SAFETY"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "SOURCE_SET",
+      "title": "Configure safe one-kilohertz excitation",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_DAQ",
+      "object_roles": [
+        "source_controller",
+        "loudspeaker",
+        "DAQ"
+      ],
+      "tool_or_interface": "DAQ",
+      "actions": [
+        "Set reported frequency under qualified experimental drive-level card",
+        "check exposure limits and reference signal",
+        "retain actual instrument readbacks"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "source_ready"
+      ],
+      "observable_completion": "Frequency, bounded level, interlock and reference stability receipts",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_SAFETY"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "CONDITION_ISOLATE",
+      "title": "Isolate source before configuration",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "source_controller",
+        "probe_carriage"
+      ],
+      "tool_or_interface": "probe_carriage",
+      "actions": [
+        "Stop excitation and verify source-off feedback",
+        "park probe clear of mounting envelope",
+        "secure any required access opening"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "reconfiguration_safe"
+      ],
+      "observable_completion": "Source-off and parked-probe receipts",
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_RIG",
+        "U_SAFETY"
+      ],
+      "authorship": "Authored workflow and safety closure",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PANEL_ABSENT",
+      "title": "Prepare without-metasurface condition",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "panel_fixture",
+        "panel",
+        "carrier"
+      ],
+      "tool_or_interface": "carrier",
+      "actions": [
+        "If installed, support and remove panel to identified carrier",
+        "restore qualified domain closure",
+        "inspect empty panel plane and unchanged source, reference and grid"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "condition_without_ready"
+      ],
+      "observable_completion": "Panel absent inspection and matched-configuration snapshot",
+      "evidence_ids": [
+        "E_PHYSICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_JOIN",
+        "U_RIG"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PANEL_INSTALL",
+      "title": "Prepare with-metasurface condition",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "panel",
+        "panel_fixture",
+        "attachment_tools"
+      ],
+      "tool_or_interface": "attachment_tools",
+      "actions": [
+        "Retrieve accepted focusing panel",
+        "seat and secure in registered plane with qualified orientation",
+        "restore domain closure",
+        "verify unchanged source, reference and grid"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "condition_with_ready"
+      ],
+      "observable_completion": "Current panel revision, installation and matched-configuration snapshot",
+      "evidence_ids": [
+        "E_PHYSICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_JOIN",
+        "U_RIG",
+        "U_SCALE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "CONDITION_START",
+      "title": "Start registered mapping condition",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_DAQ",
+      "object_roles": [
+        "source_controller",
+        "DAQ",
+        "condition_console"
+      ],
+      "tool_or_interface": "condition_console",
+      "actions": [
+        "Read condition ID and configuration snapshot",
+        "verify calibrations valid and source settings matched",
+        "enable safe excitation and verify stable acquisition state"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "mapping_active"
+      ],
+      "observable_completion": "Condition-start receipt with calibration, rig, source, reference and grid revisions",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_DAQ",
+        "U_SOURCE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PROBE_MOVE",
+      "title": "Position scanning probe at grid point",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "probe_carriage",
+        "scan_microphone"
+      ],
+      "tool_or_interface": "scan_microphone",
+      "actions": [
+        "Move through qualified collision-free path to next unfilled coordinate",
+        "verify capsule pose and cable clearance",
+        "settle under operating card"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "probe_at_point"
+      ],
+      "observable_completion": "Actual pose, grid label and settle readbacks",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_ROBOT",
+        "U_DAQ"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "POINT_READ",
+      "title": "Capture one two-channel readout",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_DAQ",
+      "object_roles": [
+        "DAQ",
+        "reference_microphone",
+        "scan_microphone"
+      ],
+      "tool_or_interface": "scan_microphone",
+      "actions": [
+        "Trigger synchronized channels at stationary verified point",
+        "device computes complex transfer function under declared direction and sign convention",
+        "retain immutable readout and quality flags"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "readout_retained"
+      ],
+      "observable_completion": "Both-channel capture, point, readout index, epochs, complex value and validity flags",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_DAQ",
+        "U_PHASE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "POINT_AVERAGE",
+      "title": "Commit ten-readout point average",
+      "actor": "analysis_service",
+      "kind": "analysis_only",
+      "station_id": "WS_DAQ",
+      "object_roles": [
+        "DAQ",
+        "acquisition_console"
+      ],
+      "tool_or_interface": "acquisition_console",
+      "actions": [
+        "Check ten distinct valid technical-readout slots at this point",
+        "retain rejected attempts",
+        "compute average through qualified complex averaging rule",
+        "link selected raw records"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "point_complete"
+      ],
+      "observable_completion": "Ten source record IDs, aggregation rule and complex average",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_DAQ",
+        "U_PHASE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "CONDITION_CLOSE",
+      "title": "Close complete grid condition",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_DAQ",
+      "object_roles": [
+        "DAQ",
+        "source_controller",
+        "storage_console"
+      ],
+      "tool_or_interface": "storage_console",
+      "actions": [
+        "Verify all 190 unique points with ten valid readouts each",
+        "stop source",
+        "export immutable raw and averaged records",
+        "preserve missing-point state on interruption"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "condition_archived"
+      ],
+      "observable_completion": "Coverage, source-off and archive-hash receipts",
+      "evidence_ids": [
+        "E_SCAN",
+        "E_TABLE2"
+      ],
+      "unknown_parameter_ids": [
+        "U_ARCHIVE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "DRIFT_CHECK",
+      "title": "Inspect reference stability after mapping",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "reference_microphone",
+        "reference_fixture",
+        "DAQ"
+      ],
+      "tool_or_interface": "DAQ",
+      "actions": [
+        "Compare observed reference pose and signal checks with qualified limits",
+        "invalidate affected data if movement, calibration expiry or drift is found"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "stability_assessed"
+      ],
+      "observable_completion": "Post-map reference inspection and bounded stability decision",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_DAQ",
+        "U_GRID"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PAIR_CHECK",
+      "title": "Verify matched experimental conditions",
+      "actor": "robot",
+      "kind": "analysis_only",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "condition_records",
+        "comparison_console"
+      ],
+      "tool_or_interface": "comparison_console",
+      "actions": [
+        "Read both archived conditions",
+        "compare shared source, rig, grid, channel and reference states",
+        "reject mismatches rather than relabeling",
+        "retain exclusions"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "pair_accepted"
+      ],
+      "observable_completion": "Explicit matched-state comparison and complete two-condition lineage",
+      "evidence_ids": [
+        "E_PHYSICAL",
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_COMPARE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "NORMALIZE",
+      "title": "Derive versioned normalized fields",
+      "actor": "analysis_service",
+      "kind": "analysis_only",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "acquired_records",
+        "analysis_console"
+      ],
+      "tool_or_interface": "analysis_console",
+      "actions": [
+        "Select accepted averages only",
+        "apply qualified normalization and phase convention with explicit scale",
+        "preserve raw complex grid and processing revision"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "normalized_fields"
+      ],
+      "observable_completion": "Input record hashes and normalization parameters",
+      "evidence_ids": [
+        "E_ANALYSIS"
+      ],
+      "unknown_parameter_ids": [
+        "U_NORMALIZE",
+        "U_PHASE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "INTERPOLATE",
+      "title": "Create display-only spline fields",
+      "actor": "analysis_service",
+      "kind": "analysis_only",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "normalized_fields",
+        "analysis_console"
+      ],
+      "tool_or_interface": "analysis_console",
+      "actions": [
+        "Apply qualified spline method and display mesh",
+        "label result as visualization and preserve original 190-point grid",
+        "never count display pixels as acquisitions"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "field_visualizations"
+      ],
+      "observable_completion": "Processing receipt and raw-versus-interpolated labels",
+      "evidence_ids": [
+        "E_ANALYSIS"
+      ],
+      "unknown_parameter_ids": [
+        "U_NORMALIZE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive campaign evidence and outcome",
+      "actor": "robot",
+      "kind": "analysis_only",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "campaign_records",
+        "storage_console"
+      ],
+      "tool_or_interface": "storage_console",
+      "actions": [
+        "Verify custody, fabrication, calibrations, both maps, failures and analysis provenance",
+        "archive outcome even when weak or negative",
+        "label literature comparison reference-only"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "campaign_archived"
+      ],
+      "observable_completion": "Complete hashed inventory and integrity receipt",
+      "evidence_ids": [
+        "E_PHYSICAL",
+        "E_TABLE2"
+      ],
+      "unknown_parameter_ids": [
+        "U_ARCHIVE",
+        "U_COMPARE"
+      ],
+      "authorship": "Authored robot translation of source macrostep",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "SHUTDOWN",
+      "title": "Isolate instrumentation and park probe",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_DAQ",
+      "object_roles": [
+        "source_controller",
+        "DAQ",
+        "probe_carriage"
+      ],
+      "tool_or_interface": "probe_carriage",
+      "actions": [
+        "Stop excitation",
+        "verify off",
+        "end acquisition and disconnect only when safe",
+        "park and retain movable probe"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "instruments_safe"
+      ],
+      "observable_completion": "Source-off, DAQ-closed and probe-park receipts",
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SAFETY"
+      ],
+      "authorship": "Authored workflow and safety closure",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "PANEL_RETURN",
+      "title": "Remove and store versioned panel",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "panel",
+        "panel_fixture",
+        "carrier"
+      ],
+      "tool_or_interface": "carrier",
+      "actions": [
+        "Inspect actual panel location and retained identity after source isolation",
+        "If installed, open supported access, detach into carrier and inspect damage",
+        "If already absent and retained in carrier, verify identity and damage without reinstalling",
+        "Return retained panel to labeled storage and verify custody"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "panel_stored"
+      ],
+      "observable_completion": "Location-aware panel custody: remove if installed, otherwise verify retained carrier; final storage and condition receipts",
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_JOIN",
+        "U_ROBOT"
+      ],
+      "authorship": "Authored workflow and safety closure",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "MIC_RETURN",
+      "title": "Disconnect and store calibrated probes",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "microphones",
+        "cables",
+        "holders"
+      ],
+      "tool_or_interface": "holders",
+      "actions": [
+        "Isolate channels",
+        "support each microphone before releasing fixtures",
+        "disconnect cables and seat both identified probes in protective holders"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "microphones_stored"
+      ],
+      "observable_completion": "Two microphone storage and calibration-status receipts",
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_ROBOT"
+      ],
+      "authorship": "Authored workflow and safety closure",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    },
+    {
+      "id": "CLEAN",
+      "title": "Restore fabrication and measurement stations",
+      "actor": "robot",
+      "kind": "hands_on",
+      "station_id": "WS_FINISH",
+      "object_roles": [
+        "waste_tray",
+        "tools",
+        "stations"
+      ],
+      "tool_or_interface": "stations",
+      "actions": [
+        "Collect qualified waste",
+        "inspect channels and work surfaces",
+        "return tools",
+        "leave heavy domain safely restrained or disassemble only under approved load plan"
+      ],
+      "preconditions": [
+        "Required qualified cards are bound and valid",
+        "All declared dependency receipts exist for this occurrence",
+        "Manipulated object identities and current revisions match observations"
+      ],
+      "postconditions": [
+        "stations_restored"
+      ],
+      "observable_completion": "Waste disposition, inventory and safe station inspection",
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_RIG",
+        "U_SAFETY"
+      ],
+      "authorship": "Authored workflow and safety closure",
+      "execution_mode": "design_only",
+      "failure_handling": "Stop dependent action, preserve failed attempt, secure payload and isolate source as applicable. Rework creates a new revision; requalify affected dependencies. Never substitute a label for observed state."
+    }
+  ],
+  "ordering": "Templates are not historical chronology. Dependencies and occurrence context determine valid order."
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "horn_acoustics_independent_review.v1",
+  "reviewed_at_utc": "2026-10-03T16:52:42.356024+00:00",
+  "status": "passed_with_declared_execution_limits",
+  "scope": "Independent source-fidelity, static-contract and synthetic-bookkeeping review",
+  "source_reference": {
+    "doi": "10.1038/s41467-018-03839-z",
+    "url": "https://doi.org/10.1038/s41467-018-03839-z"
+  },
+  "confirmed": [
+    "All fifteen focusing and fifteen splitter geometry rows agree with the source table; mirror mapping expands each fifteen-row design to thirty positions correctly.",
+    "The physical program is cylindrical-to-plane mapping under with/without panel conditions; focusing, splitting and model comparisons remain numerical or theoretical.",
+    "190 spatial positions and ten technical readouts per position are kept separate from independent specimens and campaigns; 3800 is explicitly arithmetic for a proposed complete pair.",
+    "The simulated 1 kPa amplitude is excluded from physical source-level settings, and absolute wavelength conversion remains gated.",
+    "The averaged source arrays are not included as new observations, and interpolated pixels do not increase measurement count.",
+    "All 44 operation templates are referenced by declared branches; their station, evidence and unknown-parameter IDs resolve.",
+    "Actor projection excludes evaluator outcomes, future observations, target fields and source-array values; the complete package is not claimed actor-visible.",
+    "Condition-state dependencies are exclusive and scoped; either matched condition order is accepted with location-aware panel cleanup.",
+    "Acquisition ordering preserves one-probe position intervals and retry ancestry instead of accepting stale pose receipts.",
+    "Calibration, part/panel inspection and condition setup/archive records are linked to corresponding current scoped events."
+  ],
+  "findings": [
+    {
+      "id": "R01",
+      "severity": "medium",
+      "status": "resolved_and_rechecked",
+      "files": [
+        "dependencies.json",
+        "operations.json"
+      ],
+      "finding": "Condition start has incoming unconditional edges from both mutually exclusive panel states while a separate rule says one of them. A consumer that enforces every edge will require both states.",
+      "requested_change": "Represent condition-specific dependencies explicitly and test both condition orders without satisfying the other panel-state branch."
+    },
+    {
+      "id": "R02",
+      "severity": "medium",
+      "status": "resolved_and_rechecked",
+      "files": [
+        "operations.json"
+      ],
+      "finding": "PANEL_RETURN presumes an installed panel even when the accepted with-then-without order finishes with the panel already removed.",
+      "requested_change": "Provide location-aware cleanup alternatives that remove an installed panel or inspect and return an already-carried/stored panel, without installing it again."
+    },
+    {
+      "id": "R03",
+      "severity": "high",
+      "status": "resolved_and_rechecked",
+      "files": [
+        "tests/contract.py",
+        "dependencies.json",
+        "lineage_contract.json"
+      ],
+      "finding": "The current campaign checker accepts one generic receipt per operation template. It does not validate occurrence scope, dependency order, fabrication-job closure, per-microphone calibration sequences or per-condition configuration and closure occurrences. Template-label presence therefore does not establish the declared occurrence-level workflow.",
+      "requested_change": "Validate scoped occurrence records and their required dependency evidence, including repeated workflows; otherwise explicitly mark occurrence validation unimplemented and prevent the checker from claiming campaign completion.",
+      "resolution": "Scoped occurrence graph now covers finite job/part preparation, both microphone calibrations, both condition sequences, point-specific positioning/acquisition/averaging and cleanup. Single-probe moves wait for prior-point reads; retry events depend on superseded attempts. Inspection/calibration/configuration/archive records bind to occurrence IDs and current revisions."
+    },
+    {
+      "id": "R04",
+      "severity": "medium",
+      "status": "resolved_and_rechecked",
+      "files": [
+        "control_packages.json",
+        "tests/contract.py"
+      ],
+      "finding": "The separate phase and transfer-direction card is absent from matched-state keys and readout epochs. Two conditions can therefore declare different complex conventions without the current shared-state comparison detecting it.",
+      "requested_change": "Bind the exact phase/transfer-convention revision to conditions and raw readouts and reject changes in the matched pair or during a point."
+    },
+    {
+      "id": "R05",
+      "severity": "medium",
+      "status": "resolved_and_rechecked",
+      "files": [
+        "tests/contract.py"
+      ],
+      "finding": "Panel position/row and grid x/y checks rely on Python set equality without strict integer types. Boolean True compares equal to integer one.",
+      "requested_change": "Reject booleans and non-integer position, row and grid-coordinate indices before set/mirror checks; add mutation tests."
+    }
+  ],
+  "review_limits": [
+    "This is not hardware authentication, robot reachability, safety qualification or an acoustic experiment.",
+    "No pressure-field solver, physical apparatus or real sensor was executed.",
+    "Qualification cards and receipts in tests are invented structural fixtures. Their acceptance does not establish that real operating parameters, tolerances or sources have been qualified.",
+    "The actor projection is a declared boundary rather than an installed access-control loader. The full package must remain curator/evaluator-facing.",
+    "Source geometry facts do not supply complete CAD, sound-speed scale, acquisition settings, quantitative acceptance rules or calibration recipes; the declared execution gates remain open.",
+    "The proposed operation sequence and handling details are original task design rather than recovered historical laboratory chronology.",
+    "Final packaging must regenerate and verify the exact export manifest after this review-file update."
+  ],
+  "reviewed_file_sha256": {
+    "EXPORT_SCOPE.md": "15fa8fe9f31f43c9c08ebbd3cd67dfc48878745172d3ee0eff12b8eac8ac7d0d",
+    "README.md": "1508d0a6bee610ae5325358f244344715c035024e2b5c4faafe3d0f52e735dca",
+    "RELEASE_BOUNDARY.json": "a1329a4df3c0823fc8f9834b2ec09b8f515e1363cf8ae8552591c1d6200f0715",
+    "STATUS.json": "d92bb0492efbf3046840017fbc6b4cd0a9b8f416d1b7b8dce084ea83a1689e51",
+    "TASK_DESIGN.md": "518edb5a9ed80a9c7931fd06c520373d4597d845dfc9a683250ee73cd772acc0",
+    "VERIFICATION.json": "879f557bdac74fa6aebd620b477edcf1eaf774dfa1ee3b350897c0b64d47c0a1",
+    "agent_visible.json": "f32bae79d928b24831fb47c6571c8e1a4c4e566b9bd9b0302c1d3213a586df96",
+    "asset_needs.json": "8d0904eafb71c311d80c5658652ed34364c8edfaf296b1d764b98758d9ad52d7",
+    "branches.json": "21268b1e29de667ac3785b4d92f5faefc683781c5a4c74834ec5dc138391c977",
+    "control_packages.json": "b5bdefc4dc83019d1f82972d55d81a9777df23ac3b8ba2c478d4600c48999de2",
+    "coverage_matrix.json": "a868503ab928dd16951c84bb42af3e5d33fda8f46964c03f9a6c0dce45b30a9e",
+    "dependencies.json": "12a90ce03360aed65f5983a0b9141cc79ec630dd5d0e210d383d1e8f42cbdefe",
+    "episode_input_contract.json": "2da89d0466131394ad5a68a32a28c5f999c667809857b313f75ec57d663437c9",
+    "evaluator_reference.json": "22d49700f92921ac8bb328e758290cd3c318a7692e446e8685654e416a1fe4bb",
+    "execution_contract.json": "a6ef2240d9638920fc9ccc64c40dc4e010975a4a0bb5a1143aa65fdad2192397",
+    "geometry_reference.json": "5dff7cbd1b4330a411f74e8bd3f1ad727ef970188ea0d4f3251955daf19c184f",
+    "lineage_contract.json": "f11d89a93896675e0c637c06a6a0f5d115517f8bc62a7f7eaf3fa166a2ce0e2a",
+    "material_cards.json": "c33ea3f241fe60226b21b65c54f9fcb9e212c5fab2e241e6e0493c985d0b5f97",
+    "mock_contract.json": "5c5f43df25d31efbd205a83d46f8d1ac52b86c17533207cec39bc61759e1ae05",
+    "nonmanual_scope.json": "d01c6d239ea922400225f324ce3b4df358b1b0604e29f14ae93990c513f52497",
+    "operations.json": "6b0d4d2115a3c4727812cb27d86c614d34d99e67c8f4e885b3ebd008a0b0eb1d",
+    "provenance.json": "4d82e2e285a5fa93b9fb618728fca16ea74984fc022db921d18735cc434c7231",
+    "source_access_audit.json": "97358ff6e791076a92d789230ec83b61d63094f495aeb9b01fc9840cffe39145",
+    "source_conflicts.json": "cea489d2007c6f03244d434dff69c7eb755c67a257c402aebbfe067091a2efdd",
+    "source_outcomes.json": "9f978d5b786a2676a268892fd37c1053c829a2784077094fdf090624c8621d9d",
+    "station_contracts.json": "e61ed9031d2de6e97f0c389c31a54f22a4ff530ba453b6cea219f6576b656723",
+    "tests/VALIDATION_REPORT.md": "de61c2d7af6332661f4faef031e89d89298fabf8e2dbfb6658af22e97c0c86e6",
+    "tests/contract.py": "02dae374fac237083b9f39f0fea310f8b7b2f82d336b71102164f082e12b9556",
+    "tests/test_contract.py": "e2dd0904755172fc9d32460942b6e444064673718666910e47424856670ec94b",
+    "tests/validation_report.json": "879f557bdac74fa6aebd620b477edcf1eaf774dfa1ee3b350897c0b64d47c0a1",
+    "transport_routes.json": "6ff7a07f36c4c4fb55c493402f4e3ea00e3c21596d74c71198500cc6d9b006f8",
+    "unknown_parameters.json": "22d8675b526bb7443afb00444047284db0623e101d5c577dbffb621e301b77e3"
+  },
+  "test_checkpoint": {
+    "suite_total": 84,
+    "passed": 84,
+    "errors": 0,
+    "command": "python -B -m unittest discover -s tests -v",
+    "independent_adversarial_checks": {
+      "stale_calibration_event_revision": "rejected",
+      "stale_panel_inspection_event_revision": "rejected",
+      "stale_part_metrology_event_revision": "rejected",
+      "detached_configuration_receipt": "rejected",
+      "detached_archive_receipt": "rejected",
+      "phase_card_change": "rejected",
+      "boolean_grid_index": "rejected",
+      "missing_occurrence_graph": "rejected",
+      "probe_moved_before_prior_point_read": "rejected"
+    },
+    "notes": "Final84-test suite, including six adversarial export checks, independently passed; nine additional in-memory campaign mutations were also rejected. Export validation passed before this review file was updated; final export manifest must be regenerated after this last review write.",
+    "latest_run": "84 tests independently passed in 2.478 seconds at final content checkpoint before review-only metadata write"
+  },
+  "final_content_check": "Final STATUS, README, VERIFICATION, validation reports, execution contract and transport routes reviewed. Only review self and export manifest excluded from reviewed-byte hashes."
+}

@@ -1,12 +1,12 @@
 # ScienceGym
 
-**Long-horizon robot research tasks derived from full scientific papers.**
+**Long-horizon robot research tasks derived from scientific papers.**
 
 ScienceGym studies how to translate a paper's reported experimental program into tasks for an embodied research agent: preparing materials, moving samples between instruments, assembling apparatus, running controls and repeated measurements, preserving records, recovering from failures, and leaving the laboratory in a defined final state.
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Current release: nineteen reviewed task-design drafts; zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
+**Current release: twenty-two reviewed task-design drafts, including one partial-source gated draft; zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
 
 ## Contribute a task or asset
 
@@ -83,7 +83,7 @@ Reported literature values, authored mock outputs and unknown or invalid observa
 
 ## Included task families
 
-The nineteen packages have undergone design review and static consistency checks. These are draft representations of reported scope, not human expert certification or completed robotic reproductions.
+The twenty-two packages have undergone design review and static consistency checks. These are draft representations of reported scope, not human expert certification or completed robotic reproductions. The reprogrammable mechanical-logic (ReMM) package is a partial-source gated draft: its main figure panels and all nine supplementary movie contents remain uninspected, so source completeness is false.
 
 | Task family | Reported program represented | Entry point |
 | --- | --- | --- |
@@ -106,6 +106,9 @@ The nineteen packages have undergone design review and static consistency checks
 | Acoustic wavefront modulation | Robot sample and array preparation, guide assembly, calibration, reference and transmission measurements, normal/oblique controls, field scans and cleanup | [Task design](tasks/acoustic_wavefront_operations_v2/TASK_DESIGN.md) |
 | Bianisotropic acoustic metasurfaces | Robot fabrication handling and panel assembly, guide preparation, calibration and paired reflection/transmission scans, with computational design branches kept separate | [Task design](tasks/bianisotropic_operations_v2/TASK_DESIGN.md) |
 | Subwavelength acoustic edge detection | Robot guide fabrication handling, target preparation, four-channel rig assembly and calibration, reference/specimen sweeps, spatial scans and cleanup | [Task design](tasks/acoustic_edge_operations_v2/TASK_DESIGN.md) |
+| Horn-like acoustic metasurfaces | Robot horn fabrication handling and mirrored-panel assembly, two-microphone calibration, paired cylindrical-to-plane field mapping, records and cleanup; forward focusing and beam splitting remain numerical | [Task design](tasks/horn_acoustics_operations_v2/TASK_DESIGN.md) |
+| Reprogrammable mechanical logic (ReMM; partial-source) | Robot component and circuit preparation, reprogramming, electromagnetic and mechanical logic tests, defective routing, volatile storage and mesoscale fabrication, with uninspected source content and execution inputs explicitly gated | [Task design](tasks/mechanical_logic_operations_v2/TASK_DESIGN.md) |
+| Cold-programmed shape morphing | Robot material and specimen custody, qualified-service printing and programming handoffs, mechanical/thermal characterization, shape-memory and hinge cycles, demonstrated shape families, electronics, micro-pipe and alternative-resin branches | [Task design](tasks/cold_shape_operations_v2/TASK_DESIGN.md) |
 
 All published task narratives and structured descriptions are in English. Structured specifications and source identifiers accompany each package.
 
@@ -194,3 +197,11 @@ The bianisotropic-acoustics design adds 42 operation templates across fourteen d
 The acoustic-edge-detection design adds 46 operation templates, seven physical acquisition branches, three numerical/theoretical branches, fourteen unknown-parameter groups and eight source-conflict records. All 62 static and synthetic-record tests passed. Main article and required supplementary text were inspected, while main-PDF bytes were not obtained and that hash remains null. It is integrated into the logical explorer with a [source-bound inspection map](viewer/task_explorer_v1/docs/edge.md).
 
 These three acoustic packages add authored task contracts and checks, with no new scene, CAD or image assets, embodied visual routes, robot executions or scientific reproductions. Package verification and publication fields record their local authoring/review snapshots; they are not live repository deployment status.
+
+The horn-like-acoustic-metasurface design adds 44 operation templates across five preparation, physical-measurement and closure branches, nine theory/numerical branches and seventeen unresolved input groups. All 84 static and synthetic-bookkeeping tests passed; independent review also rejected nine adversarial campaign mutations. Physical source evidence is limited to paired cylindrical-to-plane mapping without and with the focusing panel. Forward focusing, beam splitting and model comparisons remain numerical or theoretical. It is not yet integrated into the thirteen-family explorer.
+
+The reprogrammable-mechanical-logic (ReMM) design adds 55 operation contracts, fourteen physical-design routes, twelve nonmanual dispositions and fifteen unresolved execution gates. All 87 static and adversarial synthetic-bookkeeping tests passed independent review. This is a partial-source gated draft: the main narrative, Methods, captions and all seventeen supplementary pages were inspected, but main figure panels and all nine supplementary movie contents remain uninspected. Source completeness is false; passing contract checks does not close that gap. Numerical logic architectures and model settings remain separate from physical tests. It is not yet integrated into the thirteen-family explorer.
+
+The cold-programmed-shape-morphing design adds 76 operation definitions, 32 physical branches, six numerical/analytical dispositions, nineteen unresolved gates, 24 transport contracts and seven loop types. All 86 author tests, 83 independent static checks and ten independent composition regressions passed. The full main article and twenty-page textual supplement were inspected; eight actual movies and the source-data workbook remain unread. Chemical preparation, printing, thermal/mechanical actuation and liquid-metal filling require closed, qualified services; safe operating cards, geometry and robot interfaces remain execution gates. It is not yet integrated into the thirteen-family explorer.
+
+These three additions contain authored task contracts and checks. They add no viewer family, scene, CAD, image or other binary asset, embodied visual route, robot execution or scientific reproduction. The existing thirteen-family explorer, both embodied storyboards, bounded R01 scene binding and Apache 2.0 license are unchanged. Source publications and source datasets are not bundled, and package verification fields describe local design-review snapshots rather than live deployment status.

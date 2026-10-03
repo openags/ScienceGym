@@ -1,0 +1,272 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "implemented_loader": false,
+  "cards": [
+    {
+      "id": "scene",
+      "unknown_id": "U_SCENE",
+      "required_fields": [
+        "frames",
+        "grasps",
+        "supports",
+        "clearances",
+        "robot_limits",
+        "emergency_stop"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "resin_service",
+      "unknown_id": "U_CHEM",
+      "required_fields": [
+        "service_id",
+        "qualification",
+        "recipe_revision",
+        "lot_acceptance",
+        "sealed_interfaces",
+        "release_criteria",
+        "waste_route"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "geometry",
+      "unknown_id": "U_CAD",
+      "required_fields": [
+        "CAD_hash",
+        "material_map",
+        "dimensions",
+        "tolerances",
+        "grip_zones",
+        "orientation_datums"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "print_service",
+      "unknown_id": "U_PRINT",
+      "required_fields": [
+        "qualification",
+        "job_hash",
+        "radiometer_scope",
+        "grayscale_map",
+        "release_criteria",
+        "organogel_preservation",
+        "safe_unload"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "allocation",
+      "unknown_id": "U_ALLOC",
+      "required_fields": [
+        "sample_manifest",
+        "sibling_ids",
+        "condition_schedule",
+        "repeat_scope",
+        "destructive_reservations",
+        "retry_limit"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "calibration",
+      "unknown_id": "U_CAL",
+      "required_fields": [
+        "instrument_ids",
+        "validity_scope",
+        "traceability",
+        "uncertainty",
+        "acceptance",
+        "drift_policy"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "tensile_service",
+      "unknown_id": "U_TENSILE",
+      "required_fields": [
+        "qualification",
+        "gauge_definition",
+        "grip_profile",
+        "condition_program",
+        "stop_rules",
+        "safe_release"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "DMA_service",
+      "unknown_id": "U_DMA",
+      "required_fields": [
+        "qualification",
+        "clamp",
+        "amplitude",
+        "frequency_schedule",
+        "temperature_program",
+        "safe_release"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "memory_service",
+      "unknown_id": "U_MEMORY",
+      "required_fields": [
+        "qualification",
+        "phase_schedule",
+        "phase_tolerances",
+        "hold_acceptance",
+        "free_recovery_constraint",
+        "cycle_count"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "deformation_service",
+      "unknown_id": "U_DEFORM",
+      "required_fields": [
+        "qualification",
+        "fixture",
+        "target_hinge_ids",
+        "axis_order",
+        "local_strain_reference",
+        "bounded_program",
+        "release_predicate"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "thermal_service",
+      "unknown_id": "U_THERMAL",
+      "required_fields": [
+        "qualification",
+        "thermal_program",
+        "medium",
+        "temperature_readback",
+        "equilibrium_rule",
+        "cool_to_handle",
+        "stage_acceptance_ranges_C"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "optical",
+      "unknown_id": "U_OPTICAL",
+      "required_fields": [
+        "camera_calibration",
+        "fiducials",
+        "coordinate_frame",
+        "geometry_method",
+        "uncertainty",
+        "quality_rules"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "electronics_service",
+      "unknown_id": "U_ELECTRIC",
+      "required_fields": [
+        "qualification",
+        "channel_integrity",
+        "sealed_fill_job",
+        "leak_test",
+        "connector_map",
+        "power_limits",
+        "continuity_observable"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "interlock",
+      "unknown_id": "U_INTERLOCK",
+      "required_fields": [
+        "part_map",
+        "mating_order",
+        "support",
+        "fit_acceptance",
+        "release_method"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "pipe_service",
+      "unknown_id": "U_PIPE",
+      "required_fields": [
+        "qualification",
+        "fixture",
+        "microfeature_acceptance",
+        "optional_flow_authorization",
+        "containment"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "alternative_resin",
+      "unknown_id": "U_ALT",
+      "required_fields": [
+        "identity_resolution",
+        "qualified_formula",
+        "additives",
+        "batch_acceptance",
+        "variant_grayscale_map"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "motion_evidence",
+      "unknown_id": "U_MEDIA",
+      "required_fields": [
+        "provenance",
+        "observed_scope",
+        "authored_motion_qualification"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "analysis",
+      "unknown_id": "U_DATA",
+      "required_fields": [
+        "raw_schema",
+        "units",
+        "phase_alignment",
+        "metric_definitions",
+        "uncertainty",
+        "exclusions",
+        "conflict_resolution"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "model",
+      "unknown_id": "U_MODEL",
+      "required_fields": [
+        "model_code_hash",
+        "geometry",
+        "parameters",
+        "units",
+        "mesh",
+        "boundary_conditions",
+        "convergence"
+      ],
+      "defaults": null
+    }
+  ],
+  "qualification_rule": "A source-reported number is not a safety-qualified device program. Each card requires a responsible service authority, exact revision and validity scope.",
+  "episode_modes": [
+    "selected_branch_design",
+    "whole_physical_campaign"
+  ],
+  "empty_schedules_allowed": false,
+  "evidence_context_contract": {
+    "authority": "Qualified immutable episode input, not actor-writable observations",
+    "implemented_signature_verifier": false,
+    "required_maps": [
+      "objects_with_version_material_location_state_acceptance",
+      "current_calibration_scopes",
+      "service_job_bindings",
+      "qualified_thermal_stage_acceptance_ranges"
+    ],
+    "synthetic_fixture_status": "Current tests use labeled authored values and cannot authenticate this authority."
+  }
+}

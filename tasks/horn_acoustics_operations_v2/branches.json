@@ -1,0 +1,234 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "branches": [
+    {
+      "id": "B_FAB",
+      "title": "Fabricate and assemble focusing panel",
+      "kind": "physical_prerequisite",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "CARRIER",
+        "MOVE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POSTPROCESS",
+        "METROLOGY",
+        "PANEL_ASSEMBLE",
+        "PANEL_INSPECT"
+      ],
+      "evidence_ids": [
+        "E_DESIGN",
+        "E_FAB"
+      ],
+      "loops": [
+        "Print-job manifest, finite and qualified; physical part count is not inferred from 30 cells"
+      ]
+    },
+    {
+      "id": "B_RIG_CAL",
+      "title": "Build domain and calibrate microphones",
+      "kind": "physical_prerequisite",
+      "operation_ids": [
+        "BOARD_RETRIEVE",
+        "BASE_PLACE",
+        "SPACERS_PLACE",
+        "SOURCE_MOUNT",
+        "TOP_PLACE",
+        "DOMAIN_INSPECT",
+        "MIC_RETRIEVE",
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_RELEASE",
+        "REF_MOUNT",
+        "PROBE_MOUNT",
+        "GRID_REGISTER",
+        "DAQ_CONNECT",
+        "SOURCE_SET"
+      ],
+      "evidence_ids": [
+        "E_RIG",
+        "E_SCAN"
+      ],
+      "loops": [
+        "CAL_MOUNT, CAL_ACQUIRE and CAL_RELEASE once per identified microphone; two microphones required"
+      ]
+    },
+    {
+      "id": "B_WITHOUT",
+      "title": "Map without metasurface",
+      "kind": "physical_measurement",
+      "operation_ids": [
+        "CONDITION_ISOLATE",
+        "PANEL_ABSENT",
+        "CONDITION_START",
+        "PROBE_MOVE",
+        "POINT_READ",
+        "POINT_AVERAGE",
+        "CONDITION_CLOSE",
+        "DRIFT_CHECK"
+      ],
+      "evidence_ids": [
+        "E_PHYSICAL",
+        "E_SCAN"
+      ],
+      "loops": [
+        "190 unique grid positions; ten valid technical-readout slots at each position"
+      ]
+    },
+    {
+      "id": "B_WITH",
+      "title": "Map with focusing metasurface",
+      "kind": "physical_measurement",
+      "operation_ids": [
+        "CONDITION_ISOLATE",
+        "PANEL_INSTALL",
+        "CONDITION_START",
+        "PROBE_MOVE",
+        "POINT_READ",
+        "POINT_AVERAGE",
+        "CONDITION_CLOSE",
+        "DRIFT_CHECK"
+      ],
+      "evidence_ids": [
+        "E_PHYSICAL",
+        "E_SCAN"
+      ],
+      "loops": [
+        "190 unique grid positions; ten valid technical-readout slots at each position"
+      ]
+    },
+    {
+      "id": "B_COMPARE_CLOSE",
+      "title": "Compare fields and restore stations",
+      "kind": "physical_and_analysis_closure",
+      "operation_ids": [
+        "PAIR_CHECK",
+        "NORMALIZE",
+        "INTERPOLATE",
+        "ARCHIVE",
+        "SHUTDOWN",
+        "PANEL_RETURN",
+        "MIC_RETURN",
+        "CLEAN"
+      ],
+      "evidence_ids": [
+        "E_PHYSICAL",
+        "E_ANALYSIS"
+      ],
+      "loops": []
+    },
+    {
+      "id": "N_BOUNDS",
+      "title": "Conventional transmission and impedance bounds",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_CONTEXT"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    },
+    {
+      "id": "N_TMM",
+      "title": "Modal transfer-matrix comparison",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_TMM"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    },
+    {
+      "id": "N_HORN",
+      "title": "Horn approximation and geometry sweep",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_HORN"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    },
+    {
+      "id": "N_FOCUS",
+      "title": "Forward focusing lossy and lossless",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_FOCUS",
+        "E_NUMERICS"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    },
+    {
+      "id": "N_SPLIT",
+      "title": "Beam splitting lossy and lossless",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_SPLIT",
+        "E_NUMERICS"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    },
+    {
+      "id": "N_REVERSE",
+      "title": "Numerical reverse-focusing comparison",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_REVERSE_SIM",
+        "E_NUMERICS"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    },
+    {
+      "id": "N_WIDTH",
+      "title": "Unit-cell-width sensitivity",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_WIDTH"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    },
+    {
+      "id": "N_PHASE",
+      "title": "Phase-only versus phase-amplitude comparison",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_PHASE"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    },
+    {
+      "id": "N_ACCESSIBLE",
+      "title": "Focusing-target accessibility comparison",
+      "kind": "theory_or_numerical_only",
+      "operation_ids": [],
+      "evidence_ids": [
+        "E_ACCESSIBLE"
+      ],
+      "execution": "Not run; does not count toward physical campaign completion"
+    }
+  ],
+  "physical_campaign_required": [
+    "B_FAB",
+    "B_RIG_CAL",
+    "B_WITHOUT",
+    "B_WITH",
+    "B_COMPARE_CLOSE"
+  ],
+  "order_semantics": "Operation lists express membership, not a mandatory historical sequence. Both condition orders are allowed if matched state is maintained.",
+  "counts": {
+    "physical_measurement_conditions": 2,
+    "points_per_condition": 190,
+    "readouts_per_point": 10,
+    "derived_minimum_valid_readouts_for_one_pair": 3800,
+    "independent_specimen_replicates": null,
+    "independent_campaign_replicates": null,
+    "counts_note": "3800 is arithmetic for an authored complete paired campaign, not additional source-supplied raw observations."
+  }
+}

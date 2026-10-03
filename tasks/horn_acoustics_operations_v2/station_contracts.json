@@ -1,0 +1,161 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "name": "Records and analysis console",
+      "interfaces": [
+        "card reader",
+        "archive interface"
+      ],
+      "observable_state": [
+        "Current card revisions",
+        "Immutable dataset hashes"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "WS_STOCK",
+      "name": "Identified inventory and carriers",
+      "interfaces": [
+        "indexed storage docks",
+        "identity reader"
+      ],
+      "observable_state": [
+        "Payload identity",
+        "Occupancy and retention"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "BETWEEN",
+      "name": "Qualified station transport",
+      "interfaces": [
+        "cart docks",
+        "retention sensors"
+      ],
+      "observable_state": [
+        "Origin and destination",
+        "Payload retained"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "WS_PRINT",
+      "name": "Enclosed ABS printer",
+      "interfaces": [
+        "stock port",
+        "tray dock",
+        "job console",
+        "interlocks"
+      ],
+      "observable_state": [
+        "Job progress",
+        "Ventilation",
+        "Safe release"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "WS_FINISH",
+      "name": "Supported finishing fixture",
+      "interfaces": [
+        "part nests",
+        "qualified removal tools",
+        "waste collection"
+      ],
+      "observable_state": [
+        "Support removal",
+        "Part integrity",
+        "Waste contained"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "WS_INSPECT",
+      "name": "Geometry inspection station",
+      "interfaces": [
+        "metrology fixture",
+        "measurement tool"
+      ],
+      "observable_state": [
+        "Dimensions",
+        "Tolerance card",
+        "Current revision"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "name": "Panel assembly fixture",
+      "interfaces": [
+        "indexed part nests",
+        "joining interfaces"
+      ],
+      "observable_state": [
+        "Membership",
+        "Orientation",
+        "Join state"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "WS_RIG",
+      "name": "Parallel plywood acoustic domain",
+      "interfaces": [
+        "rated sheet supports",
+        "source fixture",
+        "panel mount",
+        "probe carriage",
+        "reference lock"
+      ],
+      "observable_state": [
+        "Gap",
+        "Source and microphone poses",
+        "Panel condition",
+        "Boundary state"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "WS_CAL",
+      "name": "Microphone calibration station",
+      "interfaces": [
+        "calibrator coupler",
+        "channel connectors"
+      ],
+      "observable_state": [
+        "Microphone identity",
+        "Reference status",
+        "Calibration validity"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    },
+    {
+      "id": "WS_DAQ",
+      "name": "Signal acquisition and control",
+      "interfaces": [
+        "two microphone channels",
+        "source controller",
+        "readout console"
+      ],
+      "observable_state": [
+        "Frequency",
+        "Level and overload",
+        "Readout completeness",
+        "Source-off"
+      ],
+      "implemented": false,
+      "safe_state": "Source isolated where applicable; moving loads retained; hot equipment released only on qualified feedback."
+    }
+  ]
+}

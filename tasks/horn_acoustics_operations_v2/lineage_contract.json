@@ -1,0 +1,50 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "required_identities": [
+    "campaign",
+    "pair",
+    "job",
+    "stock_lot",
+    "printed_part",
+    "CAD_revision",
+    "panel",
+    "panel_revision",
+    "design_position",
+    "rig_revision",
+    "source_config",
+    "reference_microphone",
+    "scan_microphone",
+    "calibration_epoch",
+    "channel_map",
+    "grid_revision",
+    "condition",
+    "point",
+    "readout_slot",
+    "attempt",
+    "raw_record",
+    "average",
+    "analysis_revision"
+  ],
+  "rules": [
+    "Every printed part retains stock, job, CAD and inspection ancestry. Unknown part partition is resolved by a finite qualified manifest, not a count guess.",
+    "A panel binds each design position 1 through 30 exactly once, following row min(position,31-position).",
+    "Changing a part, join or geometry increments panel revision and invalidates panel inspection until repeated.",
+    "Changing source, reference pose, grid or signal chain invalidates matched-pair status; requalify and reacquire affected conditions.",
+    "Reference and scan microphones are distinct physical objects and never exchange roles by relabeling.",
+    "Ten readouts at one point are technical readouts, not ten independent specimens or campaigns.",
+    "Failed and superseded readouts remain immutable; a retry has a new attempt identity and explicitly supersedes an invalid attempt in the same point and slot.",
+    "Interpolated fields and paper reference values have no raw-acquisition ancestry and cannot satisfy readout counts.",
+    "Condition order is an authored scheduling choice; no historical order or independent replicate count is recovered."
+  ],
+  "custody_event_fields": [
+    "object_id",
+    "object_revision",
+    "origin_station",
+    "destination_station",
+    "carrier_id",
+    "retention_check",
+    "departure_event",
+    "arrival_event"
+  ],
+  "replacement": "Quarantine damaged components; replacement creates a new component ID and panel revision. No deletion of prior attempts or resurrection by relabeling."
+}

@@ -1,0 +1,206 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "stations": [
+    {
+      "id": "WS_STOCK",
+      "title": "Sealed inventory and custody",
+      "ports": [
+        {
+          "id": "sealed_container_dock",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "Robot handles only qualified closed carriers.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_RESIN",
+      "title": "Enclosed qualified preparation service",
+      "ports": [
+        {
+          "id": "sealed_material_exchange",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "Service owns all opening, mixing and waste-contact operations.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_PRINT",
+      "title": "Guarded grayscale printing service",
+      "ports": [
+        {
+          "id": "guarded_build_carrier_dock",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "Service owns resin exposure, UV, stage motion and process release.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_QC",
+      "title": "Contained optical inspection",
+      "ports": [
+        {
+          "id": "retained_specimen_stage",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "Sample contacts and optical exposure must preserve organogel state.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_MECH",
+      "title": "Enclosed mechanical service",
+      "ports": [
+        {
+          "id": "safe_fixture_exchange",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "No robot access during load, strain, compression or stored-energy release.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_DMA",
+      "title": "Qualified thermomechanical service",
+      "ports": [
+        {
+          "id": "safe_clamp_exchange",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "Service owns cyclic loading, heating and cool-down.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_THERMAL",
+      "title": "Qualified thermal service",
+      "ports": [
+        {
+          "id": "contained_thermal_carrier",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "Service owns hot media and release-to-handle decision.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_ELECTRIC",
+      "title": "Contained filling/electrical service",
+      "ports": [
+        {
+          "id": "sealed_channel_and_connector_interface",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "Service owns EGaIn handling, filling and qualified power application.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "title": "Supported interlock fixture",
+      "ports": [
+        {
+          "id": "mating_support_dock",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "No unsupported panels or uncontrolled hinge tension.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "title": "Records and isolated specimen storage",
+      "ports": [
+        {
+          "id": "identified_storage_slot",
+          "qualification_required": true,
+          "frame": null
+        }
+      ],
+      "boundary": "Returned specimens retain state, exposure and damage history.",
+      "ready_readbacks": [
+        "identity",
+        "compatible_carrier",
+        "guard_state",
+        "safe_exchange",
+        "current_qualification"
+      ],
+      "implemented": false
+    }
+  ]
+}

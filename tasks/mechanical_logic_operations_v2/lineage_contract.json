@@ -1,0 +1,52 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "identity_levels": [
+    "material_lot",
+    "print_job",
+    "component",
+    "signal_specimen",
+    "memory_specimen",
+    "assembly",
+    "assembly_revision",
+    "program_revision",
+    "topology_revision",
+    "setup_revision",
+    "calibration",
+    "case",
+    "attempt",
+    "cycle",
+    "time_sample",
+    "hold_epoch",
+    "custody_event",
+    "raw_record"
+  ],
+  "invariants": [
+    "14 AU signals are12 normal+2 small; 14 memory specimens are separate identities",
+    "Same ReMM reuse does not prove every component historical serial identity",
+    "Reprogram changes program revision; structural replacement changes assembly/topology revisions",
+    "An individual signal may be reused only with role-specific reset and integrity acceptance",
+    "Time samples and loading cycles do not create new independent specimens",
+    "Replacements get new component IDs and retain ancestor/rejection relations",
+    "Retired/quarantined items cannot reappear as accepted without qualified recovery",
+    "No transport before output isolation,load release and tether detachment",
+    "Prepared handoff retains current energy state and custody"
+  ],
+  "required_record_fields": [
+    "record_id",
+    "branch_id",
+    "case_id",
+    "attempt_id",
+    "specimen_ids",
+    "assembly_revision",
+    "program_revision",
+    "setup_revision",
+    "calibration_id",
+    "reset_receipt_id",
+    "raw_sha256",
+    "timestamp_utc",
+    "data_class",
+    "quality"
+  ],
+  "historical_author_chronology": "unknown; not reconstructed"
+}

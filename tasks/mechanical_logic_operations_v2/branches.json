@@ -1,0 +1,1060 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 14,
+  "branches": [
+    {
+      "id": "MACRO_SIGNAL",
+      "title": "Fabricate and assemble macroscale signals",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "CARRIER",
+        "MOVE",
+        "FAB_LOAD",
+        "FAB_START",
+        "FAB_CYCLE",
+        "FAB_RELEASE",
+        "PART_ID",
+        "GLUE",
+        "CURE",
+        "LUBE",
+        "SUPPORT",
+        "QUARANTINE",
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_SIGNAL"
+      ],
+      "required_branch_ids": [],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_READOUT",
+        "U_ROBOT"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_READOUT",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "reported_normal_specimens": 12,
+        "reported_small_specimens": 2,
+        "episode_quantity": null
+      },
+      "notes": "Reported physical inventory is not an episode default. FDM beam and SLA rigid part jobs have independent occurrence IDs and process cards.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "MEMORY_PREP",
+      "title": "Prepare persistent memory elements",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "CARRIER",
+        "MOVE",
+        "FAB_LOAD",
+        "FAB_START",
+        "FAB_CYCLE",
+        "FAB_RELEASE",
+        "PART_ID",
+        "MEM_ASSEMBLE",
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_MEMORY",
+        "E_ARRAY"
+      ],
+      "required_branch_ids": [],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "reported_measured_memory_specimens": 14,
+        "fabricated_beam_length_mm": 62,
+        "support_span_mm": 60,
+        "episode_quantity": null
+      },
+      "notes": "Memory preparation is an authored gated closure. Detailed memory fabrication recipe is unspecified; do not assume every signal-element recipe transfers.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "NORMAL_TEST",
+      "title": "Measure normal signal responses",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "TEST_CAL",
+        "TEST_MOUNT",
+        "TEST_RUN",
+        "TEST_REVIEW",
+        "TEST_UNLOAD",
+        "QUARANTINE",
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_SIGNAL"
+      ],
+      "required_branch_ids": [
+        "MACRO_SIGNAL"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CLEAN",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "specimen_role": "normal_signal",
+        "reported_specimens": 12,
+        "cycles_per_specimen": null,
+        "independent_replicates": null
+      },
+      "notes": "Finite specimen and cycle allocation required. Curve samples,truth cases,cycles and replacement specimens have separate identities.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "SMALL_TEST",
+      "title": "Measure small signal responses",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "TEST_CAL",
+        "TEST_MOUNT",
+        "TEST_RUN",
+        "TEST_REVIEW",
+        "TEST_UNLOAD",
+        "QUARANTINE",
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_SMALL"
+      ],
+      "required_branch_ids": [
+        "MACRO_SIGNAL"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CLEAN",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "specimen_role": "small_signal",
+        "reported_specimens": 2,
+        "cycles_per_specimen": null,
+        "independent_replicates": null
+      },
+      "notes": "Finite specimen and cycle allocation required. Curve samples,truth cases,cycles and replacement specimens have separate identities.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "MEMORY_TEST",
+      "title": "Measure bistable instruction memory",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "TEST_CAL",
+        "TEST_MOUNT",
+        "TEST_RUN",
+        "TEST_REVIEW",
+        "TEST_UNLOAD",
+        "QUARANTINE",
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_MEMORY"
+      ],
+      "required_branch_ids": [
+        "MEMORY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CLEAN",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "specimen_role": "instruction_memory",
+        "reported_specimens": 14,
+        "cycles_per_specimen": null,
+        "independent_replicates": null
+      },
+      "notes": "Finite specimen and cycle allocation required. Curve samples,truth cases,cycles and replacement specimens have separate identities.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "ARRAY_PREP",
+      "title": "Prepare electromagnetic arithmetic apparatus",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "AU_LAYOUT",
+        "AU_CONTACT",
+        "REIM_MOUNT",
+        "MAG_MOUNT",
+        "WIRE",
+        "SWITCH_CHECK",
+        "MAG_CAL",
+        "VISION_CAL",
+        "ISOLATE",
+        "INITIALIZE",
+        "ARCHIVE",
+        "CLOSE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_ARRAY",
+        "E_NOR"
+      ],
+      "required_branch_ids": [
+        "MACRO_SIGNAL",
+        "MEMORY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_FAB",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "reported_AU_normal": 12,
+        "reported_AU_small": 2,
+        "maximum_simultaneous_rows": 3
+      },
+      "notes": "No unsupported requirement that every historical test preceded assembly. Qualification evidence or explicit qualified handoff is needed; normal/small/memory measurement campaigns remain separately required for whole-paper coverage.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "NOR",
+      "title": "Measure NOR truth cases",
+      "operation_ids": [
+        "PLAN",
+        "ISOLATE",
+        "INITIALIZE",
+        "PROGRAM",
+        "BIND_CASE",
+        "INPUTS",
+        "ROW_ADVANCE",
+        "OUTPUT_READ",
+        "CASE_REVIEW",
+        "ARCHIVE",
+        "RESET_CASE",
+        "DISCONNECT",
+        "MOVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_NOR"
+      ],
+      "required_branch_ids": [
+        "ARRAY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_FAB",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "function": "NOR",
+        "input_arity": 2,
+        "required_input_cases": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "mask_revision": null,
+        "case_repeats": null
+      },
+      "notes": "Input cases are alternatives with a verified reset between independent attempts. Reprogram persistent ReIM separately from transient AU reset. Shared system reuse is source-reported; exact specimen chronology is not.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "NOT",
+      "title": "Measure NOT truth cases",
+      "operation_ids": [
+        "PLAN",
+        "ISOLATE",
+        "INITIALIZE",
+        "PROGRAM",
+        "BIND_CASE",
+        "INPUTS",
+        "ROW_ADVANCE",
+        "OUTPUT_READ",
+        "CASE_REVIEW",
+        "ARCHIVE",
+        "RESET_CASE",
+        "DISCONNECT",
+        "MOVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_GATES"
+      ],
+      "required_branch_ids": [
+        "ARRAY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_FAB",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "function": "NOT",
+        "input_arity": 1,
+        "required_input_cases": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "mask_revision": null,
+        "case_repeats": null
+      },
+      "notes": "Input cases are alternatives with a verified reset between independent attempts. Reprogram persistent ReIM separately from transient AU reset. Shared system reuse is source-reported; exact specimen chronology is not.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "OR",
+      "title": "Measure OR truth cases",
+      "operation_ids": [
+        "PLAN",
+        "ISOLATE",
+        "INITIALIZE",
+        "PROGRAM",
+        "BIND_CASE",
+        "INPUTS",
+        "ROW_ADVANCE",
+        "OUTPUT_READ",
+        "CASE_REVIEW",
+        "ARCHIVE",
+        "RESET_CASE",
+        "DISCONNECT",
+        "MOVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_GATES"
+      ],
+      "required_branch_ids": [
+        "ARRAY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_FAB",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "function": "OR",
+        "input_arity": 2,
+        "required_input_cases": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "mask_revision": null,
+        "case_repeats": null
+      },
+      "notes": "Input cases are alternatives with a verified reset between independent attempts. Reprogram persistent ReIM separately from transient AU reset. Shared system reuse is source-reported; exact specimen chronology is not.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "AND",
+      "title": "Measure AND truth cases",
+      "operation_ids": [
+        "PLAN",
+        "ISOLATE",
+        "INITIALIZE",
+        "PROGRAM",
+        "BIND_CASE",
+        "INPUTS",
+        "ROW_ADVANCE",
+        "OUTPUT_READ",
+        "CASE_REVIEW",
+        "ARCHIVE",
+        "RESET_CASE",
+        "DISCONNECT",
+        "MOVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_GATES"
+      ],
+      "required_branch_ids": [
+        "ARRAY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_FAB",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "function": "AND",
+        "input_arity": 2,
+        "required_input_cases": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "mask_revision": null,
+        "case_repeats": null
+      },
+      "notes": "Input cases are alternatives with a verified reset between independent attempts. Reprogram persistent ReIM separately from transient AU reset. Shared system reuse is source-reported; exact specimen chronology is not.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "DEFECT_ROUTING",
+      "title": "Measure defective routing and bifurcation",
+      "operation_ids": [
+        "PLAN",
+        "ISOLATE",
+        "INITIALIZE",
+        "BRIDGE_CONFIG",
+        "AU_CONTACT",
+        "WIRE",
+        "SWITCH_CHECK",
+        "MAG_CAL",
+        "VISION_CAL",
+        "ROUTE_PROGRAM",
+        "PROGRAM",
+        "BIND_CASE",
+        "INPUTS",
+        "ROW_ADVANCE",
+        "OUTPUT_READ",
+        "ARCHIVE",
+        "RESET_CASE",
+        "DISCONNECT",
+        "MOVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_ROUTING"
+      ],
+      "required_branch_ids": [
+        "ARRAY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_FAB",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "topology": "defective_bridge",
+        "replacement_normal_count": 1,
+        "replacement_small_count": 2,
+        "source_cell": "r2c2",
+        "reported_target_cell": "r5c5",
+        "route_conditions": null,
+        "configuration_mode": "verify_existing_bridge_or_declared_single_conversion"
+      },
+      "notes": "Exact branching destinations and active mask require source/geometry resolution. Perfect Fig5a topology remains explanatory, not a second asserted physical experiment. Existing12-normal+2-small AU may already contain the bridge. Conversion counts describe a topology transaction,not extra default components.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "VOLATILE_STORAGE",
+      "title": "Measure two-row volatile retention",
+      "operation_ids": [
+        "PLAN",
+        "INITIALIZE",
+        "PROGRAM",
+        "BIND_CASE",
+        "STORE_WRITE",
+        "STORE_HOLD",
+        "UPSTREAM_RELEASE",
+        "STORE_READ",
+        "ARCHIVE",
+        "STORE_CLEAR",
+        "ISOLATE",
+        "DISCONNECT",
+        "MOVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_VOLATILE"
+      ],
+      "required_branch_ids": [
+        "ARRAY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_ELECTRIC",
+        "U_FAB",
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_SOURCE",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "storage_element_count": 2,
+        "maintained_row_count": 2,
+        "storage_adjacency": "different_adjacent_rows",
+        "initial_and_upstream_cases": null,
+        "hold_duration_seconds": null
+      },
+      "notes": "Fig7b case inventory and positions are unresolved until main panels inspected. Read/rewrite by transmission is source-described; only Fig7a\u2013c retention is asserted physical. Clearing requires a new hold epoch before another write.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "MECHANICAL_NOR",
+      "title": "Measure mechanically loaded NOR proof",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "MECH_BUILD",
+        "MECH_CAL",
+        "MECH_PROGRAM",
+        "MECH_LOAD",
+        "MECH_READ",
+        "CASE_REVIEW",
+        "ARCHIVE",
+        "MECH_RELEASE",
+        "QUARANTINE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_MECHANICAL"
+      ],
+      "required_branch_ids": [
+        "MACRO_SIGNAL",
+        "MEMORY_PREP"
+      ],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_TIMING"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MECH",
+        "U_READOUT",
+        "U_ROBOT",
+        "U_TIMING"
+      ],
+      "conditions": {
+        "function": "NOR",
+        "input_arity": 2,
+        "required_input_cases": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "signal_element_count": 3,
+        "loading_variant": "three_element_proof",
+        "replicates": null
+      },
+      "notes": "Proof-specific mechanical memory and loading components require separate qualified input cards. No roller,belt or gear array fabrication is claimed.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    },
+    {
+      "id": "MESOSCALE_FAB",
+      "title": "Fabricate and inspect mesoscale elements",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "CARRIER",
+        "MOVE",
+        "FAB_LOAD",
+        "FAB_START",
+        "FAB_CYCLE",
+        "FAB_RELEASE",
+        "PART_ID",
+        "MESO_INSPECT",
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "operation_list_semantics": "membership; occurrences and precedence supplied by dependencies and qualified episode schedule, not historical chronology",
+      "source_evidence_ids": [
+        "E_MESO"
+      ],
+      "required_branch_ids": [],
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MESO",
+        "U_READOUT",
+        "U_ROBOT"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CLEAN",
+        "U_FAB",
+        "U_MESO",
+        "U_READOUT",
+        "U_ROBOT"
+      ],
+      "conditions": {
+        "material": "UTL_resin",
+        "process": "projection_micro_stereolithography",
+        "device": "microArch_P150",
+        "quantity": null
+      },
+      "notes": "Fabrication-only demonstration. No functional mesoscale logic or MEMS replication.",
+      "readiness": "represented_not_executed",
+      "terminal_operation_ids": [
+        "ARCHIVE",
+        "CLEAN",
+        "CLOSE"
+      ],
+      "completion": "Every required nonempty scheduled condition has immutable,classified observations and required control/reset/custody/cleanup receipts. Failed scientific agreement and incomplete acquisition are distinct.",
+      "prepared_handoff": "Prepared-state receipt carries object IDs,revisions,location,energy state,calibration scope and outstanding terminal work. Verify before downstream reuse; never assume prebuilt state."
+    }
+  ],
+  "whole_paper_physical_branch_ids": [
+    "MACRO_SIGNAL",
+    "MEMORY_PREP",
+    "NORMAL_TEST",
+    "SMALL_TEST",
+    "MEMORY_TEST",
+    "ARRAY_PREP",
+    "NOR",
+    "NOT",
+    "OR",
+    "AND",
+    "DEFECT_ROUTING",
+    "VOLATILE_STORAGE",
+    "MECHANICAL_NOR",
+    "MESOSCALE_FAB"
+  ],
+  "whole_paper_claim": "Design coverage only; source completeness and execution remain false"
+}

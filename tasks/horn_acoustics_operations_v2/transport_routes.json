@@ -1,0 +1,67 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "authorship": "Authored operational custody routes; source does not prescribe robot paths.",
+  "routes": [
+    {
+      "entity": "stock_to_print",
+      "from": "WS_STOCK",
+      "to": "WS_PRINT",
+      "payload": "Issued ABS and printer-loading resources"
+    },
+    {
+      "entity": "part:print_to_finish",
+      "from": "WS_PRINT",
+      "to": "WS_FINISH",
+      "payload": "Safe-released identified printed part"
+    },
+    {
+      "entity": "part:finish_to_inspect",
+      "from": "WS_FINISH",
+      "to": "WS_INSPECT",
+      "payload": "Finished identified part"
+    },
+    {
+      "entity": "part:inspect_to_assembly",
+      "from": "WS_INSPECT",
+      "to": "WS_ASSEMBLY",
+      "payload": "Accepted current part"
+    },
+    {
+      "entity": "panel:assembly_to_inspect",
+      "from": "WS_ASSEMBLY",
+      "to": "WS_INSPECT",
+      "payload": "Retained assembled panel"
+    },
+    {
+      "entity": "panel:inspect_to_rig",
+      "from": "WS_INSPECT",
+      "to": "WS_RIG",
+      "payload": "Accepted current focusing panel"
+    },
+    {
+      "entity": "microphone:stock_to_cal",
+      "from": "WS_STOCK",
+      "to": "WS_CAL",
+      "payload": "Identified protected microphone"
+    },
+    {
+      "entity": "microphone:cal_to_rig",
+      "from": "WS_CAL",
+      "to": "WS_RIG",
+      "payload": "Calibrated protected microphone"
+    }
+  ],
+  "inline_transfers": [
+    "BOARD_RETRIEVE includes rated sheet transfer to the rig",
+    "PANEL_RETURN includes retained panel return to storage",
+    "MIC_RETURN includes protected microphone return to storage",
+    "CLEAN includes tool and waste disposition"
+  ],
+  "required_evidence": [
+    "Payload identity and revision",
+    "Origin and destination dock",
+    "Supported carrier and retained-load status",
+    "Departure and arrival custody receipts"
+  ],
+  "substitution": "Equivalent qualified carriers and paths are permitted; deleting the custody transition is not. Route geometry, capacity, contact points and feedback remain U_ROBOT gates."
+}

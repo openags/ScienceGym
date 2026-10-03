@@ -1,0 +1,2617 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "visibility": "authoring_and_evaluator_reference_only",
+  "branch_count": 32,
+  "branches": [
+    {
+      "id": "RESIN_BATCH",
+      "title": "Prepare and release primary resin batch",
+      "classification": "physical_preparation",
+      "source_evidence_ids": [
+        "E_RESIN"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "RESIN_PREP",
+        "RESIN_LOAD",
+        "RESIN_VERIFY",
+        "RESIN_REQUEST",
+        "RESIN_WAIT",
+        "RESIN_UNLOAD",
+        "RESIN_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [],
+      "conditions": {
+        "material_family": "primary_ink",
+        "chemical_recipe": "closed_qualified_service_only"
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "sealed_resin_batch",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "sealed_input_check",
+        "service_preparation",
+        "batch_release",
+        "safe_exchange",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CHEM",
+        "U_DATA",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CHEM",
+        "U_DATA",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "FABRICATE",
+      "title": "Fabricate and qualify grayscale specimens",
+      "classification": "physical_preparation",
+      "source_evidence_ids": [
+        "E_PRINT",
+        "E_LIMITS"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "PRINT_PREP",
+        "PRINT_LOAD",
+        "PRINT_VERIFY",
+        "PRINT_REQUEST",
+        "PRINT_WAIT",
+        "PRINT_UNLOAD",
+        "PRINT_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "RESIN_BATCH"
+      ],
+      "conditions": {
+        "material_classes": [
+          "B1",
+          "B2",
+          "B3"
+        ],
+        "print_irradiance_mW_cm2": [
+          23.6,
+          15.4,
+          3.1
+        ],
+        "brightness_percent": [
+          100,
+          80,
+          40
+        ],
+        "mapping": "paired_in_list_order",
+        "post_cure_default": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "job_and_material_map",
+        "preprint_calibration",
+        "guarded_print",
+        "qualified_release",
+        "inspection",
+        "allocation"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "TENSILE_RT",
+      "title": "Characterize room-temperature materials",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_TENSILE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "TENSILE_PREP",
+        "TENSILE_LOAD",
+        "TENSILE_VERIFY",
+        "TENSILE_REQUEST",
+        "TENSILE_WAIT",
+        "TENSILE_UNLOAD",
+        "TENSILE_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2",
+          "B3"
+        ],
+        "temperature_class": "room_temperature",
+        "source_crosshead_mm_min": 5
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "reserved_tensile_coupon",
+      "destructive_endpoint": true,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_TENSILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_TENSILE"
+      ]
+    },
+    {
+      "id": "TENSILE_HOT",
+      "title": "Characterize elevated-temperature glassy materials",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_TENSILE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "TENSILE_PREP",
+        "TENSILE_LOAD",
+        "TENSILE_VERIFY",
+        "TENSILE_REQUEST",
+        "TENSILE_WAIT",
+        "TENSILE_UNLOAD",
+        "TENSILE_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2"
+        ],
+        "temperature_C": 80,
+        "stress_axis_source_unit": "kPa",
+        "unit_resolution_required": true
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "reserved_hot_tensile_coupon",
+      "destructive_endpoint": true,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_TENSILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_TENSILE"
+      ]
+    },
+    {
+      "id": "DMA_SWEEP",
+      "title": "Acquire temperature-dependent thermomechanics",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_DMA"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DMA_PREP",
+        "DMA_LOAD",
+        "DMA_VERIFY",
+        "DMA_REQUEST",
+        "DMA_WAIT",
+        "DMA_UNLOAD",
+        "DMA_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2",
+          "B3"
+        ],
+        "temperature_ramp_C_min": 10,
+        "temperature_extent": null,
+        "frequency": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "reserved_DMA_coupon",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DMA",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DMA",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "DMA_IDENTIFICATION",
+      "title": "Acquire multi-temperature frequency sweeps",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_DMA_ID"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DMA_PREP",
+        "DMA_LOAD",
+        "DMA_VERIFY",
+        "DMA_REQUEST",
+        "DMA_WAIT",
+        "DMA_UNLOAD",
+        "DMA_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2"
+        ],
+        "temperature_C": {
+          "start": 10,
+          "end": 130,
+          "increment": 5
+        },
+        "isothermal_stress_free_hold_min": 5,
+        "frequency_bounds_Hz": [
+          0.1,
+          20
+        ],
+        "exact_frequency_list": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "reserved_identification_coupon",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DMA",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DMA",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "STRAIN_RATE",
+      "title": "Acquire strain-rate material series",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_RATE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "TENSILE_PREP",
+        "TENSILE_LOAD",
+        "TENSILE_VERIFY",
+        "TENSILE_REQUEST",
+        "TENSILE_WAIT",
+        "TENSILE_UNLOAD",
+        "TENSILE_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2"
+        ],
+        "temperature_class": "room_temperature",
+        "source_strain_rate_s_inverse": [
+          0.00167,
+          0.01,
+          0.05,
+          0.1
+        ],
+        "crosshead_conversion_requires_gauge": true
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": true,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_TENSILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_TENSILE"
+      ]
+    },
+    {
+      "id": "MEMORY_HOT",
+      "title": "Acquire hot-programmed memory cycles",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_MEMORY"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "MEMORY_PREP",
+        "MEMORY_LOAD",
+        "MEMORY_VERIFY",
+        "MEMORY_REQUEST",
+        "MEMORY_WAIT",
+        "MEMORY_UNLOAD",
+        "MEMORY_COMMIT",
+        "PHOTO",
+        "ANGLE",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2"
+        ],
+        "source_programming_strain_percent": 100,
+        "source_programming_temperature_C": 100,
+        "source_cooling_target_C": 25,
+        "source_recovery_target_C": 100,
+        "schedule_scope": "SI_Note_1_specimen_tests_only",
+        "source_strain_rate_percent_min": 10,
+        "source_thermal_ramp_C_min": 10,
+        "source_pre_unload_hold_min": 5,
+        "source_recovery_isothermal_hold_min": 5
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "heat_for_programming",
+        "stretch",
+        "cool_while_constrained",
+        "hold",
+        "unload",
+        "free_heat_recovery",
+        "recovery_observation"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEMORY",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_MEMORY",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "MEMORY_COLD",
+      "title": "Acquire cold-programmed memory cycles",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_MEMORY"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "MEMORY_PREP",
+        "MEMORY_LOAD",
+        "MEMORY_VERIFY",
+        "MEMORY_REQUEST",
+        "MEMORY_WAIT",
+        "MEMORY_UNLOAD",
+        "MEMORY_COMMIT",
+        "PHOTO",
+        "ANGLE",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2"
+        ],
+        "source_programming_strain_percent": 100,
+        "source_programming_temperature_C": 25,
+        "source_recovery_target_C": 100,
+        "schedule_scope": "SI_Note_1_specimen_tests_only",
+        "source_strain_rate_percent_min": 10,
+        "source_thermal_ramp_C_min": 10,
+        "source_pre_unload_hold_min": 5,
+        "source_recovery_isothermal_hold_min": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "stretch_at_room_temperature",
+        "hold",
+        "unload",
+        "free_heat_recovery",
+        "recovery_observation"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEMORY",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_MEMORY",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "MEMORY_VISUAL",
+      "title": "Compare staged B1 and B2 recovery",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_VISREC"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "THERMAL_PREP",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_REQUEST",
+        "THERMAL_WAIT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2"
+        ],
+        "thermal_stages_C": [
+          50,
+          80
+        ],
+        "programming_strain": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "cold_draw",
+        "release",
+        "room_temperature_observation",
+        "intermediate_temperature_observation",
+        "high_temperature_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_THERMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_THERMAL"
+      ]
+    },
+    {
+      "id": "MEMORY_TEN_CYCLES",
+      "title": "Track ten-cycle material histories",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_MATCYCLE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "MEMORY_PREP",
+        "MEMORY_LOAD",
+        "MEMORY_VERIFY",
+        "MEMORY_REQUEST",
+        "MEMORY_WAIT",
+        "MEMORY_UNLOAD",
+        "MEMORY_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "B1",
+          "B2"
+        ],
+        "cycle_count": 10,
+        "exact_cycle_schedule": null,
+        "does_not_inherit_hot_or_cold_schedule": true
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": 10,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEMORY",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_MEMORY",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "GRADED_STRIP",
+      "title": "Program graded ends and staged recovery",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_GRADED"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "THERMAL_PREP",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_REQUEST",
+        "THERMAL_WAIT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "material_map": [
+          "B1_end",
+          "B3_middle",
+          "B2_end"
+        ],
+        "hot_programming_C": 80,
+        "fixing_medium": "ice_bath",
+        "recovery_stages_C": [
+          50,
+          80
+        ],
+        "dwell": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "qualified_hot_bending",
+        "constrained_cooling",
+        "unload",
+        "observe_fixed",
+        "intermediate_recovery",
+        "high_temperature_recovery",
+        "recovery_observation"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_THERMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_THERMAL"
+      ]
+    },
+    {
+      "id": "GRADED_MIDDLE",
+      "title": "Observe elastic graded-strip middle",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_GRADED"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "target_region": "B3_middle",
+        "source_stretch_percent": 1000,
+        "temperature_class": "room_temperature",
+        "same_historical_specimen_as_graded_ends": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "GRADED_LATTICE",
+      "title": "Compress graded lattice and stage recovery",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_LATTICE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "THERMAL_PREP",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_REQUEST",
+        "THERMAL_WAIT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "PHOTO",
+        "ANGLE",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "loading_mode": "compression",
+        "temperature_class": "room_temperature",
+        "recovery_stages_C": [
+          50,
+          80
+        ],
+        "maximum_compression": null,
+        "layer_label_conflict": "C_LATTICE"
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "compress",
+        "unload",
+        "room_temperature_observation",
+        "intermediate_recovery",
+        "high_temperature_recovery",
+        "recovery_observation"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_THERMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_THERMAL"
+      ]
+    },
+    {
+      "id": "HINGE_ANGLE_FORCE",
+      "title": "Measure hinge strain-angle and force response",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_HINGE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "PHOTO",
+        "ANGLE",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "hinge_families": [
+          "H13",
+          "H12",
+          "H23"
+        ],
+        "angle_series_material": "H13",
+        "exact_strain_schedule": null,
+        "source_angle_error_bar_experiments": 5,
+        "replication_scope": "hinge_angle_series_only",
+        "full_fold_report_context_strain_percent": 120
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "HINGE_FORTY_CYCLES",
+      "title": "Track forty-cycle H13 history",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_HINGECYCLE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "THERMAL_PREP",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_REQUEST",
+        "THERMAL_WAIT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "hinge_family": "H13",
+        "cycle_count": 40,
+        "pictured_checkpoints": [
+          1,
+          10,
+          20,
+          30,
+          40
+        ],
+        "strain_and_dwell": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": 40,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_THERMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_THERMAL"
+      ]
+    },
+    {
+      "id": "MODULAR_STRIPS",
+      "title": "Program alternating strip layouts",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_MODULAR"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "THERMAL_PREP",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_REQUEST",
+        "THERMAL_WAIT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "layouts": [
+          "M_square_examples",
+          "wave_layout_1",
+          "wave_layout_2"
+        ],
+        "wave_source_strain_percent": 30,
+        "other_strains": null,
+        "reported_recovery_C": 80
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_THERMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_THERMAL"
+      ]
+    },
+    {
+      "id": "HELIX_STRIPS",
+      "title": "Compare oriented-hinge helix configurations",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_HELIX"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "hinge_orientation_deg": 30,
+        "source_applied_strain_percent": [
+          30,
+          60
+        ],
+        "independent_specimen_count": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "LOCAL_HAND",
+      "title": "Program local printed-hand joints",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_HAND"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "LOCAL_SELECT",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "object": "printed_polymer_hand",
+        "gesture_schedule": null,
+        "local_joint_ids": null,
+        "human_subject": false
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "LOCAL_STRIP",
+      "title": "Program selected strip hinges",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_LOCAL"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "LOCAL_SELECT",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "local_hinge_schedule": null,
+        "through_hole_support": true
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "ELECTRONIC_STRIP",
+      "title": "Prepare and observe conductive morphing strip",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_ELECTRIC"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "FILL_PREP",
+        "FILL_LOAD",
+        "FILL_VERIFY",
+        "FILL_REQUEST",
+        "FILL_WAIT",
+        "FILL_UNLOAD",
+        "FILL_COMMIT",
+        "ELECTRIC_CONNECT",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "ELECTRIC_OBSERVE",
+        "ELECTRIC_ISOLATE",
+        "PHOTO",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "source_channel_diameter_um": 400,
+        "fill_material": "EGaIn",
+        "source_fill_method": "vacuum_assisted",
+        "observable": "qualitative_LED_illumination",
+        "resistance_invariance_claim": false,
+        "power_settings": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_ELECTRIC",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_ELECTRIC",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "DUAL_AXIS_PANEL",
+      "title": "Program dual-direction panel configurations",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_PANEL"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "AXIS_SELECT",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "axis_conditions": [
+          "x",
+          "y",
+          "x_and_y"
+        ],
+        "source_applied_strain_percent": 50,
+        "two_axis_load_order": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "SYMMETRIC_PANEL",
+      "title": "Compare symmetric and inverted panels",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_SYMMETRIC"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "AXIS_SELECT",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "layout_variants": [
+          "symmetric",
+          "hinges_inverted"
+        ],
+        "axis_conditions": [
+          "x",
+          "y",
+          "x_and_y"
+        ],
+        "source_applied_strain_percent": 50,
+        "two_axis_load_order": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "INTERLOCK_ARCHITECTURE",
+      "title": "Assemble through-hole architectures",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_INTERLOCK"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "INTERLOCK_PREP",
+        "INTERLOCK_JOIN",
+        "PHOTO",
+        "INTERLOCK_RELEASE",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "LOCAL_STRIP",
+        "DUAL_AXIS_PANEL"
+      ],
+      "conditions": {
+        "component_map": null,
+        "historical_specimen_reuse": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "versioned_multi_component_assembly",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_INTERLOCK",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_INTERLOCK",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "THERMAL_HINGES",
+      "title": "Compare temperature-selective hinge families",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_SWITCH"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "THERMAL_PREP",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_REQUEST",
+        "THERMAL_WAIT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "hinge_families": [
+          "H13",
+          "H12",
+          "H23"
+        ],
+        "comparison_temperature": [
+          "room_temperature",
+          50
+        ],
+        "material_map": {
+          "H13": [
+            "B1",
+            "B3"
+          ],
+          "H12": [
+            "B1",
+            "B2"
+          ],
+          "H23": [
+            "B2",
+            "B3"
+          ]
+        }
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "cold_program",
+        "release",
+        "room_temperature_observation",
+        "intermediate_temperature_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_THERMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_THERMAL"
+      ]
+    },
+    {
+      "id": "HYBRID_STRIPS",
+      "title": "Observe hybrid multistage layouts",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_HYBRID"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "THERMAL_PREP",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_REQUEST",
+        "THERMAL_WAIT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "layout_variants": [
+          "M_to_S",
+          "square_to_helix"
+        ],
+        "hinge_families": [
+          "H12",
+          "H23"
+        ],
+        "intermediate_temperature_C": 50,
+        "programming_strain": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "cold_draw_all_hinges",
+        "release",
+        "room_temperature_observation",
+        "intermediate_temperature_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_THERMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_THERMAL"
+      ]
+    },
+    {
+      "id": "MICRO_PIPE",
+      "title": "Program micro-hinge pipe",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_PIPE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "PIPE_INSPECT",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "THERMAL_PREP",
+        "THERMAL_LOAD",
+        "THERMAL_VERIFY",
+        "THERMAL_REQUEST",
+        "THERMAL_WAIT",
+        "THERMAL_UNLOAD",
+        "THERMAL_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "source_partial_dimensions": {
+          "outer_diameter_mm": 1,
+          "wall_um": 250,
+          "feature_um": [
+            100,
+            100
+          ],
+          "illustrated_length_mm": 18
+        },
+        "source_temperature_C": [
+          25,
+          80
+        ],
+        "optional_flow": "excluded_without_separate_qualified_card",
+        "quantitative_flow_measurement": false
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "cold_draw",
+        "release",
+        "low_temperature_observation",
+        "high_temperature_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PIPE",
+        "U_SCENE",
+        "U_THERMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_MEDIA",
+        "U_OPTICAL",
+        "U_PIPE",
+        "U_PRINT",
+        "U_SCENE",
+        "U_THERMAL"
+      ]
+    },
+    {
+      "id": "ALT_RESIN_BATCH",
+      "title": "Resolve and prepare alternative resin",
+      "classification": "physical_preparation",
+      "source_evidence_ids": [
+        "E_ALT"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "RESIN_PREP",
+        "RESIN_LOAD",
+        "RESIN_VERIFY",
+        "RESIN_REQUEST",
+        "RESIN_WAIT",
+        "RESIN_UNLOAD",
+        "RESIN_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [],
+      "conditions": {
+        "formula_identity": "unresolved_source_component_label",
+        "primary_additives_inherited": false
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "sealed_alternative_resin_batch",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ALT",
+        "U_CHEM",
+        "U_DATA",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ALT",
+        "U_CHEM",
+        "U_DATA",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "ALT_FABRICATE",
+      "title": "Print alternative-resin states and hinge",
+      "classification": "physical_preparation",
+      "source_evidence_ids": [
+        "E_ALT"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "PRINT_PREP",
+        "PRINT_LOAD",
+        "PRINT_VERIFY",
+        "PRINT_REQUEST",
+        "PRINT_WAIT",
+        "PRINT_UNLOAD",
+        "PRINT_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "ALT_RESIN_BATCH"
+      ],
+      "conditions": {
+        "material_classes": [
+          "alternative_stiff",
+          "alternative_soft"
+        ],
+        "source_irradiance_mW_cm2": [
+          23.6,
+          3.1
+        ],
+        "primary_B1_B2_B3_identity_inherited": false
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ALT",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ALT",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "ALT_TENSILE",
+      "title": "Characterize alternative-resin states",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_ALT"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "TENSILE_PREP",
+        "TENSILE_LOAD",
+        "TENSILE_VERIFY",
+        "TENSILE_REQUEST",
+        "TENSILE_WAIT",
+        "TENSILE_UNLOAD",
+        "TENSILE_COMMIT",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "ALT_FABRICATE"
+      ],
+      "conditions": {
+        "materials": [
+          "alternative_stiff",
+          "alternative_soft"
+        ],
+        "source_test_geometry": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": true,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ALT",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_OPTICAL",
+        "U_SCENE",
+        "U_TENSILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ALT",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE",
+        "U_TENSILE"
+      ]
+    },
+    {
+      "id": "ALT_HINGE",
+      "title": "Observe alternative-resin hinge morphing",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_ALT"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "DEFORM_PREP",
+        "DEFORM_LOAD",
+        "DEFORM_VERIFY",
+        "DEFORM_REQUEST",
+        "DEFORM_WAIT",
+        "DEFORM_UNLOAD",
+        "DEFORM_COMMIT",
+        "PHOTO",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "ALT_FABRICATE"
+      ],
+      "conditions": {
+        "hinge_recipe": null,
+        "programming_schedule": null
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "identified_specimen",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ALT",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ALT",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_DEFORM",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    },
+    {
+      "id": "B1_FIXITY_SERIES",
+      "title": "Measure homogeneous B1 fixed-strain series",
+      "classification": "physical_measurement_or_demonstration",
+      "source_evidence_ids": [
+        "E_HINGE",
+        "E_ANGLE"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "SCAN",
+        "ALLOCATE",
+        "CAL_CHECK",
+        "MEMORY_PREP",
+        "MEMORY_LOAD",
+        "MEMORY_VERIFY",
+        "MEMORY_REQUEST",
+        "MEMORY_WAIT",
+        "MEMORY_UNLOAD",
+        "MEMORY_COMMIT",
+        "PHOTO",
+        "ANGLE",
+        "RECOVER_CHECK",
+        "STORE",
+        "CLEAN"
+      ],
+      "operation_list_semantics": "Required operation membership, not a single historical sequence; repeat transfers and service phases receive distinct occurrence IDs.",
+      "required_branch_ids": [
+        "FABRICATE"
+      ],
+      "conditions": {
+        "material": "B1",
+        "subseries": "fixed_strain_vs_programming_strain",
+        "exact_nonempty_strain_schedule": null,
+        "hinge_angle_n5_inherited": false
+      },
+      "condition_values_are": "reported_scientific_context_requiring_qualified_instance_binding",
+      "sample_role": "reserved_homogeneous_B1_fixity_coupon",
+      "destructive_endpoint": false,
+      "source_independent_sample_count": null,
+      "source_cycles": null,
+      "phase_order": [
+        "baseline",
+        "stretch_at_declared_strain",
+        "hold",
+        "unload",
+        "fixed_strain_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "state_reuse_rule": "Use the same ID only when a retained version-bound history and qualified reuse receipt permit it; otherwise allocate a new sibling.",
+      "completion": "Every declared nonempty condition cell, required phase, control and cleanup must have accepted trusted records; a target-looking picture is insufficient.",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEMORY",
+        "U_OPTICAL",
+        "U_SCENE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_CAD",
+        "U_CAL",
+        "U_CHEM",
+        "U_DATA",
+        "U_MEDIA",
+        "U_MEMORY",
+        "U_OPTICAL",
+        "U_PRINT",
+        "U_SCENE"
+      ]
+    }
+  ],
+  "mandatory_physical_campaign_branches": [
+    "RESIN_BATCH",
+    "FABRICATE",
+    "TENSILE_RT",
+    "TENSILE_HOT",
+    "DMA_SWEEP",
+    "DMA_IDENTIFICATION",
+    "STRAIN_RATE",
+    "MEMORY_HOT",
+    "MEMORY_COLD",
+    "MEMORY_VISUAL",
+    "MEMORY_TEN_CYCLES",
+    "GRADED_STRIP",
+    "GRADED_MIDDLE",
+    "GRADED_LATTICE",
+    "HINGE_ANGLE_FORCE",
+    "HINGE_FORTY_CYCLES",
+    "MODULAR_STRIPS",
+    "HELIX_STRIPS",
+    "LOCAL_HAND",
+    "LOCAL_STRIP",
+    "ELECTRONIC_STRIP",
+    "DUAL_AXIS_PANEL",
+    "SYMMETRIC_PANEL",
+    "INTERLOCK_ARCHITECTURE",
+    "THERMAL_HINGES",
+    "HYBRID_STRIPS",
+    "MICRO_PIPE",
+    "ALT_RESIN_BATCH",
+    "ALT_FABRICATE",
+    "ALT_TENSILE",
+    "ALT_HINGE",
+    "B1_FIXITY_SERIES"
+  ],
+  "branch_dependencies_are": "authored prerequisite families, not a claim of the authors historical acquisition order"
+}

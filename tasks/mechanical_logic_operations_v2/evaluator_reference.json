@@ -1,0 +1,35 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "visibility": "evaluator_reference_only",
+  "authoritative_observations": [
+    "immutable_device_events",
+    "raw_hashes",
+    "actual_inputs_and_outputs",
+    "calibration_scope",
+    "reset_receipts",
+    "row_energization_history",
+    "component_revisions",
+    "custody_events"
+  ],
+  "rules": [
+    "Unresolved required gate blocks completion",
+    "Source numerical output is never measured hardware",
+    "Unknown bit is not0",
+    "Fresh reset is required for independent truth cases",
+    "Physical NOR excitation needs hardware calibration,not3N FEM",
+    "Two-row storage hold cannot survive a power gap",
+    "One held element cannot satisfy volatile pair contract",
+    "Every declared condition covered;empty schedule cannot pass",
+    "Scientific mismatch can be procedure-valid;never silently overwrite result",
+    "Retries preserve failed attempts and distinct IDs"
+  ],
+  "outcomes": [
+    "complete",
+    "partial",
+    "blocked",
+    "safe_abort",
+    "failed"
+  ],
+  "engine": "static and synthetic bookkeeping checks only; trusted live backend not provided"
+}

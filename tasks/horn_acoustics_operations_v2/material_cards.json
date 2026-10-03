@@ -1,0 +1,98 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "cards": [
+    {
+      "id": "M_ABS",
+      "role": "Metasurface material",
+      "source_reported": {
+        "material": "Acrylonitrile-Butadiene-Styrene",
+        "printer": "Dimension SST 1200es",
+        "resolution_mm": 0.2
+      },
+      "unknowns": [
+        "Stock grade and quantity",
+        "Printer settings",
+        "Part count and supports"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ]
+    },
+    {
+      "id": "M_PANEL",
+      "role": "Focusing metasurface",
+      "source_reported": {
+        "design_positions": 30,
+        "unique_rows": 15,
+        "unit_width": "lambda/6",
+        "unit_length": "lambda/2"
+      },
+      "printed_part_count": null,
+      "independent_replicates": null,
+      "evidence_ids": [
+        "E_DESIGN"
+      ]
+    },
+    {
+      "id": "M_DOMAIN",
+      "role": "Parallel plywood domain",
+      "source_reported": {
+        "sheet_count": 2,
+        "sheet_dimensions_cm": [
+          250,
+          250,
+          2.5
+        ],
+        "separation_cm": 2,
+        "foam_thickness_cm": 5
+      },
+      "evidence_ids": [
+        "E_RIG"
+      ]
+    },
+    {
+      "id": "M_MIC",
+      "role": "Fixed and scanning microphone",
+      "source_reported": {
+        "model": "Audix TM1",
+        "count": 2,
+        "initially_calibrated": true
+      },
+      "calibration_recipe": null,
+      "evidence_ids": [
+        "E_SCAN"
+      ]
+    },
+    {
+      "id": "M_SOURCE",
+      "role": "Localized acoustic source",
+      "source_reported": {
+        "hardware": "Loudspeaker coupled to narrow tube",
+        "frequency_hz": 1000,
+        "source_to_panel_distance": "2 lambda"
+      },
+      "physical_drive_level": null,
+      "evidence_ids": [
+        "E_RIG",
+        "E_PHYSICAL"
+      ]
+    },
+    {
+      "id": "M_GRID",
+      "role": "Paired mapping region",
+      "source_reported": {
+        "positions": 190,
+        "spacing_cm": 9,
+        "approximate_boundary_offset_cm": 40,
+        "table_columns": 10,
+        "table_rows": 19,
+        "readouts_per_position": 10
+      },
+      "absolute_pose": null,
+      "evidence_ids": [
+        "E_SCAN",
+        "E_TABLE2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "verified_utc": "2026-10-03T16:58:04.204758+00:00",
+  "environment": "Linux cloud workspace; Python 3.12.14",
+  "commands": [
+    {
+      "command": "python3 -B -m unittest discover -s tests -p 'test_*.py' -q",
+      "result": "passed",
+      "test_count": 87
+    },
+    {
+      "command": "python3 -B tests/verify_package.py",
+      "result": "passed_with_exact_33_file_export_and_payload_hashes"
+    }
+  ],
+  "independent_review": {
+    "result": "passed",
+    "scope": "Source/evidence boundaries,all contracts,documentation,87 tests,static verifier,exact33-file export and hashes",
+    "reviewed_export_index_sha256": "1adf0e5803be264be3f2471df44f8a3ab3acc8b3ae4a953e5cf804ca41f1a93b",
+    "subsequent_changes": "Review status and receipts only; payload hashes regenerated and export check rerun",
+    "limitations": "No robot,device,physics,display or scientific validation"
+  },
+  "claim_scope": "Static JSON/reference/gate/lineage/actor/export checks and explicitly synthetic-bookkeeping only",
+  "not_run": [
+    "physical_simulation",
+    "robot_execution",
+    "hardware_experiment",
+    "scientific_replication",
+    "display_review",
+    "public_publication"
+  ],
+  "source_complete": false
+}

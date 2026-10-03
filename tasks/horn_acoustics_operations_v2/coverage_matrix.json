@@ -1,0 +1,300 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "coverage": [
+    {
+      "id": "C_CONTEXT",
+      "evidence_ids": [
+        "E_CONTEXT"
+      ],
+      "source_locator": "Main Introduction; Figs 1-2; Results Complete wave modulation; SI Note 1 pp.3-4",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_BOUNDS"
+      ],
+      "operation_ids": [],
+      "notes": "Conventional coiling and real-impedance transmission bounds are analytical context."
+    },
+    {
+      "id": "C_HORN",
+      "evidence_ids": [
+        "E_HORN"
+      ],
+      "source_locator": "Main Figs 3-4; Eqs 14-25; SI Note 3 pp.11-17",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_HORN"
+      ],
+      "operation_ids": [],
+      "notes": "Graded channels and equivalent horn model, with analytical and numerical comparison."
+    },
+    {
+      "id": "C_TMM",
+      "evidence_ids": [
+        "E_TMM"
+      ],
+      "source_locator": "SI Note 2 pp.4-11; Figs S1-S3",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_TMM"
+      ],
+      "operation_ids": [],
+      "notes": "Modal transfer matrices and numerical frequency sweep, not physical impedance-tube measurement."
+    },
+    {
+      "id": "C_DESIGN",
+      "evidence_ids": [
+        "E_DESIGN"
+      ],
+      "source_locator": "Main Results Metasurfaces for complete acoustic wave modulation; SI Table 1 p.1; Note 4 pp.19-20",
+      "disposition": "mixed_geometry_reference_and_physical_prerequisite",
+      "branch_ids": [
+        "B_FAB"
+      ],
+      "operation_ids": [
+        "METROLOGY",
+        "PANEL_ASSEMBLE",
+        "PANEL_INSPECT"
+      ],
+      "notes": "Two 30-cell designs, each specified by 15 rows and mirror symmetry; only focusing design fabricated."
+    },
+    {
+      "id": "C_FOCUS",
+      "evidence_ids": [
+        "E_FOCUS"
+      ],
+      "source_locator": "Main Fig 5a,c and adjacent Results",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_FOCUS"
+      ],
+      "operation_ids": [],
+      "notes": "Forward focusing at two wavelengths, lossy/lossless simulation."
+    },
+    {
+      "id": "C_SPLIT",
+      "evidence_ids": [
+        "E_SPLIT"
+      ],
+      "source_locator": "Main Fig 5b,d and adjacent Results",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_SPLIT"
+      ],
+      "operation_ids": [],
+      "notes": "Numerical splitting at plus/minus pi/12."
+    },
+    {
+      "id": "C_REVERSE_SIM",
+      "evidence_ids": [
+        "E_REVERSE_SIM"
+      ],
+      "source_locator": "Main Fig 6a",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_REVERSE"
+      ],
+      "operation_ids": [],
+      "notes": "Numerical cylindrical-to-plane comparison."
+    },
+    {
+      "id": "C_PHYSICAL",
+      "evidence_ids": [
+        "E_PHYSICAL"
+      ],
+      "source_locator": "Main Fig 6b,c; Fig 7; Results pp.6-7; Methods p.8",
+      "disposition": "physical_branch_or_prerequisite",
+      "branch_ids": [
+        "B_WITHOUT",
+        "B_WITH",
+        "B_COMPARE_CLOSE"
+      ],
+      "operation_ids": [
+        "PANEL_ASSEMBLE",
+        "PANEL_INSPECT",
+        "SOURCE_MOUNT",
+        "PANEL_ABSENT",
+        "PANEL_INSTALL",
+        "PAIR_CHECK",
+        "ARCHIVE"
+      ],
+      "notes": "Physical with/without-metasurface mapping of reverse focusing."
+    },
+    {
+      "id": "C_FAB",
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "source_locator": "Methods Experimental setup and procedure p.8; Fig 7",
+      "disposition": "physical_branch_or_prerequisite",
+      "branch_ids": [
+        "B_FAB"
+      ],
+      "operation_ids": [
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POSTPROCESS",
+        "METROLOGY"
+      ],
+      "notes": "ABS fabricated with Dimension SST 1200es at reported 0.2 mm resolution."
+    },
+    {
+      "id": "C_RIG",
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "source_locator": "Methods Experimental setup and procedure p.8; Fig 7",
+      "disposition": "physical_branch_or_prerequisite",
+      "branch_ids": [
+        "B_RIG_CAL"
+      ],
+      "operation_ids": [
+        "BOARD_RETRIEVE",
+        "BASE_PLACE",
+        "SPACERS_PLACE",
+        "SOURCE_MOUNT",
+        "TOP_PLACE",
+        "DOMAIN_INSPECT"
+      ],
+      "notes": "Two plywood sheets, absorbers and speaker with narrow tube."
+    },
+    {
+      "id": "C_SCAN",
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "source_locator": "Methods Experimental setup and procedure p.8; SI Table 2 p.2",
+      "disposition": "physical_branch_or_prerequisite",
+      "branch_ids": [
+        "B_RIG_CAL",
+        "B_WITHOUT",
+        "B_WITH"
+      ],
+      "operation_ids": [
+        "MIC_RETRIEVE",
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_RELEASE",
+        "REF_MOUNT",
+        "PROBE_MOUNT",
+        "GRID_REGISTER",
+        "DAQ_CONNECT",
+        "SOURCE_SET",
+        "CONDITION_START",
+        "PROBE_MOVE",
+        "POINT_READ",
+        "POINT_AVERAGE",
+        "CONDITION_CLOSE",
+        "DRIFT_CHECK",
+        "PAIR_CHECK"
+      ],
+      "notes": "190 probe positions, 9 cm spacing, ten transfer-function readouts averaged at each position, two initially calibrated Audix TM1 microphones."
+    },
+    {
+      "id": "C_TABLE2",
+      "evidence_ids": [
+        "E_TABLE2"
+      ],
+      "source_locator": "SI Table 2 p.2",
+      "disposition": "reference_only_averaged_data",
+      "branch_ids": [],
+      "operation_ids": [
+        "GRID_REGISTER",
+        "CONDITION_CLOSE",
+        "ARCHIVE"
+      ],
+      "notes": "Two 19-by-10 averaged complex arrays; raw readouts are not supplied."
+    },
+    {
+      "id": "C_NUMERICS",
+      "evidence_ids": [
+        "E_NUMERICS"
+      ],
+      "source_locator": "Methods Numerical simulations p.8",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_FOCUS",
+        "N_SPLIT",
+        "N_REVERSE"
+      ],
+      "operation_ids": [],
+      "notes": "COMSOL frequency-domain pressure acoustics, narrow-region loss model, rigid boundaries and PML."
+    },
+    {
+      "id": "C_WIDTH",
+      "evidence_ids": [
+        "E_WIDTH"
+      ],
+      "source_locator": "SI Note 4 pp.17-18; Fig S7",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_WIDTH"
+      ],
+      "operation_ids": [],
+      "notes": "Numerical unit-width sensitivity."
+    },
+    {
+      "id": "C_PHASE",
+      "evidence_ids": [
+        "E_PHASE"
+      ],
+      "source_locator": "SI Note 4 pp.18-19; Fig S8",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_PHASE"
+      ],
+      "operation_ids": [],
+      "notes": "Numerical ideal phase-only versus phase-amplitude splitting."
+    },
+    {
+      "id": "C_ACCESSIBLE",
+      "evidence_ids": [
+        "E_ACCESSIBLE"
+      ],
+      "source_locator": "SI Note 4 pp.19-20; Fig S9",
+      "disposition": "theory_or_numerical_only",
+      "branch_ids": [
+        "N_ACCESSIBLE"
+      ],
+      "operation_ids": [],
+      "notes": "Focusing targets against conventional-coiling accessible region."
+    },
+    {
+      "id": "C_ANALYSIS",
+      "evidence_ids": [
+        "E_ANALYSIS"
+      ],
+      "source_locator": "Methods p.8; Fig 6; SI Table 2",
+      "disposition": "acquired_data_analysis",
+      "branch_ids": [
+        "B_COMPARE_CLOSE"
+      ],
+      "operation_ids": [
+        "NORMALIZE",
+        "INTERPOLATE"
+      ],
+      "notes": "Normalization and spline visualization follow acquisition; details incomplete."
+    },
+    {
+      "id": "C_DISCUSSION",
+      "evidence_ids": [],
+      "source_locator": "Discussion and Introduction",
+      "disposition": "prospective_or_external_context",
+      "branch_ids": [],
+      "operation_ids": [],
+      "notes": "Holography, aberration correction, 3D and biomedical applications are not additional performed experiments."
+    },
+    {
+      "id": "C_BACK",
+      "evidence_ids": [],
+      "source_locator": "Data availability, references, author contributions, acknowledgements and additional information",
+      "disposition": "bibliographic_and_access_context",
+      "branch_ids": [],
+      "operation_ids": [],
+      "notes": "Article and SI data claim retained; no raw-readout data inferred. Peer-review file is listed but unread."
+    }
+  ],
+  "whole_paper_claim": "All main sections, seven main figures, four SI notes, nine SI figures and two SI tables have an explicit disposition. Whole-paper design does not mean every result is physical."
+}

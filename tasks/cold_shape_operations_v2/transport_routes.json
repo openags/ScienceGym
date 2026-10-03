@@ -1,0 +1,391 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "routes": [
+    {
+      "id": "T01",
+      "from_station": "WS_STOCK",
+      "to_station": "WS_RESIN",
+      "payload_role": "sealed_reagent_lots",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T02",
+      "from_station": "WS_RESIN",
+      "to_station": "WS_PRINT",
+      "payload_role": "sealed_qualified_resin",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T03",
+      "from_station": "WS_PRINT",
+      "to_station": "WS_QC",
+      "payload_role": "released_prints",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T04",
+      "from_station": "WS_QC",
+      "to_station": "WS_MECH",
+      "payload_role": "accepted_coupons_or_shapes",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T05",
+      "from_station": "WS_QC",
+      "to_station": "WS_DMA",
+      "payload_role": "accepted_DMA_or_memory_coupons",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T06",
+      "from_station": "WS_MECH",
+      "to_station": "WS_THERMAL",
+      "payload_role": "supported_released_shapes",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T07",
+      "from_station": "WS_THERMAL",
+      "to_station": "WS_QC",
+      "payload_role": "safe_to_handle_shapes",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T08",
+      "from_station": "WS_MECH",
+      "to_station": "WS_QC",
+      "payload_role": "safe_released_tested_specimens",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T09",
+      "from_station": "WS_DMA",
+      "to_station": "WS_QC",
+      "payload_role": "safe_released_DMA_specimens",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T10",
+      "from_station": "WS_QC",
+      "to_station": "WS_ELECTRIC",
+      "payload_role": "sealed_channel_strip",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T11",
+      "from_station": "WS_ELECTRIC",
+      "to_station": "WS_MECH",
+      "payload_role": "isolated_filled_strip",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T12",
+      "from_station": "WS_MECH",
+      "to_station": "WS_ELECTRIC",
+      "payload_role": "released_electronic_strip",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T13",
+      "from_station": "WS_QC",
+      "to_station": "WS_ASSEMBLY",
+      "payload_role": "supported_interlock_parts",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T14",
+      "from_station": "WS_ASSEMBLY",
+      "to_station": "WS_QC",
+      "payload_role": "supported_assembly_or_parts",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T15",
+      "from_station": "WS_QC",
+      "to_station": "WS_ARCHIVE",
+      "payload_role": "stored_or_quarantined_specimens",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T16",
+      "from_station": "WS_ARCHIVE",
+      "to_station": "WS_QC",
+      "payload_role": "qualified_reuse_specimens",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T17",
+      "from_station": "WS_STOCK",
+      "to_station": "WS_PRINT",
+      "payload_role": "qualified_build_carrier",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T18",
+      "from_station": "WS_RESIN",
+      "to_station": "WS_ARCHIVE",
+      "payload_role": "sealed_waste_or_retained_batch",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T19",
+      "from_station": "WS_QC",
+      "to_station": "WS_PRINT",
+      "payload_role": "qualified_print_inputs",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T20",
+      "from_station": "WS_PRINT",
+      "to_station": "WS_ARCHIVE",
+      "payload_role": "safe_released_build_carrier",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T21",
+      "from_station": "WS_QC",
+      "to_station": "WS_THERMAL",
+      "payload_role": "supported_thermal_sample",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T22",
+      "from_station": "WS_QC",
+      "to_station": "WS_STOCK",
+      "payload_role": "identified_stock_or_tool",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T23",
+      "from_station": "WS_ELECTRIC",
+      "to_station": "WS_QC",
+      "payload_role": "isolated_contained_strip",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    },
+    {
+      "id": "T24",
+      "from_station": "WS_ASSEMBLY",
+      "to_station": "WS_ARCHIVE",
+      "payload_role": "safe_supported_parts",
+      "operation_id": "MOVE",
+      "geometry": null,
+      "qualification_gate": "U_SCENE",
+      "preconditions": [
+        "source_safe_release",
+        "payload_retained",
+        "destination_ready",
+        "no_live_tethers"
+      ],
+      "postcondition": "verified_identity_location_condition"
+    }
+  ],
+  "unlisted_routes": "Require explicit qualified work-order extension; no teleportation."
+}

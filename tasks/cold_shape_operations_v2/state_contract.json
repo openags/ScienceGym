@@ -1,0 +1,39 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "states": [
+    "sealed_stock",
+    "service_loaded",
+    "processing_guarded",
+    "released_uninspected",
+    "accepted",
+    "mounted_safe",
+    "loaded_or_hot",
+    "released_programmed",
+    "recovering",
+    "recovered_assessed",
+    "damaged",
+    "consumed",
+    "quarantined",
+    "stored"
+  ],
+  "forbidden_transitions": [
+    {
+      "from": "consumed",
+      "to": "accepted",
+      "reason": "No resurrection after destructive testing."
+    },
+    {
+      "from": "loaded_or_hot",
+      "to": "stored",
+      "reason": "Must obtain release-to-handle and fixture release receipts."
+    },
+    {
+      "from": "damaged",
+      "to": "accepted",
+      "reason": "New qualified repair/reuse inspection is required, with a new version."
+    }
+  ],
+  "object_state_binding": "Every operation occurrence binds object ID/version and before/after state snapshots. A global state label cannot substitute for object-specific receipts.",
+  "conditional_acceptance": "Inspection/commit produces a record. Acceptance is produced only by explicit qualified checks; source-target agreement is not an acceptance condition."
+}

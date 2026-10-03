@@ -1,0 +1,280 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "unknowns": [
+    {
+      "id": "U_ALLOC",
+      "name": "Campaign allocation and fabrication partition",
+      "missing": "Source does not report independent specimen or campaign replication, fabrication batch count or printed part segmentation.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "PLAN"
+      ],
+      "execution_gate": true,
+      "resolution": "Provide a finite explicit segment/job manifest for all 30 positions and declared campaign IDs; keep independent replication unknown.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_CAD",
+      "name": "Complete qualified focusing CAD",
+      "missing": "Table 1 and schematics do not specify complete printable geometry, mounting and sealing.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "PRINT_LOAD",
+        "PRINT_START",
+        "METROLOGY",
+        "PANEL_ASSEMBLE"
+      ],
+      "execution_gate": true,
+      "resolution": "Resolve external walls, out-of-plane dimension, print partition, coordinate frames and versioned CAD without inferring tolerances from printer resolution.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_SCALE",
+      "name": "Absolute wavelength and source distance",
+      "missing": "No sound-speed/environment convention specifies absolute wavelength.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "SOURCE_MOUNT",
+        "PANEL_INSTALL"
+      ],
+      "execution_gate": true,
+      "resolution": "Supply measured or qualified air-property convention, frequency, dimensional conversion and uncertainty; retain source-to-panel 2-wavelength intent.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_FAB",
+      "name": "Fabrication and postprocessing card",
+      "missing": "Only printer model, ABS and 0.2 mm resolution are stated.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POSTPROCESS",
+        "CLEAN"
+      ],
+      "execution_gate": true,
+      "resolution": "Qualify stock, orientation, layer/settings, support removal, safe release, waste and ventilation; no unqualified manual service.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_TOL",
+      "name": "Dimensional and pose acceptance",
+      "missing": "Print resolution is not tolerance; dimensional and probe acceptance thresholds absent.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "POSTPROCESS",
+        "METROLOGY",
+        "PANEL_INSPECT",
+        "DOMAIN_INSPECT",
+        "GRID_REGISTER"
+      ],
+      "execution_gate": true,
+      "resolution": "Provide measurement method, uncertainty and tolerances for parts, gap, mounting and actual probe poses.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_JOIN",
+      "name": "Part joins and panel mounting",
+      "missing": "Assembly segmentation, joints, sealing and fixtures unspecified.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "PANEL_ASSEMBLE",
+        "PANEL_INSPECT",
+        "SPACERS_PLACE",
+        "PANEL_ABSENT",
+        "PANEL_INSTALL",
+        "PANEL_RETURN"
+      ],
+      "execution_gate": true,
+      "resolution": "Supply inspected attachment procedures, supported interfaces, orientation and reversible removal.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_RIG",
+      "name": "Domain assembly and access",
+      "missing": "Supports, sheet lifting, closure, ports and exact boundary layout unspecified.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "BOARD_RETRIEVE",
+        "BASE_PLACE",
+        "SPACERS_PLACE",
+        "SOURCE_MOUNT",
+        "TOP_PLACE",
+        "DOMAIN_INSPECT",
+        "CONDITION_ISOLATE",
+        "PANEL_ABSENT",
+        "PANEL_INSTALL",
+        "CLEAN"
+      ],
+      "execution_gate": true,
+      "resolution": "Qualify load-handling fixtures, 2 cm separation, probe access, seals and safe access reclosure without disturbing registration.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_ROBOT",
+      "name": "Embodied bindings and transport",
+      "missing": "No robot, grasp, payload, joint, force or collision data reported.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "PRINT_UNLOAD",
+        "BOARD_RETRIEVE",
+        "BASE_PLACE",
+        "TOP_PLACE",
+        "PROBE_MOUNT",
+        "PROBE_MOVE",
+        "PANEL_RETURN",
+        "MIC_RETURN"
+      ],
+      "execution_gate": true,
+      "resolution": "Supply scene assets, payload-rated lifts, contacts, route clearances, fixture feedback and verified controller bindings.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_CAL",
+      "name": "Two-microphone calibration",
+      "missing": "Initially calibrated Audix TM1 microphones are reported; method, limits and validity absent.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "MIC_RETRIEVE",
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_RELEASE",
+        "REF_MOUNT",
+        "DRIFT_CHECK",
+        "MIC_RETURN"
+      ],
+      "execution_gate": true,
+      "resolution": "Supply calibrator, reference traceability, channel/phase checks, acceptance, expiry and post-move requalification rules.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_GRID",
+      "name": "Absolute scan and reference frames",
+      "missing": "Table 2 labels 10 columns by 19 rows but no origin, axis mapping, reference pose or exact boundary offset.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "REF_MOUNT",
+        "PROBE_MOUNT",
+        "GRID_REGISTER",
+        "PROBE_MOVE",
+        "DRIFT_CHECK"
+      ],
+      "execution_gate": true,
+      "resolution": "Supply registered 190-point coordinates, coordinate convention, grid revision, fixed-reference pose and travel plan; do not estimate robot poses from Fig 7.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_SOURCE",
+      "name": "Experimental excitation details",
+      "missing": "Speaker, narrow tube and 1 kHz are reported; drive level, tube dimensions, source hardware and stability absent.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "SOURCE_MOUNT",
+        "DAQ_CONNECT",
+        "SOURCE_SET",
+        "CONDITION_START"
+      ],
+      "execution_gate": true,
+      "resolution": "Supply qualified source fixture and safe measured drive-level card. Never import 1 kPa simulation amplitude.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_DAQ",
+      "name": "Readout and averaging implementation",
+      "missing": "DAQ, rate, capture duration, windows, settling, overload and stationarity rules absent.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "DAQ_CONNECT",
+        "CONDITION_START",
+        "PROBE_MOVE",
+        "POINT_READ",
+        "POINT_AVERAGE",
+        "DRIFT_CHECK"
+      ],
+      "execution_gate": true,
+      "resolution": "Specify synchronized channels, complex transfer direction, ten readout slots, quality criteria, stability and averaging operator.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_PHASE",
+      "name": "Complex convention and transfer direction",
+      "missing": "SI theory uses exp(-i omega t); experimental reference quotient convention and phase handling are incomplete.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "POINT_READ",
+        "POINT_AVERAGE",
+        "NORMALIZE"
+      ],
+      "execution_gate": true,
+      "resolution": "Bind explicit numerator/denominator, units, phase/polarity, near-zero and wrap conventions; preserve signed complex values.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_NORMALIZE",
+      "name": "Normalization and spline details",
+      "missing": "Normalized maps and spline interpolation are stated without complete implementation.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "NORMALIZE",
+        "INTERPOLATE"
+      ],
+      "execution_gate": true,
+      "resolution": "Supply scale/reference, interpolation method, support domain and display mesh. Keep original measurements immutable.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_COMPARE",
+      "name": "Physical outcome assessment",
+      "missing": "No quantitative plane-wave acceptance threshold or reproducibility statistic supplied.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "PAIR_CHECK",
+        "ARCHIVE"
+      ],
+      "execution_gate": true,
+      "resolution": "Qualify optional analysis metric separately; operational success requires evidence integrity, not literature-number matching.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_ARCHIVE",
+      "name": "Trusted acquisition and storage",
+      "missing": "No raw ten-readout sequences, event logger or trusted runtime supplied.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "CONDITION_CLOSE",
+        "ARCHIVE"
+      ],
+      "execution_gate": true,
+      "resolution": "Bind authenticated events, hashes and immutable record stores; never treat synthetic fixtures as authentic.",
+      "owner": "Unassigned qualified domain contributor"
+    },
+    {
+      "id": "U_SAFETY",
+      "name": "Equipment safety and safe state",
+      "missing": "Task is an inert polymer/acoustic setup; operational hazards remain.",
+      "searched": "Complete main Methods, Figures 1-7 and all twenty SI pages",
+      "affected_operation_ids": [
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "BOARD_RETRIEVE",
+        "TOP_PLACE",
+        "DAQ_CONNECT",
+        "SOURCE_SET",
+        "CONDITION_ISOLATE",
+        "SHUTDOWN",
+        "CLEAN"
+      ],
+      "execution_gate": true,
+      "resolution": "Approve ABS ventilation/hot-printer release, electrical isolation, sound exposure, sheet lift/pinch and interruption cards.",
+      "owner": "Unassigned qualified domain contributor"
+    }
+  ]
+}

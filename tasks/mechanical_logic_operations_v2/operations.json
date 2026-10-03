@@ -1,0 +1,2148 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 55,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Bind scope and qualification cards",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "work_order",
+        "inventory"
+      ],
+      "preconditions": [
+        "episode_requested"
+      ],
+      "actions": [
+        "Read selected physical branches and bounded case schedule",
+        "Resolve required cards and report exact missing inputs"
+      ],
+      "postconditions": [
+        "episode_bound",
+        "gate_state_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "authored_workflow_closure",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "CARRIER",
+      "title": "Prepare supported identified carrier",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_STOCK",
+      "target_asset_roles": [
+        "carrier",
+        "support_inserts"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Inspect compatible supported regions and retaining inserts",
+        "Read payload labels and destination dock"
+      ],
+      "postconditions": [
+        "carrier_ready"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "authored_workflow_closure",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MOVE",
+      "title": "Transport retained payload",
+      "kind": "transport",
+      "actor": "robot_operator",
+      "location_id": "between_stations",
+      "target_asset_roles": [
+        "carrier",
+        "payload"
+      ],
+      "preconditions": [
+        "outputs_isolated",
+        "tethers_released",
+        "payload_retained",
+        "route_qualified"
+      ],
+      "actions": [
+        "Verify origin and each item identity",
+        "Move via qualified route without grasping flexible beam centers",
+        "Seat at destination and verify custody and integrity"
+      ],
+      "postconditions": [
+        "custody_event_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "authored_workflow_closure",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "STOCK",
+      "title": "Issue distinct material lots",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_STOCK",
+      "target_asset_roles": [
+        "TPU",
+        "rigid_resin",
+        "UTL_resin",
+        "adhesive",
+        "petroleum_jelly"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Read material identities,condition and shelf status",
+        "Issue required lot to labeled carrier; keep mesoscale resin separate"
+      ],
+      "postconditions": [
+        "materials_issued"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB",
+        "E_MESO"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_ALLOC",
+        "U_CLEAN"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "FAB_LOAD",
+      "title": "Load qualified fabrication job",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "printer",
+        "material",
+        "job_card"
+      ],
+      "preconditions": [
+        "materials_issued",
+        "geometry_card_qualified"
+      ],
+      "actions": [
+        "Place correct feedstock and build support",
+        "Select verified job revision,printer modality and safety controls"
+      ],
+      "postconditions": [
+        "job_loaded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB",
+        "E_MESO"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_FAB",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "FAB_START",
+      "title": "Start guarded print process",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "printer",
+        "job_card"
+      ],
+      "preconditions": [
+        "job_loaded",
+        "guards_verified"
+      ],
+      "actions": [
+        "Verify material/modality readback and bounded recipe",
+        "Command start and capture job receipt"
+      ],
+      "postconditions": [
+        "job_started"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB",
+        "E_MESO"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "FAB_CYCLE",
+      "title": "Monitor automatic fabrication",
+      "kind": "device_process",
+      "actor": "automated_device",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "printer"
+      ],
+      "preconditions": [
+        "job_started"
+      ],
+      "actions": [
+        "Monitor process status without reaching into moving/hot apparatus",
+        "Retain faults and process log"
+      ],
+      "postconditions": [
+        "process_log_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB",
+        "E_MESO"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "FAB_RELEASE",
+      "title": "Release and recover printed components",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "printer",
+        "recovery_tool",
+        "carrier"
+      ],
+      "preconditions": [
+        "process_safe_to_open"
+      ],
+      "actions": [
+        "Read stopped/cooled status",
+        "Remove supported components, retain job/lot genealogy",
+        "Apply only qualified support-removal/post-process card"
+      ],
+      "postconditions": [
+        "components_recovered"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB",
+        "E_MESO"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_CLEAN",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "PART_ID",
+      "title": "Identify and inspect every component",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_INSPECTION",
+      "target_asset_roles": [
+        "parts",
+        "metrology",
+        "labels"
+      ],
+      "preconditions": [
+        "components_recovered"
+      ],
+      "actions": [
+        "Assign persistent IDs and normal/small/memory/mesoscale role",
+        "Inspect dimensions,damage and compatible interfaces against qualified card",
+        "Record accepted,rejected or unknown for each item"
+      ],
+      "postconditions": [
+        "inspection_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "inspection_passed",
+          "add": [
+            "parts_accepted"
+          ]
+        },
+        {
+          "if_state": "inspection_failed_or_unknown",
+          "add": [
+            "parts_quarantined"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_SIGNAL",
+        "E_MEMORY",
+        "E_MESO"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_ASSEMBLY",
+        "U_READOUT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "GLUE",
+      "title": "Join macro beam and sleeves",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "beam",
+        "left_sleeve",
+        "right_sleeve",
+        "assembly_jig",
+        "adhesive"
+      ],
+      "preconditions": [
+        "parts_accepted",
+        "outputs_isolated"
+      ],
+      "actions": [
+        "Verify three component identities and handedness",
+        "Seat in jig and apply qualified adhesive at specified interfaces",
+        "Record joint lineage and adhesive cure start"
+      ],
+      "postconditions": [
+        "bond_pending"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_FAB",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "CURE",
+      "title": "Monitor qualified bond cure",
+      "kind": "device_process",
+      "actor": "automated_device",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "assembly",
+        "cure_card"
+      ],
+      "preconditions": [
+        "bond_pending"
+      ],
+      "actions": [
+        "Observe qualified cure conditions and elapsed completion criterion",
+        "Do not infer curing from command or unqualified delay"
+      ],
+      "postconditions": [
+        "cure_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "qualified_cure_and_bond_inspection_passed",
+          "add": [
+            "cure_accepted"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "LUBE",
+      "title": "Lubricate sleeve interiors",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "sleeves",
+        "petroleum_jelly",
+        "applicator"
+      ],
+      "preconditions": [
+        "cure_accepted"
+      ],
+      "actions": [
+        "Identify interior sleeve bearing surfaces",
+        "Apply qualified quantity without contaminating contact or glue interfaces",
+        "Inspect and record lubrication state"
+      ],
+      "postconditions": [
+        "lubrication_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_CLEAN"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "SUPPORT",
+      "title": "Assemble hinged support contacts",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "signal_assembly",
+        "support",
+        "alignment_jig"
+      ],
+      "preconditions": [
+        "cure_accepted",
+        "lubrication_recorded"
+      ],
+      "actions": [
+        "Seat each sleeve on corresponding support bulge",
+        "Verify hinge freedom and retention with qualified low-load check",
+        "Inspect datum and contact orientation"
+      ],
+      "postconditions": [
+        "support_inspection_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "support_and_bond_passed",
+          "add": [
+            "signal_element_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_SIGNAL",
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_ASSEMBLY"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MEM_ASSEMBLE",
+      "title": "Mount bistable memory beam",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "memory_beam",
+        "memory_support",
+        "program_tool"
+      ],
+      "preconditions": [
+        "parts_accepted",
+        "outputs_isolated"
+      ],
+      "actions": [
+        "Bind separate memory identity",
+        "Install source62mm beam on60mm span using qualified fixture",
+        "Inspect two stable states without importing signal-element criteria"
+      ],
+      "postconditions": [
+        "memory_inspection_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "bistability_and_fit_passed",
+          "add": [
+            "memory_element_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_MEMORY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_MECH"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "TEST_CAL",
+      "title": "Qualify compression measurement chain",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_TEST",
+      "target_asset_roles": [
+        "Zwick_Z005",
+        "50N_load_cell",
+        "reference",
+        "fixture"
+      ],
+      "preconditions": [
+        "outputs_isolated",
+        "test_card_qualified"
+      ],
+      "actions": [
+        "Inspect machine,load cell and simply-supported fixture",
+        "Verify current force/displacement calibration and no-load baseline",
+        "Bind limits,loading rate and uncertainty to setup revision"
+      ],
+      "postconditions": [
+        "test_calibration_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "calibration_passed",
+          "add": [
+            "test_chain_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_TEST",
+        "U_READOUT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "TEST_MOUNT",
+      "title": "Mount identified test element",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_TEST",
+      "target_asset_roles": [
+        "specimen",
+        "fixture",
+        "loading_head"
+      ],
+      "preconditions": [
+        "test_chain_qualified",
+        "specimen_accepted",
+        "outputs_isolated"
+      ],
+      "actions": [
+        "Verify specimen role and test allocation",
+        "Seat ends in approved support; verify midpoint alignment",
+        "Capture unloaded datum and specimen identity"
+      ],
+      "postconditions": [
+        "specimen_mounted"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB",
+        "E_SIGNAL",
+        "E_MEMORY"
+      ],
+      "unknown_parameter_ids": [
+        "U_TEST",
+        "U_ASSEMBLY",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "TEST_RUN",
+      "title": "Acquire compression and release curve",
+      "kind": "device_process",
+      "actor": "automated_device",
+      "location_id": "WS_TEST",
+      "target_asset_roles": [
+        "tester",
+        "mounted_specimen",
+        "DAQ"
+      ],
+      "preconditions": [
+        "specimen_mounted",
+        "guard_closed",
+        "test_limits_qualified"
+      ],
+      "actions": [
+        "Start bounded loading/release schedule",
+        "Acquire raw force,displacement,height and timestamps",
+        "Stop on bound violation or specimen damage"
+      ],
+      "postconditions": [
+        "test_raw_receipt"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_SIGNAL",
+        "E_SMALL",
+        "E_MEMORY"
+      ],
+      "unknown_parameter_ids": [
+        "U_TEST",
+        "U_TIMING",
+        "U_READOUT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "TEST_REVIEW",
+      "title": "Classify measured response and reset",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_TEST",
+      "target_asset_roles": [
+        "trace",
+        "specimen",
+        "camera"
+      ],
+      "preconditions": [
+        "test_raw_receipt"
+      ],
+      "actions": [
+        "Check raw quality and calibration scope",
+        "Assess signal monostability or memory bistability under role-specific criteria",
+        "Confirm released signal0 or declared memory state; record failure without forcing expected curve"
+      ],
+      "postconditions": [
+        "response_classified"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "measurement_and_integrity_passed",
+          "add": [
+            "reusable_after_test"
+          ]
+        },
+        {
+          "if_state": "damage_or_ambiguous",
+          "add": [
+            "reuse_blocked"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_SIGNAL",
+        "E_SMALL",
+        "E_MEMORY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_READOUT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "TEST_UNLOAD",
+      "title": "Release test fixture and retain specimen",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_TEST",
+      "target_asset_roles": [
+        "specimen",
+        "carrier",
+        "tester"
+      ],
+      "preconditions": [
+        "tester_stopped",
+        "load_released"
+      ],
+      "actions": [
+        "Retract head and verify safe state",
+        "Unload by supported regions",
+        "Record post-test condition and carrier custody"
+      ],
+      "postconditions": [
+        "specimen_in_carrier"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_TEST",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "AU_LAYOUT",
+      "title": "Lay out normal and bridging signal elements",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "signal_elements",
+        "AU_base",
+        "topology_card"
+      ],
+      "preconditions": [
+        "signal_element_qualified",
+        "outputs_isolated"
+      ],
+      "actions": [
+        "Read topology revision and row/column identities",
+        "Seat identified normal/small elements at declared supported interfaces",
+        "Record component graph; no guessed positions from unread main panels"
+      ],
+      "postconditions": [
+        "AU_layout_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_ARRAY",
+        "E_ROUTING"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_MASK",
+        "U_ASSEMBLY",
+        "U_SOURCE"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "AU_CONTACT",
+      "title": "Inspect neighbor contact and bridge interfaces",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "AU",
+        "inspection_tool"
+      ],
+      "preconditions": [
+        "AU_layout_recorded"
+      ],
+      "actions": [
+        "Verify sleeve freedom and intended touching/not-touching neighbor interfaces",
+        "Check bridge consists of two small elements replacing one normal position",
+        "Record defects and contact revision"
+      ],
+      "postconditions": [
+        "AU_contact_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "topology_and_contact_passed",
+          "add": [
+            "AU_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_SIGNAL",
+        "E_ROUTING"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_ASSEMBLY",
+        "U_MASK"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "REIM_MOUNT",
+      "title": "Mount instruction-memory array",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "ReIM",
+        "memory_elements",
+        "layout_card"
+      ],
+      "preconditions": [
+        "memory_element_qualified",
+        "outputs_isolated"
+      ],
+      "actions": [
+        "Read independent memory IDs and row/column map",
+        "Mount corresponding instruction elements with observable on/off states",
+        "Bind ReIM revision to AU mapping"
+      ],
+      "postconditions": [
+        "ReIM_mounted"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_ARRAY",
+        "E_MEMORY"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_MASK",
+        "U_ASSEMBLY"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MAG_MOUNT",
+      "title": "Mount electromagnets and loading links",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "KK_1039B",
+        "AU",
+        "link_fixture"
+      ],
+      "preconditions": [
+        "AU_qualified",
+        "outputs_isolated"
+      ],
+      "actions": [
+        "Match each actuator to signal element identity",
+        "Mount aligned pulling link with clearance and return path",
+        "Verify no pre-load masquerades as input"
+      ],
+      "postconditions": [
+        "actuator_mount_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_FAB",
+        "E_NOR"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_ELECTRIC",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "WIRE",
+      "title": "Connect isolated memory-actuator circuits",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "wires",
+        "ReIM",
+        "electromagnets",
+        "supply",
+        "slide_switch"
+      ],
+      "preconditions": [
+        "outputs_isolated",
+        "actuator_mount_recorded",
+        "ReIM_mounted"
+      ],
+      "actions": [
+        "Mate labeled ports under verified wiring card",
+        "Verify signal-memory series pairing and parallel row branches",
+        "Check strain relief,contact insulation and protective interlocks"
+      ],
+      "postconditions": [
+        "wiring_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ELECTRIC",
+        "U_MASK"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "SWITCH_CHECK",
+      "title": "Qualify slide-switch row map",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "slide_switch",
+        "row_contacts",
+        "meter"
+      ],
+      "preconditions": [
+        "outputs_isolated",
+        "wiring_recorded"
+      ],
+      "actions": [
+        "Read switch travel and contact map",
+        "Verify initial position opens all rows and sweep contacts at most three rows",
+        "Verify storage stop maps exactly the declared adjacent two rows"
+      ],
+      "postconditions": [
+        "switch_map_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "continuity_and_contact_passed",
+          "add": [
+            "switch_map_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_ARRAY",
+        "E_VOLATILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_MASK",
+        "U_ELECTRIC",
+        "U_TIMING",
+        "U_SOURCE"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MAG_CAL",
+      "title": "Qualify hardware excitation window",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "force_sensor",
+        "electromagnet",
+        "supply",
+        "calibration_fixture"
+      ],
+      "preconditions": [
+        "wiring_recorded",
+        "safety_card_qualified"
+      ],
+      "actions": [
+        "Use approved bounded calibration card to measure force/displacement/current/temperature",
+        "Establish hardware NOR force window with uncertainty and dwell limits",
+        "Reject numerical3N/5N values as calibration receipts"
+      ],
+      "postconditions": [
+        "excitation_calibration_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "qualified_hardware_window",
+          "add": [
+            "excitation_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_NOR"
+      ],
+      "unknown_parameter_ids": [
+        "U_ELECTRIC",
+        "U_TEST",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "VISION_CAL",
+      "title": "Qualify state readout and timestamps",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "camera",
+        "datum_reference",
+        "synchronizer"
+      ],
+      "preconditions": [
+        "AU_qualified"
+      ],
+      "actions": [
+        "Calibrate connector-center datum and signed midpoint height",
+        "Bind deadband,occlusion checks and acquisition clock",
+        "Verify row/cell identity across observations"
+      ],
+      "postconditions": [
+        "readout_calibration_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "readout_calibration_passed",
+          "add": [
+            "readout_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_SIGNAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_READOUT",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "ISOLATE",
+      "title": "Isolate outputs before changing setup",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "supply",
+        "slide_switch",
+        "actuators"
+      ],
+      "preconditions": [
+        "apparatus_present"
+      ],
+      "actions": [
+        "Stop motion,open source and verify no hazardous electrical/mechanical energy",
+        "Record loss of volatile state when hold is interrupted",
+        "Retain persistent ReIM state unless deliberately reprogrammed"
+      ],
+      "postconditions": [
+        "outputs_isolated"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_ARRAY",
+        "E_VOLATILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ELECTRIC",
+        "U_MECH"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "INITIALIZE",
+      "title": "Initialize AU and verify signal0",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "slide_switch",
+        "AU",
+        "readout"
+      ],
+      "preconditions": [
+        "switch_map_qualified",
+        "readout_qualified"
+      ],
+      "actions": [
+        "Move switch to zero-contact position under qualified safe card",
+        "Observe all target signal elements unloaded above datum",
+        "Record reset receipt; ambiguous or stuck elements block next case"
+      ],
+      "postconditions": [
+        "reset_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "all_target_signals_zero",
+          "add": [
+            "AU_initialized"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_ARRAY",
+        "E_SIGNAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_TIMING",
+        "U_READOUT",
+        "U_ELECTRIC"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "PROGRAM",
+      "title": "Program persistent instruction mask",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "ReIM",
+        "programming_tool",
+        "mask_card"
+      ],
+      "preconditions": [
+        "outputs_isolated",
+        "ReIM_mounted",
+        "mask_card_qualified"
+      ],
+      "actions": [
+        "Read target function and mask revision",
+        "Set each declared memory beam to on/off with qualified tool",
+        "Verify per-element mechanical state and corresponding continuity"
+      ],
+      "postconditions": [
+        "program_observation_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "entire_mask_verified",
+          "add": [
+            "instruction_verified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_ARRAY",
+        "E_GATES"
+      ],
+      "unknown_parameter_ids": [
+        "U_MASK",
+        "U_MECH",
+        "U_READOUT",
+        "U_SOURCE"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "BIND_CASE",
+      "title": "Bind independent input case",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "case_card",
+        "AU",
+        "ReIM"
+      ],
+      "preconditions": [
+        "AU_initialized",
+        "instruction_verified",
+        "excitation_qualified",
+        "readout_qualified"
+      ],
+      "actions": [
+        "Read input bits,output roles,row direction and bounded schedule",
+        "Verify fresh reset for this attempt and unchanged setup/program revisions",
+        "Allocate unique case and attempt identity"
+      ],
+      "postconditions": [
+        "case_bound"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_NOR",
+        "E_GATES"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_TIMING",
+        "U_MASK"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "INPUTS",
+      "title": "Excite and verify declared input row",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "switch",
+        "input_signals",
+        "readout"
+      ],
+      "preconditions": [
+        "case_bound"
+      ],
+      "actions": [
+        "Apply scheduled excitation to selected inputs before output",
+        "Observe actual bit state and current; zero input is not a missing observation",
+        "Stop if observed input differs from commanded case"
+      ],
+      "postconditions": [
+        "inputs_observed"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_NOR",
+        "E_GATES"
+      ],
+      "unknown_parameter_ids": [
+        "U_ELECTRIC",
+        "U_TIMING",
+        "U_READOUT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "ROW_ADVANCE",
+      "title": "Advance qualified row sequence",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "switch",
+        "AU",
+        "supply"
+      ],
+      "preconditions": [
+        "inputs_observed",
+        "switch_map_qualified"
+      ],
+      "actions": [
+        "Move through declared contact sequence with position feedback",
+        "Maintain at most three active rows",
+        "Log actual energized rows,current and temperature"
+      ],
+      "postconditions": [
+        "row_events_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_ARRAY",
+        "E_GATES",
+        "E_ROUTING"
+      ],
+      "unknown_parameter_ids": [
+        "U_MASK",
+        "U_ELECTRIC",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "OUTPUT_READ",
+      "title": "Acquire actual logic output",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "readout",
+        "output_signals",
+        "DAQ"
+      ],
+      "preconditions": [
+        "row_events_recorded",
+        "readout_qualified"
+      ],
+      "actions": [
+        "Acquire signed midpoint positions after qualified settling",
+        "Classify outside deadband as bit; retain ambiguous as unknown",
+        "Bind raw frame hashes and actual excitation history to output record"
+      ],
+      "postconditions": [
+        "output_observation_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_NOR",
+        "E_GATES",
+        "E_ROUTING"
+      ],
+      "unknown_parameter_ids": [
+        "U_READOUT",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "CASE_REVIEW",
+      "title": "Classify case and preserve disagreement",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "raw_record",
+        "condition_manifest"
+      ],
+      "preconditions": [
+        "output_observation_recorded"
+      ],
+      "actions": [
+        "Validate identity,setup,clock,reset and calibrated window",
+        "Compare measured bits with evaluator-only function expectation",
+        "Separate procedure-valid mismatch from failed acquisition"
+      ],
+      "postconditions": [
+        "case_classified"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_NOR",
+        "E_GATES"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "RESET_CASE",
+      "title": "Release and reset between independent cases",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "switch",
+        "AU",
+        "camera"
+      ],
+      "preconditions": [
+        "case_raw_archived"
+      ],
+      "actions": [
+        "Return to initial no-contact position",
+        "Observe signal0 and released actuator state",
+        "Create reset receipt for next attempt; retain ReIM mask"
+      ],
+      "postconditions": [
+        "intercase_reset_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "reset_verified",
+          "add": [
+            "AU_initialized"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ELECTRIC",
+        "U_TIMING",
+        "U_READOUT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "BRIDGE_CONFIG",
+      "title": "Verify or reconfigure the parity bridge",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "normal_element",
+        "two_small_elements",
+        "AU",
+        "carrier"
+      ],
+      "preconditions": [
+        "outputs_isolated",
+        "AU_initialized"
+      ],
+      "actions": [
+        "Read final qualified topology and current component graph; distinguish an existing bridge from a requested conversion",
+        "If the qualified bridge already exists,inspect it and retain its component identities and topology revision",
+        "Only for a declared conversion,remove one identified normal element into carrier and install two identified qualified small elements at that position",
+        "A physical conversion increments AU/topology revisions and invalidates affected contact,wiring and excitation qualification; verification alone does not add another bridge"
+      ],
+      "postconditions": [
+        "bridge_topology_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "existing_bridge_verified",
+          "add": [
+            "bridge_topology_verified"
+          ]
+        },
+        {
+          "if_state": "conversion_accepted",
+          "add": [
+            "bridge_topology_verified",
+            "bridge_revision_created",
+            "prior_setup_receipts_invalidated"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_ROUTING"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_MASK",
+        "U_ASSEMBLY",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "ROUTE_PROGRAM",
+      "title": "Bind defective transmission and bifurcation path",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "ReIM",
+        "path_card"
+      ],
+      "preconditions": [
+        "bridge_topology_verified",
+        "AU_qualified"
+      ],
+      "actions": [
+        "Verify source(r2,c2),target(r5,c5) and declared branch observations",
+        "Program source-qualified active path and verify mask",
+        "Keep explanatory perfect-topology case separately labeled"
+      ],
+      "postconditions": [
+        "route_mask_verified"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_ROUTING"
+      ],
+      "unknown_parameter_ids": [
+        "U_MASK",
+        "U_READOUT",
+        "U_SOURCE"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "STORE_WRITE",
+      "title": "Write volatile pair through transmission",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "storage_pair",
+        "switch",
+        "AU"
+      ],
+      "preconditions": [
+        "case_bound",
+        "storage_pair_map_verified"
+      ],
+      "actions": [
+        "Run qualified write path into two adjacent elements of different rows",
+        "Capture upstream and pair states before release",
+        "Record pair IDs and hold epoch"
+      ],
+      "postconditions": [
+        "store_before_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_VOLATILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_MASK",
+        "U_ELECTRIC",
+        "U_TIMING",
+        "U_READOUT",
+        "U_SOURCE"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "STORE_HOLD",
+      "title": "Hold exactly the storage rows",
+      "kind": "device_process",
+      "actor": "automated_device",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "switch",
+        "storage_rows",
+        "supply"
+      ],
+      "preconditions": [
+        "store_before_recorded"
+      ],
+      "actions": [
+        "Stop at declared two-row storage position",
+        "Verify continuous excitation,current and thermal bounds on both rows",
+        "Maintain only for qualified bounded observation interval"
+      ],
+      "postconditions": [
+        "hold_events_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_VOLATILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ELECTRIC",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "UPSTREAM_RELEASE",
+      "title": "Release upstream while preserving pair hold",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "switch",
+        "upstream_signals",
+        "storage_pair"
+      ],
+      "preconditions": [
+        "hold_events_recorded"
+      ],
+      "actions": [
+        "Release declared upstream excitation through qualified contact sequence",
+        "Observe upstream initialized and both storage rows still energized",
+        "Do not treat full power loss as valid retention test"
+      ],
+      "postconditions": [
+        "upstream_release_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_VOLATILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_MASK",
+        "U_ELECTRIC",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "STORE_READ",
+      "title": "Observe retained volatile pair",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "camera",
+        "storage_pair",
+        "upstream_signals"
+      ],
+      "preconditions": [
+        "upstream_release_recorded",
+        "hold_continuous"
+      ],
+      "actions": [
+        "Acquire time-synchronized actual pair and upstream states",
+        "Compare retained state against same-epoch post-write/pre-upstream-release observation",
+        "Record loss,unknown or retention without substituting target value"
+      ],
+      "postconditions": [
+        "retention_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_VOLATILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_READOUT",
+        "U_TIMING",
+        "U_ANALYSIS"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "STORE_CLEAR",
+      "title": "Clear volatile storage and verify erasure",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "switch",
+        "storage_pair"
+      ],
+      "preconditions": [
+        "store_raw_archived"
+      ],
+      "actions": [
+        "Return switch to initial state and release both storage rows",
+        "Verify state0 and mark hold epoch closed",
+        "A new write requires new epoch and post-write/pre-upstream-release baseline"
+      ],
+      "postconditions": [
+        "clear_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_VOLATILE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ELECTRIC",
+        "U_READOUT",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MECH_BUILD",
+      "title": "Assemble three-element mechanical NOR proof",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "signal_elements",
+        "mechanical_memory",
+        "loading_bars",
+        "proof_fixture"
+      ],
+      "preconditions": [
+        "parts_accepted",
+        "outputs_isolated"
+      ],
+      "actions": [
+        "Assemble proof-specific signal,memory and loading components",
+        "Verify each memory exposes or blocks its bar passage",
+        "Keep roller,belt and gear array outside this physical proof"
+      ],
+      "postconditions": [
+        "proof_inspection_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "mechanical_proof_inspection_passed",
+          "add": [
+            "proof_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_MECHANICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_MECH",
+        "U_ASSEMBLY"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MECH_PROGRAM",
+      "title": "Set mechanical NOR memory pattern",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "mechanical_memory",
+        "program_tool",
+        "case_card"
+      ],
+      "preconditions": [
+        "proof_qualified",
+        "mechanical_load_released",
+        "mechanical_chain_qualified"
+      ],
+      "actions": [
+        "Set requested input configuration and enabled output",
+        "Inspect passage obstruction and memory state per element",
+        "Capture fresh initial-state receipt"
+      ],
+      "postconditions": [
+        "mechanical_case_bound"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_MECHANICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_MECH",
+        "U_READOUT",
+        "U_ALLOC"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MECH_LOAD",
+      "title": "Apply bounded mechanical proof loading",
+      "kind": "device_process",
+      "actor": "automated_device",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "loading_bars",
+        "proof_fixture",
+        "readout"
+      ],
+      "preconditions": [
+        "mechanical_case_bound",
+        "guard_verified"
+      ],
+      "actions": [
+        "Apply proof-specific qualified loading sequence to inputs then output",
+        "Monitor bar travel,force and contact constraints",
+        "Capture raw states and stop on jam or limit"
+      ],
+      "postconditions": [
+        "mechanical_output_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_MECHANICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_MECH",
+        "U_TIMING",
+        "U_READOUT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MECH_RELEASE",
+      "title": "Release mechanical proof and verify reset",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "loading_bars",
+        "signal_elements"
+      ],
+      "preconditions": [
+        "mechanical_output_archived"
+      ],
+      "actions": [
+        "Withdraw load under qualified safe card",
+        "Verify signal reset and inspect memory state separately",
+        "Retain failed/stuck components and isolate before repair"
+      ],
+      "postconditions": [
+        "mechanical_reset_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_MECHANICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_MECH",
+        "U_READOUT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MESO_INSPECT",
+      "title": "Inspect mesoscale printed elements",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_INSPECTION",
+      "target_asset_roles": [
+        "mesoscale_element",
+        "microscope",
+        "scale_reference"
+      ],
+      "preconditions": [
+        "components_recovered"
+      ],
+      "actions": [
+        "Use scale-specific supported handling",
+        "Record build identity,morphology and integrity",
+        "Limit outcome to fabrication inspection; do not claim operating logic"
+      ],
+      "postconditions": [
+        "mesoscale_inspection_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_MESO"
+      ],
+      "unknown_parameter_ids": [
+        "U_MESO",
+        "U_READOUT",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive raw records and lineage",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "record_store",
+        "event_log"
+      ],
+      "preconditions": [
+        "records_available"
+      ],
+      "actions": [
+        "Commit immutable raw hashes,calibration/setup revisions and attempt events",
+        "Preserve failed records,repair/replacement and custody history",
+        "Separate physical observation,source numerical result and synthetic fixture"
+      ],
+      "postconditions": [
+        "archive_receipt"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "authored_workflow_closure",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "DISCONNECT",
+      "title": "Release apparatus for transport",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_LOGIC",
+      "target_asset_roles": [
+        "cables",
+        "actuators",
+        "AU",
+        "carrier"
+      ],
+      "preconditions": [
+        "outputs_isolated",
+        "load_released"
+      ],
+      "actions": [
+        "Verify safe state and detach labeled electrical/mechanical tethers",
+        "Support assembly before releasing fixture retention",
+        "Record disconnected state and post-use inspection"
+      ],
+      "postconditions": [
+        "transport_release_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ELECTRIC",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "authored_workflow_closure",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "QUARANTINE",
+      "title": "Quarantine damaged or uncertain item",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_QUARANTINE",
+      "target_asset_roles": [
+        "item",
+        "retained_carrier",
+        "tag"
+      ],
+      "preconditions": [
+        "fault_recorded",
+        "outputs_isolated"
+      ],
+      "actions": [
+        "Support and label item with fault and ancestor IDs",
+        "Move via qualified route and verify quarantine custody",
+        "Exclude from reuse until qualified disposition"
+      ],
+      "postconditions": [
+        "quarantine_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT",
+        "U_CLEAN"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "authored_workflow_closure",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "CLEAN",
+      "title": "Clean work surfaces and restore station",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_CLEAN",
+      "target_asset_roles": [
+        "cleaning_tools",
+        "waste_containers",
+        "station"
+      ],
+      "preconditions": [
+        "outputs_isolated",
+        "records_archived"
+      ],
+      "actions": [
+        "Use site-qualified resin,adhesive and lubricant handling card",
+        "Segregate labeled waste and verify no stranded specimens",
+        "Record tool and fixture condition without inventing solvent recipe"
+      ],
+      "postconditions": [
+        "station_clean_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CLEAN",
+        "U_ROBOT"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "authored_workflow_closure",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "CLOSE",
+      "title": "Reconcile selected route completion",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "campaign_manifest",
+        "archive",
+        "custody_records"
+      ],
+      "preconditions": [
+        "archive_receipt"
+      ],
+      "actions": [
+        "Check nonempty required case coverage,controls and cleanup",
+        "Report complete,partial,blocked,safe_abort or failed with unresolved gates",
+        "Do not promote selected-route closure to whole-paper execution"
+      ],
+      "postconditions": [
+        "campaign_report"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "authored_workflow_closure",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MECH_CAL",
+      "title": "Qualify mechanical proof loading and readout",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "proof_fixture",
+        "load_sensor",
+        "camera",
+        "datum_reference",
+        "qualification_card"
+      ],
+      "preconditions": [
+        "proof_qualified",
+        "mechanical_load_released",
+        "proof_card_qualified"
+      ],
+      "actions": [
+        "Verify guarded bar loading force/travel,stop and release readback against qualified card",
+        "Calibrate proof-specific connector-center datum,deadband,cell identities and timestamps",
+        "Record scope-bound loading and readout qualification; no electromagnetic calibration is transferred"
+      ],
+      "postconditions": [
+        "mechanical_calibration_recorded"
+      ],
+      "conditional_postconditions": [
+        {
+          "if_state": "mechanical_loading_and_readout_passed",
+          "add": [
+            "mechanical_chain_qualified"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "E_MECHANICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_MECH",
+        "U_READOUT",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    },
+    {
+      "id": "MECH_READ",
+      "title": "Read mechanically loaded proof output",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "location_id": "WS_MECHANICAL",
+      "target_asset_roles": [
+        "camera",
+        "proof_signal_elements",
+        "DAQ"
+      ],
+      "preconditions": [
+        "mechanical_output_recorded",
+        "mechanical_chain_qualified"
+      ],
+      "actions": [
+        "Acquire calibrated signed midpoint positions for the identified proof after qualified settling",
+        "Keep ambiguous states unknown and preserve actual input/output observations",
+        "Bind raw data to mechanical loading history,case,attempt and calibration revision"
+      ],
+      "postconditions": [
+        "output_observation_recorded"
+      ],
+      "conditional_postconditions": [],
+      "evidence_ids": [
+        "E_MECHANICAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_MECH",
+        "U_READOUT",
+        "U_TIMING"
+      ],
+      "execution_mode": "static_design_only",
+      "authorship": "source_grounded_macro_with_authored_robot_actions",
+      "observable_completion": "Version-bound trusted inspection or device receipt; commands and narration are not completion",
+      "failure_handling": "Stop and isolate affected apparatus, retain failed record and specimen identity, support/quarantine damaged parts. Retry only after qualified recovery; never silently replace a failed sample."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "entities": [
+    "reagent_lot",
+    "resin_batch",
+    "print_job",
+    "build_carrier",
+    "specimen",
+    "assembly",
+    "fixture",
+    "service_job",
+    "condition_cell",
+    "calibration",
+    "raw_record",
+    "derived_record",
+    "waste_container"
+  ],
+  "required_identity_fields": [
+    "entity_id",
+    "entity_type",
+    "parent_ids",
+    "version",
+    "material_variant",
+    "geometry_hash",
+    "state",
+    "location",
+    "custody_receipt"
+  ],
+  "specimen_history": [
+    "resin_batch_id",
+    "print_job_id",
+    "grayscale_map_hash",
+    "qualified_postprocess_receipt_or_explicit_none",
+    "UV_exposure_history",
+    "baseline_geometry_id",
+    "test_allocations",
+    "cycle_index",
+    "programming_history",
+    "thermal_history",
+    "damage_disposition",
+    "reuse_qualification"
+  ],
+  "rules": [
+    "One destructive endpoint consumes that specimen identity; later reuse is rejected.",
+    "Different conditions and camera frames do not create independent specimens.",
+    "Repeated-cycle histories retain the same identity and increasing cycle indices.",
+    "Replacement is a new identity linked to a failed attempt; failure is never erased.",
+    "Assemblies retain all component IDs and versions; membership changes create a new assembly version.",
+    "Service custody transfer, safe release and measured state changes need distinct trusted receipts."
+  ],
+  "historical_serial_identity_reconstructed": false
+}

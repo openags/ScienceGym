@@ -1,0 +1,787 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "visibility": "authoring_and_evaluator_reference_only",
+  "branches": [
+    {
+      "branch_id": "RESIN_BATCH",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "sealed_input_check",
+        "service_preparation",
+        "batch_release",
+        "safe_exchange",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": []
+    },
+    {
+      "branch_id": "FABRICATE",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "job_and_material_map",
+        "preprint_calibration",
+        "guarded_print",
+        "qualified_release",
+        "inspection",
+        "allocation"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": []
+    },
+    {
+      "branch_id": "TENSILE_RT",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2",
+          "B3"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "TENSILE_HOT",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "DMA_SWEEP",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2",
+          "B3"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "DMA_IDENTIFICATION",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2"
+        ],
+        "temperature_C": [
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          120,
+          125,
+          130
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "STRAIN_RATE",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2"
+        ],
+        "strain_rate_s_inverse": [
+          0.00167,
+          0.01,
+          0.05,
+          0.1
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "MEMORY_HOT",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "heat_for_programming",
+        "stretch",
+        "cool_while_constrained",
+        "hold",
+        "unload",
+        "free_heat_recovery",
+        "recovery_observation"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "recovery_observation"
+      ]
+    },
+    {
+      "branch_id": "MEMORY_COLD",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "stretch_at_room_temperature",
+        "hold",
+        "unload",
+        "free_heat_recovery",
+        "recovery_observation"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "recovery_observation"
+      ]
+    },
+    {
+      "branch_id": "MEMORY_VISUAL",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "cold_draw",
+        "release",
+        "room_temperature_observation",
+        "intermediate_temperature_observation",
+        "high_temperature_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "observation_stage_requirements": {
+        "room_temperature_observation": "room_temperature",
+        "intermediate_temperature_observation": "50_C",
+        "high_temperature_observation": "80_C"
+      },
+      "required_observation_phases": [
+        "room_temperature_observation",
+        "intermediate_temperature_observation",
+        "high_temperature_observation"
+      ]
+    },
+    {
+      "branch_id": "MEMORY_TEN_CYCLES",
+      "required_dimensions": {
+        "material": [
+          "B1",
+          "B2"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": 10,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "GRADED_STRIP",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "qualified_hot_bending",
+        "constrained_cooling",
+        "unload",
+        "observe_fixed",
+        "intermediate_recovery",
+        "high_temperature_recovery",
+        "recovery_observation"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "recovery_observation"
+      ]
+    },
+    {
+      "branch_id": "GRADED_MIDDLE",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "GRADED_LATTICE",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "compress",
+        "unload",
+        "room_temperature_observation",
+        "intermediate_recovery",
+        "high_temperature_recovery",
+        "recovery_observation"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "room_temperature_observation",
+        "recovery_observation"
+      ]
+    },
+    {
+      "branch_id": "HINGE_ANGLE_FORCE",
+      "required_dimensions": {
+        "subseries": [
+          "hinge_angle",
+          "hinge_force"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "HINGE_FORTY_CYCLES",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": 40,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "MODULAR_STRIPS",
+      "required_dimensions": {
+        "layout": [
+          "M_example",
+          "square_example",
+          "wave_layout_1",
+          "wave_layout_2"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "HELIX_STRIPS",
+      "required_dimensions": {
+        "applied_strain_percent": [
+          30,
+          60
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "LOCAL_HAND",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "LOCAL_STRIP",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "ELECTRONIC_STRIP",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "DUAL_AXIS_PANEL",
+      "required_dimensions": {
+        "axis_condition": [
+          "x",
+          "y",
+          "x_and_y"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "SYMMETRIC_PANEL",
+      "required_dimensions": {
+        "layout": [
+          "symmetric",
+          "hinges_inverted"
+        ],
+        "axis_condition": [
+          "x",
+          "y",
+          "x_and_y"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "INTERLOCK_ARCHITECTURE",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "THERMAL_HINGES",
+      "required_dimensions": {
+        "hinge_family": [
+          "H13",
+          "H12",
+          "H23"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "cold_program",
+        "release",
+        "room_temperature_observation",
+        "intermediate_temperature_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "observation_stage_requirements": {
+        "room_temperature_observation": "room_temperature",
+        "intermediate_temperature_observation": "50_C"
+      },
+      "required_observation_phases": [
+        "room_temperature_observation",
+        "intermediate_temperature_observation"
+      ]
+    },
+    {
+      "branch_id": "HYBRID_STRIPS",
+      "required_dimensions": {
+        "layout": [
+          "M_to_S",
+          "square_to_helix"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "cold_draw_all_hinges",
+        "release",
+        "room_temperature_observation",
+        "intermediate_temperature_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "observation_stage_requirements": {
+        "room_temperature_observation": "room_temperature",
+        "intermediate_temperature_observation": "50_C"
+      },
+      "required_observation_phases": [
+        "room_temperature_observation",
+        "intermediate_temperature_observation"
+      ]
+    },
+    {
+      "branch_id": "MICRO_PIPE",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "cold_draw",
+        "release",
+        "low_temperature_observation",
+        "high_temperature_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "observation_stage_requirements": {
+        "low_temperature_observation": "25_C",
+        "high_temperature_observation": "80_C"
+      },
+      "required_observation_phases": [
+        "low_temperature_observation",
+        "high_temperature_observation"
+      ]
+    },
+    {
+      "branch_id": "ALT_RESIN_BATCH",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "ALT_FABRICATE",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "ALT_TENSILE",
+      "required_dimensions": {
+        "material": [
+          "alternative_stiff",
+          "alternative_soft"
+        ]
+      },
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "ALT_HINGE",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "program_or_measure",
+        "safe_release",
+        "observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "program_or_measure",
+        "observation"
+      ]
+    },
+    {
+      "branch_id": "B1_FIXITY_SERIES",
+      "required_dimensions": {},
+      "nonempty_instance_schedule_required": true,
+      "missing_schedule_resolved_by": "qualified_input_card",
+      "required_phase_order": [
+        "baseline",
+        "stretch_at_declared_strain",
+        "hold",
+        "unload",
+        "fixed_strain_observation",
+        "recover_or_quarantine",
+        "archive"
+      ],
+      "source_cycles": null,
+      "required_observation_phases": [
+        "fixed_strain_observation"
+      ]
+    }
+  ],
+  "conditional_requirements": [
+    {
+      "branch_id": "HINGE_ANGLE_FORCE",
+      "if": {
+        "subseries": "hinge_force"
+      },
+      "dimension": "hinge_family",
+      "values": [
+        "H13",
+        "H12",
+        "H23"
+      ]
+    },
+    {
+      "branch_id": "HINGE_ANGLE_FORCE",
+      "if": {
+        "subseries": "hinge_angle"
+      },
+      "dimension": "hinge_family",
+      "values": [
+        "H13"
+      ]
+    }
+  ],
+  "extra_cell_policy": "Additional cells need explicit work-order provenance and qualified cards; required reported condition dimensions cannot be omitted."
+}

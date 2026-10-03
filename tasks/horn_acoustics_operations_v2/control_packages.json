@@ -1,0 +1,62 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "packages": [
+    {
+      "id": "CP_MATCHED_MAPS",
+      "required_branches": [
+        "B_WITHOUT",
+        "B_WITH"
+      ],
+      "manipulated_factor": "Presence of accepted focusing metasurface",
+      "matched_state_keys": [
+        "rig_revision",
+        "source_config",
+        "frequency_hz",
+        "reference_microphone",
+        "scan_microphone",
+        "reference_pose_revision",
+        "calibration_ids",
+        "channel_map",
+        "grid_revision",
+        "DAQ_card",
+        "normalization_card",
+        "phase_card"
+      ],
+      "permitted_difference": [
+        "condition_id",
+        "panel_presence",
+        "panel_revision",
+        "condition_start_time",
+        "readout_record_ids"
+      ],
+      "count_semantics": {
+        "spatial_points": 190,
+        "technical_readouts_per_point": 10,
+        "independent_specimen_replicates": null
+      },
+      "rejection": "Any unqualified matched-state change, absent condition, invalid reference or missing point invalidates pair completion."
+    },
+    {
+      "id": "CP_CAL",
+      "required_branches": [
+        "B_RIG_CAL"
+      ],
+      "requirement": "Both microphone/channel pairs have valid calibration spanning each accepted readout."
+    },
+    {
+      "id": "CP_DRIFT",
+      "required_branches": [
+        "B_WITHOUT",
+        "B_WITH"
+      ],
+      "requirement": "Post-map inspection establishes reference pose and stability within qualified limits."
+    }
+  ],
+  "numerical_controls": [
+    "Lossy versus lossless",
+    "Phase-only versus phase-amplitude",
+    "Unit-width sensitivity",
+    "TMM versus COMSOL"
+  ],
+  "numerical_controls_are_physical": false
+}

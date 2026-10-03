@@ -1,0 +1,251 @@
+{
+  "schema_version": "horn_acoustics_paper_task.v1",
+  "edges": [
+    {
+      "before": "ARCHIVE",
+      "after": "SHUTDOWN"
+    },
+    {
+      "before": "BASE_PLACE",
+      "after": "SPACERS_PLACE"
+    },
+    {
+      "before": "BOARD_RETRIEVE",
+      "after": "BASE_PLACE"
+    },
+    {
+      "before": "CAL_ACQUIRE",
+      "after": "CAL_RELEASE"
+    },
+    {
+      "before": "CAL_MOUNT",
+      "after": "CAL_ACQUIRE"
+    },
+    {
+      "before": "CAL_RELEASE",
+      "after": "PROBE_MOUNT"
+    },
+    {
+      "before": "CAL_RELEASE",
+      "after": "REF_MOUNT"
+    },
+    {
+      "before": "CARRIER",
+      "after": "PRINT_LOAD"
+    },
+    {
+      "before": "CONDITION_CLOSE",
+      "after": "DRIFT_CHECK"
+    },
+    {
+      "before": "CONDITION_ISOLATE",
+      "after": "PANEL_ABSENT"
+    },
+    {
+      "before": "CONDITION_ISOLATE",
+      "after": "PANEL_INSTALL"
+    },
+    {
+      "before": "CONDITION_START",
+      "after": "PROBE_MOVE"
+    },
+    {
+      "before": "DAQ_CONNECT",
+      "after": "SOURCE_SET"
+    },
+    {
+      "before": "DOMAIN_INSPECT",
+      "after": "GRID_REGISTER"
+    },
+    {
+      "before": "DRIFT_CHECK",
+      "after": "PAIR_CHECK"
+    },
+    {
+      "before": "GRID_REGISTER",
+      "after": "DAQ_CONNECT"
+    },
+    {
+      "before": "INTERPOLATE",
+      "after": "ARCHIVE"
+    },
+    {
+      "before": "METROLOGY",
+      "after": "PANEL_ASSEMBLE"
+    },
+    {
+      "before": "MIC_RETRIEVE",
+      "after": "CAL_MOUNT"
+    },
+    {
+      "before": "MIC_RETURN",
+      "after": "CLEAN"
+    },
+    {
+      "before": "NORMALIZE",
+      "after": "INTERPOLATE"
+    },
+    {
+      "before": "PAIR_CHECK",
+      "after": "NORMALIZE"
+    },
+    {
+      "before": "PANEL_ASSEMBLE",
+      "after": "PANEL_INSPECT"
+    },
+    {
+      "before": "PANEL_INSPECT",
+      "after": "PANEL_INSTALL"
+    },
+    {
+      "before": "PANEL_RETURN",
+      "after": "MIC_RETURN"
+    },
+    {
+      "before": "PLAN",
+      "after": "BOARD_RETRIEVE"
+    },
+    {
+      "before": "PLAN",
+      "after": "MIC_RETRIEVE"
+    },
+    {
+      "before": "PLAN",
+      "after": "STOCK"
+    },
+    {
+      "before": "POINT_AVERAGE",
+      "after": "CONDITION_CLOSE"
+    },
+    {
+      "before": "POINT_READ",
+      "after": "POINT_AVERAGE"
+    },
+    {
+      "before": "POSTPROCESS",
+      "after": "METROLOGY"
+    },
+    {
+      "before": "PRINT_LOAD",
+      "after": "PRINT_START"
+    },
+    {
+      "before": "PRINT_PROCESS",
+      "after": "PRINT_UNLOAD"
+    },
+    {
+      "before": "PRINT_START",
+      "after": "PRINT_PROCESS"
+    },
+    {
+      "before": "PRINT_UNLOAD",
+      "after": "POSTPROCESS"
+    },
+    {
+      "before": "PROBE_MOUNT",
+      "after": "GRID_REGISTER"
+    },
+    {
+      "before": "PROBE_MOVE",
+      "after": "POINT_READ"
+    },
+    {
+      "before": "REF_MOUNT",
+      "after": "DAQ_CONNECT"
+    },
+    {
+      "before": "SHUTDOWN",
+      "after": "PANEL_RETURN"
+    },
+    {
+      "before": "SOURCE_MOUNT",
+      "after": "TOP_PLACE"
+    },
+    {
+      "before": "SOURCE_SET",
+      "after": "CONDITION_START"
+    },
+    {
+      "before": "SPACERS_PLACE",
+      "after": "SOURCE_MOUNT"
+    },
+    {
+      "before": "STOCK",
+      "after": "CARRIER"
+    },
+    {
+      "before": "TOP_PLACE",
+      "after": "DOMAIN_INSPECT"
+    }
+  ],
+  "conditional_requirements": [
+    {
+      "operation_id": "CONDITION_START",
+      "one_of": [
+        "PANEL_ABSENT",
+        "PANEL_INSTALL"
+      ],
+      "condition_bound": true
+    },
+    {
+      "operation_id": "PAIR_CHECK",
+      "all_branches": [
+        "B_WITHOUT",
+        "B_WITH"
+      ],
+      "same_pair_required": true
+    },
+    {
+      "operation_id": "PRINT_LOAD",
+      "all_of": [
+        "STOCK",
+        "CARRIER"
+      ],
+      "same_job_manifest_required": true
+    },
+    {
+      "operation_id": "POINT_AVERAGE",
+      "required_occurrences": 10,
+      "operation": "POINT_READ",
+      "same_condition_point_required": true
+    },
+    {
+      "operation_id": "CONDITION_CLOSE",
+      "required_occurrences": 190,
+      "operation": "POINT_AVERAGE",
+      "unique_points_required": true
+    },
+    {
+      "operation_id": "DAQ_CONNECT",
+      "all_of": [
+        "REF_MOUNT",
+        "PROBE_MOUNT"
+      ],
+      "both_current_calibrations_required": true
+    }
+  ],
+  "occurrence_key": [
+    "campaign_id",
+    "branch_id",
+    "condition_id",
+    "object_or_job_id",
+    "point_id",
+    "readout_slot",
+    "attempt_id"
+  ],
+  "transport": "MOVE is a reusable required custody action for every station change of a carried object. Its actual occurrence must precede destination loading; no self-loop is imposed on the template graph.",
+  "cycle_semantics": "Ten reads and 190 points are bounded occurrence loops, not repeated graph nodes. Two independent condition episodes may be ordered either way.",
+  "condition_scoped_edges": [
+    {
+      "condition": "without",
+      "before": "PANEL_ABSENT",
+      "after": "CONDITION_START"
+    },
+    {
+      "condition": "with",
+      "before": "PANEL_INSTALL",
+      "after": "CONDITION_START"
+    }
+  ],
+  "edge_semantics": "Unconditional edges apply to the selected branch dependency closure. Condition-scoped edges apply only to their named condition. The one_of requirement never requires both panel-presence states."
+}

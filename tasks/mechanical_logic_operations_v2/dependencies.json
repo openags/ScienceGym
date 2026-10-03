@@ -1,0 +1,288 @@
+{
+  "schema_version": "mechanical_logic_paper_task.v1",
+  "doi": "10.1038/s41467-021-27608-7",
+  "edges": [
+    {
+      "source": "PLAN",
+      "target": "STOCK",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "FAB_LOAD",
+      "target": "FAB_START",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "FAB_START",
+      "target": "FAB_CYCLE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "FAB_CYCLE",
+      "target": "FAB_RELEASE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "FAB_RELEASE",
+      "target": "PART_ID",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "GLUE",
+      "target": "CURE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "CURE",
+      "target": "LUBE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "LUBE",
+      "target": "SUPPORT",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "TEST_CAL",
+      "target": "TEST_MOUNT",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "TEST_MOUNT",
+      "target": "TEST_RUN",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "TEST_RUN",
+      "target": "TEST_REVIEW",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "TEST_REVIEW",
+      "target": "TEST_UNLOAD",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "AU_LAYOUT",
+      "target": "AU_CONTACT",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "MAG_MOUNT",
+      "target": "WIRE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "REIM_MOUNT",
+      "target": "WIRE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "WIRE",
+      "target": "SWITCH_CHECK",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "WIRE",
+      "target": "MAG_CAL",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "PROGRAM",
+      "target": "BIND_CASE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "INITIALIZE",
+      "target": "BIND_CASE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "BIND_CASE",
+      "target": "INPUTS",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "INPUTS",
+      "target": "ROW_ADVANCE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "ROW_ADVANCE",
+      "target": "OUTPUT_READ",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "OUTPUT_READ",
+      "target": "CASE_REVIEW",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "BIND_CASE",
+      "target": "STORE_WRITE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "STORE_WRITE",
+      "target": "STORE_HOLD",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "STORE_HOLD",
+      "target": "UPSTREAM_RELEASE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "UPSTREAM_RELEASE",
+      "target": "STORE_READ",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "MECH_BUILD",
+      "target": "MECH_PROGRAM",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "MECH_PROGRAM",
+      "target": "MECH_LOAD",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "MECH_LOAD",
+      "target": "MECH_RELEASE",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "MECH_BUILD",
+      "target": "MECH_CAL",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "MECH_CAL",
+      "target": "MECH_PROGRAM",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "MECH_LOAD",
+      "target": "MECH_READ",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    },
+    {
+      "source": "MECH_READ",
+      "target": "CASE_REVIEW",
+      "scope": "within_compatible_occurrence",
+      "semantics": "required_precedence_when_both_applicable"
+    }
+  ],
+  "loops": [
+    {
+      "id": "PRINT_JOBS",
+      "branch_ids": [
+        "MACRO_SIGNAL",
+        "MEMORY_PREP",
+        "MESOSCALE_FAB"
+      ],
+      "occurrence_key": "job_id",
+      "repeat_count": null,
+      "schedule_input": "fabrication_job_manifest",
+      "empty_schedule_allowed": false,
+      "reset_rule": "new_job_receipt_and_inventory"
+    },
+    {
+      "id": "SPECIMEN_TESTS",
+      "branch_ids": [
+        "NORMAL_TEST",
+        "SMALL_TEST",
+        "MEMORY_TEST"
+      ],
+      "occurrence_key": "specimen_id/cycle_id/attempt_id",
+      "repeat_count": null,
+      "schedule_input": "specimen_cycle_schedule",
+      "empty_schedule_allowed": false,
+      "reset_rule": "role_specific_reset_and_integrity"
+    },
+    {
+      "id": "TRUTH_CASES",
+      "branch_ids": [
+        "NOR",
+        "NOT",
+        "OR",
+        "AND"
+      ],
+      "occurrence_key": "function/case_id/repeat_id/attempt_id",
+      "repeat_count": null,
+      "schedule_input": "case_schedule",
+      "empty_schedule_allowed": false,
+      "reset_rule": "new_verified_AU_reset_before_each_independent_case"
+    },
+    {
+      "id": "ROUTING_CASES",
+      "branch_ids": [
+        "DEFECT_ROUTING"
+      ],
+      "occurrence_key": "topology_revision/case_id/attempt_id",
+      "repeat_count": null,
+      "schedule_input": "routing_schedule",
+      "empty_schedule_allowed": false,
+      "reset_rule": "new_verified_AU_reset"
+    },
+    {
+      "id": "STORE_CASES",
+      "branch_ids": [
+        "VOLATILE_STORAGE"
+      ],
+      "occurrence_key": "pair_id/hold_epoch/attempt_id",
+      "repeat_count": null,
+      "schedule_input": "storage_schedule",
+      "empty_schedule_allowed": false,
+      "reset_rule": "clear_then_new_epoch; no_power_gap_during_hold"
+    },
+    {
+      "id": "MECHANICAL_CASES",
+      "branch_ids": [
+        "MECHANICAL_NOR"
+      ],
+      "occurrence_key": "case_id/repeat_id/attempt_id",
+      "repeat_count": null,
+      "schedule_input": "mechanical_case_schedule",
+      "empty_schedule_allowed": false,
+      "reset_rule": "released_load_and_verified_signal_reset"
+    }
+  ],
+  "operation_list_is_chronology": false,
+  "terminal_policy": "ARCHIVE before release of scientific state; cleanup at final station release or abort, not before prepared handoff. Safety stop preempts all actions.",
+  "recovery": "Record attempt failure, isolate, qualify repair/replacement,increment affected revision,invalidate old scope receipts,allocate new attempt; bounded schedule required."
+}

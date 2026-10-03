@@ -1,0 +1,51 @@
+{
+  "schema_version": "cold_shape_paper_task.v1",
+  "doi": "10.1038/s41467-023-41170-4",
+  "conflicts": [
+    {
+      "id": "C_TC",
+      "issue": "B1 onset is given as 63 C in one passage and 62 C elsewhere.",
+      "locator": "Fig. 1D discussion; graded-strip discussion; Fig. 5",
+      "resolution_policy": "Do not choose a universal threshold; preserve both source claims and qualify the actual material.",
+      "affected_branches": [
+        "DMA_SWEEP",
+        "THERMAL_HINGES",
+        "HYBRID_STRIPS"
+      ],
+      "resolved": false
+    },
+    {
+      "id": "C_LATTICE",
+      "issue": "Lattice paragraph names B2/B3 for later recovery although B3 already recovers at room temperature.",
+      "locator": "Fig. 1I discussion",
+      "resolution_policy": "Retain the apparent source label error. Fig. 1I/material logic suggest B1 at the final stage; this is a labeled interpretation, not a corrected source record.",
+      "affected_branches": [
+        "GRADED_LATTICE"
+      ],
+      "resolved": false
+    },
+    {
+      "id": "C_HOT_UNIT",
+      "issue": "Elevated-temperature tensile plot prints kPa.",
+      "locator": "SI Fig. 1 p2",
+      "resolution_policy": "Keep the printed unit and require raw-data/unit validation; never silently change to MPa.",
+      "affected_branches": [
+        "TENSILE_HOT"
+      ],
+      "resolved": false
+    },
+    {
+      "id": "C_ALT_LABEL",
+      "issue": "Alternative resin label reads Acrylate acid with an acrylic-acid structure.",
+      "locator": "SI Fig. 6 p6",
+      "resolution_policy": "Resolve identity through qualified source clarification; do not inherit primary resin additives.",
+      "affected_branches": [
+        "ALT_RESIN_BATCH",
+        "ALT_FABRICATE",
+        "ALT_TENSILE",
+        "ALT_HINGE"
+      ],
+      "resolved": false
+    }
+  ]
+}
