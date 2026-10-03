@@ -1,0 +1,40 @@
+{
+  "schema_version": "directional_cooling_verification.v1",
+  "verification_date_utc": "2026-10-03",
+  "scope": "Static authored task contracts and synthetic record integrity only",
+  "checks": [
+    {
+      "command": "python tests/test_directional_contract.py",
+      "tests_run": 38,
+      "passed": 38,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "check": "Independent source/task-contract review",
+      "result": "accepted_for_task_design_publication",
+      "report": "independent_review/audit.json",
+      "operations_checked": 56,
+      "route_leaves_checked": 11
+    },
+    {
+      "check": "Host-specific absolute paths in export",
+      "result": "none_found"
+    },
+    {
+      "check": "Publisher bytes excluded",
+      "result": "Only authored .md .json .py files; raw sources and rendered pixels removed"
+    }
+  ],
+  "not_verified": [
+    "robot feasibility",
+    "physical safety",
+    "thermal simulation",
+    "hardware execution",
+    "scientific replication",
+    "exact historical reanalysis",
+    "actor/evaluator runtime loader"
+  ],
+  "publication_performed": false,
+  "original_license_modified": false
+}

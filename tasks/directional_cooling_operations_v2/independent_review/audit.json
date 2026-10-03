@@ -1,0 +1,51 @@
+{
+  "review_date_utc": "2026-10-03",
+  "review_type": "finite_independent_static_task_design_audit",
+  "verdict": "accepted_for_task_design_publication",
+  "scope": "Whole-paper empirical scope, mobile-robot manipulation contracts, device-process separation, source gaps, controls, repetition semantics, dependency and lineage structure. No physical execution or scientific replication validation.",
+  "counts": {
+    "operations": 56,
+    "selectable_routes": 11,
+    "top_level_json_files_checked": 21,
+    "author_static_synthetic_tests_passed_independently": 38
+  },
+  "independent_checks": {
+    "json_parse": "pass",
+    "unique_operation_ids": "pass",
+    "branch_operation_references": "pass",
+    "operation_dependency_references": "pass",
+    "operation_station_references": "pass",
+    "evidence_references": "pass",
+    "unknown_parameter_references": "pass",
+    "nonempty_actor_object_tool_station_action_precondition_completion_fields": "pass",
+    "author_test_suite_rerun": "38/38 pass"
+  },
+  "reviewed_sources": [
+    {
+      "url": "https://www.nature.com/articles/s41467-018-07293-9",
+      "reviewed": "Main empirical sections, figures/captions as web text, Methods, data availability; no main PDF or publisher image retrieved; no local main-content hash claimed"
+    },
+    {
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-07293-9/MediaObjects/41467_2018_7293_MOESM1_ESM.pdf",
+      "reviewed": "Existing locally retained SI text, empirical Notes 2-7 and figure captions; numerical/model scope distinguished. No new publisher PDF or figure retrieval"
+    }
+  ],
+  "resolved_findings": [
+    "Optical reference, mount, scan and unload bound to one actual instrument, with carrier transfer before switching instruments and emitter-specific angular remount",
+    "Calibration and coating receive explicit robot output-unload operations; generic safe-stop/unmount closure binds the actual active station",
+    "Open-aperture, current-site and continued shading conditions gate relevant acquisitions; night map requires no sun rather than forced tracking",
+    "Modified fixed-band/LDPE assembly has distinct new-version QC, separate from pre-swap baseline",
+    "Thermal-map route allocates one white device and identifies all six extra calibrated/released sensors",
+    "One-hour thermal map is a total source session, not an invented additional hour after a five-minute baseline",
+    "All 56 operations declare actor, objects, tools/interfaces, station bindings, robot actions, separate device process, preconditions and observable completion",
+    "Final stale pair-only LID_BASELINE precondition corrected and independently reread"
+  ],
+  "remaining_editorial_correction": null,
+  "limits": [
+    "Static and synthetic checks only; no mobile-robot reachability, collision, grasp, timing, apparatus safety, optical calibration or thermal outcome validated",
+    "Required missing fabrication, geometry, sensor-map, calibration, acquisition, control and scene inputs remain execution gates",
+    "Source raw data, full CAD and historical serial/reuse chronology not recovered; no source curves treated as future measurements",
+    "Independent review did not re-inspect publisher image pixels or movies; author image observations remain attributed to their own inspection"
+  ],
+  "remote_writes_performed": false
+}

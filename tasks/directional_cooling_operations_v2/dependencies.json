@@ -1,0 +1,350 @@
+{
+  "schema_version": "directional_cooling_paper_task.v1",
+  "doi": "10.1038/s41467-018-07293-9",
+  "visibility": "evaluator_reference_only",
+  "edges": [
+    {
+      "from": "PLAN",
+      "to": "STOCK"
+    },
+    {
+      "from": "STOCK",
+      "to": "FAB_LOAD"
+    },
+    {
+      "from": "FAB_LOAD",
+      "to": "FAB_RUN"
+    },
+    {
+      "from": "FAB_RUN",
+      "to": "FAB_UNLOAD"
+    },
+    {
+      "from": "STOCK",
+      "to": "COAT_LOAD"
+    },
+    {
+      "from": "COAT_LOAD",
+      "to": "COAT_RUN"
+    },
+    {
+      "from": "FAB_UNLOAD",
+      "to": "LAYOUT"
+    },
+    {
+      "from": "COAT_UNLOAD",
+      "to": "LAYOUT"
+    },
+    {
+      "from": "LAYOUT",
+      "to": "BASE"
+    },
+    {
+      "from": "BASE",
+      "to": "EMITTER"
+    },
+    {
+      "from": "LAYOUT",
+      "to": "FILM"
+    },
+    {
+      "from": "EMITTER",
+      "to": "SHIELD"
+    },
+    {
+      "from": "FILM",
+      "to": "SHIELD"
+    },
+    {
+      "from": "SHIELD",
+      "to": "REFLECTOR"
+    },
+    {
+      "from": "REFLECTOR",
+      "to": "ASSEMBLY_QC"
+    },
+    {
+      "from": "PLAN",
+      "to": "CAL_MOUNT"
+    },
+    {
+      "from": "CAL_MOUNT",
+      "to": "CAL_ACQUIRE"
+    },
+    {
+      "from": "CAL_ACQUIRE",
+      "to": "CAL_FIT"
+    },
+    {
+      "from": "CAL_UNLOAD",
+      "to": "TC_ATTACH"
+    },
+    {
+      "from": "ASSEMBLY_QC",
+      "to": "TC_ATTACH"
+    },
+    {
+      "from": "PLAN",
+      "to": "OPT_REFERENCE"
+    },
+    {
+      "from": "OPT_REFERENCE",
+      "to": "OPT_MOUNT"
+    },
+    {
+      "from": "OPT_MOUNT",
+      "to": "OPT_SCAN"
+    },
+    {
+      "from": "PLAN",
+      "to": "ANGLE_MOUNT"
+    },
+    {
+      "from": "ANGLE_MOUNT",
+      "to": "ANGLE_SCAN"
+    },
+    {
+      "from": "PLAN",
+      "to": "OPT_SUMMARY"
+    },
+    {
+      "from": "TC_ATTACH",
+      "to": "SITE_SETUP"
+    },
+    {
+      "from": "PLAN",
+      "to": "ENV_SETUP"
+    },
+    {
+      "from": "ENV_SETUP",
+      "to": "SYNC"
+    },
+    {
+      "from": "SITE_SETUP",
+      "to": "LID_BASELINE"
+    },
+    {
+      "from": "SYNC",
+      "to": "LID_BASELINE"
+    },
+    {
+      "from": "LID_BASELINE",
+      "to": "LID_REMOVE"
+    },
+    {
+      "from": "SITE_SETUP",
+      "to": "TRACK_ADJUST"
+    },
+    {
+      "from": "LID_REMOVE",
+      "to": "STAG_LOG"
+    },
+    {
+      "from": "TC_ATTACH",
+      "to": "HEATER_ATTACH"
+    },
+    {
+      "from": "HEATER_ATTACH",
+      "to": "POWER_CHECK"
+    },
+    {
+      "from": "SYNC",
+      "to": "POWER_CHECK"
+    },
+    {
+      "from": "POWER_CHECK",
+      "to": "PID_CONFIG"
+    },
+    {
+      "from": "PID_CONFIG",
+      "to": "POWER_BASELINE"
+    },
+    {
+      "from": "LID_REMOVE",
+      "to": "POWER_BASELINE"
+    },
+    {
+      "from": "POWER_BASELINE",
+      "to": "PID_STEP"
+    },
+    {
+      "from": "PID_STEP",
+      "to": "STEP_SUMMARY"
+    },
+    {
+      "from": "PID_CONFIG",
+      "to": "HEATER_OFF"
+    },
+    {
+      "from": "ASSEMBLY_QC",
+      "to": "FIXED_SWAP"
+    },
+    {
+      "from": "FIXED_QC",
+      "to": "BAND_CHECK"
+    },
+    {
+      "from": "SITE_SETUP",
+      "to": "BAND_CHECK"
+    },
+    {
+      "from": "CAL_UNLOAD",
+      "to": "MAP_ATTACH"
+    },
+    {
+      "from": "TC_ATTACH",
+      "to": "MAP_ATTACH"
+    },
+    {
+      "from": "MAP_ATTACH",
+      "to": "MAP_CONDITION"
+    },
+    {
+      "from": "SYNC",
+      "to": "MAP_CONDITION"
+    },
+    {
+      "from": "MAP_CONDITION",
+      "to": "MAP_LOG"
+    },
+    {
+      "from": "MAP_LOG",
+      "to": "MAP_SUMMARY"
+    },
+    {
+      "from": "PLAN",
+      "to": "COMPARE"
+    },
+    {
+      "from": "STOP_SAFE",
+      "to": "UNMOUNT"
+    },
+    {
+      "from": "UNMOUNT",
+      "to": "ARCHIVE"
+    },
+    {
+      "from": "ARCHIVE",
+      "to": "RESET"
+    },
+    {
+      "from": "RESET",
+      "to": "REPORT"
+    },
+    {
+      "from": "CAL_FIT",
+      "to": "CAL_UNLOAD"
+    },
+    {
+      "from": "PLAN",
+      "to": "OPT_UNLOAD"
+    },
+    {
+      "from": "SYNC",
+      "to": "ENV_LOG"
+    },
+    {
+      "from": "COAT_RUN",
+      "to": "COAT_UNLOAD"
+    },
+    {
+      "from": "FIXED_SWAP",
+      "to": "FIXED_QC"
+    }
+  ],
+  "semantics": "Dependencies express receipts, not required immediate adjacency. Preparation receipts may originate from an explicit scoped handoff. Repeated operations get new instance IDs.",
+  "conditional_gates": [
+    {
+      "operation": "OPT_SUMMARY",
+      "requires_one_complete_family": [
+        "OPT_SCAN",
+        "ANGLE_SCAN"
+      ]
+    },
+    {
+      "operation": "PID_STEP",
+      "requires": "POWER_BASELINE for first step; prior STEP_SUMMARY plus stable state for later steps"
+    },
+    {
+      "operation": "STAG_LOG",
+      "requires": "TRACK_ADJUST coverage for disk route OR BAND_CHECK coverage for fixed route"
+    },
+    {
+      "operation": "SITE_SETUP",
+      "requires": "Current assembly revision after HEATER_ATTACH, FIXED_SWAP or MAP_ATTACH as applicable"
+    },
+    {
+      "operation": "MAP_LOG",
+      "requires": "site mount + open lid + PE retained + valid 7-channel map + daytime shading or verified night"
+    },
+    {
+      "operation": "POWER_BASELINE",
+      "requires": "current shade receipt"
+    },
+    {
+      "operation": "PID_STEP",
+      "requires": "shade coverage across entire relevant acquisition; gaps flagged"
+    },
+    {
+      "operation": "FIXED_QC",
+      "requires": "new version after FIXED_SWAP; old ASSEMBLY_QC cannot satisfy"
+    }
+  ],
+  "loops": [
+    {
+      "id": "L_OPT",
+      "body": [
+        "OPT_REFERENCE",
+        "OPT_MOUNT",
+        "OPT_SCAN",
+        "OPT_UNLOAD"
+      ],
+      "count": "qualified nonempty component by instrument by technical-repeat schedule",
+      "station_rule": "Run entire loop at one bound instrument, then MOVE before other instrument"
+    },
+    {
+      "id": "L_ANGLE",
+      "body": [
+        "OPT_REFERENCE",
+        "ANGLE_MOUNT",
+        "ANGLE_SCAN",
+        "OPT_UNLOAD"
+      ],
+      "count": "qualified nonempty emitter by angle by polarization by repeat schedule",
+      "nesting": "Outer emitter/repeat loop includes remount; inner angle/polarization scans require current qualified fixture reference"
+    },
+    {
+      "id": "L_TRACK",
+      "body": [
+        "TRACK_ADJUST"
+      ],
+      "count": "public time/shadow event predicate; unknown cadence blocks execution"
+    },
+    {
+      "id": "L_PID",
+      "body": [
+        "PID_STEP",
+        "STEP_SUMMARY"
+      ],
+      "count": "nonempty bounded target schedule; failed steps retained"
+    },
+    {
+      "id": "L_MAP",
+      "body": [
+        "MAP_CONDITION",
+        "MAP_LOG",
+        "MAP_SUMMARY"
+      ],
+      "count": "three source conditions as separate branches, independent repeats supplied"
+    },
+    {
+      "id": "L_REPEAT",
+      "body": [
+        "PLAN",
+        "COMPARE"
+      ],
+      "count": "episode allocation; samples/sessions distinct from operating points"
+    }
+  ],
+  "transport_rule": "Different source/target stations require a physical MOVE instance with retained carrier, detach/isolation, origin/destination and identity receipts"
+}

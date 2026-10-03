@@ -1,0 +1,2729 @@
+{
+  "schema_version": "directional_cooling_paper_task.v1",
+  "doi": "10.1038/s41467-018-07293-9",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 56,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Bind scope and nonempty work order",
+      "location_id": "WS_RECORDS",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read route IDs, qualified cards, sample allocation and stopping conditions; list missing required inputs"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Selected route known"
+      ],
+      "postconditions": [
+        "Work order bound"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "work-order and input cards"
+      ],
+      "tools_or_interfaces": [
+        "console"
+      ],
+      "source_station_id": "WS_RECORDS",
+      "target_station_id": "WS_RECORDS",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "STOCK",
+      "title": "Issue lots and supported carriers",
+      "location_id": "WS_STOCK",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read part/lot labels; allocate white and black emitters separately; secure robust grips and carrier retainers"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "PLAN complete"
+      ],
+      "postconditions": [
+        "Parts and lots linked"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "component lots and carriers"
+      ],
+      "tools_or_interfaces": [
+        "label reader and carrier retainers"
+      ],
+      "source_station_id": "WS_STOCK",
+      "target_station_id": "WS_STOCK",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "MOVE",
+      "title": "Transport objects between workstations",
+      "location_id": "WS_TRANSFER",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Verify no live tethers; check destination dock and supplied route",
+        "Secure carrier, retract arms, navigate, brake and dock",
+        "Recheck identity, orientation and integrity at destination"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Safe output and temperature state",
+        "Qualified path/load/grasps"
+      ],
+      "postconditions": [
+        "One physical location per entity",
+        "Transport receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SCENE"
+      ],
+      "recovery": [
+        "Stop for obstruction, choose only a supplied safe alternate route; inspect shifted/dropped objects and quarantine if integrity is uncertain"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "retained carrier and supported components"
+      ],
+      "tools_or_interfaces": [
+        "mobile base/cart and dock"
+      ],
+      "source_station_id": "runtime_origin_station",
+      "target_station_id": "runtime_destination_station",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "FAB_LOAD",
+      "title": "Load qualified component fabrication",
+      "location_id": "WS_FAB",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Load supported stock, select supplied geometry/job and verify closed guard"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Qualified stock and geometry/process cards"
+      ],
+      "postconditions": [
+        "Fabrication ready"
+      ],
+      "depends_on": [
+        "STOCK"
+      ],
+      "evidence_ids": [
+        "E_BUILD",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "aluminum/insulation/support stock"
+      ],
+      "tools_or_interfaces": [
+        "enclosed fabrication fixture"
+      ],
+      "source_station_id": "WS_FAB",
+      "target_station_id": "WS_FAB",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "FAB_RUN",
+      "title": "Request enclosed fabrication service",
+      "location_id": "WS_FAB",
+      "kind": "device_process",
+      "operator_actions": [
+        "Read back job, start service, monitor completion and safe release"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "Guard and readback verified"
+      ],
+      "postconditions": [
+        "Job receipt with actual parameters"
+      ],
+      "depends_on": [
+        "FAB_LOAD"
+      ],
+      "evidence_ids": [
+        "E_BUILD",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "fabrication job and stock"
+      ],
+      "tools_or_interfaces": [
+        "service control and guard"
+      ],
+      "source_station_id": "WS_FAB",
+      "target_station_id": "WS_FAB",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "FAB_UNLOAD",
+      "title": "Unload and inspect fabricated parts",
+      "location_id": "WS_FAB",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Wait for safe release; support each part, gauge supplied dimensions and archive reject/scrap identities"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Safe release true"
+      ],
+      "postconditions": [
+        "Accepted or quarantined parts"
+      ],
+      "depends_on": [
+        "FAB_RUN"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "fabricated parts and scrap"
+      ],
+      "tools_or_interfaces": [
+        "supported tray and dimensional gauges"
+      ],
+      "source_station_id": "WS_FAB",
+      "target_station_id": "WS_FAB",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "COAT_LOAD",
+      "title": "Stage emitter coating service",
+      "location_id": "WS_COATING",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Bind copper disk and coating condition; load supported disk or accept declared prepared-component receipt"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Emitter and qualified process known"
+      ],
+      "postconditions": [
+        "Coating identity bound"
+      ],
+      "depends_on": [
+        "STOCK"
+      ],
+      "evidence_ids": [
+        "E_BUILD"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "copper disk and coating lot"
+      ],
+      "tools_or_interfaces": [
+        "qualified coating fixture"
+      ],
+      "source_station_id": "WS_COATING",
+      "target_station_id": "WS_COATING",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "COAT_RUN",
+      "title": "Complete coating and cure handoff",
+      "location_id": "WS_COATING",
+      "kind": "device_process",
+      "operator_actions": [
+        "Read job and request qualified three-coat service",
+        "Observe completion/cure/safe-release feedback; physical output retrieval belongs to COAT_UNLOAD"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "Qualified service available"
+      ],
+      "postconditions": [
+        "Coated emitter with lot/history"
+      ],
+      "depends_on": [
+        "COAT_LOAD"
+      ],
+      "evidence_ids": [
+        "E_BUILD"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "coated emitter and service receipt"
+      ],
+      "tools_or_interfaces": [
+        "service controls and inspection fixture"
+      ],
+      "source_station_id": "WS_COATING",
+      "target_station_id": "WS_COATING",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "LAYOUT",
+      "title": "Stage identified assembly parts",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Dock carrier; lay parts in indexed supports; inspect emitter face, film condition and dimensions"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Qualified fabricated/prepared parts"
+      ],
+      "postconditions": [
+        "Manifest verified"
+      ],
+      "depends_on": [
+        "FAB_UNLOAD",
+        "COAT_UNLOAD"
+      ],
+      "evidence_ids": [
+        "E_BUILD"
+      ],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "identified device components"
+      ],
+      "tools_or_interfaces": [
+        "indexed assembly mat"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "BASE",
+      "title": "Attach base frame and insulation",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Support base, attach frame; stack both insulation layers and record joints"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "LAYOUT complete"
+      ],
+      "postconditions": [
+        "Supported base/insulation assembly"
+      ],
+      "depends_on": [
+        "LAYOUT"
+      ],
+      "evidence_ids": [
+        "E_BUILD"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "acrylic base",
+        "frame and insulation layers"
+      ],
+      "tools_or_interfaces": [
+        "supported jig and qualified joining tools"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "EMITTER",
+      "title": "Seat emitter and PE support",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Place emitter on insulation with coated side up; position PE tube without loading the optical surface"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "BASE complete"
+      ],
+      "postconditions": [
+        "Emitter and support locations recorded"
+      ],
+      "depends_on": [
+        "BASE"
+      ],
+      "evidence_ids": [
+        "E_BUILD"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "coated emitter and PE support"
+      ],
+      "tools_or_interfaces": [
+        "edge gripper and support jig"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "FILM",
+      "title": "Mount two separately identified PE layers",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Support films at supplied edges; attach opposite spacer faces, verify gap, tension and absence of tears"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Correct film type and qualified attachment card"
+      ],
+      "postconditions": [
+        "Two-layer cover assembly/version"
+      ],
+      "depends_on": [
+        "LAYOUT"
+      ],
+      "evidence_ids": [
+        "E_BUILD",
+        "E_FIXED"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "two film sheets and spacer ring"
+      ],
+      "tools_or_interfaces": [
+        "edge supports and qualified attachment tools"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "SHIELD",
+      "title": "Install shielding cover and aperture",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Apply supplied side/base shielding; seat cover assembly, cylinder and aperture; inspect clearances"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "EMITTER and FILM complete"
+      ],
+      "postconditions": [
+        "Layer order and aperture alignment receipt"
+      ],
+      "depends_on": [
+        "EMITTER",
+        "FILM"
+      ],
+      "evidence_ids": [
+        "E_BUILD"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "aluminized Mylar",
+        "cover",
+        "cylinder and aperture"
+      ],
+      "tools_or_interfaces": [
+        "supported alignment fixture"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "REFLECTOR",
+      "title": "Install qualified disk or band geometry",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read site/date/path/height card; support and secure reflector assembly; verify range and lock"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Qualified path and geometry ambiguity resolved"
+      ],
+      "postconditions": [
+        "Reflector geometry/version bound"
+      ],
+      "depends_on": [
+        "SHIELD"
+      ],
+      "evidence_ids": [
+        "E_TRACK",
+        "E_FIXED"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_OUTDOOR"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "disk/track or band",
+        "supports and joints"
+      ],
+      "tools_or_interfaces": [
+        "qualified mounting tools"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "ASSEMBLY_QC",
+      "title": "Inspect assembled device integrity",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Check components, mounts, optical opening and films against qualified tolerances; log unresolved faults"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Assembly completed"
+      ],
+      "postconditions": [
+        "Qualified assembly or blocker"
+      ],
+      "depends_on": [
+        "REFLECTOR"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "assembled device and joints"
+      ],
+      "tools_or_interfaces": [
+        "dimension/condition inspection tools"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "CAL_MOUNT",
+      "title": "Mount calibration sensors in block",
+      "location_id": "WS_CAL",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Bind sensor serial/channel map; insert reference RTD and thermocouples into supported block; stage bath and isolated leads"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Qualified calibration and fixture card"
+      ],
+      "postconditions": [
+        "Sensor/channel/block map"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_CAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "thermocouples",
+        "reference RTD and copper block"
+      ],
+      "tools_or_interfaces": [
+        "bath fixture and lead connectors"
+      ],
+      "source_station_id": "WS_CAL",
+      "target_station_id": "WS_CAL",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "CAL_ACQUIRE",
+      "title": "Run qualified calibration conditions",
+      "location_id": "WS_CAL",
+      "kind": "device_process",
+      "operator_actions": [
+        "Load and read bath schedule; start acquisition; observe stability; preserve synchronized reference and probe values"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "CAL_MOUNT verified"
+      ],
+      "postconditions": [
+        "Raw calibration observations"
+      ],
+      "depends_on": [
+        "CAL_MOUNT"
+      ],
+      "evidence_ids": [
+        "E_CAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_ACQ"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "bath schedule",
+        "sensor block and live observations"
+      ],
+      "tools_or_interfaces": [
+        "chiller, reference meter and protected DAQ"
+      ],
+      "source_station_id": "WS_CAL",
+      "target_station_id": "WS_CAL",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "CAL_FIT",
+      "title": "Validate sensor-specific calibration",
+      "location_id": "WS_RECORDS",
+      "kind": "analysis",
+      "operator_actions": [
+        "Use each thermocouple calibration to correct offset as source described; propagate slope error into uncertainty",
+        "Declare still-missing fitting/combination/acceptance details; retain raw references and reject inconsistent sensor/channel mappings"
+      ],
+      "device_process": "Versioned analysis service computes from committed observations after robot selects and verifies inputs",
+      "preconditions": [
+        "Sufficient valid CAL_ACQUIRE data"
+      ],
+      "postconditions": [
+        "Versioned calibration or reject"
+      ],
+      "depends_on": [
+        "CAL_ACQUIRE"
+      ],
+      "evidence_ids": [
+        "E_CAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_ANALYSIS"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "raw calibration and sensor/channel IDs"
+      ],
+      "tools_or_interfaces": [
+        "processing console"
+      ],
+      "source_station_id": "WS_RECORDS",
+      "target_station_id": "WS_RECORDS",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "TC_ATTACH",
+      "title": "Attach and route calibrated emitter sensor",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "With emitter supported, attach probe at qualified rear-center location; inspect paste/lead contact and strain relief"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Calibrated sensor and mounting recipe"
+      ],
+      "postconditions": [
+        "Probe-to-emitter and channel binding"
+      ],
+      "depends_on": [
+        "CAL_UNLOAD",
+        "ASSEMBLY_QC"
+      ],
+      "evidence_ids": [
+        "E_CAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_WIRING",
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "calibrated probe",
+        "paste and emitter rear surface"
+      ],
+      "tools_or_interfaces": [
+        "supported jig and qualified attachment tool"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "OPT_REFERENCE",
+      "title": "Load optical reference and background",
+      "location_id": "WS_OPTICAL_ACTIVE",
+      "kind": "device_process",
+      "operator_actions": [
+        "At the bound actual UV-Vis-NIR sphere, FTIR sphere or FTIR angular fixture, place qualified reference/background and run the method",
+        "Bind calibration receipt to instrument, fixture, reference, angle/polarization regime and revision; changing any requires its qualified reference-validity check"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "Qualified method and standards"
+      ],
+      "postconditions": [
+        "Optical calibration receipt"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_OPT"
+      ],
+      "unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "reference standards and optical fixture"
+      ],
+      "tools_or_interfaces": [
+        "spectrometer sphere/background controls"
+      ],
+      "source_station_id": "WS_OPTICAL_ACTIVE",
+      "target_station_id": "WS_OPTICAL_ACTIVE",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Bind all station fields to the same actual WS_UVVIS or WS_FTIR per operation instance. The bound actual station, fixture and sample persist through reference/mount/scan/unload; MOVE required before changing stations.",
+      "station_options": [
+        "WS_UVVIS",
+        "WS_FTIR"
+      ]
+    },
+    {
+      "id": "OPT_MOUNT",
+      "title": "Mount identified optical component",
+      "location_id": "WS_OPTICAL_ACTIVE",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Transport and clamp correct reflector, two-layer cover or emitter; record face/geometry and lot correspondence"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Reference valid and sample intact"
+      ],
+      "postconditions": [
+        "Component mount receipt"
+      ],
+      "depends_on": [
+        "OPT_REFERENCE"
+      ],
+      "evidence_ids": [
+        "E_OPT"
+      ],
+      "unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "reflector",
+        "film assembly or emitter"
+      ],
+      "tools_or_interfaces": [
+        "component-specific sphere mount"
+      ],
+      "source_station_id": "WS_OPTICAL_ACTIVE",
+      "target_station_id": "WS_OPTICAL_ACTIVE",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Bind all station fields to the same actual WS_UVVIS or WS_FTIR per operation instance. The bound actual station, fixture and sample persist through reference/mount/scan/unload; MOVE required before changing stations.",
+      "station_options": [
+        "WS_UVVIS",
+        "WS_FTIR"
+      ]
+    },
+    {
+      "id": "OPT_SCAN",
+      "title": "Acquire solar and IR sphere scans",
+      "location_id": "WS_OPTICAL_ACTIVE",
+      "kind": "device_process",
+      "operator_actions": [
+        "At one instrument, read its scan configuration and trigger acquisition; preserve units, reference and raw-file receipts",
+        "For the other spectral range, stop, release and unload using OPT_UNLOAD; use MOVE to the other station and repeat reference/mount/scan steps"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "OPT_MOUNT verified at each relevant instrument"
+      ],
+      "postconditions": [
+        "Spectral raw records"
+      ],
+      "depends_on": [
+        "OPT_MOUNT"
+      ],
+      "evidence_ids": [
+        "E_OPT"
+      ],
+      "unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "mounted component and scan settings"
+      ],
+      "tools_or_interfaces": [
+        "UV-Vis-NIR or FTIR controls"
+      ],
+      "source_station_id": "WS_OPTICAL_ACTIVE",
+      "target_station_id": "WS_OPTICAL_ACTIVE",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Bind all station fields to the same actual WS_UVVIS or WS_FTIR per operation instance. The bound actual station, fixture and sample persist through reference/mount/scan/unload; MOVE required before changing stations.",
+      "station_options": [
+        "WS_UVVIS",
+        "WS_FTIR"
+      ]
+    },
+    {
+      "id": "ANGLE_MOUNT",
+      "title": "Mount emitter on angle fixture",
+      "location_id": "WS_FTIR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Load white or black emitter and qualified variable-angle fixture; verify optical face and angle datum"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Emitter identity and angular method known"
+      ],
+      "postconditions": [
+        "Angular mount/version"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_ANGLE"
+      ],
+      "unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "white/black emitter and angle fixture"
+      ],
+      "tools_or_interfaces": [
+        "FTIR variable-angle holder"
+      ],
+      "source_station_id": "WS_FTIR",
+      "target_station_id": "WS_FTIR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "ANGLE_SCAN",
+      "title": "Acquire angle and polarization conditions",
+      "location_id": "WS_FTIR",
+      "kind": "device_process",
+      "operator_actions": [
+        "Set/read one incident angle and polarization; acquire, record and repeat explicit nonempty schedule"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "ANGLE_MOUNT and reference valid",
+        "Reference receipt matches active FTIR angular fixture and declared angle/polarization validity",
+        "One identified emitter currently mounted; each emitter switch requires OPT_UNLOAD, MOVE if stations differ, ANGLE_MOUNT and renewed fixture-reference validation"
+      ],
+      "postconditions": [
+        "Angle/polarization indexed raw data"
+      ],
+      "depends_on": [
+        "ANGLE_MOUNT"
+      ],
+      "evidence_ids": [
+        "E_ANGLE"
+      ],
+      "unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "angle setting and polarization selector"
+      ],
+      "tools_or_interfaces": [
+        "FTIR angle/polarization controls"
+      ],
+      "source_station_id": "WS_FTIR",
+      "target_station_id": "WS_FTIR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "OPT_SUMMARY",
+      "title": "Derive optical quantities and unload",
+      "location_id": "WS_RECORDS",
+      "kind": "analysis",
+      "operator_actions": [
+        "Bind raw reference/sample records; report reflectance and only justified emissivity/transmittance with explicit assumptions; verify optical component was separately unloaded"
+      ],
+      "device_process": "Versioned analysis service computes from committed observations after robot selects and verifies inputs",
+      "preconditions": [
+        "All scheduled scans classified"
+      ],
+      "postconditions": [
+        "Optical summary linked to sample/version"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_OPT",
+        "E_ANGLE",
+        "E_FIXED"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "reference/sample scan records"
+      ],
+      "tools_or_interfaces": [
+        "processing console"
+      ],
+      "source_station_id": "WS_RECORDS",
+      "target_station_id": "WS_RECORDS",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "SITE_SETUP",
+      "title": "Stage outdoor pair and orientation",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Transport each isolated supported device specified by the selected route and seat its base at the qualified outdoor mount",
+        "For paired stagnation/power/fixed routes stage adjacent white and black devices; for each MAP route stage only its white device",
+        "Bind actual device count, IDs, site/date/time, orientation, and full-window geometry; do not create an unrequested black partner"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Current assembly-version-specific inspection receipt",
+        "Calibration and mounting receipts valid",
+        "Qualified outdoor and scene cards"
+      ],
+      "postconditions": [
+        "Site, actual device allocation and orientation receipt"
+      ],
+      "depends_on": [
+        "TC_ATTACH"
+      ],
+      "evidence_ids": [
+        "E_STAG",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_OUTDOOR",
+        "U_SCENE"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "route-allocated device bases and outdoor mounts"
+      ],
+      "tools_or_interfaces": [
+        "retained cart, mount locks and orientation aids"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "ENV_SETUP",
+      "title": "Stage ambient weather and solar instruments",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Place protected DAQ and ventilated ambient shield; stage GHI/weather sensor and separate sun-tracker DNI/GTI sensors; verify all channels"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Qualified reference instruments and station"
+      ],
+      "postconditions": [
+        "Environment channel geometry and identities"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_ENV",
+        "E_SOLAR"
+      ],
+      "unknown_parameter_ids": [
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "ambient RTD",
+        "solar/weather sensors and DAQ"
+      ],
+      "tools_or_interfaces": [
+        "radiation shield, solar tracker and protected mounts"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "SYNC",
+      "title": "Verify clocks and channel mapping",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read all clocks, units, cadences, calibration revisions and probe locations; acquire test records"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Sensors mounted and powered safely"
+      ],
+      "postconditions": [
+        "Timestamp and channel validity receipts"
+      ],
+      "depends_on": [
+        "ENV_SETUP"
+      ],
+      "evidence_ids": [
+        "E_ENV"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACQ"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "clocks and channel associations"
+      ],
+      "tools_or_interfaces": [
+        "DAQ and sensor readback controls"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "LID_BASELINE",
+      "title": "Start covered-aperture baseline",
+      "location_id": "WS_OUTDOOR",
+      "kind": "device_process",
+      "operator_actions": [
+        "Place an aluminum aperture lid on each route-allocated device; verify output-off state and start synchronized logger",
+        "Bind one lid for a MAP white device, two separately identified lids for paired white/black routes",
+        "Figure 3 specifies five initial covered minutes; map baseline timing is a qualified schedule choice within its one-hour total session"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "All route-allocated devices qualified and clocks checked"
+      ],
+      "postconditions": [
+        "Raw covered baseline"
+      ],
+      "depends_on": [
+        "SITE_SETUP",
+        "SYNC"
+      ],
+      "evidence_ids": [
+        "E_STAG"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACQ"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "route-allocated aperture lids and logger"
+      ],
+      "tools_or_interfaces": [
+        "lid handles, logger and output-off indicators"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "LID_REMOVE",
+      "title": "Remove aluminum aperture lids",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "At the declared route-specific elapsed time remove each allocated lid to its holder without disturbing the PE cover",
+        "Record each device/lid identity and actual open time; one lid for MAP, two for paired routes",
+        "Do not force Figure 3 timing onto another source branch without declaring the task-authored choice"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Covered baseline valid and shadow protection ready"
+      ],
+      "postconditions": [
+        "Open apertures with covers still installed"
+      ],
+      "depends_on": [
+        "LID_BASELINE"
+      ],
+      "evidence_ids": [
+        "E_STAG"
+      ],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "aluminum aperture lids"
+      ],
+      "tools_or_interfaces": [
+        "lid handles and storage holders"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "TRACK_ADJUST",
+      "title": "Maintain disk shadow manually",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read current qualified solar position; move disk along supplied track; inspect full-aperture shadow and annotate intervention"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Disk route active and safe movement clearance"
+      ],
+      "postconditions": [
+        "Time-indexed disk position/shadow record"
+      ],
+      "depends_on": [
+        "SITE_SETUP"
+      ],
+      "evidence_ids": [
+        "E_TRACK",
+        "E_STAG"
+      ],
+      "unknown_parameter_ids": [
+        "U_OUTDOOR"
+      ],
+      "recovery": [
+        "If direct sun reaches emitter, retain exposure interval, isolate output if necessary and restart/requalify only under declared policy"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "reflector disk and track carriage"
+      ],
+      "tools_or_interfaces": [
+        "carriage grip/lock and shadow inspection"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "STAG_LOG",
+      "title": "Observe paired passive cooling",
+      "location_id": "WS_OUTDOOR",
+      "kind": "device_process",
+      "operator_actions": [
+        "Monitor raw emitter/ambient/environment streams for the eligible time window; preserve faults and interventions"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "Open lids, valid sensors and shading"
+      ],
+      "postconditions": [
+        "Paired stagnation raw records"
+      ],
+      "depends_on": [
+        "LID_REMOVE"
+      ],
+      "evidence_ids": [
+        "E_STAG",
+        "E_FIXED"
+      ],
+      "unknown_parameter_ids": [
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "temperature/weather channels and raw acquisition"
+      ],
+      "tools_or_interfaces": [
+        "logger controls and public readbacks"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "HEATER_ATTACH",
+      "title": "Install heater and four-wire circuit",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Isolate output; support emitter, attach heater and route leads; identify source/sense terminals and verify connections"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Qualified heater, mount and electrical envelope"
+      ],
+      "postconditions": [
+        "New heater-bearing assembly version and port graph"
+      ],
+      "depends_on": [
+        "TC_ATTACH"
+      ],
+      "evidence_ids": [
+        "E_POWER"
+      ],
+      "unknown_parameter_ids": [
+        "U_WIRING"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "Kapton heater",
+        "emitter",
+        "four-wire leads"
+      ],
+      "tools_or_interfaces": [
+        "mounting jig and source/sense connectors"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "POWER_CHECK",
+      "title": "Check isolated electrical and sensor readback",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Verify physical source/sense graph, temperature channel and independent output-off feedback; test qualified limits"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "HEATER_ATTACH and site setup complete"
+      ],
+      "postconditions": [
+        "Electrical/calibration qualification receipt"
+      ],
+      "depends_on": [
+        "HEATER_ATTACH",
+        "SYNC"
+      ],
+      "evidence_ids": [
+        "E_POWER"
+      ],
+      "unknown_parameter_ids": [
+        "U_WIRING",
+        "U_PID"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "source/sense graph",
+        "thermocouple and output state"
+      ],
+      "tools_or_interfaces": [
+        "qualified continuity/readback interface"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "PID_CONFIG",
+      "title": "Load bounded temperature-step schedule",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read target list, duration, gains, compliance, stability and cutoff; confirm nonempty readback"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "POWER_CHECK valid"
+      ],
+      "postconditions": [
+        "Versioned readback program"
+      ],
+      "depends_on": [
+        "POWER_CHECK"
+      ],
+      "evidence_ids": [
+        "E_POWER"
+      ],
+      "unknown_parameter_ids": [
+        "U_PID"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "bounded target schedule and controller"
+      ],
+      "tools_or_interfaces": [
+        "PID/sourcemeter controls"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "POWER_BASELINE",
+      "title": "Observe initial heater-off equilibrium",
+      "location_id": "WS_OUTDOOR",
+      "kind": "device_process",
+      "operator_actions": [
+        "Verify output off, open shaded aperture and log until qualified stability predicate holds"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "PID_CONFIG and open-aperture setup valid",
+        "Lids open with PE installed",
+        "Current disk-shadow coverage valid; every uncovered interval flagged"
+      ],
+      "postconditions": [
+        "Initial passive equilibrium or blocker"
+      ],
+      "depends_on": [
+        "PID_CONFIG",
+        "LID_REMOVE"
+      ],
+      "evidence_ids": [
+        "E_POWER"
+      ],
+      "unknown_parameter_ids": [
+        "U_PID",
+        "U_ACQ"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "heater output state and thermal channels"
+      ],
+      "tools_or_interfaces": [
+        "independent output monitor and logger"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "PID_STEP",
+      "title": "Execute one five-minute controlled plateau",
+      "location_id": "WS_OUTDOOR",
+      "kind": "device_process",
+      "operator_actions": [
+        "Read next target, arm bounded controller, monitor independent temperature/power/limits, retain complete transient and dwell"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "Stable initial or prior accepted state and qualified program",
+        "Current outdoor site and geometry qualified",
+        "Lids remain open and PE retained",
+        "Continued verified disk-shadow coverage across plateau; intervention/exposure invalidates affected summary interval"
+      ],
+      "postconditions": [
+        "Timestamped step interval and validity status"
+      ],
+      "depends_on": [
+        "POWER_BASELINE"
+      ],
+      "evidence_ids": [
+        "E_POWER"
+      ],
+      "unknown_parameter_ids": [
+        "U_PID",
+        "U_ACQ"
+      ],
+      "recovery": [
+        "On instability, saturation or sensor fault disable output, preserve partial interval and restart only after requalification; never silently extend or shift the source window"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "single target and thermal/electrical feedback"
+      ],
+      "tools_or_interfaces": [
+        "bounded PID service and separate cutoff"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "STEP_SUMMARY",
+      "title": "Validate final two minutes of plateau",
+      "location_id": "WS_RECORDS",
+      "kind": "analysis",
+      "operator_actions": [
+        "Select exact last two minutes within declared five-minute step; check complete samples, stability and interventions; calculate with supplied area/uncertainty rules"
+      ],
+      "device_process": "Versioned analysis service computes from committed observations after robot selects and verifies inputs",
+      "preconditions": [
+        "PID_STEP record committed"
+      ],
+      "postconditions": [
+        "Accepted or incomplete step summary"
+      ],
+      "depends_on": [
+        "PID_STEP"
+      ],
+      "evidence_ids": [
+        "E_POWER"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_ACQ"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "exact plateau raw interval"
+      ],
+      "tools_or_interfaces": [
+        "processing console"
+      ],
+      "source_station_id": "WS_RECORDS",
+      "target_station_id": "WS_RECORDS",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "HEATER_OFF",
+      "title": "Disable heaters and verify recooling",
+      "location_id": "WS_OUTDOOR",
+      "kind": "device_process",
+      "operator_actions": [
+        "Command output off; verify independent current/power state; record temperatures returning toward passive equilibrium"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "Completed or aborted controlled heating"
+      ],
+      "postconditions": [
+        "Output-off receipt and recooling records"
+      ],
+      "depends_on": [
+        "PID_CONFIG"
+      ],
+      "evidence_ids": [
+        "E_POWER"
+      ],
+      "unknown_parameter_ids": [
+        "U_PID",
+        "U_ACQ"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "heater output and recooling channels"
+      ],
+      "tools_or_interfaces": [
+        "independent current/power readback and logger"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "FIXED_SWAP",
+      "title": "Replace reflector and cover components",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Support isolated device; remove/archive disk and old cover; install identified band and two LDPE films; record joints and new version"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Pre-swap ASSEMBLY_QC receipt bound to old assembly version",
+        "Qualified fixed-band/LDPE parts",
+        "Output isolated and supported disconnected device"
+      ],
+      "postconditions": [
+        "New assembly version with removed/new component IDs; requires FIXED_QC before outdoor use"
+      ],
+      "depends_on": [
+        "ASSEMBLY_QC"
+      ],
+      "evidence_ids": [
+        "E_FIXED"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "old disk/film components and new band/LDPE"
+      ],
+      "tools_or_interfaces": [
+        "supported assembly jig and component archive trays"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "BAND_CHECK",
+      "title": "Verify fixed shading without adjustment",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Bind band to site/date/window; verify geometry and initial shadow; log continuous coverage without moving band"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "FIXED_SWAP qualified and site staged"
+      ],
+      "postconditions": [
+        "Nontracking condition receipt or fault"
+      ],
+      "depends_on": [
+        "FIXED_QC",
+        "SITE_SETUP"
+      ],
+      "evidence_ids": [
+        "E_FIXED"
+      ],
+      "unknown_parameter_ids": [
+        "U_OUTDOOR"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "fixed band and emitter shadow"
+      ],
+      "tools_or_interfaces": [
+        "orientation/geometry inspection"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "MAP_ATTACH",
+      "title": "Attach six extra calibrated location sensors",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Bind explicit six-location map plus emitter probe; attach labeled sensors and route leads; inspect without guessing positions"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Qualified white-device-only allocation and explicit six-extra-sensor location card",
+        "Every extra sensor has its own CAL_FIT and CAL_UNLOAD receipts, preserving serial/channel identity",
+        "Emitter sensor calibration and attachment already valid"
+      ],
+      "postconditions": [
+        "Seven-channel physical map and assembly revision"
+      ],
+      "depends_on": [
+        "CAL_UNLOAD",
+        "TC_ATTACH"
+      ],
+      "evidence_ids": [
+        "E_MAP"
+      ],
+      "unknown_parameter_ids": [
+        "U_MAP",
+        "U_WIRING"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "six additional probes and white device"
+      ],
+      "tools_or_interfaces": [
+        "location-indexed fixture and attachment tools"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "MAP_CONDITION",
+      "title": "Check actual thermal-map weather condition",
+      "location_id": "WS_OUTDOOR",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read actual weather/time and selected clear-day, night or hazy-noon condition; wait or report unmet gate"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "MAP_ATTACH and ENV_SETUP complete"
+      ],
+      "postconditions": [
+        "Eligible or blocked condition receipt"
+      ],
+      "depends_on": [
+        "MAP_ATTACH",
+        "SYNC"
+      ],
+      "evidence_ids": [
+        "E_MAP"
+      ],
+      "unknown_parameter_ids": [
+        "U_OUTDOOR"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "current weather/time observations"
+      ],
+      "tools_or_interfaces": [
+        "environment readback console"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "MAP_LOG",
+      "title": "Acquire one-hour multichannel thermal map",
+      "location_id": "WS_OUTDOOR",
+      "kind": "device_process",
+      "operator_actions": [
+        "Acquire the declared one-hour total map-session record, retaining any recorded initial covered period rather than automatically adding another hour after lid removal",
+        "Preserve all seven temperatures and actual weather; qualify open-lid/post-equilibrium analysis intervals and mark interventions"
+      ],
+      "device_process": "Qualified station service executes the named measurement/process; robot manipulates controls and verifies observable completion",
+      "preconditions": [
+        "MAP_CONDITION eligible and geometry/sensors valid",
+        "Actual device seated at qualified site with current seven-channel mapping",
+        "Aperture lid removed and PE retained",
+        "Daytime: current disk-shadow coverage and orientation valid; night: verified no-sun condition in place of tracking"
+      ],
+      "postconditions": [
+        "One-hour total session raw record with explicit baseline/open/equilibrium subintervals, or incomplete status"
+      ],
+      "depends_on": [
+        "MAP_CONDITION"
+      ],
+      "evidence_ids": [
+        "E_MAP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACQ",
+        "U_MAP"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "seven mapped thermal channels"
+      ],
+      "tools_or_interfaces": [
+        "synchronized DAQ"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "MAP_SUMMARY",
+      "title": "Aggregate qualified equilibrium map",
+      "location_id": "WS_RECORDS",
+      "kind": "analysis",
+      "operator_actions": [
+        "Use declared post-equilibrium interval; retain all locations, calibration and uncertainty; keep model comparison separate"
+      ],
+      "device_process": "Versioned analysis service computes from committed observations after robot selects and verifies inputs",
+      "preconditions": [
+        "MAP_LOG valid or explicitly partial"
+      ],
+      "postconditions": [
+        "Physical temperature map, no model-as-measurement"
+      ],
+      "depends_on": [
+        "MAP_LOG"
+      ],
+      "evidence_ids": [
+        "E_MAP"
+      ],
+      "unknown_parameter_ids": [
+        "U_MAP",
+        "U_ANALYSIS"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "temperature-location and weather records"
+      ],
+      "tools_or_interfaces": [
+        "processing console"
+      ],
+      "source_station_id": "WS_RECORDS",
+      "target_station_id": "WS_RECORDS",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "COMPARE",
+      "title": "Build condition-aware comparisons",
+      "location_id": "WS_RECORDS",
+      "kind": "analysis",
+      "operator_actions": [
+        "Compare only lineage-compatible samples/intervals; distinguish white-black pairs, altered assemblies, weather and technical repeats"
+      ],
+      "device_process": "Versioned analysis service computes from committed observations after robot selects and verifies inputs",
+      "preconditions": [
+        "Raw and derived records classified"
+      ],
+      "postconditions": [
+        "Report with confounds and missing comparisons"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "lineage-compatible derived records"
+      ],
+      "tools_or_interfaces": [
+        "comparison console"
+      ],
+      "source_station_id": "WS_RECORDS",
+      "target_station_id": "WS_RECORDS",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "STOP_SAFE",
+      "title": "Stop acquisition and isolate output",
+      "location_id": "WS_ACTIVE",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Commit records and stop the active acquisition/process",
+        "At a heater station disable output and verify independent power/current and safe temperature; at calibration/optics stop service and read the qualified safe-release state",
+        "Do not touch live leads or bath/optical/fabrication fixtures until the station-specific isolation predicate is satisfied"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Session ended or fault detected"
+      ],
+      "postconditions": [
+        "Safe output or isolated intervention request"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_WIRING",
+        "U_PID"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "active station outputs and acquisition"
+      ],
+      "tools_or_interfaces": [
+        "stop/isolation controls and independent readback"
+      ],
+      "source_station_id": "runtime_active_station",
+      "target_station_id": "runtime_active_station",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "UNMOUNT",
+      "title": "Disconnect and secure assemblies",
+      "location_id": "WS_ACTIVE",
+      "kind": "hands_on",
+      "operator_actions": [
+        "After station-specific safe-state confirmation, support the component, release fixture and disconnect/label leads or sensors",
+        "Transfer item into retained carrier; secure outdoor reflector/films and fit storage lids when applicable"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "STOP_SAFE verified"
+      ],
+      "postconditions": [
+        "Supported disconnected devices and sensors"
+      ],
+      "depends_on": [
+        "STOP_SAFE"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "station sample",
+        "sensors and leads"
+      ],
+      "tools_or_interfaces": [
+        "supported fixture release tools"
+      ],
+      "source_station_id": "runtime_active_station",
+      "target_station_id": "runtime_active_station",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive samples and immutable records",
+      "location_id": "WS_ARCHIVE",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Transport supported devices; bind raw/derived manifests and hashes; quarantine faults and preserve prior versions"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "UNMOUNT and record commit complete"
+      ],
+      "postconditions": [
+        "Archive receipt with failures intact"
+      ],
+      "depends_on": [
+        "UNMOUNT"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "samples",
+        "component history and records"
+      ],
+      "tools_or_interfaces": [
+        "retained storage slots and immutable manifest console"
+      ],
+      "source_station_id": "WS_ARCHIVE",
+      "target_station_id": "WS_ARCHIVE",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "RESET",
+      "title": "Reset stations and segregate waste",
+      "location_id": "WS_ARCHIVE",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Return identified usable stock; apply qualified residue/waste handling; inspect docks, fixtures and outputs"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "Objects archived and cleaning card supplied"
+      ],
+      "postconditions": [
+        "Stations safe and inventory reconciled"
+      ],
+      "depends_on": [
+        "ARCHIVE"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CLEAN"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "returned stock",
+        "residues and waste"
+      ],
+      "tools_or_interfaces": [
+        "qualified cleaning kit and segregated containers"
+      ],
+      "source_station_id": "WS_ARCHIVE",
+      "target_station_id": "WS_ARCHIVE",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "REPORT",
+      "title": "Declare route outcomes and source gaps",
+      "location_id": "WS_RECORDS",
+      "kind": "analysis",
+      "operator_actions": [
+        "Report actual completed routes, valid blockers, safe aborts and failed runs; distinguish authored/mock/measured/source/model classes"
+      ],
+      "device_process": "Versioned analysis service computes from committed observations after robot selects and verifies inputs",
+      "preconditions": [
+        "Evidence and cleanup states known"
+      ],
+      "postconditions": [
+        "Complete or partial honest deliverable"
+      ],
+      "depends_on": [
+        "RESET"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "complete/partial route manifests"
+      ],
+      "tools_or_interfaces": [
+        "report console"
+      ],
+      "source_station_id": "WS_RECORDS",
+      "target_station_id": "WS_RECORDS",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "CAL_UNLOAD",
+      "title": "Release and archive calibrated sensors",
+      "location_id": "WS_CAL",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Stop bath acquisition, verify supplied bath/fixture safe-release conditions",
+        "Support block, remove to safe cradle; withdraw identified probes and route leads into separate labeled holders",
+        "Inspect and record sensor identities and calibration validity before transport"
+      ],
+      "device_process": "No autonomous motion credited as robot manipulation",
+      "preconditions": [
+        "Required method inputs and preceding receipts valid"
+      ],
+      "postconditions": [
+        "Release and archive calibrated sensors receipt committed"
+      ],
+      "depends_on": [
+        "CAL_FIT"
+      ],
+      "evidence_ids": [
+        "E_CAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_CLEAN"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "sensor block",
+        "thermocouples",
+        "reference RTD"
+      ],
+      "tools_or_interfaces": [
+        "bath fixture",
+        "supported drying tray"
+      ],
+      "source_station_id": "WS_CAL",
+      "target_station_id": "WS_CAL",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "OPT_UNLOAD",
+      "title": "Release optical sample without surface damage",
+      "location_id": "WS_OPTICAL_ACTIVE",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Stop scan and read safe-release signal; support component at supplied robust edges",
+        "Release holder, inspect optical surface and return component to labeled retained carrier"
+      ],
+      "device_process": "No autonomous motion credited as robot manipulation",
+      "preconditions": [
+        "Current optical instrument/fixture and mounted sample bound",
+        "Acquisition stopped",
+        "Actual instrument safe-release feedback true"
+      ],
+      "postconditions": [
+        "Release optical sample without surface damage receipt committed"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_OPT",
+        "E_ANGLE"
+      ],
+      "unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "optical component",
+        "holder"
+      ],
+      "tools_or_interfaces": [
+        "supported sample tray"
+      ],
+      "source_station_id": "WS_OPTICAL_ACTIVE",
+      "target_station_id": "WS_OPTICAL_ACTIVE",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Bind all station fields to the same actual WS_UVVIS or WS_FTIR per operation instance. The bound actual station, fixture and sample persist through reference/mount/scan/unload; MOVE required before changing stations.",
+      "station_options": [
+        "WS_UVVIS",
+        "WS_FTIR"
+      ]
+    },
+    {
+      "id": "ENV_LOG",
+      "title": "Record contemporaneous environmental streams",
+      "location_id": "WS_OUTDOOR",
+      "kind": "device_process",
+      "operator_actions": [
+        "Start synchronized environmental streams for the requested outdoor observation window",
+        "Read tracker alignment and ambient-shield condition; retain actual DNI, GTI, GHI, humidity/dew-point and temperature availability",
+        "Keep per-instrument cadence, clock gaps and interruptions in raw records"
+      ],
+      "device_process": "Qualified service acquires readings under robot setup and supervision",
+      "preconditions": [
+        "Required method inputs and preceding receipts valid"
+      ],
+      "postconditions": [
+        "Record contemporaneous environmental streams receipt committed"
+      ],
+      "depends_on": [
+        "SYNC"
+      ],
+      "evidence_ids": [
+        "E_ENV",
+        "E_SOLAR"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACQ",
+        "U_OUTDOOR"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "weather and solar instrument channels"
+      ],
+      "tools_or_interfaces": [
+        "logger and solar-tracker controls"
+      ],
+      "source_station_id": "WS_OUTDOOR",
+      "target_station_id": "WS_OUTDOOR",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "COAT_UNLOAD",
+      "title": "Unload and inspect cured coated emitter",
+      "location_id": "WS_COATING",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read coating completion, qualified cure and safe-release receipt",
+        "Support disk at uncoated robust edge/back contacts; release fixture and place in labeled carrier",
+        "Inspect coat condition and supplied acceptance criteria; record reject or accepted output without touching active optical face"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "COAT_RUN complete",
+        "Qualified cure and safe release true"
+      ],
+      "postconditions": [
+        "Coated emitter physically unloaded, inspected and identified"
+      ],
+      "depends_on": [
+        "COAT_RUN"
+      ],
+      "evidence_ids": [
+        "E_BUILD"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "coated emitter",
+        "service fixture"
+      ],
+      "tools_or_interfaces": [
+        "supported output tray",
+        "edge gripper",
+        "qualified inspection gauge"
+      ],
+      "source_station_id": "WS_COATING",
+      "target_station_id": "WS_COATING",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    },
+    {
+      "id": "FIXED_QC",
+      "title": "Inspect modified fixed-band LDPE assembly",
+      "location_id": "WS_ASSEMBLY",
+      "kind": "hands_on",
+      "operator_actions": [
+        "Read pre-swap version and actual removed/new component IDs",
+        "Inspect new film mounts, band geometry, joints and gaps against qualified card",
+        "Issue post-swap QC receipt bound only to new assembly version"
+      ],
+      "device_process": "No autonomous process credited as robot manipulation",
+      "preconditions": [
+        "FIXED_SWAP receipt creates version newer than pre-swap qualified assembly"
+      ],
+      "postconditions": [
+        "Current fixed-band LDPE version qualified or blocked"
+      ],
+      "depends_on": [
+        "FIXED_SWAP"
+      ],
+      "evidence_ids": [
+        "E_FIXED"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "recovery": [
+        "Preserve attempt, stop dependent output, support objects and inspect public feedback; resume only after verified repair/requalification"
+      ],
+      "provenance": {
+        "macro_stage": "task_authored",
+        "fine_actions": "task_authored_not_source_robot_trajectory"
+      },
+      "execution_mode": "design_only",
+      "actor": "mobile_human_like_robot_operator",
+      "manipulated_objects": [
+        "assembled device and joints"
+      ],
+      "tools_or_interfaces": [
+        "dimension/condition inspection tools"
+      ],
+      "source_station_id": "WS_ASSEMBLY",
+      "target_station_id": "WS_ASSEMBLY",
+      "completion_evidence": [
+        "Environment-side object/fixture state and immutable action/acquisition receipt",
+        "Readback or inspection establishes the listed postconditions; actor narration alone is insufficient"
+      ],
+      "station_binding": "Runtime binds one actual qualified station; no station change without MOVE instance"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": "directional_cooling_paper_task.v1",
+  "doi": "10.1038/s41467-018-07293-9",
+  "control_packages": [
+    {
+      "id": "C_ASSEMBLY",
+      "conditions": [
+        "correct_stock",
+        "component_dimension_and_condition",
+        "post_assembly_integrity"
+      ],
+      "provenance": "task_authored",
+      "qualification": "Qualified tolerances, no invented process settings"
+    },
+    {
+      "id": "C_CAL",
+      "conditions": [
+        "reference_RTD",
+        "each_thermocouple",
+        "pre_application_calibration"
+      ],
+      "provenance": "source_supported",
+      "qualification": "Source setpoints/repeats unknown"
+    },
+    {
+      "id": "C_OPT",
+      "conditions": [
+        "reference_background",
+        "sample_scan",
+        "post_scan_integrity"
+      ],
+      "provenance": "task_authored_QA_around_source_method",
+      "qualification": "Complete scan geometry and method card required"
+    },
+    {
+      "id": "C_ANGLE",
+      "conditions": [
+        "white",
+        "black",
+        "angle",
+        "s_p_polarization"
+      ],
+      "provenance": "source_supported",
+      "qualification": "Angular observations are not independent specimens"
+    },
+    {
+      "id": "C_PAIR",
+      "conditions": [
+        "simultaneous_white",
+        "simultaneous_black"
+      ],
+      "provenance": "source_supported",
+      "qualification": "One per condition is not n=2 replication of each condition"
+    },
+    {
+      "id": "C_LID",
+      "conditions": [
+        "aluminum_aperture_lids_closed",
+        "lids_removed_PE_retained"
+      ],
+      "provenance": "source_supported",
+      "qualification": "Does not isolate convection or PE material effect"
+    },
+    {
+      "id": "C_POWER",
+      "conditions": [
+        "initial_output_off",
+        "bounded_PID_steps",
+        "verified_output_off_recooling"
+      ],
+      "provenance": "source_supported",
+      "qualification": "Heater wires change assembly thermal losses; unstable points not steady cooling power"
+    },
+    {
+      "id": "C_FIXED",
+      "conditions": [
+        "disk_plus_nanoporous",
+        "band_plus_LDPE"
+      ],
+      "provenance": "source_supported_combined_change",
+      "qualification": "Across dates and two component changes, no single-factor causal attribution"
+    },
+    {
+      "id": "C_MAP",
+      "conditions": [
+        "emitter_plus_six_locations",
+        "clear_day",
+        "clear_night",
+        "hazy_noon"
+      ],
+      "provenance": "source_supported",
+      "qualification": "Locations and weather conditions are not technical or independent replicates"
+    },
+    {
+      "id": "C_ENV",
+      "conditions": [
+        "ambient_shield",
+        "DNI",
+        "sun_normal_GTI",
+        "GHI",
+        "RH",
+        "dew_point",
+        "synchronized_times"
+      ],
+      "provenance": "source_supported",
+      "qualification": "Five-minute weather rate does not determine other sampling rates"
+    }
+  ],
+  "repetition_policy": {
+    "independent_specimens": null,
+    "independent_sessions": null,
+    "technical_repeats": null,
+    "source_counts_not_established": true,
+    "required_input": "allocation_card",
+    "forbidden_equivalences": [
+      "two colors = n2 each",
+      "seven sensors = seven specimens",
+      "timepoints = independent replicates",
+      "heater targets = independent experiments"
+    ]
+  }
+}

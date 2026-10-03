@@ -1,0 +1,155 @@
+{
+  "schema_version": "directional_cooling_paper_task.v1",
+  "doi": "10.1038/s41467-018-07293-9",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "role": "Work-order, calibration and archive console with immutable receipts",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_STOCK",
+      "role": "Labeled parts, films, coated-stock inventory and retained carriers",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_FAB",
+      "role": "Qualified enclosed fabrication service; stock/job/guard/safe-release interfaces",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_COATING",
+      "role": "Qualified enclosed coating service or documented prepared-emitter handoff",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "role": "Supported assembly bench, film frames, topology mat, dimensional inspection",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_CAL",
+      "role": "Immersion bath, copper block, reference RTD/meter, protected thermocouple DAQ",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_UVVIS",
+      "role": "UV-Vis-NIR integrating-sphere service with holders/reference standards",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_FTIR",
+      "role": "FTIR sphere and variable-angle/polarization fixtures with separate configuration readback",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_OUTDOOR",
+      "role": "Paired mounts, weather/solar/ambient sensors, protected DAQ, isolated sourcemeters and PID service",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "role": "Supported sample storage, separated returns/quarantine and qualified waste collection",
+      "authorship": "task_authored",
+      "asset_status": "unbuilt_symbolic_contract",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_TRANSFER",
+      "role": "Mobile route and dock transfer binding",
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_ACTIVE",
+      "role": "Current active station for generic stop/unmount closure; must bind to an actual station",
+      "asset_status": "runtime_alias_not_extra_physical_station",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_OPTICAL_ACTIVE",
+      "role": "Per-instance binding to actual WS_UVVIS or WS_FTIR; same station through reference/mount/scan/unload",
+      "asset_status": "runtime_alias_not_extra_physical_station",
+      "authorship": "task_authored"
+    }
+  ],
+  "global_rule": "Physical station actions need qualified public interfaces; device processes do not count as robot hand trajectories"
+}

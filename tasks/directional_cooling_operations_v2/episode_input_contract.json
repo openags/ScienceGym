@@ -1,0 +1,198 @@
+{
+  "schema_version": "directional_cooling_paper_task.v1",
+  "doi": "10.1038/s41467-018-07293-9",
+  "visibility": "author_schema_runtime_public_values_only",
+  "implemented_loader": false,
+  "cards": [
+    {
+      "id": "scene_card",
+      "required_fields": [
+        "robot_limits",
+        "station_frames",
+        "grasps",
+        "docks",
+        "collision_routes",
+        "outdoor_weather_limits",
+        "interlocks"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "allocation_card",
+      "required_fields": [
+        "specimen_ids",
+        "lots",
+        "condition_assignment",
+        "independent_specimen_count",
+        "session_count",
+        "technical_repeats",
+        "reuse_policy",
+        "attempt_schedule"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "fabrication_card",
+      "required_fields": [
+        "part_manifest",
+        "drawing_revision",
+        "actual_dimensions",
+        "tolerances",
+        "enclosed_service_settings",
+        "coating_cure",
+        "inspection",
+        "safe_release"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "geometry_card",
+      "required_fields": [
+        "component_join_map",
+        "film_gap",
+        "reflector_height_and_datum",
+        "resolved_source_ambiguity",
+        "site_date_window",
+        "track_or_band_path",
+        "shadow_acceptance"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "calibration_card",
+      "required_fields": [
+        "sensor_serials",
+        "reference_id",
+        "bath_setpoints",
+        "equilibrium_predicate",
+        "sample_cadence",
+        "fit_method",
+        "acceptance",
+        "validity"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "optical_card",
+      "required_fields": [
+        "sample_mount",
+        "reference",
+        "scan_parameters",
+        "spectral_windows",
+        "angles",
+        "polarizations",
+        "repeat_count",
+        "processing_assumptions"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "outdoor_card",
+      "required_fields": [
+        "site_coordinates",
+        "timezone",
+        "local_and_UTC_schedule",
+        "solar_noon",
+        "orientation",
+        "shadow_inspection",
+        "tracking_cadence",
+        "weather_eligibility",
+        "abort_limits"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "acquisition_card",
+      "required_fields": [
+        "channel_map",
+        "units",
+        "sensor_geometry",
+        "sampling_cadence_by_device",
+        "clock_sync_tolerance",
+        "raw_sink",
+        "missing_data_rule"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "heater_card",
+      "required_fields": [
+        "mount_receipt",
+        "four_wire_port_graph",
+        "current_power_temperature_limits",
+        "independent_cutoff",
+        "strain_relief"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "pid_card",
+      "required_fields": [
+        "nonempty_targets",
+        "target_units",
+        "gains",
+        "step_duration_s",
+        "summary_window_s",
+        "stability_predicate",
+        "compliance",
+        "controller_revision"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "map_card",
+      "required_fields": [
+        "seven_location_bindings",
+        "six_extra_sensor_coordinates",
+        "attachment_tolerances",
+        "equilibrium_predicate",
+        "average_window_rule",
+        "one_hour_session_start_end",
+        "baseline_timing_within_total_session",
+        "open_lid_and_equilibrium_interval_selection"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "analysis_card",
+      "required_fields": [
+        "emitter_area_m2",
+        "units",
+        "interval_selection",
+        "invalid_interval_policy",
+        "uncertainty_budget",
+        "ambient_equal_estimate_rule",
+        "diffuse_geometry_rule"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "cleanup_card",
+      "required_fields": [
+        "safe_temperature",
+        "isolation_readback",
+        "storage",
+        "residue_cleaning",
+        "waste_routes"
+      ],
+      "defaults": null
+    }
+  ],
+  "source_temporal_constants": {
+    "stagnation_lid_initial_s": 300,
+    "stagnation_window_relative_solar_noon_hours": [
+      -2,
+      2
+    ],
+    "PID_step_s": 300,
+    "PID_summary_final_s": 120,
+    "weather_sample_period_s": 300,
+    "map_run_s": 3600,
+    "scope_notes": {
+      "stagnation_lid_initial_s": "Figure 3 tracked stagnation; not automatically every branch",
+      "map_run_s": "Total one-hour map acquisition; baseline timing within it is not specified"
+    }
+  },
+  "qualification": "These source values do not resolve missing setpoints, cadence, tolerances or physical limits",
+  "unknown_rule": "Missing required value blocks only dependent operation; explicit scoped handoff changes preparation scope, never source facts"
+}

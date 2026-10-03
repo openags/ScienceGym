@@ -1,0 +1,39 @@
+{
+  "schema_version": "directional_cooling_paper_task.v1",
+  "doi": "10.1038/s41467-018-07293-9",
+  "visibility": "evaluator_reference_only",
+  "independent_signals": [
+    "environment-side object location/identity",
+    "physical join and electrical port graph",
+    "fixture and interlock states",
+    "program/angle/clock readback",
+    "immutable acquisition receipts",
+    "raw signal coverage and provenance",
+    "output-off and safe-release confirmation",
+    "archive/inventory receipts"
+  ],
+  "not_sufficient": [
+    "agent narration",
+    "action name emitted",
+    "paper outcome matched",
+    "hash of an invented dataset"
+  ],
+  "procedural_dimensions": [
+    "material preparation",
+    "causal manipulation and transport",
+    "calibration and condition qualification",
+    "controls and scheduled repeats",
+    "measurement and uncertainty lineage",
+    "honest blockers and fault recovery",
+    "cleanup"
+  ],
+  "outcome_enum": [
+    "complete",
+    "partial_with_valid_blocker",
+    "safe_abort",
+    "failed"
+  ],
+  "scientific_agreement": "reported separately from procedural status",
+  "alternative_paths": "Allowed if all causal/gating conditions hold",
+  "hidden_fault_rule": "All injected faults must be observable or diagnosable through available actor-facing checks"
+}

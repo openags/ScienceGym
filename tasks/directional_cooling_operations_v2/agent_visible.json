@@ -1,0 +1,21 @@
+{
+  "schema_version": "directional_cooling_paper_task.v1",
+  "doi": "10.1038/s41467-018-07293-9",
+  "visibility": "actor_contract_only",
+  "implemented_runtime_loader": false,
+  "allowed": [
+    "selected goal and branch label",
+    "actual inventory and present object states",
+    "qualified episode cards with source/task/measurement provenance",
+    "current instrument readbacks and raw observations already acquired",
+    "public interlocks and discoverable fault feedback"
+  ],
+  "forbidden": [
+    "reference operation sequence",
+    "evaluator predicates and test assertions",
+    "source_outcomes.json",
+    "future observations",
+    "hidden fault schedule"
+  ],
+  "behavior": "Use supplied public inputs; ask or stop at unresolved gate; retain failures and report actual state"
+}

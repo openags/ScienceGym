@@ -1,0 +1,500 @@
+{
+  "schema_version": "directional_cooling_paper_task.v1",
+  "doi": "10.1038/s41467-018-07293-9",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 11,
+  "branches": [
+    {
+      "id": "BUILD_PAIR",
+      "title": "Construct identified white and black devices",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "FAB_LOAD",
+        "FAB_RUN",
+        "FAB_UNLOAD",
+        "COAT_LOAD",
+        "COAT_RUN",
+        "COAT_UNLOAD",
+        "LAYOUT",
+        "BASE",
+        "EMITTER",
+        "FILM",
+        "SHIELD",
+        "REFLECTOR",
+        "ASSEMBLY_QC",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_BUILD",
+        "E_TRACK"
+      ],
+      "control_ids": [
+        "C_ASSEMBLY"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB",
+        "U_ALLOC",
+        "U_SCENE"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "Fabrication/coating may use declared qualified service handoff; assembly still explicit",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator",
+      "device_allocation": {
+        "count": 2,
+        "conditions": [
+          "white",
+          "black"
+        ],
+        "meaning": "One per condition per allocated pair; independent repeat count remains episode input"
+      }
+    },
+    {
+      "id": "CALIBRATE",
+      "title": "Calibrate identified temperature sensors",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_FIT",
+        "CAL_UNLOAD",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "control_ids": [
+        "C_CAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_ACQ"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "Reference sensor and channels remain separately identified",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator"
+    },
+    {
+      "id": "OPT_HEMISPHERICAL",
+      "title": "Characterize component spectral reflectance",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "OPT_REFERENCE",
+        "OPT_MOUNT",
+        "OPT_SCAN",
+        "OPT_UNLOAD",
+        "OPT_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_OPT",
+        "E_FIXED"
+      ],
+      "control_ids": [
+        "C_OPT"
+      ],
+      "unknown_parameter_ids": [
+        "U_OPT",
+        "U_ANALYSIS"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "Reflector, both covers, white and black emitters; historical serial reuse not assumed",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator"
+    },
+    {
+      "id": "OPT_ANGULAR",
+      "title": "Characterize white and black angular emissivity",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "OPT_REFERENCE",
+        "ANGLE_MOUNT",
+        "ANGLE_SCAN",
+        "OPT_UNLOAD",
+        "OPT_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_ANGLE"
+      ],
+      "control_ids": [
+        "C_OPT",
+        "C_ANGLE"
+      ],
+      "unknown_parameter_ids": [
+        "U_OPT",
+        "U_ANALYSIS"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "Seven visible positive incident-angle labels, s/p characterization; symmetric display does not prove negative-angle scans",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator"
+    },
+    {
+      "id": "ENVIRONMENT",
+      "title": "Prepare and acquire environmental context",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_ENV",
+        "E_SOLAR"
+      ],
+      "control_ids": [
+        "C_ENV"
+      ],
+      "unknown_parameter_ids": [
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "Acquisition must be contemporaneous with selected outdoor routes; environmental data alone are not cooling results",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator"
+    },
+    {
+      "id": "TRACKED_STAGNATION",
+      "title": "Acquire tracked white and black stagnation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "STAG_LOG",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_STAG",
+        "E_TRACK",
+        "E_ENV"
+      ],
+      "control_ids": [
+        "C_PAIR",
+        "C_LID",
+        "C_ENV"
+      ],
+      "unknown_parameter_ids": [
+        "U_OUTDOOR",
+        "U_ACQ",
+        "U_ALLOC"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "Source four-hour noon window; covered first five minutes; PE remains installed",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator",
+      "device_allocation": {
+        "count": 2,
+        "conditions": [
+          "white",
+          "black"
+        ],
+        "meaning": "One per condition per allocated pair; independent repeat count remains episode input"
+      }
+    },
+    {
+      "id": "PID_POWER",
+      "title": "Acquire paired cooling-power versus temperature",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "HEATER_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "POWER_CHECK",
+        "PID_CONFIG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "POWER_BASELINE",
+        "PID_STEP",
+        "STEP_SUMMARY",
+        "HEATER_OFF",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_POWER",
+        "E_ENV"
+      ],
+      "control_ids": [
+        "C_PAIR",
+        "C_POWER",
+        "C_ENV"
+      ],
+      "unknown_parameter_ids": [
+        "U_PID",
+        "U_WIRING",
+        "U_ACQ",
+        "U_ANALYSIS"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "Five-minute plateau, final two-minute summary; source setpoints/count/gains unavailable",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator",
+      "device_allocation": {
+        "count": 2,
+        "conditions": [
+          "white",
+          "black"
+        ],
+        "meaning": "One per condition per allocated pair; independent repeat count remains episode input"
+      }
+    },
+    {
+      "id": "FIXED_LDPE",
+      "title": "Acquire nontracking band and LDPE stagnation",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "FIXED_SWAP",
+        "FIXED_QC",
+        "TC_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "BAND_CHECK",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "STAG_LOG",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_FIXED",
+        "E_ENV"
+      ],
+      "control_ids": [
+        "C_PAIR",
+        "C_FIXED",
+        "C_ENV"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "Both reflector and cover change; historical comparison across dates is confounded",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator",
+      "device_allocation": {
+        "count": 2,
+        "conditions": [
+          "white",
+          "black"
+        ],
+        "meaning": "One per condition per allocated pair; independent repeat count remains episode input"
+      }
+    },
+    {
+      "id": "MAP_CLEAR_DAY",
+      "title": "Clear or scattered-cloud daytime thermal map",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "MAP_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "MAP_CONDITION",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_MAP",
+        "E_ENV"
+      ],
+      "control_ids": [
+        "C_MAP",
+        "C_ENV"
+      ],
+      "unknown_parameter_ids": [
+        "U_MAP",
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "White device; one hour, six extra sensors; night has no sunlight-tracking requirement and TRACK_ADJUST is inapplicable with reason",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator",
+      "device_allocation": {
+        "count": 1,
+        "conditions": [
+          "white"
+        ],
+        "source": "E_MAP"
+      }
+    },
+    {
+      "id": "MAP_CLEAR_NIGHT",
+      "title": "Clear night thermal map",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "MAP_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "MAP_CONDITION",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_MAP",
+        "E_ENV"
+      ],
+      "control_ids": [
+        "C_MAP",
+        "C_ENV"
+      ],
+      "unknown_parameter_ids": [
+        "U_MAP",
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "White device; one-hour night condition with six extra sensors; no sun-tracking action is required at night",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator",
+      "device_allocation": {
+        "count": 1,
+        "conditions": [
+          "white"
+        ],
+        "source": "E_MAP"
+      }
+    },
+    {
+      "id": "MAP_HAZY_NOON",
+      "title": "Hazy or cloudy near-noon thermal map",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "MAP_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "MAP_CONDITION",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_MAP",
+        "E_ENV"
+      ],
+      "control_ids": [
+        "C_MAP",
+        "C_ENV"
+      ],
+      "unknown_parameter_ids": [
+        "U_MAP",
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "preparation_policy": "Required receipts must come from included preparation/calibration routes or a named documented outside-scope handoff",
+      "notes": "White device; one hour, six extra sensors; night has no sunlight-tracking requirement and TRACK_ADJUST is inapplicable with reason",
+      "completion": "All scheduled instances classified and lineage/cleanup valid; blocked input is partial, never completed experiment",
+      "actor": "mobile_human_like_robot_operator",
+      "device_allocation": {
+        "count": 1,
+        "conditions": [
+          "white"
+        ],
+        "source": "E_MAP"
+      }
+    }
+  ],
+  "whole_paper_completion": "Every selected physical leaf plus shared preparation, optical, calibration and environmental route must have a final status; complete only if all requested experiments completed"
+}
