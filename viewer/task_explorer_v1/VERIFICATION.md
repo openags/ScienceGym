@@ -1,8 +1,38 @@
-# Verification: sixteen-family task explorer
+# Verification: nineteen-family task explorer
+
+## Three-assembly-design integration, 2026-10-03
+
+The current explorer contains **19 families, 386 inspection records and 1,838 operation definitions**. The earlier sixteen families retain all 308 records and 1,693 definitions byte-for-byte in their 64 generated JSON/JavaScript/Markdown/SVG files. The addition contains 145 definitions and 78 views:
+
+| Family | Definitions | Physical configurations | Campaign | Separate scope records |
+| --- | ---: | ---: | ---: | --- |
+| Granular assembly | 42 | 26 | 0 | 2 numerical + 1 external analysis + 2 reference + 1 external input |
+| Beaded metamaterials | 70 | 21 | 1 | 3 numerical/theory + 3 reference + 1 external input + 1 device-owned |
+| Thermal jamming | 33 | 13 | 0 | 1 computational + 1 device-owned + 1 reference source section |
+
+Thermal source sections have no source-defined IDs. Their three `SCOPE_*` identifiers are explicitly authored navigation labels, not added scientific branches. All counts describe representation, not specimens, completed runs or robot labor.
+
+### Static verification
+
+- **180/180 Python viewer tests pass with zero skips**: the existing 157 plus 23 assembly checks. Independent inverse mappings reconstruct all 145 original operations, every branch/source-section payload and every beaded typed-tree node. All 79 source JSON records, hashes, evidence, source constants, controls, lineage, unknowns, gates, conflicts and access boundaries remain exact
+- Beaded preserves **741 operation nodes, 337 sequences, 135 loops, 82 choices and one dispatch**. Choice arms remain exclusive. The 22 separately labeled QUARANTINE recovery display entries are conditional, not source-tree normal steps. Each repeated MOVE retains its exact object/location binding. Unknown counts and global cycle/trial allocations are not multiplied per specimen
+- Granular and thermal operation lists remain unordered memberships with exact scoped dependencies. Granular postcure/collision arms, recipe gates and reset-to-next-loading semantics remain visible. Thermal optional cold arms, same-packing reinsertion, repack identity, strict tolerance, qualified hold duration and computational/physical count distinctions stay intact
+- All **11/11 repository aggregate groups pass**, including 180 viewer tests, JavaScript syntax checks, scene-binding checks, explorer/player mocked-DOM behavior, English checks and published image hash integrity
+- All three unchanged source package checks pass in isolated copies: **35 granular, 42 beaded and 25 thermal checks**. Beaded's original validator writes reports, so it is run outside the candidate to preserve every published package byte
+- Mocked-DOM tests cover **386 views and 13,308 displayed operation entries**, with source-specific exclusive preparation/custody alternatives, conditional recovery, scoped gates, source occurrence bindings, repeated-click immutability, search/tabs, hash restoration and empty nonmanual selection clearing. A display entry is not an executed instance
+- An independent review adds **14 exact-source/artifact tests** and a separately implemented mocked-DOM check across all **78 added views and 1,395 display entries**. All 78 SVG variants preserve exact operation rows. Installed Inkscape rendered the three default SVGs for visual inspection; no overlap or clipping was found. This is static SVG QA, not browser or physics execution
+- Full rebuild, every new-family-only rebuild and standalone export are deterministic. JSON and local JavaScript payloads match. Standalone offline HTML passes the same mocked-DOM suite and has no unresolved local assets or external runtime dependencies
+- **724 protected source-package, embodied-storyboard, scene-binding and LICENSE files remain byte-identical**. All 22 task designs and both existing storyboards remain intact. No source assets, binaries, physics, new scene geometry or robot execution are added
+- Assembly source links use the verified published base **41c4c52cfcf9d5b222404f2fd7ed9d6553f807cb**. The local 827-file baseline is snapshotted and compared without Git metadata; publication remains separate. Every source pin is a 40-character Git commit. Earlier historical pins and the documented perovskite local-hash caveat remain unchanged
+
+### Boundaries
+
+No actual browser rendering, responsive/touch behavior, accessibility audit, task loader, actor projection, scientific solver, new embodied storyboard, physical simulation or robot execution was performed. Previously denied file/localhost browser routes were not retried. Static validation does not establish source completeness, method feasibility or empirical reproduction. Unread sources remain source-specific gates, and numeric outcomes remain reference material.
+
 
 ## Three-mechanical-design integration, 2026-10-03
 
-The current explorer contains **16 families, 308 inspection records and 1,693 operation definitions**. The earlier thirteen families retain 248 records and 1,533 definitions byte-for-byte. The three mechanical source packages add 160 definitions and 60 records:
+At the mechanical-integration checkpoint, the explorer contained **16 families, 308 inspection records and 1,693 operation definitions**. The earlier thirteen families retain 248 records and 1,533 definitions byte-for-byte. The three mechanical source packages add 160 definitions and 60 records:
 
 | Family | Definitions | Physical designs | Preparation | Campaign | Nonmanual dispositions |
 | --- | ---: | ---: | ---: | ---: | --- |

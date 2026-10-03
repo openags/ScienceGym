@@ -68,8 +68,8 @@ class MechanicalBundleTests(unittest.TestCase):
 
     def test_global_totals_and_unchanged_earlier_thirteen_counts(self):
         manifest = json.loads((ROOT / 'manifest.json').read_text())['families']
-        self.assertEqual((len(manifest), sum(x['routes'] for x in manifest), sum(x['operations'] for x in manifest)), (16, 308, 1693))
-        older = [x for x in manifest if x['id'] not in PACKAGES]
+        self.assertEqual((len(manifest), sum(x['routes'] for x in manifest), sum(x['operations'] for x in manifest)), (19, 386, 1838))
+        older = [x for x in manifest if x['id'] not in {*PACKAGES, 'granular_assembly', 'beaded', 'thermal_jamming'}]
         self.assertEqual((len(older), sum(x['routes'] for x in older), sum(x['operations'] for x in older)), (13, 248, 1533))
 
     def test_all_sixty_svg_route_variants_parse_and_preserve_operation_rows(self):

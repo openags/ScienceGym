@@ -3,7 +3,7 @@
 class El{constructor(tag){this.tagName=tag;this.attrs={};this.children=[];this.style={setProperty(){}};this.dataset={};this.hidden=false;this.value='';this.className='';this.classList={toggle:(name,on)=>{let s=new Set(this.className.split(' ').filter(Boolean));on?s.add(name):s.delete(name);this.className=[...s].join(' ');}};}setAttribute(k,v){this.attrs[k]=String(v);if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=String(v);if(k==='value')this.value=v;}append(...x){this.children.push(...x);}replaceChildren(...x){this.children=x;}set textContent(v){this.text=String(v);this.children=[];}get textContent(){return this.text||'';}}
 const ids=[...fs.readFileSync(path.join(ROOT,'index.html'),'utf8').matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);const elements=Object.fromEntries(ids.map(id=>[id,new El('div')]));['route','dependencies','contract'].forEach(tab=>{elements['tab-'+tab].setAttribute('role','tab');elements['tab-'+tab].setAttribute('data-tab',tab);});
 const walk=(roots)=>roots.flatMap(n=>n instanceof El?[n,...walk(n.children)]:[]);const document={documentElement:new El('html'),getElementById:id=>elements[id],createElement:tag=>new El(tag),createTextNode:t=>String(t),querySelectorAll:selector=>{const all=walk(Object.values(elements));if(selector==='nav button')return elements.families.children;if(selector==='[role=tab]')return all.filter(x=>x.attrs.role==='tab');if(selector==='.operation')return all.filter(x=>x.className.split(' ').includes('operation'));throw Error('Unimplemented selector '+selector);}};
-const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
+const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop','granular_assembly','beaded','thermal_jamming'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
 let hash='',onHash;const location={get hash(){return hash;},set hash(value){hash=value.startsWith('#')?value:'#'+value;if(onHash)onHash();}};const window={SCIENCEGYM_DATA:data,addEventListener:(n,fn)=>{if(n==='hashchange')onHash=fn;}};const context={window,document,location,console,Blob:class{constructor(parts,options){this.parts=parts;this.options=options;}},URL:{createObjectURL:()=> 'blob:mock-test',revokeObjectURL:()=>{}}};vm.createContext(context);if(process.argv[2]){const standalone=fs.readFileSync(process.argv[2],'utf8');for(const match of standalone.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInContext(match[1],context);}else{vm.runInContext(fs.readFileSync(path.join(ROOT,'app.js'),'utf8'),context);}let routeCount=0,occurrenceCount=0;
 for(const [key,f]of Object.entries(window.ScienceGymExplorer.data)){for(const r of f.routes){location.hash=[key,r.id,'',0].join('/');const state=window.ScienceGymExplorer.state;assert.strictEqual(state.family,key);assert.strictEqual(state.route,r.id);assert(state.steps.length>0||r.route_kind==='numerical'||r.metadata_only);assert.strictEqual(document.querySelectorAll('.operation').length,state.steps.length);assert.strictEqual(document.querySelectorAll('.operation').filter(x=>x.attrs['aria-pressed']==='true').length,state.steps.length?1:0);if(state.steps.length){const last=state.steps[state.steps.length-1];location.hash=[key,r.id,last.id,last.index].join('/');assert.strictEqual(state.op,last.id);assert.strictEqual(state.occurrence,last.index);}else{assert.strictEqual(state.op,null);}routeCount++;occurrenceCount+=state.steps.length;}}
 location.hash='dispim/D-R01/P001/7';assert.strictEqual(window.ScienceGymExplorer.state.op,'P001');let ps=window.ScienceGymExplorer.state.steps.filter(s=>s.id==='P001');assert.strictEqual(ps.length,2);location.hash=['dispim','D-R01','P001',ps[1].index].join('/');assert.strictEqual(window.ScienceGymExplorer.state.occurrence,ps[1].index);
@@ -209,3 +209,58 @@ assert(elements.routeTitle.textContent.includes('NOT DIRECT MEASUREMENT'));
 location.hash='origami_memory/N_FREQ';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
 assert(elements.routeTitle.textContent.includes('NOT IMPLEMENTED'));
 console.log('PASS: mechanical nested templates, qualified dependency rules, occurrence bindings, numerical/proposal/analysis isolation, repeated transfers, empty selections and immutable navigation');
+
+// Assembly schemas: typed exclusive choices, scoped DAGs, source gates and empty nonmanual views.
+for(const key of ['granular_assembly','beaded','thermal_jamming']){
+ const f=window.ScienceGymExplorer.data[key],before=JSON.stringify(f);
+ for(const r of f.routes){
+  location.hash=[key,r.id].join('/');
+  assert(elements.routeBadge.textContent.includes(r.route_kind.toUpperCase()));
+  assert(!walk([elements.routeCanvas,elements.dependenciesView,elements.inspector]).some(x=>x.textContent.includes('undefined')));
+  if(r.metadata_only){
+   assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+   assert.strictEqual(window.ScienceGymExplorer.state.steps.length,0);
+   elements.operationSearch.oninput({target:{value:'sample'}});assert.strictEqual(elements.searchCount.textContent,'0 matches');
+  }else{
+   const first=window.ScienceGymExplorer.state.steps[0],last=window.ScienceGymExplorer.state.steps.at(-1);
+   location.hash=[key,r.id,last.id,last.index].join('/');
+   document.querySelectorAll('.operation').at(-1).onclick();document.querySelectorAll('.operation').at(-1).onclick();
+   assert.strictEqual(window.ScienceGymExplorer.state.occurrence,last.index);
+   location.hash=[key,r.id,first.id,first.index].join('/');
+  }
+  if(key!=='beaded'&&r.route_kind==='physical'){
+   assert(!walk([elements.routeCanvas]).some(x=>x.className.split(' ').includes('connector')));
+   assert.deepStrictEqual(Array.from(window.ScienceGymExplorer.state.steps,s=>s.id),Array.from(r.detail.operation_ids));
+  }
+  elements['tab-dependencies'].onclick();elements['tab-contract'].onclick();elements['tab-route'].onclick();
+ }
+ assert.strictEqual(JSON.stringify(f),before);
+}
+location.hash='beaded/ANGLE_SWATCHES';
+const beadedText=walk([elements.routeCanvas]).map(x=>x.textContent).join('\n');
+for(const t of ['Exclusive alternatives','robot_enclosed_preparation','qualified_supplied_part','robot_weave','preassembled','already_at_WS_WEAVE','Conditional recovery only','block_affected_loop_never_expand_as_zero_success'])assert(beadedText.includes(t),t);
+const beadedMoves=window.ScienceGymExplorer.state.steps.filter(x=>x.id==='MOVE');assert(beadedMoves.length>3);
+const lastBeadedMove=beadedMoves.at(-1);location.hash=['beaded','ANGLE_SWATCHES','MOVE',lastBeadedMove.index].join('/');
+assert.strictEqual(window.ScienceGymExplorer.state.occurrence,lastBeadedMove.index);
+assert(walk([elements.inspector]).some(x=>x.textContent.includes('Source occurrence binding')));
+assert(walk([elements.inspector]).some(x=>x.textContent.includes('Tools · exact source roles')));
+const beadedHash=location.hash;
+location.hash='beaded/N_CAPSTAN/MOVE/0';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+location.hash=beadedHash;assert.strictEqual(window.ScienceGymExplorer.state.occurrence,lastBeadedMove.index);
+location.hash='beaded/WHOLE_PAPER_PRACTICAL';
+assert.deepStrictEqual(Array.from(window.ScienceGymExplorer.state.steps,s=>s.id),['QUARANTINE']);
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('No universal specimen')));
+location.hash='granular_assembly/TRAPPED_COLLISION';
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('Stage1')));
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('POSTCURE')));
+elements['tab-dependencies'].onclick();assert(walk([elements.dependenciesView]).some(x=>x.textContent.includes('TRAPPED_COLLISION · scoped')));
+location.hash='thermal_jamming/TEMP_PHI';
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('optional_cold_arm')));
+assert(walk([elements.inspector]).some(x=>x.textContent.includes('Device process · separate from robot manipulation')));
+location.hash='thermal_jamming/CYCLE_PULL';
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('Final REINSERT may be omitted only')));
+location.hash='thermal_jamming/SCOPE_COMPUTATIONAL_ONLY/PLAN/0';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+location.hash='thermal_jamming/SCOPE_DEVICE_OWNED';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+assert(elements.routeTitle.textContent.includes('NOT ROBOT LABOR'));
+location.hash='thermal_jamming/SCOPE_REFERENCE_ONLY';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+console.log('PASS: assembly exclusive preparation/custody choices, scoped causal gates, symbolic loops, numerical/device isolation, repeated bindings, empty selections, immutable navigation and hash restoration');

@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for sixteen public task schemas."""
+"""Deterministic, standard-library-only adapters for nineteen public task schemas."""
 import argparse, json, pathlib, hashlib, html, textwrap, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from acoustic_adapters import adapt_wavefront, adapt_bianisotropic, adapt_edge, ACOUSTIC_COMMIT, PACKAGES as ACOUSTIC_PACKAGES
 from mechanical_adapters import adapt_origami_memory, adapt_ring_origami, adapt_mechanical_backprop, MECHANICAL_COMMIT, PACKAGES as MECHANICAL_PACKAGES
+from assembly_adapters import adapt_granular_assembly, adapt_beaded, adapt_thermal_jamming, ASSEMBLY_COMMIT, PACKAGES as ASSEMBLY_PACKAGES
 ROOT=pathlib.Path(__file__).resolve().parent
 COMMIT='293e32da790303c1a17131e036235f69a5f342e0'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
 COOLING_COMMIT='9a9472b996145ff7f7a4c138c7477b4e734d8835'
-SOURCE_COMMITS={**{key:MECHANICAL_COMMIT for key in MECHANICAL_PACKAGES}, 'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
+SOURCE_COMMITS={**{key:ASSEMBLY_COMMIT for key in ASSEMBLY_PACKAGES}, **{key:MECHANICAL_COMMIT for key in MECHANICAL_PACKAGES}, 'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
 def source_commit(key): return SOURCE_COMMITS.get(key,COMMIT)
 def source_base(key): return f'https://github.com/openags/ScienceGym/blob/{source_commit(key)}/tasks/'
 NAMES={'cooling':'Directional radiative cooling','emvp':'Embedded extrusion-volumetric printing','prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
@@ -453,7 +454,7 @@ def adapt_emvp(p):
     return f
 
 # This schema names its package differently from the public navigation key.
-PACKAGE_NAMES={**MECHANICAL_PACKAGES, 'cooling':'directional_cooling_operations_v2', **ACOUSTIC_PACKAGES}
+PACKAGE_NAMES={**ASSEMBLY_PACKAGES, **MECHANICAL_PACKAGES, 'cooling':'directional_cooling_operations_v2', **ACOUSTIC_PACKAGES}
 def package_name(key): return PACKAGE_NAMES.get(key,key+'_operations_v2')
 
 # Explicit source-loop scopes. These bind metadata only, never expanded bodies.
@@ -546,7 +547,7 @@ def adapt_cooling(p):
             'detail':without(r,{'id','title'}),'source_file':'branches.json','source_pointer':f'/branches/{i}'})
     return f
 
-ADAPTERS={'origami_memory':adapt_origami_memory,'ring_origami':adapt_ring_origami,'mechanical_backprop':adapt_mechanical_backprop,'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
+ADAPTERS={'granular_assembly':adapt_granular_assembly,'beaded':adapt_beaded,'thermal_jamming':adapt_thermal_jamming,'origami_memory':adapt_origami_memory,'ring_origami':adapt_ring_origami,'mechanical_backprop':adapt_mechanical_backprop,'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
 
 def walk(nodes,depth=0):
     for n in nodes:
@@ -573,7 +574,7 @@ def svg(f):
         if node['type']=='op':
             op=ops[node['id']];label=op['title']; badge=node['id'];fill='#1b2935';col=f['color']
             loop=op.get('loop'); tail=(' ↻ repeat contract' if loop else '')
-            if f['id'] in MECHANICAL_PACKAGES and node.get('meta'):
+            if f['id'] in {*MECHANICAL_PACKAGES, *ASSEMBLY_PACKAGES} and node.get('meta'):
                 source_node=node['meta'].get('source_node', {})
                 if isinstance(source_node,dict):
                     if source_node.get('transfer_id'): badge+=' · '+source_node['transfer_id']
@@ -610,6 +611,10 @@ def svg(f):
         result=result.replace('· every listed step', '· source template view')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'Source templates only. Typed scopes, bindings and conditional paths remain obligations; no execution is claimed.')
         result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', 'Source template view for the designated physical branch, with the complete physical, preparation, campaign and nonmanual index. Nested bodies are displayed once without instantiation. Exact conditions and bindings remain in the inspector and Markdown.')
+    if f['id'] in ASSEMBLY_PACKAGES:
+        result=result.replace('· every listed step', '· source template view')
+        result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'Unexpanded source templates. Choice arms remain exclusive; memberships, repeats and device ownership are not executions.')
+        result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', 'Source template view with all physical configurations and separate numerical, device, external-input and reference scope. Memberships have no inferred chronology; typed beaded choices remain exclusive and counts unexpanded.')
     if f['id'] in ACOUSTIC_PACKAGES:
         result=result.replace('· every listed step', '· unordered membership')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows. Physical, numerical, shared-preparation and campaign records remain distinct; nothing is executed.')
@@ -638,6 +643,12 @@ def md(f):
         lines.extend(['## Reference contracts and boundaries', '', 'Representation counts: ' + json.dumps(f['summary_counts'], ensure_ascii=False) + '.', '',
           'All source JSON, dependency rules, controls, lineage, unknowns, source conflicts, unread-video gates and release boundaries remain exact. Numerical training is not physical self-updating hardware. Ring torque is derived semi-experimentally from matched measured force and geometry; it is not directly measured torque. Proposals and conceptual extensions remain separate from physical designs.', '',
           'Origami-memory memberships are unordered. Ring preparation, condition, trial and concurrent bodies preserve the source grammar without expanding missing counts. Backprop uses the authoritative typed reference tree with distinct forward/adjoint operation entries, transfer contracts and phase bindings. A displayed template is not a trial, specimen or completed result.', ''])
+        for name, entry in f['source_files'].items(): lines.append(f'- [{name}]({entry["url"]})')
+        lines.append('')
+    if f['id'] in ASSEMBLY_PACKAGES:
+        lines.extend(['## Reference contracts and boundaries', '', 'Representation counts: ' + json.dumps(f['summary_counts'], ensure_ascii=False) + '.', '',
+          'All source JSON, scoped dependencies, preparation alternatives, controls, lineage, unknown inputs, factual parameters, source conflicts and access gates remain exact. These are static author/evaluator views. No fabricated chronology, sample count, measured outcome, solver run, robot execution or preparation credit is introduced.', '',
+          'Granular and thermal configurations retain operation memberships once, with explicit causal constraints and symbolic repeats. Beaded views preserve the authoritative sequence/loop/choice/dispatch grammar and every occurrence binding. Mutually exclusive arms are displayed for inspection, never selected or concatenated into one specimen history. Conditional recovery remains conditional. Thermal scope sections have explicitly authored navigation IDs, not invented scientific branches.', ''])
         for name, entry in f['source_files'].items(): lines.append(f'- [{name}]({entry["url"]})')
         lines.append('')
     if f['id'] in ACOUSTIC_PACKAGES:
@@ -675,7 +686,7 @@ def md(f):
         result='\n'.join(lines)
         return result.replace('numbered rows preserve reference-list occurrences.', 'rows show unordered template membership; only declared dependencies impose order.')
     result='\n'.join(lines)
-    if f['id'] in MECHANICAL_PACKAGES:
+    if f['id'] in {*MECHANICAL_PACKAGES, *ASSEMBLY_PACKAGES}:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows retain the source display structure only. Membership has no inferred chronology. Where the source supplies a typed body, one unexpanded template is shown; no condition, trial or specimen count is inferred.')
     if f['id']=='cooling' or f['id'] in ACOUSTIC_PACKAGES:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows preserve source operation membership once, without chronology. Loop bodies, count text and nesting obligations are retained as metadata, not added occurrences or executed repetitions.')
