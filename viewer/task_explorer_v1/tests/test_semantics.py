@@ -14,7 +14,7 @@ def get(key):
 def ids(nodes):return [n['id'] for n,d in builder.walk(nodes) if n['type']=='op']
 
 class BundleTests(unittest.TestCase):
- def test_nine_families(self):self.assertEqual(len(list((ROOT/'data').glob('*.json'))),9)
+ def test_ten_families(self):self.assertEqual(len(list((ROOT/'data').glob('*.json'))),10)
  def test_all_operation_references_resolve(self):
   for key in builder.ADAPTERS:
    f=get(key);mapping={o['id']:o for o in f['operations']};self.assertEqual(len(mapping),len(f['operations']))
@@ -81,7 +81,7 @@ class BundleTests(unittest.TestCase):
  def test_source_hashes(self):
   for key in builder.ADAPTERS:
    f=get(key)
-   for name,record in f['source_files'].items():self.assertEqual(record['sha256'],hashlib.sha256((TASKS/(key+'_operations_v2')/name).read_bytes()).hexdigest())
+   for name,record in f['source_files'].items():self.assertEqual(record['sha256'],hashlib.sha256((TASKS/builder.package_name(key)/name).read_bytes()).hexdigest())
  @unittest.skipUnless(TASKS,'SCIENCEGYM_TASKS not set; source comparison not run')
  def test_acoustic_rebuild_keeps_every_nested_value(self):
   expected=builder.adapt_acoustic(TASKS/'acoustic_operations_v2')

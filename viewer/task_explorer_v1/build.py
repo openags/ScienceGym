@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for nine public task schemas."""
+"""Deterministic, standard-library-only adapters for ten public task schemas."""
 import argparse, json, pathlib, hashlib, html, textwrap
 ROOT=pathlib.Path(__file__).resolve().parent
 COMMIT='293e32da790303c1a17131e036235f69a5f342e0'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
-NAMES={'emvp':'Embedded extrusion-volumetric printing','prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
-COLORS={'emvp':'#e5a36e','prismatic':'#4db7ad','perovskite':'#ca7188','chiral':'#8d6bce','microscopy':'#268e96','fibre':'#dc8654','thermoelectric':'#d7aa36','dispim':'#598bd1','acoustic':'#8aaf58'}
+COOLING_COMMIT='9a9472b996145ff7f7a4c138c7477b4e734d8835'
+SOURCE_COMMITS={'cooling':COOLING_COMMIT}
+def source_commit(key): return SOURCE_COMMITS.get(key,COMMIT)
+def source_base(key): return f'https://github.com/openags/ScienceGym/blob/{source_commit(key)}/tasks/'
+NAMES={'cooling':'Directional radiative cooling','emvp':'Embedded extrusion-volumetric printing','prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
+COLORS={'cooling':'#68bfc7','emvp':'#e5a36e','prismatic':'#4db7ad','perovskite':'#ca7188','chiral':'#8d6bce','microscopy':'#268e96','fibre':'#dc8654','thermoelectric':'#d7aa36','dispim':'#598bd1','acoustic':'#8aaf58'}
 
 def read(p,name): return json.loads((p/name).read_text())
 def optional(p,name): return read(p,name) if (p/name).exists() else None
-def source(p,name): return BASE+p.name+'/'+name
+def source(p,name): return (source_base('cooling') if p.name=='directional_cooling_operations_v2' else BASE)+p.name+'/'+name
 
 def without(d,keys): return {k:v for k,v in d.items() if k not in keys}
 def refs(items): return list(items)
@@ -36,7 +40,7 @@ def unique_shared(f):
 def core(p,key,opfile='operations.json',provenancefile='provenance.json'):
     raw=read(p,opfile); prov=read(p,provenancefile)
     f={'id':key,'label':NAMES[key],'title':prov.get('title',NAMES[key]),'doi':prov.get('doi',raw.get('doi','')),'color':COLORS[key],
-       'source_commit':COMMIT,'source_folder':BASE+p.name+'/','status':'Task-design reference; no task execution or scientific reproduction',
+       'source_commit':source_commit(key),'source_folder':source_base(key)+p.name+'/','status':'Task-design reference; no task execution or scientific reproduction',
        'operations':[],'routes':[],'context':{},'dependencies':{},'source_files':{}}
     for fn in sorted(p.glob('*.json')):
         f['source_files'][fn.name]={'url':source(p,fn.name),'sha256':hashlib.sha256(fn.read_bytes()).hexdigest()}
@@ -445,7 +449,101 @@ def adapt_emvp(p):
             'detail':without(r,{'id','goal'}),'source_file':'branches.json','source_pointer':f'/configurations/{i}'})
     return f
 
-ADAPTERS={'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
+# This schema names its package differently from the public navigation key.
+PACKAGE_NAMES={'cooling':'directional_cooling_operations_v2'}
+def package_name(key): return PACKAGE_NAMES.get(key,key+'_operations_v2')
+
+# Explicit source-loop scopes. These bind metadata only, never expanded bodies.
+# L_MAP counts the three separate route leaves, not three repetitions in each leaf.
+COOLING_LOOP_ROUTES={
+    'L_OPT':('OPT_HEMISPHERICAL',),
+    'L_ANGLE':('OPT_ANGULAR',),
+    'L_TRACK':('TRACKED_STAGNATION','PID_POWER','MAP_CLEAR_DAY','MAP_HAZY_NOON'),
+    'L_PID':('PID_POWER',),
+    'L_MAP':('MAP_CLEAR_DAY','MAP_CLEAR_NIGHT','MAP_HAZY_NOON'),
+    'L_REPEAT':None,
+}
+
+def cooling_nodes(branch,dependencies):
+    """Keep route membership once and loop contracts separate from occurrences.
+
+    Dependencies are receipt obligations, not list adjacency. The declared loop
+    bodies are preserved in metadata; they do not define an inferred global
+    nesting or supply missing schedules, counts, or station transfers.
+    """
+    members=branch['operation_ids']
+    if not members or len(set(members))!=len(members):
+        raise ValueError('Cooling operation membership must be nonempty and unique')
+    loops=dependencies['loops']
+    if len({loop['id'] for loop in loops})!=len(loops):
+        raise ValueError('Duplicate cooling loop ID')
+    if {loop['id'] for loop in loops}!=set(COOLING_LOOP_ROUTES):
+        raise ValueError('Unknown or missing cooling loop scope')
+    nodes=[{'type':'obligations','label':'Operation membership · receipt dependencies only',
+            'meta':{'order':'No chronological adjacency edges are inferred; apply explicit receipt dependencies and conditional gates'},
+            'children':list(members),'ordered':False}]
+    for loop in loops:
+        routes=COOLING_LOOP_ROUTES[loop['id']]
+        if routes is not None and branch['id'] not in routes:continue
+        if not set(loop['body'])<=set(members):
+            raise ValueError('Cooling loop body is outside declared route membership: '+loop['id'])
+        scope=('Three independent condition leaves; this view is '+branch['id']+' only. Independent repeats remain supplied inputs.'
+               if loop['id']=='L_MAP' else
+               'Work-order allocation across samples/sessions; no local repetition count or global nesting inferred.'
+               if loop['id']=='L_REPEAT' else
+               'Applicable route contract; body is metadata, not extra operation occurrences or completed repetitions.')
+        nodes.append({'type':'loop','label':loop['id']+' · unexpanded schedule / count contract',
+                      'meta':{'loop':loop,'scope':scope},'children':[],
+                      'ordered':False,'symbolic':True})
+    nodes.append({'type':'condition','label':'Required transport · each actual station change',
+                  'meta':{'transport_rule':dependencies['transport_rule'],
+                          'display':'The single MOVE template does not satisfy all required physical transfer instances'}})
+    return nodes
+
+def adapt_cooling(p):
+    f=core(p,'cooling');raw=read(p,'operations.json');b=read(p,'branches.json')
+    prov=read(p,'provenance.json');dep=read(p,'dependencies.json')
+    f['status']='Author/evaluator logical inspector; source-bounded task design only; no physical simulation, actor projection or robot execution'
+    f['default_route']='TRACKED_STAGNATION'
+    f['dependencies']=dep
+    f['context']['branch_policy']=without(b,{'branches'})
+    f['context']['operation_policy']=without(raw,{'operations'})
+    for name in ['control_packages','material_cards','asset_needs','source_conflicts','source_outcomes',
+                 'agent_visible','RELEASE_BOUNDARY','episode_input_contract','station_contracts',
+                 'mock_contract','coverage_matrix','nonmanual_scope','source_access_audit','provenance',
+                 'STATUS','VERIFICATION']:
+        f['context'][name]=read(p,name+'.json')
+    f['context']['independent_review']=read(p,'independent_review/audit.json')
+    f['source_files']={fn.relative_to(p).as_posix():{'url':source(p,fn.relative_to(p).as_posix()),
+                       'sha256':hashlib.sha256(fn.read_bytes()).hexdigest()}
+                       for fn in sorted(p.rglob('*.json'))}
+    f['evidence']={key:{**item,'url':prov['source_ids'][item['source_id']]}
+                   for key,item in prov['evidence'].items()}
+    mapped_fields={'id','title','location_id','operator_actions','manipulated_objects',
+                   'preconditions','postconditions','evidence_ids','provenance',
+                   'completion_evidence','recovery','unknown_parameter_ids'}
+    for original,mapped in zip(raw['operations'],f['operations']):
+        mapped['actions']=original['operator_actions']
+        mapped['objects']=original['manipulated_objects']
+        mapped['acceptance']=original['completion_evidence']
+        mapped['unknowns']=original['unknown_parameter_ids']
+        mapped['detail']=without(original,mapped_fields)
+    operation_ids={op['id'] for op in f['operations']}
+    if len(operation_ids)!=len(f['operations']):raise ValueError('Duplicate cooling operation ID')
+    controls=f['context']['control_packages']['control_packages']
+    control_map={control['id']:control for control in controls}
+    if len(control_map)!=len(controls):raise ValueError('Duplicate cooling control ID')
+    branches=b['branches']
+    if len({branch['id'] for branch in branches})!=len(branches):raise ValueError('Duplicate cooling branch ID')
+    for i,r in enumerate(branches):
+        if not set(r['operation_ids'])<=operation_ids:raise ValueError('Unknown cooling operation ID')
+        f['routes'].append({'id':r['id'],'label':r['title'],
+            'nodes':cooling_nodes(r,dep),'controls':[control_map[key] for key in r['control_ids']],
+            'basis':'Unordered operation membership with explicit receipt dependencies and conditional gates. Loop contracts remain symbolic; no unknown counts, global chronology, sample replication or transport instances are invented.',
+            'detail':without(r,{'id','title'}),'source_file':'branches.json','source_pointer':f'/branches/{i}'})
+    return f
+
+ADAPTERS={'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
 
 def walk(nodes,depth=0):
     for n in nodes:
@@ -479,7 +577,7 @@ def svg(f):
         # Display connectors only at root ordered level; group children can be loop bodies or unordered obligations.
         if idx+1<len(rows) and depth==0 and rows[idx+1][1]==0 and node['type']=='op' and rows[idx+1][0]['type']=='op':
             out.append(f'<path d="M{int(x+w/2)},{y+64}v12" stroke="#708399" stroke-dasharray="3 3" marker-end="url(#arrow)"/>')
-    out.append(f'<text x="48" y="{height-24}" class="small">Source snapshot {COMMIT[:12]} · Full branch routes and operation details: {f["id"]}.md and interactive explorer</text></svg>')
+    out.append(f'<text x="48" y="{height-24}" class="small">Source snapshot {f["source_commit"][:12]} · Full branch routes and operation details: {f["id"]}.md and interactive explorer</text></svg>')
     result='\n'.join(out)
     if f['id']=='prismatic':
         result=result.replace('operation definitions · 12 route / branch records', 'operation templates · 12 configurations · 7 practical families')
@@ -491,6 +589,12 @@ def svg(f):
         result=result.replace('· every listed step', '· authored viewing order')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows: authored viewing order is not causality. Conditions retain separate sample allocations.')
         result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only.', 'Source-authored viewing order for the selected configuration, plus all 19 configurations. No chronological adjacency edges are inferred.')
+    if f['id']=='cooling':
+        result=result.replace('Loop bodies are shown once with original loop metadata in the interactive inspector.', 'Loop bodies, counts and nesting text remain unexpanded metadata; no extra operation occurrences are added.')
+        result=result.replace('operation definitions · 11 route / branch records', 'operation definitions · 11 physical route leaves · 6 loop contracts · 14 input gates')
+        result=result.replace('· every listed step', '· unordered membership')
+        result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows: dependencies require receipts. Loops, sample allocation and physical transfers remain obligations.')
+        result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only.', 'Unordered operation membership for the designated leaf, plus all 11 physical route leaves. No chronological adjacency edges are inferred.')
     result=result.replace('<text ', '<text font-family="Arial, sans-serif" ')
     result=result.replace('class="muted"', 'fill="#a9b7c8" font-size="16"').replace('class="small"', 'fill="#a9b7c8" font-size="14"').replace('class="title"', 'fill="#f4f7fc" font-weight="700"')
     return result
@@ -510,6 +614,15 @@ def md(f):
                 if n.get('meta'):lines.append(indent+'  - Binding: '+json.dumps(n['meta'],ensure_ascii=False,separators=(',',':')))
         lines.extend(['','<details><summary>Branch state, choices, lineage and loop obligations</summary>','', '```json',json.dumps({k:resolve(f,v) for k,v in r['detail'].items()},ensure_ascii=False,indent=2),'```','','</details>',''])
     lines.extend(['## Operation contracts','','Every operation is clickable in the offline inspector, with robot actions, target objects, pre/post state, provenance, unknowns and acceptance/recovery. Raw task JSON is the source of truth; this visualization is a public evaluator/reference view, not an agent prompt.',''])
+    if f['id']=='cooling':
+        lines.extend(['## Reference contracts and boundaries','',
+          'All 56 operations, 11 physical route leaves, 6 loop contracts and 14 unresolved input gates are retained. Each operation list is membership under explicit receipt dependencies, not a mandatory chronology. Symbolic loop metadata preserves original bodies, counts and nesting text without adding repeated operation occurrences or guessed schedules.','',
+          'The three thermal-map conditions remain separate leaves. One white and one black device are paired conditions, not two independent replicates of each condition. Seven map channels, PID targets, angular observations and timepoints do not supply independent sample counts. Unknown allocation, technical repeats and sessions remain null.','',
+          'Every actual station change still requires a qualified physical MOVE instance with carrier and identity receipts. Preparation or calibration must be performed or originate from an explicit documented handoff. Conditional gates stay conditional, including night versus daylight shading and current assembly revision. Device processes are separate from robot actions; completion evidence is a requirement, not an execution receipt.','',
+          'No task loader, evaluator execution, physical simulation, scientific solver or robot controller is supplied. Models and application concepts remain nonmanual scope.',''])
+        for key in ['dependencies','control_packages','unknown_parameters','source_conflicts','lineage_contract','episode_input_contract','agent_visible','RELEASE_BOUNDARY','evaluator_reference','independent_review/audit']:
+            lines.append(f'- [{key.replace("_", " ")}]({f["source_files"][key+".json"]["url"]})')
+        lines.append('')
     if f['id']=='emvp':
         lines.extend(['## Reference contracts and boundaries','',
           'All 53 templates, 19 configurations, 5 practical families, 15 comparison packages and 30 unresolved gates are inspectable. There is no additional whole-paper execution route. Single-material cage conditions retain three separate source routes. Control dimensions describe symbolic coverage without adding operation repetitions. Unknown specimen counts stay null; physical states, analysis regions and hardness sites are not independent specimens.','',
@@ -527,7 +640,10 @@ def md(f):
         lines.append('')
         result='\n'.join(lines)
         return result.replace('numbered rows preserve reference-list occurrences.', 'rows show unordered template membership; only declared dependencies impose order.')
-    return '\n'.join(lines)
+    result='\n'.join(lines)
+    if f['id']=='cooling':
+        result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows preserve source operation membership once, without chronology. Loop bodies, count text and nesting obligations are retained as metadata, not added occurrences or executed repetitions.')
+    return result
 
 def write_release_manifest():
     files=[]
@@ -538,14 +654,14 @@ def write_release_manifest():
                 or path.suffix not in {'.md','.js','.json','.py','.html','.css','.svg'}):continue
         payload=path.read_bytes()
         files.append({'path':relative.as_posix(),'bytes':len(payload),'sha256':hashlib.sha256(payload).hexdigest()})
-    (ROOT/'release_manifest.json').write_text(json.dumps({'source_commit':COMMIT,
+    (ROOT/'release_manifest.json').write_text(json.dumps({'source_commit':COMMIT,'source_commits':{key:source_commit(key) for key in ADAPTERS},
         'repository_destination':'viewer/task_explorer_v1/','files':files},indent=2)+'\n')
 
 def main():
     parser=argparse.ArgumentParser(); parser.add_argument('--tasks',type=pathlib.Path,default=ROOT.parent.parent/'tasks');parser.add_argument('--only',choices=list(ADAPTERS));args=parser.parse_args()
     keys=[args.only] if args.only else list(ADAPTERS);manifest=[]
     for key in keys:
-        f=unique_shared(ADAPTERS[key](args.tasks/(key+'_operations_v2')))
+        f=unique_shared(ADAPTERS[key](args.tasks/package_name(key)))
         encoded=json.dumps(f,ensure_ascii=False,separators=(',',':'))
         (ROOT/'data'/f'{key}.json').write_text(encoded+'\n');(ROOT/'data'/f'{key}.js').write_text('window.SCIENCEGYM_DATA=window.SCIENCEGYM_DATA||{};window.SCIENCEGYM_DATA['+json.dumps(key)+']='+encoded+';\n')
         (ROOT/'diagrams'/f'{key}.svg').write_text(svg(f));(ROOT/'docs'/f'{key}.md').write_text(md(f))
@@ -559,6 +675,6 @@ def main():
             f=json.loads(data_path.read_text())
             manifest.append({'id':key,'operations':len(f['operations']),'routes':len(f['routes']),
                              'bytes':len(data_path.read_bytes().rstrip(b'\n'))})
-    (ROOT/'manifest.json').write_text(json.dumps({'commit':COMMIT,'families':manifest},indent=2)+'\n')
+    (ROOT/'manifest.json').write_text(json.dumps({'commit':COMMIT,'source_commits':{key:source_commit(key) for key in ADAPTERS},'families':manifest},indent=2)+'\n')
     write_release_manifest()
 if __name__=='__main__':main()

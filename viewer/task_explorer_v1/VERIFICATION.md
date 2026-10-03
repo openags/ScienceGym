@@ -1,6 +1,22 @@
-# Verification: nine-family task explorer
+# Verification: ten-family task explorer
 
-Historical source links remain pinned to public ScienceGym commit `293e32da790303c1a17131e036235f69a5f342e0`.
+Earlier nine-family source links remain pinned to public ScienceGym commit `293e32da790303c1a17131e036235f69a5f342e0`. Cooling source links are pinned to verified commit `9a9472b996145ff7f7a4c138c7477b4e734d8835`. The per-family source commit map is recorded in both manifests; their legacy singular commit fields still identify the earlier snapshot.
+
+## Directional-cooling integration, 2026-10-03
+
+The current explorer contains **10 families, 202 route/configuration records and 1,376 operation definitions**. Directional cooling contributes **56 operations, 11 physical route leaves, six symbolic loop contracts and 14 unresolved input gates**. All 62 source dependency edges, eight conditional gates, ten controls, 13 input cards, source evidence, sample lineage and station-transfer obligations are retained. The 189 added displayed operation positions are membership references, not performed transfers, experiments, repetitions or successes.
+
+- **93/93 source-bound Python explorer tests pass with zero skips**, including 25 independently authored cooling regressions. These check every operation field, route membership, context and dependency record; loop applicability, separate map leaves and work-order allocation; null counts; conditional nighttime/current-assembly gates; transport/instrument binding; source hashes/pointers; evidence URLs; JSON/JavaScript parity; malformed membership/loop rejection; deterministic pooling and reference-only boundaries
+- The unchanged cooling package's **38/38 static and synthetic-record tests pass**. No source-byte acquisition or new scientific validation was performed
+- Mocked-DOM checks pass across all **202 routes and 10,251 displayed operation/template occurrences**. Cooling checks include all leaves, no inferred adjacency arrows, no extra loop occurrences, night versus day tracking, conditional prerequisite display, device-process separation, source evidence, search and route reset, tabs and immutable repeated clicks. Existing navigation, repeated-ID and malformed-hash regressions still pass
+- The same mocked-DOM suite passes against the exported single-file HTML. The HTML export has no external runtime dependencies. A mock DOM is not a browser
+- Repository-root `scripts/verify_release.py` passes **9/9 groups**, including 19 verifier regression tests, English hygiene, all 18 JavaScript syntax checks, all three mocked-DOM suites and **220 image-hash assertions across 71 frames / 75 unique images**
+- Full rebuild and `--only cooling` rebuild are byte-identical, including the complete ten-family inventory and release checksums
+- All **502 protected task-package, embodied-storyboard and LICENSE files** remain byte-identical to the supplied contributor-docs baseline. All **36 earlier-family generated JSON, JavaScript, Markdown and SVG files** remain byte-identical. All 16 task designs and English contributor documents are preserved. The frozen project-vision baseline and historical release receipts are unchanged
+- The cooling default, PID_POWER, OPT_ANGULAR and MAP_CLEAR_NIGHT SVGs were rendered by Inkscape and their pixels inspected. The branch index, membership labels, loop metadata labels and required transport notice fit without clipping. All eleven route-specific SVG variants parse and contain no chronological adjacency arrows. These are static diagram renders, not browser screenshots
+- Cooling source links point to `9a9472b996145ff7f7a4c138c7477b4e734d8835`, a verified published commit containing the reviewed package. Earlier family pins and the documented local perovskite metadata-hash caveat remain unchanged
+
+The added adapter and UI are a read-only logical inspector. They add no physical simulation, runtime loader, evaluator execution, actor projection, scientific solver, new embodied storyboard or robot controller. Unknown schedules, repetition counts, geometry and operational qualification remain blockers. The previously denied browser file/localhost path was not retried or bypassed. Actual browser rendering, responsive/touch layout, focus and browser history remain unverified. No GitHub write or Library upload occurred during implementation.
 
 ## Standalone-presentation revision, 2026-10-03
 
@@ -25,7 +41,7 @@ The revised tree passes all **9/9 root static-check groups**, including **68 sou
 - The unchanged EmVP package's contract suite passes **44 public tests**. Its one optional external primary-source-byte check is explicitly skipped in this integration run because no source cache was supplied; the published package records its earlier full-source verification separately
 - All 283 protected task, embodied-player/image and LICENSE files are byte-identical to the integration input. No full source packet, paper image or third-party asset is added
 
-## Representation counts
+## Historical nine-family representation counts
 
 Nine paper families, **191 route/configuration records and 1,320 operation definitions**. EmVP adds **19 configurations, 53 reusable templates, five practical families, 15 comparison packages and 30 unresolved input gates**. Its **482 displayed template occurrences** include separately displayed cage condition routes. These are display positions, not executed repetitions, acquisition events, independent specimens or successes.
 

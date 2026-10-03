@@ -3,7 +3,7 @@
 class El{constructor(tag){this.tagName=tag;this.attrs={};this.children=[];this.style={setProperty(){}};this.dataset={};this.hidden=false;this.value='';this.className='';this.classList={toggle:(name,on)=>{let s=new Set(this.className.split(' ').filter(Boolean));on?s.add(name):s.delete(name);this.className=[...s].join(' ');}};}setAttribute(k,v){this.attrs[k]=String(v);if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=String(v);if(k==='value')this.value=v;}append(...x){this.children.push(...x);}replaceChildren(...x){this.children=x;}set textContent(v){this.text=String(v);this.children=[];}get textContent(){return this.text||'';}}
 const ids=[...fs.readFileSync(path.join(ROOT,'index.html'),'utf8').matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);const elements=Object.fromEntries(ids.map(id=>[id,new El('div')]));['route','dependencies','contract'].forEach(tab=>{elements['tab-'+tab].setAttribute('role','tab');elements['tab-'+tab].setAttribute('data-tab',tab);});
 const walk=(roots)=>roots.flatMap(n=>n instanceof El?[n,...walk(n.children)]:[]);const document={documentElement:new El('html'),getElementById:id=>elements[id],createElement:tag=>new El(tag),createTextNode:t=>String(t),querySelectorAll:selector=>{const all=walk(Object.values(elements));if(selector==='nav button')return elements.families.children;if(selector==='[role=tab]')return all.filter(x=>x.attrs.role==='tab');if(selector==='.operation')return all.filter(x=>x.className.split(' ').includes('operation'));throw Error('Unimplemented selector '+selector);}};
-const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
+const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
 let hash='',onHash;const location={get hash(){return hash;},set hash(value){hash=value.startsWith('#')?value:'#'+value;if(onHash)onHash();}};const window={SCIENCEGYM_DATA:data,addEventListener:(n,fn)=>{if(n==='hashchange')onHash=fn;}};const context={window,document,location,console,Blob:class{constructor(parts,options){this.parts=parts;this.options=options;}},URL:{createObjectURL:()=> 'blob:mock-test',revokeObjectURL:()=>{}}};vm.createContext(context);if(process.argv[2]){const standalone=fs.readFileSync(process.argv[2],'utf8');for(const match of standalone.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInContext(match[1],context);}else{vm.runInContext(fs.readFileSync(path.join(ROOT,'app.js'),'utf8'),context);}let routeCount=0,occurrenceCount=0;
 for(const [key,f]of Object.entries(window.ScienceGymExplorer.data)){for(const r of f.routes){location.hash=[key,r.id,'',0].join('/');const state=window.ScienceGymExplorer.state;assert.strictEqual(state.family,key);assert.strictEqual(state.route,r.id);assert(state.steps.length>0);assert.strictEqual(document.querySelectorAll('.operation').length,state.steps.length);assert.strictEqual(document.querySelectorAll('.operation').filter(x=>x.attrs['aria-pressed']==='true').length,1);const last=state.steps[state.steps.length-1];location.hash=[key,r.id,last.id,last.index].join('/');assert.strictEqual(state.op,last.id);assert.strictEqual(state.occurrence,last.index);routeCount++;occurrenceCount+=state.steps.length;}}
 location.hash='dispim/D-R01/P001/7';assert.strictEqual(window.ScienceGymExplorer.state.op,'P001');let ps=window.ScienceGymExplorer.state.steps.filter(s=>s.id==='P001');assert.strictEqual(ps.length,2);location.hash=['dispim','D-R01','P001',ps[1].index].join('/');assert.strictEqual(window.ScienceGymExplorer.state.occurrence,ps[1].index);
@@ -75,5 +75,39 @@ assert(inspectorText.includes('M_SCOPE'));
 assert(inspectorText.includes('Results and Discussion'));
 elements.operationSearch.oninput({target:{value:'U_GEOMETRY'}});assert(document.querySelectorAll('.operation').some(x=>x.className.includes('match')));
 location.hash='emvp/CONTROL_VAM_NEGATIVE';assert.strictEqual(elements.routeView.hidden,false);assert.strictEqual(elements.operationSearch.value,'');
+// Cooling leaves retain membership, symbolic schedules, receipt gates and transport.
+for(const r of window.ScienceGymExplorer.data.cooling.routes){
+ location.hash=['cooling',r.id].join('/');
+ const nodes=walk([elements.routeCanvas]);
+ assert(!nodes.some(x=>x.className.split(' ').includes('connector')),r.id+' invented chronological adjacency');
+ assert(!nodes.some(x=>x.textContent.includes('undefined')),r.id+' has undefined metadata');
+ assert.strictEqual(window.ScienceGymExplorer.state.steps.length,r.detail.operation_ids.length);
+ assert.deepStrictEqual(Array.from(window.ScienceGymExplorer.state.steps,s=>s.id),Array.from(r.detail.operation_ids));
+ assert(nodes.some(x=>x.textContent.includes('L_REPEAT')));
+ assert(nodes.some(x=>x.textContent.includes('physical MOVE instance')));
+}
+location.hash='cooling/MAP_CLEAR_NIGHT';
+assert(!window.ScienceGymExplorer.state.steps.some(x=>x.id==='TRACK_ADJUST'));
+assert(!walk([elements.routeCanvas]).some(x=>x.textContent.includes('L_TRACK')));
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('Three independent condition leaves')));
+location.hash='cooling/PID_POWER';
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('L_PID')));
+const coolingBefore=JSON.stringify(window.ScienceGymExplorer.data.cooling);
+document.querySelectorAll('.operation').at(-1).onclick();document.querySelectorAll('.operation').at(-1).onclick();
+assert.strictEqual(JSON.stringify(window.ScienceGymExplorer.data.cooling),coolingBefore);
+elements['tab-dependencies'].onclick();
+const coolingDeps=walk([elements.dependenciesView]).map(x=>x.textContent).join('\n');
+for(const text of ['Conditional receipt gates','Current assembly revision','prior STEP_SUMMARY','requires_one_complete_family','Required physical transport'])assert(coolingDeps.includes(text),text);
+elements['tab-contract'].onclick();
+for(const text of ['unknowns','independent review','source conflicts','lineage'])assert(walk([elements.contractView]).some(x=>x.textContent===text));
+location.hash='cooling/BUILD_PAIR';
+const fab=window.ScienceGymExplorer.state.steps.find(x=>x.id==='FAB_RUN');
+location.hash=['cooling','BUILD_PAIR','FAB_RUN',fab.index].join('/');
+const coolingInspector=walk([elements.inspector]).map(x=>x.textContent).join('\n');
+assert(coolingInspector.includes('Device process · separate from operator manipulation'));
+assert(coolingInspector.includes('E_BUILD'));
+assert(coolingInspector.includes('Note 2, PDF p13'));
+elements.operationSearch.oninput({target:{value:'U_FAB'}});assert(document.querySelectorAll('.operation').some(x=>x.className.includes('match')));
+location.hash='cooling/OPT_ANGULAR';assert.strictEqual(elements.routeView.hidden,false);assert.strictEqual(elements.operationSearch.value,'');
 location.hash='bad-family/bad-route';assert.strictEqual(window.ScienceGymExplorer.state.family,'chiral');location.hash='#%invalid';assert.strictEqual(window.ScienceGymExplorer.state.family,'chiral');
 console.log(`PASS: mocked-DOM rendering of ${routeCount} routes / ${occurrenceCount} displayed operation occurrences; selection, repeated IDs, search, tabs and malformed-hash fallback`);

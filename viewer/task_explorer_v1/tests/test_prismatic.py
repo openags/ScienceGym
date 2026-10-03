@@ -223,19 +223,20 @@ class PrismaticBundleTests(unittest.TestCase):
         for key in builder.ADAPTERS:
             family = get(key)
             with self.subTest(family=key):
-                self.assertEqual(family['source_commit'], commit)
+                expected_commit = builder.source_commit(key)
+                self.assertEqual(family['source_commit'], expected_commit)
                 self.assertEqual(family['source_folder'],
-                                 'https://github.com/openags/ScienceGym/blob/' + commit +
-                                 '/tasks/' + key + '_operations_v2/')
+                                 'https://github.com/openags/ScienceGym/blob/' + expected_commit +
+                                 '/tasks/' + builder.package_name(key) + '/')
                 for filename, record in family['source_files'].items():
                     self.assertEqual(record['url'], family['source_folder'] + filename)
 
-    def test_manifest_preserves_nine_family_totals(self):
+    def test_manifest_preserves_ten_family_totals(self):
         manifest = json.loads((ROOT / 'manifest.json').read_text())
         self.assertEqual(manifest['commit'], '293e32da790303c1a17131e036235f69a5f342e0')
-        self.assertEqual(len(manifest['families']), 9)
-        self.assertEqual(sum(family['routes'] for family in manifest['families']), 191)
-        self.assertEqual(sum(family['operations'] for family in manifest['families']), 1320)
+        self.assertEqual(len(manifest['families']), 10)
+        self.assertEqual(sum(family['routes'] for family in manifest['families']), 202)
+        self.assertEqual(sum(family['operations'] for family in manifest['families']), 1376)
         for record in manifest['families']:
             with self.subTest(family=record['id']):
                 family = get(record['id'])
