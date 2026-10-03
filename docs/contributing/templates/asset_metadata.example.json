@@ -1,0 +1,60 @@
+{
+  "contract_status": "proposed_example_not_a_runtime_schema",
+  "asset_id": "cooling_film_holder_example",
+  "asset_version": "0.1.0-draft",
+  "readiness": "metadata_proposal_only",
+  "task_links": [
+    {
+      "family": "directional_cooling_operations_v2",
+      "operation_ids": ["FILM", "ASSEMBLY_QC"],
+      "station_id": "WS_ASSEMBLY"
+    }
+  ],
+  "geometry": {
+    "files": [],
+    "dimensions_m": null,
+    "dimension_provenance": "unknown",
+    "physical_scale": 1.0,
+    "display_scale": 1.0
+  },
+  "frame_convention": {
+    "length_unit": "m",
+    "angle_unit": "rad",
+    "handedness": "right",
+    "up_axis": "+Z",
+    "forward_axis": "+X",
+    "origin_datum": null,
+    "transform_direction": "local_to_parent",
+    "rotation_representation": "quaternion_xyzw"
+  },
+  "affordances": [
+    {
+      "id": "ring_support",
+      "part_id": "holder",
+      "frame_transform": null,
+      "compatible_tool": null,
+      "preconditions": ["Qualified geometry and handling inputs available"],
+      "behavior": "Proposed supported placement and release",
+      "observable_postcondition": "Identified ring seated or explicit blocker",
+      "implementation": "not_implemented"
+    }
+  ],
+  "states": ["unloaded", "loaded"],
+  "collision": {
+    "files": [],
+    "contact_parameters": null,
+    "validation": "not_validated"
+  },
+  "provenance": {
+    "creator": null,
+    "source_references": [],
+    "license": null,
+    "redistribution_review": "required_before_geometry_submission"
+  },
+  "screenshots": [],
+  "execution_gates": [
+    "U_GEOM",
+    "U_FAB",
+    "Holder geometry, tooling, load and support qualification"
+  ]
+}
