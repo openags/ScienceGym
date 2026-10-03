@@ -1,0 +1,159 @@
+{
+  "schema_version": "origami_memory_paper_task.v1",
+  "doi": "10.1038/s41467-017-00670-w",
+  "geometries": [
+    {
+      "id": "MONO",
+      "h0_mm": 90,
+      "theta0_deg": 46,
+      "nominal_spring_k_kN_per_m": 3.32,
+      "R_mm": 90,
+      "theta_cal_deg": 9.7,
+      "n": {
+        "depicted": 5,
+        "status": "qualified_BOM_required"
+      },
+      "evidence_ids": [
+        "E_GEOM",
+        "E_BUILD"
+      ]
+    },
+    {
+      "id": "BI",
+      "h0_mm": 150,
+      "theta0_deg": 40,
+      "nominal_spring_k_kN_per_m": 3.32,
+      "R_mm": 90,
+      "theta_cal_deg": 9.7,
+      "n": {
+        "depicted": 5,
+        "status": "qualified_BOM_required"
+      },
+      "evidence_ids": [
+        "E_GEOM",
+        "E_BUILD"
+      ]
+    },
+    {
+      "id": "ZERO",
+      "h0_mm": 140,
+      "theta0_deg": 92,
+      "nominal_spring_k_kN_per_m": 3.32,
+      "R_mm": 90,
+      "theta_cal_deg": 9.7,
+      "n": {
+        "depicted": 5,
+        "status": "qualified_BOM_required"
+      },
+      "evidence_ids": [
+        "E_GEOM",
+        "E_BUILD"
+      ]
+    },
+    {
+      "id": "BIF",
+      "h0_mm": 119,
+      "theta0_deg": 0,
+      "nominal_spring_k_kN_per_m": 1.08,
+      "R_mm": 90,
+      "theta_cal_deg": 9.7,
+      "n": {
+        "depicted": 5,
+        "status": "qualified_BOM_required"
+      },
+      "evidence_ids": [
+        "E_GEOM",
+        "E_BUILD"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "id": "ACRYLIC",
+      "material": "acrylic polygon plates",
+      "thickness_mm": null,
+      "route": "laser_cut",
+      "evidence_ids": [
+        "E_BUILD"
+      ]
+    },
+    {
+      "id": "PLA",
+      "material": "polylactic acid universal-joint parts",
+      "print_recipe": null,
+      "evidence_ids": [
+        "E_BUILD"
+      ]
+    },
+    {
+      "id": "SHAFT",
+      "material": "stainless steel",
+      "diameter_mm": 3.18,
+      "evidence_ids": [
+        "E_BUILD"
+      ]
+    },
+    {
+      "id": "SPRING",
+      "nominal_k_kN_per_m": [
+        3.32,
+        1.08
+      ],
+      "rest_lengths_mm": null,
+      "evidence_ids": [
+        "E_BUILD"
+      ]
+    },
+    {
+      "id": "GREASE",
+      "product": null,
+      "quantity": null,
+      "condition_must_be_logged": true,
+      "evidence_ids": [
+        "E_LUBE"
+      ]
+    },
+    {
+      "id": "PAPER",
+      "grade": null,
+      "thickness": null,
+      "dimensions": null,
+      "evidence_ids": [
+        "E_MOV1"
+      ]
+    }
+  ],
+  "assembly_cards": [
+    {
+      "id": "PAIR",
+      "slot_chiralities_deg": [
+        46,
+        -46
+      ],
+      "cell_h0_mm": 90,
+      "shared_plate_rule": "same object ID referenced by both neighbors",
+      "precompression_mm": 45,
+      "evidence_ids": [
+        "E_ONE"
+      ]
+    },
+    {
+      "id": "FOUR",
+      "slot_chiralities_deg": [
+        46,
+        -46,
+        46,
+        -46
+      ],
+      "cell_h0_mm": 90,
+      "pair_precompression_mm": [
+        50,
+        47.5
+      ],
+      "evidence_ids": [
+        "E_TWO"
+      ]
+    }
+  ],
+  "prohibition": "Nominal spring stiffness is not a measured calibration; original radius is not a physical-joint radius; illustrative n does not replace an approved part manifest"
+}

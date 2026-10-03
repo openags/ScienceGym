@@ -1,0 +1,172 @@
+{
+  "schema_version": "origami_memory_paper_task.v1",
+  "doi": "10.1038/s41467-017-00670-w",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "description": "work-order and records terminal",
+      "assets": [
+        "work order",
+        "immutable data store"
+      ],
+      "safety_contract": "No physical sample manipulation required for analysis; access labels are implementation requirements",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_STOCK",
+      "description": "labeled material store and carrier dock",
+      "assets": [
+        "stock packages",
+        "trays",
+        "support carriers"
+      ],
+      "safety_contract": "Verify loads and accessible grips",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_ROUTE",
+      "description": "mobile routes and docks",
+      "assets": [
+        "mobile base",
+        "cart",
+        "secured carrier"
+      ],
+      "safety_contract": "Qualified route, hands retracted, no unsafe tether",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "description": "supported assembly bench",
+      "assets": [
+        "indexed pockets",
+        "member/plate jigs",
+        "tools",
+        "waste"
+      ],
+      "safety_contract": "Control spring load during joins; no unsupported preload",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_LASER",
+      "description": "enclosed qualified laser-cut service",
+      "assets": [
+        "input fixture",
+        "guard",
+        "safe-open readback"
+      ],
+      "safety_contract": "No invented process recipe; robot loads/unloads and device cuts",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_PRINTER",
+      "description": "enclosed qualified print service",
+      "assets": [
+        "PLA",
+        "job interface",
+        "cool/safe-open signal"
+      ],
+      "safety_contract": "No invented print recipe; robot loads/unloads and device prints",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_INSPECTION",
+      "description": "geometry and damage inspection",
+      "assets": [
+        "gauges",
+        "camera",
+        "support jig"
+      ],
+      "safety_contract": "Avoid deforming specimen to pass gauge",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_DEMONSTRATION",
+      "description": "paper/truss folding observation",
+      "assets": [
+        "support surface",
+        "co-located camera",
+        "contact card"
+      ],
+      "safety_contract": "Bounded motion; stop at interference",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_COMPRESSION",
+      "description": "horizontal force/displacement test station",
+      "assets": [
+        "fixed right mount",
+        "free bearing/shaft",
+        "stage",
+        "force sensor",
+        "optional keyed guides"
+      ],
+      "safety_contract": "Motion stopped for setup; empty calibration before sample mount; no reach during acquisition",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_MEMORY",
+      "description": "preloaded crank and optical memory station",
+      "assets": [
+        "fixed end",
+        "pair distance locks",
+        "actuator decouplers",
+        "stage/crank",
+        "force sensor",
+        "LDV channels"
+      ],
+      "safety_contract": "Retain specified axial distance during operation; verify released angular input; optical station card governs emission",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "description": "sample/data archive and quarantine",
+      "assets": [
+        "carrier slots",
+        "labels",
+        "quarantine"
+      ],
+      "safety_contract": "Only safely supported released samples transported here",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "robot_interface": "Read labels/state, grasp or place only supplied regions, operate accessible control and verify feedback",
+      "device_handoff": "Device ownership begins only after actor clear/readiness evidence; return requires completion/fault and safe-state readback"
+    }
+  ],
+  "dynamic_locations": {
+    "$current_test_station": "Bind to WS_COMPRESSION, WS_MEMORY or WS_DEMONSTRATION before use; station-specific safe release card required",
+    "$current_station": "Actual environment-side source location",
+    "$next_station": "Next qualified receiving station",
+    "$all_used_stations": "Iterate actual used stations and verify each separately"
+  },
+  "safe_unload_variants": {
+    "WS_COMPRESSION": "Stop stage, controlled retraction, force-safe state, support then disconnect mounts",
+    "WS_MEMORY": "Stop/decouple input, optical off, support and controlled release of each stored pair preload, verify residual load then disconnect",
+    "WS_DEMONSTRATION": "Remove applied hand load through contact card, support paper/truss in stable carrier; do not invent a powered rig"
+  },
+  "not_claimed": [
+    "robot reachability",
+    "laser/printer implementation",
+    "optical safety certification",
+    "contact-force envelope",
+    "physical simulation"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "review_date_utc": "2026-10-03",
+  "review_type": "finite_independent_static_task_design_audit",
+  "verdict": "accepted_for_task_design_publication",
+  "scope": "Whole-paper empirical scope, mobile-robot manipulation and device-process separation; source gaps, controls, repetitions, preparation/measurement handoffs, dependencies and lineage. Not physical execution or scientific validation.",
+  "counts": {
+    "operations": 55,
+    "actors": {
+      "mobile_robot": 44,
+      "station_device": 6,
+      "analysis_service": 5
+    },
+    "selectable_routes": 11,
+    "physical_configurations": 10,
+    "top_level_json_files_checked": 19,
+    "author_static_tests_passed_independently": 29
+  },
+  "independent_checks": {
+    "json_parse": "pass",
+    "unique_operation_ids": "pass",
+    "branch_operation_and_typed_loop_references": "pass; campaign expansion descriptor reviewed separately",
+    "operation_station_references_including_declared_dynamic_locations": "pass",
+    "evidence_references": "pass",
+    "unknown_parameter_references": "pass",
+    "nonempty_actor_object_tool_station_action_precondition_completion_fields": "pass",
+    "dependency_references_and_scoped_graph_acyclicity": "pass",
+    "existing_SI_hash_matches_audit": "pass",
+    "author_tests_independently_rerun": "29/29 pass"
+  },
+  "reviewed_sources": [
+    {
+      "url": "https://www.nature.com/articles/s41467-017-00670-w",
+      "reviewed": "Readable main empirical Results, Methods, captions and data availability via web text; no main PDF or publisher image retrieval."
+    },
+    {
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-017-00670-w/MediaObjects/41467_2017_670_MOESM1_ESM.pdf",
+      "reviewed": "Existing retained SI empirical Notes 3,5,7,9, related captions and comparison/movie descriptions; numerical/proposed scope distinguished. Existing PDF hash verified."
+    }
+  ],
+  "resolved_findings": [
+    "Empty-fixture calibration separated from post-mount baseline and actual guide-condition checks",
+    "Explicit robot one-bit sweep configuration and preparation pulse readback precede device acquisition",
+    "Robot load/configuration explicitly clears the zone and requests start; station-owned fabrication/acquisition remains separate",
+    "Paper comparison baseline and recording start precede fold; observation overlaps manipulation and release",
+    "Manual torque-off uses grip release and absence/release of powered linkage; instrumented route uses qualified decoupler",
+    "Manual state sensing has an observation/calibration check independent of crank torque transforms"
+  ],
+  "source_and_claim_boundaries": [
+    "Ten empirical configurations plus the whole-paper campaign; nonmanual models and proposed readouts/extensions separately inventoried",
+    "Preparation and coupled-operation actuator epochs distinct; actual initialization/reset receipts required",
+    "Missing repetitions, safe paths, fabrication settings, motion programs, calibration transforms and observation thresholds remain qualified-input gates",
+    "Source outcomes are evaluator context, not required future physical outcomes; narration/model values cannot replace measurements"
+  ],
+  "remaining_must_fix_findings": [],
+  "limits": [
+    "No robot reachability, collision, grasp, timing, apparatus safety, physical simulation or scientific replication validated",
+    "Tests inspect static contracts and source/actor boundaries only; no runtime implementation test",
+    "No original raw traces, full CAD, historical serials or source robot trajectories recovered",
+    "Reviewer did not inspect publisher image/movie pixels; author movie claims retain sampled-frame limits and other movies remain unread"
+  ],
+  "remote_writes_performed": false,
+  "final_rerun_utc": "2026-10-03T08:47:34Z",
+  "final_rerun_command": "python tests/test_contract.py",
+  "final_rerun_note": "Five regression checks added after initial 24-test review. Current 29-test suite independently rerun once; no new feature or physical scope. Release boundary wording refers to the authoring snapshot.",
+  "final_reviewed_input_sha256": {
+    "operations.json": "02c62e395de2ff13c5515488338435750bbb9c82394c4764841fec00aca9cb5b",
+    "branches.json": "b224f4c5c16da05c204a1cbd0fcd9023dca11bd27cacd1e1e7e0b590af70107a",
+    "dependencies.json": "695dcd151ba6d07906f25247106c09bbeb314f2f9761fee6041f8c3bc1c2dccb",
+    "RELEASE_BOUNDARY.json": "0b3facba4fed163e3c814b665682888bc1ea2aee957f31efd5655cdad252ddbf",
+    "tests/test_contract.py": "4a2f8f8a7e54b9d45155b7df214ba60b7d171266dbcb22ce6d93a4a2bd9e5f9e"
+  }
+}

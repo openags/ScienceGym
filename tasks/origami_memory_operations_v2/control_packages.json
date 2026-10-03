@@ -1,0 +1,162 @@
+{
+  "schema_version": "origami_memory_paper_task.v1",
+  "doi": "10.1038/s41467-017-00670-w",
+  "controls": [
+    {
+      "id": "C_GEOMETRY",
+      "purpose": "Check actual geometry, chirality, spring class and connectivity",
+      "operation_ids": [
+        "CELL_QC"
+      ],
+      "evidence_ids": [
+        "E_GEOM",
+        "E_BUILD"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_ZERO",
+      "purpose": "Separate empty-fixture calibration from mounted baseline",
+      "operation_ids": [
+        "CALIBRATE",
+        "MOUNT_CHECK"
+      ],
+      "evidence_ids": [
+        "E_COMP"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_LUBE",
+      "purpose": "Record joint lubrication as a condition; no pooled dry/greased traces",
+      "operation_ids": [
+        "LUBE",
+        "RAW_REVIEW"
+      ],
+      "evidence_ids": [
+        "E_LUBE"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_FREE",
+      "purpose": "Verify free rotation and bending restriction in compression",
+      "operation_ids": [
+        "CELL_MOUNT",
+        "MOUNT_CHECK"
+      ],
+      "evidence_ids": [
+        "E_COMP"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_GUIDE",
+      "purpose": "Actual installed/removed guides and fresh baseline for bifurcation",
+      "operation_ids": [
+        "GUIDE_CONFIG",
+        "MOUNT_CHECK"
+      ],
+      "evidence_ids": [
+        "E_BIF"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_FIT",
+      "purpose": "Use complete normalized 0.01–0.03 window and matched conditions",
+      "operation_ids": [
+        "STIFFNESS_SUMMARY"
+      ],
+      "evidence_ids": [
+        "E_STIFF"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_PRELOAD",
+      "purpose": "Read back each pair distance and retained free rotations",
+      "operation_ids": [
+        "PRELOAD_SET",
+        "PRELOAD_LOCK"
+      ],
+      "evidence_ids": [
+        "E_ONE",
+        "E_TWO"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_CAL",
+      "purpose": "Bind actual measured-angle and torque conversions, not command alone",
+      "operation_ids": [
+        "ANGLE_CALIBRATE"
+      ],
+      "evidence_ids": [
+        "E_ONE",
+        "E_READ"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_EPOCH",
+      "purpose": "Separate direct second-bit preparation from first-bit-only coupled operation",
+      "operation_ids": [
+        "PREP_TARGET2",
+        "DRIVE_HANDOFF",
+        "COUPLED_ACQUIRE"
+      ],
+      "evidence_ids": [
+        "E_0110"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_STATE",
+      "purpose": "Observe initial, intermediate, final and released states with uncertainty",
+      "operation_ids": [
+        "MEMORY_INIT",
+        "STATE_REVIEW",
+        "RETENTION_OBSERVE"
+      ],
+      "evidence_ids": [
+        "E_ONE",
+        "E_TWO"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_RETAIN",
+      "purpose": "Prove torque-off while axial preload remains; finite window required",
+      "operation_ids": [
+        "RELEASE_TORQUE",
+        "RETENTION_OBSERVE"
+      ],
+      "evidence_ids": [
+        "E_ONE"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    },
+    {
+      "id": "C_REPEAT",
+      "purpose": "Keep all attempts and explicit replicate definition",
+      "operation_ids": [
+        "RAW_REVIEW",
+        "DERIVE_WORK",
+        "REPORT"
+      ],
+      "evidence_ids": [
+        "E_COMP"
+      ],
+      "provenance": "source_question_with_authored_quality_checks"
+    }
+  ],
+  "repeat_policy": {
+    "source_n": null,
+    "episode_n": "positive supplied value",
+    "sd_minimum": "at least two valid matched records for sample SD; convention must be declared",
+    "failed_trials": "retained, never zero-filled or silently replaced",
+    "selection": "predeclared eligible set with all exclusions visible",
+    "independent_samples": "separately allocated specimen IDs; not equal to cycles/traces/cells"
+  }
+}

@@ -1,0 +1,1196 @@
+{
+  "schema_version": "origami_memory_paper_task.v1",
+  "doi": "10.1038/s41467-017-00670-w",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 11,
+  "physical_configuration_count": 10,
+  "families": [
+    {
+      "id": "F_PREP",
+      "title": "Truss component fabrication and assembly",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC"
+      ],
+      "role": "shared_physical_preparation"
+    },
+    {
+      "id": "F_COMPARE",
+      "title": "Paper/truss folding comparison",
+      "role": "physical_family"
+    },
+    {
+      "id": "F_COMP",
+      "title": "Single-cell compression",
+      "role": "physical_family"
+    },
+    {
+      "id": "F_BIF",
+      "title": "Rotational-boundary bifurcation comparison",
+      "role": "physical_family"
+    },
+    {
+      "id": "F_ONE",
+      "title": "One-bit instrumented and manual operation",
+      "role": "physical_family"
+    },
+    {
+      "id": "F_TWO",
+      "title": "Two-bit controlled transitions",
+      "role": "physical_family"
+    }
+  ],
+  "branches": [
+    {
+      "id": "PAPER_TRUSS_COMPARE",
+      "title": "Compare paper and truss folding",
+      "family_ids": [
+        "F_PREP",
+        "F_COMPARE"
+      ],
+      "geometry_ids": [
+        "BI",
+        "PAPER_UNSPECIFIED"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "PAPER_CUT",
+        "PAPER_FOLD",
+        "COMPARE_SETUP",
+        "COMPARE_FOLD",
+        "COMPARE_OBSERVE",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "specimen_conditions": [
+          "paper",
+          "truss"
+        ],
+        "comparison": "qualitative_shape_only",
+        "paper_geometry": "unknown_do_not_inherit_truss_dimensions",
+        "truss_geometry_selection": "Task uses the documented BI prototype geometry as a qualified comparison choice; Movie 1 does not independently establish its specimen dimensions"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "COMPARE_SETUP",
+            "COMPARE_FOLD",
+            "COMPARE_OBSERVE",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_JOINT",
+        "U_LUBE",
+        "U_ONEPROGRAM",
+        "U_PAPER",
+        "U_REPEAT",
+        "U_RESET",
+        "U_ROBOT",
+        "U_STATE"
+      ],
+      "evidence_ids": [
+        "E_MOV1"
+      ],
+      "goal": "Compare paper and truss folding with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "SINGLE_MONOSTABLE",
+      "title": "Compress mono single cell",
+      "family_ids": [
+        "F_PREP",
+        "F_COMP"
+      ],
+      "geometry_ids": [
+        "MONO"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "SENSOR_SETUP",
+        "CALIBRATE",
+        "CELL_MOUNT",
+        "MOUNT_CHECK",
+        "PROGRAM_CONFIG",
+        "COMPRESSION_ACQUIRE",
+        "COMPRESSION_RETRACT",
+        "RAW_REVIEW",
+        "DERIVE_WORK",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "geometry": "MONO",
+        "right_boundary": "fixed_axial_and_rotational",
+        "left_boundary": "free_rotation_controlled_translation",
+        "range": "qualified_card_not_source_plot_extent"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "PROGRAM_CONFIG",
+            "COMPRESSION_ACQUIRE",
+            "COMPRESSION_RETRACT",
+            "RAW_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_COMP",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_JOINT",
+        "U_LUBE",
+        "U_PROCESS",
+        "U_REPEAT",
+        "U_RESET",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "E_COMP",
+        "E_STIFF"
+      ],
+      "goal": "Compress mono single cell with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "SINGLE_BISTABLE",
+      "title": "Compress bi single cell",
+      "family_ids": [
+        "F_PREP",
+        "F_COMP"
+      ],
+      "geometry_ids": [
+        "BI"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "SENSOR_SETUP",
+        "CALIBRATE",
+        "CELL_MOUNT",
+        "MOUNT_CHECK",
+        "PROGRAM_CONFIG",
+        "COMPRESSION_ACQUIRE",
+        "COMPRESSION_RETRACT",
+        "RAW_REVIEW",
+        "DERIVE_WORK",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "geometry": "BI",
+        "right_boundary": "fixed_axial_and_rotational",
+        "left_boundary": "free_rotation_controlled_translation",
+        "range": "qualified_card_not_source_plot_extent"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "PROGRAM_CONFIG",
+            "COMPRESSION_ACQUIRE",
+            "COMPRESSION_RETRACT",
+            "RAW_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_COMP",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_JOINT",
+        "U_LUBE",
+        "U_PROCESS",
+        "U_REPEAT",
+        "U_RESET",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "E_COMP",
+        "E_STIFF"
+      ],
+      "goal": "Compress bi single cell with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "SINGLE_ZERO_STIFFNESS",
+      "title": "Compress zero single cell",
+      "family_ids": [
+        "F_PREP",
+        "F_COMP"
+      ],
+      "geometry_ids": [
+        "ZERO"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "SENSOR_SETUP",
+        "CALIBRATE",
+        "CELL_MOUNT",
+        "MOUNT_CHECK",
+        "PROGRAM_CONFIG",
+        "COMPRESSION_ACQUIRE",
+        "COMPRESSION_RETRACT",
+        "RAW_REVIEW",
+        "DERIVE_WORK",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "geometry": "ZERO",
+        "right_boundary": "fixed_axial_and_rotational",
+        "left_boundary": "free_rotation_controlled_translation",
+        "range": "qualified_card_not_source_plot_extent"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "PROGRAM_CONFIG",
+            "COMPRESSION_ACQUIRE",
+            "COMPRESSION_RETRACT",
+            "RAW_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_COMP",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_JOINT",
+        "U_LUBE",
+        "U_PROCESS",
+        "U_REPEAT",
+        "U_RESET",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "E_COMP",
+        "E_STIFF"
+      ],
+      "goal": "Compress zero single cell with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "BIFURCATION_CONSTRAINED",
+      "title": "Test bifurcation with guide shafts installed",
+      "family_ids": [
+        "F_PREP",
+        "F_BIF"
+      ],
+      "geometry_ids": [
+        "BIF"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "SENSOR_SETUP",
+        "CALIBRATE",
+        "CELL_MOUNT",
+        "GUIDE_CONFIG",
+        "MOUNT_CHECK",
+        "PROGRAM_CONFIG",
+        "COMPRESSION_ACQUIRE",
+        "COMPRESSION_RETRACT",
+        "RAW_REVIEW",
+        "DERIVE_WORK",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "geometry": "BIF",
+        "guide_condition": "guide_shafts_installed",
+        "free_twist_sign": "observed_not_forced"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "MOUNT_CHECK",
+            "PROGRAM_CONFIG",
+            "COMPRESSION_ACQUIRE",
+            "COMPRESSION_RETRACT",
+            "RAW_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_COMP",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_GUIDE",
+        "U_JOINT",
+        "U_LUBE",
+        "U_PROCESS",
+        "U_REPEAT",
+        "U_RESET",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "E_BIF"
+      ],
+      "goal": "Test bifurcation with guide shafts installed with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "BIFURCATION_FREE",
+      "title": "Test bifurcation with guide shafts removed",
+      "family_ids": [
+        "F_PREP",
+        "F_BIF"
+      ],
+      "geometry_ids": [
+        "BIF"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "SENSOR_SETUP",
+        "CALIBRATE",
+        "CELL_MOUNT",
+        "GUIDE_CONFIG",
+        "MOUNT_CHECK",
+        "PROGRAM_CONFIG",
+        "COMPRESSION_ACQUIRE",
+        "COMPRESSION_RETRACT",
+        "RAW_REVIEW",
+        "DERIVE_WORK",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "geometry": "BIF",
+        "guide_condition": "guide_shafts_removed",
+        "free_twist_sign": "observed_not_forced"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "MOUNT_CHECK",
+            "PROGRAM_CONFIG",
+            "COMPRESSION_ACQUIRE",
+            "COMPRESSION_RETRACT",
+            "RAW_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_COMP",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_GUIDE",
+        "U_JOINT",
+        "U_LUBE",
+        "U_PROCESS",
+        "U_REPEAT",
+        "U_RESET",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "E_BIF"
+      ],
+      "goal": "Test bifurcation with guide shafts removed with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "ONE_BIT_TORQUE",
+      "title": "Measure one-bit torque and state change",
+      "family_ids": [
+        "F_PREP",
+        "F_ONE"
+      ],
+      "geometry_ids": [
+        "MONO",
+        "PAIR"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "PAIR_ASSEMBLE",
+        "PRELOAD_SET",
+        "PRELOAD_LOCK",
+        "CRANK_ATTACH",
+        "OPTICAL_SETUP",
+        "ANGLE_CALIBRATE",
+        "MEMORY_INIT",
+        "MEMORY_PROGRAM",
+        "ONEBIT_ACQUIRE",
+        "RELEASE_TORQUE",
+        "RETENTION_OBSERVE",
+        "RAW_REVIEW",
+        "STATE_REVIEW",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "pair_precompression_mm": 45,
+        "primary_source_measured_direction": "0_to_1",
+        "extra_reverse_instrumented_attempt": "task_authored_if_requested"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "MEMORY_INIT",
+            "MEMORY_PROGRAM",
+            "ONEBIT_ACQUIRE",
+            "RELEASE_TORQUE",
+            "RETENTION_OBSERVE",
+            "RAW_REVIEW",
+            "STATE_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_CRANK",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_JOINT",
+        "U_LUBE",
+        "U_ONEPROGRAM",
+        "U_OPTICAL",
+        "U_PRELOAD",
+        "U_PROCESS",
+        "U_REPEAT",
+        "U_RESET",
+        "U_RETAIN",
+        "U_ROBOT",
+        "U_STATE"
+      ],
+      "evidence_ids": [
+        "E_ONE"
+      ],
+      "goal": "Measure one-bit torque and state change with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "ONE_BIT_MANUAL",
+      "title": "Manipulate and release one-bit memory",
+      "family_ids": [
+        "F_PREP",
+        "F_ONE"
+      ],
+      "geometry_ids": [
+        "MONO",
+        "PAIR"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "PAIR_ASSEMBLE",
+        "PRELOAD_SET",
+        "PRELOAD_LOCK",
+        "OPTICAL_SETUP",
+        "STATE_SENSOR_CHECK",
+        "MEMORY_INIT",
+        "MANUAL_SWITCH",
+        "RELEASE_TORQUE",
+        "RETENTION_OBSERVE",
+        "STATE_REVIEW",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "pair_precompression_mm": 45,
+        "observed_movie_direction": "sampled_frames_include_1_to_0",
+        "state_channel": "qualified_camera_or_optical_card_not_command",
+        "torque_release_variant": "grip_released_and_powered_linkage_absent_or_released"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "MEMORY_INIT",
+            "MANUAL_SWITCH",
+            "RELEASE_TORQUE",
+            "RETENTION_OBSERVE",
+            "STATE_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_JOINT",
+        "U_LUBE",
+        "U_ONEPROGRAM",
+        "U_OPTICAL",
+        "U_PRELOAD",
+        "U_REPEAT",
+        "U_RESET",
+        "U_RETAIN",
+        "U_ROBOT",
+        "U_STATE"
+      ],
+      "evidence_ids": [
+        "E_ONE",
+        "E_MOV5"
+      ],
+      "goal": "Manipulate and release one-bit memory with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "TWO_BIT_00_TO_11",
+      "title": "Record two bit 00 to 11 operation",
+      "family_ids": [
+        "F_PREP",
+        "F_TWO"
+      ],
+      "geometry_ids": [
+        "MONO",
+        "FOUR"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "FOUR_ASSEMBLE",
+        "PRELOAD_SET",
+        "PRELOAD_LOCK",
+        "CRANK_ATTACH",
+        "OPTICAL_SETUP",
+        "ANGLE_CALIBRATE",
+        "MEMORY_INIT",
+        "DRIVE_HANDOFF",
+        "COUPLED_ACQUIRE",
+        "RELEASE_TORQUE",
+        "RETENTION_OBSERVE",
+        "RAW_REVIEW",
+        "STATE_REVIEW",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "cell_h0_mm": [
+          90,
+          90,
+          90,
+          90
+        ],
+        "slot_theta0_deg": [
+          46,
+          -46,
+          46,
+          -46
+        ],
+        "pair_precompression_mm": [
+          50,
+          47.5
+        ],
+        "program_shape": "monotonic_rising_segment",
+        "initialization": "observed_00_required",
+        "preparation": "none_after_00_verified",
+        "coupled_epoch_input": "first_bit_only"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "MEMORY_INIT",
+            "DRIVE_HANDOFF",
+            "COUPLED_ACQUIRE",
+            "RELEASE_TORQUE",
+            "RETENTION_OBSERVE",
+            "RAW_REVIEW",
+            "STATE_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_CRANK",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_JOINT",
+        "U_LUBE",
+        "U_OPTICAL",
+        "U_PRELOAD",
+        "U_PROCESS",
+        "U_PULSE",
+        "U_REPEAT",
+        "U_RESET",
+        "U_RETAIN",
+        "U_ROBOT",
+        "U_STATE"
+      ],
+      "evidence_ids": [
+        "E_TWO",
+        "E_READ",
+        "E_0011"
+      ],
+      "goal": "Record two bit 00 to 11 operation with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "TWO_BIT_01_TO_10",
+      "title": "Record two bit 01 to 10 operation",
+      "family_ids": [
+        "F_PREP",
+        "F_TWO"
+      ],
+      "geometry_ids": [
+        "MONO",
+        "FOUR"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "FOUR_ASSEMBLE",
+        "PRELOAD_SET",
+        "PRELOAD_LOCK",
+        "CRANK_ATTACH",
+        "OPTICAL_SETUP",
+        "ANGLE_CALIBRATE",
+        "MEMORY_INIT",
+        "PREP_TARGET2",
+        "PREP_01",
+        "DRIVE_HANDOFF",
+        "COUPLED_ACQUIRE",
+        "RELEASE_TORQUE",
+        "RETENTION_OBSERVE",
+        "RAW_REVIEW",
+        "STATE_REVIEW",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "cell_h0_mm": [
+          90,
+          90,
+          90,
+          90
+        ],
+        "slot_theta0_deg": [
+          46,
+          -46,
+          46,
+          -46
+        ],
+        "pair_precompression_mm": [
+          50,
+          47.5
+        ],
+        "program_shape": "increasing_then_decreasing_segment",
+        "initialization": "observed_00_required",
+        "preparation": "direct_second_bit_with_first_input_free",
+        "coupled_epoch_input": "first_bit_only"
+      },
+      "loops": [
+        {
+          "loop_id": "trials",
+          "iterator": "trial_id",
+          "values": null,
+          "values_from": "episode.repetition_plan.trials",
+          "cardinality": "positive_integer_required",
+          "reset_between": "RESET_STATE",
+          "identity": "trial ID is not specimen ID",
+          "failure_policy": "Keep all attempts chronologically; failures are not zero measurements; retry links predecessor and does not erase it",
+          "body": [
+            "MEMORY_INIT",
+            "PREP_TARGET2",
+            "PREP_01",
+            "DRIVE_HANDOFF",
+            "COUPLED_ACQUIRE",
+            "RELEASE_TORQUE",
+            "RETENTION_OBSERVE",
+            "RAW_REVIEW",
+            "STATE_REVIEW",
+            "RESET_STATE"
+          ]
+        }
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_CRANK",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_JOINT",
+        "U_LUBE",
+        "U_OPTICAL",
+        "U_PRELOAD",
+        "U_PROCESS",
+        "U_PULSE",
+        "U_REPEAT",
+        "U_RESET",
+        "U_RETAIN",
+        "U_ROBOT",
+        "U_STATE"
+      ],
+      "evidence_ids": [
+        "E_TWO",
+        "E_READ",
+        "E_0110"
+      ],
+      "goal": "Record two bit 01 to 10 operation with attributable observations and safe station closure",
+      "preparation_requirement": "Robot performs selected fabrication and all assembly. A preassembled handoff is permitted only if the episode explicitly changes preparation scope, with actual identity and receipt. It cannot count as fabricated.",
+      "completion": "Each required selected condition has valid acquired evidence and closure; a source-gap stop is partial, not experimental completion",
+      "source_repetition_count": null,
+      "specimen_allocation": "supplied episode card; no historical same-specimen reuse inferred"
+    },
+    {
+      "id": "WHOLE_PAPER_CAMPAIGN",
+      "title": "Prepare and characterize complete reported physical program",
+      "family_ids": [
+        "F_PREP",
+        "F_COMPARE",
+        "F_COMP",
+        "F_BIF",
+        "F_ONE",
+        "F_TWO"
+      ],
+      "subbranch_ids": [
+        "PAPER_TRUSS_COMPARE",
+        "SINGLE_MONOSTABLE",
+        "SINGLE_BISTABLE",
+        "SINGLE_ZERO_STIFFNESS",
+        "BIFURCATION_CONSTRAINED",
+        "BIFURCATION_FREE",
+        "ONE_BIT_TORQUE",
+        "ONE_BIT_MANUAL",
+        "TWO_BIT_00_TO_11",
+        "TWO_BIT_01_TO_10"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_PROCESS",
+        "CUT_UNLOAD",
+        "PRINT_LOAD",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "PART_QC",
+        "MEMBER_ASSEMBLE",
+        "JOINT_ATTACH",
+        "LUBE",
+        "CELL_QC",
+        "PAPER_CUT",
+        "PAPER_FOLD",
+        "COMPARE_FOLD",
+        "COMPARE_OBSERVE",
+        "RESET_STATE",
+        "SAFE_UNLOAD",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "SENSOR_SETUP",
+        "CALIBRATE",
+        "CELL_MOUNT",
+        "MOUNT_CHECK",
+        "PROGRAM_CONFIG",
+        "COMPRESSION_ACQUIRE",
+        "COMPRESSION_RETRACT",
+        "RAW_REVIEW",
+        "DERIVE_WORK",
+        "GUIDE_CONFIG",
+        "PAIR_ASSEMBLE",
+        "PRELOAD_SET",
+        "PRELOAD_LOCK",
+        "CRANK_ATTACH",
+        "OPTICAL_SETUP",
+        "ANGLE_CALIBRATE",
+        "MEMORY_INIT",
+        "MEMORY_PROGRAM",
+        "ONEBIT_ACQUIRE",
+        "RELEASE_TORQUE",
+        "RETENTION_OBSERVE",
+        "STATE_REVIEW",
+        "MANUAL_SWITCH",
+        "FOUR_ASSEMBLE",
+        "DRIVE_HANDOFF",
+        "COUPLED_ACQUIRE",
+        "PREP_TARGET2",
+        "PREP_01",
+        "STIFFNESS_SUMMARY",
+        "COMPARE_SETUP",
+        "STATE_SENSOR_CHECK"
+      ],
+      "required_input_ids": [
+        "U_CAL",
+        "U_COMP",
+        "U_CRANK",
+        "U_FAB",
+        "U_GEOMETRY",
+        "U_GUIDE",
+        "U_JOINT",
+        "U_LUBE",
+        "U_ONEPROGRAM",
+        "U_OPTICAL",
+        "U_PAPER",
+        "U_PRELOAD",
+        "U_PROCESS",
+        "U_PULSE",
+        "U_REPEAT",
+        "U_RESET",
+        "U_RETAIN",
+        "U_ROBOT",
+        "U_STATE"
+      ],
+      "loops": [
+        {
+          "loop_id": "selected_physical_conditions",
+          "iterator": "branch_id",
+          "values": [
+            "PAPER_TRUSS_COMPARE",
+            "SINGLE_MONOSTABLE",
+            "SINGLE_BISTABLE",
+            "SINGLE_ZERO_STIFFNESS",
+            "BIFURCATION_CONSTRAINED",
+            "BIFURCATION_FREE",
+            "ONE_BIT_TORQUE",
+            "ONE_BIT_MANUAL",
+            "TWO_BIT_00_TO_11",
+            "TWO_BIT_01_TO_10"
+          ],
+          "body": "expand selected branch with its own identities, conditions and loops",
+          "required": "all ten conditions; no empty successful loop"
+        }
+      ],
+      "evidence_ids": [
+        "E_GEOM",
+        "E_BUILD",
+        "E_COMP",
+        "E_STIFF",
+        "E_LUBE",
+        "E_BIF",
+        "E_ONE",
+        "E_READ",
+        "E_TWO",
+        "E_0011",
+        "E_0110",
+        "E_MOV1",
+        "E_MOV5",
+        "E_MODEL",
+        "E_PROPOSED_READ",
+        "E_EXTEND",
+        "E_DATA"
+      ],
+      "completion": "All ten required physical configurations plus cross-geometry stiffness comparison and safe closure; any missing execution input yields honest partial status, not loss of task-design scope",
+      "historical_specimen_count": null,
+      "serial_handoff": "00->11 ends at 11; before 01->10 input preparation require independently verified reset to 00 or separately initialized assembly"
+    }
+  ],
+  "cardinality_policy": "Configuration/trial/attempt/cell-slot/specimen counts are distinct; no missing count becomes zero; source SD does not establish an n",
+  "shared_preparation_loops": [
+    {
+      "iterator": "part_id",
+      "values_from": "qualified_BOM",
+      "body": [
+        "PART_QC"
+      ]
+    },
+    {
+      "iterator": "member_id",
+      "values_from": "qualified_member_manifest",
+      "body": [
+        "MEMBER_ASSEMBLE"
+      ]
+    },
+    {
+      "iterator": "joint_id",
+      "values_from": "qualified_joint_manifest",
+      "body": [
+        "JOINT_ATTACH"
+      ]
+    },
+    {
+      "iterator": "cell_slot",
+      "values_from": "selected_assembly_geometry_card",
+      "body": [
+        "CELL_QC"
+      ],
+      "warning": "shared plates keep single identities; card supplies number of parts"
+    }
+  ],
+  "operation_ids_semantics": "Capability/template membership, not a one-pass total order; expand typed loops and station transfer hooks into actual instances"
+}

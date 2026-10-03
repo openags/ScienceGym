@@ -1,0 +1,36 @@
+{
+  "schema_version": "origami_memory_paper_task.v1",
+  "doi": "10.1038/s41467-017-00670-w",
+  "required_global_inputs": [
+    "selected_branch_id",
+    "actual_inventory",
+    "sample_allocation",
+    "qualified_BOM_and_geometry",
+    "station_and_robot_cards",
+    "positive_repetition_plan",
+    "safe_release_and_recovery_cards",
+    "calibration_and_acquisition_cards",
+    "record_destination"
+  ],
+  "qualified_card_fields": [
+    "id",
+    "version",
+    "units",
+    "issuer_or_qualification_basis",
+    "scope",
+    "limits",
+    "acceptance_observations",
+    "safe_stop",
+    "reset_or_blocker"
+  ],
+  "branch_card_rules": {
+    "single_cell": "geometry + spring class + compression program + fixture freedom",
+    "bifurcation": "guide condition + checks + matching policy",
+    "one_bit": "pair topology + 45 mm preload + observed start + selected manipulation/sweep + torque-off verification",
+    "two_bit": "four-slot topology + separate 50/47.5 mm preloads + channels + preparation/coupled epoch programs + safe reset",
+    "paper_compare": "paper net/material/joins + qualitative matching policy + safe manipulation"
+  },
+  "unknown_value_policy": "null is missing, not zero, not a default and not authorization to improvise",
+  "task_input_vs_source": "Every supplied non-source value must be marked task_authored_qualified_input and cannot be reported as historical fact",
+  "preassembled_handoff_policy": "Allowed only as explicitly selected scope variation; record supplier/ID/version and outside-scope fabrication. Whole-paper fabrication goal cannot be completed this way."
+}
