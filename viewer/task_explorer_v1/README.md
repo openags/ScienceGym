@@ -1,8 +1,8 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** Ten public paper-level task families, with reference-route occurrences, partial-order memberships, nested repetition, objects, state transitions and evidence.
+**See the task before reading its JSON.** Thirteen public paper-level task families, with reference-route occurrences, partial-order memberships, nested repetition, objects, state transitions and evidence.
 
-The explorer contains **202 route/configuration records and 1,376 operation definitions**: the existing nine families retain 191 records and 1,320 definitions; directional cooling adds 11 physical route leaves and 56 definitions. These are representation counts, not completed experiments or independent specimens.
+The explorer contains **248 inspection records and 1,533 operation definitions**. The earlier ten families retain 202 records and 1,376 definitions. Three acoustic designs add 46 records and 157 definitions: 20 physical routes/leaves, 22 numerical/theoretical dispositions, three shared-preparation records and one source-defined campaign-accounting record. These are representation counts, not completed experiments or independent specimens.
 
 This is a **read-only author/evaluator logical inspector**, including public reference and evaluator material. It is not a simulator, a task runner, an actor-facing prompt or evidence that a robot performed any operation. This integration adds no new 3D storyboard. The source release has **zero validated runnable whole-paper tasks**.
 
@@ -15,9 +15,9 @@ This is a **read-only author/evaluator logical inspector**, including public ref
 
 GitHub displays HTML source rather than running it. The diagrams and Markdown routes below are readable directly on GitHub.
 
-## Ten visual route maps
+## Thirteen visual route maps
 
-Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01, Acoustic WHOLE_PAPER_PRACTICAL, perovskite SPIN_MODULES, prismatic CUBE_HINGE_COMPARISON EmVP POSITIVE_HELIX and directional cooling TRACKED_STAGNATION. Prismatic views distinguish operation membership, independent subcampaigns, conditional recovery and symbolic loops; they do not turn the membership list into a chronological route. The right-hand index lists every route/configuration choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes/configurations, not just the pictured view.
+Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01, Acoustic WHOLE_PAPER_PRACTICAL, perovskite SPIN_MODULES, prismatic CUBE_HINGE_COMPARISON EmVP POSITIVE_HELIX directional cooling TRACKED_STAGNATION, acoustic wavefront NORMAL_INCIDENCE, bianisotropic MEASURE_60 and acoustic edge SINGLE_EDGE_1D. Prismatic views distinguish operation membership, independent subcampaigns, conditional recovery and symbolic loops; they do not turn the membership list into a chronological route. The right-hand index lists every route/configuration choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes/configurations, not just the pictured view.
 
 | Family | Diagram | Every branch and route |
 | --- | --- | --- |
@@ -31,10 +31,18 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 | Prismatic metamaterials | [Full SVG](diagrams/prismatic.svg) | [12 route/configuration records across seven practical families](docs/prismatic.md) |
 | Embedded extrusion-volumetric printing | [Full SVG](diagrams/emvp.svg) | [19 configurations across five practical families](docs/emvp.md) |
 | Directional radiative cooling | [Full SVG](diagrams/cooling.svg) | [11 physical route leaves, six symbolic loop contracts](docs/cooling.md) |
+| Acoustic wavefront modulation | [Full SVG](diagrams/wavefront.svg) | [10 physical routes + 8 numerical/theory dispositions](docs/wavefront.md) |
+| Bianisotropic acoustic metasurfaces | [Full SVG](diagrams/bianisotropic.svg) | [3 physical + 11 numerical/theory branches](docs/bianisotropic.md) |
+| Acoustic edge detection | [Full SVG](diagrams/edge.svg) | [7 acquisition + 3 shared preparation + 3 numerical + 1 campaign-accounting records](docs/edge.md) |
 
 ![Chiral first reference route and all branch choices](diagrams/chiral.svg)
 
 ## What the graph means
+
+- New acoustic operation lists remain unordered memberships under 142 explicit dependency edges. Numerical/theoretical records are labeled separately and never promoted to physical measurements. Metadata-only numerical views have no invented operation IDs; selecting them clears the physical-operation inspector
+- Wavefront preserves seven global symbolic loop scopes and fifteen input gates. Bianisotropic retains seven branch-local loop records and eighteen unknown-input groups, including explicitly non-execution-blocking caveats. Edge preserves five loop contracts and fourteen unknown groups
+- Edge manufactured and supplied-target preparations are mutually exclusive alternatives. Repeated TRANSFER display entries remain distinct. WHOLE_PAPER is a campaign-accounting view with separate complete/abort closure contracts, not a new acquisition leaf
+- Acoustic display entries are navigation positions, not instantiated episode/branch/object/run/iteration occurrences. No repeats, actual station transfers or missing cards are silently satisfied
 
 - Scientific stages may be source-reported; robot interfaces, transport, fixture handling and recovery are separately authored task designs
 - For ordered reference sequences, dashed connectors and downward UI arrows indicate the package's **reference list order**, not recovered author chronology or the only valid robot trajectory
@@ -60,11 +68,11 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 - `data/<family>.json`: compact, inspectable normalized records
 - `data/<family>.js`: the same JSON as a local-script assignment so `file://` does not require fetch
 - `diagrams/*.svg`, `docs/<family>.md`: GitHub-native alternatives
-- `build.py`: ten explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
-- `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_cooling.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
+- `build.py` and `acoustic_adapters.py`: thirteen explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
+- `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_cooling.py`, `tests/test_acoustic_designs.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 
-Cooling source links are pinned separately to [9a9472b996145ff7f7a4c138c7477b4e734d8835](https://github.com/openags/ScienceGym/tree/9a9472b996145ff7f7a4c138c7477b4e734d8835), which includes its reviewed package. The earlier nine-family immutable source snapshot is [openags/ScienceGym at 293e32da790303c1a17131e036235f69a5f342e0](https://github.com/openags/ScienceGym/tree/293e32da790303c1a17131e036235f69a5f342e0). Every source JSON link is pinned to its family-specific historical commit. The manifests record these per-family pins; their legacy `commit` / `source_commit` fields retain the earlier snapshot meaning. Per-file SHA-256 values describe the local task files used to build this viewer. The 2026-10-03 standalone-presentation update changes scene-binding wording in three local perovskite metadata files; those local hashes therefore differ from the linked historical bytes, while scientific task contracts remain unchanged. See [verification](VERIFICATION.md). The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
+The three new acoustic source packages are pinned to [162905c0aeebd6da5eb9794df118458c24bb7d63](https://github.com/openags/ScienceGym/tree/162905c0aeebd6da5eb9794df118458c24bb7d63). Cooling source links are pinned separately to [9a9472b996145ff7f7a4c138c7477b4e734d8835](https://github.com/openags/ScienceGym/tree/9a9472b996145ff7f7a4c138c7477b4e734d8835), which includes its reviewed package. The earlier nine-family immutable source snapshot is [openags/ScienceGym at 293e32da790303c1a17131e036235f69a5f342e0](https://github.com/openags/ScienceGym/tree/293e32da790303c1a17131e036235f69a5f342e0). Every source JSON link is pinned to its family-specific historical commit. The manifests record these per-family pins; their legacy `commit` / `source_commit` fields retain the earlier snapshot meaning. Per-file SHA-256 values describe the local task files used to build this viewer. The 2026-10-03 standalone-presentation update changes scene-binding wording in three local perovskite metadata files; those local hashes therefore differ from the linked historical bytes, while scientific task contracts remain unchanged. See [verification](VERIFICATION.md). The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
 
 ## Rebuild and test
 

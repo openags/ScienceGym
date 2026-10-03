@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for ten public task schemas."""
-import argparse, json, pathlib, hashlib, html, textwrap
+"""Deterministic, standard-library-only adapters for thirteen public task schemas."""
+import argparse, json, pathlib, hashlib, html, textwrap, sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from acoustic_adapters import adapt_wavefront, adapt_bianisotropic, adapt_edge, ACOUSTIC_COMMIT, PACKAGES as ACOUSTIC_PACKAGES
 ROOT=pathlib.Path(__file__).resolve().parent
 COMMIT='293e32da790303c1a17131e036235f69a5f342e0'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
 COOLING_COMMIT='9a9472b996145ff7f7a4c138c7477b4e734d8835'
-SOURCE_COMMITS={'cooling':COOLING_COMMIT}
+SOURCE_COMMITS={'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
 def source_commit(key): return SOURCE_COMMITS.get(key,COMMIT)
 def source_base(key): return f'https://github.com/openags/ScienceGym/blob/{source_commit(key)}/tasks/'
 NAMES={'cooling':'Directional radiative cooling','emvp':'Embedded extrusion-volumetric printing','prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
@@ -450,7 +452,7 @@ def adapt_emvp(p):
     return f
 
 # This schema names its package differently from the public navigation key.
-PACKAGE_NAMES={'cooling':'directional_cooling_operations_v2'}
+PACKAGE_NAMES={'cooling':'directional_cooling_operations_v2', **ACOUSTIC_PACKAGES}
 def package_name(key): return PACKAGE_NAMES.get(key,key+'_operations_v2')
 
 # Explicit source-loop scopes. These bind metadata only, never expanded bodies.
@@ -543,7 +545,7 @@ def adapt_cooling(p):
             'detail':without(r,{'id','title'}),'source_file':'branches.json','source_pointer':f'/branches/{i}'})
     return f
 
-ADAPTERS={'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
+ADAPTERS={'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
 
 def walk(nodes,depth=0):
     for n in nodes:
@@ -595,6 +597,10 @@ def svg(f):
         result=result.replace('· every listed step', '· unordered membership')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows: dependencies require receipts. Loops, sample allocation and physical transfers remain obligations.')
         result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only.', 'Unordered operation membership for the designated leaf, plus all 11 physical route leaves. No chronological adjacency edges are inferred.')
+    if f['id'] in ACOUSTIC_PACKAGES:
+        result=result.replace('· every listed step', '· unordered membership')
+        result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows. Physical, numerical, shared-preparation and campaign records remain distinct; nothing is executed.')
+        result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', 'Unordered operation membership for one physical design, with a complete index that labels numerical dispositions separately. Loop contracts are unexpanded metadata and missing inputs remain blocked.')
     result=result.replace('<text ', '<text font-family="Arial, sans-serif" ')
     result=result.replace('class="muted"', 'fill="#a9b7c8" font-size="16"').replace('class="small"', 'fill="#a9b7c8" font-size="14"').replace('class="title"', 'fill="#f4f7fc" font-weight="700"')
     return result
@@ -614,6 +620,14 @@ def md(f):
                 if n.get('meta'):lines.append(indent+'  - Binding: '+json.dumps(n['meta'],ensure_ascii=False,separators=(',',':')))
         lines.extend(['','<details><summary>Branch state, choices, lineage and loop obligations</summary>','', '```json',json.dumps({k:resolve(f,v) for k,v in r['detail'].items()},ensure_ascii=False,indent=2),'```','','</details>',''])
     lines.extend(['## Operation contracts','','Every operation is clickable in the offline inspector, with robot actions, target objects, pre/post state, provenance, unknowns and acceptance/recovery. Raw task JSON is the source of truth; this visualization is a public evaluator/reference view, not an agent prompt.',''])
+    if f['id'] in ACOUSTIC_PACKAGES:
+        lines.extend(['## Reference contracts and boundaries', '',
+          'Representation counts: ' + json.dumps(f['summary_counts'], ensure_ascii=False) + '.', '',
+          'The complete source contracts remain in the inspector, including unknown inputs, source conflicts, allocation/lineage, dependencies, actor allowlists and independent source audits. Numerical work is distinct from physical preparation and acquisition. All operation lists are membership; no chronology, new schedule, default value, sample count or observed result is inferred.', '',
+          'This public author/evaluator inspector is not actor-safe input. No runtime projection, solver, task loader, physical simulation, new storyboard or robot execution is implemented.', ''])
+        for name, entry in f['source_files'].items():
+            lines.append(f'- [{name}]({entry["url"]})')
+        lines.append('')
     if f['id']=='cooling':
         lines.extend(['## Reference contracts and boundaries','',
           'All 56 operations, 11 physical route leaves, 6 loop contracts and 14 unresolved input gates are retained. Each operation list is membership under explicit receipt dependencies, not a mandatory chronology. Symbolic loop metadata preserves original bodies, counts and nesting text without adding repeated operation occurrences or guessed schedules.','',
@@ -641,7 +655,7 @@ def md(f):
         result='\n'.join(lines)
         return result.replace('numbered rows preserve reference-list occurrences.', 'rows show unordered template membership; only declared dependencies impose order.')
     result='\n'.join(lines)
-    if f['id']=='cooling':
+    if f['id']=='cooling' or f['id'] in ACOUSTIC_PACKAGES:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows preserve source operation membership once, without chronology. Loop bodies, count text and nesting obligations are retained as metadata, not added occurrences or executed repetitions.')
     return result
 

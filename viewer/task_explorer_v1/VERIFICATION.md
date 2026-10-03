@@ -1,10 +1,34 @@
-# Verification: ten-family task explorer
+# Verification: thirteen-family task explorer
 
 Earlier nine-family source links remain pinned to public ScienceGym commit `293e32da790303c1a17131e036235f69a5f342e0`. Cooling source links are pinned to verified commit `9a9472b996145ff7f7a4c138c7477b4e734d8835`. The per-family source commit map is recorded in both manifests; their legacy singular commit fields still identify the earlier snapshot.
 
-## Directional-cooling integration, 2026-10-03
 
-The current explorer contains **10 families, 202 route/configuration records and 1,376 operation definitions**. Directional cooling contributes **56 operations, 11 physical route leaves, six symbolic loop contracts and 14 unresolved input gates**. All 62 source dependency edges, eight conditional gates, ten controls, 13 input cards, source evidence, sample lineage and station-transfer obligations are retained. The 189 added displayed operation positions are membership references, not performed transfers, experiments, repetitions or successes.
+## Three-acoustic-design integration, 2026-10-03
+
+The current explorer contains **13 families, 248 inspection records and 1,533 operation definitions**. The earlier ten families retain 202 records and 1,376 definitions. Three explicit adapters add 157 definitions and 46 inspection records:
+
+| Family | Definitions | Physical routes/leaves | Numerical/theory records | Other records |
+| --- | ---: | ---: | ---: | --- |
+| Wavefront modulation | 69 | 10 | 8 | None |
+| Bianisotropic metasurfaces | 42 | 3 | 11 | None |
+| Acoustic edge detection | 46 | 7 | 3 | 3 shared preparation + 1 source-defined campaign accounting |
+
+Counts describe representations, not observations, repetitions or independently fabricated specimens. Bianisotropic's eighteen unknown groups include explicitly non-execution-blocking caveats; they are not relabeled as eighteen universal gates. The release still has **19 task designs, 2 embodied storyboards and 0 validated robot executions**.
+
+- **129/129 source-bound Python explorer tests pass with zero skips**: the existing 93 checks remain, plus 36 new acoustic checks. Every operation field reconstructs its original source record; every route detail, dependency, loop contract, additional JSON context, audit, hash and source pointer is compared. Adversarial fixtures reject physical/numerical mixing, fabricated defaults, changed/null loop counts, flattened branch-scoped loops, lost transfers, missing handoffs, merged target/campaign alternatives, misplaced actor exports, invented execution receipts and source-pin changes
+- Mocked-DOM checks pass for **248 records and 10,770 displayed operation entries**, including eleven metadata-only numerical views. These views clear stale physical-operation details. Tests preserve repeated TRANSFER navigation, exclusive target alternatives, campaign closure roles, source status labels, search, tabs, repeated clicks, immutable data, invalid hashes and hash-based history restoration. Display entries are not actual episode/run/object/iteration occurrences
+- All **11/11 root static-check groups pass**, including **19 verifier regression tests**, **77 unchanged scene-binding negative fixtures**, **21 JavaScript syntax checks**, all three mocked-DOM suites and **220 image-hash assertions across 71 frames / 75 unique images**
+- The three unchanged source-package suites pass **82/82 wavefront, 49/49 bianisotropic and 62/62 edge tests**. Bianisotropic's lawful private main/SI source packet was available for its optional source-byte test, so it passed with no skip. The wavefront and edge standalone static/export verifiers also pass. These checks do not validate physical feasibility or authentic hardware receipts
+- The complete **614 task-package, embodied-storyboard, scene-binding and LICENSE files** are byte-identical to the supplied 689-file base. All **40 earlier-family generated JSON, JavaScript, Markdown and SVG files** are byte-identical. Root contributor documents, project vision, source packages, historical manifests and scene bindings are preserved
+- Full rebuild and each new-family-only rebuild are deterministic; the complete inventory and release checksums are regenerated. JSON and local-script payloads match exactly. The single-file offline export passes the same mocked-DOM suite and contains no external runtime dependencies
+- Six static SVG variants were rendered with Inkscape: the three physical defaults, wavefront N_COUPLE, edge F_TARGET and edge WHOLE_PAPER. Actual pixels were inspected for branch labels, exclusive alternatives, campaign boundaries and absent chronological adjacency arrows. All 46 new route-specific SVG variants parse without adjacency arrows. These are diagram renders, not browser screenshots
+- New acoustic source links are pinned to **162905c0aeebd6da5eb9794df118458c24bb7d63**. Earlier family source links, local-source hashes and the historical perovskite presentation caveat retain their original meaning
+
+The previously denied browser file/localhost route was not retried or bypassed. Actual browser rendering, responsive/touch layout, focus and native Back/Forward behavior remain unverified. No new task execution, physical simulation, solver, actor projection, embodied storyboard, source media, third-party asset or remote write is included.
+
+## Historical directional-cooling integration, 2026-10-03
+
+At that integration stage, the explorer contained **10 families, 202 route/configuration records and 1,376 operation definitions**. Directional cooling contributes **56 operations, 11 physical route leaves, six symbolic loop contracts and 14 unresolved input gates**. All 62 source dependency edges, eight conditional gates, ten controls, 13 input cards, source evidence, sample lineage and station-transfer obligations are retained. The 189 added displayed operation positions are membership references, not performed transfers, experiments, repetitions or successes.
 
 - **93/93 source-bound Python explorer tests pass with zero skips**, including 25 independently authored cooling regressions. These check every operation field, route membership, context and dependency record; loop applicability, separate map leaves and work-order allocation; null counts; conditional nighttime/current-assembly gates; transport/instrument binding; source hashes/pointers; evidence URLs; JSON/JavaScript parity; malformed membership/loop rejection; deterministic pooling and reference-only boundaries
 - The unchanged cooling package's **38/38 static and synthetic-record tests pass**. No source-byte acquisition or new scientific validation was performed
