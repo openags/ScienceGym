@@ -1,0 +1,1496 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 12,
+  "families": [
+    {
+      "id": "F_CARD",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "CARD_ALIGN",
+        "CARD_JOIN",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ]
+    },
+    {
+      "id": "F_COMP",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "FACE_PAIR",
+        "ASSEMBLE",
+        "SAMPLE_QC",
+        "FIXTURE_QC",
+        "COMP_MOUNT",
+        "COMP_CONFIG",
+        "COMP_LOAD",
+        "COMP_UNLOAD",
+        "COMP_REPEAT",
+        "COMP_AGG",
+        "COMP_UNMOUNT",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ]
+    },
+    {
+      "id": "F_TETRA",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "FACE_PAIR",
+        "ASSEMBLE",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ]
+    },
+    {
+      "id": "F_CUBE",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "FACE_PAIR",
+        "ASSEMBLE",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "CUBE_SWITCH",
+        "CUBE_COMPARE",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ]
+    },
+    {
+      "id": "F_ARRAY",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "ARRAY_PREP",
+        "ARRAY_JOIN",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARRAY_CLASSIFY",
+        "ARRAY_THICKNESS",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ]
+    },
+    {
+      "id": "F_SI6",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "SI_HANDOFF",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "SI_COMPARE",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ]
+    },
+    {
+      "id": "F_PNEU",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "PNEU_PREP",
+        "SAMPLE_QC",
+        "PNEU_CONNECT",
+        "PNEU_PROGRAM",
+        "PNEU_ACTUATE",
+        "PNEU_VENT",
+        "PNEU_DISCONNECT",
+        "PNEU_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ]
+    }
+  ],
+  "branches": [
+    {
+      "id": "CARD_TRUNCATED_TETRAHEDRON",
+      "title": "Cardboard truncated tetrahedron",
+      "family_ids": [
+        "F_CARD"
+      ],
+      "geometry_ids": [
+        "truncated_tetrahedron"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "CARD_ALIGN",
+        "CARD_JOIN",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "card_joints",
+          "iterator": "joint_id",
+          "values": null,
+          "values_from": "geometry_card.joint_ids",
+          "body": [
+            "CARD_ALIGN",
+            "CARD_JOIN"
+          ],
+          "status": "unknown_card_required"
+        },
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": null,
+          "values_status": "displayed_states_require_supplied_target_cards",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_CUT",
+        "U_ACTUATION",
+        "U_TARGETS",
+        "U_TOLERANCE",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "CARD"
+      ],
+      "goal": "Build the selected cardboard demonstrator, document bounded state-change attempts and archive its observed outcomes",
+      "identity_policy": "One allocated specimen identity per work order; any replacement has a new ID; source historical counts unresolved",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "sequential_then_nested",
+        "setup_loop": "card_joints",
+        "observation_nesting": [
+          "target_attempts",
+          "attempts_per_target"
+        ],
+        "required_record_key": [
+          "sample_id",
+          "target_id",
+          "attempt_index"
+        ]
+      }
+    },
+    {
+      "id": "CARD_TRUNCATED_CUBE",
+      "title": "Cardboard truncated cube",
+      "family_ids": [
+        "F_CARD"
+      ],
+      "geometry_ids": [
+        "truncated_cube"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "CARD_ALIGN",
+        "CARD_JOIN",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "card_joints",
+          "iterator": "joint_id",
+          "values": null,
+          "values_from": "geometry_card.joint_ids",
+          "body": [
+            "CARD_ALIGN",
+            "CARD_JOIN"
+          ],
+          "status": "unknown_card_required"
+        },
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": null,
+          "values_status": "displayed_states_require_supplied_target_cards",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_CUT",
+        "U_ACTUATION",
+        "U_TARGETS",
+        "U_TOLERANCE",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "CARD"
+      ],
+      "goal": "Build the selected cardboard demonstrator, document bounded state-change attempts and archive its observed outcomes",
+      "identity_policy": "One allocated specimen identity per work order; any replacement has a new ID; source historical counts unresolved",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "sequential_then_nested",
+        "setup_loop": "card_joints",
+        "observation_nesting": [
+          "target_attempts",
+          "attempts_per_target"
+        ],
+        "required_record_key": [
+          "sample_id",
+          "target_id",
+          "attempt_index"
+        ]
+      }
+    },
+    {
+      "id": "CARD_CUBOCTAHEDRON",
+      "title": "Cardboard cuboctahedron",
+      "family_ids": [
+        "F_CARD"
+      ],
+      "geometry_ids": [
+        "cuboctahedron"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "CARD_ALIGN",
+        "CARD_JOIN",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "card_joints",
+          "iterator": "joint_id",
+          "values": null,
+          "values_from": "geometry_card.joint_ids",
+          "body": [
+            "CARD_ALIGN",
+            "CARD_JOIN"
+          ],
+          "status": "unknown_card_required"
+        },
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": null,
+          "values_status": "displayed_states_require_supplied_target_cards",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_CUT",
+        "U_ACTUATION",
+        "U_TARGETS",
+        "U_TOLERANCE",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "CARD"
+      ],
+      "goal": "Build the selected cardboard demonstrator, document bounded state-change attempts and archive its observed outcomes",
+      "identity_policy": "One allocated specimen identity per work order; any replacement has a new ID; source historical counts unresolved",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "sequential_then_nested",
+        "setup_loop": "card_joints",
+        "observation_nesting": [
+          "target_attempts",
+          "attempts_per_target"
+        ],
+        "required_record_key": [
+          "sample_id",
+          "target_id",
+          "attempt_index"
+        ]
+      }
+    },
+    {
+      "id": "PLA_MYLAR_CYCLIC",
+      "title": "PLA/Mylar cyclic compression",
+      "family_ids": [
+        "F_COMP"
+      ],
+      "geometry_ids": [
+        "cuboctahedron"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "FACE_PAIR",
+        "ASSEMBLE",
+        "SAMPLE_QC",
+        "FIXTURE_QC",
+        "COMP_MOUNT",
+        "COMP_CONFIG",
+        "COMP_LOAD",
+        "COMP_UNLOAD",
+        "COMP_REPEAT",
+        "COMP_AGG",
+        "COMP_UNMOUNT",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "face_pairs",
+          "iterator": "face_id",
+          "values": null,
+          "values_from": "geometry_card.face_ids",
+          "body": [
+            "FACE_PAIR"
+          ],
+          "status": "unknown_card_required"
+        },
+        {
+          "loop_id": "cycles",
+          "iterator": "cycle_index",
+          "count": null,
+          "count_from": "compression_card.total_cycles",
+          "minimum_for_summary": 5,
+          "body": [
+            "COMP_LOAD",
+            "COMP_UNLOAD"
+          ],
+          "aggregation": "Chronological last five complete cycles of the declared run; invalid final cycles yield incomplete, never select older good cycles",
+          "historical_total": "unresolved_last_five_does_not_establish_conditioning_history"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_PRINT",
+        "U_CUT",
+        "U_LENGTH",
+        "U_LOAD",
+        "U_CYCLES",
+        "U_AGGREGATION",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "goal": "Fabricate the cuboctahedral PLA/Mylar specimen, collect both legs of the declared cyclic-compression run and summarize its actual last five cycles",
+      "identity_policy": "Cycles are repeated measures on the same identified sample/version/run; independent specimen count remains unspecified",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "sequential_stages",
+        "stages": [
+          {
+            "loop": "face_pairs",
+            "input": "geometry_card.face_ids"
+          },
+          {
+            "loop": "cycles",
+            "input": "compression_card.total_cycles"
+          }
+        ],
+        "per_cycle_order": [
+          "COMP_LOAD",
+          "COMP_UNLOAD"
+        ],
+        "summary_after": "declared_run_completed",
+        "required_record_key": [
+          "sample_id",
+          "assembly_version",
+          "run_id",
+          "cycle_index",
+          "leg"
+        ]
+      }
+    },
+    {
+      "id": "TETRA_REACH_RELEASE",
+      "title": "Tetrahedron reachability and relaxation",
+      "family_ids": [
+        "F_TETRA"
+      ],
+      "geometry_ids": [
+        "truncated_tetrahedron"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "FACE_PAIR",
+        "ASSEMBLE",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": [
+            "i",
+            "ii",
+            "iii",
+            "iv",
+            "v",
+            "vi",
+            "vii",
+            "viii",
+            "ix",
+            "x",
+            "xi",
+            "xii",
+            "xiii",
+            "xiv",
+            "xv",
+            "xvi",
+            "xvii"
+          ],
+          "values_status": "17_target_labels_from_Fig4_not_17_specimens",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_PRINT",
+        "U_CUT",
+        "U_ACTUATION",
+        "U_TARGETS",
+        "U_REPLICATES",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "TETRA"
+      ],
+      "goal": "Attempt the 17 supplied configurations within the permitted actuation envelope and distinguish loaded reachability from post-release outcomes",
+      "identity_policy": "Reuse is permitted only with a safe documented reset; every attempt references the same sample or an explicit replacement",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "nested",
+        "outer": "target_attempts",
+        "inner": [
+          "attempts_per_target"
+        ],
+        "required_record_key": [
+          "sample_id",
+          "target_id",
+          "attempt_index"
+        ]
+      }
+    },
+    {
+      "id": "CUBE_HINGE_COMPARISON",
+      "title": "Cube hinge-material comparison",
+      "family_ids": [
+        "F_CUBE"
+      ],
+      "geometry_ids": [
+        "cube"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "FACE_PAIR",
+        "ASSEMBLE",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "CUBE_SWITCH",
+        "CUBE_COMPARE",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "hinge_material",
+          "iterator": "condition_id",
+          "values": [
+            "mylar",
+            "elastomer_0p5mm"
+          ],
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE",
+            "TARGET_SUMMARY"
+          ],
+          "between_conditions": [
+            "CUBE_SWITCH"
+          ],
+          "identity_option": "Explicit matched separate specimens or supported same-body new-version hinge replacement, chosen in episode card"
+        },
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": [
+            "i",
+            "ii",
+            "iii",
+            "iv",
+            "v",
+            "vi",
+            "vii",
+            "viii"
+          ],
+          "values_status": "8_model_target_labels_not_sample_count",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_PRINT",
+        "U_CUT",
+        "U_ACTUATION",
+        "U_ELASTOMER",
+        "U_TARGETS",
+        "U_HISTORY",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "CUBE"
+      ],
+      "goal": "Compare the bounded target and release outcomes of Mylar- and elastomer-hinged cubes without discarding failures",
+      "identity_policy": "Material changes require new physical components and assembly version or new matched sample; do not silently relabel or count replacement as an independent specimen",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "nested",
+        "outer": "hinge_material",
+        "inner": [
+          "target_attempts",
+          "attempts_per_target"
+        ],
+        "order": "Finish or explicitly block the material-specific target inventory before material exchange/next matched specimen",
+        "required_record_key": [
+          "sample_id",
+          "assembly_version",
+          "condition_id",
+          "target_id",
+          "attempt_index"
+        ],
+        "condition_target_grid": {
+          "conditions": [
+            "mylar",
+            "elastomer_0p5mm"
+          ],
+          "targets": [
+            "i",
+            "ii",
+            "iii",
+            "iv",
+            "v",
+            "vi",
+            "vii",
+            "viii"
+          ],
+          "cartesian_product_required": true,
+          "minimum_distinct_condition_target_cells": 16,
+          "counts_are": "scheduled condition-target cells, not samples or successful retained states"
+        }
+      }
+    },
+    {
+      "id": "ARRAY_THICKNESS_PAIR",
+      "title": "Finite-array thickness control",
+      "family_ids": [
+        "F_ARRAY"
+      ],
+      "geometry_ids": [
+        "cuboctahedron_2x2x2"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "ARRAY_PREP",
+        "ARRAY_JOIN",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARRAY_CLASSIFY",
+        "ARRAY_THICKNESS",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "array_thickness",
+          "iterator": "condition_id",
+          "values": [
+            "mylar_50um",
+            "mylar_125um"
+          ],
+          "body": [
+            "ARRAY_PREP",
+            "ARRAY_JOIN",
+            "SAMPLE_QC",
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE",
+            "TARGET_SUMMARY",
+            "ARRAY_CLASSIFY"
+          ],
+          "independent_samples": "Source explicitly reports a second thicker-sheet sample; episode supplies separate IDs for thickness conditions"
+        },
+        {
+          "loop_id": "array_slots",
+          "iterator": "slot_xyz",
+          "values": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "body": [
+            "ARRAY_PREP",
+            "ARRAY_JOIN"
+          ],
+          "semantics": "8 unit slots inside one array, not 8 experimental specimens"
+        },
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": null,
+          "values_status": "bulk_target_geometry_cards_missing",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_ARRAY_FACE",
+        "U_ARRAY_TOPOLOGY",
+        "U_ACTUATION",
+        "U_TARGETS",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "ARRAY"
+      ],
+      "goal": "Prepare and compare the 50 and 125 micrometre Mylar finite arrays using matched attempted target conditions",
+      "identity_policy": "Two separately identified thickness-condition arrays; eight unit identities belong to each parent assembly, not 16 independent experimental replicates",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "nested_with_setup",
+        "outer": "array_thickness",
+        "per_outer_setup_loop": "array_slots",
+        "inner": [
+          "target_attempts",
+          "attempts_per_target"
+        ],
+        "unit_slots_per_outer": 8,
+        "required_record_key": [
+          "array_id",
+          "assembly_version",
+          "condition_id",
+          "target_id",
+          "attempt_index"
+        ],
+        "condition_target_grid": {
+          "conditions": [
+            "mylar_50um",
+            "mylar_125um"
+          ],
+          "targets_from": "array_card.bulk_target_ids",
+          "cartesian_product_required": true,
+          "null_target_list_blocks": true
+        },
+        "slot_identity_scope": "Eight distinct unit IDs per separately identified array; no unit belongs simultaneously to both arrays"
+      }
+    },
+    {
+      "id": "ARRAY_BOUNDARY_LONG",
+      "title": "Finite-array boundary and longer-period states",
+      "family_ids": [
+        "F_ARRAY"
+      ],
+      "geometry_ids": [
+        "cuboctahedron_2x2x2"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "ARRAY_PREP",
+        "ARRAY_JOIN",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARRAY_CLASSIFY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "target_class",
+          "iterator": "condition_id",
+          "values": [
+            "bulk_compatible",
+            "edge_or_corner",
+            "longer_than_one_cell"
+          ],
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE",
+            "TARGET_SUMMARY",
+            "ARRAY_CLASSIFY"
+          ],
+          "source_scope": "Observed finite-boundary/longer-period effects, not all possible edge or corner states"
+        },
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": null,
+          "values_status": "target_geometries_and_count_require_public_card",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_ARRAY_FACE",
+        "U_ARRAY_TOPOLOGY",
+        "U_ACTUATION",
+        "U_TARGETS",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "ARRAY"
+      ],
+      "goal": "Record finite-array bulk, boundary and longer-period configuration attempts with per-cell observations",
+      "identity_policy": "May reuse an explicit thin-array parent from another branch only with history, starting state and safe transfer; reuse is never assumed",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "nested",
+        "outer": "target_class",
+        "inner": [
+          "target_ids_for_class",
+          "attempts_per_target"
+        ],
+        "target_ids_from": "array_card.targets_by_class",
+        "required_record_key": [
+          "array_id",
+          "target_class",
+          "target_id",
+          "attempt_index"
+        ],
+        "required_classes": [
+          "bulk_compatible",
+          "edge_or_corner",
+          "longer_than_one_cell"
+        ],
+        "null_class_target_list_blocks": true
+      }
+    },
+    {
+      "id": "SI6_TRUNCATED_CUBE",
+      "title": "SI6 truncated cube comparisons",
+      "family_ids": [
+        "F_SI6"
+      ],
+      "geometry_ids": [
+        "truncated_cube"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "SI_HANDOFF",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "SI_COMPARE",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "values_status": "11_selected_displayed_model_physical_pairs_not_exhaustive_or_replicate_count",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_SI_MATERIAL",
+        "U_GEOM",
+        "U_ACTUATION",
+        "U_TARGETS",
+        "U_HISTORY",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "SI6"
+      ],
+      "goal": "Compare observed configurations with the selected SI6 target-view cards, preserving uncertain matches and release behavior",
+      "identity_policy": "Published pictures do not establish number/reuse of historical specimens; episode manifest explicitly allocates/reuses specimens",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "nested",
+        "outer": "target_attempts",
+        "inner": [
+          "attempts_per_target"
+        ],
+        "required_record_key": [
+          "sample_id",
+          "target_id",
+          "attempt_index"
+        ]
+      }
+    },
+    {
+      "id": "SI6_RHOMBICUBOCTAHEDRON",
+      "title": "SI6 rhombicuboctahedron comparisons",
+      "family_ids": [
+        "F_SI6"
+      ],
+      "geometry_ids": [
+        "rhombicuboctahedron"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "SI_HANDOFF",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "SI_COMPARE",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "target_attempts",
+          "iterator": "target_id",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "values_status": "15_selected_displayed_model_physical_pairs_not_exhaustive_or_replicate_count",
+          "inner_repetitions": {
+            "input": "attempts_per_target",
+            "value": null,
+            "status": "task_input_not_reported_independent_replicates"
+          },
+          "body": [
+            "TARGET_STAGE",
+            "ACTUATE",
+            "RELEASE",
+            "OBSERVE",
+            "RESET_STATE"
+          ],
+          "failed_attempts": "Retain every attempt; no target is forced to be retained after release",
+          "stop": "Stop current attempt at public actuation/contact limit; mark unattempted targets blocked when safe reset/sample integrity is unavailable"
+        }
+      ],
+      "required_input_ids": [
+        "U_SI_MATERIAL",
+        "U_GEOM",
+        "U_ACTUATION",
+        "U_TARGETS",
+        "U_HISTORY",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "SI6"
+      ],
+      "goal": "Compare observed configurations with the selected SI6 target-view cards, preserving uncertain matches and release behavior",
+      "identity_policy": "Published pictures do not establish number/reuse of historical specimens; episode manifest explicitly allocates/reuses specimens",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "nested",
+        "outer": "target_attempts",
+        "inner": [
+          "attempts_per_target"
+        ],
+        "required_record_key": [
+          "sample_id",
+          "target_id",
+          "attempt_index"
+        ]
+      }
+    },
+    {
+      "id": "PNEUMATIC_TWO_POUCH",
+      "title": "Text-reported two-pouch demonstration",
+      "family_ids": [
+        "F_PNEU"
+      ],
+      "geometry_ids": [
+        "truncated_tetrahedron"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "PNEU_PREP",
+        "SAMPLE_QC",
+        "PNEU_CONNECT",
+        "PNEU_PROGRAM",
+        "PNEU_ACTUATE",
+        "PNEU_VENT",
+        "PNEU_DISCONNECT",
+        "PNEU_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT"
+      ],
+      "loops": [
+        {
+          "loop_id": "pneumatic_programs",
+          "iterator": "program_id",
+          "values": null,
+          "values_from": "pneumatic_card.program_ids",
+          "body": [
+            "PNEU_PROGRAM",
+            "PNEU_ACTUATE",
+            "PNEU_VENT"
+          ],
+          "reported_context": "Two pouches and four states only; command/state mapping, program count and trajectories are unknown",
+          "reset": "Each program requires verified starting state; qualified reset or new specimen receipt before next program"
+        }
+      ],
+      "required_input_ids": [
+        "U_GEOM",
+        "U_POUCH",
+        "U_ACTUATION",
+        "U_HISTORY",
+        "U_ROBOT"
+      ],
+      "evidence_ids": [
+        "PNEU"
+      ],
+      "goal": "Prepare the two-pouch setup and record the supplied bounded actuation programs and load-off outcomes; stop if required program inputs are absent",
+      "identity_policy": "Two pouch components are attached to one allocated sample, not two independent specimens; four reported states do not establish four commands or specimens",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "nested",
+        "outer": "pneumatic_programs",
+        "inner": [
+          "attempts_per_program"
+        ],
+        "counts_from": "pneumatic_card.program_ids and repetitions",
+        "required_record_key": [
+          "sample_id",
+          "program_id",
+          "attempt_index"
+        ],
+        "null_program_list_blocks": true,
+        "no_inferred_four_programs": true
+      }
+    },
+    {
+      "id": "WHOLE_PAPER_PRACTICAL",
+      "title": "Whole-paper practical campaign",
+      "family_ids": [
+        "F_CARD",
+        "F_COMP",
+        "F_TETRA",
+        "F_CUBE",
+        "F_ARRAY",
+        "F_SI6",
+        "F_PNEU"
+      ],
+      "geometry_ids": [
+        "truncated_tetrahedron",
+        "truncated_cube",
+        "cuboctahedron",
+        "cube",
+        "cuboctahedron_2x2x2",
+        "rhombicuboctahedron"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "STAGE",
+        "CUT_LOAD",
+        "CUT_RUN",
+        "CUT_UNLOAD",
+        "PART_QC",
+        "CARD_ALIGN",
+        "CARD_JOIN",
+        "SAMPLE_QC",
+        "TARGET_STAGE",
+        "ACTUATE",
+        "RELEASE",
+        "OBSERVE",
+        "RESET_STATE",
+        "TARGET_SUMMARY",
+        "ARCHIVE",
+        "RESET_STATIONS",
+        "REPORT",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "FACE_PAIR",
+        "ASSEMBLE",
+        "FIXTURE_QC",
+        "COMP_MOUNT",
+        "COMP_CONFIG",
+        "COMP_LOAD",
+        "COMP_UNLOAD",
+        "COMP_REPEAT",
+        "COMP_AGG",
+        "COMP_UNMOUNT",
+        "CUBE_SWITCH",
+        "CUBE_COMPARE",
+        "ARRAY_PREP",
+        "ARRAY_JOIN",
+        "ARRAY_CLASSIFY",
+        "ARRAY_THICKNESS",
+        "SI_HANDOFF",
+        "SI_COMPARE",
+        "PNEU_PREP",
+        "PNEU_CONNECT",
+        "PNEU_PROGRAM",
+        "PNEU_ACTUATE",
+        "PNEU_VENT",
+        "PNEU_DISCONNECT",
+        "PNEU_SUMMARY"
+      ],
+      "loops": [
+        {
+          "loop_id": "subcampaigns",
+          "iterator": "branch_id",
+          "values": [
+            "CARD_TRUNCATED_TETRAHEDRON",
+            "CARD_TRUNCATED_CUBE",
+            "CARD_CUBOCTAHEDRON",
+            "PLA_MYLAR_CYCLIC",
+            "TETRA_REACH_RELEASE",
+            "CUBE_HINGE_COMPARISON",
+            "ARRAY_THICKNESS_PAIR",
+            "ARRAY_BOUNDARY_LONG",
+            "SI6_TRUNCATED_CUBE",
+            "SI6_RHOMBICUBOCTAHEDRON",
+            "PNEUMATIC_TWO_POUCH"
+          ],
+          "body": "Each selected branch expands its own typed loops; no merging of identity or output claims"
+        }
+      ],
+      "required_input_ids": [
+        "U_ACTUATION",
+        "U_AGGREGATION",
+        "U_ARRAY_FACE",
+        "U_ARRAY_TOPOLOGY",
+        "U_CUT",
+        "U_CYCLES",
+        "U_ELASTOMER",
+        "U_GEOM",
+        "U_HISTORY",
+        "U_LENGTH",
+        "U_LOAD",
+        "U_POUCH",
+        "U_PRINT",
+        "U_REPLICATES",
+        "U_ROBOT",
+        "U_SI_MATERIAL",
+        "U_TARGETS",
+        "U_TOLERANCE"
+      ],
+      "evidence_ids": [
+        "CARD",
+        "COMP",
+        "TETRA",
+        "CUBE",
+        "ARRAY",
+        "SI6",
+        "PNEU"
+      ],
+      "goal": "Connect all seven reported hands-on families through preparation, control comparisons, records and archiving, with missing-input blocks kept explicit",
+      "identity_policy": "No universal specimen is assumed; allocate identities by work order and declare any cross-branch reuse with full history",
+      "completion": "Every selected required condition has records or an explicit incomplete/blocker status; blockers do not count as completed experimental conditions",
+      "count_warning": "Branch count, target count, cycle count and array cell count are not independent specimen counts",
+      "conditional_recovery_operation_ids": [
+        "QUARANTINE"
+      ],
+      "loop_expansion": {
+        "type": "subcampaign_dispatch",
+        "outer": "subcampaigns",
+        "rule": "Recursively use each referenced branch loop_expansion; preserve independent identities/conditions and do not flatten Cartesian coverage"
+      }
+    }
+  ],
+  "cardinality_policy": "Null loop counts/values block expansion; never zero-length successful loops. Target labels, state pictures and array cells are not independent specimen counts.",
+  "upstream_unknown_routes": {
+    "F_ARRAY": "ARRAY_PREP requires each unit receipt from a qualified work-order-defined fabrication route, or a declared outside-scope preassembled unit handoff; absent both, fabrication/assembly is blocked. Do not inherit PLA recipe silently.",
+    "F_SI6": "SI_HANDOFF explicitly declares supplied fabrication route or outside-scope preassembled teaching sample; source material remains unknown.",
+    "F_PNEU": "PNEU_PREP requires a qualified specimen receipt and pouch components from a supplied preparation route; missing construction inputs block preparation, not permission to spawn a finished object."
+  }
+}

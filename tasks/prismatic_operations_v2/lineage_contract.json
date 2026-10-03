@@ -1,0 +1,111 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "visibility": "evaluator_reference_only",
+  "entity_types": [
+    "material_lot",
+    "stock_item",
+    "cut_piece",
+    "printed_face_half",
+    "hinge_piece",
+    "joint",
+    "unit_sample",
+    "array_assembly",
+    "pouch",
+    "tube",
+    "carrier",
+    "raw_record",
+    "derived_record"
+  ],
+  "required_entity_fields": [
+    "entity_id",
+    "entity_type",
+    "parent_ids",
+    "geometry_id_or_null",
+    "material_card_id_or_null",
+    "assembly_version",
+    "current_location",
+    "condition_history",
+    "status"
+  ],
+  "routes": {
+    "cardboard": [
+      "cardboard_lot+tape_lot",
+      "cut_face_pieces+hinge_strips",
+      "indexed_joints",
+      "sample",
+      "target_attempts",
+      "archive_or_quarantine"
+    ],
+    "pla_mylar": [
+      "PLA_lot+Mylar_lot",
+      "printed_half_batch+cut_sheet_batch",
+      "face_pairs",
+      "unit_sample",
+      "cycles_or_target_attempts",
+      "archive_or_quarantine"
+    ],
+    "cube_change": [
+      "cube_sample@v1+elastomer_lot",
+      "removed_Mylar_hinges+new_hinge_pieces",
+      "cube_sample@v2 OR new_matched_sample",
+      "material_specific_attempts",
+      "comparison"
+    ],
+    "array": [
+      "8 distinct qualified unit IDs+intercell_hinge_lot",
+      "array_id@version with slot_xyz mapping",
+      "array_attempts with cellwise observations",
+      "thin_thick_comparison"
+    ],
+    "si6": [
+      "qualified outside-scope specimen receipt OR explicit material/geometry fabrication route",
+      "sample_id with unresolved source material distinct from task material",
+      "configuration_pair_attempts"
+    ],
+    "pneumatic": [
+      "qualified truncated_tetrahedron+pouch_A+pouch_B",
+      "attachment_graph+tube_port_graph",
+      "program_attempts",
+      "vented_sample_and_pouches_archive"
+    ]
+  },
+  "invariants": [
+    "One entity occupies only one physical location at a time",
+    "Every child has existing parent IDs and a causal create/modify receipt",
+    "State changes and repeated cycles do not mint new specimen IDs",
+    "A genuinely replaced sample gets a new ID; repeated attempts are not independent replicates",
+    "Hinge replacement preserves body ID and increments assembly_version with removed/new component parents; conditions cannot share records across versions",
+    "Array contains eight distinct unit IDs, each assigned once to a slot; unit membership forbids simultaneous standalone use",
+    "Raw records and failed attempts are append-only; derived records reference raw IDs and processing version",
+    "Repair or reset never erases prior damage, condition, failure or time history",
+    "Unknown historical reuse remains unknown; the episode explicitly declares its own reuse policy"
+  ],
+  "identity_count_semantics": {
+    "source_historical_specimen_counts": "Generally not reported; second thicker array explicitly reported",
+    "independent_specimen": "A separately fabricated/allocated physical object with its own lineage; no minimum count invented",
+    "repeated_state_attempt": "Same specimen under a target/attempt condition",
+    "cycle": "One paired loading/unloading repetition in one run",
+    "array_unit": "Child structural unit inside an array, not independent experimental replicate",
+    "displayed_configuration": "Source target/view identifier, not specimen identity"
+  },
+  "attempt_fields": [
+    "episode_id",
+    "branch_id",
+    "sample_id",
+    "assembly_version",
+    "run_id",
+    "attempt_id",
+    "target_id_or_cycle_index",
+    "condition_signature",
+    "pre_state_record",
+    "action_or_program_receipt",
+    "loaded_record",
+    "release_record",
+    "final_state_record",
+    "validity",
+    "failure_reason_or_null",
+    "replacement_or_reset_link_or_null"
+  ],
+  "repetition_policy": "attempts_per_target, independent specimen allocations and total cycles are explicit task inputs; null blocks their expansion rather than inventing n. Source-required summary uses five cycles, not five specimens."
+}

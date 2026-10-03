@@ -1,0 +1,68 @@
+{
+  "schema_version": "prismatic_independent_static_validation.v1",
+  "verified_date_utc": "2026-10-03",
+  "doi": "10.1038/s41467-019-13319-7",
+  "scope": "sanitized public authoring package; static contracts and bookkeeping fixtures only",
+  "default_run": {
+    "command": "python tests/test_prismatic_contract.py",
+    "tests_discovered": 41,
+    "passed": 40,
+    "skipped": 1,
+    "failed": 0,
+    "errors": 0,
+    "skipped_check": "optional source-byte verification requires explicit --source-dir PATH"
+  },
+  "optional_source_byte_run": {
+    "command": "python tests/test_prismatic_contract.py --source-dir PATH",
+    "tests_discovered": 41,
+    "passed": 41,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "source_access": "only explicit source directory plus provenance basenames; no embedded host paths read"
+  },
+  "test_groups": {
+    "CheckerMutationTests": 8,
+    "SourceContractTests": 6,
+    "OperationContractTests": 4,
+    "PackageContractTests": 12,
+    "PackageMutationTests": 11
+  },
+  "design_counts": {
+    "operations": 49,
+    "dependency_edges": 46,
+    "hands_on_families": 7,
+    "task_configurations": 12,
+    "array_unit_slots_per_array": 8,
+    "si6_displayed_label_counts": [
+      11,
+      15
+    ]
+  },
+  "review_correction": "Condition-target nesting made explicit; Cartesian coverage regression added",
+  "public_portability_verified": true,
+  "core_public_file_sha256": {
+    "operations.json": "a2f2e39fcad0a00b527b8e12f8aa41674fa0d5c9803c16cb0986c94cf4ab684b",
+    "branches.json": "d5562163c12c7af099f88d95601f9dcc17c6364ace22f42883c2d33ec02b1236",
+    "dependencies.json": "1de45e02625e3c7a3cd9141df77e17a796869c93335dfa9f0345d551ffcf7faf",
+    "agent_visible.json": "1c0f6671276ad8ac200cd395527944b0e96367c9fc0844370d6b0f03c06b8334",
+    "RELEASE_BOUNDARY.json": "0a28e185fe2213761f0fde60b40e046f1d1d09fe4b79761e68598aa28a09211f",
+    "episode_input_contract.json": "24655c9ed15d4148f16d3a1b8cd46fdb5caaa1c22f46fe6821fcc1f0ee78fd59",
+    "mock_contract.json": "ad32fe2e0f7fb5f843ce8556006905fa2b0e28a5cc799c2808c5ed22abf280c6",
+    "evaluator_reference.json": "fdbc436287321bcf7c9eb64db73c18d4049360b69557c7ee4e0fce2d90b4cbf9",
+    "tests/test_prismatic_contract.py": "dcc22e07f6c5711f0dd0ede2305c65aaa952c1d46402f672f63e5f79d07f96ad"
+  },
+  "not_executed": [
+    "hardware",
+    "robot episodes",
+    "physical simulation",
+    "scientific solver",
+    "new scientific measurements",
+    "runtime actor loader"
+  ],
+  "limits": [
+    "Static authoring contract, not executable science evaluator",
+    "Source bytes are not part of public package",
+    "Physical and proxy execution remain gated on qualified missing inputs"
+  ]
+}

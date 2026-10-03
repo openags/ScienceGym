@@ -1,0 +1,227 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "visibility": "evaluator_reference_only",
+  "edges": [
+    {
+      "from": "PLAN",
+      "to": "STOCK"
+    },
+    {
+      "from": "STOCK",
+      "to": "STAGE"
+    },
+    {
+      "from": "STOCK",
+      "to": "CUT_LOAD"
+    },
+    {
+      "from": "CUT_LOAD",
+      "to": "CUT_RUN"
+    },
+    {
+      "from": "CUT_RUN",
+      "to": "CUT_UNLOAD"
+    },
+    {
+      "from": "STOCK",
+      "to": "PRINT_LOAD"
+    },
+    {
+      "from": "PRINT_LOAD",
+      "to": "PRINT_RUN"
+    },
+    {
+      "from": "PRINT_RUN",
+      "to": "PRINT_UNLOAD"
+    },
+    {
+      "from": "STAGE",
+      "to": "CARD_ALIGN"
+    },
+    {
+      "from": "PART_QC",
+      "to": "CARD_ALIGN"
+    },
+    {
+      "from": "CARD_ALIGN",
+      "to": "CARD_JOIN"
+    },
+    {
+      "from": "STAGE",
+      "to": "FACE_PAIR"
+    },
+    {
+      "from": "PART_QC",
+      "to": "FACE_PAIR"
+    },
+    {
+      "from": "FACE_PAIR",
+      "to": "ASSEMBLE"
+    },
+    {
+      "from": "PLAN",
+      "to": "FIXTURE_QC"
+    },
+    {
+      "from": "SAMPLE_QC",
+      "to": "COMP_MOUNT"
+    },
+    {
+      "from": "FIXTURE_QC",
+      "to": "COMP_MOUNT"
+    },
+    {
+      "from": "COMP_MOUNT",
+      "to": "COMP_CONFIG"
+    },
+    {
+      "from": "COMP_CONFIG",
+      "to": "COMP_LOAD"
+    },
+    {
+      "from": "COMP_LOAD",
+      "to": "COMP_UNLOAD"
+    },
+    {
+      "from": "COMP_UNLOAD",
+      "to": "COMP_REPEAT"
+    },
+    {
+      "from": "COMP_REPEAT",
+      "to": "COMP_UNMOUNT"
+    },
+    {
+      "from": "COMP_REPEAT",
+      "to": "COMP_AGG"
+    },
+    {
+      "from": "SAMPLE_QC",
+      "to": "TARGET_STAGE"
+    },
+    {
+      "from": "TARGET_STAGE",
+      "to": "ACTUATE"
+    },
+    {
+      "from": "ACTUATE",
+      "to": "RELEASE"
+    },
+    {
+      "from": "RELEASE",
+      "to": "OBSERVE"
+    },
+    {
+      "from": "OBSERVE",
+      "to": "RESET_STATE"
+    },
+    {
+      "from": "OBSERVE",
+      "to": "TARGET_SUMMARY"
+    },
+    {
+      "from": "TARGET_SUMMARY",
+      "to": "CUBE_SWITCH"
+    },
+    {
+      "from": "TARGET_SUMMARY",
+      "to": "CUBE_COMPARE"
+    },
+    {
+      "from": "PLAN",
+      "to": "ARRAY_PREP"
+    },
+    {
+      "from": "ARRAY_PREP",
+      "to": "ARRAY_JOIN"
+    },
+    {
+      "from": "TARGET_SUMMARY",
+      "to": "ARRAY_CLASSIFY"
+    },
+    {
+      "from": "ARRAY_CLASSIFY",
+      "to": "ARRAY_THICKNESS"
+    },
+    {
+      "from": "PLAN",
+      "to": "SI_HANDOFF"
+    },
+    {
+      "from": "TARGET_SUMMARY",
+      "to": "SI_COMPARE"
+    },
+    {
+      "from": "PLAN",
+      "to": "PNEU_PREP"
+    },
+    {
+      "from": "PNEU_PREP",
+      "to": "PNEU_CONNECT"
+    },
+    {
+      "from": "PNEU_CONNECT",
+      "to": "PNEU_PROGRAM"
+    },
+    {
+      "from": "PNEU_PROGRAM",
+      "to": "PNEU_ACTUATE"
+    },
+    {
+      "from": "PNEU_ACTUATE",
+      "to": "PNEU_VENT"
+    },
+    {
+      "from": "PNEU_VENT",
+      "to": "PNEU_DISCONNECT"
+    },
+    {
+      "from": "PNEU_VENT",
+      "to": "PNEU_SUMMARY"
+    },
+    {
+      "from": "ARCHIVE",
+      "to": "RESET_STATIONS"
+    },
+    {
+      "from": "RESET_STATIONS",
+      "to": "REPORT"
+    }
+  ],
+  "branch_stage_dependencies": [
+    {
+      "id": "D_FAB_QC",
+      "rule": "cut/print receipts and piece identities precede PART_QC; required accepted pieces precede joint operations; complete joint manifest precedes SAMPLE_QC"
+    },
+    {
+      "id": "D_TRANSFER",
+      "rule": "Every physical station transition requires supported carrier, MOVE and destination-dock observation; data-only operations need no specimen relocation"
+    },
+    {
+      "id": "D_LOAD_UNLOAD",
+      "rule": "Each unload record is bound to its own loading leg, same cycle ID, specimen version and condition signature"
+    },
+    {
+      "id": "D_RELEASE_OBSERVE",
+      "rule": "Target actuation precedes load-off evidence, which precedes the relaxation observation window; holding contact invalidates unloaded-state classification"
+    },
+    {
+      "id": "D_TARGET_RETRY",
+      "rule": "Next attempt on reused sample depends on prior final-state observation, integrity check and qualified reset; a new occurrence ID prevents destructive overwrite"
+    },
+    {
+      "id": "D_ARRAY_UNIT",
+      "rule": "Each of eight slots requires a distinct qualified unit parent receipt before array join; all intercell joins checked before actuation"
+    },
+    {
+      "id": "D_PNEU",
+      "rule": "Qualified specimen, attachment and port graph precede commands; supply off plus safe residual-pressure readback precede disconnect"
+    },
+    {
+      "id": "D_CLOSURE",
+      "rule": "Required report depends on selected datasets or blockers, specimen/component final locations and stopped/reset stations"
+    }
+  ],
+  "loop_expansion": "Loop expansion is symbolic and not executed. Instance IDs include branch, specimen, condition, target/cycle and attempt; only qualified supplied cardinalities expand.",
+  "no_fixed_solution": "Order among independent work is unconstrained; evaluator checks partial-order validity and physical/data evidence rather than action-list imitation."
+}

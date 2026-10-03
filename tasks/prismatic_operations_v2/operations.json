@@ -1,0 +1,1741 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 49,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Read scope and bind the selected work order",
+      "kind": "hands_on",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Read the selected goal, material cards, geometry and episode-condition inputs",
+        "Bind geometry, specimen allocation, target IDs, repetitions and acceptance observations; identify missing required inputs without replacing them with defaults"
+      ],
+      "preconditions": [
+        "Selected branch ID is known"
+      ],
+      "postconditions": [
+        "scope_bound",
+        "missing_inputs_listed"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STOCK",
+      "title": "Retrieve identified stock and empty carriers",
+      "kind": "hands_on",
+      "location_id": "WS_STOCK",
+      "actions": [
+        "Read stock labels, material, thickness and lot; choose one allocated item at a time",
+        "Grasp packaging or a robust carrier handle, place components in separated cart slots and close retainers",
+        "Record remaining stock, issued lot IDs and empty carrier IDs"
+      ],
+      "preconditions": [
+        "Work order and material identities known",
+        "Cart and carriers are accessible"
+      ],
+      "postconditions": [
+        "stock_allocated",
+        "carriers_bound"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Wrong or ambiguous material: return or quarantine in original packaging; never relabel it as the requested thickness/material"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "MOVE",
+      "title": "Transport supported objects between stations",
+      "kind": "hands_on",
+      "location_id": "route_destination",
+      "actions": [
+        "Check destination dock availability and the public route; secure carrier contents and retract arms",
+        "Navigate the mobile base with the cart, stop at the target dock and engage its brake",
+        "Support the carrier while seating it; verify the same object IDs and orientation at the destination"
+      ],
+      "preconditions": [
+        "Safe path and dock interface available",
+        "Objects supported in retained carriers",
+        "No object tethered to an active station"
+      ],
+      "postconditions": [
+        "one_location_per_object",
+        "dock_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "recovery": [
+        "Blocked path: stop and choose another supplied feasible path",
+        "Dropped or shifted object: preserve incident, stop transport, inspect and quarantine if integrity cannot be established"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STAGE",
+      "title": "Lay out parts on the assembly mat",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Dock the cart; open only the selected carrier",
+        "Support each piece at a supplied robust grasp region, move it into numbered mat recesses and read its identity",
+        "Check parts against topology card without assuming every square panel has the same role"
+      ],
+      "preconditions": [
+        "Required stock and geometry card available",
+        "Assembly jig and empty mat ready"
+      ],
+      "postconditions": [
+        "part_manifest_checked"
+      ],
+      "depends_on": [
+        "STOCK"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_ROBOT"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CUT_LOAD",
+      "title": "Load sheet stock into the enclosed cutting proxy",
+      "kind": "hands_on",
+      "location_id": "WS_CUT",
+      "actions": [
+        "Read cardboard/Mylar/elastomer identity and work order",
+        "Open the stopped enclosure, support sheet on its specified datum, engage hold-downs and select the supplied pattern",
+        "Remove hands, close guard and check interlock"
+      ],
+      "preconditions": [
+        "Correct sheet allocated",
+        "Qualified pattern and processing card available",
+        "Machine stopped and safe_release true"
+      ],
+      "postconditions": [
+        "cut_setup_verified"
+      ],
+      "depends_on": [
+        "STOCK"
+      ],
+      "evidence_ids": [
+        "CARD",
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_CUT"
+      ],
+      "recovery": [
+        "Wrong pattern/material: unload safely and replace before starting"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CUT_RUN",
+      "title": "Start and monitor the inert cutting service",
+      "kind": "hands_on",
+      "location_id": "WS_CUT",
+      "actions": [
+        "Read back pattern revision/material card, start the enclosed inert service and observe completion",
+        "Record machine receipt; wait for safe release before opening"
+      ],
+      "preconditions": [
+        "Guard closed",
+        "cut_setup_verified"
+      ],
+      "postconditions": [
+        "cut_receipt_saved"
+      ],
+      "depends_on": [
+        "CUT_LOAD"
+      ],
+      "evidence_ids": [
+        "CARD",
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_CUT"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CUT_UNLOAD",
+      "title": "Unload and identify cut parts",
+      "kind": "hands_on",
+      "location_id": "WS_CUT",
+      "actions": [
+        "Open after safe release; lift the supported sheet/tray and separate cut pieces with the supplied release tool",
+        "Place cut pieces in numbered pockets; preserve remainder and reject IDs",
+        "Close and reset the empty enclosure"
+      ],
+      "preconditions": [
+        "Completed service receipt",
+        "safe_release true"
+      ],
+      "postconditions": [
+        "cut_parts_identified"
+      ],
+      "depends_on": [
+        "CUT_RUN"
+      ],
+      "evidence_ids": [
+        "CARD",
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_CUT"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_LOAD",
+      "title": "Load PLA stock and the geometry-specific tray",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "actions": [
+        "Read PLA lot and geometry/part manifest; open the stopped printer-proxy enclosure",
+        "Seat inert stock and tray at their keyed interfaces, latch and read the selected job",
+        "Withdraw hands, close guard and verify interlock"
+      ],
+      "preconditions": [
+        "PLA allocated",
+        "Qualified print and geometry cards supplied"
+      ],
+      "postconditions": [
+        "print_setup_verified"
+      ],
+      "depends_on": [
+        "STOCK"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT",
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_RUN",
+      "title": "Monitor the inert PLA fabrication service",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "actions": [
+        "Read back job and 0.5 mm part-thickness identity before starting",
+        "Record service completion and safe-release receipt; do not infer geometry quality from completion alone"
+      ],
+      "preconditions": [
+        "print_setup_verified",
+        "Guard closed"
+      ],
+      "postconditions": [
+        "printed_tray_ready"
+      ],
+      "depends_on": [
+        "PRINT_LOAD"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_UNLOAD",
+      "title": "Release printed face pieces into numbered pockets",
+      "kind": "hands_on",
+      "location_id": "WS_PRINT",
+      "actions": [
+        "Open only after safe release; support and remove tray",
+        "Use supplied release interface rather than pulling thin features; separate every identified face piece into its pocket",
+        "Retain print batch, slot and rejected-part identities"
+      ],
+      "preconditions": [
+        "printed_tray_ready",
+        "safe_release true"
+      ],
+      "postconditions": [
+        "face_parts_identified"
+      ],
+      "depends_on": [
+        "PRINT_RUN"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT",
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PART_QC",
+      "title": "Inspect part identity, thickness and damage",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECTION",
+      "actions": [
+        "Carry the numbered tray to the inspection dock",
+        "Read material/lot and use the supplied thickness gauge at specified contact regions",
+        "Inspect edges, flatness and hinge sheet condition with supplied tolerances; log raw reading and image IDs",
+        "Quarantine wrong or damaged pieces before assembly"
+      ],
+      "preconditions": [
+        "Cut or printed pieces registered",
+        "Gauge/check card and tolerances available"
+      ],
+      "postconditions": [
+        "part_qc_records",
+        "accepted_parts_bound"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "CARD",
+        "COMP",
+        "CUBE",
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_TOLERANCE"
+      ],
+      "recovery": [
+        "Damaged replacement creates a new child ID and rejection record; never silently reuse the rejected identity"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CARD_ALIGN",
+      "title": "Align cardboard faces and tape hinges",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Place the selected Fig1 geometry pieces into the keyed jig according to its topology card",
+        "Support both adjoining face edges, peel the identified tape backing and align the hinge strip without covering motion clearance"
+      ],
+      "preconditions": [
+        "Accepted 24 mm square, 0.4 mm cardboard parts",
+        "Qualified cardboard topology and tape card"
+      ],
+      "postconditions": [
+        "cardboard_joint_aligned"
+      ],
+      "depends_on": [
+        "STAGE",
+        "PART_QC"
+      ],
+      "evidence_ids": [
+        "CARD"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_CUT"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CARD_JOIN",
+      "title": "Secure and inspect each tape joint",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Press the aligned tape region with the supplied tool while supporting both faces",
+        "Check joint attachment, prescribed gap and face movement; repeat for each topology-card joint",
+        "Record joint IDs, material parent lots and attachment observations"
+      ],
+      "preconditions": [
+        "cardboard_joint_aligned"
+      ],
+      "postconditions": [
+        "cardboard_assembly_joined"
+      ],
+      "depends_on": [
+        "CARD_ALIGN"
+      ],
+      "evidence_ids": [
+        "CARD"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_TOLERANCE"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "FACE_PAIR",
+      "title": "Sandwich the hinge sheet between paired PLA parts",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Place one identified face half in the jig, align the geometry-specific hinge sheet on its datum, and support its free region",
+        "Place the matching face half above it; engage the specified lego-like clamp without substituting adhesive",
+        "Check retention and clearance before moving to the next face"
+      ],
+      "preconditions": [
+        "Accepted printed halves and sheet assigned",
+        "Join map and safe clamping interface supplied"
+      ],
+      "postconditions": [
+        "face_pair_joined"
+      ],
+      "depends_on": [
+        "STAGE",
+        "PART_QC"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ASSEMBLE",
+      "title": "Connect the complete geometry through indexed joints",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Maintain external support while joining each face pair at its prescribed hinge connections",
+        "Track open joints and face orientations; remove temporary supports only after the supplied support check",
+        "Record complete face/hinge/joint graph and sample identity"
+      ],
+      "preconditions": [
+        "All required geometry-card components accepted",
+        "Face-pair join records available"
+      ],
+      "postconditions": [
+        "sample_assembled"
+      ],
+      "depends_on": [
+        "FACE_PAIR"
+      ],
+      "evidence_ids": [
+        "COMP",
+        "TETRA",
+        "CUBE"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Wrong topology: support structure, stop and reverse only the qualified assembly step; repair changes sample version and preserves joint history"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "SAMPLE_QC",
+      "title": "Verify assembled identity and baseline condition",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECTION",
+      "actions": [
+        "Support the completed sample in a non-actuating cradle; check its topology against the public card",
+        "Measure only prescribed dimensions and capture reference views without forcing a new state",
+        "Save specimen ID, geometry, material, version, prior history and baseline observation"
+      ],
+      "preconditions": [
+        "Assembly complete or qualified preassembled handoff documented",
+        "Inspection card available"
+      ],
+      "postconditions": [
+        "sample_qualified",
+        "baseline_record"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "CARD",
+        "COMP",
+        "TETRA",
+        "CUBE",
+        "ARRAY",
+        "SI6",
+        "PNEU"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_TOLERANCE"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "FIXTURE_QC",
+      "title": "Inspect the unloaded compression fixture",
+      "kind": "hands_on",
+      "location_id": "WS_COMPRESSION",
+      "actions": [
+        "Ensure motion stopped and read safe state",
+        "Inspect clean opposing boundaries, clear travel and supplied alignment datums",
+        "Read load-cell identity/calibration and force/displacement sign convention; save unloaded zero check separately"
+      ],
+      "preconditions": [
+        "Qualified compression fixture and calibration cards"
+      ],
+      "postconditions": [
+        "fixture_qualified",
+        "unloaded_zero_record"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "COMP_MOUNT",
+      "title": "Align and secure the cuboctahedron",
+      "kind": "hands_on",
+      "location_id": "WS_COMPRESSION",
+      "actions": [
+        "Transport the qualified sample in its carrier and support the specified opposing faces",
+        "Align compression axis using supplied fixture datums; secure the fixture without preloading thin hinges beyond the card",
+        "Withdraw supports as allowed, check secure seating and save mounted reference images"
+      ],
+      "preconditions": [
+        "sample_qualified",
+        "fixture_qualified",
+        "Correct cuboctahedron and mount card"
+      ],
+      "postconditions": [
+        "compression_mount_verified"
+      ],
+      "depends_on": [
+        "SAMPLE_QC",
+        "FIXTURE_QC"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD",
+        "U_LENGTH"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "COMP_CONFIG",
+      "title": "Set and read back the displacement program",
+      "kind": "hands_on",
+      "location_id": "WS_COMPRESSION",
+      "actions": [
+        "Bind physical sample L from its qualified card, units and displacement reference",
+        "Compute the specified source amplitude sqrt(2)*L only when absolute L is supplied",
+        "Enter the supplied physical rate, endpoint, load limits, cycle count and sampling card; independently read back all fields"
+      ],
+      "preconditions": [
+        "compression_mount_verified",
+        "All required physical settings provided"
+      ],
+      "postconditions": [
+        "compression_condition_signature"
+      ],
+      "depends_on": [
+        "COMP_MOUNT"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_LENGTH",
+        "U_LOAD",
+        "U_CYCLES"
+      ],
+      "recovery": [
+        "Missing physical setting: stop setup and list field; numerical model steps or stiffness ratios cannot fill it"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "COMP_LOAD",
+      "title": "Acquire the loading leg of one indexed cycle",
+      "kind": "hands_on",
+      "location_id": "WS_COMPRESSION",
+      "actions": [
+        "Confirm guard, motion clear and condition signature; start the selected cycle",
+        "Observe current displacement and force while recording timestamps/units; pause if public load/travel/alignment limits fail",
+        "Save raw loading leg with cycle index and start/end state"
+      ],
+      "preconditions": [
+        "compression_condition_signature",
+        "Valid mounted specimen",
+        "Public guards satisfied"
+      ],
+      "postconditions": [
+        "loading_leg_record"
+      ],
+      "depends_on": [
+        "COMP_CONFIG"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "COMP_UNLOAD",
+      "title": "Acquire unloading and endpoint evidence",
+      "kind": "hands_on",
+      "location_id": "WS_COMPRESSION",
+      "actions": [
+        "Return under the supplied displacement-control program while continuing raw acquisition",
+        "Observe release-path and endpoint feedback without reaching into moving fixture",
+        "Save unload leg, endpoint state and cycle validity together with the loading record"
+      ],
+      "preconditions": [
+        "Corresponding loading leg exists or aborted leg documented"
+      ],
+      "postconditions": [
+        "indexed_cycle_record"
+      ],
+      "depends_on": [
+        "COMP_LOAD"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "COMP_REPEAT",
+      "title": "Continue the declared cycle plan without deleting failures",
+      "kind": "hands_on",
+      "location_id": "WS_COMPRESSION",
+      "actions": [
+        "Preserve chronological cycle numbering including aborted cycles",
+        "Recheck unchanged material/mount/condition signature before each cycle",
+        "Repeat loading and unloading through the episode count; any fixture or settings change starts a new run"
+      ],
+      "preconditions": [
+        "At least one indexed cycle attempted",
+        "Episode cycle count explicitly supplied"
+      ],
+      "postconditions": [
+        "complete_cycle_history"
+      ],
+      "depends_on": [
+        "COMP_UNLOAD"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_CYCLES"
+      ],
+      "recovery": [
+        "Interrupted cycle remains invalid; retry uses a fresh cycle/attempt ID and cannot replace the interrupted record"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "COMP_UNMOUNT",
+      "title": "Unload the specimen after verified stop",
+      "kind": "hands_on",
+      "location_id": "WS_COMPRESSION",
+      "actions": [
+        "Stop motion and acquisition, confirm safe release and support the sample",
+        "Release clamps in supplied order, lift along the clearance path and seat it in its original carrier",
+        "Inspect residual shape/damage and save post-test condition"
+      ],
+      "preconditions": [
+        "All requested cycles attempted or run aborted with reason",
+        "Motion stopped and safe_release true"
+      ],
+      "postconditions": [
+        "sample_unmounted",
+        "post_test_record"
+      ],
+      "depends_on": [
+        "COMP_REPEAT"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "COMP_AGG",
+      "title": "Summarize the actual last five cycles",
+      "kind": "data_handling",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Select the chronologically final five cycles of the completed declared run, retaining their IDs",
+        "Require five complete paired loading/unloading records with the same condition signature; if any is invalid report incomplete rather than choose five older successes",
+        "Apply supplied alignment/interpolation and standard-deviation convention separately to loading and unloading; retain raw data and processing version",
+        "Describe force sign and hysteresis observations without forcing paper values"
+      ],
+      "preconditions": [
+        "complete_cycle_history",
+        "Five final valid cycles present for a complete summary"
+      ],
+      "postconditions": [
+        "cycle_summary_or_precise_incomplete_report"
+      ],
+      "depends_on": [
+        "COMP_REPEAT"
+      ],
+      "evidence_ids": [
+        "COMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_AGGREGATION"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_STAGE",
+      "title": "Register a target and its pre-attempt state",
+      "kind": "hands_on",
+      "location_id": "WS_ACTUATION",
+      "actions": [
+        "Read opaque target ID and available target geometry/view card",
+        "Seat specimen on the non-actuating support and record actual starting shape, specimen version, material and prior attempts",
+        "Bind the supplied action/contact card; do not infer a complete actuation path from a photograph"
+      ],
+      "preconditions": [
+        "sample_qualified",
+        "Target and qualified contact/support card available"
+      ],
+      "postconditions": [
+        "target_attempt_opened"
+      ],
+      "depends_on": [
+        "SAMPLE_QC"
+      ],
+      "evidence_ids": [
+        "CARD",
+        "TETRA",
+        "CUBE",
+        "SI6",
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGETS",
+        "U_ACTUATION"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ACTUATE",
+      "title": "Apply bounded local manipulation with support",
+      "kind": "hands_on",
+      "location_id": "WS_ACTUATION",
+      "actions": [
+        "Position base and both hands at supplied contact regions; support the body while actuating only the selected hinge/face regions",
+        "Follow the supplied incremental displacement/contact card and monitor visible force/stretch/clearance feedback",
+        "Stop at the target observation or at the first supplied physical limit; never push non-adjacent faces through each other"
+      ],
+      "preconditions": [
+        "target_attempt_opened",
+        "Required actuation inputs complete",
+        "Workspace clear"
+      ],
+      "postconditions": [
+        "loaded_state_record",
+        "limit_reason_if_any"
+      ],
+      "depends_on": [
+        "TARGET_STAGE"
+      ],
+      "evidence_ids": [
+        "CARD",
+        "TETRA",
+        "CUBE",
+        "SI6",
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACTUATION"
+      ],
+      "recovery": [
+        "Stretch limit/contact obstruction: stop and record limit-constrained/unreachable for this attempt; do not increase limits to chase a simulated state"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "RELEASE",
+      "title": "Remove actuation and verify unsupported observation",
+      "kind": "hands_on",
+      "location_id": "WS_ACTUATION",
+      "actions": [
+        "Reduce external actuation under the public release card while keeping only non-actuating support",
+        "Withdraw actuating contacts and record applied-load-off feedback and release timestamp",
+        "Do not count a pose held by a robot finger or fixture as an unloaded stable configuration"
+      ],
+      "preconditions": [
+        "loaded_state_record or bounded failed attempt"
+      ],
+      "postconditions": [
+        "actuation_removed",
+        "release_record"
+      ],
+      "depends_on": [
+        "ACTUATE"
+      ],
+      "evidence_ids": [
+        "TETRA",
+        "CUBE",
+        "ARRAY",
+        "SI6"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACTUATION"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "OBSERVE",
+      "title": "Observe relaxation under a declared window",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECTION",
+      "actions": [
+        "Without transporting or regrasping during the observation window, capture the released state at card-defined times/views",
+        "Compare loaded target and final observed geometry with the supplied classification rule",
+        "Separate reached_while_loaded, retained_after_release, relaxed_to_other, returned_baseline, limit_constrained, damaged and indeterminate"
+      ],
+      "preconditions": [
+        "actuation_removed",
+        "Public observation and geometry rules supplied"
+      ],
+      "postconditions": [
+        "post_release_observation",
+        "attempt_outcome"
+      ],
+      "depends_on": [
+        "RELEASE"
+      ],
+      "evidence_ids": [
+        "TETRA",
+        "CUBE",
+        "ARRAY",
+        "SI6"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACTUATION",
+        "U_TARGETS"
+      ],
+      "recovery": [
+        "Occluded or too-short observation: retain indeterminate; repeat observation under a new record rather than declaring stability"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "RESET_STATE",
+      "title": "Prepare the next attempt without erasing history",
+      "kind": "hands_on",
+      "location_id": "WS_ACTUATION",
+      "actions": [
+        "Check the observed final state and specimen integrity",
+        "Use only a supplied safe reset path to a recorded starting state; if unavailable or damage persists, stop or request an allocated replacement",
+        "Record reset completion and new starting image; retain previous attempt including relaxation/failure"
+      ],
+      "preconditions": [
+        "post_release_observation",
+        "Next target or repetition requested"
+      ],
+      "postconditions": [
+        "next_attempt_baseline_or_blocker"
+      ],
+      "depends_on": [
+        "OBSERVE"
+      ],
+      "evidence_ids": [
+        "TETRA",
+        "CUBE",
+        "SI6",
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACTUATION",
+        "U_REPLICATES"
+      ],
+      "recovery": [
+        "No qualified reset: archive current shape and mark remaining targets blocked; a replacement has a new sample ID and distinct replicate status"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_SUMMARY",
+      "title": "Compare targets and release outcomes honestly",
+      "kind": "data_handling",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Compile every scheduled target/attempt with source target label and independent observed loaded/released state",
+        "Record missing, unreachable, relaxed and damaged attempts alongside retained states",
+        "Compare with the source only as a cited contextual reference; keep Fig4 text/pixel label disagreement explicit"
+      ],
+      "preconditions": [
+        "Attempt history available"
+      ],
+      "postconditions": [
+        "target_matrix",
+        "missing_target_list"
+      ],
+      "depends_on": [
+        "OBSERVE"
+      ],
+      "evidence_ids": [
+        "TETRA",
+        "CUBE",
+        "SI6",
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CUBE_SWITCH",
+      "title": "Change cube hinge material with traceable identity",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Choose the work-order-approved separate matched cube or supported hinge-replacement route",
+        "For replacement, stop actuation, support the full cube, remove identified old hinges to an archive tray and record every parent/child connection",
+        "Install identified 0.5 mm elastomeric hinges using a supplied attachment card; reinspect baseline and assign a new sample version",
+        "Never change the material label on the existing Mylar configuration"
+      ],
+      "preconditions": [
+        "Cube Mylar baseline campaign recorded",
+        "Replacement material and join card available",
+        "Explicit identity policy supplied"
+      ],
+      "postconditions": [
+        "cube_material_comparison_ready",
+        "material_change_history"
+      ],
+      "depends_on": [
+        "TARGET_SUMMARY"
+      ],
+      "evidence_ids": [
+        "CUBE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ELASTOMER",
+        "U_GEOM",
+        "U_HISTORY"
+      ],
+      "recovery": [
+        "Torn sheet or altered faces: quarantine and flag comparison as unmatched; do not merge separate-specimen and within-specimen histories"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CUBE_COMPARE",
+      "title": "Compare the two cube hinge conditions",
+      "kind": "data_handling",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Require material-specific target attempts for all planned eight target labels",
+        "Match geometry/start-state/actuation cards and report unmatched factors",
+        "Report retained, relaxed, limit-constrained and crossing-blocked outcomes by material without using source success counts as rewards"
+      ],
+      "preconditions": [
+        "Both material-condition datasets available or precise blockers"
+      ],
+      "postconditions": [
+        "cube_comparison_report"
+      ],
+      "depends_on": [
+        "TARGET_SUMMARY"
+      ],
+      "evidence_ids": [
+        "CUBE"
+      ],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ARRAY_PREP",
+      "title": "Bind finite-array units and eight cell slots",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Read finite 2x2x2 topology card, unit IDs and array hinge thickness condition",
+        "Lay out units and intercell joints with slot coordinates (0 or 1 on each axis)",
+        "Inspect each unit and retain unit-to-array ancestry; never use one physical ID in multiple slots"
+      ],
+      "preconditions": [
+        "Qualified finite-array geometry/material cards",
+        "Required units available"
+      ],
+      "postconditions": [
+        "array_slot_manifest"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ARRAY_FACE",
+        "U_ARRAY_TOPOLOGY"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ARRAY_JOIN",
+      "title": "Assemble and inspect intercell connections",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Support neighboring units in the supplied jig and join each designated intercell hinge in the supplied sequence",
+        "Check each slot, interface and orientation; record completed joints before removing temporary supports",
+        "Transport the array in a multi-point support carrier, never by one boundary cell"
+      ],
+      "preconditions": [
+        "array_slot_manifest",
+        "Join map and fixture support available"
+      ],
+      "postconditions": [
+        "finite_array_qualified"
+      ],
+      "depends_on": [
+        "ARRAY_PREP"
+      ],
+      "evidence_ids": [
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ARRAY_TOPOLOGY",
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ARRAY_CLASSIFY",
+      "title": "Record bulk, boundary and longer-period observations",
+      "kind": "data_handling",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Bind each attempt to a supplied target class: bulk-compatible, edge/corner or longer-than-one-cell periodicity",
+        "Record which cell slots changed and which boundary contacts/supports were present",
+        "Keep finite-array evidence distinct from periodic single-cell numerical predictions"
+      ],
+      "preconditions": [
+        "Finite-array attempt records"
+      ],
+      "postconditions": [
+        "finite_array_classification"
+      ],
+      "depends_on": [
+        "TARGET_SUMMARY"
+      ],
+      "evidence_ids": [
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ARRAY_TOPOLOGY"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ARRAY_THICKNESS",
+      "title": "Compare 50 and 125 micrometre arrays",
+      "kind": "data_handling",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Require separately identified 50 and 125 micrometre Mylar assemblies and condition-specific attempt histories",
+        "Match geometry/target/start-state protocols where explicitly supplied; list unresolved confounders",
+        "Report additional-state retention or lack of retention over attempted scope, not universal impossibility"
+      ],
+      "preconditions": [
+        "Both thickness conditions attempted or blocked explicitly"
+      ],
+      "postconditions": [
+        "array_thickness_comparison"
+      ],
+      "depends_on": [
+        "ARRAY_CLASSIFY"
+      ],
+      "evidence_ids": [
+        "ARRAY"
+      ],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "SI_HANDOFF",
+      "title": "Receive or construct the qualified SI6 specimen",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Read supplied material/fabrication/geometry card for truncated cube or rhombicuboctahedron",
+        "If manufacturing inputs exist, route through their declared preparation/assembly operations; otherwise receive a qualified preassembled teaching object with an explicit outside-scope fabrication receipt",
+        "Preserve material unknowns from the source and do not infer PLA/Mylar from appearance"
+      ],
+      "preconditions": [
+        "Explicit specimen route and identity card supplied"
+      ],
+      "postconditions": [
+        "si_specimen_identity_bound"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "SI6"
+      ],
+      "unknown_parameter_ids": [
+        "U_SI_MATERIAL",
+        "U_GEOM",
+        "U_HISTORY"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "SI_COMPARE",
+      "title": "Match SI6 selected model/physical configuration pairs",
+      "kind": "data_handling",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Use the 11 truncated-cube or 15 rhombicuboctahedron displayed labels as requested target inventory",
+        "Save actual views and release observations paired with the target-view card; mark ambiguous matches indeterminate",
+        "Do not claim these selected displays enumerate all states or imply one independent specimen per picture"
+      ],
+      "preconditions": [
+        "SI6 target attempt records"
+      ],
+      "postconditions": [
+        "si6_configuration_comparison"
+      ],
+      "depends_on": [
+        "TARGET_SUMMARY"
+      ],
+      "evidence_ids": [
+        "SI6"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGETS"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PNEU_PREP",
+      "title": "Prepare the text-reported two-pouch branch",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "actions": [
+        "Bind a qualified truncated-tetrahedron specimen, two individually identified inert pouch proxies and attachment/channel diagram",
+        "Support the structure while seating the pouches at the supplied hinge locations",
+        "Record attachments and strain relief; actual pouch construction remains a required external card"
+      ],
+      "preconditions": [
+        "Pneumatic qualified geometry and attachment card available"
+      ],
+      "postconditions": [
+        "two_pouch_manifest"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "PNEU"
+      ],
+      "unknown_parameter_ids": [
+        "U_POUCH",
+        "U_GEOM"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PNEU_CONNECT",
+      "title": "Connect and verify stopped pneumatic interfaces",
+      "kind": "hands_on",
+      "location_id": "WS_PNEUMATIC",
+      "actions": [
+        "Read channel A/B labels; verify source off, residual-pressure-safe feedback and regulator limit card",
+        "Connect each specified tube to its keyed port, secure strain relief and check the supplied leak-test/feedback contract",
+        "Record port graph and independent channel feedback"
+      ],
+      "preconditions": [
+        "two_pouch_manifest",
+        "Qualified pressure/flow/limit and connection card"
+      ],
+      "postconditions": [
+        "pneumatic_connections_verified"
+      ],
+      "depends_on": [
+        "PNEU_PREP"
+      ],
+      "evidence_ids": [
+        "PNEU"
+      ],
+      "unknown_parameter_ids": [
+        "U_POUCH"
+      ],
+      "recovery": [
+        "Leak or swapped labels: keep source off, vent under supplied card, reseat and recheck; no pressure escalation"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PNEU_PROGRAM",
+      "title": "Read back a supplied discrete actuation program",
+      "kind": "hands_on",
+      "location_id": "WS_PNEUMATIC",
+      "actions": [
+        "Read one episode-supplied pouch command sequence with timing, pressure, hold and vent settings",
+        "Verify its target ID and start-state card without assuming a one-to-one mapping from four Boolean commands to four stable states",
+        "Confirm channel mapping and record the program signature"
+      ],
+      "preconditions": [
+        "pneumatic_connections_verified",
+        "Complete qualified program and safety inputs"
+      ],
+      "postconditions": [
+        "pneumatic_program_bound"
+      ],
+      "depends_on": [
+        "PNEU_CONNECT"
+      ],
+      "evidence_ids": [
+        "PNEU"
+      ],
+      "unknown_parameter_ids": [
+        "U_POUCH"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PNEU_ACTUATE",
+      "title": "Execute one bounded pouch attempt",
+      "kind": "hands_on",
+      "location_id": "WS_PNEUMATIC",
+      "actions": [
+        "Clear hands from moving regions and use physical proxy controls to start the supplied program",
+        "Record channel command/readback, timing, loaded state and limit feedback",
+        "Stop on a failed readback or public limit; retain the attempt and reason"
+      ],
+      "preconditions": [
+        "pneumatic_program_bound",
+        "Initial state recorded",
+        "Guard and limits satisfied"
+      ],
+      "postconditions": [
+        "pneumatic_loaded_record"
+      ],
+      "depends_on": [
+        "PNEU_PROGRAM"
+      ],
+      "evidence_ids": [
+        "PNEU"
+      ],
+      "unknown_parameter_ids": [
+        "U_POUCH"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PNEU_VENT",
+      "title": "Remove actuation and record relaxation",
+      "kind": "hands_on",
+      "location_id": "WS_PNEUMATIC",
+      "actions": [
+        "Stop the supply and vent using supplied controls; verify both channel readbacks safe",
+        "Capture load-off timestamp and unloaded-state observations over the supplied window",
+        "Distinguish held inflation shape from retained configuration"
+      ],
+      "preconditions": [
+        "pneumatic_loaded_record"
+      ],
+      "postconditions": [
+        "pneumatic_release_observation"
+      ],
+      "depends_on": [
+        "PNEU_ACTUATE"
+      ],
+      "evidence_ids": [
+        "PNEU"
+      ],
+      "unknown_parameter_ids": [
+        "U_POUCH",
+        "U_ACTUATION"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PNEU_DISCONNECT",
+      "title": "Disconnect and archive the pouch setup safely",
+      "kind": "hands_on",
+      "location_id": "WS_PNEUMATIC",
+      "actions": [
+        "Verify pressure-safe feedback on both channels before handling connections",
+        "Support and disconnect tubing, dock ends and carrier; archive pouch attachment history and specimen state",
+        "Leave source off and station reset"
+      ],
+      "preconditions": [
+        "Pneumatic campaign completed or stopped",
+        "Both channel residual-pressure-safe feedback true"
+      ],
+      "postconditions": [
+        "pneumatic_station_safe"
+      ],
+      "depends_on": [
+        "PNEU_VENT"
+      ],
+      "evidence_ids": [
+        "PNEU"
+      ],
+      "unknown_parameter_ids": [
+        "U_POUCH"
+      ],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PNEU_SUMMARY",
+      "title": "Report only the observed pneumatic scope",
+      "kind": "data_handling",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Compile all planned program attempts and load-off observations with channel and condition signatures",
+        "Cite the source text reporting two pouches/four states separately from the episode records",
+        "When target mapping or pressure/timing inputs are missing report the branch blocked, not four successful states"
+      ],
+      "preconditions": [
+        "Pneumatic records or explicit missing-input list"
+      ],
+      "postconditions": [
+        "pneumatic_report"
+      ],
+      "depends_on": [
+        "PNEU_VENT"
+      ],
+      "evidence_ids": [
+        "PNEU"
+      ],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "QUARANTINE",
+      "title": "Isolate a damaged or ambiguous specimen",
+      "kind": "hands_on",
+      "location_id": "WS_QUARANTINE",
+      "actions": [
+        "Stop and release/vent station using its qualified safe contract",
+        "Support the object into a labeled quarantine carrier and attach failure/attempt IDs",
+        "Record location, irreversibility and remaining branch impact"
+      ],
+      "preconditions": [
+        "Public damage, mismatch, unsafe state or uncertain identity observed"
+      ],
+      "postconditions": [
+        "quarantine_record",
+        "dependent_work_blocked"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "recovery": [
+        "If safe release is unavailable, isolate station and request intervention without reaching into an unsafe fixture"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive samples, components and immutable raw records",
+      "kind": "hands_on",
+      "location_id": "WS_ARCHIVE",
+      "actions": [
+        "Check one physical location for every sample, unit, removed hinge and rejected part",
+        "Place each supported carrier in its assigned archive slot with current version and history",
+        "Save append-only raw records, condition cards, target/cycle coverage and derived links"
+      ],
+      "preconditions": [
+        "Selected work concluded or precise stop status known",
+        "Equipment safe for handling"
+      ],
+      "postconditions": [
+        "archive_manifest",
+        "raw_records_preserved"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "RESET_STATIONS",
+      "title": "Return tools and verify stopped empty workstations",
+      "kind": "hands_on",
+      "location_id": "all_selected_stations",
+      "actions": [
+        "Verify compression motion/acquisition off and pneumatic supply/residual pressure safe when selected",
+        "Dock tools, return unused stock, account for offcuts/backings and clear empty jigs",
+        "Record final station checks; do not restore specimens to fictitious pristine states"
+      ],
+      "preconditions": [
+        "Samples/parts archived or isolated"
+      ],
+      "postconditions": [
+        "stations_reset",
+        "final_inventory"
+      ],
+      "depends_on": [
+        "ARCHIVE"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "REPORT",
+      "title": "Submit bounded completion and remaining gaps",
+      "kind": "data_handling",
+      "location_id": "WS_RECORDS",
+      "actions": [
+        "Link source-supported conditions, authored task inputs, actual records and final identities",
+        "Declare complete, partial_with_valid_blocker, safe_abort or failed for each selected branch",
+        "Separate procedural success from scientific agreement and list unattempted/invalid conditions"
+      ],
+      "preconditions": [
+        "Selected branch evidence and final status known"
+      ],
+      "postconditions": [
+        "final_report"
+      ],
+      "depends_on": [
+        "RESET_STATIONS"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "recovery": [
+        "Stop the affected action; retain attempt and current object state; inspect available public feedback and resume only after required conditions are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_human_like_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    }
+  ],
+  "template_dependency_semantics": "depends_on lists partial-order prerequisites for an occurrence, not a fixed actor script; family expansions add data bindings and move events. Repetition creates fresh occurrence IDs, not cycles in this template DAG. Alternative source-gap handoffs are explicit in branches.",
+  "station_change_rule": "Insert MOVE for every physical station change, including backtracking and replacements; WS_INSPECTION during OBSERVE denotes a co-located camera/inspection role, with no sample transport during relaxation observation."
+}

@@ -1,0 +1,287 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "visibility": "author_schema_public_values_only_at_runtime",
+  "implemented_loader": false,
+  "parameter_provenance_enum": [
+    "source_reported",
+    "task_authored_qualified",
+    "measured_episode",
+    "unknown"
+  ],
+  "unknown_rule": "Unknown/null required fields block the affected operation or loop. Never copy values from another geometry/material or a numerical reference; never substitute zero/empty list. An explicit named handoff may change preparation scope, with its outside-scope receipt.",
+  "cards": [
+    {
+      "id": "geometry_card",
+      "required_fields": [
+        "geometry_id",
+        "revision",
+        "face_ids",
+        "joint_ids",
+        "component_join_map",
+        "dimensions_with_units",
+        "material_binding",
+        "support_and_contact_regions",
+        "clearance_constraints",
+        "safe_assembly_route"
+      ],
+      "unresolved_source_groups": [
+        "U_GEOM",
+        "U_TARGETS"
+      ],
+      "default_values": null
+    },
+    {
+      "id": "manufacturing_card",
+      "required_fields": [
+        "stock_material_and_lot",
+        "part_manifest",
+        "pattern_or_job_revision",
+        "cut_or_print_settings",
+        "acceptance_tolerances",
+        "service_guard_contract",
+        "safe_release_contract"
+      ],
+      "unresolved_source_groups": [
+        "U_PRINT",
+        "U_CUT",
+        "U_TOLERANCE"
+      ],
+      "default_values": null
+    },
+    {
+      "id": "scene_card",
+      "required_fields": [
+        "robot_capability_and_load_limits",
+        "calibrated_station_frames",
+        "carrier_supports",
+        "reachable_grasps",
+        "collision_and_navigation_routes",
+        "dock_interfaces",
+        "observable_station_interlocks"
+      ],
+      "unresolved_source_groups": [
+        "U_ROBOT"
+      ],
+      "default_values": null
+    },
+    {
+      "id": "specimen_allocation_card",
+      "required_fields": [
+        "sample_ids",
+        "parent_lot_and_component_ids",
+        "manufacture_or_handoff_receipts",
+        "independent_sample_count",
+        "reuse_or_replacement_policy",
+        "starting_state",
+        "prior_history",
+        "material_change_policy"
+      ],
+      "unresolved_source_groups": [
+        "U_REPLICATES",
+        "U_HISTORY"
+      ],
+      "count_value": null,
+      "count_scope": "Episode allocation only; no historical source n inferred"
+    },
+    {
+      "id": "target_schedule_card",
+      "required_fields": [
+        "target_ids",
+        "target_geometry_or_view_cards",
+        "attempts_per_target",
+        "initial_state_card",
+        "safe_reset_or_replacement_route"
+      ],
+      "unresolved_source_groups": [
+        "U_TARGETS",
+        "U_ACTUATION",
+        "U_REPLICATES"
+      ],
+      "known_label_sets": {
+        "tetrahedron_Fig4": [
+          "i",
+          "ii",
+          "iii",
+          "iv",
+          "v",
+          "vi",
+          "vii",
+          "viii",
+          "ix",
+          "x",
+          "xi",
+          "xii",
+          "xiii",
+          "xiv",
+          "xv",
+          "xvi",
+          "xvii"
+        ],
+        "cube_Fig4": [
+          "i",
+          "ii",
+          "iii",
+          "iv",
+          "v",
+          "vi",
+          "vii",
+          "viii"
+        ],
+        "SI6_truncated_cube": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11"
+        ],
+        "SI6_rhombicuboctahedron": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15"
+        ]
+      },
+      "not_included": "Expected experimental outcomes"
+    },
+    {
+      "id": "actuation_observation_card",
+      "required_fields": [
+        "contact_and_support_paths",
+        "actuation_limits_with_units",
+        "limit_feedback",
+        "load_off_criterion",
+        "observation_times_or_window",
+        "view_ids",
+        "state_comparison_rule",
+        "damage_criteria",
+        "safe_reset_route"
+      ],
+      "unresolved_source_groups": [
+        "U_ACTUATION",
+        "U_TARGETS"
+      ],
+      "default_values": null
+    },
+    {
+      "id": "compression_card",
+      "required_fields": [
+        "sample_L_with_units",
+        "fixture_identity_and_axis",
+        "calibration_and_zero",
+        "physical_loading_rate_with_units",
+        "travel_and_force_limits",
+        "displacement_reference",
+        "total_cycles",
+        "sampling_and_units",
+        "endpoint_criterion",
+        "interlock_and_safe_release"
+      ],
+      "unresolved_source_groups": [
+        "U_LENGTH",
+        "U_LOAD",
+        "U_CYCLES"
+      ],
+      "source_amplitude_rule": "sqrt(2)*L",
+      "source_summary_cycle_count": 5,
+      "total_cycles_value": null,
+      "loading_rate_value": null,
+      "L_value": null,
+      "numerical_settings_allowed_as_defaults": false
+    },
+    {
+      "id": "aggregation_card",
+      "required_fields": [
+        "run_id",
+        "ordered_cycle_selection",
+        "common_condition_signature",
+        "axis_alignment",
+        "interpolation_rule",
+        "SD_convention",
+        "quantity_units",
+        "processing_version"
+      ],
+      "unresolved_source_groups": [
+        "U_AGGREGATION"
+      ],
+      "selection_rule": "Actual chronological final five complete valid cycles of the declared run; any invalid member yields incomplete"
+    },
+    {
+      "id": "array_card",
+      "required_fields": [
+        "array_id",
+        "unit_preparation_receipts",
+        "eight_distinct_unit_ids",
+        "slot_xyz_map",
+        "intercell_joint_map",
+        "face_material_and_dimensions",
+        "hinge_thickness_condition",
+        "boundary_supports",
+        "bulk_target_ids",
+        "targets_by_class"
+      ],
+      "unresolved_source_groups": [
+        "U_ARRAY_FACE",
+        "U_ARRAY_TOPOLOGY",
+        "U_GEOM",
+        "U_TARGETS"
+      ],
+      "source_array_shape": [
+        2,
+        2,
+        2
+      ],
+      "source_thickness_conditions_um": [
+        50,
+        125
+      ],
+      "condition_target_requirement": "For thickness pair, Cartesian product of both thickness conditions with the same declared bulk target list; boundary branch uses per-class target lists"
+    },
+    {
+      "id": "pneumatic_card",
+      "required_fields": [
+        "specimen_preparation_receipt",
+        "pouch_ids",
+        "pouch_construction_and_attachment_card",
+        "channel_and_port_graph",
+        "pressure_and_flow_limits",
+        "program_ids",
+        "program_commands_and_timing",
+        "repetitions",
+        "initial_state_and_reset",
+        "vent_procedure",
+        "both_channel_safe_readbacks",
+        "observation_card"
+      ],
+      "unresolved_source_groups": [
+        "U_POUCH",
+        "U_ACTUATION",
+        "U_GEOM"
+      ],
+      "source_pouch_count": 2,
+      "source_reported_state_count": 4,
+      "program_ids_value": null,
+      "pressure_value": null,
+      "mapping_value": null,
+      "source_state_count_is_program_count": false
+    }
+  ],
+  "execution_enablement": "All required fields for a selected action must be supplied, provenance-tagged and independently qualified. This file gives the contract only; no present physical/proxy execution is enabled."
+}

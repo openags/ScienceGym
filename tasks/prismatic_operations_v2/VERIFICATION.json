@@ -1,0 +1,37 @@
+{
+  "schema_version": "prismatic_export_verification.v1",
+  "verification_date_utc": "2026-10-03",
+  "scope": "Static authored contracts and synthetic bookkeeping records only; no physical simulation/hardware/scientific execution",
+  "checks": [
+    {
+      "command": "python tests/test_prismatic_contract.py",
+      "tests_run": 41,
+      "passed": 40,
+      "skipped": 1,
+      "failed": 0,
+      "skip_reason": "Optional source bytes are intentionally not bundled; explicit --source-dir enables them"
+    },
+    {
+      "command": "python tests/test_prismatic_contract.py --source-dir PATH_TO_LAWFULLY_OBTAINED_SOURCES",
+      "tests_run": 41,
+      "passed": 41,
+      "skipped": 0,
+      "failed": 0,
+      "source_version": "Exact cached file hashes and basenames documented in independent_source_audit/audit.json and source_access_audit.json"
+    },
+    {
+      "check": "Host-specific absolute path scan in export",
+      "result": "No host-specific absolute paths found"
+    },
+    {
+      "check": "Export artifact extensions",
+      "result": "Only authored .json, .md and .py files present; no publisher HTML/PDF/image bytes"
+    }
+  ],
+  "limitations": [
+    "No executable actor loader",
+    "No scene, CAD, robot feasibility or physical safety verification",
+    "No measured scientific outcomes",
+    "No remote publication or LICENSE change"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "conflicts": [
+    {
+      "id": "Q_PANEL",
+      "evidence_ids": [
+        "CARD",
+        "COMP"
+      ],
+      "issue": "Compression prose refers to Fig1b while its named geometry is cuboctahedron; Fig1 caption labels the cuboctahedron c",
+      "policy": "Use the explicitly named compression geometry; retain the panel-reference inconsistency"
+    },
+    {
+      "id": "Q_CYCLES",
+      "evidence_ids": [
+        "COMP"
+      ],
+      "issue": "Body summarizes last five cycles; caption describes cyclic loading five times",
+      "policy": "Retain five summarized cycles and leave total conditioning history unknown"
+    },
+    {
+      "id": "Q_INSTABILITY",
+      "evidence_ids": [
+        "COMP",
+        "SI_NUM"
+      ],
+      "issue": "Main Fig2 describes one loading/two unloading instabilities; SI1 numerical caption describes two/three",
+      "policy": "Do not turn either count into a physical-task success oracle"
+    },
+    {
+      "id": "Q_RELAXATION",
+      "evidence_ids": [
+        "TETRA"
+      ],
+      "issue": "Body names relaxation destinations vii and xi; Fig4b pixel arrows appear to name xiii for several cases and vii for one",
+      "policy": "Keep source-observation disagreement unresolved; no forced destination or target-success oracle"
+    }
+  ],
+  "additional_independent_conflicts_file": "independent_source_audit/audit.json",
+  "audit_conflict_ids": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7"
+  ],
+  "policy": "Preserve incompatible source assertions with modality/locator; never require one disputed source outcome for task success"
+}

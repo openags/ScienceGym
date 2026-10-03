@@ -1,0 +1,97 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "unknowns": [
+    {
+      "id": "U_GEOM",
+      "description": "Complete CAD, hinge layout, face counts/joins, fixture geometry and tolerances are not recovered; a qualified episode geometry card is required",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_PRINT",
+      "description": "PLA printing temperature, layer size, infill, support removal and complete fabrication settings are not reported",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_CUT",
+      "description": "Cut patterns, tooling settings and dimensional tolerances for sheets/hinges are unresolved",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_LENGTH",
+      "description": "Absolute length L of the PLA compression specimen is unresolved; do not copy 24 mm from cardboard examples",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_LOAD",
+      "description": "Physical load rate, load cell, calibration, preload, conditioning, load limits and fixture alignment tolerances are unresolved",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_CYCLES",
+      "description": "Last five cycles are summarized; total conditioning/test history and independent-specimen count are unresolved",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_ACTUATION",
+      "description": "Exact contact/hinge actuation paths, force limits, release criterion and observation duration are unresolved",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_ELASTOMER",
+      "description": "Source says silicon rubber; product identity, properties, hinge attachment and stretch limits are unresolved",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_ARRAY_FACE",
+      "description": "Array face composition/dimensions are not explicitly resolved; do not infer a material from colour or inherit the single-cell recipe",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_ARRAY_TOPOLOGY",
+      "description": "Detailed array connectivity, boundary constraints and larger-period target geometry are missing",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_SI_MATERIAL",
+      "description": "SI6 physical/model pairs do not specify the specimen material or fabrication parameters",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_POUCH",
+      "description": "Pouch construction, attachment, pressure, flow, timing and mapping to four states are unresolved",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_REPLICATES",
+      "description": "Independent samples and repeated-attempt counts are not reported; displayed states are not sample counts",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_TARGETS",
+      "description": "Target labels identify published configurations, not complete machine-readable geometry or trajectories",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_HISTORY",
+      "description": "Historical specimen reuse/order across reported pictures and experiments is not reconstructed",
+      "execution_gate": "Do not execute affected physical or proxy service until an explicitly authored/qualified episode input resolves its required fields; otherwise retain a source-gap blocker"
+    },
+    {
+      "id": "U_ROBOT",
+      "description": "No robot model, reach map, mass/load capacity, station coordinates, calibrated frames, collision-free paths, grasps or contact interfaces have been reconstructed. A public qualified scene card is required.",
+      "execution_gate": "Affected operation is blocked until supplied in an explicitly task-authored/qualified public condition card; never infer a numeric default"
+    },
+    {
+      "id": "U_TOLERANCE",
+      "description": "Dimensional/visual acceptance tolerances, gauge resolution and uncertainty are not reported; explicit task-authored inspection cards must separate intended nominal values from allowable ranges.",
+      "execution_gate": "Affected operation is blocked until supplied in an explicitly task-authored/qualified public condition card; never infer a numeric default"
+    },
+    {
+      "id": "U_AGGREGATION",
+      "description": "Cycle resampling grid, displacement alignment and population/sample standard-deviation convention are unspecified; require a declared processing card and preserve the chosen definition.",
+      "execution_gate": "Affected operation is blocked until supplied in an explicitly task-authored/qualified public condition card; never infer a numeric default"
+    }
+  ],
+  "scope": "Unknowns block physical/proxy execution, not completion of the present task-design deliverable"
+}

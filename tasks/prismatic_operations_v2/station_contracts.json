@@ -1,0 +1,103 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "visibility": "author_and_evaluator",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "role": "Work-order and record console",
+      "required_interfaces": "Readable card display, keyboard/buttons, immutable receipts, tagged source/task inputs",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_STOCK",
+      "role": "Labeled stock and carrier store",
+      "required_interfaces": "Separate sheet/stock thickness bins, lot labels, supported cart slots and retainers",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_PRINT",
+      "role": "Enclosed inert fabrication proxy",
+      "required_interfaces": "Guard, stock/tray docks, job selection/readback, complete and safe_release feedback",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_CUT",
+      "role": "Enclosed inert sheet-cutting proxy",
+      "required_interfaces": "Sheet support, pattern readback, hold-downs, guard and safe release",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "role": "Manual joining bench",
+      "required_interfaces": "Topology-indexed mat, support jig, face-half clamps, tape/joint tools and waste holders",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_INSPECTION",
+      "role": "Inspection and image station",
+      "required_interfaces": "Supported cradle, defined gauge contacts, camera views and material/identity reader; co-located camera role during relaxation",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_COMPRESSION",
+      "role": "Displacement-controlled compression station",
+      "required_interfaces": "Opposing-face fixture, calibrated axis/readbacks, force/displacement channels, guard and safe-release interface",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_ACTUATION",
+      "role": "Bounded local-actuation station",
+      "required_interfaces": "Non-actuating support, bimanual contact zones, visible limit feedback and load-off evidence",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_PNEUMATIC",
+      "role": "Two-channel inert pouch station",
+      "required_interfaces": "Keyed channel ports, strain relief, supply-off and residual-pressure-safe readbacks, bounded command controls",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_QUARANTINE",
+      "role": "Supported exception storage",
+      "required_interfaces": "Marked carrier slots preserving specimen identity and unsafe-station report",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "role": "Archive and reset store",
+      "required_interfaces": "Carrier slots, component trays and immutable raw/derived record links",
+      "asset_status": "unbuilt_symbolic_interface_no_CAD_or_robot_binding",
+      "authorship": "task_authored"
+    }
+  ],
+  "mobile_robot": {
+    "embodiment": "Human-like mobile manipulator capable of navigation, bimanual support and fine manipulation through qualified interfaces",
+    "mass_reach_grasp_pose": "Unresolved; no actual robot capability asserted",
+    "cross_station_required": true,
+    "transport_preconditions": [
+      "Supported retained carrier",
+      "Arms retracted before base navigation",
+      "All tethers detached under safe state",
+      "Destination dock accessible and empty"
+    ],
+    "forbidden_shortcuts": [
+      "Teleport or hide/show sample",
+      "Change material or thickness label as a substitute for exchange",
+      "Spawn finished specimen from target selection",
+      "Move through solid faces or guards",
+      "Use one object simultaneously in two stations"
+    ]
+  },
+  "active_equipment": "All powered manufacturing, compression and pneumatic services are design-level inert proxy roles, never invoked here. Future execution requires qualified interfaces and public limits."
+}

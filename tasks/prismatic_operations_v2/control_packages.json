@@ -1,0 +1,106 @@
+{
+  "schema_version": "prismatic_paper_task.v3",
+  "doi": "10.1038/s41467-019-13319-7",
+  "visibility": "evaluator_reference_only",
+  "control_packages": [
+    {
+      "id": "C_COMPRESSION",
+      "branch_ids": [
+        "PLA_MYLAR_CYCLIC"
+      ],
+      "conditions": [
+        "unloaded_fixture_zero",
+        "mounted_baseline",
+        "chronological_loading_unloading_cycles",
+        "post_test_state"
+      ],
+      "claim": "Qualitative loading/unloading and last-five summary, not calibrated agreement with the numerical curve"
+    },
+    {
+      "id": "C_RELEASE",
+      "branch_ids": [
+        "TETRA_REACH_RELEASE"
+      ],
+      "conditions": [
+        "initial_state",
+        "loaded_target",
+        "load_removed",
+        "post_release_window"
+      ],
+      "claim": "Reaching under load and remaining after release are distinct"
+    },
+    {
+      "id": "C_HINGE",
+      "branch_ids": [
+        "CUBE_HINGE_COMPARISON"
+      ],
+      "conditions": [
+        "mylar",
+        "elastomer_0p5mm"
+      ],
+      "match": [
+        "geometry card",
+        "target ID",
+        "starting-state card",
+        "actuation/contact limits and observation definition where legitimately comparable"
+      ],
+      "qualification": "Hinge material and stretchability/stiffness change; do not claim a quantitatively isolated mechanism with unspecified properties/history"
+    },
+    {
+      "id": "C_THICKNESS",
+      "branch_ids": [
+        "ARRAY_THICKNESS_PAIR"
+      ],
+      "conditions": [
+        "mylar_50um",
+        "mylar_125um"
+      ],
+      "match": [
+        "2x2x2 topology",
+        "target class",
+        "initial-state definition",
+        "observation card"
+      ],
+      "qualification": "Separate source-reported arrays; incomplete face/fabrication matching must be disclosed"
+    },
+    {
+      "id": "C_FINITE",
+      "branch_ids": [
+        "ARRAY_BOUNDARY_LONG"
+      ],
+      "conditions": [
+        "bulk_compatible",
+        "edge_or_corner",
+        "longer_than_one_cell"
+      ],
+      "claim": "Finite spatial classes are distinct observations, not independent specimens or periodic single-cell-model validation"
+    },
+    {
+      "id": "C_SI6",
+      "branch_ids": [
+        "SI6_TRUNCATED_CUBE",
+        "SI6_RHOMBICUBOCTAHEDRON"
+      ],
+      "conditions": [
+        "model_target_view",
+        "loaded_observed_view",
+        "released_observed_view"
+      ],
+      "qualification": "Selected displays provide comparison inventory; source lacks actuation and material recipe"
+    },
+    {
+      "id": "C_PNEU",
+      "branch_ids": [
+        "PNEUMATIC_TWO_POUCH"
+      ],
+      "conditions": [
+        "program_readback",
+        "loaded_shape",
+        "both_channels_load_off",
+        "released_shape"
+      ],
+      "qualification": "Two channels/four reported states do not specify a truth table"
+    }
+  ],
+  "repetition_control": "Hold conditions fixed within a run; change creates new signature and possibly new version/run. Retain incomplete/failed repetitions, specify reset/conditioning history, and never infer statistical sample size from target or cycle counts."
+}
