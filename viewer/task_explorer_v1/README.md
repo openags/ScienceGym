@@ -1,8 +1,8 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** Thirteen public paper-level task families, with reference-route occurrences, partial-order memberships, nested repetition, objects, state transitions and evidence.
+**See the task before reading its JSON.** Sixteen public paper-level task families, with reference-route occurrences, partial-order memberships, nested repetition, objects, state transitions and evidence.
 
-The explorer contains **248 inspection records and 1,533 operation definitions**. The earlier ten families retain 202 records and 1,376 definitions. Three acoustic designs add 46 records and 157 definitions: 20 physical routes/leaves, 22 numerical/theoretical dispositions, three shared-preparation records and one source-defined campaign-accounting record. These are representation counts, not completed experiments or independent specimens.
+The explorer contains **308 inspection records and 1,693 operation definitions**. The earlier thirteen families retain 248 records and 1,533 definitions. The three mechanical designs add 60 records and 160 definitions: 33 physical designs, three preparation views, three campaign records, fifteen numerical/theoretical dispositions, five proposals/concepts and one derived-analysis disposition. The earlier ten families retain 202 records and 1,376 definitions. Three acoustic designs add 46 records and 157 definitions: 20 physical routes/leaves, 22 numerical/theoretical dispositions, three shared-preparation records and one source-defined campaign-accounting record. These are representation counts, not completed experiments or independent specimens.
 
 This is a **read-only author/evaluator logical inspector**, including public reference and evaluator material. It is not a simulator, a task runner, an actor-facing prompt or evidence that a robot performed any operation. This integration adds no new 3D storyboard. The source release has **zero validated runnable whole-paper tasks**.
 
@@ -15,9 +15,9 @@ This is a **read-only author/evaluator logical inspector**, including public ref
 
 GitHub displays HTML source rather than running it. The diagrams and Markdown routes below are readable directly on GitHub.
 
-## Thirteen visual route maps
+## Sixteen visual route maps
 
-Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01, Acoustic WHOLE_PAPER_PRACTICAL, perovskite SPIN_MODULES, prismatic CUBE_HINGE_COMPARISON EmVP POSITIVE_HELIX directional cooling TRACKED_STAGNATION, acoustic wavefront NORMAL_INCIDENCE, bianisotropic MEASURE_60 and acoustic edge SINGLE_EDGE_1D. Prismatic views distinguish operation membership, independent subcampaigns, conditional recovery and symbolic loops; they do not turn the membership list into a chronological route. The right-hand index lists every route/configuration choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes/configurations, not just the pictured view.
+Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01, Acoustic WHOLE_PAPER_PRACTICAL, perovskite SPIN_MODULES, prismatic CUBE_HINGE_COMPARISON EmVP POSITIVE_HELIX directional cooling TRACKED_STAGNATION, acoustic wavefront NORMAL_INCIDENCE, bianisotropic MEASURE_60 acoustic edge SINGLE_EDGE_1D, origami memory ONE_BIT_TORQUE, ring origami TRI_TORSION and mechanical backpropagation GRADIENT_SEPARATE. Prismatic views distinguish operation membership, independent subcampaigns, conditional recovery and symbolic loops; they do not turn the membership list into a chronological route. The right-hand index lists every route/configuration choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes/configurations, not just the pictured view.
 
 | Family | Diagram | Every branch and route |
 | --- | --- | --- |
@@ -34,10 +34,18 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 | Acoustic wavefront modulation | [Full SVG](diagrams/wavefront.svg) | [10 physical routes + 8 numerical/theory dispositions](docs/wavefront.md) |
 | Bianisotropic acoustic metasurfaces | [Full SVG](diagrams/bianisotropic.svg) | [3 physical + 11 numerical/theory branches](docs/bianisotropic.md) |
 | Acoustic edge detection | [Full SVG](diagrams/edge.svg) | [7 acquisition + 3 shared preparation + 3 numerical + 1 campaign-accounting records](docs/edge.md) |
+| Origami mechanical memory | [Full SVG](diagrams/origami_memory.svg) | [10 physical + 1 campaign + 4 nonmanual records](docs/origami_memory.md) |
+| Reconfigurable ring origami | [Full SVG](diagrams/ring_origami.svg) | [14 physical + 3 preparation + 1 campaign + 3 nonmanual records](docs/ring_origami.md) |
+| Mechanical backpropagation | [Full SVG](diagrams/mechanical_backprop.svg) | [9 typed physical + 1 campaign + 14 nonmanual records](docs/mechanical_backprop.md) |
 
 ![Chiral first reference route and all branch choices](diagrams/chiral.svg)
 
 ## What the graph means
+
+- Mechanical views preserve 160 operation contracts, 54 unknown-input groups and all 34 source control records. Origami membership is unordered; ring condition/trial/preparation trees preserve macros, concurrency and conditional postprocessing; backprop uses the authoritative typed trees with all phase bindings and ten transport contracts
+- Backprop forward and adjoint entries remain distinct; source trials, specimens and numerical training runs are different counts. Numerical training/retraining does not update a printed lattice. The zero-mass regression condition still requires an actual image
+- Ring torque is semi-experimental derived analysis with matched measured force and image-geometry parents. Missing parents leave torque blocked; source/model curves never fill them. Configuration changes require actual hardware transitions, and three element prototypes do not establish ring/array sample counts
+- Source-missing videos retain package-specific gates: ring method-bearing choreography requires inspection or a qualified authored substitute. Origami unread movies are optional corroboration; backprop unread numerical videos gate exact visual claims, not the physical contract. Sampled-frame inspection is not full playback
 
 - New acoustic operation lists remain unordered memberships under 142 explicit dependency edges. Numerical/theoretical records are labeled separately and never promoted to physical measurements. Metadata-only numerical views have no invented operation IDs; selecting them clears the physical-operation inspector
 - Wavefront preserves seven global symbolic loop scopes and fifteen input gates. Bianisotropic retains seven branch-local loop records and eighteen unknown-input groups, including explicitly non-execution-blocking caveats. Edge preserves five loop contracts and fourteen unknown groups
@@ -68,11 +76,11 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 - `data/<family>.json`: compact, inspectable normalized records
 - `data/<family>.js`: the same JSON as a local-script assignment so `file://` does not require fetch
 - `diagrams/*.svg`, `docs/<family>.md`: GitHub-native alternatives
-- `build.py` and `acoustic_adapters.py`: thirteen explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
-- `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_cooling.py`, `tests/test_acoustic_designs.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
+- `build.py`, `acoustic_adapters.py` and `mechanical_adapters.py`: sixteen explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
+- `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_cooling.py`, `tests/test_acoustic_designs.py`, `tests/test_mechanical_designs.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 
-The three new acoustic source packages are pinned to [162905c0aeebd6da5eb9794df118458c24bb7d63](https://github.com/openags/ScienceGym/tree/162905c0aeebd6da5eb9794df118458c24bb7d63). Cooling source links are pinned separately to [9a9472b996145ff7f7a4c138c7477b4e734d8835](https://github.com/openags/ScienceGym/tree/9a9472b996145ff7f7a4c138c7477b4e734d8835), which includes its reviewed package. The earlier nine-family immutable source snapshot is [openags/ScienceGym at 293e32da790303c1a17131e036235f69a5f342e0](https://github.com/openags/ScienceGym/tree/293e32da790303c1a17131e036235f69a5f342e0). Every source JSON link is pinned to its family-specific historical commit. The manifests record these per-family pins; their legacy `commit` / `source_commit` fields retain the earlier snapshot meaning. Per-file SHA-256 values describe the local task files used to build this viewer. The 2026-10-03 standalone-presentation update changes scene-binding wording in three local perovskite metadata files; those local hashes therefore differ from the linked historical bytes, while scientific task contracts remain unchanged. See [verification](VERIFICATION.md). The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
+The three mechanical source packages are pinned to [43a185dacb02a979148bee93d5d9559e569086f3](https://github.com/openags/ScienceGym/tree/43a185dacb02a979148bee93d5d9559e569086f3). The three new acoustic source packages are pinned to [162905c0aeebd6da5eb9794df118458c24bb7d63](https://github.com/openags/ScienceGym/tree/162905c0aeebd6da5eb9794df118458c24bb7d63). Cooling source links are pinned separately to [9a9472b996145ff7f7a4c138c7477b4e734d8835](https://github.com/openags/ScienceGym/tree/9a9472b996145ff7f7a4c138c7477b4e734d8835), which includes its reviewed package. The earlier nine-family immutable source snapshot is [openags/ScienceGym at 293e32da790303c1a17131e036235f69a5f342e0](https://github.com/openags/ScienceGym/tree/293e32da790303c1a17131e036235f69a5f342e0). Every source JSON link is pinned to its family-specific historical commit. The manifests record these per-family pins; their legacy `commit` / `source_commit` fields retain the earlier snapshot meaning. Per-file SHA-256 values describe the local task files used to build this viewer. The 2026-10-03 standalone-presentation update changes scene-binding wording in three local perovskite metadata files; those local hashes therefore differ from the linked historical bytes, while scientific task contracts remain unchanged. See [verification](VERIFICATION.md). The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
 
 ## Rebuild and test
 

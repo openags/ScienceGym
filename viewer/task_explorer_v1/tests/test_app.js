@@ -3,9 +3,9 @@
 class El{constructor(tag){this.tagName=tag;this.attrs={};this.children=[];this.style={setProperty(){}};this.dataset={};this.hidden=false;this.value='';this.className='';this.classList={toggle:(name,on)=>{let s=new Set(this.className.split(' ').filter(Boolean));on?s.add(name):s.delete(name);this.className=[...s].join(' ');}};}setAttribute(k,v){this.attrs[k]=String(v);if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=String(v);if(k==='value')this.value=v;}append(...x){this.children.push(...x);}replaceChildren(...x){this.children=x;}set textContent(v){this.text=String(v);this.children=[];}get textContent(){return this.text||'';}}
 const ids=[...fs.readFileSync(path.join(ROOT,'index.html'),'utf8').matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);const elements=Object.fromEntries(ids.map(id=>[id,new El('div')]));['route','dependencies','contract'].forEach(tab=>{elements['tab-'+tab].setAttribute('role','tab');elements['tab-'+tab].setAttribute('data-tab',tab);});
 const walk=(roots)=>roots.flatMap(n=>n instanceof El?[n,...walk(n.children)]:[]);const document={documentElement:new El('html'),getElementById:id=>elements[id],createElement:tag=>new El(tag),createTextNode:t=>String(t),querySelectorAll:selector=>{const all=walk(Object.values(elements));if(selector==='nav button')return elements.families.children;if(selector==='[role=tab]')return all.filter(x=>x.attrs.role==='tab');if(selector==='.operation')return all.filter(x=>x.className.split(' ').includes('operation'));throw Error('Unimplemented selector '+selector);}};
-const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
+const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
 let hash='',onHash;const location={get hash(){return hash;},set hash(value){hash=value.startsWith('#')?value:'#'+value;if(onHash)onHash();}};const window={SCIENCEGYM_DATA:data,addEventListener:(n,fn)=>{if(n==='hashchange')onHash=fn;}};const context={window,document,location,console,Blob:class{constructor(parts,options){this.parts=parts;this.options=options;}},URL:{createObjectURL:()=> 'blob:mock-test',revokeObjectURL:()=>{}}};vm.createContext(context);if(process.argv[2]){const standalone=fs.readFileSync(process.argv[2],'utf8');for(const match of standalone.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInContext(match[1],context);}else{vm.runInContext(fs.readFileSync(path.join(ROOT,'app.js'),'utf8'),context);}let routeCount=0,occurrenceCount=0;
-for(const [key,f]of Object.entries(window.ScienceGymExplorer.data)){for(const r of f.routes){location.hash=[key,r.id,'',0].join('/');const state=window.ScienceGymExplorer.state;assert.strictEqual(state.family,key);assert.strictEqual(state.route,r.id);assert(state.steps.length>0||r.route_kind==='numerical');assert.strictEqual(document.querySelectorAll('.operation').length,state.steps.length);assert.strictEqual(document.querySelectorAll('.operation').filter(x=>x.attrs['aria-pressed']==='true').length,state.steps.length?1:0);if(state.steps.length){const last=state.steps[state.steps.length-1];location.hash=[key,r.id,last.id,last.index].join('/');assert.strictEqual(state.op,last.id);assert.strictEqual(state.occurrence,last.index);}else{assert.strictEqual(state.op,null);}routeCount++;occurrenceCount+=state.steps.length;}}
+for(const [key,f]of Object.entries(window.ScienceGymExplorer.data)){for(const r of f.routes){location.hash=[key,r.id,'',0].join('/');const state=window.ScienceGymExplorer.state;assert.strictEqual(state.family,key);assert.strictEqual(state.route,r.id);assert(state.steps.length>0||r.route_kind==='numerical'||r.metadata_only);assert.strictEqual(document.querySelectorAll('.operation').length,state.steps.length);assert.strictEqual(document.querySelectorAll('.operation').filter(x=>x.attrs['aria-pressed']==='true').length,state.steps.length?1:0);if(state.steps.length){const last=state.steps[state.steps.length-1];location.hash=[key,r.id,last.id,last.index].join('/');assert.strictEqual(state.op,last.id);assert.strictEqual(state.occurrence,last.index);}else{assert.strictEqual(state.op,null);}routeCount++;occurrenceCount+=state.steps.length;}}
 location.hash='dispim/D-R01/P001/7';assert.strictEqual(window.ScienceGymExplorer.state.op,'P001');let ps=window.ScienceGymExplorer.state.steps.filter(s=>s.id==='P001');assert.strictEqual(ps.length,2);location.hash=['dispim','D-R01','P001',ps[1].index].join('/');assert.strictEqual(window.ScienceGymExplorer.state.occurrence,ps[1].index);
 elements.operationSearch.oninput({target:{value:'inventory'}});assert(document.querySelectorAll('.operation').some(x=>x.className.includes('match')));elements.operationSearch.oninput({target:{value:''}});assert(!document.querySelectorAll('.operation').some(x=>x.className.includes('match')));
 elements['tab-dependencies'].onclick();assert.strictEqual(elements.routeView.hidden,true);assert.strictEqual(elements.dependenciesView.hidden,false);elements['tab-route'].onclick();assert.strictEqual(elements.routeView.hidden,false);
@@ -155,3 +155,57 @@ location.hash='wavefront/N_COUPLE/ARRAY_LOAD/0';assert.strictEqual(window.Scienc
 location.hash='bianisotropic/RETRIEVAL_NUMERICAL';
 assert(!window.ScienceGymExplorer.state.steps.some(x=>x.id==='MIC_CAL'));
 console.log('PASS: acoustic boundary navigation, empty dispositions, repeated transfers, alternatives, tabs, state immutability and hash-history restoration');
+
+// Mechanical source grammars, metadata-only dispositions and per-display bindings.
+for(const key of ['origami_memory','ring_origami','mechanical_backprop']){
+ const f=window.ScienceGymExplorer.data[key],before=JSON.stringify(f);
+ for(const r of f.routes){
+  location.hash=[key,r.id].join('/');
+  assert(elements.routeBadge.textContent.includes(r.route_kind.toUpperCase()));
+  assert(!walk([elements.routeCanvas,elements.dependenciesView,elements.inspector]).some(x=>x.textContent.includes('undefined')));
+  if(r.metadata_only){
+   assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+   assert.strictEqual(window.ScienceGymExplorer.state.steps.length,0);
+   assert(walk([elements.inspector]).some(x=>x.textContent.includes('no operation-ID route')));
+   elements.operationSearch.oninput({target:{value:'force'}});assert.strictEqual(elements.searchCount.textContent,'0 matches');
+  }else{
+   document.querySelectorAll('.operation')[0].onclick();document.querySelectorAll('.operation')[0].onclick();
+  }
+  if(key==='origami_memory')assert(!walk([elements.routeCanvas]).some(x=>x.className.split(' ').includes('connector')));
+  elements['tab-dependencies'].onclick();elements['tab-contract'].onclick();elements['tab-route'].onclick();
+ }
+ assert.strictEqual(JSON.stringify(f),before);
+}
+location.hash='ring_origami/TRI_TORSION';
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('not direct torque measurement')));
+location.hash='ring_origami/ELEMENT_RESPONSE';
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('Concurrent source obligations')));
+elements['tab-dependencies'].onclick();
+assert(walk([elements.dependenciesView]).some(x=>x.textContent.includes('D_TORQUE')));
+location.hash='ring_origami/PREP_THICK';
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('Conditional postprocessing only')));
+const ringTransfers=window.ScienceGymExplorer.state.steps.filter(x=>x.id==='TRANSFER');assert(ringTransfers.length>2);
+location.hash=['ring_origami','PREP_THICK','TRANSFER',ringTransfers.at(-1).index].join('/');
+assert(walk([elements.inspector]).some(x=>x.textContent.includes('Source occurrence binding')));
+assert(walk([elements.inspector]).some(x=>x.textContent.includes('WS_ASSEMBLY')));
+location.hash='mechanical_backprop/GRADIENT_SEPARATE';
+const phases=window.ScienceGymExplorer.state.steps.filter(x=>x.id==='BASELINE');assert.strictEqual(phases.length,2);
+assert.strictEqual(phases[0].sourceOccurrence.source_node.bindings.active_force_role,'forward_only');
+assert.strictEqual(phases[1].sourceOccurrence.source_node.bindings.active_force_role,'adjoint_only');
+location.hash=['mechanical_backprop','GRADIENT_SEPARATE','BASELINE',phases[1].index].join('/');
+assert.strictEqual(window.ScienceGymExplorer.state.occurrence,phases[1].index);
+assert(walk([elements.inspector]).some(x=>x.textContent.includes('adjoint_only')));
+const phaseHash=location.hash;
+location.hash='mechanical_backprop/N_SWITCH/BASELINE/0';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+location.hash=phaseHash;assert.strictEqual(window.ScienceGymExplorer.state.occurrence,phases[1].index);
+location.hash='mechanical_backprop/REGRESSION_SWEEP';
+assert(walk([elements.routeCanvas]).some(x=>x.textContent.includes('mass_g')));
+const moves=window.ScienceGymExplorer.state.steps.filter(x=>x.id==='MOVE');assert.strictEqual(moves.length,10);
+location.hash=['mechanical_backprop','REGRESSION_SWEEP','MOVE',moves.at(-1).index].join('/');
+assert(walk([elements.inspector]).some(x=>x.textContent.includes('transfer_contract')));
+assert(walk([elements.inspector]).some(x=>x.textContent.includes('source_station')));
+location.hash='ring_origami/N_TORQUE_DERIVATION';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+assert(elements.routeTitle.textContent.includes('NOT DIRECT MEASUREMENT'));
+location.hash='origami_memory/N_FREQ';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+assert(elements.routeTitle.textContent.includes('NOT IMPLEMENTED'));
+console.log('PASS: mechanical nested templates, qualified dependency rules, occurrence bindings, numerical/proposal/analysis isolation, repeated transfers, empty selections and immutable navigation');

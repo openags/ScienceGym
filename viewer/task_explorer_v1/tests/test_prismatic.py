@@ -234,8 +234,8 @@ class PrismaticBundleTests(unittest.TestCase):
     def test_manifest_preserves_ten_family_totals(self):
         manifest = json.loads((ROOT / 'manifest.json').read_text())
         self.assertEqual(manifest['commit'], '293e32da790303c1a17131e036235f69a5f342e0')
-        self.assertEqual(len(manifest['families']), 13)
-        earlier = [f for f in manifest['families'] if f['id'] not in ('wavefront', 'bianisotropic', 'edge')]
+        self.assertEqual(len(manifest['families']), 16)
+        earlier = [f for f in manifest['families'] if f['id'] not in ('wavefront', 'bianisotropic', 'edge', 'origami_memory', 'ring_origami', 'mechanical_backprop')]
         self.assertEqual(len(earlier), 10)
         self.assertEqual(sum(family['routes'] for family in earlier), 202)
         self.assertEqual(sum(family['operations'] for family in earlier), 1376)

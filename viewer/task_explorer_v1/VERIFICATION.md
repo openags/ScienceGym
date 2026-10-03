@@ -1,11 +1,39 @@
-# Verification: thirteen-family task explorer
+# Verification: sixteen-family task explorer
+
+## Three-mechanical-design integration, 2026-10-03
+
+The current explorer contains **16 families, 308 inspection records and 1,693 operation definitions**. The earlier thirteen families retain 248 records and 1,533 definitions byte-for-byte. The three mechanical source packages add 160 definitions and 60 records:
+
+| Family | Definitions | Physical designs | Preparation | Campaign | Nonmanual dispositions |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Origami mechanical memory | 55 | 10 | 0 | 1 | 1 numerical + 3 proposals/concepts |
+| Reconfigurable ring origami | 59 | 14 | 3 | 1 | 1 numerical + 1 proposal + 1 derived analysis |
+| Mechanical backpropagation | 46 | 9 | 0 | 1 | 13 numerical + 1 proposal |
+
+These are inspection records and reusable definitions, not completed experiments, independent specimens or measurements. The repository retains **22 task designs, two embodied storyboards and zero validated runnable whole-paper tasks**.
+
+- **157/157 source-bound Python viewer tests pass with zero skips**, comprising the original 129 and 28 new independent mechanical checks. Exact inverse operation-field reconstruction, all 68 source JSON records, branch details, hashes/pins, control/unknown/lineage contracts, source-requiredness flags, grammar-native ring and backprop trees, and adversarial projection mutations are checked
+- Mechanical source grammars remain distinct. Origami capability memberships are unordered, with eleven branch-loop and four shared-preparation contracts. Ring retains macros, three preparation trees, conditional postprocessing, condition transitions, trial loops and concurrent remote observations. Its eight dependency rules keep qualified array endpoints without invented Cartesian edges. Backprop retains nine authoritative typed trees with **387 operation nodes, 90 explicit transfer nodes and ten loop nodes**. Bindings distinguish forward/adjoint phases, and the regression mass loop remains inside the trial scope
+- Scientific boundaries stay explicit: numerical optimization/retraining is not physical self-updating; semi-experimental ring torque needs matched measured force and image-derived geometry; unknown schedules and specimen counts stay unknown. Source-missing video requiredness differs across packages and is preserved exactly, including ring's specific Movie 9 choreography gate. Controls and source outcomes never become execution receipts
+- Mocked-DOM tests pass for **308 records and 11,913 display entries**, including all sixty new views and twenty-two new metadata-only records. New checks cover empty campaign/proposal/numerical/analysis views, no stale physical selection, source occurrence bindings, repeated forward/adjoint and transport selection, ring concurrency/conditional preparation, qualified dependencies, search, tabs, repeated clicks, immutable data and hash restoration. Display positions are not actual executed instances
+- All **11/11 root static groups pass**, including **19 verifier regressions**, **77 unchanged scene-binding negative fixtures**, **24 JavaScript syntax checks**, all three mocked-DOM suites and **220 image-hash assertions over 71 frames / 75 unique images**
+- Unchanged source-package suites pass **29/29 origami-memory, 10/10 ring-origami and 43/43 backprop checks**, with zero skips. Ring's independent checker passes **48/48**. These are design/static or synthetic-bookkeeping checks, not scientific or robot execution
+- All **724 protected task-package, embodied-storyboard, scene-binding and LICENSE files**, and all **52 earlier generated family JSON/JavaScript/Markdown/SVG files**, remain byte-identical to the supplied 813-file base. The candidate contains **827 files**. No task source, scientific fact, historical receipt, scene binding, existing storyboard, image or license changed
+- Full rebuild and each mechanical-family-only rebuild are deterministic, including inventories/checksums. JSON and local JavaScript payloads match. The standalone offline HTML passes the same mocked-DOM suite and resolves every local asset without external runtime dependencies
+- All **60 new route-specific SVG variants parse** with source-template labels and no invented adjacency arrows. Six static SVG variants were rendered with Inkscape and their pixels inspected: the three designated physical views, ring PREP_THICK, backprop REGRESSION_SWEEP and ring N_TORQUE_DERIVATION. Nested preparation, forward/adjoint phase labels, transfer IDs, source-scope labels and derived-torque limits are legible. These are static diagram renders, not browser screenshots
+- Mechanical source links use the supplied published base pin **43a185dacb02a979148bee93d5d9559e569086f3**. The local snapshot was byte-verified without Git metadata; publication is left to the parent task. Earlier family pins and the documented historical perovskite local-hash caveat are unchanged
+
+The previously denied browser file/localhost route was not retried or bypassed. Actual browser layout, touch, focus and native Back/Forward remain unverified. No simulator, scientific solver, actor projection, runtime loader, robot controller, new embodied storyboard, paper media, third-party asset or remote write is included.
+
+## Earlier verification history
+
 
 Earlier nine-family source links remain pinned to public ScienceGym commit `293e32da790303c1a17131e036235f69a5f342e0`. Cooling source links are pinned to verified commit `9a9472b996145ff7f7a4c138c7477b4e734d8835`. The per-family source commit map is recorded in both manifests; their legacy singular commit fields still identify the earlier snapshot.
 
 
-## Three-acoustic-design integration, 2026-10-03
+## Historical three-acoustic-design integration, 2026-10-03
 
-The current explorer contains **13 families, 248 inspection records and 1,533 operation definitions**. The earlier ten families retain 202 records and 1,376 definitions. Three explicit adapters add 157 definitions and 46 inspection records:
+At that integration stage, the explorer contained **13 families, 248 inspection records and 1,533 operation definitions**. The earlier ten families retain 202 records and 1,376 definitions. Three explicit adapters add 157 definitions and 46 inspection records:
 
 | Family | Definitions | Physical routes/leaves | Numerical/theory records | Other records |
 | --- | ---: | ---: | ---: | --- |
@@ -13,7 +41,7 @@ The current explorer contains **13 families, 248 inspection records and 1,533 op
 | Bianisotropic metasurfaces | 42 | 3 | 11 | None |
 | Acoustic edge detection | 46 | 7 | 3 | 3 shared preparation + 1 source-defined campaign accounting |
 
-Counts describe representations, not observations, repetitions or independently fabricated specimens. Bianisotropic's eighteen unknown groups include explicitly non-execution-blocking caveats; they are not relabeled as eighteen universal gates. The release still has **19 task designs, 2 embodied storyboards and 0 validated robot executions**.
+Counts describe representations, not observations, repetitions or independently fabricated specimens. Bianisotropic's eighteen unknown groups include explicitly non-execution-blocking caveats; they are not relabeled as eighteen universal gates. That release had **19 task designs, 2 embodied storyboards and 0 validated robot executions**.
 
 - **129/129 source-bound Python explorer tests pass with zero skips**: the existing 93 checks remain, plus 36 new acoustic checks. Every operation field reconstructs its original source record; every route detail, dependency, loop contract, additional JSON context, audit, hash and source pointer is compared. Adversarial fixtures reject physical/numerical mixing, fabricated defaults, changed/null loop counts, flattened branch-scoped loops, lost transfers, missing handoffs, merged target/campaign alternatives, misplaced actor exports, invented execution receipts and source-pin changes
 - Mocked-DOM checks pass for **248 records and 10,770 displayed operation entries**, including eleven metadata-only numerical views. These views clear stale physical-operation details. Tests preserve repeated TRANSFER navigation, exclusive target alternatives, campaign closure roles, source status labels, search, tabs, repeated clicks, immutable data, invalid hashes and hash-based history restoration. Display entries are not actual episode/run/object/iteration occurrences
