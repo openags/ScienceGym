@@ -8,13 +8,13 @@ Author/evaluator logical inspector; symbolic task design only; no embodied execu
 
 **Reading rule:** rows show unordered template membership; only declared dependencies impose order. A loop body is shown once and must be repeated under its original binding, not treated as executed. An unordered obligation group has no inferred chronological edges. Source-reported scientific facts and authored handling are distinct.
 
-[Immutable source task package](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/) · [Interactive inspector](../index.html)
+[Immutable source task package](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/) · [Interactive inspector](../index.html)
 
 ## CARD_TRUNCATED_TETRAHEDRON — Cardboard truncated tetrahedron
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/0`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/0`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"sequential_then_nested","setup_loop":"card_joints","observation_nesting":["target_attempts","attempts_per_target"],"required_record_key":["sample_id","target_id","attempt_index"]}}
@@ -153,7 +153,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/1`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/1`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"sequential_then_nested","setup_loop":"card_joints","observation_nesting":["target_attempts","attempts_per_target"],"required_record_key":["sample_id","target_id","attempt_index"]}}
@@ -292,7 +292,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/2`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/2`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"sequential_then_nested","setup_loop":"card_joints","observation_nesting":["target_attempts","attempts_per_target"],"required_record_key":["sample_id","target_id","attempt_index"]}}
@@ -431,7 +431,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/3`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/3`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"sequential_stages","stages":[{"loop":"face_pairs","input":"geometry_card.face_ids"},{"loop":"cycles","input":"compression_card.total_cycles"}],"per_cycle_order":["COMP_LOAD","COMP_UNLOAD"],"summary_after":"declared_run_completed","required_record_key":["sample_id","assembly_version","run_id","cycle_index","leg"]}}
@@ -584,7 +584,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/4`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/4`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"nested","outer":"target_attempts","inner":["attempts_per_target"],"required_record_key":["sample_id","target_id","attempt_index"]}}
@@ -734,7 +734,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/5`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/5`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"nested","outer":"hinge_material","inner":["target_attempts","attempts_per_target"],"order":"Finish or explicitly block the material-specific target inventory before material exchange/next matched specimen","required_record_key":["sample_id","assembly_version","condition_id","target_id","attempt_index"],"condition_target_grid":{"conditions":["mylar","elastomer_0p5mm"],"targets":["i","ii","iii","iv","v","vi","vii","viii"],"cartesian_product_required":true,"minimum_distinct_condition_target_cells":16,"counts_are":"scheduled condition-target cells, not samples or successful retained states"}}}
@@ -927,7 +927,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/6`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/6`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"nested_with_setup","outer":"array_thickness","per_outer_setup_loop":"array_slots","inner":["target_attempts","attempts_per_target"],"unit_slots_per_outer":8,"required_record_key":["array_id","assembly_version","condition_id","target_id","attempt_index"],"condition_target_grid":{"conditions":["mylar_50um","mylar_125um"],"targets_from":"array_card.bulk_target_ids","cartesian_product_required":true,"null_target_list_blocks":true},"slot_identity_scope":"Eight distinct unit IDs per separately identified array; no unit belongs simultaneously to both arrays"}}
@@ -1137,7 +1137,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/7`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/7`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"nested","outer":"target_class","inner":["target_ids_for_class","attempts_per_target"],"target_ids_from":"array_card.targets_by_class","required_record_key":["array_id","target_class","target_id","attempt_index"],"required_classes":["bulk_compatible","edge_or_corner","longer_than_one_cell"],"null_class_target_list_blocks":true}}
@@ -1284,7 +1284,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/8`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/8`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"nested","outer":"target_attempts","inner":["attempts_per_target"],"required_record_key":["sample_id","target_id","attempt_index"]}}
@@ -1409,7 +1409,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/9`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/9`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"nested","outer":"target_attempts","inner":["attempts_per_target"],"required_record_key":["sample_id","target_id","attempt_index"]}}
@@ -1538,7 +1538,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/10`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/10`
 
 - **OBLIGATIONS: Operation template membership · partial order only**
   - Binding: {"order":"No list-order edges asserted; inspect explicit dependencies and loop_expansion","loop_expansion":{"type":"nested","outer":"pneumatic_programs","inner":["attempts_per_program"],"counts_from":"pneumatic_card.program_ids and repetitions","required_record_key":["sample_id","program_id","attempt_index"],"null_program_list_blocks":true,"no_inferred_four_programs":true}}
@@ -1644,7 +1644,7 @@ Unordered operation-template membership with source-declared nested loops; only 
 
 Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/11`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/branches.json) · JSON pointer: `/branches/11`
 
 - **OBLIGATIONS: Independent subcampaign dispatch · each branch retains its own loops**
   - Binding: {"dispatch":{"loop_id":"subcampaigns","iterator":"branch_id","values":["CARD_TRUNCATED_TETRAHEDRON","CARD_TRUNCATED_CUBE","CARD_CUBOCTAHEDRON","PLA_MYLAR_CYCLIC","TETRA_REACH_RELEASE","CUBE_HINGE_COMPARISON","ARRAY_THICKNESS_PAIR","ARRAY_BOUNDARY_LONG","SI6_TRUNCATED_CUBE","SI6_RHOMBICUBOCTAHEDRON","PNEUMATIC_TWO_POUCH"],"body":"Each selected branch expands its own typed loops; no merging of identity or output claims"},"loop_expansion":{"type":"subcampaign_dispatch","outer":"subcampaigns","rule":"Recursively use each referenced branch loop_expansion; preserve independent identities/conditions and do not flatten Cartesian coverage"},"order":"No edges or shared sample identity inferred between subcampaigns"}
@@ -2140,11 +2140,11 @@ This is an author/evaluator logical inspector. Operation lists are membership in
 
 All 49 operation templates, 12 configurations and 7 practical families are retained. Cube material × target coverage contains 16 scheduled cells, not 16 specimens or successful states. Thickness × target coverage remains blocked while its target list is null.
 
-- [control packages](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/control_packages.json)
-- [unknown parameters](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/unknown_parameters.json)
-- [source conflicts](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/source_conflicts.json)
-- [lineage contract](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/lineage_contract.json)
-- [agent visible](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/agent_visible.json)
-- [RELEASE BOUNDARY](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/RELEASE_BOUNDARY.json)
-- [evaluator reference](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/evaluator_reference.json)
-- [independent source audit/audit](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/prismatic_operations_v2/independent_source_audit/audit.json)
+- [control packages](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/control_packages.json)
+- [unknown parameters](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/unknown_parameters.json)
+- [source conflicts](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/source_conflicts.json)
+- [lineage contract](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/lineage_contract.json)
+- [agent visible](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/agent_visible.json)
+- [RELEASE BOUNDARY](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/RELEASE_BOUNDARY.json)
+- [evaluator reference](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/evaluator_reference.json)
+- [independent source audit/audit](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/prismatic_operations_v2/independent_source_audit/audit.json)

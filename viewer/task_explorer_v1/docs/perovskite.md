@@ -8,13 +8,13 @@ Task-design reference; no task execution or scientific reproduction. Counts desc
 
 **Reading rule:** numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed. An unordered obligation group has no inferred chronological edges. Source-reported scientific facts and authored handling are distinct.
 
-[Immutable source task package](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/) · [Interactive inspector](../index.html)
+[Immutable source task package](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/) · [Interactive inspector](../index.html)
 
 ## ADDITIVE_INTAKE — Receive externally prepared additive families
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/0/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/0/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -81,7 +81,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/1/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/1/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -194,7 +194,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/2/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/2/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -357,7 +357,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/3/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/3/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -711,7 +711,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/4/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/4/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -1061,7 +1061,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/5/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/5/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -1409,7 +1409,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/6/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/6/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -1758,7 +1758,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/7/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/7/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -2115,7 +2115,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/8/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/8/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -2487,7 +2487,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/9/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/9/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -2867,7 +2867,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/10/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/10/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -3257,7 +3257,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/11/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/11/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -3645,7 +3645,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/12/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/12/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -3766,7 +3766,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/13/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/13/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -3880,7 +3880,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/14/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/14/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -4629,7 +4629,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/15/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/15/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -4744,7 +4744,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/16/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/16/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -4844,7 +4844,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/17/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/17/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -4942,7 +4942,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/18/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/18/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -5044,7 +5044,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/19/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/19/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -5128,7 +5128,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/20/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/20/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -5347,7 +5347,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/21/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/21/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -5456,7 +5456,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/22/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/22/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -5734,7 +5734,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/23/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/23/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -5820,7 +5820,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/24/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/24/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -6973,7 +6973,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/25/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/25/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -7240,7 +7240,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/26/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/26/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -7927,7 +7927,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/27/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/27/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -8184,7 +8184,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/28/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/28/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -8450,7 +8450,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/29/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/29/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -9443,7 +9443,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/30/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/30/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -9682,7 +9682,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/31/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/31/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -9947,7 +9947,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/32/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/32/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -10513,7 +10513,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/33/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/33/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -10657,7 +10657,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/34/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/34/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -10753,7 +10753,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/35/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/35/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -10887,7 +10887,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/36/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/36/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -11201,7 +11201,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/37/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/37/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -11633,7 +11633,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/38/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/38/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages
@@ -11968,7 +11968,7 @@ Authored reference order; condition and replicate obligations are not silently e
 
 Authored reference order; condition and replicate obligations are not silently expanded
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/39/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/perovskite_operations_v2/branches.json) · JSON pointer: `/branches/39/full_operation_sequence`
 
 - `STOCK` Inspect stock and reserve episode inventory
 - `LABEL` Label and split independent lineages

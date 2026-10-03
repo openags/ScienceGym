@@ -1,6 +1,6 @@
 # Explicit schema adapters and fidelity rules
 
-The explorer does not infer one universal operation schema or invent a global task DAG. `build.py` has a dedicated adapter for each of the eight published packages. The previous seven families retain their source-schema semantics. The prismatic adapter adds 12 route/configuration records and 49 operation definitions, bringing the explorer totals to 172 and 1,267 respectively.
+The explorer does not infer one universal operation schema or invent a global task DAG. `build.py` has a dedicated adapter for each of the nine published packages. The previous eight families retain their source-schema semantics. The EmVP adapter adds 19 configuration records and 53 operation definitions, bringing the explorer totals to 191 and 1,320 respectively.
 
 ## Chiral
 
@@ -83,4 +83,17 @@ This viewer cannot establish scientific correctness, practical safety, source co
 - Preserves required transfer insertions, qualified-input gates, specimen allocation and reuse history, upstream fabrication/handoff requirements and incomplete/blocker status. The inspector does not satisfy any of these obligations
 - Retains the actual-final-five-cycle aggregation contract, source conflicts and bounded pneumatic scope. Five summary cycles do not supply the unknown total cycle count; four reported pneumatic states do not establish four programs or specimens
 
-The pinned source is [openags/ScienceGym at e27d456e2fe99bec9100cc37f7bcd68485504c2b](https://github.com/openags/ScienceGym/tree/e27d456e2fe99bec9100cc37f7bcd68485504c2b). This is logical-inspector coverage only; it adds no task execution or new 3D storyboard.
+The pinned source is [openags/ScienceGym at 293e32da790303c1a17131e036235f69a5f342e0](https://github.com/openags/ScienceGym/tree/293e32da790303c1a17131e036235f69a5f342e0). This is logical-inspector coverage only; it adds no task execution or new 3D storyboard.
+
+## Embedded extrusion-volumetric printing (EmVP)
+
+- Maps all 53 operation definitions and all 19 configurations across five practical families with an explicit adapter for the distinct EmVP schema. `label`, `station`, `physical_action`, `completion_evidence`, `required_unknowns` and `source_refs` are mapped directly. String provenance and operation kind are retained. Missing postconditions and object-role fields are labeled absent rather than fabricated
+- Preserves the complete 44-edge dependency list, six conditional groups containing 25 edges, instantiation rules and per-occurrence predicates. Operation-list positions are source-authored viewing order only; no adjacent operation arrows are drawn. Conditional groups retain both their configuration scope and their condition predicate
+- The cage comparison retains the exact Mat1-only, Mat2-only and combined-material subroutes, including condition-scoped input gates. The first two use direct VAM; the third uses embedding. All are required comparison conditions with separate allocations, not extra configurations or a serial path for one vial
+- Retains all 15 comparison packages and their outer allocation / inner observation levels. These coverage contracts are separate from operation membership because the source does not supply per-dimension operation bodies. No manufacturing sequence is wrapped inside a state-observation loop
+- Explicit condition axes, ordered same-specimen states, within-specimen hardness sites and null specimen counts remain unchanged. No cardinalities are expanded; missing values do not imply zero, one or successful empty work
+- Retains all 30 unresolved gates, independent source audit, lineage, evaluator/actor boundaries, geometry and instrument qualification requirements, nonmanual handoffs, source conflicts, outcomes and status metadata. Source outcomes remain reference context and never become episode measurements or forced success targets
+- Resolves source locators to the original MAIN/SI document metadata and links without copying paper pixels or source PDFs. Top-level and nested public JSON records retain immutable source links and SHA-256 checksums
+- Uses a 400 kB payload guard; existing family guards are unchanged. The static SVG previews POSITIVE_HELIX; every configuration and comparison remains available in the Markdown and interactive reference inspector
+
+This integration adds no simulator, loader, evaluator execution, actor projection, scientific solver or robot controller.

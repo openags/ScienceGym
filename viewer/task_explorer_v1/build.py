@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for eight public task schemas."""
+"""Deterministic, standard-library-only adapters for nine public task schemas."""
 import argparse, json, pathlib, hashlib, html, textwrap
 ROOT=pathlib.Path(__file__).resolve().parent
-COMMIT='e27d456e2fe99bec9100cc37f7bcd68485504c2b'
+COMMIT='293e32da790303c1a17131e036235f69a5f342e0'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
-NAMES={'prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
-COLORS={'prismatic':'#4db7ad','perovskite':'#ca7188','chiral':'#8d6bce','microscopy':'#268e96','fibre':'#dc8654','thermoelectric':'#d7aa36','dispim':'#598bd1','acoustic':'#8aaf58'}
+NAMES={'emvp':'Embedded extrusion-volumetric printing','prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
+COLORS={'emvp':'#e5a36e','prismatic':'#4db7ad','perovskite':'#ca7188','chiral':'#8d6bce','microscopy':'#268e96','fibre':'#dc8654','thermoelectric':'#d7aa36','dispim':'#598bd1','acoustic':'#8aaf58'}
 
 def read(p,name): return json.loads((p/name).read_text())
 def optional(p,name): return read(p,name) if (p/name).exists() else None
@@ -361,7 +361,91 @@ def adapt_prismatic(p):
             'detail':without(r,{'id','title'}),'source_file':'branches.json','source_pointer':f'/branches/{i}'})
     return f
 
-ADAPTERS={'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
+def emvp_nodes(configuration, controls):
+    """Preserve source lists as viewing order, never invent dependency edges.
+
+    Mixed comparisons dispatch their exact condition routes. Control-package
+    dimension contracts are separate from operation membership because this
+    schema supplies no per-dimension operation-body binding.
+    """
+    routes=configuration.get('condition_routes')
+    if routes is not None:
+        if not routes or len({r['condition_id'] for r in routes})!=len(routes):
+            raise ValueError('EmVP condition routes must be nonempty and unique')
+        if any(not r['operation_ids'] or len(set(r['operation_ids']))!=len(r['operation_ids']) for r in routes):
+            raise ValueError('EmVP condition operation lists must be nonempty and unique')
+        if set(configuration['operation_ids'])!={oid for r in routes for oid in r['operation_ids']}:
+            raise ValueError('EmVP condition routes must exactly cover the membership union')
+        membership=[{'type':'obligations','label':'Condition '+r['condition_id']+' · separate allocated specimen route',
+            'meta':{'order':'Source-authored viewing order only; apply actual condition-scoped dependencies',
+                    **without(r,{'operation_ids'})},'children':list(r['operation_ids']),'ordered':False}
+                    for r in routes]
+        nodes=[{'type':'obligations','label':'Required comparison conditions · no shared-vial serial route',
+                'meta':{'order':configuration['membership_semantics']},'children':membership,'ordered':False}]
+    else:
+        nodes=[{'type':'obligations','label':'Operation membership · authored viewing order only',
+                'meta':{'order':'No list-adjacency edges asserted; apply declared dependencies only'},
+                'children':list(configuration['operation_ids']),'ordered':False}]
+    for control in controls:
+        # Preserve the source's two named levels without guessing operation
+        # bodies or turning state/region/site lists into independent specimens.
+        inner={'type':'condition','label':'Inner observations · '+', '.join(control['inner_loop']),
+               'meta':{key:control[key] for key in ['inner_loop','ordered_states','within_specimen_sites',
+                       'required_outputs','loop_semantics'] if key in control}}
+        outer={'type':'loop','label':'Outer allocation · '+', '.join(control['outer_loop'])+' · specimen count unknown',
+               'meta':{'outer_loop':control['outer_loop'],'replication':control['replication'],
+                       **({'condition_axes':control['condition_axes']} if 'condition_axes' in control else {}),
+                       'binding':'Symbolic coverage only; no operation-body binding supplied by this schema'},
+               'children':[inner],'ordered':False,'symbolic':True}
+        nodes.append({'type':'obligations','label':control['id']+' · '+control['comparison'],
+                      'meta':{'order':'Comparison coverage, not extra operation occurrences or successful repetitions',
+                              'control_package':control},'children':[outer],'ordered':False})
+    return nodes
+
+def adapt_emvp(p):
+    raw=read(p,'operations.json'); prov=read(p,'provenance.json'); b=read(p,'branches.json')
+    controls=read(p,'control_packages.json'); control_map={c['id']:c for c in controls['packages']}
+    if len(control_map)!=len(controls['packages']):raise ValueError('Duplicate EmVP control package ID')
+    sources={s['id']:s for s in prov['sources']}
+    f={'id':'emvp','label':NAMES['emvp'],'title':prov['title'],'doi':prov['doi'],'color':COLORS['emvp'],
+       'source_commit':COMMIT,'source_folder':BASE+p.name+'/',
+       'status':'Author/evaluator logical inspector; source-bounded task design only; no physical simulation, actor projection or robot execution',
+       'default_route':'POSITIVE_HELIX','operations':[],'routes':[],
+       'evidence':{item['id']:{**item,'source_document':sources[item['source']],
+                              'url':sources[item['source']]['url']} for item in prov['locators']},
+       'source_files':{fn.relative_to(p).as_posix():{'url':source(p,fn.relative_to(p).as_posix()),
+                       'sha256':hashlib.sha256(fn.read_bytes()).hexdigest()}
+                       for fn in sorted(p.rglob('*.json'))},
+       'context':{'branch_policy':without(b,{'configurations'}),'operation_policy':without(raw,{'operations'})},
+       'dependencies':read(p,'dependencies.json')}
+    aliases={'unknown_parameters':'unknowns','evaluator_reference':'acceptance','lineage_contract':'lineage'}
+    for name in ['unknown_parameters','evaluator_reference','lineage_contract','control_packages','material_cards',
+                 'asset_needs','source_conflicts','source_outcomes','agent_visible','RELEASE_BOUNDARY',
+                 'episode_input_contract','station_contracts','mock_contract','coverage_matrix','nonmanual_scope',
+                 'source_access_audit','provenance','STATUS']:
+        f['context'][aliases.get(name,name)]=read(p,name+'.json')
+    f['context']['independent_source_audit']=read(p,'independent_source_audit/audit.json')
+    for i,o in enumerate(raw['operations']):
+        f['operations'].append({'id':o['id'],'title':o['label'],'stage':o['station'],
+            'actions':[o['physical_action']],
+            'objects':['No per-operation object-role list supplied; inspect material, station and lineage contracts'],
+            'pre':o['preconditions'],
+            'post':['No postconditions field supplied; completion evidence is shown separately and is not a state-transition receipt'],
+            'sources':o['source_refs'],'provenance':o['provenance'],'acceptance':o['completion_evidence'],
+            'recovery':o['recovery'],'unknowns':o['required_unknowns'],'loop':None,
+            'detail':{'kind':o['kind'],'schema_note':'physical_action is an authored interface; completion_evidence is a required record, not observed success'},
+            'source_file':'operations.json','source_pointer':f'/operations/{i}'})
+    operation_ids={op['id'] for op in f['operations']}
+    for i,r in enumerate(b['configurations']):
+        if len(set(r['operation_ids']))!=len(r['operation_ids']):raise ValueError('Duplicate EmVP membership ID')
+        if not set(r['operation_ids'])<=operation_ids:raise ValueError('Unknown EmVP operation ID')
+        bound=[control_map[cid] for cid in r['control_package_ids']]
+        f['routes'].append({'id':r['id'],'label':r['goal'],'nodes':emvp_nodes(r,bound),'controls':bound,
+            'basis':'Source-authored viewing order, not a causal sequence. Only declared dependencies constrain execution; condition routes use separate specimen allocations. Counts, gates and comparison coverage remain unresolved where the source says so.',
+            'detail':without(r,{'id','goal'}),'source_file':'branches.json','source_pointer':f'/configurations/{i}'})
+    return f
+
+ADAPTERS={'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
 
 def walk(nodes,depth=0):
     for n in nodes:
@@ -402,6 +486,11 @@ def svg(f):
         result=result.replace('· every listed step', '· symbolic membership')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows: template membership is unordered. Only declared source dependencies constrain order.')
         result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only.', 'Symbolic nested loop membership for the designated configuration, plus all 12 configurations. No chronological adjacency edges are inferred.')
+    if f['id']=='emvp':
+        result=result.replace('operation definitions · 19 route / branch records', 'operation templates · 19 configurations · 5 practical families')
+        result=result.replace('· every listed step', '· authored viewing order')
+        result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows: authored viewing order is not causality. Conditions retain separate sample allocations.')
+        result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only.', 'Source-authored viewing order for the selected configuration, plus all 19 configurations. No chronological adjacency edges are inferred.')
     result=result.replace('<text ', '<text font-family="Arial, sans-serif" ')
     result=result.replace('class="muted"', 'fill="#a9b7c8" font-size="16"').replace('class="small"', 'fill="#a9b7c8" font-size="14"').replace('class="title"', 'fill="#f4f7fc" font-weight="700"')
     return result
@@ -421,6 +510,13 @@ def md(f):
                 if n.get('meta'):lines.append(indent+'  - Binding: '+json.dumps(n['meta'],ensure_ascii=False,separators=(',',':')))
         lines.extend(['','<details><summary>Branch state, choices, lineage and loop obligations</summary>','', '```json',json.dumps({k:resolve(f,v) for k,v in r['detail'].items()},ensure_ascii=False,indent=2),'```','','</details>',''])
     lines.extend(['## Operation contracts','','Every operation is clickable in the offline inspector, with robot actions, target objects, pre/post state, provenance, unknowns and acceptance/recovery. Raw task JSON is the source of truth; this visualization is a public evaluator/reference view, not an agent prompt.',''])
+    if f['id']=='emvp':
+        lines.extend(['## Reference contracts and boundaries','',
+          'All 53 templates, 19 configurations, 5 practical families, 15 comparison packages and 30 unresolved gates are inspectable. There is no additional whole-paper execution route. Single-material cage conditions retain three separate source routes. Control dimensions describe symbolic coverage without adding operation repetitions. Unknown specimen counts stay null; physical states, analysis regions and hardness sites are not independent specimens.','',
+          'Operation completion evidence is not a post-state or execution receipt. Geometry, instrument qualification, source conflicts, lineage and external analysis handoffs remain open obligations. No physical simulation, actor projection or scientific backend is supplied.',''])
+        for key in ['control_packages','unknown_parameters','source_conflicts','lineage_contract','episode_input_contract','agent_visible','RELEASE_BOUNDARY','evaluator_reference','independent_source_audit/audit']:
+            lines.append(f'- [{key.replace("_", " ")}]({f["source_files"][key+".json"]["url"]})')
+        lines.append('')
     if f['id']=='prismatic':
         lines.extend(['## Reference contracts and boundaries','',
           'This is an author/evaluator logical inspector. Operation lists are membership inventories, not a fixed solution. Null repetition counts remain blocked inputs. Conditional recovery is not a required normal step. The whole-paper configuration dispatches independent subcampaigns without merging identity or output claims.','',

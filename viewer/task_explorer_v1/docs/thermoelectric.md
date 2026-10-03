@@ -8,13 +8,13 @@ Task-design reference; no task execution or scientific reproduction. Counts desc
 
 **Reading rule:** numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed. An unordered obligation group has no inferred chronological edges. Source-reported scientific facts and authored handling are distinct.
 
-[Immutable source task package](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/) · [Interactive inspector](../index.html)
+[Immutable source task package](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/) · [Interactive inspector](../index.html)
 
 ## POWDER_P — P-type powder manufacture with full identity
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/0/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/0/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -85,7 +85,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/1/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/1/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -178,7 +178,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/2/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/2/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -249,7 +249,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/3/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/3/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -342,7 +342,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/4/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/4/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -415,7 +415,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/5/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/5/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -510,7 +510,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/6/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/6/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -744,7 +744,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/7/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/7/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -898,7 +898,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/8/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/8/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -1054,7 +1054,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/9/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/9/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -1288,7 +1288,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/10/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/10/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -1442,7 +1442,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/11/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/11/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -1598,7 +1598,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/12/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/12/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -1821,7 +1821,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/13/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/13/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers
@@ -2052,7 +2052,7 @@ Authored reference sequence; independent material phases may be reordered subjec
 
 Authored reference sequence; independent material phases may be reordered subject to stated constraints
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/14/full_operation_sequence`
+[Exact route source](https://github.com/openags/ScienceGym/blob/293e32da790303c1a17131e036235f69a5f342e0/tasks/thermoelectric_operations_v2/branches.json) · JSON pointer: `/branches/14/full_operation_sequence`
 
 - `STOCK` Check materials and retrieve individually packaged items
 - `PREP_NEST` Load the weighing tray and empty containers

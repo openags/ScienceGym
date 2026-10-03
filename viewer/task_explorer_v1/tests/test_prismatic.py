@@ -207,9 +207,9 @@ class PrismaticBundleTests(unittest.TestCase):
             self.assertNotIn('marker-end=', text)
             self.assertFalse(any('marker-end' in element.attrib for element in ET.fromstring(text).iter()))
 
-    def test_seven_existing_families_have_unchanged_decoded_semantics(self):
+    def test_eight_existing_families_have_unchanged_decoded_semantics(self):
         fixture = json.loads((ROOT / 'tests' / 'earlier_family_semantics.json').read_text())
-        self.assertEqual(len(fixture['families']), 7)
+        self.assertEqual(len(fixture['families']), 8)
         for key, expected in fixture['families'].items():
             with self.subTest(family=key):
                 family = get(key)
@@ -219,7 +219,7 @@ class PrismaticBundleTests(unittest.TestCase):
                 self.assertEqual(hashlib.sha256(canonical.encode()).hexdigest(), expected)
 
     def test_all_families_and_source_urls_use_verified_source_snapshot(self):
-        commit = 'e27d456e2fe99bec9100cc37f7bcd68485504c2b'
+        commit = '293e32da790303c1a17131e036235f69a5f342e0'
         for key in builder.ADAPTERS:
             family = get(key)
             with self.subTest(family=key):
@@ -230,12 +230,12 @@ class PrismaticBundleTests(unittest.TestCase):
                 for filename, record in family['source_files'].items():
                     self.assertEqual(record['url'], family['source_folder'] + filename)
 
-    def test_manifest_preserves_eight_family_totals(self):
+    def test_manifest_preserves_nine_family_totals(self):
         manifest = json.loads((ROOT / 'manifest.json').read_text())
-        self.assertEqual(manifest['commit'], 'e27d456e2fe99bec9100cc37f7bcd68485504c2b')
-        self.assertEqual(len(manifest['families']), 8)
-        self.assertEqual(sum(family['routes'] for family in manifest['families']), 172)
-        self.assertEqual(sum(family['operations'] for family in manifest['families']), 1267)
+        self.assertEqual(manifest['commit'], '293e32da790303c1a17131e036235f69a5f342e0')
+        self.assertEqual(len(manifest['families']), 9)
+        self.assertEqual(sum(family['routes'] for family in manifest['families']), 191)
+        self.assertEqual(sum(family['operations'] for family in manifest['families']), 1320)
         for record in manifest['families']:
             with self.subTest(family=record['id']):
                 family = get(record['id'])

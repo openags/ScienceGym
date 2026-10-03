@@ -1,8 +1,8 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** Eight public paper-level task families, with reference-route occurrences, partial-order memberships, nested repetition, objects, state transitions and evidence.
+**See the task before reading its JSON.** Nine public paper-level task families, with reference-route occurrences, partial-order memberships, nested repetition, objects, state transitions and evidence.
 
-The explorer contains **172 route/configuration records and 1,267 operation definitions**: the existing seven families contribute 160 records and 1,218 definitions; prismatic adds 12 records and 49 definitions across seven practical families. These are representation counts, not completed experiments or independent specimens.
+The explorer contains **191 route/configuration records and 1,320 operation definitions**: the existing eight families retain 172 records and 1,267 definitions; EmVP adds 19 configurations and 53 definitions across five practical families. These are representation counts, not completed experiments or independent specimens.
 
 This is a **read-only author/evaluator logical inspector**, including public reference and evaluator material. It is not a simulator, a task runner, an actor-facing prompt or evidence that a robot performed any operation. This integration adds no new 3D storyboard. The source release has **zero validated runnable whole-paper tasks**.
 
@@ -15,9 +15,9 @@ This is a **read-only author/evaluator logical inspector**, including public ref
 
 GitHub displays HTML source rather than running it. The diagrams and Markdown routes below are readable directly on GitHub.
 
-## Eight visual route maps
+## Nine visual route maps
 
-Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01, Acoustic WHOLE_PAPER_PRACTICAL, perovskite SPIN_MODULES and prismatic CUBE_HINGE_COMPARISON. Prismatic views distinguish operation membership, independent subcampaigns, conditional recovery and symbolic loops; they do not turn the membership list into a chronological route. The right-hand index lists every route/configuration choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes/configurations, not just the pictured view.
+Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01, Acoustic WHOLE_PAPER_PRACTICAL, perovskite SPIN_MODULES, prismatic CUBE_HINGE_COMPARISON and EmVP POSITIVE_HELIX. Prismatic views distinguish operation membership, independent subcampaigns, conditional recovery and symbolic loops; they do not turn the membership list into a chronological route. The right-hand index lists every route/configuration choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes/configurations, not just the pictured view.
 
 | Family | Diagram | Every branch and route |
 | --- | --- | --- |
@@ -29,6 +29,7 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 | Helical acoustics | [Full SVG](diagrams/acoustic.svg) | [8 route records, with nested loops](docs/acoustic.md) |
 | Perovskite solar modules | [Full SVG](diagrams/perovskite.svg) | [40 route templates](docs/perovskite.md) |
 | Prismatic metamaterials | [Full SVG](diagrams/prismatic.svg) | [12 route/configuration records across seven practical families](docs/prismatic.md) |
+| Embedded extrusion-volumetric printing | [Full SVG](diagrams/emvp.svg) | [19 configurations across five practical families](docs/emvp.md) |
 
 ![Chiral first reference route and all branch choices](diagrams/chiral.svg)
 
@@ -38,6 +39,9 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 - For ordered reference sequences, dashed connectors and downward UI arrows indicate the package's **reference list order**, not recovered author chronology or the only valid robot trajectory
 - Prismatic `operation_ids` declare **membership governed by partial-order constraints**, not chronology. Whole-paper campaign dispatch keeps the eleven component branches independent; it does not impose an order between them
 - Prismatic material × target × attempt and thickness × target × attempt coverage remains nested. Unknown loop values/counts are not expanded, replaced with zero or treated as successful empty loops
+- EmVP operation membership retains authored viewing order without adjacency arrows. The mixed cage comparison dispatches three separate condition routes; direct and embedded paths are never combined into one vial history
+- EmVP comparison packages preserve outer allocation and inner observation dimensions without inventing operation-loop bodies. Known physical states, analysis regions and four hardness sites do not supply unknown independent specimen counts
+- EmVP completion evidence is shown separately from the explicitly absent postconditions field; all 30 unresolved gates and source conflicts remain visible
 - Prismatic `QUARANTINE` is conditional recovery, not a mandatory step in every route
 - Acquisition/data obligation groups have **no inferred order between children**. Explicit source order annotations remain in each operation's provenance
 - Acoustic loops retain the original loop variable, values, body and completion rule. The viewer shows one body template; it does not treat that as one completed repeated experiment
@@ -53,11 +57,11 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 - `data/<family>.json`: compact, inspectable normalized records
 - `data/<family>.js`: the same JSON as a local-script assignment so `file://` does not require fetch
 - `diagrams/*.svg`, `docs/<family>.md`: GitHub-native alternatives
-- `build.py`: eight explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
-- `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
+- `build.py`: nine explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
+- `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 
-The immutable source snapshot is [openags/ScienceGym at e27d456e2fe99bec9100cc37f7bcd68485504c2b](https://github.com/openags/ScienceGym/tree/e27d456e2fe99bec9100cc37f7bcd68485504c2b). Every source JSON link is pinned to that commit. Per-file SHA-256 values are retained in each data file. The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
+The immutable source snapshot is [openags/ScienceGym at 293e32da790303c1a17131e036235f69a5f342e0](https://github.com/openags/ScienceGym/tree/293e32da790303c1a17131e036235f69a5f342e0). Every source JSON link is pinned to that commit. Per-file SHA-256 values are retained in each data file. The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
 
 ## Rebuild and test
 
