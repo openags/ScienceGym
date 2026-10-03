@@ -1,0 +1,182 @@
+{
+  "schema_version": "ring_origami_paper_task.v1",
+  "doi": "10.1038/s41467-023-42323-1",
+  "packages": [
+    {
+      "id": "C_FAB",
+      "applies_to": [
+        "PREP_THICK",
+        "PREP_PAPER"
+      ],
+      "checks": [
+        "material lot and recipe binding",
+        "part QC before acceptance",
+        "resin postprocess completion when required",
+        "failed prints/sheets retained as rejects"
+      ],
+      "stop_on": [
+        "unknown recipe",
+        "unqualified material",
+        "bad holes/angles/damage"
+      ]
+    },
+    {
+      "id": "C_ASM",
+      "applies_to": [
+        "all physical branches"
+      ],
+      "checks": [
+        "correct part orientation and assigned component role",
+        "accepted assembly graph and retention",
+        "captured offcuts when cutting is performed"
+      ],
+      "stop_on": [
+        "forced fit",
+        "cracked facet",
+        "torn paper",
+        "over-torque or trapped crease"
+      ],
+      "conditional_checks": [
+        {
+          "when": "thick resin/TPU element or crease coupon",
+          "checks": [
+            "correct initial crease class",
+            "specified crease sequence for the parts actually included",
+            "no protruding screw interference",
+            "bounded hinge freedom"
+          ]
+        },
+        {
+          "when": "complete thick element",
+          "checks": [
+            "sliding-facet freedom and pin-limited opening"
+          ]
+        },
+        {
+          "when": "paper element/array",
+          "checks": [
+            "no paper tearing or crushing",
+            "frame/connector fixation and permitted hinge motion",
+            "do not apply thick-facet sliding or TPU rest-angle criteria"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C_TEST",
+      "applies_to": [
+        "ELEMENT_RESPONSE",
+        "ELEMENT_ANISOTROPY",
+        "QUAD_AXIAL_AUXETIC",
+        "MORPHOLOGY_I",
+        "MORPHOLOGY_II"
+      ],
+      "checks": [
+        "fixture identity and axis after transformation",
+        "calibration/zero/sign and force range",
+        "10 mm/min nominal recipe readback",
+        "20 Hz nominal force acquisition for thick-specimen method",
+        "stroke/force limit and no contact with moving zone"
+      ],
+      "stop_on": [
+        "direction conflict unresolved",
+        "slip",
+        "unexpected collision",
+        "overload"
+      ]
+    },
+    {
+      "id": "C_TORSION",
+      "applies_to": [
+        "TRI_TORSION",
+        "QUAD_TORSION"
+      ],
+      "checks": [
+        "cord geometry and ring support",
+        "view/scale before motion",
+        "inner/outer landmark mapping",
+        "matched element and image parents"
+      ],
+      "stop_on": [
+        "unresolved radius mapping",
+        "lost tracking",
+        "missing force parent"
+      ],
+      "forbidden": "Calling calculated torque a directly measured channel"
+    },
+    {
+      "id": "C_ARRAY",
+      "applies_to": [
+        "ARRAY_COMPRESSION",
+        "ARRAY_TENSION"
+      ],
+      "checks": [
+        "actual 3x2 graph",
+        "pins or block/recess variant identified",
+        "rails/bearings/shafts aligned with lateral freedom",
+        "20 mm/min crosshead speed",
+        "three separate transverse width datums",
+        "reset/unload before angle change"
+      ],
+      "stop_on": [
+        "pin not engaged",
+        "paper tear",
+        "guide binding",
+        "missing transverse datum"
+      ]
+    },
+    {
+      "id": "C_COMPARE",
+      "applies_to": [
+        "all quantitative branches"
+      ],
+      "checks": [
+        "declared specimen/repeat allocation",
+        "matched materials and configuration",
+        "fit windows and dimensions recorded",
+        "no substitution of theoretical/source curve for missing measured data"
+      ],
+      "stop_on": [
+        "unexplained pooled conditions",
+        "fake independent repeats"
+      ]
+    },
+    {
+      "id": "C_CLOSE",
+      "applies_to": [
+        "all physical branches"
+      ],
+      "checks": [
+        "safe state and residual load before unmount",
+        "archive damage/current configuration",
+        "all tool and waste receipts",
+        "each selected condition has a disposition"
+      ],
+      "stop_on": [
+        "unsafe residual load",
+        "unaccounted offcuts",
+        "missing raw record"
+      ]
+    },
+    {
+      "id": "C_ARRAY_TRANSFORM",
+      "applies_to": [
+        "ARRAY_TRANSFORMATION"
+      ],
+      "checks": [
+        "accepted 3x2 array and identified connector variant",
+        "unloaded supported state",
+        "local before/after C/R graph",
+        "neighbor retention and interference observation"
+      ],
+      "stop_on": [
+        "unqualified transformation motion",
+        "torn paper",
+        "connector disengagement"
+      ],
+      "quantitative_test_controls": "Tester speed and three-width metrology apply only if a separate quantitative extension is explicitly selected"
+    }
+  ],
+  "acceptance_tolerances": "All numerical tolerances, limit thresholds and diagnostic timing must be supplied; nominal source parameters are not safety tolerances.",
+  "negative_control_policy": "No additional physical negative-control experiment is asserted from the paper. Empty-fixture baseline, identity checks and calibration are authored process controls."
+}

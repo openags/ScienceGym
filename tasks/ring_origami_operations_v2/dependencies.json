@@ -1,0 +1,111 @@
+{
+  "schema_version": "ring_origami_paper_task.v1",
+  "doi": "10.1038/s41467-023-42323-1",
+  "rules": [
+    {
+      "id": "D_OUTPUT",
+      "before": [
+        "PRINT_START"
+      ],
+      "after": [
+        "PRINT_PROCESS",
+        "PRINT_RECEIVE",
+        "PART_QC"
+      ],
+      "requirement": "Actual output and acceptance receipts; job label cannot mint parts"
+    },
+    {
+      "id": "D_ASSEMBLY",
+      "before": [
+        "HINGE_JOIN"
+      ],
+      "after": [
+        "CREASE_FASTEN",
+        "TRIM_SCREWS",
+        "FACET_III_JOIN",
+        "ELEMENT_CLOSE",
+        "FRAME_JOIN",
+        "ELEMENT_QC"
+      ],
+      "requirement": "Crease-class order 2,3,1,4; each part/connection instance tracked",
+      "applies_to": "complete thick-element preparation only; coupon route stops at its specified part connections"
+    },
+    {
+      "id": "D_TEST",
+      "before": [
+        "FIXTURE_SELECT",
+        "@MOUNT",
+        "OBS_SETUP",
+        "CALIBRATE",
+        "CONFIG_TEST"
+      ],
+      "after": [
+        "ARM_TEST",
+        "TEST_PROCESS",
+        "SAFE_RESET",
+        "UNLOAD"
+      ],
+      "requirement": "No motion until actual mount, calibration, direction/limits and readback receipts exist"
+    },
+    {
+      "id": "D_TORQUE",
+      "before": [
+        "ANALYZE_ELEMENT",
+        "ANALYZE_IMAGE"
+      ],
+      "after": [
+        "ANALYZE_TORQUE"
+      ],
+      "requirement": "Matched measured element force and geometry parents required; source/model curves cannot fill either parent"
+    },
+    {
+      "id": "D_RECONFIG",
+      "before": [
+        "SAFE_RESET"
+      ],
+      "after": [
+        "RING_RECONFIG",
+        "ARRAY_PIN",
+        "ARRAY_TRANSFORM"
+      ],
+      "requirement": "Only if prior loaded test exists; an initially unloaded new specimen requires explicit unloaded-state receipt instead"
+    },
+    {
+      "id": "D_WIDTH",
+      "before": [
+        "OBS_SETUP"
+      ],
+      "after": [
+        "MEASURE_WIDTH",
+        "ANALYZE_ARRAY"
+      ],
+      "requirement": "Three datum series and corresponding baseline widths; synchronized axial epochs"
+    },
+    {
+      "id": "D_TRANSFER",
+      "before": [
+        "carrier secured",
+        "source release"
+      ],
+      "after": [
+        "destination receipt"
+      ],
+      "requirement": "One location per physical object; active observations may remain co-located"
+    },
+    {
+      "id": "D_CONDITION_CHANGE",
+      "before": [
+        "SAFE_RESET",
+        "UNLOAD"
+      ],
+      "after": [
+        "branch.condition_transition",
+        "remount",
+        "new readback"
+      ],
+      "requirement": "For reuse after a loaded attempt. Alternatively receive an independently prepared specimen with actual matching configuration receipt. No angle-label changes without hardware transition."
+    }
+  ],
+  "concurrency": "Only TEST_PROCESS with OBSERVE and, for arrays, safe remote MEASURE_WIDTH. Analysis may run on completed immutable data while other samples are handled. No reconfiguration during load.",
+  "macro_expansion": "All branch @ operations resolve through branch operation_bindings. TRANSFER is instantiated at every station transition. Preparation/trial loops create individual receipts, never one aggregate fictional sample."
+}

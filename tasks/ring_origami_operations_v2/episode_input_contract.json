@@ -1,0 +1,37 @@
+{
+  "schema_version": "ring_origami_paper_task.v1",
+  "doi": "10.1038/s41467-023-42323-1",
+  "required_fields": [
+    "episode_id",
+    "selected_branch_ids",
+    "goal",
+    "actual_initial_inventory",
+    "physical_station_map",
+    "qualified_robot_card",
+    "preparation_scope",
+    "material_and_geometry_cards",
+    "finite_condition_schedule",
+    "specimen_allocation",
+    "repetition_plan",
+    "fixture_and_motion_limits",
+    "calibration_and_channel_map",
+    "source_conflict_resolutions",
+    "analysis_definitions",
+    "safe_reset_and_waste_cards"
+  ],
+  "rules": [
+    "All unresolved inputs used by a selected operation must have a supplied qualified value and provenance before that operation starts",
+    "An authored substitute for unread video choreography must be labeled authored and qualified, not source recovered",
+    "Do not expand to an infinite continuous angle sweep; provide a finite condition list",
+    "Array source angle list is seven explicit settings for each loading class",
+    "Required versus optional branches and one-family versus whole-campaign goal must be visible",
+    "Reading a nominal sensor range does not establish actual safe load limits",
+    "No default executable motion, printer settings, torque thresholds or timing is supplied by this package"
+  ],
+  "preparation_options": [
+    "fabricate_and_assemble_required",
+    "explicit_receipt_only_modified_scope"
+  ],
+  "default_preparation_scope": "fabricate_and_assemble_required",
+  "defaults_are_not_execution_permissions": true
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": "ring_origami_paper_task.v1",
+  "doi": "10.1038/s41467-023-42323-1",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "description": "records and analysis terminal",
+      "safety_contract": "No sample movement for analysis",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_STOCK",
+      "description": "labeled stock store",
+      "safety_contract": "Compatible separated stock and accountable parts",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_ROUTE",
+      "description": "qualified mobile route and docks",
+      "safety_contract": "Supported carriers only; no moving loaded/tethered test specimen",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_FAB",
+      "description": "enclosed print service bays",
+      "safety_contract": "Approved resin, TPU and accessory recipes; safe-open/cool-state feedback",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_POST",
+      "description": "qualified postprocessing service",
+      "safety_contract": "Resin exposure and process waste controlled by qualified recipe",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_PLOTTER",
+      "description": "cardboard plotter",
+      "safety_contract": "Sheet registration and safe-open interface",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "description": "supported fine-assembly bench",
+      "safety_contract": "Small-part jigs, driver limits and captured cutter offcuts",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_INSPECT",
+      "description": "inspection station",
+      "safety_contract": "Gauge/camera datums and measured tolerance limits",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_RECONFIG",
+      "description": "unloaded supported reconfiguration bench",
+      "safety_contract": "Stored elastic energy supported; pins/supports handled only unloaded",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_TEST",
+      "description": "universal-test-machine bay",
+      "safety_contract": "Verified clamps/pins/rails, motion envelope and calibration",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_TORSION",
+      "description": "torsion/deformation demonstration bay",
+      "safety_contract": "Qualified distributed load path, supports and guarded contacts",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_OBSERVE",
+      "description": "co-located or remote observation service",
+      "safety_contract": "Camera/ruler observations retain the specimen at its active physical station",
+      "physical_location": false,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required",
+      "service_at": [
+        "WS_TEST",
+        "WS_TORSION",
+        "WS_RECONFIG",
+        "WS_ASSEMBLY"
+      ],
+      "specimen_movement": "none",
+      "movable_objects": [
+        "camera",
+        "ruler/optical reference when stationary",
+        "calibration target when stationary"
+      ],
+      "concurrent_observation": "external camera/readable ruler only; no access to live moving envelope"
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "description": "sample and records archive",
+      "safety_contract": "One location and current damage/configuration per object",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    },
+    {
+      "id": "WS_CLEAN",
+      "description": "cleanup and waste service",
+      "safety_contract": "Qualified segregation and inventory of all tools, scraps and offcuts",
+      "physical_location": true,
+      "robot_interface": "Read IDs/state, manipulate only qualified grips/tools and verify external feedback; geometry, reach and controls are supplied execution inputs",
+      "device_handoff": "Robot clears envelope before machine ownership; handling resumes only after safe-state readback",
+      "geometry_status": "unbuilt_qualified_input_required"
+    }
+  ],
+  "transfer_policy": "Transfer on changed specimen physical location, never solely because an operation uses a co-located service. Mounted specimen remains at WS_TEST/WS_TORSION/WS_RECONFIG through observation and reset."
+}

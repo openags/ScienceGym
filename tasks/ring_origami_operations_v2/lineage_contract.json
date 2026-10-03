@@ -1,0 +1,104 @@
+{
+  "schema_version": "ring_origami_paper_task.v1",
+  "doi": "10.1038/s41467-023-42323-1",
+  "entities": {
+    "material_lot": [
+      "lot_id",
+      "supplier_identity",
+      "material_role",
+      "qualification_receipt"
+    ],
+    "part": [
+      "part_id",
+      "lot_id",
+      "fabrication_job_id",
+      "CAD_revision",
+      "recipe_revision",
+      "postprocess_receipt",
+      "QC_disposition"
+    ],
+    "assembly": [
+      "assembly_id",
+      "version",
+      "part_membership",
+      "connection_graph",
+      "component_roles",
+      "assembly_receipts"
+    ],
+    "configuration": [
+      "configuration_id",
+      "assembly_version",
+      "C_R_local_mode_map",
+      "hinge_angles",
+      "support_variant",
+      "pins_engagement",
+      "load_axis_in_specimen_and_lab_frames",
+      "unloaded_state_receipt"
+    ],
+    "trial": [
+      "trial_id",
+      "attempt_id",
+      "specimen_id",
+      "configuration_id",
+      "fixture_id",
+      "calibration_ids",
+      "recipe_readback",
+      "start_end_time",
+      "raw_record_ids",
+      "failure_or_completion",
+      "reset_receipt"
+    ],
+    "measurement": [
+      "record_id",
+      "kind",
+      "units",
+      "timestamp_or_epoch",
+      "channel_or_landmark",
+      "raw_parent_ids",
+      "transform_version",
+      "uncertainty",
+      "validity"
+    ],
+    "archive": [
+      "object_id",
+      "single_location",
+      "configuration_id",
+      "damage_status",
+      "custody_receipt"
+    ]
+  },
+  "invariants": [
+    "Every physical object has exactly one current location",
+    "Shared connectors/frames are referenced by one physical ID, never cloned inventory",
+    "Transformation retains material and part ancestry; configuration ID changes when graph, angle, pin, support or loading axis changes",
+    "Trial repeat is not an independent specimen; reuse needs declared fatigue/damage disposition",
+    "Every analysis result references measured parents; calculated torque is labeled semi_experimental",
+    "Failures and excluded records remain immutable and explainable",
+    "Receiving a supplied assembly cannot earn fabrication credit",
+    "Movie playback time is not experimental time",
+    "Paper color labels do not establish thick-element mechanical calibration"
+  ],
+  "semi_experimental_torque_required_parents": [
+    "measured element force/displacement record",
+    "matched element type/material/configuration",
+    "calibrated per-group height/angle and declared radius records",
+    "SI Eq.43 version with dimensional and sign validation"
+  ],
+  "array_ratio_required_parents": [
+    "axial displacement and initial length",
+    "upper width and its initial width",
+    "middle width and its initial width",
+    "lower width and its initial width",
+    "common configuration and epoch",
+    "declared ratio or fitted-window definition"
+  ],
+  "raw_derived_separation": [
+    "measured",
+    "image_derived",
+    "semi_experimental",
+    "analytical_model",
+    "source_reference",
+    "mock"
+  ],
+  "no_actual_records_created": true
+}

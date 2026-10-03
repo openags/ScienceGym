@@ -1,0 +1,1777 @@
+{
+  "schema_version": "ring_origami_paper_task.v1",
+  "doi": "10.1038/s41467-023-42323-1",
+  "operations": [
+    {
+      "id": "PLAN",
+      "actor": "robot",
+      "station_id": "WS_RECORDS",
+      "objects": [
+        "work order",
+        "source cards"
+      ],
+      "tool": "terminal",
+      "interface": "episode selector",
+      "preconditions": [
+        "selected branch exists"
+      ],
+      "action": "Bind finite branch/conditions, specimen allocation, supplied inputs and unresolved gates.",
+      "completion_evidence": [
+        "signed episode manifest",
+        "required-condition ledger"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_REPEAT",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "STOCK",
+      "actor": "robot",
+      "station_id": "WS_STOCK",
+      "objects": [
+        "resin",
+        "TPU",
+        "cardboard",
+        "fasteners",
+        "carriers"
+      ],
+      "tool": "scanner and gripper",
+      "interface": "labeled stock pockets",
+      "preconditions": [
+        "approved BOM",
+        "safe handling card"
+      ],
+      "action": "Read lot labels, inspect packages, count parts and load separate indexed trays.",
+      "completion_evidence": [
+        "inventory receipt",
+        "lot-to-tray map"
+      ],
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_CAD",
+        "U_PRINT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "TRANSFER",
+      "actor": "mobile_robot",
+      "station_id": "WS_ROUTE",
+      "objects": [
+        "secured carrier",
+        "specimen or parts"
+      ],
+      "tool": "mobile base and supported carrier",
+      "interface": "source dock to destination dock",
+      "preconditions": [
+        "destination reserved",
+        "single current location",
+        "object unloaded and untethered"
+      ],
+      "action": "Secure identified load, retract hands, navigate qualified route and verify receiving dock before transfer.",
+      "completion_evidence": [
+        "origin departure receipt",
+        "destination receipt",
+        "single-location update"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "STAGE",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "indexed tray",
+        "parts"
+      ],
+      "tool": "gripper and jig",
+      "interface": "fixture pockets",
+      "preconditions": [
+        "dock verified",
+        "part IDs accepted"
+      ],
+      "action": "Place each part in its assigned supported pocket and inspect orientation.",
+      "completion_evidence": [
+        "pocket occupancy",
+        "orientation record"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_ROBOT",
+        "U_CAD"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "MATERIAL_PREP",
+      "actor": "robot",
+      "station_id": "WS_FAB",
+      "objects": [
+        "sealed resin/TPU stock",
+        "build tray",
+        "qualified accessory plastic stock"
+      ],
+      "tool": "qualified dispenser or cartridge interface",
+      "interface": "approved material service",
+      "preconditions": [
+        "SDS and service card accepted",
+        "no unqualified chemical handling"
+      ],
+      "action": "Load/prepare material only as specified by qualified service, identify lot and prevent material mixing.",
+      "completion_evidence": [
+        "material receipt",
+        "safe enclosure state"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_PRINT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PRINT_LOAD",
+      "actor": "robot",
+      "station_id": "WS_FAB",
+      "objects": [
+        "material",
+        "build plate",
+        "approved part job"
+      ],
+      "tool": "gripper",
+      "interface": "printer load interface",
+      "preconditions": [
+        "correct lot and job",
+        "machine safe-open"
+      ],
+      "action": "Seat plate/material and verify job geometry/version for facets, creases or accessories.",
+      "completion_evidence": [
+        "job-to-lot-to-plate binding"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_PRINT",
+        "U_CAD"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PRINT_SET",
+      "actor": "robot",
+      "station_id": "WS_FAB",
+      "objects": [
+        "print job"
+      ],
+      "tool": "machine controls",
+      "interface": "settings/readback",
+      "preconditions": [
+        "PRINT_LOAD receipt"
+      ],
+      "action": "Set qualified recipe; read back actual machine settings and enclosure/interlocks.",
+      "completion_evidence": [
+        "recipe hash",
+        "settings readback",
+        "interlock receipt"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_PRINT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PRINT_START",
+      "actor": "robot",
+      "station_id": "WS_FAB",
+      "objects": [
+        "qualified print job"
+      ],
+      "tool": "start control",
+      "interface": "device start handshake",
+      "preconditions": [
+        "settings approved",
+        "hands clear",
+        "guard closed"
+      ],
+      "action": "Request start once and verify accepted job ID.",
+      "completion_evidence": [
+        "start acknowledgement",
+        "device ownership transfer"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_PRINT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PRINT_PROCESS",
+      "actor": "device",
+      "station_id": "WS_FAB",
+      "objects": [
+        "loaded build"
+      ],
+      "tool": "light-curing or FDM printer",
+      "interface": "enclosed automatic process",
+      "preconditions": [
+        "start acknowledged"
+      ],
+      "action": "Run bound recipe and provide progress/fault and completion state.",
+      "completion_evidence": [
+        "device job log",
+        "completion or fault"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_PRINT"
+      ],
+      "translation_kind": "device_process",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PRINT_RECEIVE",
+      "actor": "robot",
+      "station_id": "WS_FAB",
+      "objects": [
+        "printed parts",
+        "build plate"
+      ],
+      "tool": "gripper",
+      "interface": "safe-open output port",
+      "preconditions": [
+        "device finished",
+        "safe-open verified"
+      ],
+      "action": "Receive actual output, count parts and attach job/lot lineage without declaring acceptance yet.",
+      "completion_evidence": [
+        "output receipt",
+        "part IDs"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_PRINT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "POST_LOAD",
+      "actor": "robot",
+      "station_id": "WS_POST",
+      "objects": [
+        "printed resin parts"
+      ],
+      "tool": "qualified carrier",
+      "interface": "postprocess load port",
+      "preconditions": [
+        "approved postprocess recipe",
+        "material handling qualified"
+      ],
+      "action": "Transfer required parts to enclosed qualified postprocessing; bind job and close guard.",
+      "completion_evidence": [
+        "loaded part list",
+        "start acknowledgement"
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_input_ids": [
+        "U_PRINT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "POST_PROCESS",
+      "actor": "device",
+      "station_id": "WS_POST",
+      "objects": [
+        "loaded parts"
+      ],
+      "tool": "qualified postprocessing device",
+      "interface": "automatic recipe",
+      "preconditions": [
+        "POST_LOAD acknowledged"
+      ],
+      "action": "Execute only the supplied wash/cure/finishing service; the source does not specify the recipe.",
+      "completion_evidence": [
+        "recipe log",
+        "safe output flag"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_PRINT"
+      ],
+      "translation_kind": "device_process",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "POST_RECEIVE",
+      "actor": "robot",
+      "station_id": "WS_POST",
+      "objects": [
+        "postprocessed parts",
+        "waste"
+      ],
+      "tool": "carrier",
+      "interface": "safe output port",
+      "preconditions": [
+        "safe-open status",
+        "qualified waste card"
+      ],
+      "action": "Receive parts and segregate process waste under the supplied handling procedure.",
+      "completion_evidence": [
+        "part treatment history",
+        "waste receipt"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_PRINT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PART_QC",
+      "actor": "robot",
+      "station_id": "WS_INSPECT",
+      "objects": [
+        "printed parts",
+        "paper outputs"
+      ],
+      "tool": "camera and gauges",
+      "interface": "inspection nest",
+      "preconditions": [
+        "actual output received",
+        "tolerance card"
+      ],
+      "action": "Check dimensions, hole/slot openness, crease angle/class and damage; reject out-of-tolerance parts.",
+      "completion_evidence": [
+        "measured part report",
+        "accept/reject receipt"
+      ],
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_GEOM"
+      ],
+      "unknown_input_ids": [
+        "U_CAD"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "HINGE_JOIN",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "facet pair",
+        "M1x3 screw"
+      ],
+      "tool": "controlled microdriver and jig",
+      "interface": "concentric cylinder holes",
+      "preconditions": [
+        "parts accepted",
+        "supported jig",
+        "drive limit supplied"
+      ],
+      "action": "Align adjacent hinge cylinders and drive self-tapping screw; verify permitted rotation.",
+      "completion_evidence": [
+        "connection record",
+        "seating and motion check"
+      ],
+      "source_evidence_ids": [
+        "E_ASM"
+      ],
+      "unknown_input_ids": [
+        "U_ASM",
+        "U_MOVIES"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "CREASE_FASTEN",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "TPU crease",
+        "facet",
+        "M1x3 screws"
+      ],
+      "tool": "microdriver and crease jig",
+      "interface": "slot or direct facet-II mounting holes",
+      "preconditions": [
+        "correct rest-angle identity",
+        "HINGE_JOIN receipt"
+      ],
+      "action": "For current crease_class instance, attach the identified crease with verified orientation and supplied driver limits. The enclosing route order is 2,3,1,4.",
+      "completion_evidence": [
+        "ordered fastening log",
+        "angle/class check"
+      ],
+      "source_evidence_ids": [
+        "E_ASM",
+        "E_GEOM"
+      ],
+      "unknown_input_ids": [
+        "U_ASM",
+        "U_MOVIES"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "TRIM_SCREWS",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "protruding screw ends",
+        "captured offcuts"
+      ],
+      "tool": "qualified pliers/cutter",
+      "interface": "supported protrusion and offcut catcher",
+      "preconditions": [
+        "cut path qualified",
+        "object unloaded",
+        "eye/shield enclosure ready"
+      ],
+      "action": "Remove protruding screw portions without striking crease or facet.",
+      "completion_evidence": [
+        "clearance inspection",
+        "offcut count and captured waste"
+      ],
+      "source_evidence_ids": [
+        "E_ASM"
+      ],
+      "unknown_input_ids": [
+        "U_ASM"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "FACET_III_JOIN",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "facet III-1",
+        "III-2",
+        "strip",
+        "M1x4 pin"
+      ],
+      "tool": "jig, gripper and pin tool",
+      "interface": "sliding cavity and lower endpoints",
+      "preconditions": [
+        "correct paired halves",
+        "supported subassembly"
+      ],
+      "action": "Insert thin section, connect lower strips and install opening-limiting pin; check sliding and bounded opening.",
+      "completion_evidence": [
+        "join graph",
+        "sliding/opening acceptance"
+      ],
+      "source_evidence_ids": [
+        "E_ASM"
+      ],
+      "unknown_input_ids": [
+        "U_ASM",
+        "U_CAD"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ELEMENT_CLOSE",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "four subcomponents"
+      ],
+      "tool": "support jig",
+      "interface": "head-tail MW closure",
+      "preconditions": [
+        "all subcomponents accepted",
+        "closure map"
+      ],
+      "action": "Join four subcomponents into the tubular element without trapping or overstressing creases.",
+      "completion_evidence": [
+        "closed element graph",
+        "new assembly version"
+      ],
+      "source_evidence_ids": [
+        "E_ASM"
+      ],
+      "unknown_input_ids": [
+        "U_ASM",
+        "U_CAD"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "FRAME_JOIN",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "element",
+        "square frames",
+        "M1x6 screws"
+      ],
+      "tool": "microdriver and support jig",
+      "interface": "facet-I cylinder to frame-corner interface",
+      "preconditions": [
+        "element supported",
+        "frame variant verified"
+      ],
+      "action": "Attach top/bottom frames; verify connection, overall shape and usable rotation.",
+      "completion_evidence": [
+        "frame connection log",
+        "geometry check"
+      ],
+      "source_evidence_ids": [
+        "E_ASM"
+      ],
+      "unknown_input_ids": [
+        "U_ASM",
+        "U_CAD"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ELEMENT_QC",
+      "actor": "robot",
+      "station_id": "WS_INSPECT",
+      "objects": [
+        "assembled thick or paper element"
+      ],
+      "tool": "camera/gauges and bounded handling jig",
+      "interface": "declared grips and measuring datums",
+      "preconditions": [
+        "assembly receipts",
+        "qualified inspection motion"
+      ],
+      "action": "Verify identity, configuration, dimensional references and collision-free allowed motion without forcing flat fold.",
+      "completion_evidence": [
+        "element acceptance",
+        "damage and rest-state record"
+      ],
+      "source_evidence_ids": [
+        "E_GEOM",
+        "E_ASM",
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_ASM",
+        "U_FIX"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PLOTTER_LOAD",
+      "actor": "robot",
+      "station_id": "WS_PLOTTER",
+      "objects": [
+        "180 g/m2 cardboard",
+        "registered mat"
+      ],
+      "tool": "sheet gripper",
+      "interface": "sheet registration and hold-down",
+      "preconditions": [
+        "approved net",
+        "sheet lot and color recorded"
+      ],
+      "action": "Register and secure sheet on plotter bed.",
+      "completion_evidence": [
+        "sheet-to-job binding",
+        "registration check"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_PAPER"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PLOTTER_SET",
+      "actor": "robot",
+      "station_id": "WS_PLOTTER",
+      "objects": [
+        "cut/crease job"
+      ],
+      "tool": "control panel",
+      "interface": "recipe/readback interface",
+      "preconditions": [
+        "sheet registered",
+        "cut/score distinctions supplied"
+      ],
+      "action": "Load approved net and parameters; verify safe enclosure and job extent.",
+      "completion_evidence": [
+        "readback and readiness receipt"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_PAPER"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PLOTTER_START",
+      "actor": "robot",
+      "station_id": "WS_PLOTTER",
+      "objects": [
+        "plotter job"
+      ],
+      "tool": "start control",
+      "interface": "start handshake",
+      "preconditions": [
+        "hands clear",
+        "guard ready"
+      ],
+      "action": "Request job start and confirm actual execution ID.",
+      "completion_evidence": [
+        "start acknowledgement"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_PAPER"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PLOTTER_PROCESS",
+      "actor": "device",
+      "station_id": "WS_PLOTTER",
+      "objects": [
+        "cardboard sheet"
+      ],
+      "tool": "cutting plotter",
+      "interface": "automatic process",
+      "preconditions": [
+        "start accepted"
+      ],
+      "action": "Execute supplied cut/crease job without inferred blade parameters.",
+      "completion_evidence": [
+        "job log",
+        "completion/safe-open"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_PAPER"
+      ],
+      "translation_kind": "device_process",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PLOTTER_RECEIVE",
+      "actor": "robot",
+      "station_id": "WS_PLOTTER",
+      "objects": [
+        "cut/precreased sheets",
+        "scrap"
+      ],
+      "tool": "sheet gripper",
+      "interface": "output bed",
+      "preconditions": [
+        "device safe-open"
+      ],
+      "action": "Remove sheets and scrap; identify all outputs and inspect net integrity.",
+      "completion_evidence": [
+        "output and scrap receipts"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_PAPER"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PAPER_FOLD",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "paper net"
+      ],
+      "tool": "folding jig and grippers",
+      "interface": "qualified crease sequence and seams",
+      "preconditions": [
+        "accepted net",
+        "fold card"
+      ],
+      "action": "Fold the 30 mm paper element and make supplied seam/closure connections without inventing adhesive.",
+      "completion_evidence": [
+        "fold/closure record",
+        "paper-element identity"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_PAPER"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PAPER_FRAME",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "paper element",
+        "frames",
+        "M1x3 screws"
+      ],
+      "tool": "microdriver and jig",
+      "interface": "opposed 0.8 mm frame holes",
+      "preconditions": [
+        "supported paper element",
+        "force limit"
+      ],
+      "action": "Attach two frames without tearing or crushing cardboard.",
+      "completion_evidence": [
+        "frame join record",
+        "paper damage inspection"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_PAPER",
+        "U_ASM"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "PAPER_CONNECT",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "framed paper elements",
+        "connector I/II",
+        "M1x4 screws"
+      ],
+      "tool": "microdriver",
+      "interface": "opposite-side frame holes and overlapping corner plates",
+      "preconditions": [
+        "correct C/R connector variants"
+      ],
+      "action": "Attach connector types to identified elements and form corner hinges.",
+      "completion_evidence": [
+        "connector graph",
+        "hinge freedom check"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_ARRAY",
+        "U_ASM"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "GROUP_JOIN",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "C element",
+        "R element",
+        "hinge/strap"
+      ],
+      "tool": "support jig and approved join tools",
+      "interface": "coincident boundary and parallel axis",
+      "preconditions": [
+        "accepted matched elements",
+        "topology card"
+      ],
+      "action": "Construct one functional group and verify its active folding axis and stable geometry.",
+      "completion_evidence": [
+        "group membership graph",
+        "actual axis/height check"
+      ],
+      "source_evidence_ids": [
+        "E_GROUP"
+      ],
+      "unknown_input_ids": [
+        "U_CAD",
+        "U_ASM"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "GROUP_TRANSFORM",
+      "actor": "robot",
+      "station_id": "WS_RECONFIG",
+      "objects": [
+        "supported functional group"
+      ],
+      "tool": "grippers and jig",
+      "interface": "specified free hinge axes",
+      "preconditions": [
+        "unloaded",
+        "clearance card",
+        "observed initial state"
+      ],
+      "action": "Rotate/recombine group with controlled support; bring C element to required configuration and verify resulting C/R mode geometrically.",
+      "completion_evidence": [
+        "before/after images",
+        "configuration epoch",
+        "unchanged component lineage"
+      ],
+      "source_evidence_ids": [
+        "E_GROUP"
+      ],
+      "unknown_input_ids": [
+        "U_ASM",
+        "U_MOVIES"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "RING_CLOSE",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "three or four functional groups"
+      ],
+      "tool": "supported ring jig",
+      "interface": "parallel intra/inter-group hinge axes",
+      "preconditions": [
+        "matched accepted groups",
+        "closure graph"
+      ],
+      "action": "Join the selected polygon and confirm all connections and hinge orientation.",
+      "completion_evidence": [
+        "ring graph",
+        "closure and interference inspection"
+      ],
+      "source_evidence_ids": [
+        "E_TRI",
+        "E_QUADTOR"
+      ],
+      "unknown_input_ids": [
+        "U_CAD",
+        "U_ASM"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "RING_SUPPORT",
+      "actor": "robot",
+      "station_id": "WS_RECONFIG",
+      "objects": [
+        "thick ring",
+        "printed structural supports"
+      ],
+      "tool": "support jig and tools",
+      "interface": "frame convex cylinders",
+      "preconditions": [
+        "ring unloaded",
+        "selected angle card"
+      ],
+      "action": "Fit correct supports and verify actual angle and permitted deformation.",
+      "completion_evidence": [
+        "support variant and angle receipt"
+      ],
+      "source_evidence_ids": [
+        "E_ASM",
+        "E_AXIAL"
+      ],
+      "unknown_input_ids": [
+        "U_FIX",
+        "U_ANGLE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "RING_RECONFIG",
+      "actor": "robot",
+      "station_id": "WS_RECONFIG",
+      "objects": [
+        "unloaded ring",
+        "supports",
+        "functional groups"
+      ],
+      "tool": "support fixture and grippers",
+      "interface": "released support/hinge interfaces",
+      "preconditions": [
+        "safe reset",
+        "explicit target graph/angle",
+        "qualified clearance"
+      ],
+      "action": "Support ring, release only specified constraints, transform groups or change angle, reinstall support and verify whole graph.",
+      "completion_evidence": [
+        "new configuration epoch",
+        "angle and collision checks"
+      ],
+      "source_evidence_ids": [
+        "E_TRI",
+        "E_QUADTOR",
+        "E_MORPHI",
+        "E_MORPHII"
+      ],
+      "unknown_input_ids": [
+        "U_ASM",
+        "U_ANGLE",
+        "U_MOVIES"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ARRAY_JOIN",
+      "actor": "robot",
+      "station_id": "WS_ASSEMBLY",
+      "objects": [
+        "six paper rings",
+        "shared connectors"
+      ],
+      "tool": "array assembly jig and tools",
+      "interface": "3-row/2-column graph",
+      "preconditions": [
+        "qualified graph and accepted parts"
+      ],
+      "action": "Join six rings; assign each physical part exactly once and reference shared connections.",
+      "completion_evidence": [
+        "array graph",
+        "connection checks"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_ARRAY"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ARRAY_PIN",
+      "actor": "robot",
+      "station_id": "WS_RECONFIG",
+      "objects": [
+        "unloaded array",
+        "removable pins"
+      ],
+      "tool": "pin tool and support jig",
+      "interface": "0.7 mm indexed hinge holes",
+      "preconditions": [
+        "unloaded and supported",
+        "target angle resolved"
+      ],
+      "action": "Remove required pins, set selected angle, align holes and reinstall pins; verify all engagements.",
+      "completion_evidence": [
+        "pin engagement map",
+        "measured configuration angle"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER",
+        "E_ARRAYC",
+        "E_ARRAYT"
+      ],
+      "unknown_input_ids": [
+        "U_ARRAY",
+        "U_ANGLE"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ARRAY_TRANSFORM",
+      "actor": "robot",
+      "station_id": "WS_RECONFIG",
+      "objects": [
+        "array",
+        "recess/block connectors"
+      ],
+      "tool": "support jig and grippers",
+      "interface": "qualified mating block/recess or screw variant",
+      "preconditions": [
+        "unloaded",
+        "variant identity",
+        "target local C/R graph"
+      ],
+      "action": "Transform selected rings while supporting neighbors; verify connector retention and local mode without asserting a force curve.",
+      "completion_evidence": [
+        "before/after local-mode graph",
+        "retention observations"
+      ],
+      "source_evidence_ids": [
+        "E_ARRAYX"
+      ],
+      "unknown_input_ids": [
+        "U_ARRAY",
+        "U_MOVIES"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "FIXTURE_SELECT",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "fixture parts",
+        "condition card"
+      ],
+      "tool": "tools and gauges",
+      "interface": "machine attachment ports",
+      "preconditions": [
+        "machine stationary",
+        "approved interface"
+      ],
+      "action": "Install selected clamp/pin/jamming or rail/bearing fixture; verify orientation, clearance and secure retention.",
+      "completion_evidence": [
+        "fixture configuration ID",
+        "alignment check"
+      ],
+      "source_evidence_ids": [
+        "E_ELEMENT",
+        "E_AXIAL",
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_FIX"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "MOUNT_ELEMENT",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "element",
+        "custom clamps"
+      ],
+      "tool": "support gripper",
+      "interface": "declared top/bottom or transverse contacts",
+      "preconditions": [
+        "fixture accepted",
+        "load axis resolved"
+      ],
+      "action": "Seat specimen without preload beyond supplied limit and verify actual loading axis.",
+      "completion_evidence": [
+        "mount receipt",
+        "orientation and baseline image"
+      ],
+      "source_evidence_ids": [
+        "E_ELEMENT",
+        "E_ANISO"
+      ],
+      "unknown_input_ids": [
+        "U_FIX",
+        "U_DIRECTION"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "MOUNT_RING",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "thick ring",
+        "fixture"
+      ],
+      "tool": "gripper and pin tool",
+      "interface": "selected M10x130 pin or frame-cylinder fixture-wall interface",
+      "preconditions": [
+        "ring support/angle accepted",
+        "fixture matched"
+      ],
+      "action": "Mount ring in selected axial, diagonal, long-axis, short-axis or endpoint orientation.",
+      "completion_evidence": [
+        "mount receipt",
+        "configuration-to-load-axis map"
+      ],
+      "source_evidence_ids": [
+        "E_AXIAL",
+        "E_MORPHI",
+        "E_MORPHII"
+      ],
+      "unknown_input_ids": [
+        "U_FIX",
+        "U_DIRECTION"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "MOUNT_ARRAY",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "array",
+        "sliders",
+        "bearings",
+        "optical shafts"
+      ],
+      "tool": "support jig and tools",
+      "interface": "top/bottom slide rails; side bearing-shaft guides",
+      "preconditions": [
+        "array/pins accepted",
+        "fixture travel qualified"
+      ],
+      "action": "Attach sliders at upper/lower rings and connect side bearings with the corresponding shaft; verify coordinated lateral freedom.",
+      "completion_evidence": [
+        "mount graph",
+        "alignment/free-travel checks"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER",
+        "E_ARRAYC",
+        "E_ARRAYT"
+      ],
+      "unknown_input_ids": [
+        "U_ARRAY",
+        "U_FIX"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "TORSION_RIG",
+      "actor": "robot",
+      "station_id": "WS_TORSION",
+      "objects": [
+        "ring",
+        "iron ring",
+        "cords",
+        "supports"
+      ],
+      "tool": "grippers and fixture tools",
+      "interface": "distributed cord attachment sites",
+      "preconditions": [
+        "qualified load path",
+        "ring configuration accepted"
+      ],
+      "action": "Install apparatus and verify cord distribution, retention and optical visibility.",
+      "completion_evidence": [
+        "rig configuration",
+        "load-path inspection"
+      ],
+      "source_evidence_ids": [
+        "E_TRI",
+        "E_QUADTOR",
+        "E_TORQUE"
+      ],
+      "unknown_input_ids": [
+        "U_TORSION"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "OBS_SETUP",
+      "actor": "robot",
+      "station_id": "WS_OBSERVE",
+      "objects": [
+        "camera",
+        "ruler",
+        "targets",
+        "specimen"
+      ],
+      "tool": "camera and calibration targets",
+      "interface": "view, scale and synchronization interface",
+      "preconditions": [
+        "sample mounted or supported",
+        "optical card"
+      ],
+      "action": "Establish unobstructed view and dimensional references before any motion; start time-linked acquisition.",
+      "completion_evidence": [
+        "baseline images",
+        "scale/calibration and clock record"
+      ],
+      "source_evidence_ids": [
+        "E_TORQUE",
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_CAL",
+        "U_LANDMARK"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device.",
+      "specimen_station_binding": "remains at active physical station; WS_OBSERVE is a remote/co-located service, not specimen destination"
+    },
+    {
+      "id": "CALIBRATE",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "force/displacement channels",
+        "fixture"
+      ],
+      "tool": "calibration artifacts and controls",
+      "interface": "tare/readback and channel map",
+      "preconditions": [
+        "approved calibration procedure",
+        "safe unloaded state"
+      ],
+      "action": "Verify validity/range, zero and sign conventions, displacement references and channel mapping.",
+      "completion_evidence": [
+        "calibration receipt",
+        "baseline data"
+      ],
+      "source_evidence_ids": [
+        "E_ELEMENT"
+      ],
+      "unknown_input_ids": [
+        "U_CAL"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "CONFIG_TEST",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "test recipe",
+        "condition"
+      ],
+      "tool": "machine controls",
+      "interface": "bounded displacement program",
+      "preconditions": [
+        "mount and calibration accepted",
+        "direction/limits resolved"
+      ],
+      "action": "Select 10 mm/min thick-specimen or 20 mm/min paper-array nominal program as applicable; verify sampling, limits and end state.",
+      "completion_evidence": [
+        "recipe hash",
+        "actual settings readback"
+      ],
+      "source_evidence_ids": [
+        "E_ELEMENT",
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_FIX",
+        "U_DIRECTION",
+        "U_CAL"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ARM_TEST",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "mounted specimen",
+        "test job"
+      ],
+      "tool": "start control",
+      "interface": "safe-start handshake",
+      "preconditions": [
+        "observer ready",
+        "guard clear",
+        "all gates resolved"
+      ],
+      "action": "Clear motion region, start acquisition/program and verify job acceptance.",
+      "completion_evidence": [
+        "start receipt",
+        "device ownership transfer"
+      ],
+      "source_evidence_ids": [
+        "E_ELEMENT"
+      ],
+      "unknown_input_ids": [
+        "U_FIX"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "TEST_PROCESS",
+      "actor": "device",
+      "station_id": "WS_TEST",
+      "objects": [
+        "mounted specimen"
+      ],
+      "tool": "universal testing machine",
+      "interface": "automatic bounded motion and acquisition",
+      "preconditions": [
+        "ARM_TEST accepted"
+      ],
+      "action": "Execute supplied displacement program and record actual position/force/status; stop at limits or fault.",
+      "completion_evidence": [
+        "immutable raw stream",
+        "completion/fault and safe-state readback"
+      ],
+      "source_evidence_ids": [
+        "E_ELEMENT",
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_FIX",
+        "U_CAL"
+      ],
+      "translation_kind": "device_process",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "OBSERVE",
+      "actor": "robot",
+      "station_id": "WS_OBSERVE",
+      "objects": [
+        "specimen",
+        "device status",
+        "images"
+      ],
+      "tool": "remote camera and status interface",
+      "interface": "outside motion envelope",
+      "preconditions": [
+        "acquisition active"
+      ],
+      "action": "Observe damage, slippage, folding order and loss of fixture constraints; request safe stop on public fault.",
+      "completion_evidence": [
+        "timestamped observations",
+        "stop/fault record"
+      ],
+      "source_evidence_ids": [
+        "E_AXIAL",
+        "E_MORPHII"
+      ],
+      "unknown_input_ids": [
+        "U_CAL"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device.",
+      "specimen_station_binding": "remains at active physical station; WS_OBSERVE is a remote/co-located service, not specimen destination"
+    },
+    {
+      "id": "MANUAL_LOAD",
+      "actor": "robot",
+      "station_id": "WS_TORSION",
+      "objects": [
+        "crease/group/ring demonstrator"
+      ],
+      "tool": "qualified contact tool and grippers",
+      "interface": "declared support/contact regions",
+      "preconditions": [
+        "camera active",
+        "bounded motion card",
+        "no running tester"
+      ],
+      "action": "Apply specified bounded deformation or torsional manipulation while recording; do not claim author hand trajectory.",
+      "completion_evidence": [
+        "actual motion/contact log",
+        "images",
+        "released state"
+      ],
+      "source_evidence_ids": [
+        "E_CREASE",
+        "E_TRI",
+        "E_QUADTOR"
+      ],
+      "unknown_input_ids": [
+        "U_TORSION",
+        "U_MOVIES"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "MEASURE_WIDTH",
+      "actor": "robot",
+      "station_id": "WS_OBSERVE",
+      "objects": [
+        "paper array",
+        "ruler"
+      ],
+      "tool": "noncontact/readable ruler interface",
+      "interface": "upper/middle/lower width datums",
+      "preconditions": [
+        "camera visible",
+        "safe observation without entering moving rig"
+      ],
+      "action": "Record three distinct lateral dimensions at registered machine-displacement epochs.",
+      "completion_evidence": [
+        "three raw width readings per epoch",
+        "datum IDs"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "unknown_input_ids": [
+        "U_CAL",
+        "U_ARRAY"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device.",
+      "specimen_station_binding": "remains at active physical station; WS_OBSERVE is a remote/co-located service, not specimen destination"
+    },
+    {
+      "id": "SAFE_RESET",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "specimen",
+        "device or manipulation rig"
+      ],
+      "tool": "controls and support fixture",
+      "interface": "unload/release safe-state interface",
+      "preconditions": [
+        "test ended or controlled stop",
+        "qualified reset card"
+      ],
+      "action": "Verify residual load, command qualified return, support specimen and establish safe unload state without presumed automatic recovery.",
+      "completion_evidence": [
+        "residual-load/safe-state receipt",
+        "post-test damage check"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_FIX"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device.",
+      "allowed_station_ids": [
+        "WS_TEST",
+        "WS_TORSION",
+        "WS_RECONFIG"
+      ],
+      "station_binding": "active physical loading/manipulation station; do not move specimen to reset it"
+    },
+    {
+      "id": "UNLOAD",
+      "actor": "robot",
+      "station_id": "WS_TEST",
+      "objects": [
+        "unloaded specimen",
+        "fixture hardware"
+      ],
+      "tool": "support gripper and tools",
+      "interface": "selected fixture release interface",
+      "preconditions": [
+        "safe reset verified"
+      ],
+      "action": "Support object, release fixture, retain loose hardware and place on identified carrier.",
+      "completion_evidence": [
+        "unmount receipt",
+        "carrier occupancy"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_FIX",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device.",
+      "allowed_station_ids": [
+        "WS_TEST",
+        "WS_TORSION",
+        "WS_RECONFIG"
+      ],
+      "station_binding": "active physical loading/manipulation station; do not move specimen to reset it"
+    },
+    {
+      "id": "ANALYZE_ELEMENT",
+      "actor": "analysis",
+      "station_id": "WS_RECORDS",
+      "objects": [
+        "raw force/position",
+        "reference dimensions"
+      ],
+      "tool": "versioned analysis",
+      "interface": "immutable data API",
+      "preconditions": [
+        "valid raw acquisition",
+        "sign/window definitions"
+      ],
+      "action": "Derive force-displacement or stress-strain and stiffness with traceable dimensions, fit window and uncertainty.",
+      "completion_evidence": [
+        "derived data with parents",
+        "units and validity flags"
+      ],
+      "source_evidence_ids": [
+        "E_ELEMENT",
+        "E_AXIAL"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ANALYZE_IMAGE",
+      "actor": "analysis",
+      "station_id": "WS_RECORDS",
+      "objects": [
+        "calibrated images",
+        "landmark map"
+      ],
+      "tool": "image metrology",
+      "interface": "per-group landmark interface",
+      "preconditions": [
+        "scale and inner/outer mapping resolved"
+      ],
+      "action": "Measure each group height/angle and declared radii; retain per-group measurements before averages.",
+      "completion_evidence": [
+        "image-linked measurements",
+        "scale/landmark version"
+      ],
+      "source_evidence_ids": [
+        "E_TORQUE"
+      ],
+      "unknown_input_ids": [
+        "U_LANDMARK",
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ANALYZE_TORQUE",
+      "actor": "analysis",
+      "station_id": "WS_RECORDS",
+      "objects": [
+        "element force data",
+        "ring image geometry"
+      ],
+      "tool": "versioned SI Eq.43 implementation",
+      "interface": "typed measured-input references",
+      "preconditions": [
+        "matching element conditions",
+        "ANALYZE_IMAGE receipt",
+        "equation/sign/unit checks"
+      ],
+      "action": "Calculate semi-experimental torque and radial strain; mark unavailable if any measured input is missing.",
+      "completion_evidence": [
+        "derived torque labeled semi_experimental",
+        "full input lineage"
+      ],
+      "source_evidence_ids": [
+        "E_TORQUE"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ANALYZE_ARRAY",
+      "actor": "analysis",
+      "station_id": "WS_RECORDS",
+      "objects": [
+        "longitudinal displacement",
+        "three width series",
+        "reference dimensions"
+      ],
+      "tool": "versioned analysis",
+      "interface": "matched epoch input records",
+      "preconditions": [
+        "raw widths and baselines valid",
+        "fit/strain definitions"
+      ],
+      "action": "Compute each transverse strain, their mean and Poisson ratio for a declared window; no division at zero axial strain.",
+      "completion_evidence": [
+        "three-strain calculation",
+        "derived ratio and uncertainty"
+      ],
+      "source_evidence_ids": [
+        "E_PAPER",
+        "E_ARRAYC",
+        "E_ARRAYT"
+      ],
+      "unknown_input_ids": [
+        "U_ANALYSIS"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "ARCHIVE",
+      "actor": "robot",
+      "station_id": "WS_ARCHIVE",
+      "objects": [
+        "specimens",
+        "parts",
+        "raw records"
+      ],
+      "tool": "carrier and terminal",
+      "interface": "archive location and immutable store",
+      "preconditions": [
+        "unloaded objects",
+        "IDs reconciled"
+      ],
+      "action": "Store samples with current configuration/damage and preserve all trial attempts, including aborted ones.",
+      "completion_evidence": [
+        "archive receipt",
+        "data manifest"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "CLEANUP",
+      "actor": "robot",
+      "station_id": "WS_CLEAN",
+      "objects": [
+        "tools",
+        "offcuts",
+        "scrap",
+        "process waste"
+      ],
+      "tool": "qualified cleaning tools",
+      "interface": "designated segregation containers",
+      "preconditions": [
+        "stations stationary",
+        "waste handling card"
+      ],
+      "action": "Account for fasteners/offcuts, segregate process waste, clean tools and release stations under approved procedures.",
+      "completion_evidence": [
+        "waste and tool receipts",
+        "station safe-state"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [
+        "U_PRINT",
+        "U_ROBOT"
+      ],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    },
+    {
+      "id": "REPORT",
+      "actor": "analysis",
+      "station_id": "WS_RECORDS",
+      "objects": [
+        "condition ledger",
+        "evidence manifest"
+      ],
+      "tool": "terminal",
+      "interface": "completion report",
+      "preconditions": [
+        "all selected conditions have dispositions"
+      ],
+      "action": "Separate procedural completion, actual scientific findings, unresolved inputs and unsupported comparisons.",
+      "completion_evidence": [
+        "condition disposition report",
+        "honest completion status"
+      ],
+      "source_evidence_ids": [],
+      "unknown_input_ids": [],
+      "translation_kind": "authored_robot_translation",
+      "failure_and_recovery": "Stop on missing input, identity/geometry mismatch, unexpected contact, device fault or exceeded limit. Preserve evidence; support and isolate the object; retry only from a verified safe state with a new attempt ID.",
+      "ownership": "Device owns enclosed motion during device_process; otherwise robot controls handling with fixture support. No actor enters a running device."
+    }
+  ],
+  "count": 59,
+  "loop_rule": "Operations are templates instantiated with condition, specimen, attempt, station and object IDs. No template by itself creates a physical receipt."
+}

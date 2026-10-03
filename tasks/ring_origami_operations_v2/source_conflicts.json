@@ -1,0 +1,48 @@
+{
+  "schema_version": "ring_origami_paper_task.v1",
+  "doi": "10.1038/s41467-023-42323-1",
+  "conflicts": [
+    {
+      "id": "SC_DIRECTION_METHODS",
+      "source_evidence_ids": [
+        "E_ELEMENT"
+      ],
+      "issue": "Methods describes element characterization collectively as compression, while C-I and part of C-II response are tensile.",
+      "design_resolution": "Keep separate tensile/compressive condition classes but gate actual signed motion on a resolved fixture/program card."
+    },
+    {
+      "id": "SC_DIRECTION_CAPTIONS",
+      "source_evidence_ids": [
+        "E_AXIAL",
+        "E_MORPHII"
+      ],
+      "issue": "SI Figs.32(c),33 and35(b) contain tension wording inconsistent with panel compression labels and main physical descriptions.",
+      "design_resolution": "Do not execute caption wording literally; record direction resolution and verify force/displacement signs."
+    },
+    {
+      "id": "SC_ANGLE_SET",
+      "source_evidence_ids": [
+        "E_MORPHI"
+      ],
+      "issue": "Source prints an intersection of disjoint open intervals (0,90) and (90,180).",
+      "design_resolution": "Narrative suggests the two non-square ranges. This is an explicit interpretation, not silent correction; supply finite actual angles."
+    },
+    {
+      "id": "SC_LANDMARK",
+      "source_evidence_ids": [
+        "E_TORQUE"
+      ],
+      "issue": "SI Fig.29 marked circle surrounds exterior while Methods refers to inner diameter; radius/diameter and contour mapping require care.",
+      "design_resolution": "Gate calibrated landmark assignment; retain separate inner/outer and radius/diameter fields."
+    },
+    {
+      "id": "SC_RATE_UNITS",
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "issue": "Main calls 20 mm/min a strain rate; units specify crosshead speed.",
+      "design_resolution": "Preserve as displacement rate, derive strain from measured reference length if needed."
+    }
+  ],
+  "no_unilateral_source_repair": true
+}

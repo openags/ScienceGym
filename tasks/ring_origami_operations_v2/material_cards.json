@@ -1,0 +1,148 @@
+{
+  "schema_version": "ring_origami_paper_task.v1",
+  "doi": "10.1038/s41467-023-42323-1",
+  "materials": [
+    {
+      "id": "RESIN",
+      "source": "high-toughness photosensitive resin",
+      "nominal_modulus_GPa": 2.7,
+      "nominal_strength_MPa": 72,
+      "facet_thickness_mm": 2,
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "qualification": "Brand, batch, print and postprocessing unknown; nominal properties are not measured certificates"
+    },
+    {
+      "id": "TPU",
+      "source": "FDM TPU",
+      "hardness_Shore_A": 95,
+      "nominal_modulus_MPa": 18,
+      "deformable_thickness_mm": 0.5,
+      "deformable_width_mm": 5,
+      "length_scale_to_thicknessless_model": 0.36,
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "qualification": "Printing/conditioning, geometry and tolerances supplied"
+    },
+    {
+      "id": "PAPER",
+      "source": "red/blue cardboard",
+      "areal_density_g_m2": 180,
+      "element_nominal_mm": [
+        30,
+        30,
+        30
+      ],
+      "source_evidence_ids": [
+        "E_PAPER"
+      ],
+      "qualification": "Color is a role marker, not proof of stiffness or correct folding; net and crease process unknown"
+    },
+    {
+      "id": "ACCESSORY_PLASTIC",
+      "source": "3D-printed plastic frames, supports and connector variants",
+      "polymer": null,
+      "technology": null,
+      "source_evidence_ids": [
+        "E_ASM",
+        "E_PAPER"
+      ],
+      "qualification": "Do not automatically inherit facet-resin or TPU recipe"
+    }
+  ],
+  "element_cards": [
+    {
+      "id": "C_I",
+      "initial_crease_angles_deg": [
+        360,
+        0,
+        0,
+        360
+      ],
+      "nominal_stable_height": "0",
+      "thick_side_length_mm": 110,
+      "source_evidence_ids": [
+        "E_GEOM"
+      ],
+      "scope": "Thick resin/TPU prototype; do not transfer rest-angle mechanics to cardboard by color alone"
+    },
+    {
+      "id": "C_II",
+      "initial_crease_angles_deg": [
+        170,
+        0,
+        0,
+        360
+      ],
+      "nominal_stable_height": "0.6 Hmax",
+      "thick_side_length_mm": 110,
+      "source_evidence_ids": [
+        "E_GEOM"
+      ],
+      "scope": "Thick resin/TPU prototype; do not transfer rest-angle mechanics to cardboard by color alone"
+    },
+    {
+      "id": "C_III",
+      "initial_crease_angles_deg": [
+        130,
+        0,
+        0,
+        180
+      ],
+      "nominal_stable_height": "Hmax",
+      "thick_side_length_mm": 110,
+      "source_evidence_ids": [
+        "E_GEOM"
+      ],
+      "scope": "Thick resin/TPU prototype; do not transfer rest-angle mechanics to cardboard by color alone"
+    },
+    {
+      "id": "R",
+      "initial_crease_angles_deg": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "nominal_stable_height": "Hmax",
+      "thick_side_length_mm": 110,
+      "source_evidence_ids": [
+        "E_GEOM"
+      ],
+      "scope": "Thick resin/TPU prototype; do not transfer rest-angle mechanics to cardboard by color alone"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "hinge and crease self-tapping screws",
+      "nominal": "M1x3 mm"
+    },
+    {
+      "item": "facet-III opening limiter",
+      "nominal": "M1x4 pin; do not silently substitute a screw"
+    },
+    {
+      "item": "thick frame join screw",
+      "nominal": "M1x6 mm"
+    },
+    {
+      "item": "thick ring fixture option",
+      "nominal": "M10x130 mm pin; alternate fixture-wall jamming described"
+    },
+    {
+      "item": "paper frame fixation screw",
+      "nominal": "M1x3 mm"
+    },
+    {
+      "item": "paper connector fixation screw",
+      "nominal": "M1x4 mm"
+    },
+    {
+      "item": "paper index holes",
+      "nominal": "0.7 mm holes; 22.5-degree index spacing; pin geometry not fully specified"
+    }
+  ],
+  "counts": "Qualified BOM required. The structural group/ring count is not a complete fastener or shared-connector inventory."
+}
