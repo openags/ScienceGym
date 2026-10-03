@@ -1,8 +1,38 @@
-# Verification: nineteen-family task explorer
+# Verification: twenty-two-family task explorer
+
+## Final material-family integration — 2026-10-03
+
+Scope: three read-only family projections for the final published Horn, ReMM and cold-shape packages, based on immutable repository commit `26f402e4be797a91edce8253e4ed45bed6e01e7c`. The earlier nineteen generated families, all 22 task packages, both embodied storyboards, scene bindings and repository LICENSE are protected byte-for-byte. No source retrieval or browser-policy workaround was attempted.
+
+The explorer now contains 22 families, 464 inspection records and 2,013 operation definitions. The delta is 78 records and 175 definitions, not 78 tasks or executed experiments. Added records comprise 51 physical preparation/acquisition/closure views, 20 numerical/theory views, two source-derived fitting views, three explanatory references, one future proposal and one source-described extension. Source branch and nonmanual IDs remain exact; no campaign record is invented. All 51 new unknown groups, 16 controls and 17 symbolic loop contracts remain retained.
+
+ReMM remains source-incomplete with main panels and nine actual movies uninspected. Cold-shape chemistry, printing, thermal/mechanical actuation and liquid-metal filling remain closed qualified services; its eight actual movies and raw workbook remain unread. Two derived parameter-fit labels are explicitly authored navigation subtypes, preserving the original numerical/analytical source classification and excluding independent-validation credit. Horn numerical focusing/splitting never becomes physical mapping, and physical/derived closure retains its measured parents. Counts, resets, conditions, controls, unknown gates, object lineage and safe service boundaries are not silently resolved.
+
+### Static verification
+
+- **211/211 Python viewer tests pass, zero skips or failures**: all 180 prior tests plus 31 final-material checks. Independent inverse mappings reconstruct all 175 source operations and all 86 original JSON documents with exact hashes and JSON pointers. The new tests reject **121 adversarial mutations** covering source loss, chronology, loop expansion, false source completeness, hazardous service reassignment, lost gates/lineage, numerical-to-physical promotion and forged execution claims
+- All **78 added SVG route variants** retain exact operation rows and have no membership adjacency arrows. All source branch IDs and scope classifications remain inspectable. The source operation/branch fields and original numerical/analytical classifications are unchanged
+- The unchanged source-package suites pass: **84 Horn, 87 ReMM, 86 cold-shape** tests, plus exact static package verification for ReMM and cold-shape. These are source-contract and synthetic-bookkeeping tests, never physical/acoustic/mechanical simulation or live device authentication
+- All **11/11 root static check groups** pass, including source-enabled explorer tests, JavaScript syntax, scene-binding tests, mocked-DOM tests, English checks and published image integrity
+- App and standalone mocked-DOM tests cover **464 views / 14,152 displayed operation entries**. They check empty nonphysical selection clearing, source-warning visibility, role/service separation, conditional postconditions, symbolic loops, repeated-click immutability, search, tabs and hash-history restoration. These are display entries, not executed occurrences
+- Full rebuild, all three family-only rebuilds and standalone export are deterministic. JSON and JavaScript payloads match exactly. The offline standalone has no unresolved local-file assets or external runtime dependencies
+- **724 protected files and all 76 earlier generated family artifacts remain byte-identical**. Repository inventory is 841 baseline files plus 14 additions = 855 candidate files. The publication delta is 31 text files: 14 added, 17 modified, none deleted. All 22 task designs, existing storyboards, scene bindings and LICENSE remain unchanged
+- Final material links are pinned to **26f402e4be797a91edce8253e4ed45bed6e01e7c**, with exact local source-file hashes. Earlier pins and the documented perovskite local-hash caveat remain unchanged. A separate exact UTF-8 publication manifest records every changed file's bytes, characters, SHA-256 and Git blob hashes; publication is a separate action
+
+Independent review passed **18 additional source/artifact checks**, separately implemented app/standalone mocked-DOM checks for all 464 views and every one of the 844 added display entries, and five isolated rebuilds (two full plus the three family-only builds). All 855 candidate files and the standalone remained byte-identical across rebuilds. Seven SVG variants were rendered and inspected; measured bounds for **549 text elements** showed no card or canvas overflow after correcting one ReMM index label with new-family-only shortening. All three default diagrams plus Horn mixed closure/numerical, ReMM half-adder and cold derived-fit variants retain readable scope warnings. Prior nineteen SVG bytes remain unchanged. No unresolved static or presentation defect was found within this review scope.
+
+Historical sections below describe earlier, smaller releases and keep their original test counts.
+
+### Boundaries
+
+No browser access retry, live hardware command, trusted runtime, actor projection, physical simulation, scientific solver, robot execution or new 3D storyboard was added or run. Real-browser rendering, touch/responsive layout and full accessibility remain unverified. Static and synthetic validation does not establish source completeness, experiment feasibility, hardware authenticity or scientific reproduction. Every source-specific unread-media and qualified-input gate remains intact.
+
+
+## Historical verification snapshots
 
 ## Three-assembly-design integration, 2026-10-03
 
-The current explorer contains **19 families, 386 inspection records and 1,838 operation definitions**. The earlier sixteen families retain all 308 records and 1,693 definitions byte-for-byte in their 64 generated JSON/JavaScript/Markdown/SVG files. The addition contains 145 definitions and 78 views:
+The assembly-integration snapshot contains **19 families, 386 inspection records and 1,838 operation definitions**. The earlier sixteen families retain all 308 records and 1,693 definitions byte-for-byte in their 64 generated JSON/JavaScript/Markdown/SVG files. The addition contains 145 definitions and 78 views:
 
 | Family | Definitions | Physical configurations | Campaign | Separate scope records |
 | --- | ---: | ---: | ---: | --- |
@@ -156,3 +186,5 @@ python3 -B tasks/emvp_operations_v2/tests/run_validation.py --report-dir /path/t
 ```
 
 Static SVG pixel inspection uses Inkscape's CLI exporter, not a browser. At the historical integration stage, no remote writes or task-source edits occurred; root LICENSE, task JSON, workflows and both embodied players were unchanged. The later presentation-only changes are documented above.
+
+

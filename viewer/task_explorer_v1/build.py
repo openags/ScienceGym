@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for nineteen public task schemas."""
+"""Deterministic, standard-library-only adapters for twenty-two public task schemas."""
 import argparse, json, pathlib, hashlib, html, textwrap, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from acoustic_adapters import adapt_wavefront, adapt_bianisotropic, adapt_edge, ACOUSTIC_COMMIT, PACKAGES as ACOUSTIC_PACKAGES
 from mechanical_adapters import adapt_origami_memory, adapt_ring_origami, adapt_mechanical_backprop, MECHANICAL_COMMIT, PACKAGES as MECHANICAL_PACKAGES
 from assembly_adapters import adapt_granular_assembly, adapt_beaded, adapt_thermal_jamming, ASSEMBLY_COMMIT, PACKAGES as ASSEMBLY_PACKAGES
+from final_materials_adapters import adapt_horn_acoustics, adapt_mechanical_logic, adapt_cold_shape, FINAL_MATERIALS_COMMIT, PACKAGES as FINAL_MATERIALS_PACKAGES
 ROOT=pathlib.Path(__file__).resolve().parent
 COMMIT='293e32da790303c1a17131e036235f69a5f342e0'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
 COOLING_COMMIT='9a9472b996145ff7f7a4c138c7477b4e734d8835'
-SOURCE_COMMITS={**{key:ASSEMBLY_COMMIT for key in ASSEMBLY_PACKAGES}, **{key:MECHANICAL_COMMIT for key in MECHANICAL_PACKAGES}, 'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
+SOURCE_COMMITS={**{key:FINAL_MATERIALS_COMMIT for key in FINAL_MATERIALS_PACKAGES}, **{key:ASSEMBLY_COMMIT for key in ASSEMBLY_PACKAGES}, **{key:MECHANICAL_COMMIT for key in MECHANICAL_PACKAGES}, 'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
 def source_commit(key): return SOURCE_COMMITS.get(key,COMMIT)
 def source_base(key): return f'https://github.com/openags/ScienceGym/blob/{source_commit(key)}/tasks/'
 NAMES={'cooling':'Directional radiative cooling','emvp':'Embedded extrusion-volumetric printing','prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
@@ -547,7 +548,7 @@ def adapt_cooling(p):
             'detail':without(r,{'id','title'}),'source_file':'branches.json','source_pointer':f'/branches/{i}'})
     return f
 
-ADAPTERS={'granular_assembly':adapt_granular_assembly,'beaded':adapt_beaded,'thermal_jamming':adapt_thermal_jamming,'origami_memory':adapt_origami_memory,'ring_origami':adapt_ring_origami,'mechanical_backprop':adapt_mechanical_backprop,'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
+ADAPTERS={'horn_acoustics':adapt_horn_acoustics,'mechanical_logic':adapt_mechanical_logic,'cold_shape':adapt_cold_shape,'granular_assembly':adapt_granular_assembly,'beaded':adapt_beaded,'thermal_jamming':adapt_thermal_jamming,'origami_memory':adapt_origami_memory,'ring_origami':adapt_ring_origami,'mechanical_backprop':adapt_mechanical_backprop,'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
 
 def walk(nodes,depth=0):
     for n in nodes:
@@ -567,7 +568,7 @@ def svg(f):
         y=333+i*55
         out.append(f'<rect x="1000" y="{y}" width="392" height="48" rx="6" fill="#1b2935"/>')
         out.append(f'<text x="1014" y="{y+19}" fill="{f["color"]}" font-size="13" font-weight="700">{e(route["id"])}</text>')
-        label=textwrap.shorten(route['label'],width=54,placeholder='…')
+        label=textwrap.shorten(route['label'],width=48 if f['id'] in FINAL_MATERIALS_PACKAGES else 54,placeholder='…')
         out.append(f'<text x="1014" y="{y+38}" fill="#e4ecf7" font-size="12">{e(label)}</text>')
     for idx,(node,depth) in enumerate(rows):
         y=365+idx*rowh;x=48+depth*28;w=900-depth*28
@@ -611,6 +612,14 @@ def svg(f):
         result=result.replace('· every listed step', '· source template view')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'Source templates only. Typed scopes, bindings and conditional paths remain obligations; no execution is claimed.')
         result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', 'Source template view for the designated physical branch, with the complete physical, preparation, campaign and nonmanual index. Nested bodies are displayed once without instantiation. Exact conditions and bindings remain in the inspector and Markdown.')
+    if f['id'] in FINAL_MATERIALS_PACKAGES:
+        warning = {'horn_acoustics': 'DESIGN ONLY · Paired physical maps; focusing/splitting numerical. Technical reads are not specimen replicates.',
+                   'mechanical_logic': 'SOURCE-INCOMPLETE · source_complete=false · Main figure panels and nine actual movies remain uninspected.',
+                   'cold_shape': 'CLOSED QUALIFIED SERVICES ONLY · Eight movies and source workbook unread; derived fits are not independent validation.'}[f['id']]
+        result=result.replace('DESIGN REFERENCE ONLY · Reported scientific stages + separately authored robot handling', html.escape(warning))
+        result=result.replace('· every listed step', '· unordered source membership')
+        result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows. Physical, service and nonmanual scopes stay distinct; unresolved inputs block execution.')
+        result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', 'Unordered source operation membership with separate physical, numerical, derived-analysis, explanatory and extension dispositions. Repeats retain their stated scopes without instantiation. Source access and closed-service boundaries remain explicit.')
     if f['id'] in ASSEMBLY_PACKAGES:
         result=result.replace('· every listed step', '· source template view')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'Unexpanded source templates. Choice arms remain exclusive; memberships, repeats and device ownership are not executions.')
@@ -643,6 +652,14 @@ def md(f):
         lines.extend(['## Reference contracts and boundaries', '', 'Representation counts: ' + json.dumps(f['summary_counts'], ensure_ascii=False) + '.', '',
           'All source JSON, dependency rules, controls, lineage, unknowns, source conflicts, unread-video gates and release boundaries remain exact. Numerical training is not physical self-updating hardware. Ring torque is derived semi-experimentally from matched measured force and geometry; it is not directly measured torque. Proposals and conceptual extensions remain separate from physical designs.', '',
           'Origami-memory memberships are unordered. Ring preparation, condition, trial and concurrent bodies preserve the source grammar without expanding missing counts. Backprop uses the authoritative typed reference tree with distinct forward/adjoint operation entries, transfer contracts and phase bindings. A displayed template is not a trial, specimen or completed result.', ''])
+        for name, entry in f['source_files'].items(): lines.append(f'- [{name}]({entry["url"]})')
+        lines.append('')
+    if f['id'] in FINAL_MATERIALS_PACKAGES:
+        lines.extend(['## Reference contracts and boundaries', '', 'Representation counts: ' + json.dumps(f['summary_counts'], ensure_ascii=False) + '.', '',
+          f['source_warnings'], '',
+          'Every source JSON document, operation field, branch record, dependency, unknown gate, control, conditional postcondition, custody rule and access audit is retained. Lists remain membership; global loop catalogs apply only to their stated scopes. No empty loop, source inventory, truth-table case, technical readout or cycle is silently promoted to an independent specimen or completed experiment.', '',
+          'ReMM remains source-incomplete with main panels and movie contents uninspected. Cold-shape hazardous processes remain inside qualified closed services; robot interface actions and autonomous service/analysis ownership remain distinct. Its two derived-fit navigation views retain the original numerical_or_analytical_only source classification and are not additional branches or independent validation.', '',
+          'Horn physical/derived closure retains matched-map parents and physical cleanup. Numerical focusing and beam splitting never become physical acquisition. These projections implement no actor loader, physical simulation, trusted event backend, new scene or robot execution.', ''])
         for name, entry in f['source_files'].items(): lines.append(f'- [{name}]({entry["url"]})')
         lines.append('')
     if f['id'] in ASSEMBLY_PACKAGES:
@@ -686,7 +703,7 @@ def md(f):
         result='\n'.join(lines)
         return result.replace('numbered rows preserve reference-list occurrences.', 'rows show unordered template membership; only declared dependencies impose order.')
     result='\n'.join(lines)
-    if f['id'] in {*MECHANICAL_PACKAGES, *ASSEMBLY_PACKAGES}:
+    if f['id'] in {*MECHANICAL_PACKAGES, *ASSEMBLY_PACKAGES, *FINAL_MATERIALS_PACKAGES}:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows retain the source display structure only. Membership has no inferred chronology. Where the source supplies a typed body, one unexpanded template is shown; no condition, trial or specimen count is inferred.')
     if f['id']=='cooling' or f['id'] in ACOUSTIC_PACKAGES:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows preserve source operation membership once, without chronology. Loop bodies, count text and nesting obligations are retained as metadata, not added occurrences or executed repetitions.')

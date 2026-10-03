@@ -23,6 +23,7 @@
   $('routeSelect').replaceChildren();for(const r of f.routes)$('routeSelect').append(E('option',{value:r.id},r.id+' · '+r.label));
   if(window.SCIENCEGYM_SVGS){if(state.svgUrl)URL.revokeObjectURL(state.svgUrl);state.svgUrl=URL.createObjectURL(new Blob([window.SCIENCEGYM_SVGS[f.id]],{type:'image/svg+xml'}));$('svgLink').href=state.svgUrl;$('svgLink').setAttribute('download',f.id+'.svg');}else{$('svgLink').href='diagrams/'+f.id+'.svg';}
   const dep=$('dependenciesView');dep.replaceChildren(E('h2',{},'Explicit constraints and branch choices'),E('p',{},'These records come from the task package. No global chronology is inferred across independent branches.'));
+  if(f.source_warnings)dep.append(E('p',{class:'notice'},f.source_warnings));
   const constraints=f.dependencies.partial_order;
   if(Array.isArray(constraints)){const grid=E('div',{class:'dependency-grid'});constraints.forEach(x=>{const row=E('div',{class:'dependency-edge'});if(x&&typeof x==='object'&&'before'in x&&'after'in x){row.append(E('span',{},x.before),E('span',{},'→'),E('span',{},x.after));}else{row.append(E('span',{},typeof x==='string'?x:format(x)));}grid.append(row);});dep.append(grid);}
   if(f.id==='prismatic'||f.id==='emvp'||f.id==='cooling'||f.summary_counts){dep.append(E('h3',{},'Declared template prerequisites · not a runnable instance graph'));const grid=E('div',{class:'dependency-grid'});(f.dependencies.edges||[]).forEach(x=>{const row=E('div',{class:'dependency-edge'});row.append(E('span',{},Array.isArray(x)?x[0]:(x.from??x.source??x.before)),E('span',{},'→'),E('span',{},Array.isArray(x)?x[1]:(x.to??x.target??x.after)));grid.append(row);});dep.append(grid);}
@@ -34,6 +35,7 @@
   const d=E('details');d.append(E('summary',{},'All dependency, resource, branch and comparison contracts'));const inner=E('div');fields(f.dependencies,inner);d.append(inner);dep.append(d);
   if(f.context.branch_policy){const c=E('details');c.append(E('summary',{},'Branch counting, reference order and repetition policy'));const v=E('div');fields(f.context.branch_policy,v);c.append(v);dep.append(c);}
   const contract=$('contractView');contract.replaceChildren(E('h2',{},'Acceptance, recovery and explicit unknowns'),E('p',{},'Intended evaluator contracts only. This inspector does not evaluate completion or produce scientific results.'));
+  if(f.source_warnings)contract.append(E('p',{class:'notice'},f.source_warnings));
   for(const [key,value]of Object.entries(f.context)){const d=E('details');d.append(E('summary',{},key.replaceAll('_',' ')));const b=E('div');fields(value,b);d.append(b);contract.append(d);}
   const files=E('details');files.append(E('summary',{},'Immutable source files and checksums'));const filebox=E('div');for(const [name,v]of Object.entries(f.source_files)){const p=E('p');p.append(E('a',{href:v.url,target:'_blank',rel:'noreferrer'},name),E('br'),E('span',{class:'source-pointer'},v.sha256));filebox.append(p);}files.append(filebox);contract.append(files);
  }
@@ -51,9 +53,11 @@
    if(state.steps[index].sourceOccurrence)section(box,'Source occurrence binding · not an executed instance',state.steps[index].sourceOccurrence);
    const objects=E('div',{class:'object-tags'});list(op.objects).forEach(v=>objects.append(E('span',{class:'tag'},format(v))));box.append(objects);
    const pre=E('div',{class:'statebox'});pre.append(E('h3',{},'Required pre-state'));values(op.pre,pre);box.append(pre,E('div',{class:'state-arrow','aria-hidden':'true'},'↓'));
-   section(box,op.action_macro?'Authored robot macro: '+op.action_macro:'Robot / task actions',fullActions(op),true);
+   section(box,op.action_macro?'Authored robot macro: '+op.action_macro:f.source_warnings?'Source-defined actions · ownership below':'Robot / task actions',fullActions(op),true);
    if(f.summary_counts){section(box,'Authored role and operation kind · no execution', {kind:op.detail.kind||'No kind field supplied; use source actor and ownership',actor:op.detail.actor||'Per source operation kind',execution_mode:op.detail.execution_mode||'No per-operation execution_mode supplied; read-only design reference'});}
    if(['granular_assembly','thermal_jamming'].includes(f.id))section(box,'Device process · separate from robot manipulation',op.detail.device_actions);
+   if(f.source_warnings&&op.detail.conditional_postconditions)section(box,'Conditional postconditions · inspection is not acceptance',op.detail.conditional_postconditions);
+   if(f.id==='cold_shape'){section(box,'Closed qualified service process · not robot manipulation',op.detail.service_process);section(box,'Source fact · separate from authored translation',op.detail.source_fact);section(box,'Qualified interface port',op.detail.interface_port);}
    if(f.id==='beaded'){section(box,'Tools · exact source roles',op.detail.tools);section(box,'Device handoff · separate from robot manipulation',op.detail.device_handoff);}
    if(f.id==='cooling'){section(box,'Device process · separate from operator manipulation',op.detail.device_process);section(box,'Tools and qualified interfaces',op.detail.tools_or_interfaces);}
    box.append(E('div',{class:'state-arrow','aria-hidden':'true'},'↓'));const post=E('div',{class:'statebox'});post.append(E('h3',{},'Required post-state'));values(op.post,post);box.append(post);
