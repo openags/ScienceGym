@@ -1,0 +1,1661 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "operations": [
+    {
+      "id": "PLAN",
+      "label": "Allocate a finite experimental work order",
+      "station": "PLAN",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Read selected goal and condition cards",
+        "Allocate labeled physical specimens, independent repeats and acquisition slots"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Configuration selected"
+      ],
+      "completion_evidence": [
+        "Versioned condition/sample/attempt manifest",
+        "Unresolved inputs recorded"
+      ],
+      "source_refs": [
+        "M_SCOPE"
+      ],
+      "required_unknowns": [
+        "U_ALLOC"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "work order",
+        "labels",
+        "sample manifest"
+      ],
+      "source_station": "recorded origin or information workspace",
+      "target_station": "PLAN",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "QUALIFY",
+      "label": "Qualify supplied installed assets",
+      "station": "PLAN",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Inspect device identities and readiness readbacks",
+        "Check transport routes, guarding, waste capture and accessible stop controls"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Named equipment supplied"
+      ],
+      "completion_evidence": [
+        "Calibration and interlock receipts",
+        "Safe contacts and carrier maps"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_ROLL",
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_ASSETS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "installed assets",
+        "calibration and interlock interfaces"
+      ],
+      "source_station": "recorded origin or information workspace",
+      "target_station": "PLAN",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "STOCK",
+      "label": "Retrieve and verify material lots",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Move closed labeled NOA73, slide/spacer/PDMS components and selected bead vessels to approved staging",
+        "Read identities and actual lot specification"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Allocation and safe handling instructions available"
+      ],
+      "completion_evidence": [
+        "Lot-to-sample linkage",
+        "Material quantities reserved",
+        "Nominal and measured bead-size fields separate"
+      ],
+      "source_refs": [
+        "S_FAB",
+        "S_POLY"
+      ],
+      "required_unknowns": [
+        "U_LOTS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "closed stock vessels",
+        "labeled tray"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "PREP",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "MOVE",
+      "label": "Transport a supported labeled specimen",
+      "station": "TRANSFER",
+      "kind": "authored_transport_template",
+      "robot_actions": [
+        "Acquire carrier at approved grasp",
+        "Verify release from source support",
+        "Carry along safe route without touching active array",
+        "Dock, release and re-observe destination support"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Destination ready; sample outside active equipment state",
+        "Source and destination named"
+      ],
+      "completion_evidence": [
+        "Source exit, continuous carrier custody and destination docking observations",
+        "Exactly one current location",
+        "Orientation/fiducial continuity"
+      ],
+      "source_refs": [
+        "M_SCOPE"
+      ],
+      "required_unknowns": [
+        "U_ASSETS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "labeled specimen",
+        "support carrier",
+        "qualified gripper or hand tool"
+      ],
+      "source_station": "recorded origin or information workspace",
+      "target_station": "TRANSFER",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "SANDWICH",
+      "label": "Prepare NOA73 patterning sandwich",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Prepare the PDMS blanket using the recipe and tooling resolved by U_SANDWICH; retain its manufacturing receipt",
+        "Retrieve and place the first slide in a supported assembly fixture",
+        "Place the specified spacer and dispense NOA73 using qualified tools",
+        "Place the prepared PDMS blanket and second slide in the source-related layer arrangement",
+        "Inspect the gap, orientation, edge containment and specimen label before transport"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "PDMS blanket preparation and sandwich assembly recipes are resolved",
+        "Compatible slides, resin, spacer, supports and manipulation tools are qualified"
+      ],
+      "completion_evidence": [
+        "Component/lot and gap receipt",
+        "Sandwich identity and orientation"
+      ],
+      "source_refs": [
+        "S_FAB"
+      ],
+      "required_unknowns": [
+        "U_SANDWICH"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "slides",
+        "NOA73",
+        "12 µm spacer",
+        "PDMS blanket",
+        "qualified dispensing tool",
+        "PDMS component stocks and recipe-specific blanket preparation tooling"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "PREP",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "PATTERN",
+      "label": "Load and expose selected trap pattern",
+      "station": "UV",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Dock sandwich",
+        "Load verified mask/version and stage-specific exposure",
+        "Close guard, request exposure and read completion"
+      ],
+      "device_actions": [
+        "DMD/optical system applies selected UV job"
+      ],
+      "preconditions": [
+        "Qualified optics and mask; no open access during exposure"
+      ],
+      "completion_evidence": [
+        "Mask dimensions/hash and dose-program receipt",
+        "Actual illumination timestamps and device completion"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_FAB"
+      ],
+      "required_unknowns": [
+        "U_PATTERN",
+        "U_UV"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "resin sandwich",
+        "DMD/UV fixture",
+        "mask interface"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "UV",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "DEVELOP",
+      "label": "Open and develop the patterned sample",
+      "station": "WET",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Transport closed/support-protected assembly to solvent station",
+        "Separate sandwich using qualified procedure",
+        "Rinse uncured resin with approved ethanol workflow",
+        "Collect liquid waste and establish readiness"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "UV job finished; approved separation/rinse workflow"
+      ],
+      "completion_evidence": [
+        "Sample retains identity",
+        "Rinse/waste record",
+        "No fabricated solvent volume or drying time"
+      ],
+      "source_refs": [
+        "S_FAB"
+      ],
+      "required_unknowns": [
+        "U_RINSE",
+        "U_SANDWICH"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "exposed sandwich",
+        "separation tool",
+        "ethanol dispenser",
+        "rinse support",
+        "waste vessel"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "WET",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "VERIFY_TRAPS",
+      "label": "Measure initial trap layout and state",
+      "station": "OPTICAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Dock slide with fiducials",
+        "Acquire coverage and selected dimensional measurements",
+        "Label array/flat-film geometry and cure history"
+      ],
+      "device_actions": [
+        "Microscope captures calibrated pre-assembly images"
+      ],
+      "preconditions": [
+        "Dry/readiness gate met",
+        "Pattern and coordinate frame retained"
+      ],
+      "completion_evidence": [
+        "Raw images with calibration",
+        "Trap IDs, count, dimensions and cure receipt",
+        "Defects retained as observations"
+      ],
+      "source_refs": [
+        "M_GEOM",
+        "S_GEOM"
+      ],
+      "required_unknowns": [
+        "U_IMAGING"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "patterned slide",
+        "microscope holder",
+        "fiducials"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "OPTICAL",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "FILM",
+      "label": "Prepare separate flat-film controls",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Retrieve labeled NOA73 and assigned slides with qualified tools",
+        "Prepare each substrate using the resolved method",
+        "Dispense and form the required film with the recipe-defined tooling; verify assigned thickness",
+        "Load the qualified UV fixture, request the selected stage program, recover and label each actual film"
+      ],
+      "device_actions": [
+        "Approved coating/cure device runs supplied method if required"
+      ],
+      "preconditions": [
+        "Actual film-making method and compatible tooling resolved by U_FILM",
+        "UV program resolved by U_UV; no made-up spin speed, film volume or exposure"
+      ],
+      "completion_evidence": [
+        "Film thickness and cure-state history",
+        "Separate specimen IDs for each intended irreversible test"
+      ],
+      "source_refs": [
+        "S_MECH",
+        "S_N1"
+      ],
+      "required_unknowns": [
+        "U_FILM",
+        "U_UV"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "NOA73",
+        "glass slides",
+        "qualified film-preparation tools"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "PREP",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "DSC_LOAD",
+      "label": "Load photo-DSC specimen",
+      "station": "THERMAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Prepare pan and labeled resin aliquot",
+        "Dock pan and matched baseline/reference",
+        "Start qualified 365 nm method"
+      ],
+      "device_actions": [
+        "Photo-DSC collects source-related conversion data under qualified method"
+      ],
+      "preconditions": [
+        "Thermal method and sample quantities supplied"
+      ],
+      "completion_evidence": [
+        "Pan/sample ID, mass and method receipt",
+        "Raw heat-flow and light timestamps"
+      ],
+      "source_refs": [
+        "S_DSC"
+      ],
+      "required_unknowns": [
+        "U_DSC"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "resin aliquot",
+        "DSC pan",
+        "reference pan",
+        "loading tool"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "THERMAL",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "DSC_CLOSE",
+      "label": "Recover photo-DSC records and sample",
+      "station": "THERMAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Wait for safe-state readback",
+        "Remove specimen to designated cured/used-material container",
+        "Retain raw and baseline records"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Device released safe handling"
+      ],
+      "completion_evidence": [
+        "Post-test state and disposition",
+        "Conversion processing linked to raw signal"
+      ],
+      "source_refs": [
+        "S_DSC"
+      ],
+      "required_unknowns": [
+        "U_DSC"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "used DSC pan",
+        "labeled used-material holder"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "THERMAL",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "INDENT",
+      "label": "Mount and test mechanical film",
+      "station": "MECHANICS",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Mount labeled film",
+        "Select nonoverlapping assigned sites",
+        "Request qualified flat-tip indentation and save actual readback"
+      ],
+      "device_actions": [
+        "Indenter executes approved load/displacement method"
+      ],
+      "preconditions": [
+        "Film stage and 10 µm tip verified"
+      ],
+      "completion_evidence": [
+        "Raw force/displacement/time traces",
+        "Site-to-specimen map and method/calibration"
+      ],
+      "source_refs": [
+        "S_MECH",
+        "S_UV"
+      ],
+      "required_unknowns": [
+        "U_MECH"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "flat film",
+        "mount",
+        "10µm flat indenter interface"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "MECHANICS",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "PULLOFF",
+      "label": "Run separate adhesion measurements",
+      "station": "MECHANICS",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Mount source-related film/counterface in qualified fixture",
+        "Request pull-off test at assigned site",
+        "Recover specimen with changed-site state recorded"
+      ],
+      "device_actions": [
+        "Qualified adhesion tester executes supplied program"
+      ],
+      "preconditions": [
+        "Counterface, contact history and instrument method resolved"
+      ],
+      "completion_evidence": [
+        "Raw force/time or displacement records",
+        "Actual apparatus/counterface identity",
+        "No assumed indentation-pull-off equivalence"
+      ],
+      "source_refs": [
+        "M_FAB"
+      ],
+      "required_unknowns": [
+        "U_MECH"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "film",
+        "qualified counterface",
+        "adhesion fixture"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "MECHANICS",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "WEIGH_CHARGE",
+      "label": "Weigh selected bead charge",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Tare labeled dry container",
+        "Dispense selected glass/other particles under containment",
+        "Record actual mass and vessel identity"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Selected composition/lot and allocation resolved"
+      ],
+      "completion_evidence": [
+        "Balance/tare receipts",
+        "Charge ID linked to particle lot",
+        "No mass-to-exact-count conversion"
+      ],
+      "source_refs": [
+        "S_ROLL",
+        "S_MIXED"
+      ],
+      "required_unknowns": [
+        "U_LOTS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "particle stock",
+        "balance",
+        "container",
+        "contained dispensing tool"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "PREP",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "LOAD_TUBE",
+      "label": "Load slide and granules into assembly tube",
+      "station": "ASSEMBLY",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Verify empty 50 mL tube identity",
+        "Place retained labeled slide in qualified fixture/orientation",
+        "Transfer selected charge; close tube and inspect containment"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Trap state and charge known; fixture qualified"
+      ],
+      "completion_evidence": [
+        "Slide/charge/tube linked as contents",
+        "Mount/orientation and closure evidence"
+      ],
+      "source_refs": [
+        "S_FAB",
+        "S_ROLL"
+      ],
+      "required_unknowns": [
+        "U_ROLLER"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "slide",
+        "particle charge",
+        "50mL tube",
+        "slide-retention fixture",
+        "cap"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "ASSEMBLY",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "SHAKE",
+      "label": "Run short dynamic-assembly demonstration",
+      "station": "ASSEMBLY",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Secure closed tube in qualified grip/fixture",
+        "Perform approved 10 s shaking action",
+        "Return to supported safe rest"
+      ],
+      "device_actions": [
+        "If fixture actuated, device runs only approved waveform"
+      ],
+      "preconditions": [
+        "U_SHAKE resolved; no inferred shaking amplitude"
+      ],
+      "completion_evidence": [
+        "Actual motion duration and observed assembly attempt",
+        "Contained run completion"
+      ],
+      "source_refs": [
+        "S_FAB"
+      ],
+      "required_unknowns": [
+        "U_SHAKE"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "closed tube",
+        "qualified grip or shaker fixture"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "ASSEMBLY",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "ROLLER",
+      "label": "Run timed roller condition",
+      "station": "ASSEMBLY",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Dock closed tube on qualified roller",
+        "Set selected speed and schedule",
+        "Request start, observe readbacks, stop at assigned acquisition boundary"
+      ],
+      "device_actions": [
+        "Roller drives tube; instrument logs actual speed/time"
+      ],
+      "preconditions": [
+        "Selected mass/RPM/time point/repeat slot fixed",
+        "Fixture and tube closure verified"
+      ],
+      "completion_evidence": [
+        "Speed, time and turn records with units",
+        "No substitution of turns for seconds",
+        "Interruption history retained"
+      ],
+      "source_refs": [
+        "S_ROLL",
+        "M_ROLL"
+      ],
+      "required_unknowns": [
+        "U_ROLLER"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "closed tube",
+        "roller interface"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "ASSEMBLY",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "UNLOAD",
+      "label": "Recover assembled slide and loose particle charge",
+      "station": "ASSEMBLY",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Wait for zero-motion indication",
+        "Remove tube to contained recovery tray",
+        "Open and retrieve slide by safe carrier",
+        "Collect free beads separately with lot/cycle identity"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Motion stopped and retained slide stable"
+      ],
+      "completion_evidence": [
+        "Tube-to-slide release and recovery evidence",
+        "Free versus attached beads not silently conflated"
+      ],
+      "source_refs": [
+        "S_FAB",
+        "S_ROLL"
+      ],
+      "required_unknowns": [
+        "U_ASSETS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "tube",
+        "slide carrier",
+        "particle recovery tray"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "ASSEMBLY",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "CLEAR",
+      "label": "Remove unattached beads under containment",
+      "station": "CLEAR",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Dock array in qualified particle capture station",
+        "Apply approved air-removal action",
+        "Collect released particles; inspect array"
+      ],
+      "device_actions": [
+        "Air system executes qualified settings when used"
+      ],
+      "preconditions": [
+        "No exposed blowing into room; validated array grip"
+      ],
+      "completion_evidence": [
+        "Before/after occupancy images",
+        "Removal program and captured-particle disposition"
+      ],
+      "source_refs": [
+        "S_FAB"
+      ],
+      "required_unknowns": [
+        "U_AIR"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "array",
+        "contained air nozzle/interface",
+        "capture vessel"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "CLEAR",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "POSTCURE",
+      "label": "Lock selected assembled interface by flood UV",
+      "station": "UV",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Dock identified assembled array",
+        "Request qualified flood-UV program with guard closed",
+        "Record release readiness"
+      ],
+      "device_actions": [
+        "UV chamber exposes already-contacting bead/trap interface"
+      ],
+      "preconditions": [
+        "Selected configuration requires shape adaptation",
+        "Loose beads removed; no same sample in a terminal SEM-preparation state"
+      ],
+      "completion_evidence": [
+        "Cure history linked to same array/contact cohort",
+        "Actual dose-program readback"
+      ],
+      "source_refs": [
+        "S_FAB",
+        "M_FAB"
+      ],
+      "required_unknowns": [
+        "U_UV"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "assembled array",
+        "UV chamber support"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "UV",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "IMAGE",
+      "label": "Acquire calibrated array/film images",
+      "station": "OPTICAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Dock specimen and verify fiducial orientation",
+        "Acquire assigned fields without deleting vacancies or damaged sites",
+        "Preserve raw images and calibration"
+      ],
+      "device_actions": [
+        "Microscope acquires specified optical images"
+      ],
+      "preconditions": [
+        "Imaging settings and field coverage resolved"
+      ],
+      "completion_evidence": [
+        "Raw acquisition IDs linked to sample, state, field, device and settings",
+        "Observable focus/coverage check"
+      ],
+      "source_refs": [
+        "M_METHOD",
+        "M_GEOM"
+      ],
+      "required_unknowns": [
+        "U_IMAGING"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "sample carrier",
+        "microscope holder",
+        "acquisition interface"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "OPTICAL",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "DROP_BEAD",
+      "label": "Observe guided/free-fall bead collision",
+      "station": "COLLISION",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Mount labeled surface with known stage",
+        "Dock qualified guide and camera",
+        "Release selected bead from authorized fixture",
+        "Recover impactor and surface with collision history"
+      ],
+      "device_actions": [
+        "Synchronized camera records actual impact",
+        "Release device only executes authorized job"
+      ],
+      "preconditions": [
+        "Camera and release geometry qualified",
+        "No observer inside moving-particle envelope"
+      ],
+      "completion_evidence": [
+        "Raw frames and calibrated actual velocity",
+        "Capture/rebound/displacement classification with ambiguous flag",
+        "Target and impactor identities"
+      ],
+      "source_refs": [
+        "M_COLL",
+        "S_COLL"
+      ],
+      "required_unknowns": [
+        "U_COLLISION",
+        "U_HIGHSPEED"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "film or trap array",
+        "guide holder",
+        "impactor bead",
+        "release tool",
+        "camera interface"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "COLLISION",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "COLLIDE_TRAPPED",
+      "label": "Challenge an already trapped bead",
+      "station": "COLLISION",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Verify retained-bead identity and prechallenge contact position",
+        "Deliver guided second bead using qualified fixture",
+        "Record and recover both particles without relabeling"
+      ],
+      "device_actions": [
+        "High-speed camera records actual event"
+      ],
+      "preconditions": [
+        "Stage1 or postadaptation condition fixed; baseline image exists"
+      ],
+      "completion_evidence": [
+        "Pre/post same-contact mapping",
+        "Impactor path and trapped bead outcome",
+        "Failed/missed target retained as invalid attempt"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_COLL"
+      ],
+      "required_unknowns": [
+        "U_COLLISION",
+        "U_HIGHSPEED"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "identified trapped bead",
+        "array",
+        "second bead",
+        "guide/release tool"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "COLLISION",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "REMOVE_BEADS",
+      "label": "Separate beads for destructive interface analysis",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Record terminal baseline image",
+        "Use qualified mechanical removal method",
+        "Place separated bead and residual trap into distinct labeled holders"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Specimen dedicated to destructive analysis; method resolved"
+      ],
+      "completion_evidence": [
+        "Parent-child lineage for trap and removed bead",
+        "Original array marked disassembled; cannot be used as an intact PUF"
+      ],
+      "source_refs": [
+        "S_FAB",
+        "S_EDS"
+      ],
+      "required_unknowns": [
+        "U_SEM_EDS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "array",
+        "qualified removal tool",
+        "separate bead and trap holders"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "PREP",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "SEM_EDS",
+      "label": "Mount and acquire SEM or EDS measurements",
+      "station": "SEM",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Mount assigned remnants/beads with compatible qualified preparation",
+        "Request selected SEM, sulfur-map or spectrum program",
+        "Retain measured raw records and mount disposition"
+      ],
+      "device_actions": [
+        "SEM/EDS acquires images/maps/spectra"
+      ],
+      "preconditions": [
+        "Preparation and settings qualified; paired source identities intact"
+      ],
+      "completion_evidence": [
+        "Instrument receipts and raw files",
+        "Blank/reference and detection criteria where used",
+        "No sulfur absence inferred below unknown detection limit"
+      ],
+      "source_refs": [
+        "S_FAB",
+        "S_EDS",
+        "S_UV"
+      ],
+      "required_unknowns": [
+        "U_SEM_EDS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "removed bead or trap remnant",
+        "mount",
+        "qualified loading tool",
+        "SEM/EDS interface"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "SEM",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "REUSE_RESET",
+      "label": "Reset trap for an explicitly assigned reuse cycle",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Recover selected trap using qualified reset method",
+        "Inspect damage/state; record the new cycle without changing the parent ID",
+        "Reserve or reject for next pass"
+      ],
+      "device_actions": [],
+      "preconditions": [
+        "Reset and stage-state recipe supplied; no unsupported reuse after terminal prep"
+      ],
+      "completion_evidence": [
+        "Cycle-linked prior occupancy, removal and state history",
+        "Actual next-cycle readiness or damage blocker"
+      ],
+      "source_refs": [
+        "M_ROLL"
+      ],
+      "required_unknowns": [
+        "U_REUSE"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "identified trap",
+        "qualified reset tool",
+        "recovery container"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "PREP",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "CONTACT_ANALYSIS",
+      "label": "Hand off image-based geometry analysis",
+      "station": "ANALYSIS",
+      "kind": "analysis_handoff",
+      "robot_actions": [
+        "Submit immutable calibrated images, trap geometry and field selection",
+        "Review missing/ambiguous associations and retain them"
+      ],
+      "device_actions": [
+        "Versioned service extracts centers, size, circularity and perimeters and declared contact estimates"
+      ],
+      "preconditions": [
+        "Raw data exists and algorithm/thresholds supplied"
+      ],
+      "completion_evidence": [
+        "Every derived record cites actual image parents",
+        "Orthographic contact estimate labeled as assumption",
+        "Vacancies, multioccupancy and sidewall attachment and interactions retained"
+      ],
+      "source_refs": [
+        "M_METHOD",
+        "S_RANDOM",
+        "S_SPACE"
+      ],
+      "required_unknowns": [
+        "U_IMAGING"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "mobile_robot_with_external_analysis_service",
+      "manipulated_objects_and_tools": [
+        "raw image references",
+        "calibration records"
+      ],
+      "source_station": "recorded origin or information workspace",
+      "target_station": "ANALYSIS",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "AUTH_IMAGE",
+      "label": "Acquire matched observation-frame records",
+      "station": "OPTICAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Reidentify the same array, traps and bead groups",
+        "Configure each selected magnification/pixel-resolution condition",
+        "Acquire enrollment and assigned challenge/reimaging views"
+      ],
+      "device_actions": [
+        "Microscope captures calibrated images per condition"
+      ],
+      "preconditions": [
+        "Registration, frame assignment and repeated-view plan supplied"
+      ],
+      "completion_evidence": [
+        "Image-to-key and OF maps",
+        "Actual magnification/scale separated from resampling",
+        "Same-key repeats preserve identity"
+      ],
+      "source_refs": [
+        "M_AUTH",
+        "S_OF"
+      ],
+      "required_unknowns": [
+        "U_REGISTRATION",
+        "U_OF"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "same physical key array",
+        "registered microscope fixture"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "OPTICAL",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "AUTH_ANALYSIS",
+      "label": "Hand off source-related PUF comparisons",
+      "station": "ANALYSIS",
+      "kind": "analysis_handoff",
+      "robot_actions": [
+        "Provide image groups and selected vectors/components to qualified analysis",
+        "Record overlap memberships, pair ordering and which records are enrollment/challenge"
+      ],
+      "device_actions": [
+        "Versioned service computes declared pixel/vector features and comparisons"
+      ],
+      "preconditions": [
+        "No hard-coded source outcomes; fitting specification resolved"
+      ],
+      "completion_evidence": [
+        "Comparison parents and the 200-key target or authored alternate cohort",
+        "Missing pairs remain missing",
+        "Distribution fits flagged as model-based estimates, not security certification"
+      ],
+      "source_refs": [
+        "M_METHOD",
+        "S_AUTH",
+        "S_VECTORS"
+      ],
+      "required_unknowns": [
+        "U_PUF"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "mobile_robot_with_external_analysis_service",
+      "manipulated_objects_and_tools": [
+        "image-linked key manifest",
+        "analysis interface"
+      ],
+      "source_station": "recorded origin or information workspace",
+      "target_station": "ANALYSIS",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "COAT",
+      "label": "Apply qualified protective PDMS coating",
+      "station": "COATING",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Carry the labeled assembled array to the coating station",
+        "Prepare the specified coating batch and apply it using the qualified recipe and tools",
+        "Load and request any specified cure program, then recover the array after release",
+        "Record actual coating history and optical readiness"
+      ],
+      "device_actions": [
+        "The qualified coating or cure equipment executes its supplied program"
+      ],
+      "preconditions": [
+        "Coating preparation, application method and cure recipe are resolved",
+        "Pre-coating array state is recorded"
+      ],
+      "completion_evidence": [
+        "Coating batch, method, thickness record where specified, and state transition",
+        "Post-coating inspection; no invented formulation or cure parameters"
+      ],
+      "source_refs": [
+        "M_VARIANTS",
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_PDMS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "assembled array",
+        "PDMS component stocks",
+        "recipe-specific mixing/application tools",
+        "cure fixture"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "COATING",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "BASELINE",
+      "label": "Register coated-array stability baseline",
+      "station": "OPTICAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Identify the assigned contact sites, preserving the source target of 50 points per test when selected",
+        "Dock the coated array and acquire both baseline and repeat-imaging reference records"
+      ],
+      "device_actions": [
+        "The microscope acquires calibrated pre-test images"
+      ],
+      "preconditions": [
+        "Coating is released for handling and the registration plan is resolved"
+      ],
+      "completion_evidence": [
+        "Immutable baseline images for the selected challenge",
+        "Contact sites nested within their actual specimens, with independent specimen counts separate"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_REGISTRATION",
+        "U_ALLOC"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "coated array",
+        "fiducial holder"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "OPTICAL",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "CONTAMINATE",
+      "label": "Run contained silica contamination challenge",
+      "station": "STABILITY",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Dock the coated array in the supplied dust-containment fixture",
+        "Load the specified silica quantity using approved contained transfer tools",
+        "Request the qualified exposure and recovery job",
+        "Retrieve the specimen only after the fixture reports cleanup readiness"
+      ],
+      "device_actions": [
+        "Qualified contained challenge equipment applies the supplied job"
+      ],
+      "preconditions": [
+        "Exact quantity, application, removal and dust containment are resolved"
+      ],
+      "completion_evidence": [
+        "Contaminant identity, exposure and recovery records",
+        "Damaged or lost contact sites retained in the assigned cohort"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_CONTAMINATION"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "coated array",
+        "silica stock",
+        "contained transfer tool",
+        "challenge fixture"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "STABILITY",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "DROP_ARRAY",
+      "label": "Run contained coated-array drop challenge",
+      "station": "STABILITY",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Mount the coated array in the qualified one-meter release fixture",
+        "Verify capture enclosure and landing destination",
+        "Request the approved release, then recover the specimen with safe tools"
+      ],
+      "device_actions": [
+        "The release apparatus performs the approved drop"
+      ],
+      "preconditions": [
+        "Landing surface, orientation and repeats are resolved",
+        "A registered baseline exists"
+      ],
+      "completion_evidence": [
+        "Actual height and event record",
+        "Impact, recovery and damage observations for the same specimen"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_DROP_STABILITY"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "coated array",
+        "release fixture",
+        "capture enclosure",
+        "recovery carrier"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "STABILITY",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "SONICATE",
+      "label": "Run coated-array water sonication challenge",
+      "station": "STABILITY",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Place the identified sample in the qualified water vessel and bath fixture",
+        "Configure and request the 40 kHz, five-minute program",
+        "After safe release, recover and condition the specimen using the supplied method"
+      ],
+      "device_actions": [
+        "The bath applies its program and logs actual duration and monitored conditions"
+      ],
+      "preconditions": [
+        "Vessel, fill, power, temperature control and recovery procedure are resolved"
+      ],
+      "completion_evidence": [
+        "Bath, time and medium records",
+        "Verified transition from wet exposure to the defined imaging state"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_SONICATION"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "coated array",
+        "water vessel",
+        "bath fixture",
+        "recovery tool"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "STABILITY",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "AGE",
+      "label": "Run seven-day coated-array environmental challenge",
+      "station": "ENVIRONMENT",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Place the labeled sample on the assigned chamber rack",
+        "Configure and request the seven-day, 70 °C, 50% RH exposure",
+        "Maintain sample identity and location records during the hold",
+        "Retrieve only after the required exposure and safe conditioning are complete"
+      ],
+      "device_actions": [
+        "The chamber maintains its program and logs actual environment, elapsed exposure and interruptions"
+      ],
+      "preconditions": [
+        "Ramp, tolerances, excursions and return-to-imaging conditioning are resolved"
+      ],
+      "completion_evidence": [
+        "Actual elapsed exposure and temperature/humidity records",
+        "Any interruption or excursion retained",
+        "A seven-day device dwell cannot be replaced with an instantaneous success flag"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_CHAMBER"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "coated array",
+        "chamber rack",
+        "retrieval carrier"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "ENVIRONMENT",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "REIMAGE",
+      "label": "Reimage matched postchallenge sites",
+      "station": "OPTICAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Recover the same registered contact sites after the challenge",
+        "Record missing, damaged or displaced particles",
+        "Acquire calibrated post-test images and the assigned repeat-imaging reference"
+      ],
+      "device_actions": [
+        "The microscope acquires the assigned post-challenge fields"
+      ],
+      "preconditions": [
+        "Challenge completion or interruption state is known",
+        "Imaging conditioning and registration gates are resolved"
+      ],
+      "completion_evidence": [
+        "Paired raw before/after records",
+        "Registration transform and uncertainty",
+        "Failures retained rather than removed from the denominator"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_REGISTRATION"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "same coated array",
+        "registered microscope fixture"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "OPTICAL",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "STABILITY_ANALYSIS",
+      "label": "Compare paired contact-location changes",
+      "station": "ANALYSIS",
+      "kind": "analysis_handoff",
+      "robot_actions": [
+        "Submit matched pre-test and post-test fields with control acquisitions",
+        "Review site pairing, missingness and measurement uncertainty"
+      ],
+      "device_actions": [
+        "A versioned analysis service computes the declared coordinate changes and summary"
+      ],
+      "preconditions": [
+        "Coordinate convention and pairing are fixed"
+      ],
+      "completion_evidence": [
+        "Contact-point target distinguished from independent specimen count",
+        "Actual measured changes, never copied paper means",
+        "Registration error reported"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_REGISTRATION",
+        "U_PUF"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "mobile_robot_with_external_analysis_service",
+      "manipulated_objects_and_tools": [
+        "paired image references",
+        "registration records"
+      ],
+      "source_station": "recorded origin or information workspace",
+      "target_station": "ANALYSIS",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "CUSTOM_PARTICLES",
+      "label": "Prepare custom PUA particles after resolving the recipe",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Retrieve identified hard or soft PUA stock and any authorized Rhodamine B stock in closed vessels",
+        "Use the qualified recipe to dispense and combine its specified components with assigned tools",
+        "Load the recipe-specified fabrication tooling and request its qualified job",
+        "Recover and label actual shaped particles; record geometry and manufacturing lineage"
+      ],
+      "device_actions": [
+        "The qualified fabrication asset executes only the supplied method; no molding, printing or exposure recipe is invented"
+      ],
+      "preconditions": [
+        "U_PUA must resolve the actual manufacturing method, recipe, tools and geometry before any dependent preparation"
+      ],
+      "completion_evidence": [
+        "Actual particle batch, manufacturing receipt and measured geometry",
+        "Material and dye identities linked to the manufactured particles"
+      ],
+      "source_refs": [
+        "M_VARIANTS",
+        "S_PUA"
+      ],
+      "required_unknowns": [
+        "U_PUA"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "PUA component stocks",
+        "selected dye stock",
+        "recipe-specific preparation and fabrication tools"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "PREP",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "FLUORESCENCE",
+      "label": "Acquire custom-particle optical and fluorescent records",
+      "station": "OPTICAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Register the selected shaped particles and their trap contacts",
+        "Acquire optical images for the selected material",
+        "Acquire the qualified fluorescence channel only for the specified fluorescent soft-PUA condition"
+      ],
+      "device_actions": [
+        "The microscope captures selected modes under the qualified settings"
+      ],
+      "preconditions": [
+        "Channel, filter and illumination recipe is resolved",
+        "Material and dye identity are known"
+      ],
+      "completion_evidence": [
+        "Raw images linked to channel, settings and calibration",
+        "No fluorescence inferred for hard PUA or undoped stock"
+      ],
+      "source_refs": [
+        "M_VARIANTS",
+        "S_PUA"
+      ],
+      "required_unknowns": [
+        "U_PUA",
+        "U_IMAGING"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "shaped-particle array",
+        "microscope fixture",
+        "channel interface"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "OPTICAL",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "CLOSE",
+      "label": "Reconcile records and close physical campaign",
+      "station": "CLOSE",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Return or quarantine surviving labeled specimens",
+        "Segregate loose particles, resin/ethanol waste and broken glass using the approved waste plan",
+        "Clean only approved surfaces with the supplied compatible method",
+        "Reconcile stocks, samples, raw records and all attempt outcomes"
+      ],
+      "device_actions": [
+        "Devices return to independently observed safe idle"
+      ],
+      "preconditions": [
+        "Every opened container and material has a defined disposition"
+      ],
+      "completion_evidence": [
+        "One final location and state per physical entity",
+        "No unaccounted running device",
+        "Missing conditions and blockers preserved",
+        "Cleanup and waste receipts"
+      ],
+      "source_refs": [
+        "M_SCOPE"
+      ],
+      "required_unknowns": [
+        "U_ASSETS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "manipulated_objects_and_tools": [
+        "surviving samples",
+        "quarantine holders",
+        "waste containers",
+        "approved cleaning tools"
+      ],
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "CLOSE",
+      "completion_state": "Objects remain labeled, independently observed at the recorded support/location, with state-changing device receipt and raw evidence where applicable."
+    },
+    {
+      "id": "GUIDE_FAB",
+      "label": "Fabricate and inspect the collision guide",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Retrieve labeled print stock and the qualified guide job",
+        "Load stock/build support with assigned tools and request the verified print",
+        "Wait for device safe release, recover the guide and perform only the specified finishing method",
+        "Inspect dimensions and fit, label the actual guide and carry it to the collision station"
+      ],
+      "device_actions": [
+        "The qualified printer performs the supplied fabrication program"
+      ],
+      "preconditions": [
+        "U_GUIDE supplies geometry, material, process and safe recovery; no new CAD is invented"
+      ],
+      "completion_evidence": [
+        "Printer job and material receipt",
+        "Actual recovered guide identity and inspection",
+        "Source-to-collision-station transport record"
+      ],
+      "source_refs": [
+        "S_COLL"
+      ],
+      "required_unknowns": [
+        "U_GUIDE",
+        "U_ASSETS"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "PREP",
+      "completion_state": "Labeled guide or target remains at its observed support, with fabrication/acquisition and transfer receipts.",
+      "manipulated_objects_and_tools": [
+        "print stock",
+        "build support",
+        "qualified removal/finishing tools",
+        "printed guide"
+      ]
+    },
+    {
+      "id": "COLLISION_BASELINE",
+      "label": "Image the already trapped target before challenge",
+      "station": "OPTICAL",
+      "kind": "researcher_operation",
+      "robot_actions": [
+        "Dock the assembled target array after its assigned cure state is established",
+        "Identify the retained bead and trap sites",
+        "Acquire the prechallenge image and carry the supported target to the collision fixture"
+      ],
+      "device_actions": [
+        "The microscope acquires a calibrated baseline"
+      ],
+      "preconditions": [
+        "Loose beads removed; selected Stage1 or adapted state verified"
+      ],
+      "completion_evidence": [
+        "Baseline raw image ID linked to the target array, trap and retained bead",
+        "Registration reference for subsequent collision and postimage"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_COLL"
+      ],
+      "required_unknowns": [
+        "U_IMAGING",
+        "U_REGISTRATION"
+      ],
+      "provenance": "Scientific purpose source-supported; physical handling, containment, verification and recovery contracts independently authored.",
+      "failure_handling": "Stop affected device, preserve the sample and attempt IDs and raw records, diagnose from visible evidence, then use an approved bounded retry or mark blocked/damaged. Do not relabel a failed condition or replace a missing measurement with an expected result.",
+      "actor": "human_like_mobile_laboratory_robot",
+      "source_station": "previous recorded physical location, verified before acquisition",
+      "target_station": "OPTICAL",
+      "completion_state": "Labeled guide or target remains at its observed support, with fabrication/acquisition and transfer receipts.",
+      "manipulated_objects_and_tools": [
+        "assembled array",
+        "microscope holder",
+        "registered carrier"
+      ]
+    }
+  ],
+  "transport_rule": "The mobile robot performs physical preparation and handling. Each station change requires a MOVE instance with independently observed source release and destination support.",
+  "device_rule": "An instrument run is separated from robot preparation, loading, interface use, observation, unloading and transport. No prepared-material substitution is counted as robot fabrication."
+}

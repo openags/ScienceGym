@@ -1,0 +1,53 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "entity_types": [
+    "material_lot",
+    "aliquot",
+    "resin_sandwich",
+    "flat_film",
+    "patterned_slide",
+    "trap",
+    "particle_charge",
+    "identified_granule",
+    "tube",
+    "assembled_array",
+    "coated_array_state",
+    "removed_granule",
+    "trap_remnant",
+    "SEM_mount",
+    "DSC_pan",
+    "waste",
+    "image",
+    "calibration",
+    "derived_result"
+  ],
+  "required_fields": [
+    "entity_id",
+    "entity_type",
+    "parent_ids",
+    "material_lot_ids",
+    "current_location",
+    "state",
+    "history",
+    "work_order_id"
+  ],
+  "physical_invariants": [
+    "Exactly one current location per entity; a tube contains a slide and a particle charge without replacing their identities",
+    "Each station handoff requires an actual MOVE receipt with source/destination support evidence",
+    "Cure state and geometry belong to a specific specimen, not a generic batch name",
+    "A coating or challenge appends a state transition; it does not create a newly independent replicate",
+    "Detached beads and trap remnants are child entities of a terminally disassembled array",
+    "An intact PUF key cannot be reused after destructive bead-removal/SEM preparation",
+    "Reuse cycles retain same trap parent and separate charge/cycle/attempt records",
+    "Four-granule key membership and shared-bead overlaps stay explicit",
+    "Baseline and postchallenge sites pair by stable slide/trap/granule IDs, not nearest visual point alone",
+    "Missing/detached contact sites retain assigned slots; denominator changes require explicit derivation"
+  ],
+  "record_invariants": [
+    "Raw files immutable and acquisition-linked, with timestamps, source object, device ID and settings",
+    "Derived records list all raw parents, algorithm version, calibration and selection/exclusion rules",
+    "Failed/missed/ambiguous trials persist; retries append attempt IDs",
+    "Unknown is not zero and source result is never an acquired value",
+    "At most one physical event per claimed event receipt; reusing one video frame cannot invent independent trials"
+  ]
+}

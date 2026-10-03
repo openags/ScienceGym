@@ -1,0 +1,1476 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "practical_families": [
+    {
+      "id": "F_SURFACE",
+      "name": "Surface-state mechanism controls",
+      "configuration_ids": [
+        "SURFACE_TRIO"
+      ]
+    },
+    {
+      "id": "F_FAB",
+      "name": "Trap fabrication and material/interface characterization",
+      "configuration_ids": [
+        "TRAP_FABRICATION",
+        "PHOTO_DSC",
+        "STAGE_MECHANICS",
+        "UV_DOSE_CONTACT",
+        "INTERFACE_SEM"
+      ]
+    },
+    {
+      "id": "F_ASSEMBLY",
+      "name": "Dry assembly, transfer and reuse",
+      "configuration_ids": [
+        "QR_SHAKING",
+        "ROLLER_CAMPAIGN",
+        "RESIN_TRANSFER_EDS",
+        "TRAP_REUSE"
+      ]
+    },
+    {
+      "id": "F_COLLISION",
+      "name": "Free-fall and trapped-bead collision tests",
+      "configuration_ids": [
+        "FREEFALL_SURFACES",
+        "TRAPPED_COLLISION"
+      ]
+    },
+    {
+      "id": "F_GEOMETRY",
+      "name": "Geometry, contact and density studies",
+      "configuration_ids": [
+        "GEOMETRY_OCCUPANCY",
+        "DIAMETER_SYMMETRY",
+        "SPACING_DENSITY",
+        "CONTACT_RANDOMNESS"
+      ]
+    },
+    {
+      "id": "F_AUTH",
+      "name": "Image-linked hierarchical authentication analyses",
+      "configuration_ids": [
+        "PUF_HIERARCHY"
+      ]
+    },
+    {
+      "id": "F_STABILITY",
+      "name": "Protective coating and stability challenges",
+      "configuration_ids": [
+        "STABILITY_CONTAMINATION",
+        "STABILITY_DROP",
+        "STABILITY_SONICATION",
+        "STABILITY_AGING"
+      ]
+    },
+    {
+      "id": "F_VARIANTS",
+      "name": "Size, material and shape extensions",
+      "configuration_ids": [
+        "SIZE_SMALL",
+        "SIZE_LARGE",
+        "MIXED_GLASS_YSZ",
+        "SHAPED_HARD_PUA",
+        "SHAPED_SOFT_PUA"
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "id": "SURFACE_TRIO",
+      "family_id": "F_SURFACE",
+      "goal": "Compare elastic flat film, sticky flat film and patterned sticky surface",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "GUIDE_FAB",
+        "FILM",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "DROP_BEAD",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_N1",
+        "MOV_DESC"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_COLLISION",
+        "U_FILM",
+        "U_GUIDE",
+        "U_HIGHSPEED",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_SANDWICH",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "surface": [
+          "Stage2flat",
+          "Stage1flat",
+          "Stage1patterned"
+        ]
+      },
+      "control_package_ids": [
+        "C_SURFACE"
+      ],
+      "notes": [
+        "Distinct specimens represent elastic flat, sticky flat and patterned sticky surfaces. Geometry is an intentional experimental difference."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "TRAP_FABRICATION",
+      "family_id": "F_FAB",
+      "goal": "Prepare and inspect source-related trap arrays",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "IMAGE",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_FAB"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_SANDWICH",
+        "U_UV"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [],
+      "notes": [],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "PHOTO_DSC",
+      "family_id": "F_FAB",
+      "goal": "Characterize resin conversion under the supplied photo-DSC method",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "DSC_LOAD",
+        "DSC_CLOSE",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_DSC"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_DSC",
+        "U_LOTS"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [],
+      "notes": [],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "STAGE_MECHANICS",
+      "family_id": "F_FAB",
+      "goal": "Compare Stage1/Stage2 indentation and adhesion",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "FILM",
+        "INDENT",
+        "PULLOFF",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_MECH"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_FILM",
+        "U_LOTS",
+        "U_MECH",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "stage": [
+          "Stage1",
+          "Stage2"
+        ],
+        "assay": [
+          "indentation",
+          "pull_off"
+        ]
+      },
+      "control_package_ids": [
+        "C_MECHANICS"
+      ],
+      "notes": [
+        "Indentation sites and pull-off sites require independent allocation or explicit history;The two-minute postcure is documented for film preparation."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "UV_DOSE_CONTACT",
+      "family_id": "F_FAB",
+      "goal": "Compare exposure-dependent mechanics and adapted contact area",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "FILM",
+        "INDENT",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "REMOVE_BEADS",
+        "SEM_EDS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_UV",
+        "S_FAB"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_DOSE_SERIES",
+        "U_FILM",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_MECH",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SEM_EDS",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "UV_dose_mJ_cm2": [
+          100,
+          150,
+          200
+        ]
+      },
+      "control_package_ids": [
+        "C_DOSE"
+      ],
+      "notes": [
+        "Mechanical films and contact-array specimens are allocated separately. Paired plots do not establish one shared physical specimen."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "QR_SHAKING",
+      "family_id": "F_ASSEMBLY",
+      "goal": "Build a selected QR-patterned bead array by dry shaking",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_FAB",
+        "MOV_DESC"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [
+        "C_OCCUPANCY"
+      ],
+      "notes": [
+        "Exact source QR mask and payload are unavailable. An authored nonempty QR assignment is not historical-mask reproduction."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "ROLLER_CAMPAIGN",
+      "family_id": "F_ASSEMBLY",
+      "goal": "Measure occupancy versus rolling condition",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "ROLLER",
+        "UNLOAD",
+        "CLEAR",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_ROLL",
+        "M_ROLL"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "charge_g": [
+          5,
+          10
+        ],
+        "RPM": [
+          10,
+          15,
+          20
+        ],
+        "array_traps": 200,
+        "source_N_label": 10
+      },
+      "control_package_ids": [
+        "C_ROLLER"
+      ],
+      "notes": [
+        "Declare destructive endpoint sampling or interrupted repeated sampling before run; same-slide repeated time points are not independent repeats. Postcure is not imposed before occupancy timing."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "FREEFALL_SURFACES",
+      "family_id": "F_COLLISION",
+      "goal": "Measure actual bead capture/rebound versus speed on two cure states",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "GUIDE_FAB",
+        "FILM",
+        "DROP_BEAD",
+        "IMAGE",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "M_COLL",
+        "MOV_DESC"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_COLLISION",
+        "U_FILM",
+        "U_GUIDE",
+        "U_HIGHSPEED",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "surface": [
+          "Stage1flat",
+          "Stage2flat"
+        ],
+        "movie_case_count_per_surface": 5
+      },
+      "control_package_ids": [
+        "C_FREEFALL"
+      ],
+      "notes": [
+        "Five velocity cases per surface are described in movie metadata, but exact values are unread. Measure actual velocity. The source capture boundary is not a mandatory result or safety limit."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "TRAPPED_COLLISION",
+      "family_id": "F_COLLISION",
+      "goal": "Compare retained-bead resistance before and after shape adaptation",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "GUIDE_FAB",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "COLLISION_BASELINE",
+        "COLLIDE_TRAPPED",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_COLL"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_COLLISION",
+        "U_GUIDE",
+        "U_HIGHSPEED",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_REGISTRATION",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "target": [
+          "Stage1trapped",
+          "shape_adaptedtrapped"
+        ]
+      },
+      "control_package_ids": [
+        "C_COLLISION"
+      ],
+      "notes": [
+        "The Stage1 arm must not be postcured before its challenge. The adapted arm requires postcure before challenge. Use separate specimens or explicitly declared paired history."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify.",
+      "arm_rules": [
+        {
+          "arm": "Stage1trapped",
+          "omit_before_challenge": [
+            "POSTCURE"
+          ]
+        },
+        {
+          "arm": "shape_adaptedtrapped",
+          "require_before_challenge": [
+            "POSTCURE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GEOMETRY_OCCUPANCY",
+      "family_id": "F_GEOMETRY",
+      "goal": "Measure vacancies, multioccupancy and sidewall trapping",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_GEOM"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "low_trap_diameter_um": [
+          100,
+          200,
+          300,
+          400,
+          600,
+          800,
+          1000
+        ],
+        "low_trap_height_um": 12,
+        "sidewall_control_um": {
+          "D": 100,
+          "H": 600
+        }
+      },
+      "control_package_ids": [
+        "C_GEOMETRY"
+      ],
+      "notes": [],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "DIAMETER_SYMMETRY",
+      "family_id": "F_GEOMETRY",
+      "goal": "Compare contact displacements and grid distortion",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_SYMM"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "diameter_um": [
+          200,
+          400,
+          600
+        ]
+      },
+      "control_package_ids": [
+        "C_SYMMETRY"
+      ],
+      "notes": [],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "SPACING_DENSITY",
+      "family_id": "F_GEOMETRY",
+      "goal": "Compare local packing, vacancy and contact number",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_SPACE",
+        "M_GEOM"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "D_um": 200,
+        "hexagonal_S_over_D": [
+          3.5,
+          4,
+          4.5,
+          5
+        ]
+      },
+      "control_package_ids": [
+        "C_SPACING"
+      ],
+      "notes": [
+        "Resolve the definition of S before mapping geometry. Do not silently assume center-to-center pitch."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "CONTACT_RANDOMNESS",
+      "family_id": "F_GEOMETRY",
+      "goal": "Characterize polydispersity and contact-location distributions",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_RANDOM",
+        "S_POLY"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "D_um": 200,
+        "source_granule_cohort": 1230
+      },
+      "control_package_ids": [
+        "C_OCCUPANCY"
+      ],
+      "notes": [
+        "The 1230 count refers to a granule cohort, not independent arrays. Preserve actual lot measurements and the nominal-diameter discrepancy."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "INTERFACE_SEM",
+      "family_id": "F_FAB",
+      "goal": "Inspect destructive shape-adapted trap interfaces",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "REMOVE_BEADS",
+        "SEM_EDS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_FAB"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SEM_EDS",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [
+        "C_INTERFACE"
+      ],
+      "notes": [],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "RESIN_TRANSFER_EDS",
+      "family_id": "F_ASSEMBLY",
+      "goal": "Compare paired trap and detached granule sulfur evidence",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "REMOVE_BEADS",
+        "SEM_EDS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_EDS"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SEM_EDS",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [
+        "C_EDS"
+      ],
+      "notes": [
+        "Source EDS cure-state history is not complete. Require a declared condition recipe; do not automatically apply generic postcure before EDS."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify.",
+      "arm_rules": [
+        {
+          "arm": "selected_state_recipe",
+          "gate": "U_SEM_EDS",
+          "conditional_operation_ids": [
+            "POSTCURE"
+          ],
+          "rule": "Include postcure only if explicitly required by the resolved condition recipe; never call a generic suggested route the historical cure sequence."
+        }
+      ]
+    },
+    {
+      "id": "TRAP_REUSE",
+      "family_id": "F_ASSEMBLY",
+      "goal": "Evaluate identified traps over explicitly qualified reuse cycles",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "REUSE_RESET",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "M_ROLL"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_REUSE",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "source_reuse_count_label": 4,
+        "total_use_count_convention": "Unresolved: distinguish total uses from additional reuse events through U_REUSE"
+      },
+      "control_package_ids": [
+        "C_REUSE"
+      ],
+      "notes": [
+        "This is a repeated-cycle template. Instantiate charge, assembly, recovery, imaging and reset with separate cycle/attempt IDs. U_REUSE controls curing state and reset; no unsupported stripping step is prescribed.",
+        "The source phrase up to four times does not settle whether the initial use is included; do not silently impose a total-cycle count."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify.",
+      "arm_rules": [
+        {
+          "arm": "selected_state_recipe",
+          "gate": "U_REUSE",
+          "conditional_operation_ids": [
+            "POSTCURE"
+          ],
+          "rule": "Include postcure only if explicitly required by the resolved condition recipe; never call a generic suggested route the historical cure sequence."
+        }
+      ]
+    },
+    {
+      "id": "PUF_HIERARCHY",
+      "family_id": "F_AUTH",
+      "goal": "Acquire matched keys and compare observation-frame/vector conditions",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "AUTH_IMAGE",
+        "CONTACT_ANALYSIS",
+        "AUTH_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "M_AUTH",
+        "M_METHOD",
+        "S_AUTH",
+        "S_OF",
+        "S_VECTORS"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_OF",
+        "U_PATTERN",
+        "U_PUF",
+        "U_REGISTRATION",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "S_over_D": 5.5,
+        "granules_per_key": 4,
+        "source_key_groups": 200,
+        "OF": [
+          "LMLR",
+          "LMHR",
+          "HMLR",
+          "HMHR"
+        ],
+        "components": [
+          "2Ddisplacement",
+          "3Ddisplacement",
+          "3Dpluscircularity"
+        ],
+        "vector_subsets": [
+          3,
+          4,
+          5
+        ],
+        "shared_granules_control": 2
+      },
+      "control_package_ids": [
+        "C_AUTH"
+      ],
+      "notes": [
+        "Four granules permit six unordered pair vectors. The source compares selected subsets of three, four and five vectors. This task does not certify authentication security."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "STABILITY_CONTAMINATION",
+      "family_id": "F_STABILITY",
+      "goal": "Measure contact stability after contained silica exposure",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "COAT",
+        "BASELINE",
+        "CONTAMINATE",
+        "REIMAGE",
+        "STABILITY_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_CONTAMINATION",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_PDMS",
+        "U_PUF",
+        "U_REGISTRATION",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [
+        "C_STABILITY"
+      ],
+      "notes": [
+        "The four challenge arms are not a cumulative treatment sequence unless an authored work order explicitly selects that new design. Preserve a repeat-imaging reference; do not claim a source uncoated-control arm."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "STABILITY_DROP",
+      "family_id": "F_STABILITY",
+      "goal": "Measure contact stability after a coated-array drop",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "COAT",
+        "BASELINE",
+        "DROP_ARRAY",
+        "REIMAGE",
+        "STABILITY_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_DROP_STABILITY",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_PDMS",
+        "U_PUF",
+        "U_REGISTRATION",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [
+        "C_STABILITY"
+      ],
+      "notes": [
+        "The four challenge arms are not a cumulative treatment sequence unless an authored work order explicitly selects that new design. Preserve a repeat-imaging reference; do not claim a source uncoated-control arm."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "STABILITY_SONICATION",
+      "family_id": "F_STABILITY",
+      "goal": "Measure contact stability after water sonication",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "COAT",
+        "BASELINE",
+        "SONICATE",
+        "REIMAGE",
+        "STABILITY_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_PDMS",
+        "U_PUF",
+        "U_REGISTRATION",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_SONICATION",
+        "U_UV"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [
+        "C_STABILITY"
+      ],
+      "notes": [
+        "The four challenge arms are not a cumulative treatment sequence unless an authored work order explicitly selects that new design. Preserve a repeat-imaging reference; do not claim a source uncoated-control arm."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "STABILITY_AGING",
+      "family_id": "F_STABILITY",
+      "goal": "Measure contact stability after seven-day environmental exposure",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "COAT",
+        "BASELINE",
+        "AGE",
+        "REIMAGE",
+        "STABILITY_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_CHAMBER",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_PDMS",
+        "U_PUF",
+        "U_REGISTRATION",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {},
+      "control_package_ids": [
+        "C_STABILITY"
+      ],
+      "notes": [
+        "The four challenge arms are not a cumulative treatment sequence unless an authored work order explicitly selects that new design. Preserve a repeat-imaging reference; do not claim a source uncoated-control arm."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "SIZE_SMALL",
+      "family_id": "F_VARIANTS",
+      "goal": "Assemble and image the selected reported size endpoint",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_SIZE"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_SIZE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "D_um": 50,
+        "granule_um": 250,
+        "S_over_D": 12
+      },
+      "control_package_ids": [
+        "C_VARIANTS"
+      ],
+      "notes": [],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "SIZE_LARGE",
+      "family_id": "F_VARIANTS",
+      "goal": "Assemble and image the selected reported size endpoint",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_SIZE"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_SIZE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "D_um": 600,
+        "granule_um": 3000,
+        "S_over_D": 5.67
+      },
+      "control_package_ids": [
+        "C_VARIANTS"
+      ],
+      "notes": [],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "MIXED_GLASS_YSZ",
+      "family_id": "F_VARIANTS",
+      "goal": "Assemble and identify a mixed glass/YSZ array",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "S_MIXED"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_MIXTURE",
+        "U_PATTERN",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "source_array_shape": [
+          10,
+          10
+        ]
+      },
+      "control_package_ids": [
+        "C_VARIANTS"
+      ],
+      "notes": [],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    },
+    {
+      "id": "SHAPED_HARD_PUA",
+      "family_id": "F_VARIANTS",
+      "goal": "Assemble qualified shaped particles and record face contacts",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUSTOM_PARTICLES",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "FLUORESCENCE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "M_VARIANTS",
+        "S_PUA"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_PUA",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "material": "hardPUA",
+        "shape_classes": [
+          "polygonal",
+          "letter-shaped"
+        ]
+      },
+      "control_package_ids": [
+        "C_VARIANTS"
+      ],
+      "notes": [
+        "The caption does not assign every reported shape to each PUA material. Exact geometry and the actual material/shape matrix are inputs, not an invented factorial design."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify.",
+      "arm_rules": [
+        {
+          "arm": "hardPUA",
+          "fluorescence_required": false,
+          "optical_images_required": true
+        }
+      ]
+    },
+    {
+      "id": "SHAPED_SOFT_PUA",
+      "family_id": "F_VARIANTS",
+      "goal": "Assemble qualified shaped particles and record face contacts",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUSTOM_PARTICLES",
+        "SANDWICH",
+        "PATTERN",
+        "DEVELOP",
+        "VERIFY_TRAPS",
+        "WEIGH_CHARGE",
+        "LOAD_TUBE",
+        "SHAKE",
+        "UNLOAD",
+        "CLEAR",
+        "POSTCURE",
+        "IMAGE",
+        "FLUORESCENCE",
+        "CONTACT_ANALYSIS",
+        "CLOSE"
+      ],
+      "source_refs": [
+        "M_VARIANTS",
+        "S_PUA"
+      ],
+      "required_unknowns": [
+        "U_AIR",
+        "U_ALLOC",
+        "U_ASSETS",
+        "U_IMAGING",
+        "U_LOTS",
+        "U_PATTERN",
+        "U_PUA",
+        "U_RINSE",
+        "U_ROLLER",
+        "U_SANDWICH",
+        "U_SHAKE",
+        "U_UV"
+      ],
+      "condition_dimensions": {
+        "material": "softPUA_Rhodamine B",
+        "shape_classes": [
+          "polygonal",
+          "letter-shaped"
+        ]
+      },
+      "control_package_ids": [
+        "C_VARIANTS"
+      ],
+      "notes": [
+        "The caption does not assign every reported shape to each PUA material. Fluorescent soft PUA requires a qualified Rhodamine B recipe; concentration is not invented."
+      ],
+      "status": "Source-bounded task-design template; dependent physical work gated until inputs and installed assets qualify."
+    }
+  ]
+}

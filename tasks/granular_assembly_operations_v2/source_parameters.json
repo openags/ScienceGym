@@ -1,0 +1,511 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "parameters": [
+    {
+      "id": "TRAP_SPACER",
+      "value": 12,
+      "unit": "µm",
+      "source_refs": [
+        "S_FAB"
+      ],
+      "applies_to": "NOA73 sandwich standard low traps",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "TRAP_UV_WAVELENGTH",
+      "value": 365,
+      "unit": "nm",
+      "source_refs": [
+        "M_FAB"
+      ],
+      "applies_to": "light writing; qualified installed source needed",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "STAGE1_SELECTION",
+      "value": 1,
+      "unit": "s",
+      "source_refs": [
+        "S_DSC"
+      ],
+      "applies_to": "source-selected Stage1 exposure; not independent of irradiance",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "PHOTO_DSC_INTENSITY",
+      "value": 100,
+      "unit": "mW/cm²",
+      "source_refs": [
+        "S_DSC"
+      ],
+      "applies_to": "photo-DSC test only",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "MECH_FILM_THICKNESS",
+      "value": 100,
+      "unit": "µm",
+      "source_refs": [
+        "S_MECH"
+      ],
+      "applies_to": "mechanical-property specimens only",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "MECH_STAGE1_DOSE",
+      "value": 100,
+      "unit": "mJ/cm²",
+      "source_refs": [
+        "S_MECH"
+      ],
+      "applies_to": "mechanical-property film",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "MECH_STAGE2_POSTCURE",
+      "value": {
+        "time": 2,
+        "lamp_power_approx": 2.5
+      },
+      "unit": {
+        "time": "min",
+        "lamp_power_approx": "W"
+      },
+      "source_refs": [
+        "S_MECH"
+      ],
+      "applies_to": "Stage1 film postcuring; not universal array dose",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "INDENTER_DIAMETER",
+      "value": 10,
+      "unit": "µm",
+      "source_refs": [
+        "S_MECH"
+      ],
+      "applies_to": "flat indenter",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "DOSE_SERIES",
+      "value": [
+        100,
+        150,
+        200
+      ],
+      "unit": "mJ/cm²",
+      "source_refs": [
+        "S_UV"
+      ],
+      "applies_to": "Fig.S6 legend; caption says mJ without area",
+      "kind": "reported_setting",
+      "caveat": "Use ledger conflict C_DOSE_UNITS"
+    },
+    {
+      "id": "TUBE_CAPACITY",
+      "value": 50,
+      "unit": "mL",
+      "source_refs": [
+        "S_FAB"
+      ],
+      "applies_to": "dry assembly vessel; no liquid added by default",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "SHAKE_DURATION",
+      "value": 10,
+      "unit": "s",
+      "source_refs": [
+        "S_FAB"
+      ],
+      "applies_to": "rapid shaking demonstration; separate from roller campaign",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "ROLLER_MASS",
+      "value": [
+        5,
+        10
+      ],
+      "unit": "g",
+      "source_refs": [
+        "S_ROLL",
+        "M_ROLL"
+      ],
+      "applies_to": "glass bead charge",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "ROLLER_SPEED",
+      "value": [
+        10,
+        15,
+        20
+      ],
+      "unit": "RPM",
+      "source_refs": [
+        "S_ROLL"
+      ],
+      "applies_to": "Fig. S8 legend visually checked",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "ROLLER_ARRAY",
+      "value": 200,
+      "unit": "traps",
+      "source_refs": [
+        "M_ROLL"
+      ],
+      "applies_to": "quantitative roller campaign",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "ROLLER_N_LABEL",
+      "value": 10,
+      "unit": "N label",
+      "source_refs": [
+        "S_ROLL"
+      ],
+      "applies_to": "Fig. S8 graphs",
+      "kind": "reported_count",
+      "caveat": "Independence and sampling schedule unresolved, not 10 beads"
+    },
+    {
+      "id": "ROLLER_TIME_POINTS",
+      "value": {
+        "5g": {
+          "10RPM": [
+            5,
+            10,
+            15,
+            20
+          ],
+          "15RPM": [
+            5,
+            10,
+            15,
+            20
+          ],
+          "20RPM": [
+            5,
+            10
+          ]
+        },
+        "10g": {
+          "10RPM": [
+            5,
+            10,
+            15
+          ],
+          "15RPM": [
+            5,
+            10,
+            15
+          ],
+          "20RPM": [
+            5,
+            10
+          ]
+        }
+      },
+      "unit": "s",
+      "source_refs": [
+        "S_ROLL"
+      ],
+      "applies_to": "Visible plotted sampling positions in Fig.S8; allocation method unknown",
+      "kind": "figure_read_condition_points",
+      "caveat": "No endpoint or interpolation forced on a fresh run; work order may use explicit authored schedule"
+    },
+    {
+      "id": "TRAP_DIAMETER_SERIES",
+      "value": [
+        100,
+        200,
+        300,
+        400,
+        600,
+        800,
+        1000
+      ],
+      "unit": "µm",
+      "source_refs": [
+        "S_GEOM"
+      ],
+      "applies_to": "Fig.S10b at 12 µm height; visually checked",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "SIDEWALL_CONTROL",
+      "value": {
+        "diameter": 100,
+        "height": 600
+      },
+      "unit": "µm",
+      "source_refs": [
+        "S_GEOM"
+      ],
+      "applies_to": "Fig.S10a high-aspect-ratio case",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "SYMMETRY_DIAMETERS",
+      "value": [
+        200,
+        400,
+        600
+      ],
+      "unit": "µm",
+      "source_refs": [
+        "S_SYMM"
+      ],
+      "applies_to": "symmetry/grid displacement comparison",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "SPACING_SERIES",
+      "value": [
+        3.5,
+        4,
+        4.5,
+        5
+      ],
+      "unit": "S/D",
+      "source_refs": [
+        "S_SPACE",
+        "M_GEOM"
+      ],
+      "applies_to": "D = 200 µm hexagonal comparison",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "PUF_SPACING",
+      "value": 5.5,
+      "unit": "S/D",
+      "source_refs": [
+        "S_SPACE"
+      ],
+      "applies_to": "PUF construction selection; not the density sweep",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "CONTACT_SAMPLE_COUNT",
+      "value": 1230,
+      "unit": "granules",
+      "source_refs": [
+        "S_RANDOM",
+        "S_POLY"
+      ],
+      "applies_to": "source characterization cohort",
+      "kind": "reported_count",
+      "caveat": null
+    },
+    {
+      "id": "PUF_KEYS",
+      "value": 200,
+      "unit": "four-granule groups",
+      "source_refs": [
+        "M_METHOD",
+        "S_AUTH"
+      ],
+      "applies_to": "source analysis cohort",
+      "kind": "reported_count",
+      "caveat": null
+    },
+    {
+      "id": "PUF_PAIR_COUNTS",
+      "value": {
+        "total": 40000,
+        "intra": 200,
+        "inter": 39800
+      },
+      "unit": "comparisons",
+      "source_refs": [
+        "M_METHOD"
+      ],
+      "applies_to": "not distinct physical specimens",
+      "kind": "reported_count",
+      "caveat": null
+    },
+    {
+      "id": "OBSERVATION_FRAMES",
+      "value": {
+        "LMLR": 7.4442,
+        "LMHR": 2.4814,
+        "HMLR": 2.3256,
+        "HMHR": 0.7752
+      },
+      "unit": "µm/pixel",
+      "source_refs": [
+        "S_ROT_SIM"
+      ],
+      "applies_to": "source synthetic comparison calibration; real acquisition implementation gated",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "AUTH_LSTAR",
+      "value": [
+        0.16,
+        0.53
+      ],
+      "unit": "L/F",
+      "source_refs": [
+        "M_AUTH"
+      ],
+      "applies_to": "illustrative multilevel observation frames",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "REUSE_MAX_REPORTED",
+      "value": 4,
+      "unit": "reuse times (source wording; total-use convention unresolved)",
+      "source_refs": [
+        "M_ROLL"
+      ],
+      "applies_to": "reported reuse claim; reset procedure gated",
+      "kind": "reported_outcome",
+      "caveat": "Resolve initial use versus additional reuse events before allocating a finite campaign."
+    },
+    {
+      "id": "STABILITY_CONTACTS",
+      "value": 50,
+      "unit": "contact points per test",
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "applies_to": "not 50 independent specimens",
+      "kind": "reported_count",
+      "caveat": null
+    },
+    {
+      "id": "CONTAMINANT_MESH",
+      "value": 325,
+      "unit": "mesh",
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "applies_to": "silica powder challenge; containment required",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "SUBSTRATE_DROP_HEIGHT",
+      "value": 1,
+      "unit": "m",
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "applies_to": "coated-array mechanical drop",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "SONICATION",
+      "value": {
+        "frequency": 40,
+        "duration": 5,
+        "medium": "water"
+      },
+      "unit": {
+        "frequency": "kHz",
+        "duration": "min"
+      },
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "applies_to": "coated-array stability",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "AGING",
+      "value": {
+        "duration": 7,
+        "temperature": 70,
+        "relative_humidity": 50
+      },
+      "unit": {
+        "duration": "days",
+        "temperature": "°C",
+        "relative_humidity": "%"
+      },
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "applies_to": "coated-array stability",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "SIZE_ENDPOINTS",
+      "value": [
+        {
+          "trap_um": 50,
+          "granule_um": 250,
+          "S_over_D": 12
+        },
+        {
+          "trap_um": 600,
+          "granule_um": 3000,
+          "S_over_D": 5.67
+        }
+      ],
+      "unit": "mixed explicit fields",
+      "source_refs": [
+        "S_SIZE"
+      ],
+      "applies_to": "two demonstrated endpoints",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "MIXED_ARRAY",
+      "value": [
+        10,
+        10
+      ],
+      "unit": "traps per axis",
+      "source_refs": [
+        "S_MIXED"
+      ],
+      "applies_to": "Fig. S28a photograph label",
+      "kind": "reported_setting",
+      "caveat": null
+    },
+    {
+      "id": "PUA_MODULI",
+      "value": {
+        "hard": 320,
+        "soft": 19.8
+      },
+      "unit": "MPa",
+      "source_refs": [
+        "M_VARIANTS"
+      ],
+      "applies_to": "source material labels; not measured acceptance limits",
+      "kind": "reported_material_characteristic",
+      "caveat": null
+    }
+  ],
+  "policy": "Only this ledger and cited material/condition cards carry scientific parameter facts; no robot tolerances inferred."
+}

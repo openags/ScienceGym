@@ -1,0 +1,372 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "unknowns": [
+    {
+      "id": "U_ALLOC",
+      "description": "Independent specimens, batches, order and repeat schedule are incompletely reported",
+      "resolution_required": "Finite manifest distinguishing independent samples, repeated reads, beads/contact sites and pairwise comparisons",
+      "source_refs": [
+        "M_METHOD",
+        "S_ROLL",
+        "S_STABLE"
+      ],
+      "scope": "all configurations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_ASSETS",
+      "description": "No complete robot/world geometry, machine calibration, interlocks or transport interfaces supplied",
+      "resolution_required": "Qualified installed assets, safe-contact/holding surfaces, containment, instrument readbacks and emergency stop contract",
+      "source_refs": [
+        "M_FAB",
+        "S_COLL",
+        "S_ROLL"
+      ],
+      "scope": "all physical configurations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_LOTS",
+      "description": "Nominal 1 mm glass beads conflict with SI diameter 489 ± 46 µm; lot/count attribution unresolved",
+      "resolution_required": "Actual lot/specification and calibrated measured distribution; keep nominal and measured values separate; source discrepancy acknowledged",
+      "source_refs": [
+        "S_FAB",
+        "S_POLY"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_SANDWICH",
+      "description": "PDMS blanket preparation, thickness, substrate cleaning, resin volume and sandwich opening details unspecified",
+      "resolution_required": "Qualified component preparation and assembly recipe; cure-compatible slides/spacer and inspection plan",
+      "source_refs": [
+        "S_FAB"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_PATTERN",
+      "description": "Mask files, field sizes, many pitches, QR contents and dimensional tolerances unavailable",
+      "resolution_required": "Versioned nonempty masks; explicit diameter/height/lattice/S definition; verified printable field and fiducials",
+      "source_refs": [
+        "S_FAB",
+        "S_GEOM",
+        "S_SPACE"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_UV",
+      "description": "Local irradiance, exposure calibration and general array postcure dose unspecified; 2 min / 2.5 W belongs to mechanical-film preparation",
+      "resolution_required": "Qualified stage-specific UV program and measurement plane; do not copy photo-DSC intensity or film postcure onto arrays without qualification",
+      "source_refs": [
+        "S_FAB",
+        "S_DSC",
+        "S_MECH"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_RINSE",
+      "description": "Ethanol amount, rinse method/duration and endpoint unreported",
+      "resolution_required": "Approved contained solvent workflow, resin waste segregation and dryness/readiness criterion",
+      "source_refs": [
+        "S_FAB"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_AIR",
+      "description": "Blowing pressure/flow/nozzle/duration unreported",
+      "resolution_required": "Qualified enclosed particle-removal method; verify no loose beads, preserve occupancy record and collect expelled granules",
+      "source_refs": [
+        "S_FAB"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_FILM",
+      "description": "Film-volume, coating method and slide preparation unspecified",
+      "resolution_required": "Separate qualified 100 µm mechanical films and flat collision-control films with dimensions/state records",
+      "source_refs": [
+        "S_MECH",
+        "S_N1"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_DSC",
+      "description": "Photo-DSC sample mass, pans, thermal baseline and rate/processing incomplete",
+      "resolution_required": "Instrument method and specimen allocation, acquisition and normalization parameters",
+      "source_refs": [
+        "S_DSC"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_MECH",
+      "description": "Indentation load/time/history and pull-off apparatus/counterface/rate/contact protocol incomplete",
+      "resolution_required": "Distinct approved indentation and pull-off programs, sites, calibration and analysis definitions",
+      "source_refs": [
+        "S_MECH",
+        "M_FAB"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_DOSE_SERIES",
+      "description": "S6 caption omits area denominator; figure legend gives mJ/cm²; exact area-analysis/repeat conventions absent",
+      "resolution_required": "Declare figure-legend reading, qualified dose delivery, sample allocation and contact-area calibration",
+      "source_refs": [
+        "S_UV"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_COLLISION",
+      "description": "Holder dimensions, release heights, exact velocity cases, impact-position criteria and repeats unspecified",
+      "resolution_required": "Qualified contained release/guide job and finite condition matrix; measure velocities rather than infer from arbitrary height",
+      "source_refs": [
+        "M_COLL",
+        "S_COLL",
+        "MOV_DESC"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_HIGHSPEED",
+      "description": "Frame rate, exposure, scale, trigger synchronization and trajectory extraction unspecified",
+      "resolution_required": "Calibrated camera recipe, collision timestamp definition and raw-frame retention",
+      "source_refs": [
+        "S_COLL",
+        "M_COLL"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_ROLLER",
+      "description": "Slide retention, lid/readiness checks, time sampling and N=10 independence unclear",
+      "resolution_required": "Qualified 50 mL tube/slide fixture, selected 10/15/20 RPM program, exposure timing; independent vs interrupted-time point sampling declared",
+      "source_refs": [
+        "S_ROLL"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_SHAKE",
+      "description": "Ten-second demonstration has no amplitude, acceleration or motion waveform",
+      "resolution_required": "Qualified contained 10 s manual/robot shaker action and label it as authored implementation; do not equate to roller regimen",
+      "source_refs": [
+        "S_FAB",
+        "MOV_DESC"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_IMAGING",
+      "description": "Optical magnification, lighting, segmentation and contact/density criteria incomplete",
+      "resolution_required": "Calibration, image coverage, trap-to-bead association, vacancy/multioccupancy/sidewall criteria, contact tolerance and uncertainty",
+      "source_refs": [
+        "M_METHOD",
+        "M_GEOM"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_REGISTRATION",
+      "description": "Reimaging coordinates and alignment correction not fully reported",
+      "resolution_required": "Persistent slide/trap/bead IDs; fiducials, coordinate transform, orientation, raw calibration and paired pre/post criteria",
+      "source_refs": [
+        "M_METHOD",
+        "S_STABLE",
+        "S_OF"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_SEM_EDS",
+      "description": "SEM sample preparation, bead removal, conductive treatment, acquisition settings and detection limits absent",
+      "resolution_required": "Qualified destructive-removal/mount method, paired specimen lineage, settings and blank/reference interpretation",
+      "source_refs": [
+        "S_FAB",
+        "S_EDS"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_REUSE",
+      "description": "The up-to-four-times reuse statement does not specify stripping/reset, cure state, pass boundaries or whether the initial use is included in the count.",
+      "resolution_required": "Cycle-specific recovery/reset protocol and condition; immutable occupancy and trap-damage records for each pass",
+      "source_refs": [
+        "M_ROLL"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_PUF",
+      "description": "Historical images/data uninspected; registration, pairing order, fitting and held-out validation incomplete",
+      "resolution_required": "Versioned analysis specification, actual acquired image parents, fixed pair ordering, units, wrap conventions, statistical method and no unqualified security claim",
+      "source_refs": [
+        "M_METHOD",
+        "S_AUTH",
+        "S_OF",
+        "S_VECTORS"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_OF",
+      "description": "LMLR/LMHR/HMLR/HMHR instrument implementation not fully specified",
+      "resolution_required": "Qualified frame size and pixel calibration for each required read; distinguish acquired higher magnification from image resampling",
+      "source_refs": [
+        "S_OF",
+        "S_ROT_SIM"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_PDMS",
+      "description": "Coating formulation, application, thickness and cure unspecified",
+      "resolution_required": "Qualified coating recipe and cure/optical-release checks; coated state before stability baseline",
+      "source_refs": [
+        "M_VARIANTS",
+        "S_STABLE"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_CONTAMINATION",
+      "description": "Silica 325 mesh exposure amount, distribution/removal and containment unspecified",
+      "resolution_required": "Dust-contained challenge/recovery job; repeat exposure schedule; no open-air dust handling inferred",
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_DROP_STABILITY",
+      "description": "1 m drop target, release orientation, repeats and retrieval unspecified",
+      "resolution_required": "Contained drop fixture and approved recovery; distinguish substrate drop from single-bead collision",
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_SONICATION",
+      "description": "40 kHz, 5 min water test lacks power, vessel/fill and temperature controls",
+      "resolution_required": "Qualified bath/sample-vessel program and recovery/drying rule",
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_CHAMBER",
+      "description": "Seven days at 70 °C and 50% RH lacks ramp, tolerance and return-to-imaging conditioning",
+      "resolution_required": "Qualified chamber program, actual exposure logs, transition criterion and retrieval schedule",
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_SIZE",
+      "description": "Only two endpoint size configurations reported; size-specific height/exposure and sample counts not complete",
+      "resolution_required": "Selected endpoint-specific mask, qualified trap geometry and actual particle lot; do not claim continuous validated range",
+      "source_refs": [
+        "S_SIZE"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_MIXTURE",
+      "description": "YSZ size/vendor and mixture proportions not reported",
+      "resolution_required": "Actual lots, bead type labels and finite composition allocation; no assumed 50:50 mixture",
+      "source_refs": [
+        "S_MIXED"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_PUA",
+      "description": "Hard/soft PUA fabrication recipe, shape dimensions, dose, Rhodamine B concentration and fluorescent acquisition settings absent",
+      "resolution_required": "A qualified manufacturing recipe, actual component stocks, recipe-defined fabrication tooling, exact geometry and dye identity/dose, and face-contact criteria. Finished purchased particles do not satisfy robot manufacturing.",
+      "source_refs": [
+        "M_VARIANTS",
+        "S_PUA"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    },
+    {
+      "id": "U_GUIDE",
+      "description": "The custom 3D-printed collision holder has no supplied CAD, print material, printer method or removal/finishing recipe",
+      "resolution_required": "Qualified nonempty holder geometry, compatible print stock, printer job, safe recovery method and dimensional/fit inspection",
+      "source_refs": [
+        "S_COLL"
+      ],
+      "scope": "selected operations",
+      "default": null,
+      "gate_behavior": "Block only the dependent operation/condition; keep completed observations and unrelated branches. Never substitute an inferred value."
+    }
+  ],
+  "null_semantics": "Unspecified, never zero. Resolved authored inputs retain their provider and do not become historical source facts."
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "stations": [
+    {
+      "id": "PLAN",
+      "label": "Work order and asset desk",
+      "assets": [
+        "Labels",
+        "Records interface"
+      ],
+      "robot_device_boundary": [
+        "Condition and sample allocation",
+        "Qualified station readiness"
+      ]
+    },
+    {
+      "id": "PREP",
+      "label": "Material and specimen preparation",
+      "assets": [
+        "Balance",
+        "Qualified dispensing tools",
+        "Slide/particle carriers",
+        "Recipe-specific manufacturing tooling"
+      ],
+      "robot_device_boundary": [
+        "Robot retrieves, dispenses, assembles and labels",
+        "Manufacturing method gates must resolve before fabrication"
+      ]
+    },
+    {
+      "id": "UV",
+      "label": "Guarded pattern/flood-exposure station",
+      "assets": [
+        "DMD microscope fixture",
+        "Guarded UV chamber",
+        "Dose readback"
+      ],
+      "robot_device_boundary": [
+        "Robot loads/unloads and starts verified job",
+        "Device owns illumination"
+      ]
+    },
+    {
+      "id": "WET",
+      "label": "Contained development station",
+      "assets": [
+        "Compatible rinse fixtures",
+        "Ethanol vessel",
+        "Labeled waste"
+      ],
+      "robot_device_boundary": [
+        "Robot separates sandwich, rinses and recovers",
+        "Solvent amounts and cleanup method gated"
+      ]
+    },
+    {
+      "id": "ASSEMBLY",
+      "label": "Contained dry-assembly station",
+      "assets": [
+        "50mL tubes",
+        "Slide holder",
+        "Roller6 or qualified shaker"
+      ],
+      "robot_device_boundary": [
+        "Robot weighs/loads/closes/docks/starts/stops/unloads",
+        "Device owns roller motion"
+      ]
+    },
+    {
+      "id": "CLEAR",
+      "label": "Contained loose-particle removal",
+      "assets": [
+        "Approved air interface",
+        "Capture vessel"
+      ],
+      "robot_device_boundary": [
+        "Robot positions array and triggers qualified removal",
+        "No uncontrolled particle ejection"
+      ]
+    },
+    {
+      "id": "OPTICAL",
+      "label": "Microscopy and reimaging",
+      "assets": [
+        "Calibrated microscope",
+        "Fiducial holder",
+        "Optional fluorescence channels"
+      ],
+      "robot_device_boundary": [
+        "Robot transports, docks, aligns, selects acquisition and recovers",
+        "Instrument owns exposures"
+      ]
+    },
+    {
+      "id": "COLLISION",
+      "label": "Guarded bead-impact station",
+      "assets": [
+        "Qualified guide/release holder",
+        "High-speed camera",
+        "Capture enclosure"
+      ],
+      "robot_device_boundary": [
+        "Robot loads separate target and impactor",
+        "Device owns release only when configured; camera owns capture"
+      ]
+    },
+    {
+      "id": "MECHANICS",
+      "label": "Mechanical test station",
+      "assets": [
+        "Indentation instrument",
+        "Qualified adhesion tester/counterface"
+      ],
+      "robot_device_boundary": [
+        "Robot mounts film and selects sites",
+        "Separate device receipts for indentation and pull-off"
+      ]
+    },
+    {
+      "id": "THERMAL",
+      "label": "Photo-DSC station",
+      "assets": [
+        "Photo-DSC",
+        "Pans/reference fixtures"
+      ],
+      "robot_device_boundary": [
+        "Robot prepares/loads/retrieves pans",
+        "Instrument owns thermal and illumination program"
+      ]
+    },
+    {
+      "id": "SEM",
+      "label": "Electron microscopy and EDS station",
+      "assets": [
+        "Qualified mounts",
+        "SEM/EDS",
+        "Safe load lock"
+      ],
+      "robot_device_boundary": [
+        "Robot mounts and transfers only after specimen-prep gate",
+        "Instrument owns vacuum/acquisition; no automatic specimen return"
+      ]
+    },
+    {
+      "id": "COATING",
+      "label": "Qualified PDMS processing station",
+      "assets": [
+        "Recipe-defined coating/cure equipment",
+        "Protected carriers"
+      ],
+      "robot_device_boundary": [
+        "Robot prepares, coats and unloads under supplied recipe",
+        "No invented spin/dip/spray method"
+      ]
+    },
+    {
+      "id": "STABILITY",
+      "label": "Contained challenge station",
+      "assets": [
+        "Silica enclosure",
+        "Drop fixture",
+        "Sonication bath"
+      ],
+      "robot_device_boundary": [
+        "Robot configures/loads/starts/recovers selected challenge",
+        "No harmful open dust or uncontained fragile-substrate drop"
+      ]
+    },
+    {
+      "id": "ENVIRONMENT",
+      "label": "Environmental chamber",
+      "assets": [
+        "Temperature/humidity chamber",
+        "Sample rack"
+      ],
+      "robot_device_boundary": [
+        "Robot loads and retrieves identified specimens",
+        "Device owns7dayhold and logs excursions"
+      ]
+    },
+    {
+      "id": "CLOSE",
+      "label": "Storage, cleanup and waste station",
+      "assets": [
+        "Labeled storage",
+        "Quarantine",
+        "Compatible waste streams"
+      ],
+      "robot_device_boundary": [
+        "Robot returns safe specimens and reconciles all entities",
+        "Broken glass, resin/solvent and bead waste remain segregated"
+      ]
+    },
+    {
+      "id": "TRANSFER",
+      "label": "Parameterized physical transit between recorded stations",
+      "assets": [
+        "Qualified mobile robot",
+        "Carrier and safe route"
+      ],
+      "robot_device_boundary": [
+        "A MOVE occurrence must replace the template endpoints with actual source and destination station IDs. This is not a room or autonomous device."
+      ]
+    },
+    {
+      "id": "ANALYSIS",
+      "label": "Virtual analysis-service interface",
+      "assets": [
+        "Raw record store",
+        "Versioned analysis endpoint"
+      ],
+      "robot_device_boundary": [
+        "Robot submits records and reviews returned evidence; sample remains at its separately recorded physical location."
+      ]
+    }
+  ],
+  "mobile_robot": "Human-like mobile laboratory robot with qualified manipulation tools. No fixed-arm default, preexisting grasp reach, room dimensions or locomotion success is assumed.",
+  "transfer_invariants": [
+    "Source station and destination station identified for every move",
+    "Manipulated sample, tool, support carrier and orientation are observable",
+    "Source release and destination support are independently checked",
+    "Device safe state precedes undocking",
+    "Active array surfaces are not generic grasp targets",
+    "Actual robot path and force settings require qualification, not values invented from the paper"
+  ]
+}

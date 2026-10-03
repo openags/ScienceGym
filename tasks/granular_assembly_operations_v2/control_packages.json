@@ -1,0 +1,404 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "control_packages": [
+    {
+      "id": "C_SURFACE",
+      "conditions": [
+        "Stage2 flat film",
+        "Stage1 flat film",
+        "Stage1 patterned traps"
+      ],
+      "match_or_record": [
+        "Bead lot and impact method",
+        "Film or trap geometry and cure histories"
+      ],
+      "required_readouts": [
+        "Capture/rebound",
+        "Vacancies and clustered or separated occupation"
+      ],
+      "source_refs": [
+        "S_N1"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Geometry is intentionally different in the patterned arm."
+      ]
+    },
+    {
+      "id": "C_MECHANICS",
+      "conditions": [
+        "Stage1",
+        "Stage2"
+      ],
+      "match_or_record": [
+        "Film thickness and resin lot",
+        "Instrument method and counterface",
+        "Independent films/sites and previous loading"
+      ],
+      "required_readouts": [
+        "Force/displacement and pull-off curves"
+      ],
+      "source_refs": [
+        "S_MECH",
+        "M_FAB"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "No numerical modulus or force is an evaluator pass threshold."
+      ]
+    },
+    {
+      "id": "C_DOSE",
+      "conditions": [
+        100,
+        150,
+        200
+      ],
+      "match_or_record": [
+        "Calibrated dose units and plane",
+        "Trap/film allocation",
+        "Bead lot and contact-area measurement"
+      ],
+      "required_readouts": [
+        "Indentation",
+        "Optical and destructive SEM contact area"
+      ],
+      "source_refs": [
+        "S_UV"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Dose-series films and contact-array specimens are separately identified."
+      ]
+    },
+    {
+      "id": "C_OCCUPANCY",
+      "conditions": [
+        "Assigned array sites including defects"
+      ],
+      "match_or_record": [
+        "Trap IDs and intended mask",
+        "Bead identities where resolvable",
+        "Area coverage and exclusions"
+      ],
+      "required_readouts": [
+        "Empty/single/multiple occupation",
+        "Loose versus bound beads"
+      ],
+      "source_refs": [
+        "S_GEOM",
+        "S_FAB"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Do not omit a failed trap to inflate fill rate."
+      ]
+    },
+    {
+      "id": "C_ROLLER",
+      "conditions": [
+        "5g × 10/15/20 RPM",
+        "10g × 10/15/20 RPM"
+      ],
+      "match_or_record": [
+        "200-trap mask",
+        "Particle lot",
+        "Sampled times or turns",
+        "Whether the same tube was interrupted"
+      ],
+      "required_readouts": [
+        "Occupancy per slot",
+        "Actual speed and timing",
+        "N-label interpretation"
+      ],
+      "source_refs": [
+        "S_ROLL",
+        "M_ROLL"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "N=10 shown on plots does not establish ten independent specimens."
+      ]
+    },
+    {
+      "id": "C_FREEFALL",
+      "conditions": [
+        "Stage1",
+        "Stage2",
+        "Qualified measured-velocity cases"
+      ],
+      "match_or_record": [
+        "Bead lot",
+        "Impact target, angle and stage",
+        "Camera calibration"
+      ],
+      "required_readouts": [
+        "Actual impact velocity",
+        "Capture/rebound outcome",
+        "Missed/ambiguous events"
+      ],
+      "source_refs": [
+        "M_COLL",
+        "MOV_DESC"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Five cases per surface are described in movie metadata; exact cases are unread."
+      ]
+    },
+    {
+      "id": "C_COLLISION",
+      "conditions": [
+        "Trapped bead in Stage1",
+        "Trapped bead after shape adaptation"
+      ],
+      "match_or_record": [
+        "Impactor/target geometry and lot",
+        "Camera method",
+        "Prechallenge contact locations"
+      ],
+      "required_readouts": [
+        "Impactor trajectory",
+        "Retained bead displacement or detachment"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_COLL"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Record sequential challenge history if one specimen is reused."
+      ]
+    },
+    {
+      "id": "C_GEOMETRY",
+      "conditions": [
+        "Seven low-height diameters",
+        "100 µm diameter/600 µm height sidewall condition"
+      ],
+      "match_or_record": [
+        "Low-trap height 12 µm",
+        "Bead lot",
+        "Agitation and count method"
+      ],
+      "required_readouts": [
+        "Vacancy",
+        "Mean beads per trap",
+        "Sidewall attachment"
+      ],
+      "source_refs": [
+        "S_GEOM"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Do not claim1:1trapping from an expected diameter alone."
+      ]
+    },
+    {
+      "id": "C_SYMMETRY",
+      "conditions": [
+        "200µm",
+        "400µm",
+        "600 µm"
+      ],
+      "match_or_record": [
+        "Layout and bead lot",
+        "Image calibration and coordinate convention"
+      ],
+      "required_readouts": [
+        "Normalized center offset",
+        "Grid-angle distortion"
+      ],
+      "source_refs": [
+        "S_SYMM"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Contact-location estimate is image-derived."
+      ]
+    },
+    {
+      "id": "C_SPACING",
+      "conditions": [
+        "S/D3.5",
+        "S/D4",
+        "S/D4.5",
+        "S/D5"
+      ],
+      "match_or_record": [
+        "D = 200 µm",
+        "Hexagonal layout",
+        "Particle lot",
+        "Definition ofS and contact criterion"
+      ],
+      "required_readouts": [
+        "Unit-cell density",
+        "Contact-number distribution",
+        "Vacancies"
+      ],
+      "source_refs": [
+        "S_SPACE"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Do not impose perfect zero-contact at S/D 5."
+      ]
+    },
+    {
+      "id": "C_INTERFACE",
+      "conditions": [
+        "Adapted trap remnants",
+        "Their mechanically detached beads"
+      ],
+      "match_or_record": [
+        "Same parent array and cure state",
+        "Removal method",
+        "SEM preparation"
+      ],
+      "required_readouts": [
+        "Conformal interface observations"
+      ],
+      "source_refs": [
+        "S_FAB"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Destructive lineage is terminal for the original intact array."
+      ]
+    },
+    {
+      "id": "C_EDS",
+      "conditions": [
+        "Sticky trap",
+        "Granule separated from identified trap"
+      ],
+      "match_or_record": [
+        "Removal and cure state",
+        "SEM/EDS settings",
+        "Detection/background criteria"
+      ],
+      "required_readouts": [
+        "Sulfur maps and spectra",
+        "Element/atomic-ratio records"
+      ],
+      "source_refs": [
+        "S_EDS"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Material characterization does not automatically validate every reuse cycle."
+      ]
+    },
+    {
+      "id": "C_REUSE",
+      "conditions": [
+        "Finite assigned cycles under the resolved interpretation of the source reuse-count statement"
+      ],
+      "match_or_record": [
+        "Same physical trap parent",
+        "Reset method",
+        "Bead charge",
+        "Cure/damage state"
+      ],
+      "required_readouts": [
+        "Occupancy and damage at every cycle"
+      ],
+      "source_refs": [
+        "M_ROLL"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Do not prescribe unsupported reset/stripping instructions."
+      ]
+    },
+    {
+      "id": "C_AUTH",
+      "conditions": [
+        "Four OF conditions",
+        "Pixel versus vector analysis",
+        "2D/3D/3D+circularity",
+        "3/4/5vector subsets",
+        "Two shared granules control"
+      ],
+      "match_or_record": [
+        "Same physical key membership",
+        "Acquisition versus resampling",
+        "Enrollment/challenge assignment",
+        "Feature and statistical version"
+      ],
+      "required_readouts": [
+        "Unique contacts",
+        "Intra/inter comparisons",
+        "Pair counts",
+        "Estimated distribution overlap with uncertainty"
+      ],
+      "source_refs": [
+        "M_METHOD",
+        "S_AUTH",
+        "S_OF",
+        "S_VECTORS"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "Source200keys gives40000pair comparisons, not 40000 independent samples.",
+        "Extreme extrapolated capacities are source outcomes, not measured experimental capacity or security guarantees."
+      ]
+    },
+    {
+      "id": "C_STABILITY",
+      "conditions": [
+        "Matched before/after selected challenge",
+        "Repeat-imaging reference"
+      ],
+      "match_or_record": [
+        "Coated state and actual coating batch",
+        "Same contact-site identities",
+        "Image registration and sample conditioning"
+      ],
+      "required_readouts": [
+        "Contact displacement and uncertainty",
+        "Missing/detached/damaged sites",
+        "Actual exposure history"
+      ],
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "50 contact points per test is not a sample or repeat count.",
+        "Four challenges are separate branches; no cumulative order is claimed.",
+        "A paired uncoated control was not established by the read source and is not added as a reported arm."
+      ]
+    },
+    {
+      "id": "C_VARIANTS",
+      "conditions": [
+        "Two size endpoints",
+        "Glass/YSZ mixture",
+        "Custom hard/soft PUA shape batches"
+      ],
+      "match_or_record": [
+        "Lot and composition",
+        "Source-specific or authored mask",
+        "Actual geometry",
+        "Mode-specific image calibration"
+      ],
+      "required_readouts": [
+        "Trap occupation and particle material/shape identification",
+        "Face contact for PUA",
+        "Selected fluorescence record"
+      ],
+      "source_refs": [
+        "S_SIZE",
+        "S_MIXED",
+        "M_VARIANTS",
+        "S_PUA"
+      ],
+      "allocation": "U_ALLOC supplies independent specimen counts and acquisition attempts. Source cohort labels are not automatically independent repeats.",
+      "notes": [
+        "No complete Cartesian product of material, size and shape is claimed.",
+        "Tables2–3 are cited literature/calculation; do not invent new contact-angle measurements."
+      ]
+    }
+  ]
+}

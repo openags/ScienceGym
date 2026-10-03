@@ -1,0 +1,42 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "required": [
+    "configuration_id",
+    "selected_condition_matrix",
+    "physical_sample_manifest",
+    "independent_repeat_counts",
+    "acquisition_slots",
+    "qualified_asset_ids",
+    "resolved_input_receipts",
+    "material_lots",
+    "geometry_and_mask_versions",
+    "transport_and_manipulation_contract",
+    "analysis_specification",
+    "cleanup_and_waste_plan"
+  ],
+  "finite_conditions": true,
+  "unknown_resolution_receipt": [
+    "unknown_id",
+    "resolved_value_or_method",
+    "units_if_numeric",
+    "author_or_provider",
+    "evidence",
+    "applies_to_sample_and_condition",
+    "validation_status"
+  ],
+  "task_goal": "Complete truthful configured experimental work with raw evidence and a reconciled physical end state; agreement with paper trends is not a success condition.",
+  "count_interpretations": {
+    "source_N10": "Plot label; independent trial interpretation unresolved",
+    "source50": "Contact points per stability test",
+    "source1230": "Granules in characterization cohort",
+    "source200": "Four-granule keys in an analysis cohort",
+    "source40000": "Pair comparisons derived from200keys",
+    "source5or10g": "Mass, not exact bead count"
+  },
+  "completion_states": [
+    "complete",
+    "partial_with_valid_blocker",
+    "safe_abort",
+    "contract_failure"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "granular_assembly_paper_task.v1",
+  "conflicts": [
+    {
+      "id": "C_BEAD_SIZE",
+      "source_refs": [
+        "S_FAB",
+        "S_POLY",
+        "S_RANDOM",
+        "M_ROLL"
+      ],
+      "issue": "Nominal diameter1 mm is reported for supplied glass beads; Note4 states an average diameter 489 ± 46 µm while its vector radius-like scale is approximately500 µm. Approximate mass-to-count claims cannot settle the discrepancy.",
+      "treatment": "Keep separate nominal and observed fields; do not silently interpret489µm as radius or replace1 mm. U_LOTS gates actual work."
+    },
+    {
+      "id": "C_YSZ_ENERGY",
+      "source_refs": [
+        "S_PUA",
+        "S_TABLES"
+      ],
+      "issue": "Note8 quotes YSZ total energy62.93 mJ/m²; Table2 lists62.03 mJ/m².",
+      "treatment": "Preserve both source locations; no calculated physical output is generated from either by this design."
+    },
+    {
+      "id": "C_DOSE_UNITS",
+      "source_refs": [
+        "S_UV"
+      ],
+      "issue": "Fig.S6 caption uses100/150/200 mJ, while panel-a legend reads mJ/cm².",
+      "treatment": "Ledger explicitly uses visually read panel legend; qualified actual exposure and declared unit interpretation required."
+    },
+    {
+      "id": "C_STABILITY_LOCATOR",
+      "source_refs": [
+        "S_STABLE"
+      ],
+      "issue": "Note7 refers to Fig.S25, but stability figure is S26.",
+      "treatment": "Use Note7 and Fig.S26 jointly; S25 remains overlapping-key analysis."
+    },
+    {
+      "id": "C_SYMMETRY_LOCATOR",
+      "source_refs": [
+        "S_SYMM"
+      ],
+      "issue": "Note4 says Fig.S9d in symmetry discussion; corresponding graph is Fig.S12d.",
+      "treatment": "Retain known locator discrepancy without moving symmetry data into resin-transfer testing."
+    },
+    {
+      "id": "C_ROTATION_LANGUAGE",
+      "source_refs": [
+        "S_ROT_SIM"
+      ],
+      "issue": "Note6 calls the vector system sensitive to image rotation, then describes approximately consistent simulated vectors with small errors.",
+      "treatment": "Do not label vector analysis perfectly rotation invariant; simulated rotated images are not physical reimaging trials."
+    },
+    {
+      "id": "C_VECTOR_NOTATION",
+      "source_refs": [
+        "S_AUTH"
+      ],
+      "issue": "Figure captions and text use schematic component differences, while Note5 supplies coordinate conversion formulas. Pair ordering, angular wrap and numerical handling remain incomplete.",
+      "treatment": "Require versioned reviewed implementation; do not reconstruct an unverified solver or claim historical reanalysis."
+    },
+    {
+      "id": "C_UNIVERSAL_POSTCURE",
+      "source_refs": [
+        "S_FAB",
+        "S_MECH",
+        "S_EDS",
+        "M_ROLL"
+      ],
+      "issue": "General assembly flood cure is described;2 min / approximately 2.5 W is explicitly mechanical-film preparation. EDS/reuse branch state histories are not fully specified.",
+      "treatment": "Do not apply film cure as universal array recipe; selected branch declares state and validated cure/reset."
+    }
+  ]
+}

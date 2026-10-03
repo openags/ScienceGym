@@ -6,7 +6,7 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Current release: ten reviewed task-design drafts; zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
+**Current release: eleven reviewed task-design drafts; zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
 
 ## Embodied laboratory task demonstration
 
@@ -75,7 +75,7 @@ Reported literature values, authored mock outputs and unknown or invalid observa
 
 ## Included task families
 
-The ten packages have undergone design review and static consistency checks. These are draft representations of reported scope, not human expert certification or completed robotic reproductions.
+The eleven packages have undergone design review and static consistency checks. These are draft representations of reported scope, not human expert certification or completed robotic reproductions.
 
 | Task family | Reported program represented | Entry point |
 | --- | --- | --- |
@@ -89,6 +89,7 @@ The ten packages have undergone design review and static consistency checks. The
 | Prismatic metamaterials | Cardboard demonstrators, cyclic compression, reach/release, hinge-material and array-thickness controls, selected configurations and bounded pneumatic work | [Task design](tasks/prismatic_operations_v2/TASK_DESIGN.md) |
 | Embedded extrusion-volumetric printing | Material qualification, positive/negative printing, transfer and alignment, cleaning, optical/rheological/CT/mechanical comparisons and immutable sample records | [Task design](tasks/emvp_operations_v2/TASK_DESIGN.md) |
 | Directional radiative cooling | Mobile-robot material preparation, assembly, sensor calibration, optical station handoffs, paired outdoor comparisons, modified-assembly checks and cleanup | [Task design](tasks/directional_cooling_operations_v2/TASK_DESIGN.md) |
+| Anti-repellent granular assembly | Robot-led substrate and particle preparation, patterning-device handoffs, collision and assembly controls, imaging, material variants and sample recovery | [Task design](tasks/granular_assembly_operations_v2/TASK_DESIGN.md) |
 
 All published task narratives and structured descriptions are in English. Structured specifications and source identifiers accompany each package.
 
@@ -156,3 +157,5 @@ ScienceGym is licensed under the [Apache License 2.0](LICENSE). Third-party publ
 These specifications are research task designs, not approved laboratory SOPs or instructions to operate real equipment.
 
 The directional-cooling design adds 56 explicit robot/device operation contracts across 11 physical route leaves. Its 38 static and synthetic-record checks passed independent review. It is not yet integrated into the nine-family explorer; physical execution and thermal reproduction remain unverified.
+
+The granular-assembly design contains 26 configurations, 42 robot/device operation templates and 31 explicit input gates. Its 35 author checks and 23 independent checks validate static design contracts only. It is not yet integrated into the nine-family explorer; historical movies/data and missing recipes remain explicit boundaries.
