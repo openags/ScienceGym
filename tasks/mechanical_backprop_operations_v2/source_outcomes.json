@@ -1,0 +1,60 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "visibility": "evaluator_reference_only",
+  "use": "Historical context; never injected measurements, actor hints or default pass thresholds",
+  "outcomes": [
+    {
+      "id": "O_GRAD",
+      "evidence_ids": [
+        "E_GRAD",
+        "E_SAME"
+      ],
+      "reported_values": {
+        "different_node_output_mm": -0.82,
+        "same_node_output_mm": -3.13,
+        "adjoint_nominal_mass_g_both_cases": 5,
+        "different_node_normalized_gradient_error": "less than 0.1"
+      },
+      "caution": "Fresh measured outputs determine fresh adjoint request; nominal 5 g is not universal"
+    },
+    {
+      "id": "O_BEHAVIOR",
+      "evidence_ids": [
+        "E_BEHAV",
+        "E_RIGHT"
+      ],
+      "reported_pattern": "initial symmetric; trained-left or trained-right dominant response",
+      "caution": "Measure actual result; separate specimens after numerical training"
+    },
+    {
+      "id": "O_REGRESSION",
+      "evidence_ids": [
+        "E_REG"
+      ],
+      "reported_loss": 1.99e-07,
+      "reported_average_accuracy_percent": 85.27,
+      "caution": "Recompute only with defined signed units, aggregation and nonzero target norms"
+    },
+    {
+      "id": "O_IRIS",
+      "evidence_ids": [
+        "E_IRIS"
+      ],
+      "physical_cases_reported": 3,
+      "physical_loss_reported": 0.5955,
+      "numerical_test_accuracy_about_percent": 96,
+      "caution": "Three physical cases do not establish full-dataset physical accuracy"
+    },
+    {
+      "id": "O_REPEATS",
+      "evidence_ids": [
+        "E_TRACK",
+        "E_COMPUTE"
+      ],
+      "physical_independent_experiments": 3,
+      "numerical_training_processes": 10,
+      "physical_specimen_count": null
+    }
+  ]
+}

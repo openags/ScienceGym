@@ -1,0 +1,77 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "items": [
+    {
+      "id": "S_END_RATIO",
+      "evidence_ids": [
+        "E_FAB",
+        "E_GEOM"
+      ],
+      "issue": "Half-width end region and 8:1 length ratio do not fully define per-end/junction geometry",
+      "resolution": "Require resolved manufacturing card, never infer two end lengths"
+    },
+    {
+      "id": "S_ELONGATION",
+      "evidence_ids": [
+        "E_GRAD",
+        "E_CAMERA"
+      ],
+      "issue": "Linear projected bond elongation in derivation versus finite endpoint-distance difference in image method",
+      "resolution": "Store method labels and small-deformation validity; no exact nonlinear derivative claim"
+    },
+    {
+      "id": "S_FORCE_UNITS",
+      "evidence_ids": [
+        "E_GRAD",
+        "E_SAME"
+      ],
+      "issue": "Dimensional squared-displacement loss derivative used operationally as force; weights discretized",
+      "resolution": "Explicit normalization/force scale and actual-vs-target force/quantization gate"
+    },
+    {
+      "id": "S_MSE_STATUS",
+      "evidence_ids": [
+        "E_MSE",
+        "E_RIGHT"
+      ],
+      "issue": "Fig.S5 says actual but lacks experimental designation unlike Fig.S4",
+      "resolution": "Numerical branch unless further evidence establishes physical specimens"
+    },
+    {
+      "id": "S_REPLICATION",
+      "evidence_ids": [
+        "E_TRACK",
+        "E_COMPUTE"
+      ],
+      "issue": "Three physical independent experiments versus ten numerical random-split trainings; specimen independence unspecified",
+      "resolution": "Separate identities and n; no claim of independent printed specimens"
+    },
+    {
+      "id": "S_REPORT_SUMMARY",
+      "evidence_ids": [
+        "E_REPORT",
+        "E_COMPUTE"
+      ],
+      "issue": "Summary checks validation/cross-validation and no leakage; detailed split protocol beyond 70/30 not recovered",
+      "resolution": "Treat as author self-report; require dataset/split/seed audit for exact computational replication"
+    },
+    {
+      "id": "S_REG_SIGN",
+      "evidence_ids": [
+        "E_REG",
+        "E_TRACK"
+      ],
+      "issue": "Positive load magnitude versus signed downward force and displacements",
+      "resolution": "Force-coordinate card mandatory; never apply target slopes to unsigned load silently"
+    },
+    {
+      "id": "S_SOURCE_DATA",
+      "evidence_ids": [
+        "E_DATA"
+      ],
+      "issue": "Figure aggregate columns do not establish full raw trial/specimen/load map",
+      "resolution": "Do not synthesize missing lineage or classify unexamined workbook content as absent"
+    }
+  ]
+}

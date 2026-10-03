@@ -1,0 +1,76 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "title": "Work-order and data station",
+      "required_interfaces": "Identity/manifest terminal and qualified digital services",
+      "completion_rule": "Digital records may be processed here while specimen remains at test station",
+      "execution_qualification": "required_not_validated"
+    },
+    {
+      "id": "WS_STOCK",
+      "title": "Stock and tool storage",
+      "required_interfaces": "Labeled material lots, weights, strings, indexed trays and safe grasp access",
+      "completion_rule": "Issue count, identity and custody before movement",
+      "execution_qualification": "required_not_validated"
+    },
+    {
+      "id": "WS_ROUTE",
+      "title": "Interstation routes",
+      "required_interfaces": "Qualified navigation, retained carriers and docking",
+      "completion_rule": "Never transport active hanging loads; every transition records source and target",
+      "execution_qualification": "required_not_validated"
+    },
+    {
+      "id": "WS_PRINT",
+      "title": "Enclosed PolyJet fabrication",
+      "required_interfaces": "Qualified J850/Agilus30 job interface; interlock and safe-unload signal",
+      "completion_rule": "Robot loads, starts and receives; device performs print; missing settings block start",
+      "execution_qualification": "required_not_validated"
+    },
+    {
+      "id": "WS_POST",
+      "title": "Qualified postprocessing",
+      "required_interfaces": "Enclosed/material-approved support-removal and conditioning service",
+      "completion_rule": "No invented recipe or bare uncured-material manipulation",
+      "execution_qualification": "required_not_validated"
+    },
+    {
+      "id": "WS_QC",
+      "title": "Part inspection",
+      "required_interfaces": "Supported metrology and defect inspection",
+      "completion_rule": "Measurements with tolerance/uncertainty; quarantine is explicit",
+      "execution_qualification": "required_not_validated"
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "title": "Truss and adhesive assembly",
+      "required_interfaces": "Support jig, qualified tools, adhesive interface and cure acceptance",
+      "completion_rule": "No loading until attachment qualification passes",
+      "execution_qualification": "required_not_validated"
+    },
+    {
+      "id": "WS_TEST",
+      "title": "Loading and calibrated imaging",
+      "required_interfaces": "Truss dock, catcher, remote DSLR, calibration target, weights and tools",
+      "completion_rule": "Separate unloaded/loaded phases, verified total mass and hands-clear capture",
+      "execution_qualification": "required_not_validated"
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "title": "Specimen and fixture archive",
+      "required_interfaces": "Supported identified slots, retained mounted specimen",
+      "completion_rule": "Adhesive peeling is not required; archive intact fixture when necessary",
+      "execution_qualification": "required_not_validated"
+    }
+  ],
+  "global_constraints": [
+    "No specimen exists at two physical stations simultaneously",
+    "Every physical source/target transition uses supported transfer with actual IDs",
+    "Digital analysis is a record handoff, not specimen teleportation",
+    "Emergency support/isolation and intervention route must be supplied",
+    "Fixture remains at WS_TEST through load, imaging, digital analysis and recovery unless explicitly unloaded and transported"
+  ]
+}

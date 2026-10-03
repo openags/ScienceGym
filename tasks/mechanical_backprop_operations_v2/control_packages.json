@@ -1,0 +1,119 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "controls": [
+    {
+      "id": "C_FAB",
+      "purpose": "Correct geometry to physical object",
+      "measurable_check": "Qualified file/material/job readback, postprocess release and measured dimension/defect disposition",
+      "gates_operation": "PRINT_START",
+      "failure_action": "Never replace wrong specimen by relabeling",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_FIXTURE",
+      "purpose": "Attachment and mount validity",
+      "measurable_check": "Fixed-node map, cure/attachment release, alignment/stability and unchanged fixture version",
+      "gates_operation": "WEIGHT_HANG",
+      "failure_action": "Stop and quarantine slip or damage",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_CAL",
+      "purpose": "Metric image calibration",
+      "measurable_check": "Same camera state/plane and qualified residuals/scale/signs; raw images retained",
+      "gates_operation": "BASELINE",
+      "failure_action": "Recalibrate/rebaseline on relevant change",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_BASELINE",
+      "purpose": "Measured unloaded state",
+      "measurable_check": "No active hanging loads; separate baseline and observed recovery within tolerance",
+      "gates_operation": "LOAD_PLAN",
+      "failure_action": "Do not substitute zero arrays or stale image",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_LOAD",
+      "purpose": "Full actual force vector",
+      "measurable_check": "Correct node/direction, actual mass and tare; total/intermediate load within source/qualified envelope",
+      "gates_operation": "WEIGHT_HANG",
+      "failure_action": "Reject overload, wrong node or unsupported sign",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_PHASE",
+      "purpose": "Independent gradient states",
+      "measurable_check": "Forward weights all removed; recovery accepted before adjoint; same specimen and geometry",
+      "gates_operation": "ADJOINT_COMPUTE",
+      "failure_action": "Combined forward-plus-adjoint load is invalid",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_ADJOINT",
+      "purpose": "Measured derivative to force",
+      "measurable_check": "Explicit loss units/normalization, measured output, sign/force scale, quantization residual and correction",
+      "gates_operation": "PAIR_GRADIENT",
+      "failure_action": "Do not substitute reported 5 g or clip to admissible mass",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_IMAGE",
+      "purpose": "Measurement confidence",
+      "measurable_check": "Node matching, correlation confidence and uncertainty meet qualified card; no occlusion",
+      "gates_operation": "TRACK",
+      "failure_action": "Missing/ambiguous nodes remain invalid, not model-filled",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_SETTLE",
+      "purpose": "Time-dependent response",
+      "measurable_check": "Observed drift/settling and unloaded recovery criteria, timeout and condition history",
+      "gates_operation": "CAPTURE",
+      "failure_action": "No invented fixed dwell or instantaneous elastic recovery",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_COMPARE",
+      "purpose": "Comparable behavior geometries",
+      "measurable_check": "Distinct accepted physical specimens/geometry versions; matched loading and calibration",
+      "gates_operation": "BEHAVIOR_ANALYZE",
+      "failure_action": "A numerical training checkpoint is not a physical experiment",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_REG",
+      "purpose": "Complete signed sweep",
+      "measurable_check": "All requested mass cases, including measured zero; units/sign and norm denominators audited",
+      "gates_operation": "REGRESSION_ANALYZE",
+      "failure_action": "Report partial or undefined metrics honestly",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_BLIND",
+      "purpose": "Classification label separation",
+      "measurable_check": "Anonymous actor input token; expected label held until prediction commit; signed displacement/tie handling",
+      "gates_operation": "IRIS_CLASSIFY",
+      "failure_action": "Species-named branch/key cannot enter blinded actor payload",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_REPEAT",
+      "purpose": "Proper replication",
+      "measurable_check": "Actual valid independent trials and specimen IDs; no mixing ten numerical runs with three physical repeats",
+      "gates_operation": "AGGREGATE",
+      "failure_action": "No invented n, SD or independence",
+      "origin": "authored_control_based_on_source_method"
+    },
+    {
+      "id": "C_CLOSE",
+      "purpose": "Safe and attributable closure",
+      "measurable_check": "All weights/tools accounted; safe strings; unloaded supported fixture archived; station cleaned",
+      "gates_operation": "REPORT",
+      "failure_action": "Incomplete safety closure blocks successful completion",
+      "origin": "authored_control_based_on_source_method"
+    }
+  ],
+  "scientific_success_policy": "Judge valid procedure and honest measurement; source effect sizes/outcomes are evaluator context, never forced results or unqualified acceptance thresholds"
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "items": [
+    {
+      "id": "N_ADJOINT",
+      "title": "Linear adjoint derivation",
+      "classification": "numerical_or_analytical",
+      "evidence_ids": [
+        "E_GRAD",
+        "E_COMPUTE"
+      ],
+      "disposition": "Linear assumptions and compatible node/bond map",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_ERROR",
+      "title": "Finite-difference and nonlinear error comparison",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_GRAD"
+      ],
+      "disposition": "No physical perturbation/large-force sweep inferred",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_FEM",
+      "title": "Bar and three-dimensional FEM comparison",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_COMPUTE"
+      ],
+      "disposition": "Both loss cases; Comsol model not inspected/executed",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_EP",
+      "title": "Equilibrium propagation comparison",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_COMPUTE"
+      ],
+      "disposition": "Nudged state retains forward input; never substitute for physical adjoint-only phase",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_BEHAV_TRAIN",
+      "title": "Behavior optimization",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_BEHAV",
+        "E_COMPUTE"
+      ],
+      "disposition": "Numerical width optimization; physical final specimens tested in separate routes",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_MSE",
+      "title": "Prescribed displacement feasibility",
+      "classification": "numerical_no_physical_demonstration_established",
+      "evidence_ids": [
+        "E_MSE"
+      ],
+      "disposition": "Left targets -0.5,-0.6,-0.7,-0.8 mm; right target -0.5 mm; Fig.S5 not explicitly experimental",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_REG_TRAIN",
+      "title": "Noisy and noise-free regression training",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_REG",
+        "E_COMPUTE"
+      ],
+      "disposition": "Synthetic 100 points, 70/30 split, noise SD 1e-4; repeated numerical training not physical trials",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_IRIS_TRAIN",
+      "title": "Iris training and confusion matrices",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_IRIS",
+        "E_CLASS_ALT"
+      ],
+      "disposition": "70/30 split; numerical full-dataset accuracy distinct from three physical cases",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_IRIS_MAPS",
+      "title": "Alternative Iris input/output maps",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_CLASS_ALT"
+      ],
+      "disposition": "Three alternative maps; no extra fabrication asserted",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_PENGUIN",
+      "title": "Penguin classification",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_CLASS_ALT"
+      ],
+      "disposition": "Numeric dataset only; no animal material or physical validation inferred",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_SWITCH",
+      "title": "Classification-regression-classification retraining",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_RETRAIN"
+      ],
+      "disposition": "No physical self-updating lattice",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_DAMAGE",
+      "title": "Pruning and damage retraining",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_RETRAIN",
+        "E_DAMAGE"
+      ],
+      "disposition": "No physical cutting or repair route",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_IMPORTANCE",
+      "title": "Bond importance and zero modes",
+      "classification": "numerical",
+      "evidence_ids": [
+        "E_DAMAGE"
+      ],
+      "disposition": "Rank-deficient configurations not manufactured or loaded here",
+      "executed_for_this_package": false
+    },
+    {
+      "id": "N_FUTURE",
+      "title": "Programmable materials and microcontroller loop",
+      "classification": "proposed_not_implemented",
+      "evidence_ids": [
+        "E_BOUNDARY"
+      ],
+      "disposition": "No controller, adaptive spring or future-material demonstration exists in this draft",
+      "executed_for_this_package": false
+    }
+  ]
+}

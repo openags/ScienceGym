@@ -1,0 +1,1683 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 10,
+  "physical_configuration_count": 9,
+  "families": [
+    {
+      "id": "gradient",
+      "role": "physical_family"
+    },
+    {
+      "id": "behavior",
+      "role": "physical_family"
+    },
+    {
+      "id": "regression",
+      "role": "physical_family"
+    },
+    {
+      "id": "iris",
+      "role": "physical_family"
+    }
+  ],
+  "branches": [
+    {
+      "id": "GRADIENT_SEPARATE",
+      "title": "Measure different-node gradient",
+      "family_id": "gradient",
+      "role": "reported_physical_route",
+      "geometry_condition": "uniform_gradient",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "ADJOINT_COMPUTE",
+        "PAIR_GRADIENT",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "forward",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "forward_only"
+        },
+        {
+          "id": "compute_adjoint",
+          "operation_ids": [
+            "ADJOINT_COMPUTE"
+          ],
+          "requires": "accepted forward measurement and recovery"
+        },
+        {
+          "id": "adjoint",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "adjoint_only"
+        },
+        {
+          "id": "pair",
+          "operation_ids": [
+            "PAIR_GRADIENT"
+          ],
+          "requires": "same trial, specimen and geometry for both fields"
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "input_node": "R_bottom",
+        "output_node": "L_bottom",
+        "forward_mass_g": 10,
+        "target_offset_m": 0.025,
+        "loss": "(u_Ly + offset)^2",
+        "reported_adjoint_mass_g": 5,
+        "adjoint_mass_policy": "calculate from current measured output;5 g is reference not default",
+        "forward_absent_in_adjoint": true
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_GRAD",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_ADJOINT",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            "selected_case"
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_GRADIENT_SEPARATE",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "GRADIENT_SAME",
+      "title": "Measure same-node gradient",
+      "family_id": "gradient",
+      "role": "reported_physical_route",
+      "geometry_condition": "uniform_gradient",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "ADJOINT_COMPUTE",
+        "PAIR_GRADIENT",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "forward",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "forward_only"
+        },
+        {
+          "id": "compute_adjoint",
+          "operation_ids": [
+            "ADJOINT_COMPUTE"
+          ],
+          "requires": "accepted forward measurement and recovery"
+        },
+        {
+          "id": "adjoint",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "adjoint_only"
+        },
+        {
+          "id": "pair",
+          "operation_ids": [
+            "PAIR_GRADIENT"
+          ],
+          "requires": "same trial, specimen and geometry for both fields"
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "input_node": "R_bottom",
+        "output_node": "R_bottom",
+        "forward_mass_g": 20,
+        "target_offset_m": 0.028,
+        "loss": "(u_Ry + offset)^2",
+        "reported_adjoint_mass_g": 5,
+        "adjoint_mass_policy": "calculate from current measured output;5 g is reference not default",
+        "forward_absent_in_adjoint": true
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_SAME",
+        "E_GRAD",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_ADJOINT",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            "selected_case"
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_GRADIENT_SAME",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "BEHAVIOR_UNIFORM",
+      "title": "Test initial behavior",
+      "family_id": "behavior",
+      "role": "reported_physical_route",
+      "geometry_condition": "uniform_behavior",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "BEHAVIOR_ANALYZE",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "condition",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "single_input"
+        },
+        {
+          "id": "analysis",
+          "operation_ids": [
+            "BEHAVIOR_ANALYZE"
+          ]
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "input_node": "verified behavior node from geometry card",
+        "mass_g": 5,
+        "outputs": [
+          "L_bottom_y",
+          "R_bottom_y"
+        ],
+        "physical_geometry_change": "new fabricated specimen, never numerical update of same object"
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_BEHAV",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            "selected_case"
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_BEHAVIOR_UNIFORM",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "BEHAVIOR_LEFT",
+      "title": "Test trained geometry A",
+      "family_id": "behavior",
+      "role": "reported_physical_route",
+      "geometry_condition": "trained_left",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "BEHAVIOR_ANALYZE",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "condition",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "single_input"
+        },
+        {
+          "id": "analysis",
+          "operation_ids": [
+            "BEHAVIOR_ANALYZE"
+          ]
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "input_node": "verified behavior node from geometry card",
+        "mass_g": 5,
+        "outputs": [
+          "L_bottom_y",
+          "R_bottom_y"
+        ],
+        "physical_geometry_change": "new fabricated specimen, never numerical update of same object"
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_BEHAV",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            "selected_case"
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_BEHAVIOR_LEFT",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "BEHAVIOR_RIGHT",
+      "title": "Test trained geometry B",
+      "family_id": "behavior",
+      "role": "reported_physical_route",
+      "geometry_condition": "trained_right",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "BEHAVIOR_ANALYZE",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "condition",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "single_input"
+        },
+        {
+          "id": "analysis",
+          "operation_ids": [
+            "BEHAVIOR_ANALYZE"
+          ]
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "input_node": "verified behavior node from geometry card",
+        "mass_g": 5,
+        "outputs": [
+          "L_bottom_y",
+          "R_bottom_y"
+        ],
+        "physical_geometry_change": "new fabricated specimen, never numerical update of same object"
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_RIGHT",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            "selected_case"
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_BEHAVIOR_RIGHT",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "REGRESSION_SWEEP",
+      "title": "Measure final regression network",
+      "family_id": "regression",
+      "role": "reported_physical_route",
+      "geometry_condition": "trained_regression",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "REGRESSION_ANALYZE",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "condition",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "single_input"
+        },
+        {
+          "id": "analysis",
+          "operation_ids": [
+            "REGRESSION_ANALYZE"
+          ]
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "masses_g": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
+        "input_node": "verified regression node",
+        "outputs": [
+          "u_Rx",
+          "u_Ry",
+          "u_Lx",
+          "u_Ly"
+        ],
+        "target_coefficients": [
+          0,
+          0.016,
+          0.004,
+          0.016
+        ],
+        "target_force_sign": "requires signed coordinate card; downward negative when y up",
+        "physical_model": "single final model; noise-free/noisy training not asserted as two fabricated specimens"
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_REG",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REG",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_REGRESSION_SWEEP",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "IRIS_CASE_1",
+      "title": "Classify physical input 1",
+      "family_id": "iris",
+      "role": "reported_physical_route",
+      "geometry_condition": "trained_iris",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "IRIS_CLASSIFY",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "condition",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "four_simultaneous_inputs"
+        },
+        {
+          "id": "analysis",
+          "operation_ids": [
+            "IRIS_CLASSIFY"
+          ]
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "case_token": "anonymous_1",
+        "four_integer_mass_vector_g": null,
+        "total_hanging_mass_max_g": 20,
+        "input_nodes": "four verified mapped nodes",
+        "output_nodes": "three verified mapped nodes",
+        "decision": "largest signed horizontal displacement; qualified ambiguity policy",
+        "expected_species": "evaluator_only",
+        "dataset_row_identity": null
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_IRIS",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_IRIS",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            "selected_case"
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_IRIS_CASE_1",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "IRIS_CASE_2",
+      "title": "Classify physical input 2",
+      "family_id": "iris",
+      "role": "reported_physical_route",
+      "geometry_condition": "trained_iris",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "IRIS_CLASSIFY",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "condition",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "four_simultaneous_inputs"
+        },
+        {
+          "id": "analysis",
+          "operation_ids": [
+            "IRIS_CLASSIFY"
+          ]
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "case_token": "anonymous_2",
+        "four_integer_mass_vector_g": null,
+        "total_hanging_mass_max_g": 20,
+        "input_nodes": "four verified mapped nodes",
+        "output_nodes": "three verified mapped nodes",
+        "decision": "largest signed horizontal displacement; qualified ambiguity policy",
+        "expected_species": "evaluator_only",
+        "dataset_row_identity": null
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_IRIS",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_IRIS",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            "selected_case"
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_IRIS_CASE_2",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "IRIS_CASE_3",
+      "title": "Classify physical input 3",
+      "family_id": "iris",
+      "role": "reported_physical_route",
+      "geometry_condition": "trained_iris",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "IRIS_CLASSIFY",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "preparation": [
+        "PLAN",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "MOVE",
+        "STOCK",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK"
+      ],
+      "trial_phases": [
+        {
+          "id": "condition",
+          "operation_ids": [
+            "BASELINE",
+            "LOAD_PLAN",
+            "WEIGHT_HANG",
+            "SETTLE",
+            "CAPTURE",
+            "TRACK",
+            "WEIGHT_REMOVE",
+            "RECOVERY"
+          ],
+          "active_force_role": "four_simultaneous_inputs"
+        },
+        {
+          "id": "analysis",
+          "operation_ids": [
+            "IRIS_CLASSIFY"
+          ]
+        }
+      ],
+      "closure": [
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "MOVE",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT"
+      ],
+      "condition_card": {
+        "case_token": "anonymous_3",
+        "four_integer_mass_vector_g": null,
+        "total_hanging_mass_max_g": 20,
+        "input_nodes": "four verified mapped nodes",
+        "output_nodes": "three verified mapped nodes",
+        "decision": "largest signed horizontal displacement; qualified ambiguity policy",
+        "expected_species": "evaluator_only",
+        "dataset_row_identity": null
+      },
+      "source_repetition_count": 3,
+      "source_specimen_count": null,
+      "evidence_ids": [
+        "E_IRIS",
+        "E_TRACK"
+      ],
+      "required_input_ids": [
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_IRIS",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "loops": [
+        {
+          "id": "independent_trial",
+          "count": "positive integer supplied; source reports three",
+          "repeat_scope": "complete initialized acquisition and recovery",
+          "identity": "trial_id distinct from specimen_id"
+        },
+        {
+          "id": "load_condition",
+          "values": [
+            "selected_case"
+          ],
+          "nesting": "within trial",
+          "reset": "unload and verify recovery before next condition"
+        }
+      ],
+      "execution_ready": false,
+      "reference_route_id": "ROUTE_IRIS_CASE_3",
+      "loops_authority": "reference_routes.json typed tree; descriptive loop fields are not an execution order"
+    },
+    {
+      "id": "WHOLE_PAPER_CAMPAIGN",
+      "title": "Complete physical paper campaign",
+      "role": "campaign",
+      "family_id": "campaign",
+      "subbranch_ids": [
+        "GRADIENT_SEPARATE",
+        "GRADIENT_SAME",
+        "BEHAVIOR_UNIFORM",
+        "BEHAVIOR_LEFT",
+        "BEHAVIOR_RIGHT",
+        "REGRESSION_SWEEP",
+        "IRIS_CASE_1",
+        "IRIS_CASE_2",
+        "IRIS_CASE_3"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRAIN_BIND",
+        "TRAIN_RUN",
+        "GEOMETRY_RELEASE",
+        "PRINT_LOAD",
+        "PRINT_START",
+        "PRINT_PROCESS",
+        "PRINT_UNLOAD",
+        "POST_LOAD",
+        "POST_PROCESS",
+        "POST_UNLOAD",
+        "PART_QC",
+        "TRUSS_PREP",
+        "GLUE_MOUNT",
+        "CURE_RELEASE",
+        "DOCK_TRUSS",
+        "CAMERA_SETUP",
+        "BOARD_PLACE",
+        "CAL_CAPTURE",
+        "CAL_SOLVE",
+        "BOARD_REMOVE",
+        "STRING_PREP",
+        "STRING_ATTACH",
+        "WEIGHT_CHECK",
+        "BASELINE",
+        "LOAD_PLAN",
+        "WEIGHT_HANG",
+        "SETTLE",
+        "CAPTURE",
+        "TRACK",
+        "WEIGHT_REMOVE",
+        "RECOVERY",
+        "ADJOINT_COMPUTE",
+        "PAIR_GRADIENT",
+        "BEHAVIOR_ANALYZE",
+        "REGRESSION_ANALYZE",
+        "IRIS_CLASSIFY",
+        "AGGREGATE",
+        "STRING_REMOVE",
+        "UNDOCK",
+        "ARCHIVE",
+        "CLEANUP",
+        "REPORT",
+        "RETURN_TOOLS"
+      ],
+      "required_input_ids": [
+        "U_ADJOINT",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_GEOM",
+        "U_IRIS",
+        "U_LOAD",
+        "U_MOUNT",
+        "U_POST",
+        "U_PRINT",
+        "U_QC",
+        "U_REG",
+        "U_REPEAT",
+        "U_ROBOT",
+        "U_SETTLE",
+        "U_STRING",
+        "U_TRACK",
+        "U_TRAIN"
+      ],
+      "evidence_ids": [
+        "E_GRAD",
+        "E_SAME",
+        "E_FAB",
+        "E_GEOM",
+        "E_MOUNT",
+        "E_CAMERA",
+        "E_TRACK",
+        "E_BEHAV",
+        "E_RIGHT",
+        "E_MSE",
+        "E_REG",
+        "E_IRIS",
+        "E_COMPUTE",
+        "E_CLASS_ALT",
+        "E_RETRAIN",
+        "E_DAMAGE",
+        "E_BOUNDARY",
+        "E_VIDEO",
+        "E_REPORT",
+        "E_DATA",
+        "E_REPO"
+      ],
+      "aggregation": "every selected physical branch accounted for; computational inventory separately reported; never invent missing cases",
+      "execution_ready": false,
+      "order_policy": "Plan specimen/fixture allocation once; prepare each unique qualified geometry; run all selected routes with reset/recalibration rules; close campaign",
+      "reference_route_id": "CAMPAIGN_ROUTE",
+      "source_matched_campaign_requirements": {
+        "required_branch_ids": [
+          "GRADIENT_SEPARATE",
+          "GRADIENT_SAME",
+          "BEHAVIOR_UNIFORM",
+          "BEHAVIOR_LEFT",
+          "BEHAVIOR_RIGHT",
+          "REGRESSION_SWEEP",
+          "IRIS_CASE_1",
+          "IRIS_CASE_2",
+          "IRIS_CASE_3"
+        ],
+        "independent_trials_per_case": 3,
+        "regression_masses_g": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
+        "status_rule": "All nine physical configurations and three independent trials per case, with all execution gates passed and complete measured records, are necessary for complete_source_matched_campaign; subset/changed repetition is partial_or_authored_departure, never equivalent"
+      }
+    }
+  ]
+}

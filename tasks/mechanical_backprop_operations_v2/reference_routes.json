@@ -1,0 +1,2999 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "visibility": "evaluator_reference_only",
+  "routes": [
+    {
+      "id": "ROUTE_GRADIENT_SEPARATE",
+      "branch_id": "GRADIENT_SEPARATE",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "ADJOINT_COMPUTE",
+              "bindings": {}
+            },
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "PAIR_GRADIENT",
+              "bindings": {}
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    },
+    {
+      "id": "ROUTE_GRADIENT_SAME",
+      "branch_id": "GRADIENT_SAME",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "forward",
+                "active_force_role": "forward_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "ADJOINT_COMPUTE",
+              "bindings": {}
+            },
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "adjoint",
+                "active_force_role": "adjoint_only"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "PAIR_GRADIENT",
+              "bindings": {}
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    },
+    {
+      "id": "ROUTE_BEHAVIOR_UNIFORM",
+      "branch_id": "BEHAVIOR_UNIFORM",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "BEHAVIOR_ANALYZE",
+              "bindings": {}
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    },
+    {
+      "id": "ROUTE_BEHAVIOR_LEFT",
+      "branch_id": "BEHAVIOR_LEFT",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "BEHAVIOR_ANALYZE",
+              "bindings": {}
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    },
+    {
+      "id": "ROUTE_BEHAVIOR_RIGHT",
+      "branch_id": "BEHAVIOR_RIGHT",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "behavior_case",
+                "active_force_role": "single_input"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "BEHAVIOR_ANALYZE",
+              "bindings": {}
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    },
+    {
+      "id": "ROUTE_REGRESSION_SWEEP",
+      "branch_id": "REGRESSION_SWEEP",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "for_each",
+              "variable": "mass_g",
+              "values": [
+                0,
+                2,
+                4,
+                6,
+                8,
+                10,
+                12
+              ],
+              "body": [
+                {
+                  "kind": "operation",
+                  "operation_id": "BASELINE",
+                  "bindings": {
+                    "phase_id": "regression_load",
+                    "active_force_role": "single_input"
+                  }
+                },
+                {
+                  "kind": "operation",
+                  "operation_id": "LOAD_PLAN",
+                  "bindings": {
+                    "phase_id": "regression_load",
+                    "active_force_role": "single_input"
+                  }
+                },
+                {
+                  "kind": "operation",
+                  "operation_id": "WEIGHT_HANG",
+                  "bindings": {
+                    "phase_id": "regression_load",
+                    "active_force_role": "single_input"
+                  }
+                },
+                {
+                  "kind": "operation",
+                  "operation_id": "SETTLE",
+                  "bindings": {
+                    "phase_id": "regression_load",
+                    "active_force_role": "single_input"
+                  }
+                },
+                {
+                  "kind": "operation",
+                  "operation_id": "CAPTURE",
+                  "bindings": {
+                    "phase_id": "regression_load",
+                    "active_force_role": "single_input"
+                  }
+                },
+                {
+                  "kind": "operation",
+                  "operation_id": "TRACK",
+                  "bindings": {
+                    "phase_id": "regression_load",
+                    "active_force_role": "single_input"
+                  }
+                },
+                {
+                  "kind": "operation",
+                  "operation_id": "WEIGHT_REMOVE",
+                  "bindings": {
+                    "phase_id": "regression_load",
+                    "active_force_role": "single_input"
+                  }
+                },
+                {
+                  "kind": "operation",
+                  "operation_id": "RECOVERY",
+                  "bindings": {
+                    "phase_id": "regression_load",
+                    "active_force_role": "single_input"
+                  }
+                }
+              ],
+              "reset_rule": "each body completes unload/recovery before next mass"
+            },
+            {
+              "kind": "operation",
+              "operation_id": "REGRESSION_ANALYZE",
+              "bindings": {
+                "scope": "completed seven-load sweep within one independent trial"
+              }
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    },
+    {
+      "id": "ROUTE_IRIS_CASE_1",
+      "branch_id": "IRIS_CASE_1",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "IRIS_CLASSIFY",
+              "bindings": {
+                "case_token": "anonymous_1"
+              }
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    },
+    {
+      "id": "ROUTE_IRIS_CASE_2",
+      "branch_id": "IRIS_CASE_2",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "IRIS_CLASSIFY",
+              "bindings": {
+                "case_token": "anonymous_2"
+              }
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    },
+    {
+      "id": "ROUTE_IRIS_CASE_3",
+      "branch_id": "IRIS_CASE_3",
+      "initial_robot_station": "WS_RECORDS",
+      "body": [
+        {
+          "kind": "operation",
+          "operation_id": "PLAN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_BIND",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRAIN_RUN",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GEOMETRY_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_RECORDS_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_PRINT"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_START",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PRINT_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_PRINT_POST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_LOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_PROCESS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "POST_UNLOAD",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_POST_QC"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "PART_QC",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_QC_ASSEMBLY"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "TRUSS_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "GLUE_MOUNT",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CURE_RELEASE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ASSEMBLY_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "DOCK_TRUSS",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAMERA_SETUP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_PLACE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_CAPTURE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CAL_SOLVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "BOARD_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_PREP",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_ATTACH",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "WEIGHT_CHECK",
+          "bindings": {}
+        },
+        {
+          "kind": "repeat",
+          "variable": "trial_id",
+          "count_input": "qualified positive repetition_plan",
+          "source_reported_count": 3,
+          "body": [
+            {
+              "kind": "operation",
+              "operation_id": "BASELINE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "LOAD_PLAN",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_HANG",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "SETTLE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "CAPTURE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "TRACK",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "WEIGHT_REMOVE",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "RECOVERY",
+              "bindings": {
+                "phase_id": "iris_case",
+                "active_force_role": "four_simultaneous_inputs"
+              }
+            },
+            {
+              "kind": "operation",
+              "operation_id": "IRIS_CLASSIFY",
+              "bindings": {
+                "case_token": "anonymous_3"
+              }
+            }
+          ],
+          "reset_rule": "body includes complete unload/recovery; specimen history retained"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "AGGREGATE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "STRING_REMOVE",
+          "bindings": {}
+        },
+        {
+          "kind": "operation",
+          "operation_id": "UNDOCK",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_ARCHIVE"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "ARCHIVE",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_ARCHIVE_TEST"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "CLEANUP",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_TEST_STOCK"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "RETURN_TOOLS",
+          "bindings": {}
+        },
+        {
+          "kind": "transfer",
+          "transfer_id": "T_STOCK_RECORDS"
+        },
+        {
+          "kind": "operation",
+          "operation_id": "REPORT",
+          "bindings": {}
+        }
+      ],
+      "digital_handoff_rule": "analysis_service consumes electronic records remotely; specimen and robot stay at their current physical station",
+      "source_status": "task_authored_reference_route_not_source_trajectory"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "T_RECORDS_STOCK",
+      "operation_id": "MOVE",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_STOCK",
+      "carried_objects": [],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Robot reaches stock before physical retrieval"
+    },
+    {
+      "id": "T_STOCK_PRINT",
+      "operation_id": "MOVE",
+      "source_station": "WS_STOCK",
+      "target_station": "WS_PRINT",
+      "carried_objects": [
+        "qualified consumable/carrier kit",
+        "indexed tools/truss/string/weight kit retained separately"
+      ],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Bring issued stock to printing station"
+    },
+    {
+      "id": "T_PRINT_POST",
+      "operation_id": "MOVE",
+      "source_station": "WS_PRINT",
+      "target_station": "WS_POST",
+      "carried_objects": [
+        "printed specimen on build carrier",
+        "retained unused kit"
+      ],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Present same new specimen for qualified postprocessing"
+    },
+    {
+      "id": "T_POST_QC",
+      "operation_id": "MOVE",
+      "source_station": "WS_POST",
+      "target_station": "WS_QC",
+      "carried_objects": [
+        "conditioned specimen on carrier",
+        "retained unused kit"
+      ],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Present released part for metrology"
+    },
+    {
+      "id": "T_QC_ASSEMBLY",
+      "operation_id": "MOVE",
+      "source_station": "WS_QC",
+      "target_station": "WS_ASSEMBLY",
+      "carried_objects": [
+        "accepted supported specimen",
+        "retained truss and tool kit"
+      ],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Bring accepted part to mounting jig"
+    },
+    {
+      "id": "T_ASSEMBLY_TEST",
+      "operation_id": "MOVE",
+      "source_station": "WS_ASSEMBLY",
+      "target_station": "WS_TEST",
+      "carried_objects": [
+        "cured mounted specimen with truss",
+        "indexed imaging/string/weight/tool kit"
+      ],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Bring unloaded mounted network to measurement dock"
+    },
+    {
+      "id": "T_TEST_ARCHIVE",
+      "operation_id": "MOVE",
+      "source_station": "WS_TEST",
+      "target_station": "WS_ARCHIVE",
+      "carried_objects": [
+        "unloaded supported mounted specimen/truss"
+      ],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Archive without unqualified adhesive peeling"
+    },
+    {
+      "id": "T_ARCHIVE_TEST",
+      "operation_id": "MOVE",
+      "source_station": "WS_ARCHIVE",
+      "target_station": "WS_TEST",
+      "carried_objects": [],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Return robot after storing specimen to clean test area and retrieve tools"
+    },
+    {
+      "id": "T_TEST_STOCK",
+      "operation_id": "MOVE",
+      "source_station": "WS_TEST",
+      "target_station": "WS_STOCK",
+      "carried_objects": [
+        "cleaned indexed tool and weight trays"
+      ],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Return inventoried kit to storage"
+    },
+    {
+      "id": "T_STOCK_RECORDS",
+      "operation_id": "MOVE",
+      "source_station": "WS_STOCK",
+      "target_station": "WS_RECORDS",
+      "carried_objects": [],
+      "carrier": "qualified retained carrier; empty-base transfer explicitly identified when no cargo",
+      "preconditions": [
+        "All carried objects identified and retained",
+        "Zero active hanging weights on any specimen",
+        "Source released and destination dock/slot ready",
+        "Hands retracted before base motion"
+      ],
+      "measurable_completion": [
+        "Actual destination station verified",
+        "Destination support/dock and cargo ID receipt recorded",
+        "Custody updated from source to target exactly once"
+      ],
+      "purpose": "Return robot to final work-order terminal"
+    }
+  ],
+  "campaign": {
+    "id": "CAMPAIGN_ROUTE",
+    "kind": "for_each_selected_route",
+    "branch_ids": [
+      "GRADIENT_SEPARATE",
+      "GRADIENT_SAME",
+      "BEHAVIOR_UNIFORM",
+      "BEHAVIOR_LEFT",
+      "BEHAVIOR_RIGHT",
+      "REGRESSION_SWEEP",
+      "IRIS_CASE_1",
+      "IRIS_CASE_2",
+      "IRIS_CASE_3"
+    ],
+    "plan": "Explicit specimen/fixture allocation may share preparation only for the same qualified geometry/mount; each measured route still completes its typed acquisition/reset body",
+    "completion": "Complete source-matched campaign requires all nine physical configurations, all seven regression loads and three valid independent trials per case; changed/subset episodes must be labeled partial or authored departure",
+    "source_matched_required_trial_count": 3
+  },
+  "semantics": {
+    "operation": "Bound operation contract; physical robot operations require robot at their source station",
+    "transfer": "Actual MOVE plus verified destination custody, never a label-only state change",
+    "repeat": "Body repeated under unique trial IDs; no future observations precomputed",
+    "for_each": "Enumerate every listed condition then return to parent scope",
+    "analysis_service": "Electronic handoff only; does not change physical location",
+    "zero_mass": "Skip actual weight transfer but verify zero active vector and capture a real image; no synthetic zero result"
+  }
+}

@@ -1,0 +1,1971 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 46,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Bind work order",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "work order",
+        "inventory terminal"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Bind selected goal and exact initial inventory",
+        "Allocate geometry/specimen/fixture/trial IDs, repeat plan and open gates"
+      ],
+      "preconditions": [
+        "Selected goal supplied"
+      ],
+      "completion_state": [
+        "Work order and missing-input ledger saved"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_REPEAT"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STOCK",
+      "title": "Retrieve material and tools",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_STOCK",
+      "target_station": "WS_STOCK",
+      "manipulated_objects_tools": [
+        "packaged material",
+        "indexed trays",
+        "weights",
+        "strings",
+        "tools",
+        "carrier"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Read lot and tool identities",
+        "Pick packaging/approved handles; sort tools and parts into retained tray slots",
+        "Record custody and count"
+      ],
+      "preconditions": [
+        "Bound inventory and robot card"
+      ],
+      "completion_state": [
+        "Issued material/tool manifest; retained carrier"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "MOVE",
+      "title": "Transport supported objects",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_ROUTE",
+      "target_station": "$next_station",
+      "manipulated_objects_tools": [
+        "carrier",
+        "cart",
+        "secured sample or parts"
+      ],
+      "interface": {
+        "command": "Base navigation and retained-carrier docking",
+        "feedback": "Source/target station IDs, load retention, route clear, dock and custody confirmation"
+      },
+      "actions": [
+        "Bind actual source and target station",
+        "Verify unloaded supported object and source release",
+        "Retract hands; navigate qualified route; dock target and verify support before release"
+      ],
+      "preconditions": [
+        "Source custody and destination readiness verified",
+        "No active hanging weights on transported specimen"
+      ],
+      "completion_state": [
+        "One verified destination custody record; no duplicate location"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TRAIN_BIND",
+      "title": "Bind digital geometry source",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "numerical job terminal",
+        "dataset/model cards"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Select initial uniform, reviewed numerical-training or supplied-geometry route",
+        "Bind hashes, seeds/splits, node map, optimizer and stop criteria; explicitly exclude physical parameter updates"
+      ],
+      "preconditions": [
+        "Qualified numerical or supplied geometry provenance"
+      ],
+      "completion_state": [
+        "Versioned design job; physical specimen state unchanged"
+      ],
+      "evidence_ids": [
+        "E_COMPUTE",
+        "E_BOUNDARY"
+      ],
+      "unknown_parameter_ids": [
+        "U_TRAIN"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TRAIN_RUN",
+      "title": "Compute design geometry",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "reviewed numerical model",
+        "digital job"
+      ],
+      "interface": {
+        "command": "Qualified numerical service job ID",
+        "feedback": "Input/output checksums, convergence status, log, numerical-only flag"
+      },
+      "actions": [
+        "If numerical route selected, execute only reviewed bounded job; label all outputs numerical",
+        "If supplied/initial route selected, validate its input manifest without inventing a training run",
+        "Return geometry candidate and diagnostics; never mutate printed specimen"
+      ],
+      "preconditions": [
+        "Bound digital job and implementation review"
+      ],
+      "completion_state": [
+        "Digital geometry candidate or explicit numerical failure"
+      ],
+      "evidence_ids": [
+        "E_COMPUTE",
+        "E_BOUNDARY"
+      ],
+      "unknown_parameter_ids": [
+        "U_TRAIN"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "GEOMETRY_RELEASE",
+      "title": "Release manufacturing card",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "geometry file",
+        "manufacturing card"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Check node/bond ordering, complete dimensions and material design bounds",
+        "Resolve end-region ratio and compare geometry checksum to selected condition",
+        "Release only qualified geometry; no screenshot-derived CAD"
+      ],
+      "preconditions": [
+        "Identified candidate and complete fabrication geometry"
+      ],
+      "completion_state": [
+        "Released geometry version linked to print job"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_QC"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_LOAD",
+      "title": "Load fabrication station",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_PRINT",
+      "target_station": "WS_PRINT",
+      "manipulated_objects_tools": [
+        "packaged Agilus30 supply",
+        "build carrier",
+        "job terminal"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Dock tray; stage qualified consumables/carrier through station interface",
+        "Bind released geometry hash; read material/recipe/orientation and close guards"
+      ],
+      "preconditions": [
+        "Station safe; geometry released; qualified consumables"
+      ],
+      "completion_state": [
+        "Job/material/carrier match; interlocks ready"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_ROBOT",
+        "U_PRINT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_START",
+      "title": "Request approved print",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_PRINT",
+      "target_station": "WS_PRINT",
+      "manipulated_objects_tools": [
+        "printer controls"
+      ],
+      "interface": {
+        "command": "Qualified printer start request",
+        "feedback": "Job ID, recipe readback, interlock and accepted/running state"
+      },
+      "actions": [
+        "Read back job and safety limits",
+        "Clear station, request start and verify accepted job ID"
+      ],
+      "preconditions": [
+        "Loaded job and guards verified"
+      ],
+      "completion_state": [
+        "Correct job accepted or explicit rejection"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_PROCESS",
+      "title": "Execute enclosed print",
+      "actor": "station_device",
+      "kind": "qualified_station_service",
+      "source_station": "WS_PRINT",
+      "target_station": "WS_PRINT",
+      "manipulated_objects_tools": [
+        "PolyJet station",
+        "bound job"
+      ],
+      "interface": {
+        "command": "Approved fabrication job",
+        "feedback": "Completion/fault and safe-unload interlock"
+      },
+      "actions": [
+        "Run approved enclosed process",
+        "Expose progress, failure and safe-unload state without allowing parameter improvisation"
+      ],
+      "preconditions": [
+        "Accepted start"
+      ],
+      "completion_state": [
+        "Completed job or failed process record"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_UNLOAD",
+      "title": "Receive printed specimen",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_PRINT",
+      "target_station": "WS_PRINT",
+      "manipulated_objects_tools": [
+        "carrier handles",
+        "printed part",
+        "tray"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Wait for safe-unload signal",
+        "Remove supported build carrier without gripping thin bonds",
+        "Assign new specimen ID; record print job/material ancestry"
+      ],
+      "preconditions": [
+        "Completed job and safe release"
+      ],
+      "completion_state": [
+        "Part and carrier received; new physical specimen identity"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_ROBOT",
+        "U_PRINT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "POST_LOAD",
+      "title": "Load postprocessing service",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_POST",
+      "target_station": "WS_POST",
+      "manipulated_objects_tools": [
+        "supported printed specimen",
+        "carrier",
+        "service terminal"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Transfer retained specimen to approved service port",
+        "Bind postprocessing card; request start only after readback"
+      ],
+      "preconditions": [
+        "Received part; qualified service and material controls"
+      ],
+      "completion_state": [
+        "Correct part and recipe accepted"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_POST",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "POST_PROCESS",
+      "title": "Complete qualified postprocessing",
+      "actor": "station_device",
+      "kind": "qualified_station_service",
+      "source_station": "WS_POST",
+      "target_station": "WS_POST",
+      "manipulated_objects_tools": [
+        "enclosed qualified service"
+      ],
+      "interface": {
+        "command": "Qualified postprocess request",
+        "feedback": "Process completion, safe touch/release, residue and waste status"
+      },
+      "actions": [
+        "Perform only supplied support-removal/cleaning/conditioning requirements",
+        "Return disposition, waste record and safe-release indication"
+      ],
+      "preconditions": [
+        "Accepted qualified recipe"
+      ],
+      "completion_state": [
+        "Released postprocessed specimen or quarantined failure"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_POST"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "POST_UNLOAD",
+      "title": "Receive conditioned specimen",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_POST",
+      "target_station": "WS_POST",
+      "manipulated_objects_tools": [
+        "carrier",
+        "tray"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Verify part ID and process completion",
+        "Retrieve on carrier and inspect release state"
+      ],
+      "preconditions": [
+        "Service safe release"
+      ],
+      "completion_state": [
+        "Conditioned part in robot custody"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_POST",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PART_QC",
+      "title": "Inspect geometry and defects",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_QC",
+      "target_station": "WS_QC",
+      "manipulated_objects_tools": [
+        "inspection support",
+        "metrology tools",
+        "specimen"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Support without stretching",
+        "Measure required dimensions and inspect joints/tears/residue",
+        "Match actual geometry to file and accept, rework or quarantine under supplied tolerance"
+      ],
+      "preconditions": [
+        "Postprocessed specimen and metrology qualification"
+      ],
+      "completion_state": [
+        "Dimension/defect record and explicit disposition"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_GEOM",
+        "U_QC",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TRUSS_PREP",
+      "title": "Prepare truss and catcher",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_ASSEMBLY",
+      "target_station": "WS_ASSEMBLY",
+      "manipulated_objects_tools": [
+        "truss parts",
+        "fastener tools",
+        "alignment jig",
+        "catch tray"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Assemble/check connectors with qualified tools",
+        "Verify two fixed-node positions, support rigidity and catch region"
+      ],
+      "preconditions": [
+        "Qualified truss and assembly card"
+      ],
+      "completion_state": [
+        "Truss version, connector checks and catcher installed"
+      ],
+      "evidence_ids": [
+        "E_MOUNT"
+      ],
+      "unknown_parameter_ids": [
+        "U_MOUNT",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "GLUE_MOUNT",
+      "title": "Attach fixed nodes",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_ASSEMBLY",
+      "target_station": "WS_ASSEMBLY",
+      "manipulated_objects_tools": [
+        "supported lattice",
+        "adhesive dispenser",
+        "truss",
+        "alignment jig"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Support approved specimen regions",
+        "Apply qualified adhesive at only prescribed fixed nodes and seat in jig",
+        "Record location, application and cure-start state"
+      ],
+      "preconditions": [
+        "Accepted specimen; complete adhesive/material card"
+      ],
+      "completion_state": [
+        "Mounted specimen supported for qualified cure"
+      ],
+      "evidence_ids": [
+        "E_MOUNT"
+      ],
+      "unknown_parameter_ids": [
+        "U_MOUNT",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CURE_RELEASE",
+      "title": "Verify attachment release",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_ASSEMBLY",
+      "target_station": "WS_ASSEMBLY",
+      "manipulated_objects_tools": [
+        "cure-status interface",
+        "mounted specimen"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Observe qualified cure/attachment acceptance; do not infer time",
+        "Verify fixed-node map, unloaded shape and handling readiness"
+      ],
+      "preconditions": [
+        "Recorded adhesive application and cure conditions"
+      ],
+      "completion_state": [
+        "Mount accepted or quarantined; fixture/specimen link"
+      ],
+      "evidence_ids": [
+        "E_MOUNT"
+      ],
+      "unknown_parameter_ids": [
+        "U_MOUNT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "DOCK_TRUSS",
+      "title": "Dock unloaded test fixture",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "truss handles",
+        "fixture dock",
+        "catch tray"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Seat retained mounted specimen in keyed dock",
+        "Verify stability, node orientation, unloaded state and catcher clearance"
+      ],
+      "preconditions": [
+        "Accepted mount; unloaded supported transfer complete"
+      ],
+      "completion_state": [
+        "Test fixture version and orientation verified"
+      ],
+      "evidence_ids": [
+        "E_MOUNT"
+      ],
+      "unknown_parameter_ids": [
+        "U_MOUNT",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CAMERA_SETUP",
+      "title": "Set imaging hardware",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "DSLR",
+        "tripod",
+        "remote trigger",
+        "lighting tools"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Position perpendicular at sample height",
+        "Read f/5 and ISO 800 with supplied remaining settings",
+        "Lock camera configuration, illumination and metric plane"
+      ],
+      "preconditions": [
+        "Docked specimen; camera card"
+      ],
+      "completion_state": [
+        "Camera setup hash and view/scale readiness"
+      ],
+      "evidence_ids": [
+        "E_CAMERA"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAMERA",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "BOARD_PLACE",
+      "title": "Place calibration target",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "checkerboard",
+        "target holder"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Retrieve identified board and position at qualified plane/poses without contacting sample"
+      ],
+      "preconditions": [
+        "Unloaded fixture and calibration card"
+      ],
+      "completion_state": [
+        "Known-size target visible; pose record"
+      ],
+      "evidence_ids": [
+        "E_CAMERA"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAMERA",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CAL_CAPTURE",
+      "title": "Acquire calibration images",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "camera remote control",
+        "checkerboard"
+      ],
+      "interface": {
+        "command": "Remote camera capture request",
+        "feedback": "Image receipt, timestamp, exposure and configuration hash"
+      },
+      "actions": [
+        "Request prescribed views; verify IDs, exposure and image return"
+      ],
+      "preconditions": [
+        "Target poses verified"
+      ],
+      "completion_state": [
+        "Raw calibration image set with camera state"
+      ],
+      "evidence_ids": [
+        "E_CAMERA"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAMERA"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CAL_SOLVE",
+      "title": "Check metric calibration",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "calibration service",
+        "image set"
+      ],
+      "interface": {
+        "command": "Calibration processing job",
+        "feedback": "Transform, residuals, coordinate units and acceptance"
+      },
+      "actions": [
+        "Solve correction/metric transform and signs from qualified calibration set",
+        "Test declared scale/reprojection thresholds and save transform version"
+      ],
+      "preconditions": [
+        "Complete raw calibration set"
+      ],
+      "completion_state": [
+        "Accepted transform and residuals, or calibration blocker"
+      ],
+      "evidence_ids": [
+        "E_CAMERA"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAMERA"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "BOARD_REMOVE",
+      "title": "Clear calibration target",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "checkerboard",
+        "holder",
+        "storage tray"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Remove board without moving camera or specimen",
+        "Verify loading region and nodes unobstructed"
+      ],
+      "preconditions": [
+        "Calibration accepted"
+      ],
+      "completion_state": [
+        "Board stored; unchanged camera/fixture hashes"
+      ],
+      "evidence_ids": [
+        "E_CAMERA"
+      ],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STRING_PREP",
+      "title": "Prepare string interfaces",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "qualified strings",
+        "scissors",
+        "tweezers",
+        "indexed tray"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Measure/prepare specified string segments on protected tray",
+        "Record material, lengths, attachment type and tare; contain offcuts"
+      ],
+      "preconditions": [
+        "String card and safe tool interface"
+      ],
+      "completion_state": [
+        "Identified prepared string set and tare"
+      ],
+      "evidence_ids": [
+        "E_MOUNT",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_STRING",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STRING_ATTACH",
+      "title": "Attach unloaded strings",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "tweezers",
+        "string interfaces",
+        "specimen input joints"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Support string; attach at verified nodes with qualified winding/retention",
+        "Verify slack/free direction, no unintended bridges or occlusion; keep weights supported separately"
+      ],
+      "preconditions": [
+        "Unloaded accepted specimen and prepared strings"
+      ],
+      "completion_state": [
+        "String-to-node map verified with no hanging weights"
+      ],
+      "evidence_ids": [
+        "E_MOUNT"
+      ],
+      "unknown_parameter_ids": [
+        "U_STRING",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "WEIGHT_CHECK",
+      "title": "Verify weight inventory",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "weights",
+        "indexed tray",
+        "balance or certificates"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Read IDs and verified masses/uncertainty",
+        "Account for holders/string tare; stage all weights fully supported"
+      ],
+      "preconditions": [
+        "Qualified force card"
+      ],
+      "completion_state": [
+        "Measured/qualified inventory and source/station load limits"
+      ],
+      "evidence_ids": [
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "BASELINE",
+      "title": "Capture unloaded reference",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "remote trigger",
+        "unloaded network"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Verify zero active hanging loads and camera/fixture identity",
+        "Request corrected/reference images and save raw images with phase/trial IDs",
+        "Check observable initial drift and tracking visibility"
+      ],
+      "preconditions": [
+        "Calibration accepted; unloaded strings configured; recovery accepted where applicable"
+      ],
+      "completion_state": [
+        "Attributable load-free baseline and node visibility"
+      ],
+      "evidence_ids": [
+        "E_CAMERA",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAMERA",
+        "U_SETTLE",
+        "U_TRACK"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "LOAD_PLAN",
+      "title": "Bind actual force vector",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "condition card",
+        "weights",
+        "load-plan terminal"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Map every active force to node, direction and actual mass including tare accounting",
+        "Check intermediate/final total against min(source envelope,qualified limit)",
+        "For gradient adjoint require zero forward loads and computed target; for Iris bind anonymous input case"
+      ],
+      "preconditions": [
+        "Unloaded baseline and qualified load vector"
+      ],
+      "completion_state": [
+        "Versioned admissible load plan or explicit blocker"
+      ],
+      "evidence_ids": [
+        "E_GRAD",
+        "E_TRACK",
+        "E_IRIS"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "WEIGHT_HANG",
+      "title": "Transfer prescribed weights",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "weights",
+        "node strings",
+        "support tools",
+        "catcher"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Pick approved handle with support maintained",
+        "Seat one attachment at mapped node then transfer load slowly",
+        "Repeat supplied order; read full active vector and clearance; hands clear before image"
+      ],
+      "preconditions": [
+        "Accepted plan and baseline; all weights staged"
+      ],
+      "completion_state": [
+        "Actual load vector verified; no unplanned contact"
+      ],
+      "evidence_ids": [
+        "E_MOUNT",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD",
+        "U_STRING",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "SETTLE",
+      "title": "Observe loaded equilibrium",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "camera/observation interface",
+        "loaded network"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Observe drift and attachment state for supplied criterion",
+        "If slip, overload, unexpected nonlinearity or timeout occurs, mark invalid and begin safe unload"
+      ],
+      "preconditions": [
+        "Verified active vector"
+      ],
+      "completion_state": [
+        "Settled accepted state or failure record"
+      ],
+      "evidence_ids": [
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_SETTLE"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CAPTURE",
+      "title": "Acquire loaded images",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "DSLR remote trigger",
+        "image record interface"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Read specimen/trial/phase/load/camera identities",
+        "Request remote capture; observe image receipt and visibility without touching rig"
+      ],
+      "preconditions": [
+        "Settled accepted state; hands clear"
+      ],
+      "completion_state": [
+        "Raw loaded images with timestamps and provenance"
+      ],
+      "evidence_ids": [
+        "E_CAMERA",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAMERA",
+        "U_TRACK"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TRACK",
+      "title": "Measure node responses",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "raw baseline/loaded images",
+        "image correlation service"
+      ],
+      "interface": {
+        "command": "Versioned image-correlation job",
+        "feedback": "Raw/derived output links, confidence, units and invalid-node list"
+      },
+      "actions": [
+        "Correct images with matched calibration",
+        "Track node centers, retain confidence and missing data",
+        "Derive signed displacement and labeled Euclidean or linear-projected bond elongation; preserve units"
+      ],
+      "preconditions": [
+        "Matched baseline/loaded pair and valid identity map"
+      ],
+      "completion_state": [
+        "Coordinates, confidence, displacement/elongation or explicit unmeasurable status"
+      ],
+      "evidence_ids": [
+        "E_CAMERA",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_TRACK"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "WEIGHT_REMOVE",
+      "title": "Unload every active weight",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "support tools",
+        "weights",
+        "strings",
+        "indexed tray"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Support before disconnecting each weight",
+        "Remove all active weights in qualified order and return to identified slots",
+        "Verify no forward or adjoint/input weight remains"
+      ],
+      "preconditions": [
+        "Station in recoverable supported state"
+      ],
+      "completion_state": [
+        "Zero active hanging loads and complete inventory"
+      ],
+      "evidence_ids": [
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "RECOVERY",
+      "title": "Verify unloaded recovery",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "camera",
+        "unloaded specimen"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Inspect bonds/mount and observe return against supplied residual/drift limits",
+        "Capture recovery record; quarantine damage/slip or require approved rebaseline"
+      ],
+      "preconditions": [
+        "All weights removed"
+      ],
+      "completion_state": [
+        "Accepted recovery or blocker before next phase"
+      ],
+      "evidence_ids": [
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_SETTLE",
+        "U_TRACK"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ADJOINT_COMPUTE",
+      "title": "Calculate measured adjoint target",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "forward measured output",
+        "loss/force-scale card"
+      ],
+      "interface": {
+        "command": "Measured loss-derivative processing request",
+        "feedback": "Input IDs, force scale/sign, continuous target, discrete choice and residual"
+      },
+      "actions": [
+        "Calculate negative loss derivative from this trial measured output with explicit units/sign/scale",
+        "Convert continuous force to allowable discrete mass vector; save rounding residual and chosen correction policy",
+        "Reject unsupported sign, excess load or unacceptable quantization; never use published response as current measurement"
+      ],
+      "preconditions": [
+        "Accepted forward record and recovery; same specimen geometry"
+      ],
+      "completion_state": [
+        "Traceable adjoint target/actual-mass request or blocker"
+      ],
+      "evidence_ids": [
+        "E_GRAD",
+        "E_SAME"
+      ],
+      "unknown_parameter_ids": [
+        "U_ADJOINT",
+        "U_LOAD"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PAIR_GRADIENT",
+      "title": "Combine corresponding bond fields",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "forward/adjoint elongation records",
+        "analysis service"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Require same specimen/geometry and compatible map/calibration; phases mutually exclusive",
+        "Join by bond IDs; compute element-wise products and qualified force-scale correction/uncertainty",
+        "Keep measurement/model distinctions and no physical width change"
+      ],
+      "preconditions": [
+        "Both phases measured and unloaded; paired lineage intact"
+      ],
+      "completion_state": [
+        "Per-bond measured gradient estimate with uncertainty/validity"
+      ],
+      "evidence_ids": [
+        "E_GRAD",
+        "E_SAME"
+      ],
+      "unknown_parameter_ids": [
+        "U_ADJOINT",
+        "U_TRACK"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "BEHAVIOR_ANALYZE",
+      "title": "Compare two output responses",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "measured output coordinates",
+        "condition record"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Compute signed and absolute vertical responses and difference",
+        "Compute response fractions only for valid denominator; preserve ambiguous ordering",
+        "Link separate initial/trained specimen versions"
+      ],
+      "preconditions": [
+        "Accepted behavior records"
+      ],
+      "completion_state": [
+        "Actual response comparison and uncertainty"
+      ],
+      "evidence_ids": [
+        "E_BEHAV",
+        "E_RIGHT"
+      ],
+      "unknown_parameter_ids": [
+        "U_TRACK"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "REGRESSION_ANALYZE",
+      "title": "Analyze load sweep",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "seven load cases",
+        "signed target card"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Require measured x/y at both outputs for each requested mass and repeat",
+        "Fit supplied regression and compute residual/loss/norm with unit/sign audit",
+        "Keep zero condition; invalid target norm yields unavailable metric"
+      ],
+      "preconditions": [
+        "Complete or explicitly partial sweep"
+      ],
+      "completion_state": [
+        "Load-response data and scope-limited comparison"
+      ],
+      "evidence_ids": [
+        "E_REG"
+      ],
+      "unknown_parameter_ids": [
+        "U_REG",
+        "U_TRACK"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "IRIS_CLASSIFY",
+      "title": "Commit measured class result",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "three horizontal outputs",
+        "anonymous case record"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Apply qualified signed-displacement normalization and tie rule",
+        "Commit predicted class/ambiguous status before evaluator label access",
+        "Separate per-case physical results from numerical full-dataset accuracy"
+      ],
+      "preconditions": [
+        "Four-force input verified; measured outputs available"
+      ],
+      "completion_state": [
+        "Attributable prediction, uncertainty and later optional label comparison"
+      ],
+      "evidence_ids": [
+        "E_IRIS"
+      ],
+      "unknown_parameter_ids": [
+        "U_IRIS",
+        "U_TRACK"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "AGGREGATE",
+      "title": "Summarize valid trials",
+      "actor": "analysis_service",
+      "kind": "digital_processing",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "trial records",
+        "specimen allocation"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Separate repeats/specimens/configurations and failed attempts",
+        "Aggregate only comparable valid measurements; report sample size and missing conditions",
+        "Do not invent SD with insufficient observations or pool numerical runs"
+      ],
+      "preconditions": [
+        "Trial dispositions and processing records available"
+      ],
+      "completion_state": [
+        "Measured summaries with n and limits"
+      ],
+      "evidence_ids": [
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_REPEAT"
+      ],
+      "provenance": {
+        "macro_stage": "source_macro_with_authored_robot_translation",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STRING_REMOVE",
+      "title": "Remove releasable strings",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "string tools",
+        "unloaded network",
+        "tray"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Confirm all weights absent and support specimen",
+        "Remove only card-approved releasable strings; store safely if removal would damage specimen"
+      ],
+      "preconditions": [
+        "Accepted safe unloaded state"
+      ],
+      "completion_state": [
+        "Strings removed or retained-safe disposition; no loaded dangling line"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_STRING",
+        "U_CLEAN",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "UNDOCK",
+      "title": "Unload test fixture",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "truss handles",
+        "carrier",
+        "dock tools"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Support truss before releasing dock",
+        "Move mounted specimen into retained carrier; never peel unknown adhesive"
+      ],
+      "preconditions": [
+        "Zero active weights; safe strings; archive card"
+      ],
+      "completion_state": [
+        "Unloaded supported mounted specimen in carrier"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_MOUNT",
+        "U_CLEAN",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Store identified specimen",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_ARCHIVE",
+      "target_station": "WS_ARCHIVE",
+      "manipulated_objects_tools": [
+        "carrier",
+        "mounted specimen",
+        "label tool"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Place supported mounted specimen in assigned slot",
+        "Read specimen/fixture IDs and condition history; record archive location"
+      ],
+      "preconditions": [
+        "Destination ready and retained transport"
+      ],
+      "completion_state": [
+        "Archive custody and condition record"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CLEAN",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CLEANUP",
+      "title": "Clean and reconcile stations",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_TEST",
+      "target_station": "WS_TEST",
+      "manipulated_objects_tools": [
+        "approved cleaning tools",
+        "catch tray",
+        "tool trays",
+        "waste service"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Inventory weights/tools and inspect for drops, offcuts and dangling strings",
+        "Clean station and approved tools using qualified material-safe method",
+        "Confirm fabrication/postprocess station closure and waste disposition through service"
+      ],
+      "preconditions": [
+        "Samples archived and stations safe"
+      ],
+      "completion_state": [
+        "Clean/clear station checklist and full material accounting"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CLEAN",
+        "U_ROBOT"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "REPORT",
+      "title": "Close measured work order",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_RECORDS",
+      "target_station": "WS_RECORDS",
+      "manipulated_objects_tools": [
+        "record terminal",
+        "lineage package"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Report completed/failed/blocked/unattempted conditions and actual raw-data coverage",
+        "Distinguish source facts, authored choices, measured results and numerical outputs",
+        "Link archive and safe closure; never infer unobserved scientific success"
+      ],
+      "preconditions": [
+        "Records and closure dispositions available"
+      ],
+      "completion_state": [
+        "Auditable scope-bounded final report"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "RETURN_TOOLS",
+      "title": "Return tools and weights",
+      "actor": "mobile_robot",
+      "kind": "mobile_robot_hands_on",
+      "source_station": "WS_STOCK",
+      "target_station": "WS_STOCK",
+      "manipulated_objects_tools": [
+        "indexed tool tray",
+        "weight tray",
+        "storage slots"
+      ],
+      "interface": {
+        "command": "Physical handling through qualified robot/tool card",
+        "feedback": "Observed seating, labels, custody and card-defined instrument readback"
+      },
+      "actions": [
+        "Verify every issued tool and weight against custody record",
+        "Place each in its verified storage slot and record return"
+      ],
+      "preconditions": [
+        "Cleaned and inventoried trays; storage destination ready"
+      ],
+      "completion_state": [
+        "Returned tools/weights and reconciled stock manifest"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT",
+        "U_CLEAN"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_not_source_trajectory"
+      },
+      "recoveries": [
+        "Stop loading/device request; retain current record and failed attempt ID; support/isolate equipment under qualified recovery card",
+        "Inspect public feedback; quarantine damage; retry only after verified repair/reset; request intervention if safe release is unavailable"
+      ],
+      "execution_mode": "symbolic_design_only"
+    }
+  ]
+}

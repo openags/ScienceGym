@@ -1,0 +1,168 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "unknowns": [
+    {
+      "id": "U_ROBOT",
+      "title": "Robot, carriers and tools",
+      "required_content": "Reach, payload, approved grasp/contact regions, dexterity, navigation routes, docking, drop/pinch recovery and acceptance readbacks",
+      "blocks": "All physical action",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_GEOM",
+      "title": "Complete manufacturing geometry",
+      "required_content": "Node IDs/coordinates, bond endpoints/order, per-bond widths, thinner-end interpretation, pads, tolerances, orientation and versioned files",
+      "blocks": "Fabrication and node/geometry mapping",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_TRAIN",
+      "title": "Numerical design provenance",
+      "required_content": "Reviewed implementation/version, dataset hashes, seed/split, projection strength, stop criterion, optimizer options and design checkpoint; or approved supplied geometry with provenance",
+      "blocks": "Numerical training and final geometry release",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_PRINT",
+      "title": "PolyJet manufacturing card",
+      "required_content": "Material qualification, printer setup, build orientation, support strategy, job recipe, interlocks and safe-unload acceptance",
+      "blocks": "Starting print",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_POST",
+      "title": "Qualified postprocessing",
+      "required_content": "Support removal, cleaning/conditioning/cure requirements if applicable, enclosed-service interface, material hazards and waste",
+      "blocks": "Receiving usable specimen",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_QC",
+      "title": "Inspection acceptance",
+      "required_content": "Dimension/defect tolerance, metrology uncertainty and rework/quarantine policy",
+      "blocks": "Accepting specimen",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_MOUNT",
+      "title": "Mounting and adhesion",
+      "required_content": "Truss dimensions/connectors, fixed-node map, adhesive identity/application/surface prep/cure, attachment qualification and safe storage/release",
+      "blocks": "Cure release and load test",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_CAMERA",
+      "title": "Calibrated imaging",
+      "required_content": "Lens/exposure/focus/distance/lighting, checkerboard dimensions/poses, pixel scale, plane/sign transform and acceptance thresholds",
+      "blocks": "Any displacement measurement",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_STRING",
+      "title": "Qualified string attachment",
+      "required_content": "Material/length/winding/retention, node interface, tare, routing and safe removal method",
+      "blocks": "Attaching load",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_LOAD",
+      "title": "Qualified force card",
+      "required_content": "Weight IDs/masses/uncertainty/tare, per-node vector, limits, slow-load order, clearance, force direction and catcher",
+      "blocks": "Any loaded state",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_SETTLE",
+      "title": "Acquisition and recovery",
+      "required_content": "Observable drift/equilibrium criterion, timeout, observation cadence, recovery residual tolerance and rebaseline policy",
+      "blocks": "Loaded capture and next condition",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_TRACK",
+      "title": "Tracking and analysis",
+      "required_content": "Node templates/search windows, correlation threshold, units/signs, uncertainty/outliers, missing-node handling and elongation method",
+      "blocks": "Derived displacement/elongation",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_ADJOINT",
+      "title": "Loss-to-force convention",
+      "required_content": "Dimensional loss normalization, derivative sign/scale, admissible force, discrete-mass selection/error bound and correction policy",
+      "blocks": "Adjoint loading and exact-gradient claims",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_IRIS",
+      "title": "Iris case lineage",
+      "required_content": "Original record IDs/features, scale, rounding rule, node/load map, integer masses, classifier normalization/tie policy; evaluator label held separately",
+      "blocks": "Three physical classification inputs",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_REG",
+      "title": "Regression processing",
+      "required_content": "Signed force convention, coefficient units, target construction, intercept policy and loss/norm aggregation; zero-target handling",
+      "blocks": "Regression model comparison",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_REPEAT",
+      "title": "Trial and specimen plan",
+      "required_content": "Requested independent repeats, physical specimen allocation/reuse/history, reset independence and aggregation",
+      "blocks": "Campaign/repeat claims",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_CLEAN",
+      "title": "Safe closure",
+      "required_content": "Archive fixture arrangement, string release, approved cleaning, waste and intervention procedure",
+      "blocks": "Unloading/cleanup closure",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    },
+    {
+      "id": "U_MODEL_COMPARE",
+      "title": "Reference comparison",
+      "required_content": "Bond/order mapping, model parameters, raw-to-reference matching, metric definition and uncertainty; no copied expected outputs",
+      "blocks": "Optional exact source/model reproduction",
+      "value": null,
+      "status": "qualified_input_required",
+      "default_policy": "No inferred default; absent is not zero; stop affected action"
+    }
+  ]
+}

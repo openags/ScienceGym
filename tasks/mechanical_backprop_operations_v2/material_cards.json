@@ -1,0 +1,119 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "materials": [
+    {
+      "id": "AGILUS30",
+      "source_nominal": "Black flexible Agilus30",
+      "role": "PolyJet lattice material",
+      "gates": [
+        "U_PRINT",
+        "U_POST",
+        "U_QC"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ]
+    },
+    {
+      "id": "GEOMETRY",
+      "source_nominals": {
+        "bar_length_mm": 16,
+        "thickness_mm": 2,
+        "initial_middle_width_mm": 2,
+        "numerical_middle_width_bounds_mm": [
+          1.5,
+          2.5
+        ],
+        "joint_width_fraction_of_bar": 0.5,
+        "bar_to_thinner_end_length_ratio": [
+          8,
+          1
+        ]
+      },
+      "limits": "Not a CAD or printer recipe; resolve end-length interpretation and all node/bond geometry",
+      "gates": [
+        "U_GEOM"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_GEOM",
+        "E_COMPUTE"
+      ]
+    },
+    {
+      "id": "TRUSS_ADHESIVE",
+      "source_nominal": "Two identified fixed nodes glued to truss",
+      "gates": [
+        "U_MOUNT"
+      ],
+      "evidence_ids": [
+        "E_MOUNT"
+      ]
+    },
+    {
+      "id": "STRING",
+      "source_nominal": "Thin strings wound at input-node joints",
+      "gates": [
+        "U_STRING"
+      ],
+      "evidence_ids": [
+        "E_MOUNT"
+      ]
+    },
+    {
+      "id": "WEIGHTS",
+      "source_nominals": {
+        "source_total_hanging_mass_envelope_g": 20,
+        "g_m_s2": 9.8,
+        "integer_weights_for_classification": true
+      },
+      "limits": "Actual mass/tare/direction and stricter qualified limits control; nominal source cap is not safety qualification",
+      "gates": [
+        "U_LOAD"
+      ],
+      "evidence_ids": [
+        "E_TRACK",
+        "E_COMPUTE"
+      ]
+    },
+    {
+      "id": "CAMERA",
+      "source_nominals": {
+        "type": "DSLR on tripod, remotely triggered",
+        "f_number": 5.0,
+        "ISO": 800,
+        "calibration": "checkerboard",
+        "view": "perpendicular to sample plane at sample height"
+      },
+      "gates": [
+        "U_CAMERA"
+      ],
+      "evidence_ids": [
+        "E_CAMERA"
+      ]
+    }
+  ],
+  "authored_inventory": [
+    "supported retained carriers",
+    "indexed weight/tool trays",
+    "catcher",
+    "qualified scissors/tweezers/fastener tools",
+    "inspection support and metrology",
+    "archive labels and fixture slots"
+  ],
+  "model_only": {
+    "Young_modulus_Pa": 550000,
+    "bar_stiffness": "k=Y*t*w/L; SI equation visually checked, not misread as multiplication by L",
+    "Adam_learning_rates": {
+      "behavior": 0.005,
+      "regression": 0.1,
+      "classification": 0.006
+    },
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "batch_size_regression_classification": 16,
+    "projection_eta": "1 to 10 depending on case; exact route value unresolved",
+    "not_material_certificate": true
+  }
+}

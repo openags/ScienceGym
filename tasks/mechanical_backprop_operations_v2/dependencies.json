@@ -1,0 +1,196 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "edges": [
+    {
+      "from": "PLAN",
+      "to": "STOCK",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "TRAIN_BIND",
+      "to": "TRAIN_RUN",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "TRAIN_RUN",
+      "to": "GEOMETRY_RELEASE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "GEOMETRY_RELEASE",
+      "to": "PRINT_LOAD",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "PRINT_LOAD",
+      "to": "PRINT_START",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "PRINT_START",
+      "to": "PRINT_PROCESS",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "PRINT_PROCESS",
+      "to": "PRINT_UNLOAD",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "PRINT_UNLOAD",
+      "to": "POST_LOAD",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "POST_LOAD",
+      "to": "POST_PROCESS",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "POST_PROCESS",
+      "to": "POST_UNLOAD",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "POST_UNLOAD",
+      "to": "PART_QC",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "PART_QC",
+      "to": "GLUE_MOUNT",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "TRUSS_PREP",
+      "to": "GLUE_MOUNT",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "GLUE_MOUNT",
+      "to": "CURE_RELEASE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "CURE_RELEASE",
+      "to": "DOCK_TRUSS",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "DOCK_TRUSS",
+      "to": "CAMERA_SETUP",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "CAMERA_SETUP",
+      "to": "BOARD_PLACE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "BOARD_PLACE",
+      "to": "CAL_CAPTURE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "CAL_CAPTURE",
+      "to": "CAL_SOLVE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "CAL_SOLVE",
+      "to": "BOARD_REMOVE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "STRING_PREP",
+      "to": "STRING_ATTACH",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "STRING_ATTACH",
+      "to": "BASELINE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "BOARD_REMOVE",
+      "to": "BASELINE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "WEIGHT_CHECK",
+      "to": "LOAD_PLAN",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "BASELINE",
+      "to": "LOAD_PLAN",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "LOAD_PLAN",
+      "to": "WEIGHT_HANG",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "WEIGHT_HANG",
+      "to": "SETTLE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "SETTLE",
+      "to": "CAPTURE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "CAPTURE",
+      "to": "TRACK",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "CAPTURE",
+      "to": "WEIGHT_REMOVE",
+      "scope": "preparation or one acquisition phase"
+    },
+    {
+      "from": "WEIGHT_REMOVE",
+      "to": "RECOVERY",
+      "scope": "preparation or one acquisition phase"
+    }
+  ],
+  "scoped_relations": [
+    {
+      "scope": "gradient trial",
+      "rule": "forward.TRACK and forward.RECOVERY precede ADJOINT_COMPUTE; adjoint baseline and load require forward weights absent; adjoint.TRACK and adjoint.RECOVERY precede PAIR_GRADIENT"
+    },
+    {
+      "scope": "next condition or trial",
+      "rule": "previous WEIGHT_REMOVE and RECOVERY precede next BASELINE; changed fixture/camera invalidates calibration and baseline as card requires"
+    },
+    {
+      "scope": "station change",
+      "rule": "insert MOVE with actual source/target, zero active weights, secured carrier and custody receipt before physical operation at next station"
+    },
+    {
+      "scope": "digital jobs",
+      "rule": "analysis may process records remotely while specimen remains at WS_TEST; no implicit specimen transport to WS_RECORDS"
+    },
+    {
+      "scope": "closure",
+      "rule": "WEIGHT_REMOVE and safe RECOVERY precede STRING_REMOVE then UNDOCK, MOVE to archive, ARCHIVE, CLEANUP and REPORT"
+    }
+  ],
+  "conditional_routes": [
+    {
+      "route": "supplied qualified geometry",
+      "allowed_skip": [
+        "TRAIN_RUN numerical execution"
+      ],
+      "condition": "retain provenance validation; never claim training was run"
+    },
+    {
+      "route": "preassembled specimen handoff",
+      "condition": "only explicit preparation-excluded episode; cannot satisfy fabrication-required campaign"
+    }
+  ]
+}

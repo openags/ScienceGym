@@ -1,0 +1,195 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "paper": {
+    "title": "Training all-mechanical neural networks for task learning through in situ backpropagation",
+    "authors": [
+      "Shuaifeng Li",
+      "Xiaoming Mao"
+    ],
+    "journal": "Nature Communications",
+    "year": 2024,
+    "volume": 15,
+    "article_number": 10528,
+    "published": "2024-12-09",
+    "url": "https://www.nature.com/articles/s41467-024-54849-z"
+  },
+  "sources": [
+    {
+      "id": "MAIN",
+      "url": "https://www.nature.com/articles/s41467-024-54849-z",
+      "access": "Full article text, Methods, captions, availability and rights read through web parser; no local main byte hash",
+      "inspected_date": "2026-10-03",
+      "exported": false
+    },
+    {
+      "id": "SI",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54849-z/MediaObjects/41467_2024_54849_MOESM1_ESM.pdf",
+      "access": "All 16 pages text read; rendered pages 2, 9, 12, 13 visually inspected",
+      "inspected_date": "2026-10-03",
+      "exported": false,
+      "bytes": 4088386,
+      "sha256": "de1d848c3598b5418394d374e64ed4d18daf0a0228c39f9d53e935383efc2998",
+      "pages": 16
+    },
+    {
+      "id": "MOVIE_DESCRIPTIONS",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54849-z/MediaObjects/41467_2024_54849_MOESM2_ESM.pdf",
+      "access": "Downloaded ordinary direct request and read all descriptions",
+      "inspected_date": "2026-10-03",
+      "exported": false,
+      "bytes": 48621,
+      "sha256": "c37565351184ec36f75edadcc211586b6d99fa5b6cc67b19b51471f9f6695a3d",
+      "pages": 1
+    },
+    {
+      "id": "REPORTING_SUMMARY",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54849-z/MediaObjects/41467_2024_54849_MOESM8_ESM.pdf",
+      "access": "Downloaded and all 3 pages text read; self-reported design metadata",
+      "inspected_date": "2026-10-03",
+      "exported": false,
+      "bytes": 228795,
+      "sha256": "77985d1072336fcfce1fd9e4c57a6b9f3cf3d8d40de62a416730aa12a172af02",
+      "pages": 3
+    },
+    {
+      "id": "SOURCE_DATA",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54849-z/MediaObjects/41467_2024_54849_MOESM10_ESM.xlsx",
+      "access": "Downloaded; all 5 sheet names/dimensions/headers and relevant physical columns inspected read-only; not exhaustive numeric reproduction",
+      "inspected_date": "2026-10-03",
+      "exported": false,
+      "bytes": 608986,
+      "sha256": "5b36a6fc336f1fad5155775c90747c3008654a69c46ea523ed32de2416f49a2e"
+    },
+    {
+      "id": "AUTHOR_REPO",
+      "url": "https://github.com/mao-research-group/Mechanical-neural-networks",
+      "access": "README/root inventory read; implementation files, archived version and license text not audited; no code execution",
+      "inspected_date": "2026-10-03",
+      "exported": false
+    }
+  ],
+  "evidence": {
+    "E_GRAD": {
+      "source_id": "MAIN",
+      "locator": "Results: In situ backpropagation; Fig.1; Eqs.1-8",
+      "supports": "Physical paired fields; computer-generated adjoint force and products; independent phases; three experiments"
+    },
+    "E_SAME": {
+      "source_id": "SI",
+      "locator": "Note 1 pp. 1-2; Fig.S1 p9",
+      "supports": "Same-node physical gradient case, 20 g forward and approximately 5 g adjoint"
+    },
+    "E_FAB": {
+      "source_id": "MAIN",
+      "locator": "Methods: Sample fabrication",
+      "supports": "PolyJet J850 Digital Anatomy, black Agilus30; half-width compliant ends"
+    },
+    "E_GEOM": {
+      "source_id": "SI",
+      "locator": "Note 6 p. 7",
+      "supports": "16 mm bars, 2 mm thickness, thinner-end ratio; geometric details remain incomplete"
+    },
+    "E_MOUNT": {
+      "source_id": "MAIN",
+      "locator": "Methods: Experimental setup and measurements",
+      "supports": "Two identified fixed nodes glued to truss; thin strings at input joints"
+    },
+    "E_CAMERA": {
+      "source_id": "MAIN",
+      "locator": "Methods: Experimental setup and measurements",
+      "supports": "DSLR, remote trigger, tripod, f/5.0, ISO 800; perpendicular view; checkerboard correction"
+    },
+    "E_TRACK": {
+      "source_id": "SI",
+      "locator": "Note 6 pp. 7-8",
+      "supports": "Unloaded/loaded images; image correlation; total hanging weights no more than 20 g; integer weights; three repeats"
+    },
+    "E_BEHAV": {
+      "source_id": "MAIN",
+      "locator": "Results: Behaviors learning; Fig.2",
+      "supports": "Uniform and trained left-dominant physical comparison under 5 g input; training numerical"
+    },
+    "E_RIGHT": {
+      "source_id": "SI",
+      "locator": "Note 4 pp. 5-6; Fig.S4 p12",
+      "supports": "Right-dominant trained network explicitly compared experimentally and numerically"
+    },
+    "E_MSE": {
+      "source_id": "SI",
+      "locator": "Note 4 pp. 5-6; Fig.S5 p13",
+      "supports": "Four MSE target pairs; no explicit experimental designation for these extra variants"
+    },
+    "E_REG": {
+      "source_id": "MAIN",
+      "locator": "Results: Regression; Fig.3 and Eqs.9-10",
+      "supports": "Final-network physical mass sweep 0 to 12 g in 2 g steps; four output components; numerical noisy/noise-free training"
+    },
+    "E_IRIS": {
+      "source_id": "MAIN",
+      "locator": "Results: Classification; Fig.4",
+      "supports": "Physical three-case test distinct from numerical test-set accuracy; four downward force inputs and three horizontal outputs"
+    },
+    "E_COMPUTE": {
+      "source_id": "SI",
+      "locator": "Notes 2-3 pp. 2-5",
+      "supports": "Bar stiffness, projection, Adam, FEM validation, EP comparison; simulation parameters"
+    },
+    "E_CLASS_ALT": {
+      "source_id": "SI",
+      "locator": "Note 5 pp. 6-7; Figs.S6-S8 pp13-15",
+      "supports": "Numerical confusion matrices, alternate input/output node maps and penguin classification"
+    },
+    "E_RETRAIN": {
+      "source_id": "MAIN",
+      "locator": "Results: Retrainability; Fig.5",
+      "supports": "Task switching and damage retraining explicitly numerical"
+    },
+    "E_DAMAGE": {
+      "source_id": "SI",
+      "locator": "Note 7 pp. 8-9; Fig.S9 p15",
+      "supports": "Numerical bond importance and rank-deficient zero modes"
+    },
+    "E_BOUNDARY": {
+      "source_id": "MAIN",
+      "locator": "Discussion paragraphs on current implementation and future setup",
+      "supports": "Spring updates numerical; physical self-update and microcontroller loop proposed"
+    },
+    "E_VIDEO": {
+      "source_id": "MOVIE_DESCRIPTIONS",
+      "locator": "one-page description sheet",
+      "supports": "Videos 1-5 described as training/retraining evolutions, not physical manipulation methods"
+    },
+    "E_REPORT": {
+      "source_id": "REPORTING_SUMMARY",
+      "locator": "pp1-3",
+      "supports": "Author-reported ML design metadata; not independent verification of split/leakage claims"
+    },
+    "E_DATA": {
+      "source_id": "SOURCE_DATA",
+      "locator": "Figure1 F:L; Figure2 A:I; Figure3 H:K; Figure4 J:R",
+      "supports": "Figure-level reported experimental outputs and uncertainty; no recovered raw-image/physical specimen mapping"
+    },
+    "E_REPO": {
+      "source_id": "AUTHOR_REPO",
+      "locator": "README and root listing",
+      "supports": "MATLAB R2023a examples; data.xlsx figure data; implementation files not inspected"
+    }
+  },
+  "authored_translation": "Every robot trajectory/tool/contact/interface/acceptance/recovery is authored and requires qualification; source facts do not establish robotics feasibility",
+  "execution": {
+    "robot_execution": false,
+    "physical_simulation": false,
+    "fabrication": false,
+    "experiment": false,
+    "numerical_training": false,
+    "downloaded_author_code_execution": false,
+    "remote_write": false
+  },
+  "license": {
+    "article": "CC BY-NC-ND 4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "project": "Existing repository Apache-2.0 LICENSE left unchanged; not a license for third-party material",
+    "export": "Original task contracts and factual pointers only; no source raw text/pixels/arrays or copied code"
+  }
+}

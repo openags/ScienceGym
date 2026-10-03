@@ -1,0 +1,126 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "identity_types": [
+    "work_order_id",
+    "material_lot_id",
+    "geometry_id",
+    "geometry_version",
+    "node_map_hash",
+    "bond_map_hash",
+    "numerical_job_id",
+    "model_version",
+    "dataset_hash",
+    "split_seed",
+    "print_job_id",
+    "postprocess_job_id",
+    "specimen_id",
+    "fixture_id",
+    "fixture_version",
+    "mount_id",
+    "string_id",
+    "weight_id",
+    "calibration_id",
+    "camera_state_hash",
+    "trial_id",
+    "case_token",
+    "phase_id",
+    "attempt_id",
+    "raw_image_id",
+    "baseline_id",
+    "processing_version",
+    "result_id",
+    "archive_slot",
+    "geometry_origin_record",
+    "geometry_validation_record"
+  ],
+  "required_chains": [
+    [
+      "material_lot_id",
+      "print_job_id",
+      "specimen_id"
+    ],
+    [
+      "specimen_id",
+      "mount_id",
+      "fixture_version",
+      "trial_id"
+    ],
+    [
+      "calibration_id",
+      "baseline_id",
+      "raw_image_id",
+      "processing_version",
+      "result_id"
+    ],
+    [
+      "trial_id",
+      "case_token",
+      "phase_id",
+      "weight_id",
+      "raw_image_id"
+    ],
+    [
+      "specimen_id",
+      "fixture_id",
+      "archive_slot"
+    ],
+    [
+      "geometry_origin_record",
+      "geometry_version",
+      "print_job_id"
+    ]
+  ],
+  "invariants": [
+    "Reprint creates new specimen; digital width update never alters physical specimen",
+    "Forward and adjoint records pair only on same specimen, geometry version, trial and mapped bond IDs",
+    "All changed strings/fixture/camera states require explicit new version and baseline policy",
+    "Input record identity and evaluator label are separate from anonymous actor case token",
+    "Independent trial count is not independent specimen count; source specimen allocation unknown",
+    "Archive/transfer records preserve one current physical custody location",
+    "Failed captures, rejected prints, dropped loads and retries remain separately recorded",
+    "A recalculation creates a new result version and never overwrites raw images",
+    "Source workbook aggregates are not new experimental trial records"
+  ],
+  "required_trial_fields": [
+    "actual_load_vector",
+    "continuous_target_force_if_adjoint",
+    "actual_applied_force",
+    "mass_rounding_residual",
+    "force_scale_convention",
+    "image_units_and_axes",
+    "equilibrium_check",
+    "recovery_check",
+    "validity_reason",
+    "specimen_history"
+  ],
+  "source_historical_lineage": {
+    "specimen_count": null,
+    "specimen_reuse_between_figures": null,
+    "raw_image_to_trial_mapping": null,
+    "Iris_original_row_mapping": null,
+    "policy": "unknown, never synthesized from aggregate source data"
+  },
+  "conditional_chains": [
+    {
+      "when": "geometry created by numerical training",
+      "chain": [
+        "numerical_job_id",
+        "model_version",
+        "dataset_hash",
+        "geometry_version",
+        "print_job_id"
+      ]
+    },
+    {
+      "when": "initial or supplied geometry",
+      "chain": [
+        "geometry_origin_record",
+        "geometry_validation_record",
+        "geometry_version",
+        "print_job_id"
+      ],
+      "note": "No fictitious training run; record initial design or verified import provenance"
+    }
+  ]
+}

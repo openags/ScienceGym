@@ -1,0 +1,216 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "rows": [
+    {
+      "paper_family": "Fabrication/mount/calibration",
+      "disposition": "physical_route_with_execution_gates",
+      "task_branch_ids": [
+        "GRADIENT_SEPARATE",
+        "GRADIENT_SAME",
+        "BEHAVIOR_UNIFORM",
+        "BEHAVIOR_LEFT",
+        "BEHAVIOR_RIGHT",
+        "REGRESSION_SWEEP",
+        "IRIS_CASE_1",
+        "IRIS_CASE_2",
+        "IRIS_CASE_3"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_GEOM",
+        "E_MOUNT",
+        "E_CAMERA",
+        "E_TRACK"
+      ]
+    },
+    {
+      "paper_family": "Different-node gradient",
+      "disposition": "physical_route_with_execution_gates",
+      "task_branch_ids": [
+        "GRADIENT_SEPARATE"
+      ],
+      "evidence_ids": [
+        "E_GRAD"
+      ]
+    },
+    {
+      "paper_family": "Same-node gradient",
+      "disposition": "physical_route_with_execution_gates",
+      "task_branch_ids": [
+        "GRADIENT_SAME"
+      ],
+      "evidence_ids": [
+        "E_SAME"
+      ]
+    },
+    {
+      "paper_family": "Initial/trained behavior",
+      "disposition": "physical_route_with_execution_gates",
+      "task_branch_ids": [
+        "BEHAVIOR_UNIFORM",
+        "BEHAVIOR_LEFT",
+        "BEHAVIOR_RIGHT"
+      ],
+      "evidence_ids": [
+        "E_BEHAV",
+        "E_RIGHT"
+      ]
+    },
+    {
+      "paper_family": "Final regression",
+      "disposition": "physical_route_with_execution_gates",
+      "task_branch_ids": [
+        "REGRESSION_SWEEP"
+      ],
+      "evidence_ids": [
+        "E_REG"
+      ]
+    },
+    {
+      "paper_family": "Three physical Iris inputs",
+      "disposition": "physical_route_with_execution_gates",
+      "task_branch_ids": [
+        "IRIS_CASE_1",
+        "IRIS_CASE_2",
+        "IRIS_CASE_3"
+      ],
+      "evidence_ids": [
+        "E_IRIS"
+      ]
+    },
+    {
+      "paper_family": "Linear adjoint derivation",
+      "disposition": "numerical_or_analytical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_ADJOINT",
+      "evidence_ids": [
+        "E_GRAD",
+        "E_COMPUTE"
+      ]
+    },
+    {
+      "paper_family": "Finite-difference and nonlinear error comparison",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_ERROR",
+      "evidence_ids": [
+        "E_GRAD"
+      ]
+    },
+    {
+      "paper_family": "Bar and three-dimensional FEM comparison",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_FEM",
+      "evidence_ids": [
+        "E_COMPUTE"
+      ]
+    },
+    {
+      "paper_family": "Equilibrium propagation comparison",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_EP",
+      "evidence_ids": [
+        "E_COMPUTE"
+      ]
+    },
+    {
+      "paper_family": "Behavior optimization",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_BEHAV_TRAIN",
+      "evidence_ids": [
+        "E_BEHAV",
+        "E_COMPUTE"
+      ]
+    },
+    {
+      "paper_family": "Prescribed displacement feasibility",
+      "disposition": "numerical_no_physical_demonstration_established",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_MSE",
+      "evidence_ids": [
+        "E_MSE"
+      ]
+    },
+    {
+      "paper_family": "Noisy and noise-free regression training",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_REG_TRAIN",
+      "evidence_ids": [
+        "E_REG",
+        "E_COMPUTE"
+      ]
+    },
+    {
+      "paper_family": "Iris training and confusion matrices",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_IRIS_TRAIN",
+      "evidence_ids": [
+        "E_IRIS",
+        "E_CLASS_ALT"
+      ]
+    },
+    {
+      "paper_family": "Alternative Iris input/output maps",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_IRIS_MAPS",
+      "evidence_ids": [
+        "E_CLASS_ALT"
+      ]
+    },
+    {
+      "paper_family": "Penguin classification",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_PENGUIN",
+      "evidence_ids": [
+        "E_CLASS_ALT"
+      ]
+    },
+    {
+      "paper_family": "Classification-regression-classification retraining",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_SWITCH",
+      "evidence_ids": [
+        "E_RETRAIN"
+      ]
+    },
+    {
+      "paper_family": "Pruning and damage retraining",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_DAMAGE",
+      "evidence_ids": [
+        "E_RETRAIN",
+        "E_DAMAGE"
+      ]
+    },
+    {
+      "paper_family": "Bond importance and zero modes",
+      "disposition": "numerical",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_IMPORTANCE",
+      "evidence_ids": [
+        "E_DAMAGE"
+      ]
+    },
+    {
+      "paper_family": "Programmable materials and microcontroller loop",
+      "disposition": "proposed_not_implemented",
+      "task_branch_ids": [],
+      "nonmanual_id": "N_FUTURE",
+      "evidence_ids": [
+        "E_BOUNDARY"
+      ]
+    }
+  ],
+  "coverage_claim": "Whole-paper task-family disposition, not exhaustive reproduction or complete source/code/movie audit",
+  "no_silent_omissions": true
+}

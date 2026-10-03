@@ -1,0 +1,68 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "status": "projection_contract_not_runtime_implementation",
+  "selected_goal_templates": {
+    "GRADIENT_SEPARATE": {
+      "public_goal_id": "gradient_separate",
+      "text": "Prepare an identified network and measure both independent load fields, preserving every image, load and identity, then report a qualified bondwise gradient estimate."
+    },
+    "GRADIENT_SAME": {
+      "public_goal_id": "gradient_same",
+      "text": "Prepare an identified network and measure both independent load fields, preserving every image, load and identity, then report a qualified bondwise gradient estimate."
+    },
+    "BEHAVIOR_UNIFORM": {
+      "public_goal_id": "behavior_uniform",
+      "text": "Fabricate the supplied identified geometry, measure both output-node responses to the specified input, and report the actual response and uncertainty."
+    },
+    "BEHAVIOR_LEFT": {
+      "public_goal_id": "behavior_A",
+      "text": "Fabricate the supplied identified geometry, measure both output-node responses to the specified input, and report the actual response and uncertainty."
+    },
+    "BEHAVIOR_RIGHT": {
+      "public_goal_id": "behavior_B",
+      "text": "Fabricate the supplied identified geometry, measure both output-node responses to the specified input, and report the actual response and uncertainty."
+    },
+    "REGRESSION_SWEEP": {
+      "public_goal_id": "regression_sweep",
+      "text": "Fabricate the supplied final geometry and measure both output nodes over the supplied seven-load sweep, including measured zero and safe recovery."
+    },
+    "IRIS_CASE_1": {
+      "public_goal_id": "input_1",
+      "text": "Fabricate the supplied classifier geometry, apply the anonymous four-feature load card, measure outputs and commit a prediction or ambiguity result before label evaluation."
+    },
+    "IRIS_CASE_2": {
+      "public_goal_id": "input_2",
+      "text": "Fabricate the supplied classifier geometry, apply the anonymous four-feature load card, measure outputs and commit a prediction or ambiguity result before label evaluation."
+    },
+    "IRIS_CASE_3": {
+      "public_goal_id": "input_3",
+      "text": "Fabricate the supplied classifier geometry, apply the anonymous four-feature load card, measure outputs and commit a prediction or ambiguity result before label evaluation."
+    }
+  },
+  "include": [
+    "one selected public goal only",
+    "actual initial physical inventory",
+    "qualified geometry/material/station/tool cards necessary for work",
+    "anonymous input case and verified node/load card",
+    "public camera/load/equilibrium/safety feedback",
+    "newly measured records and declared processing interfaces"
+  ],
+  "exclude": [
+    "expected source outcomes",
+    "future measurements",
+    "hidden faults",
+    "evaluator label before prediction commit",
+    "all unselected branches",
+    "reference operation sequence",
+    "source workbook outcome arrays",
+    "evaluator-only named geometry intent if blinded"
+  ],
+  "blinded_projection_rules": [
+    "Emit anonymous case token and no species-named branch/key/path",
+    "Hide trained-left/right intent if evaluation requires discovering response; provide geometry IDs without expected ordering",
+    "Expected species map never embedded in supplied case vector",
+    "Entire design package is not an actor prompt"
+  ],
+  "projection_algorithm": "Choose evaluator branch privately; emit only its template value plus allowed actual inputs, never the evaluator mapping key or full templates dictionary"
+}

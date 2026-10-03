@@ -1,0 +1,57 @@
+{
+  "schema_version": "mechanical_backprop_paper_task.v1",
+  "doi": "10.1038/s41467-024-54849-z",
+  "required_global_inputs": [
+    "selected_public_goal",
+    "actual_inventory",
+    "specimen_and_fixture_allocation",
+    "qualified_geometry_BOM",
+    "station_robot_tool_cards",
+    "qualified_fabrication_and_postprocess_cards_if_in_scope",
+    "camera_calibration_and_metric_transform",
+    "force_string_tare_and_load_limits",
+    "settling_tracking_recovery_cards",
+    "positive_repetition_plan",
+    "cleanup_archive_and_intervention_cards",
+    "record_destination"
+  ],
+  "qualified_card_fields": [
+    "id",
+    "version",
+    "units",
+    "issuer_or_qualification_basis",
+    "scope",
+    "limits",
+    "measurable_acceptance",
+    "safe_stop",
+    "reset_or_blocker"
+  ],
+  "conditional_inputs": {
+    "gradient": [
+      "loss unit/sign/force scaling",
+      "current measured output",
+      "adjoint quantization/correction policy",
+      "bond pairing map"
+    ],
+    "regression": [
+      "signed force/target coefficients",
+      "complete seven-mass schedule",
+      "fitting and norm policy"
+    ],
+    "iris": [
+      "anonymous case input",
+      "verified row/features/scaling/rounding/node-mass vector",
+      "classifier sign/normalization/tie policy",
+      "evaluator-only label map"
+    ],
+    "numerical_training": [
+      "reviewed code/model/version",
+      "data/splits/seeds",
+      "optimizer/projection/convergence"
+    ]
+  },
+  "unknown_policy": "null means missing, not zero or permission to invent",
+  "provided_geometry_policy": "State verified author file versus task-authored reconstruction; retain ancestry",
+  "preassembled_policy": "Only explicit preparation-excluded episode; cannot complete fabrication-required campaign",
+  "trial_plan": "Source reports three independent experiments; user episode supplies trial count and actual specimen reuse; no historical specimen count inferred"
+}
