@@ -22,6 +22,10 @@ The R01 example binds a mobile humanoid, laboratory stations, manipulated object
 
 This is an authored visual storyboard, not a physics simulation or robot execution. It covers the R01 branch, not all branches of the paper. Repeated unit placements are summarized in layer-completion views, not individual grasp trajectories. Source-supported stages, authored poses and unknowns remain distinguished.
 
+### R01 task-scene binding audit
+
+A [bounded mounting, observation and retrieval binding](scene_bindings/r01_mount_observe_retrieve_v1/README.md) now maps eleven R01 reference operations to existing scene objects, metadata ports, object-origin frames and intended sample states. A fresh, fixed-camera Blender CPU source inspection retains all occluding geometry. Static checks cover references, identity, units, display scale and camera declarations; a missing transport clip and unqualified physical/sensor interfaces remain explicit gates. This adds inspection evidence, not a third embodied route or a runnable episode.
+
 ### Thermoelectric module route
 
 The PAIRED_TWO demonstration maps **66 reference-operation occurrences to 45 illustrated keyframes**: separate P/N preparation, cross-device processing, four individually tracked leg placements, module assembly, four measurement-boundary chapters, archiving and cleanup. [Open the offline visual replay guide](viewer/embodied_thermoelectric/README.md).
@@ -57,7 +61,7 @@ Scientific work connects many individually simple actions across long intervals 
 - **Controls and repetition:** paired conditions, repeated observations and same-specimen cycles kept distinct from independent samples
 - **Recovery:** failed attempts remain in the record; damage, contamination or an invalid measurement cannot be erased by relabeling an object
 
-ScienceGym is an independent project whose task layer specifies these obligations. Laboratory scene and asset requirements appear in its task packages; implementing and validating those bindings remains future work. A scene or addressable object alone does not establish an executable task.
+ScienceGym is an independent project whose task layer specifies these obligations. Laboratory scene and asset requirements appear in its task packages. The bounded R01 static binding above is an initial integration check; runtime interactions and physical validation remain future work. A scene or addressable object alone does not establish an executable task.
 
 ## Task design
 
@@ -142,6 +146,7 @@ The command checks:
 
 - All repository JSON outside tool/cache directories, including new task drafts, for valid syntax, duplicate keys and non-JSON numeric constants
 - The existing English hygiene check and focused verifier regression tests
+- The bounded R01 task-scene binding audit and negative-fixture tests, including frozen source-inventory and CPU-render evidence hashes
 - The explorer tests with `SCIENCEGYM_TASKS` explicitly bound to this checkout's `tasks` directory, so source-comparison tests cannot silently skip
 - JavaScript syntax and the explorer plus both embodied players' mocked-DOM tests
 - All 71 storyboard frame images against their published render hashes, any per-frame image hashes, and applicable image-only export checksums, including overview/contact-sheet images

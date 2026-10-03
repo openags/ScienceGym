@@ -108,7 +108,9 @@ def preflight(root):
     if not (root / "tasks").is_dir():
         raise VerificationError(f"Missing required task directory: {root / 'tasks'}")
     required = ["scripts/check_english.py", "scripts/test_verify_release.py",
-                "EXPORT_MANIFEST.json", "viewer/task_explorer_v1/build.py",
+                "EXPORT_MANIFEST.json", "scene_bindings/r01_mount_observe_retrieve_v1/audit.py",
+                "scene_bindings/r01_mount_observe_retrieve_v1/tests/test_audit.py",
+                "viewer/task_explorer_v1/build.py",
                 "viewer/task_explorer_v1/app.js", "viewer/task_explorer_v1/index.html",
                 "viewer/task_explorer_v1/tests/test_semantics.py",
                 "viewer/task_explorer_v1/tests/test_app.js",
@@ -239,6 +241,9 @@ def main(argv=None):
                                                str(root / "scripts"), "test_verify_release.py")),
         ("Source-bound explorer tests", command(python, "-B", "-c", UNITTEST_RUNNER,
                                                  str(root / "viewer/task_explorer_v1/tests"), "test_*.py")),
+        ("R01 scene binding audit", command(python, "-B", str(root / "scene_bindings/r01_mount_observe_retrieve_v1/audit.py"), "--root", str(root))),
+        ("R01 binding negative fixtures", command(python, "-B", "-c", UNITTEST_RUNNER,
+                                                 str(root / "scene_bindings/r01_mount_observe_retrieve_v1/tests"), "test_*.py")),
         ("JavaScript syntax", lambda: check_javascript(root, node, env)),
         ("Explorer mocked DOM", command(node, str(root / "viewer/task_explorer_v1/tests/test_app.js"))),
     ]

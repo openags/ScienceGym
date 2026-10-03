@@ -1,0 +1,2027 @@
+{
+  "schema_version": "sciencegym.r01_task_scene_binding.v1",
+  "binding_id": "R01.mount_observe_retrieve.v1",
+  "base_commit": "63dc997e0df0f10286a3180a4aea36d61abd43e9",
+  "status": "static_binding_contract_with_open_execution_gates",
+  "scope": {
+    "branch_id": "R01",
+    "condition_id": "cond.R01",
+    "operation_ids": [
+      "TEST01",
+      "TEST02",
+      "TEST03",
+      "BND_FREE",
+      "OBS01",
+      "TEST04",
+      "LOAD",
+      "UNLOAD",
+      "OBS_RESIDUAL",
+      "RELOAD",
+      "TEST_REMOVE"
+    ],
+    "station_id": "WS_TEST",
+    "coverage": "11 reference-operation keyframes; RELOAD remains a grouped repeat; not whole-paper or executed episode"
+  },
+  "claims": {
+    "robot_execution": false,
+    "physics_executed": false,
+    "robot_visibility_validated": false,
+    "grasp_validated": false,
+    "collision_validated": false,
+    "sensor_calibrated": false,
+    "simready_validated": false,
+    "runnable_episode": false
+  },
+  "source_inputs": [
+    {
+      "path": "tasks/chiral_operations_v2/operations.json",
+      "sha256": "443e8ee8e274020a67396befab2854c627420cdc87fe2499670d64deb2734001"
+    },
+    {
+      "path": "tasks/chiral_operations_v2/branches.json",
+      "sha256": "fb309528a9bace75c5cd44cd0ba4302b94b8caec2bf35e53886199ac221b1f1c"
+    },
+    {
+      "path": "tasks/chiral_operations_v2/assets.json",
+      "sha256": "9a70fa5f555711db8a9e384a28e2ea1307710ac51b8b68c12182e1c2a2896468"
+    },
+    {
+      "path": "viewer/embodied_r01/frame_manifest.json",
+      "sha256": "229bae516af0d473c98b018e4d0e33e6a4d70302b8e12cdf0568bedfcd1c9258"
+    },
+    {
+      "path": "viewer/embodied_r01/trajectory.json",
+      "sha256": "44e787596a0036e121e5d8fff6a989312d7578daabb7664e88a651c5b98b0159"
+    },
+    {
+      "path": "viewer/embodied_r01/scripts/build_visual.py",
+      "sha256": "458326c85eeb9eea70fe263ccfe1663d0e522ce1e0f60de0eb4026eaccf167cc"
+    },
+    {
+      "path": "viewer/embodied_r01/render_receipt.json",
+      "sha256": "5ff69d0ff67e0f2bf96009679abd21bec94b436c9cd0054ca86aee965821e40d"
+    }
+  ],
+  "source_scene": {
+    "filename": "r01_complete_route_scene.blend",
+    "sha256": "bbcf496ca4c1eaa16a56db472e54d944a8d54bc19c7e00073afe32fe9e6ca915",
+    "publication": "unbundled; supply separately for optional reinspection",
+    "snapshot_inventory": "source_evidence/source_inventory.json",
+    "stage_semantics": "simultaneous all-stage authored props; not a valid task initial state",
+    "evidence_manifest_sha256": "8a66e882416caab1cfb3445e47cdeea2215cfeb73a673c9f1b4b30a45cd56b62",
+    "evidence_manifest": "source_evidence/evidence_manifest.json",
+    "source_contract_excerpt_sha256": "8d5b0ac2b492d5f9beb91573ff19bc644a4a443e03c5e197598f50558f97386e"
+  },
+  "sample": {
+    "physical_object_id": "obj.R01.001",
+    "source_specimen_identity": "unknown; this task identity does not recover the author specimen identity",
+    "condition_id": "cond.R01",
+    "geometry_role": "port.specimen",
+    "source_envelope_mm": [
+      65,
+      65,
+      72
+    ],
+    "physical_reference_envelope_m": [
+      0.065,
+      0.065,
+      0.072
+    ],
+    "source_total_cycles": null,
+    "design_total_cycles": 2,
+    "source_unit_lineage": [
+      "unit.R01.001",
+      "unit.R01.002",
+      "unit.R01.003",
+      "unit.R01.004",
+      "unit.R01.005",
+      "unit.R01.006",
+      "unit.R01.007",
+      "unit.R01.008",
+      "unit.R01.009",
+      "unit.R01.010",
+      "unit.R01.011",
+      "unit.R01.012",
+      "unit.R01.013",
+      "unit.R01.014",
+      "unit.R01.015",
+      "unit.R01.016",
+      "unit.R01.017",
+      "unit.R01.018"
+    ],
+    "lineage_limit": "18 authored half-unit identifiers; not proof of an 18-part source manufacturing BOM"
+  },
+  "units": {
+    "canonical_length": "m",
+    "source_length": "mm",
+    "source_to_canonical_length": 0.001,
+    "angle": "rad",
+    "coordinate_handedness": "right",
+    "up_axis": "+Z",
+    "transform_direction": "local_to_world",
+    "matrix_layout": "row_major_4x4",
+    "local_frame_meaning": "existing authored Blender object origin; not a calibrated contact, sensor or grasp pose",
+    "baked_origin_caveat": "All WS_TEST meshes have vertices baked in station coordinates and share a station-origin object transform. These 14 logical local-frame references are not 14 distinct interaction locations."
+  },
+  "display": {
+    "nominal_scale": 1.0,
+    "physical_reference_must_not_follow_display": true,
+    "illustrative_axial_scale_by_frame": {
+      "LOAD": 0.75,
+      "RELOAD": 0.75
+    },
+    "scientific_deformation": false,
+    "screen_space_magnifier": "existing storyboard only; same object inspection panel; not an optical sensor",
+    "scale_limit": "source-scene bounds are inspected separately; no physical gripper fit is established",
+    "nominal_scale_provenance": "Binding convention inferred from inspected nominal mesh bounds matching the physical reference envelope; original metadata does not explicitly declare an enlargement factor.",
+    "source_explicit_enlargement_factor": null
+  },
+  "ports": [
+    {
+      "id": "port.specimen",
+      "task_role_id": "specimen",
+      "kind": "sample",
+      "scene_object_ids": [
+        "WS_TEST__mounted_sample_bottom_plate",
+        "WS_TEST__mounted_sample_top_plate",
+        "WS_TEST__mounted_cell_11_ring0",
+        "WS_TEST__mounted_cell_11_ring1",
+        "WS_TEST__mounted_cell_11_ring2",
+        "WS_TEST__mounted_cell_11_half1_rod1",
+        "WS_TEST__mounted_cell_11_half1_rod2",
+        "WS_TEST__mounted_cell_11_half1_rod3",
+        "WS_TEST__mounted_cell_11_half1_rod4",
+        "WS_TEST__mounted_cell_11_half1_rod5",
+        "WS_TEST__mounted_cell_11_half1_rod6",
+        "WS_TEST__mounted_cell_11_half1_rod7",
+        "WS_TEST__mounted_cell_11_half1_rod8",
+        "WS_TEST__mounted_cell_11_half2_rod1",
+        "WS_TEST__mounted_cell_11_half2_rod2",
+        "WS_TEST__mounted_cell_11_half2_rod3",
+        "WS_TEST__mounted_cell_11_half2_rod4",
+        "WS_TEST__mounted_cell_11_half2_rod5",
+        "WS_TEST__mounted_cell_11_half2_rod6",
+        "WS_TEST__mounted_cell_11_half2_rod7",
+        "WS_TEST__mounted_cell_11_half2_rod8",
+        "WS_TEST__mounted_cell_12_ring0",
+        "WS_TEST__mounted_cell_12_ring1",
+        "WS_TEST__mounted_cell_12_ring2",
+        "WS_TEST__mounted_cell_12_half1_rod1",
+        "WS_TEST__mounted_cell_12_half1_rod2",
+        "WS_TEST__mounted_cell_12_half1_rod3",
+        "WS_TEST__mounted_cell_12_half1_rod4",
+        "WS_TEST__mounted_cell_12_half1_rod5",
+        "WS_TEST__mounted_cell_12_half1_rod6",
+        "WS_TEST__mounted_cell_12_half1_rod7",
+        "WS_TEST__mounted_cell_12_half1_rod8",
+        "WS_TEST__mounted_cell_12_half2_rod1",
+        "WS_TEST__mounted_cell_12_half2_rod2",
+        "WS_TEST__mounted_cell_12_half2_rod3",
+        "WS_TEST__mounted_cell_12_half2_rod4",
+        "WS_TEST__mounted_cell_12_half2_rod5",
+        "WS_TEST__mounted_cell_12_half2_rod6",
+        "WS_TEST__mounted_cell_12_half2_rod7",
+        "WS_TEST__mounted_cell_12_half2_rod8",
+        "WS_TEST__mounted_cell_13_ring0",
+        "WS_TEST__mounted_cell_13_ring1",
+        "WS_TEST__mounted_cell_13_ring2",
+        "WS_TEST__mounted_cell_13_half1_rod1",
+        "WS_TEST__mounted_cell_13_half1_rod2",
+        "WS_TEST__mounted_cell_13_half1_rod3",
+        "WS_TEST__mounted_cell_13_half1_rod4",
+        "WS_TEST__mounted_cell_13_half1_rod5",
+        "WS_TEST__mounted_cell_13_half1_rod6",
+        "WS_TEST__mounted_cell_13_half1_rod7",
+        "WS_TEST__mounted_cell_13_half1_rod8",
+        "WS_TEST__mounted_cell_13_half2_rod1",
+        "WS_TEST__mounted_cell_13_half2_rod2",
+        "WS_TEST__mounted_cell_13_half2_rod3",
+        "WS_TEST__mounted_cell_13_half2_rod4",
+        "WS_TEST__mounted_cell_13_half2_rod5",
+        "WS_TEST__mounted_cell_13_half2_rod6",
+        "WS_TEST__mounted_cell_13_half2_rod7",
+        "WS_TEST__mounted_cell_13_half2_rod8",
+        "WS_TEST__mounted_cell_21_ring0",
+        "WS_TEST__mounted_cell_21_ring1",
+        "WS_TEST__mounted_cell_21_ring2",
+        "WS_TEST__mounted_cell_21_half1_rod1",
+        "WS_TEST__mounted_cell_21_half1_rod2",
+        "WS_TEST__mounted_cell_21_half1_rod3",
+        "WS_TEST__mounted_cell_21_half1_rod4",
+        "WS_TEST__mounted_cell_21_half1_rod5",
+        "WS_TEST__mounted_cell_21_half1_rod6",
+        "WS_TEST__mounted_cell_21_half1_rod7",
+        "WS_TEST__mounted_cell_21_half1_rod8",
+        "WS_TEST__mounted_cell_21_half2_rod1",
+        "WS_TEST__mounted_cell_21_half2_rod2",
+        "WS_TEST__mounted_cell_21_half2_rod3",
+        "WS_TEST__mounted_cell_21_half2_rod4",
+        "WS_TEST__mounted_cell_21_half2_rod5",
+        "WS_TEST__mounted_cell_21_half2_rod6",
+        "WS_TEST__mounted_cell_21_half2_rod7",
+        "WS_TEST__mounted_cell_21_half2_rod8",
+        "WS_TEST__mounted_cell_22_ring0",
+        "WS_TEST__mounted_cell_22_ring1",
+        "WS_TEST__mounted_cell_22_ring2",
+        "WS_TEST__mounted_cell_22_half1_rod1",
+        "WS_TEST__mounted_cell_22_half1_rod2",
+        "WS_TEST__mounted_cell_22_half1_rod3",
+        "WS_TEST__mounted_cell_22_half1_rod4",
+        "WS_TEST__mounted_cell_22_half1_rod5",
+        "WS_TEST__mounted_cell_22_half1_rod6",
+        "WS_TEST__mounted_cell_22_half1_rod7",
+        "WS_TEST__mounted_cell_22_half1_rod8",
+        "WS_TEST__mounted_cell_22_half2_rod1",
+        "WS_TEST__mounted_cell_22_half2_rod2",
+        "WS_TEST__mounted_cell_22_half2_rod3",
+        "WS_TEST__mounted_cell_22_half2_rod4",
+        "WS_TEST__mounted_cell_22_half2_rod5",
+        "WS_TEST__mounted_cell_22_half2_rod6",
+        "WS_TEST__mounted_cell_22_half2_rod7",
+        "WS_TEST__mounted_cell_22_half2_rod8",
+        "WS_TEST__mounted_cell_23_ring0",
+        "WS_TEST__mounted_cell_23_ring1",
+        "WS_TEST__mounted_cell_23_ring2",
+        "WS_TEST__mounted_cell_23_half1_rod1",
+        "WS_TEST__mounted_cell_23_half1_rod2",
+        "WS_TEST__mounted_cell_23_half1_rod3",
+        "WS_TEST__mounted_cell_23_half1_rod4",
+        "WS_TEST__mounted_cell_23_half1_rod5",
+        "WS_TEST__mounted_cell_23_half1_rod6",
+        "WS_TEST__mounted_cell_23_half1_rod7",
+        "WS_TEST__mounted_cell_23_half1_rod8",
+        "WS_TEST__mounted_cell_23_half2_rod1",
+        "WS_TEST__mounted_cell_23_half2_rod2",
+        "WS_TEST__mounted_cell_23_half2_rod3",
+        "WS_TEST__mounted_cell_23_half2_rod4",
+        "WS_TEST__mounted_cell_23_half2_rod5",
+        "WS_TEST__mounted_cell_23_half2_rod6",
+        "WS_TEST__mounted_cell_23_half2_rod7",
+        "WS_TEST__mounted_cell_23_half2_rod8",
+        "WS_TEST__mounted_cell_31_ring0",
+        "WS_TEST__mounted_cell_31_ring1",
+        "WS_TEST__mounted_cell_31_ring2",
+        "WS_TEST__mounted_cell_31_half1_rod1",
+        "WS_TEST__mounted_cell_31_half1_rod2",
+        "WS_TEST__mounted_cell_31_half1_rod3",
+        "WS_TEST__mounted_cell_31_half1_rod4",
+        "WS_TEST__mounted_cell_31_half1_rod5",
+        "WS_TEST__mounted_cell_31_half1_rod6",
+        "WS_TEST__mounted_cell_31_half1_rod7",
+        "WS_TEST__mounted_cell_31_half1_rod8",
+        "WS_TEST__mounted_cell_31_half2_rod1",
+        "WS_TEST__mounted_cell_31_half2_rod2",
+        "WS_TEST__mounted_cell_31_half2_rod3",
+        "WS_TEST__mounted_cell_31_half2_rod4",
+        "WS_TEST__mounted_cell_31_half2_rod5",
+        "WS_TEST__mounted_cell_31_half2_rod6",
+        "WS_TEST__mounted_cell_31_half2_rod7",
+        "WS_TEST__mounted_cell_31_half2_rod8",
+        "WS_TEST__mounted_cell_32_ring0",
+        "WS_TEST__mounted_cell_32_ring1",
+        "WS_TEST__mounted_cell_32_ring2",
+        "WS_TEST__mounted_cell_32_half1_rod1",
+        "WS_TEST__mounted_cell_32_half1_rod2",
+        "WS_TEST__mounted_cell_32_half1_rod3",
+        "WS_TEST__mounted_cell_32_half1_rod4",
+        "WS_TEST__mounted_cell_32_half1_rod5",
+        "WS_TEST__mounted_cell_32_half1_rod6",
+        "WS_TEST__mounted_cell_32_half1_rod7",
+        "WS_TEST__mounted_cell_32_half1_rod8",
+        "WS_TEST__mounted_cell_32_half2_rod1",
+        "WS_TEST__mounted_cell_32_half2_rod2",
+        "WS_TEST__mounted_cell_32_half2_rod3",
+        "WS_TEST__mounted_cell_32_half2_rod4",
+        "WS_TEST__mounted_cell_32_half2_rod5",
+        "WS_TEST__mounted_cell_32_half2_rod6",
+        "WS_TEST__mounted_cell_32_half2_rod7",
+        "WS_TEST__mounted_cell_32_half2_rod8",
+        "WS_TEST__mounted_cell_33_ring0",
+        "WS_TEST__mounted_cell_33_ring1",
+        "WS_TEST__mounted_cell_33_ring2",
+        "WS_TEST__mounted_cell_33_half1_rod1",
+        "WS_TEST__mounted_cell_33_half1_rod2",
+        "WS_TEST__mounted_cell_33_half1_rod3",
+        "WS_TEST__mounted_cell_33_half1_rod4",
+        "WS_TEST__mounted_cell_33_half1_rod5",
+        "WS_TEST__mounted_cell_33_half1_rod6",
+        "WS_TEST__mounted_cell_33_half1_rod7",
+        "WS_TEST__mounted_cell_33_half1_rod8",
+        "WS_TEST__mounted_cell_33_half2_rod1",
+        "WS_TEST__mounted_cell_33_half2_rod2",
+        "WS_TEST__mounted_cell_33_half2_rod3",
+        "WS_TEST__mounted_cell_33_half2_rod4",
+        "WS_TEST__mounted_cell_33_half2_rod5",
+        "WS_TEST__mounted_cell_33_half2_rod6",
+        "WS_TEST__mounted_cell_33_half2_rod7",
+        "WS_TEST__mounted_cell_33_half2_rod8"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.specimen",
+      "source_affordance_ids": [],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "specimen",
+        "task_asset_limit": "Do not grasp thin rods to support the weight of the whole specimen",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.transport_tray",
+      "task_role_id": "transport_tray",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__carrier_base",
+        "WS_TEST__carrier_handle_-0.57",
+        "WS_TEST__carrier_handle_-0.33"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.transport_tray",
+      "source_affordance_ids": [
+        "WS_TEST.inspect_carrier"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "transport_tray",
+        "task_asset_limit": "authored generic connector",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.tester_stage",
+      "task_role_id": "tester_stage",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__carrier_base"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.tester_stage",
+      "source_affordance_ids": [
+        "WS_TEST.inspect_carrier"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "tester_stage",
+        "task_asset_limit": "authored generic connector",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.guard",
+      "task_role_id": "guard",
+      "kind": "guard",
+      "scene_object_ids": [
+        "WS_TEST__guard_front_panel",
+        "WS_TEST__guard_handle"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.guard",
+      "source_affordance_ids": [
+        "WS_TEST.guard_panel_slide_preview"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "guard",
+        "task_asset_limit": "Designed safety interface",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.tester_panel",
+      "task_role_id": "tester_panel",
+      "kind": "control",
+      "scene_object_ids": [
+        "WS_TEST__panel_console",
+        "WS_TEST__panel_screen",
+        "WS_TEST__button_START",
+        "WS_TEST__button_STOP"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.tester_panel",
+      "source_affordance_ids": [
+        "WS_TEST.press_start_preview"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "tester_panel",
+        "task_asset_limit": "authored generic connector",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.upper_platen",
+      "task_role_id": "upper_platen",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__upper_platen"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.upper_platen",
+      "source_affordance_ids": [
+        "WS_TEST.upper_platen_height_preview"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "upper_platen",
+        "task_asset_limit": "No claim of a rotating loading head",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.lower_platen",
+      "task_role_id": "lower_platen",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__lower_platen"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.lower_platen",
+      "source_affordance_ids": [],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "lower_platen",
+        "task_asset_limit": "Fixture CAD/friction unknown",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.removable_fixture",
+      "task_role_id": "removable_fixture",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__sidebox_wall_L",
+        "WS_TEST__sidebox_wall_R",
+        "WS_TEST__sidebox_wall_back",
+        "WS_TEST__rotation_lock_arm"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.removable_fixture",
+      "source_affordance_ids": [
+        "WS_TEST.inspect_side_box",
+        "WS_TEST.inspect_rotation_lock"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "removable_fixture",
+        "task_asset_limit": "authored generic connector",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.transport_support",
+      "task_role_id": "transport_support",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__carrier_base"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.transport_support",
+      "source_affordance_ids": [
+        "WS_TEST.inspect_carrier"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "transport_support",
+        "task_asset_limit": "authored generic connector",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.interface_ring",
+      "task_role_id": "interface_ring",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__mounted_cell_11_ring0",
+        "WS_TEST__mounted_cell_11_ring1",
+        "WS_TEST__mounted_cell_11_ring2",
+        "WS_TEST__mounted_cell_12_ring0",
+        "WS_TEST__mounted_cell_12_ring1",
+        "WS_TEST__mounted_cell_12_ring2",
+        "WS_TEST__mounted_cell_13_ring0",
+        "WS_TEST__mounted_cell_13_ring1",
+        "WS_TEST__mounted_cell_13_ring2",
+        "WS_TEST__mounted_cell_21_ring0",
+        "WS_TEST__mounted_cell_21_ring1",
+        "WS_TEST__mounted_cell_21_ring2",
+        "WS_TEST__mounted_cell_22_ring0",
+        "WS_TEST__mounted_cell_22_ring1",
+        "WS_TEST__mounted_cell_22_ring2",
+        "WS_TEST__mounted_cell_23_ring0",
+        "WS_TEST__mounted_cell_23_ring1",
+        "WS_TEST__mounted_cell_23_ring2",
+        "WS_TEST__mounted_cell_31_ring0",
+        "WS_TEST__mounted_cell_31_ring1",
+        "WS_TEST__mounted_cell_31_ring2",
+        "WS_TEST__mounted_cell_32_ring0",
+        "WS_TEST__mounted_cell_32_ring1",
+        "WS_TEST__mounted_cell_32_ring2",
+        "WS_TEST__mounted_cell_33_ring0",
+        "WS_TEST__mounted_cell_33_ring1",
+        "WS_TEST__mounted_cell_33_ring2"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.interface_ring",
+      "source_affordance_ids": [],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "interface_ring",
+        "task_asset_limit": "No rotation-angle prediction; mock rotation state",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.transport_clip",
+      "task_role_id": "transport_clip",
+      "kind": "fixture",
+      "scene_object_ids": [],
+      "resolution": "explicit_missing_geometry",
+      "local_frame_id": null,
+      "source_affordance_ids": [],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION",
+        "G_TRANSPORT_CLIP_GEOMETRY"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "transport_clip",
+        "task_asset_limit": "authored generic connector",
+        "source_geometry": null
+      }
+    },
+    {
+      "id": "port.rotation_lock",
+      "task_role_id": "rotation_lock",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__rotation_lock_arm"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.rotation_lock",
+      "source_affordance_ids": [
+        "WS_TEST.inspect_rotation_lock"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "rotation_lock",
+        "task_asset_limit": "Rotation-locking geometry is authored",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.camera",
+      "task_role_id": "camera",
+      "kind": "observation_proxy",
+      "scene_object_ids": [
+        "WS_TEST__camera_body",
+        "WS_TEST__camera_lens"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.camera",
+      "source_affordance_ids": [],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "camera",
+        "task_asset_limit": "Local von Mises stress is not camera-sensor output",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.camera_stand",
+      "task_role_id": "camera_stand",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__camera_stand"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.camera_stand",
+      "source_affordance_ids": [],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "camera_stand",
+        "task_asset_limit": "Outside the motion envelope",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    },
+    {
+      "id": "port.box_walls",
+      "task_role_id": "box_walls",
+      "kind": "fixture",
+      "scene_object_ids": [
+        "WS_TEST__sidebox_wall_L",
+        "WS_TEST__sidebox_wall_R",
+        "WS_TEST__sidebox_wall_back"
+      ],
+      "resolution": "resolved_authored_geometry",
+      "local_frame_id": "frame.box_walls",
+      "source_affordance_ids": [
+        "WS_TEST.inspect_side_box"
+      ],
+      "implementation": "metadata_only; no callable manipulation, actuation or acquisition interface",
+      "physical_interface_pose": null,
+      "execution_gate_ids": [
+        "G_INTERFACE_QUALIFICATION"
+      ],
+      "provenance": {
+        "kind": "authored_role_to_proxy_binding",
+        "task_asset_role_id": "box_walls",
+        "task_asset_limit": "authored generic connector",
+        "source_geometry": "source_contract_excerpt.json#object_ids"
+      }
+    }
+  ],
+  "local_frames": [
+    {
+      "id": "frame.specimen",
+      "anchor_object_id": "WS_TEST__mounted_sample_bottom_plate",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__mounted_sample_bottom_plate"
+    },
+    {
+      "id": "frame.transport_tray",
+      "anchor_object_id": "WS_TEST__carrier_base",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__carrier_base"
+    },
+    {
+      "id": "frame.tester_stage",
+      "anchor_object_id": "WS_TEST__carrier_base",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__carrier_base"
+    },
+    {
+      "id": "frame.guard",
+      "anchor_object_id": "WS_TEST__guard_front_panel",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__guard_front_panel"
+    },
+    {
+      "id": "frame.tester_panel",
+      "anchor_object_id": "WS_TEST__panel_console",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__panel_console"
+    },
+    {
+      "id": "frame.upper_platen",
+      "anchor_object_id": "WS_TEST__upper_platen",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__upper_platen"
+    },
+    {
+      "id": "frame.lower_platen",
+      "anchor_object_id": "WS_TEST__lower_platen",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__lower_platen"
+    },
+    {
+      "id": "frame.removable_fixture",
+      "anchor_object_id": "WS_TEST__sidebox_wall_L",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__sidebox_wall_L"
+    },
+    {
+      "id": "frame.transport_support",
+      "anchor_object_id": "WS_TEST__carrier_base",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__carrier_base"
+    },
+    {
+      "id": "frame.interface_ring",
+      "anchor_object_id": "WS_TEST__mounted_cell_11_ring0",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__mounted_cell_11_ring0"
+    },
+    {
+      "id": "frame.rotation_lock",
+      "anchor_object_id": "WS_TEST__rotation_lock_arm",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__rotation_lock_arm"
+    },
+    {
+      "id": "frame.camera",
+      "anchor_object_id": "WS_TEST__camera_body",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__camera_body"
+    },
+    {
+      "id": "frame.camera_stand",
+      "anchor_object_id": "WS_TEST__camera_stand",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__camera_stand"
+    },
+    {
+      "id": "frame.box_walls",
+      "anchor_object_id": "WS_TEST__sidebox_wall_L",
+      "matrix_local_to_world": [
+        [
+          7.549790126404332e-08,
+          1.0,
+          0.0,
+          10.149999618530273
+        ],
+        [
+          -1.0,
+          7.549790126404332e-08,
+          0.0,
+          2.25
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "meaning": "authored_object_origin_not_grasp_or_sensor_frame",
+      "provenance": "source_evidence/source_inventory.json#objects/WS_TEST__sidebox_wall_L"
+    }
+  ],
+  "semantic_states": [
+    {
+      "id": "state.TEST01",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Envelope fixture recorded",
+      "after": "Same specimen staged at tester",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 0,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.TEST02",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Specimen staged outside tester",
+      "after": "Loading area clear; no old boundary",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 0,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.TEST03",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Guard open; platen retracted",
+      "after": "Same specimen seated; gripper released",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 0,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.BND_FREE",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Specimen seated; transport clips removed",
+      "after": "No lateral box or anti-rotation arm",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 0,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.OBS01",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Free internal-twist boundary",
+      "after": "Initial image fixture; same ID",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 0,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.TEST04",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Initial image linked; robot withdrawn",
+      "after": "Mock endpoint 0.25; cycle 1 armed",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 0,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.LOAD",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Cycle 1 armed; guard closed",
+      "after": "Authored compressed-shape illustration",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 0,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.UNLOAD",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Cycle 1 terminal event",
+      "after": "Load/unload records for cycle 1",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 1,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.OBS_RESIDUAL",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Cycle 1 unloaded; same object seated",
+      "after": "Residual state retained; no perfect-recovery claim",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 1,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    },
+    {
+      "id": "state.RELOAD",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Residual image recorded; cycle 1 complete",
+      "after": "Separate cycle-2 records; same obj.R01.001",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 2,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": true
+    },
+    {
+      "id": "state.TEST_REMOVE",
+      "physical_object_id": "obj.R01.001",
+      "condition_id": "cond.R01",
+      "boundary": "free_internal_rotation",
+      "source_unit_lineage": [
+        "unit.R01.001",
+        "unit.R01.002",
+        "unit.R01.003",
+        "unit.R01.004",
+        "unit.R01.005",
+        "unit.R01.006",
+        "unit.R01.007",
+        "unit.R01.008",
+        "unit.R01.009",
+        "unit.R01.010",
+        "unit.R01.011",
+        "unit.R01.012",
+        "unit.R01.013",
+        "unit.R01.014",
+        "unit.R01.015",
+        "unit.R01.016",
+        "unit.R01.017",
+        "unit.R01.018"
+      ],
+      "before": "Cycle 2 complete; zero-load event",
+      "after": "Tester empty; specimen in numbered carrier",
+      "meaning": "intended authored storyboard pre/postconditions; not measured or executed state",
+      "completed_cycles_after": 2,
+      "cycle_count_provenance": "authored minimum demonstration; source total unknown",
+      "rendered_pose_may_be_intermediate": false
+    }
+  ],
+  "bindings": [
+    {
+      "operation_id": "TEST01",
+      "frame_id": "TEST01",
+      "frame_index": 13,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.TEST01",
+      "port_ids": [
+        "port.transport_tray",
+        "port.specimen",
+        "port.tester_stage"
+      ],
+      "preconditions": [
+        "specimen prepared",
+        "machine unloaded and stopped"
+      ],
+      "postconditions": [
+        "sample staged at tester",
+        "identity persists across transport"
+      ],
+      "frame_image": "frames/13_TEST01.jpg",
+      "source_provenance": {
+        "source_supported_stage": "The specimen must be mounted in a compression device; the transport route is authored",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": []
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "TEST02",
+      "frame_id": "TEST02",
+      "frame_index": 14,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.TEST02",
+      "port_ids": [
+        "port.guard",
+        "port.tester_panel",
+        "port.upper_platen",
+        "port.removable_fixture"
+      ],
+      "preconditions": [
+        "machine idle and zero stored-load event",
+        "sample outside machine"
+      ],
+      "postconditions": [
+        "clear loading volume",
+        "no inherited boundary from previous branch"
+      ],
+      "frame_image": "frames/14_TEST02.jpg",
+      "source_provenance": {
+        "source_supported_stage": "Compression boundary control is reported; the safe specimen-loading workflow is authored",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": []
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "TEST03",
+      "frame_id": "TEST03",
+      "frame_index": 15,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.TEST03",
+      "port_ids": [
+        "port.specimen",
+        "port.lower_platen",
+        "port.transport_support"
+      ],
+      "preconditions": [
+        "TEST02 done",
+        "upper clearance adequate"
+      ],
+      "postconditions": [
+        "sample seated with declared orientation",
+        "robot released specimen"
+      ],
+      "frame_image": "frames/15_TEST03.jpg",
+      "source_provenance": {
+        "source_supported_stage": "The specimen sits between opposing loading surfaces",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": []
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "BND_FREE",
+      "frame_id": "BND_FREE",
+      "frame_index": 16,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.BND_FREE",
+      "port_ids": [
+        "port.interface_ring",
+        "port.transport_clip",
+        "port.rotation_lock"
+      ],
+      "preconditions": [
+        "TEST03 done",
+        "branch free_internal_rotation"
+      ],
+      "postconditions": [
+        "free internal twist boundary",
+        "no added rotary platen claim"
+      ],
+      "frame_image": "frames/16_BND_FREE.jpg",
+      "source_provenance": {
+        "source_supported_stage": "Boundary permitting rotational chiral deformation",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": []
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "OBS01",
+      "frame_id": "OBS01",
+      "frame_index": 17,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.OBS01",
+      "port_ids": [
+        "port.camera",
+        "port.camera_stand",
+        "port.specimen"
+      ],
+      "preconditions": [
+        "boundary set",
+        "machine idle"
+      ],
+      "postconditions": [
+        "initial image fixture linked",
+        "camera outside moving volume"
+      ],
+      "frame_image": "frames/17_OBS01.jpg",
+      "source_provenance": {
+        "source_supported_stage": "The paper includes deformation images/videos; camera model and positioning method are unknown",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": []
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "TEST04",
+      "frame_id": "TEST04",
+      "frame_index": 18,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.TEST04",
+      "port_ids": [
+        "port.guard",
+        "port.tester_panel"
+      ],
+      "preconditions": [
+        "OBS01 done",
+        "robot retracted from pinch zone"
+      ],
+      "postconditions": [
+        "guard closed",
+        "mock cycle armed",
+        "scientific recipe not fabricated"
+      ],
+      "frame_image": "frames/18_TEST04.jpg",
+      "source_provenance": {
+        "source_supported_stage": "Cyclic compression is source-supported; specific control inputs are task choices",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": [
+          "Rate, preload, hold time, sampling rate, calibration, and stopping tolerance"
+        ]
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "LOAD",
+      "frame_id": "LOAD",
+      "frame_index": 19,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.LOAD",
+      "port_ids": [
+        "port.tester_panel",
+        "port.upper_platen",
+        "port.camera"
+      ],
+      "preconditions": [
+        "TEST04 done",
+        "load identity bound",
+        "guard closed"
+      ],
+      "postconditions": [
+        "load segment stored for this object/cycle/boundary",
+        "observed mode retained without forcing ideality"
+      ],
+      "frame_image": "frames/19_LOAD.jpg",
+      "source_provenance": {
+        "source_supported_stage": "Compression buckling and deformation observations are source facts",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": [
+          "Comparison strain is not the complete actual loading endpoint; do not infer curves or rates from video duration"
+        ]
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "UNLOAD",
+      "frame_id": "UNLOAD",
+      "frame_index": 20,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.UNLOAD",
+      "port_ids": [
+        "port.tester_panel",
+        "port.upper_platen"
+      ],
+      "preconditions": [
+        "load terminal event",
+        "guard closed"
+      ],
+      "postconditions": [
+        "unloading segment separate from loading",
+        "safe unloaded specimen state"
+      ],
+      "frame_image": "frames/20_UNLOAD.jpg",
+      "source_provenance": {
+        "source_supported_stage": "Cyclic compression, rubber rebound, and TC4 unloading are source-supported; the videos do not fully show unloading of every specimen",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": []
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "OBS_RESIDUAL",
+      "frame_id": "OBS_RESIDUAL",
+      "frame_index": 21,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.OBS_RESIDUAL",
+      "port_ids": [
+        "port.camera",
+        "port.specimen",
+        "port.tester_panel"
+      ],
+      "preconditions": [
+        "UNLOAD done",
+        "no external load"
+      ],
+      "postconditions": [
+        "post-unload state exists",
+        "pristine state not reused after metal first cycle"
+      ],
+      "frame_image": "frames/21_OBS_RESIDUAL.jpg",
+      "source_provenance": {
+        "source_supported_stage": "Residual plasticity and increased angle after the first TC4 cycle are source facts",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": []
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "RELOAD",
+      "frame_id": "RELOAD",
+      "frame_index": 22,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.RELOAD",
+      "port_ids": [
+        "port.tester_panel",
+        "port.camera",
+        "port.specimen"
+      ],
+      "preconditions": [
+        "UNLOAD and OBS_RESIDUAL done",
+        "same object remains seated",
+        "cycle_index incremented"
+      ],
+      "postconditions": [
+        "repeat segment separately addressable",
+        "same object lineage for repeats"
+      ],
+      "frame_image": "frames/22_RELOAD.jpg",
+      "source_provenance": {
+        "source_supported_stage": "Repeatability in subsequent cycles is source-supported; the total cycle count is unknown",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": [
+          "Repeat count and long-term fatigue/durability are unreported"
+        ]
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    },
+    {
+      "operation_id": "TEST_REMOVE",
+      "frame_id": "TEST_REMOVE",
+      "frame_index": 23,
+      "station_id": "WS_TEST",
+      "physical_object_id": "obj.R01.001",
+      "semantic_state_id": "state.TEST_REMOVE",
+      "port_ids": [
+        "port.guard",
+        "port.specimen",
+        "port.rotation_lock",
+        "port.box_walls",
+        "port.transport_tray"
+      ],
+      "preconditions": [
+        "UNLOAD completed",
+        "safe_clearance and zero_load",
+        "guard release"
+      ],
+      "postconditions": [
+        "machine empty",
+        "object retains complete cycle history"
+      ],
+      "frame_image": "frames/23_TEST_REMOVE.jpg",
+      "source_provenance": {
+        "source_supported_stage": "Specimen removal is an authored connecting action closing the workflow",
+        "authored_connector": "The grasping, paths, door/button/tray interfaces, mechanical fixture implementations, and discrete success conditions for this operation are task designs, not transcriptions of the paper's micro-actions",
+        "unknown_source_parameters": []
+      },
+      "pose_binding": "source-scene object anchors only; storyboard transforms are separately authored and not instantiated here"
+    }
+  ],
+  "cameras": {
+    "storyboard_review": {
+      "role": "authored_review_camera_not_sensor",
+      "per_frame": [
+        {
+          "frame_id": "TEST01",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "TEST02",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "TEST03",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "BND_FREE",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "OBS01",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "TEST04",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "LOAD",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "UNLOAD",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "OBS_RESIDUAL",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "RELOAD",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        },
+        {
+          "frame_id": "TEST_REMOVE",
+          "declaration": {
+            "location": [
+              5.950000286102295,
+              -1.549999713897705,
+              3.0
+            ],
+            "target_station": "WS_TEST",
+            "ortho_scale": 3.799999952316284
+          }
+        }
+      ],
+      "intrinsics_calibrated": false,
+      "robot_visibility_claim": false
+    },
+    "task_camera_proxy": {
+      "port_id": "port.camera",
+      "scene_objects_are_sensor": false,
+      "sensor_configuration": null,
+      "missing": [
+        "optical pose calibration",
+        "field of view",
+        "near/far clipping",
+        "polling rate",
+        "resolution",
+        "exposure",
+        "target visibility verification"
+      ],
+      "gate_id": "G_SENSOR_CONFIGURATION"
+    },
+    "source_review": {
+      "role": "authored_fixed_review_view_not_robot_sensor",
+      "receipt": "source_evidence/render_receipt.json",
+      "robot_visibility_claim": false
+    }
+  },
+  "occluders": {
+    "storyboard_hidden_prefixes": [
+      "WS_TEST__sidebox_",
+      "WS_TEST__rotation_lock_"
+    ],
+    "declaration_source": "viewer/embodied_r01/scripts/build_visual.py#permanent_hide",
+    "reason": "The original storyboard hides condition fixtures for the authored R01 free-boundary illustration; this is not proof of a robot removal action",
+    "new_source_review_policy": "retain_all_source_geometry",
+    "occlusion_test_executed": false,
+    "condition_geometry_in_source": "side-box and rotation-lock are simultaneous staged props; their presence is not an active R01 boundary",
+    "gate_id": "G_OCCLUSION"
+  },
+  "execution_gates": [
+    {
+      "id": "G_INTERFACE_QUALIFICATION",
+      "reason": "No supported contact frames, tolerances, robot tool, load limits, interlock readbacks or callable interfaces are qualified"
+    },
+    {
+      "id": "G_TRANSPORT_CLIP_GEOMETRY",
+      "reason": "The task transport_clip role has no uniquely identified WS_TEST scene object or calibrated frame"
+    },
+    {
+      "id": "G_SENSOR_CONFIGURATION",
+      "reason": "Camera body/lens are mesh proxies; no calibrated imaging sensor exists"
+    },
+    {
+      "id": "G_OCCLUSION",
+      "reason": "Fixed source-scene inspection retains occluders but does not ray-test target visibility, validate robot views or simulate sensors"
+    },
+    {
+      "id": "G_STATE_INSTANTIATION",
+      "reason": "Semantic states are intended pre/postconditions; source scene contains simultaneous stage props and no runtime state transitions"
+    },
+    {
+      "id": "G_PHYSICS",
+      "reason": "No physics, contact, collision, reachability or grasp validation is run"
+    },
+    {
+      "id": "G_SOURCE_REBUILD_INPUT",
+      "reason": "Original scene is hash-verified locally but unbundled; full independent scene reinspection needs the matching lawful source bytes"
+    }
+  ]
+}

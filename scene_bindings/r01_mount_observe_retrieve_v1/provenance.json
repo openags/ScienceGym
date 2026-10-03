@@ -1,0 +1,53 @@
+{
+  "schema_version": "sciencegym.r01_binding_provenance.v1",
+  "review_date_utc": "2026-10-03",
+  "base_commit": "63dc997e0df0f10286a3180a4aea36d61abd43e9",
+  "grounding": "Existing reviewed task JSON and original first-party authored scene; no new paper-completeness or scientific review",
+  "external_references": [
+    {
+      "url": "https://developer.nvidia.com/blog/how-to-use-ai-agents-to-prepare-3d-scenes-for-simulation/",
+      "title": "How to Use AI Agents to Prepare 3D Scenes for Simulation",
+      "published": "2026-09-16",
+      "read_scope": "Article workflow, semantic labels, sensor declarations, visual preflight and validation gates",
+      "applied": "Bound one task segment to inspected objects; retained explicit validation limits",
+      "not_applied": [
+        "GPU rendering",
+        "sensor simulation",
+        "physics authoring",
+        "USD export",
+        "SimReady certification"
+      ]
+    },
+    {
+      "url": "https://github.com/NVIDIA/simready-foundation",
+      "title": "SimReady Foundation",
+      "read_scope": "Profile-based OpenUSD validation and dependency distinction",
+      "applied": "Kept this independent static metadata audit distinct from SimReady profiles"
+    },
+    {
+      "url": "https://github.com/NVIDIA/simready-foundation/blob/main/nv_core/sr_specs/docs/guides/validate_workflow.md",
+      "title": "SimReady Validation Workflow",
+      "read_scope": "Validation prerequisites, explicit target profile and JSON report",
+      "applied": "Actionable machine-readable findings; no SimReady libraries installed or results claimed"
+    },
+    {
+      "url": "https://nvidia-omniverse.github.io/omniverse-labs/",
+      "title": "Omniverse Labs",
+      "read_scope": "Public landing page only; client-rendered sample catalog not inspected",
+      "applied": "Background reference only"
+    }
+  ],
+  "local_input_hashes": "binding.json#source_inputs",
+  "original_source_hashes": "source_contract_excerpt.json#source_files",
+  "scene_inspection": "source_evidence/source_inventory.json",
+  "scientific_source_doi": "10.1038/s41586-025-08658-z",
+  "authorship": "Original independent ScienceGym binding code, metadata and CPU inspection evidence",
+  "rights": "First-party authored scene geometry/materials; existing repository license and third-party notices unchanged",
+  "not_redistributed": [
+    "NVIDIA software",
+    "publisher images or PDFs",
+    "manufacturer CAD",
+    "unbundled original source scene",
+    "third-party robot assets"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "sciencegym.r01_binding_verification.v1",
+  "verified_date_utc": "2026-10-03",
+  "base_commit": "63dc997e0df0f10286a3180a4aea36d61abd43e9",
+  "status": "static_contract_pass_with_execution_gates",
+  "checks": {
+    "binding_audit": "passed",
+    "binding_tests": {
+      "passed": 77,
+      "failed": 0,
+      "skipped": 0
+    },
+    "root_static_check_groups": {
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0
+    },
+    "english_hygiene": "passed",
+    "source_scene_exact_hash_verified": true,
+    "ws_test_source_object_names_resolved": 215,
+    "all_source_objects_recorded": 963,
+    "task_operation_bindings": 11,
+    "task_roles": 15,
+    "resolved_role_bindings": 14,
+    "explicit_missing_role_bindings": 1,
+    "object_origin_frames": 14,
+    "mounted_sample_meshes": 173,
+    "fixed_cpu_review_images": 1,
+    "fixed_camera_render_runs_recorded": 2,
+    "repeated_png_bytes_identical": true,
+    "all_existing_storyboard_image_hash_assertions": 220,
+    "independent_adversarial_review": "Passed final recheck; alternate evidence-file, unpinned excerpt, malformed-list and numeric-Boolean bypasses are closed; no remaining material blocker in declared static scope"
+  },
+  "execution_gates": 7,
+  "source_review": "source_evidence/validation.json",
+  "source_byte_hash": "bbcf496ca4c1eaa16a56db472e54d944a8d54bc19c7e00073afe32fe9e6ca915",
+  "render_sha256": "52df7196248b8a94be755bd8930bbe35094027742e862ba9ff6121dfbdc930ed",
+  "limitations": [
+    "Static checker consumes frozen Blender inventory rather than opening the original scene each run",
+    "Original source package is unbundled and required for independent Blender reinspection",
+    "All WS_TEST object origins coincide at the station origin and are not physical interaction frames",
+    "Render is an all-stage source-scene human inspection with source occluders retained, not an R01 episode state or robot sensor view",
+    "Role ports are metadata only; a transport clip has no unique source geometry",
+    "Physical/sensor interfaces, state instantiation, visibility, grasp, contact, collision, reachability, physics and scientific results remain unvalidated",
+    "No NVIDIA libraries or SimReady profile validation was run"
+  ],
+  "counts_preserved": {
+    "task_design_drafts": 19,
+    "explorer_families": 10,
+    "embodied_routes": 2,
+    "validated_runnable_whole_paper_tasks": 0
+  },
+  "remote_writes": 0
+}
