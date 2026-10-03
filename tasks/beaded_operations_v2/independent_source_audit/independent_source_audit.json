@@ -1,0 +1,416 @@
+{
+  "audit_title": "Beaded metamaterials: independent source-claim audit",
+  "doi": "10.1038/s41467-025-61809-8",
+  "date_utc": "2026-10-03",
+  "status": "completed_bounded_audit; material tables not verified; no experimental execution",
+  "source_access": {
+    "main": {
+      "url": "https://www.nature.com/articles/s41467-025-61809-8",
+      "review": "Already-retrieved publisher main text; author independently inspected Results, captions, and Methods before source-access warning",
+      "byte_complete_snapshot": false,
+      "source_hash_verified": false
+    },
+    "si": {
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-61809-8/MediaObjects/41467_2025_61809_MOESM1_ESM.pdf",
+      "review": "Previously retrieved seven-page SI text, communicated by parent and triage as caption paraphrases. This auditor did not inspect figure pixels or obtain a byte-complete SI. Page map independently agreed by both collaborators.",
+      "byte_complete_snapshot": false,
+      "source_hash_verified": false,
+      "page_count": 7,
+      "title_page": 1,
+      "independent_verification_scope": "Figure/page mapping and caption-derived conditions cross-checked between the parent and triage; this auditor supplies independent interpretation and consistency checks, not firsthand SI pixels."
+    },
+    "restriction": "No new fetches after access warning. No alternate routes attempted. No source full text or source figure pixels included."
+  },
+  "conflicts": [
+    {
+      "id": "nylon_diameter",
+      "status": "unresolved_source_conflict",
+      "a": {
+        "locator": "Results, paragraph introducing Fig. 2b-c",
+        "value": 1,
+        "unit": "mm"
+      },
+      "b": {
+        "locator": "Fig. 2 caption, b-c",
+        "value": 0.5,
+        "unit": "mm"
+      },
+      "audit": "Do not select a diameter. The discrepancy affects cross-sectional area, elastic comparison, fit provenance and material identity. A library asset must preserve both claims with their locators."
+    },
+    {
+      "id": "catenary_thread_polymer",
+      "status": "unresolved_source_conflict",
+      "a": {
+        "locator": "Results, catenary-shell paragraph; Methods, Catenary shell",
+        "value": "nylon"
+      },
+      "b": {
+        "locator": "Fig. 4d caption",
+        "value": "polyester"
+      },
+      "audit": "Do not merge these polymer identities or infer a product from appearance. Preserve the waxed-filament/cord description separately from unresolved polymer identity."
+    },
+    {
+      "id": "cone_state_colour",
+      "status": "unresolved_source_conflict",
+      "a": {
+        "locator": "Fig. 4e caption",
+        "value": {
+          "up": "white",
+          "down": "gray"
+        }
+      },
+      "b": {
+        "locator": "Results, paragraph describing Fig. 4e",
+        "value": {
+          "up": "gray",
+          "down": "white"
+        }
+      },
+      "audit": "Use independently defined geometric orientation as a state label; keep the color legend unresolved."
+    },
+    {
+      "id": "chain_decay_comparison",
+      "status": "apparent_source_typographical_error_unresolved",
+      "locator": "Results, paragraph describing Fig. 3d",
+      "value": "The same polymer is named on both sides of a shorter-decay-length comparison.",
+      "audit": "Do not silently replace either occurrence with another material. This sentence cannot support an ordered material comparison on its own."
+    },
+    {
+      "id": "tomography_panel_pointer",
+      "status": "cross_reference_inconsistency",
+      "a": {
+        "locator": "Methods, Tomography",
+        "value": "Fig. 1b ii"
+      },
+      "b": {
+        "locator": "Fig. 1 caption",
+        "value": "Fig. 1b iv"
+      },
+      "audit": "Keep the caption-identified CT panel separate from the Methods pointer; avoid interpreting a photograph as a CT measurement."
+    },
+    {
+      "id": "shell_projection_alpha",
+      "status": "internal_equation_parameter_inconsistency",
+      "a": {
+        "locator": "Results, shell-load estimate following Fig. 3c",
+        "value": "alpha=0"
+      },
+      "b": {
+        "locator": "Methods, Tracking bead motion, Eq. (3) and following sentence",
+        "value": "F_parallel=F/(m tan(theta_2) sin(alpha)); sin(alpha) approximately 0.9-1.0"
+      },
+      "audit": "Substitution of the stated zero angle makes the denominator zero. No repaired angle convention is independently verified, so block automatic numerical evaluation for that stated special case."
+    },
+    {
+      "id": "friction_tension_convention",
+      "status": "analysis_convention_ambiguity",
+      "a": {
+        "locator": "Results, introduction to Fig. 3a-b",
+        "value": "Description refers to a difference between end tensions."
+      },
+      "b": {
+        "locator": "Results, Eq. (1); Methods, Effective sliding friction",
+        "value": "The exponential relation has a tension-ratio form; the Methods measures sensor-end tension."
+      },
+      "audit": "Store raw sensor-end tension, pretension and any derived difference separately. The capstan ratio applies to absolute tensions; do not treat a subtracted signal as interchangeable without resolving the authors’ convention."
+    }
+  ],
+  "tables": [
+    {
+      "locator": "Main Table 1",
+      "scope": "Bead materials, dimensions and suppliers",
+      "status": "not_verified",
+      "audit": "Table contents were not independently obtained in the permitted source view. No SKU, hole diameter, bead variant, roughening method or supplier should be promoted from inference to source-reported."
+    },
+    {
+      "locator": "Main Table 2",
+      "scope": "Thread materials, dimensions and suppliers",
+      "status": "not_verified",
+      "audit": "Table contents were not independently obtained in the permitted source view. Neither conflicting polymer/diameter claim is resolved by an unread table."
+    }
+  ],
+  "count_and_condition_semantics": [
+    {
+      "scope": "shell_compression",
+      "locator": "Methods, Dodecahedral shell / Compression experiments",
+      "reported": {
+        "mass_range_g": [
+          200,
+          800
+        ],
+        "cycles_per_tension": 3
+      },
+      "audit": "A range is not a fully enumerated schedule; cycles are repeated loading of a condition, not independent shells. Do not double the end tension merely because both ends carry weights."
+    },
+    {
+      "scope": "shell_tracking",
+      "locator": "Methods, Tracking bead motion",
+      "reported": {
+        "tracked_cycles": 1,
+        "bottom_ring_n": 10,
+        "surrounding_loops_m": 5,
+        "hole_axis_bead_diameter_mm": 9.2
+      },
+      "audit": "One tracked cycle does not imply all loading cycles were tracked. These n and m definitions are local and must not overwrite global shell geometry."
+    },
+    {
+      "scope": "sliding_friction",
+      "locator": "Methods, Effective sliding friction",
+      "reported": {
+        "ring_n": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "mass_range_g": [
+          50,
+          500
+        ],
+        "mass_increment_g": 50,
+        "sensor_end_speed_mm_s": 30
+      },
+      "audit": "Independent replicate count is not established by the condition grid. Preserve mm/s exactly; do not normalize to the mm/min reported in other routes."
+    },
+    {
+      "scope": "thread_modulus",
+      "locator": "Methods, Young’s modulus",
+      "reported": {
+        "clamp_spacing_mm": [
+          10,
+          25,
+          50,
+          100
+        ],
+        "trials_per_spacing": 3,
+        "fitted_extra_length_per_clamp_mm": {
+          "nitinol": 13,
+          "nylon": 9
+        }
+      },
+      "audit": "Trial count is not an independent-specimen count. Fitted in-clamp length is part of the analysis model, not a directly set free gauge length."
+    },
+    {
+      "scope": "isolated_ring_dilation",
+      "locator": "Main Fig. 3c; Methods, Ring dilation / Experiments",
+      "reported": {
+        "ring_n": [
+          3,
+          4,
+          5
+        ],
+        "pretension_range_N": [
+          2.0,
+          9.8
+        ],
+        "cycles": 3
+      },
+      "audit": "Do not import the four-ring-size friction grid; the plotted dilation family has three ring sizes. Complete pretension schedule remains unspecified in this text."
+    },
+    {
+      "scope": "chain_dilation",
+      "locator": "Main Fig. 3d; Methods, Ring dilation / Experiments",
+      "reported": {
+        "total_cells_m": 15,
+        "local_n": 4,
+        "cycles_per_position_per_case": 3,
+        "direction": "free end toward far end"
+      },
+      "audit": "Repeated positions are linked within a chain and have order/history. Forty-five cycles per full sweep is arithmetic, not forty-five independent specimens. Do not assume the full cross-product of all illustrated pretensions and materials without inspecting source data."
+    },
+    {
+      "scope": "ct_chain",
+      "locator": "Methods, Ring dilation / Experiments; SI Fig. 4g",
+      "reported": {
+        "total_cells_m": 8
+      },
+      "audit": "The CT chain cannot be assigned the mechanical chain specimen identity on the basis of a shared weave name."
+    },
+    {
+      "scope": "column",
+      "locator": "Methods, Column beaded with elastomeric thread",
+      "reported": {
+        "layers": 11,
+        "cycles": 3,
+        "speed_mm_min": 30
+      },
+      "audit": "Layers are architecture, cycles are repeats; neither is the number of independently fabricated columns."
+    },
+    {
+      "scope": "sma_beam",
+      "locator": "Methods, Beam beaded with SMA wire",
+      "reported": {
+        "layers": 31,
+        "off_cycles": 9,
+        "on_cycles": 12,
+        "speed_mm_min": 30,
+        "on_voltage_V": 6,
+        "current_mA": 660
+      },
+      "audit": "Keep electrical state, loading cycle, and specimen identity separate. Counts do not establish independent beams; no thermal dwell, cooldown or temperature criterion is specified here."
+    }
+  ],
+  "si_figure_review": [
+    {
+      "figure": "SI Figure 1",
+      "pdf_page_1_indexed": 2,
+      "evidence_status": "collaborator_reviewed_caption_not_independent_visual_verification",
+      "panels": {
+        "a": "shell-compression mirror setup",
+        "b": "ring-dilation mirror setup",
+        "c": "fixed-ring friction housing",
+        "d": "mechanical chain: n=4, m=15",
+        "e": "CT mounts for shells, isolated rings and m=8 chain"
+      },
+      "reported_details": {
+        "ct_nitinol_ends": "manual tension followed by end crimps",
+        "ct_nylon_ends": "manual tension followed by tying/gluing",
+        "ct_platform_materials": [
+          "PLA",
+          "PETG",
+          "acrylic"
+        ],
+        "ct_attachment": "gluing to platform after tensioning"
+      },
+      "audit": "Use separate fixture and specimen lineages. End fixation and platform bonding are distinct operations; a generic knot-only CT route loses a source-specific nitinol boundary. Do not reuse the testing-chain identity for the shorter CT chain. Dimensions, glue product, applied pretension and scan settings remain unresolved."
+    },
+    {
+      "figure": "SI Figure 2",
+      "pdf_page_1_indexed": 3,
+      "evidence_status": "collaborator_reviewed_caption_not_independent_visual_verification",
+      "panels": {
+        "a": {
+          "beads": "10 mm frosted acrylic",
+          "threads": [
+            "nitinol",
+            "nylon"
+          ],
+          "indenter_options": [
+            "plate",
+            "17 mm diameter column tip contacting upper ring only"
+          ],
+          "pretension_range_N": [
+            2.0,
+            7.8
+          ]
+        },
+        "b": {
+          "beads": "10 mm acrylic, smooth versus frosted",
+          "threads": [
+            "nitinol",
+            "nylon"
+          ],
+          "pretension_range_N": [
+            2.0,
+            7.8
+          ]
+        },
+        "c": {
+          "beads": "smooth acetal, holes manually drilled for consistency",
+          "thread": "nitinol",
+          "pretension_range_N": [
+            2.0,
+            9.8
+          ],
+          "additional_output": "unloading maxima in inset"
+        },
+        "d": {
+          "beads": "10 mm frosted acrylic",
+          "threads": [
+            "nitinol",
+            "nylon"
+          ],
+          "boundary": "manually tensioned ends clamped",
+          "endpoint": "failure",
+          "slope_N_per_mm": {
+            "nitinol": 170,
+            "nylon": 193
+          }
+        }
+      },
+      "audit": "These are separate panels, not evidence of a full factorial experiment. Column-tip diameter must not become bead diameter. Pretension ranges do not enumerate all cases. Manual fixed-length clamping is not an independently calibrated constant-force condition. Numerical bead-size series, bore dimensions, frosted-surface preparation, repeat counts, slope fit range and failure definition remain unresolved. Printed Fig?? references in the SI are unresolved source placeholders."
+    },
+    {
+      "figure": "SI Figure 3",
+      "pdf_page_1_indexed": 4,
+      "evidence_status": "collaborator_reviewed_caption_not_independent_visual_verification",
+      "reported_conditions": {
+        "nitinol_pretension_N": 2.0,
+        "nylon_pretension_N": 7.9
+      },
+      "scope": "tracked-center reconstructions of local five-bead configurations and load paths",
+      "audit": "The two illustrated materials also differ in pretension. Do not describe this pair as a pretension-matched material comparison. A reconstructed force path is a source interpretation, not an independently measured contact-force vector. Preserve 7.9 N as reported here rather than silently replacing it with the nearby 7.8 N bound used elsewhere."
+    },
+    {
+      "figure": "SI Figure 4",
+      "pdf_page_1_indexed": 5,
+      "evidence_status": "collaborator_reviewed_caption_not_independent_visual_verification",
+      "panels": {
+        "a-c": {
+          "thread": "nitinol",
+          "ring_n": [
+            3,
+            4,
+            5
+          ]
+        },
+        "d-f": {
+          "thread": "nylon",
+          "ring_n": [
+            3,
+            4,
+            5
+          ]
+        },
+        "g": {
+          "thread": "nylon",
+          "chain_m": 8
+        },
+        "h": "normalized thread length per ring"
+      },
+      "audit": "CT ring sizes do not establish CT imaging for n=6. Preserve the normalization definition as an unresolved analysis detail until directly extracted. CT appearance alone does not validate a force model or a unique slack-distribution mechanism."
+    },
+    {
+      "figure": "SI Figure 5",
+      "pdf_page_1_indexed": 6,
+      "evidence_status": "collaborator_reviewed_caption_not_independent_visual_verification",
+      "reported_details": {
+        "local_n": 4,
+        "chain_m": 15,
+        "start_position_i": 1,
+        "pretension_N": 2,
+        "threads": [
+          "nitinol",
+          "nylon"
+        ],
+        "inset": "three positions nearest the free end",
+        "signal": "projected in-plane dilation force"
+      },
+      "audit": "Keep the projected quantity separate from directly measured vertical indenter force. The three positions in an inset are not three independent replicates. This 2 N illustration does not enumerate every pretension in the main chain experiment. Sequential deformation history must remain attached to chain and position identity."
+    },
+    {
+      "figure": "SI Figure 6",
+      "pdf_page_1_indexed": 7,
+      "evidence_status": "collaborator_reviewed_caption_not_independent_visual_verification",
+      "reported_details": {
+        "thread": "nylon",
+        "initial_condition": "manual pretension and tied ends",
+        "central_defect_n": 4,
+        "load": "point loading to reverse cone orientation",
+        "moving_average_cycles": 4,
+        "figure_scale_bar_mm": 20
+      },
+      "audit": "The four cycles do not establish four independent cones. The measured n=4 example is narrower than the n=3,4,5 design family discussed in the main Results. Point-contact geometry, loader speed, quantitative initial tension, force limit, full defect-family test matrix and moving-average window remain unresolved. Do not invent a universal snap-through threshold. The 20 mm scale bar is an image annotation, not a reported overall cone dimension."
+    }
+  ],
+  "general_gaps": [
+    "No audited specimen-level ledger, independent fabrication count, randomization rule or explicit definition of statistical uncertainty is established here.",
+    "Source-reported demonstration load capacity is not a validated safe working load. No human-support test should be inferred as part of the conversion.",
+    "No byte-complete source archive was available; old hashes inside the inherited entry are unverified provenance claims, not hashes calculated from currently held sources.",
+    "Do not use inventory membership to imply that every material, bead size, boundary condition and loading route formed a full factorial experiment.",
+    "No primary data were rerun, and no data points were digitized from figures in this audit.",
+    "Nitinol and nylon comparisons do not establish a thread-diameter-matched material-only control. Diameter identity is different or conflicting; preserve geometric and material covariates separately.",
+    "Source text is adequate for a bounded static claim audit, not execution readiness. Source drawings were not visually inspected here; exact geometric dimensions and data-series counts require direct source verification when lawfully available."
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": "beaded_paper_task.v1",
+  "doi": "10.1038/s41467-025-61809-8",
+  "entities": {
+    "bead": {
+      "id": "bead_id",
+      "required": [
+        "stock_lot",
+        "material",
+        "size_card",
+        "hole_geometry_card",
+        "surface_condition",
+        "preparation_receipt"
+      ]
+    },
+    "thread_segment": {
+      "id": "thread_id",
+      "required": [
+        "spool_lot",
+        "actual_material_card",
+        "cut_length",
+        "end_A",
+        "end_B",
+        "diameter_status",
+        "prior_use"
+      ]
+    },
+    "assembly": {
+      "id": "sample_id",
+      "required": [
+        "assembly_version",
+        "bead_ids",
+        "thread_ids",
+        "ordered_thread_passages",
+        "loop_memberships",
+        "termination_records",
+        "preparation_scope",
+        "state_history"
+      ]
+    },
+    "fixture": {
+      "id": "fixture_id",
+      "required": [
+        "component_part_ids",
+        "drawing_version",
+        "origin_scope",
+        "assembly_receipt",
+        "calibration_or_qualification"
+      ]
+    },
+    "condition": {
+      "id": "condition_id",
+      "required": [
+        "sample_id",
+        "assembly_version",
+        "fixture_id",
+        "end_constraint_mode",
+        "material",
+        "geometry",
+        "pretension_convention",
+        "actual_readback",
+        "program_version",
+        "history_signature"
+      ]
+    },
+    "attempt": {
+      "id": "attempt_id",
+      "required": [
+        "run_id",
+        "condition_id",
+        "start_state",
+        "timestamp",
+        "status",
+        "raw_receipt_ids",
+        "retry_of"
+      ]
+    },
+    "cycle": {
+      "id": "cycle_id",
+      "required": [
+        "attempt_id",
+        "chronological_index",
+        "load_record",
+        "return_record_or_explicit_not_applicable",
+        "integrity_status"
+      ]
+    },
+    "scan": {
+      "id": "scan_id",
+      "required": [
+        "sample_id",
+        "assembly_version",
+        "mount_id",
+        "state_id",
+        "custody_receipts",
+        "raw_volume_id",
+        "service_program",
+        "reconstruction_id"
+      ]
+    }
+  },
+  "rules": [
+    "Shared chain beads have one physical ID and multiple ring memberships; loop indexing does not duplicate objects.",
+    "Source m=15 mechanical and m=8 CT chains remain different preparation families unless an actual documented remanufacturing link is supplied.",
+    "Three cycles, four cone averages, nine/twelve SMA cycles, 11/31 layers and pictured configurations never establish independent sample counts.",
+    "Thread replacement creates a new thread ID and assembly version; a physically distinct network creates a new sample ID.",
+    "Glue, knots, crimps and clamp remounts are preparation/state events; irreversible changes cannot be erased by reset.",
+    "Replacing a failed component or specimen keeps the failed predecessor and replacement linkage.",
+    "A raw record cannot be reused under another sample/material/tension label.",
+    "Mechanical-to-CT overlap is null until confirmed by actual custody and identity records.",
+    "A sample has exactly one physical location; service custody does not duplicate it.",
+    "Required-part preparation binds input-stock IDs, physical output IDs and their current locations; supplied outputs preserve the same identities.",
+    "Robot weaving consumes actual prepared bead IDs at their recorded location; preparation never teleports stock back to storage.",
+    "WS_ANALYSIS is a data/service handoff only and cannot update specimen location or custody."
+  ],
+  "source_historical_specimen_counts": null
+}

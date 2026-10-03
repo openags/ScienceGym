@@ -1,0 +1,3923 @@
+{
+  "schema_version": "beaded_paper_task.v1",
+  "doi": "10.1038/s41467-025-61809-8",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 70,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Read work order and bind scope",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_RECORDS",
+      "source_workstation": "WS_RECORDS",
+      "target_workstation": "WS_RECORDS",
+      "manipulated_objects": [
+        "work_order",
+        "inventory_manifest"
+      ],
+      "tools": [
+        "record_terminal"
+      ],
+      "actions": [
+        "Read selected route and actual inventory",
+        "Bind sample allocation, public geometry/material cards, condition order and success criteria",
+        "List absent inputs against affected stages"
+      ],
+      "preconditions": [
+        "Selected route exists"
+      ],
+      "postconditions": [
+        "scope_bound",
+        "input_gaps_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOCATION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "STOCK",
+      "title": "Retrieve labeled beads, thread and carriers",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_STOCK",
+      "source_workstation": "WS_STOCK",
+      "target_workstation": "WS_STOCK",
+      "manipulated_objects": [
+        "bead_lots",
+        "thread_spools",
+        "carriers"
+      ],
+      "tools": [
+        "gripper",
+        "labeled_tray"
+      ],
+      "actions": [
+        "Navigate the empty mobile base to the bound actual source station and verify docking before grasping; the source can already be the weaving bench for prepared bead outputs",
+        "Read lot/material/size labels and compare to work order",
+        "Grasp packaging or tray handles and place each stock item in a separate retained cart compartment",
+        "Scan issue records without mixing bead variants"
+      ],
+      "preconditions": [
+        "scope_bound"
+      ],
+      "postconditions": [
+        "stock_allocated",
+        "carrier_loaded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_THREAD",
+        "U_BEAD_GEOMETRY",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "MOVE",
+      "title": "Transport supported objects between stations",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_DESTINATION",
+      "source_workstation": "WS_SOURCE",
+      "target_workstation": "WS_DESTINATION",
+      "manipulated_objects": [
+        "carrier",
+        "specimen_or_stock",
+        "secured_thread_tails"
+      ],
+      "tools": [
+        "mobile_base",
+        "cart",
+        "carrier_handle"
+      ],
+      "actions": [
+        "Bind source and destination workstation IDs from current work order",
+        "Support the sample and restrain tails; verify no active tether or suspended load remains attached",
+        "Grasp carrier handle, seat and latch it on cart, retract hands, navigate a qualified route",
+        "Dock, read carrier identity, unlatch and place on destination support"
+      ],
+      "preconditions": [
+        "source_location_verified",
+        "object_safe_for_transport",
+        "qualified_navigation_path"
+      ],
+      "postconditions": [
+        "arrival_location_verified",
+        "object_supported_at_destination"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "STAGE",
+      "title": "Stage indexed assembly components",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "beads",
+        "thread",
+        "topology_card"
+      ],
+      "tools": [
+        "indexed_mat",
+        "gripper",
+        "inspection_camera"
+      ],
+      "actions": [
+        "For bead-network mode, place beads in indexed pockets and preserve lot labels; for thread-only mode explicitly mark bead staging not applicable",
+        "Uncoil the declared thread segment and identify free ends A and B",
+        "Read the qualified route or coupon preparation card"
+      ],
+      "preconditions": [
+        "stock_allocated",
+        "arrival_location_verified"
+      ],
+      "postconditions": [
+        "parts_indexed",
+        "thread_ends_identified",
+        "partial_assembly_supported"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_TOPOLOGY",
+        "U_THREAD",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "PART_QC",
+      "title": "Inspect bead bores and thread condition",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "individual_beads",
+        "thread_segment"
+      ],
+      "tools": [
+        "camera",
+        "qualified_gauges"
+      ],
+      "actions": [
+        "Rotate supported beads to inspect bores and surfaces",
+        "Measure required dimensions with a qualified method",
+        "Record frays, kinks or hole defects and quarantine mismatches"
+      ],
+      "preconditions": [
+        "parts_indexed"
+      ],
+      "postconditions": [
+        "parts_qualified",
+        "component_ids_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_BEAD_GEOMETRY",
+        "U_THREAD"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "THREAD_PREP",
+      "title": "Prepare a traceable thread segment",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "thread_spool",
+        "thread_segment"
+      ],
+      "tools": [
+        "qualified_cutting_tool",
+        "tail_clips",
+        "length_gauge"
+      ],
+      "actions": [
+        "Read required cut length and end treatment from material card",
+        "Hold stock under support, cut only when authorized by the work order and capture segment-to-spool lineage",
+        "Secure and label both ends without introducing a new unrecorded splice"
+      ],
+      "preconditions": [
+        "parts_qualified",
+        "cut_length_supplied",
+        "route_or_coupon_card_supplied"
+      ],
+      "postconditions": [
+        "thread_segment_created",
+        "ends_A_B_secured"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_THREAD",
+        "U_TOPOLOGY"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "BEAD_ALIGN",
+      "title": "Pick and align the next indexed bead",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "next_bead",
+        "partial_assembly"
+      ],
+      "tools": [
+        "bead_gripper",
+        "support_jig"
+      ],
+      "actions": [
+        "Read next passage bead and hole orientation",
+        "Pick that physical bead from its pocket",
+        "Place it in the assembly support and align the prescribed hole with the selected tail"
+      ],
+      "preconditions": [
+        "thread_ends_identified",
+        "next_passage_defined",
+        "partial_assembly_supported"
+      ],
+      "postconditions": [
+        "next_bead_aligned"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SWATCH"
+      ],
+      "unknown_parameter_ids": [
+        "U_TOPOLOGY",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "THREAD_PASS",
+      "title": "Feed a named thread end through a bead",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "thread_end",
+        "aligned_bead",
+        "partial_assembly"
+      ],
+      "tools": [
+        "thread_gripper",
+        "qualified_feed_guide"
+      ],
+      "actions": [
+        "Hold bead orientation while feeding the specified end through the specified hole",
+        "Grasp the emerging end and pull only the declared length through under bounded tension",
+        "Observe passage exit and record end direction and crossings"
+      ],
+      "preconditions": [
+        "next_bead_aligned",
+        "safe_feed_envelope"
+      ],
+      "postconditions": [
+        "passage_verified",
+        "thread_path_updated"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SWATCH"
+      ],
+      "unknown_parameter_ids": [
+        "U_TOPOLOGY",
+        "U_ROBOT",
+        "U_THREAD"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "LOOP_SEAT",
+      "title": "Seat and inspect a completed weave loop",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "loop_beads",
+        "thread_path"
+      ],
+      "tools": [
+        "support_jig",
+        "camera"
+      ],
+      "actions": [
+        "Support neighboring beads while taking up only the declared slack",
+        "Inspect expected hole passages, crossing direction and shared-bead identities",
+        "Record completed loop membership before proceeding"
+      ],
+      "preconditions": [
+        "all_loop_passages_verified"
+      ],
+      "postconditions": [
+        "loop_verified",
+        "slack_state_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SWATCH"
+      ],
+      "unknown_parameter_ids": [
+        "U_TOPOLOGY",
+        "U_MANUAL_TENSION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "WEAVE_AUDIT",
+      "title": "Audit the complete assembly topology",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "assembled_network",
+        "route_manifest"
+      ],
+      "tools": [
+        "camera",
+        "inspection_probe"
+      ],
+      "actions": [
+        "Trace ends and loop map against the qualified graph",
+        "Check shared components once by identity and every expected passage by occurrence",
+        "Record actual geometry and thread integrity; support both ends"
+      ],
+      "preconditions": [
+        "all_required_loops_verified"
+      ],
+      "postconditions": [
+        "assembly_version_qualified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CHAIN"
+      ],
+      "unknown_parameter_ids": [
+        "U_TOPOLOGY",
+        "U_BEAD_GEOMETRY"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "PREASSEMBLED_RECEIVE",
+      "title": "Receive an explicitly outside-scope prepared object",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "teaching_specimen",
+        "preparation_receipt"
+      ],
+      "tools": [
+        "gripper",
+        "camera",
+        "record_terminal"
+      ],
+      "actions": [
+        "Read preparation scope and physical object identity",
+        "Inspect material/topology evidence and condition",
+        "Place object on support and record outside-scope assembly status"
+      ],
+      "preconditions": [
+        "preassembled_mode_explicitly_selected",
+        "qualified_preparation_receipt"
+      ],
+      "postconditions": [
+        "assembly_version_qualified",
+        "actor_weaving_not_claimed"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOCATION",
+        "U_TOPOLOGY"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "MANUAL_TENSION",
+      "title": "Apply a qualified manual-like tensioning action",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "assembly",
+        "thread_ends"
+      ],
+      "tools": [
+        "two_end_grippers",
+        "tension_feedback",
+        "support_jig"
+      ],
+      "actions": [
+        "Support the network and engage both designated tails",
+        "Apply only the bounded displacement/force action on the public card",
+        "Observe shape and residual slack; record actual tension/state without inventing the source value"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "manual_action_envelope_supplied"
+      ],
+      "postconditions": [
+        "pretension_state_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_DEMO",
+        "E_COLUMN",
+        "E_SMA"
+      ],
+      "unknown_parameter_ids": [
+        "U_MANUAL_TENSION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "TERMINATE",
+      "title": "Tie, crimp or clamp the selected thread ends",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_WEAVE",
+      "source_workstation": "WS_WEAVE",
+      "target_workstation": "WS_WEAVE",
+      "manipulated_objects": [
+        "thread_ends",
+        "termination_hardware"
+      ],
+      "tools": [
+        "qualified_knot_or_crimp_tool",
+        "support_jig"
+      ],
+      "actions": [
+        "Read selected material-specific termination mode",
+        "Maintain support and imposed state while forming the prescribed knot, applying crimp or closing clamp",
+        "Inspect security and record hardware identity and end constraint"
+      ],
+      "preconditions": [
+        "pretension_state_recorded",
+        "termination_card_resolved"
+      ],
+      "postconditions": [
+        "termination_verified",
+        "assembly_version_updated"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_COLUMN",
+        "E_SMA",
+        "E_CT_PREP"
+      ],
+      "unknown_parameter_ids": [
+        "U_TERMINATION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SERVICE_LOAD",
+      "title": "Load an enclosed part-preparation job",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_PREP",
+      "source_workstation": "WS_PREP",
+      "target_workstation": "WS_PREP",
+      "manipulated_objects": [
+        "blank_stock",
+        "fabrication_job"
+      ],
+      "tools": [
+        "carrier",
+        "guarded_service_interface"
+      ],
+      "actions": [
+        "Match qualified drawing and material to requested fixture/platform/drilled bead",
+        "Load the input carrier and close guard",
+        "Read back job ID and safety-ready status"
+      ],
+      "preconditions": [
+        "qualified_drawing_and_job",
+        "service_available"
+      ],
+      "postconditions": [
+        "prep_job_accepted"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SIZE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PREP_SERVICE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SERVICE_PROCESS",
+      "title": "Run a qualified enclosed preparation service",
+      "kind": "device_process",
+      "actor": "qualified_device_or_analysis_service",
+      "location_id": "WS_PREP",
+      "source_workstation": "WS_PREP",
+      "target_workstation": "WS_PREP",
+      "manipulated_objects": [
+        "job_stock"
+      ],
+      "tools": [
+        "enclosed_device"
+      ],
+      "actions": [
+        "Device performs only the qualified print, cut or drill job",
+        "Device records job state, identity and any fault",
+        "Actor stays outside the guarded process zone"
+      ],
+      "preconditions": [
+        "prep_job_accepted",
+        "guard_verified"
+      ],
+      "postconditions": [
+        "prep_device_stopped",
+        "prep_output_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SIZE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PREP_SERVICE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": {
+        "robot_setup": "SERVICE_LOAD",
+        "robot_unload": "SERVICE_RECEIVE"
+      }
+    },
+    {
+      "id": "SERVICE_RECEIVE",
+      "title": "Unload and inspect prepared parts",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_PREP",
+      "source_workstation": "WS_PREP",
+      "target_workstation": "WS_PREP",
+      "manipulated_objects": [
+        "prepared_parts",
+        "job_receipt"
+      ],
+      "tools": [
+        "carrier",
+        "gripper",
+        "inspection_gauges"
+      ],
+      "actions": [
+        "Verify device stopped and allowed access",
+        "Receive physical parts and reconcile count/IDs with job receipt",
+        "Inspect required dimensions and transfer accepted parts to a labeled carrier"
+      ],
+      "preconditions": [
+        "prep_device_stopped",
+        "prep_output_receipt"
+      ],
+      "postconditions": [
+        "prepared_parts_qualified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SIZE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PREP_SERVICE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "FIXTURE_QC",
+      "title": "Check mechanical station and calibration",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "fixture",
+        "indenter",
+        "load_cell",
+        "stage"
+      ],
+      "tools": [
+        "camera",
+        "calibration_interface"
+      ],
+      "actions": [
+        "Identify fixture/tool/material and calibration status",
+        "Inspect guards, cleanliness, travel, alignment references and limits",
+        "Read unloaded instrument baseline and public fault status"
+      ],
+      "preconditions": [
+        "fixture_card_supplied",
+        "device_stopped"
+      ],
+      "postconditions": [
+        "fixture_qualified",
+        "baseline_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL",
+        "E_FRICTION"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "TOOL_CHANGE",
+      "title": "Exchange and requalify the indenter",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "old_indenter",
+        "new_indenter"
+      ],
+      "tools": [
+        "tool_gripper",
+        "tool_rack"
+      ],
+      "actions": [
+        "Verify stopped motion and supported specimen clearance",
+        "Remove old identified tool and seat it in rack",
+        "Grasp and lock selected replacement; inspect seating and read identity",
+        "Renew alignment and reference record"
+      ],
+      "preconditions": [
+        "device_stopped",
+        "specimen_supported",
+        "tool_change_authorized"
+      ],
+      "postconditions": [
+        "new_tool_installed",
+        "fixture_requalification_required"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_INDENTER"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SHELL_MOUNT",
+      "title": "Place shell on the transparent stage",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "shell",
+        "thread_tails"
+      ],
+      "tools": [
+        "carrier",
+        "support_jig"
+      ],
+      "actions": [
+        "Move supported shell from carrier to the documented stage location",
+        "Orient bead groups relative to plate and camera views",
+        "Retain both thread tails without applying unintended load"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "fixture_qualified",
+        "arrival_location_verified"
+      ],
+      "postconditions": [
+        "shell_mounted",
+        "tail_roles_confirmed",
+        "sample_mounted",
+        "mounted_sample_identity_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "PULLEY_ROUTE",
+      "title": "Route thread tails and attach restrained masses",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "thread_ends",
+        "pulleys",
+        "mass_hangers"
+      ],
+      "tools": [
+        "tail_gripper",
+        "mass_restrainers"
+      ],
+      "actions": [
+        "Read the explicit end-role map; do not infer one from another branch",
+        "Support the sample and route each named tail through its specified pulley",
+        "Attach masses only to ends whose role is hanging_mass and keep them restrained; attach tester_grip ends to the identified sensor-side clamp",
+        "Verify path and role for every end; record mass count, sensor-end identity, crossings and travel"
+      ],
+      "preconditions": [
+        "sample_mounted",
+        "mass_schedule_bound",
+        "end_role_map_resolved",
+        "device_stopped"
+      ],
+      "postconditions": [
+        "pulley_path_verified",
+        "masses_attached_restrained"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL",
+        "E_FRICTION"
+      ],
+      "unknown_parameter_ids": [
+        "U_TENSION",
+        "U_TENSION_FIXTURE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "PRETENSION",
+      "title": "Release restraints and verify imposed end conditions",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "restrained_masses",
+        "thread_network"
+      ],
+      "tools": [
+        "restraint_controls",
+        "tension_readback"
+      ],
+      "actions": [
+        "Clear hands and masses path",
+        "Release the designated restraint through its qualified interface",
+        "Observe settling, free travel, end mapping and actual tension convention",
+        "Record both ends separately without doubling per-end tension"
+      ],
+      "preconditions": [
+        "pulley_path_verified",
+        "masses_attached_restrained",
+        "clearance_verified"
+      ],
+      "postconditions": [
+        "pretension_verified",
+        "condition_signature_created",
+        "pretension_or_boundary_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL",
+        "E_RING"
+      ],
+      "unknown_parameter_ids": [
+        "U_TENSION",
+        "U_TENSION_FIXTURE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CLAMP_ENDS",
+      "title": "Transfer pretensioned ends to rigid supports",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "shell_thread_ends",
+        "rigid_clamps"
+      ],
+      "tools": [
+        "end_grippers",
+        "clamp_controls"
+      ],
+      "actions": [
+        "Follow the supplied support-to-clamp transfer with measured load feedback",
+        "Close each designated clamp and inspect holding",
+        "Record actual initial state and finite end constraints; secure unused hangers"
+      ],
+      "preconditions": [
+        "qualified_transfer_plan",
+        "pretension_state_recorded",
+        "sample_supported"
+      ],
+      "postconditions": [
+        "clamped_boundary_verified",
+        "condition_signature_created",
+        "pretension_or_boundary_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CLAMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_MANUAL_TENSION",
+        "U_TERMINATION",
+        "U_FAILURE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CAMERA_SETUP",
+      "title": "Calibrate front and mirror-mediated bottom views",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "camera",
+        "mirror",
+        "calibration_target",
+        "sample"
+      ],
+      "tools": [
+        "camera_controls",
+        "target_gripper"
+      ],
+      "actions": [
+        "Place target at qualified reference positions with machine stopped",
+        "Adjust camera and 45-degree mirror via supplied controls",
+        "Record both-view transforms, bead visibility and time-base status",
+        "Remove target and verify unobstructed test views"
+      ],
+      "preconditions": [
+        "fixture_qualified",
+        "device_stopped"
+      ],
+      "postconditions": [
+        "views_calibrated",
+        "tracking_map_bound"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL",
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAMERA"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "PROGRAM",
+      "title": "Configure and read back a bounded mechanical program",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "program_card",
+        "instrument"
+      ],
+      "tools": [
+        "instrument_control_interface"
+      ],
+      "actions": [
+        "Bind route-specific speed units, stroke, zero, direction, cycle count, limits and acquisition",
+        "Read back applied settings and compare to card",
+        "Confirm safe-state and synchronization readiness before enabling motion"
+      ],
+      "preconditions": [
+        "fixture_qualified",
+        "mounted_sample_identity_verified",
+        "required_program_inputs_resolved"
+      ],
+      "postconditions": [
+        "program_verified",
+        "acquisition_armed"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_LOAD_PROGRAM",
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CYCLE_START",
+      "title": "Start one measured loading leg",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "mounted_sample",
+        "instrument"
+      ],
+      "tools": [
+        "guarded_start_interface"
+      ],
+      "actions": [
+        "Verify current sample/version, condition, cycle ID and prior state",
+        "Clear robot and carrier from motion envelope",
+        "Trigger configured program and capture onset synchronization event"
+      ],
+      "preconditions": [
+        "program_verified",
+        "pretension_or_boundary_verified",
+        "clearance_verified",
+        "acquisition_armed"
+      ],
+      "postconditions": [
+        "load_leg_started",
+        "synchronization_event_recorded",
+        "cycle_attempt_exists"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL",
+        "E_RING",
+        "E_CHAIN"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "LOAD_DEVICE",
+      "title": "Acquire the device-controlled loading leg",
+      "kind": "device_process",
+      "actor": "qualified_device_or_analysis_service",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "mounted_sample"
+      ],
+      "tools": [
+        "universal_testing_machine",
+        "camera"
+      ],
+      "actions": [
+        "Device advances only along the bounded programmed loading leg",
+        "Acquire timestamped force/displacement and required images/readbacks",
+        "Stop at programmed endpoint or public fault and retain partial data"
+      ],
+      "preconditions": [
+        "load_leg_started"
+      ],
+      "postconditions": [
+        "load_leg_recorded",
+        "device_endpoint_or_fault",
+        "device_stopped"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL",
+        "E_RING",
+        "E_CHAIN"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD_PROGRAM",
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": {
+        "robot_setup": "CYCLE_START",
+        "robot_unload": "SAFE_UNLOAD"
+      }
+    },
+    {
+      "id": "RETURN_DEVICE",
+      "title": "Acquire the programmed return leg",
+      "kind": "device_process",
+      "actor": "qualified_device_or_analysis_service",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "mounted_sample"
+      ],
+      "tools": [
+        "universal_testing_machine"
+      ],
+      "actions": [
+        "Device follows the qualified return path with acquisition active",
+        "Record contact loss, residual deformation and stopping state",
+        "If no safe return exists, isolate station and request intervention"
+      ],
+      "preconditions": [
+        "load_leg_recorded",
+        "safe_return_authorized",
+        "no_unresolved_fault"
+      ],
+      "postconditions": [
+        "return_leg_recorded",
+        "device_stopped"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL",
+        "E_RING",
+        "E_COLUMN"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD_PROGRAM"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": {
+        "robot_setup": "PROGRAM",
+        "robot_unload": "SAFE_UNLOAD"
+      }
+    },
+    {
+      "id": "CYCLE_QC",
+      "title": "Check cycle completeness and sample integrity",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "cycle_records",
+        "sample"
+      ],
+      "tools": [
+        "record_interface",
+        "camera"
+      ],
+      "actions": [
+        "Check both legs, timestamps, saturation, synchronization and units",
+        "Inspect visible slip, thread damage and fixture motion after device stops",
+        "Classify valid/incomplete/failed cycle without replacing missing data with zero",
+        "Advance only through the route-specific cycle loop"
+      ],
+      "preconditions": [
+        "device_stopped",
+        "cycle_attempt_exists"
+      ],
+      "postconditions": [
+        "cycle_status_recorded",
+        "next_action_gate_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SHELL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACQUISITION",
+        "U_RELEASE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "TRACK",
+      "title": "Track the declared cycle without hiding occlusions",
+      "kind": "analysis",
+      "actor": "analysis_service_requested_and_checked_by_robot",
+      "location_id": "WS_ANALYSIS",
+      "source_workstation": "WS_ANALYSIS",
+      "target_workstation": "WS_ANALYSIS",
+      "manipulated_objects": [
+        "raw_video",
+        "force_trace",
+        "tracking_map"
+      ],
+      "tools": [
+        "tracking_software"
+      ],
+      "actions": [
+        "Select the predeclared actual cycle and bind synchronization receipt",
+        "Track named bead centers in front/bottom views; retain occlusions and corrections",
+        "Return coordinates with units, frame references and uncertainty"
+      ],
+      "preconditions": [
+        "views_calibrated",
+        "cycle_status_recorded",
+        "selected_cycle_resolved"
+      ],
+      "postconditions": [
+        "tracked_coordinates_versioned"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_TRACK"
+      ],
+      "unknown_parameter_ids": [
+        "U_TRACK_CYCLE",
+        "U_CAMERA"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null,
+      "physical_sample_transfer": false,
+      "location_semantics": "data_service_handoff_only_preserve_last_physical_sample_location"
+    },
+    {
+      "id": "SHELL_METRICS",
+      "title": "Derive shell dilation and angles from raw coordinates",
+      "kind": "analysis",
+      "actor": "analysis_service_requested_and_checked_by_robot",
+      "location_id": "WS_ANALYSIS",
+      "source_workstation": "WS_ANALYSIS",
+      "target_workstation": "WS_ANALYSIS",
+      "manipulated_objects": [
+        "tracked_coordinates",
+        "force_trace"
+      ],
+      "tools": [
+        "analysis_software"
+      ],
+      "actions": [
+        "Fit lower-ring circles with residuals",
+        "Apply documented n=10, m=5 and measured/source-declared r_star only in valid scope",
+        "Compute bead-vector angles under the declared frame convention",
+        "Flag near-singular force projections and retain unresolved alpha conventions"
+      ],
+      "preconditions": [
+        "tracked_coordinates_versioned",
+        "analysis_card_bound"
+      ],
+      "postconditions": [
+        "shell_geometry_metrics",
+        "projection_status_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_GEOMETRY"
+      ],
+      "unknown_parameter_ids": [
+        "U_PROJECTION",
+        "U_ANALYSIS"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null,
+      "physical_sample_transfer": false,
+      "location_semantics": "data_service_handoff_only_preserve_last_physical_sample_location"
+    },
+    {
+      "id": "SUMMARY",
+      "title": "Summarize actual records under a declared model",
+      "kind": "analysis",
+      "actor": "analysis_service_requested_and_checked_by_robot",
+      "location_id": "WS_ANALYSIS",
+      "source_workstation": "WS_ANALYSIS",
+      "target_workstation": "WS_ANALYSIS",
+      "manipulated_objects": [
+        "raw_and_derived_records"
+      ],
+      "tools": [
+        "analysis_software"
+      ],
+      "actions": [
+        "Verify compatible sample/version/condition grouping",
+        "Calculate requested extrema, fits or aggregates without selecting favorable cycles",
+        "Report missing/invalid records and scientific uncertainty separately from procedure completion"
+      ],
+      "preconditions": [
+        "analysis_card_bound",
+        "raw_records_immutable"
+      ],
+      "postconditions": [
+        "analysis_receipt",
+        "comparison_ready_or_blocked"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null,
+      "physical_sample_transfer": false,
+      "location_semantics": "data_service_handoff_only_preserve_last_physical_sample_location"
+    },
+    {
+      "id": "SAFE_UNLOAD",
+      "title": "Unload the tester and secure all stored loads",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "sample",
+        "thread_tails",
+        "masses",
+        "fixture"
+      ],
+      "tools": [
+        "restraints",
+        "support_carrier",
+        "gripper"
+      ],
+      "actions": [
+        "Verify stopped motion and safe load-off state",
+        "Support sample; restrain and remove identified masses before disconnecting tails",
+        "Open qualified clamps in safe order; lift specimen onto carrier",
+        "Record condition and any damage before closing carrier"
+      ],
+      "preconditions": [
+        "device_stopped",
+        "safe_release_plan",
+        "sample_can_be_supported"
+      ],
+      "postconditions": [
+        "sample_removed_supported",
+        "loads_secured",
+        "station_idle"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_RELEASE",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "FIXED_RING_MOUNT",
+      "title": "Restrain bead ring while leaving thread free",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "ring",
+        "PLA_halves",
+        "thread"
+      ],
+      "tools": [
+        "gripper",
+        "clamp_controls"
+      ],
+      "actions": [
+        "Seat ring in the matching hemispherical-groove holder",
+        "Close holder on beads while verifying unobstructed thread passages",
+        "Route one tail to weight pulley and the other to tester grip via its pulley"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "fixture_qualified",
+        "device_stopped"
+      ],
+      "postconditions": [
+        "fixed_beads_verified",
+        "thread_slide_path_verified",
+        "sample_mounted",
+        "mounted_sample_identity_verified",
+        "exactly_one_hanging_mass_end",
+        "other_end_connected_to_tester_sensor"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_FRICTION"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "FRICTION_PULL",
+      "title": "Run a fixed-ring thread pull",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "fixed_ring",
+        "thread",
+        "sensor_grip"
+      ],
+      "tools": [
+        "tester_control_interface"
+      ],
+      "actions": [
+        "Bind n, material, actual mass and sensor-end identity",
+        "Start qualified pull at source-reported 30 mm/s only after stroke/limits are supplied",
+        "Acquire sensor tension and displacement through permitted travel",
+        "Stop and support thread for inspection/reset"
+      ],
+      "preconditions": [
+        "fixed_beads_verified",
+        "pretension_verified",
+        "program_verified",
+        "thread_slide_path_verified",
+        "exactly_one_hanging_mass_end",
+        "other_end_connected_to_tester_sensor"
+      ],
+      "postconditions": [
+        "friction_pull_record",
+        "device_stopped",
+        "cycle_attempt_exists"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_FRICTION"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD_PROGRAM",
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "FRICTION_ANALYZE",
+      "title": "Keep absolute and differential tension distinct",
+      "kind": "analysis",
+      "actor": "analysis_service_requested_and_checked_by_robot",
+      "location_id": "WS_ANALYSIS",
+      "source_workstation": "WS_ANALYSIS",
+      "target_workstation": "WS_ANALYSIS",
+      "manipulated_objects": [
+        "friction_pull_record"
+      ],
+      "tools": [
+        "analysis_software"
+      ],
+      "actions": [
+        "Retain measured sensor-end tension, applied-end tension and their difference",
+        "Apply only resolved plateau and capstan conventions",
+        "Fit by declared material/ring/tension groups and report residuals"
+      ],
+      "preconditions": [
+        "friction_pull_record",
+        "plateau_definition_resolved"
+      ],
+      "postconditions": [
+        "friction_analysis_record"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_FRICTION",
+        "E_THEORY"
+      ],
+      "unknown_parameter_ids": [
+        "U_FRICTION_CONVENTION",
+        "U_ANALYSIS"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null,
+      "physical_sample_transfer": false,
+      "location_semantics": "data_service_handoff_only_preserve_last_physical_sample_location"
+    },
+    {
+      "id": "THREAD_GAUGE_MOUNT",
+      "title": "Mount a thread at a declared clamp spacing",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "thread_segment",
+        "two_clamps"
+      ],
+      "tools": [
+        "grippers",
+        "length_gauge"
+      ],
+      "actions": [
+        "Identify actual thread segment and diameter evidence",
+        "Grip the ends without unrecorded prestretch and set the selected jaw spacing",
+        "Measure reference length and record clamp engagement"
+      ],
+      "preconditions": [
+        "parts_qualified",
+        "fixture_qualified",
+        "selected_spacing_bound"
+      ],
+      "postconditions": [
+        "thread_gauge_mounted",
+        "sample_mounted",
+        "mounted_sample_identity_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_MODULUS"
+      ],
+      "unknown_parameter_ids": [
+        "U_MODULUS",
+        "U_FIXTURE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "TENSILE_TRIAL",
+      "title": "Acquire one axial thread trial",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "mounted_thread"
+      ],
+      "tools": [
+        "tester_control_interface"
+      ],
+      "actions": [
+        "Read trial ID and chosen spacing",
+        "Run qualified extension and safe return with raw force/displacement acquisition",
+        "Retain slip and damage evidence and assess next reuse"
+      ],
+      "preconditions": [
+        "thread_gauge_mounted",
+        "program_verified"
+      ],
+      "postconditions": [
+        "axial_trial_record",
+        "device_stopped",
+        "cycle_attempt_exists"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_MODULUS"
+      ],
+      "unknown_parameter_ids": [
+        "U_LOAD_PROGRAM",
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "MODULUS_ANALYZE",
+      "title": "Fit modulus without assuming source clamp calibration",
+      "kind": "analysis",
+      "actor": "analysis_service_requested_and_checked_by_robot",
+      "location_id": "WS_ANALYSIS",
+      "source_workstation": "WS_ANALYSIS",
+      "target_workstation": "WS_ANALYSIS",
+      "manipulated_objects": [
+        "axial_trial_records",
+        "area_measurement",
+        "clamp_model"
+      ],
+      "tools": [
+        "analysis_software"
+      ],
+      "actions": [
+        "Fit elastic slopes in declared windows",
+        "Apply measured cross-section and explicit gauge/compliance model",
+        "Preserve source fitted-length values only as comparison metadata"
+      ],
+      "preconditions": [
+        "axial_trial_record",
+        "area_and_length_model_resolved"
+      ],
+      "postconditions": [
+        "modulus_fit_record"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_MODULUS"
+      ],
+      "unknown_parameter_ids": [
+        "U_MODULUS",
+        "U_ANALYSIS"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null,
+      "physical_sample_transfer": false,
+      "location_semantics": "data_service_handoff_only_preserve_last_physical_sample_location"
+    },
+    {
+      "id": "FREE_RING_MOUNT",
+      "title": "Mount a ring with movable beads",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "free_ring",
+        "stage",
+        "spherical_indenter"
+      ],
+      "tools": [
+        "carrier",
+        "gripper",
+        "camera"
+      ],
+      "actions": [
+        "Place ring on the specified support",
+        "Verify bead motion is not suppressed by the fixed-ring holder",
+        "Identify matching bead/indenter radii and center the tip",
+        "Record raw contact reference"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "fixture_qualified",
+        "device_stopped"
+      ],
+      "postconditions": [
+        "free_ring_mounted",
+        "sample_mounted",
+        "mounted_sample_identity_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_RING"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_BEAD_GEOMETRY"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CHAIN_INDEX",
+      "title": "Bind chain free end and cell identities",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "chain",
+        "cell_manifest"
+      ],
+      "tools": [
+        "camera",
+        "nonobstructive_labels"
+      ],
+      "actions": [
+        "Identify physical free end and continuous thread path",
+        "Match cells i=1 through i=15 to actual loop memberships",
+        "Check shared-bead IDs and accumulated test history"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "fixture_qualified"
+      ],
+      "postconditions": [
+        "chain_order_bound",
+        "sample_mounted",
+        "mounted_sample_identity_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CHAIN"
+      ],
+      "unknown_parameter_ids": [
+        "U_TOPOLOGY",
+        "U_ALLOCATION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CHAIN_POSITION",
+      "title": "Move safely to the next source-ordered ring",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "chain",
+        "indenter_or_stage"
+      ],
+      "tools": [
+        "qualified_positioning_interface",
+        "camera"
+      ],
+      "actions": [
+        "Verify indenter retracted and chain supported",
+        "Move through the permitted stage/tool interface to the next i in ascending order",
+        "Recheck tip centering, end orientation, pretension and prior-state receipt"
+      ],
+      "preconditions": [
+        "chain_order_bound",
+        "cell_i_is_1_or_previous_cell_cycles_accounted_for",
+        "device_stopped",
+        "clearance_verified"
+      ],
+      "postconditions": [
+        "selected_cell_aligned",
+        "position_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CHAIN"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_LOAD_PROGRAM"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "RING_ANALYZE",
+      "title": "Preserve raw zero and model-aligned displacement",
+      "kind": "analysis",
+      "actor": "analysis_service_requested_and_checked_by_robot",
+      "location_id": "WS_ANALYSIS",
+      "source_workstation": "WS_ANALYSIS",
+      "target_workstation": "WS_ANALYSIS",
+      "manipulated_objects": [
+        "ring_or_chain_cycle_records"
+      ],
+      "tools": [
+        "analysis_software"
+      ],
+      "actions": [
+        "Retain raw force/displacement and contact evidence",
+        "Create a separate model-aligned displacement field under a declared contact-zero rule",
+        "Compute F/T0 or projected force only with valid geometry and uncertainty",
+        "Keep i, material and loading history in each output"
+      ],
+      "preconditions": [
+        "cycle_status_recorded",
+        "analysis_card_bound"
+      ],
+      "postconditions": [
+        "ring_or_chain_analysis"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_RING",
+        "E_CHAIN_PROJECT",
+        "E_THEORY"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null,
+      "physical_sample_transfer": false,
+      "location_semantics": "data_service_handoff_only_preserve_last_physical_sample_location"
+    },
+    {
+      "id": "COLUMN_MOUNT",
+      "title": "Grip column end beads without clamping thread",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "column",
+        "end_bead_grips"
+      ],
+      "tools": [
+        "grippers",
+        "fixture_controls",
+        "length_gauge"
+      ],
+      "actions": [
+        "Support the 11-layer assembly while seating both end bead groups",
+        "Verify thread remains ungripped and no bead is displaced from its indexed layer",
+        "Measure neutral reference length and read mounting state"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "termination_verified",
+        "fixture_qualified"
+      ],
+      "postconditions": [
+        "column_mounted",
+        "sample_mounted",
+        "neutral_reference_recorded",
+        "mounted_sample_identity_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_COLUMN"
+      ],
+      "unknown_parameter_ids": [
+        "U_COLUMN_PROGRAM",
+        "U_FIXTURE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "COLUMN_CYCLE",
+      "title": "Request one qualified bidirectional column cycle",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "column",
+        "instrument"
+      ],
+      "tools": [
+        "tester_control_interface"
+      ],
+      "actions": [
+        "Read supplied extension/compression order around neutral",
+        "Request bounded program using source 35 mm extension, 23 mm compression and 30 mm/min only in this route",
+        "Acquire loading/return records with bead-contact observations",
+        "Stop safely and assess integrity before next cycle"
+      ],
+      "preconditions": [
+        "column_mounted",
+        "program_verified",
+        "column_order_resolved"
+      ],
+      "postconditions": [
+        "column_cycle_record",
+        "device_stopped",
+        "cycle_attempt_exists"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_COLUMN"
+      ],
+      "unknown_parameter_ids": [
+        "U_COLUMN_PROGRAM",
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SMA_MOUNT",
+      "title": "Seat the crimped beam on three-point supports",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_ELECTROMECHANICAL",
+      "source_workstation": "WS_ELECTROMECHANICAL",
+      "target_workstation": "WS_ELECTROMECHANICAL",
+      "manipulated_objects": [
+        "SMA_beam",
+        "bending_fixture"
+      ],
+      "tools": [
+        "gripper",
+        "carrier",
+        "camera"
+      ],
+      "actions": [
+        "Verify power disconnected and cool state",
+        "Seat beam on qualified supports and align center loading nose",
+        "Record span, orientation, termination and rest-state history"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "termination_verified",
+        "qualified_bending_fixture"
+      ],
+      "postconditions": [
+        "beam_mounted"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SMA"
+      ],
+      "unknown_parameter_ids": [
+        "U_BENDING",
+        "U_SMA_WIRE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SMA_CONNECT",
+      "title": "Connect identified electrical leads with power off",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_ELECTROMECHANICAL",
+      "source_workstation": "WS_ELECTROMECHANICAL",
+      "target_workstation": "WS_ELECTROMECHANICAL",
+      "manipulated_objects": [
+        "beam_exposed_wire",
+        "leads",
+        "power_supply"
+      ],
+      "tools": [
+        "insulated_lead_gripper",
+        "power_interface"
+      ],
+      "actions": [
+        "Verify power-off readback and approved electrical card",
+        "Attach leads at designated exposed wire ends",
+        "Check strain relief, isolation, resistance and lead clearance under bending",
+        "Request service acceptance without energizing"
+      ],
+      "preconditions": [
+        "beam_mounted",
+        "qualified_electrical_card",
+        "power_off_confirmed"
+      ],
+      "postconditions": [
+        "electrical_connection_verified",
+        "service_acceptance_requested"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SMA"
+      ],
+      "unknown_parameter_ids": [
+        "U_SMA_WIRE",
+        "U_SMA_THERMAL"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SMA_STATE",
+      "title": "Establish the authorized off or on thermal state",
+      "kind": "device_process",
+      "actor": "qualified_device_or_analysis_service",
+      "location_id": "WS_ELECTROMECHANICAL",
+      "source_workstation": "WS_ELECTROMECHANICAL",
+      "target_workstation": "WS_ELECTROMECHANICAL",
+      "manipulated_objects": [
+        "SMA_beam",
+        "power_supply"
+      ],
+      "tools": [
+        "guarded_electrical_service"
+      ],
+      "actions": [
+        "Device verifies qualification and physical clearance",
+        "Apply only selected state under actual wire-specific limits",
+        "Record voltage, current, temperature/state evidence and stabilization or fault",
+        "Robot remains outside the thermal and motion envelope"
+      ],
+      "preconditions": [
+        "electrical_connection_verified",
+        "service_acceptance_requested",
+        "state_card_resolved"
+      ],
+      "postconditions": [
+        "electrical_state_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SMA"
+      ],
+      "unknown_parameter_ids": [
+        "U_SMA_THERMAL"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": {
+        "robot_setup": "SMA_CONNECT",
+        "robot_unload": "SMA_DISCONNECT"
+      }
+    },
+    {
+      "id": "SMA_BEND",
+      "title": "Request one state-labeled bending cycle",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_ELECTROMECHANICAL",
+      "source_workstation": "WS_ELECTROMECHANICAL",
+      "target_workstation": "WS_ELECTROMECHANICAL",
+      "manipulated_objects": [
+        "powered_or_unpowered_beam",
+        "tester"
+      ],
+      "tools": [
+        "guarded_test_interface"
+      ],
+      "actions": [
+        "Read state receipt and cycle ID",
+        "Request qualified bend/return at reported 30 mm/min within supplied stroke",
+        "Capture force/displacement and concurrent voltage/current/thermal evidence",
+        "Preserve state drift and incomplete cycles"
+      ],
+      "preconditions": [
+        "electrical_state_receipt",
+        "bending_program_verified",
+        "clearance_verified"
+      ],
+      "postconditions": [
+        "SMA_bending_cycle_record",
+        "device_stopped",
+        "cycle_attempt_exists"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SMA"
+      ],
+      "unknown_parameter_ids": [
+        "U_BENDING",
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SMA_COOL",
+      "title": "Switch off and verify safe cooled state",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_ELECTROMECHANICAL",
+      "source_workstation": "WS_ELECTROMECHANICAL",
+      "target_workstation": "WS_ELECTROMECHANICAL",
+      "manipulated_objects": [
+        "SMA_beam",
+        "power_supply"
+      ],
+      "tools": [
+        "power_off_interface",
+        "thermal_readback"
+      ],
+      "actions": [
+        "Request power off and verify zero-output safe status",
+        "Wait under support for supplied cooling/reset condition",
+        "Record actual temperature/state evidence and no-touch until qualified"
+      ],
+      "preconditions": [
+        "electrical_state_receipt",
+        "device_stopped"
+      ],
+      "postconditions": [
+        "power_off_confirmed",
+        "cool_state_confirmed"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SMA"
+      ],
+      "unknown_parameter_ids": [
+        "U_SMA_THERMAL"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SMA_DISCONNECT",
+      "title": "Disconnect cooled beam and return it to carrier",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_ELECTROMECHANICAL",
+      "source_workstation": "WS_ELECTROMECHANICAL",
+      "target_workstation": "WS_ELECTROMECHANICAL",
+      "manipulated_objects": [
+        "electrical_leads",
+        "beam",
+        "carrier"
+      ],
+      "tools": [
+        "insulated_gripper",
+        "support_carrier"
+      ],
+      "actions": [
+        "Verify off and cool receipts refer to current beam state",
+        "Support beam, release leads and place them in identified holders",
+        "Remove specimen from supports and place in carrier with crimp inspection"
+      ],
+      "preconditions": [
+        "power_off_confirmed",
+        "cool_state_confirmed",
+        "device_stopped"
+      ],
+      "postconditions": [
+        "sample_removed_supported",
+        "electrical_station_idle"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SMA_THERMAL",
+        "U_RELEASE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "TARGET_STAGE",
+      "title": "Stage a supported shape-manipulation target",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_SHAPE",
+      "source_workstation": "WS_SHAPE",
+      "target_workstation": "WS_SHAPE",
+      "manipulated_objects": [
+        "network",
+        "target_card"
+      ],
+      "tools": [
+        "carrier",
+        "support_fixture",
+        "camera"
+      ],
+      "actions": [
+        "Read physical target region and orientation convention",
+        "Place assembly on specified supports and record unloaded baseline",
+        "Identify authorized contacts without relying on contradictory color labels"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "qualified_target_card"
+      ],
+      "postconditions": [
+        "target_baseline_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_DOME",
+        "E_EGG"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGETS",
+        "U_CONE_GEOMETRY"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SHAPE_ACTUATE",
+      "title": "Apply bounded local deformation",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_SHAPE",
+      "source_workstation": "WS_SHAPE",
+      "target_workstation": "WS_SHAPE",
+      "manipulated_objects": [
+        "target_region",
+        "network"
+      ],
+      "tools": [
+        "qualified_contact_tool",
+        "force_feedback"
+      ],
+      "actions": [
+        "Engage the specified supported contact region",
+        "Apply bounded displacement/force while observing neighboring regions",
+        "Stop at target, public limit or instability and preserve actual path"
+      ],
+      "preconditions": [
+        "target_baseline_recorded",
+        "safe_actuation_card"
+      ],
+      "postconditions": [
+        "loaded_shape_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_DOME",
+        "E_EGG"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGETS",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SHAPE_RELEASE",
+      "title": "Remove actuation and record load-off shape",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_SHAPE",
+      "source_workstation": "WS_SHAPE",
+      "target_workstation": "WS_SHAPE",
+      "manipulated_objects": [
+        "network",
+        "contact_tool"
+      ],
+      "tools": [
+        "contact_tool",
+        "camera"
+      ],
+      "actions": [
+        "Return contact tool through qualified safe release",
+        "Verify no hidden grip or applied load remains beyond declared supports/gravity",
+        "Record shape continuously in place over the observation window"
+      ],
+      "preconditions": [
+        "loaded_shape_recorded",
+        "safe_release_path"
+      ],
+      "postconditions": [
+        "released_shape_recorded",
+        "observation_window_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_DOME",
+        "E_EGG"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGETS"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SHAPE_RESET",
+      "title": "Reset only through a declared path",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_SHAPE",
+      "source_workstation": "WS_SHAPE",
+      "target_workstation": "WS_SHAPE",
+      "manipulated_objects": [
+        "network"
+      ],
+      "tools": [
+        "support_fixture",
+        "qualified_contact_tool"
+      ],
+      "actions": [
+        "Assess retention, neighboring changes and damage",
+        "Use only supplied reset path if another target requires it",
+        "Record actual start state for next attempt; block if safe reset is absent"
+      ],
+      "preconditions": [
+        "released_shape_recorded"
+      ],
+      "postconditions": [
+        "reset_or_blocker_recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_TARGETS",
+        "U_RELEASE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CONE_MOUNT",
+      "title": "Mount the identified cone for central point loading",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "cone",
+        "point_loader",
+        "support"
+      ],
+      "tools": [
+        "gripper",
+        "camera"
+      ],
+      "actions": [
+        "Verify defect n and actual tied-nylon preparation",
+        "Align point loader with the supplied defect-loop contact",
+        "Record support, orientation, pretension state and neutral reference"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "termination_verified",
+        "fixture_qualified",
+        "cone_geometry_bound"
+      ],
+      "postconditions": [
+        "cone_mounted",
+        "sample_mounted",
+        "mounted_sample_identity_verified"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CONE4"
+      ],
+      "unknown_parameter_ids": [
+        "U_CONE_GEOMETRY",
+        "U_LOAD_PROGRAM"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CONE_INVERT",
+      "title": "Acquire a bounded inversion attempt",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_MECHANICAL",
+      "source_workstation": "WS_MECHANICAL",
+      "target_workstation": "WS_MECHANICAL",
+      "manipulated_objects": [
+        "cone",
+        "tester"
+      ],
+      "tools": [
+        "tester_control_interface"
+      ],
+      "actions": [
+        "Read attempt and cycle ID",
+        "Request qualified central point load while recording force/displacement and orientation",
+        "Stop at inversion or bound; unload and execute only qualified reverse/reset",
+        "Retain unsnapped, damaged and ambiguous outcomes"
+      ],
+      "preconditions": [
+        "cone_mounted",
+        "program_verified",
+        "safe_reset_or_abort_plan"
+      ],
+      "postconditions": [
+        "cone_attempt_record",
+        "device_stopped",
+        "cycle_attempt_exists"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CONE4"
+      ],
+      "unknown_parameter_ids": [
+        "U_CONE_GEOMETRY",
+        "U_LOAD_PROGRAM"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CT_MOUNT",
+      "title": "Prepare a material-specific CT platform",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_CT_PREP",
+      "source_workstation": "WS_CT_PREP",
+      "target_workstation": "WS_CT_PREP",
+      "manipulated_objects": [
+        "specimen",
+        "platform",
+        "adhesive",
+        "terminations"
+      ],
+      "tools": [
+        "grippers",
+        "qualified_dispensing_tool",
+        "support_jig"
+      ],
+      "actions": [
+        "Identify approved polymer platform and material-specific end fixation",
+        "Pass ends through designated platform holes; support state while terminating below",
+        "Apply qualified adhesive only at designated locations after tensioning",
+        "Wait for supplied cure/holding checks and record irreversible preparation changes"
+      ],
+      "preconditions": [
+        "assembly_version_qualified",
+        "ct_mount_card_resolved",
+        "pretension_state_recorded"
+      ],
+      "postconditions": [
+        "ct_mount_qualified",
+        "assembly_version_updated"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CT_PREP"
+      ],
+      "unknown_parameter_ids": [
+        "U_CT_MOUNT",
+        "U_TERMINATION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CT_STATE",
+      "title": "Prepare and document a scan state",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_CT_PREP",
+      "source_workstation": "WS_CT_PREP",
+      "target_workstation": "WS_CT_PREP",
+      "manipulated_objects": [
+        "mounted_specimen",
+        "state_fixture"
+      ],
+      "tools": [
+        "qualified_state_fixture",
+        "camera"
+      ],
+      "actions": [
+        "Bind requested shell/ring/chain or column state to actual specimen ID",
+        "Apply only qualified in-situ fixture condition",
+        "Record force/geometry/state and retention check without assuming mechanical-test overlap"
+      ],
+      "preconditions": [
+        "ct_mount_qualified",
+        "state_card_supplied"
+      ],
+      "postconditions": [
+        "scan_state_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CT_MAIN",
+        "E_CT_RINGS"
+      ],
+      "unknown_parameter_ids": [
+        "U_CT_STATE",
+        "U_CT_MOUNT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CT_HANDOFF",
+      "title": "Deliver the supported mount to imaging service",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_CT_SERVICE",
+      "source_workstation": "WS_CT_SERVICE",
+      "target_workstation": "WS_CT_SERVICE",
+      "manipulated_objects": [
+        "mounted_specimen",
+        "scan_work_order"
+      ],
+      "tools": [
+        "carrier",
+        "service_dock"
+      ],
+      "actions": [
+        "Transport through MOVE with current state retention verified",
+        "Place mount at service dock and scan ID",
+        "Confirm service custody, state, requested scan and returned-object contract"
+      ],
+      "preconditions": [
+        "scan_state_receipt",
+        "qualified_ct_program",
+        "arrival_location_verified"
+      ],
+      "postconditions": [
+        "ct_service_custody_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CT_MAIN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CT_PROGRAM"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CT_SCAN",
+      "title": "Acquire through a qualified guarded imaging service",
+      "kind": "device_process",
+      "actor": "qualified_device_or_analysis_service",
+      "location_id": "WS_CT_SERVICE",
+      "source_workstation": "WS_CT_SERVICE",
+      "target_workstation": "WS_CT_SERVICE",
+      "manipulated_objects": [
+        "mounted_specimen"
+      ],
+      "tools": [
+        "Zeiss_Xradia_or_qualified_service"
+      ],
+      "actions": [
+        "Service verifies interlocks and qualified program",
+        "Acquire and reconstruct volume while preserving sample/state identity",
+        "Return raw scan/reconstruction receipt and safe-access state; actor does not control an exposed radiation source"
+      ],
+      "preconditions": [
+        "ct_service_custody_receipt",
+        "service_qualification_verified"
+      ],
+      "postconditions": [
+        "ct_volume_receipt",
+        "service_safe_access"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CT_MAIN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CT_PROGRAM"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": {
+        "robot_setup": "CT_HANDOFF",
+        "robot_unload": "CT_RECEIVE"
+      }
+    },
+    {
+      "id": "CT_RECEIVE",
+      "title": "Receive imaged specimen and linked records",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_CT_SERVICE",
+      "source_workstation": "WS_CT_SERVICE",
+      "target_workstation": "WS_CT_SERVICE",
+      "manipulated_objects": [
+        "returned_mount",
+        "scan_receipt"
+      ],
+      "tools": [
+        "carrier",
+        "gripper",
+        "record_terminal"
+      ],
+      "actions": [
+        "Verify safe-access and custody receipt",
+        "Match physical mount and state history to volume IDs",
+        "Inspect damage/relaxation; receive and close carrier"
+      ],
+      "preconditions": [
+        "ct_volume_receipt",
+        "service_safe_access"
+      ],
+      "postconditions": [
+        "sample_removed_supported",
+        "ct_return_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CT_MAIN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CT_STATE",
+        "U_RELEASE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "CT_ANALYZE",
+      "title": "Analyze stated ROIs without confusing slab and voxel size",
+      "kind": "analysis",
+      "actor": "analysis_service_requested_and_checked_by_robot",
+      "location_id": "WS_ANALYSIS",
+      "source_workstation": "WS_ANALYSIS",
+      "target_workstation": "WS_ANALYSIS",
+      "manipulated_objects": [
+        "raw_volume",
+        "reconstruction_metadata"
+      ],
+      "tools": [
+        "volume_analysis_software"
+      ],
+      "actions": [
+        "Read voxel dimensions and actual scan/state linkage",
+        "Apply declared ROI/crop and material-appropriate orthographic or mean-slab view",
+        "Measure ring thread path only under qualified segmentation/centerline rule",
+        "Return processed data with raw-volume references and uncertainty"
+      ],
+      "preconditions": [
+        "ct_volume_receipt",
+        "ct_analysis_card_bound"
+      ],
+      "postconditions": [
+        "ct_analysis_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_CT_MAIN",
+        "E_CT_RINGS"
+      ],
+      "unknown_parameter_ids": [
+        "U_CT_ANALYSIS"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null,
+      "physical_sample_transfer": false,
+      "location_semantics": "data_service_handoff_only_preserve_last_physical_sample_location"
+    },
+    {
+      "id": "COMPARE",
+      "title": "Compare conditions without forcing source outcomes",
+      "kind": "analysis",
+      "actor": "analysis_service_requested_and_checked_by_robot",
+      "location_id": "WS_ANALYSIS",
+      "source_workstation": "WS_ANALYSIS",
+      "target_workstation": "WS_ANALYSIS",
+      "manipulated_objects": [
+        "analysis_receipts",
+        "comparison_card"
+      ],
+      "tools": [
+        "analysis_software"
+      ],
+      "actions": [
+        "Check actual changed factor, matched factors and history",
+        "Separate within-specimen cycles from independent preparation replicates",
+        "Report directional trends, uncertainty, unmatched factors and missing conditions"
+      ],
+      "preconditions": [
+        "comparison_card_bound",
+        "analysis_receipts_available"
+      ],
+      "postconditions": [
+        "comparison_report"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_ALLOCATION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null,
+      "physical_sample_transfer": false,
+      "location_semantics": "data_service_handoff_only_preserve_last_physical_sample_location"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive supported samples and immutable records",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_ARCHIVE",
+      "source_workstation": "WS_ARCHIVE",
+      "target_workstation": "WS_ARCHIVE",
+      "manipulated_objects": [
+        "specimen",
+        "carrier",
+        "records"
+      ],
+      "tools": [
+        "gripper",
+        "storage_slots",
+        "record_terminal"
+      ],
+      "actions": [
+        "Verify supported safe state and actual specimen identity",
+        "Place in labeled storage and retain termination/damage/history metadata",
+        "Link immutable raw and derived records; reconcile stock and missing items"
+      ],
+      "preconditions": [
+        "sample_removed_supported_or_shape_station_safe",
+        "arrival_location_verified"
+      ],
+      "postconditions": [
+        "archive_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_RELEASE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "RESET_STATIONS",
+      "title": "Reset idle stations for the next work order",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_STATION_RESET",
+      "source_workstation": "WS_STATION_RESET",
+      "target_workstation": "WS_STATION_RESET",
+      "manipulated_objects": [
+        "fixtures",
+        "tools",
+        "waste",
+        "loose_parts"
+      ],
+      "tools": [
+        "gripper",
+        "tool_rack",
+        "station_interface"
+      ],
+      "actions": [
+        "Verify every device stopped, power off where relevant and masses restrained",
+        "Return identified tools and carriers, collect loose parts into labeled containers",
+        "Record remaining faults and verify public idle state"
+      ],
+      "preconditions": [
+        "all_active_runs_stopped"
+      ],
+      "postconditions": [
+        "station_reset_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_RELEASE"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "REPORT",
+      "title": "Report completion, blockers and actual observations",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_RECORDS",
+      "source_workstation": "WS_RECORDS",
+      "target_workstation": "WS_RECORDS",
+      "manipulated_objects": [
+        "event_log",
+        "analysis_receipts",
+        "archive_receipt"
+      ],
+      "tools": [
+        "record_terminal"
+      ],
+      "actions": [
+        "Reconcile requested routes against observed records",
+        "Report complete, partial_with_valid_blocker, safe_abort or failed per branch",
+        "Separate scientific agreement from procedural completion and disclose unperformed work"
+      ],
+      "preconditions": [
+        "scope_bound",
+        "available_records_reconciled"
+      ],
+      "postconditions": [
+        "final_report"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "QUARANTINE",
+      "title": "Isolate a damaged or mismatched item",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_QUARANTINE",
+      "source_workstation": "WS_QUARANTINE",
+      "target_workstation": "WS_QUARANTINE",
+      "manipulated_objects": [
+        "failed_item",
+        "carrier"
+      ],
+      "tools": [
+        "support_gripper",
+        "quarantine_label"
+      ],
+      "actions": [
+        "Stop dependent work and make loads safe",
+        "Support and place the item in a separate identified carrier if safe",
+        "Record defect, last condition, custody and prohibited reuse; request intervention if safe removal is unavailable"
+      ],
+      "preconditions": [
+        "observable_fault_or_mismatch"
+      ],
+      "postconditions": [
+        "quarantine_receipt",
+        "reuse_blocked"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_RELEASE",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "PART_RECEIVE",
+      "title": "Receive a qualified supplied fixture or prepared bead lot",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_PREP",
+      "source_workstation": "WS_PREP",
+      "target_workstation": "WS_PREP",
+      "manipulated_objects": [
+        "supplied_part_or_predrilled_beads",
+        "part_receipt"
+      ],
+      "tools": [
+        "gripper",
+        "inspection_gauges",
+        "record_terminal"
+      ],
+      "actions": [
+        "Read part ID, manufacturing scope and drawing/version receipt",
+        "Physically receive the item and verify dimensions, material and count",
+        "Record supplied preparation separately from robot fabrication and quarantine unqualified items"
+      ],
+      "preconditions": [
+        "supplied_origin_selected",
+        "part_receipt_available"
+      ],
+      "postconditions": [
+        "prepared_parts_qualified",
+        "supplied_preparation_not_robot_fabricated"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_PREP_SERVICE",
+        "U_BEAD_GEOMETRY"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "APPARATUS_INSTALL",
+      "title": "Place and assemble the qualified apparatus",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_SETUP_DESTINATION",
+      "source_workstation": "WS_SETUP_DESTINATION",
+      "target_workstation": "WS_SETUP_DESTINATION",
+      "manipulated_objects": [
+        "qualified_fixture_parts",
+        "fasteners",
+        "stage_or_platform"
+      ],
+      "tools": [
+        "gripper",
+        "qualified_assembly_tool",
+        "alignment_gauge"
+      ],
+      "actions": [
+        "Transport the supported identified parts to the bound station",
+        "Place bases, mate specified interfaces and close prescribed fasteners under the qualified assembly card",
+        "Inspect seating and alignment; preserve part-to-fixture lineage",
+        "Leave device stopped for fixture qualification"
+      ],
+      "preconditions": [
+        "prepared_parts_qualified",
+        "qualified_assembly_card",
+        "arrival_location_verified"
+      ],
+      "postconditions": [
+        "apparatus_assembled",
+        "fixture_qualification_required"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_PREP_SERVICE",
+        "U_ROBOT"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "authored_workflow_closure",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    },
+    {
+      "id": "SMA_PROGRAM",
+      "title": "Configure bounded bending and electrical-state controls",
+      "kind": "hands_on",
+      "actor": "mobile_manipulator_robot",
+      "location_id": "WS_ELECTROMECHANICAL",
+      "source_workstation": "WS_ELECTROMECHANICAL",
+      "target_workstation": "WS_ELECTROMECHANICAL",
+      "manipulated_objects": [
+        "bending_program_card",
+        "electrical_state_card"
+      ],
+      "tools": [
+        "tester_interface",
+        "qualified_electrical_service_interface"
+      ],
+      "actions": [
+        "Read actual wire and span qualification",
+        "Enter and read back source-specific bending rate plus supplied stroke/limits",
+        "Bind safe electrical states, thermal-state criteria and source total cycle accounting",
+        "Verify acquisition without energizing the wire"
+      ],
+      "preconditions": [
+        "beam_mounted",
+        "actual_wire_qualified",
+        "electrical_and_thermal_limits_resolved"
+      ],
+      "postconditions": [
+        "bending_program_verified",
+        "SMA_program_receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SMA"
+      ],
+      "unknown_parameter_ids": [
+        "U_SMA_WIRE",
+        "U_SMA_THERMAL",
+        "U_BENDING",
+        "U_ACQUISITION"
+      ],
+      "success_evidence": [
+        "Independent event/state receipt demonstrating each postcondition; narration alone is insufficient"
+      ],
+      "recovery": [
+        "Stop actuation; support the object; preserve attempt and public feedback; resume only after safe-state and required inputs are verified"
+      ],
+      "provenance": {
+        "macro_stage": "source_reported",
+        "fine_actions": "task_authored_mobile_robot_translation_not_reported_hand_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "feasibility": {
+        "robot_reachability": false,
+        "collision_checked": false,
+        "physics_validated": false
+      },
+      "device_handoff": null
+    }
+  ],
+  "occurrence_rule": "Every occurrence binds actual objects and state; template count is not physical action count.",
+  "station_binding_rule": "Explicit station/card bindings override template role locations, but movement always begins at independently recorded current location. Analysis never changes sample location."
+}

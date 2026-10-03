@@ -1,0 +1,116 @@
+{
+  "schema_version": "beaded_paper_task.v1",
+  "doi": "10.1038/s41467-025-61809-8",
+  "type": "partial_order_and_data_binding_not_single_historical_sequence",
+  "rules": [
+    {
+      "id": "D_ASSEMBLY",
+      "before": "THREAD_PASS",
+      "requires": [
+        "BEAD_ALIGN",
+        "qualified ordered passage"
+      ],
+      "scope": "same sample/version/passage"
+    },
+    {
+      "id": "D_LOOP",
+      "before": "LOOP_SEAT",
+      "requires": [
+        "all declared THREAD_PASS occurrences"
+      ],
+      "scope": "same physical loop"
+    },
+    {
+      "id": "D_RUN",
+      "before": "CYCLE_START",
+      "requires": [
+        "PROGRAM",
+        "mounted identity",
+        "end condition verified",
+        "clearance"
+      ],
+      "scope": "same run"
+    },
+    {
+      "id": "D_LOAD",
+      "before": "RETURN_DEVICE",
+      "requires": [
+        "LOAD_DEVICE",
+        "safe return plan"
+      ],
+      "scope": "same cycle"
+    },
+    {
+      "id": "D_CHAIN",
+      "before": "CHAIN_POSITION(i+1)",
+      "requires": [
+        "three cycle statuses for i",
+        "safe clearance"
+      ],
+      "scope": "same chain condition; source ascending order"
+    },
+    {
+      "id": "D_TRACK",
+      "before": "SHELL_METRICS",
+      "requires": [
+        "TRACK",
+        "synchronization receipt",
+        "coordinate convention"
+      ],
+      "scope": "same selected cycle"
+    },
+    {
+      "id": "D_SMA",
+      "before": "SMA_STATE(on)",
+      "requires": [
+        "SMA_CONNECT",
+        "actual wire qualification",
+        "thermal limits"
+      ],
+      "scope": "same mounted beam"
+    },
+    {
+      "id": "D_TOUCH",
+      "before": "SMA_DISCONNECT",
+      "requires": [
+        "SMA_COOL",
+        "power_off_confirmed",
+        "cool_state_confirmed"
+      ],
+      "scope": "current state receipt"
+    },
+    {
+      "id": "D_CT",
+      "before": "CT_SCAN",
+      "requires": [
+        "CT_MOUNT",
+        "CT_STATE",
+        "CT_HANDOFF",
+        "qualified guarded service"
+      ],
+      "scope": "same mount/state"
+    },
+    {
+      "id": "D_ANALYSIS_LINK",
+      "before": "cross_family_model_comparison",
+      "requires": [
+        "actual friction/modulus records or explicitly external source-prior declaration"
+      ],
+      "scope": "No source coefficients masquerade as episode measurements"
+    },
+    {
+      "id": "D_TRANSFER",
+      "before": "workstation_handling",
+      "requires": [
+        "MOVE arrival receipt if physical location changes"
+      ],
+      "scope": "same object; one location at a time"
+    }
+  ],
+  "data_bindings": {
+    "source_fitted_values": "evaluator context only unless declared source-prior analysis",
+    "all_quantitative_records": "sample/version/condition/run/cycle/time-base/calibration",
+    "material_switch": "physical component exchange and new version/specimen",
+    "preparation_choices": "record actor-performed versus received object distinctly"
+  }
+}

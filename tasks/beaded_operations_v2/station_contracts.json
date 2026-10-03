@@ -1,0 +1,130 @@
+{
+  "schema_version": "beaded_paper_task.v1",
+  "doi": "10.1038/s41467-025-61809-8",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "title": "Work-order and records terminal",
+      "robot_responsibility": "robot reads and reconciles contracts",
+      "device_responsibility": "none",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_STOCK",
+      "title": "Labeled stock and carrier storage",
+      "robot_responsibility": "robot retrieves and checks actual objects",
+      "device_responsibility": "none",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_WEAVE",
+      "title": "Supported bead/thread assembly bench",
+      "robot_responsibility": "robot picks, aligns, threads, seats and terminates",
+      "device_responsibility": "no automatic completed-sample generation",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_PREP",
+      "title": "Enclosed print/cut/drill service",
+      "robot_responsibility": "robot loads/receives/inspects; device performs qualified job",
+      "device_responsibility": "guarded device process",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_MECHANICAL",
+      "title": "Mechanical test station",
+      "robot_responsibility": "robot installs fixtures, mounts, pretensions, starts, observes and unloads",
+      "device_responsibility": "tester supplies controlled movement and acquisition",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_ELECTROMECHANICAL",
+      "title": "Guarded powered bending station",
+      "robot_responsibility": "robot mounts/connects/programs; handles only off/cool object",
+      "device_responsibility": "qualified electrical/thermal service and tester",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_SHAPE",
+      "title": "Supported reconfiguration station",
+      "robot_responsibility": "robot makes bounded local contacts, releases and observes",
+      "device_responsibility": "no hidden holding load",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_CT_PREP",
+      "title": "CT mounting bench",
+      "robot_responsibility": "robot mounts, terminates, glues and records state",
+      "device_responsibility": "cure timing supplied, not invented",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_CT_SERVICE",
+      "title": "Guarded imaging service",
+      "robot_responsibility": "robot transfers custody and receives same specimen",
+      "device_responsibility": "qualified service controls X-ray generation, interlocks and reconstruction",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_ANALYSIS",
+      "title": "Traceable analysis service",
+      "robot_responsibility": "robot requests/checks outputs and raw links",
+      "device_responsibility": "tracking/fitting/reconstruction are not physical handling",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "title": "Labeled sample archive",
+      "robot_responsibility": "robot physically places supported object and closes record",
+      "device_responsibility": "none",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    },
+    {
+      "id": "WS_QUARANTINE",
+      "title": "Separate damaged-item storage",
+      "robot_responsibility": "robot isolates only after safe release",
+      "device_responsibility": "intervention when safe handling is unavailable",
+      "geometry_status": "qualified_station_input_not_built",
+      "interlocks": "public safe-state feedback required",
+      "transfers": "MOVE custody/location receipt required"
+    }
+  ],
+  "dynamic_stations": {
+    "WS_SOURCE": "bound actual departure",
+    "WS_DESTINATION": "bound actual arrival",
+    "WS_SETUP_DESTINATION": "bound part destination",
+    "WS_STATION_RESET": "actual station being reset"
+  },
+  "actor": "human_like_mobile_manipulator_not_default_fixed_arm",
+  "unverified": [
+    "IK",
+    "collision",
+    "grasp stability",
+    "load containment",
+    "thermal safety",
+    "radiation service qualification"
+  ],
+  "analysis_station_semantics": "WS_ANALYSIS names data processing, not relocation of the physical sample. Its last physical station remains unchanged."
+}

@@ -1,0 +1,587 @@
+{
+  "schema_version": "beaded_paper_task.v1",
+  "doi": "10.1038/s41467-025-61809-8",
+  "visibility": "evaluator_reference_only",
+  "sources": [
+    {
+      "id": "MAIN",
+      "url": "https://www.nature.com/articles/s41467-025-61809-8",
+      "format": "publisher_html_tool_read",
+      "locally_byte_complete": false,
+      "current_source_sha256": null
+    },
+    {
+      "id": "SI",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-61809-8/MediaObjects/41467_2025_61809_MOESM1_ESM.pdf",
+      "format": "seven_page_pdf_tool_read",
+      "locally_byte_complete": false,
+      "current_source_sha256": null
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E_SWATCH",
+      "source_id": "MAIN",
+      "locator": "Introduction; Fig. 1a",
+      "claim": "Angle-weave swatches illustrate loop-dependent shape.",
+      "reported_values": {
+        "loop_n": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "limits": [
+        "Exact threading graphs and swatch counts not recovered"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_DEMO",
+      "source_id": "MAIN",
+      "locator": "Introduction; Fig. 1b; Methods Dodecahedral shell",
+      "claim": "Tensioned half-dodecahedral demonstrations and the CT model have distinct materials and sizes.",
+      "reported_values": {
+        "model_beads": 20,
+        "building_block_n": 5,
+        "photograph_bead_diameter_mm": 17,
+        "photograph_thread": "steel rope",
+        "ct_bead_diameter_mm": 10,
+        "ct_nitinol_diameter_mm": 0.25
+      },
+      "limits": [
+        "Adult-load photograph is not a safe loading recipe"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_SHELL",
+      "source_id": "MAIN",
+      "locator": "Results Fig. 2; Methods Dodecahedral shell / Compression experiments",
+      "claim": "Deadweights tension both free ends during plate compression.",
+      "reported_values": {
+        "per_end_mass_range_g": [
+          200,
+          800
+        ],
+        "mirror_angle_deg": 45,
+        "cycles_per_tension": 3,
+        "tester": "Instron 5940",
+        "plate_material": "PLA",
+        "stage_material": "transparent acrylic",
+        "pulleys": 2
+      },
+      "limits": [
+        "Exact mass list, loading rate and stroke missing"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_TRACK",
+      "source_id": "MAIN",
+      "locator": "Methods Tracking bead motion; Fig. 2e-h",
+      "claim": "Front and bottom bead-center tracking is synchronized with plate motion.",
+      "reported_values": {
+        "tracked_cycles": 1,
+        "source_software": "Adobe After Effects",
+        "sync_event": "start of compression plate motion"
+      },
+      "limits": [
+        "No supplied camera calibration or frame rate"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_GEOMETRY",
+      "source_id": "MAIN",
+      "locator": "Methods Tracking bead motion; Eqs. (2)-(3)",
+      "claim": "Dilation, bead-center angles and projected force are computed from tracked geometry.",
+      "reported_values": {
+        "across_holes_average_diameter_mm": 9.2,
+        "lower_ring_n": 10,
+        "surrounding_loops_m": 5,
+        "dilation_relation": "(2*pi*R-n*r_star)/m",
+        "projected_force_relation": "F/(m*tan(theta2)*sin(alpha))"
+      },
+      "limits": [
+        "9.2 mm is not bore diameter",
+        "Angle projection needs a singularity rule"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_INDENTER",
+      "source_id": "SI",
+      "locator": "PDF page 3; Fig. SI 2a",
+      "claim": "Plate and restricted-contact columnar indenters are compared.",
+      "reported_values": {
+        "beads": "10 mm frosted acrylic",
+        "thread_materials": [
+          "nitinol",
+          "nylon"
+        ],
+        "columnar_diameter_mm": 17,
+        "pretension_range_N": [
+          2.0,
+          7.8
+        ]
+      },
+      "limits": [
+        "Source range does not establish full discrete schedule"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_ROUGHNESS",
+      "source_id": "SI",
+      "locator": "PDF page 3; Fig. SI 2b",
+      "claim": "Smooth and frosted beads are compared under plate indentation.",
+      "reported_values": {
+        "bead_diameter_mm": 10,
+        "bead_material": "acrylic",
+        "surface_levels": [
+          "smooth",
+          "frosted"
+        ],
+        "thread_materials": [
+          "nitinol",
+          "nylon"
+        ],
+        "pretension_range_N": [
+          2.0,
+          7.8
+        ]
+      },
+      "limits": [
+        "No roughness metric or fabrication process recovered"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_SIZE",
+      "source_id": "SI",
+      "locator": "PDF page 3; Fig. SI 2c",
+      "claim": "Acetal bead-size controls use drilled holes intended to hold geometry consistent.",
+      "reported_values": {
+        "bead_material": "smooth acetal",
+        "thread": "nitinol",
+        "pretension_range_N": [
+          2.0,
+          9.8
+        ],
+        "return_maximum_inset": true
+      },
+      "limits": [
+        "Exact bead sizes and hole dimensions not recovered"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_CLAMP",
+      "source_id": "SI",
+      "locator": "PDF page 3; Fig. SI 2d",
+      "claim": "Manually tensioned clamped-end shells are compressed through failure in the source.",
+      "reported_values": {
+        "beads": "10 mm frosted acrylic",
+        "thread_materials": [
+          "nitinol",
+          "nylon"
+        ],
+        "reported_slope_N_per_mm": {
+          "nitinol": 170,
+          "nylon": 193
+        }
+      },
+      "limits": [
+        "No numerical starting pretension or safe failure envelope"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_SI3",
+      "source_id": "SI",
+      "locator": "PDF page 4; Fig. SI 3",
+      "claim": "Tracked-center reconstructions illustrate different contact paths.",
+      "reported_values": {
+        "nitinol_T0_N": 2.0,
+        "nylon_T0_N": 7.9
+      },
+      "limits": [
+        "These two illustrated states are not matched-pretension controls"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_FRICTION",
+      "source_id": "MAIN",
+      "locator": "Fig. 3a-b; Methods Nitinol and nylon characterization / Effective sliding friction",
+      "claim": "Fixed rings allow a thread to slide while beads remain restrained.",
+      "reported_values": {
+        "ring_n": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "mass_g": [
+          50,
+          100,
+          150,
+          200,
+          250,
+          300,
+          350,
+          400,
+          450,
+          500
+        ],
+        "pull_speed_mm_per_s": 30,
+        "clamp_material": "PLA",
+        "thread_materials": [
+          "nitinol",
+          "nylon"
+        ]
+      },
+      "limits": [
+        "Replicates, pull distance and plateau convention are unresolved"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_MODULUS",
+      "source_id": "MAIN",
+      "locator": "Methods Nitinol and nylon characterization / Youngs modulus",
+      "claim": "Axial thread tests use multiple clamp spacings and elastic-slope fitting.",
+      "reported_values": {
+        "clamp_spacing_mm": [
+          10,
+          25,
+          50,
+          100
+        ],
+        "trials_per_spacing": 3,
+        "reported_added_length_per_clamp_mm": {
+          "nitinol": 13,
+          "nylon": 9
+        },
+        "relation": "E=s*L0/A"
+      },
+      "limits": [
+        "Source fitted clamp lengths are not universal calibrations",
+        "Sample reuse unknown"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_RING",
+      "source_id": "MAIN",
+      "locator": "Fig. 3c; Methods Ring dilation / Experiments and Model",
+      "claim": "Free rings are dilated with a bead-radius spherical indenter.",
+      "reported_values": {
+        "ring_n": [
+          3,
+          4,
+          5
+        ],
+        "cycles_per_tension": 3,
+        "pretension_range_N": [
+          2.0,
+          9.8
+        ],
+        "indenter_radius": "equal to bead radius"
+      },
+      "limits": [
+        "Exact tension schedule and speed missing"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_CHAIN",
+      "source_id": "MAIN",
+      "locator": "Fig. 3d; Methods Ring dilation / Experiments",
+      "claim": "A continuous two-ended RAW chain is tested in free-end order.",
+      "reported_values": {
+        "ring_n": 4,
+        "mechanical_chain_cells": 15,
+        "cycles_per_ring": 3,
+        "ring_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "adjacent_rings_share_beads": 1
+      },
+      "limits": [
+        "Thread alternates sides",
+        "Full tension schedule and preparation reuse not established"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_CHAIN_PROJECT",
+      "source_id": "SI",
+      "locator": "PDF page 6; Fig. SI 5",
+      "claim": "Projected in-plane forces are reported for sequentially loaded chains.",
+      "reported_values": {
+        "cells": 15,
+        "ring_n": 4,
+        "T0_N": 2.0,
+        "materials": [
+          "nitinol",
+          "nylon"
+        ]
+      },
+      "limits": [
+        "Inset highlights first three rings, not three samples"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_COLUMN",
+      "source_id": "MAIN",
+      "locator": "Fig. 4a-b; Methods Larger bead network experiments / Column",
+      "claim": "Elastomeric PRAW-4 columns undergo axial extension and compression.",
+      "reported_values": {
+        "layers": 11,
+        "bead_diameter_mm": 12,
+        "rest_length_mm": 92,
+        "extension_mm": 35,
+        "compression_mm": 23,
+        "cycles": 3,
+        "speed_mm_per_min": 30,
+        "termination": "manual pretension and knot",
+        "fixture_grips": "end beads, not thread"
+      },
+      "limits": [
+        "Exact cycle order and elastomer product unverified"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_SMA",
+      "source_id": "MAIN",
+      "locator": "Fig. 4c; Methods Larger bead network experiments / Beam",
+      "claim": "A crimp-terminated PRAW-3 SMA beam is tested in powered and unpowered bending.",
+      "reported_values": {
+        "layers": 31,
+        "bead_diameter_mm": 6,
+        "rest_length_mm": 125,
+        "source_voltage_V": 6,
+        "source_current_mA": 660,
+        "off_cycles_total": 9,
+        "on_cycles_total": 12,
+        "speed_mm_per_min": 30,
+        "termination": "manual pretension and metal crimps"
+      },
+      "limits": [
+        "Not a safe electrical specification for an unqualified replacement",
+        "State order, span, stroke and thermal reset missing"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_DOME",
+      "source_id": "MAIN",
+      "locator": "Fig. 4d; Methods Catenary shell",
+      "claim": "A catenary surface is converted to a beadable mesh and manipulated under gravity.",
+      "reported_values": {
+        "bead_diameter_mm": 20,
+        "loop_n": [
+          5,
+          6,
+          7
+        ],
+        "geometry_software": "Rhino/Grasshopper",
+        "pattern_method": "sphere packing; six nearest neighbors; beads at face centers"
+      },
+      "limits": [
+        "Thread polymer conflicts",
+        "Exact mesh and conformation count missing"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_CONE_FAMILY",
+      "source_id": "MAIN",
+      "locator": "Results following Fig. 4d",
+      "claim": "Isolated cone defects are discussed as a family.",
+      "reported_values": {
+        "central_defect_n": [
+          3,
+          4,
+          5
+        ],
+        "thread_ends": "tied"
+      },
+      "limits": [
+        "Quantitative SI trace explicitly recovered only for n=4"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_CONE4",
+      "source_id": "SI",
+      "locator": "PDF page 7; Fig. SI 6",
+      "claim": "A tied nylon cone is point-loaded at its n=4 defect to inversion.",
+      "reported_values": {
+        "central_defect_n": 4,
+        "moving_average_cycles": 4,
+        "thread": "nylon",
+        "pretension": "manual, numerical value not given"
+      },
+      "limits": [
+        "No rate, support drawing or point-loader dimensions recovered"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_EGG",
+      "source_id": "MAIN",
+      "locator": "Fig. 4e; Results reconfigurable array paragraph",
+      "claim": "An array of cone defects supports illustrated local state patterns.",
+      "reported_values": {
+        "loop_n": [
+          4,
+          6,
+          8
+        ],
+        "acrylic_bead_radius_mm": 6,
+        "illustrated_configuration_labels": [
+          "i",
+          "ii",
+          "iii",
+          "iv"
+        ],
+        "state_scaling_claim": "order 2^m for m cones"
+      },
+      "limits": [
+        "Color orientation conflict",
+        "No exhaustive state test or cone count established"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_CT_MAIN",
+      "source_id": "MAIN",
+      "locator": "Methods Tomography; Fig. 1b(iv), Fig. 4b",
+      "claim": "Micro-CT and rendered views characterize selected configurations.",
+      "reported_values": {
+        "instrument": "Zeiss Xradia Versa 520",
+        "software": "Dragonfly",
+        "column_states": [
+          "jammed",
+          "neutral",
+          "stretched"
+        ],
+        "nylon_mean_slab_thickness_mm": "approximately 1"
+      },
+      "limits": [
+        "Main panel pointer differs from Fig. 1 caption",
+        "No scan settings recovered"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_CT_PREP",
+      "source_id": "SI",
+      "locator": "PDF page 2; Fig. SI 1e",
+      "claim": "CT mounts distinguish material-specific end fixation and platform attachment.",
+      "reported_values": {
+        "nitinol_termination": "manual tension then crimps",
+        "nylon_termination": "manual tension, tie and glue",
+        "platform_options": [
+          "printed PLA",
+          "printed PETG",
+          "laser-cut acrylic"
+        ],
+        "assembly_attachment": "glued after tensioning"
+      },
+      "limits": [
+        "Exact adhesive, platform geometry and mount assignments missing"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_CT_RINGS",
+      "source_id": "SI",
+      "locator": "PDF page 5; Fig. SI 4",
+      "claim": "CT sections compare ring paths and an eight-cell nylon chain.",
+      "reported_values": {
+        "ring_n": [
+          3,
+          4,
+          5
+        ],
+        "ring_materials": [
+          "nitinol",
+          "nylon"
+        ],
+        "ct_chain_cells": 8,
+        "ct_chain_ring_n": 4,
+        "ct_chain_thread": "nylon"
+      },
+      "limits": [
+        "Eight CT cells must not substitute for fifteen mechanical cells"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    },
+    {
+      "id": "E_THEORY",
+      "source_id": "MAIN",
+      "locator": "Results Eqs. (1); Methods Ring dilation / Model, Eqs. (4)-(8)",
+      "claim": "Idealized capstan and symmetric force-balance models provide analysis comparisons.",
+      "reported_values": {
+        "assumptions": [
+          "negligible bending contribution in first-order capstan fit",
+          "radial symmetry in ring model",
+          "constant thread tension in zero-friction model"
+        ]
+      },
+      "limits": [
+        "Not a measured force generator",
+        "Tension and alpha conventions unresolved"
+      ],
+      "verification": "lawfully_retrieved_tool_text_no_local_byte_hash",
+      "is_execution_record": false
+    }
+  ],
+  "authored_boundary": "All fine robot manipulation, device safety, carriers, tolerances and event contracts are authored design, not reported trajectories."
+}

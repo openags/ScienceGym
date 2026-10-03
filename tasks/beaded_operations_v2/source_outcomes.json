@@ -1,0 +1,63 @@
+{
+  "schema_version": "beaded_paper_task.v1",
+  "doi": "10.1038/s41467-025-61809-8",
+  "visibility": "evaluator_reference_only_not_reward_targets",
+  "facts": [
+    {
+      "evidence_ids": [
+        "E_SHELL"
+      ],
+      "claim": "Source compares shell load capacity and hysteresis across pretension/material; task accepts honest disagreement."
+    },
+    {
+      "evidence_ids": [
+        "E_CLAMP"
+      ],
+      "reported_slope_N_per_mm": {
+        "nitinol": 170,
+        "nylon": 193
+      },
+      "use": "source context only, never fixture-generated data"
+    },
+    {
+      "evidence_ids": [
+        "E_FRICTION"
+      ],
+      "reported_effective_mu": {
+        "nitinol": 0.11,
+        "nylon": 0.26
+      },
+      "use": "source first-order model fit; episode values require actual measured fit"
+    },
+    {
+      "evidence_ids": [
+        "E_MODULUS"
+      ],
+      "reported_E_GPa": {
+        "nitinol": [
+          38.2,
+          3.2
+        ],
+        "nylon": [
+          1.8,
+          0.13
+        ]
+      },
+      "uncertainty_convention": "source plus/minus reported; statistical interpretation not inferred",
+      "use": "not substituted for episode measurement"
+    },
+    {
+      "evidence_ids": [
+        "E_SMA"
+      ],
+      "claim": "Source reports increased bending stiffness when energized; no gain quota or synthetic curve supplied."
+    },
+    {
+      "evidence_ids": [
+        "E_EGG"
+      ],
+      "claim": "Order 2^m state discussion does not demonstrate exhaustive independently stable configurations."
+    }
+  ],
+  "physical_execution_performed": false
+}

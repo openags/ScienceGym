@@ -1,0 +1,46 @@
+# Static validation
+
+42 checks passed. No robot, physical experiment, simulator, CAD, source-byte audit or device-safety validation was performed.
+
+- all exported JSON parses
+- operation count and unique IDs
+- family and branch counts
+- route IDs match branch IDs
+- evidence IDs unique
+- unknown gates unique and no fabricated defaults
+- operation evidence and unknown references
+- branch references resolve
+- route operation references resolve
+- mandatory robot embodiment fields
+- every hands-on operation belongs to mobile robot
+- device handoffs explicit
+- no physical feasibility claim
+- loops never have unknown successful empty defaults
+- preparation origin selected in every leaf route
+- drilled bead preparation is mandatory source role
+- service load/process/unload and supplied receipt both represented
+- friction has one weight and one sensor end
+- shell per-end masses are separate
+- friction and axial rates not conflated
+- chain order and cycle semantics
+- CT and mechanical chain counts separate
+- friction and dilation ring sets separate
+- SMA explicit program operation
+- SMA cycles allocated without per-specimen multiplication
+- axial trial IDs allocated across coupons
+- cone n4 cycles not copied to other defect n
+- source conflicts preserved
+- no source byte validation falsely asserted
+- CT guarded-service boundary explicit
+- SMA safe touch prerequisites
+- human demonstration is not human-loading protocol
+- source outcomes withheld from actor
+- whole campaign dispatch exactly covers leaves
+- part transfers use part identity rather than sample placeholder
+- prepared assembly inputs use actual-location batch collection
+- analysis preserves physical location
+- split SMA allocation accepted
+- multiplied SMA totals rejected
+- duplicate cycle IDs rejected
+- export files exist and contain no source binaries
+- export excludes local builder and source pixels

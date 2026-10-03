@@ -1,0 +1,451 @@
+{
+  "schema_version": "beaded_paper_task.v1",
+  "doi": "10.1038/s41467-025-61809-8",
+  "unknown_count": 35,
+  "unknown_parameters": [
+    {
+      "id": "U_TOPOLOGY",
+      "title": "Executable weave topology",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "assembly"
+      ],
+      "detail": "Bead IDs, ordered hole passages, crossings, loop membership, shared beads and free-end roles; photos are insufficient.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_BEAD_GEOMETRY",
+      "title": "Bead and bore geometry",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "assembly",
+        "mounting"
+      ],
+      "detail": "Qualified dimensions, tolerances, hole axes/edge finish and component count. Across-hole shell r_star is not bore diameter.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_THREAD",
+      "title": "Material identity and diameter",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "all_thread_operations"
+      ],
+      "detail": "Actual product/lot, diameter and handling envelope; nylon source conflict stays recorded.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_ALLOCATION",
+      "title": "Specimen allocation and reuse",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "campaign"
+      ],
+      "detail": "Preparation identities, component lots, replicate count and reset/reuse policy; no historical specimen count is recovered.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_ROBOT",
+      "title": "Mobile robot feasibility",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "all_physical_operations"
+      ],
+      "detail": "Embodiment, grasps, tool interfaces, carriers, force envelope, reachability, collision/IK and supported navigation require qualification.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_TENSION",
+      "title": "Discrete pretension schedule",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "shell",
+        "ring",
+        "chain"
+      ],
+      "detail": "Ranges and isolated labels do not imply all levels; supply ordered values with mass/tension convention and actual readback.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_TENSION_FIXTURE",
+      "title": "Pulley and end fixtures",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "pretension"
+      ],
+      "detail": "Travel, alignment, attachment, friction checks, mass restraint and safe transfer limits.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_MANUAL_TENSION",
+      "title": "Qualified manual-like tensioning endpoint",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "demo",
+        "column",
+        "sma",
+        "cone",
+        "ct"
+      ],
+      "detail": "Source manual pretension is not numerical; supply bounded action and record resulting state without inventing a source force.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_TERMINATION",
+      "title": "Knot/crimp/clamp qualification",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "assembly",
+        "ct"
+      ],
+      "detail": "Source termination class is known in some routes; tooling, knot path, crimp die and holding checks are missing.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_FIXTURE",
+      "title": "Mechanical fixture drawings",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "all_mechanical_tests"
+      ],
+      "detail": "Plate, ring clamps, stage, mounts, supports and indenter-to-specimen alignment.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_LOAD_PROGRAM",
+      "title": "Mechanical loading program",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "shell",
+        "friction",
+        "ring",
+        "chain",
+        "modulus",
+        "cone"
+      ],
+      "detail": "Missing speed/stroke/dwell/contact-zero/safety/abort settings supplied per route; no cross-route rate transfer.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_ACQUISITION",
+      "title": "Acquisition and calibration",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "all_measurements"
+      ],
+      "detail": "Load cell, sign/units, sampling, calibration, zero, saturation limits and immutable record receipt.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_CAMERA",
+      "title": "Motion capture calibration",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "shell_tracking"
+      ],
+      "detail": "Lens/view geometry, front/bottom transforms, frame rate, visibility, time offset and tracking uncertainty.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_TRACK_CYCLE",
+      "title": "Tracking-cycle selection",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "shell_tracking"
+      ],
+      "detail": "Identify one actual cycle before analysis; do not treat one tracked cycle as another sample.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_ANALYSIS",
+      "title": "Analysis and aggregation rules",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "all_analysis"
+      ],
+      "detail": "Fit windows, smoothing, extrema, interpolation, uncertainty/SD convention and exclusions must be explicit.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_FRICTION_CONVENTION",
+      "title": "Measured tension versus difference",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "friction_analysis"
+      ],
+      "detail": "Resolve definition of plateau T_star for capstan fit; retain T_sensor, T0 and difference as separate fields.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_PROJECTION",
+      "title": "Shell projection convention",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "shell_analysis"
+      ],
+      "detail": "Resolve alpha=0 versus sin(alpha) denominator ambiguity and define near-singularity handling.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_MODULUS",
+      "title": "Cross-section and clamp model",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "modulus"
+      ],
+      "detail": "Measured A, gauge zero, elastic fit region, compliance model and actual per-clamp correction.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_REPEATS",
+      "title": "Unreported repeat counts",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "swatch",
+        "demo",
+        "friction",
+        "shell_controls",
+        "dome",
+        "egg",
+        "ct"
+      ],
+      "detail": "Positive integer schedule or explicitly no requested repeats; null cannot become empty success.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_SIZE_SET",
+      "title": "Acetal size and bore matching",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "shell_size"
+      ],
+      "detail": "Exact bead radii, drilled bore geometry, quality checks and matched conditions.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_PREP_SERVICE",
+      "title": "Enclosed fabrication service",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "fixture_preparation",
+        "drilling"
+      ],
+      "detail": "Qualified drawings, approved material, job ID, guards and part-quality receipt; no invented CAD.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_FAILURE",
+      "title": "Contained failure endpoint",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "clamped_shell"
+      ],
+      "detail": "Force/displacement limits, failure definition, containment and damage quarantine.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_COLUMN_PROGRAM",
+      "title": "Column program ordering",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "column"
+      ],
+      "detail": "Reference length, neutral state, extension/compression ordering, dwell and end-bead grip geometry.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_SMA_WIRE",
+      "title": "Qualified SMA wire specification",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "sma"
+      ],
+      "detail": "Actual material/diameter, resistance and manufacturer-supported electrical/thermal envelope.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_SMA_THERMAL",
+      "title": "Electrical and thermal safety",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "sma"
+      ],
+      "detail": "Current limit, isolation, temperature feedback, heating duration, cool/reset criterion and service interlock.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_BENDING",
+      "title": "Three-point fixture/program",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "sma"
+      ],
+      "detail": "Support span, nose radius, stroke, contact zero and linear-fit window; off/on sequence and cooling policy.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_DOME_GEOMETRY",
+      "title": "Catenary mesh and dome pattern",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "dome"
+      ],
+      "detail": "Source geometry file, mesh parameters, pattern and total bead count are absent.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_DOME_THREAD",
+      "title": "Dome thread conflict resolution",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "dome"
+      ],
+      "detail": "Nylon body/Methods versus polyester caption; actual supplied choice must be labeled.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_CONE_GEOMETRY",
+      "title": "Cone patch and point loader",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "cone",
+        "egg"
+      ],
+      "detail": "Patch extent, hole orientation, boundary, point-contact tool and reset/inversion path.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_TARGETS",
+      "title": "Reconfiguration targets and observation",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "swatch",
+        "demo",
+        "dome",
+        "egg"
+      ],
+      "detail": "Physical orientation/contact regions, actuation limits, release window, support and target list; no invented state quota.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_CT_PROGRAM",
+      "title": "Qualified tomography service settings",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "ct"
+      ],
+      "detail": "Voltage/current, projections, exposure, voxel size, reconstruction and guarded scan authorization.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_CT_MOUNT",
+      "title": "CT platform and glue preparation",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "ct"
+      ],
+      "detail": "Platform mapping/dimensions, adhesive/cure, fixture position and state-retention checks; SI details govern resolved material branch.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_CT_STATE",
+      "title": "CT state and sample linkage",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "ct"
+      ],
+      "detail": "Actual measured state and mechanical-test link if any; same sample cannot be presumed.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_CT_ANALYSIS",
+      "title": "Tomography analysis definition",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "ct"
+      ],
+      "detail": "ROI, crop, slab, threshold/segmentation, centerline length definition and uncertainty.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    },
+    {
+      "id": "U_RELEASE",
+      "title": "Archive/reset acceptance",
+      "status": "unresolved_qualified_input_required",
+      "required_for": [
+        "all_physical_operations"
+      ],
+      "detail": "Safe load-off state, material inspection, traceable storage and station reset criteria.",
+      "blocks_design": false,
+      "blocks_affected_execution": true,
+      "default": null
+    }
+  ]
+}

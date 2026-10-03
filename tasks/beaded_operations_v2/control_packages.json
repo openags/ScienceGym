@@ -1,0 +1,282 @@
+{
+  "schema_version": "beaded_paper_task.v1",
+  "doi": "10.1038/s41467-025-61809-8",
+  "control_package_count": 15,
+  "packages": [
+    {
+      "id": "CP_SHELL_THREAD",
+      "branch_ids": [
+        "SHELL_NITINOL",
+        "SHELL_NYLON"
+      ],
+      "changed_factor": "thread material",
+      "matched_factors": [
+        "geometry",
+        "surface",
+        "indenter",
+        "T0",
+        "program"
+      ],
+      "unresolved_confounders": [
+        "actual nylon diameter conflict",
+        "unknown specimen matching"
+      ],
+      "repetition_semantics": "three cycles per declared tension; one declared tracked cycle",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_INDENTER",
+      "branch_ids": [
+        "SHELL_INDENTER_CONTROL"
+      ],
+      "changed_factor": "contacting indenter geometry",
+      "matched_factors": [
+        "bead diameter/material/surface",
+        "thread",
+        "T0",
+        "program"
+      ],
+      "unresolved_confounders": [
+        "exact tested schedule"
+      ],
+      "repetition_semantics": "SI control repetitions must be supplied",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_ROUGHNESS",
+      "branch_ids": [
+        "SHELL_ROUGHNESS_CONTROL"
+      ],
+      "changed_factor": "smooth/frosted surface",
+      "matched_factors": [
+        "10 mm acrylic geometry",
+        "thread",
+        "plate",
+        "T0"
+      ],
+      "unresolved_confounders": [
+        "roughness metric",
+        "matching of bore geometry"
+      ],
+      "repetition_semantics": "SI control repetitions must be supplied",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_SIZE",
+      "branch_ids": [
+        "SHELL_SIZE_CONTROL"
+      ],
+      "changed_factor": "acetal bead size",
+      "matched_factors": [
+        "thread",
+        "surface class",
+        "drilled-hole geometry",
+        "T0"
+      ],
+      "unresolved_confounders": [
+        "exact size/bore list"
+      ],
+      "repetition_semantics": "SI control repetitions must be supplied",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_BOUNDARY",
+      "branch_ids": [
+        "SHELL_CLAMPED_FAILURE"
+      ],
+      "changed_factor": "end constraints",
+      "matched_factors": [
+        "material",
+        "shell geometry",
+        "plate"
+      ],
+      "unresolved_confounders": [
+        "manual pretension not matched to hanging masses",
+        "destructive history"
+      ],
+      "repetition_semantics": "clamped condition is not infinite deadweight tension",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_FRICTION",
+      "branch_ids": [
+        "FIXED_RING_FRICTION"
+      ],
+      "changed_factor": "n/material/mass schedule",
+      "matched_factors": [
+        "fixed bead restraint",
+        "pull speed units",
+        "plateau convention"
+      ],
+      "unresolved_confounders": [
+        "replicates",
+        "tension-difference convention"
+      ],
+      "repetition_semantics": "n=3–6 conditions; no replicate count inferred",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_MODULUS",
+      "branch_ids": [
+        "THREAD_MODULUS"
+      ],
+      "changed_factor": "gauge spacing and material",
+      "matched_factors": [
+        "area evidence",
+        "clamp model",
+        "fit rule"
+      ],
+      "unresolved_confounders": [
+        "nylon diameter",
+        "coupon reuse"
+      ],
+      "repetition_semantics": "Assigned trial IDs total three per material and spacing across allocated coupons; source independent specimen count stays unknown.",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_RING",
+      "branch_ids": [
+        "SINGLE_RING_DILATION"
+      ],
+      "changed_factor": "n/material/pretension",
+      "matched_factors": [
+        "bead-matched tip radius",
+        "free bead motion",
+        "program"
+      ],
+      "unresolved_confounders": [
+        "full T0 list"
+      ],
+      "repetition_semantics": "n=3–5; three cycles per condition",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_CHAIN",
+      "branch_ids": [
+        "CHAIN_DILATION"
+      ],
+      "changed_factor": "cell position/material/pretension",
+      "matched_factors": [
+        "15-cell topology",
+        "tip",
+        "free-end orientation"
+      ],
+      "unresolved_confounders": [
+        "history differs by cell by design",
+        "source self-comparison typo"
+      ],
+      "repetition_semantics": "three cycles per cell; strictly i=1 to15",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_COLUMN",
+      "branch_ids": [
+        "ELASTOMERIC_COLUMN"
+      ],
+      "changed_factor": "compression/neutral/extension",
+      "matched_factors": [
+        "same sample/version",
+        "end-bead grips",
+        "rate"
+      ],
+      "unresolved_confounders": [
+        "program ordering",
+        "elastomer identity"
+      ],
+      "repetition_semantics": "three cycles; 11 layers are structural",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_SMA",
+      "branch_ids": [
+        "SMA_BEAM_BENDING"
+      ],
+      "changed_factor": "off/on electrical state",
+      "matched_factors": [
+        "beam geometry",
+        "span",
+        "bending rate",
+        "fit rule"
+      ],
+      "unresolved_confounders": [
+        "state order",
+        "cooling reset",
+        "actual electrical limits"
+      ],
+      "repetition_semantics": "Campaign-assigned cycle IDs total nine off and twelve on across allocated beams; not per-beam defaults or pairs.",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_CONE",
+      "branch_ids": [
+        "CONE_N4_INVERSION"
+      ],
+      "changed_factor": "initial/inverted orientation",
+      "matched_factors": [
+        "n4 patch",
+        "tied nylon",
+        "point contact"
+      ],
+      "unresolved_confounders": [
+        "support and reset geometry"
+      ],
+      "repetition_semantics": "four cycles associated with source moving average; n3/n5 are not assigned it",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_RECONFIGURE",
+      "branch_ids": [
+        "CATENARY_RECONFIGURATION",
+        "EGG_CRATE_RECONFIGURATION"
+      ],
+      "changed_factor": "loaded/released shape",
+      "matched_factors": [
+        "gravity/support",
+        "physical orientation convention"
+      ],
+      "unresolved_confounders": [
+        "dome polymer",
+        "up/down color conflict"
+      ],
+      "repetition_semantics": "target counts supplied; no exhaustive stability claim",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_CT",
+      "branch_ids": [
+        "CT_SHELL",
+        "CT_RINGS",
+        "CT_CHAIN8",
+        "CT_COLUMN_STATES"
+      ],
+      "changed_factor": "material/topology/state image comparisons",
+      "matched_factors": [
+        "scan calibration",
+        "declared ROI",
+        "identity"
+      ],
+      "unresolved_confounders": [
+        "actual sample overlap",
+        "different views/slabs"
+      ],
+      "repetition_semantics": "states/scans are not independent preparations",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    },
+    {
+      "id": "CP_SI3",
+      "branch_ids": [
+        "SHELL_NITINOL",
+        "SHELL_NYLON"
+      ],
+      "changed_factor": "illustrated deformation sequence",
+      "matched_factors": [
+        "explicitly disclose differing T0"
+      ],
+      "unresolved_confounders": [
+        "nitinol2.0 versus nylon7.9 N"
+      ],
+      "repetition_semantics": "illustration only; not matched-pretension evidence",
+      "comparison_rule": "Compare only actual matching records; report gaps and disagreement, never force source outcome."
+    }
+  ]
+}
