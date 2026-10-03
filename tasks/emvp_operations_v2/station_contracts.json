@@ -1,0 +1,189 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "stations": [
+    {
+      "id": "PLAN",
+      "name": "Planning and records desk",
+      "reported_configuration": "Source packet, versioned work order and labels",
+      "public_readiness_checks": [
+        "Read selected scope and resolve explicit finite inputs",
+        "Verify identities, storage allocation and no unsupported fabrication claim"
+      ],
+      "required_unknowns": [
+        "U_BATCH_ALLOCATION",
+        "U_SCHEDULE"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "PREP",
+      "name": "Contained material-preparation bench",
+      "reported_configuration": "Polypropylene preparation vial; Speedmixer Benchtop",
+      "public_readiness_checks": [
+        "Check balance/container labels and mixer limits",
+        "Keep uncured resin protected and vessels closed for transfer"
+      ],
+      "required_unknowns": [
+        "U_DEVICE_QUAL",
+        "U_RECIPE_BASIS",
+        "U_ACETONE"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "EMB",
+      "name": "Configured extrusion printer",
+      "reported_configuration": "3-axis Cartesian; 400-step/revolution NEMA17 motion motors; non-captive NEMA11 extrusion; 2 mL Luer-lock syringe; FLY Gemini V3/Klipper",
+      "public_readiness_checks": [
+        "Read identity and qualification receipt",
+        "Verify stopped axes, installed compatible needle and extrusion calibration",
+        "Home/reference through approved controls and inspect docking"
+      ],
+      "required_unknowns": [
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_TOOLPATH"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "VAM",
+      "name": "Configured volumetric printer",
+      "reported_configuration": "LCD design; 50 micrometre pixels; 450 nm light; red 620 nm orthogonal shadowgram illumination",
+      "public_readiness_checks": [
+        "Read installed build and optical calibration receipts",
+        "Check shielding/interlocks, rotary carrier and projection identity",
+        "Verify reference-frame match and shadowgram visibility"
+      ],
+      "required_unknowns": [
+        "U_DEVICE_QUAL",
+        "U_VAM_QUAL",
+        "U_PROJECTIONS",
+        "U_ALIGNMENT",
+        "U_SHADOWGRAM"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "WASH",
+      "name": "Recovery and wash bench",
+      "reported_configuration": "Glycerol bath; isopropanol/air for negative channels",
+      "public_readiness_checks": [
+        "Support fragile uncured part",
+        "Separate resin/solvent waste by qualified local procedure",
+        "Read wash/flush limits and clear endpoint"
+      ],
+      "required_unknowns": [
+        "U_WASH",
+        "U_FLUSH"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "POST",
+      "name": "Postcure station",
+      "reported_configuration": "XYZPrinting UV Curing Chamber, 5 min",
+      "public_readiness_checks": [
+        "Check shielding/interlock and program identity",
+        "For negative parts verify channel-clearance record before start"
+      ],
+      "required_unknowns": [
+        "U_POSTCURE"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "RHEO",
+      "name": "Rheology station",
+      "reported_configuration": "MCR301 plate-plate; glass bottom plate for illumination; 0.1 mm gap unless specified",
+      "public_readiness_checks": [
+        "Check geometry/gap, temperature and clean plates",
+        "Retain acquisition and LED-on timestamps separately"
+      ],
+      "required_unknowns": [
+        "U_RHEOMETER",
+        "U_PHOTORHEO"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "UVVIS",
+      "name": "Optical characterization station",
+      "reported_configuration": "Evolution 201; 400-550 nm; 1 cm PMMA cuvette",
+      "public_readiness_checks": [
+        "Inspect optical windows and blank/reference receipt",
+        "Record spectra and sample identity"
+      ],
+      "required_unknowns": [
+        "U_UVVIS"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "MICRO",
+      "name": "Microscopy and supported sectioning station",
+      "reported_configuration": "Images reported; full hardware details absent",
+      "public_readiness_checks": [
+        "Check stage, scale calibration, section-plane identity and original-parent record"
+      ],
+      "required_unknowns": [
+        "U_MICROSCOPY"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "CT",
+      "name": "MicroCT station",
+      "reported_configuration": "miniCT PXR; cone beam, axial path; 20 micrometre spot; 10 W; 0.62 s; 15 micrometre voxel",
+      "public_readiness_checks": [
+        "Check guarded access, fixture and calibration receipt",
+        "Capture projection dataset and reconstruction version"
+      ],
+      "required_unknowns": [
+        "U_CT"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "MECH",
+      "name": "Mechanical test stations",
+      "reported_configuration": "Zwick Shore D; Inspekt Table tensile",
+      "public_readiness_checks": [
+        "Distinguish printed hardness and cast tensile specimens",
+        "Check grips/support/load limits and complete positional or force/strain data"
+      ],
+      "required_unknowns": [
+        "U_HARDNESS",
+        "U_CAST_TENSILE"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "DEMO",
+      "name": "Load and fluid/pressure demonstration bench",
+      "reported_configuration": "3 g stirring bar; negative-pressure bellow; dyed-water co-flow",
+      "public_readiness_checks": [
+        "Read bounded actuation work order and connectors",
+        "Verify source-defined observation and safe release"
+      ],
+      "required_unknowns": [
+        "U_LOAD_TEST",
+        "U_PNEUMATIC",
+        "U_FLOW"
+      ],
+      "status": "Contract only; no operational asset instantiated"
+    },
+    {
+      "id": "ARCHIVE",
+      "name": "Sample and record archive",
+      "reported_configuration": "No source-specific archive instrument",
+      "public_readiness_checks": [
+        "Observe final object locations, waste disposition and stopped stations",
+        "Retain all failed attempts and unresolved gates"
+      ],
+      "required_unknowns": [],
+      "status": "Contract only; no operational asset instantiated"
+    }
+  ],
+  "hardware_boundary": "Only researcher-level loading, docking, configuration, qualification, operation, acquisition and recovery are designed. Building optics, motor wiring, controller firmware, printer CAD and mechanical construction are unresolved external provision, never simulated or silently reconstructed."
+}

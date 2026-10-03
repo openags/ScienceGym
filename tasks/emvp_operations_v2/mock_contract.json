@@ -1,0 +1,16 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "scope": "Static bookkeeping tests only",
+  "allowed": [
+    "Synthetic IDs,timestamps,records and arbitrary numbers clearly labelled test fixtures",
+    "Dependency/reference/lineage validation and adversarial mutations"
+  ],
+  "forbidden": [
+    "Generated physical measurements",
+    "Printer optical or mechanical response model",
+    "Physics solver",
+    "Robot motion/controller implementation",
+    "Scientific success inferred from a preset response"
+  ],
+  "independence": "Fixture contents test validator invariants only; a future evaluator must use independent actual environment evidence. No mock response proves an experimental outcome."
+}

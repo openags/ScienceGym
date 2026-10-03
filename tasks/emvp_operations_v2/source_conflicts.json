@@ -1,0 +1,75 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "conflicts": [
+    {
+      "id": "CF_INITIATORS",
+      "source_refs": [
+        "M_PREP"
+      ],
+      "issue": "0.25 wt% CQ and EDAB does not unambiguously give each component mass fraction or a combined ratio",
+      "treatment": "Keep U_CQ_EDAB unresolved; require qualified explicit recipe before preparing Mat1"
+    },
+    {
+      "id": "CF_SOLVENT",
+      "source_refs": [
+        "M_PREP"
+      ],
+      "issue": "Initiator pre-dissolution specifies acetone but not amount or subsequent solvent fate",
+      "treatment": "Keep U_ACETONE unresolved; no guessed evaporation or removal step"
+    },
+    {
+      "id": "CF_RECOVERY_PANEL",
+      "source_refs": [
+        "M_F4",
+        "M_SCOPE"
+      ],
+      "issue": "Results prose cross-references recovery panels inconsistently; caption and visible panels assign d to Mat1 and e to Mat2",
+      "treatment": "Record Mat1 4.7 s and Mat2 1.7 s with figure-caption attribution; preserve prose mismatch"
+    },
+    {
+      "id": "CF_CHIP_TIMINGS",
+      "source_refs": [
+        "S_T1",
+        "M_F3"
+      ],
+      "issue": "SI names Cylindrical chip (3c) and Flat chip (3g), whereas main panel3c is flat and3g cylindrical",
+      "treatment": "Preserve exact row label and row times; do not assign either row to physical chip type without an additional verified resolution"
+    },
+    {
+      "id": "CF_DISTANCE",
+      "source_refs": [
+        "M_DISTANCE",
+        "S_F8"
+      ],
+      "issue": "Paper calls a reported mean Cloud-to-Mesh discrepancy Hausdorff distance; mathematical maximum-Hausdorff is not established",
+      "treatment": "Use the actual supplied analysis definition; source mean is context, not metric code or pass bound"
+    },
+    {
+      "id": "CF_RECOVERY_STEPS",
+      "source_refs": [
+        "M_RHEO"
+      ],
+      "issue": "Methods names a three-step interval test but specifies two 30%/0.01% cycles lasting240 s total",
+      "treatment": "Preserve explicit four60-second intervals, flag terminology; do not insert an unreported fifth or initial interval"
+    },
+    {
+      "id": "CF_PHOTO_CLOCK",
+      "source_refs": [
+        "M_RHEO",
+        "M_F4"
+      ],
+      "issue": "Reported59.8 and64.7 s are elapsed from measurement start; light begins at30 s",
+      "treatment": "Keep measurement and exposure elapsed fields distinct;29.8 and34.7 s are arithmetic-derived exposure elapsed, not separately measured source values"
+    },
+    {
+      "id": "CF_CONTROL_MATERIAL",
+      "source_refs": [
+        "S_F4",
+        "S_F6"
+      ],
+      "issue": "Pure-VAM positive/negative resolution controls do not explicitly state material identity in inspected descriptions",
+      "treatment": "Mat2 is an authored declared realization requiring qualification, not a reconstructed source fact"
+    }
+  ],
+  "policy": "Do not silently correct, harmonize, generalize or fill missing source values. A future resolution must record exact evidence and version."
+}

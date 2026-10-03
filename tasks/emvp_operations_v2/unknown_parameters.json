@@ -1,0 +1,276 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "unknowns": [
+    {
+      "id": "U_ACETONE",
+      "meaning": "Acetone amount, concentration basis and solvent-fate handling for each recipe",
+      "source_status": "Not specified in preparation Methods",
+      "affected_scope": "material preparation",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_CQ_EDAB",
+      "meaning": "Whether 0.25 wt% refers to each initiator component or their combined amount, and the ratio if combined",
+      "source_status": "Ambiguous source wording",
+      "affected_scope": "MAT1 preparation",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_RECIPE_BASIS",
+      "meaning": "Mass-fraction denominator, balance precision, order detail and safe scale-specific container limits",
+      "source_status": "Not completely specified",
+      "affected_scope": "material preparation",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_BATCH_ALLOCATION",
+      "meaning": "Batch masses; aliquot amounts; vial fill level; sample counts; reuse policy; randomization if required",
+      "source_status": "Not specified; 5 mL is vial capacity, not fill amount",
+      "affected_scope": "all",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_DEVICE_QUAL",
+      "meaning": "Installed device identity, completed construction, guarding, service status, calibrated controls, safe reach/grasp map and stop controls",
+      "source_status": "Custom printer configuration described but construction and deployment calibration absent",
+      "affected_scope": "all",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_EXTRUSION_QUAL",
+      "meaning": "Axes/origin homing, extrusion-to-volume calibration, syringe fit, travel limits, pressure/load limits and cleaning validation",
+      "source_status": "Not fully specified",
+      "affected_scope": "EMB3D",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_VAM_QUAL",
+      "meaning": "LCD/light/rotation calibration, exposure intensity, rotation speed, number of projections, camera geometry and stop envelope",
+      "source_status": "Only 450 nm and 50 micrometre pixel size are specified",
+      "affected_scope": "VAM",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_GEOMETRY",
+      "meaning": "Versioned printable geometry, dimensions, region assignment, channel access ports and authorized manipulations",
+      "source_status": "Images are not complete CAD",
+      "affected_scope": "printing and cast/measurement fixtures",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_TOOLPATH",
+      "meaning": "Approved per-condition G-code, extrusion multiplier, travel and retraction choices and any exception settings",
+      "source_status": "Only baseline needle/line dimensions and deposition speeds specified",
+      "affected_scope": "EMB3D",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_PROJECTIONS",
+      "meaning": "Qualified PNG projection stack with geometry/material/absorption mapping and printer compatibility receipt",
+      "source_status": "Computation described; no projection generation or scientific solver is run here",
+      "affected_scope": "VAM",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_ALIGNMENT",
+      "meaning": "Explicit reference transform, vial orientation marker/dock, alignment tolerance and public verification method",
+      "source_status": "Common origin is shown; exact fixtures/tolerances are not",
+      "affected_scope": "EMB3D-to-VAM transfer",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_SHADOWGRAM",
+      "meaning": "Operationally supplied target image/shape, public match criteria, visibility check and bounded stop rules",
+      "source_status": "Visual completion stated without quantitative tolerance",
+      "affected_scope": "VAM",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_WASH",
+      "meaning": "Glycerol quantity, wash motion/time, support strategy, replacement and clean endpoint",
+      "source_status": "Bath specified, settings absent",
+      "affected_scope": "washing",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_FLUSH",
+      "meaning": "Connector/tool fit, isopropanol amount, compressed-air pressure/flow, supported routing and clearance criteria",
+      "source_status": "Media and pre-postcure order specified; actuation values absent",
+      "affected_scope": "negative EmVP",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_POSTCURE",
+      "meaning": "Qualified chamber program including irradiance/wavelength, orientation and safe interlock; 300-second duration retained",
+      "source_status": "Only chamber make and duration reported",
+      "affected_scope": "printed objects",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_RHEOMETER",
+      "meaning": "Plate diameter, temperature, trim/loading procedure, sweep spacing, shear-sweep dwell, oscillation frequency for non-photo tests and recovery timing convention",
+      "source_status": "Gap and ranges reported; other settings unreported",
+      "affected_scope": "rheology",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_PHOTORHEO",
+      "meaning": "Acquisition duration and sampling, photodiode/light qualification, start/LED clock synchronization and gel-crossing interpretation",
+      "source_status": "30 percent, 5 Hz, LED at 30 s, 450 nm and 5.8 mW/cm2 reported",
+      "affected_scope": "photorheology",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_UVVIS",
+      "meaning": "Blank/reference material, sample handling, scan interval, baseline/cuvette orientation and absorption conversion convention",
+      "source_status": "400-550 nm, 1 cm PMMA cuvette reported",
+      "affected_scope": "UV-Vis",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_LOADING_SERIES",
+      "meaning": "Qualified recipe denominator, preparation scale and finite sample allocation for verified2,4,8,12 percent R805 Mat2 series",
+      "source_status": "Levels verified from SI Figure2 legend; full execution settings not reported",
+      "affected_scope": "loading comparison",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_MICROSCOPY",
+      "meaning": "Instrument, objective, calibration, illumination, section plane/preparation and measured-location choices",
+      "source_status": "Microscopy shown without complete Methods",
+      "affected_scope": "microscopy",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_CT",
+      "meaning": "X-ray voltage/current decomposition, angular sampling, mounting, reconstruction/segmentation and selected plane conventions",
+      "source_status": "10 W, 0.62 s, 20 micrometre spot and 15 micrometre voxels reported",
+      "affected_scope": "microCT",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_DISTANCE",
+      "meaning": "Registration, surface extraction, sampling and summary statistic/uncertainty definition",
+      "source_status": "Cloud-to-Mesh method named; exact full analysis not specified",
+      "affected_scope": "lattice accuracy",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_HARDNESS",
+      "meaning": "Printed coupon shape/thickness/support, conditioning, four spot locations and reported averaging convention",
+      "source_status": "Four spots and 15-second dwell stated; sample n absent",
+      "affected_scope": "Shore D",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_CAST_TENSILE",
+      "meaning": "Scaled specimen mold and geometry, casting/curing/conditioning, grips, rate, strain measurement and modulus fit",
+      "source_status": "Scaled-down ISO 527-1 reference is insufficient to recreate procedure",
+      "affected_scope": "cast tensile",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_PNEUMATIC",
+      "meaning": "Bellow port/tubing, bounded negative pressure waveform, hold/release duration, deflection measurement and limits",
+      "source_status": "Negative pressure bending shown; numerical settings absent",
+      "affected_scope": "bending bellow",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_FLOW",
+      "meaning": "Dye specification, inlet connectors, independent flow rates/pressure and visualization method",
+      "source_status": "Red/blue water co-flow shown; settings absent",
+      "affected_scope": "negative chip function",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_LOAD_TEST",
+      "meaning": "Sphere orientation, safe 3 g stirring-bar placement/removal and deformation observation definitions",
+      "source_status": "3 g mass specified but full loading fixture unreported",
+      "affected_scope": "sphere demonstration",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_FEATURE_SERIES",
+      "meaning": "Actual source model files, complete small-channel diameter set, settings for needle exceptions and finite condition list",
+      "source_status": "Some dimensions in SI; not a full source CAD/toolpath packet",
+      "affected_scope": "resolution controls",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_SCHEDULE",
+      "meaning": "Explicit finite conditions, order, repetitions and replacement specimen allocation for every selected comparison",
+      "source_status": "Historical replicate counts generally not stated; four hardness sites are not four specimens",
+      "affected_scope": "all",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    },
+    {
+      "id": "U_MATERIAL_QUAL",
+      "meaning": "Selected material qualification policy, compatible-lot evidence and operational acceptance criteria",
+      "source_status": "Paper material outcomes are context; deployment qualification criteria are not reported",
+      "affected_scope": "printing",
+      "value": null,
+      "resolution_contract": "Qualified, versioned episode input or additionally verified source; retain provenance and units",
+      "if_missing": "Block only dependent work; preserve completed work and identify the exact missing field; never use null as zero or skip required coverage"
+    }
+  ],
+  "gate_status": "Every unresolved value blocks dependent work; observed source labels do not resolve omitted geometry or settings."
+}

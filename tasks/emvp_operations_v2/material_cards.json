@@ -1,0 +1,136 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "materials": [
+    {
+      "id": "MAT2",
+      "role": "Photopolymerizable soft support bath",
+      "components": [
+        {
+          "name": "Genomer 1122TF",
+          "role": "Aliphatic urethane acrylate"
+        },
+        {
+          "name": "BAPO",
+          "reported_wt_percent": 0.5
+        },
+        {
+          "name": "Aerosil R805",
+          "reported_wt_percent": 8
+        }
+      ],
+      "pre_dissolution": "BAPO is first dissolved in acetone; quantity and subsequent solvent handling are not specified",
+      "mix": {
+        "instrument": "Hausschild Speedmixer Benchtop",
+        "time_s": 300,
+        "speed_rpm": 3500
+      },
+      "source_refs": [
+        "M_PREP"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_RECIPE_BASIS",
+        "U_BATCH_ALLOCATION"
+      ]
+    },
+    {
+      "id": "MAT1",
+      "role": "Photopolymerizable stiff embedded ink",
+      "components": [
+        {
+          "name": "HDDA",
+          "role": "Diacrylate monomer"
+        },
+        {
+          "name": "CQ and EDAB",
+          "reported_wording": "0.25 wt% CQ and EDAB",
+          "each_or_combined": "unresolved"
+        },
+        {
+          "name": "Aerosil R805",
+          "reported_wt_percent": 7
+        },
+        {
+          "name": "Rhodamine B",
+          "reported_wt_percent": 0.015
+        }
+      ],
+      "mix": "Same general preparation process as Mat 2; do not fill solvent or initiator ambiguities by inference",
+      "source_refs": [
+        "M_PREP"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_CQ_EDAB",
+        "U_RECIPE_BASIS",
+        "U_BATCH_ALLOCATION"
+      ]
+    },
+    {
+      "id": "SACRIFICIAL",
+      "name": "Pluronic PE3100",
+      "role": "Non-photopolymerizable sacrificial negative-process ink",
+      "source_refs": [
+        "M_SCOPE",
+        "M_PREP"
+      ],
+      "required_unknowns": [
+        "U_BATCH_ALLOCATION"
+      ]
+    },
+    {
+      "id": "MAT2_LOADING_SERIES",
+      "role": "Support-bath R805 comparison",
+      "status": "Figure legend levels independently visually verified; full preparation scale/allocation remains a qualified input",
+      "source_refs": [
+        "S_F2"
+      ],
+      "required_unknowns": [
+        "U_LOADING_SERIES",
+        "U_BATCH_ALLOCATION"
+      ],
+      "source_legend_percent_levels": [
+        2,
+        4,
+        8,
+        12
+      ],
+      "percent_basis": "Figure legend gives percent; exact denominator remains qualified recipe input, not inferred from the pixels"
+    },
+    {
+      "id": "WASH",
+      "name": "Glycerol",
+      "role": "Removal of uncured external resin",
+      "source_refs": [
+        "M_PRINT"
+      ],
+      "required_unknowns": [
+        "U_WASH"
+      ]
+    },
+    {
+      "id": "FLUSH",
+      "name": "Isopropanol and compressed air",
+      "role": "Clear negative-process channels before postcure",
+      "source_refs": [
+        "M_PRINT"
+      ],
+      "required_unknowns": [
+        "U_FLUSH"
+      ]
+    },
+    {
+      "id": "FLOW_VISUALIZATION",
+      "name": "Red and blue dyed water",
+      "role": "Post-cleaning channel flow observation",
+      "source_refs": [
+        "M_F3"
+      ],
+      "required_unknowns": [
+        "U_FLOW"
+      ]
+    }
+  ],
+  "unit_warning": "Recipe mass-fraction denominator remains qualified;5 mL is container capacity,not fill amount",
+  "source_status": "Pure-VAM resolution-control material is unspecified;Mat2 is explicitly an authored selection."
+}

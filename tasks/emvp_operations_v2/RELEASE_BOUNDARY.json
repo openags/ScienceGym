@@ -1,0 +1,35 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "public_repository_scope": "Independently authored design/evaluator package. Public repository availability is not actor runtime visibility.",
+  "actor_allowlist": [
+    "agent_visible.json: selected goal only",
+    "material_cards.json: selected factual recipe cards and unresolved warnings",
+    "episode_input_contract.json: resolved public inputs and observable interfaces only",
+    "selected user-visible geometry/condition/calibration/safety cards"
+  ],
+  "actor_denylist": [
+    "operations.json",
+    "dependencies.json",
+    "branches.json: reference operation membership",
+    "evaluator_reference.json",
+    "source_outcomes.json",
+    "source_conflicts.json",
+    "coverage_matrix.json",
+    "tests/",
+    "independent_review/",
+    "independent_source_audit/",
+    "control_packages.json: evaluator completeness logic",
+    "hidden episode states or fault seeds"
+  ],
+  "loader_requirement": "A future runtime loader must build an explicit selected projection and fail closed on unknown fields or direct directory mounting. This deliverable specifies but does not implement or test a real actor loader.",
+  "export_exclusions": [
+    "Publisher PDF bytes",
+    "Extracted source article/SI text",
+    "Publisher figure pixels or screenshots",
+    "Host-specific absolute paths",
+    "Credentials or personal data",
+    "Caches",
+    "Build script and temporary files"
+  ],
+  "copyright": "Source attribution retained; no source license altered and no repository LICENSE created or modified."
+}

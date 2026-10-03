@@ -1,0 +1,1490 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "practical_families": [
+    {
+      "id": "F_MATERIALS",
+      "name": "Material development and qualification",
+      "configuration_ids": [
+        "MATERIAL_CHARACTERIZATION",
+        "BATH_LOADING_COMPARISON"
+      ]
+    },
+    {
+      "id": "F_POSITIVE",
+      "name": "Positive multi-material printed demonstrations",
+      "configuration_ids": [
+        "POSITIVE_HELIX",
+        "POSITIVE_TARGETED_BELLOW",
+        "POSITIVE_AREA_BELLOW",
+        "POSITIVE_THINKER",
+        "POSITIVE_SPHERE_LOAD",
+        "POSITIVE_REINFORCED_CYLINDER",
+        "POSITIVE_LATTICE_ACCURACY",
+        "POSITIVE_BENDING_BELLOW"
+      ]
+    },
+    {
+      "id": "F_NEGATIVE",
+      "name": "Negative sacrificial-channel demonstrations",
+      "configuration_ids": [
+        "NEGATIVE_Y_COFLOW",
+        "NEGATIVE_CYLINDRICAL",
+        "NEGATIVE_FINE_CHANNELS"
+      ]
+    },
+    {
+      "id": "F_CONTROLS",
+      "name": "Process, resolution and single-material controls",
+      "configuration_ids": [
+        "CONTROL_VAM_NEGATIVE",
+        "CONTROL_VAM_POSITIVE",
+        "CONTROL_EMB_FILAMENT",
+        "CONTROL_SINGLE_MATERIAL_CAGE"
+      ]
+    },
+    {
+      "id": "F_MECHANICS",
+      "name": "Separate printed-hardness and cast-tensile characterization",
+      "configuration_ids": [
+        "SHORE_D_PAIR",
+        "CAST_TENSILE_PAIR"
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "id": "MATERIAL_CHARACTERIZATION",
+      "family_id": "F_MATERIALS",
+      "goal": "Prepare Mat1 and Mat2 and characterize flow, yielding, recovery, optical absorption and photogelation",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_RHEO_LOAD",
+        "O_AMPLITUDE",
+        "O_FLOWCURVE",
+        "O_RECOVERY",
+        "O_PHOTORHEO",
+        "O_RHEO_UNLOAD",
+        "O_UVVIS_LOAD",
+        "O_UVVIS_SCAN",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_PREP",
+        "M_RHEO",
+        "M_OPTICAL",
+        "M_F4",
+        "S_F3"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_PHOTORHEO",
+        "U_RECIPE_BASIS",
+        "U_RHEOMETER",
+        "U_SCHEDULE",
+        "U_UVVIS"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "material",
+        "independent batch and aliquot",
+        "test type",
+        "repeat"
+      ],
+      "control_package_ids": [
+        "C_RHEO_PAIR",
+        "C_PHOTO_PAIR",
+        "C_UVVIS_PAIR"
+      ],
+      "notes": [
+        "Separate aliquots or an explicit validated reuse sequence; cured photorheology aliquots cannot serve as fresh samples"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "BATH_LOADING_COMPARISON",
+      "family_id": "F_MATERIALS",
+      "goal": "Compare the source-defined R805 loading series in the soft bath",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_RHEO_LOAD",
+        "O_FLOWCURVE",
+        "O_RHEO_UNLOAD",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_PREP",
+        "S_F2"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_BATCH_ALLOCATION",
+        "U_DEVICE_QUAL",
+        "U_LOADING_SERIES",
+        "U_RECIPE_BASIS",
+        "U_RHEOMETER",
+        "U_SCHEDULE"
+      ],
+      "material_ids": [
+        "MAT2_LOADING_SERIES"
+      ],
+      "condition_dimensions": [
+        "R805 loading",
+        "batch",
+        "aliquot",
+        "repeat"
+      ],
+      "control_package_ids": [
+        "C_LOADING"
+      ],
+      "notes": [],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "POSITIVE_HELIX",
+      "family_id": "F_POSITIVE",
+      "goal": "Prepare and inspect the two-material helix by positive EmVP",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F1",
+        "S_T1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "material region map",
+        "specimen",
+        "attempt"
+      ],
+      "control_package_ids": [],
+      "notes": [],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "POSITIVE_TARGETED_BELLOW",
+      "family_id": "F_POSITIVE",
+      "goal": "Demonstrate targeted deposition in the source three-bellow configuration",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F1",
+        "S_T1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "targeted region map",
+        "specimen",
+        "attempt"
+      ],
+      "control_package_ids": [],
+      "notes": [
+        "SI row 3Bellow (1i) identifies the example; exact geometry is not reconstructed from the figure"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "POSITIVE_AREA_BELLOW",
+      "family_id": "F_POSITIVE",
+      "goal": "Demonstrate area deposition in the source two-bellow configuration",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F1",
+        "S_T1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "area region map",
+        "specimen",
+        "attempt"
+      ],
+      "control_package_ids": [],
+      "notes": [
+        "SI row 2Bellow (1j) identifies the example; no claim that its geometry matches the targeted example"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "POSITIVE_THINKER",
+      "family_id": "F_POSITIVE",
+      "goal": "Print the source region-assigned Thinker example with stiff support stone and soft figure",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F2",
+        "S_T1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "region map",
+        "specimen",
+        "attempt"
+      ],
+      "control_package_ids": [],
+      "notes": [
+        "Source model availability and applicable geometry rights require a supplied asset; no figure-derived CAD is generated"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "POSITIVE_SPHERE_LOAD",
+      "family_id": "F_POSITIVE",
+      "goal": "Print the stacked-material skeleton sphere and observe its response to the reported 3 g bar",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_SPHERE_LOAD",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F2",
+        "S_F1",
+        "S_T1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_LOAD_TEST",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "material-half assignment",
+        "specimen",
+        "load state",
+        "attempt"
+      ],
+      "control_package_ids": [
+        "C_SPHERE_STATES"
+      ],
+      "notes": [],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "POSITIVE_REINFORCED_CYLINDER",
+      "family_id": "F_POSITIVE",
+      "goal": "Print and section the hollow cylinder with targeted stiff filaments and measure its interfaces",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_SECTION",
+        "O_MICRO_MOUNT",
+        "O_MICRO_MEASURE",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F2",
+        "S_T1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "filament position",
+        "section plane",
+        "specimen",
+        "attempt"
+      ],
+      "control_package_ids": [],
+      "notes": [],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "POSITIVE_LATTICE_ACCURACY",
+      "family_id": "F_POSITIVE",
+      "goal": "Print the diagonally assigned lattice and record CT-to-model geometric comparison",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_CT_MOUNT",
+        "O_CT_SCAN",
+        "O_CT_RECON_HANDOFF",
+        "O_DISTANCE_HANDOFF",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F2",
+        "S_F8",
+        "M_DISTANCE",
+        "S_T1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_CT",
+        "U_DEVICE_QUAL",
+        "U_DISTANCE",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "region assignment",
+        "specimen",
+        "CT location",
+        "surface analysis version"
+      ],
+      "control_package_ids": [
+        "C_LATTICE_REGIONS"
+      ],
+      "notes": [],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "POSITIVE_BENDING_BELLOW",
+      "family_id": "F_POSITIVE",
+      "goal": "Print a reinforced bellow and observe bounded negative-pressure bending and release",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_BELLOW_CONNECT",
+        "O_BELLOW_ACTUATE",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F2",
+        "S_T1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_PNEUMATIC",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "specimen",
+        "pressure program",
+        "loaded/released state",
+        "attempt"
+      ],
+      "control_package_ids": [
+        "C_BELLOW_STATES"
+      ],
+      "notes": [],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "NEGATIVE_Y_COFLOW",
+      "family_id": "F_NEGATIVE",
+      "goal": "Prepare the flat Y-junction chip, clear channels and characterize geometry and red/blue-water co-flow",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_NEG",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_FLUSH",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_CT_MOUNT",
+        "O_CT_SCAN",
+        "O_CT_RECON_HANDOFF",
+        "O_CT_SECTIONS",
+        "O_CHANNEL_FLOW",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F3",
+        "M_PRINT",
+        "M_CT"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CT",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_FLOW",
+        "U_FLUSH",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT2",
+        "SACRIFICIAL"
+      ],
+      "condition_dimensions": [
+        "Y inlet/outlet position",
+        "specimen",
+        "flow state",
+        "CT plane",
+        "attempt"
+      ],
+      "control_package_ids": [
+        "C_CHANNEL_EVIDENCE"
+      ],
+      "notes": [
+        "Chip timing row is unresolved because SI Table1 labels conflict with main Figure3"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "NEGATIVE_CYLINDRICAL",
+      "family_id": "F_NEGATIVE",
+      "goal": "Prepare cylindrical chip with separate central and helical channels; clear and characterize both",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_NEG",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_FLUSH",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_CT_MOUNT",
+        "O_CT_SCAN",
+        "O_CT_RECON_HANDOFF",
+        "O_CT_SECTIONS",
+        "O_CHANNEL_FLOW",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_F3",
+        "M_CT"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CT",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_FLOW",
+        "U_FLUSH",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT2",
+        "SACRIFICIAL"
+      ],
+      "condition_dimensions": [
+        "central versus helical channel",
+        "specimen",
+        "CT plane",
+        "flow state",
+        "attempt"
+      ],
+      "control_package_ids": [
+        "C_CHANNEL_EVIDENCE"
+      ],
+      "notes": [
+        "Separate-channel cylindrical topology is not a Y-junction",
+        "Chip timing row is unresolved because SI Table1 labels conflict with main Figure3"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "NEGATIVE_FINE_CHANNELS",
+      "family_id": "F_NEGATIVE",
+      "goal": "Characterize the fine-needle negative EmVP demonstration including repeat-crossing effects",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_NEG",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_FLUSH",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_CT_MOUNT",
+        "O_CT_SCAN",
+        "O_CT_RECON_HANDOFF",
+        "O_CT_SECTIONS",
+        "O_FEATURE_CLASSIFY",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "S_F5",
+        "M_SCOPE"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CT",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_FEATURE_SERIES",
+        "U_FLUSH",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT2",
+        "SACRIFICIAL"
+      ],
+      "condition_dimensions": [
+        "150 micrometre needle exception",
+        "helical versus vertical channel",
+        "path crossing count",
+        "specimen",
+        "CT plane"
+      ],
+      "control_package_ids": [
+        "C_FINE_CHANNELS"
+      ],
+      "notes": [
+        "Needle diameter is a deposition input; 119 and 335 micrometres are reported example observations, never preset episode results"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "CONTROL_VAM_NEGATIVE",
+      "family_id": "F_CONTROLS",
+      "goal": "Attempt the source straight-channel pure-VAM diameter series and retain clogging/partial outcomes",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_VAM_DIRECT",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_FEATURE_CLASSIFY",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "S_F4"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_DEVICE_QUAL",
+        "U_FEATURE_SERIES",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "2.00,1.50,1.00,0.50,0.30 mm designed channel diameter",
+        "4 mm designed length",
+        "specimen",
+        "visual observation"
+      ],
+      "control_package_ids": [
+        "C_PURE_VAM_NEGATIVE"
+      ],
+      "notes": [
+        "No sacrificial path is deposited; this is distinct from negative EmVP",
+        "Source does not explicitly identify the material for this pure-VAM test; Mat2 is an authored task selection, not a source-reported assignment",
+        "Source comparison uses printed-sample imagery; CT is not added as a mandatory extra task"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "CONTROL_VAM_POSITIVE",
+      "family_id": "F_CONTROLS",
+      "goal": "Attempt pure-VAM positive-feature structures at the three reported outer sizes and record uneven/failing features",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_VAM_DIRECT",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_MICRO_MOUNT",
+        "O_MICRO_MEASURE",
+        "O_FEATURE_CLASSIFY",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "S_F6"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_DEVICE_QUAL",
+        "U_FEATURE_SERIES",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "10 mm, 5 mm and 2.5 mm outer diameter",
+        "beam location",
+        "specimen"
+      ],
+      "control_package_ids": [
+        "C_PURE_VAM_POSITIVE"
+      ],
+      "notes": [
+        "Source control material/setting assignment must be verified in supplied work order if not explicit in figure; Mat2 is a design selection, not an inferred source fact"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "CONTROL_EMB_FILAMENT",
+      "family_id": "F_CONTROLS",
+      "goal": "Record embedded cage travel oozing and deposited filament/section resolution",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_SECTION",
+        "O_MICRO_MOUNT",
+        "O_MICRO_MEASURE",
+        "O_FEATURE_CLASSIFY",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "S_F7"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_FEATURE_SERIES",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_TOOLPATH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "cage path versus individual filament",
+        "travel region",
+        "section plane",
+        "specimen"
+      ],
+      "control_package_ids": [
+        "C_EMBED_VS_FINAL"
+      ],
+      "notes": [
+        "Source microscopy sample recovery/fixation/cure sequence is not fully specified; supplied qualified preparation must not be misrepresented as source-reported",
+        "No VAM exposure is required by this template solely to manufacture a task chain"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "CONTROL_SINGLE_MATERIAL_CAGE",
+      "family_id": "F_CONTROLS",
+      "goal": "Compare Mat1-only, Mat2-only and combined-material cage prints under declared qualified conditions",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_SYRINGE",
+        "O_EMB_SETUP",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_DOCK_EMB",
+        "O_DEPOSIT_POS",
+        "O_INSPECT_EMBED",
+        "O_TRANSFER_ALIGN",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_VAM_DIRECT",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "S_F1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_EXTRUSION_QUAL",
+        "U_GEOMETRY",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_TOOLPATH",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "Mat1-only, Mat2-only, combined",
+        "specimen",
+        "attempt"
+      ],
+      "control_package_ids": [
+        "C_SINGLE_MATERIAL"
+      ],
+      "notes": [
+        "The combined branch uses embedding; single-material conditions bypass deposition and use direct VAM loading; do not demand both paths on one vial"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve",
+      "condition_routes": [
+        {
+          "condition_id": "Mat1-only",
+          "material_ids": [
+            "MAT1"
+          ],
+          "operation_ids": [
+            "O_PLAN",
+            "O_SETUP",
+            "O_STOCK",
+            "O_WEIGH",
+            "O_DISSOLVE",
+            "O_COMBINE",
+            "O_MIX",
+            "O_ALIQUOT",
+            "O_MATERIAL_RELEASE",
+            "O_VAM_SETUP",
+            "O_GEOMETRY",
+            "O_VAM_DIRECT",
+            "O_EXPOSE",
+            "O_EXTRACT",
+            "O_GLYCEROL",
+            "O_POSTCURE",
+            "O_INSPECT_FINAL",
+            "O_SUMMARY",
+            "O_CLOSE"
+          ],
+          "required_unknowns": [
+            "U_ACETONE",
+            "U_ALIGNMENT",
+            "U_BATCH_ALLOCATION",
+            "U_CQ_EDAB",
+            "U_DEVICE_QUAL",
+            "U_GEOMETRY",
+            "U_MATERIAL_QUAL",
+            "U_MICROSCOPY",
+            "U_POSTCURE",
+            "U_PROJECTIONS",
+            "U_RECIPE_BASIS",
+            "U_SCHEDULE",
+            "U_SHADOWGRAM",
+            "U_VAM_QUAL",
+            "U_WASH"
+          ]
+        },
+        {
+          "condition_id": "Mat2-only",
+          "material_ids": [
+            "MAT2"
+          ],
+          "operation_ids": [
+            "O_PLAN",
+            "O_SETUP",
+            "O_STOCK",
+            "O_WEIGH",
+            "O_DISSOLVE",
+            "O_COMBINE",
+            "O_MIX",
+            "O_ALIQUOT",
+            "O_MATERIAL_RELEASE",
+            "O_VAM_SETUP",
+            "O_GEOMETRY",
+            "O_VAM_DIRECT",
+            "O_EXPOSE",
+            "O_EXTRACT",
+            "O_GLYCEROL",
+            "O_POSTCURE",
+            "O_INSPECT_FINAL",
+            "O_SUMMARY",
+            "O_CLOSE"
+          ],
+          "required_unknowns": [
+            "U_ACETONE",
+            "U_ALIGNMENT",
+            "U_BATCH_ALLOCATION",
+            "U_DEVICE_QUAL",
+            "U_GEOMETRY",
+            "U_MATERIAL_QUAL",
+            "U_MICROSCOPY",
+            "U_POSTCURE",
+            "U_PROJECTIONS",
+            "U_RECIPE_BASIS",
+            "U_SCHEDULE",
+            "U_SHADOWGRAM",
+            "U_VAM_QUAL",
+            "U_WASH"
+          ]
+        },
+        {
+          "condition_id": "combined-material",
+          "material_ids": [
+            "MAT1",
+            "MAT2"
+          ],
+          "operation_ids": [
+            "O_PLAN",
+            "O_SETUP",
+            "O_STOCK",
+            "O_WEIGH",
+            "O_DISSOLVE",
+            "O_COMBINE",
+            "O_MIX",
+            "O_ALIQUOT",
+            "O_MATERIAL_RELEASE",
+            "O_SYRINGE",
+            "O_EMB_SETUP",
+            "O_VAM_SETUP",
+            "O_GEOMETRY",
+            "O_DOCK_EMB",
+            "O_DEPOSIT_POS",
+            "O_INSPECT_EMBED",
+            "O_TRANSFER_ALIGN",
+            "O_EXPOSE",
+            "O_EXTRACT",
+            "O_GLYCEROL",
+            "O_POSTCURE",
+            "O_INSPECT_FINAL",
+            "O_SUMMARY",
+            "O_CLOSE"
+          ],
+          "required_unknowns": [
+            "U_ACETONE",
+            "U_ALIGNMENT",
+            "U_BATCH_ALLOCATION",
+            "U_CQ_EDAB",
+            "U_DEVICE_QUAL",
+            "U_EXTRUSION_QUAL",
+            "U_GEOMETRY",
+            "U_MATERIAL_QUAL",
+            "U_MICROSCOPY",
+            "U_POSTCURE",
+            "U_PROJECTIONS",
+            "U_RECIPE_BASIS",
+            "U_SCHEDULE",
+            "U_SHADOWGRAM",
+            "U_TOOLPATH",
+            "U_VAM_QUAL",
+            "U_WASH"
+          ]
+        }
+      ],
+      "membership_semantics": "operation_ids is the union of three required comparison routes. Each allocated specimen executes only its named condition route; the study covers all three."
+    },
+    {
+      "id": "SHORE_D_PAIR",
+      "family_id": "F_MECHANICS",
+      "goal": "Prepare printed Mat1 and Mat2 coupons and collect four 15-second Shore D site readings per specimen",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_MATERIAL_RELEASE",
+        "O_VAM_SETUP",
+        "O_GEOMETRY",
+        "O_VAM_DIRECT",
+        "O_EXPOSE",
+        "O_EXTRACT",
+        "O_GLYCEROL",
+        "O_POSTCURE",
+        "O_INSPECT_FINAL",
+        "O_SHORE_MOUNT",
+        "O_SHORE_PROBE",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_HARDNESS",
+        "M_F1"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_ALIGNMENT",
+        "U_BATCH_ALLOCATION",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_GEOMETRY",
+        "U_HARDNESS",
+        "U_MATERIAL_QUAL",
+        "U_MICROSCOPY",
+        "U_POSTCURE",
+        "U_PROJECTIONS",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE",
+        "U_SHADOWGRAM",
+        "U_VAM_QUAL",
+        "U_WASH"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "material",
+        "printed specimen",
+        "four within-specimen spots"
+      ],
+      "control_package_ids": [
+        "C_HARDNESS"
+      ],
+      "notes": [
+        "Printed specimen method beyond the word printed is unreported; VAM is a declared task realization and requires explicit work-order approval, not a historical fabrication claim"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    },
+    {
+      "id": "CAST_TENSILE_PAIR",
+      "family_id": "F_MECHANICS",
+      "goal": "Prepare separately cast Mat1 and Mat2 specimens and acquire qualified scaled tensile tests",
+      "operation_ids": [
+        "O_PLAN",
+        "O_SETUP",
+        "O_STOCK",
+        "O_WEIGH",
+        "O_DISSOLVE",
+        "O_COMBINE",
+        "O_MIX",
+        "O_ALIQUOT",
+        "O_CAST",
+        "O_TENSILE_MOUNT",
+        "O_TENSILE",
+        "O_SUMMARY",
+        "O_CLOSE"
+      ],
+      "source_refs": [
+        "M_TENSILE",
+        "S_F10"
+      ],
+      "required_unknowns": [
+        "U_ACETONE",
+        "U_BATCH_ALLOCATION",
+        "U_CAST_TENSILE",
+        "U_CQ_EDAB",
+        "U_DEVICE_QUAL",
+        "U_RECIPE_BASIS",
+        "U_SCHEDULE"
+      ],
+      "material_ids": [
+        "MAT1",
+        "MAT2"
+      ],
+      "condition_dimensions": [
+        "material",
+        "cast specimen",
+        "test attempt"
+      ],
+      "control_package_ids": [
+        "C_TENSILE"
+      ],
+      "notes": [
+        "A cited scaled-down ISO standard does not supply omitted specimen dimensions, cure or test speed"
+      ],
+      "status": "Complete source-bounded template; runnable only after all selected input gates and external asset qualifications resolve"
+    }
+  ],
+  "branch_selection": "Finite work orders allocate materials, specimens, conditions and retries separately. condition_routes make mixed-control dispatch explicit.",
+  "initial_state": "Labeled raw stock and qualified installed assets; every upstream preparation or qualification handoff has declared scope and parent lineage."
+}

@@ -1,0 +1,279 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "visibility": "evaluator_context_only_never_actor_or_reward",
+  "outcomes": [
+    {
+      "id": "OUT_MECHANICS",
+      "source_refs": [
+        "M_SCOPE",
+        "M_F1",
+        "S_F10"
+      ],
+      "reported": {
+        "Mat1_modulus_MPa": 122,
+        "Mat2_modulus_MPa": 1.28,
+        "Mat1_ShoreD": 27.4,
+        "Mat2_ShoreD": 4.9
+      },
+      "context": "Tensile moduli are cast-specimen results; hardness uses printed samples. Source n and complete uncertainty definitions not supplied."
+    },
+    {
+      "id": "OUT_GELATION",
+      "source_refs": [
+        "M_F4",
+        "M_RHEO"
+      ],
+      "reported": {
+        "Mat1_elapsed_from_measurement_start_s": 59.8,
+        "Mat2_elapsed_from_measurement_start_s": 64.7,
+        "LED_on_elapsed_s": 30
+      },
+      "context": "Times are not exposure durations; source result cannot stand in for current-material acquisition."
+    },
+    {
+      "id": "OUT_RECOVERY",
+      "source_refs": [
+        "M_F4"
+      ],
+      "reported": {
+        "Mat1_recovery_s": 4.7,
+        "Mat2_recovery_s": 1.7
+      },
+      "context": "Panel caption attribution; prose panel-reference conflict retained."
+    },
+    {
+      "id": "OUT_MAIN_CHANNELS",
+      "source_refs": [
+        "M_F3"
+      ],
+      "reported": {
+        "flat_Y_section_diameter_um": 248,
+        "cylindrical_helical_section_diameter_um": 228
+      },
+      "context": "Example local CT sections, not guaranteed whole-channel uniformity or function."
+    },
+    {
+      "id": "OUT_FINE_CHANNELS",
+      "source_refs": [
+        "S_F5"
+      ],
+      "reported": {
+        "needle_diameter_um": 150,
+        "modeled_helical_diameter_um": 120,
+        "modeled_vertical_diameter_um": 300,
+        "measured_helical_diameter_um": 119,
+        "measured_vertical_diameter_um": 335
+      },
+      "context": "Input needle, input model and observed outputs are separate; larger vertical channel attributed to repeated needle crossing."
+    },
+    {
+      "id": "OUT_VAM_NEGATIVE",
+      "source_refs": [
+        "S_F4"
+      ],
+      "reported": {
+        "designed_diameters_mm": [
+          2,
+          1.5,
+          1,
+          0.5,
+          0.3
+        ],
+        "designed_length_mm": 4
+      },
+      "context": "Caption reports overcuring beginning at0.5 mm and fully clogged0.3 mm channels in this setup; this is not an apparatus-independent limit."
+    },
+    {
+      "id": "OUT_VAM_POSITIVE",
+      "source_refs": [
+        "S_F6"
+      ],
+      "reported": {
+        "outer_sizes_mm": [
+          10,
+          5,
+          2.5
+        ],
+        "example_beam_sizes_um": [
+          2000,
+          700,
+          300
+        ]
+      },
+      "context": "Smallest structure unevenly resolved; observed approximate feature sizes are not CAD or successful-resolution guarantees."
+    },
+    {
+      "id": "OUT_EMB_FILAMENT",
+      "source_refs": [
+        "S_F7"
+      ],
+      "reported": {
+        "filament_height_um": 250,
+        "approximate_section_diameter_um": 175
+      },
+      "context": "Different microscopy observables and sample preparation not fully specified; do not conflate height and cross-sectional diameter."
+    },
+    {
+      "id": "OUT_DISTANCE",
+      "source_refs": [
+        "S_F8",
+        "M_DISTANCE"
+      ],
+      "reported": {
+        "mean_discrepancy_mm": 0.23,
+        "reported_spread_mm": 0.28
+      },
+      "context": "Aggregate source example, exact spread definition and n unresolved; never a per-print pass threshold."
+    },
+    {
+      "id": "OUT_LOADING",
+      "source_refs": [
+        "S_F2"
+      ],
+      "reported": {
+        "R805_legend_percent_levels": [
+          2,
+          4,
+          8,
+          12
+        ]
+      },
+      "context": "Figure-only levels verified. Legend percent denominator is not explicit; qualified recipe basis remains required."
+    },
+    {
+      "id": "OUT_REFRACTION",
+      "source_refs": [
+        "M_SCOPE"
+      ],
+      "reported": {
+        "supplier_refractive_index_Mat1": 1.4598,
+        "supplier_refractive_index_Mat2": 1.456
+      },
+      "context": "Supplier-reported material values, not new measurements, and not absorption coefficients."
+    }
+  ],
+  "timing_rows": [
+    {
+      "id": "TIME_1",
+      "source_row_label": "2-Arm helix (1d)",
+      "EMB3D_time_s": 180,
+      "TVAM_time_s": 109,
+      "total_print_time_s": 289,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "row label retained"
+    },
+    {
+      "id": "TIME_2",
+      "source_row_label": "3Bellow (1i)",
+      "EMB3D_time_s": 180,
+      "TVAM_time_s": 142,
+      "total_print_time_s": 322,
+      "EMB3D_approximate": false,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "row label retained"
+    },
+    {
+      "id": "TIME_3",
+      "source_row_label": "2Bellow (1j)",
+      "EMB3D_time_s": 170,
+      "TVAM_time_s": 144,
+      "total_print_time_s": 314,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "row label retained"
+    },
+    {
+      "id": "TIME_4",
+      "source_row_label": "Thinker (2a)",
+      "EMB3D_time_s": 120,
+      "TVAM_time_s": 151,
+      "total_print_time_s": 271,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "row label retained"
+    },
+    {
+      "id": "TIME_5",
+      "source_row_label": "Skeleton sphere (2b)",
+      "EMB3D_time_s": 180,
+      "TVAM_time_s": 162,
+      "total_print_time_s": 342,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "row label retained"
+    },
+    {
+      "id": "TIME_6",
+      "source_row_label": "Hollow Cylinder (2e)",
+      "EMB3D_time_s": 9,
+      "TVAM_time_s": 122,
+      "total_print_time_s": 131,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "row label retained"
+    },
+    {
+      "id": "TIME_7",
+      "source_row_label": "Lattice (2g)",
+      "EMB3D_time_s": 180,
+      "TVAM_time_s": 108,
+      "total_print_time_s": 288,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "row label retained"
+    },
+    {
+      "id": "TIME_8",
+      "source_row_label": "Bending Bellow (2k)",
+      "EMB3D_time_s": 90,
+      "TVAM_time_s": 155,
+      "total_print_time_s": 245,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "row label retained"
+    },
+    {
+      "id": "TIME_9",
+      "source_row_label": "Cylindrical chip (3c)",
+      "EMB3D_time_s": 12,
+      "TVAM_time_s": 121,
+      "total_print_time_s": 133,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "unresolved_source_row_panel_conflict"
+    },
+    {
+      "id": "TIME_10",
+      "source_row_label": "Flat chip (3g)",
+      "EMB3D_time_s": 8,
+      "TVAM_time_s": 148,
+      "total_print_time_s": 156,
+      "EMB3D_approximate": true,
+      "source_refs": [
+        "S_T1"
+      ],
+      "physical_chip_assignment": "unresolved_source_row_panel_conflict"
+    }
+  ],
+  "timing_scope": "EMB3D+TVAM only; source prints take minutes, all listed totals under6 min. Preparation, transfer, washing, characterization and300 s postcure are outside these totals. No multiday protocol claimed.",
+  "usage": "Historical observations only; no scientific response generation, acceptance oracle or fabricated raw data."
+}

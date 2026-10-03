@@ -1,0 +1,624 @@
+{
+  "schema_version": "emvp_independent_source_audit.v1",
+  "created_utc": "2026-10-03T06:58:59.596267+00:00",
+  "scope": "Independent source-grounding/design audit of the physical experimental family, not an implementation, experimental validation or scientific simulation",
+  "decision": "Source-bounded family design is supportable with the listed explicit gates and provenance boundaries. This is not turnkey replication approval.",
+  "source_identity": {
+    "doi": "10.1038/s41467-025-62057-6",
+    "article_url": "https://www.nature.com/articles/s41467-025-62057-6",
+    "supplement_url": "https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-62057-6/MediaObjects/41467_2025_62057_MOESM1_ESM.pdf",
+    "main_sha256": "295d0dc938ee6194183014cd64c330dbf5c6d40320fb1c04c55da32143e949ab",
+    "si_sha256": "36231119990026d22982947e97e7d11b7ce6bf689e7e241bc9e158c45debdec8",
+    "license": "CC BY 4.0 subject to source third-party credit exceptions"
+  },
+  "review_basis": {
+    "preflight": "Full main and SI text plus all 18 rendered pages were inspected in recorded source preflight; this audit relies on that full visual coverage and independently re-reads relevant text.",
+    "independent_visual_rechecks": [
+      "MAIN p6 Fig4",
+      "SI p4 Figs2-3",
+      "SI p5 Figs4-5"
+    ],
+    "no_new_downloads": true,
+    "no_third_party_code_execution": true,
+    "no_source_bytes_or_images_in_this_audit": true,
+    "source_raw_data_or_cad_validated": false
+  },
+  "snapshot_note": "Parallel authorship continued during audit. Snapshot hashes identify reviewed design files and are not a claim that all later files were independently re-audited.",
+  "reviewed_file_sha256": {
+    "branches.json": "5a2142df725799d2148d09e259ffebdddec2b510d25834d77a941d3a98492545",
+    "material_cards.json": "9727e0c0a11f1e76c89b343661eb40ebe6c2085d3e5d2074edcd6263409a5e78",
+    "operations.json": "2fb388d43eabefaacfa30d78edfb87968e108cd71f3a7ae9d529fb6f8d3a63dd",
+    "unknown_parameters.json": "9abdd86f928f941160d0f577b4f25b150c9fd4d1b315d2a9ba4d9c6e8558826a",
+    "station_contracts.json": "792999cb774c983c1052dc025d57e9ef0d3c6fc91d53fc24745d6a1c78d68615",
+    "dependencies.json": "8c262668a1775ff6e818ca49692cfff94172acfcab6e4ac25cb944b2e4a66efb",
+    "provenance.json": "ae271d8f05eca4d06d990bf6d55ceaa4dd93e329bc28cbc31e77a2d44650b279",
+    "TASK_DESIGN.md": "02e1a4c8b8a67941b31ff138d57ce7b268e5d60da5301a971109e9835cd6eb7e",
+    "source_conflicts.json": "af7e240d82a0b4a5a0b2391cec7a056015ed4d1aa8e264eb4a86fae57a536090",
+    "control_packages.json": "42f3ae6a0d5652dd10d7a6c9c009b71aae52b2268459bdc5abca23e800a0dcd6"
+  },
+  "reviewed_inventory": {
+    "configuration_count": 19,
+    "operation_count": 53
+  },
+  "source_coverage": [
+    {
+      "source_ref": "M_PREP",
+      "locator": "MAIN p7",
+      "evidence_unit": "Formulation, premix and homogenization",
+      "design_mapping": "MATERIAL_CHARACTERIZATION; all material-bearing configurations",
+      "assessment": "covered_with_recipe_gates"
+    },
+    {
+      "source_ref": "M_SETUP",
+      "locator": "MAIN p7",
+      "evidence_unit": "Installed hardware description",
+      "design_mapping": "O_SETUP; O_EMB_SETUP; O_VAM_SETUP",
+      "assessment": "qualified_station_boundary"
+    },
+    {
+      "source_ref": "M_PRINT",
+      "locator": "MAIN p7",
+      "evidence_unit": "Vial handling, deposition, transfer, VAM, washing and postcure",
+      "design_mapping": "positive, negative and appropriate control configurations",
+      "assessment": "covered_with_setting_gates"
+    },
+    {
+      "source_ref": "M_PROJECTION",
+      "locator": "MAIN p7",
+      "evidence_unit": "Absorption-aware digital preparation",
+      "design_mapping": "O_GEOMETRY; O_VAM_SETUP",
+      "assessment": "qualified_external_assets_not_implemented"
+    },
+    {
+      "source_ref": "M_RHEO",
+      "locator": "MAIN pp7-8",
+      "evidence_unit": "Flow, amplitude, recovery and photorheology",
+      "design_mapping": "MATERIAL_CHARACTERIZATION; BATH_LOADING_COMPARISON",
+      "assessment": "covered_with_acquisition_gates"
+    },
+    {
+      "source_ref": "M_OPTICAL",
+      "locator": "MAIN p8",
+      "evidence_unit": "UV Vis acquisition",
+      "design_mapping": "MATERIAL_CHARACTERIZATION",
+      "assessment": "covered_with_acquisition_gates"
+    },
+    {
+      "source_ref": "M_CT",
+      "locator": "MAIN p8",
+      "evidence_unit": "CT acquisition/reconstruction/sections",
+      "design_mapping": "negative chips; lattice accuracy",
+      "assessment": "covered_by_acquisition_and_analysis_handoffs"
+    },
+    {
+      "source_ref": "M_DISTANCE",
+      "locator": "MAIN p8",
+      "evidence_unit": "CT surface comparison",
+      "design_mapping": "POSITIVE_LATTICE_ACCURACY",
+      "assessment": "covered_with_statistic_caveat"
+    },
+    {
+      "source_ref": "M_HARDNESS",
+      "locator": "MAIN p8",
+      "evidence_unit": "Printed-sample Shore D",
+      "design_mapping": "SHORE_D_PAIR",
+      "assessment": "covered_with_manufacture_and_replication_caveats"
+    },
+    {
+      "source_ref": "M_TENSILE",
+      "locator": "MAIN p8",
+      "evidence_unit": "Cast-sample tensile",
+      "design_mapping": "CAST_TENSILE_PAIR",
+      "assessment": "covered_with_casting_geometry_test_gates"
+    },
+    {
+      "source_ref": "M_F1",
+      "locator": "MAIN p3",
+      "evidence_unit": "Helix, targeted/area bellows, branch principles",
+      "design_mapping": "POSITIVE_HELIX; POSITIVE_TARGETED_BELLOW; POSITIVE_AREA_BELLOW",
+      "assessment": "covered"
+    },
+    {
+      "source_ref": "M_F2",
+      "locator": "MAIN p4",
+      "evidence_unit": "Thinker, loaded cage, reinforced cylinder, lattice, bending bellow",
+      "design_mapping": "five corresponding positive configurations",
+      "assessment": "covered_with_geometry_and_demo_gates"
+    },
+    {
+      "source_ref": "M_F3",
+      "locator": "MAIN p5",
+      "evidence_unit": "Flat Y and cylindrical negative chips, flow and CT",
+      "design_mapping": "NEGATIVE_Y_COFLOW; NEGATIVE_CYLINDRICAL",
+      "assessment": "covered_with_timing_conflict"
+    },
+    {
+      "source_ref": "M_F4",
+      "locator": "MAIN p6",
+      "evidence_unit": "Gelation, recovery, spectra and flow curves",
+      "design_mapping": "MATERIAL_CHARACTERIZATION",
+      "assessment": "covered_with_clocks_and_panel_conflict"
+    },
+    {
+      "source_ref": "S_F1",
+      "locator": "SI p3",
+      "evidence_unit": "Selective cure and three material conditions",
+      "design_mapping": "CONTROL_SINGLE_MATERIAL_CAGE; POSITIVE_SPHERE_LOAD",
+      "assessment": "covered"
+    },
+    {
+      "source_ref": "S_F2",
+      "locator": "SI p4",
+      "evidence_unit": "Four R805 loading flow curves",
+      "design_mapping": "BATH_LOADING_COMPARISON",
+      "assessment": "figure_levels_visually_resolved_recipe_basis_gated"
+    },
+    {
+      "source_ref": "S_F3",
+      "locator": "SI p4",
+      "evidence_unit": "Mat2 and Mat1 amplitude sweeps",
+      "design_mapping": "MATERIAL_CHARACTERIZATION",
+      "assessment": "covered"
+    },
+    {
+      "source_ref": "S_F4",
+      "locator": "SI p5",
+      "evidence_unit": "Pure-VAM straight-channel negative features",
+      "design_mapping": "CONTROL_VAM_NEGATIVE",
+      "assessment": "source_geometry_resolved_material_not_explicit"
+    },
+    {
+      "source_ref": "S_F5",
+      "locator": "SI p5",
+      "evidence_unit": "Fine negative channels",
+      "design_mapping": "NEGATIVE_FINE_CHANNELS",
+      "assessment": "covered_with_needle_exception"
+    },
+    {
+      "source_ref": "S_F6",
+      "locator": "SI p6",
+      "evidence_unit": "Pure-VAM positive features",
+      "design_mapping": "CONTROL_VAM_POSITIVE",
+      "assessment": "covered_material_not_explicit"
+    },
+    {
+      "source_ref": "S_F7",
+      "locator": "SI p6",
+      "evidence_unit": "Extrusion resolution and oozing",
+      "design_mapping": "CONTROL_EMB_FILAMENT",
+      "assessment": "covered_with_specimen_preparation_gate"
+    },
+    {
+      "source_ref": "S_F8",
+      "locator": "SI p7",
+      "evidence_unit": "Lattice geometry deviation",
+      "design_mapping": "POSITIVE_LATTICE_ACCURACY",
+      "assessment": "covered_with_metric_definition_gate"
+    },
+    {
+      "source_ref": "S_F9",
+      "locator": "SI p7",
+      "evidence_unit": "Four coordinate frames",
+      "design_mapping": "O_TRANSFER_ALIGN; O_GEOMETRY",
+      "assessment": "covered_with_transform_gate"
+    },
+    {
+      "source_ref": "S_F10",
+      "locator": "SI p8",
+      "evidence_unit": "Cast mechanical response",
+      "design_mapping": "CAST_TENSILE_PAIR",
+      "assessment": "covered"
+    },
+    {
+      "source_ref": "S_F11",
+      "locator": "SI p9",
+      "evidence_unit": "Optical setup and shadowgram endpoint",
+      "design_mapping": "O_VAM_SETUP; O_EXPOSE",
+      "assessment": "covered_with_completion_gate"
+    },
+    {
+      "source_ref": "S_F12",
+      "locator": "SI p9",
+      "evidence_unit": "Simulated intensity",
+      "design_mapping": "context only",
+      "assessment": "explicit_nonphysical_exclusion"
+    },
+    {
+      "source_ref": "S_T1",
+      "locator": "SI p1",
+      "evidence_unit": "Printing-stage durations",
+      "design_mapping": "source timing context",
+      "assessment": "covered_with_chip_identity_conflict"
+    },
+    {
+      "source_ref": "S_T2",
+      "locator": "SI p2",
+      "evidence_unit": "Method comparison",
+      "design_mapping": "method context",
+      "assessment": "explicit_nonphysical_exclusion"
+    }
+  ],
+  "findings": [
+    {
+      "id": "SA01",
+      "source_locator": "MAIN p7, Resin and matrix preparation",
+      "finding": "Acetone is used to predissolve initiator, but amount and subsequent fate are unreported.",
+      "design_implication": "Do not silently evaporate, retain, or ignore solvent. Resolve quantity, basis and handling or use a qualified preformulated input.",
+      "disposition": "represented_by_U_ACETONE"
+    },
+    {
+      "id": "SA02",
+      "source_locator": "MAIN p7, Resin and matrix preparation",
+      "finding": "The CQ/EDAB percentage does not explicitly disambiguate each component versus their combined amount.",
+      "design_implication": "Resolve interpretation and any ratio before dispensing Mat1.",
+      "disposition": "represented_by_U_CQ_EDAB"
+    },
+    {
+      "id": "SA03",
+      "source_locator": "SI p4, Fig2 legends; MAIN p5, rheological characterization",
+      "finding": "The four R805 legend labels are 12%, 4%, 8%, 2%; the main text identifies the comparison as Mat2.",
+      "design_implication": "Record the set 2,4,8,12 percent as visually verified. The legend itself does not state denominator; full per-condition recipe and allocation remain qualified inputs.",
+      "disposition": "incorporated_in_material_cards_and_control_conditions_with_basis_gate"
+    },
+    {
+      "id": "SA04",
+      "source_locator": "SI p5, Fig4a",
+      "finding": "Straight-channel diameters are 2.00,1.50,1.00,0.50,0.30 mm; channel length is 4.00 mm.",
+      "design_implication": "These source geometry facts can replace a wholly unknown diameter set, but do not supply the full cylinder CAD or feature coordinates.",
+      "disposition": "incorporated_in_negative_control_condition_list_with_CAD_gate"
+    },
+    {
+      "id": "SA05",
+      "source_locator": "SI pp5-6, Figs4 and6; MAIN pp4-6, resolution discussion",
+      "finding": "Pure-VAM negative-feature and positive-feature resolution controls do not explicitly name their resin formulation in these captions or discussion.",
+      "design_implication": "A MAT2 choice for either control is an authored task realization requiring declared work-order qualification; do not label it a verified source material mapping.",
+      "disposition": "verified_both_controls_explicitly_label_MAT2_as_authored"
+    },
+    {
+      "id": "SA06",
+      "source_locator": "SI p5, Fig4",
+      "finding": "The pure-VAM negative-feature figure contains model and printed-sample imagery. A dedicated CT acquisition is not stated for this control.",
+      "design_implication": "Any added CT examination is an authored characterization extension. Keep source-observed imagery and new measurements distinct.",
+      "disposition": "resolved_CT_removed_from_pure_VAM_negative_control"
+    },
+    {
+      "id": "SA07",
+      "source_locator": "MAIN pp5-6, Fig4a-b; MAIN p8, photorheology",
+      "finding": "Reported gelation times 59.8 s (Mat1) and 64.7 s (Mat2) use measurement start; LED turns on at 30 s.",
+      "design_implication": "Maintain measurement and exposure clocks. Subtractions 29.8 s and 34.7 s are derived exposure-relative intervals, not separately reported source values. Never set printing exposure from these rheometer times.",
+      "disposition": "operations_retain_two_clocks"
+    },
+    {
+      "id": "SA08",
+      "source_locator": "MAIN p5 text and p6 Fig4d-e caption/panels",
+      "finding": "Mat1 recovery is 4.7 s and Mat2 recovery is 1.7 s. A prose cross-reference places Mat1 at Fig4e, conflicting with the panel/caption mapping d=Mat1,e=Mat2.",
+      "design_implication": "Preserve material-value pairing, report the source reference conflict, and use panel/caption identifiers explicitly.",
+      "disposition": "source_conflict_retained"
+    },
+    {
+      "id": "SA09",
+      "source_locator": "MAIN p8, rheology; Fig4d-e",
+      "finding": "Recovery Methods describe 30% amplitude for 60 s then 0.01% for 60 s, repeated to a stated total of 240 s. Figure shows one high-low cycle.",
+      "design_implication": "Use two high-low pairs for 240 s, not an invented six-interval 360 s sequence. Recovery delay starts at amplitude reduction.",
+      "disposition": "represented_by_O_RECOVERY"
+    },
+    {
+      "id": "SA10",
+      "source_locator": "SI p1, Table1; MAIN p5, Fig3",
+      "finding": "Table1 names Cylindrical chip (3c), 12/121/133 s, and Flat chip (3g), 8/148/156 s; main Fig3c is flat Y and Fig3g is cylindrical.",
+      "design_implication": "Do not silently resolve whether names or panel references identify timing rows. Preserve both rows and leave row-to-chip mapping unresolved.",
+      "disposition": "source_conflict_retained"
+    },
+    {
+      "id": "SA11",
+      "source_locator": "SI p1, Table1; MAIN p7, print Methods",
+      "finding": "Table1 totals sum EMB3D and TVAM times. The less-than-six-minute statement excludes extraction, washing, channel flushing, postcuring and characterization.",
+      "design_implication": "Never claim complete physical end-to-end work under six minutes. Timings are historical context, not stop criteria.",
+      "disposition": "scope_boundary_required"
+    },
+    {
+      "id": "SA12",
+      "source_locator": "MAIN p7, print Methods",
+      "finding": "The source states a cylindrical 5 mL vial, not an exact 5 mL fill. The extrusion holder accepts 2 mL syringes, without reporting a 2 mL load.",
+      "design_implication": "Separate capacity from actual allocated volume.",
+      "disposition": "represented_by_U_BATCH_ALLOCATION"
+    },
+    {
+      "id": "SA13",
+      "source_locator": "MAIN p7, print Methods; SI p5, Fig5",
+      "finding": "Routine needle internal diameter is 0.4 mm. The fine-channel demonstration specifies a 150 micrometre needle.",
+      "design_implication": "Fine-channel setup is an explicit exception; do not carry the routine line settings into it as established source facts.",
+      "disposition": "represented_by_fine_channel_configuration"
+    },
+    {
+      "id": "SA14",
+      "source_locator": "SI p5, Fig5",
+      "finding": "Fine-channel modeled diameters are 120 micrometres helical and 300 micrometres straight; measured examples are 119 and 335 micrometres. Source attributes the larger straight channel to crossing the same location twice.",
+      "design_implication": "Keep CAD dimensions, needle diameter, observed section diameters and path-crossing counts distinct.",
+      "disposition": "represented_by_fine_channel_configuration"
+    },
+    {
+      "id": "SA15",
+      "source_locator": "MAIN p7, print Methods",
+      "finding": "Part recovery is followed by glycerol washing and five-minute postcure; for negative EmVP, isopropanol/compressed-air channel flushing occurs before postcure.",
+      "design_implication": "Channel-clearing cannot be moved after postcure. Pressure, amount, connection and clearance criteria are not supplied by the paper.",
+      "disposition": "represented_by_operations_and_U_FLUSH"
+    },
+    {
+      "id": "SA16",
+      "source_locator": "MAIN pp3-4, accuracy discussion; MAIN p8, distance Methods; SI p7, Fig8",
+      "finding": "The source calls its comparison Hausdorff while describing mean distance and CloudCompare Cloud-to-Mesh analysis; it reports 0.23 +/- 0.28 mm.",
+      "design_implication": "Name the actual implemented statistic. Do not identify the reported mean as the mathematical maximum Hausdorff distance or treat it as a universal acceptance limit.",
+      "disposition": "represented_by_U_DISTANCE"
+    },
+    {
+      "id": "SA17",
+      "source_locator": "MAIN p8, Shore D hardness Methods",
+      "finding": "Printed samples are probed at four sites, 15 s per reading. Sample replicate count, coupon dimensions and exact printing method are not supplied.",
+      "design_implication": "Four sites are not four independent specimens. A VAM-produced coupon is an authored realization, not historical evidence of the fabrication method.",
+      "disposition": "represented_by_SHORE_D_PAIR_and_U_HARDNESS"
+    },
+    {
+      "id": "SA18",
+      "source_locator": "MAIN p8, tensile Methods; SI p8, Fig10",
+      "finding": "Tensile specimens are cast, with a scaled-down ISO 527-1 reference. Estimated moduli are 122 MPa for Mat1 and 1.28 MPa for Mat2.",
+      "design_implication": "Do not label these tensile results as measured on printed EmVP parts. Source omits scaled dimensions, casting/cure program, test rate, strain measurement and fit details.",
+      "disposition": "represented_by_CAST_TENSILE_PAIR_and_U_CAST_TENSILE"
+    },
+    {
+      "id": "SA19",
+      "source_locator": "SI p6, Fig6",
+      "finding": "Pure-VAM cages have outer diameters 10,5,2.5 mm and illustrated beam diameters approximately 2,0.7,0.3 mm; the smallest cage is not evenly resolved.",
+      "design_implication": "Do not convert the 0.3 mm observation into an unconditional successful printer resolution specification. Preserve uneven/partial failure.",
+      "disposition": "control_observation_boundary"
+    },
+    {
+      "id": "SA20",
+      "source_locator": "SI p6, Fig7",
+      "finding": "Embedded Mat1-in-Mat2 cage shows travel bridges/oozing. An individual filament view has height 250 micrometres and cross-section diameter about 175 micrometres.",
+      "design_implication": "Do not conflate height, cross-section diameter, tool diameter and commanded line size. Microscopy recovery/fixation/cure sequence is incomplete and must be supplied.",
+      "disposition": "represented_by_CONTROL_EMB_FILAMENT"
+    },
+    {
+      "id": "SA21",
+      "source_locator": "MAIN pp2-4, positive EmVP; SI p3, Fig1",
+      "finding": "Combined-material printing selectively cures within deposited Mat1; residual uncured Mat1 remains. SI also shows Mat1-only and Mat2-only cage controls.",
+      "design_implication": "Do not require all deposited Mat1 to become the final part. Do not omit Mat1-only control solely because the Fig4 caption discusses its higher absorption.",
+      "disposition": "represented_by_positive_and_single_material_controls"
+    },
+    {
+      "id": "SA22",
+      "source_locator": "MAIN p7, setup/projection Methods; SI pp7-9, Figs9,11,12",
+      "finding": "A configured custom Cartesian extrusion printer, LCD VAM setup and a projection-generation method are described, but full hardware build, production CAD, job assets and operating calibration are not furnished by this packet.",
+      "design_implication": "Require installed qualified instruments plus versioned geometry/G-code/projection inputs; source cites construction/code assets that were not inspected. No third-party scientific code was executed.",
+      "disposition": "explicit_external_asset_gate"
+    },
+    {
+      "id": "SA23",
+      "source_locator": "SI p7, Fig9; MAIN p7, vial transfer",
+      "finding": "Model, projection, extrusion and VAM reference frames use XY center and model-bottom Z origins. Vial orientation is maintained during transfer.",
+      "design_implication": "This does not establish fixture dimensions, tolerance, angular zero or a universally self-aligning transfer. Keep an explicit transform and verification gate.",
+      "disposition": "represented_by_U_ALIGNMENT"
+    },
+    {
+      "id": "SA24",
+      "source_locator": "MAIN p7, print completion; SI p9, Fig11",
+      "finding": "Completion uses a 620 nm orthogonal shadowgram compared with intended shape.",
+      "design_implication": "No quantitative image-match threshold, maximum safe duration or automated observer is supplied. These are external qualification inputs.",
+      "disposition": "represented_by_U_SHADOWGRAM"
+    },
+    {
+      "id": "SA25",
+      "source_locator": "MAIN p8, microCT and UV Vis Methods",
+      "finding": "MicroCT specifies 20 micrometre spot, 0.62 s exposure, 10 W and 15 micrometre voxel size; UV Vis specifies 400-550 nm and 1 cm PMMA cuvette.",
+      "design_implication": "These are incomplete instrument programs. Do not infer projection count, total scan time, voltage/current, segmentation, blank or acquisition interval.",
+      "disposition": "represented_by_U_CT_and_U_UVVIS"
+    },
+    {
+      "id": "SA26",
+      "source_locator": "MAIN p4, Fig2c/j/l; MAIN p5, Fig3",
+      "finding": "Source demonstrations include a 3 g stirring bar on the cage, negative-pressure bellow bending, Y-junction colored-water co-flow and separate cylindrical channels.",
+      "design_implication": "Pressure/flow programs, quantitative endpoints and connector details are missing. Cylindrical separated channels do not imply a Y co-flow junction.",
+      "disposition": "represented_by_demonstration_gates"
+    },
+    {
+      "id": "SA27",
+      "source_locator": "SI p9, Fig12; SI p2, Table2",
+      "finding": "Fig12 is simulated light-intensity context, with 2,6,8 mm Mat1 inclusions; Table2 compares methods.",
+      "design_implication": "Retain as conceptual/computational context, not additional physical experiment branches or evidence of a locally executed simulation.",
+      "disposition": "outside_manual_physical_scope"
+    },
+    {
+      "id": "SA28",
+      "source_locator": "MAIN p8, Data availability; primary packet scope",
+      "finding": "Source Data, supplementary movies/code and the referenced hardware article were not inspected in this audit.",
+      "design_implication": "Do not claim raw data replication, validated code behavior, video-derived actions or full device reconstruction. Source results are contextual observations, never manufactured task outcomes.",
+      "disposition": "explicit_not_inspected_boundary"
+    }
+  ],
+  "material_mapping_audit": [
+    {
+      "experiment": "positive EmVP",
+      "mapping": "Mat1 HDDA-based stiff ink embedded into Mat2 G1122TF-based soft bath",
+      "evidence": "MAIN pp2-4; Fig1; Fig2",
+      "certainty": "explicit"
+    },
+    {
+      "experiment": "negative EmVP",
+      "mapping": "PE3100 sacrificial ink in polymerizable Mat2 bath",
+      "evidence": "MAIN Fig1g, pp4-5 and print Methods",
+      "certainty": "source_supported"
+    },
+    {
+      "experiment": "loading comparison",
+      "mapping": "Mat2 support bath with R805 levels 2,4,8,12 percent",
+      "evidence": "MAIN p5; SI Fig2 visual legends",
+      "certainty": "material explicit; levels figure-only; formulation basis gated"
+    },
+    {
+      "experiment": "pure-VAM negative-feature control",
+      "mapping": "material not explicitly assigned in inspected caption/discussion",
+      "evidence": "SI Fig4; MAIN resolution discussion",
+      "certainty": "MAT2 in task is authored choice only"
+    },
+    {
+      "experiment": "pure-VAM positive-feature control",
+      "mapping": "material not explicitly assigned in inspected caption/discussion",
+      "evidence": "SI Fig6; MAIN resolution discussion",
+      "certainty": "MAT2 in task is authored choice only"
+    },
+    {
+      "experiment": "single-material cage controls",
+      "mapping": "Mat2-only, Mat1-only and combined; SI image order left, center, right",
+      "evidence": "SI Fig1f",
+      "certainty": "explicit"
+    },
+    {
+      "experiment": "EMB3D resolution",
+      "mapping": "Mat1 deposition in Mat2 bath",
+      "evidence": "SI Fig7b",
+      "certainty": "explicit"
+    },
+    {
+      "experiment": "Shore D",
+      "mapping": "printed Mat1 and printed Mat2 samples",
+      "evidence": "MAIN p8",
+      "certainty": "explicit materials/manufacture class; printing method unspecified"
+    },
+    {
+      "experiment": "tensile",
+      "mapping": "cast Mat1 and cast Mat2 samples",
+      "evidence": "MAIN p8; SI Fig10",
+      "certainty": "explicit"
+    }
+  ],
+  "source_clocks": [
+    {
+      "operation": "resin homogenization",
+      "reported_duration_s": 300,
+      "other_setting": "3500 rpm",
+      "locator": "MAIN p7",
+      "clock_origin": "mixer run start"
+    },
+    {
+      "operation": "photorheology illumination",
+      "led_on_s_from_measurement_start": 30,
+      "locator": "MAIN p8",
+      "clock_origin": "measurement acquisition start"
+    },
+    {
+      "operation": "photorheology gelation",
+      "Mat1_s_from_measurement_start": 59.8,
+      "Mat2_s_from_measurement_start": 64.7,
+      "derived_exposure_relative_s": {
+        "Mat1": 29.8,
+        "Mat2": 34.7
+      },
+      "derived_value_caveat": "Arithmetic differences only, not new measured values or printing stop times",
+      "locator": "MAIN pp5-6, Fig4a-b"
+    },
+    {
+      "operation": "recovery",
+      "sequence": "30 percent for 60 s, 0.01 percent for 60 s, repeated as two total high-low pairs",
+      "total_duration_s": 240,
+      "delay_origin": "reduction from high to low amplitude",
+      "reported_recovery_delay_s": {
+        "Mat1": 4.7,
+        "Mat2": 1.7
+      },
+      "locator": "MAIN pp6,8"
+    },
+    {
+      "operation": "postcure",
+      "reported_duration_s": 300,
+      "clock_origin": "qualified chamber exposure start",
+      "negative_prerequisite": "channel flush completed",
+      "locator": "MAIN p7"
+    },
+    {
+      "operation": "Shore D",
+      "per_site_dwell_s": 15,
+      "sites_per_sample": 4,
+      "specimen_n": "unreported",
+      "locator": "MAIN p8"
+    },
+    {
+      "operation": "microCT",
+      "reported_exposure_s": 0.62,
+      "total_scan_duration": "unreported; angular sampling not specified",
+      "locator": "MAIN p8"
+    },
+    {
+      "operation": "printing-stage comparison",
+      "scope": "EMB3D + TVAM only",
+      "less_than_6_minutes": "historical parts in SI Table1",
+      "excludes": [
+        "preparation",
+        "transfer overhead not separately quantified",
+        "extraction",
+        "washing",
+        "flushing",
+        "postcure",
+        "characterization"
+      ],
+      "stop_rule": "shadowgram completion under externally supplied criteria, not Table1 duration",
+      "locator": "SI p1; MAIN p7"
+    }
+  ],
+  "geometry_gap_audit": [
+    {
+      "scope": "all printed demonstrations",
+      "reported": "Named designs, illustrated topology and scale bars",
+      "missing": "Complete versioned CAD/STL, all dimensions, material partitions, exact toolpaths/projection assets, manufacturing tolerances"
+    },
+    {
+      "scope": "pure-VAM negative features",
+      "reported": "4 mm length; 2,1.5,1,0.5,0.3 mm channel diameters",
+      "missing": "Full outer cylinder geometry, channel coordinates, exact model and production settings"
+    },
+    {
+      "scope": "fine negative channels",
+      "reported": "120/300 micrometre modeled helix/straight; 150 micrometre needle; 119/335 micrometre example sections",
+      "missing": "Full cylinder and helix geometry, pitch, ports, needle/job exception settings"
+    },
+    {
+      "scope": "positive-feature cages",
+      "reported": "10,5,2.5 mm outer sizes; approximate illustrated beam dimensions",
+      "missing": "Complete cage graph, local beam/sphere dimensions and per-size projection settings"
+    },
+    {
+      "scope": "mechanical specimens",
+      "reported": "Printed hardness versus cast tensile; scaled-down ISO reference",
+      "missing": "Coupon thickness/support; scaled tensile dimensions/molds/cure/conditioning; rate and fit interval"
+    },
+    {
+      "scope": "microscopy sections",
+      "reported": "Illustrated section/view and feature dimensions",
+      "missing": "Full recovery/fixation/section preparation and location-selection protocol"
+    }
+  ],
+  "release_conditions": [
+    "Keep both pure-VAM control material assignments explicitly authored/unverified as historical source facts.",
+    "Retain Table1 chip-identity conflict and recovery-panel cross-reference conflict.",
+    "Use the resolved figure-only lists without claiming a complete CAD or recipe.",
+    "Maintain the source-image-based pure-VAM negative control; any future added CT must remain an explicitly authored extension.",
+    "Keep all unresolved recipe, calibration, geometry, acquisition, endpoint and replication parameters blocking only their dependent work.",
+    "Do not claim source agreement, scientific reproducibility, robot execution or simulation from this source audit."
+  ],
+  "audit_limitations": [
+    "No raw source-data spreadsheet, supplementary movies, supplementary code, referenced hardware article, CAD or printer assets were examined.",
+    "Independent implementation/static test results belong to their separate reports.",
+    "This audit does not validate current instruments, chemical handling, numerical algorithms, statistical power or observed scientific outcomes."
+  ],
+  "final_review_utc": "2026-10-03T06:59:49.578433+00:00",
+  "final_source_defect_status": "No remaining substantive source-grounding defect identified in the final targeted review. Recipe, asset, geometry and acquisition gaps remain explicit and prevent turnkey execution.",
+  "final_targeted_recheck": [
+    "TASK_DESIGN.md reviewed",
+    "R805 levels and denominator gate verified",
+    "both pure-VAM material caveats verified",
+    "pure-VAM negative CT removal verified",
+    "single-material cage separate condition routes verified",
+    "source_conflicts.json reviewed",
+    "control_packages.json core comparison conditions reviewed"
+  ]
+}

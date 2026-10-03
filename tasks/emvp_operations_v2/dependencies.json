@@ -1,0 +1,375 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "edges": [
+    [
+      "O_STOCK",
+      "O_WEIGH"
+    ],
+    [
+      "O_WEIGH",
+      "O_DISSOLVE"
+    ],
+    [
+      "O_DISSOLVE",
+      "O_COMBINE"
+    ],
+    [
+      "O_COMBINE",
+      "O_MIX"
+    ],
+    [
+      "O_MIX",
+      "O_ALIQUOT"
+    ],
+    [
+      "O_PLAN",
+      "O_SETUP"
+    ],
+    [
+      "O_PLAN",
+      "O_STOCK"
+    ],
+    [
+      "O_PLAN",
+      "O_GEOMETRY"
+    ],
+    [
+      "O_SETUP",
+      "O_MIX"
+    ],
+    [
+      "O_ALIQUOT",
+      "O_MATERIAL_RELEASE"
+    ],
+    [
+      "O_STOCK",
+      "O_SYRINGE"
+    ],
+    [
+      "O_SYRINGE",
+      "O_EMB_SETUP"
+    ],
+    [
+      "O_SETUP",
+      "O_EMB_SETUP"
+    ],
+    [
+      "O_SETUP",
+      "O_VAM_SETUP"
+    ],
+    [
+      "O_GEOMETRY",
+      "O_EMB_SETUP"
+    ],
+    [
+      "O_GEOMETRY",
+      "O_VAM_SETUP"
+    ],
+    [
+      "O_ALIQUOT",
+      "O_DOCK_EMB"
+    ],
+    [
+      "O_EMB_SETUP",
+      "O_DOCK_EMB"
+    ],
+    [
+      "O_INSPECT_EMBED",
+      "O_TRANSFER_ALIGN"
+    ],
+    [
+      "O_VAM_SETUP",
+      "O_TRANSFER_ALIGN"
+    ],
+    [
+      "O_ALIQUOT",
+      "O_VAM_DIRECT"
+    ],
+    [
+      "O_VAM_SETUP",
+      "O_VAM_DIRECT"
+    ],
+    [
+      "O_EXPOSE",
+      "O_EXTRACT"
+    ],
+    [
+      "O_EXTRACT",
+      "O_GLYCEROL"
+    ],
+    [
+      "O_GLYCEROL",
+      "O_POSTCURE"
+    ],
+    [
+      "O_POSTCURE",
+      "O_INSPECT_FINAL"
+    ],
+    [
+      "O_ALIQUOT",
+      "O_RHEO_LOAD"
+    ],
+    [
+      "O_RHEO_LOAD",
+      "O_AMPLITUDE"
+    ],
+    [
+      "O_RHEO_LOAD",
+      "O_FLOWCURVE"
+    ],
+    [
+      "O_RHEO_LOAD",
+      "O_RECOVERY"
+    ],
+    [
+      "O_RHEO_LOAD",
+      "O_PHOTORHEO"
+    ],
+    [
+      "O_ALIQUOT",
+      "O_UVVIS_LOAD"
+    ],
+    [
+      "O_UVVIS_LOAD",
+      "O_UVVIS_SCAN"
+    ],
+    [
+      "O_MICRO_MOUNT",
+      "O_MICRO_MEASURE"
+    ],
+    [
+      "O_CT_MOUNT",
+      "O_CT_SCAN"
+    ],
+    [
+      "O_CT_SCAN",
+      "O_CT_RECON_HANDOFF"
+    ],
+    [
+      "O_CT_RECON_HANDOFF",
+      "O_CT_SECTIONS"
+    ],
+    [
+      "O_CT_RECON_HANDOFF",
+      "O_DISTANCE_HANDOFF"
+    ],
+    [
+      "O_SHORE_MOUNT",
+      "O_SHORE_PROBE"
+    ],
+    [
+      "O_ALIQUOT",
+      "O_CAST"
+    ],
+    [
+      "O_CAST",
+      "O_TENSILE_MOUNT"
+    ],
+    [
+      "O_TENSILE_MOUNT",
+      "O_TENSILE"
+    ],
+    [
+      "O_BELLOW_CONNECT",
+      "O_BELLOW_ACTUATE"
+    ],
+    [
+      "O_SUMMARY",
+      "O_CLOSE"
+    ]
+  ],
+  "conditional_edges": [
+    {
+      "id": "D_POSITIVE",
+      "when": "selected condition uses embedded Mat1",
+      "edges": [
+        [
+          "O_MATERIAL_RELEASE",
+          "O_DEPOSIT_POS"
+        ],
+        [
+          "O_DOCK_EMB",
+          "O_DEPOSIT_POS"
+        ],
+        [
+          "O_DEPOSIT_POS",
+          "O_INSPECT_EMBED"
+        ],
+        [
+          "O_TRANSFER_ALIGN",
+          "O_EXPOSE"
+        ]
+      ],
+      "configuration_ids": [
+        "POSITIVE_HELIX",
+        "POSITIVE_TARGETED_BELLOW",
+        "POSITIVE_AREA_BELLOW",
+        "POSITIVE_THINKER",
+        "POSITIVE_SPHERE_LOAD",
+        "POSITIVE_REINFORCED_CYLINDER",
+        "POSITIVE_LATTICE_ACCURACY",
+        "POSITIVE_BENDING_BELLOW",
+        "CONTROL_SINGLE_MATERIAL_CAGE"
+      ]
+    },
+    {
+      "id": "D_EMB_ONLY",
+      "when": "cage/filament embedding-only observation condition",
+      "edges": [
+        [
+          "O_MATERIAL_RELEASE",
+          "O_DEPOSIT_POS"
+        ],
+        [
+          "O_DOCK_EMB",
+          "O_DEPOSIT_POS"
+        ],
+        [
+          "O_DEPOSIT_POS",
+          "O_INSPECT_EMBED"
+        ],
+        [
+          "O_INSPECT_EMBED",
+          "O_SECTION"
+        ],
+        [
+          "O_SECTION",
+          "O_MICRO_MOUNT"
+        ]
+      ],
+      "configuration_ids": [
+        "CONTROL_EMB_FILAMENT"
+      ]
+    },
+    {
+      "id": "D_NEGATIVE",
+      "when": "selected condition uses sacrificial ink",
+      "edges": [
+        [
+          "O_MATERIAL_RELEASE",
+          "O_DEPOSIT_NEG"
+        ],
+        [
+          "O_DOCK_EMB",
+          "O_DEPOSIT_NEG"
+        ],
+        [
+          "O_DEPOSIT_NEG",
+          "O_INSPECT_EMBED"
+        ],
+        [
+          "O_TRANSFER_ALIGN",
+          "O_EXPOSE"
+        ],
+        [
+          "O_GLYCEROL",
+          "O_FLUSH"
+        ],
+        [
+          "O_FLUSH",
+          "O_POSTCURE"
+        ]
+      ],
+      "configuration_ids": [
+        "NEGATIVE_Y_COFLOW",
+        "NEGATIVE_CYLINDRICAL",
+        "NEGATIVE_FINE_CHANNELS"
+      ]
+    },
+    {
+      "id": "D_DIRECT",
+      "when": "selected single-material or pure-VAM condition",
+      "edges": [
+        [
+          "O_MATERIAL_RELEASE",
+          "O_VAM_DIRECT"
+        ],
+        [
+          "O_VAM_DIRECT",
+          "O_EXPOSE"
+        ]
+      ],
+      "configuration_ids": [
+        "CONTROL_VAM_NEGATIVE",
+        "CONTROL_VAM_POSITIVE",
+        "CONTROL_SINGLE_MATERIAL_CAGE",
+        "SHORE_D_PAIR"
+      ]
+    },
+    {
+      "id": "D_FINAL_CHARACTERIZATION",
+      "when": "selected intact recovered part is characterized after postcure",
+      "edges": [
+        [
+          "O_INSPECT_FINAL",
+          "O_CT_MOUNT"
+        ],
+        [
+          "O_INSPECT_FINAL",
+          "O_SHORE_MOUNT"
+        ],
+        [
+          "O_INSPECT_FINAL",
+          "O_SPHERE_LOAD"
+        ],
+        [
+          "O_INSPECT_FINAL",
+          "O_BELLOW_CONNECT"
+        ],
+        [
+          "O_INSPECT_FINAL",
+          "O_CHANNEL_FLOW"
+        ],
+        [
+          "O_INSPECT_FINAL",
+          "O_SECTION"
+        ],
+        [
+          "O_INSPECT_FINAL",
+          "O_MICRO_MOUNT"
+        ]
+      ],
+      "configuration_ids": [
+        "POSITIVE_HELIX",
+        "POSITIVE_TARGETED_BELLOW",
+        "POSITIVE_AREA_BELLOW",
+        "POSITIVE_THINKER",
+        "POSITIVE_SPHERE_LOAD",
+        "POSITIVE_REINFORCED_CYLINDER",
+        "POSITIVE_LATTICE_ACCURACY",
+        "POSITIVE_BENDING_BELLOW",
+        "NEGATIVE_Y_COFLOW",
+        "NEGATIVE_CYLINDRICAL",
+        "NEGATIVE_FINE_CHANNELS",
+        "CONTROL_VAM_NEGATIVE",
+        "CONTROL_VAM_POSITIVE",
+        "CONTROL_SINGLE_MATERIAL_CAGE",
+        "SHORE_D_PAIR"
+      ]
+    },
+    {
+      "id": "D_SECTION_MICRO",
+      "when": "destructive printed cylinder section is selected",
+      "edges": [
+        [
+          "O_SECTION",
+          "O_MICRO_MOUNT"
+        ]
+      ],
+      "configuration_ids": [
+        "POSITIVE_REINFORCED_CYLINDER"
+      ]
+    }
+  ],
+  "instantiation": "Apply edges only when both endpoint templates belong to the selected condition; select its declared embedded, direct or sacrificial path. Missing prerequisites cannot be excused by omitting their occurrence: branch operation obligations, handoff declarations and control-package rules must also hold.",
+  "per_occurrence_rules": [
+    "Each measurement follows actual sample loading and ends before sample unloading",
+    "Rheometer unload follows its selected completed or aborted acquisition; a subsequent test uses its own allocated/qualified sample state",
+    "All required data slots or explicit blockers precede summary",
+    "Summary and safe final closure include every actual attempt",
+    "Postcure requires earlier channel-specific clearance for every negative-process part",
+    "No positive-control single-material vial is also required to undergo embedding",
+    "Any lawful order that satisfies true dependencies is accepted; unrelated tests and preparations may be parallelized"
+  ],
+  "forbidden_inference": "The DAG is an evaluator/designer reference, not the actor action script. It encodes causal prerequisites, not required grasp trajectories or arbitrary waiting."
+}

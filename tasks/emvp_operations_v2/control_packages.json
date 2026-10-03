@@ -1,0 +1,551 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "packages": [
+    {
+      "id": "C_RHEO_PAIR",
+      "comparison": "Compare Mat1 and Mat2 flow, yielding and recovery",
+      "outer_loop": [
+        "material",
+        "batch",
+        "allocated aliquot"
+      ],
+      "inner_loop": [
+        "test type",
+        "selected repeat"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "qualified instrument geometry",
+        "temperature",
+        "program within assay"
+      ],
+      "required_outputs": [
+        "Full selected flow/amplitude/recovery data",
+        "Aliquot consumption/reuse history"
+      ],
+      "source_refs": [
+        "M_RHEO",
+        "M_F4",
+        "S_F3"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied."
+    },
+    {
+      "id": "C_PHOTO_PAIR",
+      "comparison": "Compare photogelation of the two formulations",
+      "outer_loop": [
+        "material",
+        "batch",
+        "independent photorheology aliquot"
+      ],
+      "inner_loop": [
+        "single cure acquisition per fresh aliquot"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "30 percent",
+        "5 Hz",
+        "450 nm",
+        "5.8 mW/cm2",
+        "LED-on after30 s"
+      ],
+      "required_outputs": [
+        "Measurement start and LED-on times",
+        "Raw moduli and crossing status",
+        "Both total elapsed and exposure elapsed if derived"
+      ],
+      "source_refs": [
+        "M_RHEO",
+        "M_F4"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied."
+    },
+    {
+      "id": "C_UVVIS_PAIR",
+      "comparison": "Compare material absorption at printing wavelength",
+      "outer_loop": [
+        "material",
+        "batch",
+        "optical aliquot"
+      ],
+      "inner_loop": [
+        "spectral acquisition"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "400-550 nm range",
+        "1 cm cuvette",
+        "qualified blank/processing"
+      ],
+      "required_outputs": [
+        "Raw spectra",
+        "Actual450 nm extraction and qualified conversion"
+      ],
+      "source_refs": [
+        "M_OPTICAL",
+        "M_F4"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied."
+    },
+    {
+      "id": "C_LOADING",
+      "comparison": "Compare bath R805 loading effects",
+      "outer_loop": [
+        "verified R805 loading",
+        "batch",
+        "aliquot"
+      ],
+      "inner_loop": [
+        "flow-curve acquisition"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "same base resin and qualified test program unless declared"
+      ],
+      "required_outputs": [
+        "Each selected loading label and full curve",
+        "Invalid or missing loading conditions retained"
+      ],
+      "source_refs": [
+        "S_F2"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied.",
+      "condition_axes": [
+        {
+          "id": "R805_legend_percent",
+          "values": [
+            2,
+            4,
+            8,
+            12
+          ]
+        },
+        {
+          "id": "independent_batch_or_aliquot",
+          "values": null,
+          "gate": "U_SCHEDULE"
+        }
+      ]
+    },
+    {
+      "id": "C_SPHERE_STATES",
+      "comparison": "Observe material-specific deformation under reported bar",
+      "outer_loop": [
+        "printed sphere specimen"
+      ],
+      "inner_loop": [
+        "unloaded",
+        "3 g bar applied",
+        "bar removed"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "same specimen and viewing reference",
+        "declared placement"
+      ],
+      "required_outputs": [
+        "Actual mass placement and state images"
+      ],
+      "source_refs": [
+        "M_F2"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied.",
+      "ordered_states": [
+        "unloaded",
+        "3 g bar applied",
+        "bar removed"
+      ]
+    },
+    {
+      "id": "C_LATTICE_REGIONS",
+      "comparison": "Compare geometry deviations across material regions",
+      "outer_loop": [
+        "printed lattice specimen",
+        "analysis version"
+      ],
+      "inner_loop": [
+        "whole shape",
+        "Mat1 region",
+        "Mat2 region"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "same actualCT and model registration",
+        "same metric definition"
+      ],
+      "required_outputs": [
+        "Raw scan and model provenance",
+        "Region-resolved or unavailable summaries with actual sample definition"
+      ],
+      "source_refs": [
+        "S_F8"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied."
+    },
+    {
+      "id": "C_BELLOW_STATES",
+      "comparison": "Observe reinforced-bellow response",
+      "outer_loop": [
+        "printed bellow specimen",
+        "bounded pressure attempt"
+      ],
+      "inner_loop": [
+        "baseline",
+        "negative-pressure program",
+        "released"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "same specimen/fixture/view",
+        "qualified pressure program"
+      ],
+      "required_outputs": [
+        "Pressure/time records",
+        "Actual bend and release observations"
+      ],
+      "source_refs": [
+        "M_F2"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied.",
+      "ordered_states": [
+        "baseline",
+        "qualified negative-pressure program",
+        "released"
+      ]
+    },
+    {
+      "id": "C_CHANNEL_EVIDENCE",
+      "comparison": "Distinguish clean channel geometry and function",
+      "outer_loop": [
+        "chip topology",
+        "printed specimen"
+      ],
+      "inner_loop": [
+        "each declared channel",
+        "each declaredCT plane",
+        "each declaredflow condition"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "same specimen unless destructively reassigned",
+        "declared ports"
+      ],
+      "required_outputs": [
+        "CT geometry evidence",
+        "Separate flow/continuity evidence",
+        "No inference of continuity from one local cross-section"
+      ],
+      "source_refs": [
+        "M_F3",
+        "M_CT"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied."
+    },
+    {
+      "id": "C_FINE_CHANNELS",
+      "comparison": "Distinguish needle input, designed path and measured output",
+      "outer_loop": [
+        "fine-channel specimen"
+      ],
+      "inner_loop": [
+        "helical channel",
+        "vertical channel",
+        "declared slice locations"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "150 micrometre needle exception",
+        "actual job/path version"
+      ],
+      "required_outputs": [
+        "Design channel diameters separate from needle and measured diameters",
+        "Double-crossing path metadata retained"
+      ],
+      "source_refs": [
+        "S_F5"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied."
+    },
+    {
+      "id": "C_PURE_VAM_NEGATIVE",
+      "comparison": "Test pure-VAM small-channel limitations",
+      "outer_loop": [
+        "declared geometry condition",
+        "independent specimen"
+      ],
+      "inner_loop": [
+        "each source-defined diameter",
+        "each inspected position"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "4 mm designed straight length",
+        "qualified VAM settings"
+      ],
+      "required_outputs": [
+        "Clear/partial/clogged/unknown per feature",
+        "Full attempted diameter list"
+      ],
+      "source_refs": [
+        "S_F4"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied.",
+      "condition_axes": [
+        {
+          "id": "designed_channel_diameter_mm",
+          "values": [
+            2,
+            1.5,
+            1,
+            0.5,
+            0.3
+          ]
+        },
+        {
+          "id": "independent_specimen",
+          "values": null,
+          "gate": "U_SCHEDULE"
+        }
+      ]
+    },
+    {
+      "id": "C_PURE_VAM_POSITIVE",
+      "comparison": "Test pure-VAM positive features",
+      "outer_loop": [
+        "10 mm,5 mm,2.5 mm outer-size condition",
+        "independent specimen"
+      ],
+      "inner_loop": [
+        "declared beam/feature positions"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "declared source-verified material or explicitly authored substitute",
+        "qualified VAM settings"
+      ],
+      "required_outputs": [
+        "Calibrated actual feature measurements",
+        "Uneven or unresolved structures retained"
+      ],
+      "source_refs": [
+        "S_F6"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied.",
+      "condition_axes": [
+        {
+          "id": "designed_outer_diameter_mm",
+          "values": [
+            10,
+            5,
+            2.5
+          ]
+        },
+        {
+          "id": "independent_specimen",
+          "values": null,
+          "gate": "U_SCHEDULE"
+        }
+      ]
+    },
+    {
+      "id": "C_EMBED_VS_FINAL",
+      "comparison": "Characterize travel oozing and filament geometry without conflating uncured and final states",
+      "outer_loop": [
+        "embedded cage or filament condition",
+        "specimen"
+      ],
+      "inner_loop": [
+        "deposited state",
+        "declared microscopy preparation and plane"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "material pair",
+        "path version",
+        "qualified imaging"
+      ],
+      "required_outputs": [
+        "Travel bridge observation",
+        "Separate filament height/cross-section measurements"
+      ],
+      "source_refs": [
+        "S_F7"
+      ],
+      "interpretation": "An uncured bridge is a pre-cure observation, not an automatic final-part failure. The source does not fully specify microscopy specimen stabilization; that input is required.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied."
+    },
+    {
+      "id": "C_SINGLE_MATERIAL",
+      "comparison": "Compare source cage examples",
+      "outer_loop": [
+        "Mat1-only",
+        "Mat2-only",
+        "combined-material"
+      ],
+      "inner_loop": [
+        "independent specimen",
+        "attempt",
+        "same declared shape observation"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "intended cage geometry",
+        "qualified comparable VAM acquisition; any material-specific settings declared"
+      ],
+      "required_outputs": [
+        "Final images with specimen/manufacture lineage",
+        "Pre-cure and residual-ink observations for combined route"
+      ],
+      "source_refs": [
+        "S_F1"
+      ],
+      "interpretation": "Condition dispatch: Mat1-only and Mat2-only use direct-VAM route; combined uses positive embedded route. Do not execute both on the same vial or silently skip a comparison condition.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied.",
+      "condition_axes": [
+        {
+          "id": "material_condition",
+          "values": [
+            "Mat1-only",
+            "Mat2-only",
+            "combined-material"
+          ]
+        },
+        {
+          "id": "independent_specimen",
+          "values": null,
+          "gate": "U_SCHEDULE"
+        }
+      ]
+    },
+    {
+      "id": "C_HARDNESS",
+      "comparison": "Compare printed-material Shore D response",
+      "outer_loop": [
+        "material",
+        "independent printed specimen"
+      ],
+      "inner_loop": [
+        "four distinct sites per specimen"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "qualified thickness/support",
+        "15 s dwell per site"
+      ],
+      "required_outputs": [
+        "Four site readings per specimen including invalid/missing readings",
+        "Sample n reported separately from site count"
+      ],
+      "source_refs": [
+        "M_HARDNESS"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied.",
+      "within_specimen_sites": {
+        "count": 4,
+        "site_ids": "Supplied distinct sites",
+        "dwell_s": 15,
+        "independent_specimen_count": null
+      }
+    },
+    {
+      "id": "C_TENSILE",
+      "comparison": "Compare cast-material tensile response",
+      "outer_loop": [
+        "material",
+        "independent cast specimen"
+      ],
+      "inner_loop": [
+        "one destructive tensile acquisition and declared fit"
+      ],
+      "replication": {
+        "independent_specimens_per_condition": null,
+        "status": "Required finite episode input; historical n not inferred",
+        "gate": "U_SCHEDULE"
+      },
+      "matched_factors": [
+        "scaled specimen geometry",
+        "qualified test rate/grips/strain method"
+      ],
+      "required_outputs": [
+        "Raw force/strain data",
+        "Fit interval and processing linked to actual data",
+        "Cast sample n and failures"
+      ],
+      "source_refs": [
+        "M_TENSILE",
+        "S_F10"
+      ],
+      "interpretation": "Compare actual records with declared unmatched factors visible; source trends are context, never forced results.",
+      "loop_semantics": "Dimension names define nesting; where named physical states are listed they are observations of the same specimen, not independent sample loops. Use explicit condition_axes and ordered_states when supplied."
+    }
+  ],
+  "coverage_rule": "Finite declared nested slots required. Missing sample counts never mean zero iterations. Repeated states, images, analysis regions and hardness sites are not independent specimens."
+}

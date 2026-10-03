@@ -1,0 +1,1249 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "operations": [
+    {
+      "id": "O_PLAN",
+      "label": "Resolve selected experimental work order",
+      "station": "PLAN",
+      "kind": "researcher_operation",
+      "physical_action": "Read selected conditions and labels; allocate actual physical stock, carriers, specimen IDs and finite acquisition slots",
+      "preconditions": [
+        "Selected configuration and source boundary visible"
+      ],
+      "completion_evidence": [
+        "Versioned work order with finite condition and sample allocation",
+        "Resolved-input receipts or explicit blockers"
+      ],
+      "required_unknowns": [
+        "U_BATCH_ALLOCATION",
+        "U_SCHEDULE"
+      ],
+      "source_refs": [
+        "M_SCOPE"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_SETUP",
+      "label": "Verify supplied laboratory and instrument setup",
+      "station": "PLAN",
+      "kind": "researcher_operation",
+      "physical_action": "Inspect installed stations, access routes, guarding, readiness labels and device qualification receipts",
+      "preconditions": [
+        "Named installed assets are supplied; construction is not claimed"
+      ],
+      "completion_evidence": [
+        "Independent device identity/readiness readback",
+        "Public safe-contact and transport maps"
+      ],
+      "required_unknowns": [
+        "U_DEVICE_QUAL"
+      ],
+      "source_refs": [
+        "M_SETUP"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_STOCK",
+      "label": "Retrieve and identify source reagents",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "physical_action": "Pick closed labeled reagent vessels and approved preparation containers; transport in tray; dock and read lot labels",
+      "preconditions": [
+        "Work order and safe route available"
+      ],
+      "completion_evidence": [
+        "One location per vessel",
+        "Reagent lot-to-recipe mapping and actual amounts reserved"
+      ],
+      "required_unknowns": [
+        "U_BATCH_ALLOCATION",
+        "U_RECIPE_BASIS"
+      ],
+      "source_refs": [
+        "M_PREP"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_WEIGH",
+      "label": "Dispense recipe-specific components",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "physical_action": "Tare and weigh aliquots into labeled preparation vessels through approved contained interfaces",
+      "preconditions": [
+        "Recipe ambiguity gates resolved for selected material",
+        "Balance ready and container compatible"
+      ],
+      "completion_evidence": [
+        "Balance/tare records, units, lots and masses",
+        "Recipe-to-actual reconciliation; no inferred CQ/EDAB ratio"
+      ],
+      "required_unknowns": [
+        "U_RECIPE_BASIS",
+        "U_BATCH_ALLOCATION"
+      ],
+      "source_refs": [
+        "M_PREP"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "On wrong mass, label or unresolved recipe basis, stop addition and retain balance history. Quarantine the affected mixture; resume only with a separately qualified correction or new batch identity."
+    },
+    {
+      "id": "O_DISSOLVE",
+      "label": "Prepare initiator premix",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "physical_action": "Dispense the qualified acetone quantity and dissolve the selected initiator premix in its labeled polypropylene vial",
+      "preconditions": [
+        "Premix composition and solvent quantity/fate supplied",
+        "MAT1 additionally resolves CQ/EDAB interpretation"
+      ],
+      "completion_evidence": [
+        "Reagent/solvent transfer records",
+        "Visual premix observation and recipe identity"
+      ],
+      "required_unknowns": [
+        "U_ACETONE"
+      ],
+      "source_refs": [
+        "M_PREP"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_COMBINE",
+      "label": "Combine formulation ingredients",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "physical_action": "Add R805 and monomer in source-supported order for Mat2; apply explicitly qualified Mat1 general-process recipe; include Mat1 dye",
+      "preconditions": [
+        "All selected masses and order resolved",
+        "No unlabeled substitution"
+      ],
+      "completion_evidence": [
+        "Material addition ledger with vessel and lot links",
+        "Formulation identity persists after additions"
+      ],
+      "required_unknowns": [
+        "U_RECIPE_BASIS"
+      ],
+      "source_refs": [
+        "M_PREP"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_MIX",
+      "label": "Homogenize selected resin batch",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "physical_action": "Secure labeled compatible vial in Speedmixer, balance/close according to installed instrument qualification, run 3500 rpm for 300 s and read completion",
+      "preconditions": [
+        "Container and scale approved; guarding closed"
+      ],
+      "completion_evidence": [
+        "Run settings and actual start/end readback",
+        "Post-run homogeneous-dispersion inspection and any defects retained"
+      ],
+      "required_unknowns": [
+        "U_DEVICE_QUAL"
+      ],
+      "source_refs": [
+        "M_PREP"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "On interlock, container, imbalance or incomplete-cycle warning, stop through the supplied control. Record actual interval and batch state; do not credit nominal 300 s or silently rerun as a fresh batch."
+    },
+    {
+      "id": "O_ALIQUOT",
+      "label": "Create printing and characterization aliquots",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "physical_action": "Portion prepared material into uniquely labeled glass printing vials or test carriers and close for transfer",
+      "preconditions": [
+        "Batch identity and output amounts allocated",
+        "No required test consumes a phantom duplicate"
+      ],
+      "completion_evidence": [
+        "Parent batch-to-aliquot amounts/IDs",
+        "Vial capacity and actual fill recorded separately"
+      ],
+      "required_unknowns": [
+        "U_BATCH_ALLOCATION"
+      ],
+      "source_refs": [
+        "M_PREP",
+        "M_PRINT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_MATERIAL_RELEASE",
+      "label": "Check selected material qualification evidence",
+      "station": "PLAN",
+      "kind": "researcher_operation",
+      "physical_action": "Inspect actual lot-specific or explicitly declared compatible qualification receipts and whether selected ink/bath meet supplied operating criteria",
+      "preconditions": [
+        "Recipe resolved; required rheology/optical evidence available or visible missing",
+        "Paper trend is not evidence for current material"
+      ],
+      "completion_evidence": [
+        "Compatibility decision cites actual records, public criteria and material versions",
+        "Missing qualification blocks dependent printing without inventing a new conditioning period"
+      ],
+      "required_unknowns": [
+        "U_MATERIAL_QUAL"
+      ],
+      "source_refs": [
+        "M_F4",
+        "M_SCOPE"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_SYRINGE",
+      "label": "Load labeled deposition syringe",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "physical_action": "Fill selected 2 mL Luer-lock syringe with Mat1 or sacrificial PE3100, attach qualified needle and inspect leaks/air according to supplied limits",
+      "preconditions": [
+        "Ink branch and needle condition selected",
+        "Actual fill within qualified capacity"
+      ],
+      "completion_evidence": [
+        "Syringe/ink/needle IDs and filled quantity",
+        "Connection and visible readiness check"
+      ],
+      "required_unknowns": [
+        "U_EXTRUSION_QUAL",
+        "U_BATCH_ALLOCATION"
+      ],
+      "source_refs": [
+        "M_SETUP",
+        "M_PRINT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_EMB_SETUP",
+      "label": "Qualify extrusion station for selected print",
+      "station": "EMB",
+      "kind": "researcher_operation",
+      "physical_action": "Inspect stopped axes; mount selected syringe/needle; read homing, extrusion calibration and approved G-code version",
+      "preconditions": [
+        "Installed printer build qualified",
+        "No fabrication inferred from motor/controller list"
+      ],
+      "completion_evidence": [
+        "Mounted tool and needle ID",
+        "Controller settings/origin and calibration receipts"
+      ],
+      "required_unknowns": [
+        "U_EXTRUSION_QUAL",
+        "U_TOOLPATH"
+      ],
+      "source_refs": [
+        "M_SETUP",
+        "M_PRINT",
+        "S_F9"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_VAM_SETUP",
+      "label": "Qualify volumetric station for selected print",
+      "station": "VAM",
+      "kind": "researcher_operation",
+      "physical_action": "Read LCD/LED/rotation status and loaded projection-stack compatibility; inspect red-light camera/screen and safe optical enclosure",
+      "preconditions": [
+        "Installed optics/controller supplied; projection computation externally qualified"
+      ],
+      "completion_evidence": [
+        "Printer/projection/material version linkage",
+        "450 nm curing and 620 nm observation light identities; safe-ready readback"
+      ],
+      "required_unknowns": [
+        "U_VAM_QUAL",
+        "U_PROJECTIONS",
+        "U_SHADOWGRAM"
+      ],
+      "source_refs": [
+        "M_SETUP",
+        "M_PROJECTION",
+        "S_F11"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_GEOMETRY",
+      "label": "Verify geometry and digital handoff versions",
+      "station": "PLAN",
+      "kind": "researcher_operation",
+      "physical_action": "Read supplied model and region map plus only the selected process handoffs: approved extrusion job for EMB3D, projection receipts for VAM. Check selected condition identifiers.",
+      "preconditions": [
+        "Geometry and settings supplied rather than reconstructed from figures"
+      ],
+      "completion_evidence": [
+        "Applicable model/region/job/projection identifiers agree with selected process and reference frame",
+        "Inapplicable extrusion or projection files are not demanded as extra work"
+      ],
+      "required_unknowns": [
+        "U_GEOMETRY"
+      ],
+      "source_refs": [
+        "M_PROJECTION",
+        "S_F9"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_DOCK_EMB",
+      "label": "Carry and dock the support-bath vial",
+      "station": "EMB",
+      "kind": "researcher_operation",
+      "physical_action": "Grasp vial carrier, transport with support, seat at extrusion station and establish visible orientation/origin references",
+      "preconditions": [
+        "Vial fill/material identified; printer stopped; route clear"
+      ],
+      "completion_evidence": [
+        "Object-location/contact history shows physical transfer",
+        "Dock and orientation readback tied to vial ID"
+      ],
+      "required_unknowns": [
+        "U_ALIGNMENT"
+      ],
+      "source_refs": [
+        "M_PRINT",
+        "S_F9"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_DEPOSIT_POS",
+      "label": "Embed photopolymerizable Mat1 region",
+      "station": "EMB",
+      "kind": "researcher_operation",
+      "physical_action": "Use guarded approved print controls for selected targeted or area deposition; observe tool movement without reaching inside",
+      "preconditions": [
+        "Mat1 syringe, Mat2 vial and matching approved job present",
+        "Routine defaults: 0.4 mm needle ID, 0.32 mm width/height, 15 mm/s unless declared exception"
+      ],
+      "completion_evidence": [
+        "Actual job/tool/control receipts",
+        "Deposited-region image with travel artifacts retained",
+        "No final-part failure inferred solely from uncured oozing"
+      ],
+      "required_unknowns": [
+        "U_TOOLPATH",
+        "U_GEOMETRY"
+      ],
+      "source_refs": [
+        "M_PRINT",
+        "M_F1",
+        "S_F1",
+        "S_F7"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "On leak, air, drift or unsafe motion, stop and retain job progress and vial state. An uncured travel bridge alone is an observation, not automatic final-part failure. Any repeat uses qualified path limits and a new attempt record."
+    },
+    {
+      "id": "O_DEPOSIT_NEG",
+      "label": "Embed nonpolymerizable channel path",
+      "station": "EMB",
+      "kind": "researcher_operation",
+      "physical_action": "Run approved sacrificial PE3100 deposition into Mat2 for selected channel geometry",
+      "preconditions": [
+        "Routine defaults: 0.4 mm needle ID, 0.25 mm width/height, 5 mm/s; fine-needle exception separately resolved"
+      ],
+      "completion_evidence": [
+        "Ink/needle/job identities and actual control readback",
+        "Path observation including repeated crossings",
+        "Needle ID and measured channel diameter are separate fields"
+      ],
+      "required_unknowns": [
+        "U_TOOLPATH",
+        "U_GEOMETRY"
+      ],
+      "source_refs": [
+        "M_PRINT",
+        "M_F3",
+        "S_F5"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "On interrupted path or visible double crossing, stop within qualified limits and preserve path history. Do not infer a channel diameter from needle ID or hide extra passage under a repeated job label."
+    },
+    {
+      "id": "O_INSPECT_EMBED",
+      "label": "Inspect deposited ink and stop printer safely",
+      "station": "EMB",
+      "kind": "researcher_operation",
+      "physical_action": "Read extrusion completion; park/retract only within qualified limits; inspect deposited paths, travel bridges and vial marks",
+      "preconditions": [
+        "Embedding attempt retained even on defect"
+      ],
+      "completion_evidence": [
+        "Stopped/parked status",
+        "Pre-cure image and actual anomalies; no automatic final-geometry judgment"
+      ],
+      "required_unknowns": [
+        "U_EXTRUSION_QUAL"
+      ],
+      "source_refs": [
+        "S_F1",
+        "S_F7"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_TRANSFER_ALIGN",
+      "label": "Transfer vial while preserving reference frame",
+      "station": "VAM",
+      "kind": "researcher_operation",
+      "physical_action": "Release stopped extrusion fixture, grasp carrier, transport and dock same vial at VAM while preserving orientation; verify frame transform",
+      "preconditions": [
+        "Source marker/origin known and matching target fixture ready",
+        "Common origin: XY center and model bottom in Z"
+      ],
+      "completion_evidence": [
+        "Independent source-release, transit and target-dock receipts",
+        "Same vial/material map and public orientation/alignment check",
+        "No teleportation or undeclared reorientation"
+      ],
+      "required_unknowns": [
+        "U_ALIGNMENT"
+      ],
+      "source_refs": [
+        "M_PRINT",
+        "S_F9"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "If the public mark/transform check fails, keep light and rotation off and support the same vial. Re-dock only through the qualified alignment procedure; if the deposited map cannot be verified, block exposure and preserve the displaced state."
+    },
+    {
+      "id": "O_VAM_DIRECT",
+      "label": "Dock single-material control vial",
+      "station": "VAM",
+      "kind": "researcher_operation",
+      "physical_action": "Transport and seat labeled single-material control vial directly into qualified VAM fixture",
+      "preconditions": [
+        "Control recipe and projection identities selected; no sacrificial or embedded ink presumed"
+      ],
+      "completion_evidence": [
+        "Actual source/destination transfer and orientation receipt",
+        "Control material and job pairing"
+      ],
+      "required_unknowns": [
+        "U_ALIGNMENT"
+      ],
+      "source_refs": [
+        "S_F1",
+        "S_F4",
+        "S_F6"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_EXPOSE",
+      "label": "Perform bounded volumetric cure",
+      "station": "VAM",
+      "kind": "researcher_operation",
+      "physical_action": "Start approved rotating projection exposure and collect orthogonal red-light shadowgrams; stop on supplied matching/abort criteria",
+      "preconditions": [
+        "Vial/frame/material/projection match verified",
+        "Optical guard ready; no source print-time used as sole stop criterion"
+      ],
+      "completion_evidence": [
+        "Acquisition-backed exposure/start/stop record",
+        "Shadowgram sequence compared with supplied target under public criteria",
+        "Actual endpoint, defect or timeout retained"
+      ],
+      "required_unknowns": [
+        "U_VAM_QUAL",
+        "U_SHADOWGRAM"
+      ],
+      "source_refs": [
+        "M_PRINT",
+        "S_F11"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "If target cannot be observed or a guard/shape/limit condition fails, stop light and rotation through the supplied controls. Retain accumulated exposure and images; never reset exposure history or treat nominal source time as success."
+    },
+    {
+      "id": "O_EXTRACT",
+      "label": "Recover fragile printed object",
+      "station": "WASH",
+      "kind": "researcher_operation",
+      "physical_action": "Confirm rotation/light stopped, release vial, carry to supported recovery bench and gently remove the actual part",
+      "preconditions": [
+        "Stopped station and allowed extraction contacts",
+        "No arbitrary wait inferred"
+      ],
+      "completion_evidence": [
+        "Object/vial identity and contact/location history",
+        "Pre/post-extraction images; damage and residual ink retained as observations"
+      ],
+      "required_unknowns": [
+        "U_WASH"
+      ],
+      "source_refs": [
+        "M_PRINT",
+        "S_F1"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "If part deforms or breaks, stop unsupported manipulation, preserve fragments and source identity and record damage. A replacement is a new allocated specimen and attempt, not a repaired historical success."
+    },
+    {
+      "id": "O_GLYCEROL",
+      "label": "Remove uncured external resin",
+      "station": "WASH",
+      "kind": "researcher_operation",
+      "physical_action": "Support part in qualified glycerol bath and apply supplied wash/inspection program",
+      "preconditions": [
+        "Correct part and compatible bath identified; required motion and endpoint resolved"
+      ],
+      "completion_evidence": [
+        "Wash batch/part association, observations and qualified clean-endpoint record",
+        "Residual resin and damage observations retained"
+      ],
+      "required_unknowns": [
+        "U_WASH"
+      ],
+      "source_refs": [
+        "M_PRINT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_FLUSH",
+      "label": "Clear sacrificial negative channels",
+      "station": "WASH",
+      "kind": "researcher_operation",
+      "physical_action": "Connect supported inlet/outlet paths and flush with isopropanol and compressed air within qualified limits; collect waste",
+      "preconditions": [
+        "Negative part washed and connectors mapped",
+        "This operation precedes postcure"
+      ],
+      "completion_evidence": [
+        "Fluid/air actuation receipts and channel-specific clearance evidence",
+        "Blocked/leaking branches retained; absent clearance blocks postcure"
+      ],
+      "required_unknowns": [
+        "U_FLUSH"
+      ],
+      "source_refs": [
+        "M_PRINT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "If any required channel remains blocked, leaks or lacks clearance evidence, stop pressure, collect waste and block postcure. Retry only within supplied pressure and sample limits; preserve all failed clearance attempts."
+    },
+    {
+      "id": "O_POSTCURE",
+      "label": "Postcure recovered print",
+      "station": "POST",
+      "kind": "researcher_operation",
+      "physical_action": "Carry supported part to chamber, place on qualified support, close interlock and run supplied program for 300 s",
+      "preconditions": [
+        "External wash complete",
+        "For negative parts, each required channel has clearance evidence before start"
+      ],
+      "completion_evidence": [
+        "Part transfer and chamber program/readback",
+        "Actual 300-second cycle and safe-off completion"
+      ],
+      "required_unknowns": [
+        "U_POSTCURE"
+      ],
+      "source_refs": [
+        "M_PRINT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_INSPECT_FINAL",
+      "label": "Inspect final print and archive morphology",
+      "station": "MICRO",
+      "kind": "researcher_operation",
+      "physical_action": "Transport cleaned/cured part to calibrated imaging fixture; record gross shape, interfaces and visible defects",
+      "preconditions": [
+        "Final specimen identity and condition retained"
+      ],
+      "completion_evidence": [
+        "Images linked to specimen/attempt and scale",
+        "Pre-cure ink artifacts distinguished from final-part geometry"
+      ],
+      "required_unknowns": [
+        "U_MICROSCOPY"
+      ],
+      "source_refs": [
+        "M_F1",
+        "M_F2",
+        "M_F3",
+        "S_F1",
+        "S_F7"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_RHEO_LOAD",
+      "label": "Mount selected rheology aliquot",
+      "station": "RHEO",
+      "kind": "researcher_operation",
+      "physical_action": "Carry labeled aliquot, load/trim qualified plate-plate geometry and set/read 0.1 mm gap unless selected exception",
+      "preconditions": [
+        "Fresh versus reused aliquot explicitly allocated",
+        "Clean geometry and full conditions resolved"
+      ],
+      "completion_evidence": [
+        "Sample identity, actual gap and geometry readback",
+        "Loading observation, temperature and clock calibration"
+      ],
+      "required_unknowns": [
+        "U_RHEOMETER"
+      ],
+      "source_refs": [
+        "M_RHEO"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_AMPLITUDE",
+      "label": "Acquire amplitude sweep",
+      "station": "RHEO",
+      "kind": "researcher_operation",
+      "physical_action": "Run approved oscillation sweep spanning 0.01 to 100 percent and save storage/loss modulus data",
+      "preconditions": [
+        "Loaded aliquot suitable for selected sweep and complete schedule supplied"
+      ],
+      "completion_evidence": [
+        "Raw amplitude/G-prime/G-double-prime/time records with units",
+        "Acquisition receipt and actual complete condition range or blockers"
+      ],
+      "required_unknowns": [
+        "U_RHEOMETER"
+      ],
+      "source_refs": [
+        "M_RHEO",
+        "S_F3"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_FLOWCURVE",
+      "label": "Acquire shear-rate flow curves",
+      "station": "RHEO",
+      "kind": "researcher_operation",
+      "physical_action": "Run qualified shear-rate program from 0.1 to 1000 per second for selected Mat1/Mat2/loading condition",
+      "preconditions": [
+        "Per-test aliquot and dwell/order explicitly allocated"
+      ],
+      "completion_evidence": [
+        "Raw shear-rate/viscosity/stress/time records",
+        "Actual loading identity and condition completeness"
+      ],
+      "required_unknowns": [
+        "U_RHEOMETER"
+      ],
+      "source_refs": [
+        "M_RHEO",
+        "M_F4",
+        "S_F2"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_RECOVERY",
+      "label": "Acquire high-low shear recovery sequence",
+      "station": "RHEO",
+      "kind": "researcher_operation",
+      "physical_action": "Run two high-low cycles: 30 percent for 60 s then 0.01 percent for 60 s, total 240 s; capture modulus and transitions",
+      "preconditions": [
+        "Selected aliquot and oscillation conditions qualified"
+      ],
+      "completion_evidence": [
+        "Four interval receipts with synchronized raw moduli",
+        "Cycle-specific transition times and actual crossing evidence, including unresolved recovery"
+      ],
+      "required_unknowns": [
+        "U_RHEOMETER"
+      ],
+      "source_refs": [
+        "M_RHEO",
+        "M_F4"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_PHOTORHEO",
+      "label": "Acquire photorheological cure record",
+      "station": "RHEO",
+      "kind": "researcher_operation",
+      "physical_action": "Apply 30 percent oscillation at 5 Hz; after 30 s from measurement start switch on qualified 450 nm light at 5.8 mW/cm2 and record remaining trace",
+      "preconditions": [
+        "Glass-bottom fixture and light calibration qualified",
+        "Acquisition duration and clock synchronization supplied"
+      ],
+      "completion_evidence": [
+        "Separate measurement-start and LED-on receipts",
+        "Raw moduli and first supplied-criterion crossing with timestamp basis",
+        "Cured aliquot is marked consumed, not silently reused"
+      ],
+      "required_unknowns": [
+        "U_PHOTORHEO"
+      ],
+      "source_refs": [
+        "M_RHEO",
+        "M_F4"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "If light clock, intensity or acquisition is missing, retain the run as invalid/partial. The cured aliquot stays consumed; repeat on a separately allocated sample. Never convert total elapsed time directly into exposure duration."
+    },
+    {
+      "id": "O_RHEO_UNLOAD",
+      "label": "Unload rheometer and preserve material state",
+      "station": "RHEO",
+      "kind": "researcher_operation",
+      "physical_action": "Stop motion/light; remove sample using qualified cleaning steps, label retained aliquot or dispose into assigned waste",
+      "preconditions": [
+        "Run files persisted; cured/deformed status visible"
+      ],
+      "completion_evidence": [
+        "Final aliquot location/status and clean plate check",
+        "No consumed-sample reuse without explicit qualified allocation"
+      ],
+      "required_unknowns": [
+        "U_RHEOMETER"
+      ],
+      "source_refs": [
+        "M_RHEO"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_UVVIS_LOAD",
+      "label": "Prepare optical sample and blank",
+      "station": "UVVIS",
+      "kind": "researcher_operation",
+      "physical_action": "Carry selected resin aliquot; fill labeled 1 cm PMMA cuvette, inspect windows and mount blank/reference then sample using qualified program",
+      "preconditions": [
+        "Blank identity and sample quantity supplied"
+      ],
+      "completion_evidence": [
+        "Cuvette/path-length/sample identity; blank receipt",
+        "Actual acquisition order and clean-window observation"
+      ],
+      "required_unknowns": [
+        "U_UVVIS"
+      ],
+      "source_refs": [
+        "M_OPTICAL"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_UVVIS_SCAN",
+      "label": "Acquire resin spectrum",
+      "station": "UVVIS",
+      "kind": "researcher_operation",
+      "physical_action": "Scan 400 to 550 nm and retain raw spectrum plus actual 450 nm value/interpolation rule",
+      "preconditions": [
+        "Correct sample and valid reference mounted"
+      ],
+      "completion_evidence": [
+        "Raw wavelength/absorbance data with acquisition receipt",
+        "Derived absorption coefficient cites blank/path/conversion; not invented from refractive index"
+      ],
+      "required_unknowns": [
+        "U_UVVIS"
+      ],
+      "source_refs": [
+        "M_OPTICAL",
+        "M_F4"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_MICRO_MOUNT",
+      "label": "Mount and calibrate microscopy specimen",
+      "station": "MICRO",
+      "kind": "researcher_operation",
+      "physical_action": "Transport selected specimen or section, seat it, verify scale calibration and focus on declared feature locations",
+      "preconditions": [
+        "Specimen/section parent and imaging plane supplied"
+      ],
+      "completion_evidence": [
+        "Stage/sample location evidence",
+        "Calibration and image metadata"
+      ],
+      "required_unknowns": [
+        "U_MICROSCOPY"
+      ],
+      "source_refs": [
+        "M_F2",
+        "S_F6",
+        "S_F7"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_SECTION",
+      "label": "Prepare declared destructive section",
+      "station": "MICRO",
+      "kind": "researcher_operation",
+      "physical_action": "Support specimen and use qualified sectioning fixture along supplied plane; retain parent-to-section/offcut identities",
+      "preconditions": [
+        "Destructive allocation authorized by selected work order; no later intact-only reuse"
+      ],
+      "completion_evidence": [
+        "Section plane/location and tool receipts",
+        "New section/offcut IDs with consumed or altered parent state"
+      ],
+      "required_unknowns": [
+        "U_MICROSCOPY"
+      ],
+      "source_refs": [
+        "M_F2",
+        "S_F7"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_MICRO_MEASURE",
+      "label": "Capture feature and interface measurements",
+      "station": "MICRO",
+      "kind": "researcher_operation",
+      "physical_action": "Acquire calibrated views of selected beam/filament/section/interface and record measurement locations",
+      "preconditions": [
+        "Calibration current; projected view not mislabelled as section diameter"
+      ],
+      "completion_evidence": [
+        "Raw images, location/plane labels, units and measurement annotations",
+        "All scheduled conditions and failures preserved"
+      ],
+      "required_unknowns": [
+        "U_MICROSCOPY"
+      ],
+      "source_refs": [
+        "M_F2",
+        "S_F6",
+        "S_F7"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_CT_MOUNT",
+      "label": "Transport and mount part for microCT",
+      "station": "CT",
+      "kind": "researcher_operation",
+      "physical_action": "Carry recovered labeled part, secure qualified fixture and close guarded scanner",
+      "preconditions": [
+        "Sample fits scan and is not silently substituted"
+      ],
+      "completion_evidence": [
+        "Physical transfer/fixture/sample ID",
+        "Guard/calibration readback"
+      ],
+      "required_unknowns": [
+        "U_CT"
+      ],
+      "source_refs": [
+        "M_CT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_CT_SCAN",
+      "label": "Acquire microCT projections",
+      "station": "CT",
+      "kind": "researcher_operation",
+      "physical_action": "Run qualified axial cone-beam scan retaining reported 10 W, 0.62 s exposure, 20 micrometre spot and 15 micrometre voxel configuration",
+      "preconditions": [
+        "Complete acquisition settings supplied; device interlocks ready"
+      ],
+      "completion_evidence": [
+        "Acquisition-linked raw projection dataset/checksum",
+        "Actual scan settings and interruptions"
+      ],
+      "required_unknowns": [
+        "U_CT"
+      ],
+      "source_refs": [
+        "M_CT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "On incomplete or corrupt projection acquisition, retain the partial dataset and scan settings. Repeat only as a new attempt with the same specimen history; no fabricated reconstruction from absent raw projections."
+    },
+    {
+      "id": "O_CT_RECON_HANDOFF",
+      "label": "Request and inspect qualified reconstruction output",
+      "station": "CT",
+      "kind": "qualified_analysis_handoff",
+      "physical_action": "Use installed qualified analysis interface or receive provenance-checked reconstruction from actual acquired projections; do not run scientific simulation",
+      "preconditions": [
+        "Raw scan exists and validated reconstruction service/settings supplied"
+      ],
+      "completion_evidence": [
+        "Source projection IDs, reconstruction software/settings, 15 micrometre voxel metadata",
+        "Derived volume identity and processing receipt"
+      ],
+      "required_unknowns": [
+        "U_CT"
+      ],
+      "source_refs": [
+        "M_CT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_CT_SECTIONS",
+      "label": "Extract and measure declared channel sections",
+      "station": "CT",
+      "kind": "qualified_analysis_handoff",
+      "physical_action": "Use qualified view/measurement interface for specified slice planes and channel positions",
+      "preconditions": [
+        "Reconstructed volume links to actual specimen",
+        "Segmentation and geometry conventions supplied"
+      ],
+      "completion_evidence": [
+        "Section images with plane/voxel calibration",
+        "Observed channel measurements distinct from CAD and needle inputs"
+      ],
+      "required_unknowns": [
+        "U_CT"
+      ],
+      "source_refs": [
+        "M_CT",
+        "M_F3",
+        "S_F5"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_DISTANCE_HANDOFF",
+      "label": "Evaluate CT-to-model surface comparison",
+      "station": "CT",
+      "kind": "qualified_analysis_handoff",
+      "physical_action": "Receive or inspect qualified CT surface and Cloud-to-Mesh analysis against correct registered model; retain complete metadata",
+      "preconditions": [
+        "Actual volume and exact model version available; processing and registration explicit"
+      ],
+      "completion_evidence": [
+        "Raw/derived/model parent chain and registration receipt",
+        "Summary names metric actually calculated; paper mean is context, not acceptance tolerance"
+      ],
+      "required_unknowns": [
+        "U_DISTANCE"
+      ],
+      "source_refs": [
+        "M_DISTANCE",
+        "S_F8"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_SHORE_MOUNT",
+      "label": "Mount printed hardness coupon",
+      "station": "MECH",
+      "kind": "researcher_operation",
+      "physical_action": "Transport source-labeled printed Mat1 or Mat2 coupon onto qualified support and identify four planned sites",
+      "preconditions": [
+        "Printed manufacture lineage and thickness/support inputs supplied"
+      ],
+      "completion_evidence": [
+        "Coupon/fixture identity and four site IDs",
+        "Read instrument/calibration/status"
+      ],
+      "required_unknowns": [
+        "U_HARDNESS"
+      ],
+      "source_refs": [
+        "M_HARDNESS"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_SHORE_PROBE",
+      "label": "Acquire four site hardness readings",
+      "station": "MECH",
+      "kind": "researcher_operation",
+      "physical_action": "Probe each of four distinct approved sites for 15 s using qualified device interface",
+      "preconditions": [
+        "Site schedule complete; no overlapping sites unless approved"
+      ],
+      "completion_evidence": [
+        "Four actual site records, dwell, Shore D value and validity",
+        "Specimen count kept separate from within-sample positions"
+      ],
+      "required_unknowns": [
+        "U_HARDNESS"
+      ],
+      "source_refs": [
+        "M_HARDNESS"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Retain every site reading and actual dwell. Invalid or inaccessible sites remain declared; replacement sites require a recorded public allocation update and cannot silently inflate independent n."
+    },
+    {
+      "id": "O_CAST",
+      "label": "Prepare cast tensile specimens",
+      "station": "PREP",
+      "kind": "researcher_operation",
+      "physical_action": "Use supplied qualified mold and recipe to cast separate Mat1/Mat2 test specimens, cure/condition per supplied program and label each",
+      "preconditions": [
+        "Casting/curing details and scaled specimen geometry are explicit inputs"
+      ],
+      "completion_evidence": [
+        "Batch-to-cast specimen parent records and actual dimensions",
+        "Cast identity cannot be relabelled as a printed control"
+      ],
+      "required_unknowns": [
+        "U_CAST_TENSILE"
+      ],
+      "source_refs": [
+        "M_TENSILE",
+        "S_F10"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_TENSILE_MOUNT",
+      "label": "Mount cast tensile specimen",
+      "station": "MECH",
+      "kind": "researcher_operation",
+      "physical_action": "Carry and measure selected cast specimen, align it in qualified grips and attach required strain measurement interface",
+      "preconditions": [
+        "Cast specimen intact; program/geometry/gripping resolved"
+      ],
+      "completion_evidence": [
+        "Specimen/dimensions/grip/alignment and calibration records",
+        "Guarded ready readback"
+      ],
+      "required_unknowns": [
+        "U_CAST_TENSILE"
+      ],
+      "source_refs": [
+        "M_TENSILE"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_TENSILE",
+      "label": "Acquire tensile response",
+      "station": "MECH",
+      "kind": "researcher_operation",
+      "physical_action": "Run qualified scaled-down ISO 527-1-related program; retain force/displacement/strain and endpoint; unload safely",
+      "preconditions": [
+        "Full actual speed/strain/gauge program supplied; not inferred from cited standard"
+      ],
+      "completion_evidence": [
+        "Raw mechanical trace with units and geometry",
+        "Derived modulus cites fit interval, processing and actual data; failed specimens retained"
+      ],
+      "required_unknowns": [
+        "U_CAST_TENSILE"
+      ],
+      "source_refs": [
+        "M_TENSILE",
+        "S_F10"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop on the supplied endpoint or safety limit, unload safely and retain fracture/slip/invalid data with sample state. A repeated test requires a new qualified specimen or explicit valid reuse; do not omit failures from comparison."
+    },
+    {
+      "id": "O_SPHERE_LOAD",
+      "label": "Observe sphere under stated mass",
+      "station": "DEMO",
+      "kind": "researcher_operation",
+      "physical_action": "Place actual identified 3 g magnetic stirring bar at approved position on supported cured sphere; capture loaded and unloaded morphology",
+      "preconditions": [
+        "Qualified manipulation and contact map",
+        "Specimen history allows non-destructive demonstration"
+      ],
+      "completion_evidence": [
+        "Mass identity, placement/release contacts and images",
+        "Material-side deformation observations with no forced expected buckling"
+      ],
+      "required_unknowns": [
+        "U_LOAD_TEST"
+      ],
+      "source_refs": [
+        "M_F2"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_BELLOW_CONNECT",
+      "label": "Connect reinforced bellow for pressure test",
+      "station": "DEMO",
+      "kind": "researcher_operation",
+      "physical_action": "Seat cured bellow, attach identified inlet tubing and verify safe leak/connection checks",
+      "preconditions": [
+        "Geometry, port, pressure limits and test schedule resolved"
+      ],
+      "completion_evidence": [
+        "Part/tubing/fixture identities",
+        "Pressure-source safe-ready readback"
+      ],
+      "required_unknowns": [
+        "U_PNEUMATIC"
+      ],
+      "source_refs": [
+        "M_F2"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_BELLOW_ACTUATE",
+      "label": "Observe bounded negative-pressure bending",
+      "station": "DEMO",
+      "kind": "researcher_operation",
+      "physical_action": "Apply supplied bounded negative-pressure program, observe deflection, release to safe state and retain all trials",
+      "preconditions": [
+        "Connection check passed; public stop limits supplied"
+      ],
+      "completion_evidence": [
+        "Actual pressure/time trace and synchronized images",
+        "Observed bend/release outcomes; no preset successful bending"
+      ],
+      "required_unknowns": [
+        "U_PNEUMATIC"
+      ],
+      "source_refs": [
+        "M_F2"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_CHANNEL_FLOW",
+      "label": "Observe channel continuity and co-flow",
+      "station": "DEMO",
+      "kind": "researcher_operation",
+      "physical_action": "Connect cleaned/cured chip to assigned colored-water inlets, run supplied flow/pressure program and inspect outlets and leakage",
+      "preconditions": [
+        "Channel/port mapping and compatible connector limits supplied",
+        "Correct flat-Y versus separate cylindrical topology retained"
+      ],
+      "completion_evidence": [
+        "Actual inlet/outlet/flow records and synchronized colored-water images",
+        "Independent continuity/co-flow/leak observations, including failures"
+      ],
+      "required_unknowns": [
+        "U_FLOW"
+      ],
+      "source_refs": [
+        "M_F3"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_FEATURE_CLASSIFY",
+      "label": "Compare scheduled resolution conditions",
+      "station": "PLAN",
+      "kind": "researcher_operation",
+      "physical_action": "Review actual calibrated images/CT/flow evidence over finite source-grounded condition list, preserving failed and partially resolved features",
+      "preconditions": [
+        "All selected conditions attempted or explicitly blocked"
+      ],
+      "completion_evidence": [
+        "Condition-keyed success/partial/clogged/unknown outcomes tied to evidence",
+        "Minimum observed feature refers to chosen criterion and sampled set, not general printer specification"
+      ],
+      "required_unknowns": [
+        "U_FEATURE_SERIES"
+      ],
+      "source_refs": [
+        "S_F4",
+        "S_F5",
+        "S_F6",
+        "S_F7"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_SUMMARY",
+      "label": "Assemble evidence-backed experimental summary",
+      "station": "PLAN",
+      "kind": "researcher_operation",
+      "physical_action": "Reconcile sample/attempt ledger with required conditions; create summaries from cited raw/derived records and distinguish paper context",
+      "preconditions": [
+        "Every scheduled slot has valid data, invalid data or precise blocker"
+      ],
+      "completion_evidence": [
+        "No cherry-picking, invented n or outcomes",
+        "Completeness and scientific agreement reported separately"
+      ],
+      "required_unknowns": [
+        "U_SCHEDULE"
+      ],
+      "source_refs": [
+        "M_DATA"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    },
+    {
+      "id": "O_CLOSE",
+      "label": "Close stations and archive actual specimens",
+      "station": "ARCHIVE",
+      "kind": "researcher_operation",
+      "physical_action": "Stop light/motion/pressure, release fixtures safely, store labeled specimens/sections and allocated waste, archive immutable records",
+      "preconditions": [
+        "No guarded station accessed before stopped status"
+      ],
+      "completion_evidence": [
+        "Final locations/status of every object and station",
+        "Failed/retried attempts and unresolved gates retained"
+      ],
+      "required_unknowns": [],
+      "source_refs": [
+        "M_PRINT",
+        "M_RHEO",
+        "M_CT"
+      ],
+      "provenance": "Source-supported experimental purpose; independently authored robot manipulation and evidence contract",
+      "recovery": "Stop affected equipment; keep the same sample and attempt identity; retain observations; use a qualified bounded retry or mark blocked/damaged without overwriting prior records."
+    }
+  ],
+  "reuse": "Instantiate per sample, selected condition and attempt. Each acquisition and transfer has a distinct event ID; template counts are not durations or independent n.",
+  "robot_scope": "Mobile researcher manipulation and qualified instrument operation only; no controller, physical world or scientific solver supplied."
+}

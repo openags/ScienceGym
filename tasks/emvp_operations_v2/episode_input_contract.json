@@ -1,0 +1,54 @@
+{
+  "schema_version": "emvp_paper_task.v1",
+  "required_fields": [
+    "selected_configuration_ids",
+    "finite_condition_schedule",
+    "specimen_allocation",
+    "installed_asset_receipts",
+    "resolved_unknowns",
+    "public_material_cards",
+    "geometry_and_process_handoffs",
+    "public_safety_and_match_criteria",
+    "raw_acquisition_interfaces",
+    "analysis_handoffs",
+    "archive_destinations"
+  ],
+  "resolution_fields": [
+    "unknown_id",
+    "value",
+    "units_or_not_applicable",
+    "origin",
+    "source_or_qualification_receipt",
+    "version",
+    "scope"
+  ],
+  "allowed_origins": [
+    "source_verified",
+    "qualified_episode_input",
+    "authored"
+  ],
+  "forbidden_origins": [
+    "guessed_source_fact",
+    "paper_outcome_as_measurement"
+  ],
+  "geometry_checks": [
+    "Geometry is nonempty, has at least one required feature and nonzero declared dimensions",
+    "Geometry has units, version and stable ID/hash",
+    "Region/path/port assignments match selected route",
+    "A missing/empty/no-op geometry cannot complete by doing zero printing",
+    "CAD from source figures is not presumed available"
+  ],
+  "condition_dispatch": {
+    "CONTROL_SINGLE_MATERIAL_CAGE": {
+      "Mat1-only": "direct VAM with Mat1 recipe",
+      "Mat2-only": "direct VAM with Mat2 recipe",
+      "combined-material": "positive embedded route with both recipes"
+    },
+    "MATERIAL_CHARACTERIZATION": "Each assay uses allocated sample-state-compatible aliquot and complete per-assay program",
+    "SHORE_D_PAIR": "Separate printed specimen allocation per material; four sites within each specimen",
+    "CAST_TENSILE_PAIR": "Separate cast specimens; source mold/cure/rate gaps remain explicit"
+  },
+  "required_input_behavior": "Absent/unqualified inputs block only dependent work, with exact reason. Do not infer sample n, skip required comparisons, use empty condition sets or silently borrow a material result.",
+  "timing": "Only source-reported process intervals are prescribed: 300 s mixing, reported rheology intervals,30 s photorheology pre-light and300 s postcure. Print ends on qualified observed shadowgram criteria. No invented days, settling periods or unrelated chores.",
+  "scientific_backend": "Not supplied. A future real or independently qualified observation service must provide actual acquisition records. Synthetic fixtures in tests validate bookkeeping only."
+}
