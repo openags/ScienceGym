@@ -1,0 +1,29 @@
+{
+  "schema_version": "thermal_jamming_paper_task.v1",
+  "device_owned": [
+    "oven and pad temperature regulation",
+    "printer and guarded fabrication motion",
+    "universal tester crosshead trajectory and load sensing",
+    "DSC thermal scan",
+    "XCT radiation/scan/reconstruction",
+    "autonomous logging during a long hold"
+  ],
+  "computational_only": [
+    {
+      "source_refs": [
+        "S_MODEL",
+        "S_SIMCLAMP",
+        "S_CONTACT",
+        "M_DEM"
+      ],
+      "scope": "DEM equations, material law, force chains, contact distributions and simulated parameter sweeps",
+      "status": "External audited computational dependency; no solver implementation or run claim"
+    }
+  ],
+  "reference_only": [
+    "conceptual phase sketch",
+    "literature-derived material parameters not newly measured",
+    "proposed future Z/U shapes"
+  ],
+  "not_robot_action": "Elapsed heat/dwell/scan time and simulated contact forces are not manual labor or physical robot achievements."
+}

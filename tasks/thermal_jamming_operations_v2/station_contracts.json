@@ -1,0 +1,209 @@
+{
+  "schema_version": "thermal_jamming_paper_task.v1",
+  "stations": [
+    {
+      "id": "PLAN",
+      "label": "Work order desk",
+      "assets": [
+        "record interface",
+        "labels",
+        "calibration records"
+      ],
+      "robot_device_boundary": "Robot allocates identities and reads interfaces; no autonomous physics",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "STOCK",
+      "label": "Contained material storage",
+      "assets": [
+        "closed stock vessels",
+        "segregated carriers"
+      ],
+      "robot_device_boundary": "Robot retrieves and returns verified lots",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "CUT",
+      "label": "Guarded wire preparation",
+      "assets": [
+        "cutting fixture",
+        "qualified cutter",
+        "inspection tools",
+        "chip tray"
+      ],
+      "robot_device_boundary": "Robot positions/retains stock and handles tool controls; cutter owns guarded actuation",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "PROGRAM",
+      "label": "Qualified shape preparation",
+      "assets": [
+        "shape fixture",
+        "qualified programming device if required"
+      ],
+      "robot_device_boundary": "Robot mounts/retrieves and reads recipe; device owns qualified thermal program; no assumed recipe",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "FAB",
+      "label": "PMMA and PA12 fabrication",
+      "assets": [
+        "qualified PMMA tooling",
+        "PA12 printer",
+        "finishing tools",
+        "dimensional gauges"
+      ],
+      "robot_device_boundary": "Robot loads stock, requests qualified fabrication, removes/finishes/checks components; machine owns cutting or printing motion",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "PREP",
+      "label": "Packing and assembly",
+      "assets": [
+        "balance/counting aids",
+        "contained trays",
+        "fastening tools",
+        "support fixtures"
+      ],
+      "robot_device_boundary": "Robot cleans, measures, packs, closes and inserts actual components",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "OVEN",
+      "label": "Guarded thermal conditioning",
+      "assets": [
+        "DHG-9070A-250C or qualified equivalent",
+        "heat-rated dock/carrier",
+        "temperature readback"
+      ],
+      "robot_device_boundary": "Robot loads/starts/reads/retrieves; device regulates heat and reports actual time/temperature",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "PULL",
+      "label": "Guarded tensile measurement",
+      "assets": [
+        "INSTRON or qualified equivalent",
+        "fixed clamp mount",
+        "upper stick grip",
+        "load cell",
+        "heating pads",
+        "thermal imager"
+      ],
+      "robot_device_boundary": "Robot mounts and starts verified job; device moves crosshead and acquires force/displacement",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "COOL",
+      "label": "Supported cooling and recovery",
+      "assets": [
+        "retaining tray",
+        "temperature observation",
+        "qualified cooling interface"
+      ],
+      "robot_device_boundary": "Robot parks and monitors; thermal process occurs under qualified method",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "DSC",
+      "label": "Calorimetry",
+      "assets": [
+        "DSC",
+        "sample/reference pans",
+        "qualified pan tooling"
+      ],
+      "robot_device_boundary": "Robot prepares/loads/starts/reads/unloads; device owns thermal scan and sensing",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "BEND",
+      "label": "Single-rod bending",
+      "assets": [
+        "cantilever anchor",
+        "qualified load interface",
+        "camera",
+        "thermal fixture"
+      ],
+      "robot_device_boundary": "Robot mounts/loads/unloads rod and sets observations; device supplies any controlled load/heat",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "FRICTION",
+      "label": "Guarded inclination measurement",
+      "assets": [
+        "tilting stage",
+        "bonded-contact coupon",
+        "catch tray",
+        "heating pad",
+        "thermal imager",
+        "angle readout"
+      ],
+      "robot_device_boundary": "Robot prepares coupon, places test object and requests tilt; device controls tilt/heat and records signals",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "XCT",
+      "label": "Shielded tomography",
+      "assets": [
+        "interlocked XCT",
+        "qualified thermal fixture",
+        "scan carrier",
+        "records interface"
+      ],
+      "robot_device_boundary": "Robot loads/starts/reads/unloads only after interlock release; instrument owns ionizing-radiation scan",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "HOLD",
+      "label": "Enclosed load demonstration",
+      "assets": [
+        "anchored clamp dock",
+        "hook/load",
+        "catch/support",
+        "thermal control",
+        "observation camera"
+      ],
+      "robot_device_boundary": "Robot connects supported load and controls support withdrawal; fixture bears load, device maintains temperature",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "ANALYSIS",
+      "label": "Data workstation",
+      "assets": [
+        "raw-file store",
+        "qualified analysis service"
+      ],
+      "robot_device_boundary": "Robot submits recorded acquisitions; service computes derived records, never fabricated source outcomes",
+      "qualification_status": "required_not_supplied"
+    },
+    {
+      "id": "CLOSE",
+      "label": "Cleanup and disposition",
+      "assets": [
+        "waste containers",
+        "segregated return vessels",
+        "cleaning tools"
+      ],
+      "robot_device_boundary": "Robot unloads, sorts, cleans, reconciles and records safe end states",
+      "qualification_status": "required_not_supplied"
+    }
+  ],
+  "transport_contract": {
+    "applies_to": "Every change of physical station, including consecutive route operations whose station differs",
+    "required": [
+      "object identity and state",
+      "observed origin support",
+      "qualified grasp/tool/carrier",
+      "source release",
+      "supported and contained transit",
+      "destination dock/retention",
+      "observed placement and unique current location"
+    ],
+    "hot_object_extension": [
+      "qualified heat-rated carrier",
+      "actual temperature before release",
+      "thermal history linked across transfer"
+    ],
+    "status": "authored; no gait, grasp, torque, force or transport timing validated"
+  }
+}

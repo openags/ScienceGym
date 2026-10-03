@@ -1,0 +1,1437 @@
+{
+  "schema_version": "thermal_jamming_paper_task.v1",
+  "operations": [
+    {
+      "id": "PLAN",
+      "label": "Allocate experiment and control arms",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PLAN",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PLAN",
+      "manipulated_objects_and_tools": [
+        "work order",
+        "labels"
+      ],
+      "robot_actions": [
+        "Choose finite configured conditions and allocate distinct material, packing, specimen, cycle and acquisition identities"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Selected scientific goal"
+      ],
+      "completion_state": "Versioned finite manifest with blockers and controls",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_FAB"
+      ],
+      "required_unknowns": [
+        "U_ALLOC"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "QUALIFY",
+      "label": "Qualify installed stations and transport",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PLAN",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PLAN",
+      "manipulated_objects_and_tools": [
+        "asset interfaces",
+        "calibration records"
+      ],
+      "robot_actions": [
+        "Verify safe routes, fixtures, load ratings, guarding, temperatures, emergency stops and data clocks"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Installed assets identified"
+      ],
+      "completion_state": "Qualified assets or explicit branch-local block",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_FAB"
+      ],
+      "required_unknowns": [
+        "U_ASSETS"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "STOCK",
+      "label": "Retrieve material lots",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "STOCK",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "STOCK",
+      "manipulated_objects_and_tools": [
+        "wire",
+        "PMMA stock",
+        "PA12 feedstock",
+        "fasteners",
+        "ball lots",
+        "carriers"
+      ],
+      "robot_actions": [
+        "Read actual labels and reserve lots",
+        "Move enclosed stock with custody receipts"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Manifest and compatible carriers"
+      ],
+      "completion_state": "Verified stock at declared preparation locations",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_MAT"
+      ],
+      "required_unknowns": [
+        "U_LOTS"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "CUT_RODS",
+      "label": "Cut and inspect TiNi rods",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "CUT",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "CUT",
+      "manipulated_objects_and_tools": [
+        "wire",
+        "cutting fixture",
+        "cutter",
+        "gauge",
+        "chip tray"
+      ],
+      "robot_actions": [
+        "Measure and retain wire",
+        "Use qualified cutting interface for assigned lengths",
+        "Recover rods and chips separately",
+        "Inspect cut ends, dimensions and count; label accepted/reject batches"
+      ],
+      "device_actions": [
+        "Guarded cutting actuation if powered"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Qualified wire lot and cutting method"
+      ],
+      "completion_state": "Labeled rod batch with dimensional observations and captured debris",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_MAT",
+        "S_DSC"
+      ],
+      "required_unknowns": [
+        "U_CUT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "SHAPE_VERIFY",
+      "label": "Verify or establish reference shape",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PROGRAM",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PROGRAM",
+      "manipulated_objects_and_tools": [
+        "cut rods",
+        "shape gauge",
+        "qualified shape fixture"
+      ],
+      "robot_actions": [
+        "Inspect initial shape and recorded stock programming history",
+        "If required, mount rods in qualified fixture, load device, select approved job, start and read back",
+        "Recover after actual safe release and inspect reference shape"
+      ],
+      "device_actions": [
+        "Only the qualified missing-input-resolved programming/recovery process, if needed"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "U_PROGRAM resolved including whether a process is needed"
+      ],
+      "completion_state": "Reference shape receipt; no inferred heat treatment",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_CANTILEVER"
+      ],
+      "required_unknowns": [
+        "U_PROGRAM",
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "PMMA_FAB",
+      "label": "Fabricate and inspect clamp components",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "FAB",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "FAB",
+      "manipulated_objects_and_tools": [
+        "PMMA stock",
+        "machine fixture",
+        "qualified tool",
+        "gauges",
+        "chip tray"
+      ],
+      "robot_actions": [
+        "Load identified stock and selected variant drawing",
+        "Secure, close guard, request qualified fabrication",
+        "Retrieve after tool stop",
+        "Deburr/clean with resolved method and measure cavity, holes, lid and retention features"
+      ],
+      "device_actions": [
+        "Qualified manufacturing motion"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Variant geometry consistent and fabrication plan approved"
+      ],
+      "completion_state": "Labeled inspected components with actual dimensions",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_MAT",
+        "M_FAB"
+      ],
+      "required_unknowns": [
+        "U_GEOMETRY",
+        "U_PMMA_FAB",
+        "U_CLEAN"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "NYLON_FAB",
+      "label": "Print and finish nylon stick",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "FAB",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "FAB",
+      "manipulated_objects_and_tools": [
+        "PA12 feedstock",
+        "qualified printer job",
+        "finishing tool",
+        "gauges"
+      ],
+      "robot_actions": [
+        "Load qualified feedstock",
+        "Select verified branch-specific stick job and start",
+        "Recover after safe machine release",
+        "Remove supports/finish as qualified and measure stick and mounting features"
+      ],
+      "device_actions": [
+        "Qualified printing/build process"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Print design matches condition fixture"
+      ],
+      "completion_state": "Fabricated stick linked to feedstock, job and inspection",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_MAT"
+      ],
+      "required_unknowns": [
+        "U_NYLON_PRINT",
+        "U_GEOMETRY",
+        "U_CLEAN"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "CLEAN_PARTS",
+      "label": "Condition and inventory working surfaces",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PREP",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PREP",
+      "manipulated_objects_and_tools": [
+        "rods",
+        "container",
+        "stick",
+        "balls",
+        "qualified cleaning tools"
+      ],
+      "robot_actions": [
+        "Clean/condition by approved material-specific method",
+        "Inspect surfaces and record actual dimensions/masses/counts",
+        "Segregate damaged or contaminated components"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Parts recoverable and temperatures safe"
+      ],
+      "completion_state": "Clean identified constituents without assumed friction equivalence",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_MAT",
+        "S_FRICTION"
+      ],
+      "required_unknowns": [
+        "U_CLEAN"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "ALLOCATE_CHARGE",
+      "label": "Allocate measured rod and ball charge",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PREP",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PREP",
+      "manipulated_objects_and_tools": [
+        "balance",
+        "counting tray",
+        "rod batch",
+        "optional ball lots"
+      ],
+      "robot_actions": [
+        "Compute manifest quantities using resolved volume definition",
+        "Measure/count actual charge and retain lot/size linkage",
+        "For mixture arms keep rod and ball contributions separate"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "U_PHI resolved for actual fixture"
+      ],
+      "completion_state": "Measured charge, denominator and allocation record",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_PULL",
+        "M_BALL"
+      ],
+      "required_unknowns": [
+        "U_PHI",
+        "U_BALLS"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "PACK_CLOSE",
+      "label": "Pack and fasten clamp",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PREP",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PREP",
+      "manipulated_objects_and_tools": [
+        "container",
+        "allocated rods/balls",
+        "lid",
+        "bolts/nuts",
+        "fastening tool"
+      ],
+      "robot_actions": [
+        "Load constituents with qualified random-packing method",
+        "Record realization and order",
+        "Fit lid and tighten under resolved retention specification",
+        "Check containment and inspect for trapped/extruded particles"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Inspected geometry, measured charge and U_PACK resolved"
+      ],
+      "completion_state": "Closed packing_id with constituent inventory and fastening receipt",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_FAB"
+      ],
+      "required_unknowns": [
+        "U_PACK"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "INSERT_STICK",
+      "label": "Insert stick into supported packing",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PREP",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PREP",
+      "manipulated_objects_and_tools": [
+        "closed clamp",
+        "stick",
+        "insertion fixture"
+      ],
+      "robot_actions": [
+        "Support clamp and align stick",
+        "Insert to qualified depth at qualified low-temperature state",
+        "Observe insertion, final seating and bending-compatible state; do not claim unobserved internal shape"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Cold state, lid retention and insertion envelope qualified"
+      ],
+      "completion_state": "Inserted assembly with depth, temperature and packing lineage",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "M_CYCLE"
+      ],
+      "required_unknowns": [
+        "U_PACK",
+        "U_COOL"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "HEAT_LOAD",
+      "label": "Load and configure thermal conditioning",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "OVEN",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "OVEN",
+      "manipulated_objects_and_tools": [
+        "inserted assembly",
+        "heat-rated carrier",
+        "oven interface"
+      ],
+      "robot_actions": [
+        "Transport supported assembly",
+        "Dock and close guard",
+        "Set selected resolved temperature job and read back actual program",
+        "Start only after readiness"
+      ],
+      "device_actions": [
+        "Accept job and interlock check"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Heating and hot-transfer recipes qualified"
+      ],
+      "completion_state": "Identified running thermal job",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_TEMP",
+        "S_PULL"
+      ],
+      "required_unknowns": [
+        "U_HEAT",
+        "U_HOT_TRANSFER"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "HEAT_WAIT",
+      "label": "Establish actual thermal condition",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "OVEN",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "OVEN",
+      "manipulated_objects_and_tools": [
+        "assembly",
+        "temperature monitor"
+      ],
+      "robot_actions": [
+        "Read actual sample/system temperature and time history",
+        "Check stable target criterion and record deviations",
+        "Request stop/recovery on fault"
+      ],
+      "device_actions": [
+        "Autonomous heating, regulation and sensing"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Thermal job running"
+      ],
+      "completion_state": "Measured target-qualified condition or explicit invalid condition",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_TEMP"
+      ],
+      "required_unknowns": [
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "PULL_MOUNT",
+      "label": "Transfer and mount pull-out assembly",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PULL",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PULL",
+      "manipulated_objects_and_tools": [
+        "hot carrier",
+        "clamp",
+        "stick",
+        "fixed mount",
+        "upper grip",
+        "pads",
+        "thermal imager"
+      ],
+      "robot_actions": [
+        "Carry supported assembly preserving thermal log",
+        "Fix container to stationary lower fixture and stick to moving upper grip",
+        "Align and verify grip retention",
+        "Place qualified heating pads and thermal observation; clear robot from guarded motion"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Thermal transfer and load-path qualification; upper/lower interfaces available"
+      ],
+      "completion_state": "Mounted specimen with independently observed temperature and alignment",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_PULL"
+      ],
+      "required_unknowns": [
+        "U_HOT_TRANSFER",
+        "U_PULL",
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "PULL_SETUP",
+      "label": "Configure mechanical acquisition",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PULL",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PULL",
+      "manipulated_objects_and_tools": [
+        "load-cell and displacement interfaces",
+        "controller"
+      ],
+      "robot_actions": [
+        "Verify load/displacement calibration and zero with qualified procedure",
+        "Set qualified speed, travel, acquisition and stops",
+        "Read back actual settings and arm recording"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Correct specimen and safe fixture"
+      ],
+      "completion_state": "Versioned ready acquisition with temperature validity rule",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_PULL",
+        "M_TEMP"
+      ],
+      "required_unknowns": [
+        "U_PULL"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "PULL_RUN",
+      "label": "Start and monitor pull-out",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PULL",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PULL",
+      "manipulated_objects_and_tools": [
+        "controller",
+        "mounted assembly"
+      ],
+      "robot_actions": [
+        "Close/check guard and start selected job",
+        "Observe status and actual temperature throughout",
+        "Stop on qualified limit/fault; preserve incomplete records"
+      ],
+      "device_actions": [
+        "Controlled upward crosshead movement; force/displacement/time and temperature acquisition"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Job armed and thermal deviation below 2 degC"
+      ],
+      "completion_state": "Raw force/displacement trace plus time-linked temperature and actual completion/fault receipt",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_PULL",
+        "M_PULL",
+        "M_TEMP"
+      ],
+      "required_unknowns": [
+        "U_PULL",
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "PULL_UNLOAD",
+      "label": "Recover pulled stick and clamp",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PULL",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PULL",
+      "manipulated_objects_and_tools": [
+        "grips",
+        "stick",
+        "clamp",
+        "retaining tray"
+      ],
+      "robot_actions": [
+        "Wait for motion stop and support objects",
+        "Release upper/lower fixtures under qualified hot handling",
+        "Recover stick and clamp into labeled supports",
+        "Record whether stick extracted and packing disturbed"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "No applied load; safe release states observed"
+      ],
+      "completion_state": "Recovered descendants with changed packing state recorded",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_PULL",
+        "M_CYCLE"
+      ],
+      "required_unknowns": [
+        "U_HOT_TRANSFER",
+        "U_PULL"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "COOL_RESET",
+      "label": "Cool and record cycle reset",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "COOL",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "COOL",
+      "manipulated_objects_and_tools": [
+        "clamp",
+        "stick",
+        "support tray",
+        "temperature interface"
+      ],
+      "robot_actions": [
+        "Park supported specimens",
+        "Apply qualified cooling method and monitor actual state",
+        "Verify low-temperature and safe reinsertion conditions",
+        "Increment cycle only under declared event rule; retain interrupted cycles"
+      ],
+      "device_actions": [
+        "Passive or qualified controlled cooling"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Specimen safely supported"
+      ],
+      "completion_state": "Observed cool state and append-only cycle record",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_CYCLE",
+        "S_MOVIES"
+      ],
+      "required_unknowns": [
+        "U_COOL",
+        "U_CYCLES"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "REINSERT",
+      "label": "Reinsert same stick for next cycle",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "PREP",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "PREP",
+      "manipulated_objects_and_tools": [
+        "same clamp and packing",
+        "same stick",
+        "insertion fixture"
+      ],
+      "robot_actions": [
+        "Verify same identities and closed packing",
+        "Reinsert using qualified force/depth envelope",
+        "Record actual insertion and any particle loss/repacking"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "COOL_RESET complete; next finite cycle allocated"
+      ],
+      "completion_state": "Next-cycle assembly or explicit loss of same-packing continuity",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_CYCLE"
+      ],
+      "required_unknowns": [
+        "U_PACK",
+        "U_CYCLES"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "DSC_PREP",
+      "label": "Prepare DSC sample and reference",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "DSC",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "DSC",
+      "manipulated_objects_and_tools": [
+        "TiNi subsample",
+        "pans/reference",
+        "balance",
+        "pan tooling"
+      ],
+      "robot_actions": [
+        "Allocate traceable subsample",
+        "Weigh/prepare pan and reference under qualified method",
+        "Label and load physical pans"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Calorimetry program and consumables qualified"
+      ],
+      "completion_state": "Loaded pan IDs linked to parent lot and mass",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_DSC"
+      ],
+      "required_unknowns": [
+        "U_DSC"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "DSC_RUN",
+      "label": "Run and retrieve calorimetry",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "DSC",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "DSC",
+      "manipulated_objects_and_tools": [
+        "DSC interface",
+        "sample/reference pans"
+      ],
+      "robot_actions": [
+        "Read back program and start",
+        "Observe completion/fault",
+        "Export actual scan",
+        "Wait for safe release, unload and disposition pans"
+      ],
+      "device_actions": [
+        "Thermal scan and heat-flow measurement"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Pans loaded and qualified program"
+      ],
+      "completion_state": "Raw thermogram and pan disposition; extracted transitions are derived",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_DSC"
+      ],
+      "required_unknowns": [
+        "U_DSC"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "BEND_PREP",
+      "label": "Mount and mechanically program cantilever",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "BEND",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "BEND",
+      "manipulated_objects_and_tools": [
+        "single rod",
+        "anchor",
+        "load interface",
+        "camera"
+      ],
+      "robot_actions": [
+        "Measure/identify rod",
+        "Anchor prescribed length",
+        "Apply then remove qualified end load",
+        "Record before/loaded/unloaded shape and any damage"
+      ],
+      "device_actions": [
+        "Qualified loading actuation if applicable; image capture"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Qualified load, anchor and calibrated observation"
+      ],
+      "completion_state": "Same rod with observed residual bend and load/unload history",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_CANTILEVER"
+      ],
+      "required_unknowns": [
+        "U_BEND"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "BEND_RECOVER",
+      "label": "Observe temperature-dependent shape recovery",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "BEND",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "BEND",
+      "manipulated_objects_and_tools": [
+        "rod",
+        "thermal fixture",
+        "camera"
+      ],
+      "robot_actions": [
+        "Set qualified temperature sequence",
+        "Monitor rod and acquire registered images at allocated states",
+        "Retrieve only after safe cooling/release"
+      ],
+      "device_actions": [
+        "Autonomous temperature control and image capture"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Same mounted rod and observed initial bend"
+      ],
+      "completion_state": "Raw deflection/temperature records with same-rod identity",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_CANTILEVER"
+      ],
+      "required_unknowns": [
+        "U_BEND",
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "FRICTION_PREP",
+      "label": "Build contact coupon and place slider",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "FRICTION",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "FRICTION",
+      "manipulated_objects_and_tools": [
+        "rod/ball substrates",
+        "adhesive",
+        "inclined coupon",
+        "test rod/stick"
+      ],
+      "robot_actions": [
+        "Prepare and attach the assigned contact array using qualified recipe",
+        "Verify cured attachment and clean active contact",
+        "Place identified rod or stick with support/catch ready"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Resolved adhesive/contact configuration and specimen allocation"
+      ],
+      "completion_state": "Traceable coupon and slider pair with contact orientation",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_FRICTION"
+      ],
+      "required_unknowns": [
+        "U_FRICTION"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "FRICTION_RUN",
+      "label": "Acquire slip angle at assigned temperatures",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "FRICTION",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "FRICTION",
+      "manipulated_objects_and_tools": [
+        "tilt stage",
+        "heating pad",
+        "imager",
+        "angle readout",
+        "catch tray"
+      ],
+      "robot_actions": [
+        "Set and verify actual contact temperature",
+        "Request slow qualified tilt",
+        "Detect/record first slip under declared criterion",
+        "Stop stage, recover slider and label next attempt",
+        "Export angle/time/temperature observations"
+      ],
+      "device_actions": [
+        "Controlled inclination, heating and readout"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Qualified coupon; guard/catch engaged; finite temperature/repeat matrix"
+      ],
+      "completion_state": "Raw slip observations; coefficient computed as tan(angle) only after qualified detection",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_FRICTION"
+      ],
+      "required_unknowns": [
+        "U_FRICTION",
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "XCT_MOUNT",
+      "label": "Transport and mount closed clamp for XCT",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "XCT",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "XCT",
+      "manipulated_objects_and_tools": [
+        "assembly",
+        "scan carrier",
+        "thermal fixture"
+      ],
+      "robot_actions": [
+        "Preserve closed packing and stick identity",
+        "Dock in scanner with qualified thermal retention",
+        "Verify registration markers and pose",
+        "Close shield and inspect interlocks"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Qualified scan/thermal fixture; safe transfer"
+      ],
+      "completion_state": "Identified mounted scan state; no manual access while exposure enabled",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_XCT"
+      ],
+      "required_unknowns": [
+        "U_XCT",
+        "U_HOT_TRANSFER"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "XCT_ACQUIRE",
+      "label": "Configure start and retrieve XCT scan",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "XCT",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "XCT",
+      "manipulated_objects_and_tools": [
+        "scanner interface",
+        "mounted assembly"
+      ],
+      "robot_actions": [
+        "Read actual authorized scan settings and sample temperature",
+        "Start qualified scan",
+        "Monitor status without entering shield",
+        "Export projections/reconstruction receipts",
+        "Retrieve only after exposure-off and access release"
+      ],
+      "device_actions": [
+        "Radiation generation, rotation, acquisition and reconstruction as configured"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Interlock satisfied and thermal condition qualified"
+      ],
+      "completion_state": "Actual raw scan/reconstruction identifiers and released assembly",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_XCT"
+      ],
+      "required_unknowns": [
+        "U_XCT",
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "XCT_ANALYZE",
+      "label": "Derive and register rod geometry",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "ANALYSIS",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "ANALYSIS",
+      "manipulated_objects_and_tools": [
+        "raw XCT records",
+        "analysis interface"
+      ],
+      "robot_actions": [
+        "Submit scans with calibration and condition IDs",
+        "Review segmentation ambiguities and identity matches",
+        "Retain missing/merged rods and contact uncertainty",
+        "Obtain tip separation, inclination, coordinates and qualified coordination measures"
+      ],
+      "device_actions": [
+        "Versioned segmentation/registration and derived calculation"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Actual raw parent records; U_SEGMENT resolved"
+      ],
+      "completion_state": "Derived geometry with raw parents, rod matching and uncertainty",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_XCT"
+      ],
+      "required_unknowns": [
+        "U_SEGMENT",
+        "U_ANALYSIS"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "HOLD_PREP",
+      "label": "Prepare contained holding demonstration",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "HOLD",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "HOLD",
+      "manipulated_objects_and_tools": [
+        "clamp",
+        "stick/hook",
+        "load",
+        "support/catch",
+        "camera"
+      ],
+      "robot_actions": [
+        "Anchor clamp in qualified dock",
+        "Attach verified load while fully supported",
+        "Check catch capacity, guard and thermal monitoring",
+        "Allocate observation slots and release criterion"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "U_HOLD resolved; load path and support certified"
+      ],
+      "completion_state": "Supported assembled load with closed enclosure",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_MOVIES"
+      ],
+      "required_unknowns": [
+        "U_HOLD",
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "HOLD_OBSERVE",
+      "label": "Observe hold with custody and temperature history",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "HOLD",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "HOLD",
+      "manipulated_objects_and_tools": [
+        "load support",
+        "clamp",
+        "controller",
+        "camera"
+      ],
+      "robot_actions": [
+        "Verify assigned thermal state",
+        "Withdraw support only within qualified guarded procedure",
+        "Record actual holding/failure and elapsed time",
+        "Restore support or stop under fault rule"
+      ],
+      "device_actions": [
+        "Thermal regulation and autonomous long-duration logging; fixture carries load"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Guard/catch engaged; no robot beneath load"
+      ],
+      "completion_state": "Actual supported/held/failed timeline and complete thermal record",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_MOVIES"
+      ],
+      "required_unknowns": [
+        "U_HOLD",
+        "U_HEAT"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "HOLD_RELEASE",
+      "label": "Observe contained cooling-triggered release",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "HOLD",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "HOLD",
+      "manipulated_objects_and_tools": [
+        "catch/support",
+        "cooling interface",
+        "clamp"
+      ],
+      "robot_actions": [
+        "Maintain containment and apply qualified cooling",
+        "Observe actual release or nonrelease without reaching into drop path",
+        "Wait for supported safe end state",
+        "Recover load, stick and clamp after release authorization"
+      ],
+      "device_actions": [
+        "Qualified cooling and continuous observation"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Load contained and release/catch procedure qualified"
+      ],
+      "completion_state": "Observed release/nonrelease with temperature and final supported load state",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "S_MOVIES"
+      ],
+      "required_unknowns": [
+        "U_HOLD",
+        "U_COOL"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "REDUCE",
+      "label": "Reduce measurements and compare conditions",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "ANALYSIS",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "ANALYSIS",
+      "manipulated_objects_and_tools": [
+        "raw records",
+        "analysis job"
+      ],
+      "robot_actions": [
+        "Verify raw completeness, control labels, thermal acceptance and source-independent acquisition",
+        "Calculate declared peak/angle/transition/geometry summaries",
+        "Keep rejected/missing attempts in manifest and compare allocated conditions",
+        "Separate source comparison from measured result"
+      ],
+      "device_actions": [
+        "Versioned analysis and uncertainty aggregation"
+      ],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "Actual raw records and explicit validity mask"
+      ],
+      "completion_state": "Derived results with raw parents; truthful disagreement allowed",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_PULL",
+        "M_CYCLE",
+        "M_AR",
+        "M_SIZE",
+        "M_BALL",
+        "S_FRICTION"
+      ],
+      "required_unknowns": [
+        "U_ANALYSIS"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    },
+    {
+      "id": "CLEAN_CLOSE",
+      "label": "Unload clean and reconcile physical end state",
+      "actor": "human_like_mobile_laboratory_robot",
+      "station": "CLOSE",
+      "source_station": "previous verified support/location of every input object",
+      "target_station": "CLOSE",
+      "manipulated_objects_and_tools": [
+        "all specimens",
+        "tools",
+        "waste/return vessels"
+      ],
+      "robot_actions": [
+        "Confirm heaters/motion/exposure stopped and objects safe",
+        "Disassemble only when lineage allows",
+        "Separate rods, balls, coupons, rejects and debris into labeled destinations",
+        "Clean fixtures by approved method",
+        "Reconcile all objects and data; retain damaged/invalid attempts"
+      ],
+      "device_actions": [],
+      "interfaces": [
+        "physical docking/retention/guard controls as qualified",
+        "versioned job selection and actual status readback where a device is used"
+      ],
+      "preconditions": [
+        "No unsupported load or active hazardous device"
+      ],
+      "completion_state": "Unique disposition for every descendant and preserved raw evidence",
+      "completion_evidence": [
+        "input/output object IDs, state, location and attempt",
+        "observed manipulation and retention evidence",
+        "actual device receipt and raw records when applicable"
+      ],
+      "source_refs": [
+        "M_FAB"
+      ],
+      "required_unknowns": [
+        "U_DISPOSITION",
+        "U_CLEAN"
+      ],
+      "provenance_class": "authored_robot_translation",
+      "failure_handling": "Stop affected work, preserve all identities, temperature and raw records, contain/support objects, record visible failure, then perform only a qualified bounded retry with a new attempt or mark blocked/damaged. Never repair evidence to fit the paper."
+    }
+  ],
+  "transport": "Every physical handoff instantiates station_contracts.transport_contract; route adjacency never teleports a specimen.",
+  "device_process_rule": "Robot owns stock/preparation/loading/settings/start/readback/unloading. Instrument owns regulated heat, printing/cutting motion, crosshead motion, radiation or scan. No physical execution is performed by this package."
+}

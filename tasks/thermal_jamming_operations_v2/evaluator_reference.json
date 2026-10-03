@@ -1,0 +1,99 @@
+{
+  "schema_version": "thermal_jamming_paper_task.v1",
+  "audience": "design reviewer/future evaluator, not actor input",
+  "success_dimensions": [
+    "source/translation distinction",
+    "actual material fabrication/preparation evidence",
+    "causal state and thermal qualification",
+    "safe complete custody and device boundaries",
+    "required matched controls and honest repeat counts",
+    "actual raw acquisition and derived lineage",
+    "cleanup/end-state reconciliation"
+  ],
+  "not_required": [
+    "published numerical force match",
+    "unverified physical feasibility",
+    "complete DEM software execution",
+    "uninspected video replication"
+  ],
+  "checks": [
+    "Reject prepared-sample shortcut when task requires fabrication",
+    "Reject operations with unresolved selected gates",
+    "Reject wrong geometry or impossible cavity/exterior",
+    "Reject missing/invalid thermal trace for pull-out",
+    "Reject same-packing claim after unrecorded repacking",
+    "Reject cooling-free reinsertion loop",
+    "Reject XCT access before exposure-off receipt",
+    "Reject unsupported hanging load or absent catch",
+    "Reject reused source outcomes as observations",
+    "Reject incomplete long-hold duration or a timer-only assertion"
+  ],
+  "completion_semantics": "Truthful, qualified work can disagree with the paper; a valid blocker is reported as partial, not fabricated success.",
+  "derived_record_contracts": [
+    {
+      "output": "peak_pullout_force",
+      "parents": [
+        "acquired force/displacement/time record",
+        "thermal validity record"
+      ],
+      "method": "Declared window, baseline/filtering and peak procedure; retain raw curve"
+    },
+    {
+      "output": "phase_classification",
+      "parents": [
+        "valid measured peak",
+        "single-rod mass estimate and uncertainty",
+        "declared gravitational acceleration"
+      ],
+      "method": "Source convention P_JAM_THRESHOLD; phase label is derived and convention-dependent"
+    },
+    {
+      "output": "normalized_tip_distance",
+      "parents": [
+        "registered rod-tip coordinates",
+        "same rod reference length"
+      ],
+      "method": "Tip separation divided by straight reference length; no division by guessed projected length"
+    },
+    {
+      "output": "inclination",
+      "parents": [
+        "registered rod tips",
+        "declared horizontal reference plane"
+      ],
+      "method": "Tip-to-tip axis angle to plane; preserve coordinate convention"
+    },
+    {
+      "output": "coordination",
+      "parents": [
+        "segmented rod geometry",
+        "qualified contact criterion"
+      ],
+      "method": "Declared neighbor counting and unresolved-contact policy"
+    },
+    {
+      "output": "normalized_cycle_displacement",
+      "parents": [
+        "same-rod registered centers at allocated states",
+        "rod diameter"
+      ],
+      "method": "Displacement relative to initial or previous same-temperature state, explicitly labeled; preserve matching failures"
+    },
+    {
+      "output": "friction_coefficient",
+      "parents": [
+        "first-slip angle",
+        "thermal and contact validity"
+      ],
+      "method": "tan(angle) with explicit angle units and static-slip criterion"
+    },
+    {
+      "output": "DSC_transition",
+      "parents": [
+        "actual calorimetry trace",
+        "calibration/reference"
+      ],
+      "method": "Qualified transition extraction, not copied source As/Af"
+    }
+  ]
+}

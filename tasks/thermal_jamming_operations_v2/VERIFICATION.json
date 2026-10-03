@@ -1,0 +1,38 @@
+{
+  "schema_version": "thermal_jamming_paper_task.v1",
+  "scope": "Finite task-design verification only",
+  "author_suite": {
+    "command": "python -B tests/run_validation.py",
+    "passed": 25,
+    "total": 25,
+    "log": "validation_author.log"
+  },
+  "independent_suite": {
+    "command": "python -B independent_review/check_contracts.py",
+    "passed": 34,
+    "total": 34,
+    "report": "independent_review/REPORT.md",
+    "results": "independent_review/contract_check_results.json",
+    "audit": "independent_review/audit.json"
+  },
+  "source_pdf_validation": {
+    "pages": 18,
+    "sha256": "552a605c07d7e5c5d01ab0e1cf2b126eb836248cb7e08555cff9a89efd4053c7",
+    "exported": false
+  },
+  "license_preservation": {
+    "reference_repository_license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "modified": false
+  },
+  "not_run": [
+    "physical robot",
+    "heating or equipment",
+    "instrument authenticity/safety qualification",
+    "scientific reproduction",
+    "DEM solver",
+    "runtime actor loader",
+    "CAD/viewer",
+    "remote publication"
+  ],
+  "artifact_integrity": "FILES_SHA256.json records final allowed files except itself; this is file integrity, not a scientific or legal certification"
+}

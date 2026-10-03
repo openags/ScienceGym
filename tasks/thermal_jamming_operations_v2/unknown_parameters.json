@@ -1,0 +1,221 @@
+{
+  "schema_version": "thermal_jamming_paper_task.v1",
+  "unknowns": [
+    {
+      "id": "U_ALLOC",
+      "required_input": "Finite condition matrix, independent packing/sample count, cycles and acquisition slots",
+      "blocks": "All selected campaigns; source physical replicate counts/grid not recovered",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_ASSETS",
+      "required_input": "Installed tools, guards, robot reach/grasp, payload, navigation, docking, accessible stops and calibration",
+      "blocks": "All physical work; no feasibility certified",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_LOTS",
+      "required_input": "TiNi composition/temper, lot history, straight reference shape and material acceptance",
+      "blocks": "Cutting and all dependent SMA work",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_CUT",
+      "required_input": "Wire cutting method, tolerances, end finish, debris capture, inspection and reject rules",
+      "blocks": "Rod fabrication",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_PROGRAM",
+      "required_input": "Whether stock is already straight-shape programmed; qualified setting/recovery method if needed",
+      "blocks": "Do not invent a heat-treatment recipe from reported transition temperatures",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_GEOMETRY",
+      "required_input": "Complete PMMA geometry per variant, outside size, holes, lid, bolts, retention and load paths",
+      "blocks": "Resolve 80 mm outside versus 84 mm inside incompatibility before affected variant",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_PMMA_FAB",
+      "required_input": "PMMA tooling/material form, fabrication and deburring recipe, tolerances and inspection",
+      "blocks": "Robot loading, tool operation and component recovery",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_NYLON_PRINT",
+      "required_input": "Verified PA12 print design, printer/job, feedstock, support removal, finishing and dimensional acceptance",
+      "blocks": "Robot-performed nylon stick fabrication",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_CLEAN",
+      "required_input": "Material-compatible cleaning method, surface conditioning and waste handling",
+      "blocks": "Preparation and closure; friction-sensitive surfaces",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_PHI",
+      "required_input": "Volume-fraction denominator, occupied/free cavity definition, counts/masses, stick-volume treatment and packing acceptance",
+      "blocks": "Never equate a guessed particle count with source volume fraction",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_PACK",
+      "required_input": "Random packing procedure, ordering, orientation handling, closure torque, inserted depth and allowed reinsertion force",
+      "blocks": "Preserve actual packing realization and insertion state",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_BALLS",
+      "required_input": "Ball lots, finish, mixture allocation and loading/mixing method",
+      "blocks": "Glass/steel and composition arms",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_HEAT",
+      "required_input": "Qualified temperature schedule, sensor calibration/emissivity/ROI, equilibration, transfer loss and maintenance method",
+      "blocks": "Heating setpoint or elapsed 15 minutes alone cannot qualify temperature",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_HOT_TRANSFER",
+      "required_input": "Heat-rated carrier, touch/release limits, transfer route and monitored exposure",
+      "blocks": "Oven-to-test/XCT/hold transfer",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_PULL",
+      "required_input": "Load cell, fixture/grips, alignment, preload, speed, travel, sampling, filtering and stop limits",
+      "blocks": "Slow is not a numerical speed; do not infer it from DEM",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_COOL",
+      "required_input": "Qualified cooling method, actual low-temperature stability, safe release and reinsertion conditions",
+      "blocks": "Cycles, hold release, cleanup",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_CYCLES",
+      "required_input": "Finite cycle count, event definitions, interrupted-cycle policy and whether packing remains closed",
+      "blocks": "Keep cycle and specimen identities distinct",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_DSC",
+      "required_input": "Sample mass/geometry, pans, reference, heating/cooling program, atmosphere and transition extraction",
+      "blocks": "Reported As/Af are outcomes, not a DSC recipe",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_BEND",
+      "required_input": "Cantilever length/anchor, load, loading rate, unload rule, optical calibration and temperature schedule",
+      "blocks": "Single-rod bending validation branch",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_FRICTION",
+      "required_input": "Adhesive/fixture recipe, contact array, tilt control/rate, slip criterion, temperature grid and repetitions",
+      "blocks": "Inclined-plane branch; glue must not contaminate active contact",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_XCT",
+      "required_input": "Shielded scanner qualification, true scan parameters, thermal stage, scan sequence and registration",
+      "blocks": "320 kV is only source instrument description",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_SEGMENT",
+      "required_input": "Rod segmentation, tip/axis identification, contact criterion, identity matching and uncertainty",
+      "blocks": "XCT-derived curvature, inclination, coordination and displacement",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_HOLD",
+      "required_input": "Load mass/hook/fixture, guard/catch, support withdrawal, observation rate, duration and failure thresholds",
+      "blocks": "Movie-informed hold/release and extended duration branch",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_ANALYSIS",
+      "required_input": "Versioned curve processing, peak definition, uncertainty and missingness/aggregation methods",
+      "blocks": "Raw data to result; source plots are never measurements",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_SOURCE_DATA",
+      "required_input": "Source workbook/video inspection if exact historical grids or demonstration details are required",
+      "blocks": "Dependency for exact reproduction, not for declaring broad task-family coverage",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_DEM",
+      "required_input": "Audited code version, license, dependencies, solver inputs, seeds and reproducible run validation",
+      "blocks": "External computational dependency only; unavailable code is not an experiment",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    },
+    {
+      "id": "U_DISPOSITION",
+      "required_input": "Recovery/reuse versus quarantine/disposal criteria and labeled end-state accounting",
+      "blocks": "Rod batches, mixed balls, chips, printed parts, friction coupons and all specimens",
+      "resolution_status": "unresolved",
+      "source_fact": false,
+      "resolution_rule": "Qualified provider supplies value/method, units, scope, evidence and validation receipt; no silent defaults"
+    }
+  ]
+}

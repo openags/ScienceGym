@@ -1,0 +1,851 @@
+{
+  "schema_version": "thermal_jamming_paper_task.v1",
+  "configurations": [
+    {
+      "id": "TEMP_PHI",
+      "family": "Clamp force",
+      "goal": "Compare thermal state and rod packing fraction",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "PULL_MOUNT",
+        "PULL_SETUP",
+        "PULL_RUN",
+        "PULL_UNLOAD",
+        "COOL_RESET",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "vary": [
+          "temperature",
+          "rod volume fraction"
+        ],
+        "fixture": "P_BASE_INNER and P_BASE_STICK",
+        "grid": "Finite work order; no plot-derived grid invented",
+        "fresh_vs_shared": "Every pull changes state; fresh independent packing or declared reuse must be allocated",
+        "phase_map": "If selected, classify measured peak forces using P_JAM_THRESHOLD and the declared single-rod mass/gravity convention; do not reuse the published boundary as observed data"
+      },
+      "required_controls": [
+        "C_COLD_HOT",
+        "C_PHI",
+        "C_THERMAL",
+        "C_MECH",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "M_PULL",
+        "M_TEMP"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_CYCLES",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM",
+        "U_PULL"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "CYCLE_PULL",
+      "family": "Cyclic performance",
+      "goal": "Track repeated pull-out and cool/reinsert on the same closed packing",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "PULL_MOUNT",
+        "PULL_SETUP",
+        "PULL_RUN",
+        "PULL_UNLOAD",
+        "COOL_RESET",
+        "REINSERT",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "endpoints_parameter": "P_CYCLE_T",
+        "cycle_count": "U_CYCLES",
+        "repeat_unit": "same packing across declared cycles, separate independent packings",
+        "temperature_trace": "continuous per test including transfer"
+      },
+      "required_controls": [
+        "C_CYCLE",
+        "C_THERMAL",
+        "C_MECH",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "M_CYCLE"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_CYCLES",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM",
+        "U_PULL"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [
+        {
+          "type": "finite_loop",
+          "repeat_operation_ids": [
+            "HEAT_LOAD",
+            "HEAT_WAIT",
+            "PULL_MOUNT",
+            "PULL_SETUP",
+            "PULL_RUN",
+            "PULL_UNLOAD",
+            "COOL_RESET",
+            "REINSERT"
+          ],
+          "until": "allocated cycles complete, qualified stop or blocking fault",
+          "initial_condition": "INSERT_STICK completed before first hot pull",
+          "last_cycle": "Final REINSERT may be omitted only if manifest specifies no next cycle; preserve terminal pulled state",
+          "rule": "Cooling and reinsertion required before each next pull; do not silently repack"
+        }
+      ],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "ASPECT_RATIO",
+      "family": "Geometry",
+      "goal": "Compare rod aspect-ratio allocations",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "PULL_MOUNT",
+        "PULL_SETUP",
+        "PULL_RUN",
+        "PULL_UNLOAD",
+        "COOL_RESET",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "rod_length_parameter": "P_ROD_LENGTHS",
+        "fixture_parameter": "P_AR_FIXTURE",
+        "keep_fixed": [
+          "declared fraction",
+          "selected temperature",
+          "matched surface and manufacturing controls"
+        ],
+        "independence": "Do not reuse baseline 32/14 mm fixture definition"
+      },
+      "required_controls": [
+        "C_AR",
+        "C_THERMAL",
+        "C_MECH",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "M_AR",
+        "M_MAT"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_CYCLES",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM",
+        "U_PULL"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "CONTAINER_SIZE",
+      "family": "Geometry",
+      "goal": "Compare container-size allocations",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "PULL_MOUNT",
+        "PULL_SETUP",
+        "PULL_RUN",
+        "PULL_UNLOAD",
+        "COOL_RESET",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "inner_diameter_parameter": "P_SIZE_DINS",
+        "rod_AR_parameter": "P_SIZE_AR",
+        "additional_fractions": "Finite Fig.5D-inspired selection; exact source grid unresolved",
+        "geometry_gate": "Resolve full outer geometry and stick diameter per variant; no impossible 80 mm exterior around 84 mm cavity"
+      },
+      "required_controls": [
+        "C_SIZE",
+        "C_THERMAL",
+        "C_MECH",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "M_SIZE",
+        "M_MAT"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_CYCLES",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM",
+        "U_PULL"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "BALL_FIXED_RODS",
+      "family": "Mixtures",
+      "goal": "Compare addition of glass or steel balls at fixed rod allocation",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "PULL_MOUNT",
+        "PULL_SETUP",
+        "PULL_RUN",
+        "PULL_UNLOAD",
+        "COOL_RESET",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "rod_fraction_parameter": "P_BALL_FIXED_ROD",
+        "vary": [
+          "ball fraction",
+          "glass versus steel"
+        ],
+        "no_ball": "matched rod-only control",
+        "diameter_parameter": "P_BALL_DIAM"
+      },
+      "required_controls": [
+        "C_MIXTURE",
+        "C_THERMAL",
+        "C_MECH",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "M_BALL"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_CYCLES",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM",
+        "U_PULL"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "BALL_FIXED_TOTAL",
+      "family": "Mixtures",
+      "goal": "Compare rod/ball composition at fixed total fraction",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "PULL_MOUNT",
+        "PULL_SETUP",
+        "PULL_RUN",
+        "PULL_UNLOAD",
+        "COOL_RESET",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "total_fraction_parameter": "P_BALL_FIXED_TOTAL",
+        "vary": [
+          "rod fraction with compensating ball fraction"
+        ],
+        "identity": "Keep total, rod and ball fractions independently recorded"
+      },
+      "required_controls": [
+        "C_COMPOSITION",
+        "C_THERMAL",
+        "C_MECH",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "M_BALL"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_CYCLES",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM",
+        "U_PULL"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "MATERIAL_DSC",
+      "family": "Material qualification",
+      "goal": "Measure lot-linked thermal transitions",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "DSC_PREP",
+        "DSC_RUN",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "parent": "TiNi lot/cut batch",
+        "repeat_unit": "independent pan/subsample as allocated",
+        "transition_outputs": "measured outcomes, not copied As/Af"
+      },
+      "required_controls": [
+        "C_DSC",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "S_DSC"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_CLEAN",
+        "U_CUT",
+        "U_DISPOSITION",
+        "U_DSC",
+        "U_LOTS"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "SINGLE_ROD_BEND",
+      "family": "Material validation",
+      "goal": "Acquire same-rod residual bending and thermal recovery",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "BEND_PREP",
+        "BEND_RECOVER",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "states": [
+          "initial",
+          "loaded",
+          "unloaded at low temperature",
+          "temperature-indexed recovered states"
+        ],
+        "source_limit": "No numerical tip load, fixture span or full temperature program recovered"
+      },
+      "required_controls": [
+        "C_BEND",
+        "C_THERMAL",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "S_CANTILEVER"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BEND",
+        "U_CLEAN",
+        "U_CUT",
+        "U_DISPOSITION",
+        "U_HEAT",
+        "U_LOTS",
+        "U_PROGRAM"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "FRICTION_PAIRS",
+      "family": "Contact characterization",
+      "goal": "Measure temperature-dependent static slip for declared material pairs",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "FRICTION_PREP",
+        "FRICTION_RUN",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "substrates": [
+          "fixed SMA rods",
+          "fixed glass balls",
+          "fixed steel balls"
+        ],
+        "slider": [
+          "SMA rod",
+          "nylon stick"
+        ],
+        "finite_pairs": "Work order enumerates applicable source-supported pairs and independent coupons/placements",
+        "analysis": "tan of qualified first-slip angle"
+      },
+      "required_controls": [
+        "C_FRICTION",
+        "C_THERMAL",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "S_FRICTION"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_CLEAN",
+        "U_CUT",
+        "U_DISPOSITION",
+        "U_FRICTION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PROGRAM"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "XCT_STATES",
+      "family": "Microstructure",
+      "goal": "Acquire packed-rod geometry at selected thermal/fraction/geometry states",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "XCT_MOUNT",
+        "XCT_ACQUIRE",
+        "XCT_ANALYZE",
+        "COOL_RESET",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "states": "Finite manifest linked to Figs.1,2,5 comparisons",
+        "cold_arm": "Ambient qualified arm can omit HEAT_LOAD/HEAT_WAIT; actual temperature remains required",
+        "registration": "Same specimen only if declared, with unique rod matching and scan histories"
+      },
+      "required_controls": [
+        "C_XCT",
+        "C_THERMAL",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "M_XCT"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_CYCLES",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM",
+        "U_SEGMENT",
+        "U_XCT"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "XCT_CYCLES",
+      "family": "Microstructure",
+      "goal": "Track rod identity across selected thermal cycles",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "XCT_MOUNT",
+        "XCT_ACQUIRE",
+        "XCT_ANALYZE",
+        "COOL_RESET",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "repeat_unit": "same rod identities and packing across finite temperature cycles",
+        "reference_frames": [
+          "initial state",
+          "previous corresponding-temperature cycle"
+        ],
+        "critical_ambiguity": "Whether scan sequence includes intervening pull-out or only thermal cycling must be resolved from U_XCT/U_CYCLES; no invented linkage to CYCLE_PULL"
+      },
+      "required_controls": [
+        "C_XCT",
+        "C_XCT_CYCLE",
+        "C_THERMAL",
+        "C_REPLICATES"
+      ],
+      "source_refs": [
+        "M_XCT",
+        "M_CYCLE"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_CYCLES",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM",
+        "U_SEGMENT",
+        "U_XCT"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [
+        {
+          "type": "finite_loop",
+          "repeat_operation_ids": [
+            "HEAT_LOAD",
+            "HEAT_WAIT",
+            "XCT_MOUNT",
+            "XCT_ACQUIRE",
+            "XCT_ANALYZE",
+            "COOL_RESET"
+          ],
+          "until": "allocated scan/cycle matrix complete or valid stop",
+          "additional_cold_scans": "Acquire from observed low-temperature state when manifest requires; not a hot scan relabeled cold"
+        }
+      ],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "HOLD_RELEASE",
+      "family": "Demonstration",
+      "goal": "Observe contained holding and cooling-triggered release",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "HOLD_PREP",
+        "HOLD_OBSERVE",
+        "HOLD_RELEASE",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "demonstration": "Movie S1/S2 descriptions only; movies uninspected",
+        "cold_hot": "Matched supported low/high-temperature attempts",
+        "load": "U_HOLD resolves actual load; no force-curve peak converted into safe hanging mass"
+      },
+      "required_controls": [
+        "C_HOLD",
+        "C_THERMAL"
+      ],
+      "source_refs": [
+        "M_FAB",
+        "S_MOVIES"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOLD",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    },
+    {
+      "id": "EXTENDED_HOLD",
+      "family": "Durability",
+      "goal": "Acquire continuous long-duration load holding then contained release",
+      "operation_ids": [
+        "PLAN",
+        "QUALIFY",
+        "STOCK",
+        "CUT_RODS",
+        "SHAPE_VERIFY",
+        "PMMA_FAB",
+        "NYLON_FAB",
+        "CLEAN_PARTS",
+        "ALLOCATE_CHARGE",
+        "PACK_CLOSE",
+        "INSERT_STICK",
+        "HEAT_LOAD",
+        "HEAT_WAIT",
+        "HOLD_PREP",
+        "HOLD_OBSERVE",
+        "HOLD_RELEASE",
+        "REDUCE",
+        "CLEAN_CLOSE"
+      ],
+      "condition_contract": {
+        "duration_parameter": "P_HOLD_DURATION",
+        "duration_rule": "Source description exceeds 15 hours; episode must resolve finite longer observation window and actual uninterrupted hold evidence",
+        "temperature_parameter": "P_HOLD_TEMP",
+        "not_equivalent_to": "Repeated pull-out cycles or a mocked elapsed-time field"
+      },
+      "required_controls": [
+        "C_HOLD",
+        "C_THERMAL"
+      ],
+      "source_refs": [
+        "S_MOVIES"
+      ],
+      "required_unknowns": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSETS",
+        "U_BALLS",
+        "U_CLEAN",
+        "U_COOL",
+        "U_CUT",
+        "U_DISPOSITION",
+        "U_GEOMETRY",
+        "U_HEAT",
+        "U_HOLD",
+        "U_HOT_TRANSFER",
+        "U_LOTS",
+        "U_NYLON_PRINT",
+        "U_PACK",
+        "U_PHI",
+        "U_PMMA_FAB",
+        "U_PROGRAM"
+      ],
+      "implementation_status": "task_design_only_inputs_unresolved",
+      "route_extensions": [],
+      "outcome_rule": "Completion rewards actual preparation/custody/acquisition and truthful reporting, not matching a published force or trend."
+    }
+  ],
+  "whole_paper_scope": "Thirteen experiment configurations cover the practical paper and material/measurement validation. Computational explanations are separately mapped, not invented as robot work. Exact historical grids and full reproducibility remain source/input dependent.",
+  "packing_policy": "Different configurations are selectable templates, not one fictitious specimen that survives every destructive or state-changing test."
+}

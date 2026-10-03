@@ -1,0 +1,71 @@
+{
+  "schema_version": "thermal_jamming_paper_task.v1",
+  "conflicts": [
+    {
+      "id": "CONTAINER_OUTER",
+      "issue": "Methods generic outside diameter 80 mm is geometrically incompatible with listed inside diameter 84 mm",
+      "resolution": "Keep both source fields; require variant drawing and dimensions; do not resize silently",
+      "gate": "U_GEOMETRY",
+      "source_refs": [
+        "M_MAT"
+      ]
+    },
+    {
+      "id": "FIXTURE_VARIANTS",
+      "issue": "Baseline fixture is 32/14 mm inner/stick; aspect-ratio methods specify 42/32 mm",
+      "resolution": "Treat as distinct declared fixtures, not contradictory values to average",
+      "gate": "U_GEOMETRY",
+      "source_refs": [
+        "M_MAT"
+      ]
+    },
+    {
+      "id": "XCT_VOLTAGE",
+      "issue": "320 kV identifies the described instrument, without complete scan parameters",
+      "resolution": "Never use instrument designation as an actual scan setting",
+      "gate": "U_XCT",
+      "source_refs": [
+        "M_XCT"
+      ]
+    },
+    {
+      "id": "ROD_INITIAL_STATE",
+      "issue": "Cut straight rods and shape memory are described, but stock programming/shape-setting recipe is not",
+      "resolution": "Verify stock history/reference shape; add only a qualified authored process if needed",
+      "gate": "U_PROGRAM",
+      "source_refs": [
+        "M_FAB",
+        "S_CANTILEVER"
+      ]
+    },
+    {
+      "id": "FRICTION_TABLE_MAPPING",
+      "issue": "Table S1 lists two rod-rod coefficients without table-level temperature assignment",
+      "resolution": "Preserve pair unassigned; resolve mapping if needed for model",
+      "gate": "U_DEM",
+      "source_refs": [
+        "S_PARAMETERS"
+      ]
+    },
+    {
+      "id": "COMPUTE_ACCESS",
+      "issue": "Methods call software proprietary; Code availability links a public rod-deformation repository",
+      "resolution": "Do not infer complete solver/workflow availability from a link; audit separately",
+      "gate": "U_DEM",
+      "source_refs": [
+        "M_DEM",
+        "M_DATA"
+      ]
+    },
+    {
+      "id": "XCT_CYCLE_SEQUENCE",
+      "issue": "Thermal cycle rod-displacement observations and mechanical pull-out cycles are described, but a complete joint scan/pull sequence is not specified",
+      "resolution": "Keep XCT and mechanical cycles separate until a qualified sequence is provided",
+      "gate": "U_XCT",
+      "source_refs": [
+        "M_CYCLE",
+        "M_XCT"
+      ]
+    }
+  ]
+}
