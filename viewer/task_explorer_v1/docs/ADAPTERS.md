@@ -1,6 +1,6 @@
 # Explicit schema adapters and fidelity rules
 
-The explorer does not infer one universal operation schema or invent a global task DAG. `build.py` has a dedicated adapter for each of the seven published packages.
+The explorer does not infer one universal operation schema or invent a global task DAG. `build.py` has a dedicated adapter for each of the eight published packages. The previous seven families retain their source-schema semantics. The prismatic adapter adds 12 route/configuration records and 49 operation definitions, bringing the explorer totals to 172 and 1,267 respectively.
 
 ## Chiral
 
@@ -68,3 +68,19 @@ This viewer cannot establish scientific correctness, practical safety, source co
 - Retains all seven textual partial-order predicates as text. A predicate is not converted into an invented pair of operation-ID edges
 - SPIN_MODULES is the default reference route. It does not establish completion of the entire paper
 - The larger perovskite payload has a 1.5 MB guard because it retains 752 definitions and all detailed service/condition contracts; each earlier family retains its 200 kB guard
+
+## Prismatic metamaterials
+
+- The prismatic payload has a 400 kB guard because it retains complete evaluator/lineage/control/audit contracts plus independent campaign nesting; earlier family payload guards are unchanged
+- Maps all 49 operation definitions and all 12 branch/configuration records across seven practical families. Complete working contracts are retained for author/evaluator inspection, including branch and dependency rules, episode inputs, lineage, controls, evaluator acceptance, station/material/asset requirements, unknowns, coverage and nonmanual scope, mock boundaries, provenance, source outcomes/conflicts, the independent source audit and release-boundary metadata. Remaining export/verification files retain pinned source links and checksums
+- Preserves each original `operation_ids` list as **membership**, governed by explicit dependency edges and branch-stage predicates. The list is not a chronological route, a fixed robot trajectory or a universal specimen history
+- Keeps source `loop_expansion` contracts and typed loop metadata, including joint/face setup loops, cyclic loading/unloading and nested target attempts. Unknown values/counts remain unresolved; they neither expand into invented occurrences nor count as successful empty loops
+- Preserves the cube comparison's **material × target × attempt** nesting and the array comparison's **thickness × target × attempt** nesting. Flattening either into sibling loops would lose the required Cartesian coverage
+- Treats `WHOLE_PAPER_PRACTICAL` as dispatch to eleven independent component branches, each with its own nested loops, sample identities and conditions. No cross-branch chronology is inferred, and the campaign's union of operation IDs is not executed as one sequence
+- Keeps `QUARANTINE` separately labeled as **conditional recovery**. It remains an inspectable operation definition but is not inserted as a mandatory step in every branch
+- Carries top-level operation unknown IDs, evidence IDs, pre/postconditions, authored action lists and recovery text without moving unknowns into source-reported facts. Reported source outcomes remain evaluator context and never become operational success targets
+- Explicitly labels the absence of per-operation object-role lists in the source schema. Material cards and asset needs remain available as source contracts; they are not converted into invented per-operation target roles
+- Preserves required transfer insertions, qualified-input gates, specimen allocation and reuse history, upstream fabrication/handoff requirements and incomplete/blocker status. The inspector does not satisfy any of these obligations
+- Retains the actual-final-five-cycle aggregation contract, source conflicts and bounded pneumatic scope. Five summary cycles do not supply the unknown total cycle count; four reported pneumatic states do not establish four programs or specimens
+
+The pinned source is [openags/ScienceGym at e27d456e2fe99bec9100cc37f7bcd68485504c2b](https://github.com/openags/ScienceGym/tree/e27d456e2fe99bec9100cc37f7bcd68485504c2b). This is logical-inspector coverage only; it adds no task execution or new 3D storyboard.

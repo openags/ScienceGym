@@ -14,7 +14,7 @@ def get(key):
 def ids(nodes):return [n['id'] for n,d in builder.walk(nodes) if n['type']=='op']
 
 class BundleTests(unittest.TestCase):
- def test_seven_families(self):self.assertEqual(len(list((ROOT/'data').glob('*.json'))),7)
+ def test_eight_families(self):self.assertEqual(len(list((ROOT/'data').glob('*.json'))),8)
  def test_all_operation_references_resolve(self):
   for key in builder.ADAPTERS:
    f=get(key);mapping={o['id']:o for o in f['operations']};self.assertEqual(len(mapping),len(f['operations']))
@@ -28,7 +28,7 @@ class BundleTests(unittest.TestCase):
     for field in ['pre','post','sources','objects','recovery','acceptance','unknowns','provenance']:self.assertIn(field,o)
     if o.get('action_macro'):self.assertIn(o['action_macro'],f['macros'])
  def test_compact_payloads(self):
-  for path in (ROOT/'data').glob('*.json'):self.assertLess(path.stat().st_size,1500000 if path.stem=='perovskite' else 200000,path.name)
+  for path in (ROOT/'data').glob('*.json'):self.assertLess(path.stat().st_size,1500000 if path.stem=='perovskite' else 400000 if path.stem=='prismatic' else 200000,path.name)
  def test_js_payload_matches_json(self):
   for key in builder.ADAPTERS:
    js=(ROOT/'data'/f'{key}.js').read_text();payload=js.split('['+json.dumps(key)+']=',1)[1].rsplit(';',1)[0]
@@ -37,6 +37,19 @@ class BundleTests(unittest.TestCase):
   for key in builder.ADAPTERS:
    tree=ET.parse(ROOT/'diagrams'/f'{key}.svg');texts=tree.findall('.//{http://www.w3.org/2000/svg}text');self.assertGreater(len(texts),10)
    for t in texts:self.assertIn('fill',t.attrib);self.assertIn('font-family',t.attrib)
+ def test_release_manifest_inventory_and_checksums(self):
+  manifest=json.loads((ROOT/'release_manifest.json').read_text())
+  self.assertEqual(manifest['source_commit'],builder.COMMIT)
+  entries=manifest['files'];self.assertEqual(len(entries),len({entry['path'] for entry in entries}))
+  expected={p.relative_to(ROOT).as_posix() for p in ROOT.rglob('*') if p.is_file()
+   and not any(part.startswith('.') or part=='__pycache__' for part in p.relative_to(ROOT).parts)
+   and p.name not in {'release_manifest.json','ScienceGym-Task-Explorer.html'}
+   and p.suffix in {'.md','.js','.json','.py','.html','.css','.svg'}}
+  self.assertEqual({entry['path'] for entry in entries},expected)
+  for entry in entries:
+   payload=(ROOT/entry['path']).read_bytes()
+   self.assertEqual(len(payload),entry['bytes'],entry['path'])
+   self.assertEqual(hashlib.sha256(payload).hexdigest(),entry['sha256'],entry['path'])
  def test_local_assets_and_no_network_runtime(self):
   page=(ROOT/'index.html').read_text()
   for file in re.findall(r'(?:src|href)="([^"#]+)"',page):

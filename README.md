@@ -32,13 +32,13 @@ These are authored static/kinematic states. Millimetre-scale leg geometry is exp
 
 [Open the offline explorer guide](viewer/task_explorer_v1/README.md) to inspect branches, robot actions, objects, sample states, source evidence and recovery. Download the folder and open index.html locally; GitHub shows HTML as code rather than running it.
 
-Seven visual route maps readable directly on GitHub: [Chiral](viewer/task_explorer_v1/docs/chiral.md) · [Deconwolf](viewer/task_explorer_v1/docs/microscopy.md) · [Fibres](viewer/task_explorer_v1/docs/fibre.md) · [Thermoelectric](viewer/task_explorer_v1/docs/thermoelectric.md) · [diSPIM](viewer/task_explorer_v1/docs/dispim.md) · [Acoustics](viewer/task_explorer_v1/docs/acoustic.md) · [Perovskite](viewer/task_explorer_v1/docs/perovskite.md).
+Eight visual route maps readable directly on GitHub: [Chiral](viewer/task_explorer_v1/docs/chiral.md) · [Deconwolf](viewer/task_explorer_v1/docs/microscopy.md) · [Fibres](viewer/task_explorer_v1/docs/fibre.md) · [Thermoelectric](viewer/task_explorer_v1/docs/thermoelectric.md) · [diSPIM](viewer/task_explorer_v1/docs/dispim.md) · [Acoustics](viewer/task_explorer_v1/docs/acoustic.md) · [Perovskite](viewer/task_explorer_v1/docs/perovskite.md) · [Prismatic](viewer/task_explorer_v1/docs/prismatic.md).
 
-These are task-design references, not executed robot trajectories. Nested loops, repeated operations and unresolved conditions remain explicit. [Verification and limitations](viewer/task_explorer_v1/VERIFICATION.md).
+This author/evaluator logical inspector covers 172 route/configuration records and 1,267 operation definitions. These are task-design references, not executed robot trajectories or a new 3D storyboard. Nested loops, repeated operations and unresolved conditions remain explicit; unknown loops are not expanded. Prismatic operation membership follows partial-order constraints, with nested material/target and thickness/target coverage, independent campaign branches and conditional recovery. [Verification and limitations](viewer/task_explorer_v1/VERIFICATION.md).
 
 ## Visual task routes
 
-The first visual route shows every listed R01 operation and the complete chiral branch index. Dashed connectors represent the authored reference order, not an executed trajectory or a recovered author chronology. The seven-paper offline interactive explorer is available below.
+The first visual route shows every listed R01 operation and the complete chiral branch index. Dashed connectors represent the authored reference order, not an executed trajectory or a recovered author chronology. The eight-paper offline interactive explorer is linked above.
 
 [![Chiral metamaterials: complete R01 task route and branch index](docs/visualizations/chiral_r01.svg)](docs/visualizations/chiral_r01.svg)
 
@@ -75,7 +75,7 @@ Reported literature values, authored mock outputs and unknown or invalid observa
 
 ## Included task families
 
-The seven packages have undergone design review and static consistency checks. These are draft representations of reported scope, not human expert certification or completed robotic reproductions.
+The eight packages have undergone design review and static consistency checks. These are draft representations of reported scope, not human expert certification or completed robotic reproductions.
 
 | Task family | Reported program represented | Entry point |
 | --- | --- | --- |
@@ -90,7 +90,7 @@ The seven packages have undergone design review and static consistency checks. T
 
 All published task narratives and structured descriptions are in English. Structured specifications and source identifiers accompany each package.
 
-The seven-paper logical explorer includes the perovskite design. The new prismatic family is available as a source-audited task-design package and is not yet integrated into that explorer. Its [independent contract tests](tasks/prismatic_operations_v2/tests/VALIDATION_REPORT.md) cover 40 public checks plus an optional primary-source-byte check. Embodied visual storyboards currently cover selected chiral and thermoelectric routes only. Configuration, branch and operation counts describe the representation; they are not counts of independent experiments or successful executions.
+The eight-paper logical explorer includes both perovskite and prismatic. Prismatic contributes 12 route/configuration records and 49 operation definitions across seven practical families; the existing seven paper-level families retain their semantics. Prismatic's [independent contract tests](tasks/prismatic_operations_v2/tests/VALIDATION_REPORT.md) cover 40 public checks plus an optional primary-source-byte check. Embodied visual storyboards currently cover selected chiral and thermoelectric routes only. Configuration, branch and operation counts describe the representation; they are not counts of independent experiments or successful executions.
 
 ## Quick start: inspect a task
 
@@ -125,7 +125,7 @@ The command checks:
 
 - All repository JSON outside tool/cache directories, including new task drafts, for valid syntax, duplicate keys and non-JSON numeric constants
 - The existing English hygiene check and focused verifier regression tests
-- The existing seven-family explorer tests with `SCIENCEGYM_TASKS` explicitly bound to this checkout's `tasks` directory, so source-comparison tests cannot silently skip
+- The explorer tests with `SCIENCEGYM_TASKS` explicitly bound to this checkout's `tasks` directory, so source-comparison tests cannot silently skip
 - JavaScript syntax and the explorer plus both embodied players' mocked-DOM tests
 - All 71 storyboard frame images against their published render hashes, any per-frame image hashes, and applicable image-only export checksums, including overview/contact-sheet images
 

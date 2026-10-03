@@ -8,13 +8,13 @@ Paper-wide source-reported program plus authored gap connectors; preset outputs 
 
 **Reading rule:** numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed. An unordered obligation group has no inferred chronological edges. Source-reported scientific facts and authored handling are distinct.
 
-[Immutable source task package](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/) · [Interactive inspector](../index.html)
+[Immutable source task package](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/) · [Interactive inspector](../index.html)
 
 ## tubulin — U-2 OS tubulin: culture → immunostain → matched confocal/widefield
 
 Preparation list and authored handling sequence; acquisition obligations do not imply a single source order
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/0`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/0`
 
 - `tubulin__tub_seed` Place round carrier in an authored culture dish; seed source U-2 OS stock
 - `tubulin__tub_grow` Load closed culture carrier into incubator and grow
@@ -89,7 +89,7 @@ Preparation list and authored handling sequence; acquisition obligations do not 
 
 Preparation list and authored handling sequence; acquisition obligations do not imply a single source order
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/1`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/1`
 
 - `ifish__if_seed` Place square coverslip in labeled six-well position and seed HAP1
 - `ifish__if_grow` Incubate HAP1 culture and inspect confluency fixture
@@ -193,7 +193,7 @@ Preparation list and authored handling sequence; acquisition obligations do not 
 
 Preparation list and authored handling sequence; acquisition obligations do not imply a single source order
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/2`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/2`
 
 - `gapdh__gap_culture` Seed carrier and incubate SKBR3 source stock
 - `gapdh__gap_unreported_prep` Execute labeled generic fixation/permeabilization preparation card
@@ -265,7 +265,7 @@ Preparation list and authored handling sequence; acquisition obligations do not 
 
 Preparation list and authored handling sequence; acquisition obligations do not imply a single source order
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/3`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/3`
 
 - `tissue__tis_fix` Fix supplied frozen tissue section
 - `tissue__tis_pbs` Rinse section twice · **repeat contract**
@@ -341,7 +341,7 @@ Preparation list and authored handling sequence; acquisition obligations do not 
 
 Preparation list and authored handling sequence; acquisition obligations do not imply a single source order
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/4`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/4`
 
 - `gfap__g_cut` Set section thickness and cut/place section using authored microtome proxy
 - `gfap__g_bake` Transfer section to heating plate
@@ -412,7 +412,7 @@ Preparation list and authored handling sequence; acquisition obligations do not 
 
 Preparation list and authored handling sequence; acquisition obligations do not imply a single source order
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/5`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/wet_lab_branches/5`
 
 - `nuclear_pores__p_identity` Read unresolved source identity/fluorophore warning and register task specimen
 - `nuclear_pores__p_upstream` Run explicit generic preparation card for source-unreported culture/fixation/permeabilization
@@ -473,7 +473,7 @@ Preparation list and authored handling sequence; acquisition obligations do not 
 
 Listed data obligations; no chronological arrows asserted
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/0`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/0`
 
 - **OBLIGATIONS: Data-action obligations; order not asserted**
   - `software_benchmark__action_1` Select source-matched raw/truth pair; preserve identity
@@ -508,7 +508,7 @@ Listed data obligations; no chronological arrows asserted
 
 Listed data obligations; no chronological arrows asserted
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/1`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/1`
 
 - **OBLIGATIONS: Data-action obligations; order not asserted**
   - `psf__action_1` Verify 36plex identity, distinct from 46plex tracing data
@@ -542,7 +542,7 @@ Listed data obligations; no chronological arrows asserted
 
 Listed data obligations; no chronological arrows asserted
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/2`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/2`
 
 - **OBLIGATIONS: Data-action obligations; order not asserted**
   - `boundary__action_1` Select original and derived cropped copies; preserve raw full stack
@@ -577,7 +577,7 @@ Listed data obligations; no chronological arrows asserted
 
 Listed data obligations; no chronological arrows asserted
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/3`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/3`
 
 - **OBLIGATIONS: Data-action obligations; order not asserted**
   - `synthetic_dots__action_1` Choose declared density/noise condition
@@ -611,7 +611,7 @@ Listed data obligations; no chronological arrows asserted
 
 Listed data obligations; no chronological arrows asserted
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/4`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/4`
 
 - **OBLIGATIONS: Data-action obligations; order not asserted**
   - `isst__action_1` Import raw cycle/FOV/channel lineage
@@ -646,7 +646,7 @@ Listed data obligations; no chronological arrows asserted
 
 Listed data obligations; no chronological arrows asserted
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/5`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/5`
 
 - **OBLIGATIONS: Data-action obligations; order not asserted**
   - `oligofisseq__action_1` Keep five imaging/sequencing cycles in source data lineage
@@ -683,7 +683,7 @@ Listed data obligations; no chronological arrows asserted
 
 Listed data obligations; no chronological arrows asserted
 
-[Exact route source](https://github.com/openags/ScienceGym/blob/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/6`
+[Exact route source](https://github.com/openags/ScienceGym/blob/e27d456e2fe99bec9100cc37f7bcd68485504c2b/tasks/microscopy_operations_v2/operation_sequences.json) · JSON pointer: `/data_workstation_branches/6`
 
 - **OBLIGATIONS: Data-action obligations; order not asserted**
   - `rln_comparator__action_1` Keep this external U-2 OS sample separate from in-paper alpha-tubulin specimen

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for seven public task schemas."""
+"""Deterministic, standard-library-only adapters for eight public task schemas."""
 import argparse, json, pathlib, hashlib, html, textwrap
 ROOT=pathlib.Path(__file__).resolve().parent
-COMMIT='ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca'
+COMMIT='e27d456e2fe99bec9100cc37f7bcd68485504c2b'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
-NAMES={'perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
-COLORS={'perovskite':'#ca7188','chiral':'#8d6bce','microscopy':'#268e96','fibre':'#dc8654','thermoelectric':'#d7aa36','dispim':'#598bd1','acoustic':'#8aaf58'}
+NAMES={'prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
+COLORS={'prismatic':'#4db7ad','perovskite':'#ca7188','chiral':'#8d6bce','microscopy':'#268e96','fibre':'#dc8654','thermoelectric':'#d7aa36','dispim':'#598bd1','acoustic':'#8aaf58'}
 
 def read(p,name): return json.loads((p/name).read_text())
 def optional(p,name): return read(p,name) if (p/name).exists() else None
@@ -216,7 +216,152 @@ def adapt_microscopy(p):
            'basis':'Listed data obligations; no chronological arrows asserted','detail':without(b,{'id','title','actions'}),'source_file':'operation_sequences.json','source_pointer':f'/data_workstation_branches/{i}'})
     return f
 
-ADAPTERS={'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic}
+
+def prismatic_replace(items, replacements):
+    """Replace a declared membership body once, without adding chronology.
+
+    A changed source shape fails closed instead of dropping templates or guessing
+    how overlapping loop bodies nest. The expansion contract supplies nesting.
+    """
+    result=list(items)
+    for body,node in replacements:
+        starts=[i for i in range(len(result)-len(body)+1) if result[i:i+len(body)]==body]
+        if not body or len(starts)!=1:
+            raise ValueError('Prismatic loop body must have one exact membership match: '+str(body))
+        i=starts[0];result[i:i+len(body)]=[node]
+    return result
+
+def prismatic_loop(loop, children):
+    meta=without(loop,{'body'})
+    if isinstance(loop.get('values'),list):
+        binding=(str(len(loop['values']))+' slot bindings, not specimens') if loop['loop_id']=='array_slots' else ', '.join(map(str,loop['values']))
+    else:
+        binding='unknown; supplied '+str(loop.get('values_from',loop.get('count_from','input required')))
+    return {'type':'loop','label':loop['loop_id']+' · each '+loop['iterator']+' · '+binding,
+            'meta':meta,'children':children,'ordered':False,'symbolic':True}
+
+def prismatic_nodes(branch, branches):
+    """Author/evaluator membership view; no inferred serial execution path."""
+    loops={x['loop_id']:x for x in branch['loops']}
+    expansion=branch['loop_expansion']
+    if len(loops)!=len(branch['loops']):raise ValueError('Duplicate prismatic loop ID')
+    if expansion['type']=='subcampaign_dispatch':
+        dispatch=loops[expansion['outer']]
+        if not isinstance(dispatch['body'],str):raise ValueError('Unknown dispatch body schema')
+        children=[]
+        for bid in dispatch['values']:
+            child=branches[bid]
+            if child['loop_expansion']['type']=='subcampaign_dispatch':raise ValueError('Recursive campaign dispatch')
+            children.append({'type':'obligations','label':bid+' · '+child['title'],
+                'meta':{'order':'Independent subcampaign; no chronology between branches',
+                        'branch_id':bid,'source_pointer':'/branches/'+str(list(branches).index(bid)),
+                        'loop_expansion':child['loop_expansion']},
+                'children':prismatic_nodes(child,branches),'ordered':False})
+        return [{'type':'obligations','label':'Independent subcampaign dispatch · each branch retains its own loops',
+                 'meta':{'dispatch':dispatch,'loop_expansion':expansion,
+                         'order':'No edges or shared sample identity inferred between subcampaigns'},
+                 'children':children,'ordered':False}]
+
+    replacements=[]
+    used=set()
+    def node(lid):
+        loop=loops[lid];used.add(lid);children=list(loop['body'])
+        if 'inner_repetitions' in loop:
+            repetition=loop['inner_repetitions']
+            children=[{'type':'loop','label':repetition['input']+' · supplied count: '+('unknown' if repetition['value'] is None else str(repetition['value'])),
+                       'meta':repetition,'children':children,'ordered':False,'symbolic':True}]
+        return prismatic_loop(loop,children)
+
+    kind=expansion['type']
+    if kind in ('nested','nested_with_setup'):
+        outer=expansion['outer']
+        expected_inner={'target_attempts':['attempts_per_target'],
+                        'hinge_material':['target_attempts','attempts_per_target'],
+                        'array_thickness':['target_attempts','attempts_per_target'],
+                        'target_class':['target_ids_for_class','attempts_per_target'],
+                        'pneumatic_programs':['attempts_per_program']}
+        if expansion.get('inner')!=expected_inner.get(outer):
+            raise ValueError('Unknown prismatic inner binding: '+str(expansion.get('inner')))
+        outer_node=node(outer)
+        inner=[]
+        if kind=='nested_with_setup':
+            setup=expansion['per_outer_setup_loop'];inner.append((loops[setup]['body'],node(setup)))
+        # Boundary targets are selected by class, not one global Cartesian grid.
+        if outer in ('hinge_material','array_thickness','target_class'):
+            target=node('target_attempts')
+            if outer=='array_thickness':
+                target['meta']={**target['meta'],'targets_from':expansion['condition_target_grid']['targets_from'],
+                                'null_target_list_blocks':expansion['condition_target_grid']['null_target_list_blocks']}
+            if outer=='target_class':
+                target['meta']={**target['meta'],'targets_from':expansion['target_ids_from'],
+                                'null_class_target_list_blocks':expansion['null_class_target_list_blocks']}
+            inner.append((loops['target_attempts']['body'],target))
+            outer_node['children']=prismatic_replace(outer_node['children'],inner)
+        elif outer=='pneumatic_programs':
+            outer_node['children']=[{'type':'loop','label':'attempts_per_program · supplied repetitions required',
+                'meta':{'input':expansion['inner'][0],'counts_from':expansion['counts_from'],
+                        'no_inferred_four_programs':expansion['no_inferred_four_programs']},
+                'children':outer_node['children'],'ordered':False,'symbolic':True}]
+        elif outer!='target_attempts':raise ValueError('Unknown prismatic outer loop: '+outer)
+        replacements.append((loops[outer]['body'],outer_node))
+    elif kind=='sequential_then_nested':
+        for lid in [expansion['setup_loop'],expansion['observation_nesting'][0]]:
+            replacements.append((loops[lid]['body'],node(lid)))
+    elif kind=='sequential_stages':
+        for stage in expansion['stages']:
+            lid=stage['loop'];replacements.append((loops[lid]['body'],node(lid)))
+    else:raise ValueError('Unknown prismatic loop expansion type: '+kind)
+    if used!=set(loops):raise ValueError('Unmapped prismatic loops: '+str(set(loops)-used))
+    children=prismatic_replace(branch['operation_ids'],replacements)
+    # CUBE_SWITCH is a between-condition obligation, not an unconditional step.
+    for loop in loops.values():
+        if loop.get('between_conditions'):
+            body=loop['between_conditions']
+            children=prismatic_replace(children,[(body,{'type':'obligations',
+                'label':'Between conditions only · '+loop['loop_id'],
+                'meta':{'between_conditions':body,'identity_option':loop['identity_option']},
+                'children':body,'ordered':False})])
+    nodes=[{'type':'obligations','label':'Operation template membership · partial order only',
+            'meta':{'order':'No list-order edges asserted; inspect explicit dependencies and loop_expansion',
+                    'loop_expansion':expansion},'children':children,'ordered':False}]
+    if branch['conditional_recovery_operation_ids']:
+        nodes.append({'type':'obligations','label':'Conditional recovery only · not a required normal-route step',
+                      'meta':{'activation':'Only when source recovery conditions apply'},
+                      'children':list(branch['conditional_recovery_operation_ids']),'ordered':False})
+    return nodes
+
+def adapt_prismatic(p):
+    f=core(p,'prismatic'); raw=read(p,'operations.json'); b=read(p,'branches.json')
+    f['status']='Author/evaluator logical inspector; symbolic task design only; no embodied execution, simulation or actor projection'
+    f['default_route']='CUBE_HINGE_COMPARISON'
+    f['dependencies']=read(p,'dependencies.json')
+    f['context']['branch_policy']=without(b,{'branches'})
+    f['context']['operation_policy']=without(raw,{'operations'})
+    # Preserve complete public reference contracts, with their source visibility tags.
+    for name in ['control_packages','material_cards','asset_needs','source_conflicts','source_outcomes',
+                 'agent_visible','RELEASE_BOUNDARY','episode_input_contract','station_contracts',
+                 'mock_contract','coverage_matrix','nonmanual_scope','source_access_audit']:
+        f['context'][name]=read(p,name+'.json')
+    f['context']['provenance']=read(p,'provenance.json')
+    f['context']['independent_source_audit']=read(p,'independent_source_audit/audit.json')
+    name='independent_source_audit/audit.json'
+    f['source_files'][name]={'url':source(p,name),'sha256':hashlib.sha256((p/name).read_bytes()).hexdigest()}
+    for original,mapped in zip(raw['operations'],f['operations']):
+        mapped['unknowns']=original['unknown_parameter_ids']
+        mapped['objects']=['No per-operation target-asset-role list supplied; inspect material, station and lineage contracts']
+        mapped['acceptance']='No per-operation observable_completion field supplied; inspect postconditions and family evaluator acceptance (reference only)'
+    branches={r['id']:r for r in b['branches']}
+    for i,r in enumerate(b['branches']):
+        selected_ids=[r['id']]
+        if r['loop_expansion']['type']=='subcampaign_dispatch':selected_ids=r['loops'][0]['values']
+        controls=[c for c in f['context']['control_packages']['control_packages'] if set(c['branch_ids'])&set(selected_ids)]
+        f['routes'].append({'id':r['id'],'label':r['title'],'nodes':prismatic_nodes(r,branches),
+            'controls':controls,
+            'basis':'Unordered operation-template membership with source-declared nested loops; only explicit dependencies constrain order. No cardinalities expanded or execution claimed.',
+            'detail':without(r,{'id','title'}),'source_file':'branches.json','source_pointer':f'/branches/{i}'})
+    return f
+
+ADAPTERS={'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
 
 def walk(nodes,depth=0):
     for n in nodes:
@@ -252,6 +397,11 @@ def svg(f):
             out.append(f'<path d="M{int(x+w/2)},{y+64}v12" stroke="#708399" stroke-dasharray="3 3" marker-end="url(#arrow)"/>')
     out.append(f'<text x="48" y="{height-24}" class="small">Source snapshot {COMMIT[:12]} · Full branch routes and operation details: {f["id"]}.md and interactive explorer</text></svg>')
     result='\n'.join(out)
+    if f['id']=='prismatic':
+        result=result.replace('operation definitions · 12 route / branch records', 'operation templates · 12 configurations · 7 practical families')
+        result=result.replace('· every listed step', '· symbolic membership')
+        result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows: template membership is unordered. Only declared source dependencies constrain order.')
+        result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only.', 'Symbolic nested loop membership for the designated configuration, plus all 12 configurations. No chronological adjacency edges are inferred.')
     result=result.replace('<text ', '<text font-family="Arial, sans-serif" ')
     result=result.replace('class="muted"', 'fill="#a9b7c8" font-size="16"').replace('class="small"', 'fill="#a9b7c8" font-size="14"').replace('class="title"', 'fill="#f4f7fc" font-weight="700"')
     return result
@@ -271,7 +421,29 @@ def md(f):
                 if n.get('meta'):lines.append(indent+'  - Binding: '+json.dumps(n['meta'],ensure_ascii=False,separators=(',',':')))
         lines.extend(['','<details><summary>Branch state, choices, lineage and loop obligations</summary>','', '```json',json.dumps({k:resolve(f,v) for k,v in r['detail'].items()},ensure_ascii=False,indent=2),'```','','</details>',''])
     lines.extend(['## Operation contracts','','Every operation is clickable in the offline inspector, with robot actions, target objects, pre/post state, provenance, unknowns and acceptance/recovery. Raw task JSON is the source of truth; this visualization is a public evaluator/reference view, not an agent prompt.',''])
+    if f['id']=='prismatic':
+        lines.extend(['## Reference contracts and boundaries','',
+          'This is an author/evaluator logical inspector. Operation lists are membership inventories, not a fixed solution. Null repetition counts remain blocked inputs. Conditional recovery is not a required normal step. The whole-paper configuration dispatches independent subcampaigns without merging identity or output claims.','',
+          'All 49 operation templates, 12 configurations and 7 practical families are retained. Cube material × target coverage contains 16 scheduled cells, not 16 specimens or successful states. Thickness × target coverage remains blocked while its target list is null.',''])
+        for key in ['control_packages','unknown_parameters','source_conflicts','lineage_contract','agent_visible','RELEASE_BOUNDARY','evaluator_reference','independent_source_audit/audit']:
+            filename=key+'.json'
+            lines.append(f'- [{key.replace("_", " ")}]({f["source_files"][filename]["url"]})')
+        lines.append('')
+        result='\n'.join(lines)
+        return result.replace('numbered rows preserve reference-list occurrences.', 'rows show unordered template membership; only declared dependencies impose order.')
     return '\n'.join(lines)
+
+def write_release_manifest():
+    files=[]
+    for path in sorted(ROOT.rglob('*')):
+        relative=path.relative_to(ROOT)
+        if (not path.is_file() or any(part.startswith('.') or part=='__pycache__' for part in relative.parts)
+                or path.name in {'release_manifest.json','ScienceGym-Task-Explorer.html'}
+                or path.suffix not in {'.md','.js','.json','.py','.html','.css','.svg'}):continue
+        payload=path.read_bytes()
+        files.append({'path':relative.as_posix(),'bytes':len(payload),'sha256':hashlib.sha256(payload).hexdigest()})
+    (ROOT/'release_manifest.json').write_text(json.dumps({'source_commit':COMMIT,
+        'repository_destination':'viewer/task_explorer_v1/','files':files},indent=2)+'\n')
 
 def main():
     parser=argparse.ArgumentParser(); parser.add_argument('--tasks',type=pathlib.Path,default=ROOT.parent.parent/'tasks');parser.add_argument('--only',choices=list(ADAPTERS));args=parser.parse_args()
@@ -283,5 +455,14 @@ def main():
         (ROOT/'diagrams'/f'{key}.svg').write_text(svg(f));(ROOT/'docs'/f'{key}.md').write_text(md(f))
         manifest.append({'id':key,'operations':len(f['operations']),'routes':len(f['routes']),'bytes':len(encoded.encode())})
         print(manifest[-1])
+    if args.only:
+        manifest=[]
+        for key in ADAPTERS:
+            data_path=ROOT/'data'/f'{key}.json'
+            if not data_path.exists():raise ValueError('Build all families before using --only')
+            f=json.loads(data_path.read_text())
+            manifest.append({'id':key,'operations':len(f['operations']),'routes':len(f['routes']),
+                             'bytes':len(data_path.read_bytes().rstrip(b'\n'))})
     (ROOT/'manifest.json').write_text(json.dumps({'commit':COMMIT,'families':manifest},indent=2)+'\n')
+    write_release_manifest()
 if __name__=='__main__':main()

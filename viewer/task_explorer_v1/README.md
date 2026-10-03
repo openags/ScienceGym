@@ -1,8 +1,10 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** Seven public paper-level task families, with complete reference-route occurrences, nested repetition, objects, state transitions and evidence.
+**See the task before reading its JSON.** Eight public paper-level task families, with reference-route occurrences, partial-order memberships, nested repetition, objects, state transitions and evidence.
 
-This is a **read-only public reference inspector**, including evaluator material. It is not a simulator, a task runner, an actor-facing prompt or evidence that a robot performed any operation. The source release has **zero validated runnable whole-paper tasks**.
+The explorer contains **172 route/configuration records and 1,267 operation definitions**: the existing seven families contribute 160 records and 1,218 definitions; prismatic adds 12 records and 49 definitions across seven practical families. These are representation counts, not completed experiments or independent specimens.
+
+This is a **read-only author/evaluator logical inspector**, including public reference and evaluator material. It is not a simulator, a task runner, an actor-facing prompt or evidence that a robot performed any operation. This integration adds no new 3D storyboard. The source release has **zero validated runnable whole-paper tasks**.
 
 ## Start here
 
@@ -13,9 +15,9 @@ This is a **read-only public reference inspector**, including evaluator material
 
 GitHub displays HTML source rather than running it. The diagrams and Markdown routes below are readable directly on GitHub.
 
-## Seven visual route maps
+## Eight visual route maps
 
-Each SVG shows every listed step in its designated reference route: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01 and Acoustic WHOLE_PAPER_PRACTICAL. The right-hand index lists every route choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes, not just the pictured route.
+Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fibre OPTO_SI, thermoelectric PAIRED_TWO, diSPIM D-R01, Acoustic WHOLE_PAPER_PRACTICAL, perovskite SPIN_MODULES and prismatic CUBE_HINGE_COMPARISON. Prismatic views distinguish operation membership, independent subcampaigns, conditional recovery and symbolic loops; they do not turn the membership list into a chronological route. The right-hand index lists every route/configuration choice. SVGs are deliberately long: no operation is silently removed. Each Markdown page includes **all** family routes/configurations, not just the pictured view.
 
 | Family | Diagram | Every branch and route |
 | --- | --- | --- |
@@ -25,18 +27,24 @@ Each SVG shows every listed step in its designated reference route: Chiral R01, 
 | Thermoelectric devices | [Full SVG](diagrams/thermoelectric.svg) | [15 route records](docs/thermoelectric.md) |
 | diSPIM microscopy | [Full SVG](diagrams/dispim.svg) | [7 route templates, plus original branch contracts](docs/dispim.md) |
 | Helical acoustics | [Full SVG](diagrams/acoustic.svg) | [8 route records, with nested loops](docs/acoustic.md) |
+| Perovskite solar modules | [Full SVG](diagrams/perovskite.svg) | [40 route templates](docs/perovskite.md) |
+| Prismatic metamaterials | [Full SVG](diagrams/prismatic.svg) | [12 route/configuration records across seven practical families](docs/prismatic.md) |
 
 ![Chiral first reference route and all branch choices](diagrams/chiral.svg)
 
 ## What the graph means
 
 - Scientific stages may be source-reported; robot interfaces, transport, fixture handling and recovery are separately authored task designs
-- Dashed connectors and downward UI arrows indicate the package's **reference list order**, not recovered author chronology or the only valid robot trajectory
+- For ordered reference sequences, dashed connectors and downward UI arrows indicate the package's **reference list order**, not recovered author chronology or the only valid robot trajectory
+- Prismatic `operation_ids` declare **membership governed by partial-order constraints**, not chronology. Whole-paper campaign dispatch keeps the eleven component branches independent; it does not impose an order between them
+- Prismatic material × target × attempt and thickness × target × attempt coverage remains nested. Unknown loop values/counts are not expanded, replaced with zero or treated as successful empty loops
+- Prismatic `QUARANTINE` is conditional recovery, not a mandatory step in every route
 - Acquisition/data obligation groups have **no inferred order between children**. Explicit source order annotations remain in each operation's provenance
 - Acoustic loops retain the original loop variable, values, body and completion rule. The viewer shows one body template; it does not treat that as one completed repeated experiment
 - Repeated scalar IDs in a route remain distinct occurrences. diSPIM's P001/P004 and the fibre P/N prefixes are not deduplicated
 - Required transport insertions, sample cardinality, resource exclusions and incomplete inputs remain explicit obligations. The explorer does not silently satisfy them
 - Counts describe the representation, not independent experiments, samples or successful executions
+- Where the source provides no per-operation object-role list, the inspector labels that absence explicitly rather than inventing target roles
 - Unknown real parameters and authored placeholders are never reclassified as measured facts
 
 ## Files and source fidelity
@@ -45,11 +53,11 @@ Each SVG shows every listed step in its designated reference route: Chiral R01, 
 - `data/<family>.json`: compact, inspectable normalized records
 - `data/<family>.js`: the same JSON as a local-script assignment so `file://` does not require fetch
 - `diagrams/*.svg`, `docs/<family>.md`: GitHub-native alternatives
-- `build.py`: seven explicit source-schema adapters, standard library only
-- `tests/test_semantics.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
+- `build.py`: eight explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
+- `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 
-The immutable source snapshot is [openags/ScienceGym at 2f926a9d2c2b](https://github.com/openags/ScienceGym/tree/ebf366bde7d8b8fd0899165d168a9f8f7c43c8ca). Every source JSON link is pinned to that commit. Per-file SHA-256 values are retained in each data file. The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
+The immutable source snapshot is [openags/ScienceGym at e27d456e2fe99bec9100cc37f7bcd68485504c2b](https://github.com/openags/ScienceGym/tree/e27d456e2fe99bec9100cc37f7bcd68485504c2b). Every source JSON link is pinned to that commit. Per-file SHA-256 values are retained in each data file. The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
 
 ## Rebuild and test
 
