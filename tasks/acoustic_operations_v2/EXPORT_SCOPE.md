@@ -1,6 +1,6 @@
 # Public task-design scope
 
-This is a newly authored paper-grounded task specification, not a runnable environment, scene bundle, controller, laboratory protocol deployment or scientific reproduction. ScienceGym owns the task design; supporting scenes/assets belong to the separate Hooke workstream.
+This is a newly authored paper-grounded task specification, not a runnable environment, scene bundle, controller, laboratory protocol deployment or scientific reproduction. ScienceGym specifies the task design and the requirements for supporting scenes and assets; runtime scene and asset bindings remain to be implemented and validated.
 
 The authored project is covered by the repository's existing Apache-2.0 LICENSE. Cited publications, omitted source media, data, third-party code and supporting assets retain their respective terms. This export does not relicense them or claim their redistribution clearance.
 

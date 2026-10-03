@@ -1,6 +1,8 @@
 # Public task-specification export
 
-ScienceGym develops long-horizon robot experimental task families from scientific papers. The core artifacts here are task goals, operation sequences, dependencies, object lineage, controls, evaluator references, recovery rules, and explicitly unresolved source requirements. Scene and asset reconstruction belongs to Hooke; this snapshot records interfaces to those supporting artifacts rather than bundling them.
+This note describes the original seven-package export. Later standalone-presentation wording updates do not refresh its historical EXPORT_MANIFEST.json receipt; use the root README and current release checks for the expanded repository.
+
+ScienceGym develops long-horizon robot experimental task families from scientific papers. The core artifacts here are task goals, operation sequences, dependencies, object lineage, controls, evaluator references, recovery rules, and explicitly unresolved source requirements. This snapshot records laboratory scene and asset interfaces; the supporting scene and asset implementations are not bundled.
 
 ## Included
 

@@ -53,7 +53,7 @@ Scientific work connects many individually simple actions across long intervals 
 - **Controls and repetition:** paired conditions, repeated observations and same-specimen cycles kept distinct from independent samples
 - **Recovery:** failed attempts remain in the record; damage, contamination or an invalid measurement cannot be erased by relabeling an object
 
-ScienceGym's task layer specifies these obligations. [Hooke](https://github.com/RobotEurekaLab/Hooke) is the separate companion project for supporting laboratory scenes and assets. Asset requirements and bindings appear in the task packages, but a scene or addressable object alone does not establish an executable task.
+ScienceGym is an independent project whose task layer specifies these obligations. Laboratory scene and asset requirements appear in its task packages; implementing and validating those bindings remains future work. A scene or addressable object alone does not establish an executable task.
 
 ## Task design
 
@@ -146,7 +146,7 @@ The older `scripts/verify_export.py` checks the original `EXPORT_MANIFEST.json` 
 
 The current milestone is **source-grounded task design**. Runtime state transitions, manipulation interfaces, navigation, trusted event logging and end-to-end evaluation still need implementation and validation. Some procedures use closed-service abstractions; their internal human microactions are not fully reconstructed. Missing scientific parameters, geometry, calibration and operational details remain explicit gaps.
 
-Next steps are to implement selected complete episodes, bind the required Hooke assets and interactions, validate initial states and sample histories, and test both successful routes and recovery cases. Only then can executable coverage be assessed separately from design coverage.
+Next steps are to implement selected complete episodes, bind the required laboratory assets and interactions, validate initial states and sample histories, and test both successful routes and recovery cases. Only then can executable coverage be assessed separately from design coverage.
 
 Physical simulation is paused. No whole-paper robot execution or physical scientific reproduction is claimed. The work remains an early research prototype and does not establish publication-ready experimental evidence.
 

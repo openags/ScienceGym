@@ -1,6 +1,6 @@
 # Whole-paper helical acoustic metamaterial operation-task design
 
-See `EXPORT_SCOPE.md` for the public-copy boundary. This directory is a reviewable task design; referenced source archives and Hooke assets are not bundled.
+See `EXPORT_SCOPE.md` for the public-copy boundary. This directory is a reviewable task design; referenced source archives and supporting laboratory assets are not bundled.
 
 This package converts Zhu et al.'s 2016 paper, Implementation of dispersion-free slow acoustic wave propagation and phase engineering with helical-structured metamaterials, into a task family spanning raw materials, manufacture, cell measurements, lens assembly, field scanning, archiving and reset. DOI: [10.1038/ncomms11731](https://doi.org/10.1038/ncomms11731). It is a hands-on operation-task design for ScienceGym; scientific readings may use explicitly labeled preset responses.
 

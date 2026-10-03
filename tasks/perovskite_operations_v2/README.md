@@ -12,7 +12,7 @@ Start with **TASK_DESIGN.md** for the complete English design or **FIRST_ROUTE_M
 - Lineage, control/repeat, mock-observation, recovery, station-interface and cleanup contracts are explicit
 - Release checks and historical authoring status are kept outside this task-only export; no runtime or scientific validation is claimed
 
-All hazard-bearing processing uses inert closed-service proxies. Physical simulation is paused. Hooke supplies scenes separately. No real hardware/chemistry, installations, remote/Git changes or raw publisher-source exports occurred.
+All hazard-bearing processing uses inert closed-service proxies. Physical simulation is paused. Laboratory scene implementations are not included. No real hardware/chemistry, installations, remote/Git changes or raw publisher-source exports occurred.
 
 Source gaps do not disappear because the task design is complete. Referenced external syntheses, conflicting source numbers, incomplete assay-specific preparation and unknown original replicate counts remain explicit.
 

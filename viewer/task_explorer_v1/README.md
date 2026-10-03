@@ -61,7 +61,7 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 - `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 
-The immutable source snapshot is [openags/ScienceGym at 293e32da790303c1a17131e036235f69a5f342e0](https://github.com/openags/ScienceGym/tree/293e32da790303c1a17131e036235f69a5f342e0). Every source JSON link is pinned to that commit. Per-file SHA-256 values are retained in each data file. The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
+The immutable source snapshot is [openags/ScienceGym at 293e32da790303c1a17131e036235f69a5f342e0](https://github.com/openags/ScienceGym/tree/293e32da790303c1a17131e036235f69a5f342e0). Every source JSON link is pinned to that historical commit. Per-file SHA-256 values describe the local task files used to build this viewer. The 2026-10-03 standalone-presentation update changes scene-binding wording in three local perovskite metadata files; those local hashes therefore differ from the linked historical bytes, while scientific task contracts remain unchanged. See [verification](VERIFICATION.md). The original task JSON remains authoritative. No source PDFs, paper images or third-party assets are redistributed.
 
 ## Rebuild and test
 

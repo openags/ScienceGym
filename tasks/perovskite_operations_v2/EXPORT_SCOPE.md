@@ -4,7 +4,7 @@ This is a newly authored, paper-grounded task-design reference. It is not a runn
 
 The authored project follows the repository's existing Apache-2.0 LICENSE. This export does not replace or modify that LICENSE. Cited publications, omitted publisher media, third-party software and supporting assets retain their respective terms and are not relicensed here.
 
-No manuscript, PDF, extracted full text, publisher image, screenshot, video, dataset, model weights, manufacturer CAD, scene binary, credential, executable loader or dynamic evaluator is included. Hooke scene and asset binding remains a separate dependency. Instrument and software names are source identifiers, not bundled or validated runtime integrations.
+No manuscript, PDF, extracted full text, publisher image, screenshot, video, dataset, model weights, manufacturer CAD, scene binary, credential, executable loader or dynamic evaluator is included. Laboratory scene and asset binding remains an unimplemented task-integration requirement. Instrument and software names are source identifiers, not bundled or validated runtime integrations.
 
 Source documents are represented by source-archive:///ding2024_perovskite/main.pdf and source-archive:///ding2024_perovskite/si.pdf. These intentionally non-resolving locators identify omitted historical evidence; they are not filesystem paths, download instructions or guaranteed available resources. Publisher URLs are citation links. Recorded source hashes identify historical reviewed bytes, not checksums of this transformed export. Historical pixel-inspection labels do not imply that local images are present.
 

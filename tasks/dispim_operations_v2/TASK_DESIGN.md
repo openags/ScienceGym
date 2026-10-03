@@ -1,6 +1,6 @@
 # Full-workflow long-horizon diSPIM robot task design
 
-See `EXPORT_SCOPE.md` for the public-copy boundary. This directory is a reviewable task design; referenced source archives and Hooke assets are not bundled.
+See `EXPORT_SCOPE.md` for the public-copy boundary. This directory is a reviewable task design; referenced source archives and supporting laboratory assets are not bundled.
 
 This design converts Kumar et al.'s diSPIM paper into a family of source-grounded, checkable robot tasks: manual installation and assembly, three-camera closed-loop alignment, reference-material preparation and quantitative calibration, followed by routine model-sample preparation, dual-view imaging, registration/reconstruction and closeout. The first route connects the entire workflow through embryo time-series archiving rather than starting with a prebuilt bead coverslip.
 

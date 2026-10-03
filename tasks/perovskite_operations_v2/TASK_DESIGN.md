@@ -4,7 +4,7 @@ Ding et al., *Dopant-additive synergism enhances perovskite solar modules*, Natu
 
 ## 1. What this package is
 
-This is a whole-paper experimental task design for long-horizon mobile manipulation. It covers the paper's reported preparation, fabrication, manipulation and measurement families, including independent controls, formulation panels, assay substrates, destructive characterization and long-duration histories. It is not an executable chemistry protocol, physical reproduction, scene/asset package, installed framework or new process-optimization campaign. Hooke provides scenes separately. Every hazard-bearing activity is an inert closed-service proxy, and physical simulation is paused.
+This is a whole-paper experimental task design for long-horizon mobile manipulation. It covers the paper's reported preparation, fabrication, manipulation and measurement families, including independent controls, formulation panels, assay substrates, destructive characterization and long-duration histories. It is not an executable chemistry protocol, physical reproduction, scene/asset package, installed framework or new process-optimization campaign. Laboratory scene implementations are not included. Every hazard-bearing activity is an inert closed-service proxy, and physical simulation is paused.
 
 The package contains 40 task templates, 96 named service-stage definitions and 752 expanded action specifications. These counts describe specification organization, not independent experiments, source replicates, scientific validation or paper quota credit. Conditional variants and event loops must be expanded according to their recorded contracts.
 
@@ -840,7 +840,7 @@ Evidence: [MATERIALS: Methods / Materials; cited syntheses are external dependen
 
 ### U02. Missing handling and apparatus interfaces
 
-Transfer vessels, sample counts, grips, switches, carriers, cleaning details and almost all safety interlocks are not reported. Explicit authored robotic interfaces; Hooke supplies scenes. No claim of recovered human microtrajectory.
+Transfer vessels, sample counts, grips, switches, carriers, cleaning details and almost all safety interlocks are not reported. Explicit authored robotic interfaces; laboratory scene bindings remain to be implemented and validated. No claim of recovered human microtrajectory.
 
 Evidence: [ETL: Compact TiO2 and SnO2-modified TiO2 preparation; PDF 8](https://www.nature.com/articles/s41586-024-07228-z.pdf); [CELL: Small-area device fabrication; PDF 8](https://www.nature.com/articles/s41586-024-07228-z.pdf); [FILM_MEASURE: Film characterization: XRD, GIWAXS, microscopy, DLS, SEM, absorption, XPS, PL, TRPL, PLQY; PDF 9](https://www.nature.com/articles/s41586-024-07228-z.pdf); [NMR: NMR spectroscopy, model interactions, HBA, operando VT/time-dependent and EXSY measurements; PDF 10, 11](https://www.nature.com/articles/s41586-024-07228-z.pdf)
 
@@ -957,7 +957,7 @@ The analysis ledger covers proposed chemical mechanisms, DFT, crystal refinement
 
 Separate release checks cover JSON parsing, unique IDs, operation/source/card/issue references, source-family and figure/table/note dispositions, actor/reference boundaries, action expansion, source hashes, module ordering, conditional routes, source-specific exceptions and export hygiene. Check reports and historical authoring status are intentionally outside this task-only export; this document makes no new runtime-validation claim.
 
-These checks do not establish reachability, grasp success, sensor realism, correct instrument APIs, physically valid chemistry, scientific reproducibility or runtime reward correctness. No robot rollout, mock execution, simulator, hardware process, external calculation, installation or remote change was performed. Hooke scene binding and any future authorized runtime review remain separate work.
+These checks do not establish reachability, grasp success, sensor realism, correct instrument APIs, physically valid chemistry, scientific reproducibility or runtime reward correctness. No robot rollout, mock execution, simulator, hardware process, external calculation, installation or remote change was performed. Laboratory scene binding and any future authorized runtime review remain separate implementation and validation work.
 
 ## 13. Source attribution and export policy
 

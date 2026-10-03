@@ -1,8 +1,18 @@
 # Verification: nine-family task explorer
 
-Updated 2026-10-03. Source task files are pinned to public ScienceGym commit `293e32da790303c1a17131e036235f69a5f342e0`.
+Historical source links remain pinned to public ScienceGym commit `293e32da790303c1a17131e036235f69a5f342e0`.
 
-## Checks performed
+## Standalone-presentation revision, 2026-10-03
+
+ScienceGym is presented as an independent project. Scene and asset ownership/dependency wording was replaced with neutral task-interface and implementation requirements in repository notes, affected task descriptions and both storyboard footers. This presentation revision preserves the existing task designs and the nine-family explorer.
+
+Only three task JSON scalar strings changed: perovskite `station_contracts.json` `/scene_owner`, `granularity_gaps.json` `/continuation_contract`, and `unknown_parameters.json` `/issues/12/task_treatment`. Every other task JSON value is unchanged. The regenerated perovskite viewer data changes only the two exposed context strings and those three local source-file hashes. Operations, branches, dependency graphs, numeric parameters, source facts, controls, lineage, acceptance and recovery are preserved. All other generated family payloads, route maps and diagrams are byte-identical.
+
+The perovskite decoded-data regression hash was refreshed with its previous hash retained in the fixture's presentation-update record; the other seven existing-family fingerprints are unchanged. Current explorer inventory, byte counts and checksums were rebuilt. Historical source links identify the pre-revision scientific task snapshot; local SHA-256 values identify this build's presentation-revised metadata. The root export manifest and storyboard export/render receipts retain their historical meaning and bytes, rather than being relabeled as new receipts.
+
+The revised tree passes all **9/9 root static-check groups**, including **68 source-bound explorer tests with zero skips**, **19 verifier regression tests**, JavaScript syntax, all three mocked-DOM suites and **220 published image-hash assertions** over 71 frames / 75 unique images. Full and perovskite-only rebuilds are byte-identical. All image and license bytes are unchanged. These checks do not establish real-browser rendering, robot execution, physical feasibility or scientific reproduction.
+
+## Historical integration checks, 2026-10-03
 
 - **68 Python tests pass with zero skips**, with `SCIENCEGYM_TASKS` explicitly bound to this checkout. The 21 independent EmVP viewer regressions cover exact operation/configuration/dependency/context/evidence mapping, per-condition route and gate fidelity, null input counts, absent fields, comparison dimensions, no SVG adjacency arrows and malformed-dispatch rejection
 - Earlier-eight-family semantic fingerprints match exactly. All 32 earlier generated JSON, JavaScript, SVG and Markdown files differ from the starting checkout only by full/short source commit pin replacements
@@ -47,4 +57,4 @@ node viewer/task_explorer_v1/tests/test_app.js /path/to/scratch/ScienceGym-Task-
 python3 -B tasks/emvp_operations_v2/tests/run_validation.py --report-dir /path/to/scratch/emvp-validation
 ```
 
-Static SVG pixel inspection uses Inkscape's CLI exporter, not a browser. No remote writes or task-source edits are part of this integration. Root LICENSE, task JSON, workflows and both embodied players remain unchanged.
+Static SVG pixel inspection uses Inkscape's CLI exporter, not a browser. At the historical integration stage, no remote writes or task-source edits occurred; root LICENSE, task JSON, workflows and both embodied players were unchanged. The later presentation-only changes are documented above.
