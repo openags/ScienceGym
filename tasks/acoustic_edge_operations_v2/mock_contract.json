@@ -1,0 +1,48 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "environment_and_evaluator_only",
+  "physical_simulation": false,
+  "fixture_runtime_implemented": false,
+  "allowed_future_mock_scope": "Clearly synthetic bookkeeping events for teaching manipulation and record integrity; never an acoustic solver or paper outcome generator",
+  "data_classes": [
+    "measured_episode",
+    "synthetic_mock",
+    "numerical_prediction",
+    "literature_reference"
+  ],
+  "no_source_oracle": true,
+  "raw_append_only": true,
+  "missing_is_zero": false,
+  "measurement_gate": "A future mock must require current installation, calibration, configuration, geometry, source and settled-point receipts before providing an observation. Record validators alone do not implement this gate.",
+  "public_feedback": [
+    "entity_id",
+    "location",
+    "attached",
+    "guard",
+    "source_off",
+    "motion_stopped",
+    "safe_release",
+    "actual_coordinate",
+    "reference_locked",
+    "clipped",
+    "record_valid",
+    "calibration_id"
+  ],
+  "binding_keys": [
+    "episode_id",
+    "branch_id",
+    "run_id",
+    "attempt_id",
+    "point_id",
+    "guide_id",
+    "guide_version",
+    "target_id_or_null",
+    "target_version_or_null",
+    "rig_signature",
+    "channel_map_id",
+    "calibration_id",
+    "reference_id"
+  ],
+  "test_fixtures": "All values used in package unit tests are invented synthetic data; they are not measured or predicted acoustic results."
+}

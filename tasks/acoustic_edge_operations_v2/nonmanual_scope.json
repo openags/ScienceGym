@@ -1,0 +1,96 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "author_review_only",
+  "numerical_branches": [
+    {
+      "id": "N_TRANSMISSION",
+      "title": "Multimodal transmission matrix",
+      "evidence_ids": [
+        "E_MODEL",
+        "E_TM"
+      ],
+      "source_scope": "Plane and antisymmetric modes, resonant conversion, ideal lossless length trade-off",
+      "operations": [
+        "Bind full segment/mode/port convention",
+        "Resolve SI equation/index conflicts",
+        "Construct straight and discontinuity scattering elements",
+        "Validate convergence, composition and physical consistency",
+        "Compute/report model-only transmission"
+      ],
+      "inputs_unknown": [
+        "mode_truncation",
+        "element_topology",
+        "frequency_grid",
+        "loss_parameters",
+        "validated_algebra"
+      ],
+      "output_class": "numerical_prediction"
+    },
+    {
+      "id": "N_TRAPPED_MODES",
+      "title": "Trapped-resonance eigenanalysis",
+      "evidence_ids": [
+        "E_TR"
+      ],
+      "source_scope": "Complex eigenmodes with PML on both guide ends",
+      "operations": [
+        "Bind exact guide model and mesh",
+        "Set qualified PML and eigenmode solver",
+        "Check convergence and mode classification",
+        "Report computed complex modes separately from measured peaks"
+      ],
+      "inputs_unknown": [
+        "mesh",
+        "PML",
+        "solver_version",
+        "eigensolver_settings",
+        "convergence_thresholds"
+      ],
+      "output_class": "numerical_prediction"
+    },
+    {
+      "id": "N_FE_1D",
+      "title": "Finite-element comparisons for all three 1D objects",
+      "evidence_ids": [
+        "E_FE"
+      ],
+      "source_scope": "Single edge, 32-mm plate and 10-mm rod; rigid guide/objects in air, axial source at 280 mm, object at 1 mm, exterior/outlet PML",
+      "operations": [
+        "Bind per-target geometry and scan coordinates",
+        "Resolve mesh/material/solver settings",
+        "Compute each numerical scan only if authorized",
+        "Compare with separately parented experimental records under declared scaling"
+      ],
+      "inputs_unknown": [
+        "complete_target_geometry",
+        "COMSOL_version",
+        "mesh",
+        "PML",
+        "normalization",
+        "loss_and_material_parameters"
+      ],
+      "output_class": "numerical_prediction"
+    }
+  ],
+  "analysis_operations": [
+    "CAD_BIND",
+    "TARGET_BIND",
+    "RUN_REVIEW",
+    "MODES",
+    "CONTROL_COMPARE",
+    "EDGE_ANALYSIS",
+    "IMAGE_ANALYSIS",
+    "ARCHIVE",
+    "REPORT"
+  ],
+  "numerical_execution_authorized_or_performed": false,
+  "physics_runs": 0,
+  "SI_is_not_robot_recipe": true,
+  "discussion_only": [
+    "Medical/ultrasonic imaging applications",
+    "Optical/electromagnetic analogues",
+    "Loss-inclusive length/scaling expectations not experimentally tested"
+  ],
+  "separation": "Numerical branches provide whole-paper coverage only; this package supplies no executable solver or physical simulation."
+}

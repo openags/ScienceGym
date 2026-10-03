@@ -1,0 +1,254 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "author_schema_runtime_public_values_only",
+  "implemented_loader": false,
+  "cards": [
+    {
+      "id": "scene_card",
+      "required_fields": [
+        "robot_limits",
+        "station_frames",
+        "grasp_regions",
+        "carriers",
+        "docks",
+        "collision_routes",
+        "interlocks"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "allocation_card",
+      "required_fields": [
+        "guide_ids",
+        "target_ids",
+        "material_lots",
+        "branch_assignment",
+        "technical_repeat_schedule",
+        "independent_specimen_count",
+        "reuse_policy",
+        "attempt_policy"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "fabrication_card",
+      "required_fields": [
+        "complete_drawing",
+        "drawing_revision",
+        "material_identity",
+        "printer_identity",
+        "recipe",
+        "wall_and_shell_geometry",
+        "port_geometry",
+        "finishing",
+        "tolerances",
+        "inspection",
+        "safe_release"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "rig_card",
+      "required_fields": [
+        "enclosure_dimensions",
+        "foam_specification",
+        "source_and_guide_datums",
+        "vertical_fixture",
+        "sensor_ports",
+        "outlet_absorber_insertion",
+        "target_holder",
+        "gap_inspection",
+        "assembly_tolerances"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "target_card",
+      "required_fields": [
+        "target_id",
+        "material_lot",
+        "complete_contour",
+        "thickness",
+        "remaining_dimensions",
+        "process_or_supplied_part_route",
+        "qualified_tools",
+        "holder_interface",
+        "inspection_tolerances"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "channel_card",
+      "required_fields": [
+        "four_sensor_serials",
+        "four_port_map",
+        "DAQ_and_preamplifiers",
+        "complex_convention",
+        "reference_wiring",
+        "coordinate_axes",
+        "mode_label_mapping",
+        "version"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "calibration_card",
+      "required_fields": [
+        "standard_id",
+        "in_situ_procedure",
+        "correction_derivation_method",
+        "acceptance",
+        "validity_rule",
+        "chain_and_map_binding",
+        "reconfiguration_invalidation"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input",
+      "generated_result_fields": [
+        "raw_standard_records",
+        "gain_and_phase_corrections",
+        "calibration_id",
+        "actual_validity_interval",
+        "final_chain_binding"
+      ],
+      "generated_results_required_as_initial_inputs": false
+    },
+    {
+      "id": "acquisition_card",
+      "required_fields": [
+        "source_level",
+        "DAQ_rate",
+        "units",
+        "settling_predicate",
+        "dwell",
+        "averaging",
+        "clipping_rule",
+        "reference_lock_rule",
+        "raw_sink",
+        "invalid_and_retry_rules"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "sweep_card",
+      "required_fields": [
+        "frequency_schedule",
+        "source_level",
+        "reference_handling_by_frequency",
+        "settling",
+        "normalization",
+        "pair_match_fields"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "scan_card",
+      "required_fields": [
+        "branch_id",
+        "stage_origin",
+        "axis_frames",
+        "motion_limits",
+        "homing",
+        "collision_tolerances",
+        "settling"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input",
+      "conditional_required_fields": {
+        "scan_1d_or_scan_2d": [
+          "actual_ROI",
+          "ordered_coordinates",
+          "physical_step_mm",
+          "raster_order",
+          "point_id_schema"
+        ]
+      },
+      "condition_rule": "Sweep-only branches use this card only for installed-stage referencing/alignment and do not require a fictitious spatial scan schedule."
+    },
+    {
+      "id": "analysis_card",
+      "required_fields": [
+        "complex_correction_method",
+        "modal_consistency_tolerance",
+        "intensity_definition_and_units",
+        "normalization",
+        "FWHM_and_edge_estimator",
+        "uncertainty",
+        "invalid_mask",
+        "interpolation_method",
+        "boundary_and_clipping_rules",
+        "processing_version"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "safety_card",
+      "required_fields": [
+        "acoustic_exposure_limit",
+        "guard_and_interlocks",
+        "isolation",
+        "stop_readbacks",
+        "safe_release",
+        "tool_hazards",
+        "cleaning",
+        "waste_routes"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "numerical_card",
+      "required_fields": [
+        "solver_version",
+        "complete_geometry",
+        "mode_truncation",
+        "element_mapping",
+        "block_conventions",
+        "validated_composition",
+        "PML",
+        "mesh",
+        "convergence",
+        "loss_model",
+        "frequency_and_scan_grid"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    },
+    {
+      "id": "resolution_card",
+      "required_fields": [
+        "source_conflict_ids",
+        "accepted_axis_mapping",
+        "equation_review",
+        "resolution_authority",
+        "task_choice_vs_source_claim"
+      ],
+      "defaults": null,
+      "authorship": "episode_supplied_qualified_input"
+    }
+  ],
+  "schedule_rules": {
+    "nonempty": true,
+    "finite": true,
+    "max_points": "Required bounded integer supplied per episode; no universal invented maximum",
+    "repeat_count_unknown_is_complete": false,
+    "physical_scan_steps_mm": {
+      "scan_1d": 0.6,
+      "scan_2d": 1.6
+    },
+    "display_interpolation_step_mm": 0.8,
+    "sweep_reference": "Imaging 7740-Hz reference cannot be blindly used as all-frequency sweep configuration"
+  },
+  "input_status": "No complete qualified episode inputs supplied; physical execution remains blocked",
+  "gate_policy": "Null, absent, unresolved, NaN and empty required schedules are not defaults or approvals."
+}

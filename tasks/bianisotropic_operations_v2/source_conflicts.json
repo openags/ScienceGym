@@ -1,0 +1,64 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "visibility": "author_and_evaluator_only",
+  "records": [
+    {
+      "id": "SC01",
+      "issue": "60-degree GSL efficiency",
+      "evidence": [
+        "main abstract p1 and Results p5: discretized simulation 81%",
+        "main Results p5: theoretical GSL upper limit 89%",
+        "main Discussion p6 lists 89% alongside numerical comparison values"
+      ],
+      "resolution": "Keep 81% discretized simulation and 89% theoretical limit separate; record Discussion inconsistency. Do not silently overwrite."
+    },
+    {
+      "id": "SC02",
+      "issue": "SI loss figure cross-reference",
+      "evidence": [
+        "SI Note4 p19 says Supplementary Figure4",
+        "Actual viscous/lossless comparison is SI Figure5 p6; Figure4 p5 is the four-microphone schematic"
+      ],
+      "resolution": "Use Fig5 for loss comparison and preserve provenance of corrected cross-reference."
+    },
+    {
+      "id": "SC03",
+      "issue": "Viscosity units",
+      "evidence": [
+        "main Numerical simulations p8 gives Pa·s",
+        "SI Note4 p19 prints Pa for the same numeric viscosities"
+      ],
+      "resolution": "Use main Methods Pa·s and label SI unit omission."
+    },
+    {
+      "id": "SC04",
+      "issue": "Minimum resonator wording",
+      "evidence": [
+        "SI Note2: two unequal resonators produce asymmetric response; full scattering control at fixed thickness requires three",
+        "SI Note8 says minimum to achieve bianisotropy is three"
+      ],
+      "resolution": "Do not teach that two resonators cannot be bianisotropic; distinguish bianisotropy from independently meeting full fixed-thickness target."
+    },
+    {
+      "id": "SC05",
+      "issue": "Reflection magnitude and energy claims",
+      "evidence": [
+        "main introduction p2: <2% reflected",
+        "main Results p6: 2% reflected",
+        "main introduction p2: 97% of transmitted energy in desired direction"
+      ],
+      "resolution": "Treat ~2% as reported rounded reflected-energy statement; 97% is transmitted-energy direction share, not 97% of incident energy."
+    },
+    {
+      "id": "SC06",
+      "issue": "Sign conventions and formula transcription",
+      "evidence": [
+        "main Results uses phase gradient k sin(theta_t)",
+        "main Methods uses k(sin(theta_i)-sin(theta_t))",
+        "SI Note3 has directed velocity/transfer conventions distinct from main"
+      ],
+      "resolution": "Validate coordinate and port conventions before implementation. Do not combine copied equations under one undocumented convention."
+    }
+  ]
+}

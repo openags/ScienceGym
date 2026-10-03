@@ -1,0 +1,58 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "materials": [
+    {
+      "id": "M_ABS",
+      "name": "ABS thermoplastic",
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknowns": [
+        "grade",
+        "density",
+        "conditioning",
+        "printer_settings"
+      ],
+      "mechanical_properties": null
+    },
+    {
+      "id": "M_ARRAY",
+      "name": "Two-layer tapered labyrinthine array",
+      "evidence_ids": [
+        "E_CELLS",
+        "E_GEOM"
+      ],
+      "reported_geometry": {
+        "cell_outline_mm": [
+          36,
+          25
+        ],
+        "period_mm": 150,
+        "periods": 8,
+        "spiral_angles_deg": [
+          135,
+          180,
+          270,
+          450,
+          495,
+          540
+        ]
+      },
+      "derived_geometry": {
+        "nominal_high_gradient_span_mm": 1200,
+        "derivation": "8 * 150 mm; not full mount envelope or printed part count"
+      },
+      "unknowns": [
+        "CAD",
+        "wall_thickness",
+        "channel_taper",
+        "layer_registration",
+        "low_gradient_recipe"
+      ],
+      "acoustic_properties": null
+    }
+  ],
+  "rule": "Labels do not assign measured acoustic response. Inert substitutes require separate identity/properties and cannot silently inherit source performance.",
+  "visibility": "authoring_and_evaluator_reference_only"
+}

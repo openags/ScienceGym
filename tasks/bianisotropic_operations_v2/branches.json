@@ -1,0 +1,607 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 14,
+  "branches": [
+    {
+      "id": "THEORY_TARGET",
+      "title": "Reciprocal target and degrees-of-freedom analysis",
+      "evidence_type": "theory",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_THEORY",
+        "E_ARCH"
+      ],
+      "unknown_parameter_ids": [
+        "U09",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "physical_specimens": 0
+    },
+    {
+      "id": "LOCAL_BIDIRECTIONAL",
+      "title": "Analytic versus numerical four-resonator cell",
+      "evidence_type": "analytic_and_numerical",
+      "operation_ids": [
+        "PLAN",
+        "GEOMETRY",
+        "LOCAL_ANALYTIC",
+        "RETRIEVAL_SETUP",
+        "RETRIEVAL_RUN",
+        "LOCAL_COMPARE",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_ARCH",
+        "E_TM",
+        "E_RETRIEVAL"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "frequency_schedule": null,
+      "physical_specimens": 0
+    },
+    {
+      "id": "RETRIEVAL_NUMERICAL",
+      "title": "Four-probe two-termination impedance retrieval",
+      "evidence_type": "numerical_only",
+      "operation_ids": [
+        "PLAN",
+        "GEOMETRY",
+        "RETRIEVAL_SETUP",
+        "RETRIEVAL_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_RETRIEVAL"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "terminations": [
+        "plane_wave_radiation",
+        "hard_wall"
+      ],
+      "probe_count": 4,
+      "physical_specimens": 0
+    },
+    {
+      "id": "GA_60",
+      "title": "60-degree cell optimization campaign",
+      "evidence_type": "numerical_optimization",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "GEOMETRY",
+        "GA_SETUP",
+        "GA_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_GA",
+        "E_60"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "angle_deg": 60,
+      "cells_per_period": 11,
+      "impedance_backend": "analytic_transfer",
+      "loops": [
+        {
+          "id": "cell_restarts",
+          "iterator": "cell_id × restart_index",
+          "cell_count": 11,
+          "restarts_per_cell": 50,
+          "max_generations_per_restart": 1500,
+          "abort_rule": "failed/incomplete status remains; never pad missing runs with selected best curve"
+        }
+      ],
+      "physical_specimens": 0
+    },
+    {
+      "id": "NUM_60",
+      "title": "60-degree lossless array and matched GSL control",
+      "evidence_type": "numerical_only",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "GEOMETRY",
+        "ARRAY_SETUP",
+        "ARRAY_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_60",
+        "E_THEORY"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "angle_deg": 60,
+      "cells_per_period": 11,
+      "geometry_routes": [
+        "qualified_source_table_geometry",
+        "qualified_GA_output"
+      ],
+      "requires_physical_branch": false,
+      "physical_specimens": 0,
+      "control_ids": [
+        "CTRL_GSL_60"
+      ]
+    },
+    {
+      "id": "GA_70",
+      "title": "70-degree cell optimization campaign",
+      "evidence_type": "numerical_optimization",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "GEOMETRY",
+        "GA_SETUP",
+        "GA_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_GA",
+        "E_70"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "angle_deg": 70,
+      "cells_per_period": 4,
+      "impedance_backend": "COMSOL_Livelink_MATLAB_numerical",
+      "loops": [
+        {
+          "id": "cell_restarts",
+          "iterator": "cell_id × restart_index",
+          "cell_count": 4,
+          "restarts_per_cell": 50,
+          "max_generations_per_restart": 1500,
+          "abort_rule": "failed/incomplete status remains; never pad missing runs with selected best curve"
+        }
+      ],
+      "physical_specimens": 0
+    },
+    {
+      "id": "NUM_70",
+      "title": "70-degree lossless array and matched GSL control",
+      "evidence_type": "numerical_only",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "GEOMETRY",
+        "ARRAY_SETUP",
+        "ARRAY_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_70",
+        "E_THEORY"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "angle_deg": 70,
+      "cells_per_period": 4,
+      "geometry_routes": [
+        "qualified_source_table_geometry",
+        "qualified_GA_output"
+      ],
+      "requires_physical_branch": false,
+      "physical_specimens": 0,
+      "control_ids": [
+        "CTRL_GSL_70"
+      ]
+    },
+    {
+      "id": "GA_80",
+      "title": "80-degree cell optimization campaign",
+      "evidence_type": "numerical_optimization",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "GEOMETRY",
+        "GA_SETUP",
+        "GA_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_GA",
+        "E_80"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "angle_deg": 80,
+      "cells_per_period": 4,
+      "impedance_backend": "COMSOL_Livelink_MATLAB_numerical",
+      "loops": [
+        {
+          "id": "cell_restarts",
+          "iterator": "cell_id × restart_index",
+          "cell_count": 4,
+          "restarts_per_cell": 50,
+          "max_generations_per_restart": 1500,
+          "abort_rule": "failed/incomplete status remains; never pad missing runs with selected best curve"
+        }
+      ],
+      "physical_specimens": 0
+    },
+    {
+      "id": "NUM_80",
+      "title": "80-degree lossless array and matched GSL control",
+      "evidence_type": "numerical_only",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "GEOMETRY",
+        "ARRAY_SETUP",
+        "ARRAY_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_80",
+        "E_THEORY"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "angle_deg": 80,
+      "cells_per_period": 4,
+      "geometry_routes": [
+        "qualified_source_table_geometry",
+        "qualified_GA_output"
+      ],
+      "requires_physical_branch": false,
+      "physical_specimens": 0,
+      "control_ids": [
+        "CTRL_GSL_80"
+      ]
+    },
+    {
+      "id": "NUM_LOSS_60",
+      "title": "60-degree lossless versus viscous fluid comparison",
+      "evidence_type": "numerical_only",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "GEOMETRY",
+        "ARRAY_SETUP",
+        "LOSS_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_LOSS"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "angle_deg": 60,
+      "control_ids": [
+        "CTRL_LOSS"
+      ],
+      "physical_specimens": 0
+    },
+    {
+      "id": "NUM_TOPOLOGY",
+      "title": "Constrained and relaxed three-resonator comparison",
+      "evidence_type": "numerical_only",
+      "operation_ids": [
+        "PLAN",
+        "TARGET",
+        "GEOMETRY",
+        "GA_SETUP",
+        "TOPOLOGY_RUN",
+        "NUMERIC_REPORT",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_TOPO",
+        "E_ARCH"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "U13",
+        "U17"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "physical_specimens": 0,
+      "control_ids": [
+        "CTRL_TOPOLOGY"
+      ],
+      "constrained_failure_is_valid_terminal_result": true
+    },
+    {
+      "id": "PREPARE_60",
+      "title": "Fabricate and assemble the nine-period 60-degree panel",
+      "evidence_type": "physical_preparation",
+      "operation_ids": [
+        "PLAN",
+        "GEOMETRY",
+        "STOCK",
+        "MOVE",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "INSPECT_PART",
+        "STAGE_PANEL",
+        "JOIN_PANEL",
+        "PANEL_QC",
+        "CLEAN_RESET",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_60"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U02",
+        "U03",
+        "U04",
+        "U13",
+        "U16",
+        "U17",
+        "U18"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "period_count": 9,
+      "cells_per_period": 11,
+      "local_design_slot_count": 99,
+      "authored_part_granularity": "One physical handleable period section per period; source does not specify separately printed segmentation",
+      "independent_specimen_count": null,
+      "loops": [
+        {
+          "id": "fabrication_batches",
+          "values_from": "fabrication_card.batch_schedule",
+          "values": null,
+          "nonempty": true
+        },
+        {
+          "id": "section_inspection",
+          "iterator": "each allocated period-section ID",
+          "count_per_panel": 9
+        }
+      ]
+    },
+    {
+      "id": "QUALIFY_GUIDE",
+      "title": "Prepare guide, microphone and source calibration",
+      "evidence_type": "task_authored_validity_controls",
+      "operation_ids": [
+        "PLAN",
+        "GUIDE_SETUP",
+        "SOURCE_CONNECT",
+        "MIC_CAL",
+        "BEAM_CAL",
+        "SCAN_PLAN",
+        "SAFE_OFF",
+        "CLEAN_RESET",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U09",
+        "U13",
+        "U16",
+        "U17",
+        "U18"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "calibration_is_source_reported": false
+    },
+    {
+      "id": "MEASURE_60",
+      "title": "Map transmitted field and matched blank-subtracted reflection",
+      "evidence_type": "physical_measurement",
+      "operation_ids": [
+        "PLAN",
+        "MOVE",
+        "GUIDE_SETUP",
+        "SOURCE_CONNECT",
+        "MIC_CAL",
+        "BEAM_CAL",
+        "SCAN_PLAN",
+        "BLANK_CHECK",
+        "SCAN_POSITION",
+        "POINT_ACQUIRE",
+        "SCAN_VALIDATE",
+        "PANEL_INSTALL",
+        "RUN_CHECK",
+        "REDUCE_TEMPORAL",
+        "SUBTRACT_REFLECTION",
+        "ORDER_ANALYSIS",
+        "DRIFT_POST",
+        "SAFE_OFF",
+        "PANEL_REMOVE",
+        "CLEAN_RESET",
+        "ARCHIVE"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_SCAN",
+        "E_REFLECT",
+        "E_ORDERS"
+      ],
+      "unknown_parameter_ids": [
+        "U03",
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U09",
+        "U13",
+        "U16",
+        "U17",
+        "U18"
+      ],
+      "required": true,
+      "execution_status": "blocked_design_only",
+      "angle_deg": 60,
+      "requires_branch_receipts": [
+        "PREPARE_60"
+      ],
+      "control_ids": [
+        "CTRL_BLANK",
+        "CTRL_DRIFT"
+      ],
+      "configuration_ids": [
+        "blank_reflection",
+        "sample_transmission",
+        "sample_reflection"
+      ],
+      "per_point_acquisitions": 4,
+      "grid_point_count": null,
+      "independent_specimen_count": null,
+      "loops": [
+        {
+          "id": "point_grid",
+          "iterator": "configuration_id × scheduled point_id",
+          "values": null,
+          "values_from": "scan_card.explicit_point_sets",
+          "nonempty": true
+        },
+        {
+          "id": "repeated_acquisition",
+          "iterator": "repeat_index",
+          "values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "scope": "repeated measurement of one microphone position, not independent fabricated specimens"
+        }
+      ]
+    }
+  ],
+  "membership_semantics": "operation_ids are template membership, not a mandatory total ordering; branch/condition/object/iteration occurrence IDs and dependencies define the actual partial order",
+  "whole_paper_scope": {
+    "required_branch_ids": [
+      "THEORY_TARGET",
+      "LOCAL_BIDIRECTIONAL",
+      "RETRIEVAL_NUMERICAL",
+      "GA_60",
+      "NUM_60",
+      "GA_70",
+      "NUM_70",
+      "GA_80",
+      "NUM_80",
+      "NUM_LOSS_60",
+      "NUM_TOPOLOGY",
+      "PREPARE_60",
+      "QUALIFY_GUIDE",
+      "MEASURE_60"
+    ],
+    "physical_claim": "One source-reported physical angle only: 60 degrees. Preparation and qualification are connected prerequisites, not extra physical experimental angle cases.",
+    "excluded_empirical_claims": [
+      "Physical 70/80-degree panels",
+      "Physical GSL panel",
+      "Physical four-microphone retrieval",
+      "Focusing or cloaking demonstration"
+    ],
+    "completion": "All required source families have terminal evidence and selected controls; a blocked task design never qualifies as executed whole-paper science"
+  }
+}

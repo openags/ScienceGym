@@ -1,0 +1,74 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "evaluator_reference_only",
+  "packages": [
+    {
+      "id": "CP_TRANSMISSION",
+      "required_branch_ids": [
+        "NO_OBJECT",
+        "HALF_APERTURE"
+      ],
+      "match_fields": [
+        "guide_id",
+        "guide_version",
+        "rig_signature_except_object_condition",
+        "channel_map_id",
+        "calibration_id",
+        "source_pose",
+        "source_level",
+        "frequency_schedule",
+        "processing_version"
+      ],
+      "allowed_difference": "Absent target versus half-aperture aluminium edge near input",
+      "outputs": "Measured modal amplitudes with explicitly declared units/normalization; not automatically transmission coefficients",
+      "failure": "Missing baseline, changed gain/reference or unmatched frequencies invalidate paired comparison",
+      "evidence_ids": [
+        "E_CONTROL"
+      ]
+    },
+    {
+      "id": "CP_1D_OBJECTS",
+      "required_branch_ids": [
+        "SINGLE_EDGE_1D",
+        "PLATE_32_1D",
+        "ROD_10_1D"
+      ],
+      "match_fields": [
+        "guide geometry",
+        "7740-Hz excitation",
+        "1-mm gap",
+        "channel mapping",
+        "0.6-mm physical sampling",
+        "qualified calibration"
+      ],
+      "outputs": "Separate edge/FWHM estimates plus size-bias disclosure for rod; optional separately labelled numerical comparison",
+      "failure": "One object cannot substitute for another, and low FWHM does not establish correct object dimensions",
+      "evidence_ids": [
+        "E_1D",
+        "E_SCAN"
+      ]
+    },
+    {
+      "id": "CP_2D_CHANNELS",
+      "required_branch_ids": [
+        "DISC_2D",
+        "ETH_2D"
+      ],
+      "match_fields": [
+        "raw dataset within each object for all display variants",
+        "7740-Hz excitation",
+        "1.6-mm physical acquisition step",
+        "qualified coordinate/channel map"
+      ],
+      "outputs": "Total and two directional views, full and reduced display range, traceable 0.8-mm interpolation products",
+      "failure": "Directional channels cannot be averaged away; display interpolation cannot replace missing raw points; upper-disc display does not prove full-disc acquisition",
+      "evidence_ids": [
+        "E_DISC",
+        "E_ETH",
+        "E_SCAN"
+      ]
+    }
+  ],
+  "outcome_policy": "Procedure completeness and honest evidence, not resemblance to published curves, determine contract satisfaction."
+}

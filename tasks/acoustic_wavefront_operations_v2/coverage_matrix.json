@@ -1,0 +1,534 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "physical_coverage": [
+    {
+      "branch_id": "FABRICATE_CELLS",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_FAB",
+        "E_CELLS",
+        "E_GEOM"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "STOCK",
+        "FAB_LOAD",
+        "FAB_VERIFY",
+        "FAB_START",
+        "FAB_CYCLE",
+        "FAB_RELEASE",
+        "FAB_UNLOAD",
+        "PART_ID",
+        "PART_DIM",
+        "PART_CHANNEL",
+        "QUARANTINE",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "ASSEMBLE_ARRAYS",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_CELLS",
+        "E_GEOM",
+        "E_NORMAL"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ASM_LAYOUT",
+        "ASM_FIXTURE",
+        "ASM_LOWER",
+        "ASM_LOWER_QC",
+        "ASM_UPPER",
+        "ASM_REGISTER",
+        "ASM_LOCK",
+        "ASM_QC",
+        "QUARANTINE",
+        "RECONFIGURE",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "APPARATUS",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_GUIDE",
+        "E_SETUP"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ENV_SETUP",
+        "GUIDE_PLATES",
+        "SOURCE_MOUNT",
+        "SOURCE_WIRE",
+        "MIC_MOUNT",
+        "DAQ_WIRE",
+        "STAGE_HOME",
+        "PARK",
+        "DISCONNECT",
+        "RESET",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "QUALIFY_CHAIN",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_SETUP",
+        "E_NORMAL"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MUTE",
+        "PARK",
+        "PROBE_RELEASE",
+        "MOVE",
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_REVIEW",
+        "CAL_UNLOAD",
+        "MIC_MOUNT",
+        "SOURCE_WIRE",
+        "DAQ_WIRE",
+        "STAGE_HOME",
+        "EMPTY_PREP",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "GRID_FAR",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "DRIFT",
+        "FFT",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "NORMAL_INCIDENCE",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_NORMAL",
+        "E_GUIDE",
+        "E_SETUP"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "EMPTY_PREP",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "ANGLE_FIT",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "BANDWIDTH",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_BAND",
+        "E_SETUP"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "ANGLE_FIT",
+        "BAND_COMPARE",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "OBLIQUE_SWEEP",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_SWEEP",
+        "E_DIFFRACTION",
+        "E_ORDER"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "ANGLE_FIT",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "RADIATION_PATTERNS",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_POLAR",
+        "E_SETUP"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "POLAR",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "NEAR_FIELD",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_NEAR",
+        "E_SNELL",
+        "E_SETUP"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_NEAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "KX",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    },
+    {
+      "branch_id": "NEGATIVE_REFRACTION",
+      "classification": "physical_route_design_with_gates",
+      "evidence_ids": [
+        "E_NEGATIVE",
+        "E_DIFFRACTION",
+        "E_ORDER"
+      ],
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "ANGLE_FIT",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "status": "represented_not_executed"
+    }
+  ],
+  "nonmanual_coverage": [
+    {
+      "id": "N_CELL",
+      "evidence_ids": [
+        "E_CELLS",
+        "E_NUM"
+      ],
+      "status": "specified_not_run"
+    },
+    {
+      "id": "N_SNELL",
+      "evidence_ids": [
+        "E_SNELL",
+        "E_DIFFRACTION"
+      ],
+      "status": "specified_not_run"
+    },
+    {
+      "id": "N_LOSSLESS",
+      "evidence_ids": [
+        "E_LOSSLESS",
+        "E_NUM"
+      ],
+      "status": "specified_not_run"
+    },
+    {
+      "id": "N_LOSSY",
+      "evidence_ids": [
+        "E_LOSSY",
+        "E_NUM"
+      ],
+      "status": "specified_not_run"
+    },
+    {
+      "id": "N_SCATTER",
+      "evidence_ids": [
+        "E_SCATTER",
+        "E_NUM"
+      ],
+      "status": "specified_not_run"
+    },
+    {
+      "id": "N_COUPLE",
+      "evidence_ids": [
+        "E_COUPLE"
+      ],
+      "status": "specified_not_run"
+    },
+    {
+      "id": "N_ORDER",
+      "evidence_ids": [
+        "E_ORDER",
+        "E_DIFFRACTION"
+      ],
+      "status": "specified_not_run"
+    },
+    {
+      "id": "N_FIELDS",
+      "evidence_ids": [
+        "E_NUM",
+        "E_NEAR",
+        "E_SWEEP",
+        "E_POLAR",
+        "E_NEGATIVE"
+      ],
+      "status": "specified_not_run"
+    }
+  ],
+  "source_panels": [
+    {
+      "locator": "main Figure 1",
+      "disposition": "FABRICATE_CELLS, ASSEMBLE_ARRAYS, N_CELL"
+    },
+    {
+      "locator": "main Figure 2",
+      "disposition": "NORMAL_INCIDENCE, APPARATUS"
+    },
+    {
+      "locator": "main Figure 3a,b",
+      "disposition": "NEAR_FIELD; N_FIELDS for numerical comparison panels only"
+    },
+    {
+      "locator": "main Figure 3c",
+      "disposition": "N_SCATTER"
+    },
+    {
+      "locator": "main Figure 4a",
+      "disposition": "OBLIQUE_SWEEP, N_ORDER; N_FIELDS for numerical comparison panels only"
+    },
+    {
+      "locator": "main Figure 4b",
+      "disposition": "RADIATION_PATTERNS; N_FIELDS for numerical comparison panels only"
+    },
+    {
+      "locator": "main Figure 4c",
+      "disposition": "NEGATIVE_REFRACTION; N_FIELDS for numerical comparison panels only"
+    },
+    {
+      "locator": "SI Figure 1",
+      "disposition": "FABRICATE_CELLS, ASSEMBLE_ARRAYS"
+    },
+    {
+      "locator": "SI Figure 2",
+      "disposition": "BANDWIDTH"
+    },
+    {
+      "locator": "SI Figure 3",
+      "disposition": "N_LOSSLESS"
+    },
+    {
+      "locator": "SI Figure 4",
+      "disposition": "N_LOSSY"
+    },
+    {
+      "locator": "SI Figure 5",
+      "disposition": "N_COUPLE"
+    },
+    {
+      "locator": "SI Figure 6",
+      "disposition": "APPARATUS, QUALIFY_CHAIN and all acquisition routes"
+    },
+    {
+      "locator": "SI Note 1",
+      "disposition": "NEAR_FIELD and numerical loss/coupling branches"
+    },
+    {
+      "locator": "SI Note 2",
+      "disposition": "N_ORDER and OBLIQUE_SWEEP"
+    },
+    {
+      "locator": "main Methods",
+      "disposition": "fabrication, acquisition and N_CELL"
+    },
+    {
+      "locator": "main and SI references",
+      "disposition": "citation context; no invented dependency recipes"
+    }
+  ],
+  "required_source_closure": true,
+  "complete_physical_recipe": false,
+  "raw_historical_data_obtained": false,
+  "visibility": "authoring_and_evaluator_reference_only"
+}

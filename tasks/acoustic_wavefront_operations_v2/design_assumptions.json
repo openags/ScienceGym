@@ -1,0 +1,37 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "authoring_and_evaluator_reference_only",
+  "assumptions": [
+    {
+      "id": "A_FIG34_FREQUENCY",
+      "scope": [
+        "NEAR_FIELD",
+        "NEGATIVE_REFRACTION",
+        "OBLIQUE_SWEEP",
+        "RADIATION_PATTERNS"
+      ],
+      "value_hz": 3000,
+      "classification": "task_authored_reference_assignment",
+      "historical_value": null,
+      "source_context": "3000 Hz is explicit in unit-cell and normal-incidence context; Figure 3/4 captions/text and SI do not directly establish their acquisition frequency.",
+      "execution_gate": "Qualified work order must choose and label acquisition frequency; do not claim exact historical frequency."
+    },
+    {
+      "id": "A_CALIBRATION",
+      "classification": "task_authored_quality_control",
+      "source_context": "Paper describes acquisition hardware, not a full microphone/channel calibration or physical cell-by-cell phase calibration."
+    },
+    {
+      "id": "A_ROBOT",
+      "classification": "task_authored_workflow",
+      "source_context": "Manipulation, support, navigation, safety release and cleanup operations are authored; no original researcher trajectory or robot implementation recovered."
+    },
+    {
+      "id": "A_SPAN",
+      "classification": "derived_factual_quantity",
+      "nominal_mm": 1200,
+      "derivation": "Eight illustrated 150 mm periods; not full carrier/fixture envelope or printed-part count."
+    }
+  ]
+}

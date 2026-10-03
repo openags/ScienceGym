@@ -1,0 +1,94 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "visibility": "evaluator_reference_only",
+  "completion_layers": [
+    {
+      "id": "procedural",
+      "rule": "Qualified inputs, current states, operation occurrences, specimen lineage, full acquisition schedules, matched controls and safe closure"
+    },
+    {
+      "id": "scientific",
+      "rule": "Report actual values, uncertainties and difference from literature; do not require historical efficiencies for procedural completion"
+    },
+    {
+      "id": "whole_paper",
+      "rule": "All required branches and control packages satisfy their scoped requirements; one selected route is insufficient"
+    }
+  ],
+  "predicates": [
+    {
+      "id": "P_GATES",
+      "rule": "Every action-dependent unknown is resolved by a current qualified card; unresolved raw-data availability only blocks historical replay, not new qualified acquisition"
+    },
+    {
+      "id": "P_PANEL",
+      "rule": "Exactly nine distinct accepted section identities, each with ordered eleven local design slots, matching intended face and current assembly version"
+    },
+    {
+      "id": "P_SAFE_BUILD",
+      "rule": "Separate successful build and safe thermal/motion release evidence before extraction"
+    },
+    {
+      "id": "P_SCAN",
+      "rule": "Every explicit point has four distinct valid raw records with matching pose/configuration/calibration/phase; clipped/missing attempts do not count"
+    },
+    {
+      "id": "P_BLANK",
+      "rule": "Only registered complex sample-minus-blank reflection fields with equal condition signatures and complete coverage"
+    },
+    {
+      "id": "P_DRIFT",
+      "rule": "Post-run drift passes qualified bounds before closing validity"
+    },
+    {
+      "id": "P_NUMERIC",
+      "rule": "Correct evidence type, independent jobs and convergence; no physical branch dependency for numerical comparisons"
+    },
+    {
+      "id": "P_RETRIEVAL",
+      "rule": "Four probes times two independent termination jobs and nonsingular conditioned inversion at each frequency"
+    },
+    {
+      "id": "P_GA",
+      "rule": "Complete declared 50-restart ledger per cell, 1500-generation baseline unless logged failure; no baseline crossover"
+    },
+    {
+      "id": "P_METRIC",
+      "rule": "Incident-normalized normal flux, transmitted-direction share, pressure magnitude and theory bound never conflated"
+    },
+    {
+      "id": "P_CLOSURE",
+      "rule": "Archive failed/successful attempts, raw parents and custody. Enforce safe-state/cleanup only for used stations: fabrication-safe release, guide output-off/park, and closing drift only when field measurement was selected."
+    }
+  ],
+  "adversarial_families": [
+    "Missing unknown card",
+    "Empty schedule",
+    "Wrong physical angle",
+    "Reused part identity",
+    "Stale assembly inspection",
+    "Hot print unloading",
+    "Duplicate raw acquisition",
+    "Missing scan point",
+    "Clipping",
+    "Expired/mismatched calibration",
+    "Blank frame/source/DAQ/medium/phase mismatch",
+    "Magnitude-only subtraction",
+    "Incident versus transmitted denominator confusion",
+    "Evanescent energy misuse",
+    "81/89 source conflict erasure",
+    "Missing GSL control",
+    "Unconverged numerical job",
+    "Duplicated termination",
+    "Singular retrieval",
+    "GA restarts dropped",
+    "Crossover in baseline",
+    "Source oracle leakage",
+    "Raw overwrite",
+    "Failed drift ignored",
+    "Cleanup skipped"
+  ],
+  "allow_alternative_routes": "Accept equivalent valid partial orders satisfying dependency predicates, not one fixed reference action string",
+  "implementation": "Executable static validators and adversarial synthetic unit tests only; no trustworthy runtime evaluator exists"
+}

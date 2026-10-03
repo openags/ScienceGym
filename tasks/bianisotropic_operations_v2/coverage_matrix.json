@@ -1,0 +1,337 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "rows": [
+    {
+      "id": "C01",
+      "coverage": "Passive reciprocal bianisotropic response versus phase-only GSL",
+      "source_locator": "main pp2-4, Figs1-2; SI Note1 pp13-14, Fig1 p2",
+      "evidence_type": "theory",
+      "conversion_implication": "Design a two-port scattering/impedance target; distinguish equal transmission from direction-dependent reflection phase.",
+      "branch_ids": [
+        "THEORY_TARGET"
+      ],
+      "operation_ids": [
+        "TARGET"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C02",
+      "coverage": "One/two/three/four resonator degrees of freedom",
+      "source_locator": "SI Note2 pp15-16, Figs2-3 pp3-4; Note8 pp23-24, Fig8 p9",
+      "evidence_type": "theory_and_numerical",
+      "conversion_implication": "Compare realizability with fixed cell thickness; retain three-resonator failure and relaxed-geometry branch.",
+      "branch_ids": [
+        "THEORY_TARGET",
+        "NUM_TOPOLOGY"
+      ],
+      "operation_ids": [
+        "TARGET",
+        "TOPOLOGY_RUN"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C03",
+      "coverage": "Analytic transfer matrix of one four-resonator cell",
+      "source_locator": "main Methods p7 Eqs8-18; SI Note5 p20, Fig6 p7",
+      "evidence_type": "analytic_and_numerical",
+      "conversion_implication": "Construct geometry-linked transfer, impedance and scattering matrices and frequency sweep; verify reciprocity and compare solver outputs.",
+      "branch_ids": [
+        "LOCAL_BIDIRECTIONAL"
+      ],
+      "operation_ids": [
+        "GEOMETRY",
+        "LOCAL_ANALYTIC",
+        "LOCAL_COMPARE"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C04",
+      "coverage": "Genetic design and convergence",
+      "source_locator": "main Genetic algorithm p7; SI Note6 p21, Fig7 p8",
+      "evidence_type": "optimization",
+      "conversion_implication": "Population10, mutation0.2, retain half, elite unmutated, no crossover, 1500 generations, 50 restarts per cell; record provenance of selected candidates.",
+      "branch_ids": [
+        "GA_60",
+        "GA_70",
+        "GA_80"
+      ],
+      "operation_ids": [
+        "GA_SETUP",
+        "GA_RUN"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C05",
+      "coverage": "60-degree fine discretization",
+      "source_locator": "main pp4-5 Eqs3-7, Figs3a/d and4; SI Table1 p10, Note7 p22",
+      "evidence_type": "simulation_and_physical",
+      "conversion_implication": "11 cells/period, 3kHz, 12mm width, 132mm period; source heights and local scattering available; physically demonstrated branch.",
+      "branch_ids": [
+        "NUM_60",
+        "PREPARE_60",
+        "MEASURE_60"
+      ],
+      "operation_ids": [
+        "GEOMETRY",
+        "ARRAY_SETUP",
+        "ARRAY_RUN",
+        "STAGE_PANEL",
+        "ORDER_ANALYSIS"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C06",
+      "coverage": "70/80-degree coarse discretization",
+      "source_locator": "main p5 Figs3b/c/e/f; SI Tables2-3 pp11-12",
+      "evidence_type": "simulation_only",
+      "conversion_implication": "4 cells/period for each angle; COMSOL Livelink/MATLAB used for impedance in optimization; do not call these fabricated experiments.",
+      "branch_ids": [
+        "NUM_70",
+        "NUM_80",
+        "GA_70",
+        "GA_80"
+      ],
+      "operation_ids": [
+        "GEOMETRY",
+        "GA_RUN",
+        "ARRAY_SETUP",
+        "ARRAY_RUN"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C07",
+      "coverage": "Four-probe/two-termination retrieval",
+      "source_locator": "SI Note3 pp17-18, Fig4 p5",
+      "evidence_type": "COMSOL_method",
+      "conversion_implication": "Solve transfer matrix from four complex pressure probes under plane-wave radiation and hard-wall terminations; a physical tube would be an environment extension.",
+      "branch_ids": [
+        "RETRIEVAL_NUMERICAL"
+      ],
+      "operation_ids": [
+        "RETRIEVAL_SETUP",
+        "RETRIEVAL_RUN"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C08",
+      "coverage": "Lossless/viscous comparison",
+      "source_locator": "main Numerical simulations p8; SI Note4 p19, Fig5 p6",
+      "evidence_type": "simulation_only",
+      "conversion_implication": "Matched geometry comparison; stated dynamic/bulk viscosities; use normal energy flux rather than pressure magnitude as efficiency.",
+      "branch_ids": [
+        "NUM_LOSS_60"
+      ],
+      "operation_ids": [
+        "LOSS_RUN"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C09",
+      "coverage": "Fabrication and nine-period assembly",
+      "source_locator": "main Experimental apparatus p8; Fig5a p6; SI Table1 p10",
+      "evidence_type": "physical",
+      "conversion_implication": "FDM ABS, nine periods, two-dimensional guide; robot can handle finished printed sections, inspect, orient, place, and secure.",
+      "branch_ids": [
+        "PREPARE_60"
+      ],
+      "operation_ids": [
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "INSPECT_PART",
+        "STAGE_PANEL",
+        "JOIN_PANEL",
+        "PANEL_QC"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C10",
+      "coverage": "Gaussian source and field scan",
+      "source_locator": "main Experimental apparatus p8; Figs5c/d p6",
+      "evidence_type": "physical",
+      "conversion_implication": "28 loudspeakers; move microphone across 114x60cm region in 2cm steps, four measurements averaged per position.",
+      "branch_ids": [
+        "QUALIFY_GUIDE",
+        "MEASURE_60"
+      ],
+      "operation_ids": [
+        "SOURCE_CONNECT",
+        "MIC_CAL",
+        "BEAM_CAL",
+        "SCAN_PLAN",
+        "SCAN_POSITION",
+        "POINT_ACQUIRE",
+        "SCAN_VALIDATE"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C11",
+      "coverage": "Reflection subtraction and spectral/order analysis",
+      "source_locator": "main Experimental measurements p6 and Experimental apparatus p8; Fig5b-d",
+      "evidence_type": "physical_and_analysis",
+      "conversion_implication": "Scan empty guide and sample in reflection region; subtract registered complex fields, FFT line immediately behind surface, separate normalized order share from incident-energy efficiency.",
+      "branch_ids": [
+        "MEASURE_60"
+      ],
+      "operation_ids": [
+        "BLANK_CHECK",
+        "SUBTRACT_REFLECTION",
+        "REDUCE_TEMPORAL",
+        "ORDER_ANALYSIS"
+      ],
+      "disposition": "covered_at_source_grounded_design_level"
+    },
+    {
+      "id": "C12",
+      "coverage": "General applications beyond beam steering",
+      "source_locator": "main Discussion pp6-7",
+      "evidence_type": "discussion_only",
+      "conversion_implication": "Focusing/cloaking/arbitrary fields are proposed extensions, not demonstrated workflow branches; exclude from empirical coverage claims.",
+      "branch_ids": [],
+      "operation_ids": [],
+      "disposition": "discussion_only_excluded_from_empirical_completion"
+    }
+  ],
+  "source_inventory": [
+    {
+      "item": "Main abstract and introduction pp1-2",
+      "disposition": "scientific context and reported-outcome reference; no additional branch"
+    },
+    {
+      "item": "Main Fig1a-b p3 and Eqs1-7 pp3-4",
+      "coverage_ids": [
+        "C01"
+      ]
+    },
+    {
+      "item": "Main Fig2a-e p3",
+      "coverage_ids": [
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "item": "Main Fig3a-f p4",
+      "coverage_ids": [
+        "C05",
+        "C06"
+      ]
+    },
+    {
+      "item": "Main Fig4 p5",
+      "coverage_ids": [
+        "C03",
+        "C05"
+      ]
+    },
+    {
+      "item": "Main Fig5a p6",
+      "coverage_ids": [
+        "C09"
+      ]
+    },
+    {
+      "item": "Main Fig5b-d p6",
+      "coverage_ids": [
+        "C10",
+        "C11"
+      ]
+    },
+    {
+      "item": "Main Methods pp7-8: transfer matrix, genetic algorithm, theoretical requirements, numerical simulations, experimental apparatus",
+      "coverage_ids": [
+        "C01",
+        "C03",
+        "C04",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11"
+      ]
+    },
+    {
+      "item": "Main Discussion pp6-7",
+      "coverage_ids": [
+        "C12"
+      ],
+      "conflicts": [
+        "SC01"
+      ]
+    },
+    {
+      "item": "Main Data availability p8, authors/rights p9",
+      "disposition": "provenance and missing raw-data gate; references are external context, not separately claimed demonstrations"
+    },
+    {
+      "item": "SI cover p1",
+      "disposition": "identity"
+    },
+    {
+      "item": "SI Fig1 p2 and Note1 pp13-14",
+      "coverage_ids": [
+        "C01"
+      ]
+    },
+    {
+      "item": "SI Figs2-3 pp3-4 and Note2 pp15-16",
+      "coverage_ids": [
+        "C02"
+      ]
+    },
+    {
+      "item": "SI Fig4 p5 and Note3 pp17-18",
+      "coverage_ids": [
+        "C07"
+      ]
+    },
+    {
+      "item": "SI Fig5 p6 and Note4 p19",
+      "coverage_ids": [
+        "C08"
+      ],
+      "conflicts": [
+        "SC02",
+        "SC03"
+      ]
+    },
+    {
+      "item": "SI Fig6 p7 and Note5 p20",
+      "coverage_ids": [
+        "C03"
+      ]
+    },
+    {
+      "item": "SI Fig7 p8 and Note6 p21",
+      "coverage_ids": [
+        "C04"
+      ],
+      "note": "Ten shown convergence traces are a display subset; baseline restarts remain fifty per cell"
+    },
+    {
+      "item": "SI Fig8 p9 and Note8 pp23-24",
+      "coverage_ids": [
+        "C02"
+      ]
+    },
+    {
+      "item": "SI Tables1-3 pp10-12 and Note7 p22",
+      "coverage_ids": [
+        "C05",
+        "C06"
+      ],
+      "note": "19 local designs; rounded coefficients are reference context, not measured raw data"
+    }
+  ]
+}

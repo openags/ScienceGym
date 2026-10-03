@@ -1,0 +1,94 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "control_packages": [
+    {
+      "id": "C_GEOM",
+      "provenance": "task_authored",
+      "conditions": [
+        "type_and_revision",
+        "dimensions_and_channel_opening",
+        "slot_orientation",
+        "two_layer_registration"
+      ],
+      "qualification": "No inferred CAD or source tolerance"
+    },
+    {
+      "id": "C_BASELINE",
+      "provenance": "source_supported",
+      "conditions": [
+        "empty_guide",
+        "low_gradient",
+        "high_gradient"
+      ],
+      "qualification": "Same normal-incidence comparison scope; source/gain/frame changes require requalification"
+    },
+    {
+      "id": "C_CAL",
+      "provenance": "task_authored",
+      "conditions": [
+        "reference_validity",
+        "amplitude_phase_timing",
+        "pre_post_drift"
+      ],
+      "qualification": "No source-reported calibration schedule or cell-by-cell calibration experiment"
+    },
+    {
+      "id": "C_BAND",
+      "provenance": "source_supported",
+      "conditions": [
+        "2800_Hz",
+        "3000_Hz",
+        "3200_Hz"
+      ],
+      "qualification": "One broadband scan can generate correlated frequency views"
+    },
+    {
+      "id": "C_ANGLE",
+      "provenance": "source_supported",
+      "conditions": [
+        "verified_incidence",
+        "full_declared_schedule",
+        "signed_output_angle"
+      ],
+      "qualification": "5/20/35/45/25 degrees belong to different source branches, not a complete historical schedule"
+    },
+    {
+      "id": "C_NEAR",
+      "provenance": "task_authored_QA_around_source_method",
+      "conditions": [
+        "near_grid_clearance",
+        "spatial_aliasing",
+        "free_space_reference"
+      ],
+      "qualification": "Measured spectrum interpretation must retain resolution and ambient sound-speed uncertainty"
+    },
+    {
+      "id": "C_MODEL",
+      "provenance": "source_supported_fit_distinction",
+      "conditions": [
+        "10_degree_loss_fit",
+        "separate_validation_cases"
+      ],
+      "qualification": "Fitting loss to a measured case does not independently validate that same case"
+    },
+    {
+      "id": "C_DATA",
+      "provenance": "task_authored",
+      "conditions": [
+        "clipping",
+        "trigger_dropouts",
+        "grid_completeness",
+        "raw_vs_normalized"
+      ],
+      "qualification": "Keep failed attempts and unnormalized amplitudes; no outcome-based exclusion"
+    }
+  ],
+  "repetition_policy": {
+    "independent_array_count": null,
+    "independent_session_count": null,
+    "technical_repeats": null,
+    "rule": "Work order defines allocation and stopping criteria before acquisition. Cell type, layer, pixel, frequency and angle are conditions or locations, not independent specimen replicates. All retries retain original failures."
+  },
+  "visibility": "authoring_and_evaluator_reference_only"
+}

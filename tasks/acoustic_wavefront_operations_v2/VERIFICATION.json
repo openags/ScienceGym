@@ -1,0 +1,72 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "status": "passed",
+  "checks": [
+    {
+      "command": "python3 -B tests/verify_package.py",
+      "result": "passed",
+      "exit_code": 0,
+      "scope": "Static contracts, reference/gate closure, source distinctions, allowlist, text hygiene and payload hashes"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tests -p 'test_*.py' -v",
+      "result": "passed",
+      "exit_code": 0,
+      "tests_run": 82,
+      "failures": 0,
+      "errors": 0,
+      "scope": "Static adversarial mutations and artificial receipt/condition/grid/transport bookkeeping"
+    }
+  ],
+  "limits": [
+    "Static contracts and synthetic bookkeeping only",
+    "No device authentication, physical simulation, acoustic solver or robot execution",
+    "No public write"
+  ],
+  "independent_review": {
+    "issues_resolved": true,
+    "independently_run_unit_tests": 81,
+    "final_frequency_classification_reviewed": true,
+    "scope": "Read-only source/JSON/function review; independent tests before final added frequency regression"
+  },
+  "verified_utc": "2026-10-03T14:34:42.931693+00:00",
+  "counts": {
+    "operations": 69,
+    "hands_on_operations": 46,
+    "device_autonomous_operations": 8,
+    "analysis_operations": 14,
+    "transport_operations": 1,
+    "physical_routes": 10,
+    "numerical_routes": 8,
+    "transport_routes": 14,
+    "loops": 7,
+    "unknown_gates": 15,
+    "files": 33
+  },
+  "source_coverage": {
+    "main_pages": 5,
+    "SI_pages": 5,
+    "main_figures": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "SI_figures": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "SI_notes": [
+      1,
+      2
+    ],
+    "methods_and_references": "accounted for",
+    "historical_Figure3_4_frequency": "unconfirmed; 3000 Hz task reference choice explicitly labeled"
+  },
+  "real_observations": false
+}

@@ -1,0 +1,238 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "visibility": "evaluator_reference_only",
+  "edges": [
+    {
+      "from": "PLAN",
+      "to": "TARGET"
+    },
+    {
+      "from": "PLAN",
+      "to": "GEOMETRY"
+    },
+    {
+      "from": "GEOMETRY",
+      "to": "LOCAL_ANALYTIC"
+    },
+    {
+      "from": "GEOMETRY",
+      "to": "RETRIEVAL_SETUP"
+    },
+    {
+      "from": "RETRIEVAL_SETUP",
+      "to": "RETRIEVAL_RUN"
+    },
+    {
+      "from": "LOCAL_ANALYTIC",
+      "to": "LOCAL_COMPARE"
+    },
+    {
+      "from": "RETRIEVAL_RUN",
+      "to": "LOCAL_COMPARE"
+    },
+    {
+      "from": "TARGET",
+      "to": "GA_SETUP"
+    },
+    {
+      "from": "GEOMETRY",
+      "to": "GA_SETUP"
+    },
+    {
+      "from": "GA_SETUP",
+      "to": "GA_RUN"
+    },
+    {
+      "from": "TARGET",
+      "to": "ARRAY_SETUP"
+    },
+    {
+      "from": "GEOMETRY",
+      "to": "ARRAY_SETUP"
+    },
+    {
+      "from": "ARRAY_SETUP",
+      "to": "ARRAY_RUN"
+    },
+    {
+      "from": "ARRAY_SETUP",
+      "to": "LOSS_RUN"
+    },
+    {
+      "from": "TARGET",
+      "to": "TOPOLOGY_RUN"
+    },
+    {
+      "from": "GA_SETUP",
+      "to": "TOPOLOGY_RUN"
+    },
+    {
+      "from": "PLAN",
+      "to": "STOCK"
+    },
+    {
+      "from": "STOCK",
+      "to": "PRINT_LOAD"
+    },
+    {
+      "from": "GEOMETRY",
+      "to": "PRINT_LOAD"
+    },
+    {
+      "from": "PRINT_LOAD",
+      "to": "PRINT_RUN"
+    },
+    {
+      "from": "PRINT_RUN",
+      "to": "PRINT_UNLOAD"
+    },
+    {
+      "from": "PRINT_UNLOAD",
+      "to": "INSPECT_PART"
+    },
+    {
+      "from": "INSPECT_PART",
+      "to": "STAGE_PANEL"
+    },
+    {
+      "from": "STAGE_PANEL",
+      "to": "JOIN_PANEL"
+    },
+    {
+      "from": "JOIN_PANEL",
+      "to": "PANEL_QC"
+    },
+    {
+      "from": "PLAN",
+      "to": "GUIDE_SETUP"
+    },
+    {
+      "from": "GUIDE_SETUP",
+      "to": "SOURCE_CONNECT"
+    },
+    {
+      "from": "SOURCE_CONNECT",
+      "to": "MIC_CAL"
+    },
+    {
+      "from": "MIC_CAL",
+      "to": "BEAM_CAL"
+    },
+    {
+      "from": "GUIDE_SETUP",
+      "to": "SCAN_PLAN"
+    },
+    {
+      "from": "BEAM_CAL",
+      "to": "BLANK_CHECK"
+    },
+    {
+      "from": "SCAN_PLAN",
+      "to": "BLANK_CHECK"
+    },
+    {
+      "from": "SCAN_PLAN",
+      "to": "SCAN_POSITION"
+    },
+    {
+      "from": "SCAN_POSITION",
+      "to": "POINT_ACQUIRE"
+    },
+    {
+      "from": "POINT_ACQUIRE",
+      "to": "SCAN_VALIDATE"
+    },
+    {
+      "from": "PANEL_QC",
+      "to": "PANEL_INSTALL"
+    },
+    {
+      "from": "BLANK_CHECK",
+      "to": "PANEL_INSTALL"
+    },
+    {
+      "from": "PANEL_INSTALL",
+      "to": "RUN_CHECK"
+    },
+    {
+      "from": "BEAM_CAL",
+      "to": "RUN_CHECK"
+    },
+    {
+      "from": "SCAN_VALIDATE",
+      "to": "REDUCE_TEMPORAL"
+    },
+    {
+      "from": "REDUCE_TEMPORAL",
+      "to": "SUBTRACT_REFLECTION"
+    },
+    {
+      "from": "RUN_CHECK",
+      "to": "SUBTRACT_REFLECTION"
+    },
+    {
+      "from": "REDUCE_TEMPORAL",
+      "to": "ORDER_ANALYSIS"
+    },
+    {
+      "from": "SUBTRACT_REFLECTION",
+      "to": "ORDER_ANALYSIS"
+    },
+    {
+      "from": "RUN_CHECK",
+      "to": "DRIFT_POST"
+    },
+    {
+      "from": "SAFE_OFF",
+      "to": "PANEL_REMOVE"
+    }
+  ],
+  "stage_rules": [
+    {
+      "id": "D_NUM_INDEPENDENT",
+      "rule": "Numerical and theoretical branches require qualified digital inputs, not physical fabrication, calibration or scans; a blocked printer does not block numeric evidence review"
+    },
+    {
+      "id": "D_GEOMETRY_ROUTE",
+      "rule": "Source-table geometry and reoptimized geometry are alternative declared inputs. Never force GA completion when the selected route is source-table geometry; never call source dimensions original CAD"
+    },
+    {
+      "id": "D_FABRICATE",
+      "rule": "Each printed part needs its own stock/build/safe-release/extraction/inspection chain. All nine distinct accepted sections precede panel qualification"
+    },
+    {
+      "id": "D_BLANK_SAMPLE",
+      "rule": "A complete valid blank_reflection scan precedes PANEL_INSTALL and sample_reflection acquisition; installed panel RUN_CHECK precedes sample_transmission and sample_reflection scans"
+    },
+    {
+      "id": "D_SCAN",
+      "rule": "For each configuration and point, a current pose/settle event precedes four distinct valid raw acquisitions; scan closure requires exactly the declared point set and complete repeats"
+    },
+    {
+      "id": "D_REFERENCE",
+      "rule": "Blank and sample reflection must share guide/source/DAQ/microphone/medium/grid/phase/frame signatures. Moving the frame or drifting source invalidates their pairing and triggers a new blank/sample pair"
+    },
+    {
+      "id": "D_REUSE",
+      "rule": "Panel removal/reinstallation increments install epoch; assembly changes increment assembly version. Raw data retain earlier identity; unqualified replacement cannot inherit calibration or run validity"
+    },
+    {
+      "id": "D_POST_DRIFT",
+      "rule": "ORDER_ANALYSIS remains provisional until DRIFT_POST is valid. A failed closing check invalidates the pair, regardless of favorable field shape"
+    },
+    {
+      "id": "D_CLOSE",
+      "rule": "ARCHIVE requires every selected occurrence terminal and custody/cleanup for used stations. Fabrication requires print job-terminal and thermal/motion/guard-safe receipts; guide work requires SAFE_OFF; only field-measurement campaigns require post-run drift. Preparation does not require guide access."
+    },
+    {
+      "id": "D_REPEAT",
+      "rule": "Every repeated operation carries episode, branch, configuration, run, object revision, point/restart/iteration and unique occurrence IDs. Empty or null schedules block completion"
+    },
+    {
+      "id": "D_CLEANUP_SCOPE",
+      "rule": "CLEAN_RESET binds only affected stations. Fabrication-only episodes use PRINT_RUN thermal/motion/guard safe-release evidence. Any guide episode requires SAFE_OFF before guide cleanup. No guide access is needed for fabrication-only completion."
+    }
+  ],
+  "no_runtime_scheduler": true
+}

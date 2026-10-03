@@ -1,0 +1,197 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "authoring_and_evaluator_reference_only",
+  "items": [
+    {
+      "id": "N_CELL",
+      "title": "Unit-cell design and effective-parameter retrieval",
+      "evidence_ids": [
+        "E_CELLS",
+        "E_NUM"
+      ],
+      "classification": "numerical_or_theoretical_only",
+      "operation_ids": [],
+      "unknown_parameter_ids": [
+        "U_MODEL"
+      ],
+      "disposition": "specified_not_run",
+      "notes": "Six cell phase responses, single-layer versus double-layer distinction; geometry/material/solver inputs are missing.",
+      "required_outputs": [
+        "input_geometry_and_material_hashes",
+        "solver_or_analysis_revision",
+        "boundary_and_sign_conventions",
+        "convergence_or_domain_checks",
+        "source_fit_vs_validation_label",
+        "immutable_results_or_explicit_blocker"
+      ]
+    },
+    {
+      "id": "N_SNELL",
+      "title": "Generalized-refraction prediction",
+      "evidence_ids": [
+        "E_SNELL",
+        "E_DIFFRACTION"
+      ],
+      "classification": "numerical_or_theoretical_only",
+      "operation_ids": [],
+      "unknown_parameter_ids": [
+        "U_MODEL"
+      ],
+      "disposition": "specified_not_run",
+      "notes": "Use measured/supplied sound speed and array gradient; arcsin domain failure marks nonpropagating prediction, not a clipped beam angle. For broadband predictions xi(f)/k0(f) must come from a qualified dispersion model; 3.3 and 6.7 labels refer to 3000 Hz.",
+      "required_outputs": [
+        "input_geometry_and_material_hashes",
+        "solver_or_analysis_revision",
+        "boundary_and_sign_conventions",
+        "convergence_or_domain_checks",
+        "source_fit_vs_validation_label",
+        "immutable_results_or_explicit_blocker"
+      ]
+    },
+    {
+      "id": "N_LOSSLESS",
+      "title": "Lossless surface-response simulation",
+      "evidence_ids": [
+        "E_LOSSLESS",
+        "E_NUM"
+      ],
+      "classification": "numerical_or_theoretical_only",
+      "operation_ids": [],
+      "unknown_parameter_ids": [
+        "U_MODEL"
+      ],
+      "disposition": "specified_not_run",
+      "notes": "25-degree source case; reflected-energy context remains a simulated result.",
+      "required_outputs": [
+        "input_geometry_and_material_hashes",
+        "solver_or_analysis_revision",
+        "boundary_and_sign_conventions",
+        "convergence_or_domain_checks",
+        "source_fit_vs_validation_label",
+        "immutable_results_or_explicit_blocker"
+      ]
+    },
+    {
+      "id": "N_LOSSY",
+      "title": "Apply source-reported loss parameter and assess sensitivity",
+      "evidence_ids": [
+        "E_LOSSY",
+        "E_NUM"
+      ],
+      "classification": "numerical_or_theoretical_only",
+      "operation_ids": [],
+      "unknown_parameter_ids": [
+        "U_MODEL"
+      ],
+      "disposition": "specified_not_run",
+      "notes": "SI illustration 25 degrees; 1-0.02i fit to 10-degree transmission; no independent validation claimed.",
+      "required_outputs": [
+        "input_geometry_and_material_hashes",
+        "solver_or_analysis_revision",
+        "boundary_and_sign_conventions",
+        "convergence_or_domain_checks",
+        "source_fit_vs_validation_label",
+        "immutable_results_or_explicit_blocker"
+      ],
+      "fit_status": "No refit performed. Source reports fitting to measured 10-degree transmission; historical fit data unavailable.",
+      "optional_refit_gate": "Require identified actual measured 10-degree calibration record hashes and declared objective; new data are a new fit, not historical reconstruction. Separate validation cases. A parameter copied from source is not an independent calibration."
+    },
+    {
+      "id": "N_SCATTER",
+      "title": "Main scattering-energy comparison",
+      "evidence_ids": [
+        "E_SCATTER",
+        "E_NUM"
+      ],
+      "classification": "numerical_or_theoretical_only",
+      "operation_ids": [],
+      "unknown_parameter_ids": [
+        "U_MODEL"
+      ],
+      "disposition": "specified_not_run",
+      "notes": "Main 20/10-degree cases and corresponding 27.8/89.0 percent source values stay separate from SI 25-degree label.",
+      "required_outputs": [
+        "input_geometry_and_material_hashes",
+        "solver_or_analysis_revision",
+        "boundary_and_sign_conventions",
+        "convergence_or_domain_checks",
+        "source_fit_vs_validation_label",
+        "immutable_results_or_explicit_blocker"
+      ]
+    },
+    {
+      "id": "N_COUPLE",
+      "title": "Corrugated-guide mode coupling",
+      "evidence_ids": [
+        "E_COUPLE"
+      ],
+      "classification": "numerical_or_theoretical_only",
+      "operation_ids": [],
+      "unknown_parameter_ids": [
+        "U_MODEL"
+      ],
+      "disposition": "specified_not_run",
+      "notes": "Numerical-only: 20-degree incidence and 2.5 cm sound-hard corrugation period. No physical guide branch.",
+      "required_outputs": [
+        "input_geometry_and_material_hashes",
+        "solver_or_analysis_revision",
+        "boundary_and_sign_conventions",
+        "convergence_or_domain_checks",
+        "source_fit_vs_validation_label",
+        "immutable_results_or_explicit_blocker"
+      ]
+    },
+    {
+      "id": "N_ORDER",
+      "title": "Diffraction-order and critical-angle analysis",
+      "evidence_ids": [
+        "E_ORDER",
+        "E_DIFFRACTION"
+      ],
+      "classification": "numerical_or_theoretical_only",
+      "operation_ids": [],
+      "unknown_parameter_ids": [
+        "U_MODEL"
+      ],
+      "disposition": "specified_not_run",
+      "notes": "nG=0 and -3 branch interpretation; upper transition near 31.6 degrees. Scalar diffraction limitations retained.",
+      "required_outputs": [
+        "input_geometry_and_material_hashes",
+        "solver_or_analysis_revision",
+        "boundary_and_sign_conventions",
+        "convergence_or_domain_checks",
+        "source_fit_vs_validation_label",
+        "immutable_results_or_explicit_blocker"
+      ]
+    },
+    {
+      "id": "N_FIELDS",
+      "title": "Finite-element comparison fields spectra and radiation",
+      "evidence_ids": [
+        "E_NUM",
+        "E_NEAR",
+        "E_SWEEP",
+        "E_POLAR",
+        "E_NEGATIVE"
+      ],
+      "classification": "numerical_or_theoretical_only",
+      "operation_ids": [],
+      "unknown_parameter_ids": [
+        "U_MODEL"
+      ],
+      "disposition": "specified_not_run",
+      "notes": "Pressure-field calculations and derived spectra/angles/radiation for main Figure 3b and Figure 4a/b/c. Main Figure 2 fields and Figure 3a are measured. Full solver setup, normalization and convergence remain gated.",
+      "required_outputs": [
+        "input_geometry_and_material_hashes",
+        "solver_or_analysis_revision",
+        "boundary_and_sign_conventions",
+        "convergence_or_domain_checks",
+        "source_fit_vs_validation_label",
+        "immutable_results_or_explicit_blocker"
+      ]
+    }
+  ],
+  "numerical_to_physical_promotion_allowed": false,
+  "signal_analysis": "FFT, angle extraction, spatial spectrum and display normalization are analysis operation contracts over actual acquired records. Comparison FEM outputs are N_FIELDS; source outcomes never supply observations."
+}

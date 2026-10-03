@@ -1,0 +1,64 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "evaluator_reference_only",
+  "conflicts": [
+    {
+      "id": "C_DIRECTION",
+      "issue": "MAIN Fig4d prose labels I(1,0), while Fig4 caption assigns I(0,1) to vertical-edge output",
+      "locator": "MAIN Edge visualization, PDF pp4–5; Fig4 caption",
+      "resolution_status": "unresolved",
+      "handling": "Retain both source statements. Episode coordinate/channel convention must be explicit; caption-consistent rendering is an authored resolution, not a source correction"
+    },
+    {
+      "id": "C_ELEMENTS",
+      "issue": "SI reports 13 scattering elements without mapping them to the five-resonator physical guide",
+      "locator": "SI Note2, p3 Eq5; MAIN Fig1a",
+      "resolution_status": "unresolved",
+      "handling": "Require explicit segment/discontinuity topology and independently checked model"
+    },
+    {
+      "id": "C_FREQUENCIES",
+      "issue": "Main approximately 7,700–7,800-Hz narrative differs from SI list reaching 7,834 Hz",
+      "locator": "MAIN Fig2b prose; SI Note1 p2",
+      "resolution_status": "unresolved",
+      "handling": "Keep approximate prose and exact numerical list separate; do not truncate modes"
+    },
+    {
+      "id": "C_REFERENCE",
+      "issue": "Methods gives 7,740-Hz reference but does not specify frequency-response reference handling",
+      "locator": "MAIN Methods p5 versus Fig2c",
+      "resolution_status": "unresolved",
+      "handling": "Fixed imaging reference is not an executable frequency-sweep reference prescription"
+    },
+    {
+      "id": "C_ZERO_MODE",
+      "issue": "SI Eq2 starts modal sum at m,n=1 despite essential zero-index modes",
+      "locator": "SI p3 Eq2; MAIN Fig1c and Eq1",
+      "resolution_status": "unresolved",
+      "handling": "Require reconciled summation convention before numerical implementation"
+    },
+    {
+      "id": "C_BLOCK_ORDER",
+      "issue": "SI Eq5 puts transmission blocks on the diagonal; Eq11 labels transmission off-diagonal",
+      "locator": "SI p3 Eq5 and p5 Eq11",
+      "resolution_status": "unresolved",
+      "handling": "Require explicit port/block ordering and tested extraction of transmission matrix"
+    },
+    {
+      "id": "C_COMPOSE",
+      "issue": "SI Eq10 lower-left product ends in R-prime-i; algebra needs independent validation",
+      "locator": "SI p5 Eq10",
+      "resolution_status": "unresolved",
+      "handling": "Do not silently repair or treat printed equation as executable code"
+    },
+    {
+      "id": "C_COORDINATE",
+      "issue": "Main nodal-line index language and SI coordinate dependence need a consistent axis convention",
+      "locator": "MAIN transmission-matrix prose; SI p3 Eqs3–4",
+      "resolution_status": "unresolved",
+      "handling": "Bind y/z axes, index naming and installed channels before directional labels"
+    }
+  ],
+  "review_basis": "Original audit plus independent text and local-SI visual notation review; no corrected equations asserted"
+}

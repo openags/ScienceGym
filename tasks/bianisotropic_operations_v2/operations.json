@@ -1,0 +1,2378 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 42,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Bind selected scope and unresolved inputs",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_RECORDS",
+      "objects": [
+        "work order",
+        "source-linked geometry cards"
+      ],
+      "tools": [
+        "record console"
+      ],
+      "actions": [
+        "Select a nonempty set of branch IDs; distinguish physical, numerical and theory scopes",
+        "Bind frequency, sign convention, allocation, repeats, grid and safety card revisions; return blocked status for missing required fields"
+      ],
+      "preconditions": [
+        "Work order identifies episode and requested readiness"
+      ],
+      "postconditions": [
+        "Versioned work order",
+        "Explicit unresolved-gate report"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_THEORY"
+      ],
+      "unknown_parameter_ids": [
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Versioned work order",
+        "Explicit unresolved-gate report"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "TARGET",
+      "title": "Derive the target impedance and sampling plan",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "transformation card"
+      ],
+      "tools": [
+        "versioned analytic service"
+      ],
+      "actions": [
+        "Declare incident/output directions, pressure phasor, coordinates, port normals and normal-energy-flux denominator",
+        "Evaluate the target profile and declared sampling positions; retain expressions and singularity handling rather than importing a result curve"
+      ],
+      "preconditions": [
+        "PLAN complete",
+        "Qualified medium and sign-convention card"
+      ],
+      "postconditions": [
+        "Target profile artifact",
+        "Convention and dimensional checks"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_THEORY",
+        "E_60"
+      ],
+      "unknown_parameter_ids": [
+        "U09",
+        "U11"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Target profile artifact",
+        "Convention and dimensional checks"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "GEOMETRY",
+      "title": "Bind incomplete tabulated geometry to a qualified design",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "geometry revision",
+        "table row IDs"
+      ],
+      "tools": [
+        "CAD interface contract"
+      ],
+      "actions": [
+        "Read selected source dimensions and mark all absent third-dimension, cavity-length, joining and guide inputs",
+        "Require a qualified complete model-geometry card before meshing; record potential feature risks. Fabrication additionally needs the process/manufacturability approval at PRINT_LOAD, which never gates independent numerical jobs."
+      ],
+      "preconditions": [
+        "Target branch known"
+      ],
+      "postconditions": [
+        "Geometry revision manifest",
+        "Model-geometry completeness gate decision"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_ARCH",
+        "E_60",
+        "E_70",
+        "E_80"
+      ],
+      "unknown_parameter_ids": [
+        "U01"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current geometry revision and condition",
+        "Geometry revision manifest",
+        "Model-geometry completeness gate decision"
+      ],
+      "detectable_failures": [
+        "Undocumented dimensions",
+        "Silently repaired rounded coefficient",
+        "Blocked 0.1 mm feature"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "LOCAL_ANALYTIC",
+      "title": "Evaluate local transfer and scattering response",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "geometry revision",
+        "frequency schedule"
+      ],
+      "tools": [
+        "analytic transfer service"
+      ],
+      "actions": [
+        "Run documented mode truncation and convergence policy for both incidence directions",
+        "Export complex transfer, impedance and scattering arrays with units and phase convention; check reciprocal transmission separately from reflection phase"
+      ],
+      "preconditions": [
+        "Geometry and medium card qualified",
+        "Nonempty frequency schedule"
+      ],
+      "postconditions": [
+        "Analytic response dataset",
+        "Convergence and residual records"
+      ],
+      "depends_on": [
+        "GEOMETRY"
+      ],
+      "evidence_ids": [
+        "E_TM"
+      ],
+      "unknown_parameter_ids": [
+        "U09",
+        "U11"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Analytic response dataset",
+        "Convergence and residual records"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "RETRIEVAL_SETUP",
+      "title": "Configure four numerical probes and two terminations",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "local finite-element model"
+      ],
+      "tools": [
+        "finite-element service"
+      ],
+      "actions": [
+        "Place four distinct numerical pressure probes with declared port coordinates and the cell datum",
+        "Bind otherwise identical radiation and hard-wall termination jobs, mesh, source and frequency; check inversion conditioning criteria"
+      ],
+      "preconditions": [
+        "Qualified solver card",
+        "Geometry revision fixed"
+      ],
+      "postconditions": [
+        "Two-termination job manifest",
+        "Probe and port map"
+      ],
+      "depends_on": [
+        "GEOMETRY"
+      ],
+      "evidence_ids": [
+        "E_RETRIEVAL"
+      ],
+      "unknown_parameter_ids": [
+        "U08",
+        "U09",
+        "U11"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Two-termination job manifest",
+        "Probe and port map"
+      ],
+      "detectable_failures": [
+        "Coincident probes",
+        "Aliased spacing",
+        "Undocumented port sign"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "RETRIEVAL_RUN",
+      "title": "Acquire independent numerical termination records",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "two termination job IDs"
+      ],
+      "tools": [
+        "finite-element service"
+      ],
+      "actions": [
+        "Run each termination job; preserve solver status and four complex pressures per frequency",
+        "Retrieve the transfer/impedance matrix only after both independent boundary conditions and conditioning checks pass"
+      ],
+      "preconditions": [
+        "RETRIEVAL_SETUP accepted"
+      ],
+      "postconditions": [
+        "Eight complex probe records per frequency",
+        "Retrieved matrix and residual artifact"
+      ],
+      "depends_on": [
+        "RETRIEVAL_SETUP"
+      ],
+      "evidence_ids": [
+        "E_RETRIEVAL"
+      ],
+      "unknown_parameter_ids": [
+        "U08",
+        "U11"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Eight complex probe records per frequency",
+        "Retrieved matrix and residual artifact"
+      ],
+      "detectable_failures": [
+        "Duplicated termination outputs",
+        "Singular inversion",
+        "Solver unconverged"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "LOCAL_COMPARE",
+      "title": "Compare analytic and numerical cell behavior",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "analytic dataset",
+        "retrieved numerical dataset"
+      ],
+      "tools": [
+        "comparison service"
+      ],
+      "actions": [
+        "Join by identical geometry, frequency, medium and reconciled port convention",
+        "Report complex/magnitude/phase differences and reciprocity residuals with declared tolerances; retain discrepancies"
+      ],
+      "preconditions": [
+        "Both local response datasets valid"
+      ],
+      "postconditions": [
+        "Paired local-response comparison"
+      ],
+      "depends_on": [
+        "LOCAL_ANALYTIC",
+        "RETRIEVAL_RUN"
+      ],
+      "evidence_ids": [
+        "E_TM",
+        "E_ARCH"
+      ],
+      "unknown_parameter_ids": [
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Paired local-response comparison"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "GA_SETUP",
+      "title": "Configure reported baseline search with declared missing choices",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "optimization specification"
+      ],
+      "tools": [
+        "optimization service"
+      ],
+      "actions": [
+        "Bind population 10, mutation rate 0.2, retain half, unmutated elite, no crossover, 1500 generations and 50 restarts per cell",
+        "Require explicit cost normalization, search bounds, mutation distribution and seeds; distinguish analytic 60-degree baseline from numerical 70/80-degree impedance evaluation"
+      ],
+      "preconditions": [
+        "Target and geometry parameterization available"
+      ],
+      "postconditions": [
+        "Versioned optimizer card",
+        "Cell/restart schedule"
+      ],
+      "depends_on": [
+        "TARGET",
+        "GEOMETRY"
+      ],
+      "evidence_ids": [
+        "E_GA"
+      ],
+      "unknown_parameter_ids": [
+        "U10"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Versioned optimizer card",
+        "Cell/restart schedule"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "GA_RUN",
+      "title": "Retain complete optimization search lineage",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "cell/restart schedule"
+      ],
+      "tools": [
+        "optimization service"
+      ],
+      "actions": [
+        "Run each scheduled restart through its declared stopping rule and retain objective history, errors and final geometry",
+        "Select a candidate by the declared objective using retained complete records; optional crossover refinement gets a separate extension job"
+      ],
+      "preconditions": [
+        "GA_SETUP qualified"
+      ],
+      "postconditions": [
+        "All restart status records",
+        "Selected candidate with parent job IDs"
+      ],
+      "depends_on": [
+        "GA_SETUP"
+      ],
+      "evidence_ids": [
+        "E_GA"
+      ],
+      "unknown_parameter_ids": [
+        "U10"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "All restart status records",
+        "Selected candidate with parent job IDs"
+      ],
+      "detectable_failures": [
+        "Missing restarts",
+        "Undeclared early stop",
+        "Crossover injected into baseline"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": "cell_id × restart_id; generation ledger remains nested, not physical samples",
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "ARRAY_SETUP",
+      "title": "Assemble a numerical array and ideal GSL comparator",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "selected geometry revisions",
+        "GSL target profile"
+      ],
+      "tools": [
+        "finite-element service"
+      ],
+      "actions": [
+        "Build branch-specific 11-cell or 4-cell periodic design from source row order",
+        "Create the ideal impedance-matched phase-only GSL comparator with the same angular target, spatial resolution, illumination and normalization; retain comparator as numerical idealization"
+      ],
+      "preconditions": [
+        "Qualified geometry and numerical environment",
+        "Selected candidate or explicit source-geometry route bound"
+      ],
+      "postconditions": [
+        "Paired array/comparator job manifest"
+      ],
+      "depends_on": [
+        "TARGET",
+        "GEOMETRY"
+      ],
+      "evidence_ids": [
+        "E_60",
+        "E_70",
+        "E_80"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Paired array/comparator job manifest"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "ARRAY_RUN",
+      "title": "Run lossless array and matched GSL jobs",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "array/comparator job pair"
+      ],
+      "tools": [
+        "finite-element service"
+      ],
+      "actions": [
+        "Compute full complex fields with declared PML/source configuration and convergence study",
+        "Extract direction-resolved normal energy flux with incident-flux normalization; keep numeric result independent of source reported efficiencies"
+      ],
+      "preconditions": [
+        "ARRAY_SETUP accepted"
+      ],
+      "postconditions": [
+        "Two valid solver field records",
+        "Direction-resolved flux records"
+      ],
+      "depends_on": [
+        "ARRAY_SETUP"
+      ],
+      "evidence_ids": [
+        "E_60",
+        "E_70",
+        "E_80"
+      ],
+      "unknown_parameter_ids": [
+        "U08",
+        "U09",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Two valid solver field records",
+        "Direction-resolved flux records"
+      ],
+      "detectable_failures": [
+        "Mismatched comparator sampling",
+        "Pressure squared used as energy efficiency"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "LOSS_RUN",
+      "title": "Run matched viscous and lossless comparison",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "60-degree geometry revision"
+      ],
+      "tools": [
+        "finite-element service"
+      ],
+      "actions": [
+        "Use a matched 60-degree setup and a declared lossless baseline",
+        "For the viscous branch bind dynamic viscosity 1.82e-5 Pa s and bulk viscosity 5.46e-2 Pa s from main Methods; retain the SI unit omission and figure typo"
+      ],
+      "preconditions": [
+        "ARRAY_SETUP for 60 degrees accepted",
+        "Loss convention qualified"
+      ],
+      "postconditions": [
+        "Matched loss comparison records"
+      ],
+      "depends_on": [
+        "ARRAY_SETUP"
+      ],
+      "evidence_ids": [
+        "E_LOSS"
+      ],
+      "unknown_parameter_ids": [
+        "U08",
+        "U09",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Matched loss comparison records"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "TOPOLOGY_RUN",
+      "title": "Compare constrained and relaxed three-resonator searches",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "cell-1 target",
+        "three/four-resonator geometry cards"
+      ],
+      "tools": [
+        "optimization and finite-element services"
+      ],
+      "actions": [
+        "Retain constrained search with 12 mm width, 1 mm shell, 1.5 mm neck width and 50 mm cell length as the SI Note8 comparison only",
+        "Run a separately labeled relaxed-neck branch with 0.6 mm neck width and variable neck heights; preserve both unsuccessful and successful search records",
+        "Compare response, resonance proximity and sensitivity without asserting universal impossibility of three or two resonators"
+      ],
+      "preconditions": [
+        "TARGET and qualified topology/search/medium cards"
+      ],
+      "postconditions": [
+        "Constrained and relaxed search ledgers",
+        "Matched topology comparison"
+      ],
+      "depends_on": [
+        "TARGET",
+        "GA_SETUP"
+      ],
+      "evidence_ids": [
+        "E_TOPO",
+        "E_ARCH"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Constrained and relaxed search ledgers",
+        "Matched topology comparison"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "NUMERIC_REPORT",
+      "title": "Archive branch-specific computational conclusions",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_RECORDS",
+      "objects": [
+        "selected numerical job records"
+      ],
+      "tools": [
+        "record console"
+      ],
+      "actions": [
+        "Report each selected branch as complete, blocked, failed or not run with its actual evidence",
+        "Keep theoretical bound, discretized GSL result, incident-flux efficiency and transmitted-energy share as separate metrics"
+      ],
+      "preconditions": [
+        "All selected computational occurrences terminal"
+      ],
+      "postconditions": [
+        "Scoped computational report",
+        "Unresolved conflict notes"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_THEORY",
+        "E_GA",
+        "E_LOSS",
+        "E_TOPO"
+      ],
+      "unknown_parameter_ids": [
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Scoped computational report",
+        "Unresolved conflict notes"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "STOCK",
+      "title": "Retrieve ABS stock and identified carriers",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_STOCK",
+      "objects": [
+        "ABS feedstock lot",
+        "empty build plate",
+        "carrier"
+      ],
+      "tools": [
+        "label reader",
+        "qualified gripper"
+      ],
+      "actions": [
+        "Read lot and material identity; inspect sealed feedstock and build plate",
+        "Grasp permitted handles/supports, place the stock and plate in separate retained carrier slots, and record custody"
+      ],
+      "preconditions": [
+        "PLAN complete",
+        "Qualified feedstock and handling card"
+      ],
+      "postconditions": [
+        "Stock lot allocated",
+        "Carrier manifest"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U02",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Stock lot allocated",
+        "Carrier manifest"
+      ],
+      "detectable_failures": [
+        "Wrong polymer",
+        "Unlabeled lot"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "MOVE",
+      "title": "Transport supported specimens between stations",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_TRANSIT",
+      "objects": [
+        "carrier and retained contents"
+      ],
+      "tools": [
+        "mobile base",
+        "carrier grips"
+      ],
+      "actions": [
+        "Verify the destination dock is empty, route is supplied and all active tethers are detached safely",
+        "Close retainers, retract arms, navigate, dock and verify identities and orientation at the destination"
+      ],
+      "preconditions": [
+        "Objects thermally and mechanically safe",
+        "Collision-free route and load card supplied"
+      ],
+      "postconditions": [
+        "Single current location per object",
+        "Dock and integrity observation"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Single current location per object",
+        "Dock and integrity observation"
+      ],
+      "detectable_failures": [
+        "Dropped part",
+        "Moving tethered specimen",
+        "Occupied dock"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "task_authored_workflow_closure",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "PRINT_LOAD",
+      "title": "Load a qualified fabrication job",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_PRINT",
+      "objects": [
+        "ABS lot",
+        "build plate",
+        "geometry job card"
+      ],
+      "tools": [
+        "printer loading interface"
+      ],
+      "actions": [
+        "Seat the plate using its qualified fixture; load the identified feedstock through the permitted service interface",
+        "Read back the geometry revision and process card; close guard and clear the motion zone"
+      ],
+      "preconditions": [
+        "STOCK complete",
+        "Manufacturable qualified geometry and approved printer recipe"
+      ],
+      "postconditions": [
+        "Guarded loaded build",
+        "Job and material readback"
+      ],
+      "depends_on": [
+        "STOCK",
+        "GEOMETRY"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U02",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Guarded loaded build",
+        "Job and material readback"
+      ],
+      "detectable_failures": [
+        "Wrong revision",
+        "Unqualified slice settings"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "PRINT_RUN",
+      "title": "Fabricate and wait for safe release",
+      "actor": "qualified_instrument",
+      "kind": "device_process",
+      "location_id": "WS_PRINT",
+      "objects": [
+        "loaded build"
+      ],
+      "tools": [
+        "enclosed FDM printer"
+      ],
+      "actions": [
+        "Start the verified job through its interface and preserve process/abort history",
+        "Wait for both job completion and qualified thermal/motion safe-release indications; completion alone does not authorize unloading"
+      ],
+      "preconditions": [
+        "PRINT_LOAD accepted",
+        "Safety interlocks valid"
+      ],
+      "postconditions": [
+        "Build completion or abort receipt",
+        "Thermal and motion release receipt"
+      ],
+      "depends_on": [
+        "PRINT_LOAD"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U02",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Build completion or abort receipt",
+        "Thermal and motion release receipt"
+      ],
+      "detectable_failures": [
+        "Incomplete build",
+        "Hot plate",
+        "Active mechanism"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "PRINT_UNLOAD",
+      "title": "Retrieve and identify fabricated period sections",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_PRINT",
+      "objects": [
+        "released plate",
+        "printed sections"
+      ],
+      "tools": [
+        "permitted plate handle",
+        "qualified separation fixture"
+      ],
+      "actions": [
+        "Open only after safe release; support the plate and move it to the extraction fixture",
+        "Separate parts using the qualified removal method, preserve local-cell orientation marks, and allocate unique section IDs linked to build and geometry"
+      ],
+      "preconditions": [
+        "PRINT_RUN safe release valid"
+      ],
+      "postconditions": [
+        "New physical part identities",
+        "Build-to-part lineage"
+      ],
+      "depends_on": [
+        "PRINT_RUN"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U02",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "New physical part identities",
+        "Build-to-part lineage"
+      ],
+      "detectable_failures": [
+        "Chipped shell",
+        "Broken internal feature"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "INSPECT_PART",
+      "title": "Inspect channels, neck access and external dimensions",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_INSPECT",
+      "objects": [
+        "identified section"
+      ],
+      "tools": [
+        "camera",
+        "qualified dimensional gauge"
+      ],
+      "actions": [
+        "Seat the section in the inspection cradle and read its geometry/local-cell manifest",
+        "Inspect accessible necks, channels, walls and support-removal remnants; gauge supplied datums under declared tolerances",
+        "Record accepted, rejected or indeterminate status; quarantine blocked or damaged sections without unqualified repair"
+      ],
+      "preconditions": [
+        "Safe extracted part",
+        "Inspection card and datums supplied"
+      ],
+      "postconditions": [
+        "Version-bound inspection record",
+        "Acceptance or quarantine status"
+      ],
+      "depends_on": [
+        "PRINT_UNLOAD"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_60"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U02",
+        "U03",
+        "U13",
+        "U16"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Version-bound inspection record",
+        "Acceptance or quarantine status"
+      ],
+      "detectable_failures": [
+        "Blocked channel",
+        "Incorrect local-cell order",
+        "Unknown inaccessible defect"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": "each allocated physical period section; no historical segmentation claim",
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "STAGE_PANEL",
+      "title": "Stage nine qualified period sections in order",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_ASSEMBLY",
+      "objects": [
+        "nine period sections",
+        "panel fixture"
+      ],
+      "tools": [
+        "support cradle",
+        "orientation reader"
+      ],
+      "actions": [
+        "Retrieve each accepted section by ID and place it in the numbered support position",
+        "Match eleven local-cell design positions per period; maintain marked incident face, tangential direction and unique period identity"
+      ],
+      "preconditions": [
+        "Nine distinct accepted period-section instances allocated",
+        "Whole-period handling is the authored granularity"
+      ],
+      "postconditions": [
+        "Nine-period membership/order manifest",
+        "99 local design slots linked to parents"
+      ],
+      "depends_on": [
+        "INSPECT_PART"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_60"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U16"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Nine-period membership/order manifest",
+        "99 local design slots linked to parents"
+      ],
+      "detectable_failures": [
+        "Duplicate physical period ID",
+        "Reversed incident face",
+        "Missing or swapped local cell"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "JOIN_PANEL",
+      "title": "Seat and secure panel sections",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_ASSEMBLY",
+      "objects": [
+        "staged sections",
+        "clamps/seals"
+      ],
+      "tools": [
+        "qualified fixture and joining tools"
+      ],
+      "actions": [
+        "Support adjacent sections while aligning the supplied interface datums",
+        "Seat, clamp and seal with qualified interface settings; inspect seams and ensure channels remain open"
+      ],
+      "preconditions": [
+        "STAGE_PANEL manifest checked",
+        "Qualified joining and support card"
+      ],
+      "postconditions": [
+        "Panel assembly version",
+        "Attachment and seam records"
+      ],
+      "depends_on": [
+        "STAGE_PANEL"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U04",
+        "U13",
+        "U16"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Panel assembly version",
+        "Attachment and seam records"
+      ],
+      "detectable_failures": [
+        "Inter-period gap",
+        "Clamp occludes channel"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "PANEL_QC",
+      "title": "Register panel geometry and integrity",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_INSPECT",
+      "objects": [
+        "assembled panel"
+      ],
+      "tools": [
+        "camera",
+        "datum gauge"
+      ],
+      "actions": [
+        "Read incident/tangential marks and verify all period positions against the manifest",
+        "Measure qualified flatness, seam, aperture and orientation observables; record the assembly version and condition"
+      ],
+      "preconditions": [
+        "JOIN_PANEL complete"
+      ],
+      "postconditions": [
+        "Panel inspection tied to assembly version",
+        "Qualified panel or quarantine decision"
+      ],
+      "depends_on": [
+        "JOIN_PANEL"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U01",
+        "U04",
+        "U13",
+        "U16"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Panel inspection tied to assembly version",
+        "Qualified panel or quarantine decision"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "GUIDE_SETUP",
+      "title": "Prepare the guide and independent coordinate frame",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "guide fixture",
+        "stage datums",
+        "reference targets"
+      ],
+      "tools": [
+        "fixture interfaces",
+        "alignment gauge"
+      ],
+      "actions": [
+        "Confirm source off and stage stopped; inspect guide plates, absorbers and specimen seat using the supplied card",
+        "Register guide, sample plane, source direction and scan-stage axes; verify microphone clearance through the declared region"
+      ],
+      "preconditions": [
+        "PLAN complete",
+        "Guide, route and safety cards supplied"
+      ],
+      "postconditions": [
+        "Guide configuration signature",
+        "Frame registration receipt",
+        "Clearance check"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U04",
+        "U06",
+        "U07",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Guide configuration signature",
+        "Frame registration receipt",
+        "Clearance check"
+      ],
+      "detectable_failures": [
+        "Unregistered frame",
+        "Collision path",
+        "Guide gap unspecified"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "SOURCE_CONNECT",
+      "title": "Connect isolated source and acquisition channels",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "28-speaker array",
+        "microphone",
+        "DAQ and amplifier"
+      ],
+      "tools": [
+        "keyed connectors",
+        "strain relief"
+      ],
+      "actions": [
+        "Read device/channel identities and verify output disabled before connections",
+        "Mate the qualified connectors, secure strain relief away from scan paths and verify channel map without energizing an unqualified source"
+      ],
+      "preconditions": [
+        "GUIDE_SETUP accepted",
+        "Electrical/connector card supplied"
+      ],
+      "postconditions": [
+        "Source and channel map",
+        "Isolated connection inspection"
+      ],
+      "depends_on": [
+        "GUIDE_SETUP"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U05",
+        "U06",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Source and channel map",
+        "Isolated connection inspection"
+      ],
+      "detectable_failures": [
+        "Swapped channel",
+        "Cable intrudes into scan"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "MIC_CAL",
+      "title": "Qualify microphone and acquisition response",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_CALIBRATE",
+      "objects": [
+        "microphone",
+        "calibration artifact"
+      ],
+      "tools": [
+        "calibration fixture",
+        "DAQ interface"
+      ],
+      "actions": [
+        "Seat the microphone at the artifact datum without contacting its sensitive face",
+        "Run the supplied amplitude/phase calibration job, record identity and uncertainty, remove the artifact and return the same microphone to the stage",
+        "Verify calibration validity interval, channel mapping and phase/time reference; these are benchmark validity controls absent from the paper recipe"
+      ],
+      "preconditions": [
+        "SOURCE_CONNECT complete",
+        "Qualified calibration procedure and reference artifact"
+      ],
+      "postconditions": [
+        "Microphone/DAQ calibration receipt",
+        "Same microphone remount record"
+      ],
+      "depends_on": [
+        "SOURCE_CONNECT"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U06",
+        "U13",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Microphone/DAQ calibration receipt",
+        "Same microphone remount record"
+      ],
+      "detectable_failures": [
+        "Expired calibration",
+        "Calibration for another microphone"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "BEAM_CAL",
+      "title": "Qualify source waveform and drift reference",
+      "actor": "qualified_instrument",
+      "kind": "device_process",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "speaker array",
+        "reference microphone pose"
+      ],
+      "tools": [
+        "source generator and DAQ"
+      ],
+      "actions": [
+        "Bind a 3000 Hz normally incident Gaussian-modulated beam to all 28 speaker channels under a qualified amplitude/phase envelope",
+        "Acquire calibration/reference readbacks and check exposure, clipping, waveform and drift against the supplied validity rules"
+      ],
+      "preconditions": [
+        "MIC_CAL valid",
+        "Source envelope and limits qualified"
+      ],
+      "postconditions": [
+        "Beam/source calibration signature",
+        "Qualified drift baseline"
+      ],
+      "depends_on": [
+        "MIC_CAL"
+      ],
+      "evidence_ids": [
+        "E_SCAN",
+        "E_60"
+      ],
+      "unknown_parameter_ids": [
+        "U05",
+        "U06",
+        "U09",
+        "U13",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Beam/source calibration signature",
+        "Qualified drift baseline"
+      ],
+      "detectable_failures": [
+        "Clipping",
+        "Source drift",
+        "Undeclared drive level"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "SCAN_PLAN",
+      "title": "Declare exact scan points and acquisition timing",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_RECORDS",
+      "objects": [
+        "region and acquisition cards"
+      ],
+      "tools": [
+        "scan planner"
+      ],
+      "actions": [
+        "Bind the reported overall 114 by 60 cm scan extent and 2 cm nominal step to explicit origin, endpoints, region assignments and point IDs; the separate reflection-region schedule remains qualified input",
+        "Specify the separate reflection-region grid, near-panel analysis line, stage height, settling, triggers, sample rate, time record length and window",
+        "Allocate four distinct acquisitions per point; do not infer a paper-reported grid point count or four independent samples"
+      ],
+      "preconditions": [
+        "GUIDE_SETUP registered",
+        "Nonempty qualified scan and acquisition cards"
+      ],
+      "postconditions": [
+        "Explicit point/repeat schedule",
+        "Grid and timing hashes"
+      ],
+      "depends_on": [
+        "GUIDE_SETUP"
+      ],
+      "evidence_ids": [
+        "E_SCAN",
+        "E_REFLECT",
+        "E_ORDERS"
+      ],
+      "unknown_parameter_ids": [
+        "U06",
+        "U07",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Explicit point/repeat schedule",
+        "Grid and timing hashes"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "BLANK_CHECK",
+      "title": "Verify empty guide for reflection reference",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "guide specimen seat",
+        "panel storage carrier"
+      ],
+      "tools": [
+        "inspection camera"
+      ],
+      "actions": [
+        "Read the guide seat and verify the panel is absent without disturbing the registered frame",
+        "Check unchanged source, microphone, DAQ and guide signatures; establish blank configuration ID"
+      ],
+      "preconditions": [
+        "BEAM_CAL valid",
+        "SCAN_PLAN qualified",
+        "No panel in guide"
+      ],
+      "postconditions": [
+        "Empty-guide inspection",
+        "Blank configuration signature"
+      ],
+      "depends_on": [
+        "BEAM_CAL",
+        "SCAN_PLAN"
+      ],
+      "evidence_ids": [
+        "E_REFLECT"
+      ],
+      "unknown_parameter_ids": [
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Empty-guide inspection",
+        "Blank configuration signature"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "SCAN_POSITION",
+      "title": "Move microphone to one scheduled pose",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "microphone carriage"
+      ],
+      "tools": [
+        "qualified XY stage or robot end-effector interface"
+      ],
+      "actions": [
+        "Select the next explicit point ID for blank reflection, sample reflection or transmission",
+        "Move along the safe supplied path, verify pose and height, wait the qualified settling interval and clear the probe neighborhood"
+      ],
+      "preconditions": [
+        "Current measurement configuration and calibration valid",
+        "No active stage motion or collision hazard"
+      ],
+      "postconditions": [
+        "Point-bound pose and settling receipt"
+      ],
+      "depends_on": [
+        "SCAN_PLAN"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U06",
+        "U07",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Point-bound pose and settling receipt"
+      ],
+      "detectable_failures": [
+        "Wrong height",
+        "Skipped point",
+        "Pose outside region"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": "configuration_id × point_id",
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "POINT_ACQUIRE",
+      "title": "Acquire four independent records at the current point",
+      "actor": "qualified_instrument",
+      "kind": "device_process",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "current point pose",
+        "source/DAQ configuration"
+      ],
+      "tools": [
+        "waveform generator",
+        "DAQ"
+      ],
+      "actions": [
+        "Acquire four separately identified temporal records with the same phase/time reference and exposure-safe drive",
+        "Retain each raw record, acquisition status and clipping/missing-data checks; failed attempts remain recorded and are retried under new IDs"
+      ],
+      "preconditions": [
+        "SCAN_POSITION receipt matches current pose",
+        "Current MIC_CAL and BEAM_CAL valid"
+      ],
+      "postconditions": [
+        "Four valid raw-record references or incomplete status",
+        "Readback and quality records"
+      ],
+      "depends_on": [
+        "SCAN_POSITION"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U05",
+        "U06",
+        "U13",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Four valid raw-record references or incomplete status",
+        "Readback and quality records"
+      ],
+      "detectable_failures": [
+        "Duplicated raw IDs",
+        "Only three measurements",
+        "Clipped record",
+        "Calibration expired during scan"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": "configuration_id × point_id × repeat_index=1..4",
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "SCAN_VALIDATE",
+      "title": "Close a scan only after full valid coverage",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_RECORDS",
+      "objects": [
+        "point schedule",
+        "raw acquisition ledger"
+      ],
+      "tools": [
+        "integrity checker"
+      ],
+      "actions": [
+        "Require exact point-set coverage and four valid distinct acquisitions at every point under compatible calibration and settings",
+        "Keep invalid attempts, retries and interrupted-run boundaries; any unfilled point yields incomplete rather than zero pressure"
+      ],
+      "preconditions": [
+        "POINT_ACQUIRE occurrences terminal"
+      ],
+      "postconditions": [
+        "Configuration-bound complete-scan receipt or missing-data report"
+      ],
+      "depends_on": [
+        "POINT_ACQUIRE"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U06",
+        "U07",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Configuration-bound complete-scan receipt or missing-data report"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "PANEL_INSTALL",
+      "title": "Install the registered 60-degree panel",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "qualified panel",
+        "guide fixture"
+      ],
+      "tools": [
+        "support handles",
+        "qualified clamps"
+      ],
+      "actions": [
+        "Disable source and park microphone clear of the transfer route",
+        "Carry the supported panel into its guide seat; match incident face and registered origin, secure clamps/seals and inspect without changing guide/source coordinates",
+        "Record installation epoch and panel assembly version; a changed frame invalidates the old blank reference"
+      ],
+      "preconditions": [
+        "PANEL_QC accepted",
+        "GUIDE_SETUP qualified",
+        "Blank reflection scan complete for the intended paired run"
+      ],
+      "postconditions": [
+        "Installed-panel configuration",
+        "Position and seam readbacks"
+      ],
+      "depends_on": [
+        "PANEL_QC",
+        "BLANK_CHECK"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_REFLECT"
+      ],
+      "unknown_parameter_ids": [
+        "U04",
+        "U07",
+        "U13",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Installed-panel configuration",
+        "Position and seam readbacks"
+      ],
+      "detectable_failures": [
+        "Reverse orientation",
+        "Frame moved after blank",
+        "Gap at guide interface"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "RUN_CHECK",
+      "title": "Requalify installed-panel measurement state",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "installed panel",
+        "source/microphone frame"
+      ],
+      "tools": [
+        "inspection and instrument readbacks"
+      ],
+      "actions": [
+        "Verify panel version, orientation, stage clearance, calibration and source drift signatures",
+        "Authorize transmission and sample-reflection scan occurrences only while signatures remain valid"
+      ],
+      "preconditions": [
+        "PANEL_INSTALL complete",
+        "Current blank reference and calibration remain compatible"
+      ],
+      "postconditions": [
+        "Run authorization receipt"
+      ],
+      "depends_on": [
+        "PANEL_INSTALL",
+        "BEAM_CAL"
+      ],
+      "evidence_ids": [
+        "E_SCAN",
+        "E_REFLECT"
+      ],
+      "unknown_parameter_ids": [
+        "U05",
+        "U06",
+        "U07",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Run authorization receipt"
+      ],
+      "detectable_failures": [
+        "Stale blank",
+        "Panel moved during scan"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "REDUCE_TEMPORAL",
+      "title": "Convert valid temporal acquisitions to complex fields",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "complete raw-record sets"
+      ],
+      "tools": [
+        "versioned Fourier analysis service"
+      ],
+      "actions": [
+        "Apply the declared calibration, time reference and Fourier window to each temporal record",
+        "Average the four compatible complex results per point according to the qualified processing card, retaining all parents and units"
+      ],
+      "preconditions": [
+        "SCAN_VALIDATE passed for selected configurations"
+      ],
+      "postconditions": [
+        "Complex field with raw parents",
+        "Four-record averaging receipt"
+      ],
+      "depends_on": [
+        "SCAN_VALIDATE"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U06",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Complex field with raw parents",
+        "Four-record averaging receipt"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "SUBTRACT_REFLECTION",
+      "title": "Subtract registered blank from sample reflection",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "blank complex field",
+        "sample reflection complex field"
+      ],
+      "tools": [
+        "complex-field analysis service"
+      ],
+      "actions": [
+        "Check identical grid, guide frame, source/DAQ/medium/calibration/phase signatures and approved pairing lifetime",
+        "Subtract complex sample minus blank field pointwise; never subtract magnitudes or reuse transmission-region data as the blank"
+      ],
+      "preconditions": [
+        "Both reflection fields valid",
+        "Sample version and install epoch match run"
+      ],
+      "postconditions": [
+        "Complex reflected field",
+        "Paired-reference validity receipt"
+      ],
+      "depends_on": [
+        "REDUCE_TEMPORAL",
+        "RUN_CHECK"
+      ],
+      "evidence_ids": [
+        "E_REFLECT"
+      ],
+      "unknown_parameter_ids": [
+        "U05",
+        "U06",
+        "U07",
+        "U09",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Complex reflected field",
+        "Paired-reference validity receipt"
+      ],
+      "detectable_failures": [
+        "Frame mismatch",
+        "Drift mismatch",
+        "Magnitude-only subtraction"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "ORDER_ANALYSIS",
+      "title": "Analyze diffraction orders with explicit denominators",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_COMPUTE",
+      "objects": [
+        "transmission field",
+        "reflected field",
+        "near-panel line card"
+      ],
+      "tools": [
+        "spatial Fourier and flux analysis service"
+      ],
+      "actions": [
+        "Extract the registered line behind the panel and retain sampling/window/normalization metadata",
+        "Separate propagating normal-flux orders from visible near-field evanescent components; retain the source convention identifying desired order as minus one",
+        "Report transmitted-direction share, reflected-energy metric and incident-normalized efficiency only where their required reference data exist; do not infer one denominator from another"
+      ],
+      "preconditions": [
+        "Valid transmission data and reflection pairing",
+        "Qualified order/flux/uncertainty card"
+      ],
+      "postconditions": [
+        "Order spectrum and denominator ledger",
+        "Measured-field summary with uncertainty or explicit unavailable metric"
+      ],
+      "depends_on": [
+        "REDUCE_TEMPORAL",
+        "SUBTRACT_REFLECTION"
+      ],
+      "evidence_ids": [
+        "E_ORDERS",
+        "E_THEORY"
+      ],
+      "unknown_parameter_ids": [
+        "U06",
+        "U07",
+        "U09",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Order spectrum and denominator ledger",
+        "Measured-field summary with uncertainty or explicit unavailable metric"
+      ],
+      "detectable_failures": [
+        "Evanescent amplitude counted as far-field energy",
+        "97% treated as incident efficiency"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "DRIFT_POST",
+      "title": "Check post-run stability before final validity",
+      "actor": "qualified_instrument",
+      "kind": "device_process",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "source and microphone system"
+      ],
+      "tools": [
+        "reference measurement service"
+      ],
+      "actions": [
+        "Acquire the declared closing stability check using the same reference protocol",
+        "Invalidate dependent comparisons if drift exceeds qualified bounds; retain all acquired data and request a new matched blank/sample pair"
+      ],
+      "preconditions": [
+        "Scheduled scans finished",
+        "Reference pose and procedure still valid"
+      ],
+      "postconditions": [
+        "Post-run drift evidence",
+        "Run validity decision"
+      ],
+      "depends_on": [
+        "RUN_CHECK"
+      ],
+      "evidence_ids": [
+        "E_SCAN",
+        "E_REFLECT"
+      ],
+      "unknown_parameter_ids": [
+        "U05",
+        "U06",
+        "U13"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Post-run drift evidence",
+        "Run validity decision"
+      ],
+      "detectable_failures": [
+        "Unobserved drift",
+        "Reference artifact changed"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "SAFE_OFF",
+      "title": "Disable outputs and park the probe",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "source controls",
+        "microphone stage"
+      ],
+      "tools": [
+        "source off control",
+        "stage park interface"
+      ],
+      "actions": [
+        "Stop acquisition, disable speaker drive and verify the amplifier/output-safe readbacks",
+        "Park the microphone clear of the panel removal route and verify motion stopped"
+      ],
+      "preconditions": [
+        "All acquisitions stopped or aborted"
+      ],
+      "postconditions": [
+        "Source off and motion-stopped evidence",
+        "Safe panel access"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U05",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Source off and motion-stopped evidence",
+        "Safe panel access"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "PANEL_REMOVE",
+      "title": "Remove and store the supported panel",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_GUIDE",
+      "objects": [
+        "panel",
+        "carrier",
+        "clamps"
+      ],
+      "tools": [
+        "qualified grips and clamp interface"
+      ],
+      "actions": [
+        "Support the panel before releasing clamps/seals",
+        "Lift along the supplied extraction path, inspect damage, close the carrier and record its storage or quarantine location"
+      ],
+      "preconditions": [
+        "SAFE_OFF accepted",
+        "Clear supported removal path"
+      ],
+      "postconditions": [
+        "Panel custody and condition update",
+        "Empty-guide seat"
+      ],
+      "depends_on": [
+        "SAFE_OFF"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U04",
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Panel custody and condition update",
+        "Empty-guide seat"
+      ],
+      "detectable_failures": [
+        "Unsupported release",
+        "Cracked panel reused as intact"
+      ],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "CLEAN_RESET",
+      "title": "Reset stations and segregate waste",
+      "actor": "mobile_human_like_robot",
+      "kind": "manual_robot",
+      "location_id": "WS_ARCHIVE",
+      "objects": [
+        "tools",
+        "build remnants",
+        "calibration artifact",
+        "carriers"
+      ],
+      "tools": [
+        "qualified cleaning tools",
+        "labeled waste bins"
+      ],
+      "actions": [
+        "Return tools and protected calibration artifact to their identified holders; remove loose inert remnants using the supplied card",
+        "Segregate print/support waste, preserve quarantined parts, inspect only used stations, and leave their outputs isolated; inspect stage/guide only if included in the episode",
+        "Do not flush, scrape, heat or repair acoustic channels without a qualified method"
+      ],
+      "preconditions": [
+        "All affected stations have qualified safe-state receipts: print thermal/motion/guard release for fabrication; SAFE_OFF for guide work",
+        "Objects safe to handle; no access to an unrelated unused station is required"
+      ],
+      "postconditions": [
+        "Tool/waste inventory",
+        "Station reset and isolation receipt"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U16",
+        "U18"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Tool/waste inventory",
+        "Station reset and isolation receipt",
+        "Station-scoped safe-state parent receipts"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "task_authored_workflow_closure",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Freeze raw records, lineage and scoped report",
+      "actor": "explicit_computational_service",
+      "kind": "digital_job",
+      "location_id": "WS_RECORDS",
+      "objects": [
+        "raw/derived records",
+        "specimen ledger"
+      ],
+      "tools": [
+        "append-only archive"
+      ],
+      "actions": [
+        "Archive source IDs, fabrication jobs, part inspections, panel versions, calibration, scan schedules, raw hashes, processing revisions and failed attempts",
+        "Report separate procedural validity, observed science and unresolved inputs; truthful disagreement with the paper is acceptable",
+        "Distinguish selected-route completion from whole-paper coverage; require custody and cleanup only for used physical stations, printing safe-release for fabrication, source/stage shutdown for guide work, and post-run drift only for field measurement."
+      ],
+      "preconditions": [
+        "All selected occurrences terminal",
+        "No overwrite of raw evidence"
+      ],
+      "postconditions": [
+        "Complete audit manifest",
+        "Scoped outcome and limitation report"
+      ],
+      "depends_on": [],
+      "evidence_ids": [
+        "E_DATA"
+      ],
+      "unknown_parameter_ids": [
+        "U13",
+        "U17"
+      ],
+      "required_completion_evidence": [
+        "Occurrence-bound trusted event receipt",
+        "Current object/geometry/calibration/condition revisions as applicable",
+        "Complete audit manifest",
+        "Scoped outcome and limitation report"
+      ],
+      "detectable_failures": [],
+      "recovery": [
+        "Stop only the affected branch; retain raw records and failed occurrence",
+        "Place hardware in a supplied safe state; quarantine uncertain specimens; resume with a new occurrence after requalification"
+      ],
+      "iteration": null,
+      "provenance": {
+        "macro_stage": "source_supported",
+        "fine_actions": "task_authored_robot_or_job_contract_not_historical_trajectory"
+      },
+      "execution_mode": "design_only_no_runtime"
+    }
+  ]
+}

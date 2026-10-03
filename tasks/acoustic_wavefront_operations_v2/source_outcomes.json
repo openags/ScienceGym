@@ -1,0 +1,57 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "evaluator_reference_only",
+  "not_actor_input": true,
+  "outcomes": [
+    {
+      "id": "S_CRITICAL_LOW",
+      "evidence_id": "E_SNELL",
+      "data_class": "source_theory",
+      "value": 13.7,
+      "units": "deg"
+    },
+    {
+      "id": "S_CRITICAL_HIGH",
+      "evidence_id": "E_ORDER",
+      "data_class": "source_theory",
+      "value": 31.6,
+      "units": "deg"
+    },
+    {
+      "id": "S_MAIN_20",
+      "evidence_id": "E_SCATTER",
+      "data_class": "source_simulation",
+      "incident_angle_deg": 20,
+      "value": 27.8,
+      "units": "percent_scattered"
+    },
+    {
+      "id": "S_MAIN_10",
+      "evidence_id": "E_SCATTER",
+      "data_class": "source_simulation",
+      "incident_angle_deg": 10,
+      "value": 89.0,
+      "units": "percent_scattered"
+    },
+    {
+      "id": "S_SI_LOSSLESS_25",
+      "evidence_id": "E_LOSSLESS",
+      "data_class": "source_simulation",
+      "incident_angle_deg": 25,
+      "value": 80,
+      "comparison": "greater_than",
+      "units": "percent_reflected"
+    },
+    {
+      "id": "S_SI_LOSSY_25",
+      "evidence_id": "E_LOSSY",
+      "data_class": "source_simulation",
+      "incident_angle_deg": 25,
+      "value": 27.8,
+      "units": "percent_scattered",
+      "qualification": "SI figure/note association retained; main uses 20 degrees"
+    }
+  ],
+  "rule": "Published expectations are context, not sensor truth, acceptance thresholds or a dataset. No digitized raw source curves included."
+}

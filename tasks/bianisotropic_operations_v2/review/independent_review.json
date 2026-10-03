@@ -1,0 +1,82 @@
+{
+  "schema_version": "bianisotropic_independent_review.v1",
+  "date_utc": "2026-10-03",
+  "review_scope": "Source distinctions, coverage, contract consistency and adversarial validator review; read-only review by a separate reviewer",
+  "verdict": "No remaining substantive concern within the stated design-only/static-validation scope",
+  "findings": [
+    {
+      "id": "R01",
+      "severity": "medium",
+      "finding": "Retrieval lacked probe coordinates/matched signatures and accepted duplicate termination state data",
+      "resolution": "Require matched frequency, medium, source, geometry and port convention; validate ordered probe coordinates and independently compute rank/conditioning",
+      "status": "resolved"
+    },
+    {
+      "id": "R02",
+      "severity": "medium",
+      "finding": "Preparation cleanup inherited guide-specific SAFE_OFF dependency",
+      "resolution": "Cleanup consumes safe-state evidence from used stations only; branch dependency closure tested",
+      "status": "resolved"
+    },
+    {
+      "id": "R03",
+      "severity": "medium",
+      "finding": "Reflection pairing omitted intended sample installation and run identity",
+      "resolution": "Expected episode, branch, run, panel, assembly version and installation epoch are checked along with the blank run",
+      "status": "resolved"
+    },
+    {
+      "id": "R04",
+      "severity": "medium",
+      "finding": "Common geometry gate required printer/manufacturability inputs for numerical branches",
+      "resolution": "Separate model geometry from fabrication approval; numerical unknown closure explicitly excludes physical process gates",
+      "status": "resolved"
+    },
+    {
+      "id": "R05",
+      "severity": "medium",
+      "finding": "Raw schema names differed between lineage and validator, with missing episode/branch/timestamp/units checks",
+      "resolution": "One canonical schema and per-field deletion, cross-campaign, units/frequency and timezone-aware timestamp regressions",
+      "status": "resolved"
+    },
+    {
+      "id": "R06",
+      "severity": "medium",
+      "finding": "Residual cleanup/archive gates imposed printer inputs on guide qualification and measurement evidence on fabrication",
+      "resolution": "Remove unconditional printer cleanup gate; archive checks used stations and whether measurement was selected",
+      "status": "resolved"
+    },
+    {
+      "id": "R07",
+      "severity": "medium",
+      "finding": "Separate matrix conditioning checks did not bound the actual interface inversion",
+      "resolution": "Compute B0 times inverse(P) times Y with impedance-normalized velocity, and reject an explicit counterexample that passes separate checks",
+      "status": "resolved"
+    }
+  ],
+  "confirmed": [
+    "All source geometry/outcome values preserved, including 0.028i",
+    "Only 60-degree physical angle",
+    "Numerical four-probe/two-termination retrieval and GSL/loss/topology scope",
+    "81% discretized numerical GSL versus 89% theoretical/Discussion distinction",
+    "All 49 tests passed including private source-byte verification"
+  ],
+  "not_reviewed": [
+    "Hardware feasibility",
+    "Scientific model accuracy",
+    "Physical calibration",
+    "Production actor isolation",
+    "Public repository integration or publication"
+  ],
+  "core_payload_hashes": {
+    "operations.json": "3cf68a082235378471ae597be6fc4b9934c027138feec8daf718d90790136a2c",
+    "branches.json": "227f4bede520950bad22a12e7e40b09a6e7033dbd68b78b0a6714c9a939ee6c3",
+    "dependencies.json": "617f6e01e02ec3b71a6da6eac51481b21edcc4574147598b1f0117591b2c811e",
+    "episode_input_contract.json": "be31c68ca7a521b438234404a21c8cb3bf258bac1354ca9b6e568bc498d5161c",
+    "lineage_contract.json": "d4ff80b92f821e5613339a2a882c9f5d92a5c6e55185a51a5a6cc42407d0112f",
+    "evaluator_reference.json": "ad6737fbab6cd479955df9ff458190bda50ebcb31ff07916c43c00ca0ae40161",
+    "tests/contract_checks.py": "378c3521e7c402123d95f3fd2b285b3b9ba487c7061b27717c161ef99bbd0e89",
+    "tests/test_bianisotropic_contract.py": "39580039fb8d223f2cc10d535ba902c0d9eeb90eb8f859f7f2f537ca992c9e1c",
+    "TASK_DESIGN.md": "a0ef44b548d0bb999d821587299c7e878b09bd149b2992010fd09a89576ece25"
+  }
+}

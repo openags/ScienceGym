@@ -1,0 +1,164 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "semantics": "Per entity/revision, run/attempt and condition. States do not persist across invalidating mutations. No runtime engine is supplied.",
+  "conditional_producers": {
+    "PART_DIM": [
+      {
+        "when": "dimension_receipt.accepted AND same cell_id AND same CAD_revision",
+        "produce": "dimensional_accepted"
+      }
+    ],
+    "PART_CHANNEL": [
+      {
+        "when": "channel_receipt.accepted AND dimensional_accepted for same cell_id/CAD_revision",
+        "produce": "cell_acceptance_recorded"
+      }
+    ],
+    "ASM_LOWER_QC": [
+      {
+        "when": "every first-layer recipe slot passes identity, orientation and join checks",
+        "produce": "first_layer_accepted"
+      }
+    ],
+    "ASM_QC": [
+      {
+        "when": "all declared layers/slots accepted AND all geometry/seam checks accepted at same assembly revision",
+        "produce": "array_revision_qualified"
+      }
+    ],
+    "CAL_REVIEW": [
+      {
+        "when": "calibration accepted AND current sensor/channel/gain/time/geometry within declared validity scope",
+        "produce": "calibration_valid"
+      }
+    ],
+    "GRID_FAR": [
+      {
+        "when": "nonempty grid qualified for current selected condition/run/attempt; preserve those IDs",
+        "produce": "next_point_selected"
+      }
+    ],
+    "GRID_NEAR": [
+      {
+        "when": "nonempty grid qualified for current selected condition/run/attempt; preserve those IDs",
+        "produce": "next_point_selected"
+      }
+    ],
+    "NEXT_POINT": [
+      {
+        "when": "declared unclassified point remains",
+        "produce": "next_point_selected"
+      },
+      {
+        "when": "all points classified or acquisition fault stopped work",
+        "produce": "scan_terminal_or_fault"
+      }
+    ],
+    "SCAN_COMMIT": [
+      {
+        "when": "every required raw attempt has immutable receipt, including rejected attempts",
+        "produce": "records_committed"
+      },
+      {
+        "when": "all scheduled grid keys accepted with compatible identities",
+        "produce": "scan_complete"
+      }
+    ],
+    "ANGLE_FIT": [
+      {
+        "when": "derived record has immutable input hashes and method revision; missing/ambiguous estimate explicitly classified",
+        "produce": "derived_results_available"
+      }
+    ],
+    "BAND_COMPARE": [
+      {
+        "when": "derived record has immutable input hashes and method revision; missing/ambiguous estimate explicitly classified",
+        "produce": "derived_results_available"
+      }
+    ],
+    "KX": [
+      {
+        "when": "derived record has immutable input hashes and method revision; missing/ambiguous estimate explicitly classified",
+        "produce": "derived_results_available"
+      }
+    ],
+    "POLAR": [
+      {
+        "when": "derived record has immutable input hashes and method revision; missing/ambiguous estimate explicitly classified",
+        "produce": "derived_results_available"
+      }
+    ]
+  },
+  "external_observation_gates": [
+    {
+      "state": "at_archive",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "at_assembly",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "at_calibration",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "at_fabrication",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "at_inspection",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "at_waveguide",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "destination_clear",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "episode_selected",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "failed_item_identified",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "payload_secured",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "printer_safe",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "route_qualified",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "safety_interlocks_ready",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    },
+    {
+      "state": "tethers_disengaged",
+      "source": "trusted episode, station, dock, safety or scoped handoff observation; never actor narration"
+    }
+  ],
+  "location_bridge": "Successful MOVE plus observed destination maps to at_fabrication, at_inspection, at_assembly, at_waveguide, at_calibration or at_archive for its retained payload only.",
+  "safety_bridge": "Initial source-off or emergency shutdown comes from independent readback. MUTE may be requested any time, including abort; no scan-completion prerequisite.",
+  "records_bridge": "records_committed covers declared acquisition attempts including failure. A no-acquisition preparation route declares an explicit empty acquisition allocation and still archives fabrication/inspection receipts; it cannot count as an experiment.",
+  "acceptance_rule": "Dimensional and channel checks must both accept the same cell/CAD revision before assembly; layer/array/calibration rejection never sets an accepted state.",
+  "scan_rule": "FFT requires a complete accepted grid. Partial-grid processing is a separately labeled extension and cannot close a source route.",
+  "reset_rule": "Changing sample geometry, component graph, sensor mounting, gain or relevant coordinate frame invalidates out-of-scope acceptance/calibration/reference states.",
+  "prepared_state_handoffs": {
+    "APPARATUS_to_QUALIFY_CHAIN": "Source and ambient chain prepared, stage frame known, output off. Probe is parked, supported, disconnected and removed via PROBE_RELEASE before calibration transport; remount, SOURCE_WIRE and DAQ_WIRE verify current setup after return. Terminal teardown is deferred until episode end.",
+    "QUALIFY_CHAIN_to_measurement": "Valid scoped calibration/reference, observed connected source/probe/DAQ, qualified stage/frame, output off. Recheck all changes before ARM."
+  },
+  "probe_transport_invalidation": "PROBE_RELEASE clears microphone_mounted and channels_mapped for probe channels; MIC_MOUNT/DAQ_WIRE restore observed setup and require validity recheck.",
+  "visibility": "authoring_and_evaluator_reference_only",
+  "first_point_bridge": "GRID_FAR or GRID_NEAR selects first point only after current condition/attempt frame and grid qualify. NEXT_POINT selects remaining points without allocating a new run."
+}

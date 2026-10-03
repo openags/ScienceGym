@@ -1,0 +1,110 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "evaluator_reference_only",
+  "entity_types": [
+    "material_lot",
+    "print_job",
+    "guide",
+    "target",
+    "microphone",
+    "speaker",
+    "foam_component",
+    "holder",
+    "stage",
+    "carrier",
+    "calibration",
+    "rig_configuration",
+    "raw_record",
+    "derived_record"
+  ],
+  "required_entity_fields": [
+    "entity_id",
+    "entity_type",
+    "parent_ids",
+    "material_card_id_or_null",
+    "version",
+    "current_location",
+    "condition_history",
+    "status"
+  ],
+  "routes": {
+    "guide": [
+      "stock_lot",
+      "print_job+drawing_revision",
+      "printed_guide",
+      "finishing+QC",
+      "rig_configuration",
+      "run_records",
+      "archive_or_quarantine"
+    ],
+    "target": {
+      "manufactured_in_episode": [
+        "stock_lot+complete_drawing",
+        "qualified_preparation_job",
+        "safe_release_to_carrier",
+        "transfer_to_inspection",
+        "target+QC",
+        "holder_mount+gap_alignment",
+        "run_records",
+        "unload+storage"
+      ],
+      "supplied_part": [
+        "identified_received_target+declared_known_preparation_provenance",
+        "receipt+condition",
+        "transfer_to_inspection",
+        "target+QC",
+        "holder_mount+gap_alignment",
+        "run_records",
+        "unload+storage"
+      ]
+    },
+    "sensor": [
+      "serial+port_install",
+      "channel_chain",
+      "calibration",
+      "rig_configuration",
+      "raw_complex_pressure"
+    ],
+    "analysis": [
+      "raw_four_channel_records",
+      "correction_and_mode_derivation",
+      "intensity_or_edge_products",
+      "display_derivatives"
+    ]
+  },
+  "invariants": [
+    "Each physical entity has exactly one current location and one attachment state",
+    "Child entities name existing parents and causal creation records; reuse does not mint a new specimen",
+    "Repair, sensor movement, guide remounting and target modification increment relevant configuration/version and invalidate stale receipts",
+    "Four distinct sensors bind four ports and four pressure channels; a single serial cannot stand in for multiple ports",
+    "Guide reuse across branches is episode-declared and conditioned on integrity and valid calibration; source historical sample count remains unknown",
+    "Single-edge and half-aperture uses cannot be assumed to involve the same plate unless allocation declares it",
+    "Raw and failed records are append-only; a retry gets a distinct attempt ID with supersession links",
+    "Physical points, interpolated pixels, technical repeats, numerical modes and independent samples are different counts",
+    "Derived records reference exact raw parents, processing version and data class; literature outcomes cannot become raw observations",
+    "No damaged or quarantined target/guide re-enters acquisition without repair/version/QC closure",
+    "A supplied target does not require an invented historic fabrication job; record known supplier/prior preparation provenance and unresolved history honestly"
+  ],
+  "raw_binding_fields": [
+    "episode_id",
+    "branch_id",
+    "run_id",
+    "attempt_id",
+    "point_id_or_frequency_index",
+    "guide_id",
+    "guide_version",
+    "target_id_or_null",
+    "target_version_or_null",
+    "rig_signature",
+    "channel_map_id",
+    "calibration_id",
+    "actual_coordinates_mm",
+    "frequency_hz",
+    "reference_id",
+    "complex_pressure_units",
+    "raw_values",
+    "validity",
+    "data_class"
+  ]
+}

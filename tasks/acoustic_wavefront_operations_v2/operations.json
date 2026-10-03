@@ -1,0 +1,2334 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 69,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Bind work order and resolve gates",
+      "kind": "hands_on",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "work_order",
+        "status_console"
+      ],
+      "preconditions": [
+        "episode_selected"
+      ],
+      "actions": [
+        "Read nonempty branch and condition allocation",
+        "Check qualified input cards, apparatus safety and required records",
+        "Return exact missing inputs before dependent actions"
+      ],
+      "postconditions": [
+        "episode_bound",
+        "gate_status_known"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_ALLOC"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "STOCK",
+      "title": "Select ABS lot and labeled tools",
+      "kind": "hands_on",
+      "location_id": "WS_STOCK",
+      "target_asset_roles": [
+        "ABS_stock",
+        "inventory",
+        "tools"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Read lot and supplied material acceptance",
+        "Issue stock and tools into retained carrier",
+        "Record stock quantity and intended job"
+      ],
+      "postconditions": [
+        "stock_issued"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_ALLOC"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "CARRIER",
+      "title": "Prepare supported transport carrier",
+      "kind": "hands_on",
+      "location_id": "WS_STOCK",
+      "target_asset_roles": [
+        "carrier",
+        "support_inserts"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Check support surfaces and payload envelope",
+        "Seat labeled inserts without loading labyrinth channels",
+        "Verify identity scan and destination dock"
+      ],
+      "postconditions": [
+        "carrier_ready"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "MOVE",
+      "title": "Move retained objects between docks",
+      "kind": "transport",
+      "location_id": "between_stations",
+      "target_asset_roles": [
+        "carrier",
+        "cart",
+        "payload"
+      ],
+      "preconditions": [
+        "payload_secured",
+        "outputs_safe",
+        "tethers_disengaged",
+        "destination_clear",
+        "route_qualified"
+      ],
+      "actions": [
+        "Read origin, destination and payload IDs",
+        "Secure payload and retract arms",
+        "Navigate supplied route with collision feedback",
+        "Brake and seat carrier on support before releasing",
+        "Recheck identity, condition and destination pose"
+      ],
+      "postconditions": [
+        "same_payload_at_destination"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop and support load on fault; do not drag tethers or grasp thin cell walls. Dropped/damaged items are quarantined; location cannot be updated by narration.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "FAB_LOAD",
+      "title": "Load stock into guarded print service",
+      "kind": "hands_on",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "ABS_stock",
+        "printer",
+        "build_carrier"
+      ],
+      "preconditions": [
+        "stock_issued",
+        "carrier_ready",
+        "at_fabrication",
+        "printer_safe"
+      ],
+      "actions": [
+        "Match approved CAD/job to stock and carrier",
+        "Load by qualified controls with output isolated",
+        "Seat carrier and close guard"
+      ],
+      "postconditions": [
+        "fabrication_loaded"
+      ],
+      "evidence_ids": [
+        "E_FAB",
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_FAB",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "FAB_VERIFY",
+      "title": "Read back job and safety controls",
+      "kind": "hands_on",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "printer_controls",
+        "job_manifest"
+      ],
+      "preconditions": [
+        "fabrication_loaded"
+      ],
+      "actions": [
+        "Read geometry revision and requested cell types",
+        "Check ventilation, guard, stock and temperature-control readiness",
+        "Reject unsupported or mismatched settings"
+      ],
+      "postconditions": [
+        "fabrication_authorized"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "FAB_START",
+      "title": "Start verified fabrication job",
+      "kind": "hands_on",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "printer_controls"
+      ],
+      "preconditions": [
+        "fabrication_authorized"
+      ],
+      "actions": [
+        "Submit the approved job once",
+        "Bind job receipt to stock, CAD revision and output part manifest"
+      ],
+      "postconditions": [
+        "fabrication_started"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "FAB_CYCLE",
+      "title": "Observe printer autonomous fabrication",
+      "kind": "device_autonomous",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "printer",
+        "job_receipt"
+      ],
+      "preconditions": [
+        "fabrication_started"
+      ],
+      "actions": [
+        "Printer executes supplied enclosed process",
+        "Operator monitors available fault/progress readbacks without entering guard"
+      ],
+      "postconditions": [
+        "fabrication_cycle_terminal"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "FAB_RELEASE",
+      "title": "Wait for independent safe-release state",
+      "kind": "device_autonomous",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "printer",
+        "temperature_and_guard_readbacks"
+      ],
+      "preconditions": [
+        "fabrication_cycle_terminal"
+      ],
+      "actions": [
+        "Require qualified cooldown, stopped motion and release feedback",
+        "Failed release leaves guard closed and requests intervention"
+      ],
+      "postconditions": [
+        "fabrication_safe_release"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "FAB_UNLOAD",
+      "title": "Unload supported printed parts",
+      "kind": "hands_on",
+      "location_id": "WS_FAB",
+      "target_asset_roles": [
+        "build_carrier",
+        "printed_parts"
+      ],
+      "preconditions": [
+        "fabrication_safe_release"
+      ],
+      "actions": [
+        "Open released fixture by qualified control",
+        "Support tray before removal",
+        "Place parts in labeled slots with build receipt"
+      ],
+      "postconditions": [
+        "parts_unloaded"
+      ],
+      "evidence_ids": [
+        "E_FAB"
+      ],
+      "unknown_parameter_ids": [
+        "U_FAB",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "PART_ID",
+      "title": "Serialize and classify each cell",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECT",
+      "target_asset_roles": [
+        "printed_parts",
+        "labels",
+        "inspection_carrier"
+      ],
+      "preconditions": [
+        "parts_unloaded",
+        "at_inspection"
+      ],
+      "actions": [
+        "Match each cell to CAD/job and type",
+        "Assign unique physical entity IDs without marking acoustic channels",
+        "Reconcile missing and extra parts"
+      ],
+      "postconditions": [
+        "cells_serialized"
+      ],
+      "evidence_ids": [
+        "E_CELLS",
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "PART_DIM",
+      "title": "Inspect outline and layer-fit dimensions",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECT",
+      "target_asset_roles": [
+        "cells",
+        "metrology_fixture"
+      ],
+      "preconditions": [
+        "cells_serialized"
+      ],
+      "actions": [
+        "Seat each cell on supported datum",
+        "Measure declared dimensions against qualified tolerances",
+        "Record warpage and guide-fit evidence without inventing thresholds"
+      ],
+      "postconditions": [
+        "dimensional_disposition_recorded"
+      ],
+      "evidence_ids": [
+        "E_GEOM",
+        "E_GUIDE"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_FAB"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "dimension_receipt.accepted AND same cell_id AND same CAD_revision",
+          "produce": "dimensional_accepted"
+        }
+      ]
+    },
+    {
+      "id": "PART_CHANNEL",
+      "title": "Inspect channels and surfaces",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECT",
+      "target_asset_roles": [
+        "cells",
+        "inspection_tool"
+      ],
+      "preconditions": [
+        "cells_serialized",
+        "dimensional_disposition_recorded"
+      ],
+      "actions": [
+        "Inspect channel openness, wall continuity and specified finish",
+        "Use only qualified post-processing if authorized by process card",
+        "Retain before/after inspection and geometry revision"
+      ],
+      "postconditions": [
+        "channel_disposition_recorded"
+      ],
+      "evidence_ids": [
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAD",
+        "U_FAB"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "channel_receipt.accepted AND dimensional_accepted for same cell_id/CAD_revision",
+          "produce": "cell_acceptance_recorded"
+        }
+      ]
+    },
+    {
+      "id": "QUARANTINE",
+      "title": "Quarantine failed parts or assemblies",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECT",
+      "target_asset_roles": [
+        "failed_payload",
+        "quarantine_dock"
+      ],
+      "preconditions": [
+        "failed_item_identified",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Support and separate failed item",
+        "Attach failure and predecessor receipt",
+        "Issue replacement only through a new fabrication/allocation record"
+      ],
+      "postconditions": [
+        "failed_item_quarantined"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ASM_LAYOUT",
+      "title": "Lay out identified cells by recipe",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "accepted_cells",
+        "indexed_mat",
+        "assembly_card"
+      ],
+      "preconditions": [
+        "cell_acceptance_recorded",
+        "dimensional_accepted",
+        "at_assembly"
+      ],
+      "actions": [
+        "Choose qualified high- or low-gradient recipe",
+        "Read each slot/type/orientation and cell ID",
+        "Do not infer low-gradient recipe by duplicating source diagram"
+      ],
+      "postconditions": [
+        "assembly_inventory_bound"
+      ],
+      "evidence_ids": [
+        "E_GEOM",
+        "E_NORMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_ALLOC"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ASM_FIXTURE",
+      "title": "Seat array support fixture",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "assembly_fixture",
+        "base",
+        "carrier"
+      ],
+      "preconditions": [
+        "assembly_inventory_bound"
+      ],
+      "actions": [
+        "Set support on bench and engage supplied locks",
+        "Verify straightness datums and layer access",
+        "Record fixture identity and empty slot map"
+      ],
+      "postconditions": [
+        "assembly_fixture_ready"
+      ],
+      "evidence_ids": [
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ASM_LOWER",
+      "title": "Place each first-layer cell",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "cells",
+        "fixture"
+      ],
+      "preconditions": [
+        "assembly_fixture_ready"
+      ],
+      "actions": [
+        "Read next recipe slot and cell serial",
+        "Grasp qualified robust surface, seat without loading channel walls",
+        "Confirm actual orientation and support before release"
+      ],
+      "postconditions": [
+        "first_layer_positions_recorded"
+      ],
+      "evidence_ids": [
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ASM_LOWER_QC",
+      "title": "Check first-layer order and joins",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "first_layer",
+        "inspection_tool"
+      ],
+      "preconditions": [
+        "first_layer_positions_recorded"
+      ],
+      "actions": [
+        "Compare physical slot map with recipe",
+        "Inspect gaps, edges and orientation",
+        "Rework only rejected positions with history retained"
+      ],
+      "postconditions": [
+        "first_layer_disposition_recorded"
+      ],
+      "evidence_ids": [
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "every first-layer recipe slot passes identity, orientation and join checks",
+          "produce": "first_layer_accepted"
+        }
+      ]
+    },
+    {
+      "id": "ASM_UPPER",
+      "title": "Place each second-layer cell",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "cells",
+        "first_layer",
+        "registration_fixture"
+      ],
+      "preconditions": [
+        "first_layer_accepted"
+      ],
+      "actions": [
+        "Read independent second-layer map",
+        "Place and support each identified cell",
+        "Retain two-layer topology rather than copying a single-layer phase response"
+      ],
+      "postconditions": [
+        "second_layer_positions_recorded"
+      ],
+      "evidence_ids": [
+        "E_CELLS",
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ASM_REGISTER",
+      "title": "Register layers and inspect seams",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "two_layer_array",
+        "registration_gauge"
+      ],
+      "preconditions": [
+        "second_layer_positions_recorded"
+      ],
+      "actions": [
+        "Apply qualified layer spacing and registration",
+        "Inspect seams and channel paths",
+        "Record actual geometry and any permitted seals"
+      ],
+      "postconditions": [
+        "layer_registration_recorded"
+      ],
+      "evidence_ids": [
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ASM_LOCK",
+      "title": "Lock array into supported carrier",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "array",
+        "carrier_locks"
+      ],
+      "preconditions": [
+        "layer_registration_recorded"
+      ],
+      "actions": [
+        "Engage specified retainers without deforming parts",
+        "Check no acoustic opening is obstructed",
+        "Verify support for nominal long span"
+      ],
+      "postconditions": [
+        "array_secured"
+      ],
+      "evidence_ids": [
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ASM_QC",
+      "title": "Accept or reject assembly revision",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "array",
+        "inspection_console"
+      ],
+      "preconditions": [
+        "array_secured"
+      ],
+      "actions": [
+        "Verify complete slot/type/orientation graph and seams",
+        "Bind component IDs, qualified recipe and metrology",
+        "Approve only against supplied acceptance criteria"
+      ],
+      "postconditions": [
+        "array_disposition_recorded"
+      ],
+      "evidence_ids": [
+        "E_GEOM",
+        "E_NORMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "all declared layers/slots accepted AND all geometry/seam checks accepted at same assembly revision",
+          "produce": "array_revision_qualified"
+        }
+      ]
+    },
+    {
+      "id": "GUIDE_PLATES",
+      "title": "Prepare parallel-plate guide",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "plates",
+        "spacers",
+        "guide_fixture"
+      ],
+      "preconditions": [
+        "episode_bound",
+        "outputs_safe",
+        "at_waveguide"
+      ],
+      "actions": [
+        "Support plates and install supplied fixtures",
+        "Measure plate gap and record actual guide geometry",
+        "Qualify boundaries, absorber placements and access routes"
+      ],
+      "postconditions": [
+        "guide_qualified"
+      ],
+      "evidence_ids": [
+        "E_GUIDE",
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_GUIDE",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "SOURCE_MOUNT",
+      "title": "Mount and identify speaker source",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "speaker_array",
+        "source_fixture"
+      ],
+      "preconditions": [
+        "guide_qualified",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Seat source on qualified angle/mount fixture",
+        "Identify speaker channels and actual arrangement",
+        "Bind configuration without assuming original angle actuator"
+      ],
+      "postconditions": [
+        "source_mounted"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_ANGLE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "SOURCE_WIRE",
+      "title": "Connect isolated amplifier and speakers",
+      "kind": "hands_on",
+      "location_id": "WS_SOURCE",
+      "target_asset_roles": [
+        "amplifier",
+        "speaker_leads"
+      ],
+      "preconditions": [
+        "source_mounted",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Match cable labels to supplied port map",
+        "Seat connectors and strain relief",
+        "Route leads outside stage and robot travel envelope"
+      ],
+      "postconditions": [
+        "source_wired"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "MIC_MOUNT",
+      "title": "Mount microphone and preamplifier",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "microphone",
+        "preamplifier",
+        "stage_holder"
+      ],
+      "preconditions": [
+        "guide_qualified",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Verify microphone serial and calibrated orientation",
+        "Seat microphone in supported holder",
+        "Confirm probe clearance and lead slack"
+      ],
+      "postconditions": [
+        "microphone_mounted"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_GRID"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "DAQ_WIRE",
+      "title": "Connect and map DAQ channels",
+      "kind": "hands_on",
+      "location_id": "WS_DAQ",
+      "target_asset_roles": [
+        "DAQ",
+        "microphone_lead",
+        "reference_lead"
+      ],
+      "preconditions": [
+        "microphone_mounted",
+        "source_wired",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Connect named signal/reference channels by supplied map",
+        "Check strain relief, ground/reference configuration and labels",
+        "Read back acquisition device identity"
+      ],
+      "postconditions": [
+        "channels_mapped"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_DAQ",
+        "U_CAL"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "STAGE_HOME",
+      "title": "Home stage and verify travel limits",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "stage_controls",
+        "probe",
+        "limit_feedback"
+      ],
+      "preconditions": [
+        "microphone_mounted",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Use qualified homing procedure",
+        "Verify limits and coordinate origin through readback",
+        "Check swept envelope without contacting plate or array"
+      ],
+      "postconditions": [
+        "stage_frame_qualified"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "CAL_MOUNT",
+      "title": "Seat probe and reference in calibration fixture",
+      "kind": "hands_on",
+      "location_id": "WS_CAL",
+      "target_asset_roles": [
+        "microphone",
+        "reference",
+        "calibration_fixture"
+      ],
+      "preconditions": [
+        "episode_bound",
+        "outputs_safe",
+        "at_calibration"
+      ],
+      "actions": [
+        "Identify supplied reference and validity",
+        "Seat probe with supplied orientation",
+        "Bind channels and fixture to calibration card"
+      ],
+      "postconditions": [
+        "calibration_ready"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_DAQ"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "CAL_ACQUIRE",
+      "title": "Acquire task-authored calibration observations",
+      "kind": "device_autonomous",
+      "location_id": "WS_CAL",
+      "target_asset_roles": [
+        "reference_service",
+        "DAQ"
+      ],
+      "preconditions": [
+        "calibration_ready"
+      ],
+      "actions": [
+        "Run only the supplied amplitude/phase/timebase checks",
+        "Retain raw readings and reference uncertainty",
+        "This is a task-authored qualification, not a reported cell-by-cell experiment"
+      ],
+      "postconditions": [
+        "calibration_raw_committed"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_DAQ"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "CAL_REVIEW",
+      "title": "Evaluate calibration validity",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "calibration_records",
+        "processing_card"
+      ],
+      "preconditions": [
+        "calibration_raw_committed"
+      ],
+      "actions": [
+        "Apply declared correction and uncertainty rules",
+        "Bind correction to sensor, channel, gain, time and geometry scope",
+        "Reject missing or stale evidence"
+      ],
+      "postconditions": [
+        "calibration_disposition_recorded"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "calibration accepted AND current sensor/channel/gain/time/geometry within declared validity scope",
+          "produce": "calibration_valid"
+        }
+      ]
+    },
+    {
+      "id": "CAL_UNLOAD",
+      "title": "Release calibration probe safely",
+      "kind": "hands_on",
+      "location_id": "WS_CAL",
+      "target_asset_roles": [
+        "microphone",
+        "carrier"
+      ],
+      "preconditions": [
+        "calibration_disposition_recorded",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Stop reference service and confirm safe release",
+        "Disconnect supported leads",
+        "Pack probe with calibration receipt for return to guide"
+      ],
+      "postconditions": [
+        "probe_released"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "EMPTY_PREP",
+      "title": "Establish empty-waveguide reference state",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "empty_array_dock",
+        "source",
+        "probe"
+      ],
+      "preconditions": [
+        "guide_qualified",
+        "stage_frame_qualified",
+        "calibration_valid",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Confirm absent metasurface and empty support state",
+        "Record source/frame/gain signature",
+        "Qualify empty-guide baseline configuration"
+      ],
+      "postconditions": [
+        "empty_reference_ready"
+      ],
+      "evidence_ids": [
+        "E_NORMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_GRID",
+        "U_DAQ"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ARRAY_LOAD",
+      "title": "Load supported identified array",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "array_carrier",
+        "waveguide_dock"
+      ],
+      "preconditions": [
+        "array_revision_qualified",
+        "guide_qualified",
+        "outputs_safe",
+        "at_waveguide"
+      ],
+      "actions": [
+        "Verify requested gradient and serial/revision",
+        "Support carrier across span while seating dock",
+        "Confirm orientation and inlet/exit datums"
+      ],
+      "postconditions": [
+        "array_loaded"
+      ],
+      "evidence_ids": [
+        "E_NORMAL",
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_GUIDE",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ARRAY_LOCK",
+      "title": "Secure array and bind geometry",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "array",
+        "retainers",
+        "geometry_gauges"
+      ],
+      "preconditions": [
+        "array_loaded"
+      ],
+      "actions": [
+        "Engage supplied retainers and seals",
+        "Inspect plate fit and microphone clearance",
+        "Register exit plane and global-to-scan transform"
+      ],
+      "postconditions": [
+        "array_installed"
+      ],
+      "evidence_ids": [
+        "E_GUIDE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_GUIDE",
+        "U_GRID"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ANGLE_SET",
+      "title": "Set qualified relative incidence",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "incidence_fixture",
+        "angle_controls"
+      ],
+      "preconditions": [
+        "outputs_safe",
+        "source_mounted",
+        "condition_selected"
+      ],
+      "actions": [
+        "Set relative source/array incidence through supplied mechanism",
+        "Support fixture and lock after change",
+        "Do not assume electronic steering or historic rotation method"
+      ],
+      "postconditions": [
+        "angle_requested"
+      ],
+      "evidence_ids": [
+        "E_SWEEP",
+        "E_POLAR",
+        "E_NEGATIVE",
+        "E_NEAR"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANGLE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ANGLE_READ",
+      "title": "Verify actual angle and coordinate frame",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "angle_readback",
+        "frame_fiducials"
+      ],
+      "preconditions": [
+        "angle_requested"
+      ],
+      "actions": [
+        "Read actual angle and lock state",
+        "Rebind source/array/probe coordinate transforms",
+        "Invalidate stale calibration or baseline when scope changed"
+      ],
+      "postconditions": [
+        "angle_verified"
+      ],
+      "evidence_ids": [
+        "E_SWEEP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANGLE",
+        "U_CAL"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "GRID_FAR",
+      "title": "Qualify far-field mapping grid",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "stage_controls",
+        "grid_card"
+      ],
+      "preconditions": [
+        "stage_frame_qualified",
+        "angle_verified"
+      ],
+      "actions": [
+        "Read nonempty grid and coordinate units",
+        "Verify clearance for every path segment",
+        "Bind source y=40 cm and 3.4 cm exit-offset facts only when geometry matches"
+      ],
+      "postconditions": [
+        "grid_qualified"
+      ],
+      "evidence_ids": [
+        "E_GUIDE",
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_GUIDE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "nonempty grid qualified for current selected condition/run/attempt; preserve those IDs",
+          "produce": "next_point_selected"
+        }
+      ]
+    },
+    {
+      "id": "GRID_NEAR",
+      "title": "Qualify near-interface grid",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "stage_controls",
+        "near_grid_card"
+      ],
+      "preconditions": [
+        "stage_frame_qualified",
+        "angle_verified",
+        "array_installed"
+      ],
+      "actions": [
+        "Identify transmitted interface and near-field origin",
+        "Verify microphone clearance and spatial sampling against supplied spectrum method",
+        "Reject reuse of far grid without separate qualification"
+      ],
+      "postconditions": [
+        "grid_qualified"
+      ],
+      "evidence_ids": [
+        "E_NEAR"
+      ],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_ANALYSIS"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "nonempty grid qualified for current selected condition/run/attempt; preserve those IDs",
+          "produce": "next_point_selected"
+        }
+      ]
+    },
+    {
+      "id": "SIGNAL_CONFIG",
+      "title": "Load waveform and DAQ program",
+      "kind": "hands_on",
+      "location_id": "WS_DAQ",
+      "target_asset_roles": [
+        "source_controls",
+        "DAQ_controls",
+        "waveform_card"
+      ],
+      "preconditions": [
+        "channels_mapped",
+        "outputs_safe",
+        "condition_selected"
+      ],
+      "actions": [
+        "Load supplied Gaussian broadband waveform, gain and trigger",
+        "Read sample rate, window, reference and frequency support",
+        "Bind program hash and reject clipping-risk configuration"
+      ],
+      "postconditions": [
+        "signal_program_verified"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_DAQ"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ARM",
+      "title": "Arm bounded acquisition",
+      "kind": "hands_on",
+      "location_id": "WS_SOURCE",
+      "target_asset_roles": [
+        "source_controls",
+        "DAQ_controls"
+      ],
+      "preconditions": [
+        "signal_program_verified",
+        "grid_qualified",
+        "baseline_and_calibration_valid",
+        "environment_record_available",
+        "safety_interlocks_ready"
+      ],
+      "actions": [
+        "Check condition, angle, array or empty reference and exclusions",
+        "Arm trigger and permitted source output",
+        "Verify independent armed-state readback"
+      ],
+      "postconditions": [
+        "acquisition_armed"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_DAQ",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "STAGE_POINT",
+      "title": "Move microphone to scheduled point",
+      "kind": "device_autonomous",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "stage",
+        "microphone"
+      ],
+      "preconditions": [
+        "acquisition_armed",
+        "next_point_selected"
+      ],
+      "actions": [
+        "Stage traverses supplied collision-free path",
+        "Observe actual position and limit feedback",
+        "No robot hand contact with moving probe"
+      ],
+      "postconditions": [
+        "point_reached"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_GRID"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "SETTLE",
+      "title": "Verify probe settling",
+      "kind": "device_autonomous",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "stage_feedback",
+        "microphone"
+      ],
+      "preconditions": [
+        "point_reached"
+      ],
+      "actions": [
+        "Wait until supplied position/settling predicate holds",
+        "Retain actual timing rather than inventing paper dwell"
+      ],
+      "postconditions": [
+        "point_stable"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_GRID"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "PULSE_RECORD",
+      "title": "Emit and digitize identified pulse",
+      "kind": "device_autonomous",
+      "location_id": "WS_DAQ",
+      "target_asset_roles": [
+        "source",
+        "DAQ",
+        "microphone"
+      ],
+      "preconditions": [
+        "point_stable",
+        "acquisition_armed"
+      ],
+      "actions": [
+        "Emit bounded waveform through configured source",
+        "Acquire timestamped raw pressure and reference channels",
+        "Capture trigger, position, gain, clipping and dropout feedback"
+      ],
+      "postconditions": [
+        "raw_trace_received"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_DAQ"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "TRACE_QC",
+      "title": "Check raw trace without changing it",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "raw_trace",
+        "quality_card"
+      ],
+      "preconditions": [
+        "raw_trace_received"
+      ],
+      "actions": [
+        "Check trigger, saturation, signal support and missing samples",
+        "Accept or retain failed trace with reason",
+        "Retry uses new attempt ID and predecessor, never silent overwrite"
+      ],
+      "postconditions": [
+        "trace_classified"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_DAQ",
+        "U_ANALYSIS"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "TRACE_COMMIT",
+      "title": "Commit trace and physical lineage",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "raw_trace",
+        "immutable_registry"
+      ],
+      "preconditions": [
+        "trace_classified"
+      ],
+      "actions": [
+        "Commit bytes/hash, condition, pose, calibration, environment and timestamps",
+        "Verify receipt links to actual sample revision or empty reference",
+        "Record failure classification even if acquisition is retried"
+      ],
+      "postconditions": [
+        "trace_immutable"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_DAQ",
+        "U_ENV"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "NEXT_POINT",
+      "title": "Advance declared grid and repeats",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "grid_manifest",
+        "acquisition_registry"
+      ],
+      "preconditions": [
+        "trace_immutable"
+      ],
+      "actions": [
+        "Compare scheduled point/technical-repeat keys with classified receipts",
+        "Choose remaining point or end grid",
+        "Do not count pixel or frequency as independent specimen"
+      ],
+      "postconditions": [
+        "grid_progress_recorded"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_ALLOC"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "declared unclassified point remains",
+          "produce": "next_point_selected"
+        },
+        {
+          "when": "all points classified or acquisition fault stopped work",
+          "produce": "scan_terminal_or_fault"
+        }
+      ]
+    },
+    {
+      "id": "SCAN_COMMIT",
+      "title": "Close scan with complete receipt set",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "scan_manifest",
+        "trace_registry"
+      ],
+      "preconditions": [
+        "grid_progress_recorded"
+      ],
+      "actions": [
+        "Verify every scheduled key has observed disposition",
+        "Bind nonempty trace list and scope-compatible calibrations",
+        "Mark partial if missing, failed or blocked required acquisition"
+      ],
+      "postconditions": [
+        "scan_committed"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_DAQ",
+        "U_ALLOC"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "every required raw attempt has immutable receipt, including rejected attempts",
+          "produce": "records_committed"
+        },
+        {
+          "when": "all scheduled grid keys accepted with compatible identities",
+          "produce": "scan_complete"
+        }
+      ]
+    },
+    {
+      "id": "MUTE",
+      "title": "Mute and verify source output off",
+      "kind": "hands_on",
+      "location_id": "WS_SOURCE",
+      "target_asset_roles": [
+        "source_controls",
+        "output_readback"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Request mute and disable source drive",
+        "Confirm output-off independently before touching fixtures",
+        "This safe stop is always available on fault, before initial setup and between acquisitions; no completed scan is required"
+      ],
+      "postconditions": [
+        "outputs_safe"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SOURCE",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "DRIFT",
+      "title": "Check reference drift after a scan",
+      "kind": "device_autonomous",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "reference_configuration",
+        "DAQ"
+      ],
+      "preconditions": [
+        "outputs_safe",
+        "scan_committed"
+      ],
+      "actions": [
+        "Run supplied post-scan reference check with bounded output",
+        "Bind result to current calibration and gain",
+        "Stop output and invalidate dependent claims when drift exceeds supplied criterion"
+      ],
+      "postconditions": [
+        "drift_disposition_recorded"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_DAQ"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "FFT",
+      "title": "Convert retained time records to complex pressure",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "raw_traces",
+        "FFT_card"
+      ],
+      "preconditions": [
+        "scan_committed",
+        "scan_complete"
+      ],
+      "actions": [
+        "Use declared time window, transform convention and reference correction",
+        "Preserve raw complex and calibrated outputs before display normalization",
+        "Store input hashes and software revision"
+      ],
+      "postconditions": [
+        "complex_field_derived"
+      ],
+      "evidence_ids": [
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ANGLE_FIT",
+      "title": "Extract angle with declared uncertainty",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "complex_field",
+        "angle_method"
+      ],
+      "preconditions": [
+        "complex_field_derived"
+      ],
+      "actions": [
+        "Apply qualified beam/phase or radiation fit to actual field",
+        "Report signed angle, uncertainty and ambiguous/no-beam outcome",
+        "Do not force generalized-law prediction"
+      ],
+      "postconditions": [
+        "angle_result_derived"
+      ],
+      "evidence_ids": [
+        "E_NORMAL",
+        "E_SWEEP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_ENV"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "derived record has immutable input hashes and method revision; missing/ambiguous estimate explicitly classified",
+          "produce": "derived_results_available"
+        }
+      ]
+    },
+    {
+      "id": "BAND_COMPARE",
+      "title": "Compare three frequency views",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "complex_fields",
+        "frequency_manifest"
+      ],
+      "preconditions": [
+        "complex_field_derived"
+      ],
+      "actions": [
+        "Extract supported 2800, 3000 and 3200 Hz views of low-gradient run",
+        "Retain shared acquisition ID if views use same pulse scan",
+        "Compare angle/pattern under declared criterion without inventing source tolerance"
+      ],
+      "postconditions": [
+        "bandwidth_report_derived"
+      ],
+      "evidence_ids": [
+        "E_BAND"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "derived record has immutable input hashes and method revision; missing/ambiguous estimate explicitly classified",
+          "produce": "derived_results_available"
+        }
+      ]
+    },
+    {
+      "id": "KX",
+      "title": "Transform measured near-surface field",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "near_field",
+        "spatial_transform_card"
+      ],
+      "preconditions": [
+        "complex_field_derived"
+      ],
+      "actions": [
+        "Apply declared spatial window, sampling and transform along surface",
+        "Compare transverse spectrum with ambient-based free-space wavenumber",
+        "Report resolution/aliasing and distinguish driven localization from propagation"
+      ],
+      "postconditions": [
+        "near_field_report_derived"
+      ],
+      "evidence_ids": [
+        "E_NEAR"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_ENV"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "derived record has immutable input hashes and method revision; missing/ambiguous estimate explicitly classified",
+          "produce": "derived_results_available"
+        }
+      ]
+    },
+    {
+      "id": "POLAR",
+      "title": "Derive and separately normalize radiation patterns",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "field",
+        "radiation_method",
+        "simulation_reference"
+      ],
+      "preconditions": [
+        "complex_field_derived"
+      ],
+      "actions": [
+        "Derive angular pattern using qualified method",
+        "Retain raw/calibrated amplitude and separate display-normalized view",
+        "Source-style simulated-maximum normalization requires identified corresponding model output; never imply efficiency"
+      ],
+      "postconditions": [
+        "radiation_report_derived"
+      ],
+      "evidence_ids": [
+        "E_POLAR"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_MODEL"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only",
+      "conditional_postconditions": [
+        {
+          "when": "derived record has immutable input hashes and method revision; missing/ambiguous estimate explicitly classified",
+          "produce": "derived_results_available"
+        }
+      ]
+    },
+    {
+      "id": "COMPARE",
+      "title": "Compare data and model without answer forcing",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "measured_reports",
+        "versioned_model_context"
+      ],
+      "preconditions": [
+        "derived_results_available"
+      ],
+      "actions": [
+        "Match incidence, gradient, geometry and frequency",
+        "State uncertainty, model fit versus validation and disagreements",
+        "Classify scientific agreement separately from procedural completeness"
+      ],
+      "postconditions": [
+        "comparison_report_derived"
+      ],
+      "evidence_ids": [
+        "E_SNELL",
+        "E_DIFFRACTION",
+        "E_SWEEP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_MODEL"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ARRAY_UNLOAD",
+      "title": "Unload isolated supported array",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "array",
+        "carrier",
+        "retainers"
+      ],
+      "preconditions": [
+        "outputs_safe",
+        "stage_parked",
+        "array_installed"
+      ],
+      "actions": [
+        "Support carrier before disengaging retainers",
+        "Separate approved seals without damage",
+        "Lift clear and inspect actual cell/array condition"
+      ],
+      "postconditions": [
+        "array_released"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "RECONFIGURE",
+      "title": "Rebuild selected array configuration",
+      "kind": "hands_on",
+      "location_id": "WS_ASSEMBLY",
+      "target_asset_roles": [
+        "released_array",
+        "replacement_cells",
+        "assembly_card"
+      ],
+      "preconditions": [
+        "array_released",
+        "outputs_safe",
+        "at_assembly"
+      ],
+      "actions": [
+        "Record removed cell IDs and old revision",
+        "Use qualified alternate recipe or replacement allocation",
+        "Return through assembly placement/inspection operations; require a fresh revision"
+      ],
+      "postconditions": [
+        "reconfiguration_started"
+      ],
+      "evidence_ids": [
+        "E_NORMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_ALLOC"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "source_grounded_macro_task_authored_robot_actions",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "PARK",
+      "title": "Park and stop stage",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "stage_controls",
+        "probe"
+      ],
+      "preconditions": [
+        "outputs_safe"
+      ],
+      "actions": [
+        "Move only through qualified safe parking path",
+        "Verify stopped state and supported probe",
+        "Preserve any fault that prevents safe parking"
+      ],
+      "postconditions": [
+        "stage_parked"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_GRID",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "DISCONNECT",
+      "title": "Isolate and pack instrument connections",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "microphone",
+        "leads",
+        "source_connections"
+      ],
+      "preconditions": [
+        "outputs_safe",
+        "stage_parked",
+        "records_committed"
+      ],
+      "actions": [
+        "Confirm electrical isolation by supplied method",
+        "Support connectors and remove identified leads without pulling cables",
+        "Cap and pack probe and loose hardware"
+      ],
+      "postconditions": [
+        "apparatus_isolated"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_CAL"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "POST_INSPECT",
+      "title": "Inspect and retain post-run specimens",
+      "kind": "hands_on",
+      "location_id": "WS_INSPECT",
+      "target_asset_roles": [
+        "array",
+        "cells",
+        "inspection_fixture"
+      ],
+      "preconditions": [
+        "array_released",
+        "at_inspection"
+      ],
+      "actions": [
+        "Compare pre/post condition and serial map",
+        "Record cracked walls, loosened layers and changed seals",
+        "Quarantine damage and invalidate reuse if needed"
+      ],
+      "postconditions": [
+        "postrun_disposition_recorded"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ASSEMBLY",
+        "U_FAB"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Store objects and immutable records",
+      "kind": "hands_on",
+      "location_id": "WS_ARCHIVE",
+      "target_asset_roles": [
+        "array_carrier",
+        "probe_case",
+        "data_receipts"
+      ],
+      "preconditions": [
+        "postrun_disposition_recorded",
+        "at_archive",
+        "records_committed"
+      ],
+      "actions": [
+        "Seat retained arrays/parts in assigned supported bays",
+        "Reconcile stock, used parts, quarantines and acquisition attempts",
+        "Verify data and specimen retrieval IDs"
+      ],
+      "postconditions": [
+        "archive_complete"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "RESET",
+      "title": "Leave stations in verified safe state",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "station_controls",
+        "inventory"
+      ],
+      "preconditions": [
+        "apparatus_isolated"
+      ],
+      "actions": [
+        "Check source off, stage stopped and routes clear",
+        "Return tools through recorded moves",
+        "Report any unresolved station fault"
+      ],
+      "postconditions": [
+        "station_safe"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "REPORT",
+      "title": "Report complete partial or safe-abort outcome",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "receipts",
+        "selected_route_manifest"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Summarize every selected route and scheduled condition with evidence",
+        "List missing inputs, failed attempts and scientific disagreements",
+        "Do not call a blocked route an executed experiment"
+      ],
+      "postconditions": [
+        "episode_report_committed"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ENV_SETUP",
+      "title": "Place task-authored ambient sensors",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "ambient_probes",
+        "sensor_support"
+      ],
+      "preconditions": [
+        "episode_bound",
+        "outputs_safe"
+      ],
+      "actions": [
+        "Identify supplied ambient sensors and calibration",
+        "Seat outside moving paths at qualified representative locations",
+        "Bind clock and channel identity"
+      ],
+      "postconditions": [
+        "environment_channels_ready"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ENV",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "ENV_LOG",
+      "title": "Log ambient conditions for acquisition",
+      "kind": "device_autonomous",
+      "location_id": "WS_DAQ",
+      "target_asset_roles": [
+        "ambient_sensors",
+        "DAQ"
+      ],
+      "preconditions": [
+        "environment_channels_ready"
+      ],
+      "actions": [
+        "Record timestamped ambient values with sensor identity",
+        "Derive sound speed only with a declared model and uncertainty",
+        "Preserve missing or out-of-envelope readings"
+      ],
+      "postconditions": [
+        "environment_record_available"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ENV",
+        "U_DAQ"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "SELECT_CONDITION",
+      "title": "Bind one scheduled condition and attempt",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "work_order",
+        "condition_manifest"
+      ],
+      "preconditions": [
+        "episode_bound"
+      ],
+      "actions": [
+        "Choose nonempty branch, array or empty state, angle and repeat key",
+        "Assign run and attempt IDs with predecessor when retrying",
+        "Verify all required cards resolved and scope signatures compatible"
+      ],
+      "postconditions": [
+        "condition_selected"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANGLE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "BASELINE_BIND",
+      "title": "Bind compatible reference and calibration",
+      "kind": "analysis",
+      "location_id": "WS_RECORDS",
+      "target_asset_roles": [
+        "reference_receipt",
+        "calibration_receipt"
+      ],
+      "preconditions": [
+        "condition_selected",
+        "signal_program_verified"
+      ],
+      "actions": [
+        "Check sensor, channel, gain, geometry, time and frequency validity",
+        "For nonreference acquisitions require a compatible actual baseline",
+        "Reject baseline computed from future source outcomes or model-only data"
+      ],
+      "postconditions": [
+        "baseline_and_calibration_valid"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_DAQ",
+        "U_ANALYSIS"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    },
+    {
+      "id": "PROBE_RELEASE",
+      "title": "Release probe before calibration transport",
+      "kind": "hands_on",
+      "location_id": "WS_GUIDE",
+      "target_asset_roles": [
+        "microphone",
+        "preamplifier_lead",
+        "probe_case"
+      ],
+      "preconditions": [
+        "microphone_mounted",
+        "outputs_safe",
+        "stage_parked"
+      ],
+      "actions": [
+        "Support probe before releasing holder",
+        "Isolate and disconnect probe lead using qualified method",
+        "Remove probe to identified case and confirm all tethers disengaged",
+        "Record mount invalidation before GUIDE_CAL transfer"
+      ],
+      "postconditions": [
+        "probe_transport_ready"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_GRID",
+        "U_SCENE"
+      ],
+      "failure_handling": "Stop affected outputs, preserve failed attempt and observed state; resolve with a qualified repair or declare blocked. Never replace feedback with an asserted label.",
+      "observable_completion": "Trusted object/interface/readback or immutable receipt establishes completion; narration and requested command do not.",
+      "authorship": "task_authored_workflow_closure",
+      "execution_mode": "static_design_only"
+    }
+  ],
+  "operation_semantics": "Reusable operation templates instantiated by route, object ID, condition and attempt. Counts are authored granularity, not historical step counts. Conditional postconditions require trusted receipts; failed disposition never emits acceptance."
+}

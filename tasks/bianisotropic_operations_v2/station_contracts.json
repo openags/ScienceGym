@@ -1,0 +1,140 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "role": "Work order and data console",
+      "required_interfaces": [
+        "Readable versioned cards",
+        "Append-only IDs and receipts",
+        "No evaluator references in actor view"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_COMPUTE",
+      "role": "Explicit solver and analysis service",
+      "required_interfaces": [
+        "Typed immutable job specification",
+        "Artifact parents and raw hashes",
+        "Convergence/error readbacks; no preset science outcomes"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_STOCK",
+      "role": "ABS and carrier store",
+      "required_interfaces": [
+        "Lot labels",
+        "Supported divided carrier slots",
+        "Stock issuance ledger"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_TRANSIT",
+      "role": "Registered station-to-station route",
+      "required_interfaces": [
+        "Qualified navigation frames",
+        "Empty destination dock",
+        "Tether-safe transfer and load limits"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_PRINT",
+      "role": "Enclosed FDM fabrication service",
+      "required_interfaces": [
+        "Build-plate and feedstock docks",
+        "Geometry/process readback",
+        "Guard, thermal and motion interlocks"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_INSPECT",
+      "role": "Cradle, camera and dimensional inspection",
+      "required_interfaces": [
+        "Part orientation marks",
+        "Qualified gauge datums",
+        "Accepted/rejected/indeterminate state"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "role": "Nine-period supported assembly station",
+      "required_interfaces": [
+        "Numbered period positions",
+        "Support/grasp and seam interfaces",
+        "Qualified clamps/seals and orientation readback"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_CALIBRATE",
+      "role": "Microphone/DAQ calibration station",
+      "required_interfaces": [
+        "Identified reference artifact",
+        "Microphone safe contact frames",
+        "Amplitude/phase and uncertainty receipt"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_GUIDE",
+      "role": "Two-dimensional waveguide measurement station",
+      "required_interfaces": [
+        "28-speaker source",
+        "Panel seat and guide coordinates",
+        "Moving microphone pose feedback",
+        "DAQ and source controls",
+        "Safe output-off and stage-park signals"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "role": "Protected storage, quarantine and cleanup",
+      "required_interfaces": [
+        "Specimen carrier slots",
+        "Separate waste and quarantine",
+        "Tool/artifact inventory",
+        "Records archive interface"
+      ],
+      "asset_status": "unbuilt_symbolic_contract",
+      "authorship": "task_authored",
+      "qualified_safety_parameters": null
+    }
+  ],
+  "robot": {
+    "embodiment": "Mobile human-like manipulator with qualified fine manipulation or XY-stage interface",
+    "capabilities_verified": false,
+    "prohibited_shortcuts": [
+      "Teleport or hide/show specimen",
+      "Relabel reversed sample as correct",
+      "Spawn complete panel from an angle choice",
+      "Use a figure ID to synthesize raw pressure"
+    ],
+    "movement": "MOVE receipts required for every actual station transition; compute-only jobs do not move specimens"
+  }
+}

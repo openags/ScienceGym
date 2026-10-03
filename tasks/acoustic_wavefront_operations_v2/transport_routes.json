@@ -1,0 +1,305 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "routes": [
+    {
+      "id": "STOCK_FAB",
+      "from_station": "WS_STOCK",
+      "to_station": "WS_FAB",
+      "payload_roles": [
+        "ABS_stock",
+        "build_carrier"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "FAB_INSPECT",
+      "from_station": "WS_FAB",
+      "to_station": "WS_INSPECT",
+      "payload_roles": [
+        "printed_parts",
+        "build_carrier"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "INSPECT_ASM",
+      "from_station": "WS_INSPECT",
+      "to_station": "WS_ASSEMBLY",
+      "payload_roles": [
+        "accepted_cells",
+        "carrier",
+        "inspected_released_array",
+        "supported_carrier"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "ASM_GUIDE",
+      "from_station": "WS_ASSEMBLY",
+      "to_station": "WS_GUIDE",
+      "payload_roles": [
+        "array",
+        "supported_carrier"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "STOCK_CAL",
+      "from_station": "WS_STOCK",
+      "to_station": "WS_CAL",
+      "payload_roles": [
+        "microphone",
+        "probe_case"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "GUIDE_CAL",
+      "from_station": "WS_GUIDE",
+      "to_station": "WS_CAL",
+      "payload_roles": [
+        "microphone",
+        "probe_case"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "CAL_GUIDE",
+      "from_station": "WS_CAL",
+      "to_station": "WS_GUIDE",
+      "payload_roles": [
+        "microphone",
+        "probe_case"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "STOCK_GUIDE",
+      "from_station": "WS_STOCK",
+      "to_station": "WS_GUIDE",
+      "payload_roles": [
+        "fixtures",
+        "speaker_array"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "STOCK_SOURCE",
+      "from_station": "WS_STOCK",
+      "to_station": "WS_SOURCE",
+      "payload_roles": [
+        "amplifier",
+        "leads"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "STOCK_DAQ",
+      "from_station": "WS_STOCK",
+      "to_station": "WS_DAQ",
+      "payload_roles": [
+        "DAQ",
+        "leads"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "GUIDE_ASM",
+      "from_station": "WS_GUIDE",
+      "to_station": "WS_ASSEMBLY",
+      "payload_roles": [
+        "released_array",
+        "supported_carrier"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "GUIDE_INSPECT",
+      "from_station": "WS_GUIDE",
+      "to_station": "WS_INSPECT",
+      "payload_roles": [
+        "released_array",
+        "supported_carrier"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "INSPECT_ARCHIVE",
+      "from_station": "WS_INSPECT",
+      "to_station": "WS_ARCHIVE",
+      "payload_roles": [
+        "array",
+        "cells",
+        "carrier"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    },
+    {
+      "id": "GUIDE_ARCHIVE",
+      "from_station": "WS_GUIDE",
+      "to_station": "WS_ARCHIVE",
+      "payload_roles": [
+        "microphone",
+        "fixtures",
+        "probe_case"
+      ],
+      "operation_id": "MOVE",
+      "geometry": null,
+      "required_receipts": [
+        "origin_location",
+        "same_entity_ids",
+        "output_safe",
+        "tethers_disengaged",
+        "payload_support",
+        "qualified_path",
+        "destination_dock",
+        "destination_identity_and_condition"
+      ]
+    }
+  ],
+  "rule": "Every interstation payload transfer needs a compatible MOVE receipt. Observer/console operations may be remote only through qualified interface; stored sensor objects cannot teleport. Route geometry and duration are unspecified."
+}

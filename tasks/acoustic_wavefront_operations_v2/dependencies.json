@@ -1,0 +1,313 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "evaluator_reference_only",
+  "edges": [
+    {
+      "source": "ANGLE_SET",
+      "target": "ANGLE_READ"
+    },
+    {
+      "source": "ARM",
+      "target": "STAGE_POINT"
+    },
+    {
+      "source": "ARRAY_LOAD",
+      "target": "ARRAY_LOCK"
+    },
+    {
+      "source": "ARRAY_UNLOAD",
+      "target": "POST_INSPECT"
+    },
+    {
+      "source": "ASM_FIXTURE",
+      "target": "ASM_LOWER"
+    },
+    {
+      "source": "ASM_LAYOUT",
+      "target": "ASM_FIXTURE"
+    },
+    {
+      "source": "ASM_LOCK",
+      "target": "ASM_QC"
+    },
+    {
+      "source": "ASM_LOWER",
+      "target": "ASM_LOWER_QC"
+    },
+    {
+      "source": "ASM_LOWER_QC",
+      "target": "ASM_UPPER"
+    },
+    {
+      "source": "ASM_QC",
+      "target": "ARRAY_LOAD"
+    },
+    {
+      "source": "ASM_REGISTER",
+      "target": "ASM_LOCK"
+    },
+    {
+      "source": "ASM_UPPER",
+      "target": "ASM_REGISTER"
+    },
+    {
+      "source": "BASELINE_BIND",
+      "target": "ARM"
+    },
+    {
+      "source": "CAL_ACQUIRE",
+      "target": "CAL_REVIEW"
+    },
+    {
+      "source": "CAL_MOUNT",
+      "target": "CAL_ACQUIRE"
+    },
+    {
+      "source": "CAL_REVIEW",
+      "target": "CAL_UNLOAD"
+    },
+    {
+      "source": "DAQ_WIRE",
+      "target": "STAGE_HOME"
+    },
+    {
+      "source": "DISCONNECT",
+      "target": "RESET"
+    },
+    {
+      "source": "FAB_CYCLE",
+      "target": "FAB_RELEASE"
+    },
+    {
+      "source": "FAB_LOAD",
+      "target": "FAB_VERIFY"
+    },
+    {
+      "source": "FAB_RELEASE",
+      "target": "FAB_UNLOAD"
+    },
+    {
+      "source": "FAB_START",
+      "target": "FAB_CYCLE"
+    },
+    {
+      "source": "FAB_UNLOAD",
+      "target": "PART_ID"
+    },
+    {
+      "source": "FAB_VERIFY",
+      "target": "FAB_START"
+    },
+    {
+      "source": "GUIDE_PLATES",
+      "target": "SOURCE_MOUNT"
+    },
+    {
+      "source": "MIC_MOUNT",
+      "target": "DAQ_WIRE"
+    },
+    {
+      "source": "MUTE",
+      "target": "PARK"
+    },
+    {
+      "source": "NEXT_POINT",
+      "target": "SCAN_COMMIT"
+    },
+    {
+      "source": "PARK",
+      "target": "ARRAY_UNLOAD"
+    },
+    {
+      "source": "PARK",
+      "target": "DISCONNECT"
+    },
+    {
+      "source": "PART_CHANNEL",
+      "target": "ASM_LAYOUT"
+    },
+    {
+      "source": "PART_ID",
+      "target": "PART_CHANNEL"
+    },
+    {
+      "source": "PART_ID",
+      "target": "PART_DIM"
+    },
+    {
+      "source": "PLAN",
+      "target": "STOCK"
+    },
+    {
+      "source": "POST_INSPECT",
+      "target": "ARCHIVE"
+    },
+    {
+      "source": "PULSE_RECORD",
+      "target": "TRACE_QC"
+    },
+    {
+      "source": "SCAN_COMMIT",
+      "target": "FFT"
+    },
+    {
+      "source": "SETTLE",
+      "target": "PULSE_RECORD"
+    },
+    {
+      "source": "SIGNAL_CONFIG",
+      "target": "BASELINE_BIND"
+    },
+    {
+      "source": "SOURCE_MOUNT",
+      "target": "SOURCE_WIRE"
+    },
+    {
+      "source": "SOURCE_WIRE",
+      "target": "DAQ_WIRE"
+    },
+    {
+      "source": "STAGE_POINT",
+      "target": "SETTLE"
+    },
+    {
+      "source": "STOCK",
+      "target": "FAB_LOAD"
+    },
+    {
+      "source": "TRACE_COMMIT",
+      "target": "NEXT_POINT"
+    },
+    {
+      "source": "TRACE_QC",
+      "target": "TRACE_COMMIT"
+    }
+  ],
+  "semantics": "Per-instance precedence only where both operations apply; loop transitions are separate. Route operation membership is not a total sequence. Shared receipt handoffs need compatible scope.",
+  "loops": [
+    {
+      "id": "L_CELL",
+      "iterator": "per allocated physical cell",
+      "operation_ids": [
+        "PART_ID",
+        "PART_DIM",
+        "PART_CHANNEL"
+      ],
+      "termination": "Each allocated cell accepted or quarantined; failed job/reprint has a new entity and predecessor",
+      "repeat_count": null
+    },
+    {
+      "id": "L_LAYER",
+      "iterator": "per qualified recipe layer and slot",
+      "operation_ids": [
+        "ASM_LOWER",
+        "ASM_LOWER_QC",
+        "ASM_UPPER",
+        "ASM_REGISTER"
+      ],
+      "termination": "Every layer-slot populated with accepted physical ID or explicit blocker; second layer cannot be omitted",
+      "repeat_count": null
+    },
+    {
+      "id": "L_CONDITION",
+      "iterator": "per selected branch condition and declared technical repeat",
+      "operation_ids": [
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "GRID_FAR",
+        "GRID_NEAR",
+        "SIGNAL_CONFIG",
+        "SCAN_COMMIT"
+      ],
+      "termination": "All scheduled condition keys classified; only applicable grid operation runs",
+      "repeat_count": null
+    },
+    {
+      "id": "L_GRID",
+      "iterator": "per point and declared pulse repeat",
+      "operation_ids": [
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT"
+      ],
+      "termination": "Every scheduled trace key classified; incomplete acquisition does not become success",
+      "repeat_count": null
+    },
+    {
+      "id": "L_RETRY",
+      "iterator": "per failed trace or interrupted scan",
+      "operation_ids": [
+        "MUTE",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "ARM"
+      ],
+      "termination": "Follow work-order retry limit; new attempt ID references retained failed predecessor; exhaustion is partial",
+      "repeat_count": null
+    },
+    {
+      "id": "L_REQUALIFY",
+      "iterator": "after changed gain sensor source angle grid or array state",
+      "operation_ids": [
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_REVIEW",
+        "EMPTY_PREP",
+        "ASM_QC"
+      ],
+      "termination": "Obtain new scope-compatible receipts before affected acquisition",
+      "repeat_count": null
+    },
+    {
+      "id": "L_REUSE",
+      "iterator": "between conditions sharing physical array",
+      "operation_ids": [
+        "MUTE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "RECONFIGURE",
+        "ASM_QC",
+        "ARRAY_LOAD"
+      ],
+      "termination": "Retain IDs and increment revision if changed; no invented independent specimen",
+      "repeat_count": null
+    }
+  ],
+  "conditional_gates": [
+    {
+      "id": "G_ARRAY",
+      "predicate": "gradient == 0",
+      "then": "EMPTY_PREP and absent array",
+      "otherwise": "ARRAY_LOAD and ARRAY_LOCK"
+    },
+    {
+      "id": "G_GRID",
+      "predicate": "branch == NEAR_FIELD",
+      "then": "GRID_NEAR",
+      "otherwise": "GRID_FAR for measured fields"
+    },
+    {
+      "id": "G_CAL",
+      "predicate": "setup signature changed beyond calibration validity",
+      "then": "Requalify affected inputs before ARM",
+      "otherwise": "Reuse only still-valid identified receipt"
+    },
+    {
+      "id": "G_TRANSFORM",
+      "predicate": "actual frame or angle changed",
+      "then": "Rebind coordinates and verify probe travel",
+      "otherwise": "Retain verified transform"
+    },
+    {
+      "id": "G_NORMALIZE",
+      "predicate": "source-style normalized polar comparison requested",
+      "then": "Require corresponding simulation hash and preserve raw amplitude",
+      "otherwise": "Do not invent simulation or normalization denominator"
+    }
+  ]
+}

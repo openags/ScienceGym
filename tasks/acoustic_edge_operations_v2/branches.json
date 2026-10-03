@@ -1,0 +1,656 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "evaluator_reference_only",
+  "physical_branch_count": 7,
+  "branches": [
+    {
+      "id": "NO_OBJECT",
+      "title": "No-object frequency response",
+      "kind": "physical_acquisition",
+      "acquisition_type": "sweep",
+      "target_material_card_id": null,
+      "evidence_ids": [
+        "E_CONTROL",
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "prerequisite_family_ids": [
+        "F_GUIDE",
+        "F_RIG"
+      ],
+      "operation_ids": [
+        "CLEAR_APERTURE",
+        "SWEEP_CONFIG",
+        "ENABLE",
+        "SWEEP_POINT",
+        "STOP",
+        "RUN_REVIEW",
+        "MODES",
+        "ARCHIVE"
+      ],
+      "sequence_interpretation": "An authored illustrative phase order; dependency and condition gates define validity. Repeated templates require unique occurrences.",
+      "loop_ids": [
+        "L_SWEEP",
+        "L_REPEAT"
+      ],
+      "expected_raw_quantities": [
+        "p1_complex",
+        "p2_complex",
+        "p3_complex",
+        "p4_complex"
+      ],
+      "physical_step_mm": null,
+      "source_frequency_hz": null,
+      "source_object_gap_mm": null,
+      "source_roi_limit": "Absolute source acquisition extents unknown",
+      "reuse": "Explicit episode allocation only; the half-aperture plate and single-edge plate may share an ID only with declared reuse and intervening inspection",
+      "completion": "Nonempty declared frequency schedule addressed; valid raw data and linked processing present; failures retained and source/stage safely stopped; no fictional target storage required",
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_CAL",
+        "U_ACQ",
+        "U_REPEAT",
+        "U_ANALYSIS",
+        "U_SAFETY",
+        "U_SWEEP"
+      ]
+    },
+    {
+      "id": "HALF_APERTURE",
+      "title": "Half-aperture aluminium edge response",
+      "kind": "physical_acquisition",
+      "acquisition_type": "sweep",
+      "target_material_card_id": "aluminium_edge",
+      "evidence_ids": [
+        "E_CONTROL",
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "prerequisite_family_ids": [
+        "F_GUIDE",
+        "F_RIG",
+        "F_TARGET"
+      ],
+      "operation_ids": [
+        "TRANSFER",
+        "TARGET_LOAD",
+        "ALIGN",
+        "SWEEP_CONFIG",
+        "ENABLE",
+        "SWEEP_POINT",
+        "STOP",
+        "RUN_REVIEW",
+        "MODES",
+        "TARGET_UNLOAD",
+        "STORE_TARGET",
+        "ARCHIVE"
+      ],
+      "sequence_interpretation": "An authored illustrative phase order; dependency and condition gates define validity. Repeated templates require unique occurrences.",
+      "loop_ids": [
+        "L_SWEEP",
+        "L_REPEAT"
+      ],
+      "expected_raw_quantities": [
+        "p1_complex",
+        "p2_complex",
+        "p3_complex",
+        "p4_complex"
+      ],
+      "physical_step_mm": null,
+      "source_frequency_hz": null,
+      "source_object_gap_mm": 1,
+      "source_roi_limit": "Absolute source acquisition extents unknown",
+      "reuse": "Explicit episode allocation only; the half-aperture plate and single-edge plate may share an ID only with declared reuse and intervening inspection",
+      "completion": "Nonempty declared schedule addressed; all required valid raw points and linked processing present; failures retained, safe target storage observed",
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_CAL",
+        "U_ACQ",
+        "U_REPEAT",
+        "U_ANALYSIS",
+        "U_SAFETY",
+        "U_SWEEP",
+        "U_TARGET",
+        "U_FIXTURE"
+      ]
+    },
+    {
+      "id": "SINGLE_EDGE_1D",
+      "title": "Single aluminium edge scan",
+      "kind": "physical_acquisition",
+      "acquisition_type": "scan_1d",
+      "target_material_card_id": "aluminium_edge",
+      "evidence_ids": [
+        "E_1D",
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "prerequisite_family_ids": [
+        "F_GUIDE",
+        "F_RIG",
+        "F_TARGET"
+      ],
+      "operation_ids": [
+        "TRANSFER",
+        "TARGET_LOAD",
+        "ALIGN",
+        "SCAN_CONFIG",
+        "ENABLE",
+        "MOVE_POINT",
+        "MEASURE_POINT",
+        "STOP",
+        "RUN_REVIEW",
+        "MODES",
+        "EDGE_ANALYSIS",
+        "TARGET_UNLOAD",
+        "STORE_TARGET",
+        "ARCHIVE"
+      ],
+      "sequence_interpretation": "An authored illustrative phase order; dependency and condition gates define validity. Repeated templates require unique occurrences.",
+      "loop_ids": [
+        "L_SCAN_1D",
+        "L_REPEAT"
+      ],
+      "expected_raw_quantities": [
+        "p1_complex",
+        "p2_complex",
+        "p3_complex",
+        "p4_complex"
+      ],
+      "physical_step_mm": 0.6,
+      "source_frequency_hz": 7740,
+      "source_object_gap_mm": 1,
+      "source_roi_limit": "Absolute source acquisition extents unknown",
+      "reuse": "Explicit episode allocation only; the half-aperture plate and single-edge plate may share an ID only with declared reuse and intervening inspection",
+      "completion": "Nonempty declared schedule addressed; all required valid raw points and linked processing present; failures retained, safe target storage observed",
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_CAL",
+        "U_ACQ",
+        "U_REPEAT",
+        "U_ANALYSIS",
+        "U_SAFETY",
+        "U_SCAN",
+        "U_TARGET",
+        "U_FIXTURE"
+      ]
+    },
+    {
+      "id": "PLATE_32_1D",
+      "title": "32-mm-wide aluminium plate scan",
+      "kind": "physical_acquisition",
+      "acquisition_type": "scan_1d",
+      "target_material_card_id": "aluminium_plate_32",
+      "evidence_ids": [
+        "E_1D",
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "prerequisite_family_ids": [
+        "F_GUIDE",
+        "F_RIG",
+        "F_TARGET"
+      ],
+      "operation_ids": [
+        "TRANSFER",
+        "TARGET_LOAD",
+        "ALIGN",
+        "SCAN_CONFIG",
+        "ENABLE",
+        "MOVE_POINT",
+        "MEASURE_POINT",
+        "STOP",
+        "RUN_REVIEW",
+        "MODES",
+        "EDGE_ANALYSIS",
+        "TARGET_UNLOAD",
+        "STORE_TARGET",
+        "ARCHIVE"
+      ],
+      "sequence_interpretation": "An authored illustrative phase order; dependency and condition gates define validity. Repeated templates require unique occurrences.",
+      "loop_ids": [
+        "L_SCAN_1D",
+        "L_REPEAT"
+      ],
+      "expected_raw_quantities": [
+        "p1_complex",
+        "p2_complex",
+        "p3_complex",
+        "p4_complex"
+      ],
+      "physical_step_mm": 0.6,
+      "source_frequency_hz": 7740,
+      "source_object_gap_mm": 1,
+      "source_roi_limit": "Absolute source acquisition extents unknown",
+      "reuse": "Explicit episode allocation only; the half-aperture plate and single-edge plate may share an ID only with declared reuse and intervening inspection",
+      "completion": "Nonempty declared schedule addressed; all required valid raw points and linked processing present; failures retained, safe target storage observed",
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_CAL",
+        "U_ACQ",
+        "U_REPEAT",
+        "U_ANALYSIS",
+        "U_SAFETY",
+        "U_SCAN",
+        "U_TARGET",
+        "U_FIXTURE"
+      ]
+    },
+    {
+      "id": "ROD_10_1D",
+      "title": "10-mm-wide aluminium rod scan",
+      "kind": "physical_acquisition",
+      "acquisition_type": "scan_1d",
+      "target_material_card_id": "aluminium_rod_10",
+      "evidence_ids": [
+        "E_1D",
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "prerequisite_family_ids": [
+        "F_GUIDE",
+        "F_RIG",
+        "F_TARGET"
+      ],
+      "operation_ids": [
+        "TRANSFER",
+        "TARGET_LOAD",
+        "ALIGN",
+        "SCAN_CONFIG",
+        "ENABLE",
+        "MOVE_POINT",
+        "MEASURE_POINT",
+        "STOP",
+        "RUN_REVIEW",
+        "MODES",
+        "EDGE_ANALYSIS",
+        "TARGET_UNLOAD",
+        "STORE_TARGET",
+        "ARCHIVE"
+      ],
+      "sequence_interpretation": "An authored illustrative phase order; dependency and condition gates define validity. Repeated templates require unique occurrences.",
+      "loop_ids": [
+        "L_SCAN_1D",
+        "L_REPEAT"
+      ],
+      "expected_raw_quantities": [
+        "p1_complex",
+        "p2_complex",
+        "p3_complex",
+        "p4_complex"
+      ],
+      "physical_step_mm": 0.6,
+      "source_frequency_hz": 7740,
+      "source_object_gap_mm": 1,
+      "source_roi_limit": "Absolute source acquisition extents unknown",
+      "reuse": "Explicit episode allocation only; the half-aperture plate and single-edge plate may share an ID only with declared reuse and intervening inspection",
+      "completion": "Nonempty declared schedule addressed; all required valid raw points and linked processing present; failures retained, safe target storage observed",
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_CAL",
+        "U_ACQ",
+        "U_REPEAT",
+        "U_ANALYSIS",
+        "U_SAFETY",
+        "U_SCAN",
+        "U_TARGET",
+        "U_FIXTURE"
+      ]
+    },
+    {
+      "id": "DISC_2D",
+      "title": "Plexiglas disc scan",
+      "kind": "physical_acquisition",
+      "acquisition_type": "scan_2d",
+      "target_material_card_id": "plexiglas_disc_100",
+      "evidence_ids": [
+        "E_DISC",
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "prerequisite_family_ids": [
+        "F_GUIDE",
+        "F_RIG",
+        "F_TARGET"
+      ],
+      "operation_ids": [
+        "TRANSFER",
+        "TARGET_LOAD",
+        "ALIGN",
+        "SCAN_CONFIG",
+        "ENABLE",
+        "MOVE_POINT",
+        "MEASURE_POINT",
+        "STOP",
+        "RUN_REVIEW",
+        "MODES",
+        "IMAGE_ANALYSIS",
+        "TARGET_UNLOAD",
+        "STORE_TARGET",
+        "ARCHIVE"
+      ],
+      "sequence_interpretation": "An authored illustrative phase order; dependency and condition gates define validity. Repeated templates require unique occurrences.",
+      "loop_ids": [
+        "L_SCAN_2D",
+        "L_REPEAT"
+      ],
+      "expected_raw_quantities": [
+        "p1_complex",
+        "p2_complex",
+        "p3_complex",
+        "p4_complex"
+      ],
+      "physical_step_mm": 1.6,
+      "source_frequency_hz": 7740,
+      "source_object_gap_mm": 1,
+      "source_roi_limit": "Only upper-half disc is displayed; historical complete acquisition ROI unknown",
+      "reuse": "Explicit episode allocation only; the half-aperture plate and single-edge plate may share an ID only with declared reuse and intervening inspection",
+      "completion": "Nonempty declared schedule addressed; all required valid raw points and linked processing present; failures retained, safe target storage observed",
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_CAL",
+        "U_ACQ",
+        "U_REPEAT",
+        "U_ANALYSIS",
+        "U_SAFETY",
+        "U_SCAN",
+        "U_TARGET",
+        "U_FIXTURE"
+      ]
+    },
+    {
+      "id": "ETH_2D",
+      "title": "Rigid-thermoplastic ETH scan",
+      "kind": "physical_acquisition",
+      "acquisition_type": "scan_2d",
+      "target_material_card_id": "thermoplastic_eth",
+      "evidence_ids": [
+        "E_ETH",
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "prerequisite_family_ids": [
+        "F_GUIDE",
+        "F_RIG",
+        "F_TARGET"
+      ],
+      "operation_ids": [
+        "TRANSFER",
+        "TARGET_LOAD",
+        "ALIGN",
+        "SCAN_CONFIG",
+        "ENABLE",
+        "MOVE_POINT",
+        "MEASURE_POINT",
+        "STOP",
+        "RUN_REVIEW",
+        "MODES",
+        "IMAGE_ANALYSIS",
+        "TARGET_UNLOAD",
+        "STORE_TARGET",
+        "ARCHIVE"
+      ],
+      "sequence_interpretation": "An authored illustrative phase order; dependency and condition gates define validity. Repeated templates require unique occurrences.",
+      "loop_ids": [
+        "L_SCAN_2D",
+        "L_REPEAT"
+      ],
+      "expected_raw_quantities": [
+        "p1_complex",
+        "p2_complex",
+        "p3_complex",
+        "p4_complex"
+      ],
+      "physical_step_mm": 1.6,
+      "source_frequency_hz": 7740,
+      "source_object_gap_mm": 1,
+      "source_roi_limit": "Absolute source acquisition extents unknown",
+      "reuse": "Explicit episode allocation only; the half-aperture plate and single-edge plate may share an ID only with declared reuse and intervening inspection",
+      "completion": "Nonempty declared schedule addressed; all required valid raw points and linked processing present; failures retained, safe target storage observed",
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_CAL",
+        "U_ACQ",
+        "U_REPEAT",
+        "U_ANALYSIS",
+        "U_SAFETY",
+        "U_SCAN",
+        "U_TARGET",
+        "U_FIXTURE"
+      ]
+    }
+  ],
+  "families": [
+    {
+      "id": "F_GUIDE",
+      "title": "Printed guide preparation",
+      "operation_ids": [
+        "PLAN",
+        "STOCK",
+        "TRANSFER",
+        "CAD_BIND",
+        "PRINT_LOAD",
+        "PRINT_RUN",
+        "PRINT_UNLOAD",
+        "TRANSFER",
+        "POSTPROCESS",
+        "TRANSFER",
+        "GUIDE_QC",
+        "TRANSFER"
+      ],
+      "classification": "shared_physical_prerequisite",
+      "transfer_occurrences": [
+        {
+          "id": "guide_stock_to_printer",
+          "after": "STOCK",
+          "before": "PRINT_LOAD",
+          "item_role": "print_stock",
+          "origin": "WS_STOCK",
+          "destination": "WS_PRINT"
+        },
+        {
+          "id": "printed_guide_to_prep",
+          "after": "PRINT_UNLOAD",
+          "before": "POSTPROCESS",
+          "item_role": "guide",
+          "origin": "WS_PRINT",
+          "destination": "WS_PREP"
+        },
+        {
+          "id": "finished_guide_to_inspection",
+          "after": "POSTPROCESS",
+          "before": "GUIDE_QC",
+          "item_role": "guide",
+          "origin": "WS_PREP",
+          "destination": "WS_INSPECTION"
+        },
+        {
+          "id": "qualified_guide_to_rig",
+          "after": "GUIDE_QC",
+          "before": "GUIDE_MOUNT",
+          "item_role": "guide",
+          "origin": "WS_INSPECTION",
+          "destination": "WS_RIG"
+        }
+      ]
+    },
+    {
+      "id": "F_TARGET",
+      "title": "Target preparation per allocated object",
+      "operation_ids": [
+        "TARGET_BIND",
+        "TARGET_PREP",
+        "TARGET_PROCESS",
+        "TARGET_RELEASE",
+        "TARGET_RECEIVE",
+        "TRANSFER",
+        "TARGET_QC",
+        "TRANSFER"
+      ],
+      "classification": "shared_physical_prerequisite",
+      "route_variants": {
+        "manufactured_in_episode": [
+          "TARGET_BIND",
+          "TARGET_PREP",
+          "TARGET_PROCESS",
+          "TARGET_RELEASE",
+          "TRANSFER",
+          "TARGET_QC",
+          "TRANSFER"
+        ],
+        "supplied_part": [
+          "TARGET_BIND",
+          "TARGET_RECEIVE",
+          "TRANSFER",
+          "TARGET_QC",
+          "TRANSFER"
+        ]
+      },
+      "selection_rule": "target_card.process_or_supplied_part_route chooses exactly one route per target; no fabricated device process on supplied-part route"
+    },
+    {
+      "id": "F_RIG",
+      "title": "Four-channel apparatus assembly",
+      "operation_ids": [
+        "ENCLOSURE",
+        "GUIDE_MOUNT",
+        "OUTLET_FOAM",
+        "SPEAKER",
+        "MIC_INSTALL",
+        "MIC_CONNECT",
+        "TRANSFER",
+        "CALIBRATE",
+        "STAGE_INSTALL",
+        "RIG_CHECK"
+      ],
+      "classification": "shared_physical_prerequisite",
+      "resource_transfer_obligations": [
+        {
+          "item_role": "lining_panels",
+          "origin": "WS_STOCK",
+          "destination": "WS_RIG",
+          "before": "ENCLOSURE"
+        },
+        {
+          "item_role": "microphones",
+          "origin": "WS_STOCK",
+          "destination": "WS_RIG",
+          "before": "MIC_INSTALL"
+        },
+        {
+          "item_role": "speaker",
+          "origin": "WS_STOCK",
+          "destination": "WS_RIG",
+          "before": "SPEAKER"
+        },
+        {
+          "item_role": "output_foam",
+          "origin": "WS_STOCK",
+          "destination": "WS_RIG",
+          "before": "OUTLET_FOAM"
+        },
+        {
+          "item_role": "calibration_standard",
+          "origin": "WS_CALIBRATION",
+          "destination": "WS_RIG",
+          "before": "CALIBRATE"
+        }
+      ]
+    }
+  ],
+  "loops": [
+    {
+      "id": "L_MIC",
+      "iterator": "sensor_slot",
+      "operation_ids": [
+        "MIC_INSTALL"
+      ],
+      "count": 4,
+      "binding": "Four distinct serials and four distinct wall ports; slot is not specimen replicate"
+    },
+    {
+      "id": "L_SWEEP",
+      "iterator": "frequency_index",
+      "operation_ids": [
+        "SWEEP_POINT"
+      ],
+      "count": null,
+      "input": "sweep_card.frequency_schedule",
+      "unknown_id": "U_SWEEP",
+      "binding": "Explicit nonempty finite schedule; repeat conditions need unique occurrence keys"
+    },
+    {
+      "id": "L_SCAN_1D",
+      "iterator": "point_id",
+      "operation_ids": [
+        "MOVE_POINT",
+        "MEASURE_POINT"
+      ],
+      "count": null,
+      "input": "scan_card.ordered_coordinates",
+      "unknown_id": "U_SCAN",
+      "binding": "Explicit nonempty 1D physical coordinates, 0.6-mm nominal step; exact extents supplied"
+    },
+    {
+      "id": "L_SCAN_2D",
+      "iterator": "point_id",
+      "operation_ids": [
+        "MOVE_POINT",
+        "MEASURE_POINT"
+      ],
+      "count": null,
+      "input": "scan_card.ordered_coordinates",
+      "unknown_id": "U_SCAN",
+      "binding": "Explicit nonempty 2D coordinates, 1.6-mm physical grid; ROI/raster order supplied"
+    },
+    {
+      "id": "L_REPEAT",
+      "iterator": "attempt_id",
+      "operation_ids": [
+        "ENABLE",
+        "SWEEP_POINT",
+        "MOVE_POINT",
+        "MEASURE_POINT",
+        "STOP",
+        "RUN_REVIEW"
+      ],
+      "count": null,
+      "input": "allocation_card.technical_repeat_schedule",
+      "unknown_id": "U_REPEAT",
+      "binding": "Branch-applicable operations only; no assumed number or successful empty loop; new run/attempt identity required"
+    }
+  ],
+  "campaign": {
+    "id": "WHOLE_PAPER",
+    "required_branch_ids": [
+      "NO_OBJECT",
+      "HALF_APERTURE",
+      "SINGLE_EDGE_1D",
+      "PLATE_32_1D",
+      "ROD_10_1D",
+      "DISC_2D",
+      "ETH_2D"
+    ],
+    "required_control_package_ids": [
+      "CP_TRANSMISSION",
+      "CP_1D_OBJECTS",
+      "CP_2D_CHANNELS"
+    ],
+    "shared_preparation": "One or more identified qualified guides according to explicit allocation; not a historical sample-count claim",
+    "required_closure_operation_ids": [
+      "CONTROL_COMPARE",
+      "ARCHIVE",
+      "RIG_UNLOAD",
+      "CLEANUP",
+      "REPORT"
+    ],
+    "numerical_work_included_in_coverage_but_not_physical_completion": true,
+    "completion": "All seven required branch dispositions must be valid-complete for complete status. Gated, failed or missing branches are reported and prevent completion; truthful non-paper outcomes do not automatically fail procedures.",
+    "abort_closure_operation_ids": [
+      "ABORT_CLOSE",
+      "ARCHIVE",
+      "REPORT"
+    ]
+  }
+}

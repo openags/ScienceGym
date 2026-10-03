@@ -1,0 +1,52 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "evaluator_reference_only",
+  "runtime_evaluator_implemented": false,
+  "trusted_inputs": "Future environment-side append-only state/event logger, calibrated instrument receipts and identity/position observations. Self-reported JSON fields alone are not trusted physical evidence.",
+  "completion_predicates": [
+    {
+      "id": "EV_SCOPE",
+      "requirement": "Every required branch exists with nonempty qualified schedule; unknown repeat counts cannot resolve to zero"
+    },
+    {
+      "id": "EV_PREP",
+      "requirement": "Guide has fabrication/material/drawing/QC lineage. Each target has either episode manufacturing/release lineage or explicit supplied-part receipt and known preparation provenance, followed by transfer/QC. Do not invent unknown historic jobs."
+    },
+    {
+      "id": "EV_RIG",
+      "requirement": "Mounted guide, source pose, outlet/lining, four distinct flush sensors, channel map, calibrated chain and referenced stage have current receipts"
+    },
+    {
+      "id": "EV_CONTROL",
+      "requirement": "Absent object independently observed for baseline; half-aperture alignment independently observed for the matched control"
+    },
+    {
+      "id": "EV_POINT",
+      "requirement": "For every declared valid point: configured source, actual position/frequency, settled acquisition, complete complex channels, consistent identities/calibration/reference and no clipping"
+    },
+    {
+      "id": "EV_RETRY",
+      "requirement": "All failed attempts retained with unique keys; a valid declared retry never overwrites its failure"
+    },
+    {
+      "id": "EV_DERIVE",
+      "requirement": "Modal/analysis/display products retain exact raw parents and processing versions; interpolation cannot add measured records"
+    },
+    {
+      "id": "EV_CLOSE",
+      "requirement": "Output off and stage stopped if those devices were involved; actually mounted targets safely unloaded/stored, other components accounted for, and station disposition observed. A no-object-only branch needs no fictional target storage. Blocked early work can use scoped abort closure and remains incomplete."
+    }
+  ],
+  "scientific_vs_procedural": "Truthful measurements that do not reproduce published peak counts or FWHM can satisfy procedural contracts; their scientific interpretation must report disagreement. Missing evidence never passes merely because a plot matches the paper.",
+  "synthetic_validator_scope": "tests/record_contract.py exercises narrow record, lineage, calibration, transfer and actor-projection invariants using invented fixtures. It does not implement the complete runtime evaluator or authenticate events. The narrow run validator supports one explicit expanded run at a time and rejects a repeat_count greater than one; campaign repeat expansion remains a future runtime requirement, never a source default.",
+  "forbidden_shortcuts": [
+    "Expected three or five peaks as a success oracle",
+    "Reusing source figure pixels as measurements",
+    "Interpolated pixels as acquired samples",
+    "Treating a rod width as cylinder diameter",
+    "Full-disc coverage inferred from a displayed semicircle",
+    "Calibrated label without chain-specific receipt",
+    "Macros that invent missing physical manipulation receipts"
+  ]
+}

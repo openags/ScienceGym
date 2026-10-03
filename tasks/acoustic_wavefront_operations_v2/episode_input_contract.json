@@ -1,0 +1,212 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "author_schema_runtime_public_values_only",
+  "implemented_loader": false,
+  "cards": [
+    {
+      "id": "scene_card",
+      "unknown_id": "U_SCENE",
+      "required_fields": [
+        "robot_limits",
+        "grasps",
+        "docks",
+        "station_frames",
+        "collision_routes",
+        "load_support",
+        "interlocks",
+        "emergency_stop"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "geometry_card",
+      "unknown_id": "U_CAD",
+      "required_fields": [
+        "CAD_hashes",
+        "dimensions",
+        "cell_types",
+        "wall_channel_laws",
+        "guide_fit",
+        "tolerances"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "fabrication_card",
+      "unknown_id": "U_FAB",
+      "required_fields": [
+        "stock_grade",
+        "printer_settings",
+        "job_hash",
+        "safe_release",
+        "postprocess",
+        "acceptance"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "assembly_card",
+      "unknown_id": "U_ASSEMBLY",
+      "required_fields": [
+        "high_gradient_slot_map",
+        "low_gradient_slot_map",
+        "layer_registration",
+        "spacing",
+        "seals",
+        "fixtures",
+        "acceptance"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "allocation_card",
+      "unknown_id": "U_ALLOC",
+      "required_fields": [
+        "entity_ids",
+        "independent_specimens",
+        "sessions",
+        "technical_repeats",
+        "reuse_policy",
+        "condition_order",
+        "retry_limit"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "guide_card",
+      "unknown_id": "U_GUIDE",
+      "required_fields": [
+        "plate_geometry",
+        "measured_gap",
+        "terminations",
+        "absorbers",
+        "datums",
+        "coordinate_transforms"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "source_card",
+      "unknown_id": "U_SOURCE",
+      "required_fields": [
+        "speaker_map",
+        "weights_phases",
+        "beam_width",
+        "waveform_hash",
+        "level",
+        "gain",
+        "trigger_rate",
+        "exposure_limits",
+        "measurement_frequency_hz",
+        "frequency_assignment_provenance"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "calibration_card",
+      "unknown_id": "U_CAL",
+      "required_fields": [
+        "probe_serial",
+        "reference_id",
+        "amplitude_phase_method",
+        "timebase_method",
+        "uncertainty",
+        "acceptance",
+        "validity_scope"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "angle_card",
+      "unknown_id": "U_ANGLE",
+      "required_fields": [
+        "relative_angle_mechanism",
+        "nonempty_schedule",
+        "readback",
+        "sign_convention",
+        "tolerance",
+        "frame_updates"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "grid_card",
+      "unknown_id": "U_GRID",
+      "required_fields": [
+        "far_grid",
+        "near_grid",
+        "units",
+        "paths",
+        "clearance",
+        "position_tolerance",
+        "settling_predicate",
+        "scan_order"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "daq_card",
+      "unknown_id": "U_DAQ",
+      "required_fields": [
+        "sample_rate",
+        "time_window",
+        "trigger",
+        "reference_channel",
+        "filters",
+        "channel_map",
+        "clipping_dropout_rules"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "environment_card",
+      "unknown_id": "U_ENV",
+      "required_fields": [
+        "ambient_sensor_ids",
+        "cadence",
+        "clock_basis",
+        "sound_speed_model",
+        "uncertainty",
+        "drift_limits"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "analysis_card",
+      "unknown_id": "U_ANALYSIS",
+      "required_fields": [
+        "FFT_window",
+        "phase_reference",
+        "spatial_transform",
+        "radiation_method",
+        "angle_fit",
+        "normalization",
+        "exclusions",
+        "uncertainty"
+      ],
+      "defaults": null
+    },
+    {
+      "id": "model_card",
+      "unknown_id": "U_MODEL",
+      "required_fields": [
+        "geometry_hash",
+        "domain",
+        "mesh",
+        "materials",
+        "loss_sign_convention",
+        "boundary_conditions",
+        "solver_version",
+        "convergence",
+        "fit_validation_split",
+        "gradient_dispersion_model",
+        "reference_frequency",
+        "fit_data_hashes_if_refitting"
+      ],
+      "defaults": null
+    }
+  ],
+  "unknown_rule": "Null is a hard gate for affected scope; no execute-ready episode is distributed.",
+  "allocation_rule": "Required counts and schedules must be positive nonempty supplied values. Source-reported angle/frequency examples do not fill missing historical repeat counts."
+}

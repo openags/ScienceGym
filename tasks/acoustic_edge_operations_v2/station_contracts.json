@@ -1,0 +1,119 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "author_and_evaluator",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "role": "Work-order, provenance and record console",
+      "required_interfaces": [
+        "Qualified card display",
+        "Immutable raw/derived identifiers",
+        "Evidence and gate inspection"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_STOCK",
+      "role": "Labelled stock and carrier store",
+      "required_interfaces": [
+        "Lot reader",
+        "Separated supported bins",
+        "Retained carriers and dock"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_PRINT",
+      "role": "Enclosed qualified printer",
+      "required_interfaces": [
+        "Stock/tray interfaces",
+        "Job readback",
+        "Guard",
+        "Complete and safe-release indicators"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_PREP",
+      "role": "Target/guide preparation bench",
+      "required_interfaces": [
+        "Supported fixture",
+        "Qualified tool-specific interfaces",
+        "Guard and release",
+        "Debris collection"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_INSPECTION",
+      "role": "Dimensional and integrity inspection",
+      "required_interfaces": [
+        "Part cradle",
+        "Datum-specific gauges",
+        "Identity reader",
+        "Inspection recording"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_CALIBRATION",
+      "role": "Calibration-standard store and qualification bench",
+      "required_interfaces": [
+        "Protected standard storage",
+        "Standard identity and validity",
+        "Retained carrier for transfer to WS_RIG"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored",
+      "limitation": "Installed-chain calibration is performed in situ at WS_RIG; no sensor removal/reinstallation route supplied"
+    },
+    {
+      "id": "WS_RIG",
+      "role": "Foam-lined acoustic measurement rig",
+      "required_interfaces": [
+        "Vertical guide fixture",
+        "Speaker mount",
+        "Four indexed microphone ports",
+        "Output absorber holder",
+        "Target stage and nonobstructing holder"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_CONSOLE",
+      "role": "Source, stage and DAQ operator interface",
+      "required_interfaces": [
+        "Readback of source/phase reference",
+        "Position and settling feedback",
+        "Raw-record sink",
+        "Stop and safe-state feedback"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "role": "Protected storage and station reset",
+      "required_interfaces": [
+        "Identified slots",
+        "Quarantine separation",
+        "Tool/waste return routes"
+      ],
+      "asset_status": "unbuilt_symbolic_interface",
+      "authorship": "task_authored"
+    }
+  ],
+  "robot": {
+    "embodiment": "Proposed human-like mobile manipulator with supported transport and fine sensor/object handling",
+    "actual_robot_bound": false,
+    "certified_feasibility": false,
+    "transfer_policy": "Transport unplugged, secured items only; navigation never replaces transfer/identity receipts; cables and mounted samples are not dragged"
+  }
+}

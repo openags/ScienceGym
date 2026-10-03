@@ -1,0 +1,67 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "evaluator_reference_only",
+  "authoritative_observations": [
+    "object_and_component_graph",
+    "station_pose_and_dock_receipts",
+    "output_and_guard_readbacks",
+    "angle_and_stage_feedback",
+    "raw_DAQ_receipts",
+    "calibration_and_reference_scope",
+    "immutable_record_hashes",
+    "declared_condition_coverage"
+  ],
+  "outcomes": [
+    "complete",
+    "partial",
+    "safe_abort",
+    "failed"
+  ],
+  "rules": [
+    "Unknown unresolved gate cannot produce completed affected operation",
+    "Source expectation or synthetic fixture cannot be a measurement",
+    "Every selected route and declared condition must be nonempty and covered",
+    "Specimen/revision, baseline, calibration and coordinate signatures must be compatible",
+    "Array-free baseline has no hidden array; nonzero-gradient record needs physical sample/revision",
+    "Changed gain, sensor, geometry or angle invalidates out-of-scope receipts",
+    "Safe alternative operation ordering accepted if prerequisites and lineage hold",
+    "Scientific disagreement is separate from procedural success",
+    "Corrugated coupling and source loss fractions are numerical-only",
+    "Retries retain failed predecessors and do not inflate specimen count",
+    "A source-normalized polar plot cannot claim measured efficiency"
+  ],
+  "hidden_fault_examples": [
+    {
+      "id": "H_TYPE",
+      "fault": "wrong cell type in fixture slot",
+      "observable": "slot/type inspection"
+    },
+    {
+      "id": "H_ANGLE",
+      "fault": "requested and actual angle differ",
+      "observable": "angle readback and frame check"
+    },
+    {
+      "id": "H_GAIN",
+      "fault": "gain changed after calibration",
+      "observable": "gain/program revision and scope signature"
+    },
+    {
+      "id": "H_CLIP",
+      "fault": "clipped pulse trace",
+      "observable": "DAQ waveform and clipping status"
+    },
+    {
+      "id": "H_GRID",
+      "fault": "missing near-grid point",
+      "observable": "scheduled keys versus committed receipts"
+    },
+    {
+      "id": "H_LAYER",
+      "fault": "second layer omitted",
+      "observable": "component graph and layer inspection"
+    }
+  ],
+  "evaluation_engine": "static reference and synthetic record validator only; no trusted live environment supplied"
+}

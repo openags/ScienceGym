@@ -1,0 +1,926 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "evaluator_reference_only",
+  "branch_count": 10,
+  "branches": [
+    {
+      "id": "FABRICATE_CELLS",
+      "title": "Fabricate and inspect six cell types",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "STOCK",
+        "FAB_LOAD",
+        "FAB_VERIFY",
+        "FAB_START",
+        "FAB_CYCLE",
+        "FAB_RELEASE",
+        "FAB_UNLOAD",
+        "PART_ID",
+        "PART_DIM",
+        "PART_CHANNEL",
+        "QUARANTINE",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_FAB",
+        "E_CELLS",
+        "E_GEOM"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_FAB",
+        "U_SCENE"
+      ],
+      "required_branch_ids": [],
+      "conditions": {
+        "cell_types_spiral_angle_deg": [
+          135,
+          180,
+          270,
+          450,
+          495,
+          540
+        ],
+        "physical_part_count": null
+      },
+      "notes": "Counts and part topology require CAD and allocation. Inspection/reprint loops preserve rejected IDs.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_CAD",
+        "U_FAB",
+        "U_SCENE"
+      ],
+      "terminal_operation_ids": [],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "ASSEMBLE_ARRAYS",
+      "title": "Assemble both phase-gradient arrays",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ASM_LAYOUT",
+        "ASM_FIXTURE",
+        "ASM_LOWER",
+        "ASM_LOWER_QC",
+        "ASM_UPPER",
+        "ASM_REGISTER",
+        "ASM_LOCK",
+        "ASM_QC",
+        "QUARANTINE",
+        "RECONFIGURE",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_CELLS",
+        "E_GEOM",
+        "E_NORMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_FAB",
+        "U_SCENE"
+      ],
+      "required_branch_ids": [
+        "FABRICATE_CELLS"
+      ],
+      "conditions": {
+        "gradient_multiple_2pi_rad_per_m": [
+          3.3,
+          6.7
+        ],
+        "transmissive_layers": 2,
+        "gradient_reference_frequency_hz": 3000,
+        "gradient_semantics": "Specimen design label at 3000 Hz. For predictions at other frequencies use qualified xi(f); do not assume constant xi."
+      },
+      "notes": "Separate qualified recipes. Reused cells preserve IDs; reconfiguration increments assembly revision. Low-gradient recipe is not given by SI drawing.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ASSEMBLY",
+        "U_SCENE"
+      ],
+      "terminal_operation_ids": [],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "APPARATUS",
+      "title": "Prepare source guide and scan apparatus",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ENV_SETUP",
+        "GUIDE_PLATES",
+        "SOURCE_MOUNT",
+        "SOURCE_WIRE",
+        "MIC_MOUNT",
+        "DAQ_WIRE",
+        "STAGE_HOME",
+        "PARK",
+        "DISCONNECT",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_GUIDE",
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_GRID",
+        "U_GUIDE",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "required_branch_ids": [],
+      "conditions": {
+        "plate_gap_mm": 50.8,
+        "reported_speaker_count": 18
+      },
+      "notes": "Full plate footprint, terminations, source weights and scan geometry remain qualified inputs.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_GRID",
+        "U_GUIDE",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "terminal_operation_ids": [
+        "PARK",
+        "DISCONNECT",
+        "RESET"
+      ],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "QUALIFY_CHAIN",
+      "title": "Qualify probe source and acquisition chain",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MUTE",
+        "PARK",
+        "PROBE_RELEASE",
+        "MOVE",
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_REVIEW",
+        "CAL_UNLOAD",
+        "MIC_MOUNT",
+        "SOURCE_WIRE",
+        "DAQ_WIRE",
+        "STAGE_HOME",
+        "EMPTY_PREP",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "GRID_FAR",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "DRIFT",
+        "FFT",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_SETUP",
+        "E_NORMAL"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_GRID",
+        "U_GUIDE",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "required_branch_ids": [
+        "APPARATUS"
+      ],
+      "conditions": {
+        "calibration_schedule": null
+      },
+      "notes": "Task-authored qualification around reported setup. Does not assert physical unit-cell phase calibration in the source.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_GRID",
+        "U_GUIDE",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "terminal_operation_ids": [
+        "PARK"
+      ],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "NORMAL_INCIDENCE",
+      "title": "Map empty and two gradient conditions",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "EMPTY_PREP",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "ANGLE_FIT",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_NORMAL",
+        "E_GUIDE",
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "required_branch_ids": [
+        "ASSEMBLE_ARRAYS",
+        "QUALIFY_CHAIN"
+      ],
+      "conditions": {
+        "gradient_multiple_2pi_rad_per_m": [
+          0,
+          3.3,
+          6.7
+        ],
+        "incident_angle_deg": [
+          0
+        ],
+        "frequency_hz": [
+          3000
+        ],
+        "zero_gradient_meaning": "absent_metasurface",
+        "gradient_reference_frequency_hz": 3000,
+        "gradient_semantics": "Specimen design label at 3000 Hz. For predictions at other frequencies use qualified xi(f); do not assume constant xi."
+      },
+      "notes": "Array-free reference is a physical condition, not a simulated zero gradient. Installing/changing array requires output-off and a new setup signature.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "terminal_operation_ids": [
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET"
+      ],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "BANDWIDTH",
+      "title": "Compare low-gradient broadband fields",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "ANGLE_FIT",
+        "BAND_COMPARE",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_BAND",
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "required_branch_ids": [
+        "ASSEMBLE_ARRAYS",
+        "QUALIFY_CHAIN"
+      ],
+      "conditions": {
+        "gradient_multiple_2pi_rad_per_m": [
+          3.3
+        ],
+        "incident_angle_deg": [
+          0
+        ],
+        "frequency_hz": [
+          2800,
+          3000,
+          3200
+        ],
+        "gradient_reference_frequency_hz": 3000,
+        "gradient_semantics": "Specimen design label at 3000 Hz. For predictions at other frequencies use qualified xi(f); do not assume constant xi."
+      },
+      "notes": "Frequency views may share one valid broadband scan. Shared views are not independent runs; each must be supported by actual acquisition bandwidth. SI explains approximately stable xi/k0 from frequency-normalized phase response; the 3.3 label is referenced to 3000 Hz, not a constant across frequency.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "terminal_operation_ids": [
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET"
+      ],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "OBLIQUE_SWEEP",
+      "title": "Measure angle-dependent transmission",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "ANGLE_FIT",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_SWEEP",
+        "E_DIFFRACTION",
+        "E_ORDER"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "required_branch_ids": [
+        "ASSEMBLE_ARRAYS",
+        "QUALIFY_CHAIN"
+      ],
+      "conditions": {
+        "gradient_multiple_2pi_rad_per_m": [
+          6.7
+        ],
+        "incident_angle_schedule_deg": null,
+        "frequency_hz": [
+          3000
+        ],
+        "gradient_reference_frequency_hz": 3000,
+        "gradient_semantics": "Specimen design label at 3000 Hz. For predictions at other frequencies use qualified xi(f); do not assume constant xi.",
+        "frequency_assignment_provenance": "task_authored_reference_frequency_not_explicit_historical_fact",
+        "historical_acquisition_frequency_hz": null
+      },
+      "notes": "Full Figure 4a schedule is not a recovered numeric table. Qualified nonempty angle schedule is required; no fabrication of plotted points. The 3000 Hz task reference frequency is inferred from source design context, not explicitly stated for Figure 3/4 acquisitions. Exact historical frequency remains unknown; execution requires an explicit qualified work-order assignment.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "terminal_operation_ids": [
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET"
+      ],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "RADIATION_PATTERNS",
+      "title": "Measure three incidence radiation patterns",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "POLAR",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_POLAR",
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "required_branch_ids": [
+        "ASSEMBLE_ARRAYS",
+        "QUALIFY_CHAIN"
+      ],
+      "conditions": {
+        "gradient_multiple_2pi_rad_per_m": [
+          6.7
+        ],
+        "incident_angle_deg": [
+          5,
+          20,
+          35
+        ],
+        "frequency_hz": [
+          3000
+        ],
+        "gradient_reference_frequency_hz": 3000,
+        "gradient_semantics": "Specimen design label at 3000 Hz. For predictions at other frequencies use qualified xi(f); do not assume constant xi.",
+        "frequency_assignment_provenance": "task_authored_reference_frequency_not_explicit_historical_fact",
+        "historical_acquisition_frequency_hz": null
+      },
+      "notes": "Normalize display only if matching simulation exists. Keep calibrated measured amplitudes. A weak or absent radiating beam is an allowed scientific result. The 3000 Hz task reference frequency is inferred from source design context, not explicitly stated for Figure 3/4 acquisitions. Exact historical frequency remains unknown; execution requires an explicit qualified work-order assignment.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "terminal_operation_ids": [
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET"
+      ],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "NEAR_FIELD",
+      "title": "Map localized driven surface response",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_NEAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "KX",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_NEAR",
+        "E_SNELL",
+        "E_SETUP"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "required_branch_ids": [
+        "ASSEMBLE_ARRAYS",
+        "QUALIFY_CHAIN"
+      ],
+      "conditions": {
+        "gradient_multiple_2pi_rad_per_m": [
+          6.7
+        ],
+        "incident_angle_deg": [
+          25
+        ],
+        "frequency_hz": [
+          3000
+        ],
+        "gradient_reference_frequency_hz": 3000,
+        "gradient_semantics": "Specimen design label at 3000 Hz. For predictions at other frequencies use qualified xi(f); do not assume constant xi.",
+        "frequency_assignment_provenance": "task_authored_reference_frequency_not_explicit_historical_fact",
+        "historical_acquisition_frequency_hz": null
+      },
+      "notes": "Require distinct near-interface grid and spatial-sampling/clearance qualification. Driven mode is not freely propagating surface eigenmode. The 3000 Hz task reference frequency is inferred from source design context, not explicitly stated for Figure 3/4 acquisitions. Exact historical frequency remains unknown; execution requires an explicit qualified work-order assignment.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "terminal_operation_ids": [
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET"
+      ],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    },
+    {
+      "id": "NEGATIVE_REFRACTION",
+      "title": "Map high-angle diffractive transmission",
+      "operation_ids": [
+        "PLAN",
+        "CARRIER",
+        "MOVE",
+        "ARRAY_LOAD",
+        "ARRAY_LOCK",
+        "GRID_FAR",
+        "SELECT_CONDITION",
+        "ENV_LOG",
+        "ANGLE_SET",
+        "ANGLE_READ",
+        "SIGNAL_CONFIG",
+        "BASELINE_BIND",
+        "ARM",
+        "STAGE_POINT",
+        "SETTLE",
+        "PULSE_RECORD",
+        "TRACE_QC",
+        "TRACE_COMMIT",
+        "NEXT_POINT",
+        "SCAN_COMMIT",
+        "MUTE",
+        "DRIFT",
+        "FFT",
+        "ANGLE_FIT",
+        "COMPARE",
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "source_evidence_ids": [
+        "E_NEGATIVE",
+        "E_DIFFRACTION",
+        "E_ORDER"
+      ],
+      "unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAD",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "required_branch_ids": [
+        "ASSEMBLE_ARRAYS",
+        "QUALIFY_CHAIN"
+      ],
+      "conditions": {
+        "gradient_multiple_2pi_rad_per_m": [
+          6.7
+        ],
+        "incident_angle_deg": [
+          45
+        ],
+        "frequency_hz": [
+          3000
+        ],
+        "gradient_reference_frequency_hz": 3000,
+        "gradient_semantics": "Specimen design label at 3000 Hz. For predictions at other frequencies use qualified xi(f); do not assume constant xi.",
+        "frequency_assignment_provenance": "task_authored_reference_frequency_not_explicit_historical_fact",
+        "historical_acquisition_frequency_hz": null
+      },
+      "notes": "Retain signed coordinate convention. Apparent negative refraction is not evidence of a measured bulk negative index. The 3000 Hz task reference frequency is inferred from source design context, not explicitly stated for Figure 3/4 acquisitions. Exact historical frequency remains unknown; execution requires an explicit qualified work-order assignment.",
+      "preparation_policy": "Receipt-backed included preparation/calibration or explicitly named outside-scope qualified handoff; never silently prebuilt.",
+      "completion": "Every scheduled instance has classified trusted receipts and cleanup; selected blocked or failed acquisition remains partial.",
+      "actor": "mobile_human_like_robot_operator",
+      "readiness": "represented_not_executed",
+      "direct_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS",
+        "U_ANGLE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_DAQ",
+        "U_ENV",
+        "U_FAB",
+        "U_GRID",
+        "U_GUIDE",
+        "U_MODEL",
+        "U_SCENE",
+        "U_SOURCE"
+      ],
+      "terminal_operation_ids": [
+        "PARK",
+        "ARRAY_UNLOAD",
+        "POST_INSPECT",
+        "DISCONNECT",
+        "ARCHIVE",
+        "RESET"
+      ],
+      "terminal_policy": "Run terminal operations at episode completion, safe abort or explicit station release; do not tear down a prepared state needed by a dependent selected route. ARRAY_UNLOAD/POST_INSPECT apply only to present specimens. MUTE remains mandatory between setup changes and on faults.",
+      "prepared_handoff": "A prepared-state receipt must record connected/isolated state, entity identities, pose, revision, calibrations and outstanding terminal work. A downstream route verifies current state and performs required remount/rewiring rather than assuming persistence."
+    }
+  ],
+  "gate_closure": "unknown_parameter_ids is union of direct operation gates and prerequisite-route gates. A named qualified handoff may satisfy a preparation scope only with reviewed provenance; it does not invent absent recipe fields or claim exact historical reproduction.",
+  "whole_paper_completion": "Account for all ten physical routes and all eight nonmanual dispositions. Empirical completion requires all allocated conditions, valid preparations and cleanup; numerical routes may be honestly blocked and are never physical measurements."
+}

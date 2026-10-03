@@ -1,0 +1,163 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "visibility": "evaluator_reference_only",
+  "controls": [
+    {
+      "id": "CTRL_GSL_60",
+      "kind": "numerical_comparison",
+      "members": [
+        "bianisotropic_60",
+        "ideal_GSL_60"
+      ],
+      "match": [
+        "angle",
+        "spatial_resolution",
+        "incident_field",
+        "medium",
+        "frequency",
+        "domain",
+        "PML",
+        "convergence_policy",
+        "normal_flux_denominator"
+      ],
+      "different": [
+        "local_impedance_response"
+      ],
+      "source_locator": "main Fig3 a,d, pp4-5",
+      "completion": "Both valid job receipts with matched conditions; no physical GSL specimen inferred"
+    },
+    {
+      "id": "CTRL_GSL_70",
+      "kind": "numerical_comparison",
+      "members": [
+        "bianisotropic_70",
+        "ideal_GSL_70"
+      ],
+      "match": [
+        "angle",
+        "spatial_resolution",
+        "incident_field",
+        "medium",
+        "frequency",
+        "domain",
+        "PML",
+        "convergence_policy",
+        "normal_flux_denominator"
+      ],
+      "different": [
+        "local_impedance_response"
+      ],
+      "source_locator": "main Fig3 b,e, pp4-5",
+      "completion": "Both valid job receipts with matched conditions; no physical GSL specimen inferred"
+    },
+    {
+      "id": "CTRL_GSL_80",
+      "kind": "numerical_comparison",
+      "members": [
+        "bianisotropic_80",
+        "ideal_GSL_80"
+      ],
+      "match": [
+        "angle",
+        "spatial_resolution",
+        "incident_field",
+        "medium",
+        "frequency",
+        "domain",
+        "PML",
+        "convergence_policy",
+        "normal_flux_denominator"
+      ],
+      "different": [
+        "local_impedance_response"
+      ],
+      "source_locator": "main Fig3 c,f, pp4-5",
+      "completion": "Both valid job receipts with matched conditions; no physical GSL specimen inferred"
+    },
+    {
+      "id": "CTRL_LOSS",
+      "kind": "numerical_comparison",
+      "members": [
+        "lossless_60",
+        "viscous_60"
+      ],
+      "match": [
+        "geometry_revision",
+        "frequency",
+        "source",
+        "domain",
+        "grid",
+        "energy_definition"
+      ],
+      "different": [
+        "loss_model"
+      ],
+      "source_locator": "SI Note4 p19, Fig5 p6",
+      "completion": "Both converged jobs; SI viscosity unit omission explicitly resolved using main Methods Pa s"
+    },
+    {
+      "id": "CTRL_TOPOLOGY",
+      "kind": "numerical_comparison",
+      "members": [
+        "four_resonator_reference",
+        "three_resonator_constrained",
+        "three_resonator_relaxed"
+      ],
+      "match": [
+        "cell_1_target",
+        "frequency",
+        "declared_objective_definition"
+      ],
+      "different": [
+        "resonator_count",
+        "neck_constraints"
+      ],
+      "source_locator": "SI Note8 pp23-24, Fig8 p9",
+      "completion": "All three cases terminal, including an honest unsuccessful constrained search; do not discard it"
+    },
+    {
+      "id": "CTRL_BLANK",
+      "kind": "physical_reference",
+      "members": [
+        "blank_reflection",
+        "sample_reflection"
+      ],
+      "match": [
+        "grid_id",
+        "guide_revision",
+        "frame_id",
+        "source_calibration_id",
+        "microphone_id",
+        "daq_config_id",
+        "phase_reference_id",
+        "medium_card_id",
+        "frequency_hz"
+      ],
+      "different": [
+        "panel_present"
+      ],
+      "source_locator": "main Experimental measurements p6",
+      "completion": "Complete compatible complex fields; sample minus blank subtraction with no amplitude-only shortcut"
+    },
+    {
+      "id": "CTRL_DRIFT",
+      "kind": "authored_validity_control",
+      "members": [
+        "pre_run_source_check",
+        "post_run_source_check"
+      ],
+      "match": [
+        "reference_protocol",
+        "device_ids",
+        "source_program"
+      ],
+      "different": [
+        "acquisition_time"
+      ],
+      "source_locator": "Task-authored guard on main p8 measurement, not a reported paper calibration recipe",
+      "completion": "Qualified interval and drift bounds; otherwise invalidate affected pair"
+    }
+  ],
+  "unrequested_controls": "Reversed panel, deliberate gaps and blocked channels are evaluator fault perturbations only, not source-reported comparison experiments; no fabricated expected responses"
+}

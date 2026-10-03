@@ -1,0 +1,2029 @@
+{
+  "schema_version": "acoustic_edge_paper_task.v1",
+  "doi": "10.1038/ncomms9037",
+  "visibility": "evaluator_reference_only",
+  "operation_count": 46,
+  "operations": [
+    {
+      "id": "PLAN",
+      "title": "Bind campaign and explicit branch inputs",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "work order",
+        "episode cards"
+      ],
+      "actions": [
+        "Read requested branches and assign their nonempty finite occurrence schedules",
+        "Bind sample and target IDs, allowed reuse, station interfaces and unresolved gate IDs"
+      ],
+      "preconditions": [
+        "DOI-backed task identity known"
+      ],
+      "postconditions": [
+        "selected branch scope and blocking inputs recorded"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_REPEAT",
+        "U_ROBOT"
+      ],
+      "required_observations": [
+        "plan_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STOCK",
+      "title": "Retrieve labelled materials and protected carriers",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_STOCK",
+      "object_roles": [
+        "print stock",
+        "target stock",
+        "foam",
+        "sensor cases",
+        "carriers"
+      ],
+      "actions": [
+        "Read material and lot labels; allocate individually identified items",
+        "Move selected items into separated supported carrier slots and engage retainers"
+      ],
+      "preconditions": [
+        "Allocation card complete",
+        "Stock and carrier supports accessible"
+      ],
+      "postconditions": [
+        "Issued inventory has IDs, parent lots and locations"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_PRINT",
+        "U_TARGET",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "stock_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TRANSFER",
+      "title": "Transport supported untethered items",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "route_destination",
+      "object_roles": [
+        "selected item",
+        "retained carrier",
+        "cart"
+      ],
+      "actions": [
+        "Check clear route and available destination dock",
+        "Confirm power-safe detachment, close carrier and retract arms before base movement",
+        "Dock, support the carrier during release and verify item IDs and orientation"
+      ],
+      "preconditions": [
+        "Item has one known origin",
+        "No active cable or fixture attachment",
+        "Qualified path and grasp card"
+      ],
+      "postconditions": [
+        "One verified new location per item; transfer receipt records origin and destination"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ROBOT",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "transfer_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop on blocked path or shifted load; do not drag cables or move a live fixture",
+        "Inspect a dropped or shifted item and quarantine when integrity cannot be established"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CAD_BIND",
+      "title": "Bind source dimensions to qualified print design",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "guide drawing",
+        "printer job card"
+      ],
+      "actions": [
+        "Record five resonators and published square-section and axial dimensions",
+        "Check an authored complete drawing, shell/ports and print process revision without pretending the source supplies CAD"
+      ],
+      "preconditions": [
+        "Complete fabrication card supplied"
+      ],
+      "postconditions": [
+        "Signed-off drawing/job identity; missing dimensions remain explicit"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_GUIDE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT"
+      ],
+      "required_observations": [
+        "cad_bind_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_LOAD",
+      "title": "Load stock and job at enclosed printer",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_PRINT",
+      "object_roles": [
+        "print stock",
+        "tray",
+        "job"
+      ],
+      "actions": [
+        "Dock print material carrier; identify stock and printer compatibility",
+        "Load material/tray through qualified interfaces; select job and inspect readback; close guard"
+      ],
+      "preconditions": [
+        "Correct stock and complete job card",
+        "Printer safe for loading"
+      ],
+      "postconditions": [
+        "Stock/job/guide allocation linked; guard state observed"
+      ],
+      "depends_on": [
+        "STOCK",
+        "CAD_BIND"
+      ],
+      "evidence_ids": [
+        "E_GUIDE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "print_load_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_RUN",
+      "title": "Start and monitor printed guide fabrication",
+      "kind": "device_process",
+      "actor": "automated_device_with_robot_start_and_readback",
+      "station_id": "WS_PRINT",
+      "object_roles": [
+        "printer",
+        "allocated guide"
+      ],
+      "actions": [
+        "Operator starts the validated job and records controller job ID",
+        "Printer executes its supplied recipe; operator waits for completion and explicit safe-release feedback"
+      ],
+      "preconditions": [
+        "Job readback matches drawing",
+        "Guard and interlocks valid"
+      ],
+      "postconditions": [
+        "Completed job receipt, or preserved failed job; no automatic success from elapsed time"
+      ],
+      "depends_on": [
+        "PRINT_LOAD"
+      ],
+      "evidence_ids": [
+        "E_GUIDE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "print_run_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "PRINT_UNLOAD",
+      "title": "Release and support the printed guide",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_PRINT",
+      "object_roles": [
+        "printed guide",
+        "tray",
+        "carrier"
+      ],
+      "actions": [
+        "Verify process stopped and safe release",
+        "Open guard, support designated robust surfaces and remove guide to labelled carrier"
+      ],
+      "preconditions": [
+        "Completed job receipt and safe release",
+        "Qualified grasp interfaces"
+      ],
+      "postconditions": [
+        "Guide linked to stock/job, undamaged or quarantined"
+      ],
+      "depends_on": [
+        "PRINT_RUN"
+      ],
+      "evidence_ids": [
+        "E_GUIDE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT",
+        "U_ROBOT"
+      ],
+      "required_observations": [
+        "print_unload_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "POSTPROCESS",
+      "title": "Remove allowed supports and inspect passage access",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_PREP",
+      "object_roles": [
+        "guide",
+        "qualified finishing tools"
+      ],
+      "actions": [
+        "Secure guide on supports; use only bound finishing instructions",
+        "Collect debris separately and inspect internal openings, microphone ports and sealing interfaces"
+      ],
+      "preconditions": [
+        "Guide identified at preparation station",
+        "Qualified finishing card and tool limits"
+      ],
+      "postconditions": [
+        "Finishing history appended; no debris or obstruction claimed without inspection"
+      ],
+      "depends_on": [
+        "PRINT_UNLOAD"
+      ],
+      "evidence_ids": [
+        "E_GUIDE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "postprocess_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "GUIDE_QC",
+      "title": "Inspect guide geometry and identity",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_INSPECTION",
+      "object_roles": [
+        "guide",
+        "gauges"
+      ],
+      "actions": [
+        "Read guide ID and drawing revision; inspect resonator count and passage/port geometry",
+        "Measure source-backed dimensions at declared datums and compare to episode tolerances"
+      ],
+      "preconditions": [
+        "Current guide version",
+        "Qualified inspection method and tolerances"
+      ],
+      "postconditions": [
+        "Version-bound geometry and integrity receipt"
+      ],
+      "depends_on": [
+        "POSTPROCESS"
+      ],
+      "evidence_ids": [
+        "E_GUIDE"
+      ],
+      "unknown_parameter_ids": [
+        "U_PRINT"
+      ],
+      "required_observations": [
+        "guide_qc_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_BIND",
+      "title": "Prepare an explicit target manufacturing card",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "target drawing",
+        "material card"
+      ],
+      "actions": [
+        "Bind selected aluminium, Plexiglas or thermoplastic target to complete dimensions and holder interface",
+        "For ETH, require an independently authored or authorized complete contour; reject photograph-derived exactness claims"
+      ],
+      "preconditions": [
+        "Selected target branch and material identity"
+      ],
+      "postconditions": [
+        "Target-specific drawing, method, lot and inspection card"
+      ],
+      "depends_on": [
+        "PLAN"
+      ],
+      "evidence_ids": [
+        "E_CONTROL",
+        "E_1D",
+        "E_DISC",
+        "E_ETH"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGET"
+      ],
+      "required_observations": [
+        "target_bind_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_PREP",
+      "title": "Load and prepare each target at a qualified tool",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_PREP",
+      "object_roles": [
+        "target stock",
+        "fixture",
+        "qualified tool"
+      ],
+      "actions": [
+        "Retrieve correct stock and place it in supported fixture with bound orientation",
+        "Select qualified machining/printing or supplied-part preparation route and confirm guard/interlock readbacks",
+        "Request tool process only from the complete target card"
+      ],
+      "preconditions": [
+        "Material and drawing qualified",
+        "Tool hazard controls and target route supplied"
+      ],
+      "postconditions": [
+        "Tool-ready target stock and job receipt"
+      ],
+      "depends_on": [
+        "STOCK",
+        "TARGET_BIND"
+      ],
+      "evidence_ids": [
+        "E_CONTROL",
+        "E_1D",
+        "E_DISC",
+        "E_ETH"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGET",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "target_prep_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_PROCESS",
+      "title": "Monitor target preparation and safe release",
+      "kind": "device_process",
+      "actor": "automated_device_with_robot_start_and_readback",
+      "station_id": "WS_PREP",
+      "object_roles": [
+        "target job",
+        "fixture"
+      ],
+      "actions": [
+        "Bound device performs the qualified operation while robot stays clear",
+        "Wait for stopped and safe-release receipt; preserve any tool fault"
+      ],
+      "preconditions": [
+        "TARGET_PREP receipt"
+      ],
+      "postconditions": [
+        "Preparation result linked to target stock; release status explicit"
+      ],
+      "depends_on": [
+        "TARGET_PREP"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_TARGET",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "target_process_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_QC",
+      "title": "Unload and inspect the target",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_INSPECTION",
+      "object_roles": [
+        "target",
+        "holder",
+        "gauges",
+        "carrier"
+      ],
+      "actions": [
+        "Verify arrival at WS_INSPECTION with retained carrier, current target ID and preparation provenance",
+        "Place target in supported inspection fixture; check material, contour, source-backed dimensions, integrity and holder compatibility",
+        "Return target to retained carrier with QC receipt or quarantine; never infer acceptance from supplier label alone"
+      ],
+      "preconditions": [
+        "Manufactured route has TARGET_RELEASE and transfer receipts, or supplied-part route has TARGET_RECEIVE and transfer receipts",
+        "Qualified inspection card for current target version"
+      ],
+      "postconditions": [
+        "Eligible target or quarantine record; no silent geometry substitution"
+      ],
+      "depends_on": [
+        "TARGET_BIND"
+      ],
+      "evidence_ids": [
+        "E_1D",
+        "E_DISC",
+        "E_ETH"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGET"
+      ],
+      "required_observations": [
+        "target_qc_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ENCLOSURE",
+      "title": "Install foam lining and stage the vertical fixture",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "enclosure",
+        "50-mm lining panels",
+        "guide support"
+      ],
+      "actions": [
+        "Move panels using robust support regions and seat them in qualified enclosure locations",
+        "Inspect lining coverage, retained panels and clear source/stage paths",
+        "Position the guide support using its qualified datum card"
+      ],
+      "preconditions": [
+        "Enclosure/foam identities and fixture card complete"
+      ],
+      "postconditions": [
+        "Foam-lined fixture ready for identified guide"
+      ],
+      "depends_on": [
+        "STOCK"
+      ],
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "required_observations": [
+        "enclosure_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "GUIDE_MOUNT",
+      "title": "Mount the inspected guide vertically",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "guide",
+        "support fixture"
+      ],
+      "actions": [
+        "Transfer guide in retained carrier; support it while aligning its reference datum",
+        "Engage qualified retainers without obstructing the apertures or sensor ports",
+        "Verify guide verticality, pose and identity with supplied tolerances"
+      ],
+      "preconditions": [
+        "Current GUIDE_QC",
+        "Support fixture accessible and safe"
+      ],
+      "postconditions": [
+        "Mounted guide version and rig geometry signature"
+      ],
+      "depends_on": [
+        "GUIDE_QC",
+        "ENCLOSURE"
+      ],
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_ROBOT"
+      ],
+      "required_observations": [
+        "guide_mount_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "OUTLET_FOAM",
+      "title": "Place the output absorber",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "output foam",
+        "guide outlet"
+      ],
+      "actions": [
+        "Identify absorber and insertion fixture",
+        "Support and install foam according to supplied depth/clearance card without disturbing sensor plane",
+        "Inspect retained position and unobstructed required sensor openings"
+      ],
+      "preconditions": [
+        "Guide mounted",
+        "Absorber specification and clearance supplied"
+      ],
+      "postconditions": [
+        "Output absorber identity/position recorded"
+      ],
+      "depends_on": [
+        "GUIDE_MOUNT"
+      ],
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE"
+      ],
+      "required_observations": [
+        "outlet_foam_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "SPEAKER",
+      "title": "Align and secure the acoustic source",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "22-mm speaker",
+        "source mount",
+        "cables"
+      ],
+      "actions": [
+        "Support speaker while fastening mount; align on guide longitudinal axis",
+        "Measure 280-mm input-plane separation at declared datum",
+        "Route and strain-relieve cables with output disabled"
+      ],
+      "preconditions": [
+        "Source compatible and safe",
+        "Guide datum verified"
+      ],
+      "postconditions": [
+        "Source pose and cable routing receipt"
+      ],
+      "depends_on": [
+        "GUIDE_MOUNT"
+      ],
+      "evidence_ids": [
+        "E_RIG"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_ACQ"
+      ],
+      "required_observations": [
+        "speaker_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "MIC_INSTALL",
+      "title": "Install one indexed flush microphone",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "microphone serial",
+        "wall port",
+        "retainer"
+      ],
+      "actions": [
+        "Select one of four unique sensor serials and its physically indexed wall",
+        "Support sensor body, seat tip flush at wall midpoint in the plane 20 mm beyond last narrow section",
+        "Engage qualified retainer and inspect flushness; repeat with distinct occurrence per sensor"
+      ],
+      "preconditions": [
+        "Guide mounted; source output disabled",
+        "Sensor geometry and orientation map supplied"
+      ],
+      "postconditions": [
+        "Exactly one sensor occupies selected port; four distinct ports required in rig closure"
+      ],
+      "depends_on": [
+        "GUIDE_MOUNT"
+      ],
+      "evidence_ids": [
+        "E_MIC"
+      ],
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_FIXTURE"
+      ],
+      "required_observations": [
+        "mic_install_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "MIC_CONNECT",
+      "title": "Connect identified channels and common reference",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "four microphone cables",
+        "preamplifiers",
+        "DAQ",
+        "reference"
+      ],
+      "actions": [
+        "Match each serial/port to numbered pressure channel; connect and strain-relieve cable ends",
+        "Connect source/reference interfaces using approved port map and verify device readback",
+        "Record polarity, coordinate orientation and channel-map version"
+      ],
+      "preconditions": [
+        "Four current microphone install receipts",
+        "Electronic chain and connector interfaces supplied"
+      ],
+      "postconditions": [
+        "Four-channel pressure chain and reference mapping recorded"
+      ],
+      "depends_on": [
+        "MIC_INSTALL",
+        "SPEAKER"
+      ],
+      "evidence_ids": [
+        "E_MIC",
+        "E_MODES"
+      ],
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_ACQ"
+      ],
+      "required_observations": [
+        "mic_connect_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CALIBRATE",
+      "title": "Run qualified four-channel gain and phase calibration",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "calibration standard",
+        "four-channel chain"
+      ],
+      "actions": [
+        "Transport the identified calibration standard to WS_RIG in its carrier; keep the installed four-channel chain stationary",
+        "Use the qualified in-situ gain/phase calibration recipe and permitted safe source controls; record raw standard readings and generate corrections",
+        "Restore measurement connections if the procedure alters them, inspect unchanged sensor/port mapping and bind validity to the final installed chain; otherwise block and require a separately specified removal/reseat route"
+      ],
+      "preconditions": [
+        "Calibration input card includes standard, in-situ procedure and acceptance",
+        "All installed sensor/electronic identities and channel map fixed; method is valid for this installed configuration"
+      ],
+      "postconditions": [
+        "Valid calibration bound to chain/map/current installation or explicit block"
+      ],
+      "depends_on": [
+        "MIC_CONNECT"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_CHANNEL",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "calibrate_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STAGE_INSTALL",
+      "title": "Install and reference the object translation stage",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "Velmex stage",
+        "object holder",
+        "controller"
+      ],
+      "actions": [
+        "Support and secure stage/holder at qualified station datums",
+        "Route controller cable with travel clearance and set supplied soft limits",
+        "Home using qualified method; inspect emergency stop and position readback"
+      ],
+      "preconditions": [
+        "Motion disabled during mounting",
+        "Stage frame, travel limits and homing card supplied"
+      ],
+      "postconditions": [
+        "Stage origin and qualified motion envelope recorded"
+      ],
+      "depends_on": [
+        "ENCLOSURE"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCAN",
+        "U_ROBOT",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "stage_install_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "RIG_CHECK",
+      "title": "Verify the assembled measurement chain",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "guide",
+        "speaker",
+        "four microphones",
+        "stage",
+        "foam"
+      ],
+      "actions": [
+        "Inspect all IDs, current geometry, cable clearance, flush microphones and absorber placement",
+        "Check valid calibration and reference/channel readback under supplied safe test procedure",
+        "Freeze geometry signature and invalidate it after any relevant reconfiguration"
+      ],
+      "preconditions": [
+        "Guide, speaker, foam, stage and four sensor chains complete"
+      ],
+      "postconditions": [
+        "Current rig-readiness receipt tied to installation and calibration versions"
+      ],
+      "depends_on": [
+        "OUTLET_FOAM",
+        "SPEAKER",
+        "CALIBRATE",
+        "STAGE_INSTALL"
+      ],
+      "evidence_ids": [
+        "E_RIG",
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_CAL",
+        "U_CHANNEL",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "rig_check_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CLEAR_APERTURE",
+      "title": "Remove targets for the no-object control",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "target if present",
+        "empty holder"
+      ],
+      "actions": [
+        "Disable acoustic output and stop stage before entering work region",
+        "Release and store any previous target; inspect aperture and source path are free of objects/holder obstruction",
+        "Record explicit absent-target condition"
+      ],
+      "preconditions": [
+        "Rig ready; safe stopped state"
+      ],
+      "postconditions": [
+        "No-object condition independently observed"
+      ],
+      "depends_on": [
+        "RIG_CHECK"
+      ],
+      "evidence_ids": [
+        "E_CONTROL"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE"
+      ],
+      "required_observations": [
+        "clear_aperture_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_LOAD",
+      "title": "Retrieve and clamp the selected target",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "target",
+        "retained carrier",
+        "holder"
+      ],
+      "actions": [
+        "Verify target identity/version and current QC at destination",
+        "Support target while aligning to keyed holder and closing retainers",
+        "Inspect load path and stage travel clearance before withdrawing hands"
+      ],
+      "preconditions": [
+        "Output disabled and stage stopped",
+        "Selected target transferred to rig; qualified holder"
+      ],
+      "postconditions": [
+        "Mounted target ID/version and holder signature"
+      ],
+      "depends_on": [
+        "TARGET_QC",
+        "RIG_CHECK"
+      ],
+      "evidence_ids": [
+        "E_1D",
+        "E_DISC",
+        "E_ETH"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGET",
+        "U_ROBOT"
+      ],
+      "required_observations": [
+        "target_load_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ALIGN",
+      "title": "Set and verify object gap and orientation",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "mounted target",
+        "gap gauge",
+        "stage"
+      ],
+      "actions": [
+        "With output off, align object normal to guide axis and bind target coordinates to stage frame",
+        "Verify the reported 1-mm input gap under supplied tolerance",
+        "For half-aperture control, align aluminium edge to half blockage and inspect coverage rather than infer it from a stage command"
+      ],
+      "preconditions": [
+        "Target mounted and stage referenced",
+        "Gap and orientation inspection method supplied"
+      ],
+      "postconditions": [
+        "Condition-specific geometry receipt and current target version"
+      ],
+      "depends_on": [
+        "TARGET_LOAD"
+      ],
+      "evidence_ids": [
+        "E_CONTROL",
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_FIXTURE",
+        "U_SCAN"
+      ],
+      "required_observations": [
+        "align_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "SWEEP_CONFIG",
+      "title": "Load an explicit frequency-sweep schedule",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_CONSOLE",
+      "object_roles": [
+        "source controller",
+        "DAQ",
+        "sweep card"
+      ],
+      "actions": [
+        "Select nonempty approved frequency list, level, settling/averaging and reference handling",
+        "Read back programmed conditions and raw-record sink; bind no-object or half-aperture condition"
+      ],
+      "preconditions": [
+        "Current geometry and calibration",
+        "Unknown experimental sweep details resolved as episode inputs"
+      ],
+      "postconditions": [
+        "Sweep configuration ID and complete intended schedule"
+      ],
+      "depends_on": [
+        "RIG_CHECK"
+      ],
+      "evidence_ids": [
+        "E_CONTROL"
+      ],
+      "unknown_parameter_ids": [
+        "U_SWEEP",
+        "U_ACQ"
+      ],
+      "required_observations": [
+        "sweep_config_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "SCAN_CONFIG",
+      "title": "Load a bounded 1D or 2D position schedule",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_CONSOLE",
+      "object_roles": [
+        "stage controller",
+        "source",
+        "DAQ",
+        "scan card"
+      ],
+      "actions": [
+        "Set 7,740-Hz excitation/reference and complete channel acquisition program",
+        "Load explicit ordered coordinates with 0.6-mm 1D or 1.6-mm 2D nominal physical spacing; read back limits and raw sink",
+        "Check selected ROI, point count, motion/settling rules and invalid-point policy; no 0.8-mm physical grid substitution"
+      ],
+      "preconditions": [
+        "ALIGN current and calibration valid",
+        "Nonempty finite scan card and all safety inputs"
+      ],
+      "postconditions": [
+        "Scan configuration and intended raw-point keys"
+      ],
+      "depends_on": [
+        "ALIGN"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCAN",
+        "U_ACQ"
+      ],
+      "required_observations": [
+        "scan_config_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ENABLE",
+      "title": "Enable the configured acoustic source",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_CONSOLE",
+      "object_roles": [
+        "source controller",
+        "rig"
+      ],
+      "actions": [
+        "Check guards, clearance, current configuration and acoustic exposure interlocks",
+        "Enable output and verify selected frequency/level or sweep readback"
+      ],
+      "preconditions": [
+        "SWEEP_CONFIG or SCAN_CONFIG current",
+        "No operator in unsafe region; rig signature unchanged"
+      ],
+      "postconditions": [
+        "Enabled source receipt tied to configuration"
+      ],
+      "depends_on": [
+        "RIG_CHECK"
+      ],
+      "evidence_ids": [
+        "E_RIG",
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACQ",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "enable_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "SWEEP_POINT",
+      "title": "Acquire one configured frequency condition",
+      "kind": "device_process",
+      "actor": "automated_device_with_robot_start_and_readback",
+      "station_id": "WS_CONSOLE",
+      "object_roles": [
+        "frequency occurrence",
+        "four pressure channels"
+      ],
+      "actions": [
+        "Controller selects the scheduled frequency; wait for qualified settling predicate",
+        "Acquire phase-sensitive complex p1–p4 with common time/reference context",
+        "Commit append-only raw record with calibration, geometry, frequency and validity flags"
+      ],
+      "preconditions": [
+        "ENABLE current",
+        "No-object or half-aperture identity matches sweep",
+        "Qualified acquisition and overload checks"
+      ],
+      "postconditions": [
+        "One truthful frequency record or explicit failed attempt"
+      ],
+      "depends_on": [
+        "SWEEP_CONFIG",
+        "ENABLE"
+      ],
+      "evidence_ids": [
+        "E_CONTROL",
+        "E_MIC"
+      ],
+      "unknown_parameter_ids": [
+        "U_SWEEP",
+        "U_ACQ"
+      ],
+      "required_observations": [
+        "sweep_point_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "On clipping, dropped channel, lost reference or unstable condition, stop/mark the point invalid; never replace missing data with zero",
+        "Retry only under declared policy with new attempt ID and retained failure record"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "MOVE_POINT",
+      "title": "Command one stage position and wait for settling",
+      "kind": "device_process",
+      "actor": "automated_device_with_robot_start_and_readback",
+      "station_id": "WS_CONSOLE",
+      "object_roles": [
+        "stage",
+        "target",
+        "point occurrence"
+      ],
+      "actions": [
+        "Robot requests next scheduled coordinate through controller",
+        "Stage performs motion; robot waits outside the envelope and checks encoder and settling readbacks",
+        "Inspect unchanged target-gap and collision state through supplied feedback"
+      ],
+      "preconditions": [
+        "SCAN_CONFIG current; target secured",
+        "ENABLE current and allowed motion/exposure policy"
+      ],
+      "postconditions": [
+        "Actual coordinate/settling receipt for exactly one point occurrence"
+      ],
+      "depends_on": [
+        "SCAN_CONFIG",
+        "ENABLE"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCAN",
+        "U_ACQ"
+      ],
+      "required_observations": [
+        "move_point_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "MEASURE_POINT",
+      "title": "Acquire four complex pressures at the settled point",
+      "kind": "device_process",
+      "actor": "automated_device_with_robot_start_and_readback",
+      "station_id": "WS_CONSOLE",
+      "object_roles": [
+        "four pressure channels",
+        "point occurrence"
+      ],
+      "actions": [
+        "Check current settled-position receipt and signal reference",
+        "Acquire common-reference complex pressures and metadata at the configured 7,740 Hz",
+        "Save actual coordinate, timestamp, installed serials, calibration and validity without interpretation"
+      ],
+      "preconditions": [
+        "MOVE_POINT for same point occurrence succeeded",
+        "Rig and target versions unchanged"
+      ],
+      "postconditions": [
+        "Four-channel raw point record, or explicit invalid attempt"
+      ],
+      "depends_on": [
+        "MOVE_POINT"
+      ],
+      "evidence_ids": [
+        "E_MIC",
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_ACQ"
+      ],
+      "required_observations": [
+        "measure_point_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Mark invalid on motion, clipping, missing channel, stale calibration, reference drift or condition change",
+        "Stop affected scan, preserve partial/raw data, and reacquire only using the explicit retry schedule"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STOP",
+      "title": "Stop output and motion with readback",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_CONSOLE",
+      "object_roles": [
+        "source",
+        "stage"
+      ],
+      "actions": [
+        "Command acoustic output off and stage stop",
+        "Wait for independent stopped/output-safe readbacks before approaching target or microphones"
+      ],
+      "preconditions": [
+        "Known current rig/device state; run may be active, complete, interrupted or never enabled"
+      ],
+      "postconditions": [
+        "Safe intervention state or blocked unsafe-release report"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "stop_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "RUN_REVIEW",
+      "title": "Check acquired coverage and retain failures",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "raw run",
+        "configuration"
+      ],
+      "actions": [
+        "Compare expected frequency/position occurrences with raw records and completion flags",
+        "Reject duplicate point identities, missing four-channel values, stale versions and unlogged retries",
+        "Do not infer run completion from a plotted image or a device started receipt"
+      ],
+      "preconditions": [
+        "Append-only run records and configuration available"
+      ],
+      "postconditions": [
+        "Complete-valid, complete-with-invalids or incomplete run disposition"
+      ],
+      "depends_on": [
+        "STOP"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_ACQ",
+        "U_REPEAT"
+      ],
+      "required_observations": [
+        "run_review_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_UNLOAD",
+      "title": "Support and remove the target",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "target",
+        "holder",
+        "carrier"
+      ],
+      "actions": [
+        "Verify stopped stage and acoustic output safe",
+        "Support target before opening retainers, clear guide without contact and place it in retained labelled carrier",
+        "Inspect holder and target for damage; preserve version and attempt history"
+      ],
+      "preconditions": [
+        "STOP receipt; safe approach card"
+      ],
+      "postconditions": [
+        "Target detached and located in carrier; condition/damage record"
+      ],
+      "depends_on": [
+        "STOP"
+      ],
+      "evidence_ids": [
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_ROBOT",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "target_unload_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "STORE_TARGET",
+      "title": "Return inspected target to storage or quarantine",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_ARCHIVE",
+      "object_roles": [
+        "target",
+        "carrier"
+      ],
+      "actions": [
+        "Transport detached target to designated slot",
+        "Read identity at destination and close carrier; segregate damage or uncertain integrity",
+        "Record target eligibility for next use without assuming source historical reuse"
+      ],
+      "preconditions": [
+        "Current unloading and inspection records"
+      ],
+      "postconditions": [
+        "Single storage/quarantine location and retained history"
+      ],
+      "depends_on": [
+        "TARGET_UNLOAD"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_REPEAT",
+        "U_ROBOT"
+      ],
+      "required_observations": [
+        "store_target_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "MODES",
+      "title": "Derive modal amplitudes from complex channels",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "raw p1–p4",
+        "channel/calibration map"
+      ],
+      "actions": [
+        "Apply declared gain/phase corrections and complex convention",
+        "Compute a00 from both opposed-pair sums, a01 from p1-p3 and a10 from p2-p4, each divided by two",
+        "Keep both a00 estimates and discrepancy; apply only supplied consistency acceptance and preserve raw data"
+      ],
+      "preconditions": [
+        "Complete valid aligned four-channel raw records",
+        "Physical channel map and current calibration bound"
+      ],
+      "postconditions": [
+        "Derived modal records parented to exact raw IDs and processing version"
+      ],
+      "depends_on": [
+        "RUN_REVIEW"
+      ],
+      "evidence_ids": [
+        "E_MODES"
+      ],
+      "unknown_parameter_ids": [
+        "U_CHANNEL",
+        "U_CAL",
+        "U_ANALYSIS"
+      ],
+      "required_observations": [
+        "modes_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CONTROL_COMPARE",
+      "title": "Compare matched no-object and half-aperture sweeps",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "two sweep datasets"
+      ],
+      "actions": [
+        "Match guide/version, calibration, source geometry, sweep frequencies/level and processing convention",
+        "Report measured plane/antisymmetric response differences and validity, retaining mismatched conditions as noncomparative",
+        "Keep three observed-source peaks separate from five predicted-source peaks; do not force either count on episode data"
+      ],
+      "preconditions": [
+        "Both control sweeps qualified and MODES completed"
+      ],
+      "postconditions": [
+        "Paired-control comparison with provenance and limitations"
+      ],
+      "depends_on": [
+        "MODES"
+      ],
+      "evidence_ids": [
+        "E_CONTROL"
+      ],
+      "unknown_parameter_ids": [
+        "U_SWEEP",
+        "U_ANALYSIS"
+      ],
+      "required_observations": [
+        "control_compare_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "EDGE_ANALYSIS",
+      "title": "Analyze 1D edge profiles with bounded claims",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "1D modal data",
+        "target geometry"
+      ],
+      "actions": [
+        "Derive declared intensity convention and edge/FWHM estimates from physical coordinates",
+        "Report uncertainty, invalid points and reconstruction bias, including small-object apparent-width caveat",
+        "Link optional numerical comparison separately without replacing observations"
+      ],
+      "preconditions": [
+        "Valid 1D raw coverage and analysis card"
+      ],
+      "postconditions": [
+        "Three separate target-linked 1D analysis products in full campaign"
+      ],
+      "depends_on": [
+        "MODES"
+      ],
+      "evidence_ids": [
+        "E_1D",
+        "E_LIMIT"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "required_observations": [
+        "edge_analysis_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "IMAGE_ANALYSIS",
+      "title": "Create separate raw-grid and display-grid products",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "2D modal data",
+        "ROI",
+        "processing card"
+      ],
+      "actions": [
+        "Retain physical 1.6-mm acquisition grid and validity mask",
+        "Derive separate directional intensities plus total; produce linear-interpolation 0.8-mm display only after processing qualification",
+        "Keep full-range and declared reduced-range visualizations with normalization/clipping recorded; disc output describes actual ROI, not assumed full disc"
+      ],
+      "preconditions": [
+        "Valid 2D raw coverage and resolved coordinate/channel orientation",
+        "Normalization/intensity/interpolation methods supplied"
+      ],
+      "postconditions": [
+        "Derived images reference raw parent IDs; interpolation does not add measurements"
+      ],
+      "depends_on": [
+        "MODES"
+      ],
+      "evidence_ids": [
+        "E_DISC",
+        "E_ETH",
+        "E_SCAN"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_CONFLICT"
+      ],
+      "required_observations": [
+        "image_analysis_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive append-only scientific and handling records",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "raw records",
+        "derived records",
+        "entity ledger"
+      ],
+      "actions": [
+        "Link source/episode input revisions, failures, calibration and branch/run IDs",
+        "Separate physical, numerical, synthetic and literature-reference data classes",
+        "Record per-branch completion and unresolved tasks without unsupported success claims"
+      ],
+      "preconditions": [
+        "Actual records or blocked-work disposition available; measurements may never have started"
+      ],
+      "postconditions": [
+        "Auditable archive and explicit campaign disposition"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "required_observations": [
+        "archive_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only",
+      "conditional_unknown_parameter_ids": {
+        "U_ANALYSIS": "Only when validating or generating scientific processing products; raw/failed/blocked-work archival is allowed without an analysis recipe."
+      }
+    },
+    {
+      "id": "RIG_UNLOAD",
+      "title": "Safely disconnect and store instrument components",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_RIG",
+      "object_roles": [
+        "microphones",
+        "speaker",
+        "guide",
+        "foam",
+        "cables"
+      ],
+      "actions": [
+        "Verify source disabled and stage stopped; isolate according to qualified card",
+        "Support sensors/guide before releasing mounts, disconnect by connector bodies and cap protected surfaces",
+        "Store components in identified cases and inspect rig for loose tools/debris"
+      ],
+      "preconditions": [
+        "All required measurements finished or campaign stopped",
+        "Safe disconnection and storage card"
+      ],
+      "postconditions": [
+        "Final component locations, integrity and detached-cable state"
+      ],
+      "depends_on": [
+        "STOP"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SAFETY",
+        "U_ROBOT"
+      ],
+      "required_observations": [
+        "rig_unload_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "CLEANUP",
+      "title": "Restore fabrication and measurement stations",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_ARCHIVE",
+      "object_roles": [
+        "tools",
+        "waste",
+        "carriers",
+        "fixtures"
+      ],
+      "actions": [
+        "Return tools, clean allowed residues using qualified materials and segregate scrap by route",
+        "Check all powered devices safe, supports empty or labelled, and retained items have recorded destinations",
+        "Report unresolved hazards instead of asserting safe closure"
+      ],
+      "preconditions": [
+        "Devices safe for intervention",
+        "Cleaning and waste card supplied"
+      ],
+      "postconditions": [
+        "Station reset and final safety receipt"
+      ],
+      "depends_on": [
+        "RIG_UNLOAD"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "cleanup_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "REPORT",
+      "title": "Report scope, truthful outcomes and unclosed gates",
+      "kind": "analysis",
+      "actor": "analysis_operator",
+      "station_id": "WS_RECORDS",
+      "object_roles": [
+        "campaign record"
+      ],
+      "actions": [
+        "Report required branches completed, blocked or invalid with evidence IDs",
+        "Distinguish procedure/data completeness from matching literature outcomes, and identify numerical work as separate",
+        "Do not claim robot execution, source replication or physical simulation from this design"
+      ],
+      "preconditions": [
+        "Archive plus normal CLEANUP or scoped ABORT_CLOSE disposition available",
+        "Incomplete branches and unresolved hazards remain explicitly incomplete"
+      ],
+      "postconditions": [
+        "Campaign report retaining all uncertainty"
+      ],
+      "depends_on": [
+        "ARCHIVE"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [],
+      "required_observations": [
+        "report_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_RECEIVE",
+      "title": "Receive and stage an existing qualified target",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_STOCK",
+      "object_roles": [
+        "received target",
+        "supplier or prior fabrication receipt",
+        "carrier"
+      ],
+      "actions": [
+        "Identify target, material/drawing provenance and actual existing condition",
+        "Check complete supplied-part record and put target into protected labelled carrier",
+        "Record preparation outside this episode honestly; do not invent a tool job"
+      ],
+      "preconditions": [
+        "target_card explicitly selects supplied_part route",
+        "Complete target geometry/material identity and provenance available"
+      ],
+      "postconditions": [
+        "Received target identity and preparation-provenance receipt; inspection still required"
+      ],
+      "depends_on": [
+        "TARGET_BIND"
+      ],
+      "evidence_ids": [
+        "E_CONTROL",
+        "E_1D",
+        "E_DISC",
+        "E_ETH"
+      ],
+      "unknown_parameter_ids": [
+        "U_TARGET"
+      ],
+      "required_observations": [
+        "target_receive_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "source_supported",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "TARGET_RELEASE",
+      "title": "Unload the prepared target into a carrier",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "WS_PREP",
+      "object_roles": [
+        "prepared target",
+        "tool fixture",
+        "carrier"
+      ],
+      "actions": [
+        "Observe stopped tool and safe release at the preparation station",
+        "Support target while opening fixture retainers; remove it without unsafe contact",
+        "Place target in retained labelled carrier for transfer to inspection"
+      ],
+      "preconditions": [
+        "TARGET_PROCESS complete or safely interrupted",
+        "Safe release and qualified grasp card"
+      ],
+      "postconditions": [
+        "Detached target in retained carrier with preparation history"
+      ],
+      "depends_on": [
+        "TARGET_PROCESS"
+      ],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_TARGET",
+        "U_ROBOT",
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "target_release_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    },
+    {
+      "id": "ABORT_CLOSE",
+      "title": "Close blocked or interrupted work without invented acquisition",
+      "kind": "hands_on",
+      "actor": "robot_operator",
+      "station_id": "current_station",
+      "object_roles": [
+        "actually allocated components",
+        "known powered devices",
+        "partial records"
+      ],
+      "actions": [
+        "Record the exact unclosed gate, failed operation and real current component locations",
+        "Use only qualified stop/isolation controls for devices that exist; accept verified already-off state without inventing an enable event",
+        "Safely secure actually handled components and archive all available evidence, or report unresolved unsafe state for intervention"
+      ],
+      "preconditions": [
+        "Work is blocked, faulted or explicitly interrupted; device/state inventory is known"
+      ],
+      "postconditions": [
+        "Abort disposition with actual safe-state evidence and unresolved hazards; no complete measurement claim"
+      ],
+      "depends_on": [],
+      "evidence_ids": [],
+      "unknown_parameter_ids": [
+        "U_SAFETY"
+      ],
+      "required_observations": [
+        "abort_close_receipt with occurrence_id, object IDs, versions, condition and timestamp"
+      ],
+      "failure_handling": [
+        "Stop affected action, preserve current state and unsuccessful attempt, make equipment safe using qualified controls, and resume only after required inspection and input gates are satisfied"
+      ],
+      "provenance": {
+        "macro_basis": "authored_workflow_closure",
+        "fine_actions": "task_authored_robot_contract_not_source_trajectory"
+      },
+      "execution_mode": "symbolic_design_only"
+    }
+  ],
+  "membership_rule": "Reusable operation templates; alternative routes and condition gates bind occurrences. TRANSFER is required at every real station change. A blocked campaign can close without fictional acquisition."
+}

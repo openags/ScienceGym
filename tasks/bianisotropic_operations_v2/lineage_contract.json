@@ -1,0 +1,80 @@
+{
+  "schema_version": "bianisotropic_paper_task.v1",
+  "doi": "10.1038/s41467-018-03778-9",
+  "entity_kinds": [
+    "stock_lot",
+    "build_job",
+    "build_plate",
+    "period_section",
+    "panel",
+    "fixture",
+    "calibration_artifact",
+    "microphone",
+    "configuration",
+    "run",
+    "point",
+    "raw_record",
+    "derived_record",
+    "numerical_job"
+  ],
+  "identity_rules": [
+    "Each physical period section has one identity and one current location; no section occupies two panel slots",
+    "Panel membership is nine distinct sections with eleven ordered design slots each; repeated design labels do not imply one shared physical cell",
+    "Build jobs link source lot, qualified geometry/process revisions, safe release and extracted physical parts",
+    "Panel repair/replacement creates an assembly revision; removal/reinstallation creates a new install epoch",
+    "Four acquisitions share one position/specimen and cannot be counted as four independent samples",
+    "Independent fabricated sample count remains unresolved until the allocation card supplies it",
+    "Raw records are append-only, content-addressed references; errors and retries never overwrite prior records",
+    "Calibration belongs to device/channel/phase reference and an explicit valid interval; panel swaps do not alter old data"
+  ],
+  "required_raw_keys": [
+    "raw_id",
+    "episode_id",
+    "branch_id",
+    "run_id",
+    "configuration_id",
+    "panel_id",
+    "assembly_version",
+    "install_epoch",
+    "point_id",
+    "repeat_index",
+    "pose_receipt_id",
+    "frequency_hz",
+    "calibration_id",
+    "condition",
+    "timestamp",
+    "units",
+    "status",
+    "content_hash",
+    "is_mock"
+  ],
+  "condition_signature_keys": [
+    "guide_revision",
+    "frame_id",
+    "source_calibration_id",
+    "microphone_id",
+    "daq_config_id",
+    "phase_reference_id",
+    "medium_card_id",
+    "frequency_hz",
+    "grid_id"
+  ],
+  "custody_states": [
+    "stock",
+    "in_build",
+    "released",
+    "inspection",
+    "accepted",
+    "quarantined",
+    "assembled",
+    "installed",
+    "stored"
+  ],
+  "destruction": "No source-reported destructive test; failed extraction or damage removes the item from valid reuse until requalified or replaced",
+  "blank_values": {
+    "panel_id": "blank",
+    "assembly_version": null,
+    "install_epoch": null
+  },
+  "raw_schema_note": "Canonical keys are shared with tests/contract_checks.py; timestamps include timezone, units are explicit, and condition carries the listed signature keys."
+}

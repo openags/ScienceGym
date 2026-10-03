@@ -1,0 +1,45 @@
+{
+  "schema_version": "acoustic_wavefront_paper_task.v1",
+  "doi": "10.1038/ncomms6553",
+  "visibility": "actor_public_contract",
+  "goal": "Prepare the allocated identified acoustic arrays and acquire complete source-grounded condition sets safely. Preserve raw records and report unresolved inputs or disagreement honestly.",
+  "public_inputs": [
+    "nonempty_work_order",
+    "qualified_operating_cards",
+    "current_object_inventory_and_observations",
+    "current_station_readbacks",
+    "acquired_record_receipts",
+    "current_gate_status"
+  ],
+  "public_actions": [
+    "observe",
+    "identify",
+    "grasp_supported_object",
+    "place_on_support",
+    "navigate_qualified_route",
+    "use_readable_control",
+    "request_qualified_service",
+    "commit_record",
+    "report_blocker"
+  ],
+  "forbidden_inputs": [
+    "source_outcomes.json",
+    "evaluator_reference.json",
+    "reference_operation_sequence",
+    "future_sensor_values",
+    "hidden_fault_labels",
+    "provenance.json",
+    "source_conflicts.json",
+    "coverage_matrix.json",
+    "nonmanual_scope.json",
+    "operations.json",
+    "branches.json",
+    "TASK_DESIGN.md"
+  ],
+  "loader_implemented": false,
+  "success_description": "Use observed evidence to complete the declared work order or safely report what blocks it. Do not infer future observations from a paper.",
+  "public_file_allowlist": [
+    "agent_visible.json"
+  ],
+  "file_access_policy": "Deny all static package files by default except this public schema. Runtime cards/observations must be separately redacted and instantiated; no loader is implemented."
+}

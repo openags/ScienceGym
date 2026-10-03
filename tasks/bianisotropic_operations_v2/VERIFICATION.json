@@ -1,0 +1,44 @@
+{
+  "schema_version": "bianisotropic_verification.v1",
+  "verification_date_utc": "2026-10-03",
+  "scope": "Static package and explicitly synthetic bookkeeping/algebra fixtures; no scientific simulation or physical execution",
+  "checks": [
+    {
+      "command": "python3 -B -m unittest discover -s tests -v",
+      "tests_run": 49,
+      "passed": 48,
+      "skipped": 1,
+      "failed": 0,
+      "errors": 0
+    },
+    {
+      "command": "BIANISOTROPIC_SOURCE_DIR=PATH_TO_PRIVATE_SOURCE_PACKET python3 -B -m unittest discover -s tests -v",
+      "tests_run": 49,
+      "passed": 49,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0
+    },
+    {
+      "check": "Strict JSON and exact allowlist/hash coverage",
+      "result": "passed by package tests; manifest rebuilt after final receipt writes and tests rerun"
+    },
+    {
+      "check": "Machine-root paths and source-media exclusion",
+      "result": "passed; only authored .json, .md and .py payload files"
+    },
+    {
+      "check": "Independent source/contract review",
+      "result": "seven medium findings resolved; targeted rechecks and all49 private-source tests passed"
+    }
+  ],
+  "source_byte_scope": "Exact main/SI hashes from source_access_audit.json verified; private source files remain outside export",
+  "limits": [
+    "No repository aggregate checks or publication performed in this package task",
+    "No browser/display/asset review",
+    "No CAD, robot binding, solver execution, calibration or measured data",
+    "No production actor loader or event authentication"
+  ],
+  "details": "tests/validation_report.json",
+  "review": "review/independent_review.json"
+}
