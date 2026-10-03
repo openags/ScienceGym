@@ -1,4 +1,36 @@
-# Verification: twenty-two-family task explorer
+# Verification: twenty-four-family task explorer
+
+
+## Gear and hydrogel integration — 2026-10-03
+
+Scope: read-only projections from immutable source commit `9e490ae5d3380121df7be1c18d4de35aac8508c5`. The candidate starts from the 945-file published release. Earlier twenty-two family outputs, all 24 task packages, both embodied storyboards, scene bindings, source assets and repository LICENSE are protected byte-for-byte. No source retrieval, denied browser route retry, physical simulation or execution was attempted.
+
+The explorer contains 24 families, 541 inspection records and 2,189 operation definitions. The two additions contain 77 records and 176 definitions, preserving 64 source JSON documents. Gear adds 18 physical branches, eight separate preparation recipes, seven numerical records, two derived-analysis obligations and two illustrative-only records. Hydrogel adds 36 physical branches and four separate nonmanual dispositions. All 40 unknown groups, 14 control records, 19 source conflicts and 19 gear specimen-family definitions remain exact.
+
+Gear recipe order is authored source-package order, not recovered author chronology. Preparation, conditions, repeat schedules and eligible reuse entries remain separate; repeated transfers retain exact destinations. Hydrogel membership does not imply chronology; only explicit branch lineage and within-service phase order constrain execution. No source count, condition axis, sampled frame or source outcome becomes an independent specimen or completed observation.
+
+Hydrogel remains source-incomplete: four Extended Data image sets are uninspected; power/data conflicts, single-constant and missing-cell semantics remain explicit. Video 9 is accelerated 20 times. Hazardous chemistry, laser, UV and thermal work remains within closed qualified service boundaries. Gear specimen identities, geometry conflicts, finite/periodic shear distinction, post-initial-cycle analysis, terminal impact allocations, modeled numerical operations and illustrative scope remain separate.
+
+### Current verification
+
+- **229/229 Python viewer tests pass, zero skips or failures** with source tasks supplied: all 211 previous tests plus 18 Nature Materials checks. Independent inverse mappings reconstruct all 176 source operations, all 64 JSON documents and all 77 source record pointers. The new suite rejects **80 named adversarial mutations** covering lost contracts, recipe reordering, invented membership chronology, transfer rebinding, numerical-to-physical promotion, altered specimen identities, count defaults, erased source gaps and open hazardous-service substitutions
+- All **77 added SVG route variants** parse and preserve their exact operation rows. Gear physical/preparation connectors retain source-declared authored recipe order; numerical/analysis memberships and all hydrogel memberships have no inferred adjacency arrows. The existing 88 generated files for earlier twenty-two families remain byte-identical
+- All **11/11 repository aggregate groups pass**, including the 229 viewer tests, JavaScript syntax, scene-binding audit and negative fixtures, explorer/player mocked-DOM checks, English hygiene and published image integrity
+- Local-script and standalone mocked-DOM tests cover **541 inspection records and 15,051 displayed operation entries**, including all **899 added entries** (479 gear, 420 hydrogel). Each new entry was individually selected; repeated destinations, search reset, empty nonmanual clearing, tabs, malformed hashes and immutable navigation pass
+- Full and family-only rebuilds are deterministic across all **955 candidate files**. Standalone regeneration is byte-identical and contains all 24 family data and SVG payloads. Its static export has no local-file links or external runtime dependencies
+- Package checks pass without source-package modification. Gear: 65 author unit methods, 85 independent static checks, 40 targeted mutation rejections and 1,178 structural mutation rejections. Hydrogel: 17 author methods, exact package/export checks, and independent 211 static / 43 adversarial / 158 structural / 17 export checks. Legacy receipt-writing hydrogel scripts ran only in an isolated copy
+- The **28-file publication delta** contains 10 additions and 18 modifications, with no deletions or binary additions. All **814 protected files** (24 task packages, two storyboards, scene bindings and LICENSE) and the 88 older generated outputs remain byte-identical. A separate exact publication manifest records every changed file's UTF-8 bytes, characters, SHA-256 and Git blob SHA-1/SHA-256; publication is a separate action
+- All new source links use immutable commit **9e490ae5d3380121df7be1c18d4de35aac8508c5** with exact local source-file hashes. Historical pins and the documented earlier perovskite local-hash caveat remain unchanged
+
+Independent review separately passes **1,832 source/artifact assertions**, local-script and standalone UI harnesses with **290 navigation actions and 71 endpoint checks each**, all 24 embedded SVG comparisons, and isolated deterministic rebuilds. Fourteen representative SVG variants were rendered with installed Inkscape and reviewed as pixels; measured bounds for **1,657 text elements** show no overflow. The review covers ordered gear preparations/impact, numerical/derived/illustrative views, hydrogel preparation/measurement/fit and lower contract sections. No unresolved source-fidelity or static-presentation defect was found within this scope.
+
+The historical sections below retain earlier release results and original counts.
+
+### Boundaries
+
+This is not an actor projection, executable protocol, scientific solver, physical simulation, trusted hardware evaluator or robot execution. Real-browser rendering, touch/responsive layout and full accessibility remain unverified. Static and synthetic checks cannot establish feasibility or scientific reproduction. Browser access restrictions were honored without retry or workaround.
+
+## Historical release verification
 
 ## Final material-family integration — 2026-10-03
 

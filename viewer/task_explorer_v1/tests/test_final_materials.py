@@ -61,8 +61,8 @@ class FinalMaterialsBundleTests(unittest.TestCase):
     def test_exact_inventory_and_prior_nineteen_unchanged_counts(self):
         manifest = json.loads((ROOT / 'manifest.json').read_text())['families']
         self.assertEqual((len(manifest), sum(r['routes'] for r in manifest), sum(r['operations'] for r in manifest)),
-                         (22, 464, 2013))
-        old = [r for r in manifest if r['id'] not in KEYS]
+                         (24, 541, 2189))
+        old = [r for r in manifest if r['id'] not in ('gear', 'hydrogel_optical') and r['id'] not in KEYS]
         self.assertEqual((len(old), sum(r['routes'] for r in old), sum(r['operations'] for r in old)),
                          (19, 386, 1838))
         for key, (ops, records, physical, unknowns, controls, files) in EXPECTED.items():

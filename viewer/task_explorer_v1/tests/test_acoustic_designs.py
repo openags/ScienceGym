@@ -29,8 +29,8 @@ class AcousticBundleTests(unittest.TestCase):
 
     def test_total_counts_and_existing_ten_preserved(self):
         manifest = json.loads((ROOT / 'manifest.json').read_text())['families']
-        self.assertEqual((len(manifest), sum(r['routes'] for r in manifest), sum(r['operations'] for r in manifest)), (22, 464, 2013))
-        old = [r for r in manifest if r['id'] not in (*KEYS, 'origami_memory', 'ring_origami', 'mechanical_backprop', 'granular_assembly', 'beaded', 'thermal_jamming', 'horn_acoustics', 'mechanical_logic', 'cold_shape')]
+        self.assertEqual((len(manifest), sum(r['routes'] for r in manifest), sum(r['operations'] for r in manifest)), (24, 541, 2189))
+        old = [r for r in manifest if r['id'] not in (*KEYS, 'origami_memory', 'ring_origami', 'mechanical_backprop', 'granular_assembly', 'beaded', 'thermal_jamming', 'horn_acoustics', 'mechanical_logic', 'cold_shape', 'gear', 'hydrogel_optical')]
         self.assertEqual((len(old), sum(r['routes'] for r in old), sum(r['operations'] for r in old)), (10, 202, 1376))
 
     def test_all_new_svg_routes_are_unordered_and_parse(self):

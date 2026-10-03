@@ -3,7 +3,7 @@
 class El{constructor(tag){this.tagName=tag;this.attrs={};this.children=[];this.style={setProperty(){}};this.dataset={};this.hidden=false;this.value='';this.className='';this.classList={toggle:(name,on)=>{let s=new Set(this.className.split(' ').filter(Boolean));on?s.add(name):s.delete(name);this.className=[...s].join(' ');}};}setAttribute(k,v){this.attrs[k]=String(v);if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=String(v);if(k==='value')this.value=v;}append(...x){this.children.push(...x);}replaceChildren(...x){this.children=x;}set textContent(v){this.text=String(v);this.children=[];}get textContent(){return this.text||'';}}
 const ids=[...fs.readFileSync(path.join(ROOT,'index.html'),'utf8').matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);const elements=Object.fromEntries(ids.map(id=>[id,new El('div')]));['route','dependencies','contract'].forEach(tab=>{elements['tab-'+tab].setAttribute('role','tab');elements['tab-'+tab].setAttribute('data-tab',tab);});
 const walk=(roots)=>roots.flatMap(n=>n instanceof El?[n,...walk(n.children)]:[]);const document={documentElement:new El('html'),getElementById:id=>elements[id],createElement:tag=>new El(tag),createTextNode:t=>String(t),querySelectorAll:selector=>{const all=walk(Object.values(elements));if(selector==='nav button')return elements.families.children;if(selector==='[role=tab]')return all.filter(x=>x.attrs.role==='tab');if(selector==='.operation')return all.filter(x=>x.className.split(' ').includes('operation'));throw Error('Unimplemented selector '+selector);}};
-const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop','granular_assembly','beaded','thermal_jamming','horn_acoustics','mechanical_logic','cold_shape'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
+const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop','granular_assembly','beaded','thermal_jamming','horn_acoustics','mechanical_logic','cold_shape','gear','hydrogel_optical'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
 let hash='',onHash;const location={get hash(){return hash;},set hash(value){hash=value.startsWith('#')?value:'#'+value;if(onHash)onHash();}};const window={SCIENCEGYM_DATA:data,addEventListener:(n,fn)=>{if(n==='hashchange')onHash=fn;}};const context={window,document,location,console,Blob:class{constructor(parts,options){this.parts=parts;this.options=options;}},URL:{createObjectURL:()=> 'blob:mock-test',revokeObjectURL:()=>{}}};vm.createContext(context);if(process.argv[2]){const standalone=fs.readFileSync(process.argv[2],'utf8');for(const match of standalone.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInContext(match[1],context);}else{vm.runInContext(fs.readFileSync(path.join(ROOT,'app.js'),'utf8'),context);}let routeCount=0,occurrenceCount=0;
 for(const [key,f]of Object.entries(window.ScienceGymExplorer.data)){for(const r of f.routes){location.hash=[key,r.id,'',0].join('/');const state=window.ScienceGymExplorer.state;assert.strictEqual(state.family,key);assert.strictEqual(state.route,r.id);assert(state.steps.length>0||r.route_kind==='numerical'||r.metadata_only);assert.strictEqual(document.querySelectorAll('.operation').length,state.steps.length);assert.strictEqual(document.querySelectorAll('.operation').filter(x=>x.attrs['aria-pressed']==='true').length,state.steps.length?1:0);if(state.steps.length){const last=state.steps[state.steps.length-1];location.hash=[key,r.id,last.id,last.index].join('/');assert.strictEqual(state.op,last.id);assert.strictEqual(state.occurrence,last.index);}else{assert.strictEqual(state.op,null);}routeCount++;occurrenceCount+=state.steps.length;}}
 location.hash='dispim/D-R01/P001/7';assert.strictEqual(window.ScienceGymExplorer.state.op,'P001');let ps=window.ScienceGymExplorer.state.steps.filter(s=>s.id==='P001');assert.strictEqual(ps.length,2);location.hash=['dispim','D-R01','P001',ps[1].index].join('/');assert.strictEqual(window.ScienceGymExplorer.state.occurrence,ps[1].index);
@@ -319,3 +319,59 @@ assert(elements.routeTitle.textContent.includes('NOT INDEPENDENT VALIDATION'));
 assert(elements.routeBasis.textContent.includes('source workbook remain uninspected'));
 location.hash='cold_shape/N_FEA';assert.strictEqual(window.ScienceGymExplorer.state.op,null);
 console.log('PASS: final materials membership, technical/independent counts, ReMM source-incomplete and unread-media boundaries, symbolic repeats, closed hazardous services, derived-fit isolation, immutable navigation and empty-view clearing');
+
+// Gear and hydrogel: source procedure grammar versus authored navigation.
+let natureRoutes=0,natureEntries=0,natureSelections=0;
+for(const key of ['gear','hydrogel_optical']){
+ const f=window.ScienceGymExplorer.data[key],before=JSON.stringify(f);
+ for(const r of f.routes){
+  location.hash=[key,r.id].join('/');natureRoutes++;
+  const state=window.ScienceGymExplorer.state,all=walk([elements.routeCanvas]),entries=state.steps.length;
+  natureEntries+=entries;
+  assert.strictEqual(elements.routeView.hidden,false);
+  assert.strictEqual(state.op,entries?state.steps[0].id:null);
+  assert.strictEqual(r.metadata_only,entries===0);
+  assert(elements.routeBasis.textContent.includes('Authored navigation'));
+  assert(!all.some(x=>x.textContent.includes('undefined')));
+  const connectors=all.filter(x=>x.className.split(' ').includes('connector'));
+  if(key==='gear'&&['physical','preparation'].includes(r.route_kind))assert.strictEqual(connectors.length,entries-1,'Gear authored recipe order lost');
+  else assert.strictEqual(connectors.length,0,'Invented operation adjacency');
+  if(key==='hydrogel_optical'&&r.route_kind==='physical'){
+   assert.deepStrictEqual(Array.from(state.steps,s=>s.id),Array.from(r.detail.operation_ids));
+   assert(r.controls.some(c=>c.id==='CTRL_BASELINE'));
+   assert(all.some(x=>x.textContent.includes('Per-service phase order only')));
+   assert(elements.routeBasis.textContent.includes('CLOSED QUALIFIED SERVICES ONLY'));
+  }
+  for(let i=0;i<entries;i++){
+   const step=state.steps[i];location.hash=[key,r.id,step.id,i].join('/');natureSelections++;
+   assert.strictEqual(state.occurrence,i);assert.strictEqual(state.op,step.id);
+   const texts=walk([elements.inspector]).map(x=>x.textContent).join('\n');
+   assert(texts.includes('Source-defined actions'));
+   if(key==='gear'&&['physical','preparation'].includes(r.route_kind)){
+    assert(texts.includes('Source occurrence binding'));
+    if(step.id==='TRANSFER')assert(texts.includes(step.sourceOccurrence.source_node.destination_station));
+   }
+   if(key==='hydrogel_optical')assert(texts.includes('Closed qualified service process'));
+  }
+  if(entries){document.querySelectorAll('.operation')[0].onclick();document.querySelectorAll('.operation')[0].onclick();}
+  elements['tab-dependencies'].onclick();assert.strictEqual(elements.dependenciesView.hidden,false);
+  const deps=walk([elements.dependenciesView]).map(x=>x.textContent).join('\n');
+  assert(deps.includes(key==='gear'?'Typed recipe dependency graph':'service phase order'));
+  elements['tab-contract'].onclick();const contracts=walk([elements.contractView]).map(x=>x.textContent).join('\n');
+  for(const required of ['unknowns','source conflicts','source access audit','lineage'])assert(contracts.includes(required));
+  assert.strictEqual(JSON.stringify(f),before,'Inspection mutated source data');
+ }
+}
+assert.strictEqual(natureRoutes,77);
+location.hash='gear/TAIJI_PLUS';
+const gearTransfers=window.ScienceGymExplorer.state.steps.filter(s=>s.id==='TRANSFER');assert(gearTransfers.length>1);
+for(const step of gearTransfers){location.hash=['gear','TAIJI_PLUS',step.id,step.index].join('/');assert.strictEqual(window.ScienceGymExplorer.state.occurrence,step.index);}
+location.hash='gear/N_CONTACT/NUMERICAL_RUN/1';assert.strictEqual(window.ScienceGymExplorer.state.op,'NUMERICAL_RUN');
+location.hash='gear/I_MACRO_VIDEO/NUMERICAL_RUN/1';assert.strictEqual(window.ScienceGymExplorer.state.op,null);assert.strictEqual(document.querySelectorAll('.operation').length,0);
+assert(elements.routeTitle.textContent.includes('ILLUSTRATIVE ONLY'));
+location.hash='hydrogel_optical/BEAM_POWER';elements.operationSearch.oninput({target:{value:'U_SCENE'}});assert(document.querySelectorAll('.operation').some(x=>x.className.includes('match')));
+location.hash='hydrogel_optical/N_FITS/FORM_LOAD/3';assert.strictEqual(window.ScienceGymExplorer.state.op,null);assert.strictEqual(elements.operationSearch.value,'');
+assert(elements.routeBasis.textContent.includes('four Extended Data image sets remain uninspected'));
+assert(elements.routeBasis.textContent.includes('Video 9 is accelerated 20 times'));
+location.hash='hydrogel_optical/NO_SUCH_ROUTE';assert.strictEqual(window.ScienceGymExplorer.state.route,'BEAM_POWER');
+console.log(`PASS: Nature Materials ${natureRoutes} records / ${natureEntries} display entries / ${natureSelections} individual selections; exact gear order and transfers, hydrogel membership, closed-service and nonphysical boundaries, no source mutation`);
