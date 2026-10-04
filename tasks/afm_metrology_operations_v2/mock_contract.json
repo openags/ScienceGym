@@ -1,0 +1,32 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "execution": "offline synthetic only",
+  "module": "tests/contract.py",
+  "entrypoints": [
+    "fixture(selected_branches)",
+    "validate(context, actor_events)"
+  ],
+  "actor_keys": [
+    "event_id",
+    "job_id",
+    "phase"
+  ],
+  "environment_context": "Authored fixtures represent observations separately; no authentication or device bindings exist. Never accept actor-provided context in a future production harness.",
+  "source_scope": "Reduced named schedules are test fixtures, not original measurements or complete source rasters.",
+  "success_claim": "Synthetic bookkeeping consistency only",
+  "unsupported_claims": [
+    "real actuation",
+    "physical simulation",
+    "scientific replication",
+    "full historical route",
+    "complete fabrication"
+  ],
+  "session_teardown": [
+    "FINAL_SAFE_RELEASE",
+    "FINAL_PROBE_RETRIEVE",
+    "FINAL_PROBE_INSPECT",
+    "FINAL_CAL_INVALIDATE",
+    "FINAL_SESSION_ARCHIVE",
+    "FINAL_SESSION_CLEAN_STORE"
+  ]
+}

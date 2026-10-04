@@ -1,0 +1,167 @@
+{
+  "schema_version": "atmospheric_optics_task.v1",
+  "doi": "10.1038/s41566-024-01466-3",
+  "stations": [
+    {
+      "id": "WS_OPTICS",
+      "title": "Guarded optical assembly and alignment service",
+      "port": "closed_module_dock",
+      "closed_service": true,
+      "payload_roles": [
+        "protected_component_carrier",
+        "identified_sensor_module"
+      ],
+      "boundary": "Optical technician/service owns internal assembly, alignment and any illumination; no beam commands or open-optics intervention.",
+      "pose_contract": {
+        "frame_id": null,
+        "approach_pose": null,
+        "dock_pose": null,
+        "retreat_pose": null,
+        "qualification_required": true,
+        "origin": "authored_unresolved_scene_binding"
+      },
+      "required_state_receipts": [
+        "identified",
+        "retained_or_immutable",
+        "qualified",
+        "current_calibration",
+        "safe_to_exchange"
+      ],
+      "runtime_driver": null
+    },
+    {
+      "id": "WS_TELESCOPE",
+      "title": "Qualified observatory telescope service",
+      "port": "retained_instrument_dock",
+      "closed_service": true,
+      "payload_roles": [
+        "sensor_module",
+        "telescope_adapter"
+      ],
+      "boundary": "Observatory authority owns dome motion, telescope pointing, tracking, focus and safe park. No autonomous pointing or solar observation is authorized.",
+      "pose_contract": {
+        "frame_id": null,
+        "approach_pose": null,
+        "dock_pose": null,
+        "retreat_pose": null,
+        "qualification_required": true,
+        "origin": "authored_unresolved_scene_binding"
+      },
+      "required_state_receipts": [
+        "identified",
+        "retained_or_immutable",
+        "qualified",
+        "current_calibration",
+        "safe_to_exchange"
+      ],
+      "runtime_driver": null
+    },
+    {
+      "id": "WS_DAYTIME",
+      "title": "Qualified separate daytime imaging service",
+      "port": "closed_camera_module_dock",
+      "closed_service": true,
+      "payload_roles": [
+        "daytime_camera_module"
+      ],
+      "boundary": "Configuration absent from source; service qualification and independent source card required before any physical use.",
+      "pose_contract": {
+        "frame_id": null,
+        "approach_pose": null,
+        "dock_pose": null,
+        "retreat_pose": null,
+        "qualification_required": true,
+        "origin": "authored_unresolved_scene_binding"
+      },
+      "required_state_receipts": [
+        "identified",
+        "retained_or_immutable",
+        "qualified",
+        "current_calibration",
+        "safe_to_exchange"
+      ],
+      "runtime_driver": null
+    },
+    {
+      "id": "WS_DIMM",
+      "title": "Observatory DIMM record service",
+      "port": "read_only_measurement_port",
+      "closed_service": true,
+      "payload_roles": [
+        "time_window_manifest"
+      ],
+      "boundary": "Read paired observatory measurements only. This task gives no DIMM fabrication or operating procedure.",
+      "pose_contract": {
+        "frame_id": null,
+        "approach_pose": null,
+        "dock_pose": null,
+        "retreat_pose": null,
+        "qualification_required": false,
+        "origin": "authored_unresolved_scene_binding"
+      },
+      "required_state_receipts": [
+        "identified",
+        "retained_or_immutable",
+        "qualified",
+        "current_calibration",
+        "safe_to_exchange"
+      ],
+      "runtime_driver": null
+    },
+    {
+      "id": "WS_COMPUTE",
+      "title": "Versioned observation analysis service",
+      "port": "immutable_dataset_input",
+      "closed_service": true,
+      "payload_roles": [
+        "manifest",
+        "calibration",
+        "algorithm_version"
+      ],
+      "boundary": "Runs are computational; transport is a data reference transfer, never atmospheric/sample manipulation.",
+      "pose_contract": {
+        "frame_id": null,
+        "approach_pose": null,
+        "dock_pose": null,
+        "retreat_pose": null,
+        "qualification_required": false,
+        "origin": "authored_unresolved_scene_binding"
+      },
+      "required_state_receipts": [
+        "identified",
+        "retained_or_immutable",
+        "qualified",
+        "current_calibration",
+        "safe_to_exchange"
+      ],
+      "runtime_driver": null
+    },
+    {
+      "id": "WS_NUMERICAL",
+      "title": "Numerical comparison service",
+      "port": "labeled_model_input",
+      "closed_service": true,
+      "payload_roles": [
+        "model_manifest",
+        "seed_manifest"
+      ],
+      "boundary": "Numerical outputs must remain simulation-labeled. No robot/environment simulator is implemented.",
+      "pose_contract": {
+        "frame_id": null,
+        "approach_pose": null,
+        "dock_pose": null,
+        "retreat_pose": null,
+        "qualification_required": false,
+        "origin": "authored_unresolved_scene_binding"
+      },
+      "required_state_receipts": [
+        "identified",
+        "retained_or_immutable",
+        "qualified",
+        "current_calibration",
+        "safe_to_exchange"
+      ],
+      "runtime_driver": null
+    }
+  ]
+}

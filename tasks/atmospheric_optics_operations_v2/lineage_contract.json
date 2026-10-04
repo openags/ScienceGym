@@ -1,0 +1,36 @@
+{
+  "schema_version": "atmospheric_optics_task.v1",
+  "doi": "10.1038/s41566-024-01466-3",
+  "required_keys": [
+    "episode_id",
+    "branch_instance_id",
+    "payload_id",
+    "payload_version",
+    "component_ids",
+    "dataset_id",
+    "dataset_kind",
+    "parent_record_ids",
+    "frame_ids",
+    "capture_timebase",
+    "calibration_id",
+    "algorithm_version",
+    "record_hash",
+    "attempt_id"
+  ],
+  "dataset_kinds": [
+    "observed_lightfield",
+    "derived_from_observation",
+    "authored_simulation_input",
+    "simulated_result",
+    "synthetic_fixture"
+  ],
+  "rules": [
+    "Immutable source frame IDs persist through all derived records",
+    "Correction joins wavefront and image records from same exact dataset/calibration/frame identities",
+    "A branch instance may not reuse another dataset lineage by matching only dimensions",
+    "Frame count is not independent specimen count",
+    "Model layers are not physical samples",
+    "Historical set IDs and new capture IDs occupy separate namespaces",
+    "All failed attempts are preserved and do not satisfy successful phase progression"
+  ]
+}

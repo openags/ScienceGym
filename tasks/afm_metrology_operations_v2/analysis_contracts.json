@@ -1,0 +1,96 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "doi": "10.1038/s41467-020-20612-3",
+  "analyses": [
+    {
+      "id": "PARALLEL_RECONSTRUCTION",
+      "source_evidence_ids": [
+        "E_RECON"
+      ],
+      "requires": [
+        "immutable raw AVI",
+        "probe centers",
+        "out-of-contact baseline",
+        "current per-probe calibration",
+        "complete coordinate/frame map"
+      ],
+      "stages": [
+        "Detect probe centers",
+        "Average intensity within source 15 micrometer ROI",
+        "Convert using the same defined calibration metric",
+        "Build each probe field",
+        "Stitch overlap regions",
+        "Estimate relative probe-height offsets with an explicitly fixed gauge",
+        "Remove frame-dependent common offset",
+        "Apply empirically qualified crosstalk correction"
+      ],
+      "unimplemented": true,
+      "warning": "No external MATLAB code or source raw data was inspected. Gauge choice, filtering, excluded probes and uncertainty need a qualified card."
+    },
+    {
+      "id": "FORCE_COMPLIANCE",
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "requires": [
+        "raw force-distance",
+        "lever calibration",
+        "actual radius",
+        "explicit disposition of the printed Equation 15 sign inconsistency"
+      ],
+      "stages": [
+        "Fit valid force-indentation region",
+        "Separate lever and coupon compliance with qualified analysis",
+        "Propagate calibration and fitting uncertainty"
+      ],
+      "unimplemented": true,
+      "warning": "The printed denominator k_eff - k_c is retained in the conflict ledger. No numerical series-spring implementation is supplied."
+    },
+    {
+      "id": "SINGLE_OPTICAL_METRIC",
+      "source_evidence_ids": [
+        "E_SI5"
+      ],
+      "requires": [
+        "SI-specific baseline-subtracted metric",
+        "matched force/displacement/images"
+      ],
+      "stages": [
+        "Preserve original intensity sign and filtering definition",
+        "Evaluate fitted response and residuals within declared range"
+      ],
+      "unimplemented": true
+    },
+    {
+      "id": "REPEATABILITY",
+      "source_evidence_ids": [
+        "E_SI6"
+      ],
+      "requires": [
+        "four identified probe records",
+        "explicit provenance conflict disposition"
+      ],
+      "stages": [
+        "Compute within-probe variability",
+        "Compute variability between probe means",
+        "Keep probe count separate from independent specimen count"
+      ],
+      "unimplemented": true
+    },
+    {
+      "id": "OFF_AXIS_PROFILE",
+      "source_evidence_ids": [
+        "E_SI7"
+      ],
+      "requires": [
+        "offset and force lineage",
+        "anisotropic image metric"
+      ],
+      "stages": [
+        "Compare asymmetric optical patterns across normal-load offsets",
+        "Report only observed proxy response, not direct gradient map"
+      ],
+      "unimplemented": true
+    }
+  ]
+}

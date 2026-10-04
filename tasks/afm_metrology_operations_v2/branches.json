@@ -1,0 +1,412 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "doi": "10.1038/s41467-020-20612-3",
+  "branch_count": 8,
+  "branches": [
+    {
+      "id": "ARRAY_CAL",
+      "title": "Level and calibrate the probe array",
+      "type": "bounded_physical_metrology_design",
+      "setup_id": "parallel",
+      "specimen_role": "qualified_conical_array",
+      "target_role": "flat_silicon",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_ARRAY_CAL",
+        "E_SETUP",
+        "E_RELEASE"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_CAL_FIT",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_CONTACT",
+        "U_LEVEL",
+        "U_LINEAGE",
+        "U_MOUNT",
+        "U_ROBOT"
+      ],
+      "operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT_ARRAY",
+        "MOUNT_TARGET",
+        "LEVEL",
+        "BASELINE",
+        "CALIBRATE_CONTACT",
+        "RELEASE",
+        "TRANSFER_OUT",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "expected_output": "Per-probe optical-to-height calibration with current mount and optical version",
+      "source_independent_repeat_count": null,
+      "default_repeat_count": null,
+      "fabrication_is_precondition": true,
+      "physical_execution_implemented": false,
+      "retained_probe_role": "conical_array",
+      "exchange_custody_role": "target_or_coupon",
+      "branch_tail_scope": "Only the target or coupon is retrieved at branch tail; installed array/lever remains retained.",
+      "session_teardown_required_after_last_setup_branch": true,
+      "calibration_reusable_between_episodes": false,
+      "session_teardown_operation_id": "FINAL_SESSION_TEARDOWN"
+    },
+    {
+      "id": "ARROW_RASTER",
+      "title": "Acquire arrow raster topography",
+      "type": "bounded_physical_metrology_design",
+      "setup_id": "parallel",
+      "specimen_role": "qualified_conical_array",
+      "target_role": "arrow_target",
+      "depends_on": [
+        "ARRAY_CAL"
+      ],
+      "source_evidence_ids": [
+        "E_ARROW",
+        "E_SCAN",
+        "E_RELEASE",
+        "E_RECON"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_AUTHORITY",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_CONTACT",
+        "U_LINEAGE",
+        "U_MOUNT",
+        "U_REFERENCE",
+        "U_ROBOT",
+        "U_SCAN"
+      ],
+      "operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT_TARGET",
+        "REGISTER_TARGET",
+        "RASTER",
+        "RELEASE",
+        "TRANSFER_OUT",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "expected_output": "Raw frame sequence and separately analyzed arrow map",
+      "source_independent_repeat_count": null,
+      "default_repeat_count": null,
+      "fabrication_is_precondition": true,
+      "physical_execution_implemented": false,
+      "retained_probe_role": "conical_array",
+      "exchange_custody_role": "target_or_coupon",
+      "branch_tail_scope": "Only the target or coupon is retrieved at branch tail; installed array/lever remains retained.",
+      "session_teardown_required_after_last_setup_branch": true,
+      "calibration_reusable_between_episodes": false,
+      "session_teardown_operation_id": "FINAL_SESSION_TEARDOWN"
+    },
+    {
+      "id": "ARROW_LINE",
+      "title": "Acquire a high-resolution arrow line",
+      "type": "bounded_physical_metrology_design",
+      "setup_id": "parallel",
+      "specimen_role": "qualified_conical_array",
+      "target_role": "arrow_target",
+      "depends_on": [
+        "ARRAY_CAL"
+      ],
+      "source_evidence_ids": [
+        "E_LINE",
+        "E_SCAN",
+        "E_RELEASE"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_AUTHORITY",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_CONTACT",
+        "U_LINEAGE",
+        "U_MOUNT",
+        "U_REFERENCE",
+        "U_ROBOT",
+        "U_SCAN"
+      ],
+      "operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT_TARGET",
+        "REGISTER_TARGET",
+        "LINE",
+        "RELEASE",
+        "TRANSFER_OUT",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "expected_output": "Raw line frames with 100 nm source step, defined extent and flat-region selection",
+      "source_independent_repeat_count": null,
+      "default_repeat_count": null,
+      "fabrication_is_precondition": true,
+      "physical_execution_implemented": false,
+      "retained_probe_role": "conical_array",
+      "exchange_custody_role": "target_or_coupon",
+      "branch_tail_scope": "Only the target or coupon is retrieved at branch tail; installed array/lever remains retained.",
+      "session_teardown_required_after_last_setup_branch": true,
+      "calibration_reusable_between_episodes": false,
+      "session_teardown_operation_id": "FINAL_SESSION_TEARDOWN"
+    },
+    {
+      "id": "COMPLEX_RASTER",
+      "title": "Acquire multiscale target topography",
+      "type": "bounded_physical_metrology_design",
+      "setup_id": "parallel",
+      "specimen_role": "qualified_conical_array",
+      "target_role": "complex_target",
+      "depends_on": [
+        "ARRAY_CAL"
+      ],
+      "source_evidence_ids": [
+        "E_COMPLEX",
+        "E_SCAN",
+        "E_RELEASE",
+        "E_RECON"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_AUTHORITY",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_CONTACT",
+        "U_LINEAGE",
+        "U_MOUNT",
+        "U_ROBOT",
+        "U_SCAN"
+      ],
+      "operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT_TARGET",
+        "REGISTER_TARGET",
+        "RASTER",
+        "RELEASE",
+        "TRANSFER_OUT",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "expected_output": "Raw complex-region frames and reconstruction lineage",
+      "source_independent_repeat_count": null,
+      "default_repeat_count": null,
+      "fabrication_is_precondition": true,
+      "physical_execution_implemented": false,
+      "retained_probe_role": "conical_array",
+      "exchange_custody_role": "target_or_coupon",
+      "branch_tail_scope": "Only the target or coupon is retrieved at branch tail; installed array/lever remains retained.",
+      "session_teardown_required_after_last_setup_branch": true,
+      "calibration_reusable_between_episodes": false,
+      "session_teardown_operation_id": "FINAL_SESSION_TEARDOWN"
+    },
+    {
+      "id": "LEVER_CAL",
+      "title": "Calibrate a conventional AFM lever",
+      "type": "bounded_physical_metrology_design",
+      "setup_id": "coupon",
+      "specimen_role": "qualified_conventional_lever",
+      "target_role": "rigid_glass",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_CLEAN",
+        "U_CONTACT",
+        "U_LEVER",
+        "U_LINEAGE",
+        "U_MOUNT",
+        "U_ROBOT"
+      ],
+      "operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT_LEVER",
+        "MOUNT_TARGET",
+        "THERMAL_PSD",
+        "GLASS_SENSITIVITY",
+        "RELEASE",
+        "TRANSFER_OUT",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "expected_output": "Thermal and rigid-glass records for conventional-lever stiffness and sensitivity",
+      "source_independent_repeat_count": null,
+      "default_repeat_count": null,
+      "fabrication_is_precondition": true,
+      "physical_execution_implemented": false,
+      "retained_probe_role": "conventional_lever",
+      "exchange_custody_role": "target_or_coupon",
+      "branch_tail_scope": "Only the target or coupon is retrieved at branch tail; installed array/lever remains retained.",
+      "session_teardown_required_after_last_setup_branch": true,
+      "calibration_reusable_between_episodes": false,
+      "session_teardown_operation_id": "FINAL_SESSION_TEARDOWN"
+    },
+    {
+      "id": "CYLINDER_MECHANICS",
+      "title": "Measure centered cylinder compliance",
+      "type": "bounded_physical_metrology_design",
+      "setup_id": "coupon",
+      "specimen_role": "qualified_cylinder_coupon",
+      "target_role": "cylinder",
+      "depends_on": [
+        "LEVER_CAL"
+      ],
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_AUTHORITY",
+        "U_CLEAN",
+        "U_CONTACT",
+        "U_CYLINDER",
+        "U_LINEAGE",
+        "U_MOUNT",
+        "U_ROBOT"
+      ],
+      "operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT_COUPON",
+        "LOCATE_CENTER",
+        "FORCE_DISTANCE",
+        "RELEASE",
+        "TRANSFER_OUT",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "expected_output": "Force-distance curves indexed by actual cylinder radius and coupon identity",
+      "source_independent_repeat_count": null,
+      "default_repeat_count": null,
+      "fabrication_is_precondition": true,
+      "physical_execution_implemented": false,
+      "retained_probe_role": "conventional_lever",
+      "exchange_custody_role": "target_or_coupon",
+      "branch_tail_scope": "Only the target or coupon is retrieved at branch tail; installed array/lever remains retained.",
+      "session_teardown_required_after_last_setup_branch": true,
+      "calibration_reusable_between_episodes": false,
+      "session_teardown_operation_id": "FINAL_SESSION_TEARDOWN"
+    },
+    {
+      "id": "SINGLE_OPTICS",
+      "title": "Measure cylinder optomechanical response",
+      "type": "bounded_physical_metrology_design",
+      "setup_id": "coupon",
+      "specimen_role": "qualified_cylinder_coupon",
+      "target_role": "cylinder",
+      "depends_on": [
+        "LEVER_CAL"
+      ],
+      "source_evidence_ids": [
+        "E_SI5",
+        "E_SI3"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_AUTHORITY",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_CONTACT",
+        "U_CYLINDER",
+        "U_LINEAGE",
+        "U_MOUNT",
+        "U_ROBOT"
+      ],
+      "operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT_COUPON",
+        "LOCATE_CENTER",
+        "BASELINE",
+        "SYNCHRONIZED_FORCE_OPTICS",
+        "RELEASE",
+        "TRANSFER_OUT",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "expected_output": "Synchronized force/indentation/brightness records using SI-specific optical metric",
+      "source_independent_repeat_count": null,
+      "default_repeat_count": null,
+      "fabrication_is_precondition": true,
+      "physical_execution_implemented": false,
+      "retained_probe_role": "conventional_lever",
+      "exchange_custody_role": "target_or_coupon",
+      "branch_tail_scope": "Only the target or coupon is retrieved at branch tail; installed array/lever remains retained.",
+      "session_teardown_required_after_last_setup_branch": true,
+      "calibration_reusable_between_episodes": false,
+      "session_teardown_operation_id": "FINAL_SESSION_TEARDOWN"
+    },
+    {
+      "id": "OFF_CENTER",
+      "title": "Observe off-center optical deformation",
+      "type": "bounded_physical_metrology_design",
+      "setup_id": "coupon",
+      "specimen_role": "qualified_cylinder_coupon",
+      "target_role": "cylinder",
+      "depends_on": [
+        "LEVER_CAL"
+      ],
+      "source_evidence_ids": [
+        "E_SI7",
+        "E_SI3",
+        "E_SI5"
+      ],
+      "unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_AUTHORITY",
+        "U_CAMERA",
+        "U_CLEAN",
+        "U_CONTACT",
+        "U_CYLINDER",
+        "U_LINEAGE",
+        "U_MOUNT",
+        "U_OFFCENTER",
+        "U_ROBOT"
+      ],
+      "operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT_COUPON",
+        "LOCATE_CENTER",
+        "OFF_CENTER_SCHEDULE",
+        "RELEASE",
+        "TRANSFER_OUT",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "expected_output": "Offset-normal-loading records and asymmetric optical profiles, without claiming direct gradient measurement",
+      "source_independent_repeat_count": null,
+      "default_repeat_count": null,
+      "fabrication_is_precondition": true,
+      "physical_execution_implemented": false,
+      "retained_probe_role": "conventional_lever",
+      "exchange_custody_role": "target_or_coupon",
+      "branch_tail_scope": "Only the target or coupon is retrieved at branch tail; installed array/lever remains retained.",
+      "session_teardown_required_after_last_setup_branch": true,
+      "calibration_reusable_between_episodes": false,
+      "session_teardown_operation_id": "FINAL_SESSION_TEARDOWN"
+    }
+  ]
+}

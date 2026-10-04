@@ -1,0 +1,52 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "doi": "10.1038/s41467-020-20612-3",
+  "materials": [
+    {
+      "id": "qualified_conical_array",
+      "class": "inert polymer/PDMS/aluminum/sapphire",
+      "source_count": 1088,
+      "source_pitch_um": 15,
+      "geometry_complete": false,
+      "required": "Qualified specimen geometry, surface state, material/process history and versioned acceptance; no recipe defaults"
+    },
+    {
+      "id": "qualified_cylinder_coupon",
+      "class": "inert polymer/PDMS/aluminum/sapphire",
+      "source_height_um": 6,
+      "source_radius_range_um": [
+        3,
+        8
+      ],
+      "source_backing_thickness_um": 14,
+      "source_reflective_thickness_nm": 30,
+      "radius_allocations_complete": false
+    },
+    {
+      "id": "flat_silicon",
+      "class": "inert rigid silicon reference",
+      "required": "Flatness and cleanliness qualification"
+    },
+    {
+      "id": "arrow_target",
+      "class": "inert MikroMasch TGXYZ02 silicon calibration target",
+      "required": "Region registration and independent AFM reference lineage"
+    },
+    {
+      "id": "complex_target",
+      "class": "inert MikroMasch TGXYZ02 silicon calibration target",
+      "required": "Region registration distinct from arrow"
+    },
+    {
+      "id": "rigid_glass",
+      "class": "inert rigid glass reference",
+      "required": "Qualified conventional-AFM sensitivity reference"
+    },
+    {
+      "id": "qualified_conventional_lever",
+      "class": "conventional AFM lever, source NSC16/No Al",
+      "required": "Current thermal and sensitivity calibration"
+    }
+  ],
+  "safety_boundary": "No biological materials, medical decisions or samples; no live-device instructions."
+}

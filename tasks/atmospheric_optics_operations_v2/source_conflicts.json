@@ -1,0 +1,97 @@
+{
+  "schema_version": "atmospheric_optics_task.v1",
+  "doi": "10.1038/s41566-024-01466-3",
+  "policy": "Preserve all alternatives; evaluator must explicitly qualify a scope for any runtime use. A synthetic test resolution does not correct the paper.",
+  "conflicts": [
+    {
+      "id": "C_COVARIANCE",
+      "description": "Prose uses 1000 frames; Fig. 3c caption uses 7000; SI maps Fig. 3c to sets 20-26.",
+      "values": {
+        "prose_frames": 1000,
+        "caption_frames": 7000,
+        "si_sets": [
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26
+        ]
+      },
+      "affected_branch_ids": [
+        "COVARIANCE"
+      ],
+      "resolved": false
+    },
+    {
+      "id": "C_FOV",
+      "description": "Fig. 4 caption specifies 856 arcsec; prediction prose and ED9 use 865 arcsec.",
+      "values": {
+        "caption_arcsec": 856,
+        "prose_and_ed9_arcsec": 865
+      },
+      "affected_branch_ids": [
+        "PREDICT",
+        "FINETUNE",
+        "ABLATIONS"
+      ],
+      "resolved": false
+    },
+    {
+      "id": "C_RMSE",
+      "description": "Prose reports 195 nm RMSE reduction; caption gives 224.10 to 109.84 nm. Averaging-scope equivalence is not established.",
+      "values": {
+        "prose_reduction_nm": 195,
+        "caption_before_nm": 224.1,
+        "caption_after_nm": 109.84
+      },
+      "affected_branch_ids": [
+        "PREDICT",
+        "FINETUNE"
+      ],
+      "resolved": false
+    },
+    {
+      "id": "C_SPLIT",
+      "description": "SI maps prediction to seven 1000-frame sets (7000 total); Methods selects 6000 with a 5400/600 split. Exact exclusion is unspecified.",
+      "values": {
+        "mapped_source_frames": 7000,
+        "used_frames": 6000,
+        "training_frames": 5400,
+        "test_frames": 600
+      },
+      "affected_branch_ids": [
+        "PREDICT",
+        "FINETUNE",
+        "ABLATIONS"
+      ],
+      "resolved": false
+    },
+    {
+      "id": "C_SLODAR_SCOPE",
+      "description": "Demonstration uses 300 frames; generic Methods mentions about 1000 over 30 s. These are separate scopes, not interchangeable recipes.",
+      "values": {
+        "demonstration_frames": 300,
+        "general_approx_frames": 1000
+      },
+      "affected_branch_ids": [
+        "SLODAR"
+      ],
+      "resolved": false
+    },
+    {
+      "id": "C_FINETUNE",
+      "description": "Separate fine-tuning corpus has 600 frames; SI sets 27 and 28 have only 200 each. No written mapping is certified.",
+      "values": {
+        "separate_frames": 600,
+        "si_27_frames": 200,
+        "si_28_frames": 200
+      },
+      "affected_branch_ids": [
+        "FINETUNE"
+      ],
+      "resolved": false
+    }
+  ]
+}

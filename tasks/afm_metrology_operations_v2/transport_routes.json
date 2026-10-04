@@ -1,0 +1,43 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "doi": "10.1038/s41467-020-20612-3",
+  "transfer_contract": "Every transfer retains carrier identity and support until destination seating is confirmed; no probe-surface grasp. Exchange requires current release and fixture-safe status.",
+  "routes": [
+    {
+      "id": "input_to_instrument",
+      "from": "input_storage",
+      "to": [
+        "parallel",
+        "coupon"
+      ],
+      "gate_ids": [
+        "U_ROBOT",
+        "U_MOUNT",
+        "U_LINEAGE"
+      ]
+    },
+    {
+      "id": "instrument_to_inspection",
+      "from": [
+        "parallel",
+        "coupon"
+      ],
+      "to": "inspection_storage",
+      "gate_ids": [
+        "U_CONTACT",
+        "U_ROBOT",
+        "U_CLEAN"
+      ]
+    },
+    {
+      "id": "service_return",
+      "from": "fabrication",
+      "to": "input_storage",
+      "gate_ids": [
+        "U_FAB",
+        "U_LINEAGE"
+      ]
+    }
+  ],
+  "geometry_available": false
+}

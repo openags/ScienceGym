@@ -1,0 +1,43 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "doi": "10.1038/s41467-020-20612-3",
+  "required_fields": [
+    "episode_id",
+    "specimen_id",
+    "specimen_version",
+    "carrier_id",
+    "setup_id",
+    "setup_version",
+    "mount_version",
+    "calibration_id",
+    "target_id",
+    "region_id",
+    "schedule_id",
+    "condition_id",
+    "attempt_id",
+    "raw_record_id",
+    "record_hash",
+    "authority_id",
+    "probe_id",
+    "probe_mount_version",
+    "probe_carrier_id",
+    "target_mount_version",
+    "custody_asset_role"
+  ],
+  "invariants": [
+    "Every calibration binds the actual probe/lever and optical configuration",
+    "Changing target region requires registration and schedule binding",
+    "Unknown damaged status is not accepted status",
+    "Each scan point links to one move/contact/acquire/withdraw/release cycle",
+    "Final specimen version and custody equal the terminal inspected carrier",
+    "Calibration parent completion precedes dependent acquisition",
+    "Target labels alone do not prove physical target identity",
+    "Failed attempts remain archived and cannot be relabeled accepted"
+  ],
+  "record_authentication_implemented": false,
+  "custody_roles": {
+    "retained_probe": "Array or conventional lever remains installed across dependent branches within one episode. Separate identity, mount and setup version govern calibration.",
+    "exchanged_specimen": "Flat reference, silicon target, glass reference or cylindrical coupon is retrieved and cleaned at each branch tail.",
+    "final_session_teardown": "After the last selected branch at each instrument, retrieve and inspect retained probe, invalidate calibration, archive and clean/store. No calibration may be reused in a later episode."
+  }
+}

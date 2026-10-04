@@ -1,0 +1,54 @@
+{
+  "schema_version": "atmospheric_optics_verification.v1",
+  "doi": "10.1038/s41566-024-01466-3",
+  "verified_utc": "2026-10-04T02:13:05.770665+00:00",
+  "python": "3.12.14",
+  "status": "passed_static_and_synthetic_contract_checks",
+  "author_unit_methods": 21,
+  "selected_branch_positive_fixtures": 28,
+  "whole_design_positive_fixtures": 1,
+  "author_negative_contract_fixtures": 105,
+  "author_export_mutations": 11,
+  "independent_contract_methods": 18,
+  "independent_export_mutations": 7,
+  "independent_review": "approved_for_gated_original_design_only",
+  "results": [
+    {
+      "command": "python -B -m unittest discover -s tests -v",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_authority_and_schema_mutations (test_contract.ContractTests.test_authority_and_schema_mutations) ... ok\ntest_calibration_and_boolean_types (test_contract.ContractTests.test_calibration_and_boolean_types) ... ok\ntest_capture_interval_boolean_rejected (test_contract.ContractTests.test_capture_interval_boolean_rejected) ... ok\ntest_cross_episode_authority_maps (test_contract.ContractTests.test_cross_episode_authority_maps) ... ok\ntest_cross_episode_replay (test_contract.ContractTests.test_cross_episode_replay) ... ok\ntest_event_binding_mutations (test_contract.ContractTests.test_event_binding_mutations) ... ok\ntest_every_selected_branch (test_contract.ContractTests.test_every_selected_branch) ... ok\ntest_finetune_day_and_count (test_contract.ContractTests.test_finetune_day_and_count) ... ok\ntest_malformed_inputs (test_contract.ContractTests.test_malformed_inputs) ... ok\ntest_mount_lease_and_teardown (test_contract.ContractTests.test_mount_lease_and_teardown) ... ok\ntest_phase_omission_duplication_reorder (test_contract.ContractTests.test_phase_omission_duplication_reorder) ... ok\ntest_prediction_leakage_and_windows (test_contract.ContractTests.test_prediction_leakage_and_windows) ... ok\ntest_required_registry_omissions (test_contract.ContractTests.test_required_registry_omissions) ... ok\ntest_source_parameter_rewrite (test_contract.ContractTests.test_source_parameter_rewrite) ... ok\ntest_untrusted_readout_and_leakage (test_contract.ContractTests.test_untrusted_readout_and_leakage) ... ok\ntest_whole_design (test_contract.ContractTests.test_whole_design) ... ok\ntest_exact_export (test_export.ExportTests.test_exact_export) ... ok\ntest_extra_missing_changed (test_export.ExportTests.test_extra_missing_changed) ... ok\ntest_path_manifest_and_actor_mutations (test_export.ExportTests.test_path_manifest_and_actor_mutations) ... ok\ntest_self_consistent_publisher_augmentation (test_export.ExportTests.test_self_consistent_publisher_augmentation) ... ok\ntest_symlink (test_export.ExportTests.test_symlink) ... ok\n\n----------------------------------------------------------------------\nRan 21 tests in 1.124s\n\nOK\n"
+    },
+    {
+      "command": "python -B tests/verify_package.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"check\": \"static_package\",\n  \"passed\": true,\n  \"errors\": [],\n  \"no_execution_or_physics\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -B tests/verify_export.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"check\": \"exact_export\",\n  \"passed\": true,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    }
+  ],
+  "code_hashes": {
+    "tests/test_contract.py": "ca6c3e0966fbe0a921a0eb752f8d322ca0c2d0d749736cabd61dc8ebd35788f0",
+    "tests/verify_export.py": "ae27d3aef51486475932c614233e46c2ac050a80c60644ef9ecbbb9b890b928a",
+    "tests/verify_package.py": "4b6f4965465cdd1fe37a2cabfafbd7cd045f108e4cb69844344e704465ad25af",
+    "tests/test_export.py": "a4cffd03998c5c3ed51305a10ec0f547edf5a28fbbc15ad4426395ac38f589a0",
+    "tests/contract.py": "320efb852e603c0e4749304ba17558ca4c73c2c836581ba450d1456c4ebbc3bd"
+  },
+  "review_receipts": [
+    "review/audit.json",
+    "review/REPORT.md"
+  ],
+  "verification_limits": [
+    "Synthetic bookkeeping only, not measured outputs or production authentication",
+    "No physical apparatus, robot operation, embodied simulation or numerical reproduction",
+    "Main figure pixels remain uninspected and direct-byte identity hold remains active",
+    "Source tensions and missing execution inputs remain unresolved",
+    "No publisher assets or external/public writes"
+  ],
+  "final_freeze_protocol": "After this receipt and review/status updates, the exact manifest was regenerated and all three listed commands were rerun read-only. Independent final exact-byte recheck is external to this self-hashed package."
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "atmospheric_optics_task.v1",
+  "doi": "10.1038/s41566-024-01466-3",
+  "origin": "authored_design",
+  "states": [
+    "not_mounted",
+    "mounted_qualified",
+    "jobs_closed",
+    "parked_isolated",
+    "detached_supported",
+    "stored_safe"
+  ],
+  "requires": [
+    "sensor_id",
+    "mount_generation",
+    "instrument_id",
+    "calibration_id",
+    "observatory_authority",
+    "qualified_pose_card",
+    "lease_id"
+  ],
+  "invalidation": [
+    "remount",
+    "adapter change",
+    "retention loss",
+    "calibration invalidation"
+  ],
+  "acquisition_rule": "Camera jobs hold the same active mounted lease; their load/retrieve phases move data only.",
+  "teardown_phases": [
+    "CLOSE_JOBS",
+    "PARK_ISOLATE",
+    "DETACH_SUPPORTED",
+    "STORE_SAFE"
+  ],
+  "teardown_rule": "Only after every authorized observation job closes, the qualified observatory service confirms park/isolation, transfers supported hardware custody, and records safe storage. Actual motion parameters remain unresolved.",
+  "source_fact": "Paper reports installed WWS; lease and safe teardown are original robotics contracts."
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "afm_actor_interface.v1",
+  "task": "Prepare, calibrate and measure a qualified inert target using the assigned metrology route; return a complete evidence trail and safe final custody.",
+  "allowed_branch_ids": [
+    "ARRAY_CAL",
+    "ARROW_RASTER",
+    "ARROW_LINE",
+    "COMPLEX_RASTER",
+    "LEVER_CAL",
+    "CYLINDER_MECHANICS",
+    "SINGLE_OPTICS",
+    "OFF_CENTER"
+  ],
+  "action_keys": [
+    "event_id",
+    "job_id",
+    "phase"
+  ],
+  "visible_observations": [
+    "identified carrier and target",
+    "current station safe-state labels",
+    "qualified card validity",
+    "current release/contact observation",
+    "record completion status"
+  ],
+  "safety_rules": [
+    "Never request lateral motion while contact persists",
+    "Do not treat a commanded retraction as release evidence",
+    "Stop when qualification, identity or calibration is missing",
+    "Do not contact probe surfaces with the carrier handler",
+    "Retain failures and stop on damage"
+  ],
+  "not_supplied": [
+    "source outcome values",
+    "evaluator expected sequences",
+    "synthetic hidden observations",
+    "source pixels"
+  ],
+  "execution_mode": "design_only"
+}

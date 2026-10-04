@@ -1,0 +1,31 @@
+{
+  "schema_version": "atmospheric_optics_task.v1",
+  "doi": "10.1038/s41566-024-01466-3",
+  "visibility": "actor_only",
+  "goal": "Move only identified protected modules through qualified exchange interfaces, request authorized service jobs, retrieve independent readouts and preserve lineage. Stop at any missing card or safety receipt.",
+  "allowed_actions": [
+    "inspect_identity",
+    "move_on_qualified_path",
+    "load_retained_carrier",
+    "handoff_qualified_job_id",
+    "read_independent_record",
+    "retrieve_after_safe_release",
+    "archive_lineage"
+  ],
+  "forbidden_actions": [
+    "laser_or_uplink_actuation",
+    "telescope_or_dome_motion_commands",
+    "direct_solar_observation",
+    "open_optical_or_electrical_intervention",
+    "invent_missing_settings",
+    "write_authority_context",
+    "copy_source_outcomes_into_observations"
+  ],
+  "initial_inventory": null,
+  "qualified_cards": null,
+  "current_observations": [],
+  "source_targets_included": false,
+  "future_measurements_included": false,
+  "runtime_observations_must_come_from": "current qualified instrument/service",
+  "simulation_outputs_may_claim_observation": false
+}

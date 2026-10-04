@@ -1,0 +1,54 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "doi": "10.1038/s41467-020-20612-3",
+  "conflicts": [
+    {
+      "id": "C_SCALE",
+      "source_difference": "Main opening Results reports about 0.5 mm and line Results greater than 0.4 mm; Discussion states 5 mm.",
+      "required_handling": "Do not infer a corrected historical span or use 5 mm as verified geometry. Qualified geometry remains mandatory.",
+      "resolved": false
+    },
+    {
+      "id": "C_PRECISION",
+      "source_difference": "About 1 nm model estimate, 6 nm single-probe optical estimate and 9 nm imaging precision are different quantities.",
+      "required_handling": "Keep separate outcome types and setups; none is a target supplied to the actor.",
+      "resolved": false
+    },
+    {
+      "id": "C_CROSSTALK",
+      "source_difference": "Empirical image correction is 35%; finite-element neighboring response is 29%.",
+      "required_handling": "Do not replace one with the other or label the simulation an observed correction.",
+      "resolved": false
+    },
+    {
+      "id": "C_OPTICS",
+      "source_difference": "Main parallel setup specifies 10x Mitutoyo NA 0.28; SI single-probe setup specifies 10x Olympus without NA.",
+      "required_handling": "Bind each calibration to its own optical configuration; changing optics invalidates reuse.",
+      "resolved": false
+    },
+    {
+      "id": "C_REPEAT_SOURCE",
+      "source_difference": "Main text discusses four-probe analysis after the intricate image; SI Note 6 explicitly uses the fiducial arrow dataset.",
+      "required_handling": "Preserve location discrepancy; the task uses the explicitly identified SI arrow dataset as a provenance-labeled analysis route, not a correction to main text.",
+      "resolved": false
+    },
+    {
+      "id": "C_INTENSITY",
+      "source_difference": "Main normalized absolute brightness decreases with contact; SI baseline-subtracted filtered darkening metric increases.",
+      "required_handling": "Record metric definition and sign. Do not use one pipeline calibration for the other.",
+      "resolved": false
+    },
+    {
+      "id": "C_MODULUS",
+      "source_difference": "SI describes possible topography above 10 MPa; main distinguishes high-resolution topography near/above 1 GPa and nanomechanics between 10 MPa and 1 GPa.",
+      "required_handling": "Treat these as model-based regimes, not demonstrated soft-sample branches.",
+      "resolved": false
+    },
+    {
+      "id": "C_SERIES_FORMULA",
+      "source_difference": "Pixel inspection of SI p. 8 confirms the printed equation k_cf = k_eff * k_c * (k_eff - k_c)^(-1). For positive-stiffness series springs with k_eff < k_c, that denominator yields a negative result, inconsistent with the reported positive stiffness values unless an unstated sign convention applies.",
+      "required_handling": "Preserve the printed denominator and report the source inconsistency. Do not silently repair the sign. Quantitative compliance analysis requires an explicitly reviewed equation/sign-convention disposition.",
+      "resolved": false
+    }
+  ]
+}

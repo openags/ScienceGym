@@ -1,0 +1,109 @@
+{
+  "schema_version": "atmospheric_optics_task.v1",
+  "doi": "10.1038/s41566-024-01466-3",
+  "paper": {
+    "title": "Direct observation of atmospheric turbulence with a video-rate wide-field wavefront sensor",
+    "authors": "Yuduo Guo, Yuhan Hao, Sen Wan et al.",
+    "journal": "Nature Photonics",
+    "year": 2024,
+    "volume": 18,
+    "pages": "935-943",
+    "main_url": "https://www.nature.com/articles/s41566-024-01466-3",
+    "si_url": "https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41566-024-01466-3/MediaObjects/41566_2024_1466_MOESM1_ESM.pdf",
+    "license": "CC BY 4.0 with third-party exceptions",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "authorship": "Original English task-design contracts; factual paraphrases only, no publisher assets or source text dumps.",
+  "evidence": [
+    {
+      "id": "E_ASSEMBLY",
+      "locator": "Methods Experimental set-up and data process; main L179-181; Fig. 1",
+      "fact": "Camera Flare 48M30-CX, 7920 by 6004 pixels, CMOSIS 50000, 4.6 micrometre pixels, peak quantum efficiency at 525 nm. MLA diameter 69 micrometres, focal length 690 micrometres, F/10 and 15 by 15 detector pixels per microlens. PY005 five-axis stage adjusts rotation, pitch and yaw; sensor lies at MLA back focal plane.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_TELESCOPE",
+      "locator": "Methods setup; main L180-181",
+      "fact": "Reported observations use the 0.8 m Tsinghua-NAOC telescope at Xinglong, with the WWS at its native image plane.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_SI1",
+      "locator": "SI Table 1, PDF pages 3-4",
+      "fact": "Sets 1-26 each have 1000 frames at 30 Hz and 2 ms; sets 27-28 each have 200 frames at 30 Hz and 2 ms; set 29 has 900 frames at 15 Hz and 5 ms. These are historical capture facts, not fresh schedules.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_REALIGN",
+      "locator": "Main L85-101; Extended Data Fig. 1, L486-487",
+      "fact": "Pixels at corresponding microlens offsets form subaperture images. Small residual assembly errors are corrected by resize and rotation.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_SLOPE",
+      "locator": "Methods Coarse-to-fine slope-estimation, main L184-201",
+      "fact": "Intensity normalization uses 0.05-fold adaptive average pooling and 20-fold bicubic interpolation. Coarse translation uses about 20 epochs at learning rate 0.01; refinement at least 10 epochs at 0.001. Loss is evaluated in central 95 percent.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_MLP",
+      "locator": "Methods setup and slope-estimation, main L182-183 and L200-201; ED2",
+      "fact": "ReLU MLP has hidden layers of 300 and 500 nodes. Noll modes 1-35 are estimated. Correction retains system aberration; prediction uses modes 4-35 with temporal-mean system aberration removed. Timing benchmark uses eight RTX 4090 GPUs.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_STAT",
+      "locator": "Results Observation, main L125-141; Fig. 3c-f",
+      "fact": "Covariance scope differs between prose and caption. Fried-parameter maps are compared with contemporaneous observatory DIMM values; WWS windows are about 30 s while DIMM observations last 1-2 min. Temporal analysis uses 20-frame windows on a 1000-frame sequence; dome effects are discussed.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_SLODAR",
+      "locator": "Results L143-146; Methods L230-242; Fig. 3g-h",
+      "fact": "Specific demonstration uses 300 frames, 36 by 36 arcsec sub-FOVs and 40 pairs per angular separation. General Methods describes about 1000 frames over 30 s. Geometry: 0.8/15 m subaperture width, 31.65 degree zenith angle and 15 pupil subapertures.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_TIS",
+      "locator": "Methods L243-255; Fig. 2d-h; ED6-7",
+      "fact": "Nine temporal frames are realigned, shifts are estimated relative to the fifth frame, irregular samples are merged and scattered interpolation densifies each subaperture. Turbulence supplies motion without physical scanning.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_CORRECT",
+      "locator": "Main L120-123 and L182-183; Fig. 2d-h",
+      "fact": "Estimated wavefronts feed incoherent synthetic-aperture reconstruction; no additional deformable mirror is used. The sequence underlying a 60 s kymograph has 900 frames at 15 Hz.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_PRED",
+      "locator": "Main L157-171; Methods L256-262; ED9",
+      "fact": "Residual ConvLSTM blocks have two layers/kernel 5/128 channels and five layers/kernel 3/32 channels, then a fully connected output. Channel normalization and MAE loss are used. First 5400 of 6000 frames train; final 600 test. Five 30 Hz inputs predict next frame about 33 ms ahead. Separate fine-tune data total 600 frames, including 540 training frames. Training uses shifted sequence targets [t-L+1,t] for inputs [t-L,t-1]; final next-frame evaluation is a distinct use.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_SIM",
+      "locator": "Methods L202-229; SI Table 2 PDF page 5; ED2-5,8",
+      "fact": "WWS simulations include pitch, Gaussian noise, C-SHWS and plenoptic comparisons. Four numerical phase-screen layers span 0-10 km; r0 is 3.6 cm at 525 nm and zenith 0 degrees, L0 10 m, aperture 0.8 m, dimensionless central obstruction 0.3. Other outer-scale values form an ablation.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_DAY",
+      "locator": "ED10a-b, main L517-518",
+      "fact": "A separate approximately 2 km daytime example is physically observed at 25 Hz; exposure, frame count and detailed apparatus are absent.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_POINTS",
+      "locator": "ED10c-f, main L518-520",
+      "fact": "Point sources are simulated with aberrations at RMS 0.5 wavelength using modes 4-35. Connected-component segmentation and centroid extraction replace coarse-to-fine slope estimation. The comparison has n=25 data points.",
+      "classification": "source_fact"
+    },
+    {
+      "id": "E_AVAIL",
+      "locator": "Data/code availability, main L263-268; supplementary descriptions L524-564",
+      "fact": "Demo models and subsets of raw observations are linked publicly; full datasets are on reasonable request. Two video descriptions and eight statistical workbooks are listed. Their bytes/pixels/software were not audited here.",
+      "classification": "source_fact"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "atmospheric_optics_task.v1",
+  "doi": "10.1038/s41566-024-01466-3",
+  "phase_order": [
+    "PREPARE",
+    "LOAD",
+    "VERIFY",
+    "RUN",
+    "READOUT",
+    "RETRIEVE",
+    "CLEANUP"
+  ],
+  "states": [
+    "allocated",
+    "prepared",
+    "loaded",
+    "verified",
+    "finished",
+    "readout_bound",
+    "retrieved",
+    "archived_safe"
+  ],
+  "terminal_failure": "held_or_quarantined",
+  "invariants": [
+    "No run before qualified verification",
+    "No physical retrieve before current safe-release and supported-custody receipt",
+    "No numerical output becomes a physical observation",
+    "No raw data or failed attempt overwrite",
+    "No source expected result is a current readout",
+    "No motion/illumination/telescope command is supplied by this design"
+  ]
+}

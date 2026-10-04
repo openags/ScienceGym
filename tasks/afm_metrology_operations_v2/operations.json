@@ -1,0 +1,1032 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "doi": "10.1038/s41467-020-20612-3",
+  "operation_count": 27,
+  "operations": [
+    {
+      "id": "RECEIVE",
+      "title": "Receive retained carrier",
+      "kind": "robot_custody",
+      "robot_actions": [
+        "Read specimen, carrier and qualification identities without contacting the probe surface."
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "VERIFY_INPUT",
+      "title": "Verify qualified input",
+      "kind": "reader",
+      "robot_actions": [
+        "Read current specimen class, surface condition, qualified instrument card and route-specific asset requirements."
+      ],
+      "source_evidence_ids": [
+        "E_SETUP",
+        "E_SI3"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "TRANSFER_IN",
+      "title": "Dock at selected instrument",
+      "kind": "robot_transport",
+      "robot_actions": [
+        "Move retained carrier along a qualified path; verify destination seating before releasing support."
+      ],
+      "source_evidence_ids": [],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "MOUNT_ARRAY",
+      "title": "Mount downward probe array",
+      "kind": "qualified_mount",
+      "robot_actions": [
+        "Verify orientation and keep-out zones; seat qualified array fixture without gripping probes."
+      ],
+      "source_evidence_ids": [
+        "E_SETUP"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "MOUNT_TARGET",
+      "title": "Mount inert target",
+      "kind": "qualified_mount",
+      "robot_actions": [
+        "Verify target region and orientation; seat target carrier and record mount version."
+      ],
+      "source_evidence_ids": [
+        "E_SETUP",
+        "E_SI3"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "LEVEL",
+      "title": "Level against flat silicon",
+      "kind": "closed_metrology_service",
+      "robot_actions": [
+        "Request qualified force-feedback leveling; read valid-level receipt bound to array and reference."
+      ],
+      "source_evidence_ids": [
+        "E_ARRAY_CAL"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "BASELINE",
+      "title": "Record out-of-contact baseline",
+      "kind": "closed_acquisition",
+      "robot_actions": [
+        "Read verified no-contact state and acquire a version-bound optical baseline."
+      ],
+      "source_evidence_ids": [
+        "E_ARRAY_CAL",
+        "E_SI5"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "CALIBRATE_CONTACT",
+      "title": "Calibrate contact brightness",
+      "kind": "closed_metrology_service",
+      "robot_actions": [
+        "Execute only a qualified vertical calibration schedule; retain displacement, force state and optical observations; return to verified release."
+      ],
+      "source_evidence_ids": [
+        "E_ARRAY_CAL"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "REGISTER_TARGET",
+      "title": "Register selected target region",
+      "kind": "closed_metrology_service",
+      "robot_actions": [
+        "Bind image-region identity and lateral coordinate frame to the current mount."
+      ],
+      "source_evidence_ids": [
+        "E_ARROW",
+        "E_COMPLEX"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "RASTER",
+      "title": "Acquire intermittent-contact raster",
+      "kind": "closed_acquisition",
+      "robot_actions": [
+        "For each qualified raster coordinate: verify release, move laterally, approach vertically, hold for acquisition, withdraw and verify release."
+      ],
+      "source_evidence_ids": [
+        "E_SCAN",
+        "E_RELEASE"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "LINE",
+      "title": "Acquire intermittent-contact line",
+      "kind": "closed_acquisition",
+      "robot_actions": [
+        "For each qualified line coordinate: verify release, move laterally, approach vertically, hold for acquisition, withdraw and verify release."
+      ],
+      "source_evidence_ids": [
+        "E_LINE",
+        "E_RELEASE"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "MOUNT_LEVER",
+      "title": "Mount conventional AFM lever",
+      "kind": "qualified_mount",
+      "robot_actions": [
+        "Verify lever identity and fixture; retain support until seating is confirmed."
+      ],
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "THERMAL_PSD",
+      "title": "Record lever thermal response",
+      "kind": "closed_metrology_service",
+      "robot_actions": [
+        "Request the qualified thermal calibration and retain raw PSD plus calibration provenance."
+      ],
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "GLASS_SENSITIVITY",
+      "title": "Record rigid-reference sensitivity",
+      "kind": "closed_metrology_service",
+      "robot_actions": [
+        "Request qualified rigid-glass contact measurement; retain raw deflection record and sensitivity result."
+      ],
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "MOUNT_COUPON",
+      "title": "Mount cylindrical probe coupon",
+      "kind": "qualified_mount",
+      "robot_actions": [
+        "Verify coupon orientation and cylinder allocation; mount on the configured conventional-AFM/inverted-optical station."
+      ],
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "LOCATE_CENTER",
+      "title": "Locate cylinder center",
+      "kind": "closed_metrology_service",
+      "robot_actions": [
+        "Read the AFM localization record; bind the actual cylinder and its radius to the condition allocation."
+      ],
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "FORCE_DISTANCE",
+      "title": "Acquire centered force-distance curves",
+      "kind": "closed_metrology_service",
+      "robot_actions": [
+        "Request qualified normal-loading curves at the registered center, with withdrawal and zero/release checks."
+      ],
+      "source_evidence_ids": [
+        "E_SI3"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "SYNCHRONIZED_FORCE_OPTICS",
+      "title": "Acquire synchronized force and optics",
+      "kind": "closed_acquisition",
+      "robot_actions": [
+        "Retain paired force-distance and fixed-displacement brightfield records, baseline ID and SI metric definition."
+      ],
+      "source_evidence_ids": [
+        "E_SI5"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "OFF_CENTER_SCHEDULE",
+      "title": "Acquire off-center normal-loading series",
+      "kind": "closed_acquisition",
+      "robot_actions": [
+        "Between normal-loading measurements, retract and verify release before repositioning; bind each offset, force record and image to its condition."
+      ],
+      "source_evidence_ids": [
+        "E_SI7"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "RELEASE",
+      "title": "Verify full release before handoff",
+      "kind": "reader",
+      "robot_actions": [
+        "Require current force-release, motion-stop and fixture-safe receipts before opening the exchange boundary."
+      ],
+      "source_evidence_ids": [
+        "E_RELEASE"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "TRANSFER_OUT",
+      "title": "Retrieve retained carrier",
+      "kind": "robot_transport",
+      "robot_actions": [
+        "Verify source clearance, retain carrier and move to the inspection dock without touching active surfaces."
+      ],
+      "source_evidence_ids": [],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "INSPECT",
+      "title": "Inspect for damage and contamination",
+      "kind": "qualified_inspection",
+      "robot_actions": [
+        "Read fresh post-use inspection; quarantine damaged or ambiguous specimens and invalidate reuse."
+      ],
+      "source_evidence_ids": [],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive raw records and lineage",
+      "kind": "reader",
+      "robot_actions": [
+        "Bind raw immutable record hashes, schedules, calibration IDs and all failures to the episode; keep derived records separate."
+      ],
+      "source_evidence_ids": [
+        "E_DATA"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "CLEAN_STORE",
+      "title": "Close cleanup and storage custody",
+      "kind": "closed_cleanup",
+      "robot_actions": [
+        "Request a qualified non-damaging cleanup/storage handoff; verify instrument safe state, carrier location and final custody."
+      ],
+      "source_evidence_ids": [],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "FAB_LOAD",
+      "title": "Deliver to qualified fabrication boundary",
+      "kind": "closed_fabrication",
+      "robot_actions": [
+        "Transfer a retained carrier to a qualified service; no fabrication program is exposed."
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "FAB_READOUT",
+      "title": "Read qualified fabrication outcome",
+      "kind": "closed_fabrication",
+      "robot_actions": [
+        "Read specimen identity, actual geometry, material/process history and acceptance record; missing cards leave fabrication gated."
+      ],
+      "source_evidence_ids": [
+        "E_FAB"
+      ],
+      "source_vs_authored": "Scientific role follows cited evidence where present; robot custody, fixtures, action interface and safety receipts are authored bridges.",
+      "control_thresholds": null,
+      "preconditions": [
+        "route_specific_qualified_cards",
+        "current_identity_and_custody",
+        "no_unresolved_damage",
+        "valid_station_state"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "station_id",
+        "setup_version",
+        "mount_version",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "observation_authority",
+        "safe_state"
+      ],
+      "failure_recovery": "Stop dependent actions, retain or isolate carrier, preserve failure evidence; resume only after fresh qualified safe-state and new attempt. Do not erase failed data.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "FINAL_SESSION_TEARDOWN",
+      "title": "Close retained-probe session",
+      "phases": [
+        "FINAL_SAFE_RELEASE",
+        "FINAL_PROBE_RETRIEVE",
+        "FINAL_PROBE_INSPECT",
+        "FINAL_CAL_INVALIDATE",
+        "FINAL_SESSION_ARCHIVE",
+        "FINAL_SESSION_CLEAN_STORE"
+      ],
+      "robot_actions": [
+        "After the final selected branch at this setup, read safe parked/released state",
+        "Retrieve the separately identified retained probe carrier",
+        "Inspect and quarantine if needed",
+        "Invalidate the active calibration before ending the session",
+        "Archive final probe custody and qualified cleanup/storage receipts"
+      ],
+      "source_vs_authored": "Authored custody and calibration-lifecycle bridge",
+      "physical_execution_implemented": false,
+      "kind": "session_teardown",
+      "source_evidence_ids": [],
+      "control_thresholds": null,
+      "preconditions": [
+        "all selected branches at this instrument have closed",
+        "current measured release"
+      ],
+      "required_receipt_fields": [
+        "probe_id",
+        "probe_mount_version",
+        "probe_carrier_id",
+        "calibration_id",
+        "calibration_invalidated",
+        "final_custody"
+      ],
+      "failure_recovery": "Retain or isolate carrier, preserve records and require qualified safe-state resolution.",
+      "execution_mode": "static_design_only"
+    }
+  ],
+  "operation_scope_rule": "TRANSFER_OUT, INSPECT and CLEAN_STORE in branch tails apply to the exchanged target/reference/coupon. They do not unmount the retained calibrated array or lever."
+}

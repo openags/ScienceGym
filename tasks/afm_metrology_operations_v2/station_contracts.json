@@ -1,0 +1,56 @@
+{
+  "schema_version": "afm_metrology_task.v1",
+  "doi": "10.1038/s41467-020-20612-3",
+  "stations": [
+    {
+      "id": "parallel",
+      "source_configuration": "TERA-Fab E-series + Grasshopper GS3-US-32S4C-C + 10x Mitutoyo NA 0.28",
+      "roles": [
+        "array tilt/z",
+        "sample x/y",
+        "force feedback",
+        "optical acquisition"
+      ],
+      "not_a_robot_api": true
+    },
+    {
+      "id": "coupon",
+      "source_configuration": "MFP-3D Bio conventional AFM + Nikon Eclipse Ti + Grasshopper GS3-US-32S4C-C + 10x Olympus",
+      "roles": [
+        "lever calibration",
+        "cylinder localization",
+        "normal force-distance",
+        "synchronized optical observation"
+      ],
+      "source_bio_is_instrument_model_only": true,
+      "not_a_robot_api": true
+    },
+    {
+      "id": "fabrication",
+      "source_configuration": "PDMS coating/cure, Photonic Professional GT direct laser writing, EvoVac reflective deposition",
+      "roles": [
+        "qualified closed fabrication only"
+      ],
+      "control_recipe_complete": false
+    },
+    {
+      "id": "inspection_storage",
+      "source_configuration": null,
+      "roles": [
+        "authored post-use inspection",
+        "qualified cleanup",
+        "retained-carrier storage"
+      ],
+      "authored": true
+    }
+  ],
+  "calibration_invalidation": [
+    "Changing array",
+    "Changing optics or optical registration",
+    "Changing array mount relative to optics",
+    "Invalid or stale force-sensor calibration",
+    "Damage or contamination affecting measurement",
+    "Expired or mismatched calibration card"
+  ],
+  "session_lifecycle": "Calibration branches return the reference target only. The calibrated array/lever stays installed while dependent branches execute. Each setup closes after its final selected branch with safe probe retrieval, inspection, calibration invalidation and cleanup."
+}
