@@ -1,0 +1,125 @@
+{
+  "schema_version": "independent_design_review.v1",
+  "utc": "2026-10-04T02:38:43.762596+00:00",
+  "paper_doi": "10.1038/s41561-026-02104-z",
+  "decision": "approved_as_source_grounded_static_task_design",
+  "approval_scope": [
+    "Original source-linked design across 38 branches, 254 operations and 13 source route families",
+    "Ten unresolved source conflicts preserved with gates",
+    "Closed qualified-service boundaries and synthetic custody/lineage contracts",
+    "Offline malformed-input and negative regression behavior on reviewed bytes"
+  ],
+  "not_approved": [
+    "Physical robot execution or simulator dynamics",
+    "Scientific or numerical reproduction",
+    "Resolution of any source conflict",
+    "Source-media completeness or main figure pixels",
+    "Production authentication, real service qualification, or public publication"
+  ],
+  "counts": {
+    "branches": 38,
+    "operations": 254,
+    "source_route_families": 13,
+    "source_conflicts": 10,
+    "independent_static_tests": 12,
+    "independent_contract_tests": 83,
+    "author_tests_rerun": 119
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "finding": "Exact MA-family to in-situ-run ancestry was originally hard-coded without source support.",
+      "resolution": "Added SYNTH_ALLOC, unresolved U_PARENTMAP, and allocation-only inventory dependencies. Physical parentage still requires independent evidence.",
+      "status": "verified_fixed"
+    },
+    {
+      "id": "R2",
+      "finding": "SI phase-composition comparisons S07 were initially classified as bibliography only.",
+      "resolution": "Mapped this-study observations and external comparisons to EPMA, MODES and COMPARE.",
+      "status": "verified_fixed"
+    },
+    {
+      "id": "R3",
+      "finding": "Oxygen-fugacity source unit M02 initially mapped only to starting-glass QC.",
+      "resolution": "Extended mapping to in-situ and ex-situ runs, recovered-product SEM and interpretation with qualitative redox limitations.",
+      "status": "verified_fixed"
+    },
+    {
+      "id": "R4",
+      "finding": "Nine boolean/integer substitutions passed initial validator equality, including qualification, replicate count, lineage and rehashed-record fields.",
+      "resolution": "Canonical typed comparison plus strict entry validation; independent regressions now reject the original cases and additional float/nested-policy variants.",
+      "status": "verified_fixed"
+    },
+    {
+      "id": "R5",
+      "finding": "Nested tuples were accepted as JSON lists by canonical serialization.",
+      "resolution": "Recursive strict JSON-type validation rejects tuples, sets, non-string keys and other unsupported containers. Three independent tuple regressions pass.",
+      "status": "verified_fixed"
+    }
+  ],
+  "source_review_basis": "Final original source audit, retained main Methods and SI/table evidence already acquired; no new source acquisition. Critical source predicates and all conflict strings/locators/gates independently compared. This is not a second complete reading of every source asset.",
+  "residual_limitations": [
+    "All ten source conflicts remain unresolved and block affected real bindings.",
+    "Source historical sample-parent associations remain unknown; synthetic dependency order does not establish them.",
+    "Validator accepts only explicit fixed synthetic bookkeeping instances and rejects real execution; no production signatures or fresh experimental evidence are validated.",
+    "Main and Extended Data figure pixels remain unverified and logged access holds remain in force.",
+    "No scientific software, instrument, press, heater, gas, laser or X-ray system was operated."
+  ],
+  "receipts": [
+    "independent_source_receipt.json",
+    "independent_contract_receipt.json",
+    "author_suite_receipt.json",
+    "static_package_receipt.json"
+  ],
+  "export_integrity_scope": "Final exact-byte allowlist verification is a separate freeze check after this report is written; it does not alter the static-design approval scope. No external writes are authorized by this report.",
+  "reviewed_files": [
+    {
+      "path": "branches.json",
+      "sha256": "cadfdabc6200454f4526bad4476b7d221d653b95edcddd895f6feadb30af3a77"
+    },
+    {
+      "path": "coverage_matrix.json",
+      "sha256": "3f71a2152a8b371ca1284eb863677219277f06ba741d852bcd3933697e0d857a"
+    },
+    {
+      "path": "source_conflicts.json",
+      "sha256": "0419648be55f3f7641f30a81a840b585f59cb425deae039336e8ebf6bb43e580"
+    },
+    {
+      "path": "lineage_contract.json",
+      "sha256": "e38931673eb04c9b55f04ade04d431850df495b4e52d6ae4942ef9edfbbae00c"
+    },
+    {
+      "path": "episode_input_contract.json",
+      "sha256": "4368b65751afe385d820351af3a62d6d0a6064cc8af3a60fee7e476d7a408248"
+    },
+    {
+      "path": "RELEASE_BOUNDARY.json",
+      "sha256": "e6976797780ac4d4d6aa022bbe09fddfda1a57c88c4575ee49e20d6276b99a2a"
+    },
+    {
+      "path": "tests/contract.py",
+      "sha256": "deb6971d4ce187fdf41b977d7d549c30db836a9398776e1cd054348f7246ca95"
+    },
+    {
+      "path": "tests/verify_package.py",
+      "sha256": "662b445c0da568ca20e18519987729c5ad33be6c7766ee4ba5b33f05c95eee18"
+    },
+    {
+      "path": "tests/verify_export.py",
+      "sha256": "1e7a7c14f983936436f6ec5862ba4305a23f4e9e8111a6bfd20c770ba65069b0"
+    },
+    {
+      "path": "review/test_independent_source.py",
+      "sha256": "4fd7fb9ce13daf3687364aa7954674f10a2feaca9df9b12a7f100e5f97ece625"
+    },
+    {
+      "path": "review/test_independent_contract.py",
+      "sha256": "959b9ec6bdc1292f9316d349b47f0ac621de8f973f5c401edf3a248238b8c4c7"
+    },
+    {
+      "path": "review/source_expectations.json",
+      "sha256": "9a135dc0aae5a0b08f9824e4305cacb3d6cf323e15fd1acdd53bda255cd2aa8f"
+    }
+  ]
+}

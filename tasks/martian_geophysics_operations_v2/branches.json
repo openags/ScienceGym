@@ -1,0 +1,2446 @@
+{
+  "schema_version": "martian_geophysics_task.v1",
+  "doi": "10.1038/s41561-026-02104-z",
+  "branch_count": 38,
+  "family_count": 13,
+  "families": [
+    {
+      "id": "R01",
+      "title": "Prepare mineral precursor and glass"
+    },
+    {
+      "id": "R02",
+      "title": "Pre-synthesize solid mantle assemblages"
+    },
+    {
+      "id": "R03",
+      "title": "Mount and calibrate in situ multi-anvil stack"
+    },
+    {
+      "id": "R04",
+      "title": "Condition sample and acquire subsolidus baseline"
+    },
+    {
+      "id": "R05",
+      "title": "Heat and record coupled measurements"
+    },
+    {
+      "id": "R06",
+      "title": "Read X-ray phase and sample length channels"
+    },
+    {
+      "id": "R07",
+      "title": "Read acoustic channels and handle signal failure"
+    },
+    {
+      "id": "R08",
+      "title": "Bracket onset and quench run"
+    },
+    {
+      "id": "R09",
+      "title": "Cross-check 18-GPa onset ex situ"
+    },
+    {
+      "id": "R10",
+      "title": "Extend melt fraction with graphite capsules"
+    },
+    {
+      "id": "R11",
+      "title": "Recover, section, mount and image products"
+    },
+    {
+      "id": "R12",
+      "title": "Measure phase compositions and modes"
+    },
+    {
+      "id": "R13",
+      "title": "Compare observed and model-derived outputs"
+    }
+  ],
+  "branches": [
+    {
+      "id": "INTAKE",
+      "title": "Register mineral precursor custody",
+      "family_id": "R01",
+      "source_route_ids": [
+        "R01"
+      ],
+      "required_branch_ids": [],
+      "station_id": "WS_PREP",
+      "classification": "physical_handling",
+      "input_kind": "sealed_identified_reagent_lots",
+      "output_kind": "batch_manifest",
+      "source_evidence_ids": [
+        "M01",
+        "T01"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MATERIAL"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "",
+      "operation_ids": [
+        "INTAKE_PREPARE",
+        "INTAKE_IDENTIFY",
+        "INTAKE_VERIFY_HANDOFF",
+        "INTAKE_REQUEST_CLOSED_SERVICE",
+        "INTAKE_READ_RECEIPT",
+        "INTAKE_RETRIEVE_SAFE",
+        "INTAKE_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "PRECURSOR",
+      "title": "Request qualified precursor preparation",
+      "family_id": "R01",
+      "source_route_ids": [
+        "R01"
+      ],
+      "required_branch_ids": [
+        "INTAKE"
+      ],
+      "station_id": "WS_PREP",
+      "classification": "qualified_service",
+      "input_kind": "batch_manifest",
+      "output_kind": "released_precursor",
+      "source_evidence_ids": [
+        "M01",
+        "T01"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MATERIAL",
+        "U_CHEM"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Facility owns all powder, solvent, gas and thermal processing. No masses, gas ratios or furnace program are inferred.",
+      "operation_ids": [
+        "PRECURSOR_PREPARE",
+        "PRECURSOR_IDENTIFY",
+        "PRECURSOR_VERIFY_HANDOFF",
+        "PRECURSOR_REQUEST_CLOSED_SERVICE",
+        "PRECURSOR_READ_RECEIPT",
+        "PRECURSOR_RETRIEVE_SAFE",
+        "PRECURSOR_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "GLASS",
+      "title": "Receive qualified glass production",
+      "family_id": "R01",
+      "source_route_ids": [
+        "R01"
+      ],
+      "required_branch_ids": [
+        "PRECURSOR"
+      ],
+      "station_id": "WS_GLASS",
+      "classification": "qualified_service",
+      "input_kind": "released_precursor",
+      "output_kind": "glass_lot",
+      "source_evidence_ids": [
+        "M01",
+        "T01"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_GLASS"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Laser levitation and atmosphere control are inaccessible service internals.",
+      "operation_ids": [
+        "GLASS_PREPARE",
+        "GLASS_IDENTIFY",
+        "GLASS_VERIFY_HANDOFF",
+        "GLASS_REQUEST_CLOSED_SERVICE",
+        "GLASS_READ_RECEIPT",
+        "GLASS_RETRIEVE_SAFE",
+        "GLASS_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "GLASS_QC",
+      "title": "Link composition and dryness evidence",
+      "family_id": "R01",
+      "source_route_ids": [
+        "R01"
+      ],
+      "required_branch_ids": [
+        "GLASS"
+      ],
+      "station_id": "WS_CHEM",
+      "classification": "qualified_measurement",
+      "input_kind": "glass_lot",
+      "output_kind": "qualified_glass",
+      "source_evidence_ids": [
+        "M01",
+        "M02",
+        "T01"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_CHEM",
+        "U_FTIR"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Nominally dry means no reported OH bands at an unspecified detection limit, not zero water.",
+      "operation_ids": [
+        "GLASS_QC_PREPARE",
+        "GLASS_QC_IDENTIFY",
+        "GLASS_QC_VERIFY_HANDOFF",
+        "GLASS_QC_REQUEST_CLOSED_SERVICE",
+        "GLASS_QC_READ_RECEIPT",
+        "GLASS_QC_RETRIEVE_SAFE",
+        "GLASS_QC_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "PELLET",
+      "title": "Receive identified finished pellets",
+      "family_id": "R01",
+      "source_route_ids": [
+        "R01"
+      ],
+      "required_branch_ids": [
+        "GLASS_QC"
+      ],
+      "station_id": "WS_PREP",
+      "classification": "qualified_service",
+      "input_kind": "qualified_glass",
+      "output_kind": "pellet_lot",
+      "source_evidence_ids": [
+        "M01"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_FINISH"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "",
+      "operation_ids": [
+        "PELLET_PREPARE",
+        "PELLET_IDENTIFY",
+        "PELLET_VERIFY_HANDOFF",
+        "PELLET_REQUEST_CLOSED_SERVICE",
+        "PELLET_READ_RECEIPT",
+        "PELLET_RETRIEVE_SAFE",
+        "PELLET_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "MA5",
+      "title": "Receive MA-5 precursor assemblage",
+      "family_id": "R02",
+      "source_route_ids": [
+        "R02"
+      ],
+      "required_branch_ids": [
+        "PELLET"
+      ],
+      "station_id": "WS_SYNTH",
+      "classification": "qualified_service",
+      "input_kind": "pellet_lot",
+      "output_kind": "polished_assemblage",
+      "source_evidence_ids": [
+        "M01",
+        "S09",
+        "T04",
+        "T05"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_SYNTH",
+        "U_FINISH"
+      ],
+      "conflict_ids": [
+        "C04"
+      ],
+      "cohort_ids": [
+        "MA-5"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Closed facility synthesis and double-side finishing; source phase identity is checked against independent characterization, never asserted by name.",
+      "operation_ids": [
+        "MA5_PREPARE",
+        "MA5_IDENTIFY",
+        "MA5_VERIFY_HANDOFF",
+        "MA5_REQUEST_CLOSED_SERVICE",
+        "MA5_READ_RECEIPT",
+        "MA5_RETRIEVE_SAFE",
+        "MA5_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "MA14",
+      "title": "Receive MA-14 precursor assemblage",
+      "family_id": "R02",
+      "source_route_ids": [
+        "R02"
+      ],
+      "required_branch_ids": [
+        "PELLET"
+      ],
+      "station_id": "WS_SYNTH",
+      "classification": "qualified_service",
+      "input_kind": "pellet_lot",
+      "output_kind": "polished_assemblage",
+      "source_evidence_ids": [
+        "M01",
+        "S09",
+        "T04",
+        "T05"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_SYNTH",
+        "U_FINISH"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [
+        "MA-14"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Closed facility synthesis and double-side finishing; source phase identity is checked against independent characterization, never asserted by name.",
+      "operation_ids": [
+        "MA14_PREPARE",
+        "MA14_IDENTIFY",
+        "MA14_VERIFY_HANDOFF",
+        "MA14_REQUEST_CLOSED_SERVICE",
+        "MA14_READ_RECEIPT",
+        "MA14_RETRIEVE_SAFE",
+        "MA14_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "MA17",
+      "title": "Receive MA-17 precursor assemblage",
+      "family_id": "R02",
+      "source_route_ids": [
+        "R02"
+      ],
+      "required_branch_ids": [
+        "PELLET"
+      ],
+      "station_id": "WS_SYNTH",
+      "classification": "qualified_service",
+      "input_kind": "pellet_lot",
+      "output_kind": "polished_assemblage",
+      "source_evidence_ids": [
+        "M01",
+        "S09",
+        "T04",
+        "T05"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_SYNTH",
+        "U_FINISH"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [
+        "MA-17"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Closed facility synthesis and double-side finishing; source phase identity is checked against independent characterization, never asserted by name.",
+      "operation_ids": [
+        "MA17_PREPARE",
+        "MA17_IDENTIFY",
+        "MA17_VERIFY_HANDOFF",
+        "MA17_REQUEST_CLOSED_SERVICE",
+        "MA17_READ_RECEIPT",
+        "MA17_RETRIEVE_SAFE",
+        "MA17_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "SYNTH_ALLOC",
+      "title": "Register qualified pre-synthesis assignment",
+      "family_id": "R02",
+      "source_route_ids": [
+        "R02"
+      ],
+      "required_branch_ids": [
+        "MA5",
+        "MA14",
+        "MA17"
+      ],
+      "station_id": "WS_ASSEMBLY",
+      "classification": "qualified_service",
+      "input_kind": "pre_synthesis_inventory",
+      "output_kind": "qualified_run_allocation",
+      "source_evidence_ids": [
+        "M01",
+        "T04",
+        "T05"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_PARENTMAP"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Exact MA-family-to-run parent associations are not established by this source. The three families are inventory dependencies, not proof of actual specimen parentage. A qualified allocation card must bind each run to its true parent.",
+      "operation_ids": [
+        "SYNTH_ALLOC_PREPARE",
+        "SYNTH_ALLOC_IDENTIFY",
+        "SYNTH_ALLOC_VERIFY_HANDOFF",
+        "SYNTH_ALLOC_REQUEST_CLOSED_SERVICE",
+        "SYNTH_ALLOC_READ_RECEIPT",
+        "SYNTH_ALLOC_RETRIEVE_SAFE",
+        "SYNTH_ALLOC_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "STACK_S3630",
+      "title": "Verify S3630 assembly custody",
+      "family_id": "R03",
+      "source_route_ids": [
+        "R03"
+      ],
+      "required_branch_ids": [
+        "SYNTH_ALLOC"
+      ],
+      "station_id": "WS_ASSEMBLY",
+      "classification": "qualified_service",
+      "input_kind": "polished_assemblage",
+      "output_kind": "instrumented_stack",
+      "source_evidence_ids": [
+        "M03",
+        "M09",
+        "S03",
+        "S10"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_PARENTMAP"
+      ],
+      "conflict_ids": [
+        "C03"
+      ],
+      "cohort_ids": [
+        "S3630"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Source assembly class 14/8 is metadata only. Resolve foil ambiguity and approve geometry before physical binding; no CAD dimensions or unsafe assembly recipe is supplied.",
+      "operation_ids": [
+        "STACK_S3630_PREPARE",
+        "STACK_S3630_IDENTIFY",
+        "STACK_S3630_VERIFY_HANDOFF",
+        "STACK_S3630_REQUEST_CLOSED_SERVICE",
+        "STACK_S3630_READ_RECEIPT",
+        "STACK_S3630_RETRIEVE_SAFE",
+        "STACK_S3630_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "RUN_S3630",
+      "title": "Receive S3630 coupled run records",
+      "family_id": "R04",
+      "source_route_ids": [
+        "R04",
+        "R05"
+      ],
+      "required_branch_ids": [
+        "STACK_S3630"
+      ],
+      "station_id": "WS_BEAMLINE",
+      "classification": "qualified_service",
+      "input_kind": "instrumented_stack",
+      "output_kind": "synchronized_run_bundle",
+      "source_evidence_ids": [
+        "M03",
+        "M04",
+        "T02",
+        "T03",
+        "T04",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_BEAMLINE",
+        "U_THERMAL",
+        "U_CAL"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C05"
+      ],
+      "cohort_ids": [
+        "S3630"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Facility owns baseline conditioning, pressure-temperature program and quench. No setpoints or actuation instructions cross the task interface. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "RUN_S3630_PREPARE",
+        "RUN_S3630_IDENTIFY",
+        "RUN_S3630_VERIFY_HANDOFF",
+        "RUN_S3630_REQUEST_CLOSED_SERVICE",
+        "RUN_S3630_READ_RECEIPT",
+        "RUN_S3630_RETRIEVE_SAFE",
+        "RUN_S3630_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "STACK_S3565",
+      "title": "Verify S3565 assembly custody",
+      "family_id": "R03",
+      "source_route_ids": [
+        "R03"
+      ],
+      "required_branch_ids": [
+        "SYNTH_ALLOC"
+      ],
+      "station_id": "WS_ASSEMBLY",
+      "classification": "qualified_service",
+      "input_kind": "polished_assemblage",
+      "output_kind": "instrumented_stack",
+      "source_evidence_ids": [
+        "M03",
+        "M09",
+        "S03",
+        "S10"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_PARENTMAP"
+      ],
+      "conflict_ids": [
+        "C03"
+      ],
+      "cohort_ids": [
+        "S3565"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Source assembly class 14/8 is metadata only. Resolve foil ambiguity and approve geometry before physical binding; no CAD dimensions or unsafe assembly recipe is supplied.",
+      "operation_ids": [
+        "STACK_S3565_PREPARE",
+        "STACK_S3565_IDENTIFY",
+        "STACK_S3565_VERIFY_HANDOFF",
+        "STACK_S3565_REQUEST_CLOSED_SERVICE",
+        "STACK_S3565_READ_RECEIPT",
+        "STACK_S3565_RETRIEVE_SAFE",
+        "STACK_S3565_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "RUN_S3565",
+      "title": "Receive S3565 coupled run records",
+      "family_id": "R04",
+      "source_route_ids": [
+        "R04",
+        "R05"
+      ],
+      "required_branch_ids": [
+        "STACK_S3565"
+      ],
+      "station_id": "WS_BEAMLINE",
+      "classification": "qualified_service",
+      "input_kind": "instrumented_stack",
+      "output_kind": "synchronized_run_bundle",
+      "source_evidence_ids": [
+        "M03",
+        "M04",
+        "T02",
+        "T03",
+        "T04",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_BEAMLINE",
+        "U_THERMAL",
+        "U_CAL"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C05"
+      ],
+      "cohort_ids": [
+        "S3565"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Facility owns baseline conditioning, pressure-temperature program and quench. No setpoints or actuation instructions cross the task interface. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "RUN_S3565_PREPARE",
+        "RUN_S3565_IDENTIFY",
+        "RUN_S3565_VERIFY_HANDOFF",
+        "RUN_S3565_REQUEST_CLOSED_SERVICE",
+        "RUN_S3565_READ_RECEIPT",
+        "RUN_S3565_RETRIEVE_SAFE",
+        "RUN_S3565_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "STACK_S3632",
+      "title": "Verify S3632 assembly custody",
+      "family_id": "R03",
+      "source_route_ids": [
+        "R03"
+      ],
+      "required_branch_ids": [
+        "SYNTH_ALLOC"
+      ],
+      "station_id": "WS_ASSEMBLY",
+      "classification": "qualified_service",
+      "input_kind": "polished_assemblage",
+      "output_kind": "instrumented_stack",
+      "source_evidence_ids": [
+        "M03",
+        "M09",
+        "S03",
+        "S10"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_PARENTMAP"
+      ],
+      "conflict_ids": [
+        "C03"
+      ],
+      "cohort_ids": [
+        "S3632"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Source assembly class 10/5 is metadata only. Resolve foil ambiguity and approve geometry before physical binding; no CAD dimensions or unsafe assembly recipe is supplied.",
+      "operation_ids": [
+        "STACK_S3632_PREPARE",
+        "STACK_S3632_IDENTIFY",
+        "STACK_S3632_VERIFY_HANDOFF",
+        "STACK_S3632_REQUEST_CLOSED_SERVICE",
+        "STACK_S3632_READ_RECEIPT",
+        "STACK_S3632_RETRIEVE_SAFE",
+        "STACK_S3632_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "RUN_S3632",
+      "title": "Receive S3632 coupled run records",
+      "family_id": "R04",
+      "source_route_ids": [
+        "R04",
+        "R05"
+      ],
+      "required_branch_ids": [
+        "STACK_S3632"
+      ],
+      "station_id": "WS_BEAMLINE",
+      "classification": "qualified_service",
+      "input_kind": "instrumented_stack",
+      "output_kind": "synchronized_run_bundle",
+      "source_evidence_ids": [
+        "M03",
+        "M04",
+        "T02",
+        "T03",
+        "T04",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_BEAMLINE",
+        "U_THERMAL",
+        "U_CAL"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C05"
+      ],
+      "cohort_ids": [
+        "S3632"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Facility owns baseline conditioning, pressure-temperature program and quench. No setpoints or actuation instructions cross the task interface. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "RUN_S3632_PREPARE",
+        "RUN_S3632_IDENTIFY",
+        "RUN_S3632_VERIFY_HANDOFF",
+        "RUN_S3632_REQUEST_CLOSED_SERVICE",
+        "RUN_S3632_READ_RECEIPT",
+        "RUN_S3632_RETRIEVE_SAFE",
+        "RUN_S3632_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "STACK_S3631",
+      "title": "Verify S3631 assembly custody",
+      "family_id": "R03",
+      "source_route_ids": [
+        "R03"
+      ],
+      "required_branch_ids": [
+        "SYNTH_ALLOC"
+      ],
+      "station_id": "WS_ASSEMBLY",
+      "classification": "qualified_service",
+      "input_kind": "polished_assemblage",
+      "output_kind": "instrumented_stack",
+      "source_evidence_ids": [
+        "M03",
+        "M09",
+        "S03",
+        "S10"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_ASSEMBLY",
+        "U_CAL",
+        "U_PARENTMAP"
+      ],
+      "conflict_ids": [
+        "C03"
+      ],
+      "cohort_ids": [
+        "S3631"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Source assembly class 10/5 is metadata only. Resolve foil ambiguity and approve geometry before physical binding; no CAD dimensions or unsafe assembly recipe is supplied.",
+      "operation_ids": [
+        "STACK_S3631_PREPARE",
+        "STACK_S3631_IDENTIFY",
+        "STACK_S3631_VERIFY_HANDOFF",
+        "STACK_S3631_REQUEST_CLOSED_SERVICE",
+        "STACK_S3631_READ_RECEIPT",
+        "STACK_S3631_RETRIEVE_SAFE",
+        "STACK_S3631_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "RUN_S3631",
+      "title": "Receive S3631 coupled run records",
+      "family_id": "R04",
+      "source_route_ids": [
+        "R04",
+        "R05"
+      ],
+      "required_branch_ids": [
+        "STACK_S3631"
+      ],
+      "station_id": "WS_BEAMLINE",
+      "classification": "qualified_service",
+      "input_kind": "instrumented_stack",
+      "output_kind": "synchronized_run_bundle",
+      "source_evidence_ids": [
+        "M03",
+        "M04",
+        "T02",
+        "T03",
+        "T04",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_BEAMLINE",
+        "U_THERMAL",
+        "U_CAL"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C05"
+      ],
+      "cohort_ids": [
+        "S3631"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Facility owns baseline conditioning, pressure-temperature program and quench. No setpoints or actuation instructions cross the task interface. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "RUN_S3631_PREPARE",
+        "RUN_S3631_IDENTIFY",
+        "RUN_S3631_VERIFY_HANDOFF",
+        "RUN_S3631_REQUEST_CLOSED_SERVICE",
+        "RUN_S3631_READ_RECEIPT",
+        "RUN_S3631_RETRIEVE_SAFE",
+        "RUN_S3631_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "XRAY",
+      "title": "Validate phase and length records",
+      "family_id": "R06",
+      "source_route_ids": [
+        "R06"
+      ],
+      "required_branch_ids": [
+        "RUN_S3630",
+        "RUN_S3565",
+        "RUN_S3632",
+        "RUN_S3631"
+      ],
+      "station_id": "WS_DATA",
+      "classification": "measurement_analysis",
+      "input_kind": "synchronized_run_bundle",
+      "output_kind": "phase_length_records",
+      "source_evidence_ids": [
+        "M03",
+        "S03",
+        "S05",
+        "T03"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_XRAY",
+        "U_SYNC"
+      ],
+      "conflict_ids": [
+        "C03",
+        "C05"
+      ],
+      "cohort_ids": [
+        "S3630",
+        "S3565",
+        "S3632",
+        "S3631"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Preserve possible-melt labels, detector calibration and radiographic boundary picks with timestamps and channel provenance.",
+      "operation_ids": [
+        "XRAY_SELECT_INPUTS",
+        "XRAY_VERIFY_LINEAGE",
+        "XRAY_REGISTER_METHOD",
+        "XRAY_REVIEW_RECORDS",
+        "XRAY_RETAIN_UNCERTAINTY",
+        "XRAY_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "ACOUSTIC",
+      "title": "Validate acoustic observations",
+      "family_id": "R07",
+      "source_route_ids": [
+        "R07"
+      ],
+      "required_branch_ids": [
+        "RUN_S3630",
+        "RUN_S3565",
+        "RUN_S3632",
+        "RUN_S3631"
+      ],
+      "station_id": "WS_DATA",
+      "classification": "measurement_analysis",
+      "input_kind": "synchronized_run_bundle",
+      "output_kind": "echo_quality_records",
+      "source_evidence_ids": [
+        "M00",
+        "M03",
+        "S03",
+        "S04",
+        "T02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_ECHO",
+        "U_SYNC"
+      ],
+      "conflict_ids": [
+        "C05",
+        "C10"
+      ],
+      "cohort_ids": [
+        "S3630",
+        "S3565",
+        "S3632",
+        "S3631"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "S3630/S3565 use a recorded degraded-signal path. Missing shear arrivals stay unavailable, never zero; buffer reverberation cannot be relabelled sample shear.",
+      "operation_ids": [
+        "ACOUSTIC_SELECT_INPUTS",
+        "ACOUSTIC_VERIFY_LINEAGE",
+        "ACOUSTIC_REGISTER_METHOD",
+        "ACOUSTIC_REVIEW_RECORDS",
+        "ACOUSTIC_RETAIN_UNCERTAINTY",
+        "ACOUSTIC_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "ONSET",
+      "title": "Archive evidence-based onset brackets",
+      "family_id": "R08",
+      "source_route_ids": [
+        "R08"
+      ],
+      "required_branch_ids": [
+        "XRAY",
+        "ACOUSTIC"
+      ],
+      "station_id": "WS_DATA",
+      "classification": "measurement_analysis",
+      "input_kind": "phase_length_records_and_echo_quality",
+      "output_kind": "onset_review",
+      "source_evidence_ids": [
+        "M00",
+        "M03",
+        "S05",
+        "T03",
+        "T04"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_ONSET",
+        "U_THERMAL"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C05"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "No source solidus is a pass threshold. Keep ambiguous observations and independent channels; the service alone decides physical quench.",
+      "operation_ids": [
+        "ONSET_SELECT_INPUTS",
+        "ONSET_VERIFY_LINEAGE",
+        "ONSET_REGISTER_METHOD",
+        "ONSET_REVIEW_RECORDS",
+        "ONSET_RETAIN_UNCERTAINTY",
+        "ONSET_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "MO_EXSITU",
+      "title": "Receive molybdenum-capsule cross-check",
+      "family_id": "R09",
+      "source_route_ids": [
+        "R09"
+      ],
+      "required_branch_ids": [
+        "PELLET"
+      ],
+      "station_id": "WS_EXSITU",
+      "classification": "qualified_service",
+      "input_kind": "pellet_lot",
+      "output_kind": "released_Mo_products",
+      "source_evidence_ids": [
+        "M05",
+        "M09",
+        "T04",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_EXSITU",
+        "U_THERMOMETER",
+        "U_RECOVERY"
+      ],
+      "conflict_ids": [
+        "C02"
+      ],
+      "cohort_ids": [
+        "H5897",
+        "H5898"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "H5897/H5898 remain two disputed identities. Temperature and texture records must not be merged or swapped to make a coherent-looking result. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "MO_EXSITU_PREPARE",
+        "MO_EXSITU_IDENTIFY",
+        "MO_EXSITU_VERIFY_HANDOFF",
+        "MO_EXSITU_REQUEST_CLOSED_SERVICE",
+        "MO_EXSITU_READ_RECEIPT",
+        "MO_EXSITU_RETRIEVE_SAFE",
+        "MO_EXSITU_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "GRAPHITE_FEED",
+      "title": "Receive graphite-route powder preparation",
+      "family_id": "R10",
+      "source_route_ids": [
+        "R10"
+      ],
+      "required_branch_ids": [
+        "PRECURSOR"
+      ],
+      "station_id": "WS_PREP",
+      "classification": "qualified_service",
+      "input_kind": "released_precursor",
+      "output_kind": "qualified_graphite_feed",
+      "source_evidence_ids": [
+        "M05",
+        "M09",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_CHEM",
+        "U_GRAPHITE"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "This is a powder route; it does not inherit glass, pellet or pre-synthesis history. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "GRAPHITE_FEED_PREPARE",
+        "GRAPHITE_FEED_IDENTIFY",
+        "GRAPHITE_FEED_VERIFY_HANDOFF",
+        "GRAPHITE_FEED_REQUEST_CLOSED_SERVICE",
+        "GRAPHITE_FEED_READ_RECEIPT",
+        "GRAPHITE_FEED_RETRIEVE_SAFE",
+        "GRAPHITE_FEED_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "EXSITU_S8293",
+      "title": "Receive S8293 ex situ product",
+      "family_id": "R10",
+      "source_route_ids": [
+        "R10"
+      ],
+      "required_branch_ids": [
+        "GRAPHITE_FEED"
+      ],
+      "station_id": "WS_EXSITU",
+      "classification": "qualified_service",
+      "input_kind": "qualified_graphite_feed",
+      "output_kind": "released_graphite_product",
+      "source_evidence_ids": [
+        "M05",
+        "M09",
+        "T04",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_EXSITU",
+        "U_GRAPHITE",
+        "U_RECOVERY"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [
+        "S8293"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Temperature channel must be associated with this capsule, run and calibration. Graphite-to-diamond transformation is expected in the paper, not directly proven by that expectation. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "EXSITU_S8293_PREPARE",
+        "EXSITU_S8293_IDENTIFY",
+        "EXSITU_S8293_VERIFY_HANDOFF",
+        "EXSITU_S8293_REQUEST_CLOSED_SERVICE",
+        "EXSITU_S8293_READ_RECEIPT",
+        "EXSITU_S8293_RETRIEVE_SAFE",
+        "EXSITU_S8293_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "EXSITU_S8295",
+      "title": "Receive S8295 ex situ product",
+      "family_id": "R10",
+      "source_route_ids": [
+        "R10"
+      ],
+      "required_branch_ids": [
+        "GRAPHITE_FEED"
+      ],
+      "station_id": "WS_EXSITU",
+      "classification": "qualified_service",
+      "input_kind": "qualified_graphite_feed",
+      "output_kind": "released_graphite_product",
+      "source_evidence_ids": [
+        "M05",
+        "M09",
+        "T04",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_EXSITU",
+        "U_GRAPHITE",
+        "U_RECOVERY"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [
+        "S8295"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Temperature channel must be associated with this capsule, run and calibration. Graphite-to-diamond transformation is expected in the paper, not directly proven by that expectation. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "EXSITU_S8295_PREPARE",
+        "EXSITU_S8295_IDENTIFY",
+        "EXSITU_S8295_VERIFY_HANDOFF",
+        "EXSITU_S8295_REQUEST_CLOSED_SERVICE",
+        "EXSITU_S8295_READ_RECEIPT",
+        "EXSITU_S8295_RETRIEVE_SAFE",
+        "EXSITU_S8295_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "EXSITU_H6050",
+      "title": "Receive H6050 ex situ product",
+      "family_id": "R10",
+      "source_route_ids": [
+        "R10"
+      ],
+      "required_branch_ids": [
+        "GRAPHITE_FEED"
+      ],
+      "station_id": "WS_EXSITU",
+      "classification": "qualified_service",
+      "input_kind": "qualified_graphite_feed",
+      "output_kind": "released_graphite_product",
+      "source_evidence_ids": [
+        "M05",
+        "M09",
+        "T04",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_EXSITU",
+        "U_GRAPHITE",
+        "U_RECOVERY",
+        "U_H6050"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [
+        "H6050"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "No thermocouple measurement exists for H6050; a qualified temperature-method record is required and cannot be fabricated. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "EXSITU_H6050_PREPARE",
+        "EXSITU_H6050_IDENTIFY",
+        "EXSITU_H6050_VERIFY_HANDOFF",
+        "EXSITU_H6050_REQUEST_CLOSED_SERVICE",
+        "EXSITU_H6050_READ_RECEIPT",
+        "EXSITU_H6050_RETRIEVE_SAFE",
+        "EXSITU_H6050_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "RECOVER",
+      "title": "Receive safe released run products",
+      "family_id": "R11",
+      "source_route_ids": [
+        "R11"
+      ],
+      "required_branch_ids": [
+        "ONSET",
+        "MO_EXSITU",
+        "EXSITU_S8293",
+        "EXSITU_S8295",
+        "EXSITU_H6050"
+      ],
+      "station_id": "WS_RECOVERY",
+      "classification": "physical_handling",
+      "input_kind": "released_products_and_run_records",
+      "output_kind": "recovered_specimens",
+      "source_evidence_ids": [
+        "M03",
+        "M05",
+        "M06",
+        "S11"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_RECOVERY"
+      ],
+      "conflict_ids": [
+        "C02"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "No manipulation until the qualified service releases cooled, depressurized, isolated carriers. Failed, damaged and unidentified products go to quarantine with records retained.",
+      "operation_ids": [
+        "RECOVER_PREPARE",
+        "RECOVER_IDENTIFY",
+        "RECOVER_VERIFY_HANDOFF",
+        "RECOVER_REQUEST_CLOSED_SERVICE",
+        "RECOVER_READ_RECEIPT",
+        "RECOVER_RETRIEVE_SAFE",
+        "RECOVER_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "SECTION",
+      "title": "Track section and mount ancestry",
+      "family_id": "R11",
+      "source_route_ids": [
+        "R11"
+      ],
+      "required_branch_ids": [
+        "RECOVER"
+      ],
+      "station_id": "WS_SECTION",
+      "classification": "qualified_service",
+      "input_kind": "recovered_specimens",
+      "output_kind": "oriented_sections",
+      "source_evidence_ids": [
+        "M06",
+        "S06",
+        "S09",
+        "S11"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_SECTION",
+        "U_FINISH"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Destructive sectioning creates children with parent specimen and furnace-axis orientation. Polishing voids and quench cracks remain preparation artifacts, not inferred in-run porosity.",
+      "operation_ids": [
+        "SECTION_PREPARE",
+        "SECTION_IDENTIFY",
+        "SECTION_VERIFY_HANDOFF",
+        "SECTION_REQUEST_CLOSED_SERVICE",
+        "SECTION_READ_RECEIPT",
+        "SECTION_RETRIEVE_SAFE",
+        "SECTION_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "SEM",
+      "title": "Receive registered images and element maps",
+      "family_id": "R11",
+      "source_route_ids": [
+        "R11"
+      ],
+      "required_branch_ids": [
+        "SECTION"
+      ],
+      "station_id": "WS_SEM",
+      "classification": "qualified_measurement",
+      "input_kind": "oriented_sections",
+      "output_kind": "registered_micrographs",
+      "source_evidence_ids": [
+        "M06",
+        "S06",
+        "S09",
+        "S11",
+        "M09",
+        "M02"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_SEM",
+        "U_REGION"
+      ],
+      "conflict_ids": [
+        "C02"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Retain S3630 cold and warm regions independently; distinguish central versus buffer-adjacent regions for all specimens. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "SEM_PREPARE",
+        "SEM_IDENTIFY",
+        "SEM_VERIFY_HANDOFF",
+        "SEM_REQUEST_CLOSED_SERVICE",
+        "SEM_READ_RECEIPT",
+        "SEM_RETRIEVE_SAFE",
+        "SEM_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "EPMA",
+      "title": "Receive spot-level phase chemistry",
+      "family_id": "R12",
+      "source_route_ids": [
+        "R12"
+      ],
+      "required_branch_ids": [
+        "SEM"
+      ],
+      "station_id": "WS_CHEM",
+      "classification": "qualified_measurement",
+      "input_kind": "registered_micrographs",
+      "output_kind": "spot_chemistry",
+      "source_evidence_ids": [
+        "M06",
+        "T05",
+        "S07"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_CHEM",
+        "U_REGION"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Spot replicates are not independent high-pressure runs. S3631 melt chemistry is mass-balance-derived and has no direct spot count or reported spot uncertainty.",
+      "operation_ids": [
+        "EPMA_PREPARE",
+        "EPMA_IDENTIFY",
+        "EPMA_VERIFY_HANDOFF",
+        "EPMA_REQUEST_CLOSED_SERVICE",
+        "EPMA_READ_RECEIPT",
+        "EPMA_RETRIEVE_SAFE",
+        "EPMA_ARCHIVE_CLEANUP"
+      ],
+      "phase_order": [
+        "prepare",
+        "identify",
+        "verify_handoff",
+        "request_closed_service",
+        "read_receipt",
+        "retrieve_safe",
+        "archive_cleanup"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_SAFE_RELEASE"
+      ]
+    },
+    {
+      "id": "MODES",
+      "title": "Preserve two modal-estimation methods",
+      "family_id": "R12",
+      "source_route_ids": [
+        "R12"
+      ],
+      "required_branch_ids": [
+        "SEM",
+        "EPMA"
+      ],
+      "station_id": "WS_DATA",
+      "classification": "measurement_analysis",
+      "input_kind": "registered_micrographs_and_spot_chemistry",
+      "output_kind": "phase_mode_records",
+      "source_evidence_ids": [
+        "M06",
+        "T05",
+        "S07"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_SEGMENT",
+        "U_MASS_BALANCE"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Pixel-area modes and mass-balance modes retain distinct method, units, region and uncertainty. No silent averaging or converting qualitative literature categories to measurements.",
+      "operation_ids": [
+        "MODES_SELECT_INPUTS",
+        "MODES_VERIFY_LINEAGE",
+        "MODES_REGISTER_METHOD",
+        "MODES_REVIEW_RECORDS",
+        "MODES_RETAIN_UNCERTAINTY",
+        "MODES_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Seal specimen and measurement lineage",
+      "family_id": "R13",
+      "source_route_ids": [
+        "R13"
+      ],
+      "required_branch_ids": [
+        "MODES",
+        "ONSET"
+      ],
+      "station_id": "WS_ARCHIVE",
+      "classification": "data_curation",
+      "input_kind": "lineage_and_measurement_records",
+      "output_kind": "immutable_archive",
+      "source_evidence_ids": [
+        "M08",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "D01"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE"
+      ],
+      "conflict_ids": [],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Archive identities, raw-record digests, failures, calibration revisions and unresolved conflicts. Completion is evidence integrity, not reproduction of a paper outcome.",
+      "operation_ids": [
+        "ARCHIVE_SELECT_INPUTS",
+        "ARCHIVE_VERIFY_LINEAGE",
+        "ARCHIVE_REGISTER_METHOD",
+        "ARCHIVE_REVIEW_RECORDS",
+        "ARCHIVE_RETAIN_UNCERTAINTY",
+        "ARCHIVE_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "SOLIDUS_FIT",
+      "title": "Review solidus-fit provenance",
+      "family_id": "R13",
+      "source_route_ids": [
+        "R13"
+      ],
+      "required_branch_ids": [
+        "ARCHIVE"
+      ],
+      "station_id": "WS_MODEL",
+      "classification": "numerical_analysis",
+      "input_kind": "onset_review",
+      "output_kind": "fit_manifest",
+      "source_evidence_ids": [
+        "M00",
+        "S02",
+        "T04"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MODEL",
+        "U_LITERATURE"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C02",
+        "C05"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Numerical branch only; external low-pressure anchors need their own provenance and uncertainty. No new fit was run.",
+      "operation_ids": [
+        "SOLIDUS_FIT_SELECT_INPUTS",
+        "SOLIDUS_FIT_VERIFY_LINEAGE",
+        "SOLIDUS_FIT_REGISTER_METHOD",
+        "SOLIDUS_FIT_REVIEW_RECORDS",
+        "SOLIDUS_FIT_RETAIN_UNCERTAINTY",
+        "SOLIDUS_FIT_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "LIQUID_EOS",
+      "title": "Separate liquid-density model variants",
+      "family_id": "R13",
+      "source_route_ids": [
+        "R13"
+      ],
+      "required_branch_ids": [
+        "ARCHIVE"
+      ],
+      "station_id": "WS_MODEL",
+      "classification": "numerical_analysis",
+      "input_kind": "phase_mode_records",
+      "output_kind": "liquid_model_manifest",
+      "source_evidence_ids": [
+        "M07",
+        "T06",
+        "D01"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MODEL"
+      ],
+      "conflict_ids": [
+        "C08",
+        "C09"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Keep Asimow model 1 sensitivity, preferred model 2, Wakabayashi-Funamori and Jing-Karato identities separate. No source script was executed.",
+      "operation_ids": [
+        "LIQUID_EOS_SELECT_INPUTS",
+        "LIQUID_EOS_VERIFY_LINEAGE",
+        "LIQUID_EOS_REGISTER_METHOD",
+        "LIQUID_EOS_REVIEW_RECORDS",
+        "LIQUID_EOS_RETAIN_UNCERTAINTY",
+        "LIQUID_EOS_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "RESIDUE_EOS",
+      "title": "Review residual-solid model inputs",
+      "family_id": "R13",
+      "source_route_ids": [
+        "R13"
+      ],
+      "required_branch_ids": [
+        "ARCHIVE"
+      ],
+      "station_id": "WS_MODEL",
+      "classification": "numerical_analysis",
+      "input_kind": "phase_mode_records",
+      "output_kind": "residue_model_manifest",
+      "source_evidence_ids": [
+        "M07",
+        "S12",
+        "S14",
+        "T05"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MODEL"
+      ],
+      "conflict_ids": [
+        "C06",
+        "C09"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Residual-solid chemistry must link to its actual run. An SI label cannot prove S3631 provenance when the listed compositions match MA-17.",
+      "operation_ids": [
+        "RESIDUE_EOS_SELECT_INPUTS",
+        "RESIDUE_EOS_VERIFY_LINEAGE",
+        "RESIDUE_EOS_REGISTER_METHOD",
+        "RESIDUE_EOS_REVIEW_RECORDS",
+        "RESIDUE_EOS_RETAIN_UNCERTAINTY",
+        "RESIDUE_EOS_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "BULK_EOS",
+      "title": "Review undepleted mantle comparator",
+      "family_id": "R13",
+      "source_route_ids": [
+        "R13"
+      ],
+      "required_branch_ids": [
+        "ARCHIVE"
+      ],
+      "station_id": "WS_MODEL",
+      "classification": "numerical_analysis",
+      "input_kind": "phase_mode_records",
+      "output_kind": "bulk_model_manifest",
+      "source_evidence_ids": [
+        "M00",
+        "M07",
+        "S12",
+        "T05",
+        "T06"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MODEL"
+      ],
+      "conflict_ids": [
+        "C06",
+        "C09"
+      ],
+      "cohort_ids": [
+        "MA-17"
+      ],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Undepleted MA-17 bulk mantle is distinct from coexisting residual solid. Keep thermodynamic and sample identities separate.",
+      "operation_ids": [
+        "BULK_EOS_SELECT_INPUTS",
+        "BULK_EOS_VERIFY_LINEAGE",
+        "BULK_EOS_REGISTER_METHOD",
+        "BULK_EOS_REVIEW_RECORDS",
+        "BULK_EOS_RETAIN_UNCERTAINTY",
+        "BULK_EOS_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "EXCESS_VOLUME",
+      "title": "Register solid-model sensitivity variants",
+      "family_id": "R13",
+      "source_route_ids": [
+        "R13"
+      ],
+      "required_branch_ids": [
+        "RESIDUE_EOS",
+        "BULK_EOS"
+      ],
+      "station_id": "WS_MODEL",
+      "classification": "numerical_analysis",
+      "input_kind": "solid_model_manifests",
+      "output_kind": "sensitivity_manifest",
+      "source_evidence_ids": [
+        "S12",
+        "S13",
+        "S14"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MODEL"
+      ],
+      "conflict_ids": [
+        "C06",
+        "C09"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "The excess-volume perturbation acts at solid-solution mixing before aggregate combination; no physical specimen perturbation occurs.",
+      "operation_ids": [
+        "EXCESS_VOLUME_SELECT_INPUTS",
+        "EXCESS_VOLUME_VERIFY_LINEAGE",
+        "EXCESS_VOLUME_REGISTER_METHOD",
+        "EXCESS_VOLUME_REVIEW_RECORDS",
+        "EXCESS_VOLUME_RETAIN_UNCERTAINTY",
+        "EXCESS_VOLUME_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "BML_VOLUME",
+      "title": "Review basal-layer geometry arithmetic",
+      "family_id": "R13",
+      "source_route_ids": [
+        "R13"
+      ],
+      "required_branch_ids": [
+        "ARCHIVE"
+      ],
+      "station_id": "WS_MODEL",
+      "classification": "numerical_analysis",
+      "input_kind": "geometric_assumption_manifest",
+      "output_kind": "volume_manifest",
+      "source_evidence_ids": [
+        "M00",
+        "S11"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MODEL"
+      ],
+      "conflict_ids": [
+        "C07"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Preserve inconsistent printed mantle-inner-radius formula, prose and reported output. No corrected formula is silently promoted to author intent.",
+      "operation_ids": [
+        "BML_VOLUME_SELECT_INPUTS",
+        "BML_VOLUME_VERIFY_LINEAGE",
+        "BML_VOLUME_REGISTER_METHOD",
+        "BML_VOLUME_REVIEW_RECORDS",
+        "BML_VOLUME_RETAIN_UNCERTAINTY",
+        "BML_VOLUME_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    },
+    {
+      "id": "COMPARE",
+      "title": "Separate observation from geophysical inference",
+      "family_id": "R13",
+      "source_route_ids": [
+        "R13"
+      ],
+      "required_branch_ids": [
+        "SOLIDUS_FIT",
+        "LIQUID_EOS",
+        "EXCESS_VOLUME",
+        "BML_VOLUME"
+      ],
+      "station_id": "WS_MODEL",
+      "classification": "numerical_analysis",
+      "input_kind": "model_and_observation_manifests",
+      "output_kind": "comparison_manifest",
+      "source_evidence_ids": [
+        "M00",
+        "M07",
+        "S04",
+        "S08",
+        "T06",
+        "D01",
+        "M02",
+        "S07"
+      ],
+      "unknown_parameter_ids": [
+        "U_SCENE",
+        "U_IDENTITY",
+        "U_SERVICE",
+        "U_ARCHIVE",
+        "U_MODEL",
+        "U_LITERATURE"
+      ],
+      "conflict_ids": [
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10"
+      ],
+      "cohort_ids": [],
+      "source_independent_replicates": null,
+      "execution_ready": false,
+      "expected_results_actor_visible": false,
+      "source_parameters": {},
+      "design_note": "Ultrasonic frequencies are not directly seismic frequencies. Martian layer existence, segregation and long-term stability remain interpretations. Melt-bearing redox is qualitatively reducing; the source does not establish a precise quantitative oxygen-fugacity value.",
+      "operation_ids": [
+        "COMPARE_SELECT_INPUTS",
+        "COMPARE_VERIFY_LINEAGE",
+        "COMPARE_REGISTER_METHOD",
+        "COMPARE_REVIEW_RECORDS",
+        "COMPARE_RETAIN_UNCERTAINTY",
+        "COMPARE_ARCHIVE_OUTPUT"
+      ],
+      "phase_order": [
+        "select_inputs",
+        "verify_lineage",
+        "register_method",
+        "review_records",
+        "retain_uncertainty",
+        "archive_output"
+      ],
+      "control_ids": [
+        "CTRL_IDENTITY",
+        "CTRL_RECORD",
+        "CTRL_CALIBRATION",
+        "CTRL_METHOD"
+      ]
+    }
+  ]
+}

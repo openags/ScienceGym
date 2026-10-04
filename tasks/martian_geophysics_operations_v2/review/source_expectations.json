@@ -1,0 +1,111 @@
+{
+  "description": "Original independent audit expectations; no publisher source text or figures.",
+  "source_audit_sha256": "b866fb20ca8c958efacc8e987052180a78c6ab47a420d91c5b6d7b2ce47e6813",
+  "source_conflicts_audit_sha256": "db156b2219531347669af43b5298712e617ea5d708d895f434fd5c0eb3421935",
+  "conflicts": [
+    {
+      "id": "C01",
+      "severity": "blocking_for_temperature_program",
+      "locator": "MAIN L228; TABLES Table 4!F5:I8,F14:I17; SI p14 Fig S11",
+      "finding": "Methods states \u221250\u00b0C (14/8) and \u2212110\u00b0C (10/5), while table rows explicitly add +50/+110 K to nominal temperature; Fig S11 places sample hotter than TC.",
+      "conversion_rule": "Retain nominal, delta, final and text as separate source fields; do not resolve sign or generate executable thermal program."
+    },
+    {
+      "id": "C02",
+      "severity": "blocking_for_sample_identity",
+      "locator": "MAIN ED2 L495\u2013498; TABLES Table 4!B9:I9,B18:I19",
+      "finding": "ED2 assigns H5898=2273 K with melt, H5897=2173 K without melt; quench table assigns H5897=2273 and H5898=2173, while its solidus row has H5898=2273.",
+      "conversion_rule": "Keep sample-ID/temperature association unresolved; never merge microscopy labels with contradictory table rows silently."
+    },
+    {
+      "id": "C03",
+      "severity": "apparatus_parameter_ambiguity",
+      "locator": "MAIN Fig1 L92 and Methods L216; SI FigS1 p4",
+      "finding": "Mo foils stated 2 \u00b5m in captions and 2.5 \u00b5m in Methods.",
+      "conversion_rule": "Record alternative reported values; require source resolution before physical geometry binding."
+    },
+    {
+      "id": "C04",
+      "severity": "synthesis_parameter_ambiguity",
+      "locator": "MAIN L199; TABLES Table4!B23:F23; SI p13 FigS10",
+      "finding": "Text low-P pre-synthesis says 4 GPa; MA-5 table and caption say 5 GPa.",
+      "conversion_rule": "Keep MA-5 linked to explicit table/caption and text discrepancy, not a silently fixed run."
+    },
+    {
+      "id": "C05",
+      "severity": "uncertainty_unit_ambiguity",
+      "locator": "TABLES Table2!F1,F4:F14,F17:F32; Table3 F column; Table4 E column",
+      "finding": "Ultrasound/XRD e(P) values are 5,3,8 under unqualified headers, whereas run summary gives 0.5,0.3,0.8 GPa.",
+      "conversion_rule": "Do not auto-scale or interpret first columns as GPa; preserve raw numbers and source-unit uncertainty."
+    },
+    {
+      "id": "C06",
+      "severity": "model_input_identity_ambiguity",
+      "locator": "SI p17 input table labelled S3631; TABLES Table5!D20:L21 versus D82:L83; MAIN Fig6 L169",
+      "finding": "SI labelled model S3631 uses 37.75/24.54/37.20 ringwoodite and 51.52/11.23/24.51 garnet compositions, which match MA-17 rows, not S3631 phase rows. Main Fig6 explicitly uses undepleted MA17 bulk mantle.",
+      "conversion_rule": "Distinguish undepleted mantle model and residue model; do not reuse SI label as sample-provenance proof."
+    },
+    {
+      "id": "C07",
+      "severity": "model_equation_typo",
+      "locator": "SI pp15\u201316 Volumetric constraints",
+      "finding": "Prose defines mantle inner radius 1650 km but printed mantle-volume equation subtracts 1830 cubed. Reported 1.373e11 km3 corresponds to 1650, while 1830 yields 1.304e11 km3.",
+      "conversion_rule": "Preserve source equation/prose/result; this audit arithmetic diagnoses inconsistency and does not silently revise source."
+    },
+    {
+      "id": "C08",
+      "severity": "source_data_header_conflict",
+      "locator": "DATA Source Data Extended Data Fig.8!AZ3:BA4,BF3:BG4,BL3:BM4",
+      "finding": "Jing\u2013Karato blocks label first coordinate Temperature_K but contain 4\u201321; second labelled Pressure_GPa contains 2223\u20133000 etc. Other model blocks use physically consistent P/T headings.",
+      "conversion_rule": "Keep raw data+headers; flag likely transposition for later author-code/source check."
+    },
+    {
+      "id": "C09",
+      "severity": "monte_carlo_scope_ambiguity",
+      "locator": "SI p25 FigS13 and p30 Monte Carlo; MAIN L254",
+      "finding": "SI states nominal solid-model N=500 but FigS13 caption says 10,000; main liquid models use 2,000. These may describe separate variants, so they are not collapsed to one setting.",
+      "conversion_rule": "Keep model-specific N provenance; require exact output-to-script mapping for reproducibility."
+    },
+    {
+      "id": "C10",
+      "severity": "main_axis_label_unverified",
+      "locator": "Main PDF parser lines near Fig2, saved web_pdf_and_local_anchor_reads.txt; TABLES Table2 G/I headers",
+      "finding": "Main PDF extraction renders velocity axis as cm/s, whereas values ~3\u201310 and table headers indicate km/s. Main figure pixels are unavailable to this audit.",
+      "conversion_rule": "Mark parser/axis discrepancy unverified; use explicit table unit for table evidence and do not assert original figure error without pixels."
+    }
+  ],
+  "source_unit_ids": [
+    "M00",
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "M06",
+    "M07",
+    "M08",
+    "M09",
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "D01"
+  ]
+}

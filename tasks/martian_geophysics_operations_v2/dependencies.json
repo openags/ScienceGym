@@ -1,0 +1,254 @@
+{
+  "schema_version": "martian_geophysics_task.v1",
+  "doi": "10.1038/s41561-026-02104-z",
+  "dependencies": [
+    {
+      "branch_id": "INTAKE",
+      "requires": []
+    },
+    {
+      "branch_id": "PRECURSOR",
+      "requires": [
+        "INTAKE"
+      ]
+    },
+    {
+      "branch_id": "GLASS",
+      "requires": [
+        "PRECURSOR"
+      ]
+    },
+    {
+      "branch_id": "GLASS_QC",
+      "requires": [
+        "GLASS"
+      ]
+    },
+    {
+      "branch_id": "PELLET",
+      "requires": [
+        "GLASS_QC"
+      ]
+    },
+    {
+      "branch_id": "MA5",
+      "requires": [
+        "PELLET"
+      ]
+    },
+    {
+      "branch_id": "MA14",
+      "requires": [
+        "PELLET"
+      ]
+    },
+    {
+      "branch_id": "MA17",
+      "requires": [
+        "PELLET"
+      ]
+    },
+    {
+      "branch_id": "SYNTH_ALLOC",
+      "requires": [
+        "MA5",
+        "MA14",
+        "MA17"
+      ]
+    },
+    {
+      "branch_id": "STACK_S3630",
+      "requires": [
+        "SYNTH_ALLOC"
+      ]
+    },
+    {
+      "branch_id": "RUN_S3630",
+      "requires": [
+        "STACK_S3630"
+      ]
+    },
+    {
+      "branch_id": "STACK_S3565",
+      "requires": [
+        "SYNTH_ALLOC"
+      ]
+    },
+    {
+      "branch_id": "RUN_S3565",
+      "requires": [
+        "STACK_S3565"
+      ]
+    },
+    {
+      "branch_id": "STACK_S3632",
+      "requires": [
+        "SYNTH_ALLOC"
+      ]
+    },
+    {
+      "branch_id": "RUN_S3632",
+      "requires": [
+        "STACK_S3632"
+      ]
+    },
+    {
+      "branch_id": "STACK_S3631",
+      "requires": [
+        "SYNTH_ALLOC"
+      ]
+    },
+    {
+      "branch_id": "RUN_S3631",
+      "requires": [
+        "STACK_S3631"
+      ]
+    },
+    {
+      "branch_id": "XRAY",
+      "requires": [
+        "RUN_S3630",
+        "RUN_S3565",
+        "RUN_S3632",
+        "RUN_S3631"
+      ]
+    },
+    {
+      "branch_id": "ACOUSTIC",
+      "requires": [
+        "RUN_S3630",
+        "RUN_S3565",
+        "RUN_S3632",
+        "RUN_S3631"
+      ]
+    },
+    {
+      "branch_id": "ONSET",
+      "requires": [
+        "XRAY",
+        "ACOUSTIC"
+      ]
+    },
+    {
+      "branch_id": "MO_EXSITU",
+      "requires": [
+        "PELLET"
+      ]
+    },
+    {
+      "branch_id": "GRAPHITE_FEED",
+      "requires": [
+        "PRECURSOR"
+      ]
+    },
+    {
+      "branch_id": "EXSITU_S8293",
+      "requires": [
+        "GRAPHITE_FEED"
+      ]
+    },
+    {
+      "branch_id": "EXSITU_S8295",
+      "requires": [
+        "GRAPHITE_FEED"
+      ]
+    },
+    {
+      "branch_id": "EXSITU_H6050",
+      "requires": [
+        "GRAPHITE_FEED"
+      ]
+    },
+    {
+      "branch_id": "RECOVER",
+      "requires": [
+        "ONSET",
+        "MO_EXSITU",
+        "EXSITU_S8293",
+        "EXSITU_S8295",
+        "EXSITU_H6050"
+      ]
+    },
+    {
+      "branch_id": "SECTION",
+      "requires": [
+        "RECOVER"
+      ]
+    },
+    {
+      "branch_id": "SEM",
+      "requires": [
+        "SECTION"
+      ]
+    },
+    {
+      "branch_id": "EPMA",
+      "requires": [
+        "SEM"
+      ]
+    },
+    {
+      "branch_id": "MODES",
+      "requires": [
+        "SEM",
+        "EPMA"
+      ]
+    },
+    {
+      "branch_id": "ARCHIVE",
+      "requires": [
+        "MODES",
+        "ONSET"
+      ]
+    },
+    {
+      "branch_id": "SOLIDUS_FIT",
+      "requires": [
+        "ARCHIVE"
+      ]
+    },
+    {
+      "branch_id": "LIQUID_EOS",
+      "requires": [
+        "ARCHIVE"
+      ]
+    },
+    {
+      "branch_id": "RESIDUE_EOS",
+      "requires": [
+        "ARCHIVE"
+      ]
+    },
+    {
+      "branch_id": "BULK_EOS",
+      "requires": [
+        "ARCHIVE"
+      ]
+    },
+    {
+      "branch_id": "EXCESS_VOLUME",
+      "requires": [
+        "RESIDUE_EOS",
+        "BULK_EOS"
+      ]
+    },
+    {
+      "branch_id": "BML_VOLUME",
+      "requires": [
+        "ARCHIVE"
+      ]
+    },
+    {
+      "branch_id": "COMPARE",
+      "requires": [
+        "SOLIDUS_FIT",
+        "LIQUID_EOS",
+        "EXCESS_VOLUME",
+        "BML_VOLUME"
+      ]
+    }
+  ],
+  "selected_branch_requires_full_dependency_closure": true,
+  "whole_campaign_requires_all_physical_branches": true,
+  "numerical_branches_not_counted_as_physical_completion": true
+}

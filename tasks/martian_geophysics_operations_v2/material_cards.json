@@ -1,0 +1,50 @@
+{
+  "schema_version": "martian_geophysics_task.v1",
+  "doi": "10.1038/s41561-026-02104-z",
+  "materials": [
+    {
+      "id": "OXIDE_CARBONATE_FEED",
+      "class": "source oxide/carbonate precursor",
+      "parent": null,
+      "lot_binding": null
+    },
+    {
+      "id": "GLASS",
+      "class": "laser-service glass lot",
+      "parent": "OXIDE_CARBONATE_FEED",
+      "lot_binding": null
+    },
+    {
+      "id": "PELLET",
+      "class": "finished glass pellet",
+      "parent": "GLASS",
+      "lot_binding": null
+    },
+    {
+      "id": "MA5_MA14_MA17",
+      "class": "three distinct pre-synthesized solid assemblages",
+      "parent": "PELLET",
+      "lot_binding": null
+    },
+    {
+      "id": "GRAPHITE_FEED",
+      "class": "independently prepared powder feed",
+      "parent": "OXIDE_CARBONATE_FEED",
+      "lot_binding": null
+    },
+    {
+      "id": "RUN_PRODUCTS",
+      "class": "run-specific recovered products",
+      "parent": "registered input specimen",
+      "lot_binding": null
+    },
+    {
+      "id": "SECTIONS",
+      "class": "destructive children retaining parent and orientation",
+      "parent": "RUN_PRODUCTS",
+      "lot_binding": null
+    }
+  ],
+  "materials_are_not_interchangeable": true,
+  "source_glass_spot_n_is_not_batch_replication": true
+}

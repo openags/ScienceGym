@@ -1,0 +1,32 @@
+{
+  "schema_version": "martian_geophysics_task.v1",
+  "doi": "10.1038/s41561-026-02104-z",
+  "required_keys": [
+    "specimen_id",
+    "parent_ids",
+    "branch_id",
+    "cohort_id",
+    "material_route",
+    "carrier_id",
+    "input_version",
+    "output_version",
+    "section_id",
+    "region_id",
+    "run_id",
+    "record_ids",
+    "destructive_parent_retired"
+  ],
+  "rules": [
+    "Powder-to-graphite and glass-to-pre-synthesis routes stay distinct",
+    "H5897 and H5898 remain separate unresolved identities",
+    "S3630 cold and warm zones are separate region keys",
+    "SEM and EPMA records share a registered section coordinate system",
+    "Destructive parent cannot be reused as intact input",
+    "Retain all failed attempts and specimen damage or quarantine state",
+    "Never collapse missing S-wave data to zero velocity",
+    "S3631 melt chemistry has calculated origin, not a direct spot observation",
+    "Spot count cannot become independent run count",
+    "Nominal temperature, correction and reported final remain separate fields"
+  ],
+  "synthetic_fixture_scope": "Synthetic lineage validates bookkeeping only; no real specimen exists."
+}
