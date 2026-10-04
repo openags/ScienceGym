@@ -1,0 +1,89 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "analyses": [
+    {
+      "id": "DISCRIMINATOR",
+      "source": [
+        "MAIN",
+        "SI_N1"
+      ],
+      "expression": "i_error = responsivity * input_power * abs(T) * sin(arg(T) - phase)",
+      "frequency_units": "Hz for gains labelled per Hz; omega is rad/s and requires explicit 2*pi conversion",
+      "normalized_gain": "current gain divided by responsivity and defined input power",
+      "voltage_gain": "current gain times complex TIA transfer; real scalar permitted only in qualified flat band",
+      "implementation": "toy scalar dimensional conversion only"
+    },
+    {
+      "id": "PSD",
+      "units": "one-sided Hz^2/Hz",
+      "input_error_voltage_units": "one-sided V^2/Hz",
+      "conversion": "S_frequency = S_voltage / abs(K_voltage_per_Hz(f))^2",
+      "required": [
+        "raw sample/record hash",
+        "sampling and anti-alias configuration",
+        "window and overlap",
+        "segment duration and RBW/ENBW distinction",
+        "detrending/normalization",
+        "reference-noise floor",
+        "stationarity and clipping checks"
+      ],
+      "implementation": "validation of authored synthetic arrays; no FFT, digitizer or frequency extraction"
+    },
+    {
+      "id": "SUPPRESSION",
+      "expression": "10*log10(S_free(f)/S_locked_independent(f))",
+      "matched_context_required": true,
+      "negative_suppression_preserved": true
+    },
+    {
+      "id": "RMS",
+      "expression": "sqrt(integral of one-sided S_frequency over declared positive-frequency bounds)",
+      "lower_bound": "explicit analyzed support; no extrapolation to DC",
+      "source_integration_details": "exact raw windows and uncertainty not supplied",
+      "implementation": "trapezoidal integration over complete authored grid"
+    },
+    {
+      "id": "LOOP_BANDWIDTH",
+      "definition": "Identify every isolated unity crossing with direction and all unity plateaus; report first downward crossing as a candidate with explicit ambiguity",
+      "implementation": "Scaled piecewise-linear root interpolation; upward crossings, endpoint equalities, touches, plateaus, multiple crossings and absent crossings remain explicit"
+    },
+    {
+      "id": "BETA_LINEWIDTH",
+      "beta_line": "8*ln(2)*f/pi^2",
+      "expression": "sqrt(8*ln(2)*integral of S(f) where S(f) exceeds beta line over declared support)",
+      "required": [
+        "declared observation low cutoff",
+        "piecewise-linear crossing treatment",
+        "supported high cutoff",
+        "report finite-band estimate and missing tails"
+      ],
+      "implementation": "piecewise-linear clipped-segment integration of authored synthetic PSD",
+      "not_equivalent_to": [
+        "Lorentzian linewidth",
+        "frequency-noise RMS",
+        "full infinite-band linewidth"
+      ]
+    },
+    {
+      "id": "TRN_AND_FEEDBACK",
+      "source": [
+        "SI_N4",
+        "SI_N5"
+      ],
+      "noise_terms": [
+        "intrinsic laser noise filtered by loop",
+        "electronics plus detector shot noise referred through discriminator",
+        "cavity TRN"
+      ],
+      "assumptions": [
+        "linearized operation",
+        "specified noise independence",
+        "high loop gain approximation only within justified band",
+        "finite bandwidth and laser/driver response retained"
+      ],
+      "implementation": false
+    }
+  ],
+  "in_loop_interpretation": "Laser relative to cavity; cannot independently prove absolute frequency noise, suppress cavity TRN or establish linewidth",
+  "physical_results_computed": false
+}

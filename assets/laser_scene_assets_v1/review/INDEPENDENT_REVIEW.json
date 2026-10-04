@@ -1,0 +1,2387 @@
+{
+  "schema": "independent_laser_scene_review.v1",
+  "status": "PASS_FROZEN_STATIC_ASSET_SCOPE",
+  "reviewed_on_utc": "2026-10-04",
+  "independence": "Reviewer inspected source pixels, implementation, actual native/GLB files and final rendered pixels, and wrote separate adversarial checks. Reviewer did not author or modify implementation, geometry, tests or contracts.",
+  "task_id": "modulation_free_laser_stabilization",
+  "source_doi": "10.1038/s41467-024-46319-3",
+  "artifact_directory": ".",
+  "scope": "Original static scene integrity, source-role fidelity, exact task bindings, symbolic metadata behavior, declared limitations, and explicit publication boundary. No physical operation or scientific reproduction is certified.",
+  "blocking_findings": [],
+  "frozen_content": {
+    "file_count": 33,
+    "sha256": {
+      "README.md": "5fc5fa6fb91aba41a278700c87cdc3635e27ebbbfe31eb59263537cc318e780e",
+      "asset_metadata.json": "45f5e0f5cf3b4da95737442f025cadcb73c5157095c1ddc77b7c4114d9fc4d67",
+      "asset_inventory.json": "6a5afeb425645dffa7b086513c5e00ed882df6e612f16b7d6ed32e65c879dbb6",
+      "affordances.json": "7912a14bfb560357a67d0d4bada570cb616bdafffad7b7d4e88d6961b29f3dc5",
+      "operation_bindings.json": "e03fb18e0f0be9ae5623d1497b9eb235d43bee9c548d2a5a6d3c59db41439781",
+      "states.json": "b4243b99753a5b97d25c36a3a4a9ad6059649b234eff61da68fb43826774f22a",
+      "task_binding_snapshot.json": "fcb4887627aa1cd1bd0b45606b6cedb730552892c7692eb9fdf8491eedbed819",
+      "semantic_controls.py": "0b162041524f71416418a31790e0ba2db9abef90464a368268afe94d0a0739f2",
+      "write_contracts.py": "2d5f94ff58579136864d777a4f9b4952323984bc275cbec4a8ad6e3aa2f07c37",
+      "export_package.py": "00d4b162c66c65597157614bfca5c0ef9d52d2061635e886544ef5aebe705182",
+      "EXPORT_ALLOWLIST.json": "3356f7ea92fadf6cf1611d0b63d8dc2b3526c71bbaeaaf2bd4e42c8eeb7abade",
+      "geometry/build_scene.py": "6f7f07b8a9e697e3b3af5e45c36f362697dc2e8104eaddc0cc56b8e05c058c6e",
+      "geometry/laser_control_lab.blend": "17f63aac2bd7a93ee93faf29956e40a71d0c81627ed83503d637c05566473097",
+      "geometry/laser_control_lab.glb": "5623546bc2762bdf8727ffe47b66ddddf690d0c85451aae774a26c02974824c0",
+      "geometry/laser_pic_display.glb": "0f52de4840da739c53c2eb5654bd66ede23fdac6918534526087dc7ce4a15ea8",
+      "geometry/reused_carrier_components.json": "c2a31f58305ab5b63665eea98944cc6ad9f782b825f027ac1bed98350ea8f183",
+      "materials/materials.json": "cc2f3b072a21fe5970bb8ed51523ad9314ae3eff699843d940340324e61ac444",
+      "evidence/overview.png": "5803bc7b25b0118d9b7383654e60e36c775671cdb392d3ca9e142545f266fd16",
+      "evidence/package_handling.png": "19ae3daa80b9831b8b2bf182f328cd0d0fd8b441c2b0f50cbacef84ecdce92f8",
+      "evidence/measurement.png": "65021877b969a43afa664627c60630b44e8b0d799a10564b868b553757cac74a",
+      "LICENSES/Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "LICENSES/ATTRIBUTION.md": "df820bffbeefe0f79d0c5f23eca7be7247d3b9c8ff7e3b42d68e674334596484",
+      "LICENSES/Blender-font-notice.txt": "85fb4b54a328aa460fd244d57ebd83b87cae5079ed52f9cf1f7f1cc450b18257",
+      "tests/test_semantic_controls.py": "9aba371ab9f1eb9948191a988bf9534fdabcc12458c327e8d62d36a25368d15e",
+      "tests/test_package.py": "f05b2c8c80fb704d3e7af5ab7fee467a58043ac3d7628f8dcd486d37f69672e2",
+      "tests/verify_blend.py": "bd7cbc7af25bbeb5c34325b6d97e9295adb91d3e0e89c073940235082d568013",
+      "tests/verify_glb_import.py": "df7826ff7a6e3f663155aa3cf53b9f8a2463b986b094987e00bfc33c8c5278c9",
+      "review/test_receipt.txt": "8c72ed45de2ab6ef0339e22284c8912d6d8f2d3298bb8458c6486f9944446beb",
+      "review/blend_validation.json": "f9a016f379e5801914f1932744d2374da4635e6cb2cbdcad7820307f28d15997",
+      "review/glb_import_validation.json": "f7d8690e1009a6df5175682261872c9bb42dab9f2fa28d57abe3dd30645bc1b7",
+      "review/render_receipt.json": "46e97a94d44eccecbdd3327470fbd7055fa4bc0a16443b6a2627f33bda72ecfa",
+      "review/source_comparison.json": "e69f5bc3f097aa47d95ff5c4409722082f582d0f842159a4fb9a0fbec9cdd3fc",
+      "review/SOURCE_TO_ASSET_AUDIT.md": "812c8b86cb144bd4c8e3a6b8c51eecf5063fa795fd94241aeec526be9ea3400d"
+    },
+    "all_match_before_and_after_independent_tests": true
+  },
+  "source_pixel_review": {
+    "figures": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "actual_pixels_inspected": true,
+    "source_artwork_reused": false,
+    "conclusion": "Original generic sealed apparatus and role legend do not trace source circuit layouts, micrographs, waveforms, field maps or comparison charts. Footprint is a factual nominal dimension from final Fig. 2 caption/implementation."
+  },
+  "final_render_review": {
+    "actual_pixels_inspected": [
+      "evidence/overview.png",
+      "evidence/package_handling.png",
+      "evidence/measurement.png"
+    ],
+    "render_receipt_hashes_match": true,
+    "findings": [
+      "Overview presents distinct closed-service groups, three DFB modules, independent comb heterodyne and separate FPGA in-loop roles",
+      "Package view clearly shows the empty carrier, separate sealed package, full no-fit plaque, heaters off and static-view safety disclaimer",
+      "Measurement view explicitly distinguishes the native nominal footprint from the 1000x planar-only display; floating blocks are a role legend, not device CAD"
+    ],
+    "resolved_findings": [
+      "Raised hold panel makes rear foundry/PCB labels materially clearer",
+      "Widened package camera preserves the full carrier no-fit plaque",
+      "Source-to-asset footprint attribution corrected to Fig. 2 caption/implementation"
+    ],
+    "remaining_blockers": []
+  },
+  "native_and_glb_findings": {
+    "blender_version": "4.3.2",
+    "native_scenes": [
+      "LASER_AUTHORED_METRIC",
+      "DISPLAY_ONLY_1000X"
+    ],
+    "exact_semantic_roots": 10,
+    "canonical_task_anchors": 46,
+    "additional_unqualified_grasp_anchors": 2,
+    "exact_task_operation_roles": 44,
+    "native_nominal_footprint_m": [
+      0.00095,
+      0.00048,
+      0
+    ],
+    "separate_display_footprint_m": [
+      0.95,
+      0.48,
+      0
+    ],
+    "planar_scale_factor": 1000,
+    "die_thickness_reconstructed": false,
+    "physical_geometry_qualified": false,
+    "source_images_textures_linked_libraries_found": false,
+    "native_scripts_animation_drivers_found": false,
+    "GLB_external_buffers_images_animations_found": false,
+    "reused_original_AFM_meshes": 15,
+    "reuse_vertices_faces_and_scale_equal_to_original_source": true,
+    "reused_new_unique_asset_credit": 0,
+    "carrier_empty": true,
+    "qualified_package_fit_asserted": false,
+    "imported_GL\u0392_objects": {
+      "laser_control_lab.glb": 194,
+      "laser_pic_display.glb": 28
+    },
+    "source_to_scene_axis_map_inferred": false
+  },
+  "semantic_findings": {
+    "tested_three_distinct_DFB_identity_model_pairs": true,
+    "SiN_selectable_as_physical_platform": false,
+    "heterodyne_and_FPGA_roles_remain_distinct": true,
+    "rejected": [
+      "stale and replayed claims",
+      "cross-instance and unissued claims",
+      "wrong sample/version/PIC/carrier/dock/configuration/platform",
+      "wrong action, target, payload, module, controller or DFB model pair",
+      "reused acquisition run and record IDs",
+      "aliased comb, receiver, FPGA roles or paired record IDs",
+      "malformed and extra fields, boolean versions",
+      "downstream work after terminal quarantine"
+    ],
+    "tested_recovery": [
+      "fresh second metadata cycle",
+      "early disconnect from every partial docked cycle",
+      "retrieval clears downstream records",
+      "detached snapshots and manifests",
+      "idempotent terminal quarantine"
+    ],
+    "permanent_laser_heater_controller_disabled_flags": true,
+    "all_physical_scientific_service_requests_denied": true,
+    "real_signals_calibrated_data_scientific_outputs": null,
+    "claim_security_limit": "Locally issued hashes and record IDs do not authenticate external records or establish safety, calibration, qualification, alignment, acquisition or results. Editable Python/private state remains caller-owned; this is not a security boundary."
+  },
+  "verification": {
+    "bundled_unittest": {
+      "passed": 68,
+      "failed": 0,
+      "command": "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -v"
+    },
+    "independent_checks": {
+      "semantics": {
+        "tests": [
+          {
+            "name": "full_metadata_cycle_DFB_1",
+            "passed": true
+          },
+          {
+            "name": "full_metadata_cycle_DFB_2",
+            "passed": true
+          },
+          {
+            "name": "full_metadata_cycle_DFB_3",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_0",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_1",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_2",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_3",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_4",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_5",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_6",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_7",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_8",
+            "passed": true
+          },
+          {
+            "name": "permanent_physical_denial_state_9",
+            "passed": true
+          },
+          {
+            "name": "wrong_binding_sample_id",
+            "passed": true
+          },
+          {
+            "name": "wrong_binding_sample_version",
+            "passed": true
+          },
+          {
+            "name": "wrong_binding_pic_id",
+            "passed": true
+          },
+          {
+            "name": "wrong_binding_carrier_id",
+            "passed": true
+          },
+          {
+            "name": "wrong_binding_dock_id",
+            "passed": true
+          },
+          {
+            "name": "wrong_binding_configuration_id",
+            "passed": true
+          },
+          {
+            "name": "wrong_binding_configuration_version",
+            "passed": true
+          },
+          {
+            "name": "wrong_binding_platform",
+            "passed": true
+          },
+          {
+            "name": "type_rejection_sample_version_bool",
+            "passed": true
+          },
+          {
+            "name": "type_rejection_configuration_version_bool",
+            "passed": true
+          },
+          {
+            "name": "type_rejection_sample_version_float",
+            "passed": true
+          },
+          {
+            "name": "type_rejection_configuration_version_int",
+            "passed": true
+          },
+          {
+            "name": "type_rejection_pic_id_str",
+            "passed": true
+          },
+          {
+            "name": "type_rejection_dock_id_NoneType",
+            "passed": true
+          },
+          {
+            "name": "type_rejection_carrier_id_list",
+            "passed": true
+          },
+          {
+            "name": "type_rejection_configuration_id_dict",
+            "passed": true
+          },
+          {
+            "name": "replay_rejected",
+            "passed": true
+          },
+          {
+            "name": "stale_revision_rejected",
+            "passed": true
+          },
+          {
+            "name": "cross_instance_claim_rejected",
+            "passed": true
+          },
+          {
+            "name": "post_claim_payload_mutation_rejected",
+            "passed": true
+          },
+          {
+            "name": "wrong_target_rejected",
+            "passed": true
+          },
+          {
+            "name": "unissued_claim_rejected",
+            "passed": true
+          },
+          {
+            "name": "wrong_action_claim_rejected",
+            "passed": true
+          },
+          {
+            "name": "in_loop_heterodyne_record_alias_rejected",
+            "passed": true
+          },
+          {
+            "name": "role_alias_fpga_id_heterodyne_receiver_id",
+            "passed": true
+          },
+          {
+            "name": "role_alias_comb_reference_id_heterodyne_receiver_id",
+            "passed": true
+          },
+          {
+            "name": "role_alias_fpga_id_comb_reference_id",
+            "passed": true
+          },
+          {
+            "name": "wrong_module_rejected",
+            "passed": true
+          },
+          {
+            "name": "wrong_DFB_model_pair_rejected",
+            "passed": true
+          },
+          {
+            "name": "wrong_controller_rejected",
+            "passed": true
+          },
+          {
+            "name": "reused_acquisition_run_id_rejected",
+            "passed": true
+          },
+          {
+            "name": "reused_acquisition_record_set_id_rejected",
+            "passed": true
+          },
+          {
+            "name": "reused_acquisition_comb_reference_record_id_rejected",
+            "passed": true
+          },
+          {
+            "name": "reused_acquisition_heterodyne_record_id_rejected",
+            "passed": true
+          },
+          {
+            "name": "reused_acquisition_fpga_record_id_rejected",
+            "passed": true
+          },
+          {
+            "name": "fresh_second_cycle_accepted",
+            "passed": true
+          },
+          {
+            "name": "early_disconnect_after_dock",
+            "passed": true
+          },
+          {
+            "name": "early_disconnect_after_register_alignment",
+            "passed": true
+          },
+          {
+            "name": "early_disconnect_after_select_module",
+            "passed": true
+          },
+          {
+            "name": "early_disconnect_after_register_disabled_controller",
+            "passed": true
+          },
+          {
+            "name": "early_disconnect_after_bind_acquisition_records",
+            "passed": true
+          },
+          {
+            "name": "terminal_idempotent_quarantine",
+            "passed": true
+          },
+          {
+            "name": "detached_snapshot",
+            "passed": true
+          },
+          {
+            "name": "extra_controller_or_enable_field_rejected",
+            "passed": true
+          },
+          {
+            "name": "claims_do_not_authenticate_or_establish_safety",
+            "passed": true
+          }
+        ],
+        "count": 58,
+        "passed": 58
+      },
+      "native": {
+        "tests": [
+          {
+            "name": "exact_native_scenes",
+            "passed": true,
+            "detail": [
+              "DISPLAY_ONLY_1000X",
+              "LASER_AUTHORED_METRIC"
+            ]
+          },
+          {
+            "name": "metric_unit_scale",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_10_asset_roots",
+            "passed": true,
+            "detail": [
+              "A_DESIGN_CONSOLE",
+              "A_DFB_CONTROL_STATION",
+              "A_FABRICATION_SERVICE",
+              "A_FPGA_ANALYSIS",
+              "A_HOLD_PANEL",
+              "A_OPEN_LOOP_STATION",
+              "A_PACKAGE_CUSTODY",
+              "A_PCB_SERVICE",
+              "A_REFERENCE_CHAIN",
+              "A_SAFETY_ENCLOSURE"
+            ]
+          },
+          {
+            "name": "all_46_required_anchors_plus_two_grasps",
+            "passed": true,
+            "detail": {
+              "required": 46,
+              "actual": 48
+            }
+          },
+          {
+            "name": "anchor_A_DESIGN_CONSOLE.requirements_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DESIGN_CONSOLE.model_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DESIGN_CONSOLE.design_release",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_FABRICATION_SERVICE.design_in",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_FABRICATION_SERVICE.fabrication_status",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_FABRICATION_SERVICE.pic_carrier_out",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PCB_SERVICE.pcb_design_in",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PCB_SERVICE.package_status",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PCB_SERVICE.package_out",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PACKAGE_CUSTODY.package_origin",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PACKAGE_CUSTODY.carrier_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PACKAGE_CUSTODY.identity_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PACKAGE_CUSTODY.inspection_view",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PACKAGE_CUSTODY.pic_native_extent",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PACKAGE_CUSTODY.grasp_left",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_PACKAGE_CUSTODY.grasp_right",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_SAFETY_ENCLOSURE.closed_cover",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_SAFETY_ENCLOSURE.interlock_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_SAFETY_ENCLOSURE.safe_state",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_SAFETY_ENCLOSURE.alignment_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_OPEN_LOOP_STATION.ecdl_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_OPEN_LOOP_STATION.voa_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_OPEN_LOOP_STATION.temperature_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_OPEN_LOOP_STATION.mzi_frequency_reference",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_OPEN_LOOP_STATION.sniffer_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_OPEN_LOOP_STATION.balanced_error_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DFB_CONTROL_STATION.dfb1_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DFB_CONTROL_STATION.dfb2_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DFB_CONTROL_STATION.dfb3_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DFB_CONTROL_STATION.tia_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DFB_CONTROL_STATION.pid_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DFB_CONTROL_STATION.bias_noise_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_DFB_CONTROL_STATION.lock_evidence",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_REFERENCE_CHAIN.reference_laser",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_REFERENCE_CHAIN.fp_cavity",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_REFERENCE_CHAIN.comb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_REFERENCE_CHAIN.filter",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_REFERENCE_CHAIN.receiver",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_REFERENCE_CHAIN.digitizer_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_FPGA_ANALYSIS.fpga_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_FPGA_ANALYSIS.psd_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_FPGA_ANALYSIS.analysis_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_FPGA_ANALYSIS.archive_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_HOLD_PANEL.qualification_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_HOLD_PANEL.calibration_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_HOLD_PANEL.reference_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_HOLD_PANEL.lock_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "anchor_A_HOLD_PANEL.damage_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "dimensions_pic.native_footprint_reference",
+            "passed": true,
+            "detail": [
+              0.0009500000160187483,
+              0.0004799999878741801,
+              0.0
+            ]
+          },
+          {
+            "name": "single_planar_quad_pic.native_footprint_reference",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "dimensions_display.pic_footprint_reference",
+            "passed": true,
+            "detail": [
+              0.949999988079071,
+              0.47999998927116394,
+              0.0
+            ]
+          },
+          {
+            "name": "single_planar_quad_display.pic_footprint_reference",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "display_only_isolated",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "native_footprint_not_die",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "no_libraries",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "no_external_or_packed_images",
+            "passed": true,
+            "detail": [
+              [
+                "Render Result",
+                ""
+              ]
+            ]
+          },
+          {
+            "name": "no_texture_nodes",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "no_emission_materials",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "no_script_text_blocks",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "no_animation_or_drivers",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "three_separate_DFB_modules",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "no_scene_energy_enabled",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "label_SiN: NUMERICAL ONLY",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "label_COMB-REFERENCED",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "label_HETERODYNE SERVICE",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "label_RELATIVE ERROR ONLY",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "label_STATIC VIEW IS NOT SAFETY EVIDENCE",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "label_EMPTY CARRIER / NO FIT CLAIM",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "label_NO CIRCUIT LAYOUT / NO DIE THICKNESS",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exactly_15_reused_meshes",
+            "passed": true,
+            "detail": 15
+          },
+          {
+            "name": "reuse_zero_credit_unqualified",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.base",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.base",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.base",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.grasp_tab",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.grasp_tab",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.grasp_tab",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.grasp_tab.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.grasp_tab.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.grasp_tab.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.grip_rib",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.grip_rib",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.grip_rib",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.grip_rib.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.grip_rib.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.grip_rib.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.grip_rib.002",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.grip_rib.002",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.grip_rib.002",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.grip_rib.003",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.grip_rib.003",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.grip_rib.003",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.grip_rib.004",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.grip_rib.004",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.grip_rib.004",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_carrier.loaded.grip_rib.005",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_carrier.loaded.grip_rib.005",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_carrier.loaded.grip_rib.005",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_clamp.loaded.arm",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_clamp.loaded.arm",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_clamp.loaded.arm",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_clamp.loaded.arm.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_clamp.loaded.arm.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_clamp.loaded.arm.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_clamp.loaded.handle",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_clamp.loaded.handle",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_clamp.loaded.handle",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_clamp.loaded.handle.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_clamp.loaded.handle.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_clamp.loaded.handle.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_clamp.loaded.pivot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_clamp.loaded.pivot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_clamp.loaded.pivot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_vertices_clamp.loaded.pivot.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_manifest_faces_clamp.loaded.pivot.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "reuse_native_scale_clamp.loaded.pivot.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "carrier_no_sample_payload",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "package_carrier_spatially_separate",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "AFM_source_hash",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.base",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.base",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.grasp_tab",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.grasp_tab",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.grasp_tab.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.grasp_tab.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.grip_rib",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.grip_rib",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.grip_rib.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.grip_rib.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.grip_rib.002",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.grip_rib.002",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.grip_rib.003",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.grip_rib.003",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.grip_rib.004",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.grip_rib.004",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_carrier.loaded.grip_rib.005",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_carrier.loaded.grip_rib.005",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_clamp.loaded.arm",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_clamp.loaded.arm",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_clamp.loaded.arm.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_clamp.loaded.arm.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_clamp.loaded.handle",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_clamp.loaded.handle",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_clamp.loaded.handle.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_clamp.loaded.handle.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_clamp.loaded.pivot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_clamp.loaded.pivot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AF\u041c_vertex_reuse_clamp.loaded.pivot.001",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_AFM_face_reuse_clamp.loaded.pivot.001",
+            "passed": true,
+            "detail": null
+          }
+        ],
+        "count": 153,
+        "passed": 153
+      },
+      "glb": {
+        "count": 75,
+        "passed": 75,
+        "tests": [
+          {
+            "name": "laser_control_lab.glb_header",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_chunks",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_no_images_textures",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_selfcontained_buffers",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_no_animation_camera",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_scene",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_nonemissive_materials",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_disabled_nodes",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_unique_names",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_exact_planar_extent",
+            "passed": true,
+            "detail": [
+              0.0009500000160187483,
+              0,
+              0.0004799999878741801
+            ]
+          },
+          {
+            "name": "laser_control_lab.glb_10_exact_roots",
+            "passed": true,
+            "detail": [
+              "A_DESIGN_CONSOLE",
+              "A_DFB_CONTROL_STATION",
+              "A_FABRICATION_SERVICE",
+              "A_FPGA_ANALYSIS",
+              "A_HOLD_PANEL",
+              "A_OPEN_LOOP_STATION",
+              "A_PACKAGE_CUSTODY",
+              "A_PCB_SERVICE",
+              "A_REFERENCE_CHAIN",
+              "A_SAFETY_ENCLOSURE"
+            ]
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DESIGN_CONSOLE.requirements_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DESIGN_CONSOLE.model_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DESIGN_CONSOLE.design_release",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_FABRICATION_SERVICE.design_in",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_FABRICATION_SERVICE.fabrication_status",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_FABRICATION_SERVICE.pic_carrier_out",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PCB_SERVICE.pcb_design_in",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PCB_SERVICE.package_status",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PCB_SERVICE.package_out",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PACKAGE_CUSTODY.package_origin",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PACKAGE_CUSTODY.carrier_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PACKAGE_CUSTODY.identity_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PACKAGE_CUSTODY.inspection_view",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PACKAGE_CUSTODY.pic_native_extent",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PACKAGE_CUSTODY.grasp_left",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_PACKAGE_CUSTODY.grasp_right",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_SAFETY_ENCLOSURE.closed_cover",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_SAFETY_ENCLOSURE.interlock_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_SAFETY_ENCLOSURE.safe_state",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_SAFETY_ENCLOSURE.alignment_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_OPEN_LOOP_STATION.ecdl_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_OPEN_LOOP_STATION.voa_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_OPEN_LOOP_STATION.temperature_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_OPEN_LOOP_STATION.mzi_frequency_reference",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_OPEN_LOOP_STATION.sniffer_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_OPEN_LOOP_STATION.balanced_error_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DFB_CONTROL_STATION.dfb1_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DFB_CONTROL_STATION.dfb2_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DFB_CONTROL_STATION.dfb3_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DFB_CONTROL_STATION.tia_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DFB_CONTROL_STATION.pid_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DFB_CONTROL_STATION.bias_noise_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_DFB_CONTROL_STATION.lock_evidence",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_REFERENCE_CHAIN.reference_laser",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_REFERENCE_CHAIN.fp_cavity",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_REFERENCE_CHAIN.comb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_REFERENCE_CHAIN.filter",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_REFERENCE_CHAIN.receiver",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_REFERENCE_CHAIN.digitizer_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_FPGA_ANALYSIS.fpga_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_FPGA_ANALYSIS.psd_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_FPGA_ANALYSIS.analysis_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_FPGA_ANALYSIS.archive_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_HOLD_PANEL.qualification_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_HOLD_PANEL.calibration_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_HOLD_PANEL.reference_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_HOLD_PANEL.lock_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_anchor_A_HOLD_PANEL.damage_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_no_display_cross_contamination",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_15_reused_objects",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_no_light_extensions",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_header",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_chunks",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_no_images_textures",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_selfcontained_buffers",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_no_animation_camera",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_scene",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_nonemissive_materials",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_disabled_nodes",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_unique_names",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_exact_planar_extent",
+            "passed": true,
+            "detail": [
+              0.949999988079071,
+              0,
+              0.47999998927116394
+            ]
+          },
+          {
+            "name": "laser_pic_display.glb_display_root_only",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_1000x_metadata",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_no_light_extensions",
+            "passed": true,
+            "detail": null
+          }
+        ]
+      },
+      "import": {
+        "count": 58,
+        "passed": 58,
+        "tests": [
+          {
+            "name": "laser_control_lab.glb_actual_import_counts",
+            "passed": true,
+            "detail": {
+              "objects": 194,
+              "asset_roots": 10,
+              "anchors": 48
+            }
+          },
+          {
+            "name": "laser_control_lab.glb_no_images_on_import",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_no_curves_on_import",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_control_lab.glb_actual_import_extent",
+            "passed": true,
+            "detail": [
+              0.0009500000160187483,
+              0.0004799999878741801,
+              0.0
+            ]
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DESIGN_CONSOLE.requirements_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DESIGN_CONSOLE.model_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DESIGN_CONSOLE.design_release",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_FABRICATION_SERVICE.design_in",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_FABRICATION_SERVICE.fabrication_status",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_FABRICATION_SERVICE.pic_carrier_out",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PCB_SERVICE.pcb_design_in",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PCB_SERVICE.package_status",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PCB_SERVICE.package_out",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PACKAGE_CUSTODY.package_origin",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PACKAGE_CUSTODY.carrier_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PACKAGE_CUSTODY.identity_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PACKAGE_CUSTODY.inspection_view",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PACKAGE_CUSTODY.pic_native_extent",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PACKAGE_CUSTODY.grasp_left",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_PACKAGE_CUSTODY.grasp_right",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_SAFETY_ENCLOSURE.closed_cover",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_SAFETY_ENCLOSURE.interlock_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_SAFETY_ENCLOSURE.safe_state",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_SAFETY_ENCLOSURE.alignment_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_OPEN_LOOP_STATION.ecdl_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_OPEN_LOOP_STATION.voa_port",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_OPEN_LOOP_STATION.temperature_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_OPEN_LOOP_STATION.mzi_frequency_reference",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_OPEN_LOOP_STATION.sniffer_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_OPEN_LOOP_STATION.balanced_error_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DFB_CONTROL_STATION.dfb1_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DFB_CONTROL_STATION.dfb2_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DFB_CONTROL_STATION.dfb3_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DFB_CONTROL_STATION.tia_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DFB_CONTROL_STATION.pid_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DFB_CONTROL_STATION.bias_noise_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_DFB_CONTROL_STATION.lock_evidence",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_REFERENCE_CHAIN.reference_laser",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_REFERENCE_CHAIN.fp_cavity",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_REFERENCE_CHAIN.comb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_REFERENCE_CHAIN.filter",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_REFERENCE_CHAIN.receiver",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_REFERENCE_CHAIN.digitizer_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_FPGA_ANALYSIS.fpga_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_FPGA_ANALYSIS.psd_record",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_FPGA_ANALYSIS.analysis_card",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_FPGA_ANALYSIS.archive_slot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_HOLD_PANEL.qualification_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_HOLD_PANEL.calibration_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_HOLD_PANEL.reference_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_HOLD_PANEL.lock_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_world_anchor_A_HOLD_PANEL.damage_hold",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "roundtrip_three_modules",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_actual_import_counts",
+            "passed": true,
+            "detail": {
+              "objects": 28,
+              "asset_roots": 0,
+              "anchors": 0
+            }
+          },
+          {
+            "name": "laser_pic_display.glb_no_images_on_import",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_no_curves_on_import",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "laser_pic_display.glb_actual_import_extent",
+            "passed": true,
+            "detail": [
+              0.949999988079071,
+              0.47999998927116394,
+              0.0
+            ]
+          },
+          {
+            "name": "roundtrip_display_flag",
+            "passed": true,
+            "detail": null
+          }
+        ]
+      },
+      "contracts": {
+        "count": 92,
+        "passed": 92,
+        "tests": [
+          {
+            "name": "independently_fixed_36_entry_allowlist",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_README.md",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_README.md",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_asset_metadata.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_asset_metadata.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_asset_inventory.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_asset_inventory.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_affordances.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_affordances.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_operation_bindings.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_operation_bindings.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_states.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_states.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_task_binding_snapshot.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_task_binding_snapshot.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_semantic_controls.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_semantic_controls.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_write_contracts.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_write_contracts.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_export_package.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_export_package.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_EXPORT_ALLOWLIST.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_EXPORT_ALLOWLIST.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_MANIFEST.sha256",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_geometry/build_scene.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_geometry/build_scene.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_geometry/laser_control_lab.blend",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_geometry/laser_control_lab.blend",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_geometry/laser_control_lab.glb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_geometry/laser_control_lab.glb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_geometry/laser_pic_display.glb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_geometry/laser_pic_display.glb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_geometry/reused_carrier_components.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_geometry/reused_carrier_components.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_materials/materials.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_materials/materials.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_evidence/overview.png",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_evidence/overview.png",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_evidence/package_handling.png",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_evidence/package_handling.png",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_evidence/measurement.png",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_evidence/measurement.png",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_LICENSES/Apache-2.0.txt",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_LICENSES/Apache-2.0.txt",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_LICENSES/ATTRIBUTION.md",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_LICENSES/ATTRIBUTION.md",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_LICENSES/Blender-font-notice.txt",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_LICENSES/Blender-font-notice.txt",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_tests/test_semantic_controls.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_tests/test_semantic_controls.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_tests/test_package.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_tests/test_package.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_tests/verify_blend.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_tests/verify_blend.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_tests/verify_glb_import.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_tests/verify_glb_import.py",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_review/test_receipt.txt",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_review/test_receipt.txt",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_review/blend_validation.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_review/blend_validation.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_review/glb_import_validation.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_review/glb_import_validation.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_review/render_receipt.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_review/render_receipt.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_review/source_comparison.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_review/source_comparison.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_review/SOURCE_TO_ASSET_AUDIT.md",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exists_review/SOURCE_TO_ASSET_AUDIT.md",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_review/INDEPENDENT_REVIEW.md",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "safe_public_path_review/INDEPENDENT_REVIEW.json",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_task_binding_snapshot",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "exact_task_ID_DOI",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "44_exact_operation_mappings",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "all_operation_bindings_nonexecuting",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "bindings_no_execution_authority",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "18_source_roles_once",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "null_unique_asset_credit",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "no_source_pixels_or_outcomes",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "final_render_hash_overview",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "final_render_real_PNG_overview",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "final_render_hash_package_handling",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "final_render_real_PNG_package_handling",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "final_render_hash_measurement",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "final_render_real_PNG_measurement",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "native_receipt_hash",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "GLB_receipt_hash_geometry/laser_control_lab.glb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "GLB_receipt_hash_geometry/laser_pic_display.glb",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "source_footprint_attribution_fig2",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "source_outcomes_not_a_public_member",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "logs_caches_backups_not_public",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "no_source_asset_imports_in_generator",
+            "passed": true,
+            "detail": null
+          },
+          {
+            "name": "license_and_font_notice",
+            "passed": true,
+            "detail": null
+          }
+        ]
+      }
+    }
+  },
+  "export_boundary": {
+    "allowlist_file": "EXPORT_ALLOWLIST.json",
+    "exact_allowlist_entries": 36,
+    "allowlist_hash": "3356f7ea92fadf6cf1611d0b63d8dc2b3526c71bbaeaaf2bd4e42c8eeb7abade",
+    "allowlist_independently_compared_to_explicit_expected_set": true,
+    "source_originals_private_evaluator_data_logs_caches_backups_allowed": false,
+    "archive_status_at_embedded_review_time": "POST_REVIEW_EXPORT_NOT_YET_INSPECTED",
+    "release_requirement": "After embedding these two reports, export the ZIP and independently verify exact 36 members, safe paths, regular files, frozen-content hashes, embedded review equality and all 35 manifest digests. Record the final archive checksum separately, avoiding self-referential archive hashes in this embedded report."
+  },
+  "limitations": [
+    "Static role geometry and local symbolic state only; no real laser/heater/electrical/servo control, scientific solver or measurement",
+    "All apparatus, package, PCB, cable, fiber, port and grasp geometry is authored and unqualified apart from the explicitly nominal planar source footprint",
+    "Studio render lighting is illustration, not emitted laser energy",
+    "No collision/contact qualification, physical package fit, safety interlock proof, vendor CAD equivalence or whole-paper completion",
+    "Final ZIP bytes require the post-review verification stated above"
+  ]
+}

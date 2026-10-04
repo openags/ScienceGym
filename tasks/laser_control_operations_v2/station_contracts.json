@@ -1,0 +1,40 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "stations": [
+    {
+      "id": "QUALIFIED_FABRICATION_AND_PACKAGE",
+      "assets": [
+        "A_FABRICATION_SERVICE",
+        "A_PCB_SERVICE"
+      ],
+      "closed": true
+    },
+    {
+      "id": "CLOSED_OPTICAL_CONTROL",
+      "assets": [
+        "A_SAFETY_ENCLOSURE",
+        "A_PACKAGE_CUSTODY",
+        "A_OPEN_LOOP_STATION",
+        "A_DFB_CONTROL_STATION"
+      ],
+      "closed": true
+    },
+    {
+      "id": "INDEPENDENT_METROLOGY",
+      "assets": [
+        "A_REFERENCE_CHAIN",
+        "A_FPGA_ANALYSIS"
+      ],
+      "requires": "independent reference health and separate channel labels"
+    },
+    {
+      "id": "NUMERICAL_DESIGN",
+      "assets": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "requires": "frozen inputs and model assumptions"
+    }
+  ],
+  "hardware_implemented": false,
+  "qualification_source": "Independent qualified service, never scene or actor"
+}

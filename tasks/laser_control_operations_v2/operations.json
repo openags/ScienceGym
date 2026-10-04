@@ -1,0 +1,1023 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "operations": [
+    {
+      "id": "ACQUIRE_FREE_RUNNING",
+      "asset_ids": [
+        "A_DFB_CONTROL_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Frozen control context and current reference-chain health",
+      "required_output": "Independent free-running heterodyne PSD with acquisition and bias-noise lineage",
+      "failure": "Changing bias-noise, optical power or analysis conditions breaks matched comparison",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "ACQUIRE_HETERODYNE",
+      "asset_ids": [
+        "A_REFERENCE_CHAIN"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Current locked state and independently verified reference chain",
+      "required_output": "Digitized comb-referenced beat record with 98 MHz filter provenance and independent frequency PSD",
+      "failure": "Do not substitute prior-review delayed self-heterodyne or in-loop data",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "ACQUIRE_IN_LOOP",
+      "asset_ids": [
+        "A_FPGA_ANALYSIS"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Independent lock observation and current discriminator calibration",
+      "required_output": "FPGA error-voltage PSD and frequency-referred relative PSD, separately labelled",
+      "failure": "This relative signal cannot establish absolute laser noise or remove cavity TRN",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "ACQUIRE_OPEN_LOOP",
+      "asset_ids": [
+        "A_OPEN_LOOP_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Current open-loop request and independent acquisition",
+      "required_output": "Simultaneous raw sniffer and balanced-error traces with common clock, sampling and immutable hashes",
+      "failure": "Trace pairing across sweep, mount or calibration is rejected",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION"
+      ]
+    },
+    {
+      "id": "ANALYZE_NOISE",
+      "asset_ids": [
+        "A_FPGA_ANALYSIS"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Matched validated free/locked independent PSD and separate in-loop PSD",
+      "required_output": "Suppression ratio, declared-band RMS, unity-crossing bandwidth and declared beta-line linewidth estimate with uncertainty",
+      "failure": "Never equate RMS, integral linewidth and Lorentzian linewidth or hide servo bump",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "ARCHIVE",
+      "asset_ids": [
+        "A_FPGA_ANALYSIS"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Raw records plus all failed/held attempts retained",
+      "required_output": "Immutable archive of lineage, raw evidence, settings, calibration, analysis and missing inputs",
+      "failure": "Actor success labels or deletion of failures cannot create a valid result",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "CALIBRATE_DISCRIMINATOR",
+      "asset_ids": [
+        "A_OPEN_LOOP_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Raw signed error response and known power/detection/TIA chain",
+      "required_output": "Separate normalized Hz^-1, current A/Hz and voltage V/Hz gain records, sign and linear range",
+      "failure": "Radians/sec vs Hz, ASD vs PSD and dimensional conversions must be explicit",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "CALIBRATE_FREQUENCY_AXIS",
+      "asset_ids": [
+        "A_OPEN_LOOP_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Current mount and qualified calibrated reference",
+      "required_output": "Time-to-frequency mapping, direction, frequency units, fiber-MZI FSR, calibration uncertainty and sweep lineage",
+      "failure": "Unqualified 20 MHz label is not calibration evidence",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION"
+      ]
+    },
+    {
+      "id": "CLEAN_STORE",
+      "asset_ids": [
+        "A_PACKAGE_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Observed safe closure, package disposition and archive",
+      "required_output": "Independent clean/stored or quarantined final state",
+      "failure": "Cleanup command alone does not close episode",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "DECLARE_REQUIREMENTS",
+      "asset_ids": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "SYSTEM_DESIGN",
+        "CAVITY_TECHNOLOGY_COMPARISON"
+      ]
+    },
+    {
+      "id": "DOCK_PACKAGE",
+      "asset_ids": [
+        "A_PACKAGE_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Safe isolated package and qualified handling card",
+      "required_output": "Observed supported sealed-package docking and new mount revision",
+      "failure": "Mount/port/identity change invalidates downstream calibration",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "FIT_RING",
+      "asset_ids": [
+        "A_OPEN_LOOP_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Raw calibrated response and declared fit model",
+      "required_output": "Resonance, FSR, extinction, loaded Q, uncertainty and fit-domain record",
+      "failure": "No forced agreement with reported Q or critical-coupling assumption",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION"
+      ]
+    },
+    {
+      "id": "FREEZE_CONTROL_SETTINGS",
+      "asset_ids": [
+        "A_DFB_CONTROL_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Known DFB FM/current-driver response and current calibration",
+      "required_output": "Immutable TIA/PID/polarity/limits/filter/bias-noise/power/temperature/heater cards",
+      "failure": "Exact gains, current limits, capture policy and lock thresholds are required external inputs",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "FREEZE_DESIGN",
+      "asset_ids": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Released input design and verification records",
+      "required_output": "Immutable source-independent design hash and approved release revision",
+      "failure": "Unknown foundry layout/bond map or unqualified revisions keep service closed",
+      "source_evidence_ids": [
+        "MAIN",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "SYSTEM_DESIGN",
+        "PIC_DESIGN_FDTD",
+        "PIC_FABRICATION",
+        "PCB_PACKAGING"
+      ]
+    },
+    {
+      "id": "HOLD_CALIBRATION",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "HOLD_LOCK",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "HOLD_QUALIFICATION",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "HOLD_REFERENCE",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "INSPECT_PACKAGE",
+      "asset_ids": [
+        "A_PACKAGE_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Recovered identified package",
+      "required_output": "Condition record and quarantine/reuse disposition",
+      "failure": "Damage prohibits reuse until qualified release",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "QUARANTINE",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "REGISTER_INPUTS",
+      "asset_ids": [
+        "A_PACKAGE_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "An unactivated identified job",
+      "required_output": "Input inventory binding episode, attempt, route, PIC, PCB, DFB, design, qualification and source version",
+      "failure": "Unknown input identity blocks dependent work",
+      "source_evidence_ids": [
+        "MAIN",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "REGISTER_LASER",
+      "asset_ids": [
+        "A_DFB_CONTROL_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Current qualified DFB device and driver card",
+      "required_output": "Distinct DFB1/DFB2/DFB3 serial/wavelength/current-noise identity",
+      "failure": "Laser replacement invalidates device/control/reference state",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "REQUEST_ALIGNMENT",
+      "asset_ids": [
+        "A_SAFETY_ENCLOSURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Verified interlock and externally qualified optical service",
+      "required_output": "Alignment request receipt",
+      "failure": "No open-beam alignment instructions or physical commands",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "REQUEST_ARCHITECTURE_COMPARISON",
+      "asset_ids": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "ARCHITECTURE_COMPARISON"
+      ]
+    },
+    {
+      "id": "REQUEST_FDTD",
+      "asset_ids": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "PIC_DESIGN_FDTD"
+      ]
+    },
+    {
+      "id": "REQUEST_GAIN_SWEEP",
+      "asset_ids": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "GAIN_SENSITIVITY"
+      ]
+    },
+    {
+      "id": "REQUEST_LOCK",
+      "asset_ids": [
+        "A_DFB_CONTROL_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Fresh baseline and approved servo/limits card",
+      "required_output": "Lock request acknowledgement only",
+      "failure": "Command acknowledgement is not lock proof",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "REQUEST_NOISE_BUDGET",
+      "asset_ids": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "ELECTRONIC_NOISE_BUDGET"
+      ]
+    },
+    {
+      "id": "REQUEST_OPEN_LOOP",
+      "asset_ids": [
+        "A_OPEN_LOOP_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Current frequency mapping and qualified source/temperature/power cards",
+      "required_output": "Open-loop acquisition request acknowledgement",
+      "failure": "Heater state and actual temperature require records",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION"
+      ]
+    },
+    {
+      "id": "REQUEST_PCB_ASSEMBLY",
+      "asset_ids": [
+        "A_PCB_SERVICE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Verified PIC, released PCB/BOM/bond map and qualified service",
+      "required_output": "PCB/packaging request acknowledgement only",
+      "failure": "No energization, soldering or wirebond operation exists here",
+      "source_evidence_ids": [
+        "MAIN",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "PCB_PACKAGING"
+      ]
+    },
+    {
+      "id": "REQUEST_PIC_FABRICATION",
+      "asset_ids": [
+        "A_FABRICATION_SERVICE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Released design, identified job and qualified foundry",
+      "required_output": "Request acknowledgement only",
+      "failure": "Acknowledgement is not fabricated PIC evidence",
+      "source_evidence_ids": [
+        "MAIN",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "PIC_FABRICATION"
+      ]
+    },
+    {
+      "id": "REQUEST_SAFE_OFF",
+      "asset_ids": [
+        "A_SAFETY_ENCLOSURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Package remains contained and supported",
+      "required_output": "Qualified service stop/isolation request acknowledgement",
+      "failure": "Acknowledgement never proves de-energization",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "REQUEST_SIN_MODEL",
+      "asset_ids": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "SIN_NUMERICAL_EXAMPLE"
+      ]
+    },
+    {
+      "id": "REQUEST_TRN_MODELS",
+      "asset_ids": [
+        "A_DESIGN_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified immutable numerical or hold inputs",
+      "required_output": "Independent bounded model result or non-activated hold evidence with full lineage",
+      "failure": "Missing input/model version or unsafe state fails closed",
+      "source_evidence_ids": [
+        "SI_N1",
+        "SI_N2",
+        "SI_N3",
+        "SI_N4",
+        "SI_N5",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "WAVEGUIDE_TRN",
+        "RING_TRN_FEM",
+        "CAVITY_TECHNOLOGY_COMPARISON"
+      ]
+    },
+    {
+      "id": "UNDOCK_PACKAGE",
+      "asset_ids": [
+        "A_PACKAGE_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Safe-off independently observed",
+      "required_output": "Supported sealed package returned to identified carrier",
+      "failure": "Do not treat failed isolation as cleanup success",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "VALIDATE_PSD",
+      "asset_ids": [
+        "A_FPGA_ANALYSIS"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Separate raw acquisitions and immutable hashes",
+      "required_output": "Unit/clock/window/RBW/normalization/bandwidth/noise-floor/alias and stationarity validation",
+      "failure": "Reject NaN, infinity, nonpositive support, negative PSD, missing bands and unjustified interpolation",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "VERIFY_ALIGNMENT",
+      "asset_ids": [
+        "A_SAFETY_ENCLOSURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Alignment service completed",
+      "required_output": "Independent coupling, polarization and power-plane observation at current mount",
+      "failure": "Port, power-plane or polarization changes invalidate calibration",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "VERIFY_INTERLOCK",
+      "asset_ids": [
+        "A_SAFETY_ENCLOSURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Docked package in closed qualified station",
+      "required_output": "Fresh independently observed enclosure and interlock state",
+      "failure": "Unknown/open condition prevents alignment/acquisition",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "VERIFY_LOCK",
+      "asset_ids": [
+        "A_DFB_CONTROL_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Lock requested under frozen settings",
+      "required_output": "Independent bounded-duration lock observation and no saturation/cycle-slip record",
+      "failure": "Unknown stability, cycle slip, loss of reference or clipping invalidates results",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "VERIFY_PACKAGING",
+      "asset_ids": [
+        "A_PCB_SERVICE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Independent package service/intake receipt",
+      "required_output": "PIC-to-PCB-to-package lineage and inspection/qualification record",
+      "failure": "Damage or incomplete bond/electrical inspection blocks use",
+      "source_evidence_ids": [
+        "MAIN",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "PCB_PACKAGING",
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "VERIFY_PIC",
+      "asset_ids": [
+        "A_FABRICATION_SERVICE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Foundry request and independent completed service receipt",
+      "required_output": "PIC lot/serial, design hash and inspection evidence",
+      "failure": "Prepared intake does not retroactively prove fabrication",
+      "source_evidence_ids": [
+        "MAIN",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "PIC_FABRICATION"
+      ]
+    },
+    {
+      "id": "VERIFY_QUALIFICATION",
+      "asset_ids": [
+        "A_SAFETY_ENCLOSURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Current service cards and isolated hardware",
+      "required_output": "Independent qualification record for laser safety, electrical service, enclosure, interlocks and authorized operators",
+      "failure": "Scene cards and actor statements never qualify service",
+      "source_evidence_ids": [
+        "MAIN",
+        "SI_N6"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "VERIFY_REFERENCE_CHAIN",
+      "asset_ids": [
+        "A_REFERENCE_CHAIN"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Reference laser, FP lock, comb repetition and CEO lock qualified",
+      "required_output": "Independent reference health, filtered tooth/beat identity and acquisition-band record",
+      "failure": "Unknown comb/FP/CEO lock, aliased/image beat or reference floor blocks absolute PSD",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    },
+    {
+      "id": "VERIFY_SAFE_OFF",
+      "asset_ids": [
+        "A_SAFETY_ENCLOSURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Stop requested",
+      "required_output": "Independent current safe optical/electrical state and supported package evidence",
+      "failure": "No undocking with unverified residual energy or unknown state",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG4",
+        "FIG5",
+        "SI_T2"
+      ],
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "branch_ids": [
+        "OPEN_LOOP_CHARACTERIZATION",
+        "DFB1_STABILIZATION",
+        "DFB2_STABILIZATION",
+        "DFB3_STABILIZATION"
+      ]
+    }
+  ]
+}

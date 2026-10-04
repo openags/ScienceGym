@@ -1,0 +1,209 @@
+{
+  "schema": "laser_original_scene.v1",
+  "package_id": "laser_scene_assets_v1",
+  "version": "1.0.0",
+  "title": "Modulation-free laser control static laboratory",
+  "task_id": "modulation_free_laser_stabilization",
+  "task_family": "laser_control_operations_v2",
+  "source_doi": "10.1038/s41467-024-46319-3",
+  "readiness": {
+    "geometry": "Original generic sealed laboratory roles and original AFM carrier reuse",
+    "functionality": "Static scene plus caller-owned local metadata guards only",
+    "physical_execution": false,
+    "device_io": false,
+    "laser_energy_enabled": false,
+    "heater1_enabled": false,
+    "heater2_enabled": false,
+    "servo_control": false,
+    "optical_physics": false,
+    "thermal_physics": false,
+    "electronic_physics": false,
+    "collision_validated": false,
+    "physical_geometry_validated": false,
+    "scientific_outputs": null,
+    "whole_paper_complete": false
+  },
+  "files": {
+    "editable": "geometry/laser_control_lab.blend",
+    "apparatus": "geometry/laser_control_lab.glb",
+    "display_only": "geometry/laser_pic_display.glb",
+    "generator": "geometry/build_scene.py"
+  },
+  "frame_convention": {
+    "main_scene": "LASER_AUTHORED_METRIC",
+    "display_scene": "DISPLAY_ONLY_1000X",
+    "unit": "m",
+    "handedness": "right",
+    "up_axis_blender": "+Z",
+    "up_axis_gltf": "+Y",
+    "transform_direction": "local_to_parent",
+    "rotation_representation": "quaternion_xyzw",
+    "physical_qualified_transforms": null,
+    "source_to_scene_axis_map": null,
+    "note": "All source package poses and dimensions are unknown; bench XYZ placements are original presentation choices."
+  },
+  "display_separation": {
+    "display_only": true,
+    "planar_footprint_scale_factor": 1000,
+    "native_footprint_m": [
+      0.00095,
+      0.00048
+    ],
+    "native_area_m2": 4.56e-07,
+    "display_footprint_m": [
+      0.95,
+      0.48
+    ],
+    "scale_applies_to": "Nominal 2D footprint reference only; not equipment, role legend, typography or any physical die",
+    "die_thickness_modelled": false,
+    "source_circuit_layout_modelled": false,
+    "native_reference_object": "pic.native_footprint_reference",
+    "display_reference_object": "display.pic_footprint_reference"
+  },
+  "source_known_facts": [
+    {
+      "fact": "PIC nominal footprint",
+      "value_m": [
+        0.00095,
+        0.00048
+      ],
+      "area_m2": 4.56e-07,
+      "basis": "Final article implementation and source audit",
+      "implemented": "Exact flat XY extent reference only; no die thickness or source mask"
+    },
+    {
+      "fact": "Final process label",
+      "value": "AIM Photonics 100 nm SOI",
+      "implemented": "Factual text; not a fabrication recipe or silicon thickness"
+    },
+    {
+      "fact": "Silicon cross-section thickness",
+      "value_m": 2.2e-07,
+      "implemented": "Metadata and labelled text only; separate from process label"
+    },
+    {
+      "fact": "Ring waveguide width",
+      "value_m": 2.2e-06,
+      "implemented": "Metadata only; no ring/waveguide CAD"
+    },
+    {
+      "fact": "Approximate measured ring circumference",
+      "value_m": 0.00095,
+      "implemented": "Metadata only; does not instantiate SI ideal 1mm model"
+    },
+    {
+      "fact": "Reported physical heater states",
+      "heater1": "off",
+      "heater2": "off",
+      "implemented": "Always disabled; no actuation interface"
+    },
+    {
+      "fact": "Calibration route",
+      "value": "Open-loop tunable ECDL and calibrated 20 MHz fiber MZI",
+      "implemented": "Capped interface roles and empty record slots only"
+    },
+    {
+      "fact": "Physical source routes",
+      "value": [
+        "DFB1",
+        "DFB2",
+        "DFB3"
+      ],
+      "implemented": "Three distinct sealed modules, disabled"
+    },
+    {
+      "fact": "Independent measurement",
+      "value": "Stabilized optical-frequency-comb-referenced heterodyne",
+      "implemented": "Closed capped reference chain; no signal or reference lock"
+    },
+    {
+      "fact": "In-loop measurement",
+      "value": "FPGA relative laser-to-cavity error spectrum",
+      "implemented": "Separate role, explicitly not absolute frequency noise"
+    },
+    {
+      "fact": "SiN example",
+      "value": "Numerical-only supplementary example",
+      "implemented": "Design-console text only; no second physical platform"
+    }
+  ],
+  "authored_geometry": {
+    "known_source_cad": false,
+    "source_geometry_traced": false,
+    "all_equipment_dimensions": "unqualified authored metres",
+    "all_port_transforms": "unqualified authored poses",
+    "sealed_package": "original generic opaque housing; not vendor geometry",
+    "three_dfb_modules": "original generic housings; source identity roles only",
+    "fiber_and_cables": "original authored dormant capped presentation routes; no optical/electrical connectivity asserted",
+    "pcb": "closed external packaging service; no actual board, bond map or energized conductors",
+    "microring": "not modelled",
+    "footprint": "nominal flat reference only, no physical die",
+    "carrier_fit": "empty reused carrier and separate sealed package; no physical fit claim"
+  },
+  "source_boundaries": [
+    {
+      "id": "C01",
+      "issue": "Final comb-referenced heterodyne supersedes historical delayed self-heterodyne review route",
+      "handling": "Only final source route represented"
+    },
+    {
+      "id": "C03",
+      "issue": "Final100nm process label, earlier180nm review label and220nm geometry are distinct",
+      "handling": "Final100nm label and220nm cross-section annotation; no process consistency claim"
+    },
+    {
+      "id": "C04",
+      "issue": "Measured silicon ring and ideal SI1mm ring differ",
+      "handling": "No ring CAD or numerical solver"
+    },
+    {
+      "id": "C05_C06",
+      "issue": "Gain normalization and optical power contexts differ",
+      "handling": "No gains, power settings or signal values produced"
+    },
+    {
+      "id": "C07",
+      "issue": "SI SiN density value has unresolved plausibility/typography flag",
+      "handling": "Numerical model reproduction unavailable; no silent correction"
+    },
+    {
+      "id": "C10",
+      "issue": "SiN example is numerical only",
+      "handling": "No physical SiN branch"
+    }
+  ],
+  "provenance": {
+    "geometry": "Original authored scene and generic helper conventions adapted from prior original Apache-2.0 scene work. No source figures, circuit trace, CAD, code, screenshots or scientific result curves copied.",
+    "source_reference": {
+      "title": "Modulation-free laser stabilization technique using integrated cavity-coupled Mach-Zehnder interferometer",
+      "url": "https://www.nature.com/articles/s41467-024-46319-3",
+      "doi": "10.1038/s41467-024-46319-3",
+      "license": "CC BY 4.0, subject to third-party exceptions",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_art_redistributed": false,
+      "source_code_reused": false
+    },
+    "original_work_license": "Apache-2.0",
+    "reused_asset_families": [
+      "afm.sample_carrier",
+      "afm.retention_clamps"
+    ],
+    "reused_mesh_count": 15,
+    "reused_new_unique_asset_credit": 0,
+    "reuse_fit_status": "Original mesh geometry and scale retained, empty carrier; no qualified laser-package fit",
+    "unique_asset_count": null,
+    "counting_policy": "Ten semantic groups, three DFB instances, labels, repeated ports,15 reused meshes, two GLBs and three renders do not increase independent asset credit",
+    "fonts": "Built-in Blender Bfont; notice included"
+  },
+  "execution_gates": [
+    "Externally qualified foundry, packaging and alignment services",
+    "Verified actual laser safety/interlock and electrical qualification",
+    "Independent source identity, reference health, calibration and measurement evidence",
+    "No local state ever enables energy, hardware, servo control or scientific computation"
+  ],
+  "publication_boundary": {
+    "public_files": "EXPORT_ALLOWLIST.json only",
+    "remote_writes": "none by asset builder",
+    "excluded": "Source PDFs, images, extracted text, source code; evaluator data; logs, caches and backups"
+  }
+}

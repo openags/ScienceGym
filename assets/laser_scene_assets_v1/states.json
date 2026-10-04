@@ -1,0 +1,27 @@
+{
+  "schema": "laser_scene_semantic_states.v1",
+  "implementation": "caller_owned_untrusted_local_metadata_only",
+  "api": "semantic_controls.LaserControlFixture",
+  "initial_state": "CUSTODY",
+  "states": ["CUSTODY", "DOCKED", "ALIGNMENT_CLAIMED", "MODULE_SELECTED", "CONTROLLER_DISABLED_CLAIMED", "ACQUISITION_RECORDS_BOUND", "DISCONNECTED_CLAIMED", "UNLOADED_CLAIMED", "QUARANTINE"],
+  "transitions": [
+    {"method": "register_custody", "from": ["CUSTODY"], "to": "CUSTODY"},
+    {"method": "dock", "from": ["CUSTODY"], "to": "DOCKED"},
+    {"method": "register_alignment", "from": ["DOCKED"], "to": "ALIGNMENT_CLAIMED"},
+    {"method": "select_module", "from": ["ALIGNMENT_CLAIMED"], "to": "MODULE_SELECTED"},
+    {"method": "register_disabled_controller", "from": ["MODULE_SELECTED"], "to": "CONTROLLER_DISABLED_CLAIMED"},
+    {"method": "bind_acquisition_records", "from": ["CONTROLLER_DISABLED_CLAIMED"], "to": "ACQUISITION_RECORDS_BOUND"},
+    {"method": "disconnect", "from": ["DOCKED", "ALIGNMENT_CLAIMED", "MODULE_SELECTED", "CONTROLLER_DISABLED_CLAIMED", "ACQUISITION_RECORDS_BOUND"], "to": "DISCONNECTED_CLAIMED"},
+    {"method": "register_unloaded", "from": ["DISCONNECTED_CLAIMED"], "to": "UNLOADED_CLAIMED"},
+    {"method": "retrieve", "from": ["UNLOADED_CLAIMED"], "to": "CUSTODY", "invalidates": "all downstream active bindings"},
+    {"method": "quarantine", "from": "any", "to": "QUARANTINE", "terminal": true}
+  ],
+  "claim_binding": ["locally issued claim ID", "instance", "revision", "sample ID", "sample version", "active context hash", "configuration ID", "configuration version", "action", "exact target", "canonical record payload"],
+  "permanent_invariants": {"laser_energy_state": "DISABLED", "laser_enabled": false, "heater1_enabled": false, "heater2_enabled": false, "controller_state": "DISABLED", "controller_enabled": false, "physical_execution": false, "geometry_coupling": false, "claims_are_evidence": false, "real_signals": null, "calibrated_data": null, "scientific_outputs": null},
+  "physical_platform": "AIM_100NM_SOI",
+  "source_dfb_identities": ["DFB_1", "DFB_2", "DFB_3"],
+  "silicon_nitride_branch": "NUMERICAL_ONLY_NOT_SELECTABLE",
+  "measurement_role_separation": {"heterodyne_record_id": "comb_reference_heterodyne", "fpga_record_id": "in_loop_error"},
+  "unavailable_method": "request_physical_service always raises PhysicalExecutionUnavailable",
+  "limitations": "Record IDs are unverified caller strings. These state guards are neither authentication, physical safety controls, measurement evidence nor task execution. Python code and private state can be modified by its owner."
+}

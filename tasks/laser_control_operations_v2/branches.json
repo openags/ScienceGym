@@ -1,0 +1,420 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "branches": [
+    {
+      "id": "SYSTEM_DESIGN",
+      "source_evidence_ids": [
+        "SI_N6",
+        "FIG6"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "application wavelength and linewidth target",
+        "area/cost budget",
+        "qualified platform loss and material data"
+      ],
+      "design_sequence": [
+        "choose material/platform",
+        "set cavity-volume and TRN budget",
+        "estimate optical/electrical link budget",
+        "freeze acceptance plan"
+      ],
+      "required_outputs": [
+        "controlled design record and unresolved inputs"
+      ],
+      "interpretation_limit": "No measured suppression, linewidth or hardware claim",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "PIC_DESIGN_FDTD",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG2",
+        "FIG3"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "foundry-authorized PDK",
+        "source-independent GDS/layout",
+        "Euler bend and coupling design",
+        "FDTD mesh/material/boundary cards"
+      ],
+      "design_sequence": [
+        "design cavity-coupled MZI",
+        "simulate fundamental-mode retention",
+        "review coupling and loss",
+        "freeze fabrication inputs"
+      ],
+      "required_outputs": [
+        "mode response and design-validation receipts"
+      ],
+      "interpretation_limit": "100 nm process label is not the depicted 220 nm silicon waveguide thickness",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "PIC_FABRICATION",
+      "source_evidence_ids": [
+        "MAIN",
+        "FIG2"
+      ],
+      "execution_class": "closed_qualified_service",
+      "required_inputs": [
+        "released PIC design",
+        "foundry process and safety qualification",
+        "job and lot IDs"
+      ],
+      "design_sequence": [
+        "request qualified foundry fabrication",
+        "receive identified PIC",
+        "independently inspect and compare released design"
+      ],
+      "required_outputs": [
+        "fabrication and inspection receipt"
+      ],
+      "interpretation_limit": "No fabrication recipe, mask data, machinery command or implementation supplied",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "PCB_PACKAGING",
+      "source_evidence_ids": [
+        "MAIN",
+        "SI_N4",
+        "SI_T2"
+      ],
+      "execution_class": "closed_qualified_service",
+      "required_inputs": [
+        "released board design/BOM",
+        "PIC and PCB lot IDs",
+        "bond map",
+        "qualified electrical and packaging service"
+      ],
+      "design_sequence": [
+        "request PCB/assembly service",
+        "wirebond through qualified service",
+        "verify package identity and electrical inspection"
+      ],
+      "required_outputs": [
+        "assembled package custody and test receipt"
+      ],
+      "interpretation_limit": "PCB, bond geometry and electronics settings cannot be reconstructed from schematic artwork",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "ARCHITECTURE_COMPARISON",
+      "source_evidence_ids": [
+        "FIG1",
+        "SI_N1",
+        "SI_N2"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "transfer functions with units",
+        "equal-area assumptions",
+        "normalization and phase settings"
+      ],
+      "design_sequence": [
+        "calculate cavity-MZI error response",
+        "compare PDH and unbalanced MZI",
+        "hold length and loss assumptions fixed"
+      ],
+      "required_outputs": [
+        "numerical comparison record"
+      ],
+      "interpretation_limit": "Source simulated gains are not measured device calibration",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "GAIN_SENSITIVITY",
+      "source_evidence_ids": [
+        "SI_N3"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "coupling convention",
+        "waveguide loss model",
+        "scan axes and numerical tolerance"
+      ],
+      "design_sequence": [
+        "sweep ring coupling and propagation loss",
+        "normalize to fixed reference",
+        "report sensitivity domain"
+      ],
+      "required_outputs": [
+        "gain-sweep grid and normalization lineage"
+      ],
+      "interpretation_limit": "The source reference critical coupling is 0.5%; this is not a fabrication tolerance",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "ELECTRONIC_NOISE_BUDGET",
+      "source_evidence_ids": [
+        "SI_N4",
+        "SI_N5"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "TIA and downstream transfer functions",
+        "detector operating card",
+        "optical power plane",
+        "noise units and correlations"
+      ],
+      "design_sequence": [
+        "separate ASD and PSD",
+        "combine independent electronic and shot contributions",
+        "retain intensity-noise assumptions",
+        "refer noise to frequency using dimensional gain"
+      ],
+      "required_outputs": [
+        "frequency-referred noise budget"
+      ],
+      "interpretation_limit": "Balanced detection suppresses common-mode noise; it does not prove zero intensity-noise coupling",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "WAVEGUIDE_TRN",
+      "source_evidence_ids": [
+        "SI_N4"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "cross-section and boundary geometry",
+        "mode solver/material data",
+        "thermal model and convergence card"
+      ],
+      "design_sequence": [
+        "compute mode thermo-optic response",
+        "estimate phase-noise PSD",
+        "convert waveguide TRN to error-current noise"
+      ],
+      "required_outputs": [
+        "phase/current noise model record"
+      ],
+      "interpretation_limit": "A uniform model does not qualify the heterogeneous physical device",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "RING_TRN_FEM",
+      "source_evidence_ids": [
+        "FIG6",
+        "SI_N4"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "source-independent FEM geometry and mesh",
+        "thermal boundaries and material properties",
+        "fluctuation-dissipation convention"
+      ],
+      "design_sequence": [
+        "calculate analytical infinite-bath TRN",
+        "request independent FEM estimate",
+        "compare model domains and frequency limits"
+      ],
+      "required_outputs": [
+        "separate analytic and FEM spectra"
+      ],
+      "interpretation_limit": "Infinite-bath analytical and finite-geometry FEM curves are distinct evidence",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "OPEN_LOOP_CHARACTERIZATION",
+      "source_evidence_ids": [
+        "FIG4",
+        "MAIN",
+        "SI_T2"
+      ],
+      "execution_class": "closed_qualified_service",
+      "required_inputs": [
+        "qualified prepared package",
+        "calibrated ECDL sweep",
+        "fiber-MZI calibration",
+        "safe alignment and optical/electrical qualification"
+      ],
+      "design_sequence": [
+        "verify sealed alignment",
+        "calibrate frequency axis",
+        "acquire simultaneous sniffer/error records",
+        "fit resonance",
+        "calibrate dimensional discriminator slope"
+      ],
+      "required_outputs": [
+        "raw paired traces",
+        "Q/extinction/FSR fit record",
+        "signed gain and uncertainty"
+      ],
+      "interpretation_limit": "Heaters off; fit outcomes must not be assumed from source values",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "DFB1_STABILIZATION",
+      "source_evidence_ids": [
+        "FIG5",
+        "MAIN",
+        "SI_T2"
+      ],
+      "execution_class": "closed_qualified_service",
+      "required_inputs": [
+        "qualified DFB1 and driver",
+        "current open-loop calibration",
+        "qualified reference chain",
+        "frozen bias-noise/servo cards"
+      ],
+      "design_sequence": [
+        "collect matched free-running reference",
+        "request lock",
+        "independently verify lock",
+        "acquire FPGA in-loop and comb heterodyne data",
+        "validate PSD and analyze",
+        "safely close lifecycle"
+      ],
+      "required_outputs": [
+        "separate independent and in-loop PSDs",
+        "reported analysis and retained failures"
+      ],
+      "interpretation_limit": "DFB1 identity, wavelengths and settings cannot be replayed as another laser",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "DFB2_STABILIZATION",
+      "source_evidence_ids": [
+        "FIG5",
+        "MAIN",
+        "SI_T2"
+      ],
+      "execution_class": "closed_qualified_service",
+      "required_inputs": [
+        "qualified DFB2 and driver",
+        "current open-loop calibration",
+        "qualified reference chain",
+        "frozen bias-noise/servo cards"
+      ],
+      "design_sequence": [
+        "collect matched free-running reference",
+        "request lock",
+        "independently verify lock",
+        "acquire FPGA in-loop and comb heterodyne data",
+        "validate PSD and analyze",
+        "safely close lifecycle"
+      ],
+      "required_outputs": [
+        "separate independent and in-loop PSDs",
+        "reported analysis and retained failures"
+      ],
+      "interpretation_limit": "Different devices do not establish independent device-population replication",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "DFB3_STABILIZATION",
+      "source_evidence_ids": [
+        "FIG5",
+        "MAIN",
+        "SI_T2"
+      ],
+      "execution_class": "closed_qualified_service",
+      "required_inputs": [
+        "qualified DFB3 and driver",
+        "current open-loop calibration",
+        "qualified reference chain",
+        "frozen bias-noise/servo cards"
+      ],
+      "design_sequence": [
+        "collect matched free-running reference",
+        "request lock",
+        "independently verify lock",
+        "acquire FPGA in-loop and comb heterodyne data",
+        "validate PSD and analyze",
+        "safely close lifecycle"
+      ],
+      "required_outputs": [
+        "separate independent and in-loop PSDs",
+        "reported analysis and retained failures"
+      ],
+      "interpretation_limit": "Integral linewidth and Lorentzian linewidth remain different quantities",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "SIN_NUMERICAL_EXAMPLE",
+      "source_evidence_ids": [
+        "SI_N5",
+        "SI_T1"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "all Table 1 model values with provenance",
+        "laser FM response model",
+        "noise and thermal geometry",
+        "explicit disposition of density anomaly"
+      ],
+      "design_sequence": [
+        "freeze SiN numerical inputs",
+        "calculate discriminator and TRN",
+        "model feedback PSD",
+        "evaluate declared linewidth integral"
+      ],
+      "required_outputs": [
+        "numerical PSD and linewidth record"
+      ],
+      "interpretation_limit": "Printed density 3.29e2 kg/m3 must not be silently corrected; no physical SiN route or numerical reproduction claimed",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "CAVITY_TECHNOLOGY_COMPARISON",
+      "source_evidence_ids": [
+        "FIG6",
+        "MAIN",
+        "SI_N4",
+        "SI_N6"
+      ],
+      "execution_class": "design_only",
+      "required_inputs": [
+        "cited cavity-technology evidence",
+        "mode-volume definitions",
+        "1 kHz offset normalization"
+      ],
+      "design_sequence": [
+        "compare size/TRN tradeoffs",
+        "retain packaging and integration constraints",
+        "qualify any application choice"
+      ],
+      "required_outputs": [
+        "traceable technology comparison"
+      ],
+      "interpretation_limit": "Trend is contextual literature comparison, not a new physical experiment",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    }
+  ],
+  "hold_branch": {
+    "id": "QUALIFICATION_HOLD",
+    "purpose": "Archive a non-activated attempt and retain safe storage when qualification is missing",
+    "scientific_route": false
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "routes": [
+    {
+      "id": "FULL_PREPARATION",
+      "sequence": [
+        "REGISTER_INPUTS",
+        "VERIFY_QUALIFICATION",
+        "FREEZE_DESIGN",
+        "REQUEST_PIC_FABRICATION",
+        "VERIFY_PIC",
+        "REQUEST_PCB_ASSEMBLY",
+        "VERIFY_PACKAGING"
+      ],
+      "inputs": [
+        "released PIC design",
+        "foundry-qualified process",
+        "released PCB/BOM/bond map",
+        "independent fabrication and assembly evidence"
+      ],
+      "implementation": "offline synthetic external-service receipt checks; no fabrication"
+    },
+    {
+      "id": "PREPARED_INTAKE",
+      "sequence": [
+        "REGISTER_INPUTS",
+        "VERIFY_QUALIFICATION",
+        "VERIFY_PACKAGING"
+      ],
+      "inputs": [
+        "prepared identified package",
+        "independent qualified packaging and inspection records"
+      ],
+      "does_not_credit": [
+        "PIC_DESIGN_FDTD",
+        "PIC_FABRICATION",
+        "PCB_PACKAGING"
+      ],
+      "implementation": "offline synthetic receipt checks only"
+    }
+  ],
+  "unknown_fabrication_details_are_gates": true
+}

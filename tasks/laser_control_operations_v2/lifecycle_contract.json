@@ -1,0 +1,77 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "full_preparation": [
+    "REGISTER_INPUTS",
+    "VERIFY_QUALIFICATION",
+    "FREEZE_DESIGN",
+    "REQUEST_PIC_FABRICATION",
+    "VERIFY_PIC",
+    "REQUEST_PCB_ASSEMBLY",
+    "VERIFY_PACKAGING"
+  ],
+  "prepared_intake": [
+    "REGISTER_INPUTS",
+    "VERIFY_QUALIFICATION",
+    "VERIFY_PACKAGING"
+  ],
+  "measurement_phases": [
+    "DOCK_PACKAGE",
+    "VERIFY_INTERLOCK",
+    "REQUEST_ALIGNMENT",
+    "VERIFY_ALIGNMENT",
+    "CALIBRATE_FREQUENCY_AXIS",
+    "REQUEST_OPEN_LOOP",
+    "ACQUIRE_OPEN_LOOP",
+    "FIT_RING",
+    "CALIBRATE_DISCRIMINATOR",
+    "REGISTER_LASER",
+    "VERIFY_REFERENCE_CHAIN",
+    "FREEZE_CONTROL_SETTINGS",
+    "ACQUIRE_FREE_RUNNING",
+    "REQUEST_LOCK",
+    "VERIFY_LOCK",
+    "ACQUIRE_IN_LOOP",
+    "ACQUIRE_HETERODYNE",
+    "VALIDATE_PSD",
+    "ANALYZE_NOISE"
+  ],
+  "closure_phases": [
+    "REQUEST_SAFE_OFF",
+    "VERIFY_SAFE_OFF",
+    "UNDOCK_PACKAGE",
+    "INSPECT_PACKAGE",
+    "ARCHIVE",
+    "CLEAN_STORE"
+  ],
+  "hold_phases": [
+    "REGISTER_INPUTS",
+    "HOLD_QUALIFICATION",
+    "ARCHIVE",
+    "CLEAN_STORE"
+  ],
+  "commands_are_not_state_evidence": [
+    "REQUEST_PIC_FABRICATION",
+    "REQUEST_PCB_ASSEMBLY",
+    "REQUEST_ALIGNMENT",
+    "REQUEST_OPEN_LOOP",
+    "REQUEST_LOCK",
+    "REQUEST_SAFE_OFF"
+  ],
+  "independent_state_checks": [
+    "VERIFY_PIC",
+    "VERIFY_PACKAGING",
+    "VERIFY_INTERLOCK",
+    "VERIFY_ALIGNMENT",
+    "VERIFY_LOCK",
+    "VERIFY_SAFE_OFF"
+  ],
+  "safe_undock_order": [
+    "REQUEST_SAFE_OFF",
+    "VERIFY_SAFE_OFF",
+    "UNDOCK_PACKAGE"
+  ],
+  "service_completion_not_execution_by_this_package": true,
+  "interrupted_active_attempt": "Request qualified safe off, independently verify isolation, then retrieve/inspect/archive; unresolved isolation stays contained and does not complete",
+  "damage": "Quarantine and archive; reuse requires a new qualified release",
+  "real_adapter_implemented": false
+}

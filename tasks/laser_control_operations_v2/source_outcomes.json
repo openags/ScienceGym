@@ -1,0 +1,201 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "visibility": "evaluator_reference_only",
+  "completion_thresholds": false,
+  "final_version_only": true,
+  "dfb_results": [
+    {
+      "id": "DFB1",
+      "wavelength_nm": 1550.7,
+      "suppression_dB_at_1p5kHz": 40,
+      "rms_free_Hz": 4280000.0,
+      "rms_locked_Hz": 400300.0,
+      "loop_bandwidth_Hz": 80000.0,
+      "integral_linewidth_reduction_factor": 2.1
+    },
+    {
+      "id": "DFB2",
+      "wavelength_nm": 1547.8,
+      "suppression_dB_at_1p5kHz": "greater than 42",
+      "rms_free_Hz": 3870000.0,
+      "rms_locked_Hz": 240300.0,
+      "loop_bandwidth_Hz": 100000.0,
+      "integral_linewidth_reduction_factor": 2.9
+    },
+    {
+      "id": "DFB3",
+      "wavelength_nm": 1551.4,
+      "suppression_dB_at_1p5kHz": 39,
+      "rms_free_Hz": 1700000.0,
+      "rms_locked_Hz": 140100.0,
+      "loop_bandwidth_Hz": 150000.0,
+      "integral_linewidth_free_Hz": 4000000.0,
+      "integral_linewidth_locked_Hz": 330000.0
+    }
+  ],
+  "device_reported": {
+    "loaded_Q": 2500000.0,
+    "extinction_dB": 4.8,
+    "normalized_gain_per_Hz": 1.38e-08,
+    "FSR_GHz": 83.5,
+    "resonance_nm": 1550.73
+  },
+  "sin_numerical": {
+    "loaded_Q": 23000000.0,
+    "ring_circumference_m": 0.47,
+    "FSR_MHz": 250,
+    "current_gain_A_per_Hz": 2.3e-11,
+    "free_lorentzian_Hz": 30000.0,
+    "integral_free_Hz": 170000.0,
+    "integral_locked_Hz": 480,
+    "reduction_factor": 354
+  },
+  "warning": "Source values are reported evidence, not fixtures, control goals, default settings, achieved results, or completion thresholds. Exact raw integration/analysis settings remain required inputs.",
+  "analysis_context": {
+    "independent_RBW_Hz": 200,
+    "in_loop_RBW_Hz": {
+      "DFB1": 51,
+      "DFB2": 51,
+      "DFB3": 103
+    },
+    "final_spectrum_lower_extent_Hz": 500,
+    "RMS_band": "Within the source per-laser loop bandwidth; exact raw integration and uncertainty settings unavailable",
+    "scope": "Reported source context only; not runtime defaults"
+  },
+  "sin_model_parameters": {
+    "source": "SI_T1",
+    "scenario": "reported numerical assumptions only",
+    "laser_power_uW": 100,
+    "laser_FM_gain_MHz_per_mA": 500,
+    "laser_FM_response_b": 2,
+    "laser_FM_response_fc_MHz": 1.6,
+    "input_current_ASD_pA_per_sqrt_Hz": 3.2,
+    "current_driver_gain_mA_per_V": 2,
+    "current_driver_BW_kHz": 10,
+    "servo_gain_kohm": 125,
+    "servo_BW_MHz": 1,
+    "density_kg_m3_literal": 329,
+    "executable_settings": false
+  },
+  "reported_equipment": [
+    {
+      "role": "DFB1",
+      "model": "AeroDiode 1550LD-2-0-0-1",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "DFB2",
+      "model": "Gooch & Housego-AA1401",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "DFB3",
+      "model": "AeroDiode 1550LD-6-0-0-1",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Tunable ECDL",
+      "model": "TOPTICA CTL 1550",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Reference laser",
+      "model": "OEwaves OE4028",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Frequency comb",
+      "model": "Vescent FFC-100",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Fast photodetector",
+      "model": "LAB BUDDY DSC30S-39",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Laser current source",
+      "model": "LDX-3620B",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Temperature controllers",
+      "model": "LDT-5910B, WTC3243",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Oscilloscope",
+      "model": "SDS1204X-E",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Waveform generator",
+      "model": "Keysight 33600A",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Power supply",
+      "model": "SIGLENT SPD3303X-E",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "FPGA",
+      "model": "Redpitaya STEMlab 125-14",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "PID controller",
+      "model": "Vescent D2-125",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Optical filter",
+      "model": "Santec OTF-350",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    },
+    {
+      "role": "Optical spectrum analyzer",
+      "model": "YOKOGAWA AQ6370D",
+      "source": "SI_T2",
+      "role_in_task": "source identity reference only; actual qualified identity required"
+    }
+  ],
+  "reported_component_context": {
+    "source": "MAIN and SI_N4",
+    "TIA_transimpedance_ohm": 5000,
+    "TIA_3dB_bandwidth_MHz": 10.8,
+    "TIA_input_current_ASD_pA_per_sqrt_Hz": 3.2,
+    "total_electronics_current_ASD_pA_per_sqrt_Hz": 3.4,
+    "PID_input_voltage_ASD_nV_per_sqrt_Hz": "less than 5",
+    "detector_responsivity_A_per_W_at_1550nm": 1.16,
+    "detector_dark_current_nA": 40,
+    "detector_reverse_bias_V": 2.5,
+    "detector_bias_power_uW_approx": 50,
+    "source_bias_noise": "Laser bias-current electronic noise adjusted and controlled to accentuate demonstration",
+    "actual_hardware_settings_supplied": false
+  },
+  "reference_chain_context": {
+    "source": "Final MAIN Methods",
+    "reference_laser_nm": 1564.68,
+    "reference_Lorentzian_linewidth_Hz": "less than 7",
+    "comb_repetition_MHz": 200,
+    "comb_carrier_envelope_offset": "stabilized",
+    "image_rejection_lowpass_MHz": 98,
+    "settings_are_runtime_defaults": false
+  }
+}

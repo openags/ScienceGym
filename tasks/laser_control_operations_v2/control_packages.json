@@ -1,0 +1,54 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "controls": [
+    {
+      "id": "DFB_MATCHED",
+      "roles": [
+        "free_running_comb_heterodyne",
+        "locked_comb_heterodyne",
+        "locked_fpga_in_loop"
+      ],
+      "same_conditions": [
+        "same identified DFB",
+        "frozen bias-current noise",
+        "same declared optical power plane",
+        "same temperature/heater state",
+        "same reference-chain revision for independent channels",
+        "consistent PSD convention and analyzed support"
+      ],
+      "source_device_count": 3,
+      "source_independent_replicate_count": null,
+      "source_technical_repeat_count": null,
+      "synthetic_repeats_per_configuration": 1
+    },
+    {
+      "id": "OPEN_LOOP",
+      "source_reference": "calibrated fiber MZI",
+      "source_fsr_MHz": 20,
+      "source_sweep_GHz": 30,
+      "source_chip_temperature_C": 27,
+      "source_heaters": "off",
+      "unknown": [
+        "sweep rate",
+        "actual synchronized samples",
+        "calibration uncertainty",
+        "fit tolerances"
+      ]
+    },
+    {
+      "id": "NUMERICAL_EQUAL_AREA",
+      "cavity_circumference_mm": 1,
+      "unbalanced_mzi_mismatch_mm": 1,
+      "waveguide_loss_dB_cm": 0.2,
+      "pdh_lo_GHz": 1,
+      "phase_settings": "source optimized; exact settings missing"
+    },
+    {
+      "id": "SIN",
+      "physical_demonstrated": false,
+      "printed_density_kg_m3": 329,
+      "density_status": "source anomaly retained; external disposition required"
+    }
+  ],
+  "source_outcomes_are_thresholds": false
+}

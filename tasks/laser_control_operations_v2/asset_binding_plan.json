@@ -1,0 +1,239 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "task_id": "modulation_free_laser_stabilization",
+  "binding_status": "STABLE_INTERFACE_PLAN_ONLY",
+  "scene_assets": [
+    {
+      "asset_id": "A_DESIGN_CONSOLE",
+      "role": "system_and_numerical_design",
+      "required_anchor_ids": [
+        "requirements_card",
+        "model_card",
+        "design_release"
+      ],
+      "bind_operation_ids": [
+        "DECLARE_REQUIREMENTS",
+        "FREEZE_DESIGN",
+        "REQUEST_FDTD",
+        "REQUEST_ARCHITECTURE_COMPARISON",
+        "REQUEST_GAIN_SWEEP",
+        "REQUEST_NOISE_BUDGET",
+        "REQUEST_TRN_MODELS",
+        "REQUEST_SIN_MODEL"
+      ],
+      "source_facts_and_limits": "Numerical design and externally qualified data only; no FDTD, FEM, thermal, laser or servo solver.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_FABRICATION_SERVICE",
+      "role": "closed_qualified_pic_fabrication",
+      "required_anchor_ids": [
+        "design_in",
+        "fabrication_status",
+        "pic_carrier_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_PIC_FABRICATION",
+        "VERIFY_PIC"
+      ],
+      "source_facts_and_limits": "AIM Photonics 100 nm SOI process is reported. Foundry files, process recipe and qualification are required external inputs; no fabrication machinery control.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_PCB_SERVICE",
+      "role": "closed_qualified_packaging_and_pcb",
+      "required_anchor_ids": [
+        "pcb_design_in",
+        "package_status",
+        "package_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_PCB_ASSEMBLY",
+        "VERIFY_PACKAGING"
+      ],
+      "source_facts_and_limits": "Original representative sealed PCB service. Exact board files, package, bond map and hazardous electrical work remain external.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_PACKAGE_CUSTODY",
+      "role": "sealed_pic_package_and_carrier",
+      "required_anchor_ids": [
+        "package_origin",
+        "carrier_slot",
+        "identity_card",
+        "inspection_view",
+        "pic_native_extent"
+      ],
+      "bind_operation_ids": [
+        "REGISTER_INPUTS",
+        "DOCK_PACKAGE",
+        "UNDOCK_PACKAGE",
+        "INSPECT_PACKAGE",
+        "CLEAN_STORE"
+      ],
+      "source_facts_and_limits": "Source PIC footprint 0.95 mm x 0.48 mm, area 0.456 mm2. Display enlargement must be separate from native footprint; all holder/package geometry is authored.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_SAFETY_ENCLOSURE",
+      "role": "closed_optical_electrical_service",
+      "required_anchor_ids": [
+        "closed_cover",
+        "interlock_card",
+        "safe_state",
+        "alignment_port"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_QUALIFICATION",
+        "VERIFY_INTERLOCK",
+        "REQUEST_ALIGNMENT",
+        "VERIFY_ALIGNMENT",
+        "REQUEST_SAFE_OFF",
+        "VERIFY_SAFE_OFF"
+      ],
+      "source_facts_and_limits": "All laser, electrical, alignment and optical-coupling operations are sealed qualified services; visual controls never emit energy or change hardware.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_OPEN_LOOP_STATION",
+      "role": "calibrated_open_loop_characterization",
+      "required_anchor_ids": [
+        "ecdl_port",
+        "voa_port",
+        "temperature_card",
+        "mzi_frequency_reference",
+        "sniffer_record",
+        "balanced_error_record"
+      ],
+      "bind_operation_ids": [
+        "CALIBRATE_FREQUENCY_AXIS",
+        "REQUEST_OPEN_LOOP",
+        "ACQUIRE_OPEN_LOOP",
+        "FIT_RING",
+        "CALIBRATE_DISCRIMINATOR"
+      ],
+      "source_facts_and_limits": "Source tunable ECDL, VOA, calibrated 20 MHz fiber MZI and simultaneous sniffer/error recording. No visible beam, real actuator or inferred calibration.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_DFB_CONTROL_STATION",
+      "role": "three_dfb_and_feedback_service",
+      "required_anchor_ids": [
+        "dfb1_slot",
+        "dfb2_slot",
+        "dfb3_slot",
+        "tia_record",
+        "pid_record",
+        "bias_noise_card",
+        "lock_evidence"
+      ],
+      "bind_operation_ids": [
+        "REGISTER_LASER",
+        "FREEZE_CONTROL_SETTINGS",
+        "ACQUIRE_FREE_RUNNING",
+        "REQUEST_LOCK",
+        "VERIFY_LOCK"
+      ],
+      "source_facts_and_limits": "Three distinct DFB identities. TIA/PID/current modulation remain closed service with exact settings externally qualified; lock commands are not observations.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_REFERENCE_CHAIN",
+      "role": "independent_comb_heterodyne_service",
+      "required_anchor_ids": [
+        "reference_laser",
+        "fp_cavity",
+        "comb",
+        "filter",
+        "receiver",
+        "digitizer_record"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_REFERENCE_CHAIN",
+        "ACQUIRE_HETERODYNE"
+      ],
+      "source_facts_and_limits": "Final article uses stabilized optical frequency comb referenced heterodyne, not prior-review delayed self-heterodyne. Reference health and independent acquisition required.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_FPGA_ANALYSIS",
+      "role": "in_loop_analysis_and_records",
+      "required_anchor_ids": [
+        "fpga_record",
+        "psd_record",
+        "analysis_card",
+        "archive_slot"
+      ],
+      "bind_operation_ids": [
+        "ACQUIRE_IN_LOOP",
+        "VALIDATE_PSD",
+        "ANALYZE_NOISE",
+        "ARCHIVE"
+      ],
+      "source_facts_and_limits": "In-loop PSD measures laser-to-cavity error and cannot establish absolute noise. Independent heterodyne PSD stays separately labelled.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_HOLD_PANEL",
+      "role": "failure_and_qualification_holds",
+      "required_anchor_ids": [
+        "qualification_hold",
+        "calibration_hold",
+        "reference_hold",
+        "lock_hold",
+        "damage_hold"
+      ],
+      "bind_operation_ids": [
+        "HOLD_QUALIFICATION",
+        "HOLD_CALIBRATION",
+        "HOLD_REFERENCE",
+        "HOLD_LOCK",
+        "QUARANTINE"
+      ],
+      "source_facts_and_limits": "Authored fail-closed hold controls; no scene state confers qualification or physical safety.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    }
+  ],
+  "global_requirements": [
+    "All meshes original; no source figures, source circuit layouts, traced meshes or publisher artwork",
+    "No emitted laser energy, hazardous electrical actuation, operational alignment, real servo control or hardware drivers",
+    "Native PIC footprint 0.95 mm x 0.48 mm is a source fact, separate from any labelled display magnification",
+    "Sealed services have metadata request interfaces only; independent records establish outcomes",
+    "Three physical DFB routes are distinct from the SiN numerical example",
+    "In-loop and comb-referenced independent measurement channels must never be conflated",
+    "Source outcomes and synthetic fixture values are evaluator-only",
+    "All unreported physical dimensions, port transforms, wiring, grasp poses and tolerances are unqualified"
+  ],
+  "source_known_geometry": [
+    "PIC nominal footprint 0.95 mm x 0.48 mm",
+    "Source silicon ring circumference about 950 micrometres",
+    "Source silicon ring waveguide width 2.2 micrometres"
+  ],
+  "authored_unknown_geometry": [
+    "PCB/package/case dimensions and physical layout",
+    "Exact ring and coupling-region geometry or GDS",
+    "Grating-coupler angle, fiber positioning, bond map and optical/electrical routing",
+    "All robot contact/grasp/collision and camera transforms"
+  ],
+  "model_build_assigned": true
+}

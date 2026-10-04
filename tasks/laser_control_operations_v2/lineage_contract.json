@@ -1,0 +1,43 @@
+{
+  "schema_version": "laser_control_task.v1",
+  "required_bindings": [
+    "episode_id",
+    "attempt_id",
+    "branch_id",
+    "preparation_route",
+    "design_hash",
+    "pic_id",
+    "pic_lot",
+    "pcb_id",
+    "package_id",
+    "dfb_id",
+    "dfb_wavelength_nm",
+    "mount_revision",
+    "alignment_id",
+    "frequency_calibration_id",
+    "discriminator_calibration_id",
+    "reference_chain_id",
+    "reference_lock_revision",
+    "control_revision",
+    "bias_noise_revision",
+    "power_plane_id",
+    "temperature_revision",
+    "raw_record_hash",
+    "analysis_revision",
+    "qualification_revision"
+  ],
+  "freshness_invalidations": [
+    "mount/port/fiber/polarization change",
+    "DFB substitution",
+    "PIC/PCB/package replacement",
+    "frequency or discriminator recalibration",
+    "TIA/PID/driver or bias-noise revision",
+    "reference lock loss",
+    "temperature/power/heater revision",
+    "cycle slip or clipping",
+    "damage"
+  ],
+  "failure_records_immutable": true,
+  "reference_channels_separate": true,
+  "technical_repeats_are_independent_specimens": false
+}
