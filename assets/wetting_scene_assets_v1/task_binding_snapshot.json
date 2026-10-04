@@ -1,0 +1,392 @@
+{
+  "schema": "wetting_scene_binding.v1",
+  "doi": "10.1038/s41467-019-12093-w",
+  "groups": [
+    {
+      "id": "A01",
+      "name": "Material and formulation station",
+      "routes": [
+        "R01",
+        "R02"
+      ],
+      "required_anchors": [
+        "base_container",
+        "component_container",
+        "additive_container",
+        "balance_receipt",
+        "batch_tray"
+      ],
+      "design": "Closed labelled containers, safe grips and staging pads; service display only for mixing/degassing/coating/cure",
+      "dimensional_basis": "Nominal slide24mm diameter and0.17mm thick; all bench/device envelopes independently authored"
+    },
+    {
+      "id": "A02",
+      "name": "Protected storage and custody",
+      "routes": [
+        "R03",
+        "R15"
+      ],
+      "required_anchors": [
+        "sample_rack",
+        "age_label",
+        "spot_map",
+        "quarantine_slot",
+        "containment_slot"
+      ],
+      "design": "Sample carriers protect active films; visible orientation and unique IDs",
+      "dimensional_basis": "Rack slot/handle dimensions illustrative, not source dimensions"
+    },
+    {
+      "id": "A03",
+      "name": "Film and mechanical specimens",
+      "routes": [
+        "R01",
+        "R02",
+        "R04",
+        "R05"
+      ],
+      "required_anchors": [
+        "glass_slide",
+        "coating_surface",
+        "coupon",
+        "gauge_region",
+        "grip_tabs"
+      ],
+      "design": "Distinct slide versus coupon objects, polymer composition/lot metadata and top-face marker",
+      "dimensional_basis": "Film nominal30um PDMS/35umCY; tensile-coupon dimensions unresolved, do not invent qualified test geometry"
+    },
+    {
+      "id": "A04",
+      "name": "External patterning service",
+      "routes": [
+        "R07"
+      ],
+      "required_anchors": [
+        "sealed_input_port",
+        "sealed_output_port",
+        "pattern_receipt",
+        "array_origin",
+        "array_boundary"
+      ],
+      "design": "No exposed chemistry, nanoparticles, high-voltage nozzle or controls; safe receipt interface",
+      "dimensional_basis": "Original triangular marker abstraction only; pitch/count unknown until qualified pattern record"
+    },
+    {
+      "id": "A05",
+      "name": "Environmental chamber",
+      "routes": [
+        "R08",
+        "R09",
+        "R10",
+        "R11"
+      ],
+      "required_anchors": [
+        "sample_mount",
+        "door",
+        "RH_probe",
+        "temperature_probe",
+        "dry_gas_receipt",
+        "wet_gas_receipt",
+        "exhaust_receipt"
+      ],
+      "design": "Generic independently authored chamber with clear sample line of sight; enclosed service connections",
+      "dimensional_basis": "Chamber dimensions not source-specified; all envelope geometry illustrative"
+    },
+    {
+      "id": "A06",
+      "name": "Water dispensing station",
+      "routes": [
+        "R08",
+        "R09",
+        "R10",
+        "R11"
+      ],
+      "required_anchors": [
+        "water_reservoir",
+        "pipette_carrier",
+        "dispense_target",
+        "dispenser_receipt",
+        "waste_tray"
+      ],
+      "design": "Robot interacts with carrier handles; fragile pipette tip is non-graspable",
+      "dimensional_basis": "Source pipette opening25-50um, not a robot grasp point; actual safe placement tolerances unknown"
+    },
+    {
+      "id": "A07",
+      "name": "Side-view optical service",
+      "routes": [
+        "R08",
+        "R09",
+        "R10",
+        "R11"
+      ],
+      "required_anchors": [
+        "side_camera",
+        "backlight",
+        "scale_target",
+        "optical_axis",
+        "side_frame_stream"
+      ],
+      "design": "Original camera/housing with calibrated viewcone and operator-safe isolation",
+      "dimensional_basis": "Approximate source camera tilt5deg; pose must be measured, not hard-coded as exact"
+    },
+    {
+      "id": "A08",
+      "name": "Bottom-view microscope service",
+      "routes": [
+        "R08",
+        "R11",
+        "R13"
+      ],
+      "required_anchors": [
+        "bottom_objective",
+        "z_stage",
+        "scan_origin",
+        "focus_receipt",
+        "image_stream"
+      ],
+      "design": "Closed excitation path and scanner enclosure; visible scan metadata, no laser-operation control",
+      "dimensional_basis": "Source scan12-20um,step0.5-1um; generic casing does not prove scan fidelity"
+    },
+    {
+      "id": "A09",
+      "name": "Mechanical-test service",
+      "routes": [
+        "R04",
+        "R05"
+      ],
+      "required_anchors": [
+        "coupon_mount",
+        "force_sensor_receipt",
+        "strain_sensor_receipt",
+        "test_guard",
+        "raw_trace_port"
+      ],
+      "design": "Generic guarded tester and safe mount carrier, no implied load capacity",
+      "dimensional_basis": "Coupon/grip/test-frame geometry is authored placeholder until qualified"
+    },
+    {
+      "id": "A10",
+      "name": "Rheometer service",
+      "routes": [
+        "R06"
+      ],
+      "required_anchors": [
+        "rheology_carrier",
+        "geometry_receipt",
+        "oscillation_receipt",
+        "raw_rheology_port"
+      ],
+      "design": "Guarded generic device; no unsupported source commercial CAD copying",
+      "dimensional_basis": "Measurement geometry and sample dimensions unresolved"
+    },
+    {
+      "id": "A11",
+      "name": "Analysis and provenance station",
+      "routes": [
+        "R12",
+        "R13",
+        "R14"
+      ],
+      "required_anchors": [
+        "raw_archive",
+        "point_annotation",
+        "array_match",
+        "reference_inference",
+        "FE_service",
+        "result_review"
+      ],
+      "design": "Explicit labels for observed, inferred, imputed and source-reference layers",
+      "dimensional_basis": "Any illustrative ridge or droplet animation is synthetic, with no scientific success implied"
+    },
+    {
+      "id": "A12",
+      "name": "Shutdown and archive",
+      "routes": [
+        "R15"
+      ],
+      "required_anchors": [
+        "isolation_receipt",
+        "custody_receipt",
+        "quarantine_bin",
+        "immutable_manifest"
+      ],
+      "design": "Safe-state and waste services are gated independently of scientific success",
+      "dimensional_basis": "Original generic assets; no source images, logos or publisher figure compositions"
+    }
+  ],
+  "routes": [
+    {
+      "id": "R00",
+      "title": "Freeze source and cohort design",
+      "operation_ids": [
+        "R00_O01",
+        "R00_O02",
+        "R00_O03",
+        "R00_O04"
+      ]
+    },
+    {
+      "id": "R01",
+      "title": "Prepare PDMS film lineage",
+      "operation_ids": [
+        "R01_O01",
+        "R01_O02",
+        "R01_O03",
+        "R01_O04",
+        "R01_O05"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Prepare CY film lineage",
+      "operation_ids": [
+        "R02_O01",
+        "R02_O02",
+        "R02_O03",
+        "R02_O04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Age and qualify sample custody",
+      "operation_ids": [
+        "R03_O01",
+        "R03_O02",
+        "R03_O03",
+        "R03_O04"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Characterize tensile response",
+      "operation_ids": [
+        "R04_O01",
+        "R04_O02",
+        "R04_O03",
+        "R04_O04",
+        "R04_O05"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Measure material relaxation",
+      "operation_ids": [
+        "R05_O01",
+        "R05_O02",
+        "R05_O03",
+        "R05_O04",
+        "R05_O05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Check rheology and modality limits",
+      "operation_ids": [
+        "R06_O01",
+        "R06_O02",
+        "R06_O03",
+        "R06_O04",
+        "R06_O05"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Receive patterned microscope specimens",
+      "operation_ids": [
+        "R07_O01",
+        "R07_O02",
+        "R07_O03",
+        "R07_O04"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Qualify humidity and imaging station",
+      "operation_ids": [
+        "R08_O01",
+        "R08_O02",
+        "R08_O03",
+        "R08_O04"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "Run rigid versus compliant drying",
+      "operation_ids": [
+        "R09_O01",
+        "R09_O02",
+        "R09_O03",
+        "R09_O04",
+        "R09_O05",
+        "R09_O06"
+      ]
+    },
+    {
+      "id": "R10",
+      "title": "Test coating-thickness control",
+      "operation_ids": [
+        "R10_O01",
+        "R10_O02",
+        "R10_O03",
+        "R10_O04"
+      ]
+    },
+    {
+      "id": "R11",
+      "title": "Capture synchronized mesoscopic drying",
+      "operation_ids": [
+        "R11_O01",
+        "R11_O02",
+        "R11_O03",
+        "R11_O04",
+        "R11_O05",
+        "R11_O06"
+      ]
+    },
+    {
+      "id": "R12",
+      "title": "Assemble four-material phase study",
+      "operation_ids": [
+        "R12_O01",
+        "R12_O02",
+        "R12_O03",
+        "R12_O04"
+      ]
+    },
+    {
+      "id": "R13",
+      "title": "Reconstruct deformation and traction",
+      "operation_ids": [
+        "R13_O01",
+        "R13_O02",
+        "R13_O03",
+        "R13_O04",
+        "R13_O05"
+      ]
+    },
+    {
+      "id": "R14",
+      "title": "Analyze wetting mechanism and forces",
+      "operation_ids": [
+        "R14_O01",
+        "R14_O02",
+        "R14_O03",
+        "R14_O04",
+        "R14_O05"
+      ]
+    },
+    {
+      "id": "R15",
+      "title": "Close custody and archive evidence",
+      "operation_ids": [
+        "R15_O01",
+        "R15_O02",
+        "R15_O03",
+        "R15_O04"
+      ]
+    }
+  ],
+  "physical_execution": false,
+  "source_original_media_included": false
+}

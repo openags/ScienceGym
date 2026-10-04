@@ -1,0 +1,62 @@
+{
+  "schema_version": "wetting_transition_task.v1",
+  "source_reported": [
+    {
+      "action": "Add detections missed by automated marker finder",
+      "evidence": "M052/E11",
+      "classification": "Reported manual computational annotation; preserve original detector results and provenance"
+    },
+    {
+      "action": "Interpolate undetected z positions from neighbouring points",
+      "evidence": "M052/E11",
+      "classification": "Reported imputation, not physical recovery or direct measurement"
+    },
+    {
+      "action": "Use two-timescale relaxation fitting instead of a rheology crossover estimate",
+      "evidence": "M044; SI Note2/E04-E05",
+      "classification": "Reported model-selection choice; not recovery of failed rheometer"
+    },
+    {
+      "action": "Avoid claiming observed contact-line depinning",
+      "evidence": "M028/E12",
+      "classification": "Reported observation limit, not a hidden successful event"
+    }
+  ],
+  "authored_fail_closed": [
+    {
+      "trigger": "Bad formulation, thickness, age, damage or contamination",
+      "response": "Quarantine; request newly qualified specimen or service review. No automatic recure or cleanup recipe."
+    },
+    {
+      "trigger": "Missing containment or hazardous-patterning service receipt",
+      "response": "Hold R07 and every dependent microscopy path; macro unpatterned route may remain independently designable."
+    },
+    {
+      "trigger": "RH drift, focus loss, missing frames, wrong volume or stack blur",
+      "response": "Mark acquisition incomplete/failed; preserve evidence and only repeat on a separately qualified spot under a new droplet/acquisition ID."
+    },
+    {
+      "trigger": "Ambiguous array matching, nonstationary edge or interpolated-point excess",
+      "response": "Hold reconstruction, retain partial measured coordinates; never synthesize an authoritative reference."
+    },
+    {
+      "trigger": "Source formula or numerical conflict",
+      "response": "Report both source statements and quarantine dependent numerical results pending qualified reconciliation."
+    },
+    {
+      "trigger": "Instrument/service fault or any route abort",
+      "response": "Safe-state service and custody closeout are reachable immediately from every route; they do not wait for scientific analysis success."
+    }
+  ],
+  "not_reported_or_implemented": [
+    "Cleaning recipe",
+    "Droplet-induced film recovery time",
+    "Closed-loop humidity or stage fault reset",
+    "QD synthesis/ink cleanup",
+    "Laser alignment recovery",
+    "Tensile specimen reuse after large strain",
+    "Validated robot grasps",
+    "Hardware emergency controls"
+  ],
+  "rule": "All authored recovery is a future design and may not be attributed to the paper or called a tested robot capability."
+}

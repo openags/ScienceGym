@@ -1,0 +1,111 @@
+{
+  "schema_version": "wetting_independent_review.v1",
+  "status": "ACCEPTED_BOUNDED_CONTRACT_DESIGN",
+  "review_date_utc": "2026-10-04",
+  "reviewer_role": "Independent source-to-contract and adversarial-test reviewer",
+  "review_scope": "Reviewed proposal JSONs and HANDOFF.md compared with original task contracts, finite synthetic evaluator, binding plan and exact text-only export implementation",
+  "paper": {
+    "title": "Wetting transitions in droplet drying on soft materials",
+    "doi": "10.1038/s41467-019-12093-w",
+    "paper_count": 1
+  },
+  "counts_verified": {
+    "routes": 16,
+    "operations": 74,
+    "asset_groups": 12,
+    "required_anchors": 61,
+    "source_evidence_records": 16,
+    "source_cautions": 10,
+    "unresolved_qualification_inputs": 25,
+    "finite_synthetic_fixtures": 64,
+    "independent_contract_test_methods": 26,
+    "independent_export_test_methods": 14,
+    "independent_total_test_methods": 40,
+    "export_payload_members": 45,
+    "export_members_including_manifest": 46,
+    "validated_runnable_whole_paper_tasks": 0
+  },
+  "test_results": {
+    "contract": "PASS",
+    "export_temporary_copies": "PASS",
+    "source_identity_and_caveat_preservation": "PASS",
+    "commands": [
+      "PYTHONDONTWRITEBYTECODE=1 python review/test_independent_contract.py",
+      "PYTHONDONTWRITEBYTECODE=1 python review/test_independent_export.py"
+    ],
+    "export_freeze_requirement": "Freeze the final package after review/status updates and verify the resulting release archive; independent mutations use temporary copies only"
+  },
+  "resolved_findings": [
+    {
+      "id": "IR01",
+      "severity": "material",
+      "finding": "The original R11 synthetic fixture assigned CY campaign context to the dedicated PDMS30:1 detection-limit operation; incompatible material requests could also obtain ancestry for PDMS-only routes.",
+      "resolution": "Mixed campaigns now use explicit MULTI context and per-operation constituent material lineages with distinct sample/spot/droplet IDs. R11_O06 is PDMS30:1 only; R11_O05 is CY5:6/CY9:10. Incompatible route-family inputs are rejected.",
+      "regression": "test_material_ancestry_is_scoped and test_mixed_campaign_keeps_detection_limit_material_separate"
+    },
+    {
+      "id": "IR02",
+      "severity": "material",
+      "finding": "Finite scan endpoints could overflow the derived scan duration to infinity.",
+      "resolution": "The timing contract rejects nonfinite derived duration and negative scan start.",
+      "regression": "test_stack_timing_and_overflow_rejection"
+    },
+    {
+      "id": "IR03",
+      "severity": "material",
+      "finding": "A package accessed through a symlinked parent could bypass the original root/member symlink checks.",
+      "resolution": "The exporter checks lexical absolute root/destination paths and every ancestor for symlinks before freezing, verifying or building an archive.",
+      "regression": "test_symlink_ancestor_alias_rejected and test_archive_output_cannot_overwrite_package_or_follow_link"
+    },
+    {
+      "id": "IR04",
+      "severity": "material",
+      "finding": "The rigid-PDMS receding-angle operation inherited the compliant PDMS50:1 material scope.",
+      "resolution": "R09_O06 is scoped to rigid PDMS9:1. Current-ridge/traction/equilibrium operations R14_O03 through R14_O05 are scoped to the CY materials, while the overall mechanism campaign retains distinct control and phase-study links.",
+      "regression": "test_rigid_angle_and_ridge_analysis_material_scopes"
+    }
+  ],
+  "verified_invariants": [
+    "All 16 route IDs and 74 operation IDs/descriptions preserve the reviewed proposal; all task operations explicitly remain authored contracts rather than a source robot protocol.",
+    "All 10 source cautions and 25 missing-input records preserve their reviewed source fields, with additional exact operation and scope mappings.",
+    "Source-reference values, newly authored task behavior and unresolved qualification inputs remain separately labelled.",
+    "R07 is an external qualified contained patterned-substrate receipt boundary. No quantum-dot synthesis, ink-handling or high-voltage deposition recipe/control is implemented.",
+    "Conflict and qualification holds are local to affected operation/claim scopes; original-source-data absence does not itself block newly designed independent observations.",
+    "Every failed route reaches an independently accounted closeout path; missing isolation produces held-contained status and never physical removal.",
+    "Evaluator-pinned registries reject mutation, rehash laundering, actor-added outcomes, changed context, duplicate/missing events, reordering and cross-fixture replay.",
+    "Droplet, spot, specimen, timepoint and cohort counts remain distinct; source cohort overlap and statistical independence are not asserted.",
+    "The 55 nL origin is macro-only and brackets an actual synthetic downward threshold crossing; it is not imposed on the 49 nL microscopy example.",
+    "Measured, manually annotated, imputed and inferred-reference coordinate kinds remain distinct; one-to-one correspondence requires declared stationary-boundary evidence and never claims solver execution.",
+    "Current-placement P1 tangents remain separate from Ur/Uz displacement fits, and a source-only receding-angle reference cannot satisfy a new-measurement gate.",
+    "Synthetic traction-area algebra preserves declared physical-area measure, explicit conflict dispositions and force units without validating inverse FE, equilibrium or a dynamic force balance.",
+    "Dated synthetic age custody and humidity stability/accuracy semantics do not establish actual storage or instrument qualification.",
+    "Every operation has original asset/anchor bindings and noncontrol/scale guards; patterned and closeout routes retain containment guards.",
+    "Export rejects nonallowlisted files, directories, traversal/aliases, duplicate ZIP members, invalid manifest fields, changed hashes, special-file modes, symlinked ancestors, private-path sentinels, binary/NUL content and internal archive destinations.",
+    "Only agent_visible.json is actor-visible; the full export remains evaluator/auditor material. Source outcomes are not actor observations."
+  ],
+  "reviewed_input_sha256": {
+    "HANDOFF.md": "8ce677e215bf5a8897fd8e7bbb904552bcb7d5f046a47f39b413e949880a1ffa",
+    "route_plan.json": "686e16b8e967194c9a5eaa345b5d2c455ca012e586a8339c83734d26f659154a",
+    "source_parameters.json": "38a03ea987d0b3e43b59e95c07bfa619c739118d7aa078a10ca4cb2fa619cff0",
+    "source_conflicts.json": "b8dd0178098f3925029f7668b714f9cae953e3c1978c1327439a7991712c63fb",
+    "unknown_parameters.json": "ebb0afd69679f72904326f35d2b2c0ce4e561e16c0755b33effe2d2b45123d98",
+    "controls_and_repeats.json": "05b3d27737312193a7564892f0c2779997f8333e192de39c6c366ba37d07bfa1",
+    "evidence_map.json": "9a20050e12099bce1d93acd98862e9a1634b5a75659b5621dcff0b4077287094"
+  },
+  "open_material_findings": [],
+  "retained_limits": [
+    "This is an independent review of the reviewed source proposal and current implementation, not a fresh acquisition or reanalysis of the original paper/media/workbook.",
+    "Source workbook numerical cells remain unread; the recorded movie inspection remains six sampled frames, not continuous playback or timing analysis.",
+    "The finite evaluator is public synthetic fixture matching and bounded arithmetic, not a general campaign verifier, production authentication system or scientific solver.",
+    "No robot, hardware service, gas/optical control, image analysis, graph-relaxation solver or inverse FE solver was executed.",
+    "No real sample, storage interval, containment, calibration, grasp, collision geometry, uncertainty model or scientific outcome was qualified.",
+    "Integrity hashes and a text-only allowlist are not cryptographic publisher signatures or an automatic rights/provenance classifier; reviewed contents and trust boundaries remain required.",
+    "All 25 qualification inputs and the applicable unresolved source cautions remain holds for real implementation."
+  ],
+  "physical_execution": false,
+  "physical_simulation": false,
+  "scientific_reproduction": false,
+  "whole_paper_execution_complete": false,
+  "source_data_reanalysis": false,
+  "protected_frozen_repositories_inspected": false
+}

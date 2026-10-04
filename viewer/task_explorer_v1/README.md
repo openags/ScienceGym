@@ -1,10 +1,35 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** 30 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
+**See the task before reading its JSON.** 33 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
 
-## Woven whole-paper design view — 2026-10-04
+## Release contents: 36 families
 
-The explorer now has **33 clearly scoped families: 30 paper-level designs + 3 bounded subsets**, **761 inspection records** and **2,905 operation definitions**. Whole-paper DESIGN coverage is not scientific reproduction, a runnable environment or evidence of physical execution. Zero validated runnable whole-paper tasks are claimed.
+The explorer contains **33 paper-level designs + 3 bounded subsets**, **841 inspection records** and **3,119 operation definitions**. These are static inspection contents, with zero validated runnable whole-paper tasks.
+
+Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
+
+[Wetting transitions](docs/wetting.md) adds 16 exact design routes, 74 authored contracts and one metadata-only default **HOLD_QUALIFICATION**. All 33 source JSON files, 16 evidence records, nine source-reported control records, ten conflicts and 25 unresolved input groups remain exact. Source facts do not become robot actions or measurements. Predecessors and material-specific route ancestry stay explicit; membership does not create a universal all-material prerequisite chain. Failed and held attempts retain independently reachable closeout.
+
+The original static [asset guide](../../assets/wetting_scene_assets_v1/README.md) and three renders are linked and SHA-256 checked: 12 role groups and 61 anchors cover all 74 operations. Cadmium/quantum-dot preparation, ink handling and high-voltage deposition stay closed external services without recipes or controls. Main and all 15 written SI pages were read upstream, with main/SI figures inspected; six movie samples are not full playback and workbook numerical cells remain unread. Source conflicts, repeated-measurement versus specimen distinctions, raw/reference/model roles and missing numerical implementation stay visible.
+
+Links resolve to frozen local task/asset files and make no remote publication claim. Portable export embeds 99 exact recent-family JSON files, three original guides and nine original renders across wetting, origami and varactor. No external runtime, physics, scientific solver, hardware control or actor loader is added. All 140 older generated family artifacts remain byte-identical.
+
+## Historical lockable origami and varactor whole-paper design views — 2026-10-04
+
+At that integration stage the explorer contained **35 clearly scoped families: 32 paper-level designs + 3 bounded subsets**, **824 inspection records** and **3,045 operation definitions**. Zero validated runnable whole-paper tasks are claimed.
+
+- [Lockable flat-foldable origami](docs/lockable_origami.md): 30 scientific design routes, 60 symbolic operations, 11 static scene groups and 53 symbolic anchors. Four separate global hold views include the default **HOLD_QUALIFICATION**. The 143 synthetic source fixtures are bookkeeping examples, not performed trials. Source operation membership has no inferred chronology; the source-only gate, external-model metadata and closed-service classes remain separate
+- [Quantum paraelectric varactors](docs/varactor.md): 28 scientific design routes, 80 symbolic operations, 12 static groups and 65 anchors. Its default **HOLD_QUALIFICATION** is a separate navigation record, not an additional scientific branch. The 160 source fixtures do not qualify hardware or reproduce scientific results
+
+The two views preserve all **66 source JSON documents**, 159 evidence records, 23 conflict/scope records, 27 unknown-input groups and 14 control records without changing any task or asset bytes. Full fabrication, prepared intake, custody, revision-bound calibration and independent safe release stay explicit. Origami signed open-path work and residual set are not converted to closed-loop loss; independent specimens and repeated cycles stay distinct. The same STO pair can persist across SQD and DQD while device, circuit, calibration and history contexts change. Main/SI access, sampled versus continuous movie inspection and uninspected raw data remain precisely scoped.
+
+All previous 132 generated JSON/JS, Markdown and SVG outputs are byte-identical. Original task-to-scene IDs, anchors and bindings are checked, while the immutable asset snapshots retain their historical availability flags. Static assets are illustrative, unqualified interfaces. No geometry, physics, hardware driver, solver, actor loader or new storyboard is added.
+
+New-family source and asset links resolve within the repository. Local source commits and file hashes are recorded, with **no claim of remote publication**. The optional standalone export embeds the exact new-family source JSON, original asset guides and three original renders per family, so those links work without adjacent files. Existing families keep their prior public source pins. The current standalone is larger because it includes six full-resolution original renders.
+
+## Historical woven whole-paper design view — 2026-10-04
+
+At that integration stage, the explorer had **33 clearly scoped families: 30 paper-level designs + 3 bounded subsets**, **761 inspection records** and **2,905 operation definitions**. Whole-paper DESIGN coverage is not scientific reproduction, a runnable environment or evidence of physical execution. Zero validated runnable whole-paper tasks are claimed.
 
 The [woven map](docs/woven.md) and [SVG](diagrams/woven.svg) retain **24 source scientific routes plus one separate default QUALIFICATION_HOLD inspection**, **48 symbolic operations**, **11 scene groups** and **43 symbolic anchors**. The source suite reports **96 synthetic contract configurations**; the viewer preserves their count and JSON contracts without copying the Python fixture registry. The configurations are offline bookkeeping fixtures; groups and anchors are original unqualified scene interfaces. The 53 source-evidence entries are a different count. All 30 source JSON documents, including nested review evidence, remain losslessly available in the reference context.
 
@@ -129,7 +154,7 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 - `data/<family>.json`: compact, inspectable normalized records
 - `data/<family>.js`: the same JSON as a local-script assignment so `file://` does not require fetch
 - `diagrams/*.svg`, `docs/<family>.md`: GitHub-native alternatives
-- `build.py`, `acoustic_adapters.py`, `mechanical_adapters.py`, `assembly_adapters.py`, `final_materials_adapters.py`, `nature_materials_adapters.py` `crossdisciplinary_adapters.py` `paired_adapters.py` and `woven_adapters.py`: 33 explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
+- `build.py`, `acoustic_adapters.py`, `mechanical_adapters.py`, `assembly_adapters.py`, `final_materials_adapters.py`, `nature_materials_adapters.py` `crossdisciplinary_adapters.py` `paired_adapters.py` `woven_adapters.py` and `recent_paper_adapters.py`: 35 explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
 - `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_cooling.py`, `tests/test_acoustic_designs.py`, `tests/test_mechanical_designs.py`, `tests/test_assembly_designs.py`, `tests/test_final_materials.py`, `tests/test_nature_materials.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 

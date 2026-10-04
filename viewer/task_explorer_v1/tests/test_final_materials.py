@@ -59,7 +59,7 @@ class FinalMaterialsBundleTests(unittest.TestCase):
     def setUpClass(cls): cls.families = {key: get(key) for key in KEYS}
 
     def test_exact_inventory_and_prior_nineteen_unchanged_counts(self):
-        manifest = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven')]
+        manifest = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting')]
         self.assertEqual((len(manifest), sum(r['routes'] for r in manifest), sum(r['operations'] for r in manifest)),
                          (24, 541, 2189))
         old = [r for r in manifest if r['id'] not in ('gear', 'hydrogel_optical') and r['id'] not in KEYS]

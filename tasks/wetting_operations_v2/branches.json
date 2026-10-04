@@ -1,0 +1,792 @@
+{
+  "schema_version": "wetting_transition_task.v1",
+  "branches": [
+    {
+      "id": "R00",
+      "title": "Freeze source and cohort design",
+      "route_operation_ids": [
+        "R00_O01",
+        "R00_O02",
+        "R00_O03",
+        "R00_O04"
+      ],
+      "kind": "authored_design",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E01",
+        "E06",
+        "E09",
+        "E10",
+        "E16"
+      ],
+      "required_outputs": [
+        "design_revision",
+        "cohort_matrix",
+        "analysis_plan_hash",
+        "source_version_id"
+      ],
+      "qualification_gate": "Unresolved local branches stay HOLD; no inferred 44-condition matrix or pseudo-independent timepoints.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [],
+      "unknown_ids": [
+        "U14",
+        "U23",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "PDMS_50:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R01",
+      "title": "Prepare PDMS film lineage",
+      "route_operation_ids": [
+        "R01_O01",
+        "R01_O02",
+        "R01_O03",
+        "R01_O04",
+        "R01_O05"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R00"
+      ],
+      "source_evidence_ids": [
+        "E01"
+      ],
+      "required_outputs": [
+        "formulation_ledger",
+        "process_receipt",
+        "film_id",
+        "thickness_measurement",
+        "coupon_parentage"
+      ],
+      "qualification_gate": "Film thickness method, acceptance tolerances and mechanical-coupon fabrication remain unknown; no invented fully cured state.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [],
+      "unknown_ids": [
+        "U01",
+        "U02",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "PDMS_50:1"
+      ],
+      "family_scope": [
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R02",
+      "title": "Prepare CY film lineage",
+      "route_operation_ids": [
+        "R02_O01",
+        "R02_O02",
+        "R02_O03",
+        "R02_O04"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R00"
+      ],
+      "source_evidence_ids": [
+        "E01"
+      ],
+      "required_outputs": [
+        "formulation_ledger",
+        "CY_process_receipt",
+        "film_id",
+        "thickness_measurement"
+      ],
+      "qualification_gate": "CY mass/volume ratio basis and quality criteria must be qualified. This does not authorize unrelated chemical synthesis.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [],
+      "unknown_ids": [
+        "U01",
+        "U02",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R03",
+      "title": "Age and qualify sample custody",
+      "route_operation_ids": [
+        "R03_O01",
+        "R03_O02",
+        "R03_O03",
+        "R03_O04"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R01",
+        "R02"
+      ],
+      "source_evidence_ids": [
+        "E02"
+      ],
+      "required_outputs": [
+        "age_receipt",
+        "storage_log",
+        "surface_inspection",
+        "released_spot_map"
+      ],
+      "qualification_gate": "Elapsed wall time alone is not proof of storage conditions or surface recovery; reuse after a previous droplet requires a qualified policy.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [],
+      "unknown_ids": [
+        "U21",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "PDMS_50:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R04",
+      "title": "Characterize tensile response",
+      "route_operation_ids": [
+        "R04_O01",
+        "R04_O02",
+        "R04_O03",
+        "R04_O04",
+        "R04_O05"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R03"
+      ],
+      "source_evidence_ids": [
+        "E03"
+      ],
+      "required_outputs": [
+        "coupon_measurements",
+        "calibration_ids",
+        "raw_tensile_traces",
+        "modulus_fit",
+        "repeat_ledger"
+      ],
+      "qualification_gate": "No coupon dimensions, strain rate, gauge method or complete CY tensile data supplied. CY9:10 measured-versus-inherited language is unresolved.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C04"
+      ],
+      "unknown_ids": [
+        "U04",
+        "U05",
+        "U06",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "PDMS_50:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R05",
+      "title": "Measure material relaxation",
+      "route_operation_ids": [
+        "R05_O01",
+        "R05_O02",
+        "R05_O03",
+        "R05_O04",
+        "R05_O05"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R03"
+      ],
+      "source_evidence_ids": [
+        "E04"
+      ],
+      "required_outputs": [
+        "relaxation_traces",
+        "step_input_log",
+        "fit_parameters",
+        "fit_uncertainty",
+        "repeat_identity"
+      ],
+      "qualification_gate": "Source N does not specify distinct specimens; ramp/hold schedule and stress-normalization conventions need qualification.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C05"
+      ],
+      "unknown_ids": [
+        "U04",
+        "U05",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R06",
+      "title": "Check rheology and modality limits",
+      "route_operation_ids": [
+        "R06_O01",
+        "R06_O02",
+        "R06_O03",
+        "R06_O04",
+        "R06_O05"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R03"
+      ],
+      "source_evidence_ids": [
+        "E05",
+        "E15"
+      ],
+      "required_outputs": [
+        "rheology_raw_data",
+        "frequency_schedule",
+        "crossover_assessment",
+        "literature_modality_comparison_record"
+      ],
+      "qualification_gate": "Rheometer geometry, environmental conditions and repeats are not supplied. SI Table1 comparisons are literature context, not extra local experiments.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [],
+      "unknown_ids": [
+        "U08",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_50:1",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R07",
+      "title": "Receive patterned microscope specimens",
+      "route_operation_ids": [
+        "R07_O01",
+        "R07_O02",
+        "R07_O03",
+        "R07_O04"
+      ],
+      "kind": "external_service_only",
+      "depends_on": [
+        "R03"
+      ],
+      "source_evidence_ids": [
+        "E02",
+        "E08"
+      ],
+      "required_outputs": [
+        "patterned_sample_receipt",
+        "array_geometry",
+        "containment_receipt",
+        "service_qualification"
+      ],
+      "qualification_gate": "Outsourced and unmodeled preparation; no operational quantum-dot synthesis or NanoDrip recipe. Missing receipt cannot be replaced with an agent assertion.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [],
+      "unknown_ids": [
+        "U09",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_30:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R08",
+      "title": "Qualify humidity and imaging station",
+      "route_operation_ids": [
+        "R08_O01",
+        "R08_O02",
+        "R08_O03",
+        "R08_O04"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R00"
+      ],
+      "source_evidence_ids": [
+        "E06",
+        "E08"
+      ],
+      "required_outputs": [
+        "station_revision",
+        "calibration_bundle",
+        "environment_stability",
+        "coordinate_transforms",
+        "synchronization_test"
+      ],
+      "qualification_gate": "Source sensor accuracy differs from plotted RH variation. Setpoint agreement is not accuracy. No gas, laser or stage operation permitted without qualified service.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C08"
+      ],
+      "unknown_ids": [
+        "U10",
+        "U11",
+        "U12",
+        "U13",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "PDMS_50:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R09",
+      "title": "Run rigid versus compliant drying",
+      "route_operation_ids": [
+        "R09_O01",
+        "R09_O02",
+        "R09_O03",
+        "R09_O04",
+        "R09_O05",
+        "R09_O06"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R03",
+        "R08"
+      ],
+      "source_evidence_ids": [
+        "E06",
+        "E12"
+      ],
+      "required_outputs": [
+        "droplet_id",
+        "placed_volume_record",
+        "side_images",
+        "environment_trace",
+        "volume_crossing_event",
+        "macro_condition_repeats",
+        "rigid_reference_theta_r_record",
+        "reference_angle_evidence_kind"
+      ],
+      "qualification_gate": "Never apply 55 nL rule to microscopy droplets already smaller than that. Distinct droplets, spots and substrates are separate lineage levels. The receding-angle measurement method is not specified in the paper and cannot be silently inferred from an evaporation trace.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C08",
+        "C09"
+      ],
+      "unknown_ids": [
+        "U10",
+        "U14",
+        "U24",
+        "U25"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_50:1"
+      ],
+      "family_scope": [
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R10",
+      "title": "Test coating-thickness control",
+      "route_operation_ids": [
+        "R10_O01",
+        "R10_O02",
+        "R10_O03",
+        "R10_O04"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R03",
+        "R08"
+      ],
+      "source_evidence_ids": [
+        "E07"
+      ],
+      "required_outputs": [
+        "thickness_cohort_records",
+        "drying_traces",
+        "thickness_comparison"
+      ],
+      "qualification_gate": "The reported high-thickness value is inconsistent; nominal preparation recipe for variant films and repeat count are unavailable.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C01",
+        "C08"
+      ],
+      "unknown_ids": [
+        "U03",
+        "U14",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_50:1"
+      ],
+      "family_scope": [
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R11",
+      "title": "Capture synchronized mesoscopic drying",
+      "route_operation_ids": [
+        "R11_O01",
+        "R11_O02",
+        "R11_O03",
+        "R11_O04",
+        "R11_O05",
+        "R11_O06"
+      ],
+      "kind": "physical_service_and_manipulation_design",
+      "depends_on": [
+        "R07",
+        "R08"
+      ],
+      "source_evidence_ids": [
+        "E08",
+        "E09",
+        "E15"
+      ],
+      "required_outputs": [
+        "side_images",
+        "z_stack_images",
+        "frame_timestamps",
+        "scan_metadata",
+        "droplet_condition_record",
+        "branch_type",
+        "PDMS30_1_detection_limit_acquisition",
+        "resolution_limit_assessment",
+        "detection_limit_report"
+      ],
+      "qualification_gate": "No source-complete autofocus, photobleaching, marker-spacing, illumination-dose or image-QC tolerances supplied. Scan duration is not instantaneous acquisition.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C08",
+        "C09"
+      ],
+      "unknown_ids": [
+        "U10",
+        "U12",
+        "U13",
+        "U14",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_30:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R12",
+      "title": "Assemble four-material phase study",
+      "route_operation_ids": [
+        "R12_O01",
+        "R12_O02",
+        "R12_O03",
+        "R12_O04"
+      ],
+      "kind": "physical_measurement_and_analysis_design",
+      "depends_on": [
+        "R03",
+        "R04",
+        "R05",
+        "R08"
+      ],
+      "source_evidence_ids": [
+        "E10"
+      ],
+      "required_outputs": [
+        "phase_cohort_ledger",
+        "raw_trace_links",
+        "characterization_links"
+      ],
+      "qualification_gate": "Exact condition allocation of N44 is not recoverable from main/SI prose; source workbook remains numerically unread.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C08"
+      ],
+      "unknown_ids": [
+        "U14",
+        "U15",
+        "U22",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R13",
+      "title": "Reconstruct deformation and traction",
+      "route_operation_ids": [
+        "R13_O01",
+        "R13_O02",
+        "R13_O03",
+        "R13_O04",
+        "R13_O05"
+      ],
+      "kind": "authored_analysis_service_design",
+      "depends_on": [
+        "R04",
+        "R05",
+        "R11"
+      ],
+      "source_evidence_ids": [
+        "E11"
+      ],
+      "required_outputs": [
+        "detected_points",
+        "annotation_log",
+        "matching_map",
+        "inferred_reference",
+        "displacement_field",
+        "FE_input_output_receipt"
+      ],
+      "qualification_gate": "Author code, full model parameters and numerical settings unavailable. Edges must be demonstrably suitable fixed references. Ogden modulus wording unresolved.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C06"
+      ],
+      "unknown_ids": [
+        "U07",
+        "U09",
+        "U16",
+        "U17",
+        "U22",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R14",
+      "title": "Analyze wetting mechanism and forces",
+      "route_operation_ids": [
+        "R14_O01",
+        "R14_O02",
+        "R14_O03",
+        "R14_O04",
+        "R14_O05"
+      ],
+      "kind": "analysis_design",
+      "depends_on": [
+        "R09",
+        "R11",
+        "R12",
+        "R13"
+      ],
+      "source_evidence_ids": [
+        "E12",
+        "E13",
+        "E14"
+      ],
+      "required_outputs": [
+        "coordinate_transform",
+        "radius_angle_series",
+        "derivative_records",
+        "ridge_fits",
+        "traction_integral",
+        "model_comparison",
+        "theta_star_series",
+        "psi_series",
+        "theta_r_reference_link",
+        "theta_r_qs_series",
+        "residual_angle_series",
+        "normalized_contact_line_speed_series",
+        "reference_based_model_or_new_observation_flag",
+        "P1_ridge_shape_fit",
+        "P1_tangent_psi_provenance",
+        "Ur_displacement_fit",
+        "Uz_displacement_fit"
+      ],
+      "qualification_gate": "Integration bound conflict, polar area factor, stress convention and surface-energy assumptions must be resolved before quantitative goldens. No observed depinning is claimed.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [
+        "C02",
+        "C03",
+        "C07",
+        "C10"
+      ],
+      "unknown_ids": [
+        "U18",
+        "U19",
+        "U20",
+        "U22",
+        "U23",
+        "U24",
+        "U25"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "PDMS_50:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    },
+    {
+      "id": "R15",
+      "title": "Close custody and archive evidence",
+      "route_operation_ids": [
+        "R15_O01",
+        "R15_O02",
+        "R15_O03",
+        "R15_O04"
+      ],
+      "kind": "authored_safe_closeout",
+      "depends_on": [
+        "R09",
+        "R10",
+        "R11",
+        "R12",
+        "R14"
+      ],
+      "source_evidence_ids": [
+        "E16"
+      ],
+      "required_outputs": [
+        "safe_state_receipt",
+        "custody_closeout",
+        "immutable_manifest",
+        "route_status_report"
+      ],
+      "qualification_gate": "This closing/recovery design is authored; the paper does not report a complete shutdown, cleaning or waste workflow.",
+      "physical_implemented": false,
+      "applicability": "Only relevant material/cohort ancestors, not every silicone family",
+      "source_conflict_ids": [],
+      "unknown_ids": [
+        "U21",
+        "U24"
+      ],
+      "closeout_reachable_on_abort": true,
+      "material_ids": [
+        "PDMS_9:1",
+        "PDMS_30:1",
+        "PDMS_50:1",
+        "CY_5:6",
+        "CY_9:10"
+      ],
+      "family_scope": [
+        "CY",
+        "PDMS"
+      ],
+      "mixed_material_policy": "Explicit constituent lineages; campaign bundle is not a physical specimen"
+    }
+  ]
+}

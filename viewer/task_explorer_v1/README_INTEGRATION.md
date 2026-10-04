@@ -1,10 +1,14 @@
+# Release contents: wetting paired integration
+
+36 families: 33 paper-level design drafts + 3 bounded subsets; 841 inspection records and 3,119 symbolic operation definitions. Zero validated runnable whole-paper tasks. The task and asset packages are exact reviewed archives, with source media/private paths excluded. The lossless wetting inspector adds 16 source routes and a separate metadata-only qualification hold. New links use repository-relative files and frozen source hashes. Publication status is established by the repository commit containing these files; frozen package fields and historical verification receipts describe review snapshots rather than live publication, deployment or remote CI status. See [verification](VERIFICATION.md) and [wetting map](docs/wetting.md).
+
 # Repository README integration
 
-## Woven whole-paper design view — 2026-10-04
+## Historical woven whole-paper design view — 2026-10-04
 
-The explorer now has **33 clearly scoped families: 30 paper-level designs + 3 bounded subsets**, **761 inspection records** and **2,905 operation definitions**. Whole-paper DESIGN coverage is not scientific reproduction, a runnable environment or evidence of physical execution. Zero validated runnable whole-paper tasks are claimed.
+At that integration stage, the explorer had **33 clearly scoped families: 30 paper-level designs + 3 bounded subsets**, **761 inspection records** and **2,905 operation definitions**. Whole-paper DESIGN coverage is not scientific reproduction, a runnable environment or evidence of physical execution. Zero validated runnable whole-paper tasks are claimed.
 
-The [woven map](viewer/task_explorer_v1/docs/woven.md) and [SVG](viewer/task_explorer_v1/diagrams/woven.svg) retain **24 source scientific routes plus one separate default QUALIFICATION_HOLD inspection**, **48 symbolic operations**, **11 scene groups** and **43 symbolic anchors**. The source suite reports **96 synthetic contract configurations**; the viewer preserves their count and JSON contracts without copying the Python fixture registry. The configurations are offline bookkeeping fixtures; groups and anchors are original unqualified scene interfaces. The 53 source-evidence entries are a different count. All 30 source JSON documents, including nested review evidence, remain losslessly available in the reference context.
+The [woven map](docs/woven.md) and [SVG](diagrams/woven.svg) retain **24 source scientific routes plus one separate default QUALIFICATION_HOLD inspection**, **48 symbolic operations**, **11 scene groups** and **43 symbolic anchors**. The source suite reports **96 synthetic contract configurations**; the viewer preserves their count and JSON contracts without copying the Python fixture registry. The configurations are offline bookkeeping fixtures; groups and anchors are original unqualified scene interfaces. The 53 source-evidence entries are a different count. All 30 source JSON documents, including nested review evidence, remain losslessly available in the reference context.
 
 The three design-only, thirteen closed-service, seven external-numerical and one source-conflict routes keep their source classifications. All eleven source conflicts, twelve input gates, eight control cards, preparation alternatives, physical/model distinctions, qualified-service requirements and sample/mount/calibration/control/attempt lineage remain exact. Conditional holds and quarantine are inspectable without becoming a required successful path. No source outcome becomes a target or receipt, and no request becomes an observation. The plasma/coating partial order is not silently resolved. Videos remain unplayed and raw workbook values uninspected.
 
@@ -18,10 +22,10 @@ The four added views retain all 118 source JSON documents, 147 operation definit
 
 | Family scope | Family | Default inspection | All records | Map |
 | --- | --- | --- | --- | --- |
-| Paper-level design | Laser stabilization | QUALIFICATION_HOLD | [16 records](viewer/task_explorer_v1/docs/laser_control.md) | [SVG](viewer/task_explorer_v1/diagrams/laser_control.svg) |
-| Bounded subset | Clean-water solar metrology | RECEIPT, navigation only | [15 records](viewer/task_explorer_v1/docs/solar_water.md) | [SVG](viewer/task_explorer_v1/diagrams/solar_water.svg) |
-| Bounded subset | Sucrose optical metrology | FLOW_HOLD | [12 records](viewer/task_explorer_v1/docs/sucrose_metrology.md) | [SVG](viewer/task_explorer_v1/diagrams/sucrose_metrology.svg) |
-| Bounded subset | Actuator displacement metrology | DIRECTION_HOLD | [17 records](viewer/task_explorer_v1/docs/actuator_metrology.md) | [SVG](viewer/task_explorer_v1/diagrams/actuator_metrology.svg) |
+| Paper-level design | Laser stabilization | QUALIFICATION_HOLD | [16 records](docs/laser_control.md) | [SVG](diagrams/laser_control.svg) |
+| Bounded subset | Clean-water solar metrology | RECEIPT, navigation only | [15 records](docs/solar_water.md) | [SVG](diagrams/solar_water.svg) |
+| Bounded subset | Sucrose optical metrology | FLOW_HOLD | [12 records](docs/sucrose_metrology.md) | [SVG](diagrams/sucrose_metrology.svg) |
+| Bounded subset | Actuator displacement metrology | DIRECTION_HOLD | [17 records](docs/actuator_metrology.md) | [SVG](diagrams/actuator_metrology.svg) |
 
 Laser preserves design-only versus closed-service branches, prepared-intake versus full-preparation lineage, three DFB identities and independent versus in-loop measurements. Sucrose preserves the unresolved flow conflict, three optical profiles, reference wavelength and separate session teardown. Actuator keeps source-direction qualification unresolved, signed coordinate projections, alternative numerical parents and prepared-intake boundaries. Solar stays clean-water/nonbiological with no potability or full-paper claim. Unknowns, exclusions, source access gaps, controls and immutable failure history remain exact.
 

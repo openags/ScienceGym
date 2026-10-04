@@ -1,0 +1,283 @@
+{
+  "schema_version": "wetting_transition_task.v1",
+  "geometry": {
+    "slide_diameter_mm": 24,
+    "slide_thickness_mm": 0.17,
+    "nominal_pdms_coating_um": 30,
+    "nominal_cy_coating_um": 35,
+    "evidence": [
+      "E01"
+    ]
+  },
+  "PDMS": {
+    "ratios_prepolymer_to_curing_agent_w_w": [
+      "9:1",
+      "30:1",
+      "50:1"
+    ],
+    "reported_preparation": {
+      "degassing_min_approximately": 40,
+      "spin_rpm": 3000,
+      "spin_min": 1,
+      "cure_C": 90,
+      "cure_min": 35
+    },
+    "age_weeks": [
+      1,
+      3
+    ],
+    "execution": "Qualified closed preparation service, not an executable recipe or cured-state guarantee",
+    "evidence": [
+      "E01",
+      "E02"
+    ]
+  },
+  "CY": {
+    "ratios_A_to_B": [
+      "5:6",
+      "9:10"
+    ],
+    "ratio_basis": "Not explicitly labelled mass/volume in main paragraph; qualification required",
+    "additive": "0.05% v/v poly(dimethylsiloxane-b-ethylene oxide)",
+    "reported_preparation": {
+      "mix_min": 5,
+      "degassing_min": 2,
+      "spin_rpm": 1500,
+      "spin_min": 1,
+      "cure_C": 70,
+      "cure_min": 30
+    },
+    "age_weeks": [
+      2,
+      3
+    ],
+    "execution": "Qualified closed preparation service; commercial curing only, no hazardous synthesis protocol",
+    "evidence": [
+      "E01",
+      "E02"
+    ]
+  },
+  "patterned_fiducials": {
+    "identity": "Red CdSe-CdS-ZnS quantum-dot discs on silicone in a regular triangular array",
+    "preparation": "External qualified patterned-substrate service only; synthesis, ink handling, nanoprinting voltages/timing and hazardous recipes deliberately absent",
+    "required_receipt": [
+      "substrate_id",
+      "polymer_lot",
+      "pattern_revision",
+      "array_lattice_spacing",
+      "fiducial_positions",
+      "coverage_area",
+      "surface_compatibility_check",
+      "containment_status",
+      "supplier_qualification"
+    ],
+    "evidence": [
+      "E02",
+      "E08"
+    ]
+  },
+  "macroscopic": {
+    "primary_pdms_ratios": [
+      "9:1",
+      "50:1"
+    ],
+    "RH_percent": [
+      15,
+      50,
+      90
+    ],
+    "figure_RH_reported_variation_percent": 1,
+    "temperature_C_mean": 24.1,
+    "temperature_C_reported_variation": 0.5,
+    "placed_volume_nL_mean": 71.9,
+    "placed_volume_nL_reported_variation": 8.7,
+    "analysis_origin_volume_nL": 55,
+    "side_view_tilt_deg_approximately": 5,
+    "frame_rate_Hz": 10,
+    "dispensing_pipette_opening_um": [
+      25,
+      50
+    ],
+    "repeat_policy": "Fig1 each of six curves reports average of nine independent measurements. Do not infer nine separate substrates, or add these to Fig4 counts without lineage.",
+    "evidence": [
+      "E06"
+    ]
+  },
+  "microscopy": {
+    "materials": [
+      "CY5:6",
+      "CY9:10"
+    ],
+    "nominal_RH_percent": [
+      15,
+      90
+    ],
+    "objective_scan_range_um": [
+      12,
+      20
+    ],
+    "z_step_um_range": [
+      0.5,
+      1
+    ],
+    "exposure_ms_range": [
+      20,
+      50
+    ],
+    "slow_stack_duration_s": 1.75,
+    "fast_stack_duration_s": 1.5,
+    "reported_spatial_sampling_um_per_pixel": 0.17,
+    "inspection": "These are instrument references, not guaranteed resolution, focus quality or temporal simultaneity. Closed optical service requires calibration and scan timestamps.",
+    "fig3_CY9_10_placed_volume_nL": {
+      "slow": 67,
+      "fast": 49
+    },
+    "SI_Fig3_CY5_6": {
+      "slow": {
+        "RH_percent": 81.2,
+        "placed_volume_nL": 157
+      },
+      "fast": {
+        "RH_percent": 18.7,
+        "placed_volume_nL": 182
+      }
+    },
+    "evidence": [
+      "E08",
+      "E09",
+      "E15"
+    ],
+    "separate_detection_limit_branch": {
+      "material": "PDMS30:1",
+      "source_E_kPa": 218,
+      "evidence": [
+        "E15"
+      ],
+      "route": "R11",
+      "interpretation": "Resolution-limited ridge observation; not a CY dynamic-wetting success"
+    }
+  },
+  "mechanical_characterization": {
+    "tensile_pdms_9_1": {
+      "N": 5,
+      "reported_E_kPa": 2937
+    },
+    "tensile_pdms_30_1": {
+      "N": 5,
+      "reported_E_kPa": 218
+    },
+    "fit_strain_upper_bound": 0.05,
+    "N_semantics": "N is source repeat count; physical-specimen identity and reuse are not supplied",
+    "relaxation": [
+      {
+        "material": "PDMS9:1",
+        "strain": 0.4,
+        "N": 7,
+        "reported_tau1_s": 7.5,
+        "reported_tau2_s": 170.9
+      },
+      {
+        "material": "PDMS30:1",
+        "strain": 0.4,
+        "N": 5,
+        "reported_tau1_s": 9.4,
+        "reported_tau2_s": 171.1
+      },
+      {
+        "material": "CY5:6",
+        "strain": 0.85,
+        "N": 6,
+        "reported_tau1_s": 11.7,
+        "reported_tau2_s": 1042.0
+      },
+      {
+        "material": "CY9:10",
+        "strain": 0.85,
+        "N": 6,
+        "reported_tau1_s": 5.8,
+        "reported_tau2_s": 140.6
+      }
+    ],
+    "rheology": {
+      "materials": [
+        "PDMS50:1",
+        "CY9:10"
+      ],
+      "strain_amplitude": 0.01,
+      "instrument_reference": "Anton Paar MCR502",
+      "plot_omega_axis_s_inverse": [
+        0.01,
+        100
+      ],
+      "warning": "Axis range is not a complete frequency schedule; rheometer geometry, sample dimensions and repeat count missing"
+    },
+    "evidence": [
+      "E03",
+      "E04",
+      "E05"
+    ]
+  },
+  "analysis_reference": {
+    "phase_diagram_drying_experiments_N": 44,
+    "phase_diagram_RH_range_percent": [
+      0,
+      95
+    ],
+    "mechanism_plot": {
+      "CY5:6": {
+        "droplets_N": 4,
+        "timepoints": 24
+      },
+      "CY9:10": {
+        "droplets_N": 5,
+        "timepoints": 38
+      }
+    },
+    "water_surface_tension_mN_per_m": 71.97,
+    "rigid_reference_receding_angle_deg": 99.7,
+    "reported_angle_variation_deg": 0.5,
+    "warning": "Reported measured outcomes are literature reference only, not acceptance targets or synthetic sensor readings",
+    "evidence": [
+      "E09",
+      "E10",
+      "E12",
+      "E14"
+    ],
+    "phase_N_semantics": "44 individual drying experiments; source does not explicitly label these independent. Relationship to other cohorts and physical-substrate independence remain unknown.",
+    "SI_Fig11_N": {
+      "below_rate_division": 27,
+      "above_rate_division": 6,
+      "semantics": "Reported observation counts; specimen/droplet/timepoint identity and independence unresolved"
+    },
+    "SI_Note3_literature_comparison": {
+      "external_material_E_kPa": 3,
+      "interpretation": "Different mixing-ratio CY formulation, literature not inspected. Used as conditional strain-dependence comparison, not the present material calibration."
+    },
+    "reported_ridge_fits": {
+      "current_placement_P1_geometry": {
+        "polynomial_degree": 5,
+        "piecewise": true,
+        "purpose": "Current-surface tangent and psi for Fig5"
+      },
+      "Ur_Uz_displacements": {
+        "polynomial_degree": 5,
+        "purpose": "Separate radial/vertical displacement fits for Fig6"
+      },
+      "fit_intervals_and_conditioning": "Unspecified; remain qualification inputs",
+      "evidence": [
+        "E12",
+        "E13"
+      ]
+    }
+  },
+  "literature_or_prior_paper_moduli": {
+    "PDMS50:1_E_kPa": 20,
+    "CY9:10_E_kPa": 12.6,
+    "evidence": [
+      "E03",
+      "E06",
+      "E09"
+    ],
+    "not_new_measurement": true
+  }
+}

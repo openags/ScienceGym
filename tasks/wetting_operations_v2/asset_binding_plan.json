@@ -1,0 +1,1736 @@
+{
+  "schema_version": "wetting_transition_task.v1",
+  "asset_pack_id": "wetting_transition_scene_assets_v1",
+  "assets": [
+    {
+      "asset_id": "A01",
+      "role": "Material and formulation station",
+      "required_anchor_ids": [
+        "base_container",
+        "component_container",
+        "additive_container",
+        "balance_receipt",
+        "batch_tray"
+      ],
+      "bind_operation_ids": [
+        "R01_O01",
+        "R01_O02",
+        "R01_O03",
+        "R02_O01",
+        "R02_O02",
+        "R02_O03"
+      ],
+      "design_boundary": "Closed labelled containers, safe grips and staging pads; service display only for mixing/degassing/coating/cure",
+      "dimensional_basis": "Nominal slide24mm diameter and0.17mm thick; all bench/device envelopes independently authored",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A02",
+      "role": "Protected storage and custody",
+      "required_anchor_ids": [
+        "sample_rack",
+        "age_label",
+        "spot_map",
+        "quarantine_slot",
+        "containment_slot"
+      ],
+      "bind_operation_ids": [
+        "R03_O01",
+        "R03_O02",
+        "R03_O03",
+        "R03_O04",
+        "R09_O01"
+      ],
+      "design_boundary": "Sample carriers protect active films; visible orientation and unique IDs",
+      "dimensional_basis": "Rack slot/handle dimensions illustrative, not source dimensions",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A03",
+      "role": "Film and mechanical specimens",
+      "required_anchor_ids": [
+        "glass_slide",
+        "coating_surface",
+        "coupon",
+        "gauge_region",
+        "grip_tabs"
+      ],
+      "bind_operation_ids": [
+        "R01_O04",
+        "R01_O05",
+        "R02_O04",
+        "R04_O01",
+        "R05_O01",
+        "R10_O01"
+      ],
+      "design_boundary": "Distinct slide versus coupon objects, polymer composition/lot metadata and top-face marker",
+      "dimensional_basis": "Film nominal30um PDMS/35umCY; tensile-coupon dimensions unresolved, do not invent qualified test geometry",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": "A11 also supports source/cohort design and non-imaging analysis; A03 also thickness metrology"
+    },
+    {
+      "asset_id": "A04",
+      "role": "External patterning service",
+      "required_anchor_ids": [
+        "sealed_input_port",
+        "sealed_output_port",
+        "pattern_receipt",
+        "array_origin",
+        "array_boundary"
+      ],
+      "bind_operation_ids": [
+        "R07_O01",
+        "R07_O02",
+        "R07_O03",
+        "R07_O04"
+      ],
+      "design_boundary": "No exposed chemistry, nanoparticles, high-voltage nozzle or controls; safe receipt interface",
+      "dimensional_basis": "Original triangular marker abstraction only; pitch/count unknown until qualified pattern record",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A05",
+      "role": "Environmental chamber",
+      "required_anchor_ids": [
+        "sample_mount",
+        "door",
+        "RH_probe",
+        "temperature_probe",
+        "dry_gas_receipt",
+        "wet_gas_receipt",
+        "exhaust_receipt"
+      ],
+      "bind_operation_ids": [
+        "R08_O01",
+        "R08_O03",
+        "R10_O02",
+        "R11_O01"
+      ],
+      "design_boundary": "Generic independently authored chamber with clear sample line of sight; enclosed service connections",
+      "dimensional_basis": "Chamber dimensions not source-specified; all envelope geometry illustrative",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A06",
+      "role": "Water dispensing station",
+      "required_anchor_ids": [
+        "water_reservoir",
+        "pipette_carrier",
+        "dispense_target",
+        "dispenser_receipt",
+        "waste_tray"
+      ],
+      "bind_operation_ids": [
+        "R09_O02",
+        "R11_O02"
+      ],
+      "design_boundary": "Robot interacts with carrier handles; fragile pipette tip is non-graspable",
+      "dimensional_basis": "Source pipette opening25-50um, not a robot grasp point; actual safe placement tolerances unknown",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A07",
+      "role": "Side-view optical service",
+      "required_anchor_ids": [
+        "side_camera",
+        "backlight",
+        "scale_target",
+        "optical_axis",
+        "side_frame_stream"
+      ],
+      "bind_operation_ids": [
+        "R08_O02",
+        "R09_O03",
+        "R09_O06"
+      ],
+      "design_boundary": "Original camera/housing with calibrated viewcone and operator-safe isolation",
+      "dimensional_basis": "Approximate source camera tilt5deg; pose must be measured, not hard-coded as exact",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A08",
+      "role": "Bottom-view microscope service",
+      "required_anchor_ids": [
+        "bottom_objective",
+        "z_stage",
+        "scan_origin",
+        "focus_receipt",
+        "image_stream"
+      ],
+      "bind_operation_ids": [
+        "R08_O04",
+        "R11_O03",
+        "R11_O04",
+        "R11_O06"
+      ],
+      "design_boundary": "Closed excitation path and scanner enclosure; visible scan metadata, no laser-operation control",
+      "dimensional_basis": "Source scan12-20um,step0.5-1um; generic casing does not prove scan fidelity",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A09",
+      "role": "Mechanical-test service",
+      "required_anchor_ids": [
+        "coupon_mount",
+        "force_sensor_receipt",
+        "strain_sensor_receipt",
+        "test_guard",
+        "raw_trace_port"
+      ],
+      "bind_operation_ids": [
+        "R04_O02",
+        "R04_O03",
+        "R05_O02",
+        "R05_O03"
+      ],
+      "design_boundary": "Generic guarded tester and safe mount carrier, no implied load capacity",
+      "dimensional_basis": "Coupon/grip/test-frame geometry is authored placeholder until qualified",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A10",
+      "role": "Rheometer service",
+      "required_anchor_ids": [
+        "rheology_carrier",
+        "geometry_receipt",
+        "oscillation_receipt",
+        "raw_rheology_port"
+      ],
+      "bind_operation_ids": [
+        "R06_O01",
+        "R06_O02",
+        "R06_O03"
+      ],
+      "design_boundary": "Guarded generic device; no unsupported source commercial CAD copying",
+      "dimensional_basis": "Measurement geometry and sample dimensions unresolved",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    },
+    {
+      "asset_id": "A11",
+      "role": "Analysis and provenance station",
+      "required_anchor_ids": [
+        "raw_archive",
+        "point_annotation",
+        "array_match",
+        "reference_inference",
+        "FE_service",
+        "result_review"
+      ],
+      "bind_operation_ids": [
+        "R00_O01",
+        "R00_O02",
+        "R00_O03",
+        "R00_O04",
+        "R04_O04",
+        "R04_O05",
+        "R05_O04",
+        "R05_O05",
+        "R06_O04",
+        "R06_O05",
+        "R09_O04",
+        "R09_O05",
+        "R10_O03",
+        "R10_O04",
+        "R11_O05",
+        "R12_O01",
+        "R12_O02",
+        "R12_O03",
+        "R12_O04",
+        "R13_O01",
+        "R13_O02",
+        "R13_O03",
+        "R13_O04",
+        "R13_O05",
+        "R14_O01",
+        "R14_O02",
+        "R14_O03",
+        "R14_O04",
+        "R14_O05"
+      ],
+      "design_boundary": "Explicit labels for observed, inferred, imputed and source-reference layers",
+      "dimensional_basis": "Any illustrative ridge or droplet animation is synthetic, with no scientific success implied",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": "A11 also supports source/cohort design and non-imaging analysis; A03 also thickness metrology"
+    },
+    {
+      "asset_id": "A12",
+      "role": "Shutdown and archive",
+      "required_anchor_ids": [
+        "isolation_receipt",
+        "custody_receipt",
+        "quarantine_bin",
+        "immutable_manifest"
+      ],
+      "bind_operation_ids": [
+        "R15_O01",
+        "R15_O02",
+        "R15_O03",
+        "R15_O04"
+      ],
+      "design_boundary": "Safe-state and waste services are gated independently of scientific success",
+      "dimensional_basis": "Original generic assets; no source images, logos or publisher figure compositions",
+      "asset_available": true,
+      "physical_geometry_validated": false,
+      "authored_extension": null
+    }
+  ],
+  "operation_bindings": [
+    {
+      "operation_id": "R00_O01",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R00_O02",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R00_O03",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R00_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R01_O01",
+      "asset_id": "A01",
+      "anchor_ids": [
+        "A01.base_container",
+        "A01.component_container",
+        "A01.batch_tray"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R01_O02",
+      "asset_id": "A01",
+      "anchor_ids": [
+        "A01.balance_receipt",
+        "A01.batch_tray"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R01_O03",
+      "asset_id": "A01",
+      "anchor_ids": [
+        "A01.batch_tray",
+        "A01.balance_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R01_O04",
+      "asset_id": "A03",
+      "anchor_ids": [
+        "A03.glass_slide",
+        "A03.coating_surface"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R01_O05",
+      "asset_id": "A03",
+      "anchor_ids": [
+        "A03.coupon",
+        "A03.gauge_region",
+        "A03.grip_tabs"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R02_O01",
+      "asset_id": "A01",
+      "anchor_ids": [
+        "A01.base_container",
+        "A01.component_container",
+        "A01.additive_container"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R02_O02",
+      "asset_id": "A01",
+      "anchor_ids": [
+        "A01.balance_receipt",
+        "A01.batch_tray"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R02_O03",
+      "asset_id": "A01",
+      "anchor_ids": [
+        "A01.batch_tray",
+        "A01.balance_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R02_O04",
+      "asset_id": "A03",
+      "anchor_ids": [
+        "A03.glass_slide",
+        "A03.coating_surface",
+        "A03.coupon"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R03_O01",
+      "asset_id": "A02",
+      "anchor_ids": [
+        "A02.sample_rack",
+        "A02.age_label"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R03_O02",
+      "asset_id": "A02",
+      "anchor_ids": [
+        "A02.age_label"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R03_O03",
+      "asset_id": "A02",
+      "anchor_ids": [
+        "A02.spot_map"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R03_O04",
+      "asset_id": "A02",
+      "anchor_ids": [
+        "A02.spot_map",
+        "A02.quarantine_slot",
+        "A02.containment_slot"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R04_O01",
+      "asset_id": "A03",
+      "anchor_ids": [
+        "A03.coupon",
+        "A03.gauge_region",
+        "A03.grip_tabs"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R04_O02",
+      "asset_id": "A09",
+      "anchor_ids": [
+        "A09.coupon_mount",
+        "A09.force_sensor_receipt",
+        "A09.strain_sensor_receipt",
+        "A09.test_guard"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R04_O03",
+      "asset_id": "A09",
+      "anchor_ids": [
+        "A09.raw_trace_port"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R04_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R04_O05",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive",
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R05_O01",
+      "asset_id": "A03",
+      "anchor_ids": [
+        "A03.coupon",
+        "A03.gauge_region"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R05_O02",
+      "asset_id": "A09",
+      "anchor_ids": [
+        "A09.coupon_mount",
+        "A09.test_guard",
+        "A09.raw_trace_port"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R05_O03",
+      "asset_id": "A09",
+      "anchor_ids": [
+        "A09.raw_trace_port"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R05_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R05_O05",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R06_O01",
+      "asset_id": "A10",
+      "anchor_ids": [
+        "A10.rheology_carrier",
+        "A10.geometry_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R06_O02",
+      "asset_id": "A10",
+      "anchor_ids": [
+        "A10.geometry_receipt",
+        "A10.oscillation_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R06_O03",
+      "asset_id": "A10",
+      "anchor_ids": [
+        "A10.raw_rheology_port"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R06_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R06_O05",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive",
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R07_O01",
+      "asset_id": "A04",
+      "anchor_ids": [
+        "A04.sealed_input_port",
+        "A04.pattern_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R07_O02",
+      "asset_id": "A04",
+      "anchor_ids": [
+        "A04.sealed_output_port",
+        "A04.pattern_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R07_O03",
+      "asset_id": "A04",
+      "anchor_ids": [
+        "A04.array_origin",
+        "A04.array_boundary",
+        "A04.pattern_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R07_O04",
+      "asset_id": "A04",
+      "anchor_ids": [
+        "A04.pattern_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R08_O01",
+      "asset_id": "A05",
+      "anchor_ids": [
+        "A05.sample_mount",
+        "A05.door",
+        "A05.RH_probe",
+        "A05.temperature_probe",
+        "A05.exhaust_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R08_O02",
+      "asset_id": "A07",
+      "anchor_ids": [
+        "A07.scale_target",
+        "A07.optical_axis"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R08_O03",
+      "asset_id": "A05",
+      "anchor_ids": [
+        "A05.RH_probe",
+        "A05.temperature_probe",
+        "A05.dry_gas_receipt",
+        "A05.wet_gas_receipt",
+        "A05.exhaust_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R08_O04",
+      "asset_id": "A08",
+      "anchor_ids": [
+        "A08.focus_receipt",
+        "A08.scan_origin",
+        "A08.image_stream"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R09_O01",
+      "asset_id": "A02",
+      "anchor_ids": [
+        "A02.spot_map",
+        "A02.age_label"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R09_O02",
+      "asset_id": "A06",
+      "anchor_ids": [
+        "A06.pipette_carrier",
+        "A06.dispense_target",
+        "A06.dispenser_receipt",
+        "A06.water_reservoir",
+        "A06.waste_tray"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R09_O03",
+      "asset_id": "A07",
+      "anchor_ids": [
+        "A07.side_frame_stream",
+        "A07.side_camera",
+        "A07.backlight"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R09_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R09_O05",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive",
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R09_O06",
+      "asset_id": "A07",
+      "anchor_ids": [
+        "A07.side_frame_stream",
+        "A07.scale_target"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R10_O01",
+      "asset_id": "A03",
+      "anchor_ids": [
+        "A03.glass_slide",
+        "A03.coating_surface"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R10_O02",
+      "asset_id": "A05",
+      "anchor_ids": [
+        "A05.sample_mount",
+        "A05.RH_probe",
+        "A05.temperature_probe"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R10_O03",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R10_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R11_O01",
+      "asset_id": "A05",
+      "anchor_ids": [
+        "A05.sample_mount"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R11_O02",
+      "asset_id": "A06",
+      "anchor_ids": [
+        "A06.pipette_carrier",
+        "A06.dispense_target",
+        "A06.dispenser_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R11_O03",
+      "asset_id": "A08",
+      "anchor_ids": [
+        "A08.bottom_objective",
+        "A08.z_stage",
+        "A08.image_stream"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R11_O04",
+      "asset_id": "A08",
+      "anchor_ids": [
+        "A08.scan_origin",
+        "A08.focus_receipt",
+        "A08.image_stream"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R11_O05",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive",
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R11_O06",
+      "asset_id": "A08",
+      "anchor_ids": [
+        "A08.image_stream",
+        "A08.focus_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CALIBRATION",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R12_O01",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R12_O02",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive",
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R12_O03",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive",
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R12_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R13_O01",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.raw_archive",
+        "A11.point_annotation"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R13_O02",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.point_annotation"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R13_O03",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.array_match"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R13_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.reference_inference"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R13_O05",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.FE_service",
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R14_O01",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R14_O02",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R14_O03",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R14_O04",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.FE_service",
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R14_O05",
+      "asset_id": "A11",
+      "anchor_ids": [
+        "A11.result_review"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_RAW_PROVENANCE"
+      ],
+      "interaction": "metadata_only",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R15_O01",
+      "asset_id": "A12",
+      "anchor_ids": [
+        "A12.isolation_receipt"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE",
+        "G_SAFE_RELEASE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R15_O02",
+      "asset_id": "A12",
+      "anchor_ids": [
+        "A12.custody_receipt",
+        "A12.quarantine_bin"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE",
+        "G_SAFE_RELEASE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R15_O03",
+      "asset_id": "A12",
+      "anchor_ids": [
+        "A12.immutable_manifest"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE",
+        "G_SAFE_RELEASE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    },
+    {
+      "operation_id": "R15_O04",
+      "asset_id": "A12",
+      "anchor_ids": [
+        "A12.immutable_manifest"
+      ],
+      "guard_ids": [
+        "G_AUTHORITY",
+        "G_LINEAGE",
+        "G_QUALIFICATION",
+        "G_SOURCE_SCOPE",
+        "G_SCALE",
+        "G_NO_CONTROL",
+        "G_CONTAINMENT",
+        "G_RAW_PROVENANCE",
+        "G_SAFE_RELEASE"
+      ],
+      "interaction": "qualified_service_receipt",
+      "physical_motion_qualified": false
+    }
+  ],
+  "guard_definitions": {
+    "G_AUTHORITY": "Only independent evaluator-selected scoped records; actor IDs are not observations",
+    "G_LINEAGE": "Sample, spot, droplet, cohort, station, time, revision and history must match",
+    "G_QUALIFICATION": "Unresolved inputs hold their applicable physical/analysis scope",
+    "G_CALIBRATION": "Current applicable calibration required; changed mount or scan invalidates dependent evidence",
+    "G_SOURCE_SCOPE": "Source facts, results and conditional assumptions cannot become new observations",
+    "G_CONTAINMENT": "Patterned sample only in qualified sealed custody; no QD or HV controls",
+    "G_SAFE_RELEASE": "No removal/storage/disposal before independent safe-release/containment evidence",
+    "G_SCALE": "Bench metres separated from magnified microscopy display; film, markers and tip are not graspable",
+    "G_RAW_PROVENANCE": "Retain raw, imputed, inferred and derived evidence as distinct immutable layers",
+    "G_NO_CONTROL": "No actual hardware, motion, service parameters, laser, gas or hazardous control API"
+  },
+  "asset_archive_sha256": "d4a2f9d33fe0e841af6437724b4687d12ddbc2bd4f7c3693ea5d133b5da76ce2",
+  "asset_scope": "Independently reviewed original static illustration only; no contact, robot, geometry or scientific execution qualification",
+  "all_bindings_are_authored": true,
+  "asset_archive_bytes": 13856978,
+  "asset_archive_member_count": 40,
+  "snapshot_note": "Immutable asset archive may retain its initial pending-availability task snapshot. All 12 asset IDs, 61 anchors and 74 operation bindings are unchanged; task availability became true only after exact-ZIP independent review."
+}

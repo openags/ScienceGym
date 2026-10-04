@@ -1,0 +1,35 @@
+{
+  "schema_version": "wetting_transition_task.v1",
+  "routes": [
+    {
+      "from": "qualified incoming carrier",
+      "to": "protected custody",
+      "required": [
+        "sample ID",
+        "dated independent preparation and containment receipts"
+      ]
+    },
+    {
+      "from": "protected custody",
+      "to": "qualified enclosed station",
+      "required": [
+        "released spot/coupon",
+        "age eligibility",
+        "carrier qualification",
+        "station acceptance"
+      ]
+    },
+    {
+      "from": "station",
+      "to": "storage or quarantine service",
+      "required": [
+        "independent safe state",
+        "containment",
+        "condition inspection",
+        "custody receipt"
+      ]
+    }
+  ],
+  "grasp_boundary": "Carrier handles only; active film, markers, water droplets and pipette tip are non-graspable",
+  "kinematics_implemented": false
+}

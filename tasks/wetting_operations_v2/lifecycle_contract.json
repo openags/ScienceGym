@@ -1,0 +1,111 @@
+{
+  "schema_version": "wetting_transition_task.v1",
+  "states": [
+    "UNREGISTERED",
+    "IDENTIFIED",
+    "SERVICE_REQUESTED",
+    "QUALIFIED_RECEIPT",
+    "AGED_CUSTODY",
+    "SPOT_RELEASED",
+    "MOUNT_VERIFIED",
+    "CALIBRATED",
+    "OBSERVED",
+    "DATA_HOLD",
+    "ANALYZED",
+    "CLOSEOUT_REQUEST",
+    "ISOLATION_VERIFIED",
+    "HELD_CONTAINED",
+    "QUARANTINED",
+    "ARCHIVED"
+  ],
+  "failure_edges": [
+    {
+      "from_route": "R00",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R01",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R02",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R03",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R04",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R05",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R06",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R07",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R08",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R09",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R10",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R11",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R12",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R13",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R14",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    },
+    {
+      "from_route": "R15",
+      "to": "CLOSEOUT_REQUEST",
+      "scientific_success_required": false
+    }
+  ],
+  "closure_rules": [
+    "Request is not safe-state evidence",
+    "Unknown isolation remains held_contained",
+    "No physical sample removal from an unqualified state",
+    "Raw failures, exclusions and every retry remain archived",
+    "Retry needs new attempt/droplet/acquisition IDs and separately qualified spot",
+    "No auto-cleaning, recuring, hazardous disposal or reuse recipe"
+  ]
+}

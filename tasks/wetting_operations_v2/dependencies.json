@@ -1,0 +1,213 @@
+{
+  "schema_version": "wetting_transition_task.v1",
+  "routes": {
+    "R00": [],
+    "R01": [
+      "R00"
+    ],
+    "R02": [
+      "R00"
+    ],
+    "R03": [
+      "R01",
+      "R02"
+    ],
+    "R04": [
+      "R03"
+    ],
+    "R05": [
+      "R03"
+    ],
+    "R06": [
+      "R03"
+    ],
+    "R07": [
+      "R03"
+    ],
+    "R08": [
+      "R00"
+    ],
+    "R09": [
+      "R03",
+      "R08"
+    ],
+    "R10": [
+      "R03",
+      "R08"
+    ],
+    "R11": [
+      "R07",
+      "R08"
+    ],
+    "R12": [
+      "R03",
+      "R04",
+      "R05",
+      "R08"
+    ],
+    "R13": [
+      "R04",
+      "R05",
+      "R11"
+    ],
+    "R14": [
+      "R09",
+      "R11",
+      "R12",
+      "R13"
+    ],
+    "R15": [
+      "R09",
+      "R10",
+      "R11",
+      "R12",
+      "R14"
+    ]
+  },
+  "external": [
+    {
+      "id": "D01",
+      "dependency": "Commercial silicone safety and cured-material qualification",
+      "routes": [
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "read": false
+    },
+    {
+      "id": "D02",
+      "dependency": "Referenced cTFM methods/material coefficients and author implementation",
+      "routes": [
+        "R13"
+      ],
+      "read": false
+    },
+    {
+      "id": "D03",
+      "dependency": "Quantum-dot synthesis/printing antecedents",
+      "routes": [
+        "R07"
+      ],
+      "read": false,
+      "policy": "Do not recover operational procedures; external service only"
+    },
+    {
+      "id": "D04",
+      "dependency": "PDMS50:1 and CY9:10 literature modulus sources",
+      "routes": [
+        "R04",
+        "R14"
+      ],
+      "read": false
+    },
+    {
+      "id": "D05",
+      "dependency": "Qualified imaging, dispensing, environmental, tensile and rheometer calibrations",
+      "routes": [
+        "R04",
+        "R05",
+        "R06",
+        "R08",
+        "R11"
+      ],
+      "provided": false
+    },
+    {
+      "id": "D06",
+      "dependency": "Numerical source workbook and additional raw acquisition data",
+      "routes": [
+        "R12",
+        "R13",
+        "R14"
+      ],
+      "numeric_inspection": false
+    }
+  ],
+  "logical_note": "A route dependency means its applicable material/branch outputs are needed, not that every experiment uses both silicone families. Model-only and literature branches cannot satisfy physical-measurement gates.",
+  "failure_or_abort_edges": [
+    {
+      "from": "R00",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R01",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R02",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R03",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R04",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R05",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R06",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R07",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R08",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R09",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R10",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R11",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R12",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R13",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    },
+    {
+      "from": "R14",
+      "to": "R15",
+      "meaning": "Immediate safe-state/custody closeout only; not a declaration that analysis dependencies passed"
+    }
+  ],
+  "scientific_dependency_rule": "Normal scientific completion needs applicable ancestors. R15 safe-state/custody execution never waits for analysis success; archive can record held or unattempted branches.",
+  "revision_invalidation": [
+    "sample/formulation/preparation",
+    "storage/pattern/spot",
+    "mount/station/calibration",
+    "environment/scan/timebase",
+    "annotation/matching/model/analysis"
+  ]
+}

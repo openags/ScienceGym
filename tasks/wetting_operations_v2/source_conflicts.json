@@ -1,0 +1,251 @@
+{
+  "schema_version": "wetting_transition_task.v1",
+  "conflicts": [
+    {
+      "id": "C01",
+      "topic": "High film thickness",
+      "type": "numeric_conflict",
+      "evidence": [
+        "E07"
+      ],
+      "source_a": "Main M013 describes 15-220 micrometres",
+      "source_b": "SI Fig1 p2 plotted legend reads 15,30,228 micrometres",
+      "policy": "Retain both; do not silently use 220 or 228 as a proven variant thickness. Require actual specimen measurement and qualified variant preparation.",
+      "operation_ids": [
+        "R10_O01",
+        "R10_O04"
+      ],
+      "route_ids": [
+        "R10"
+      ],
+      "scope_tags": [
+        "thickness_high"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C02",
+      "topic": "Traction integration radial bounds",
+      "type": "formula_definition_conflict",
+      "evidence": [
+        "E13"
+      ],
+      "source_a": "Main Eq1/M032-M033 and SI Fig12 use solid surface-tension scale Upsilon_S/E",
+      "source_b": "Methods M055 describes liquid surface-tension scale gamma_LV/E",
+      "policy": "Preserve as distinct integration-window definitions. No numerical golden until a qualified choice or author clarification is recorded.",
+      "operation_ids": [
+        "R14_O04"
+      ],
+      "route_ids": [
+        "R14"
+      ],
+      "scope_tags": [
+        "traction_integration"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C03",
+      "topic": "Polar surface integral and units",
+      "type": "implementation_ambiguity",
+      "evidence": [
+        "E13"
+      ],
+      "source_a": "Main Eq1 displays a polar-coordinate integral with dphi dr while equating it to a physical area integral",
+      "source_b": "Methods Eq3 explicitly sums traction magnitude times triangular element area",
+      "policy": "Do not code a polar integral without the appropriate physical area measure. Dimensional check: traction times area is force (N); paper calls T* effective line tension and labels it J/m, also N. Energy 2pi R T* is a model-derived quantity, not directly measured. Deformed/reference area choice needs qualification.",
+      "operation_ids": [
+        "R14_O04"
+      ],
+      "route_ids": [
+        "R14"
+      ],
+      "scope_tags": [
+        "traction_integration"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C04",
+      "topic": "CY9:10 modulus lineage",
+      "type": "provenance_ambiguity",
+      "evidence": [
+        "E03"
+      ],
+      "source_a": "Main M043 includes CY9:10 among mechanically measured materials",
+      "source_b": "Same paragraph says its modulus was taken from a previous paper, alongside PDMS50:1 from literature",
+      "policy": "Keep measured, literature-derived and future independently measured values separately. Do not claim a provided CY9:10 tensile series.",
+      "operation_ids": [
+        "R04_O03",
+        "R04_O05"
+      ],
+      "route_ids": [
+        "R04"
+      ],
+      "scope_tags": [
+        "CY9:10_new_modulus"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C05",
+      "topic": "Relaxation stress measure and amplitudes",
+      "type": "normalization_ambiguity",
+      "evidence": [
+        "E04"
+      ],
+      "source_a": "Main Eq2 uses measured stress and coefficients named E with no explicit strain normalization",
+      "source_b": "SI Figs6-9 plot normalized Piola-Kirchhoff stress; SI Figs4-5 use Cauchy stress",
+      "policy": "Freeze stress measure, normalization reference and strain factor before implementation. Fit amplitudes are not automatically calibrated elastic moduli.",
+      "operation_ids": [
+        "R05_O03",
+        "R05_O04",
+        "R05_O05"
+      ],
+      "route_ids": [
+        "R05"
+      ],
+      "scope_tags": [
+        "relaxation_fit"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C06",
+      "topic": "Ogden modulus label",
+      "type": "terminology_and_index_conflict",
+      "evidence": [
+        "E11"
+      ],
+      "source_a": "SI p12 Eq7 calls sum of mu_j the material bulk modulus, in an incompressible model",
+      "source_b": "Eq6 is the Ogden strain energy with mu_j parameters; Eq7 summation uses i while terms use j",
+      "policy": "Do not silently turn this into a bulk-compressibility input or repair indices as source fact. Require validated constitutive convention and actual parameters.",
+      "operation_ids": [
+        "R13_O05"
+      ],
+      "route_ids": [
+        "R13"
+      ],
+      "scope_tags": [
+        "inverse_FE"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C07",
+      "topic": "Illustrated receding speed",
+      "type": "numeric_conflict",
+      "evidence": [
+        "E14"
+      ],
+      "source_a": "SI Fig11b caption p7 reports absolute speed 0.4 micrometres/s",
+      "source_b": "SI Note3 p13 associates fast illustration with 1.5 micrometres/s at 77.3s",
+      "policy": "Keep source labels separate. Do not extract a timed calibration or force balance using an assumed reconciled speed.",
+      "operation_ids": [
+        "R14_O05"
+      ],
+      "route_ids": [
+        "R14"
+      ],
+      "scope_tags": [
+        "source_dynamic_illustration"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C08",
+      "topic": "Humidity precision versus accuracy",
+      "type": "distinct_quantities_not_necessarily_contradiction",
+      "evidence": [
+        "E06",
+        "E08"
+      ],
+      "source_a": "Figure captions use roughly plus/minus1 percentage point; variant SI conditions differ from nominal15/90",
+      "source_b": "Main Methods specifies humidity-sensor accuracy plus/minus3 percentage points",
+      "policy": "Represent setpoint, measured stability/dispersion and sensor accuracy separately; never claim absolute1-point accuracy from plotted stability.",
+      "operation_ids": [
+        "R08_O03",
+        "R09_O03",
+        "R10_O02",
+        "R11_O02",
+        "R12_O01"
+      ],
+      "route_ids": [
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "scope_tags": [
+        "environment_accuracy_claim"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C09",
+      "topic": "Droplet start-volume scope",
+      "type": "branch_scope_difference",
+      "evidence": [
+        "E06",
+        "E09"
+      ],
+      "source_a": "Macro study starts comparison when volume reaches55nL",
+      "source_b": "cTFM examples include49nL placed volume and CY5:6 examples157/182nL",
+      "policy": "Restrict55nL origin to macro cohort. Do not force microscopy or SI examples into incompatible volume rules.",
+      "operation_ids": [
+        "R09_O04",
+        "R11_O02"
+      ],
+      "route_ids": [
+        "R09",
+        "R11"
+      ],
+      "scope_tags": [
+        "cross_cohort_origin"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    },
+    {
+      "id": "C10",
+      "topic": "Equilibrium inference during dynamic wetting",
+      "type": "model_limit",
+      "evidence": [
+        "E14"
+      ],
+      "source_a": "Main M021 explicitly disclaims expected equilibrium/Neumann balance during dynamic deformation",
+      "source_b": "SI Note3 calculates surface tensions under an equilibrium assumption",
+      "policy": "Keep these as model-conditioned comparisons, not independently measured dynamic surface tensions or direct proof of force balance.",
+      "operation_ids": [
+        "R14_O05"
+      ],
+      "route_ids": [
+        "R14"
+      ],
+      "scope_tags": [
+        "dynamic_force_balance_claim"
+      ],
+      "state": "UNRESOLVED_OR_SCOPE_DISTINCTION",
+      "block_policy": "Block only affected calculation, source attribution or claim. Retain raw independent observations. Safe-state and archive never depend on resolution.",
+      "resolution_authority": "Independent scoped qualification or explicit source-only interpretation; actor cannot resolve"
+    }
+  ]
+}

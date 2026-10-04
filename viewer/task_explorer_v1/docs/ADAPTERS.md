@@ -1,3 +1,11 @@
+# Wetting projection and current scope
+
+The current explorer has 36 families: 33 paper-level designs and three bounded subsets. `wetting_adapters.py` preserves all 33 recursive JSON documents and exact branch/operation details. Sixteen design routes remain separate from one metadata-only HOLD_QUALIFICATION inspection. Source operation descriptions are explicitly authored task design, never paper quotations or commands. Required record types and context are evidence obligations, not proven post-states. Declared predecessors, route-output dependencies, material ancestry and closeout guards remain exact; unordered display rows add no chronology.
+
+Every operation resolves its original task-to-scene group and canonical anchor. The exact 12-group, 61-anchor original asset snapshot is linked but has no physics, motion or hardware authority. Closed cadmium/quantum-dot and high-voltage preparation remains an external sealed-receipt boundary. Main/SI reading, sampled movie coverage and unread workbook numerical cells retain their original limits. All ten conflicts, 25 unknowns and source-reported versus authored controls remain distinct. Repository-relative JSON/render links carry SHA-256 and an actual local source commit, with no claim that it is published. A standalone export embeds identical bytes. Earlier adapters and generated family bytes are preserved.
+
+## Historical adapter notes
+
 # Explicit schema adapters and fidelity rules
 
 
@@ -244,3 +252,14 @@ Robot actions, autonomous service work and analysis are displayed separately. Co
 All 78 added records retain original IDs and exact source records. No campaign dispatcher is invented. All operation lists remain unordered membership without adjacency arrows. Counts describe inspection records and definitions, not whole-paper tasks or validated robot executions. Null schedules remain unresolved, and nonphysical views contain no operation nodes. The source audit, lineage, evaluator, actor allowlist and release-boundary JSON remain available under Acceptance & unknowns. The author/evaluator explorer is not an actor projection.
 
 The new source-equality suite uses independent inverse maps and JSON-pointer reconstruction, checks every SVG variant and tests adversarial projection mutations. UI tests cover all new physical/nonphysical records, source warnings, device ownership, conditional postconditions, symbolic scopes, repeated clicks, search/tabs and hash-history restoration. Prior nineteen generated family files are unchanged. Cold-shape retains an 800 kB payload guard; Horn and ReMM retain 200 kB guards.
+
+
+## Lockable origami and varactor adapters
+
+`recent_paper_adapters.py` reads every JSON document recursively and retains the complete original record in reference context. Operation display mappings retain exact source scalar actions, required evidence, failure and recovery as separate fields, and original authored ownership. A missing post-state stays absent rather than becoming a required-output assertion. Source evidence is not an action specification or a measured result.
+
+Branch `operation_ids` arrays retain exact unordered membership, while `design_sequence` and varactor `route_operation_ids` remain distinct source fields. No global chronology, loop expansion or successful recovery path is inferred. Origami contributes 30 branches and four separate global hold views (qualification default plus calibration/configuration/geometry); varactor contributes 28 branches and one separate qualification-default view. These navigation records add no scientific branches. Source class distinctions remain intact.
+
+All task-to-asset IDs, anchors and operation bindings are preserved. Source geometry facts and original generic render dimensions remain separate. The current task plan's static availability flags do not rewrite the historical asset task-binding snapshots. Source commit IDs identify frozen local history; new source/asset links are repository-relative and hashes identify their exact bytes without asserting publication. Markdown links account for their deeper directory. Standalone export verifies those hashes and embeds original JSON, guide and render bytes, which the app opens as local Blob URLs. Earlier family source pins are unchanged.
+
+The new adapter's validator rejects any projection change, including omitted records, altered booleans or provenance, reordered memberships, broadened service authority, changed source hashes, fabricated post-states and reopened source gates. Independent source-equality and mutation tests, negative/state navigation tests, exact embedded-file checks and prior-output hashes cover the boundary. These checks are static software checks, not physical executions.
