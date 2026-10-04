@@ -1,0 +1,157 @@
+{
+  "schema_version": "transistor_scene_semantic_review.v1",
+  "created_at_utc": "2026-10-04T06:04:31.534769+00:00",
+  "review_kind": "Implementation self-check; not an independent physical or safety qualification.",
+  "scope": "Only semantic_controls.py, states.json, tests/test_semantic_controls.py, and this journal.",
+  "status": "local_static_guard_tests_passed",
+  "source_reference": "Published task transistor_operations_v2; no remote edits or writes.",
+  "source_contract_sha256": {
+    "lifecycle_contract.json": "40dae55af2452f41302c51291f4a279741a13be34e7c583bafd49922ed75c55b",
+    "lineage_contract.json": "05cec4adca023ebddd4e3b8aa6c64a17020fa9ce9419b099d79b2dd15e60f142",
+    "netlist_contracts.json": "cec4182c88e1d0d94111c5bb1cb35609e4844e91a6ae6d8772514c89890b68a8",
+    "operations.json": "67bea2fbdec0e0a032b15bcbeccf3d7cbec2e5f21ff53eb4b84cd71d468518f4",
+    "source_conflicts.json": "e18750cd188945f4c7f257c44b672607909514071f480d9b00dfa44486869680"
+  },
+  "artifact_sha256": {
+    "semantic_controls.py": "9d0c9f3cffd467d8ef565eca4e0c5fd90f08b18f2f9fc090fe9a9afa184861ec",
+    "states.json": "be7b2d6e6f2ddd6d1a1252d4200d2c8c18ac3036b963005e98a666a387896632",
+    "tests/test_semantic_controls.py": "06e776960197cc14d69b5dd6d772a237de9be01e6d603d181f5e09b7b6fab68d"
+  },
+  "checks": [
+    {
+      "id": "SEMANTIC_UNIT_TESTS",
+      "status": "pass",
+      "command": "python -B -m unittest discover -s tests -p test_semantic_controls.py -v",
+      "tests_run": 49,
+      "failures": 0,
+      "errors": 0,
+      "test_names": [
+        "test_90_ordered_pairs_keep_driver_and_load_distinct",
+        "test_actor_dispatch_cannot_submit_observation",
+        "test_all_physical_services_always_rejected_even_after_acknowledgements",
+        "test_all_ten_conflicts_remain_unresolved_after_acknowledgement",
+        "test_conflict_cannot_be_resolved_by_actor_or_receipt",
+        "test_continuity_receipt_is_single_use",
+        "test_continuity_rejects_missing_stack_binding",
+        "test_continuity_requires_configured_fixture_and_fresh_safe_zero",
+        "test_continuity_ties_exact_netlist_pair_revision_and_map",
+        "test_crossed_fig4_s31_map_rejected",
+        "test_custody_cannot_relabel_identity",
+        "test_custody_type_guards",
+        "test_deenergize_intent_does_not_prove_safe_zero",
+        "test_deenergize_invalidates_existing_observation",
+        "test_disconnect_and_retrieve_require_new_observation",
+        "test_dispatch_positive_path",
+        "test_dispatch_strict_types_and_extra_fields",
+        "test_duplicate_receipt_id_rejected",
+        "test_identical_lineage_other_fixture_instance_receipt_rejected",
+        "test_identity_frozen_and_snapshot_detached",
+        "test_illegal_lifecycle_order_rejected",
+        "test_independent_s31_mapping_explicit_and_distinct",
+        "test_initial_state_is_retained_unknown_unqualified",
+        "test_lifecycle_preserves_identity_and_retention",
+        "test_missing_empty_duplicate_or_invalid_stack_inventory_rejected",
+        "test_missing_unknown_floating_or_extra_terminal_rejected",
+        "test_mount_requires_current_independent_fixture_observation",
+        "test_no_release_custody_control",
+        "test_ordinary_fig4_mapping_explicit",
+        "test_positive_custody_identity",
+        "test_real_or_actor_authority_rejected",
+        "test_receipt_extra_electrical_payload_rejected",
+        "test_receipt_identity_version_and_retention_type_binding",
+        "test_receipt_missing_and_wrong_type_fields_rejected",
+        "test_record_cannot_accept_measurement_payload",
+        "test_record_id_reuse_rejected_without_consuming_new_receipt",
+        "test_record_metadata_only_and_hash_stable",
+        "test_remount_invalidates_configuration_and_all_old_receipts",
+        "test_rewire_distinct_registered_stack_ids_required",
+        "test_rewire_invalidates_old_continuity_and_safe_zero",
+        "test_rewire_revision_must_be_next_strict_integer",
+        "test_rewire_without_safe_zero_rejected",
+        "test_safe_zero_marker_cannot_substitute_for_continuity",
+        "test_specification_matches_implementation_and_conflicts",
+        "test_stale_observation_binding_rejected",
+        "test_superseded_safe_zero_receipt_rejected",
+        "test_unknown_terminal_never_inferred_floating",
+        "test_unmapped_parallel_and_unknown_netlists_rejected",
+        "test_version_type_guards"
+      ]
+    },
+    {
+      "id": "SOURCE_CONFLICT_PRESERVATION",
+      "status": "pass",
+      "method": "Compared states.json source_conflicts object against parsed published source_conflicts.json for exact JSON equality.",
+      "unresolved_conflicts": 10,
+      "automatic_correction_allowed": false
+    },
+    {
+      "id": "SOURCE_NETLIST_PRESERVATION",
+      "status": "pass",
+      "method": "Compared states.json source_netlist_contract against parsed published netlist_contracts.json for exact JSON equality."
+    },
+    {
+      "id": "PAIR_IDENTITY",
+      "status": "pass",
+      "ordered_pairs": 90,
+      "driver_load_identity_distinct": true,
+      "measurement_data_present": false
+    },
+    {
+      "id": "DEFERRED_PHYSICAL_CHECKS",
+      "status": "not_implemented",
+      "checks": [
+        "real independent safe-state evidence",
+        "physical voltage/current acquisition",
+        "thermal control",
+        "fabrication",
+        "wirebond",
+        "physical continuity",
+        "geometry/contact/reachability",
+        "hardware authentication",
+        "electrical numerical analysis"
+      ]
+    }
+  ],
+  "guarantees_within_fixture_only": [
+    "Strict identifier, dictionary shape, version/revision type and retention checks, including bool-vs-int rejection.",
+    "Sample ID/version/carrier identity remain immutable through fixture custody transitions; all ten explicit stack IDs required.",
+    "Actor deenergize intent is not safe-zero evidence; separate symbolic fixture marker required before mount/rewire/disconnect/retrieve.",
+    "Ordinary Fig4 and independent S31 full terminal maps remain distinct. Unsupported parallel S30 mapping is rejected.",
+    "Unknown or missing terminal identity is never inferred floating.",
+    "State-changing transitions invalidate earlier receipt metadata; receipt IDs cannot be reused; other fixture-instance markers are rejected.",
+    "Continuity markers bind exact sample/version, stack registry, driver/load pair, netlist ID/revision, terminal-map hash, mount/state revisions, and fixture namespace.",
+    "A metadata record consumes one continuity marker. No voltage/current result, synthetic curve, measurement, pass/fail electrical result, or computed electrical metric is created.",
+    "All physical service requests are rejected unconditionally, including after fixture conflict acknowledgement.",
+    "All C01-C10 source conflicts remain unresolved and qualification-gated; acknowledgements cannot resolve or bypass them."
+  ],
+  "interface": {
+    "constructor": "SceneControls(sample_id=..., specimen_version=positive_int, carrier_id=..., chip_id=..., pcb_id=..., cohort_id=..., architecture_id=..., stack_ids=[S1..S10], retained=True)",
+    "inspection": [
+      "snapshot()",
+      "receipt_binding()",
+      "terminal_state(terminal)",
+      "state_specification()",
+      "ordered_pairs()"
+    ],
+    "fixture_observations": "record_fixture_observation({receipt_id, kind: safe_zero|continuity, authority: synthetic_fixture_authority, scope: static_fixture_only, binding: receipt_binding(), outcome: fixture_safe_zero|fixture_continuity})",
+    "static_controls": [
+      "request_deenergize()",
+      "mount(safe_zero_receipt_id)",
+      "rewire(netlist_id=..., driver_stack_id=..., load_stack_id=..., terminal_map=..., netlist_revision=next_integer, safe_zero_receipt_id=...)",
+      "disconnect(safe_zero_receipt_id)",
+      "retrieve(safe_zero_receipt_id)",
+      "verify_custody(sample_id=..., specimen_version=..., carrier_id=..., retained=True)",
+      "create_record(record_id=..., case_id=..., continuity_receipt_id=...)",
+      "acknowledge_conflict(conflict_id, acknowledgement_id)",
+      "apply(action, payload=None)"
+    ],
+    "rejected_service": "request_service(service_name, **parameters) always raises PhysicalServiceRejected",
+    "fixture_flow": "safe_zero marker -> mount -> new safe_zero marker -> rewire -> new safe_zero marker -> continuity marker -> metadata record; disconnect and retrieve each require a current safe_zero marker."
+  },
+  "limitations": [
+    "A successful local guard proves metadata consistency only. No physical reachability, safety qualification, continuity, instrument response, or scientific replication is established.",
+    "Fixture observations are caller-owned symbolic data. Authority labels and instance namespaces are not authentication or production trust boundaries.",
+    "No geometry work, remote writes, measured electrical outputs, or synthetic electrical outputs occurred.",
+    "Passing this focused suite is not a complete package, geometry, or published task review."
+  ]
+}

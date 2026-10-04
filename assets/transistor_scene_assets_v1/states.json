@@ -1,0 +1,413 @@
+{
+  "schema_version": "transistor_scene_static.v1",
+  "mode": "static_fixture_only",
+  "scope": "Static local scene state and metadata guards only; no physical services or scientific outputs.",
+  "authority": {
+    "fixture_observations": "synthetic_fixture_authority",
+    "authentication_implemented": false,
+    "caller_owned_fixture": true,
+    "actor_control_separate_from_fixture_observation": true,
+    "fixture_instance_id": "Locally generated non-authoritative namespace prevents accidental cross-instance receipt replay; not authentication."
+  },
+  "claims": {
+    "physical_execution_implemented": false,
+    "physical_reachability_proven": false,
+    "safety_qualified": false,
+    "electrical_outputs_implemented": false,
+    "scientific_replication": false,
+    "source_conflicts_resolved": false
+  },
+  "source_contracts": [
+    "lifecycle_contract.json",
+    "lineage_contract.json",
+    "netlist_contracts.json",
+    "operations.json",
+    "source_conflicts.json"
+  ],
+  "identity": {
+    "immutable_fields": [
+      "sample_id",
+      "specimen_version",
+      "carrier_id",
+      "chip_id",
+      "pcb_id",
+      "cohort_id",
+      "architecture_id"
+    ],
+    "sample_id_is_specimen_id_alias": true,
+    "specimen_version": "Strict positive integer; bool, floats and strings are rejected. No physical state-altering version service is implemented.",
+    "registered_stack_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9",
+      "S10"
+    ],
+    "retained": true,
+    "retention_release_implemented": false,
+    "ordered_pair_count": 90,
+    "driver_load_must_be_distinct": true
+  },
+  "dimensions": {
+    "custody": {
+      "initial": "storage_retained",
+      "values": [
+        "storage_retained",
+        "mounted_retained",
+        "disconnected_retained"
+      ]
+    },
+    "terminal_map": {
+      "initial": {
+        "driver_BG": "unknown",
+        "driver_TG": "unknown",
+        "driver_source": "unknown",
+        "driver_drain": "unknown",
+        "load_BG": "unknown",
+        "load_TG": "unknown",
+        "load_source": "unknown",
+        "load_drain": "unknown"
+      },
+      "unknown_is_not_floating": true,
+      "missing_terminal_rejected": true
+    },
+    "receipts": {
+      "initial_safe_zero": null,
+      "initial_continuity": null,
+      "receipt_ids_unique_for_lifetime": true,
+      "exact_identity_pair_netlist_map_and_revision_binding_required": true,
+      "superseded_receipt_rejected": true,
+      "state_change_invalidates_receipts": true,
+      "continuity_receipt_single_use_for_metadata_record": true,
+      "deenergize_intent_does_not_prove_safe_zero": true,
+      "other_fixture_instance_receipt_rejected": true
+    }
+  },
+  "transitions": [
+    {
+      "action": "request_deenergize",
+      "from": "any",
+      "to": "unchanged custody",
+      "guard": "Strict empty actor payload",
+      "effect": "Advance state revision and invalidate fixture observations; record off intent only"
+    },
+    {
+      "action": "mount",
+      "from": "storage_retained",
+      "to": "mounted_retained",
+      "guard": "Current exact safe-zero fixture marker",
+      "effect": "Consume marker; advance mount and state revisions; reset terminal labels to unknown"
+    },
+    {
+      "action": "rewire",
+      "from": "mounted_retained",
+      "to": "mounted_retained",
+      "guard": "Current safe-zero fixture marker; exact selected Fig4/S31 map; distinct registered driver/load; next integer netlist revision",
+      "effect": "Consume safe-zero and invalidate prior continuity; advance state and netlist revisions"
+    },
+    {
+      "action": "disconnect",
+      "from": "mounted_retained",
+      "to": "disconnected_retained",
+      "guard": "Current exact safe-zero fixture marker",
+      "effect": "Consume marker; preserve identity/retention and invalidate continuity"
+    },
+    {
+      "action": "retrieve",
+      "from": "disconnected_retained",
+      "to": "storage_retained",
+      "guard": "New current exact safe-zero fixture marker",
+      "effect": "Consume marker; preserve identity/retention and invalidate continuity"
+    },
+    {
+      "action": "create_record",
+      "from": "mounted_retained",
+      "to": "unchanged custody",
+      "guard": "Current exact unused continuity fixture marker; unique record ID",
+      "effect": "Store metadata and metadata hash only; consume continuity marker"
+    },
+    {
+      "action": "verify_custody",
+      "from": "any",
+      "to": "unchanged",
+      "guard": "Exact sample ID/version/carrier; retained is strictly True",
+      "effect": "Read-only identity check"
+    },
+    {
+      "action": "acknowledge_conflict",
+      "from": "any",
+      "to": "unchanged",
+      "guard": "Known C01-C10 and unique acknowledgement ID",
+      "effect": "Fixture acknowledgment only; resolved remains false; qualification gate remains true"
+    }
+  ],
+  "fixture_observation_interface": {
+    "method": "record_fixture_observation",
+    "actor_dispatch_exposes_method": false,
+    "required_fields": [
+      "receipt_id",
+      "kind",
+      "authority",
+      "scope",
+      "binding",
+      "outcome"
+    ],
+    "kinds": {
+      "safe_zero": "fixture_safe_zero",
+      "continuity": "fixture_continuity"
+    },
+    "accepted_numeric_observations": false,
+    "continuity_requires_current_safe_zero_marker": true,
+    "binding_fields": [
+      "sample_id",
+      "specimen_version",
+      "carrier_id",
+      "chip_id",
+      "pcb_id",
+      "cohort_id",
+      "architecture_id",
+      "stack_ids",
+      "fixture_instance_id",
+      "retained",
+      "custody",
+      "state_revision",
+      "mount_revision",
+      "netlist_revision",
+      "netlist_id",
+      "driver_stack_id",
+      "load_stack_id",
+      "terminal_map_hash"
+    ]
+  },
+  "netlists": {
+    "ORDINARY_INVERTER_FIG4": {
+      "driver_BG": "VIN",
+      "driver_TG": "VIN",
+      "driver_source": "GND",
+      "driver_drain": "VOUT",
+      "load_BG": "VDD",
+      "load_TG": "VOUT",
+      "load_source": "VOUT",
+      "load_drain": "VDD"
+    },
+    "INDEPENDENT_INVERTER_S31": {
+      "driver_BG": "VBG",
+      "driver_TG": "VTG1",
+      "driver_source": "GND",
+      "driver_drain": "VOUT",
+      "load_BG": "VOUT",
+      "load_TG": "VTG2",
+      "load_source": "VOUT",
+      "load_drain": "VDD"
+    }
+  },
+  "source_netlist_contract": {
+    "schema_version": "transistor_task.v1",
+    "doi": "10.1038/s41928-024-01205-0",
+    "netlists": [
+      {
+        "id": "ORDINARY_INVERTER_FIG4",
+        "source_locator": "Main Fig4b; SI FigS26b/c identifies left BG and right TG",
+        "source_visual_interpretation": {
+          "driver_BG": "VIN",
+          "driver_TG": "VIN",
+          "driver_source": "GND",
+          "driver_drain": "VOUT",
+          "load_drain": "VDD",
+          "load_source": "VOUT",
+          "load_left_gate_BG": "VDD",
+          "load_right_gate_TG": "VOUT"
+        },
+        "qualification_gate": "Independent circuit/pad-map review must verify actual source/drain and gate assignment; diagram-derived topology is not a PCB netlist."
+      },
+      {
+        "id": "PARALLEL_INVERTER_S30",
+        "source_locator": "SI FigS30a–d PDF p48",
+        "source_visual_interpretation": "S1 driver with one to nine distinct stacked loads in parallel; verify every gate connection against original schematic and approved pad map. No electrical connection is inferred solely from the word parallel.",
+        "qualification_gate": "Full gate and pad mapping for each selected load set required."
+      },
+      {
+        "id": "INDEPENDENT_INVERTER_S31",
+        "source_locator": "SI FigS31a PDF p49",
+        "source_visual_interpretation": {
+          "driver_BG": "VBG",
+          "driver_TG": "VTG1",
+          "driver_source": "GND",
+          "driver_drain": "VOUT",
+          "load_drain": "VDD",
+          "load_source": "VOUT",
+          "load_BG": "VOUT",
+          "load_TG": "VTG2"
+        },
+        "qualification_gate": "Separate TG1 and TG2 sources, terminal references and physical pad-map verification required; do not reuse ordinary-inverter gate shorting."
+      }
+    ],
+    "unknown_terminal_state_is_not_floating": true,
+    "rewire_requires_safe_zero": true,
+    "old_continuity_receipt_invalidated_on_rewire": true,
+    "diagram_interpretation_not_authorization": true
+  },
+  "parallel_S30_status": "Unsupported by scene rewire: no full approved gate/pad map is available; no connection inferred from parallel.",
+  "always_rejected": {
+    "entrypoint": "request_service (any name or payload) and any action outside apply allowlist",
+    "categories": [
+      "voltage",
+      "current",
+      "electrical acquisition",
+      "electrical outputs",
+      "thermal",
+      "fabrication",
+      "chemical cleaning",
+      "wirebond",
+      "physical metrology",
+      "physical motion",
+      "numerical electrical analysis"
+    ],
+    "fixture_acknowledgements_cannot_enable": true
+  },
+  "metadata_record": {
+    "scientific_measurement_values_present": false,
+    "measurement_created": false,
+    "hash_scope": "JSON bookkeeping metadata only, never measurement evidence",
+    "allowed_caller_fields": [
+      "record_id",
+      "case_id",
+      "continuity_receipt_id"
+    ]
+  },
+  "source_conflicts": {
+    "schema_version": "transistor_task.v1",
+    "doi": "10.1038/s41928-024-01205-0",
+    "conflicts": [
+      {
+        "id": "C01",
+        "title": "Buffer thickness",
+        "source_difference": "Main Methods p775 states 25 nm between stacks; main p773, SI TableS1 and Section7 state or prefer 50 nm.",
+        "required_handling": "Qualified material card must name selected source variant and rationale. Neither value becomes the default.",
+        "route_group_ids": [
+          "R02",
+          "R14"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C02",
+        "title": "Printed current ratio",
+        "source_difference": "Main Eq1 prints ION/IOFF = ID,OFF / ID,SAT, conflicting with ratio prose and large reported ratios.",
+        "required_handling": "No ratio computation until an independently approved equation disposition is supplied. Never silently invert.",
+        "route_group_ids": [
+          "R07",
+          "R08"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C03",
+        "title": "Printed mobility",
+        "source_difference": "Main Eq2 prints mobility = L/(W Ci) * dID,lin/dVG without an explicit drain-voltage factor.",
+        "required_handling": "Dimensional and definition review required before mobility calculation; do not substitute a conventional formula silently.",
+        "route_group_ids": [
+          "R07",
+          "R08"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C04",
+        "title": "Printed subthreshold swing",
+        "source_difference": "Main Eq3 visibly prints d(log10 ID)/dVG minus 1 as a baseline subtraction, not a reciprocal.",
+        "required_handling": "Keep the printed expression in the conflict ledger only; require an approved metric definition before SS analysis.",
+        "route_group_ids": [
+          "R07"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C05",
+        "title": "Mobility population scope",
+        "source_difference": "Headline maximum is 15 cm2/V/s; TableS2 lists DG 15.86±0.29 and 16.64±0.28; separate 100-device cohort reaches 19.72.",
+        "required_handling": "Keep cohort-specific outcomes. No global maximum or merged success threshold.",
+        "route_group_ids": [
+          "R07",
+          "R08"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C06",
+        "title": "Threshold sign and narrative ranges",
+        "source_difference": "Main DG range begins +0.31 V; TableS2 S9 is −0.31±0.17 V. BG/TG narrative ranges also differ from table entries.",
+        "required_handling": "Retain narrative and table evidence separately; no sign normalization or invented statistical resolution.",
+        "route_group_ids": [
+          "R07"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C07",
+        "title": "Cohorts and uncertainty",
+        "source_difference": "Baseline N=12 per stack across three chips/four systems; reliability and transient 100 per architecture; long-term SI says 50 devices without clear per-architecture allocation. Main broadly groups them under 100.",
+        "required_handling": "Separate cohort IDs and qualified long-term allocation; ± remains undefined, never assigned SD or SEM.",
+        "route_group_ids": [
+          "R07",
+          "R08",
+          "R09",
+          "R10"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C08",
+        "title": "Coupling caption",
+        "source_difference": "FigS25 caption repeats BG2-to-BG1 for iii/iv; Section7 and panels identify TG1-to-BG2 and BG2-to-TG1.",
+        "required_handling": "Preserve both interpretations; no coupling execution without reviewed terminal-map disposition.",
+        "route_group_ids": [
+          "R14"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C09",
+        "title": "Surface label",
+        "source_difference": "FigS7 stack7 BG appears as 251±1.66 nm; Section4 states layer RMS no more than 4 nm.",
+        "required_handling": "Retain literal anomaly; do not silently turn 251 into 2.51 or adopt it as a process target.",
+        "route_group_ids": [
+          "R05"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C10",
+        "title": "Leakage magnitude",
+        "source_difference": "Main p772 describes DG leakage near 1e-12 A; SI Section6 p39 describes 1e-10 A as safe.",
+        "required_handling": "Bind leakage to actual curve, cohort and bias; never zero leakage or a universal acceptance threshold.",
+        "route_group_ids": [
+          "R07"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      }
+    ],
+    "automatic_correction_allowed": false
+  },
+  "limitations": [
+    "No geometry, collision, IK, reachability, contact, electrical, thermal, fabrication or wirebond validation is implemented by these guards.",
+    "Fixture markers are caller-owned synthetic metadata, not authenticated independent environmental measurements.",
+    "A guard pass is never permission to use hardware. No real safe state or physical continuity is established.",
+    "All ten source conflicts remain unresolved qualification gates despite any fixture acknowledgements."
+  ]
+}

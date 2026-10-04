@@ -1,0 +1,92 @@
+{
+  "schema": "independent_asset_review.v1",
+  "package_id": "transistor_scene_assets_v1",
+  "status": "PASS_STATIC_ASSET_CONTENT_AND_CANDIDATE_EXPORT",
+  "approved": true,
+  "approval_scope": "Original static scene assets and local metadata semantics only. Approval does not qualify physical hardware, electrical/thermal behavior, experiment replication or source-conflict resolution. Final archive refreeze must contain these reviewed author bytes plus final reviewer reports and a regenerated manifest.",
+  "review_basis": "Published transistor_operations_v2 task and completed source-to-asset audit; not a new independent adjudication of the source paper.",
+  "findings": [
+    {
+      "id": "R01",
+      "severity": "release_requirement",
+      "description": "Initial bindings lacked explicit source station IDs and composite handoff relationships.",
+      "status": "resolved",
+      "resolution": "Six exact source station IDs resolve to existing inventory objects; separate HIGHK, THERMAL, LONG_TERM and STRUCTURAL constraints preserve closed-service and custody boundaries."
+    }
+  ],
+  "open_blockers": [],
+  "checks": {
+    "source_snapshot": "Five original published-task hashes match; layer, netlist and conflict payloads are exact copies",
+    "operations": "44 exact unique operation IDs, matching kinds, each with one primary group and physical_execution false",
+    "stations": "All six published station IDs resolve, separately from six semantic asset groups",
+    "native_geometry": "72 mesh laminae; Si 525 um, SiO2 2 um, 60 active layers in exact order, nine 50 nm reference buffers and one 50 nm reference cap; 528.7 um total",
+    "native_scope": "Unpatterned 20 mm authored lateral envelopes; all native layers declare no connectivity and no fabrication execution; C01 execution defaults remain null",
+    "display_separation": "72 distinct display bars, 3 mm each, 1.5 mm gaps, explicitly no uniform scale factor; no native laminae in either GLB",
+    "conflict_gates": "All ten C01-C10 remain unresolved blocking qualifications after any acknowledgement",
+    "netlists": "Ordinary Fig4 and independent S31 are distinct and exact; VTG1 and VTG2 remain separate; unmapped parallel topology rejected",
+    "metadata_semantics": "180 full pair/netlist lifecycles; wrong-type rejection on every binding field; consumed continuity non-replay; all 44 physical operations rejected through both interfaces after acknowledgements",
+    "author_tests": "Independent rerun: 75/75 PASS",
+    "reuse": "15 exact AFM source meshes from two families; source Blend digest matches; final scene vertices/faces/transforms checked; zero new unique credit",
+    "portable_imports": "Both final GLBs independently imported into clean Blender 4.3.2, with no images, textures, external resources, required extensions or native scientific layer meshes",
+    "binary_budget": {
+      "total_blend_and_two_glbs_bytes": 10697168,
+      "maximum_bytes": 18000000
+    },
+    "visual_evidence": "All three final 1600x1100 CPU Cycles 96-sample images directly inspected; clear closed-service/no-data/unknown-safe-state warnings; metric ruler and retained sample/PCB handoffs visible",
+    "provenance_boundary": "Generator uses original generic primitives, font labels and licensed original reuse; native file has no linked libraries or packed source images; GLBs have no image/texture resources",
+    "candidate_export": "38 exact regular-file members; 37 manifest digests verify; no duplicates, path traversal, unexpected files or forbidden source artifacts"
+  },
+  "final_render_hashes": {
+    "evidence/overview.png": "059f64873f4010609750056be08da3e6f9226316a9b5ec894c57a1576b2065e4",
+    "evidence/sample_handling.png": "dd8235b83edbd59f588a2271dac03a5272b1fd413bd2000f369109faf38fac47",
+    "evidence/equipment_closeup.png": "7e079b160df09cf437bbefc6f739f2473ef2ba6e7375c38d069a4fff02163b38"
+  },
+  "author_payload_sha256": {
+    "EXPORT_ALLOWLIST.json": "7b0a090b6c71d413941fc763f73c056e8df041cd5373aa201015c2eb2c4cc735",
+    "LICENSES/ATTRIBUTION.md": "5473a9a5c3ca82874af078b5a88e6d9aecbac07054adcca0053a7f6e9887edd4",
+    "LICENSES/Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "LICENSES/Blender-font-notice.txt": "85fb4b54a328aa460fd244d57ebd83b87cae5079ed52f9cf1f7f1cc450b18257",
+    "README.md": "6303d67c11897efa5f3f66c0417be674f078bc01d927a124de81359b0a993682",
+    "affordances.json": "afd11ae7ec6528d941fac27fbd4a45e3bf73dbd68169912ffb230ad711642923",
+    "asset_inventory.json": "dcf2bdbc19c9ea1fe0f98ee1618dacd00b6a3d426a04e892088434db5d4156f1",
+    "asset_metadata.json": "c32858ae50c64afd12b08c7066c2af77dbe8e669bfc2658a144bacf47160a1e0",
+    "evidence/equipment_closeup.png": "7e079b160df09cf437bbefc6f739f2473ef2ba6e7375c38d069a4fff02163b38",
+    "evidence/overview.png": "059f64873f4010609750056be08da3e6f9226316a9b5ec894c57a1576b2065e4",
+    "evidence/sample_handling.png": "dd8235b83edbd59f588a2271dac03a5272b1fd413bd2000f369109faf38fac47",
+    "export_package.py": "62576b64cfe90c7d1efee1047efe5b36f53bc753f2d8d390632a3e67dcedd680",
+    "geometry/build_scene.py": "d3aa17f7e622729f356653c77b93b72c2b1a4e648d677697b522426a426222d9",
+    "geometry/reused_carrier_components.json": "c2a31f58305ab5b63665eea98944cc6ad9f782b825f027ac1bed98350ea8f183",
+    "geometry/transistor_layer_ledger_display.glb": "39ff08f16dfb74f1096c82d00d2b2881d3dcc6b6e8516cd6084815ce8ddce715",
+    "geometry/transistor_operations_lab.blend": "0fbbac17cda699733b057135e6aeffb72dceba96caef3416a3618852dc75d3f7",
+    "geometry/transistor_operations_lab.glb": "684c06c650d8a121e3019aae1fd64585c3ee6f8c17b153e4be542dc26f3c3e58",
+    "materials/materials.json": "f1303afbe7e35bd26c5253bd8470aa3ca461ca973c9de5585eb5d21f91fcd46a",
+    "operation_bindings.json": "aaf1f12eacb75122cd4a99d7e70bfb55c8aa601ba50960e160a3fbc00579b747",
+    "review/blend_validation.json": "41eca1cf388a1829ff242907e652294f6ad5387017a0a5d53ea3e562cc88492f",
+    "review/glb_import_validation.json": "8eecb8345278086049eadea1f3d62c3dbf23fd2ee4c3f3964857c5929664a845",
+    "review/render_receipt.json": "f6c2e7aa1af4c028fe794972f75e3c9b039fdd35799aab3a50e7ad57a0f1646c",
+    "review/semantic_journal.json": "115956949badd187a17ea85048c8aae31f4ce7bb535b8ed7d54c1662ab3edbde",
+    "review/test_report.txt": "df3c897d5a91d312d7f148b9c8dc5bef3878c549733470d333ae28e4e3f51824",
+    "semantic_controls.py": "9d0c9f3cffd467d8ef565eca4e0c5fd90f08b18f2f9fc090fe9a9afa184861ec",
+    "states.json": "be7b2d6e6f2ddd6d1a1252d4200d2c8c18ac3036b963005e98a666a387896632",
+    "task_binding_snapshot.json": "bf684db2fd65a250ca475193ce850643094f49607dc48a16834fd2782fd3277c",
+    "tests/test_package.py": "a423516a2f6234f36a1a84c239acd5c659f78978e563b884ad33e6a4e5e892e5",
+    "tests/test_semantic_controls.py": "06e776960197cc14d69b5dd6d772a237de9be01e6d603d181f5e09b7b6fab68d",
+    "tests/verify_blend.py": "d568cd0de95992bad1d9b3c13a721e45804bb47500d2a693f8d4e66197f2ad36",
+    "tests/verify_glb_import.py": "bf6eadadfafefe49fcfc577af33d63d261c5c3e90718a5bfc5ba7e0b1caad070"
+  },
+  "candidate_archive_inspection": {
+    "sha256": "08820c41d7d5168a7ca81989bca5cfa47891ef42a4739b1a3615c7e2885e3795",
+    "bytes": 11044549,
+    "members": 38,
+    "manifest_entries": 37,
+    "reviewer_reports_at_candidate_time": "pending/first-build reviewer outputs were intentionally replaced after candidate inspection; no author payload changed"
+  },
+  "archive_refreeze_rule": "Final ZIP digest and exact member-byte equivalence are verified outside this archive after the final review is saved, avoiding recursive archive/self-hashes. Do not reuse the candidate digest as final.",
+  "limitations": [
+    "Caller-owned synthetic observations provide no authentication or real safe-zero/continuity evidence",
+    "No voltage/current/temperature/measurement output or physical service is implemented",
+    "No exact active-device CAD, masks, pad map, collision, contact, calibration or robot reachability qualification",
+    "All ten source conflicts remain unresolved; source population counts and elapsed experiments are not recreated",
+    "Review author hashes exclude MANIFEST.sha256 and reviewer reports to avoid self-reference; the final manifest must hash all 37 non-manifest members"
+  ]
+}

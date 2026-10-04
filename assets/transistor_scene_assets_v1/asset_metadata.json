@@ -1,0 +1,244 @@
+{
+  "schema": "transistor_original_scene.v1",
+  "package_id": "transistor_scene_assets_v1",
+  "version": "1.0.0",
+  "title": "Transistor custody and closed-service laboratory",
+  "task_family": "transistor_operations_v2",
+  "source_doi": "10.1038/s41928-024-01205-0",
+  "readiness": {
+    "geometry": "editable original authored generic geometry plus original AFM carrier reuse",
+    "functionality": "static scene and local metadata guards only",
+    "physical_execution": false,
+    "device_io": false,
+    "electrical_physics": false,
+    "thermal_physics": false,
+    "collision_validated": false,
+    "physical_geometry_validated": false,
+    "source_conflicts_resolved": false
+  },
+  "files": {
+    "editable": "geometry/transistor_operations_lab.blend",
+    "apparatus": "geometry/transistor_operations_lab.glb",
+    "display_only": "geometry/transistor_layer_ledger_display.glb",
+    "generator": "geometry/build_scene.py",
+    "reuse_meshes": "geometry/reused_carrier_components.json"
+  },
+  "frame_convention": {
+    "main_scene": "TRANSISTOR_AUTHORED_METRIC",
+    "native_scene": "NATIVE_LAYER_REFERENCE_METRES",
+    "display_scene": "DISPLAY_ONLY_NOT_TO_SCALE",
+    "unit": "m",
+    "handedness": "right",
+    "up_axis_blender": "+Z",
+    "up_axis_gltf": "+Y",
+    "transform_direction": "local_to_parent",
+    "rotation_representation": "quaternion_xyzw",
+    "physical_qualified_transforms": null
+  },
+  "native_reference": {
+    "layer_count": 72,
+    "active_layers": 60,
+    "interstack_buffers": 9,
+    "final_cap": 1,
+    "reference_variant": "SI_TableS1",
+    "execution_thickness_default": null,
+    "source_thickness_geometry": true,
+    "lateral_geometry": "Unpatterned authored 20 mm square laminae, not masks or known active-layer footprints. Source 20 x 20 mm is a substrate example for four ten-stack systems.",
+    "total_table_reference_thickness_m": 0.0005287,
+    "actual_recipe_complete": false,
+    "main_scene_chip": "Single unpatterned envelope only; no active masks, pads or wiring reproduced."
+  },
+  "display_separation": {
+    "display_only": true,
+    "uniform_scale_factor": null,
+    "display_layer_thickness_m": 0.003,
+    "display_gap_m": 0.0015,
+    "warning": "Equal thickness display bars encode order and identity only, not relative thickness or a fabrication layout.",
+    "native_reference_scene_exported_to_glb": false
+  },
+  "dimension_ledger": [
+    {
+      "parameter": "example_substrate_envelope",
+      "value_m": [
+        0.02,
+        0.02,
+        0.000525
+      ],
+      "basis": "Main p769 2 x 2 cm; SI Table S1 substrate 525 um; no tolerance supplied"
+    },
+    {
+      "parameter": "oxide_thickness",
+      "value_m": 2e-06,
+      "basis": "SI Table S1; not oxidation recipe"
+    },
+    {
+      "parameter": "representative_device",
+      "width_m": 0.0005,
+      "channel_length_m": 1.5e-05,
+      "gate_length_m": 5e-06,
+      "basis": "Source facts only; no masks or active footprint drawn"
+    },
+    {
+      "parameter": "small_device",
+      "width_m": 1e-06,
+      "channel_length_m": 5e-07,
+      "gate_length_m": 1e-07,
+      "basis": "Separate source branch; not asserted full ten-stack design; not drawn"
+    },
+    {
+      "parameter": "all_apparatus_envelopes_anchors_pcb_pad_positions",
+      "value": null,
+      "basis": "Original authored and unqualified; exact per-part dimensions in inventory"
+    }
+  ],
+  "source_conflicts": [
+    {
+      "id": "C01",
+      "title": "Buffer thickness",
+      "source_difference": "Main Methods p775 states 25 nm between stacks; main p773, SI TableS1 and Section7 state or prefer 50 nm.",
+      "required_handling": "Qualified material card must name selected source variant and rationale. Neither value becomes the default.",
+      "route_group_ids": [
+        "R02",
+        "R14"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C02",
+      "title": "Printed current ratio",
+      "source_difference": "Main Eq1 prints ION/IOFF = ID,OFF / ID,SAT, conflicting with ratio prose and large reported ratios.",
+      "required_handling": "No ratio computation until an independently approved equation disposition is supplied. Never silently invert.",
+      "route_group_ids": [
+        "R07",
+        "R08"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C03",
+      "title": "Printed mobility",
+      "source_difference": "Main Eq2 prints mobility = L/(W Ci) * dID,lin/dVG without an explicit drain-voltage factor.",
+      "required_handling": "Dimensional and definition review required before mobility calculation; do not substitute a conventional formula silently.",
+      "route_group_ids": [
+        "R07",
+        "R08"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C04",
+      "title": "Printed subthreshold swing",
+      "source_difference": "Main Eq3 visibly prints d(log10 ID)/dVG minus 1 as a baseline subtraction, not a reciprocal.",
+      "required_handling": "Keep the printed expression in the conflict ledger only; require an approved metric definition before SS analysis.",
+      "route_group_ids": [
+        "R07"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C05",
+      "title": "Mobility population scope",
+      "source_difference": "Headline maximum is 15 cm2/V/s; TableS2 lists DG 15.86\u00b10.29 and 16.64\u00b10.28; separate 100-device cohort reaches 19.72.",
+      "required_handling": "Keep cohort-specific outcomes. No global maximum or merged success threshold.",
+      "route_group_ids": [
+        "R07",
+        "R08"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C06",
+      "title": "Threshold sign and narrative ranges",
+      "source_difference": "Main DG range begins +0.31 V; TableS2 S9 is \u22120.31\u00b10.17 V. BG/TG narrative ranges also differ from table entries.",
+      "required_handling": "Retain narrative and table evidence separately; no sign normalization or invented statistical resolution.",
+      "route_group_ids": [
+        "R07"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C07",
+      "title": "Cohorts and uncertainty",
+      "source_difference": "Baseline N=12 per stack across three chips/four systems; reliability and transient 100 per architecture; long-term SI says 50 devices without clear per-architecture allocation. Main broadly groups them under 100.",
+      "required_handling": "Separate cohort IDs and qualified long-term allocation; \u00b1 remains undefined, never assigned SD or SEM.",
+      "route_group_ids": [
+        "R07",
+        "R08",
+        "R09",
+        "R10"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C08",
+      "title": "Coupling caption",
+      "source_difference": "FigS25 caption repeats BG2-to-BG1 for iii/iv; Section7 and panels identify TG1-to-BG2 and BG2-to-TG1.",
+      "required_handling": "Preserve both interpretations; no coupling execution without reviewed terminal-map disposition.",
+      "route_group_ids": [
+        "R14"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C09",
+      "title": "Surface label",
+      "source_difference": "FigS7 stack7 BG appears as 251\u00b11.66 nm; Section4 states layer RMS no more than 4 nm.",
+      "required_handling": "Retain literal anomaly; do not silently turn 251 into 2.51 or adopt it as a process target.",
+      "route_group_ids": [
+        "R05"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C10",
+      "title": "Leakage magnitude",
+      "source_difference": "Main p772 describes DG leakage near 1e-12 A; SI Section6 p39 describes 1e-10 A as safe.",
+      "required_handling": "Bind leakage to actual curve, cohort and bias; never zero leakage or a universal acceptance threshold.",
+      "route_group_ids": [
+        "R07"
+      ],
+      "resolved": false,
+      "qualification_gate": true
+    }
+  ],
+  "provenance": {
+    "geometry": "Original authored generic geometry. No source images, vendor CAD, source-traced layouts or copied figure geometry. Generic code helpers adapted from original Apache-2.0 sucrose package.",
+    "source_reference": {
+      "title": "Three-dimensional integrated metal-oxide transistors",
+      "url": "https://www.nature.com/articles/s41928-024-01205-0",
+      "doi": "10.1038/s41928-024-01205-0",
+      "license": "CC BY 4.0; third-party exceptions retained",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_art_redistributed": false
+    },
+    "original_work_license": "Apache-2.0",
+    "reused_asset_families": [
+      "afm.sample_carrier",
+      "afm.retention_clamps"
+    ],
+    "reused_mesh_count": 15,
+    "reused_new_unique_asset_credit": 0,
+    "counting_policy": "Six semantic groups are not six independently novel asset families. Repeated parts, labels, layers and exports never inflate unique-asset counts.",
+    "fonts": "Built-in Blender Bfont; notice included"
+  },
+  "execution_gates": [
+    "All ten source conflicts remain unresolved; static acknowledgements cannot resolve them",
+    "Qualified physical pad-map, masks, fixture dimensions, tolerances and handling plan",
+    "Qualified safe-state, continuity, calibration and service adapters",
+    "No current, voltage, thermal, deposition, bonding or other scientific physics supplied"
+  ],
+  "publication_boundary": {
+    "public_files": "EXPORT_ALLOWLIST.json only",
+    "remote_writes": "none by asset builder",
+    "excluded": "Private source files, screenshots, PDFs, text dumps, caches, logs and backups"
+  }
+}

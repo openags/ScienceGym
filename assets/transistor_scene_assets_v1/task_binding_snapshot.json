@@ -1,0 +1,1213 @@
+{
+  "schema": "transistor_scene_binding.v1",
+  "task_id": "transistor_operations_v2",
+  "source_doi": "10.1038/s41928-024-01205-0",
+  "base_commit": "85058f4bdc089cd395d258d8b17e9fa1d5b73fe0",
+  "operation_count": 44,
+  "operations": [
+    {
+      "id": "RECEIVE",
+      "kind": "robot_custody"
+    },
+    {
+      "id": "VERIFY_INPUT",
+      "kind": "reader"
+    },
+    {
+      "id": "TRANSFER_IN",
+      "kind": "robot_transport"
+    },
+    {
+      "id": "MOUNT",
+      "kind": "robot_fixture"
+    },
+    {
+      "id": "VERIFY_SAFE_ZERO",
+      "kind": "independent_readback"
+    },
+    {
+      "id": "CLEAN_SERVICE",
+      "kind": "closed_chemical_service"
+    },
+    {
+      "id": "LAYER_SERVICE",
+      "kind": "closed_fabrication_service"
+    },
+    {
+      "id": "CONFIGURE",
+      "kind": "closed_control_service"
+    },
+    {
+      "id": "ACQUIRE",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "BASELINE_ACQUIRE",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "DIELECTRIC_SERVICE",
+      "kind": "closed_fabrication_service"
+    },
+    {
+      "id": "POST_ACQUIRE",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "SECTION_SERVICE",
+      "kind": "closed_metrology_preparation"
+    },
+    {
+      "id": "IMAGE_SERVICE",
+      "kind": "closed_metrology_service"
+    },
+    {
+      "id": "REGISTER_REGION",
+      "kind": "closed_alignment_service"
+    },
+    {
+      "id": "ATTACH_CHIP",
+      "kind": "closed_packaging_service"
+    },
+    {
+      "id": "BOND_SERVICE",
+      "kind": "closed_packaging_service"
+    },
+    {
+      "id": "INSPECT_BONDS",
+      "kind": "closed_inspection_service"
+    },
+    {
+      "id": "CONTINUITY_CHECK",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "TRANSFER",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "OUTPUT",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "LEAKAGE",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "CV_ACQUIRE",
+      "kind": "closed_capacitance_service"
+    },
+    {
+      "id": "FORWARD",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "REVERSE",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "STRESS_SERVICE",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "TRANSIENT_READOUT",
+      "kind": "readout"
+    },
+    {
+      "id": "CUSTODY_CHECK",
+      "kind": "reader"
+    },
+    {
+      "id": "RETURN_STORAGE",
+      "kind": "closed_storage_service"
+    },
+    {
+      "id": "THERMAL_SERVICE",
+      "kind": "closed_thermal_service"
+    },
+    {
+      "id": "REMOVE_HOTPLATE",
+      "kind": "robot_transport"
+    },
+    {
+      "id": "COOLDOWN",
+      "kind": "closed_thermal_service"
+    },
+    {
+      "id": "VIRGIN",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "PERTURB_POSITIVE",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "PERTURB_NEGATIVE",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "VTC",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "SUPPLY_CURRENT",
+      "kind": "closed_electrical_service"
+    },
+    {
+      "id": "READOUT",
+      "kind": "readout"
+    },
+    {
+      "id": "DEENERGIZE",
+      "kind": "closed_control_service"
+    },
+    {
+      "id": "DISCONNECT",
+      "kind": "robot_fixture"
+    },
+    {
+      "id": "RETRIEVE",
+      "kind": "robot_transport"
+    },
+    {
+      "id": "INSPECT",
+      "kind": "closed_inspection_service"
+    },
+    {
+      "id": "ARCHIVE",
+      "kind": "record_management"
+    },
+    {
+      "id": "CLEAN_STORE",
+      "kind": "closed_cleanup_service"
+    }
+  ],
+  "scene_assets": [
+    {
+      "asset_id": "A_CARRIERS",
+      "role": "Native-size sample envelope and retained carrier",
+      "bind_operation_ids": [
+        "RECEIVE",
+        "VERIFY_INPUT",
+        "TRANSFER_IN",
+        "MOUNT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT"
+      ],
+      "source_evidence_ids": [
+        "E_R01",
+        "E_R02",
+        "E_R06"
+      ]
+    },
+    {
+      "asset_id": "A_PACKAGING",
+      "role": "Closed packaging service and PCB handoff fixture",
+      "bind_operation_ids": [
+        "ATTACH_CHIP",
+        "BOND_SERVICE",
+        "INSPECT_BONDS"
+      ],
+      "source_evidence_ids": [
+        "E_R06"
+      ]
+    },
+    {
+      "asset_id": "A_PROBE_READOUT",
+      "role": "Closed electrical probe and record display",
+      "bind_operation_ids": [
+        "VERIFY_SAFE_ZERO",
+        "ACQUIRE",
+        "BASELINE_ACQUIRE",
+        "POST_ACQUIRE",
+        "CONTINUITY_CHECK",
+        "TRANSFER",
+        "OUTPUT",
+        "LEAKAGE",
+        "CV_ACQUIRE",
+        "FORWARD",
+        "REVERSE",
+        "TRANSIENT_READOUT",
+        "VTC",
+        "SUPPLY_CURRENT",
+        "READOUT",
+        "DEENERGIZE"
+      ],
+      "source_evidence_ids": [
+        "E_R07",
+        "E_R08",
+        "E_R09",
+        "E_R13",
+        "E_R15"
+      ]
+    },
+    {
+      "asset_id": "A_GATE_BIAS",
+      "role": "Closed gate-control proxy with distinct logical maps",
+      "bind_operation_ids": [
+        "CONFIGURE",
+        "STRESS_SERVICE",
+        "VIRGIN",
+        "PERTURB_POSITIVE",
+        "PERTURB_NEGATIVE"
+      ],
+      "source_evidence_ids": [
+        "E_R11",
+        "E_R14",
+        "E_R16",
+        "E_R17"
+      ]
+    },
+    {
+      "asset_id": "A_QUALIFIED_SERVICES",
+      "role": "Closed fabrication, metrology and thermal service boundaries",
+      "bind_operation_ids": [
+        "CLEAN_SERVICE",
+        "LAYER_SERVICE",
+        "DIELECTRIC_SERVICE",
+        "SECTION_SERVICE",
+        "IMAGE_SERVICE",
+        "REGISTER_REGION",
+        "THERMAL_SERVICE",
+        "REMOVE_HOTPLATE",
+        "COOLDOWN"
+      ],
+      "source_evidence_ids": [
+        "E_R01",
+        "E_R02",
+        "E_R03",
+        "E_R04",
+        "E_R05",
+        "E_R11",
+        "E_R12"
+      ]
+    },
+    {
+      "asset_id": "A_STORAGE",
+      "role": "Sample identity, custody, archive and quarantine",
+      "bind_operation_ids": [
+        "CUSTODY_CHECK",
+        "RETURN_STORAGE",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "source_evidence_ids": [
+        "E_R10",
+        "E_R12"
+      ]
+    }
+  ],
+  "source_task_file_hashes": {
+    "operations.json": "67bea2fbdec0e0a032b15bcbeccf3d7cbec2e5f21ff53eb4b84cd71d468518f4",
+    "layer_contract.json": "04743c18697c4d7183dc7f05a9c2a397b05c2d48178709d704c932849c27581a",
+    "netlist_contracts.json": "cec4182c88e1d0d94111c5bb1cb35609e4844e91a6ae6d8772514c89890b68a8",
+    "source_conflicts.json": "e18750cd188945f4c7f257c44b672607909514071f480d9b00dfa44486869680",
+    "provenance.json": "a05b92c1d364ef1449bd4c71d87baaf74bcdbf1723271e4e69476c558c2891c5"
+  },
+  "layer_contract": {
+    "schema_version": "transistor_task.v1",
+    "doi": "10.1038/s41928-024-01205-0",
+    "layer_count": 72,
+    "active_layer_count": 60,
+    "interstack_buffer_count": 9,
+    "final_cap_count": 1,
+    "layers": [
+      {
+        "index": 1,
+        "role": "substrate",
+        "material": "highly doped p-type Si",
+        "source_thickness": 525,
+        "unit": "um",
+        "stack": null
+      },
+      {
+        "index": 2,
+        "role": "insulation",
+        "material": "SiO2",
+        "source_thickness": 2,
+        "unit": "um",
+        "stack": null
+      },
+      {
+        "index": 3,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 1
+      },
+      {
+        "index": 4,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 1
+      },
+      {
+        "index": 5,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 1
+      },
+      {
+        "index": 6,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 1
+      },
+      {
+        "index": 7,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 1
+      },
+      {
+        "index": 8,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 1
+      },
+      {
+        "index": 9,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 1,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 10,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 2
+      },
+      {
+        "index": 11,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 2
+      },
+      {
+        "index": 12,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 2
+      },
+      {
+        "index": 13,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 2
+      },
+      {
+        "index": 14,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 2
+      },
+      {
+        "index": 15,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 2
+      },
+      {
+        "index": 16,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 2,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 17,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 3
+      },
+      {
+        "index": 18,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 3
+      },
+      {
+        "index": 19,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 3
+      },
+      {
+        "index": 20,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 3
+      },
+      {
+        "index": 21,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 3
+      },
+      {
+        "index": 22,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 3
+      },
+      {
+        "index": 23,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 3,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 24,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 4
+      },
+      {
+        "index": 25,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 4
+      },
+      {
+        "index": 26,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 4
+      },
+      {
+        "index": 27,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 4
+      },
+      {
+        "index": 28,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 4
+      },
+      {
+        "index": 29,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 4
+      },
+      {
+        "index": 30,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 4,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 31,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 5
+      },
+      {
+        "index": 32,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 5
+      },
+      {
+        "index": 33,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 5
+      },
+      {
+        "index": 34,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 5
+      },
+      {
+        "index": 35,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 5
+      },
+      {
+        "index": 36,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 5
+      },
+      {
+        "index": 37,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 5,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 38,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 6
+      },
+      {
+        "index": 39,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 6
+      },
+      {
+        "index": 40,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 6
+      },
+      {
+        "index": 41,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 6
+      },
+      {
+        "index": 42,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 6
+      },
+      {
+        "index": 43,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 6
+      },
+      {
+        "index": 44,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 6,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 45,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 7
+      },
+      {
+        "index": 46,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 7
+      },
+      {
+        "index": 47,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 7
+      },
+      {
+        "index": 48,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 7
+      },
+      {
+        "index": 49,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 7
+      },
+      {
+        "index": 50,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 7
+      },
+      {
+        "index": 51,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 7,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 52,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 8
+      },
+      {
+        "index": 53,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 8
+      },
+      {
+        "index": 54,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 8
+      },
+      {
+        "index": 55,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 8
+      },
+      {
+        "index": 56,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 8
+      },
+      {
+        "index": 57,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 8
+      },
+      {
+        "index": 58,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 8,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 59,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 9
+      },
+      {
+        "index": 60,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 9
+      },
+      {
+        "index": 61,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 9
+      },
+      {
+        "index": 62,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 9
+      },
+      {
+        "index": 63,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 9
+      },
+      {
+        "index": 64,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 9
+      },
+      {
+        "index": 65,
+        "role": "interstack_buffer",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 9,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": 25,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      },
+      {
+        "index": 66,
+        "role": "BG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 10
+      },
+      {
+        "index": 67,
+        "role": "BG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 10
+      },
+      {
+        "index": 68,
+        "role": "channel",
+        "material": "In2O3",
+        "source_thickness": 10,
+        "unit": "nm",
+        "stack": 10
+      },
+      {
+        "index": 69,
+        "role": "source_drain",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 10
+      },
+      {
+        "index": 70,
+        "role": "TG_dielectric",
+        "material": "parylene-C",
+        "source_thickness": 25,
+        "unit": "nm",
+        "stack": 10
+      },
+      {
+        "index": 71,
+        "role": "TG",
+        "material": "Al",
+        "source_thickness": 20,
+        "unit": "nm",
+        "stack": 10
+      },
+      {
+        "index": 72,
+        "role": "final_cap",
+        "material": "parylene-C",
+        "source_thickness": 50,
+        "unit": "nm",
+        "stack": 10,
+        "source_variant": "SI_TableS1",
+        "alternative_main_methods_interstack_nm": null,
+        "conflict_id": "C01",
+        "execution_thickness_default": null
+      }
+    ],
+    "source_locator": "SI TableS1 PDF pp5\u20136; main Methods p775",
+    "fabrication_monolithic": true,
+    "freestanding_film_transfer_demonstrated": false,
+    "recipe_complete": false,
+    "thickness_values_are_not_tolerances": true
+  },
+  "netlist_contracts": {
+    "schema_version": "transistor_task.v1",
+    "doi": "10.1038/s41928-024-01205-0",
+    "netlists": [
+      {
+        "id": "ORDINARY_INVERTER_FIG4",
+        "source_locator": "Main Fig4b; SI FigS26b/c identifies left BG and right TG",
+        "source_visual_interpretation": {
+          "driver_BG": "VIN",
+          "driver_TG": "VIN",
+          "driver_source": "GND",
+          "driver_drain": "VOUT",
+          "load_drain": "VDD",
+          "load_source": "VOUT",
+          "load_left_gate_BG": "VDD",
+          "load_right_gate_TG": "VOUT"
+        },
+        "qualification_gate": "Independent circuit/pad-map review must verify actual source/drain and gate assignment; diagram-derived topology is not a PCB netlist."
+      },
+      {
+        "id": "PARALLEL_INVERTER_S30",
+        "source_locator": "SI FigS30a\u2013d PDF p48",
+        "source_visual_interpretation": "S1 driver with one to nine distinct stacked loads in parallel; verify every gate connection against original schematic and approved pad map. No electrical connection is inferred solely from the word parallel.",
+        "qualification_gate": "Full gate and pad mapping for each selected load set required."
+      },
+      {
+        "id": "INDEPENDENT_INVERTER_S31",
+        "source_locator": "SI FigS31a PDF p49",
+        "source_visual_interpretation": {
+          "driver_BG": "VBG",
+          "driver_TG": "VTG1",
+          "driver_source": "GND",
+          "driver_drain": "VOUT",
+          "load_drain": "VDD",
+          "load_source": "VOUT",
+          "load_BG": "VOUT",
+          "load_TG": "VTG2"
+        },
+        "qualification_gate": "Separate TG1 and TG2 sources, terminal references and physical pad-map verification required; do not reuse ordinary-inverter gate shorting."
+      }
+    ],
+    "unknown_terminal_state_is_not_floating": true,
+    "rewire_requires_safe_zero": true,
+    "old_continuity_receipt_invalidated_on_rewire": true,
+    "diagram_interpretation_not_authorization": true
+  },
+  "source_conflicts": {
+    "schema_version": "transistor_task.v1",
+    "doi": "10.1038/s41928-024-01205-0",
+    "conflicts": [
+      {
+        "id": "C01",
+        "title": "Buffer thickness",
+        "source_difference": "Main Methods p775 states 25 nm between stacks; main p773, SI TableS1 and Section7 state or prefer 50 nm.",
+        "required_handling": "Qualified material card must name selected source variant and rationale. Neither value becomes the default.",
+        "route_group_ids": [
+          "R02",
+          "R14"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C02",
+        "title": "Printed current ratio",
+        "source_difference": "Main Eq1 prints ION/IOFF = ID,OFF / ID,SAT, conflicting with ratio prose and large reported ratios.",
+        "required_handling": "No ratio computation until an independently approved equation disposition is supplied. Never silently invert.",
+        "route_group_ids": [
+          "R07",
+          "R08"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C03",
+        "title": "Printed mobility",
+        "source_difference": "Main Eq2 prints mobility = L/(W Ci) * dID,lin/dVG without an explicit drain-voltage factor.",
+        "required_handling": "Dimensional and definition review required before mobility calculation; do not substitute a conventional formula silently.",
+        "route_group_ids": [
+          "R07",
+          "R08"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C04",
+        "title": "Printed subthreshold swing",
+        "source_difference": "Main Eq3 visibly prints d(log10 ID)/dVG minus 1 as a baseline subtraction, not a reciprocal.",
+        "required_handling": "Keep the printed expression in the conflict ledger only; require an approved metric definition before SS analysis.",
+        "route_group_ids": [
+          "R07"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C05",
+        "title": "Mobility population scope",
+        "source_difference": "Headline maximum is 15 cm2/V/s; TableS2 lists DG 15.86\u00b10.29 and 16.64\u00b10.28; separate 100-device cohort reaches 19.72.",
+        "required_handling": "Keep cohort-specific outcomes. No global maximum or merged success threshold.",
+        "route_group_ids": [
+          "R07",
+          "R08"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C06",
+        "title": "Threshold sign and narrative ranges",
+        "source_difference": "Main DG range begins +0.31 V; TableS2 S9 is \u22120.31\u00b10.17 V. BG/TG narrative ranges also differ from table entries.",
+        "required_handling": "Retain narrative and table evidence separately; no sign normalization or invented statistical resolution.",
+        "route_group_ids": [
+          "R07"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C07",
+        "title": "Cohorts and uncertainty",
+        "source_difference": "Baseline N=12 per stack across three chips/four systems; reliability and transient 100 per architecture; long-term SI says 50 devices without clear per-architecture allocation. Main broadly groups them under 100.",
+        "required_handling": "Separate cohort IDs and qualified long-term allocation; \u00b1 remains undefined, never assigned SD or SEM.",
+        "route_group_ids": [
+          "R07",
+          "R08",
+          "R09",
+          "R10"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C08",
+        "title": "Coupling caption",
+        "source_difference": "FigS25 caption repeats BG2-to-BG1 for iii/iv; Section7 and panels identify TG1-to-BG2 and BG2-to-TG1.",
+        "required_handling": "Preserve both interpretations; no coupling execution without reviewed terminal-map disposition.",
+        "route_group_ids": [
+          "R14"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C09",
+        "title": "Surface label",
+        "source_difference": "FigS7 stack7 BG appears as 251\u00b11.66 nm; Section4 states layer RMS no more than 4 nm.",
+        "required_handling": "Retain literal anomaly; do not silently turn 251 into 2.51 or adopt it as a process target.",
+        "route_group_ids": [
+          "R05"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      },
+      {
+        "id": "C10",
+        "title": "Leakage magnitude",
+        "source_difference": "Main p772 describes DG leakage near 1e-12 A; SI Section6 p39 describes 1e-10 A as safe.",
+        "required_handling": "Bind leakage to actual curve, cohort and bias; never zero leakage or a universal acceptance threshold.",
+        "route_group_ids": [
+          "R07"
+        ],
+        "resolved": false,
+        "qualification_gate": true
+      }
+    ],
+    "automatic_correction_allowed": false
+  },
+  "evidence": [
+    {
+      "id": "E_R01",
+      "route_group_id": "R01",
+      "source_locator": "Main Methods p775; SI Table S1 PDF p5",
+      "scope": "Substrate certificate and closed chemical cleaning receipt"
+    },
+    {
+      "id": "E_R02",
+      "route_group_id": "R02",
+      "source_locator": "Main pp769\u2013770,775, Figs1\u20132; SI Table S1 PDF pp5\u20136",
+      "scope": "Ordered 72-layer ledger with nine interstack buffers and one cap"
+    },
+    {
+      "id": "E_R03",
+      "route_group_id": "R03",
+      "source_locator": "SI Sections2\u20133 PDF pp11\u201314, FigS1",
+      "scope": "Underlap versus failed overlap and before/after high-k controls"
+    },
+    {
+      "id": "E_R04",
+      "route_group_id": "R04",
+      "source_locator": "SI Section3 PDF pp13\u201318, FigsS2\u2013S6",
+      "scope": "Thickness/material control identity and leakage records"
+    },
+    {
+      "id": "E_R05",
+      "route_group_id": "R05",
+      "source_locator": "Main Fig2f\u2013j; SI Sections4,6 PDF pp19\u201320,38\u201339; TableS5",
+      "scope": "Qualified structural maps and layer-specific roughness records"
+    },
+    {
+      "id": "E_R06",
+      "route_group_id": "R06",
+      "source_locator": "Main Fig4a and Methods p775; SI FigS33 PDF p51",
+      "scope": "Chip-to-PCB attachment and two-ended bond map"
+    },
+    {
+      "id": "E_R07",
+      "route_group_id": "R07",
+      "source_locator": "Main Fig3, Methods; SI FigsS8\u2013S13, TablesS2\u2013S3",
+      "scope": "Architecture/stack/channel-bound raw transfer/output/leakage and C\u2013V"
+    },
+    {
+      "id": "E_R08",
+      "route_group_id": "R08",
+      "source_locator": "SI Section5 PDF p27, FigsS14\u2013S17 PDF pp28\u201331",
+      "scope": "Separate forward/reverse traces for three 100-device populations"
+    },
+    {
+      "id": "E_R09",
+      "route_group_id": "R09",
+      "source_locator": "SI Section5 PDF pp31\u201332, FigS18",
+      "scope": "Time-resolved records and actual interrupted-stress accounting"
+    },
+    {
+      "id": "E_R10",
+      "route_group_id": "R10",
+      "source_locator": "SI Section5 PDF pp32\u201333, FigS19; main p772",
+      "scope": "200-day time/custody ledger, ambiguous cohort allocation retained"
+    },
+    {
+      "id": "E_R11",
+      "route_group_id": "R11",
+      "source_locator": "SI Section6 PDF pp34\u201336, FigsS20\u2013S21",
+      "scope": "Distinct bias-only and heated-stress histories for ten stacks"
+    },
+    {
+      "id": "E_R12",
+      "route_group_id": "R12",
+      "source_locator": "SI Section6 PDF pp36\u201338, FigS22",
+      "scope": "Four temperatures per stack, removal and six-hour cooldown before next stack"
+    },
+    {
+      "id": "E_R13",
+      "route_group_id": "R13",
+      "source_locator": "Main p773; SI Section6 PDF pp39\u201340, FigS23",
+      "scope": "Separate BG/TG/DG small-device branch without ten-stack claim"
+    },
+    {
+      "id": "E_R14",
+      "route_group_id": "R14",
+      "source_locator": "SI Section7 PDF pp41\u201343, FigsS24\u2013S25",
+      "scope": "25/50 nm buffers and four explicit terminal perturbation cases"
+    },
+    {
+      "id": "E_R15",
+      "route_group_id": "R15",
+      "source_locator": "Main Fig4, pp772\u2013774; SI FigsS26\u2013S29, TableS4",
+      "scope": "90 ordered distinct-stack driver/load identities"
+    },
+    {
+      "id": "E_R16",
+      "route_group_id": "R16",
+      "source_locator": "SI Section8 PDF p48, FigS30",
+      "scope": "One to nine parallel loads with S1 driver"
+    },
+    {
+      "id": "E_R17",
+      "route_group_id": "R17",
+      "source_locator": "Main Fig5 pp773\u2013774; SI FigsS31\u2013S32 PDF pp49\u201350",
+      "scope": "Separate transistor and S1/S2 independently biased inverter controls"
+    }
+  ]
+}
