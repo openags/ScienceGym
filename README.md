@@ -6,13 +6,41 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Release contents: 34 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (37 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
+**Release contents: 35 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (38 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
-## Inspect all 37 task families
+## Inspect all 38 task families
 
-The [Task Explorer](viewer/task_explorer_v1/index.html) covers **34 paper-level designs and 3 bounded subsets**, with **857 inspection records and 3,150 operation definitions**. These are static navigation counts, not completed experiments or physical executions. The [Arc-Morph map](viewer/task_explorer_v1/docs/arcmorph.md) adds **seven physical route families and 31 operation templates**, two auxiliary records, six nonmanual dispositions and a separate metadata-only **HOLD_QUALIFICATION** view. This is one paper-level design, not 31 papers. All 33 task JSON documents remain losslessly inspectable, with exact source-listed occurrences, phase bodies, dependencies, controls, lineage, **ten unresolved conflicts and fourteen unresolved-input cards**.
+The [Task Explorer](viewer/task_explorer_v1/index.html) covers **35 paper-level designs and 3 bounded subsets**, with **871 inspection records and 3,172 operation definitions**. These are static navigation counts, not completed experiments or physical executions. The [mid-infrared imaging map](viewer/task_explorer_v1/docs/midinfrared.md) adds **eight experimental design branches and 22 authored operation templates**, five separate reference views and a metadata-only **HOLD_QUALIFICATION** default. One source paper remains one paper-level design. All 34 task JSON documents remain losslessly inspectable, including twelve controls, ten source conflicts, fourteen unresolved-input groups, preparation, dependencies, lineage and failed-attempt retention.
+
+The [mid-infrared task](tasks/midinfrared_operations_v2/README.md) and [original editable static assets](assets/midinfrared_scene_assets_v1/README.md) preserve the exact reviewed archive member bytes: **48 task files and 45 asset files**. Thirteen original scene groups and 44 nominal anchors bind all 22 templates. All twelve task-pinned asset hashes, the exact binding-plan snapshot and the asset-pinned task hashes agree. Scene geometry, dimensions, grasps and interfaces remain **illustrative and unqualified**.
+
+[![Original mid-infrared representative laboratory with closed optical services, protected sample carriers and qualification holds; no experiment is shown](assets/midinfrared_scene_assets_v1/evidence/overview.png)](assets/midinfrared_scene_assets_v1/evidence/overview.png)
+
+[Editable Blender scene](assets/midinfrared_scene_assets_v1/geometry/midinfrared_lab.blend?raw=true) · [Static GLB](assets/midinfrared_scene_assets_v1/geometry/midinfrared_lab.glb?raw=true) · [Optical-service illustration](assets/midinfrared_scene_assets_v1/evidence/optics.png) · [Protected-sample illustration](assets/midinfrared_scene_assets_v1/evidence/samples.png)
+
+**Approximately 10 Hz is confined to the source's analog 16×16 dynamic demonstration**; analog 32×32 retains approximately 2.5 Hz. Neither is a photon-counting rate, a hardware default or a measurement from movie playback. Incident photons, detected counts, physical displays, dose and elapsed time stay distinct. B01 requires object-removed spatial diagnostics; B05 detector/exposure policy remains null under U14. Same power is not equal dose. Baseline/denoised comparisons require identical raw parents; copper grid assumptions do not fill missing silicon settings. Prospective repeat counts and qualification cannot be supplied by frame, mask or pulse counts.
+
+Independent receipts, current detector epochs, exclusive station leases, safe access, occupied supported holds and closed-accounting conditions remain explicit. Requests do not prove completion or safe state. Failed and blocked branches remain archived. All fabrication, optical alignment, detector-change and guarded dynamic-target services stay closed, qualified and unimplemented. No real physics, source-exact CAD, validated grasp, hardware controller, robot execution, physical safety qualification or scientific reproduction is supplied.
+
+Upstream review covered nine main pages, twelve written technical SI pages, eleven figures and one media-description page. Movies were fully decoded and sampled, not continuously inspected. **Raw data and modified source code remain unavailable**; this integration did not reread publications, reanalyze source data or independently prove the mathematics. Source facts, original authored task design, finite synthetic checks and original scene geometry remain distinct. Publisher PDFs, article figures/media, source raw data/code/CAD, archives, private paths, caches, backup scenes and build logs are excluded from the added repository payload.
+
+All **37 previous task packages, earlier asset bundles, both embodied storyboards, the bounded R01 scene binding, original LICENSE and all 148 prior generated family artifacts** remain byte-identical to the baseline. New links are repository-relative and hash-bound. The optional standalone export embeds exact local JSON and original guide/render bytes for five recent families. Historical package status and receipts remain review snapshots; the repository commit establishes publication status. See the [verification scope](viewer/task_explorer_v1/VERIFICATION.md).
+
+```sh
+python3 -B scripts/verify_release.py
+(cd tasks/midinfrared_operations_v2 && python3 -B -m unittest discover -s tests -v && python3 -B -m unittest discover -s review -v && python3 -B tests/verify_package.py && python3 -B tests/verify_export.py)
+python3 -B tasks/midinfrared_operations_v2/tests/verify_pairing.py assets/midinfrared_scene_assets_v1
+(cd assets/midinfrared_scene_assets_v1 && python3 -B -m unittest discover -s tests -v)
+python3 -B assets/midinfrared_scene_assets_v1/verify_pair.py tasks/midinfrared_operations_v2
+```
+
+Some frozen task tests depend on a separately distributed source-review or sibling-asset layout; checks requiring absent inputs explicitly skip. Independent release verification uses disposable paired copies without changing frozen package paths. Native Blender rebuild/export scripts can regenerate files and should run only in disposable copies.
+
+## Historical Arc-Morph paired integration
+
+At the Arc-Morph integration stage, the [Task Explorer](viewer/task_explorer_v1/index.html) covered **34 paper-level designs and 3 bounded subsets**, with **857 inspection records and 3,150 operation definitions**. These are static navigation counts, not completed experiments or physical executions. The [Arc-Morph map](viewer/task_explorer_v1/docs/arcmorph.md) adds **seven physical route families and 31 operation templates**, two auxiliary records, six nonmanual dispositions and a separate metadata-only **HOLD_QUALIFICATION** view. This is one paper-level design, not 31 papers. All 33 task JSON documents remain losslessly inspectable, with exact source-listed occurrences, phase bodies, dependencies, controls, lineage, **ten unresolved conflicts and fourteen unresolved-input cards**.
 
 The paired [Arc-Morph task](tasks/arcmorph_operations_v2/README.md) and [original editable static assets](assets/arcmorph_scene_assets_v1/README.md) retain their exact reviewed archive bytes: **46 task files and 42 asset files**. Twelve scene groups and 66 symbolic anchors bind all 31 templates. The task's nine scene-semantic hashes match this asset package and its exact task-binding snapshot. Four cardstock families retain ground, rigid and sheared evidence slots. The polymer quantitative series retains **one specimen, one set and eight configurations**; these are not eight independent specimens or technical repeats. Repeated transport occurrences remain distinct, the state-loop body is shown once, and fixture-specific unmount alternatives remain conditional.
 

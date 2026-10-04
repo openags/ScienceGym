@@ -1,0 +1,123 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "classification": "authored_robot_translation",
+  "status": "Requirements only; no physical execution, hardware test, or simulation",
+  "stations": [
+    {
+      "id": "S01",
+      "name": "Receiving, protected-carrier handling and storage",
+      "required_assets": [
+        "cassette ID reader",
+        "fiducial camera",
+        "latch/occupancy sensing",
+        "validated gripper",
+        "quarantine slot"
+      ],
+      "required_outputs": [
+        "serialized carrier",
+        "custody receipt",
+        "pose and uncertainty"
+      ],
+      "gates": [
+        "stock/sample ID match",
+        "carrier integrity",
+        "approved contact surfaces"
+      ],
+      "numeric_robot_limits": "Unspecified; station supplier and robotics engineer must qualify before executable conversion"
+    },
+    {
+      "id": "S02",
+      "name": "Closed qualified sample fabrication and sample metrology service",
+      "required_assets": [
+        "sealed service handoff port",
+        "carrier fixtures",
+        "independent reference imaging"
+      ],
+      "required_outputs": [
+        "copper-mask carrier",
+        "etched silicon carrier",
+        "stock-to-sample lineage",
+        "inspection receipt"
+      ],
+      "gates": [
+        "no exposed cutting or etching",
+        "qualified operator/service",
+        "traceable dimensions and reference"
+      ],
+      "numeric_robot_limits": "Unspecified; station supplier and robotics engineer must qualify before executable conversion"
+    },
+    {
+      "id": "S03",
+      "name": "Closed optical imaging and qualified optics service",
+      "required_assets": [
+        "interlocked enclosure",
+        "safe-load dock",
+        "optical alignment service",
+        "source/filter/detector modules",
+        "protected dynamic fixture",
+        "Qualified spatial diagnostic imaging service for pump and SFG maps"
+      ],
+      "required_outputs": [
+        "readiness and safe-access receipt",
+        "raw mapping/image signals",
+        "detector-mode receipt",
+        "spatial sensor/registration receipt"
+      ],
+      "gates": [
+        "no robot open-beam alignment",
+        "energy-safe door access",
+        "qualified source/flux calibration",
+        "saturation and damage protection",
+        "Exclusive acquisition/motion/detector-change lease; bucket detector alone cannot satisfy spatial mapping"
+      ],
+      "numeric_robot_limits": "Unspecified; station supplier and robotics engineer must qualify before executable conversion"
+    },
+    {
+      "id": "S04",
+      "name": "Pattern timing, acquisition and data transfer",
+      "required_assets": [
+        "DMD controller interface",
+        "FPGA timing unit",
+        "analog ADC path",
+        "TTL photon-count path",
+        "counter/FIFO integrity checks"
+      ],
+      "required_outputs": [
+        "ordered raw measurements",
+        "mask/event/time manifest",
+        "overload and missing-event flags"
+      ],
+      "gates": [
+        "controller version pinned",
+        "configuration checksum",
+        "pattern-to-record bijection",
+        "explicit physical versus signed mask counts"
+      ],
+      "numeric_robot_limits": "Unspecified; station supplier and robotics engineer must qualify before executable conversion"
+    },
+    {
+      "id": "S05",
+      "name": "Evidence evaluation and archive",
+      "required_assets": [
+        "analysis package registry",
+        "read-only raw evidence store",
+        "metrics and uncertainty definitions",
+        "result archive"
+      ],
+      "required_outputs": [
+        "versioned reconstructions",
+        "residuals and comparisons",
+        "per-branch outcome",
+        "archive manifest"
+      ],
+      "gates": [
+        "no unavailable source-code substitution",
+        "independent target truth",
+        "data/model hashes",
+        "failed trials retained"
+      ],
+      "numeric_robot_limits": "Unspecified; station supplier and robotics engineer must qualify before executable conversion"
+    }
+  ],
+  "service_boundary": "A service receipt is an explicit dependency, not evidence that the autonomous robot performed its internal work. Input/receipt/status operations remain visible in the route."
+}

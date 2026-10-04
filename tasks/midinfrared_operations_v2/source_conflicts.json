@@ -1,0 +1,56 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "classification": "review_interpretation_and_authored_guards",
+  "items": [
+    {
+      "id": "K01",
+      "issue": "Pixel pitch/grid versus actual optical resolution",
+      "guard": "10.8 micrometer DMD pitch and 64x64 outputs do not establish 10.8 micrometer resolved detail. Main reports approximately 91 micrometers resolution. Coordinate mapping requires qualification."
+    },
+    {
+      "id": "K02",
+      "issue": "Photon number versus total image dose",
+      "guard": "Incident mean photons per pulse is not photons per image. Long accumulation and many masks contribute many incident pulses."
+    },
+    {
+      "id": "K03",
+      "issue": "Rate regimes",
+      "guard": "Approximately 10 Hz concerns analog 16x16 video; do not combine it with 64x64 or photon-sparse limits."
+    },
+    {
+      "id": "K04",
+      "issue": "Minimum flux regimes",
+      "guard": "0.5 photons/pulse is full photon-sparse imaging; the denoised 25% compressed demonstration reaches 1 photon/pulse. These are different experiments."
+    },
+    {
+      "id": "K05",
+      "issue": "Movie1 full-set scope",
+      "guard": "Movie1 compares intended, measured pump and corrected pump patterns. Representative SFG images are in Fig2/SI FigS3; Movie1 does not visually prove full-set SFG fidelity."
+    },
+    {
+      "id": "K06",
+      "issue": "Movie2 speed",
+      "guard": "The 32x32 panel is labeled 2.5 Hz with 4x display speed, despite a 10fps video container. Description says reported acquisition rates include reconstruction."
+    },
+    {
+      "id": "K07",
+      "issue": "Hadamard normalization",
+      "guard": "The unnormalized plus/minus-one matrix is orthogonal up to N. An authored implementation must pin normalization; shorthand orthonormal language must not cause amplitude errors."
+    },
+    {
+      "id": "K08",
+      "issue": "Rendering quality versus evidence",
+      "guard": "A denoised image may look clean without validating true structure. Keep raw/baseline/residual evidence, independent target truth and algorithm configuration."
+    },
+    {
+      "id": "K09",
+      "issue": "Same power versus equal budget",
+      "guard": "SI encoding comparison holds illumination power fixed; total exposure, detected photons and physical displays require separate accounting."
+    },
+    {
+      "id": "K10",
+      "issue": "SI hardware typography",
+      "guard": "SI Note3 contains an apparent malformed FPGA logic-element count (68,0000). Do not silently repair or use it as a hardware purchasing/interface specification."
+    }
+  ]
+}

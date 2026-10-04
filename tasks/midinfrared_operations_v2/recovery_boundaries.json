@@ -1,0 +1,16 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "safe_request_not_observed_safe_state": true,
+  "failure_retention": "Append immutable failure ID, raw parents, current sample/carrier, epoch, active leases and actual station custody.",
+  "retry": "New run/attempt/raw IDs, retained previous failure link, current qualified calibration, same frozen prospective policy.",
+  "safe_closeout": "Only independent controller safe receipt permits unlatch and protected return. If absent/uncertain, retain supported hold and open lease, archive partial state, keep robot outside enclosure.",
+  "prohibited": [
+    "Open-beam alignment",
+    "Interlock override",
+    "Power optimization or escalation",
+    "Bare wafer grip",
+    "Reset failure history",
+    "Declare closed while dock occupied or lease active",
+    "Repeat until image appears good"
+  ]
+}

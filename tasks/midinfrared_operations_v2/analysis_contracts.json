@@ -1,0 +1,31 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "raw_to_result_parents": [
+    "raw_manifest_digest",
+    "pattern_manifest_digest",
+    "current_calibration_epoch",
+    "correction_map_digest",
+    "software_digest",
+    "weights_digest_if_denoised",
+    "parameters_digest",
+    "independent_reference_digest",
+    "metric_policy_digest",
+    "uncertainty_policy_digest"
+  ],
+  "baseline_denoised_pair_requires_identical_raw_data": true,
+  "metrics_and_thresholds_default": null,
+  "source_code_substitution": "Forbidden unless an explicitly authored independent implementation is approved, pinned, validated and labeled as a different analysis.",
+  "normalization": "Hadamard normalization is explicit; source shorthand is not an amplitude calibration.",
+  "budget_dimensions": [
+    "incident_mean_photons_per_pulse",
+    "pulse_rate",
+    "per_physical_display_exposure",
+    "physical_display_count",
+    "signed_coefficient_count",
+    "total_elapsed_time",
+    "detected_counts"
+  ],
+  "rate_claim": "Requires measured acquisition-plus-reconstruction timestamps, grid and detector mode. Analog 16x16 approximately 10 Hz is a source reference only.",
+  "reference_truth_is_evaluator_only": true,
+  "predicted_clean_image_is_not_success": true
+}

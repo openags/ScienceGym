@@ -1,0 +1,131 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "classification": "authored_robot_translation",
+  "status": "Requirements only; no physical execution, hardware test, or simulation",
+  "controls": [
+    {
+      "id": "C01",
+      "name": "Object-removed mask mapping",
+      "evidence_class": "source",
+      "operation": "R07",
+      "anchor": "Main Fig2; SI Note4",
+      "requirement": "Separate measured pump and SFG map evidence; Movie1 only shows the complete pump sequence"
+    },
+    {
+      "id": "C02",
+      "name": "Uncorrected versus corrected beam profile",
+      "evidence_class": "source",
+      "operation": "R08",
+      "anchor": "SI FigS3",
+      "requirement": "Retain all-on raw profile and correction mask"
+    },
+    {
+      "id": "C03",
+      "name": "Complementary Hadamard masks",
+      "evidence_class": "source",
+      "operation": "R09",
+      "anchor": "Main Methods; SI Note5",
+      "requirement": "Two physical display events per signed coefficient; preserve both raw values"
+    },
+    {
+      "id": "C04",
+      "name": "Same-power encoding comparison",
+      "evidence_class": "source",
+      "operation": "R13",
+      "anchor": "SI FigS4",
+      "requirement": "Raster/random/Hadamard at 16/32/64 square grids; do not assert matched dose or acquisition time"
+    },
+    {
+      "id": "C05",
+      "name": "Flux/exposure and grid sweeps",
+      "evidence_class": "source",
+      "operation": "R12",
+      "anchor": "Main Fig4",
+      "requirement": "Five paired flux/exposure conditions at two grids; conditions are not independent repetitions"
+    },
+    {
+      "id": "C06",
+      "name": "Fixed-flux integration sweep",
+      "evidence_class": "source",
+      "operation": "R14",
+      "anchor": "SI FigS5",
+      "requirement": "Five exposures at each of three grids; one incident mean photon per pulse"
+    },
+    {
+      "id": "C07",
+      "name": "Baseline versus denoised compressed reconstruction",
+      "evidence_class": "source_and_authored",
+      "operation": "R16",
+      "anchor": "Main Fig5; SI Note5",
+      "requirement": "Use identical raw measurements for any authored paired comparison; no prediction-only pass"
+    },
+    {
+      "id": "C08",
+      "name": "Independent silicon reference",
+      "evidence_class": "source_and_authored",
+      "operation": "R18",
+      "anchor": "SI FigS6",
+      "requirement": "Source has ground-truth target picture; authored route requires a newly acquired calibrated reference"
+    },
+    {
+      "id": "C09",
+      "name": "Dark, beam-blocked, blank and overload checks",
+      "evidence_class": "authored",
+      "operation": "R11",
+      "anchor": "Engineering requirement",
+      "requirement": "Must be separately registered and qualified; source device dark-noise spec is not a measured run control"
+    },
+    {
+      "id": "C10",
+      "name": "Pre/post reference and detector-epoch checks",
+      "evidence_class": "authored",
+      "operation": "R20",
+      "anchor": "Engineering requirement",
+      "requirement": "Separate optical drift, sample reload and counting variations"
+    },
+    {
+      "id": "C11",
+      "name": "Blinded target and held-out reconstruction checks",
+      "evidence_class": "authored",
+      "operation": "R19",
+      "anchor": "Evaluation requirement",
+      "requirement": "Target truth belongs to evaluator; no retraining/tuning on evaluation targets"
+    },
+    {
+      "id": "C12",
+      "name": "Independent repetition and budget accounting",
+      "evidence_class": "authored",
+      "operation": "R20",
+      "anchor": "Evaluation requirement",
+      "requirement": "Freeze run/reload/day nesting, sample counts, acquisition order, exposure budget, and stopping rule before outcomes"
+    }
+  ],
+  "source_repeat_status": "Main and SI do not specify an independent experiment replication count or complete uncertainty budget. Images, laser pulses, masks, frames and complementary pairs cannot be treated as independent n.",
+  "authored_repeat_plan": {
+    "independent_unit": "A separately initiated acquisition run with declared sample reload/calibration relation",
+    "nested_units": [
+      "specimen",
+      "run",
+      "calibration epoch",
+      "day",
+      "pattern pair",
+      "frame"
+    ],
+    "number_of_specimens": null,
+    "number_of_independent_runs": null,
+    "number_of_days": null,
+    "reason_null": "No power/precision target or accepted facility repeatability supplied; missing counts block execution rather than imply n=1",
+    "stopping_rule": "Pre-registered precision/quality and safety limits required; never repeat until an appealing image appears",
+    "uncertainty_components": [
+      "reference image and registration",
+      "incident flux and attenuation",
+      "detector dark/background counts",
+      "dead time/pile-up/overrange",
+      "clock/exposure error",
+      "drift across long pattern sets",
+      "correction profile uncertainty",
+      "sample variability",
+      "reconstruction and model dependence"
+    ]
+  }
+}

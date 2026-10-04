@@ -1,0 +1,35 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "scope": "Safe nonbiological copper/silicon optical measurement design only",
+  "closed_services": [
+    {
+      "service": "Sample manufacture",
+      "input": "material lot and approved sample specification",
+      "output": "protected sample and inspection/lineage receipt",
+      "excluded": "Laser cutting/etching commands, beam-power tuning, exposed sharp-edge work"
+    },
+    {
+      "service": "Optical source, alignment and calibration",
+      "input": "approved experiment branch and sample carrier",
+      "output": "interlocked readiness, uncertainty and raw-measurement receipts",
+      "excluded": "Source construction, open-beam alignment, power escalation, security/interlock bypass"
+    },
+    {
+      "service": "Detector/configuration change",
+      "input": "approved branch request",
+      "output": "new qualified detector epoch and safe status",
+      "excluded": "Switching under acquisition, unqualified exposure or overrange recovery"
+    }
+  ],
+  "robot_safe_surface": "Protected cassette handling, dock verification, declared safe service request, instrument-status observation, evidence and custody handling",
+  "abort_rule": "Station controller owns safe shutdown; robot remains outside enclosure on uncertain light/energy state. No unqualified autonomous recovery.",
+  "not_performed": [
+    "physical experiments",
+    "hardware or physical simulations",
+    "hazardous synthesis",
+    "biological operations",
+    "author communications",
+    "source-code execution",
+    "GitHub writes"
+  ]
+}

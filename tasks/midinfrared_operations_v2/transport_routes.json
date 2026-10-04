@@ -1,0 +1,134 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "transfers": [
+    {
+      "id": "T01",
+      "operation_id": "R02",
+      "source_station": "S01",
+      "destination_station": "S02",
+      "object_role": "protected_stock",
+      "required_fields": [
+        "sample_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy_receipt",
+        "destination_empty_receipt",
+        "gripper_retention_receipt",
+        "qualified_transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "retained_protected_carrier": true,
+      "mounted_or_acquiring_transfer_forbidden": true
+    },
+    {
+      "id": "T02",
+      "operation_id": "R03",
+      "source_station": "S02",
+      "destination_station": "S01",
+      "object_role": "completed_protected_sample",
+      "required_fields": [
+        "sample_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy_receipt",
+        "destination_empty_receipt",
+        "gripper_retention_receipt",
+        "qualified_transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "retained_protected_carrier": true,
+      "mounted_or_acquiring_transfer_forbidden": true
+    },
+    {
+      "id": "T03",
+      "operation_id": "R09",
+      "source_station": "S01",
+      "destination_station": "S03",
+      "object_role": "copper_carrier",
+      "required_fields": [
+        "sample_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy_receipt",
+        "destination_empty_receipt",
+        "gripper_retention_receipt",
+        "qualified_transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "retained_protected_carrier": true,
+      "mounted_or_acquiring_transfer_forbidden": true
+    },
+    {
+      "id": "T04",
+      "operation_id": "R17",
+      "source_station": "S03",
+      "destination_station": "S01",
+      "object_role": "copper_carrier",
+      "required_fields": [
+        "sample_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy_receipt",
+        "destination_empty_receipt",
+        "gripper_retention_receipt",
+        "qualified_transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "retained_protected_carrier": true,
+      "mounted_or_acquiring_transfer_forbidden": true
+    },
+    {
+      "id": "T05",
+      "operation_id": "R17",
+      "source_station": "S01",
+      "destination_station": "S03",
+      "object_role": "silicon_carrier",
+      "required_fields": [
+        "sample_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy_receipt",
+        "destination_empty_receipt",
+        "gripper_retention_receipt",
+        "qualified_transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "retained_protected_carrier": true,
+      "mounted_or_acquiring_transfer_forbidden": true
+    },
+    {
+      "id": "T06",
+      "operation_id": "R21",
+      "source_station": "S03",
+      "destination_station": "S01",
+      "object_role": "silicon_or_current_carrier",
+      "required_fields": [
+        "sample_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy_receipt",
+        "destination_empty_receipt",
+        "gripper_retention_receipt",
+        "qualified_transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "retained_protected_carrier": true,
+      "mounted_or_acquiring_transfer_forbidden": true
+    }
+  ],
+  "control_carriers": "Any reference/blank transfer uses an additional explicit transfer occurrence with source, destination, carrier and control identity; no teleportation.",
+  "repeat_reload": "Every planned reload expands an out-and-back pair of explicit custody events.",
+  "fallback": "Uncertain release leaves observed supported hold at its actual station; do not pretend storage transfer happened."
+}

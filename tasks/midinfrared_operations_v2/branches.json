@@ -1,0 +1,571 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "branches": [
+    {
+      "id": "B01",
+      "name": "Spatial mask correspondence",
+      "source_fact": "F14",
+      "operations": [
+        "R07",
+        "R08"
+      ],
+      "source_sections": [
+        "Main Fig2",
+        "SI Note4/FigS3",
+        "Movie1"
+      ],
+      "required_for_whole_paper_design": true,
+      "detector_mode": "spatial_diagnostic",
+      "sample_role": "empty_optical_path",
+      "condition_slots": [
+        {
+          "kind": "all_on_profile"
+        },
+        {
+          "kind": "pump_uncorrected"
+        },
+        {
+          "kind": "pump_corrected"
+        },
+        {
+          "kind": "representative_SFG"
+        }
+      ],
+      "full_set_SFG_established": false,
+      "condition_slot_provenance": "source_reference_not_hardware_command",
+      "execution_status": "HOLD_QUALIFICATION"
+    },
+    {
+      "id": "B02",
+      "name": "Static analog letter imaging",
+      "source_fact": "F08",
+      "operations": [
+        "R09"
+      ],
+      "source_sections": [
+        "Main Fig3"
+      ],
+      "required_for_whole_paper_design": true,
+      "detector_mode": "analog",
+      "sample_role": "copper",
+      "condition_slots": [
+        {
+          "target": "E",
+          "grid": [
+            16,
+            16
+          ]
+        },
+        {
+          "target": "E",
+          "grid": [
+            64,
+            64
+          ]
+        },
+        {
+          "target": "C",
+          "grid": [
+            16,
+            16
+          ]
+        },
+        {
+          "target": "C",
+          "grid": [
+            64,
+            64
+          ]
+        },
+        {
+          "target": "N",
+          "grid": [
+            16,
+            16
+          ]
+        },
+        {
+          "target": "N",
+          "grid": [
+            64,
+            64
+          ]
+        },
+        {
+          "target": "U",
+          "grid": [
+            16,
+            16
+          ]
+        },
+        {
+          "target": "U",
+          "grid": [
+            64,
+            64
+          ]
+        }
+      ],
+      "condition_slot_provenance": "source_reference_not_hardware_command",
+      "execution_status": "HOLD_QUALIFICATION"
+    },
+    {
+      "id": "B03",
+      "name": "Dynamic analog imaging",
+      "source_fact": "F09",
+      "operations": [
+        "R10"
+      ],
+      "source_sections": [
+        "Movie2 and description"
+      ],
+      "required_for_whole_paper_design": true,
+      "detector_mode": "analog",
+      "sample_role": "copper",
+      "condition_slots": [
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "source_rate_reference_Hz_approx": 10
+        },
+        {
+          "grid": [
+            32,
+            32
+          ],
+          "source_rate_reference_Hz_approx": 2.5
+        }
+      ],
+      "rate_is_target_or_default": false,
+      "movie_playback_is_acquisition_time": false,
+      "condition_slot_provenance": "source_reference_not_hardware_command",
+      "execution_status": "HOLD_QUALIFICATION"
+    },
+    {
+      "id": "B04",
+      "name": "Photon-sparse copper imaging",
+      "source_fact": "F10",
+      "operations": [
+        "R11",
+        "R12"
+      ],
+      "source_sections": [
+        "Main Fig4"
+      ],
+      "required_for_whole_paper_design": true,
+      "detector_mode": "photon",
+      "sample_role": "copper",
+      "condition_slots": [
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 100,
+          "per_display_ms": 5
+        },
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 10,
+          "per_display_ms": 50
+        },
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 5,
+          "per_display_ms": 100
+        },
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 500
+        },
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 0.5,
+          "per_display_ms": 1000
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 100,
+          "per_display_ms": 5
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 10,
+          "per_display_ms": 50
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 5,
+          "per_display_ms": 100
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 500
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 0.5,
+          "per_display_ms": 1000
+        }
+      ],
+      "condition_slot_provenance": "source_reference_not_hardware_command",
+      "execution_status": "HOLD_QUALIFICATION"
+    },
+    {
+      "id": "B05",
+      "name": "Encoding comparison",
+      "source_fact": "F15",
+      "operations": [
+        "R13"
+      ],
+      "source_sections": [
+        "SI Note5/FigS4"
+      ],
+      "required_for_whole_paper_design": true,
+      "detector_mode": null,
+      "sample_role": "copper",
+      "condition_slots": [
+        {
+          "encoding": "raster",
+          "grid": [
+            16,
+            16
+          ],
+          "exposure_policy": null
+        },
+        {
+          "encoding": "raster",
+          "grid": [
+            32,
+            32
+          ],
+          "exposure_policy": null
+        },
+        {
+          "encoding": "raster",
+          "grid": [
+            64,
+            64
+          ],
+          "exposure_policy": null
+        },
+        {
+          "encoding": "random",
+          "grid": [
+            16,
+            16
+          ],
+          "exposure_policy": null
+        },
+        {
+          "encoding": "random",
+          "grid": [
+            32,
+            32
+          ],
+          "exposure_policy": null
+        },
+        {
+          "encoding": "random",
+          "grid": [
+            64,
+            64
+          ],
+          "exposure_policy": null
+        },
+        {
+          "encoding": "hadamard",
+          "grid": [
+            16,
+            16
+          ],
+          "exposure_policy": null
+        },
+        {
+          "encoding": "hadamard",
+          "grid": [
+            32,
+            32
+          ],
+          "exposure_policy": null
+        },
+        {
+          "encoding": "hadamard",
+          "grid": [
+            64,
+            64
+          ],
+          "exposure_policy": null
+        }
+      ],
+      "required_gap": "U14",
+      "same_power_is_equal_dose": false,
+      "condition_slot_provenance": "source_reference_not_hardware_command",
+      "execution_status": "HOLD_QUALIFICATION"
+    },
+    {
+      "id": "B06",
+      "name": "Integration-time comparison",
+      "source_fact": "F12",
+      "operations": [
+        "R14"
+      ],
+      "source_sections": [
+        "SI Note6/FigS5"
+      ],
+      "required_for_whole_paper_design": true,
+      "detector_mode": "photon",
+      "sample_role": "copper",
+      "condition_slots": [
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 10
+        },
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 100
+        },
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 200
+        },
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 500
+        },
+        {
+          "grid": [
+            16,
+            16
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 1000
+        },
+        {
+          "grid": [
+            32,
+            32
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 10
+        },
+        {
+          "grid": [
+            32,
+            32
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 100
+        },
+        {
+          "grid": [
+            32,
+            32
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 200
+        },
+        {
+          "grid": [
+            32,
+            32
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 500
+        },
+        {
+          "grid": [
+            32,
+            32
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 1000
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 10
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 100
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 200
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 500
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 1000
+        }
+      ],
+      "condition_slot_provenance": "source_reference_not_hardware_command",
+      "execution_status": "HOLD_QUALIFICATION"
+    },
+    {
+      "id": "B07",
+      "name": "Random compressed imaging and denoiser comparison",
+      "source_fact": "F11",
+      "operations": [
+        "R15",
+        "R16"
+      ],
+      "source_sections": [
+        "Main Fig5; SI Note5"
+      ],
+      "required_for_whole_paper_design": true,
+      "detector_mode": "photon",
+      "sample_role": "copper",
+      "condition_slots": [
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "sampling_ratio": 0.25,
+          "incident_mean_photons_per_pulse": 100,
+          "analysis": "baseline"
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "sampling_ratio": 0.25,
+          "incident_mean_photons_per_pulse": 5,
+          "analysis": "baseline"
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "sampling_ratio": 0.25,
+          "incident_mean_photons_per_pulse": 5,
+          "analysis": "denoised"
+        },
+        {
+          "grid": [
+            64,
+            64
+          ],
+          "sampling_ratio": 0.25,
+          "incident_mean_photons_per_pulse": 1,
+          "analysis": "denoised"
+        }
+      ],
+      "authored_paired_comparison": "Any newly claimed baseline/denoised comparison must use the identical raw digest; source panels at different flux are not such a pair.",
+      "physical_display_convention": null,
+      "condition_slot_provenance": "source_reference_not_hardware_command",
+      "execution_status": "HOLD_QUALIFICATION"
+    },
+    {
+      "id": "B08",
+      "name": "Silicon-wafer transmission",
+      "source_fact": "F13",
+      "operations": [
+        "R17",
+        "R18"
+      ],
+      "source_sections": [
+        "SI Note7/FigS6"
+      ],
+      "required_for_whole_paper_design": true,
+      "detector_mode": "photon",
+      "sample_role": "silicon",
+      "condition_slots": [
+        {
+          "incident_mean_photons_per_pulse": 10,
+          "per_display_ms": 100,
+          "grid_policy": null
+        },
+        {
+          "incident_mean_photons_per_pulse": 5,
+          "per_display_ms": 200,
+          "grid_policy": null
+        },
+        {
+          "incident_mean_photons_per_pulse": 1,
+          "per_display_ms": 1000,
+          "grid_policy": null
+        }
+      ],
+      "grid_is_not_inferred_from_copper": true,
+      "condition_slot_provenance": "source_reference_not_hardware_command",
+      "execution_status": "HOLD_QUALIFICATION"
+    }
+  ],
+  "simulation_branch": "Source theory and simulations are covered by evidence/model-dependency review only. No optical-field, photon, dynamics, hardware, or robot simulation is run or included.",
+  "condition_slots_are_independent_repeats": false,
+  "whole_paper_requires_all_eight_branches": true
+}

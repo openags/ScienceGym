@@ -1,0 +1,46 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "classification": "author_reported_outcomes_not_robot_success_thresholds",
+  "references": [
+    {
+      "id": "O01",
+      "source": "Main p4",
+      "claim": "Approximately 91 micrometer spatial resolution; independent reference/uncertainty not recreated here"
+    },
+    {
+      "id": "O02",
+      "source": "Main Fig4",
+      "claim": "Letter images shown down to 0.5 incident mean photons per pulse at 1 second per displayed pattern, with 16x16 and 64x64 reconstructed grids"
+    },
+    {
+      "id": "O03",
+      "source": "Main Fig5",
+      "claim": "25% compressed 64x64 image at one incident mean photon per pulse with denoising; source algorithm/model configuration unavailable"
+    },
+    {
+      "id": "O04",
+      "source": "Movie2 and description",
+      "claim": "Approximately 10 Hz at 16x16 and 2.5 Hz at 32x32 for analog video including acquisition/reconstruction; right movie playback accelerated"
+    },
+    {
+      "id": "O05",
+      "source": "SI FigS6",
+      "claim": "Etched silicon-star transmission shown at 10, 5 and 1 incident mean photons per pulse with 100, 200 and 1000 ms per pattern"
+    }
+  ],
+  "authored_derived_unit_checks": [
+    {
+      "statement": "For a 16x16 complete Hadamard set, 256 signed coefficients require 512 complementary physical display events",
+      "basis": "N=256 and two displays per coefficient; excludes extra controls, repetitions and overhead"
+    },
+    {
+      "statement": "At 200 microseconds per physical display, 512 displays take 0.1024 seconds before additional overhead",
+      "basis": "Static arithmetic check, not a simulated or measured performance"
+    },
+    {
+      "statement": "14.6 MHz times 100 photons per pulse times 5 ms equals 7.3 million incident photons per displayed pattern; the 0.5-photon, 1-second endpoint yields the same figure",
+      "basis": "Derived budget at the stated calibrated incident reference plane, before subsequent object transmission, conversion and detection losses; the defining attenuation is already reflected in mean photons per pulse. Not detected photons or total image dose."
+    }
+  ],
+  "grading_rule": "Reported images and values motivate comparisons, never fabricate hidden expected outputs or pass thresholds. No source outcome is claimed to have been reproduced."
+}

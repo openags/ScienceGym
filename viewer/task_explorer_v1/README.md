@@ -1,8 +1,16 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** 34 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
+**See the task before reading its JSON.** 35 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
 
-## Release contents: 37 families
+## Release contents: 38 families
+
+The explorer contains **35 paper-level designs + 3 bounded subsets**, **871 inspection records** and **3,172 operation definitions**. [Mid-infrared imaging](docs/midinfrared.md) adds eight experimental design branches, 22 authored operation templates, five separate reference views and one metadata-only qualification hold. All 34 task JSON documents, twelve controls, ten source conflicts and fourteen unresolved-input groups remain exact. Approximately 10 Hz is confined to analog 16×16, and raw data and modified source code remain unavailable.
+
+Source memberships never invent chronology or independent repeats. Exact dependencies, detector epochs, complementary displays, source/authored distinctions, preparation lineage, failed attempts, occupied supported holds and safe closeout remain inspectable. Thirteen original scene groups and 44 nominal anchors remain illustrative and unqualified. All twelve task-pinned asset hashes and reciprocal task snapshot hashes are verified. No physics, hardware, robot execution or scientific reproduction is added.
+
+Local source and original guide/render links are hash-bound. The optional portable export embeds 166 exact source JSON documents, five guides and fifteen original renders across the five recent families. All 148 prior generated family artifacts remain byte-identical. Publication status comes from the repository commit; frozen receipt fields remain historical snapshots. See [verification](VERIFICATION.md).
+
+## Historical Arc-Morph integration: 37 families
 
 The explorer contains **34 paper-level designs + 3 bounded subsets**, **857 inspection records** and **3,150 operation definitions**. [Arc-Morph](docs/arcmorph.md) adds seven physical route families, 31 operation templates, two auxiliary records, six nonmanual dispositions and one metadata-only qualification hold. All 33 source JSON documents, ten source facts, ten conflicts and fourteen unknown cards remain exact. One quantitative polymer specimen retains eight configuration slots without becoming eight repeats or samples.
 

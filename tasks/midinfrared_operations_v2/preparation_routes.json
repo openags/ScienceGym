@@ -1,0 +1,66 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "materials": [
+    {
+      "id": "M01",
+      "name": "Copper letter-mask carrier",
+      "source": "Main Fig1",
+      "source_state": "Copper sheet with E/C/N/U transmission letters",
+      "parent_material": "copper stock lot",
+      "authored_states": [
+        "stock specification",
+        "qualified fabrication",
+        "independently inspected mask",
+        "protected carrier",
+        "received",
+        "docked",
+        "imaged",
+        "stored or quarantined"
+      ],
+      "missing": [
+        "sheet thickness",
+        "letter CAD and exact dimensions",
+        "finish/flatness",
+        "carrier interfaces"
+      ],
+      "robot_boundary": "Handle the cassette perimeter only; no exposed cutting, deburring or touching the optical target"
+    },
+    {
+      "id": "M02",
+      "name": "Silicon-star carrier",
+      "source": "SI Note7/FigS6",
+      "source_state": "200 micrometer double-polished silicon wafer with an etched five-point star",
+      "parent_material": "silicon wafer lot",
+      "authored_states": [
+        "stock qualification",
+        "closed laser-fabrication service",
+        "surface/reference inspection",
+        "protected carrier",
+        "received",
+        "docked",
+        "imaged",
+        "stored or quarantined"
+      ],
+      "missing": [
+        "wafer lateral dimensions and doping",
+        "etch depth/profile",
+        "mount design",
+        "reference-imaging calibration"
+      ],
+      "robot_boundary": "Protected carrier only; no bare-wafer grip or laser-fabrication commands"
+    }
+  ],
+  "required_chain": [
+    "stock_lot_id",
+    "approved_drawing_revision",
+    "fabrication_job_id",
+    "sample_id",
+    "carrier_id",
+    "reference_image_id",
+    "independent_inspection_receipt_id",
+    "safe_release_receipt_id"
+  ],
+  "service_internal_instructions": null,
+  "replacement_rule": "New sample and run/series identity; never silently reuse old sample lineage",
+  "source_manufacture_not_fully_specified": true
+}

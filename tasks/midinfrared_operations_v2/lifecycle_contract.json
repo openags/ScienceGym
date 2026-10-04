@@ -1,0 +1,143 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "states": [
+    "UNQUALIFIED",
+    "POLICY_FROZEN",
+    "PREPARED_PROTECTED",
+    "RECEIVED",
+    "SERVICE_SAFE_READY",
+    "CONFIGURED",
+    "CALIBRATED",
+    "DOCKED",
+    "ACQUIRING",
+    "ANALYSIS_BLOCKED_OR_REVIEWED",
+    "REPEATS_ACCOUNTED",
+    "SAFE_RETURNED",
+    "SUPPORTED_HOLD",
+    "ARCHIVED_BOUNDED"
+  ],
+  "guards": [
+    "Policy frozen before any acquired outcome",
+    "Stock-to-sample identity is immutable",
+    "Station S03 has one exclusive acquisition/motion/change lease",
+    "Configuration changes require safe idle state, new epoch and readiness",
+    "Only spatial diagnostic sensing qualifies mapping",
+    "Each expected physical display has exactly one detector/counter record",
+    "Hadamard complementary displays are adjacent and their raw records retained",
+    "Sample exchange requires current independent safe-access receipt",
+    "Unsafe or uncertain energy state keeps robot outside enclosure",
+    "Archive retains every failure and blocked branch"
+  ],
+  "failure_edges": [
+    {
+      "operation_id": "R01",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R02",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R03",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R04",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R05",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R06",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R07",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R08",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R09",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R10",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R11",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R12",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R13",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R14",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R15",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R16",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R17",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R18",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R19",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R20",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R21",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    },
+    {
+      "operation_id": "R22",
+      "to": "SUPPORTED_HOLD_OR_QUALIFIED_CLOSEOUT",
+      "requires_scientific_success": false
+    }
+  ]
+}

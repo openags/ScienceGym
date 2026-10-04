@@ -1,4 +1,12 @@
-# Release contents: Arc-Morph paired integration
+# Release contents: mid-infrared paired integration
+
+The explorer contains **35 paper-level designs + 3 bounded subsets**, **871 inspection records** and **3,172 operation definitions**. [Mid-infrared imaging](docs/midinfrared.md) adds eight experimental design branches, 22 authored operation templates, five separate reference views and one metadata-only qualification hold. All 34 task JSON documents, twelve controls, ten source conflicts and fourteen unresolved-input groups remain exact. Approximately 10 Hz is confined to analog 16×16, and raw data and modified source code remain unavailable.
+
+Source memberships never invent chronology or independent repeats. Exact dependencies, detector epochs, complementary displays, source/authored distinctions, preparation lineage, failed attempts, occupied supported holds and safe closeout remain inspectable. Thirteen original scene groups and 44 nominal anchors remain illustrative and unqualified. All twelve task-pinned asset hashes and reciprocal task snapshot hashes are verified. No physics, hardware, robot execution or scientific reproduction is added.
+
+Local source and original guide/render links are hash-bound. The optional portable export embeds 166 exact source JSON documents, five guides and fifteen original renders across the five recent families. All 148 prior generated family artifacts remain byte-identical. Publication status comes from the repository commit; frozen receipt fields remain historical snapshots. See [verification](VERIFICATION.md).
+
+# Historical Arc-Morph paired integration
 
 37 families: 34 paper-level design drafts + 3 bounded subsets; 857 inspection records and 3,150 symbolic operation definitions. Zero validated runnable whole-paper tasks. Arc-Morph adds seven physical route families, 31 templates, two auxiliary records, six nonmanual references and a metadata-only qualification hold. It preserves all 33 source JSON documents, ten conflicts, fourteen unknowns and the single-specimen eight-configuration boundary. Twelve original scene groups and 66 nominal anchors remain illustrative and unqualified. The 46 task files and 42 asset files match their reviewed archives byte-for-byte. Source links are local and hash-bound; repository commits establish publication status. Historical receipts below remain snapshots. See [Arc-Morph](docs/arcmorph.md) and [verification](VERIFICATION.md).
 

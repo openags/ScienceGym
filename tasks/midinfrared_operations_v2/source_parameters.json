@@ -1,0 +1,263 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "paper_doi": "10.1038/s41467-023-36815-3",
+  "facts": [
+    {
+      "id": "F01",
+      "classification": "source_fact",
+      "claim": "Demonstration uses nonlinear structured detection: spatial pump masks and frequency upconversion connect a MIR object to a single silicon detector.",
+      "source": "Main pp2-3, Figs1-2; SI Notes1-2"
+    },
+    {
+      "id": "F02",
+      "classification": "source_fact",
+      "claim": "Copper sheet carries four transmission letters, E/C/N/U. Pattern manufacture details and thickness are not given.",
+      "source": "Main p3 Fig1"
+    },
+    {
+      "id": "F03",
+      "classification": "source_fact",
+      "claim": "A double-polished silicon wafer with a laser-etched five-point star is a distinct transmission experiment. The closed qualified-service boundary is an authored requirement, not a reported source practice.",
+      "source": "SI Note7 p11, FigS6",
+      "value": {
+        "silicon_thickness_um": 200
+      }
+    },
+    {
+      "id": "F04",
+      "classification": "source_fact",
+      "claim": "Signal, structured pump and upconverted detection bands are distinct.",
+      "source": "Main p3; SI Note2",
+      "value": {
+        "signal_nm": 3070,
+        "pump_nm": 1030,
+        "upconverted_nm": 771
+      }
+    },
+    {
+      "id": "F05",
+      "classification": "source_fact",
+      "claim": "The conversion channel, aperture and pump coverage limit imaging; these are not robot-interface dimensions.",
+      "source": "Main p3; SI Note2 p4",
+      "value": {
+        "SFG_crystal_channel_mm": [
+          10,
+          1,
+          1
+        ],
+        "pump_diameter_at_crystal_um_approx": 700
+      }
+    },
+    {
+      "id": "F06",
+      "classification": "source_fact",
+      "claim": "Analog and photon-counting detector branches are separate configurations.",
+      "source": "Main pp5,7; SI Notes2-3",
+      "value": {
+        "analog": "Thorlabs PDA100A2",
+        "photon_counter": "Excelitas SPCM-AQRH-54",
+        "DMD": "Texas Instruments DLP650LNIR",
+        "FPGA_family": "Altera Cyclone II",
+        "ADC": "Analog Devices AD7091R8"
+      }
+    },
+    {
+      "id": "F07",
+      "classification": "source_fact",
+      "claim": "DMD pixel pitch is a device specification; reconstructed image grid is not achieved spatial resolution.",
+      "source": "Main pp4,7",
+      "value": {
+        "DMD_pitch_um": 10.8,
+        "DMD_grid": [
+          1280,
+          800
+        ],
+        "reported_spatial_resolution_um_approx": 91
+      }
+    },
+    {
+      "id": "F08",
+      "classification": "source_fact",
+      "claim": "Main analog imaging compares experimental 16x16 and 64x64 letters with source numerical predictions. No source simulation is rerun here.",
+      "source": "Main Fig3 pp4-5"
+    },
+    {
+      "id": "F09",
+      "classification": "source_fact",
+      "claim": "Dynamic analog demonstration has different resolution/rate settings; rates include acquisition and reconstruction.",
+      "source": "Main pp4-5; Media description; Movie2 labels",
+      "value": {
+        "16x16_fps_approx": 10,
+        "32x32_fps_approx": 2.5,
+        "right_movie_panel_speedup": 4
+      }
+    },
+    {
+      "id": "F10",
+      "classification": "source_fact",
+      "claim": "The full-Hadamard photon-sparse sweep pairs incident mean photons per pulse with per-displayed-mask accumulation.",
+      "source": "Main Fig4 p6",
+      "value": {
+        "grids": [
+          [
+            16,
+            16
+          ],
+          [
+            64,
+            64
+          ]
+        ],
+        "incident_mean_photons_per_pulse": [
+          100,
+          10,
+          5,
+          1,
+          0.5
+        ],
+        "per_mask_accumulation_ms": [
+          5,
+          50,
+          100,
+          500,
+          1000
+        ]
+      }
+    },
+    {
+      "id": "F11",
+      "classification": "source_fact",
+      "claim": "Compressive random-pattern images use a 25% sampling ratio at 64x64. Denoised cases differ from un-denoised cases.",
+      "source": "Main Fig5 p6; SI Note5",
+      "value": {
+        "ratio": 0.25,
+        "grid": [
+          64,
+          64
+        ],
+        "without_denoiser_flux": [
+          100,
+          5
+        ],
+        "with_DRUNet_flux": [
+          5,
+          1
+        ],
+        "flux_unit": "incident mean photons per pulse"
+      }
+    },
+    {
+      "id": "F12",
+      "classification": "source_fact",
+      "claim": "The integration sweep holds incident mean flux at one photon per pulse and changes exposure and output grid.",
+      "source": "SI Note6 p10, FigS5",
+      "value": {
+        "grids": [
+          [
+            16,
+            16
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            64,
+            64
+          ]
+        ],
+        "per_mask_ms": [
+          10,
+          100,
+          200,
+          500,
+          1000
+        ]
+      }
+    },
+    {
+      "id": "F13",
+      "classification": "source_fact",
+      "claim": "The silicon-star sweep is separate from the copper mask sweep.",
+      "source": "SI Note7 p11 FigS6",
+      "value": {
+        "incident_mean_photons_per_pulse": [
+          10,
+          5,
+          1
+        ],
+        "per_mask_ms": [
+          100,
+          200,
+          1000
+        ]
+      }
+    },
+    {
+      "id": "F14",
+      "classification": "source_fact",
+      "claim": "The source establishes mask correspondence using an object-removed beam and applies a Gaussian-profile correction.",
+      "source": "Main Fig2 p4; SI Note4 pp6-7, FigS3"
+    },
+    {
+      "id": "F15",
+      "classification": "source_fact",
+      "claim": "Raster, random and Hadamard encoding are compared at the same incident illumination power. Equal power does not establish equal total acquisition or detected-photon budgets.",
+      "source": "SI Note5 pp7-9, FigS4"
+    },
+    {
+      "id": "F16",
+      "classification": "source_fact",
+      "claim": "Hadamard signed weights use consecutive complementary optical displays; FIFO transfer preserves sequence order.",
+      "source": "Main Methods p7; SI Note3 pp5-6 and Note5 p9"
+    },
+    {
+      "id": "F17",
+      "classification": "source_fact",
+      "claim": "Source analog timing is 200 microseconds per displayed mask, giving a 5 kHz display cadence in this configuration.",
+      "source": "SI Note3 pp5-6 FigS2",
+      "value": {
+        "per_mask_us": 200,
+        "illumination_us": 40,
+        "load_us": 50,
+        "reset_us": 100,
+        "wait_us": 10
+      }
+    },
+    {
+      "id": "F18",
+      "classification": "source_fact",
+      "claim": "The written source reports a 14.6 MHz laser repetition rate; photon flux refers to mean occupancy per pulse, not total photons in a reconstructed image.",
+      "source": "Main Methods p7; SI Notes2,6",
+      "value": {
+        "repetition_rate_MHz": 14.6
+      }
+    },
+    {
+      "id": "F19",
+      "classification": "review_observation",
+      "claim": "No complete experiment-level replication plan, uncertainty budget, numerical image-quality acceptance thresholds or blinded diverse-object study is specified.",
+      "source": "Review of complete main and SI",
+      "value": "not_reported_in_read_package"
+    },
+    {
+      "id": "F20",
+      "classification": "source_fact",
+      "claim": "Data and author-modified reconstruction code are available only on request; cited l1-MAGIC and DRUNet/DPIR do not provide the exact used versions or configuration.",
+      "source": "Main Data/Code p7; SI Note5 p9"
+    },
+    {
+      "id": "F21",
+      "classification": "source_fact",
+      "claim": "Demonstrated objects are binary sparse targets; general-scene, biomedical, terahertz, depth and spectro-volumetric applications are prospective.",
+      "source": "Main Discussion pp6-7; SI Note7"
+    },
+    {
+      "id": "F22",
+      "classification": "source_fact",
+      "claim": "Prior publications carry additional synchronization, source-generation and photon-flux calibration details.",
+      "source": "SI Note2 pp3-4, refs3-5"
+    }
+  ],
+  "boundary": "Reported operating facts are references, not hardware commands, inferred robot tolerances, or guaranteed evaluator outcomes. Laser construction, exposed alignment, and sample-fabrication recipes are intentionally not transcribed."
+}

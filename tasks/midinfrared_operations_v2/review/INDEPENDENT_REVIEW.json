@@ -1,0 +1,892 @@
+{
+  "schema_version": "midinfrared_independent_review.v1",
+  "review_date_utc": "2026-10-04",
+  "paper_doi": "10.1038/s41467-023-36815-3",
+  "paper_url": "https://doi.org/10.1038/s41467-023-36815-3",
+  "status": "accepted_for_original_task_design_and_finite_synthetic_contract_release",
+  "accepted": true,
+  "blocking_findings": [],
+  "scope": "Independent source-grounded task-design, symbolic guard, exact-text export and nominal task-to-scene pairing review. This is not robot, hardware, optical, safety, physical-simulation or scientific validation.",
+  "source_grounding": {
+    "packet": "next-metrology-review-20261004-night",
+    "basis": "Independently accepted upstream source review; this reviewer did not repeat source downloads or original page/media inspection",
+    "source_facts_matched": 22,
+    "branch_mappings_matched": 8,
+    "unresolved_gap_descriptions_matched": 14,
+    "pinned_source_review_hashes_matched": 20,
+    "upstream_source_scope": "Nine main pages, twelve technical SI pages, eleven figures and one media-description page; movies fully decoded and sampled only",
+    "source_raw_data_and_modified_code_available": false,
+    "current_correction_retraction_lookup_repeated": false
+  },
+  "design_counts": {
+    "operations": 22,
+    "experimental_branches": 8,
+    "stations": 5,
+    "asset_families": 13,
+    "controls": 12,
+    "unresolved_inputs": 14,
+    "source_conflicts": 10,
+    "coverage_records": 14
+  },
+  "requirements_checked": [
+    {
+      "topic": "Whole-paper structure",
+      "result": "pass",
+      "evidence": "All eight branches, source theory/model dependencies, preparation and final archive are represented; the operation graph is acyclic and R11 follows dynamic analog R10."
+    },
+    {
+      "topic": "Preparation and transfer lineage",
+      "result": "pass",
+      "evidence": "Copper and silicon remain distinct; lot, drawing, completed job, specimen, carrier and reference identities are retained. Six explicit transfer routes and repeat reload expansion are present; requests cannot replace independent completion."
+    },
+    {
+      "topic": "Source versus authored evidence",
+      "result": "pass",
+      "evidence": "Source facts/outcomes, authored robot interfaces, nominal geometry and synthetic observations remain separate. No source figure or source metric serves as an automatic success oracle."
+    },
+    {
+      "topic": "Analog rate and photon regimes",
+      "result": "pass",
+      "evidence": "Approximately 10 Hz is confined to analog 16x16; 32x32 retains 2.5 Hz and playback distinction. Incident mean flux, detected counts, display count, dose and elapsed time are distinct."
+    },
+    {
+      "topic": "B01 spatial mapping",
+      "result": "pass",
+      "evidence": "Qualified spatial diagnostic sensing, empty optical path, object removal, distinct all-on/uncorrected/corrected/representative-SFG records and near-zero exclusions are required; bucket-only evidence is rejected."
+    },
+    {
+      "topic": "B05 unresolved detector and exposure",
+      "result": "pass",
+      "evidence": "Source mode/exposure remain null and U14 unresolved. Synthetic readiness requires a separate current-epoch detector/exposure/budget policy labeled source-specific or approved-authored; spatial-diagnostic substitution and silent inheritance fail."
+    },
+    {
+      "topic": "Fresh readiness and exclusive leases",
+      "result": "pass",
+      "evidence": "Branch-compatible modes, source/controller/configuration revisions, fresh epochs, exclusive ownership and full raw exposure validity intervals are checked. Configuration changes invalidate readiness."
+    },
+    {
+      "topic": "Cross-device ledger and complements",
+      "result": "pass",
+      "evidence": "Expected displays, controller events and detector records form a complete ordered bijection; complementary sign/identity pairs are adjacent, both raw observations remain, normalization is named, and rejected/lost events cannot be invented."
+    },
+    {
+      "topic": "Acquisition composition",
+      "result": "pass",
+      "evidence": "The composed guard binds current readiness, sample, run lease, detector and ledger, with grounded encoding restrictions for B02/B03/B04 and B07. B01 cannot use an acquisition bucket ledger."
+    },
+    {
+      "topic": "Analysis and repetition",
+      "result": "pass",
+      "evidence": "Paired analysis requires identical raw and calibration parents, independent reference/policy provenance and explicit weights. Prospective counts/order/budget/metrics/uncertainty/stopping policy precedes outcomes; nested displays/frames/pulses do not become independent n."
+    },
+    {
+      "topic": "Failure and closeout",
+      "result": "pass",
+      "evidence": "All 22 operations have non-success edges; retries require fresh identities and retained failure links. Closed accounting requires safe access, empty dock and no lease. Occupied supported holds retain their lease and keep the robot outside; all eight branch statuses remain archived."
+    },
+    {
+      "topic": "Actor and evaluator separation",
+      "result": "pass_with_explicit_limit",
+      "evidence": "Actor events permit only event/operation/evidence IDs; altered fixture registries and truth/success injection fail. Filesystem/process isolation and production sensor authentication remain unimplemented."
+    },
+    {
+      "topic": "Exact export boundary",
+      "result": "pass_finite_tests",
+      "evidence": "48-member UTF-8 allowlist; original scene released separately. Mutations, unknown/missing files, private-path families, file locators, common media signatures, binary/control data, symlinks, FIFOs, path aliases, ZIP duplicates/encryption/special modes and header disagreement are rejected in finite tests."
+    }
+  ],
+  "independent_findings": [
+    {
+      "id": "IR01",
+      "status": "resolved_verified",
+      "finding": "Unresolved B05 detector/exposure could inherit generic readiness; explicit current-epoch branch policy is now required"
+    },
+    {
+      "id": "IR02",
+      "status": "resolved_verified",
+      "finding": "Occupied supported hold could erase active lease; active lease is now required"
+    },
+    {
+      "id": "IR03",
+      "status": "resolved_verified",
+      "finding": "Export privacy filter must reject additional private absolute-path families"
+    },
+    {
+      "id": "IR04",
+      "status": "resolved_verified",
+      "finding": "Export text filter must reject recognized binary signatures under text filenames"
+    },
+    {
+      "id": "IR05",
+      "status": "resolved_verified",
+      "finding": "Composed acquisition checked readiness only at a supplied timestamp; full raw exposure intervals are now checked against readiness validity"
+    },
+    {
+      "id": "IR06",
+      "status": "resolved_verified",
+      "finding": "Composed acquisition accepted the wrong encoding for B07; grounded B02/B03/B04 Hadamard and B07 random constraints are now enforced"
+    }
+  ],
+  "verification": {
+    "independent_test_methods": 58,
+    "independent_contract_design_methods": 36,
+    "independent_export_methods": 22,
+    "independent_tests_passed": 58,
+    "author_test_methods_independently_rerun": 135,
+    "author_contract_methods": 113,
+    "author_export_methods": 22,
+    "author_tests_passed": 135,
+    "author_test_rerun_context": "Disposable complete copy frozen from the reviewed tree; final delivery archive is sealed separately after completion metadata is updated",
+    "structural_checks_passed": 259,
+    "source_review_validator_rerun": true,
+    "source_review_negative_cases_rejected": 11,
+    "test_value_origin": "Finite arbitrary synthetic identifiers and values, not measured data or source simulation",
+    "exhaustive_security_verification": false
+  },
+  "nominal_asset_pairing": {
+    "asset_pack_id": "midinfrared_scene_assets_v1",
+    "status": "independently_verified",
+    "stable_asset_file_hashes_verified": 12,
+    "operation_bindings_verified": 22,
+    "anchor_bindings_verified": 44,
+    "portable_scene_nodes_read": 358,
+    "method": "Independent byte hashing and semantic comparison, plus direct GLB node hierarchy and composed world-transform checks. Converted portable Y-up positions are compared to authored world coordinates and target/root ownership.",
+    "negative_probes": [
+      {
+        "case": "stale_hash",
+        "rejected": true,
+        "reason": "final asset byte hash: asset_metadata.json"
+      },
+      {
+        "case": "wrong_target_owner",
+        "rejected": true,
+        "reason": "concrete target ownership"
+      },
+      {
+        "case": "coordinate_mismatch_rehashed",
+        "rejected": true,
+        "reason": "world-space target correspondence"
+      }
+    ],
+    "native_blend_hash_verified": true,
+    "native_blend_geometry_independently_opened_by_this_task_reviewer": false,
+    "asset_package_separate_review_required": true,
+    "physical_geometry_qualified": false,
+    "verified_coordinate_bindings": [
+      {
+        "operation_id": "R01",
+        "anchor": "ANCHOR.R01.primary",
+        "target": "receiving.plan_token",
+        "owner": "A03",
+        "translation_m": [
+          -2.380000114440918,
+          -0.4300000071525574,
+          0.8479999899864197
+        ]
+      },
+      {
+        "operation_id": "R01",
+        "anchor": "ANCHOR.R01.control",
+        "target": "receiving.id_reader",
+        "owner": "A03",
+        "translation_m": [
+          -1.7200000286102295,
+          -0.17000000178813934,
+          1.100000023841858
+        ]
+      },
+      {
+        "operation_id": "R02",
+        "anchor": "ANCHOR.R02.primary",
+        "target": "fabrication.load_dock",
+        "owner": "A04",
+        "translation_m": [
+          -2.0199999809265137,
+          0.949999988079071,
+          0.8899999856948853
+        ]
+      },
+      {
+        "operation_id": "R02",
+        "anchor": "ANCHOR.R02.control",
+        "target": "fabrication.receipt_port",
+        "owner": "A04",
+        "translation_m": [
+          -1.399999976158142,
+          1.1469999551773071,
+          1.2899999618530273
+        ]
+      },
+      {
+        "operation_id": "R03",
+        "anchor": "ANCHOR.R03.primary",
+        "target": "receiving.inspection_cradle",
+        "owner": "A03",
+        "translation_m": [
+          -2.049999952316284,
+          -0.23000000417232513,
+          0.8199999928474426
+        ]
+      },
+      {
+        "operation_id": "R03",
+        "anchor": "ANCHOR.R03.control",
+        "target": "receiving.id_reader",
+        "owner": "A03",
+        "translation_m": [
+          -1.7200000286102295,
+          -0.17000000178813934,
+          1.100000023841858
+        ]
+      },
+      {
+        "operation_id": "R04",
+        "anchor": "ANCHOR.R04.primary",
+        "target": "optics.safe_access_port",
+        "owner": "A05",
+        "translation_m": [
+          0.5799999833106995,
+          0.9890000224113464,
+          1.2100000381469727
+        ]
+      },
+      {
+        "operation_id": "R04",
+        "anchor": "ANCHOR.R04.control",
+        "target": "optics.interlock_status",
+        "owner": "A05",
+        "translation_m": [
+          0.5799999833106995,
+          0.9890000224113464,
+          1.399999976158142
+        ]
+      },
+      {
+        "operation_id": "R05",
+        "anchor": "ANCHOR.R05.primary",
+        "target": "transport.supported_cradle",
+        "owner": "A12",
+        "translation_m": [
+          -2.119999885559082,
+          -1.2000000476837158,
+          0.8349999785423279
+        ]
+      },
+      {
+        "operation_id": "R05",
+        "anchor": "ANCHOR.R05.control",
+        "target": "transport.registration_fiducial",
+        "owner": "A12",
+        "translation_m": [
+          -2.119999885559082,
+          -1.3899999856948853,
+          0.8799999952316284
+        ]
+      },
+      {
+        "operation_id": "R06",
+        "anchor": "ANCHOR.R06.primary",
+        "target": "timing.configuration_port",
+        "owner": "A08",
+        "translation_m": [
+          1.3200000524520874,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R06",
+        "anchor": "ANCHOR.R06.control",
+        "target": "timing.configuration_token",
+        "owner": "A08",
+        "translation_m": [
+          1.3200000524520874,
+          0.04100000113248825,
+          0.8659999966621399
+        ]
+      },
+      {
+        "operation_id": "R07",
+        "anchor": "ANCHOR.R07.primary",
+        "target": "diagnostic.map_transfer_port",
+        "owner": "A13",
+        "translation_m": [
+          1.9500000476837158,
+          2.1989998817443848,
+          1.4199999570846558
+        ]
+      },
+      {
+        "operation_id": "R07",
+        "anchor": "ANCHOR.R07.control",
+        "target": "diagnostic.registration_port",
+        "owner": "A13",
+        "translation_m": [
+          1.9500000476837158,
+          2.1989998817443848,
+          1.2899999618530273
+        ]
+      },
+      {
+        "operation_id": "R08",
+        "anchor": "ANCHOR.R08.primary",
+        "target": "archive.evaluation_port",
+        "owner": "A11",
+        "translation_m": [
+          2.5999999046325684,
+          0.30000001192092896,
+          0.8309999704360962
+        ]
+      },
+      {
+        "operation_id": "R08",
+        "anchor": "ANCHOR.R08.control",
+        "target": "archive.reference_token",
+        "owner": "A11",
+        "translation_m": [
+          2.5999999046325684,
+          0.1940000057220459,
+          0.8560000061988831
+        ]
+      },
+      {
+        "operation_id": "R09",
+        "anchor": "ANCHOR.R09.primary",
+        "target": "optics.load_dock",
+        "owner": "A05",
+        "translation_m": [
+          -0.27000001072883606,
+          0.7400000095367432,
+          0.9100000262260437
+        ]
+      },
+      {
+        "operation_id": "R09",
+        "anchor": "ANCHOR.R09.control",
+        "target": "optics.dock_latch",
+        "owner": "A05",
+        "translation_m": [
+          0.10000000149011612,
+          0.550000011920929,
+          0.949999988079071
+        ]
+      },
+      {
+        "operation_id": "R10",
+        "anchor": "ANCHOR.R10.primary",
+        "target": "dynamic.retained_mount",
+        "owner": "A07",
+        "translation_m": [
+          0.3700000047683716,
+          -0.10000000149011612,
+          1.024999976158142
+        ]
+      },
+      {
+        "operation_id": "R10",
+        "anchor": "ANCHOR.R10.control",
+        "target": "dynamic.service_port",
+        "owner": "A07",
+        "translation_m": [
+          0.699999988079071,
+          -0.4050000011920929,
+          0.8999999761581421
+        ]
+      },
+      {
+        "operation_id": "R11",
+        "anchor": "ANCHOR.R11.primary",
+        "target": "instruments.detector_mode_port",
+        "owner": "A06",
+        "translation_m": [
+          1.659999966621399,
+          0.9919999837875366,
+          0.8450000286102295
+        ]
+      },
+      {
+        "operation_id": "R11",
+        "anchor": "ANCHOR.R11.control",
+        "target": "instruments.mode_receipt_slot",
+        "owner": "A06",
+        "translation_m": [
+          1.9299999475479126,
+          0.9940000176429749,
+          0.8450000286102295
+        ]
+      },
+      {
+        "operation_id": "R12",
+        "anchor": "ANCHOR.R12.primary",
+        "target": "timing.photon_port",
+        "owner": "A08",
+        "translation_m": [
+          1.5499999523162842,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R12",
+        "anchor": "ANCHOR.R12.control",
+        "target": "timing.event_ledger",
+        "owner": "A08",
+        "translation_m": [
+          2.0199999809265137,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R13",
+        "anchor": "ANCHOR.R13.primary",
+        "target": "timing.encoding_port",
+        "owner": "A08",
+        "translation_m": [
+          1.7799999713897705,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R13",
+        "anchor": "ANCHOR.R13.control",
+        "target": "timing.event_ledger",
+        "owner": "A08",
+        "translation_m": [
+          2.0199999809265137,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R14",
+        "anchor": "ANCHOR.R14.primary",
+        "target": "timing.photon_port",
+        "owner": "A08",
+        "translation_m": [
+          1.5499999523162842,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R14",
+        "anchor": "ANCHOR.R14.control",
+        "target": "timing.event_ledger",
+        "owner": "A08",
+        "translation_m": [
+          2.0199999809265137,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R15",
+        "anchor": "ANCHOR.R15.primary",
+        "target": "timing.encoding_port",
+        "owner": "A08",
+        "translation_m": [
+          1.7799999713897705,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R15",
+        "anchor": "ANCHOR.R15.control",
+        "target": "timing.event_ledger",
+        "owner": "A08",
+        "translation_m": [
+          2.0199999809265137,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R16",
+        "anchor": "ANCHOR.R16.primary",
+        "target": "archive.analysis_port",
+        "owner": "A11",
+        "translation_m": [
+          2.880000114440918,
+          0.30000001192092896,
+          0.8309999704360962
+        ]
+      },
+      {
+        "operation_id": "R16",
+        "anchor": "ANCHOR.R16.control",
+        "target": "archive.version_token",
+        "owner": "A11",
+        "translation_m": [
+          2.880000114440918,
+          0.1940000057220459,
+          0.8560000061988831
+        ]
+      },
+      {
+        "operation_id": "R17",
+        "anchor": "ANCHOR.R17.primary",
+        "target": "optics.load_dock",
+        "owner": "A05",
+        "translation_m": [
+          -0.27000001072883606,
+          0.7400000095367432,
+          0.9100000262260437
+        ]
+      },
+      {
+        "operation_id": "R17",
+        "anchor": "ANCHOR.R17.control",
+        "target": "optics.dock_latch",
+        "owner": "A05",
+        "translation_m": [
+          0.10000000149011612,
+          0.550000011920929,
+          0.949999988079071
+        ]
+      },
+      {
+        "operation_id": "R18",
+        "anchor": "ANCHOR.R18.primary",
+        "target": "timing.photon_port",
+        "owner": "A08",
+        "translation_m": [
+          1.5499999523162842,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R18",
+        "anchor": "ANCHOR.R18.control",
+        "target": "timing.event_ledger",
+        "owner": "A08",
+        "translation_m": [
+          2.0199999809265137,
+          0.12999999523162842,
+          0.8339999914169312
+        ]
+      },
+      {
+        "operation_id": "R19",
+        "anchor": "ANCHOR.R19.primary",
+        "target": "archive.evaluation_port",
+        "owner": "A11",
+        "translation_m": [
+          2.5999999046325684,
+          0.30000001192092896,
+          0.8309999704360962
+        ]
+      },
+      {
+        "operation_id": "R19",
+        "anchor": "ANCHOR.R19.control",
+        "target": "archive.branch_ledger",
+        "owner": "A11",
+        "translation_m": [
+          2.880000114440918,
+          0.03999999910593033,
+          0.8309999704360962
+        ]
+      },
+      {
+        "operation_id": "R20",
+        "anchor": "ANCHOR.R20.primary",
+        "target": "metrology.reference_cradle",
+        "owner": "A10",
+        "translation_m": [
+          1.3799999952316284,
+          -1.1299999952316284,
+          0.8399999737739563
+        ]
+      },
+      {
+        "operation_id": "R20",
+        "anchor": "ANCHOR.R20.control",
+        "target": "metrology.registration_token",
+        "owner": "A10",
+        "translation_m": [
+          2.0,
+          -1.0800000429153442,
+          0.8700000047683716
+        ]
+      },
+      {
+        "operation_id": "R21",
+        "anchor": "ANCHOR.R21.primary",
+        "target": "receiving.return_slot",
+        "owner": "A03",
+        "translation_m": [
+          -2.049999952316284,
+          0.019999999552965164,
+          0.925000011920929
+        ]
+      },
+      {
+        "operation_id": "R21",
+        "anchor": "ANCHOR.R21.control",
+        "target": "receiving.custody_port",
+        "owner": "A03",
+        "translation_m": [
+          -1.7000000476837158,
+          -0.3199999928474426,
+          0.8700000047683716
+        ]
+      },
+      {
+        "operation_id": "R22",
+        "anchor": "ANCHOR.R22.primary",
+        "target": "archive.manifest_port",
+        "owner": "A11",
+        "translation_m": [
+          3.1600000858306885,
+          0.30000001192092896,
+          0.8309999704360962
+        ]
+      },
+      {
+        "operation_id": "R22",
+        "anchor": "ANCHOR.R22.control",
+        "target": "archive.failure_bin",
+        "owner": "A11",
+        "translation_m": [
+          3.1500000953674316,
+          -0.03500000014901161,
+          0.8999999761581421
+        ]
+      }
+    ]
+  },
+  "remaining_boundaries": [
+    "All fourteen unknown-input cards remain unresolved; no physical numeric defaults or physical permission are created.",
+    "The canonical synthetic registry replay is a finite metadata exercise; the full physical route, sensor authentication, recovery controller and actor isolation are not implemented.",
+    "Digest/sign checks do not prove optical complementarity, actual exposure, calibration, fabrication quality, spatial resolution or reconstruction accuracy.",
+    "Independent clocks, sensors, source raw data, exact modified software/weights and quantitative uncertainty/acceptance policies still require lawful independent evidence and qualification.",
+    "Task-to-scene correspondence is nominal. Separate geometry review does not establish robot reachability, collision safety, grip forces, physical fit or optical fidelity.",
+    "No source PDFs, figures, movies, source code, source CAD or copied models are exported in this task package."
+  ],
+  "reviewed_content_snapshot": {
+    "files": [
+      {
+        "path": "EXPORT_SCOPE.md",
+        "bytes": 665,
+        "sha256": "6a871a915f5f8947def4fe1e897c869e1f3a48d551897a4f7c8f40b0b5feafcd"
+      },
+      {
+        "path": "LICENSE",
+        "bytes": 11357,
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      {
+        "path": "NOTICE.md",
+        "bytes": 597,
+        "sha256": "ce08cad082071548318d5fe9b628e26ff9b3067fc9c03bda15ee73778e6b024d"
+      },
+      {
+        "path": "README.md",
+        "bytes": 1981,
+        "sha256": "8c1c7dd8f5ad5b46ac4544ac7be8f1409d8338a535bafb80c641999f8cef61ff"
+      },
+      {
+        "path": "RELEASE_BOUNDARY.json",
+        "bytes": 552,
+        "sha256": "f1a998f3a7dc8fa23c8cd0e521d5ab4da6ad8a2370dfea81c689fd53c5a2cc87"
+      },
+      {
+        "path": "TASK_DESIGN.md",
+        "bytes": 8231,
+        "sha256": "5383ddfab65aebb03f26ff4e1121d3f3b8cc6a18e9c3d4d917de635d32797db0"
+      },
+      {
+        "path": "adversarial_cases.json",
+        "bytes": 892,
+        "sha256": "35550ea7874d2ab615a07a07503e3ce637eda115759d38845ba32d0c12ca2671"
+      },
+      {
+        "path": "agent_visible.json",
+        "bytes": 1296,
+        "sha256": "076930080bddfaca4935443e1cbac420f3e26c60ab1452fe85a3f7b70a786603"
+      },
+      {
+        "path": "analysis_contracts.json",
+        "bytes": 1251,
+        "sha256": "77721c00e8161aea13fd478e1d99b10c99a56238332029b72f98456f237d7d0e"
+      },
+      {
+        "path": "asset_binding_plan.json",
+        "bytes": 25019,
+        "sha256": "751ee1bb2eb3332d56a55612632fcf8aef402adedeeda118fb51749f419658be"
+      },
+      {
+        "path": "branches.json",
+        "bytes": 12872,
+        "sha256": "139d3dacd8446ab420183fe3a42eb705a0a2e2286126fc97f0daec4c03f97d27"
+      },
+      {
+        "path": "controls_and_repeats.json",
+        "bytes": 5007,
+        "sha256": "d7c55db312866ca49b0f11dd68b65f2b49e0145d7ee23e7e2ca7f2a7de35ecbb"
+      },
+      {
+        "path": "coverage_matrix.json",
+        "bytes": 3650,
+        "sha256": "da74793a908cbae8b9e8636f1379bb813ec0b1ca8c2b48ea53821242c6754e2f"
+      },
+      {
+        "path": "dependencies.json",
+        "bytes": 597,
+        "sha256": "987f47cc50a862bcd2186fe4a8b88920bbb67b38c1e357ce1b92bfecc285b913"
+      },
+      {
+        "path": "design_assumptions.json",
+        "bytes": 746,
+        "sha256": "35674ebc92d36405008c3935805fd6f175a1be76dde18d1b209a9d5f8838b833"
+      },
+      {
+        "path": "episode_input_contract.json",
+        "bytes": 1218,
+        "sha256": "6e4d7db18e6d30d8f66639c05562369f8d7fd091501c0f90f6a907b1625ace79"
+      },
+      {
+        "path": "evaluator_reference.json",
+        "bytes": 836,
+        "sha256": "23dafbe9997ee4eae664c9d2132a4bd123a8052c55b6a60775a3f05f623b647e"
+      },
+      {
+        "path": "evidence_map.json",
+        "bytes": 5503,
+        "sha256": "6e97c430d522c283f3b918bc4d713a90c43a7fab45eab2d8315aa40c219ac169"
+      },
+      {
+        "path": "lifecycle_contract.json",
+        "bytes": 4081,
+        "sha256": "35fd7d59d03408e606267fc029ce10319198cd8c1966bd36ab2890ddd0c81e3e"
+      },
+      {
+        "path": "lineage_contract.json",
+        "bytes": 2423,
+        "sha256": "b164686e110c88fbeee4873cd0eec2d371cae40d6cb0f84136fafab4f729a158"
+      },
+      {
+        "path": "material_cards.json",
+        "bytes": 3298,
+        "sha256": "7fee507910b2e1f192a92ee62d490085809ac08db3727e22dc1df4c2e145c49f"
+      },
+      {
+        "path": "mock_contract.json",
+        "bytes": 922,
+        "sha256": "d07625f21b2f4f760d7f058b50923888250c13fd92dc52712e34dc4ea3bbbac6"
+      },
+      {
+        "path": "nonmanual_scope.json",
+        "bytes": 826,
+        "sha256": "138cc4f3d019626c7f8871db2f01da128d2a51bcc273910b5f30828348eb3922"
+      },
+      {
+        "path": "operations.json",
+        "bytes": 38837,
+        "sha256": "318daecc237ea0ecd4e9a3d443b0798e586b7d6848c3bdc4706047a9752ac444"
+      },
+      {
+        "path": "preparation_routes.json",
+        "bytes": 2040,
+        "sha256": "2adad48670f88c3b695978d0508dcb49fb97d20c149ac85ba0b092aacdb38d54"
+      },
+      {
+        "path": "provenance.json",
+        "bytes": 23889,
+        "sha256": "9453420551d084e100a2c1eb243ac0c3142e036b06867407f5e5c58c6e2168e4"
+      },
+      {
+        "path": "recovery_boundaries.json",
+        "bytes": 846,
+        "sha256": "baf69858764c2d4424612adc8e0bd052d0da1f62137911160ac8bcb2dc49c32c"
+      },
+      {
+        "path": "safety_boundaries.json",
+        "bytes": 1575,
+        "sha256": "025114e6260bd96824a62947c69708a0d3223d43f1fc17771e85bc0533372d2a"
+      },
+      {
+        "path": "source_access_audit.json",
+        "bytes": 8227,
+        "sha256": "0d202d07a088a0c6b20342b68afe5fd410e4d3aa5c8ea4c472a54b798b30e73a"
+      },
+      {
+        "path": "source_conflicts.json",
+        "bytes": 2594,
+        "sha256": "3c4925fe742c764b45693d14d016d446b36a366e69828d0494bb1dedfb2399f9"
+      },
+      {
+        "path": "source_outcomes.json",
+        "bytes": 2340,
+        "sha256": "fdd9dc52c6cff31d9aa06b2e52ee29737e81270346eb3061224c8721763db0dc"
+      },
+      {
+        "path": "source_parameters.json",
+        "bytes": 8374,
+        "sha256": "5f7b8b3be916e4df122e09ab8ab3c2381f4e8ac74137cd3c62816cf3ad5d41f5"
+      },
+      {
+        "path": "station_contracts.json",
+        "bytes": 4273,
+        "sha256": "ea8a1a95408b47fb7c3e79a06480eed67add28eec3dc0c24c2083bba76b9d476"
+      },
+      {
+        "path": "tests/contract.py",
+        "bytes": 23715,
+        "sha256": "fc0b94b819ef75d9fb2ba32dcee469627aec785673e2f0ec7ed1504d4a905111"
+      },
+      {
+        "path": "tests/test_contract.py",
+        "bytes": 21507,
+        "sha256": "a3386e7107a2b25e01e0bc6359b3deb3bf0768cfc6f6322cdffba5137a54e4b7"
+      },
+      {
+        "path": "tests/test_export.py",
+        "bytes": 3709,
+        "sha256": "97053c36710a964b9d87807f1f15c54ed943f3ba05947fcd6f06f5d9c5a88ffe"
+      },
+      {
+        "path": "tests/verify_export.py",
+        "bytes": 8427,
+        "sha256": "21007825adee3f9153ea38586022747b92b1f986759ba18386c315b840ae2ff7"
+      },
+      {
+        "path": "tests/verify_package.py",
+        "bytes": 6497,
+        "sha256": "40fadd8f2735d09bbf5e33f86c53aa387f0952f494683824cf235de68ed49a1b"
+      },
+      {
+        "path": "tests/verify_pairing.py",
+        "bytes": 3954,
+        "sha256": "b4499c09a874fddad0482e0e539ee53ef386f92d590d1b8152a4b3c04f96d3fc"
+      },
+      {
+        "path": "transport_routes.json",
+        "bytes": 4112,
+        "sha256": "9f5ab7d08994ec9d512a4c79a9c7828b03fa9df0d2aaeaec0f48d5f4efcfebf8"
+      },
+      {
+        "path": "unknown_parameters.json",
+        "bytes": 6926,
+        "sha256": "d02c608111a3c796c88ce7039cdcbe28297b6e259797d23f9aae77ae1f79ea09"
+      }
+    ],
+    "excluded": [
+      "STATUS.json",
+      "VERIFICATION.json",
+      "EXPORT_ALLOWLIST.json",
+      "review/"
+    ],
+    "reason": "Completion metadata and review reports are excluded to avoid circular hashes. Any substantive-file change requires renewed review; the exact final archive and all excluded completion files are sealed by an external delivery receipt."
+  },
+  "physical_execution": false,
+  "physical_simulation": false,
+  "scientific_reproduction": false,
+  "source_data_reanalysis": false,
+  "hardware_safety_qualified": false,
+  "validated_runnable_whole_paper_tasks": 0
+}

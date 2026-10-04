@@ -1,6 +1,16 @@
-# Verification: 34 paper designs and 3 bounded subsets
+# Verification: 35 paper designs and 3 bounded subsets
 
 Publication status is established by the repository commit containing these files. The sections below record bounded verification snapshots; their publication fields describe the state at review time rather than live publication, deployment or remote CI status. Scientific, source-access and real-browser verification limits remain unchanged.
+
+## Mid-infrared paired integration: verification scope
+
+38 families comprise 35 paper-level designs and three bounded subsets, with 871 inspection records and 3,172 operation definitions. Mid-infrared contributes eight experimental branches, 22 authored operation templates, five source-reference views and one metadata-only default hold. All 34 source JSON documents are retained, including twelve controls, ten conflicts and fourteen unresolved-input groups.
+
+Independent viewer review passes fourteen tests, including twenty-four hostile projection probes and three asset/task byte or snapshot mutation cases. Frozen-input review passes 416 checks, and the native Blender selector/transform audit passes 139 checks across 378 objects. All 38 families rebuild to 152 byte-identical generated outputs; all fourteen mid-infrared diagram variants parse and six representative static renders were visually inspected.
+
+Verification is limited to exact archive/member integrity, source-contract equality, finite synthetic guard checks, independent hostile projection mutations, mocked-DOM navigation and static diagram rendering. The paired release contains 48 task files and 45 asset files; twelve task-pinned scene hashes, 22 operation bindings and 44 nominal anchors are checked. The original root LICENSE, all prior task/asset and embodied files, and all 148 prior generated family artifacts are preserved.
+
+No source publication reread, source-data reanalysis, continuous movie review, independent mathematics proof, new rights clearance, physical safety qualification or scientific reproduction is claimed. No actual browser rendering, native browser-history behavior, touch/responsive layout, real downloads or remote CI is established by the mocked tests. Repository commits determine publication state. Exact-delta replay and independent audit receipts are retained outside the published source tree.
 
 ## Recorded Arc-Morph paired-release verification — 2026-10-04
 

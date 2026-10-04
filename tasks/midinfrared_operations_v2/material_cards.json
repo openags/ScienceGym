@@ -1,0 +1,95 @@
+{
+  "schema_version": "midinfrared_task.v2",
+  "classification": "authored_robot_translation",
+  "status": "Requirements only; no physical execution, hardware test, or simulation",
+  "materials": [
+    {
+      "id": "M01",
+      "name": "Copper letter-mask carrier",
+      "source": "Main Fig1",
+      "source_state": "Copper sheet with E/C/N/U transmission letters",
+      "parent_material": "copper stock lot",
+      "authored_states": [
+        "stock specification",
+        "qualified fabrication",
+        "independently inspected mask",
+        "protected carrier",
+        "received",
+        "docked",
+        "imaged",
+        "stored or quarantined"
+      ],
+      "missing": [
+        "sheet thickness",
+        "letter CAD and exact dimensions",
+        "finish/flatness",
+        "carrier interfaces"
+      ],
+      "robot_boundary": "Handle the cassette perimeter only; no exposed cutting, deburring or touching the optical target"
+    },
+    {
+      "id": "M02",
+      "name": "Silicon-star carrier",
+      "source": "SI Note7/FigS6",
+      "source_state": "200 micrometer double-polished silicon wafer with an etched five-point star",
+      "parent_material": "silicon wafer lot",
+      "authored_states": [
+        "stock qualification",
+        "closed laser-fabrication service",
+        "surface/reference inspection",
+        "protected carrier",
+        "received",
+        "docked",
+        "imaged",
+        "stored or quarantined"
+      ],
+      "missing": [
+        "wafer lateral dimensions and doping",
+        "etch depth/profile",
+        "mount design",
+        "reference-imaging calibration"
+      ],
+      "robot_boundary": "Protected carrier only; no bare-wafer grip or laser-fabrication commands"
+    },
+    {
+      "id": "M03",
+      "name": "Optical calibration and blank carrier set",
+      "source": "Authored controls; object-removed mapping is source anchored",
+      "authored_states": [
+        "reference identity",
+        "qualified inspection",
+        "controlled storage",
+        "pre/post calibration use"
+      ],
+      "missing": [
+        "reference standard specification",
+        "traceability",
+        "acceptance thresholds"
+      ],
+      "robot_boundary": "No substitution of a source figure for a physical reference"
+    },
+    {
+      "id": "M04",
+      "name": "Instrument and service modules",
+      "source": "Main Methods; SI Notes2-3",
+      "source_state": "Synchronized optical source, conversion crystal, DMD, filters, analog or photon-counting detector and controller",
+      "authored_states": [
+        "supplied",
+        "qualified",
+        "calibrated",
+        "safe-ready",
+        "acquiring",
+        "safe-unload",
+        "closed"
+      ],
+      "missing": [
+        "current vendor equivalence",
+        "maintenance/calibration intervals",
+        "interface protocols",
+        "optical safety case"
+      ],
+      "robot_boundary": "Sealed qualified service; no optical-source build, exposed alignment, power escalation, or hazardous synthesis instructions"
+    }
+  ],
+  "sample_preparation_completion_rule": "A received sample with no preparation/inspection lineage fails the route. Delegating manufacture does not erase its required specification, material lot, service receipt or acceptance decision."
+}

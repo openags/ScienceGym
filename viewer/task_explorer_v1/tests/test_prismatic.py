@@ -225,7 +225,7 @@ class PrismaticBundleTests(unittest.TestCase):
             with self.subTest(family=key):
                 expected_commit = builder.source_commit(key)
                 self.assertEqual(family['source_commit'], expected_commit)
-                if key in ('lockable_origami', 'varactor', 'wetting', 'arcmorph'):
+                if key in ('lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared'):
                     self.assertEqual(family['source_folder'], '../../tasks/' + builder.package_name(key) + '/')
                     self.assertEqual(family['source_link_mode'], 'repository_relative_frozen_local_snapshot')
                     self.assertIn('remote publication is not asserted', family['source_publication'])
@@ -239,8 +239,8 @@ class PrismaticBundleTests(unittest.TestCase):
     def test_manifest_preserves_ten_family_totals(self):
         manifest = json.loads((ROOT / 'manifest.json').read_text())
         self.assertEqual(manifest['commit'], '293e32da790303c1a17131e036235f69a5f342e0')
-        self.assertEqual(len(manifest['families']), 37)
-        earlier = [f for f in manifest['families'] if f['id'] not in ('wavefront', 'bianisotropic', 'edge', 'origami_memory', 'ring_origami', 'mechanical_backprop', 'granular_assembly', 'beaded', 'thermal_jamming', 'horn_acoustics', 'mechanical_logic', 'cold_shape', 'gear', 'hydrogel_optical', 'atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph')]
+        self.assertEqual(len(manifest['families']), 38)
+        earlier = [f for f in manifest['families'] if f['id'] not in ('wavefront', 'bianisotropic', 'edge', 'origami_memory', 'ring_origami', 'mechanical_backprop', 'granular_assembly', 'beaded', 'thermal_jamming', 'horn_acoustics', 'mechanical_logic', 'cold_shape', 'gear', 'hydrogel_optical', 'atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared')]
         self.assertEqual(len(earlier), 10)
         self.assertEqual(sum(family['routes'] for family in earlier), 202)
         self.assertEqual(sum(family['operations'] for family in earlier), 1376)

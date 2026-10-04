@@ -1,0 +1,260 @@
+{
+  "schema": "sciencegym.midinfrared.assembly.v1",
+  "units": "m",
+  "basis": "Original static nominal assemblies; no kinematic or physical joints",
+  "assets": [
+    {
+      "asset_id": "A01",
+      "name": "Protected copper-mask cassette",
+      "root": "ASSET.A01",
+      "station_memberships": [
+        "S01",
+        "S03"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "grasp faces",
+        "orientation fiducials",
+        "safe optical aperture",
+        "latch feature"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A02",
+      "name": "Protected silicon-wafer cassette",
+      "root": "ASSET.A02",
+      "station_memberships": [
+        "S01",
+        "S03"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "edge-only support",
+        "anti-misorientation key",
+        "crack-inspection view",
+        "aperture protection"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A03",
+      "name": "Receiving rack and quarantine cabinet",
+      "root": "ASSET.A03",
+      "station_memberships": [
+        "S01"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "unambiguous slots",
+        "ID labels",
+        "occupancy sensors",
+        "collision clearances"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A04",
+      "name": "Closed fabrication-service handoff",
+      "root": "ASSET.A04",
+      "station_memberships": [
+        "S02"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "input/output ports",
+        "job/status IDs",
+        "receipt carrier",
+        "reject bin"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A05",
+      "name": "Interlocked optical enclosure and load dock",
+      "root": "ASSET.A05",
+      "station_memberships": [
+        "S03"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "door state",
+        "beam-safe state",
+        "docking datum",
+        "occupancy",
+        "latch sensor"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A06",
+      "name": "Sealed instrument module set",
+      "root": "ASSET.A06",
+      "station_memberships": [
+        "S03"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "typed service ports",
+        "detector branch tag",
+        "calibration epoch labels"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A07",
+      "name": "Protected dynamic target fixture",
+      "root": "ASSET.A07",
+      "station_memberships": [
+        "S03"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "motion status",
+        "target pose metadata",
+        "guarded envelope"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A08",
+      "name": "Timing and data interface console",
+      "root": "ASSET.A08",
+      "station_memberships": [
+        "S04"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "configuration receipt",
+        "pattern/event log",
+        "FIFO status",
+        "overload indicators"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A09",
+      "name": "Independent reference and blank carriers",
+      "root": "ASSET.A09",
+      "station_memberships": [
+        "S01",
+        "S03"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "reference ID",
+        "clean contact zones",
+        "storage cover"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A10",
+      "name": "Metrology/reference image station",
+      "root": "ASSET.A10",
+      "station_memberships": [
+        "S02",
+        "S05"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "calibrated field of view",
+        "focus/pose receipt",
+        "sample linkage"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A11",
+      "name": "Archive console and evidence bins",
+      "root": "ASSET.A11",
+      "station_memberships": [
+        "S05"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "lineage view",
+        "failed-run retention",
+        "hash manifest"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A12",
+      "name": "Gripper and transport handoff representation",
+      "root": "ASSET.A12",
+      "station_memberships": [
+        "S01",
+        "S03"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "approved contact surfaces",
+        "payload limit",
+        "dock release handshake"
+      ],
+      "qualified_pose": null
+    },
+    {
+      "asset_id": "A13",
+      "name": "Qualified spatial pump/SFG diagnostic-imaging module",
+      "root": "ASSET.A13",
+      "station_memberships": [
+        "S03"
+      ],
+      "geometry_origin": "original_authored",
+      "required_affordances": [
+        "service registration receipt",
+        "spatial sensor identity",
+        "raw-map transfer",
+        "safe enclosed interface"
+      ],
+      "qualified_pose": null
+    }
+  ],
+  "relationships": [
+    {
+      "child": "copper.E.mask",
+      "asset_id": "A01",
+      "contact_permission": "cassette candidate handles only",
+      "carrier_assembly_prefix": "copper.E",
+      "actual_parent_object": "ASSET.A01",
+      "prefix_is_logical_not_scene_object": true
+    },
+    {
+      "child": "copper.C.mask",
+      "asset_id": "A01",
+      "contact_permission": "cassette candidate handles only",
+      "carrier_assembly_prefix": "copper.C",
+      "actual_parent_object": "ASSET.A01",
+      "prefix_is_logical_not_scene_object": true
+    },
+    {
+      "child": "copper.N.mask",
+      "asset_id": "A01",
+      "contact_permission": "cassette candidate handles only",
+      "carrier_assembly_prefix": "copper.N",
+      "actual_parent_object": "ASSET.A01",
+      "prefix_is_logical_not_scene_object": true
+    },
+    {
+      "child": "copper.U.mask",
+      "asset_id": "A01",
+      "contact_permission": "cassette candidate handles only",
+      "carrier_assembly_prefix": "copper.U",
+      "actual_parent_object": "ASSET.A01",
+      "prefix_is_logical_not_scene_object": true
+    },
+    {
+      "child": "silicon.wafer",
+      "asset_id": "A02",
+      "contact_permission": "cassette candidate handles only",
+      "carrier_assembly_prefix": "silicon.star",
+      "actual_parent_object": "ASSET.A02",
+      "prefix_is_logical_not_scene_object": true
+    }
+  ],
+  "source_shape_boundary": "Copper E/C/N/U and silicon five-point star are source object roles. All actual mesh outlines and layouts are independently designed. No source tracing.",
+  "reference_boundary": "A09 reference/blank carriers and A10 metrology are independent evidence dependencies. Original display objects do not supply ground truth.",
+  "robot_boundary": "A12 is a static end-effector representation with null payload/force/friction/reach limits. No robot arm, controller, collision engine, path or grasp is validated."
+}
