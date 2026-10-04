@@ -1,0 +1,828 @@
+{
+  "schema": "cooling_asset_metadata.v1",
+  "schema_status": "package-local review contract; no universal repository loader or validator is asserted",
+  "asset_id": "cooling_scene_assets_v1",
+  "asset_version": "1.0.0",
+  "title": "Original directional cooling operations lab",
+  "created_utc": "2026-10-04",
+  "creator": "OpenAI-assisted original authoring for this contribution",
+  "intended_task_id": "directional_cooling_operations_v2",
+  "task_reference": "../afm-assets-release-candidate/tasks/directional_cooling_operations_v2",
+  "task_operations_sha256": "1b8e4bb6bfbfc8f1b3a34581b29cae54469bbf3d4c174539db4e8decd9d901bf",
+  "readiness": {
+    "geometry": "original_static_scene_and_exchange_exports",
+    "appearance": "authored_unmeasured_materials",
+    "interaction": "bounded_semantic_demo_only",
+    "physical_execution": false,
+    "robot_feasibility_validated": false,
+    "full_task_executable": false,
+    "source_reproduction_established": false,
+    "physics_backend": null,
+    "hardware_or_DAQ_backend": null
+  },
+  "units": {
+    "length": "metre",
+    "mass": "kilogram",
+    "time": "second",
+    "angle": "radian",
+    "source_conversions": {
+      "centimetre_to_metre": 0.01,
+      "millimetre_to_metre": 0.001,
+      "micrometre_to_metre": 1e-06
+    },
+    "mass_values": "unknown; no masses assigned"
+  },
+  "frames": {
+    "handedness": "right",
+    "native_up_axis": "+Z",
+    "native_forward_axis": "-Y, bench operator side",
+    "origin": "Authored world/bench center in XY; Z=0 below bench; not an experimental datum",
+    "root_transforms": "All eight native root transforms are identity. Many annular meshes and curves bake vertices in world coordinates, so their object origin is not the component centroid. Use explicit affordance frames, not object.location alone.",
+    "transforms": "Inventory gives parent-from-part object transforms; root identity makes them world transforms. Mesh vertices may be offset within object-local frame.",
+    "rotation": "Inventory quaternion [x,y,z,w]; generator uses Blender XYZ Euler radians for authored poses",
+    "affordance_frames": "Explicit root-relative frame origins and quaternion rotations; all are authored, unqualified installation frames",
+    "glb_export": "glTF 2.0, metres, standard Y-up export conversion from Blender Z-up; Blender world (x,y,z) corresponds to glTF (x,z,-y); object IDs preserved",
+    "import_gate": "Verify units, up-axis, object names, transforms and dimensions after import; no physics/joint import contract exists"
+  },
+  "inventory": {
+    "path": "asset_inventory.json",
+    "distinct_asset_root_count": 8,
+    "part_count": 438,
+    "count_rule": "Count each asset_id root once; parts, display copies, mesh segments, cameras, lights, operation references and module re-exports do not create new asset roots.",
+    "root_ids": [
+      "cooling.lab_bench",
+      "cooling.white",
+      "cooling.black",
+      "cooling.handling_fixture",
+      "cooling.backside_inspection",
+      "cooling.logger_power",
+      "cooling.optical_bench",
+      "cooling.scale_reference"
+    ],
+    "paired_experimental_display_instances": [
+      "cooling.white",
+      "cooling.black"
+    ],
+    "handling_module_root_ids": [
+      "cooling.handling_fixture",
+      "cooling.backside_inspection"
+    ],
+    "glb_intentionally_excluded_part_ids": [
+      "studio.floor",
+      "handling.film.lower.torn_variant"
+    ]
+  },
+  "assets": [
+    {
+      "asset_id": "cooling.lab_bench",
+      "instance_id": "cooling.lab_bench.01",
+      "version": "1.0.0",
+      "part_count": 219,
+      "parts_reference": "asset_inventory.json#/assets/0/parts",
+      "dimension_provenance": "authored_laboratory",
+      "mass_kg": null,
+      "physical_scale": 1,
+      "display_scale_note": "Paired-device films retain 1:1 thickness. The handling lower/upper intact film meshes and hidden lower-film torn variant have 50x thickness only (.8 mm display / 16 um target); XY trim and all other geometry remain metric authored dimensions. Exploded spacing is authored, not a source installation.",
+      "operation_ids": []
+    },
+    {
+      "asset_id": "cooling.white",
+      "instance_id": "cooling.white.01",
+      "version": "1.0.0",
+      "part_count": 42,
+      "parts_reference": "asset_inventory.json#/assets/1/parts",
+      "dimension_provenance": "source_component_dimensions_authored_mounts",
+      "mass_kg": null,
+      "physical_scale": 1,
+      "display_scale_note": "Paired-device films retain 1:1 thickness. The handling lower/upper intact film meshes and hidden lower-film torn variant have 50x thickness only (.8 mm display / 16 um target); XY trim and all other geometry remain metric authored dimensions. Exploded spacing is authored, not a source installation.",
+      "operation_ids": [
+        "BASE",
+        "EMITTER",
+        "FILM",
+        "SHIELD",
+        "REFLECTOR",
+        "TC_ATTACH",
+        "HEATER_ATTACH",
+        "ASSEMBLY_QC",
+        "LID_REMOVE",
+        "TRACK_ADJUST"
+      ]
+    },
+    {
+      "asset_id": "cooling.black",
+      "instance_id": "cooling.black.01",
+      "version": "1.0.0",
+      "part_count": 42,
+      "parts_reference": "asset_inventory.json#/assets/2/parts",
+      "dimension_provenance": "source_component_dimensions_authored_mounts",
+      "mass_kg": null,
+      "physical_scale": 1,
+      "display_scale_note": "Paired-device films retain 1:1 thickness. The handling lower/upper intact film meshes and hidden lower-film torn variant have 50x thickness only (.8 mm display / 16 um target); XY trim and all other geometry remain metric authored dimensions. Exploded spacing is authored, not a source installation.",
+      "operation_ids": [
+        "BASE",
+        "EMITTER",
+        "FILM",
+        "SHIELD",
+        "REFLECTOR",
+        "TC_ATTACH",
+        "HEATER_ATTACH",
+        "ASSEMBLY_QC",
+        "LID_REMOVE",
+        "TRACK_ADJUST"
+      ]
+    },
+    {
+      "asset_id": "cooling.handling_fixture",
+      "instance_id": "cooling.handling_fixture.01",
+      "version": "1.0.0",
+      "part_count": 25,
+      "parts_reference": "asset_inventory.json#/assets/3/parts",
+      "dimension_provenance": "authored_fixture_dimensions",
+      "mass_kg": null,
+      "physical_scale": 1,
+      "display_scale_note": "Paired-device films retain 1:1 thickness. The handling lower/upper intact film meshes and hidden lower-film torn variant have 50x thickness only (.8 mm display / 16 um target); XY trim and all other geometry remain metric authored dimensions. Exploded spacing is authored, not a source installation.",
+      "operation_ids": [
+        "STOCK",
+        "MOVE",
+        "LAYOUT",
+        "FILM",
+        "UNMOUNT",
+        "ARCHIVE"
+      ]
+    },
+    {
+      "asset_id": "cooling.backside_inspection",
+      "instance_id": "cooling.backside_inspection.01",
+      "version": "1.0.0",
+      "part_count": 29,
+      "parts_reference": "asset_inventory.json#/assets/4/parts",
+      "dimension_provenance": "source_emitter_authored_probe_heater_envelopes",
+      "mass_kg": null,
+      "physical_scale": 1,
+      "display_scale_note": "Paired-device films retain 1:1 thickness. The handling lower/upper intact film meshes and hidden lower-film torn variant have 50x thickness only (.8 mm display / 16 um target); XY trim and all other geometry remain metric authored dimensions. Exploded spacing is authored, not a source installation.",
+      "operation_ids": [
+        "TC_ATTACH",
+        "HEATER_ATTACH",
+        "MAP_ATTACH"
+      ]
+    },
+    {
+      "asset_id": "cooling.logger_power",
+      "instance_id": "cooling.logger_power.01",
+      "version": "1.0.0",
+      "part_count": 25,
+      "parts_reference": "asset_inventory.json#/assets/5/parts",
+      "dimension_provenance": "authored_equipment_envelopes",
+      "mass_kg": null,
+      "physical_scale": 1,
+      "display_scale_note": "Paired-device films retain 1:1 thickness. The handling lower/upper intact film meshes and hidden lower-film torn variant have 50x thickness only (.8 mm display / 16 um target); XY trim and all other geometry remain metric authored dimensions. Exploded spacing is authored, not a source installation.",
+      "operation_ids": [
+        "SYNC",
+        "STAG_LOG",
+        "POWER_CHECK",
+        "PID_CONFIG",
+        "HEATER_OFF",
+        "STOP_SAFE"
+      ]
+    },
+    {
+      "asset_id": "cooling.optical_bench",
+      "instance_id": "cooling.optical_bench.01",
+      "version": "1.0.0",
+      "part_count": 31,
+      "parts_reference": "asset_inventory.json#/assets/6/parts",
+      "dimension_provenance": "authored_instrument_not_vendor_CAD",
+      "mass_kg": null,
+      "physical_scale": 1,
+      "display_scale_note": "Paired-device films retain 1:1 thickness. The handling lower/upper intact film meshes and hidden lower-film torn variant have 50x thickness only (.8 mm display / 16 um target); XY trim and all other geometry remain metric authored dimensions. Exploded spacing is authored, not a source installation.",
+      "operation_ids": [
+        "OPT_REFERENCE",
+        "OPT_MOUNT",
+        "OPT_SCAN",
+        "ANGLE_MOUNT",
+        "ANGLE_SCAN",
+        "OPT_UNLOAD"
+      ]
+    },
+    {
+      "asset_id": "cooling.scale_reference",
+      "instance_id": "cooling.scale_reference.01",
+      "version": "1.0.0",
+      "part_count": 25,
+      "parts_reference": "asset_inventory.json#/assets/7/parts",
+      "dimension_provenance": "authored_reference",
+      "mass_kg": null,
+      "physical_scale": 1,
+      "display_scale_note": "Paired-device films retain 1:1 thickness. The handling lower/upper intact film meshes and hidden lower-film torn variant have 50x thickness only (.8 mm display / 16 um target); XY trim and all other geometry remain metric authored dimensions. Exploded spacing is authored, not a source installation.",
+      "operation_ids": []
+    }
+  ],
+  "source_references": [
+    {
+      "source_id": "MAIN",
+      "title": "Bhatia et al. (2018), Passive directional sub-ambient daytime radiative cooling",
+      "doi": "10.1038/s41467-018-07293-9",
+      "url": "https://www.nature.com/articles/s41467-018-07293-9",
+      "publication_date": "2018-11-27",
+      "reference_license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_use": "Reference facts only; no source pixels, text pages, meshes or CAD republished",
+      "coverage": "Audited written main content; main figure pixels unverified; no main byte snapshot claimed",
+      "reviewed_by_prior_source_audit_utc": "2026-10-03"
+    },
+    {
+      "source_id": "SI",
+      "title": "Supplementary Information, all 25 pages",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-07293-9/MediaObjects/41467_2018_7293_MOESM1_ESM.pdf",
+      "local_reference_sha256": "61f8587c1b34a45072fac9b25591b89f1a1b00b212b61e9c29c41e2e73a340b3",
+      "local_text_sha256": "fc3e668bddd6d3835d9239c7e50eb47a0502fc50d71c29d3558732941a340200",
+      "reference_license": "CC-BY-4.0",
+      "source_use": "Dimensions and component roles; original primitives authored independently",
+      "coverage": "Full local text read for this asset contract; prior audit documents SI figure pixel review"
+    },
+    {
+      "source_id": "SOURCE_ADDENDUM",
+      "title": "Cooling source-reading evidence addendum",
+      "internal_reference": "../source-gap-resolution-20261003/cooling/source_reading_addendum.md",
+      "sha256": "c16569041d9b4ccadc1f20d31989c57dc3192468e8eca0f362bf0965589293cd",
+      "source_use": "Preserve written-reading, source ambiguity, sensor-schematic and physical-reproduction boundaries; not republished in this package"
+    }
+  ],
+  "source_dimensions": [
+    {
+      "dimension_id": "white.emitter",
+      "object_ids": [
+        "white.emitter_copper"
+      ],
+      "source_parameters_m": {
+        "diameter": 0.05,
+        "thickness": 0.0005
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {},
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "white.insulation",
+      "object_ids": [
+        "white.insulation.1",
+        "white.insulation.2"
+      ],
+      "source_parameters_m": {
+        "diameter": 0.05,
+        "each_layer_thickness": 0.025
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "layer_count": 2,
+        "upper_layer_heater_recess_radius_m": 0.023,
+        "upper_layer_heater_recess_depth_m": 0.0012,
+        "recess_source_status": "authored clearance, not a reported source feature; 50 mm diameter and 25 mm layer envelope preserved"
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "white.pe_support",
+      "object_ids": [
+        "white.pe_support"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.076,
+        "outer_diameter": 0.102
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "display_height_m": 0.052,
+        "source_height_m": null
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "white.film_ring",
+      "object_ids": [
+        "white.film_frame"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.107,
+        "outer_diameter": 0.127,
+        "thickness": 0.0064
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {},
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "white.films",
+      "object_ids": [
+        "white.film.lower",
+        "white.film.upper"
+      ],
+      "source_parameters_m": {
+        "each_film_thickness": 1.6e-05
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "layer_count": 2,
+        "display_thickness_scale": 1,
+        "trim_diameter_m": 0.124,
+        "trim_diameter_basis": "authored",
+        "mounting_planes": "authored opposite ring-face datums; attachment/tension/sealing unqualified"
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "white.shield",
+      "object_ids": [
+        "white.radiation_shield"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.14,
+        "outer_diameter": 0.152,
+        "height": 0.057
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {},
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "white.aperture",
+      "object_ids": [
+        "white.aperture_plate"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.05
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "outer_diameter_m": 0.152,
+        "plate_thickness_m": 0.002
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "white.reflector",
+      "object_ids": [
+        "white.reflector_disk"
+      ],
+      "source_parameters_m": {
+        "diameter": 0.06
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "disk_thickness_m": 0.0015,
+        "source_thickness_m": null,
+        "display_height_above_emitter_m": 0.15,
+        "physical_target_height_above_emitter_m": null
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "white.track_stock",
+      "object_ids": [
+        "white.track_placeholder"
+      ],
+      "source_parameters_m": {
+        "stock_thickness": 0.0015
+      },
+      "source_locator": "MAIN Methods: Solar-reflector tracking; task provenance E_TRACK",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "path_geometry": "straight authored display placeholder; historical and qualified site/date paths unavailable"
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.emitter",
+      "object_ids": [
+        "black.emitter_copper"
+      ],
+      "source_parameters_m": {
+        "diameter": 0.05,
+        "thickness": 0.0005
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {},
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.insulation",
+      "object_ids": [
+        "black.insulation.1",
+        "black.insulation.2"
+      ],
+      "source_parameters_m": {
+        "diameter": 0.05,
+        "each_layer_thickness": 0.025
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "layer_count": 2,
+        "upper_layer_heater_recess_radius_m": 0.023,
+        "upper_layer_heater_recess_depth_m": 0.0012,
+        "recess_source_status": "authored clearance, not a reported source feature; 50 mm diameter and 25 mm layer envelope preserved"
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.pe_support",
+      "object_ids": [
+        "black.pe_support"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.076,
+        "outer_diameter": 0.102
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "display_height_m": 0.052,
+        "source_height_m": null
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.film_ring",
+      "object_ids": [
+        "black.film_frame"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.107,
+        "outer_diameter": 0.127,
+        "thickness": 0.0064
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {},
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.films",
+      "object_ids": [
+        "black.film.lower",
+        "black.film.upper"
+      ],
+      "source_parameters_m": {
+        "each_film_thickness": 1.6e-05
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "layer_count": 2,
+        "display_thickness_scale": 1,
+        "trim_diameter_m": 0.124,
+        "trim_diameter_basis": "authored",
+        "mounting_planes": "authored opposite ring-face datums; attachment/tension/sealing unqualified"
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.shield",
+      "object_ids": [
+        "black.radiation_shield"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.14,
+        "outer_diameter": 0.152,
+        "height": 0.057
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {},
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.aperture",
+      "object_ids": [
+        "black.aperture_plate"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.05
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "outer_diameter_m": 0.152,
+        "plate_thickness_m": 0.002
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.reflector",
+      "object_ids": [
+        "black.reflector_disk"
+      ],
+      "source_parameters_m": {
+        "diameter": 0.06
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "disk_thickness_m": 0.0015,
+        "source_thickness_m": null,
+        "display_height_above_emitter_m": 0.15,
+        "physical_target_height_above_emitter_m": null
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "black.track_stock",
+      "object_ids": [
+        "black.track_placeholder"
+      ],
+      "source_parameters_m": {
+        "stock_thickness": 0.0015
+      },
+      "source_locator": "MAIN Methods: Solar-reflector tracking; task provenance E_TRACK",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "path_geometry": "straight authored display placeholder; historical and qualified site/date paths unavailable"
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "handling.ring",
+      "object_ids": [
+        "handling.film_frame"
+      ],
+      "source_parameters_m": {
+        "inner_diameter": 0.107,
+        "outer_diameter": 0.127,
+        "thickness": 0.0064
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "staging_pose": "exploded view; not an assembled gap"
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "handling.films",
+      "object_ids": [
+        "handling.film.lower",
+        "handling.film.upper"
+      ],
+      "source_parameters_m": {
+        "each_film_thickness": 1.6e-05
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "display_thickness_m": 0.0008,
+        "display_thickness_scale": 50,
+        "trim_diameter_m": 0.124,
+        "trim_diameter_basis": "authored",
+        "display_tabs": "view/identity accents, not physical film or grasp tabs",
+        "layer_count": 2
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    },
+    {
+      "dimension_id": "backside.emitter",
+      "object_ids": [
+        "backside.emitter_copper"
+      ],
+      "source_parameters_m": {
+        "diameter": 0.05,
+        "thickness": 0.0005
+      },
+      "source_locator": "SI Note 2, p13",
+      "physical_tolerance_m": null,
+      "authored_or_unknown_parameters": {
+        "inspection_pose": "flipped presentation coupon; not a third experimental device"
+      },
+      "qualification": "reported_source_component_dimensions_not_metrology"
+    }
+  ],
+  "source_facts_not_material_models": {
+    "emitter_substrate": "Copper; source reports three coats of flat white or black paint",
+    "paint_layer_implementation": "One 80 micrometre authored appearance overlay, not source paint thickness or three measured coat geometries",
+    "insulation": "Two XPS layers; shader does not establish thermal conductivity",
+    "films": "Two separately identified nanoporous PE target sheets, 16 micrometres each; no porosity, optical calibration or membrane mechanics",
+    "reflective_surfaces": "Appearance-only metallic materials, not measured reflectance/emissivity",
+    "material_record": "materials/materials.json; every material marked appearance_only"
+  },
+  "unresolved_source_conflicts": [
+    {
+      "id": "SC_HEIGHT",
+      "object_ids": [
+        "white.reflector_disk",
+        "black.reflector_disk"
+      ],
+      "source_values_m": [
+        0.1,
+        0.15
+      ],
+      "source_locators": [
+        "SI Figure 1a2, p2: 100 mm vertical label",
+        "SI Note 2, p13 and MAIN Experimental design: approximately 150 mm above emitter"
+      ],
+      "physical_target_height_m": null,
+      "display_height_m": 0.15,
+      "status": "unresolved; display choice does not resolve reference-plane/version ambiguity"
+    }
+  ],
+  "sensor_geometry_boundary": {
+    "schematic_position_evidence_exists": true,
+    "source_locator": "SI Figure 5, p6; Note 5, pp16-17",
+    "six_extra_sensor_objects": [
+      "map_probe.1",
+      "map_probe.2",
+      "map_probe.3",
+      "map_probe.4",
+      "map_probe.5",
+      "map_probe.6"
+    ],
+    "qualified_coordinate_map": null,
+    "mounting_tolerances": null,
+    "implemented_pose": "six spare probes in authored inspection rack, not installed source positions",
+    "qualification_status": "MAP_ATTACH remains blocked on calibration receipts and explicit coordinate/attachment card"
+  },
+  "collision": {
+    "visual_meshes": "All generated geometry; references in asset_inventory.json",
+    "separate_collision_proxies": false,
+    "backend_groups": null,
+    "simulation_contacts_enabled": false,
+    "mass_friction_compliance": null,
+    "contact_support_intent": [
+      "dock.seating_pad",
+      "carrier.tray",
+      "handling.film_frame",
+      "backside.support",
+      "optical.reference_tray",
+      "optical.angle_holder"
+    ],
+    "noncontact_display_intent": [
+      "labels",
+      "ruler",
+      "display tabs",
+      "height guides",
+      "decorative grids",
+      "cables"
+    ],
+    "qualification_gate": "No collision, load, clearance, compliance, rigid-body, grasp, robot or membrane validation delivered"
+  },
+  "controls": {
+    "implementation": "semantic_controls.py",
+    "scene_application": "geometry/apply_demo_state.py",
+    "scope": "Semantic states and authored visual pose changes only; never operation-completion, hardware, safety or measurement receipts",
+    "physical_joint_limits": null,
+    "unknown_force_load_limits": null,
+    "api": {
+      "state": "semantic_controls.State dataclass",
+      "validate": "validate(state) returns state or raises ValueError",
+      "transition": "transition(state, event) returns a new validated State; input is unchanged; unsupported or guarded events raise ValueError",
+      "blender_bind": "bind(state) validates then updates authored native objects; repeated binds use captured canonical transforms; no physical backend"
+    },
+    "default_state": {
+      "carrier": "docked",
+      "clamp": "closed",
+      "lower_film": "intact",
+      "upper_film": "intact",
+      "lower_film_revision": 1,
+      "upper_film_revision": 1,
+      "lid": "parked",
+      "logger": "idle",
+      "optical_config": "unqualified",
+      "optical_sample": "none",
+      "reflector_pose": "center",
+      "geometry_qualified": false,
+      "physical_execution": false,
+      "mode": "static_semantic_demo"
+    },
+    "event_to_operation": {
+      "open_clamp": "UNMOUNT",
+      "close_clamp": "LAYOUT",
+      "grasp_carrier": "MOVE",
+      "dock_carrier": "MOVE",
+      "remove_lower_film": "FILM",
+      "remove_upper_film": "FILM",
+      "replace_lower_film": "FILM",
+      "replace_upper_film": "FILM",
+      "tear_lower_film": "ASSEMBLY_QC",
+      "cover_apertures": "LID_BASELINE",
+      "uncover_apertures": "LID_REMOVE",
+      "arm_logger": "STAG_LOG",
+      "stop_logger": "STOP_SAFE",
+      "reflector_left": "TRACK_ADJUST",
+      "reflector_center": "TRACK_ADJUST",
+      "reflector_right": "TRACK_ADJUST",
+      "select_uvvis": "OPT_REFERENCE",
+      "select_ftir_sphere": "OPT_REFERENCE",
+      "select_ftir_angle": "ANGLE_MOUNT",
+      "mount_reference": "OPT_REFERENCE",
+      "unload_optical": "OPT_UNLOAD"
+    },
+    "grouped_controls": [
+      "One clamp state controls both lever objects",
+      "One lid state controls both paired aperture lids",
+      "One reflector_pose shifts both authored reflector assemblies"
+    ],
+    "film_scope": "Removal/replacement/tear events change the handling inset only; paired white/black assembly membranes remain intact 1x static visual components",
+    "film_damage_scope": "Lower handling film has torn_demo visual variant in native Blend only. Upper handling film supports intact/removed, not torn. No tear mechanics.",
+    "replacement_identity": "State carries separate positive integer lower/upper revisions; replacing a non-intact film increments only its revision. No historical scientific lineage receipt.",
+    "optical_scope": "Only the authored reference disk is moved; no physical specimen mounting or measured scan",
+    "logger_scope": "idle/armed_demo text only; no timestamps, readings, acquisition, heater output or hardware connection",
+    "joint_scope": "Clamps rotate 90 degrees in authored Z about drawn pivots; these are pose variants, not validated mechanical joint limits",
+    "native_state_only_part_ids": [
+      "handling.film.lower.torn_variant"
+    ],
+    "exchange_scope": "Baseline GLBs are static snapshots; no Python control execution or animation is exported"
+  },
+  "supported_scope": [
+    "Original metric visual geometry for two independent white/black display assemblies",
+    "Source-dimensioned component envelopes separated from authored mounts, gaps, cables, instrumentation and paths",
+    "Reusable original carrier/dock/clamp design and exploded two-film inspection inset",
+    "Explicit original optical and protected logger/power front-panel envelopes",
+    "Semantic demo state guards and selected visual state variants as documented by controls/tests",
+    "Traceable partial operation bindings and explicit gates"
+  ],
+  "not_built": [
+    "Thermal, radiative, optical or electrical simulation",
+    "DAQ, PID, calibration, scan or hardware service",
+    "Robot, gripper, trajectory, navigation or feasibility validation",
+    "Historically exact author CAD, track, band or mounting tolerances",
+    "Resolved 100/150 mm reflector-height datum",
+    "Qualified seven-channel sensor coordinate/attachment map",
+    "Bath calibration station, fabrication or coating service",
+    "Outdoor weather/solar tracker/ambient sensor station and environmental streams",
+    "Fixed-band/LDPE variant geometry and component replacement workflow",
+    "Film tension, seal, adhesion, deformation, tear mechanics or physical grasping",
+    "Qualified collision proxies, contacts, mass, friction, load limits or safety interlocks",
+    "Full records/archive/quarantine/waste infrastructure or immutable operation receipts",
+    "End-to-end task or source-performance reproduction"
+  ],
+  "reuse": {
+    "geometry": "new original authored geometry",
+    "primitive_helper_idioms": "Adapted from original afm_scene_assets_v1 helper idioms only; no imported AFM mesh or AFM component compatibility claim",
+    "fixture_compatibility": "No AFM, manufacturer, gripper or fixture interchangeability certified",
+    "source_pixels_or_CAD_copied": false,
+    "embedded_third_party_images": false
+  },
+  "files": {
+    "native": "geometry/cooling_operations_lab.blend",
+    "exchange": [
+      "geometry/cooling_operations_lab.glb",
+      "geometry/cooling_handling_module.glb"
+    ],
+    "generator": "geometry/build_scene.py",
+    "inventory": "asset_inventory.json",
+    "bindings": "operation_bindings.json",
+    "affordances": "affordances.json",
+    "materials": "materials/materials.json",
+    "test_command": "python -m unittest discover -s tests -v",
+    "states": "states.json"
+  },
+  "evidence": {
+    "overview": "evidence/overview.png",
+    "handling": "evidence/sample_handling.png",
+    "equipment": "evidence/equipment_closeup.png",
+    "render_receipt": "review/render_receipt.json",
+    "claim_boundary": "Images establish visible authored placement only; render receipts do not establish physics, scientific outcomes, robot execution or independent review"
+  },
+  "license": {
+    "id": "Apache-2.0",
+    "text": "LICENSES/Apache-2.0.txt",
+    "attribution": "LICENSES/ATTRIBUTION.md",
+    "font_notice": "LICENSES/Blender-font-notice.txt"
+  },
+  "authored_clearance_design": {
+    "status": "authored visual separation, not validated contact/thermal interfaces",
+    "objects": [
+      "white.assembly_support_pedestal",
+      "black.assembly_support_pedestal",
+      "white.shield_adapter",
+      "black.shield_adapter"
+    ],
+    "pedestal": {
+      "diameter_m": 0.156,
+      "height_m": 0.0093,
+      "source_dimension": false
+    },
+    "shield_adapter": {
+      "inner_diameter_m": 0.14,
+      "outer_diameter_m": 0.152,
+      "height_m": 0.0035,
+      "source_dimension": false
+    },
+    "pe_support_height_m": 0.052,
+    "upper_insulation_heater_recess": {
+      "radius_m": 0.023,
+      "depth_m": 0.0012,
+      "source_dimension": false
+    },
+    "film_ring_center_z_m": 0.2352,
+    "aperture_plate_center_z_m": 0.2415,
+    "source_assembly_coordinates": "unknown; no physical or historical tolerance claim"
+  }
+}

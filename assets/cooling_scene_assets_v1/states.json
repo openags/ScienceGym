@@ -1,0 +1,149 @@
+{
+  "schema": "cooling_original_scene.v1",
+  "canonical_state": {
+    "carrier": "docked",
+    "clamp": "closed",
+    "lower_film": "intact",
+    "upper_film": "intact",
+    "lower_film_revision": 1,
+    "upper_film_revision": 1,
+    "lid": "parked",
+    "logger": "idle",
+    "optical_config": "unqualified",
+    "optical_sample": "none",
+    "reflector_pose": "center",
+    "geometry_qualified": false,
+    "physical_execution": false,
+    "mode": "static_semantic_demo"
+  },
+  "runtime": "semantic_controls.py + geometry/apply_demo_state.py in Blender",
+  "transition_error": "ValueError on unknown/invalid/unsafe demo event",
+  "events": [
+    {
+      "id": "open_clamp",
+      "source_task_operation_id": "UNMOUNT",
+      "physical_receipt": false
+    },
+    {
+      "id": "close_clamp",
+      "source_task_operation_id": "LAYOUT",
+      "physical_receipt": false
+    },
+    {
+      "id": "grasp_carrier",
+      "source_task_operation_id": "MOVE",
+      "physical_receipt": false
+    },
+    {
+      "id": "dock_carrier",
+      "source_task_operation_id": "MOVE",
+      "physical_receipt": false
+    },
+    {
+      "id": "remove_lower_film",
+      "source_task_operation_id": "FILM",
+      "physical_receipt": false
+    },
+    {
+      "id": "remove_upper_film",
+      "source_task_operation_id": "FILM",
+      "physical_receipt": false
+    },
+    {
+      "id": "replace_lower_film",
+      "source_task_operation_id": "FILM",
+      "physical_receipt": false
+    },
+    {
+      "id": "replace_upper_film",
+      "source_task_operation_id": "FILM",
+      "physical_receipt": false
+    },
+    {
+      "id": "tear_lower_film",
+      "source_task_operation_id": "ASSEMBLY_QC",
+      "physical_receipt": false
+    },
+    {
+      "id": "cover_apertures",
+      "source_task_operation_id": "LID_BASELINE",
+      "physical_receipt": false
+    },
+    {
+      "id": "uncover_apertures",
+      "source_task_operation_id": "LID_REMOVE",
+      "physical_receipt": false
+    },
+    {
+      "id": "arm_logger",
+      "source_task_operation_id": "STAG_LOG",
+      "physical_receipt": false
+    },
+    {
+      "id": "stop_logger",
+      "source_task_operation_id": "STOP_SAFE",
+      "physical_receipt": false
+    },
+    {
+      "id": "reflector_left",
+      "source_task_operation_id": "TRACK_ADJUST",
+      "physical_receipt": false
+    },
+    {
+      "id": "reflector_center",
+      "source_task_operation_id": "TRACK_ADJUST",
+      "physical_receipt": false
+    },
+    {
+      "id": "reflector_right",
+      "source_task_operation_id": "TRACK_ADJUST",
+      "physical_receipt": false
+    },
+    {
+      "id": "select_uvvis",
+      "source_task_operation_id": "OPT_REFERENCE",
+      "physical_receipt": false
+    },
+    {
+      "id": "select_ftir_sphere",
+      "source_task_operation_id": "OPT_REFERENCE",
+      "physical_receipt": false
+    },
+    {
+      "id": "select_ftir_angle",
+      "source_task_operation_id": "ANGLE_MOUNT",
+      "physical_receipt": false
+    },
+    {
+      "id": "mount_reference",
+      "source_task_operation_id": "OPT_REFERENCE",
+      "physical_receipt": false
+    },
+    {
+      "id": "unload_optical",
+      "source_task_operation_id": "OPT_UNLOAD",
+      "physical_receipt": false
+    }
+  ],
+  "state_geometry": {
+    "carrier": "docked or authored +0.1 m Z display offset",
+    "clamps": "0 or pi/2 rotation about shown pivot; no force/contact model",
+    "films": "intact/removed; lower hidden torn mesh; replacement increments component revision",
+    "aperture_lids": "parked or authored covered pose for both assemblies",
+    "reflector": "authored center / \u00b10.06 m X display positions, not solar tracking",
+    "logger": "idle or armed_demo, text readback only",
+    "optics": "selected configuration label and authored reference placement; no scan or calibration"
+  },
+  "forbidden_claims": [
+    "physical_execution",
+    "thermal_prediction",
+    "real_temperature",
+    "heater_output",
+    "sensor_measurement",
+    "calibration",
+    "robot_reachability",
+    "film_deformation",
+    "historical_track_reconstruction"
+  ],
+  "geometry_qualified": false
+}

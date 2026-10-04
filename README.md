@@ -12,6 +12,26 @@ The unit of design is a **paper-level task family**. Its branches, dependencies,
 
 Start with [CONTRIBUTING.md](CONTRIBUTING.md) to claim a paper or asset, choose a contribution track and prepare a reviewable pull request. Read the [project vision](docs/PROJECT_VISION.md), [paper task guide](docs/contributing/PAPER_TASK_GUIDE.md), [asset guide](docs/contributing/ASSET_GUIDE.md) and [readiness checklist](docs/contributing/REVIEW_CHECKLIST.md). Task and asset work can proceed in parallel while physical simulation is paused.
 
+## Editable directional-cooling 3D assets
+
+The [directional-cooling operations lab](assets/cooling_scene_assets_v1/README.md) adds original editable geometry for the [directional-cooling task design](tasks/directional_cooling_operations_v2/TASK_DESIGN.md): paired white/black device displays, a retained carrier and clamps, exploded-film handling views, backside heater/probe inspection, and authored logger/power and optical-instrument envelopes.
+
+[![Original directional-cooling laboratory scene with paired device displays, sample-handling fixture and authored instrument envelopes](assets/cooling_scene_assets_v1/evidence/overview.png)](assets/cooling_scene_assets_v1/evidence/overview.png)
+
+[Download the editable Blender scene](assets/cooling_scene_assets_v1/geometry/cooling_operations_lab.blend?raw=true) · [Download the whole-scene GLB](assets/cooling_scene_assets_v1/geometry/cooling_operations_lab.glb?raw=true) · [Download the handling-module GLB](assets/cooling_scene_assets_v1/geometry/cooling_handling_module.glb?raw=true)
+
+[![Authored carrier and clamps, 50-times-thickness handling-film display, backside inspection coupon and six-probe storage rack](assets/cooling_scene_assets_v1/evidence/sample_handling.png)](assets/cooling_scene_assets_v1/evidence/sample_handling.png)
+
+[![Authored optical-instrument envelope and logger/power consoles with demo-only controls and no acquisition or output](assets/cooling_scene_assets_v1/evidence/equipment_closeup.png)](assets/cooling_scene_assets_v1/evidence/equipment_closeup.png)
+
+This package contains **8 distinct asset roots and 438 child parts**, including meshes, curves and text. These are scene-organization counts, not independent devices or collidable meshes; the handling GLB re-exports two existing roots. The [binding ledger](assets/cooling_scene_assets_v1/operation_bindings.json) accounts for all 56 task-operation IDs: **29 partial visual/semantic bindings, 27 not-built entries and zero fully implemented operations**. The existing 28 paper-level designs, one bounded subset and 28 viewer families are unchanged. Earlier asset inventories remain separate; no deduplicated repository-wide asset total is asserted.
+
+The [local semantic controls](assets/cooling_scene_assets_v1/semantic_controls.py) and [native pose binder](assets/cooling_scene_assets_v1/geometry/apply_demo_state.py) demonstrate guarded carrier docking/lifting, coupled clamp and lid poses, handling-film removal/damage/replacement identity, reflector display offsets, demo logger readback, and optical configuration/reference placement. They supply no device I/O, measurements, thermal/radiative/optical/electrical model, collision/contact physics, robot feasibility or scientific execution. Static GLBs do not execute these Python controls.
+
+The [dimension and provenance ledger](assets/cooling_scene_assets_v1/asset_metadata.json) separates reported component dimensions from authored fixtures, fit clearances, straight tracks, display poses and instrument envelopes. The **100 mm versus approximately 150 mm reflector-height conflict remains unresolved**: the physical target is null, while 150 mm is only a display choice. Sensor-position schematics exist, but qualified installation coordinates and tolerances remain unavailable; the six-probe rack is authored storage geometry. Paired-device films retain the reported 16 micrometre thickness at 1×; handling films and the lower torn representation enlarge thickness alone 50×. Display tabs are not qualified grasp tabs. Primitive helper-code reuse establishes no AFM hardware compatibility.
+
+The [30-file publication allowlist](assets/cooling_scene_assets_v1/EXPORT_ALLOWLIST.json) contains one editable Blender scene, two static GLBs, three original CPU renders, scripts, contracts, licenses and review records. [Independent content review](assets/cooling_scene_assets_v1/review/independent_review.md) passed within the stated static-asset/local-state scope. Interiors and parts of the angle fixture are occluded in baseline views, and small captions may require zoom or metadata lookup. No publisher papers, figures, source CAD, private archives, backup scenes or duplicate asset ZIP are included.
+
 ## Editable AFM 3D assets
 
 The [cantilever-free AFM operations lab](assets/afm_scene_assets_v1/README.md) adds original editable geometry for the [bounded inert-metrology task design](tasks/afm_metrology_operations_v2/TASK_DESIGN.md): parallel-imaging and characterization apparatus, probe and target assemblies, retained carriers, clamps and an authored grasp/access proxy.
@@ -204,7 +224,7 @@ Physical simulation is paused. No whole-paper robot execution or physical scient
 
 Source locators, provenance and unresolved claims are recorded within each task package. Source-reported facts, interpretations and authored task mechanics must remain distinguishable. Access to a paper does not imply permission to redistribute its text, figures, videos or datasets.
 
-The original public snapshot focused on authored task specifications. The reviewed AFM asset package above now supplies a bounded set of original editable geometry and rendered evidence. Other historical bulk scenes, asset exports and the early manuscript remain outside this repository while their publication and rights review is pending. This is not a complete mirror of the development archive; historical provenance references may identify resources that are not bundled. Original publisher source packets and scientific datasets are not supplied by this release.
+The original public snapshot focused on authored task specifications. The reviewed AFM and directional-cooling asset packages above now supply bounded sets of original editable geometry and rendered evidence. Other historical bulk scenes, asset exports and the early manuscript remain outside this repository while their publication and rights review is pending. This is not a complete mirror of the development archive; historical provenance references may identify resources that are not bundled. Original publisher source packets and scientific datasets are not supplied by this release.
 
 ScienceGym is licensed under the [Apache License 2.0](LICENSE). Third-party publications, datasets and assets remain subject to their own licenses and notices; the project license does not relicense them. Obtain any required third-party materials from their lawful sources.
 

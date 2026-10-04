@@ -1,0 +1,1546 @@
+{
+  "schema": "cooling_operation_bindings.v1",
+  "task_id": "directional_cooling_operations_v2",
+  "task_operations_sha256": "1b8e4bb6bfbfc8f1b3a34581b29cae54469bbf3d4c174539db4e8decd9d901bf",
+  "operation_count": 56,
+  "partial_binding_count": 29,
+  "not_built_count": 27,
+  "fully_implemented_operation_count": 0,
+  "claim": "Bindings resolve scene IDs and describe a bounded contribution; none complete the task contract.",
+  "bindings": [
+    {
+      "operation_id": "PLAN",
+      "title": "Bind scope and nonempty work order",
+      "task_station_id": "WS_RECORDS",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [
+        "U_ALLOC"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ALLOC"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "STOCK",
+      "title": "Issue lots and supported carriers",
+      "task_station_id": "WS_STOCK",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [],
+      "asset_ids": [
+        "cooling.handling_fixture"
+      ],
+      "object_ids": [
+        "carrier.tray",
+        "carrier.handle_bridge",
+        "carrier.handle_bridge.001"
+      ],
+      "implemented_scope": "One authored retained carrier and separately labeled display components; stock management absent",
+      "semantic_events": [],
+      "remaining_gates": [],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "MOVE",
+      "title": "Transport objects between workstations",
+      "task_station_id": "WS_TRANSFER",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [
+        "U_SCENE"
+      ],
+      "asset_ids": [
+        "cooling.handling_fixture"
+      ],
+      "object_ids": [
+        "carrier.tray",
+        "dock.base",
+        "dock.seating_pad",
+        "clamp.0.lever",
+        "clamp.1.lever"
+      ],
+      "implemented_scope": "Local carrier/dock state demonstration only; no transport route, mobile robot or station move receipt",
+      "semantic_events": [
+        "grasp_carrier",
+        "dock_carrier"
+      ],
+      "remaining_gates": [
+        "U_SCENE",
+        "U_GEOM"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "FAB_LOAD",
+      "title": "Load qualified component fabrication",
+      "task_station_id": "WS_FAB",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD",
+        "E_TRACK"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "FAB_RUN",
+      "title": "Request enclosed fabrication service",
+      "task_station_id": "WS_FAB",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD",
+        "E_TRACK"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "FAB_UNLOAD",
+      "title": "Unload and inspect fabricated parts",
+      "task_station_id": "WS_FAB",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "COAT_LOAD",
+      "title": "Stage emitter coating service",
+      "task_station_id": "WS_COATING",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "COAT_RUN",
+      "title": "Complete coating and cure handoff",
+      "task_station_id": "WS_COATING",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "LAYOUT",
+      "title": "Stage identified assembly parts",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "task_unknown_parameter_ids": [],
+      "asset_ids": [
+        "cooling.handling_fixture"
+      ],
+      "object_ids": [
+        "carrier.tray",
+        "dock.seating_pad",
+        "handling.film_frame",
+        "handling.film.lower",
+        "handling.film.upper"
+      ],
+      "implemented_scope": "Supported staging geometry and separate film identities",
+      "semantic_events": [
+        "close_clamp"
+      ],
+      "remaining_gates": [],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "BASE",
+      "title": "Attach base frame and insulation",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_GEOM"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black"
+      ],
+      "object_ids": [
+        "white.acrylic_base",
+        "white.insulation.1",
+        "white.insulation.2",
+        "white.pe_support",
+        "black.acrylic_base",
+        "black.insulation.1",
+        "black.insulation.2",
+        "black.pe_support",
+        "white.assembly_support_pedestal",
+        "black.assembly_support_pedestal"
+      ],
+      "implemented_scope": "Source component envelopes and authored base/support placements",
+      "semantic_events": [],
+      "remaining_gates": [],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "EMITTER",
+      "title": "Seat emitter and PE support",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_GEOM"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black"
+      ],
+      "object_ids": [
+        "white.emitter_copper",
+        "white.emitter_paint_visual",
+        "black.emitter_copper",
+        "black.emitter_paint_visual"
+      ],
+      "implemented_scope": "Separate copper substrate and authored white/black paint appearance overlays",
+      "semantic_events": [],
+      "remaining_gates": [],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "FILM",
+      "title": "Mount two separately identified PE layers",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD",
+        "E_FIXED"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_FAB",
+        "U_GEOM"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black",
+        "cooling.handling_fixture"
+      ],
+      "object_ids": [
+        "white.film_frame",
+        "white.film.lower",
+        "white.film.upper",
+        "black.film_frame",
+        "black.film.lower",
+        "black.film.upper",
+        "handling.film_frame",
+        "handling.film.lower",
+        "handling.film.upper",
+        "handling.film.lower.torn_variant"
+      ],
+      "implemented_scope": "Source-size paired film/ring geometry remains static. Remove/replace/tear events affect handling inspection films only. The handling inset is 50x thickness; attachment, tension and seal are unimplemented.",
+      "semantic_events": [
+        "remove_lower_film",
+        "remove_upper_film",
+        "replace_lower_film",
+        "replace_upper_film"
+      ],
+      "remaining_gates": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "SHIELD",
+      "title": "Install shielding cover and aperture",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_GEOM"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black"
+      ],
+      "object_ids": [
+        "white.radiation_shield",
+        "white.aperture_plate",
+        "black.radiation_shield",
+        "black.aperture_plate",
+        "white.shield_adapter",
+        "black.shield_adapter"
+      ],
+      "implemented_scope": "Source-dimensioned hollow shields and source-size apertures; authored plate thickness",
+      "semantic_events": [],
+      "remaining_gates": [],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "REFLECTOR",
+      "title": "Install qualified disk or band geometry",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_TRACK",
+        "E_FIXED"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_GEOM",
+        "U_OUTDOOR"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black"
+      ],
+      "object_ids": [
+        "white.reflector_disk",
+        "white.reflector_carriage",
+        "white.track_placeholder",
+        "black.reflector_disk",
+        "black.reflector_carriage",
+        "black.track_placeholder"
+      ],
+      "implemented_scope": "Disk and straight display track only; qualified source path and height unresolved",
+      "semantic_events": [],
+      "remaining_gates": [
+        "SC_HEIGHT",
+        "U_GEOM",
+        "U_OUTDOOR"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "ASSEMBLY_QC",
+      "title": "Inspect assembled device integrity",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black",
+        "cooling.scale_reference",
+        "cooling.handling_fixture"
+      ],
+      "object_ids": [
+        "white.film_frame",
+        "white.film.lower",
+        "white.film.upper",
+        "white.height_warning",
+        "black.film_frame",
+        "black.film.lower",
+        "black.film.upper",
+        "black.height_warning",
+        "ruler.body",
+        "handling.film.lower",
+        "handling.film.lower.torn_variant"
+      ],
+      "implemented_scope": "Visual inspection views, metric ruler and explicit height hold; no qualification receipt",
+      "semantic_events": [
+        "tear_lower_film"
+      ],
+      "remaining_gates": [],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "CAL_MOUNT",
+      "title": "Mount calibration sensors in block",
+      "task_station_id": "WS_CAL",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_CAL"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_CAL"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "CAL_ACQUIRE",
+      "title": "Run qualified calibration conditions",
+      "task_station_id": "WS_CAL",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_CAL",
+        "U_ACQ"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_CAL",
+        "U_ACQ"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "CAL_FIT",
+      "title": "Validate sensor-specific calibration",
+      "task_station_id": "WS_RECORDS",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_CAL",
+        "U_ANALYSIS"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_CAL",
+        "U_ANALYSIS"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "TC_ATTACH",
+      "title": "Attach and route calibrated emitter sensor",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_WIRING",
+        "U_FAB"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black",
+        "cooling.backside_inspection"
+      ],
+      "object_ids": [
+        "white.temperature_bead",
+        "white.sensor_lead",
+        "black.temperature_bead",
+        "black.sensor_lead",
+        "backside.thermocouple_bead",
+        "backside.tc_lead"
+      ],
+      "implemented_scope": "Authored rear-probe/lead silhouettes and flipped inspection coupon; attachment/calibration unqualified",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_WIRING",
+        "U_CAL"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "OPT_REFERENCE",
+      "title": "Load optical reference and background",
+      "task_station_id": "WS_OPTICAL_ACTIVE",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_OPT"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "asset_ids": [
+        "cooling.optical_bench"
+      ],
+      "object_ids": [
+        "optical.reference_tray",
+        "optical.reference_disk",
+        "optical.port_ring"
+      ],
+      "implemented_scope": "Illustrative unqualified optical instrument/fixture envelope; no measured spectrum, method, calibration or safe-release feedback",
+      "semantic_events": [
+        "select_uvvis",
+        "select_ftir_sphere",
+        "mount_reference"
+      ],
+      "remaining_gates": [
+        "U_OPT"
+      ],
+      "station_binding_note": "Runtime alias must bind one actual WS_UVVIS or WS_FTIR per operation instance. Shared display geometry does not establish either station or permit switching without MOVE."
+    },
+    {
+      "operation_id": "OPT_MOUNT",
+      "title": "Mount identified optical component",
+      "task_station_id": "WS_OPTICAL_ACTIVE",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_OPT"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "asset_ids": [
+        "cooling.optical_bench"
+      ],
+      "object_ids": [
+        "optical.port_ring",
+        "optical.port_dark"
+      ],
+      "implemented_scope": "Illustrative unqualified optical instrument/fixture envelope; no measured spectrum, method, calibration or safe-release feedback",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_OPT"
+      ],
+      "station_binding_note": "Runtime alias must bind one actual WS_UVVIS or WS_FTIR per operation instance. Shared display geometry does not establish either station or permit switching without MOVE."
+    },
+    {
+      "operation_id": "OPT_SCAN",
+      "title": "Acquire solar and IR sphere scans",
+      "task_station_id": "WS_OPTICAL_ACTIVE",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_OPT"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "asset_ids": [
+        "cooling.optical_bench"
+      ],
+      "object_ids": [
+        "optical.housing",
+        "optical.config.text"
+      ],
+      "implemented_scope": "Illustrative unqualified optical instrument/fixture envelope; no measured spectrum, method, calibration or safe-release feedback",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_OPT"
+      ],
+      "station_binding_note": "Runtime alias must bind one actual WS_UVVIS or WS_FTIR per operation instance. Shared display geometry does not establish either station or permit switching without MOVE."
+    },
+    {
+      "operation_id": "ANGLE_MOUNT",
+      "title": "Mount emitter on angle fixture",
+      "task_station_id": "WS_FTIR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_ANGLE"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "asset_ids": [
+        "cooling.optical_bench"
+      ],
+      "object_ids": [
+        "optical.angle_holder",
+        "optical.angle_jaw",
+        "optical.local_axis.X",
+        "optical.local_axis.Y",
+        "optical.local_axis.Z"
+      ],
+      "implemented_scope": "Illustrative unqualified optical instrument/fixture envelope; no measured spectrum, method, calibration or safe-release feedback",
+      "semantic_events": [
+        "select_ftir_angle"
+      ],
+      "remaining_gates": [
+        "U_OPT"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "ANGLE_SCAN",
+      "title": "Acquire angle and polarization conditions",
+      "task_station_id": "WS_FTIR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_ANGLE"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "asset_ids": [
+        "cooling.optical_bench"
+      ],
+      "object_ids": [
+        "optical.angle_base",
+        "optical.angle_scale",
+        "optical.config.text"
+      ],
+      "implemented_scope": "Illustrative unqualified optical instrument/fixture envelope; no measured spectrum, method, calibration or safe-release feedback",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_OPT"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "OPT_SUMMARY",
+      "title": "Derive optical quantities and unload",
+      "task_station_id": "WS_RECORDS",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_OPT",
+        "E_ANGLE",
+        "E_FIXED"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_ANALYSIS"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ANALYSIS"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "SITE_SETUP",
+      "title": "Stage outdoor pair and orientation",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_STAG",
+        "E_TRACK"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OUTDOOR",
+        "U_SCENE"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_OUTDOOR",
+        "U_SCENE"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "ENV_SETUP",
+      "title": "Stage ambient weather and solar instruments",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_ENV",
+        "E_SOLAR"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "SYNC",
+      "title": "Verify clocks and channel mapping",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_ENV"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_ACQ"
+      ],
+      "asset_ids": [
+        "cooling.logger_power"
+      ],
+      "object_ids": [
+        "logger.housing",
+        "logger.readback"
+      ],
+      "implemented_scope": "Authored front-panel identities and demo readback only; no acquisition, energized output, independent isolation feedback or station-safe receipt",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ACQ",
+        "U_WIRING",
+        "U_PID"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "LID_BASELINE",
+      "title": "Start covered-aperture baseline",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_STAG"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_ACQ"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black"
+      ],
+      "object_ids": [
+        "white.aperture_lid",
+        "white.lid_knob",
+        "white.aperture_plate",
+        "black.aperture_lid",
+        "black.lid_knob",
+        "black.aperture_plate"
+      ],
+      "implemented_scope": "One shared demo lid state covers two independently identified lid objects; no timed baseline or measured temperature record",
+      "semantic_events": [
+        "cover_apertures"
+      ],
+      "remaining_gates": [
+        "U_ACQ"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "LID_REMOVE",
+      "title": "Remove aluminum aperture lids",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_STAG"
+      ],
+      "task_unknown_parameter_ids": [],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black"
+      ],
+      "object_ids": [
+        "white.aperture_lid",
+        "white.lid_knob",
+        "white.aperture_plate",
+        "black.aperture_lid",
+        "black.lid_knob",
+        "black.aperture_plate"
+      ],
+      "implemented_scope": "One shared demo lid state parks both independently identified lid objects; no acquisition event or measured response",
+      "semantic_events": [
+        "uncover_apertures"
+      ],
+      "remaining_gates": [
+        "U_ACQ"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "TRACK_ADJUST",
+      "title": "Maintain disk shadow manually",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_TRACK",
+        "E_STAG"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OUTDOOR"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black"
+      ],
+      "object_ids": [
+        "white.reflector_carriage",
+        "white.reflector_disk",
+        "white.track_placeholder",
+        "black.reflector_carriage",
+        "black.reflector_disk",
+        "black.track_placeholder"
+      ],
+      "implemented_scope": "Demonstration position along authored straight track; no solar tracking, verified shadow or qualified height/path",
+      "semantic_events": [
+        "reflector_left",
+        "reflector_center",
+        "reflector_right"
+      ],
+      "remaining_gates": [
+        "SC_HEIGHT",
+        "U_GEOM",
+        "U_OUTDOOR"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "STAG_LOG",
+      "title": "Observe paired passive cooling",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_STAG",
+        "E_FIXED"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OUTDOOR",
+        "U_ACQ"
+      ],
+      "asset_ids": [
+        "cooling.logger_power"
+      ],
+      "object_ids": [
+        "control.arm",
+        "control.stop",
+        "logger.readback"
+      ],
+      "implemented_scope": "Authored front-panel identities and demo readback only; no acquisition, energized output, independent isolation feedback or station-safe receipt",
+      "semantic_events": [
+        "arm_logger"
+      ],
+      "remaining_gates": [
+        "U_ACQ",
+        "U_WIRING",
+        "U_PID"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "HEATER_ATTACH",
+      "title": "Install heater and four-wire circuit",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_WIRING"
+      ],
+      "asset_ids": [
+        "cooling.white",
+        "cooling.black",
+        "cooling.backside_inspection"
+      ],
+      "object_ids": [
+        "white.heater_visual",
+        "white.heater_lead.0",
+        "white.heater_lead.1",
+        "white.heater_lead.2",
+        "white.heater_lead.3",
+        "black.heater_visual",
+        "black.heater_lead.0",
+        "black.heater_lead.1",
+        "black.heater_lead.2",
+        "black.heater_lead.3",
+        "backside.heater"
+      ],
+      "implemented_scope": "Rear-heater envelope and four distinguishable authored leads; no electrical connection model",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_WIRING",
+        "U_PID"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "POWER_CHECK",
+      "title": "Check isolated electrical and sensor readback",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_WIRING",
+        "U_PID"
+      ],
+      "asset_ids": [
+        "cooling.logger_power"
+      ],
+      "object_ids": [
+        "port.F+",
+        "port.S+",
+        "port.S-",
+        "port.F-",
+        "sourcemeter.readback"
+      ],
+      "implemented_scope": "Authored front-panel identities and demo readback only; no acquisition, energized output, independent isolation feedback or station-safe receipt",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ACQ",
+        "U_WIRING",
+        "U_PID"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "PID_CONFIG",
+      "title": "Load bounded temperature-step schedule",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_PID"
+      ],
+      "asset_ids": [
+        "cooling.logger_power"
+      ],
+      "object_ids": [
+        "sourcemeter.display",
+        "sourcemeter.readback"
+      ],
+      "implemented_scope": "Authored front-panel identities and demo readback only; no acquisition, energized output, independent isolation feedback or station-safe receipt",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ACQ",
+        "U_WIRING",
+        "U_PID"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "POWER_BASELINE",
+      "title": "Observe initial heater-off equilibrium",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_PID",
+        "U_ACQ"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_PID",
+        "U_ACQ"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "PID_STEP",
+      "title": "Execute one five-minute controlled plateau",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_PID",
+        "U_ACQ"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_PID",
+        "U_ACQ"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "STEP_SUMMARY",
+      "title": "Validate final two minutes of plateau",
+      "task_station_id": "WS_RECORDS",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_ANALYSIS",
+        "U_ACQ"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ANALYSIS",
+        "U_ACQ"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "HEATER_OFF",
+      "title": "Disable heaters and verify recooling",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_PID",
+        "U_ACQ"
+      ],
+      "asset_ids": [
+        "cooling.logger_power"
+      ],
+      "object_ids": [
+        "sourcemeter.readback",
+        "control.stop"
+      ],
+      "implemented_scope": "Authored front-panel identities and demo readback only; no acquisition, energized output, independent isolation feedback or station-safe receipt",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ACQ",
+        "U_WIRING",
+        "U_PID"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "FIXED_SWAP",
+      "title": "Replace reflector and cover components",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_FIXED"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "BAND_CHECK",
+      "title": "Verify fixed shading without adjustment",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_FIXED"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OUTDOOR"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_OUTDOOR"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "MAP_ATTACH",
+      "title": "Attach six extra calibrated location sensors",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_MAP"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_MAP",
+        "U_WIRING"
+      ],
+      "asset_ids": [
+        "cooling.backside_inspection"
+      ],
+      "object_ids": [
+        "map_probe_rack",
+        "map_probe.1",
+        "map_probe.2",
+        "map_probe.3",
+        "map_probe.4",
+        "map_probe.5",
+        "map_probe.6"
+      ],
+      "implemented_scope": "Six distinct extra probe silhouettes stored in rack; source schematic exists, installed coordinate map absent",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_MAP",
+        "U_WIRING",
+        "U_CAL"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "MAP_CONDITION",
+      "title": "Check actual thermal-map weather condition",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_MAP"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OUTDOOR"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_OUTDOOR"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "MAP_LOG",
+      "title": "Acquire one-hour multichannel thermal map",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_MAP"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_ACQ",
+        "U_MAP"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ACQ",
+        "U_MAP"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "MAP_SUMMARY",
+      "title": "Aggregate qualified equilibrium map",
+      "task_station_id": "WS_RECORDS",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_MAP"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_MAP",
+        "U_ANALYSIS"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_MAP",
+        "U_ANALYSIS"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "COMPARE",
+      "title": "Build condition-aware comparisons",
+      "task_station_id": "WS_RECORDS",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [
+        "U_ALLOC",
+        "U_ANALYSIS"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ALLOC",
+        "U_ANALYSIS"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "STOP_SAFE",
+      "title": "Stop acquisition and isolate output",
+      "task_station_id": "WS_ACTIVE",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [
+        "U_WIRING",
+        "U_PID"
+      ],
+      "asset_ids": [
+        "cooling.logger_power"
+      ],
+      "object_ids": [
+        "control.stop",
+        "logger.readback",
+        "sourcemeter.readback"
+      ],
+      "implemented_scope": "Authored front-panel identities and demo readback only; no acquisition, energized output, independent isolation feedback or station-safe receipt",
+      "semantic_events": [
+        "stop_logger"
+      ],
+      "remaining_gates": [
+        "U_ACQ",
+        "U_WIRING",
+        "U_PID"
+      ],
+      "station_binding_note": "Runtime active-station alias is not an extra physical station; actual isolation/release feedback is not implemented."
+    },
+    {
+      "operation_id": "UNMOUNT",
+      "title": "Disconnect and secure assemblies",
+      "task_station_id": "WS_ACTIVE",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [],
+      "asset_ids": [
+        "cooling.handling_fixture"
+      ],
+      "object_ids": [
+        "carrier.tray",
+        "clamp.0.lever",
+        "clamp.1.lever"
+      ],
+      "implemented_scope": "Supported carrier release demonstration only; no actual electrical/thermal safety predicate",
+      "semantic_events": [
+        "open_clamp"
+      ],
+      "remaining_gates": [
+        "U_SCENE",
+        "U_WIRING"
+      ],
+      "station_binding_note": "Runtime active-station alias is not an extra physical station; actual isolation/release feedback is not implemented."
+    },
+    {
+      "operation_id": "ARCHIVE",
+      "title": "Archive samples and immutable records",
+      "task_station_id": "WS_ARCHIVE",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [],
+      "asset_ids": [
+        "cooling.handling_fixture"
+      ],
+      "object_ids": [
+        "carrier.tray",
+        "dock.seating_pad"
+      ],
+      "implemented_scope": "Carrier support may illustrate retained storage; archive/lineage/immutable record service absent",
+      "semantic_events": [],
+      "remaining_gates": [],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "RESET",
+      "title": "Reset stations and segregate waste",
+      "task_station_id": "WS_ARCHIVE",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [
+        "U_CLEAN"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_CLEAN"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "REPORT",
+      "title": "Declare route outcomes and source gaps",
+      "task_station_id": "WS_RECORDS",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [],
+      "task_unknown_parameter_ids": [],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "CAL_UNLOAD",
+      "title": "Release and archive calibrated sensors",
+      "task_station_id": "WS_CAL",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_CAL",
+        "U_CLEAN"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_CAL",
+        "U_CLEAN"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "OPT_UNLOAD",
+      "title": "Release optical sample without surface damage",
+      "task_station_id": "WS_OPTICAL_ACTIVE",
+      "binding_status": "partial_visual_or_semantic_only",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_OPT",
+        "E_ANGLE"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_OPT"
+      ],
+      "asset_ids": [
+        "cooling.optical_bench"
+      ],
+      "object_ids": [
+        "optical.angle_jaw",
+        "optical.reference_tray"
+      ],
+      "implemented_scope": "Illustrative unqualified optical instrument/fixture envelope; no measured spectrum, method, calibration or safe-release feedback",
+      "semantic_events": [
+        "unload_optical"
+      ],
+      "remaining_gates": [
+        "U_OPT"
+      ],
+      "station_binding_note": "Runtime alias must bind one actual WS_UVVIS or WS_FTIR per operation instance. Shared display geometry does not establish either station or permit switching without MOVE."
+    },
+    {
+      "operation_id": "ENV_LOG",
+      "title": "Record contemporaneous environmental streams",
+      "task_station_id": "WS_OUTDOOR",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_ENV",
+        "E_SOLAR"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_ACQ",
+        "U_OUTDOOR"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_ACQ",
+        "U_OUTDOOR"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "COAT_UNLOAD",
+      "title": "Unload and inspect cured coated emitter",
+      "task_station_id": "WS_COATING",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_FAB"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    },
+    {
+      "operation_id": "FIXED_QC",
+      "title": "Inspect modified fixed-band LDPE assembly",
+      "task_station_id": "WS_ASSEMBLY",
+      "binding_status": "not_built",
+      "physical_operation_implemented": false,
+      "operation_completion_receipt": false,
+      "source_evidence_ids": [
+        "E_FIXED"
+      ],
+      "task_unknown_parameter_ids": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "asset_ids": [],
+      "object_ids": [],
+      "implemented_scope": "No dedicated built operation interface in this package",
+      "semantic_events": [],
+      "remaining_gates": [
+        "U_GEOM",
+        "U_FAB"
+      ],
+      "station_binding_note": "Display bench is not a qualified task station. Bind an actual station and MOVE between stations before any future execution."
+    }
+  ]
+}

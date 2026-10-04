@@ -1,0 +1,183 @@
+{
+  "schema": "cooling_independent_content_review.v1",
+  "package_id": "cooling_scene_assets_v1",
+  "reviewed_utc": "2026-10-04T05:10:51.251194+00:00",
+  "result": "pass_bounded_static_and_semantic_content",
+  "publication_performed": false,
+  "acceptance_scope": "Original editable metric geometry, static GLB exports, source/authored-dimension separation, bounded local semantic demonstration and its documented limits only.",
+  "not_certified": [
+    "physical apparatus",
+    "scientific reproduction",
+    "measured cooling or temperature",
+    "thermal/radiative/optical/electrical behavior",
+    "robot/gripper/navigation feasibility",
+    "contact or safety qualification",
+    "manufacturing tolerances",
+    "full task execution"
+  ],
+  "reference_review": {
+    "guide": "docs/contributing/ASSET_GUIDE.md",
+    "task": "directional_cooling_operations_v2",
+    "task_contracts": "TASK_DESIGN, operations, asset needs, stations, provenance, source conflicts, unknown parameters and lineage contract",
+    "source": "Bhatia et al. (2018), DOI 10.1038/s41467-018-07293-9",
+    "source_locator_review": "SI Note 2 component dimensions; directly inspected retained SI Figure 1 (p2) and Figure 5 (p6) pixels; 3 October source-reading addendum",
+    "main_figure_pixels_newly_reviewed": false,
+    "source_pixels_redistributed": false
+  },
+  "counts": {
+    "distinct_asset_roots": 8,
+    "native_child_parts": 438,
+    "full_glb_nodes": 444,
+    "full_glb_meshes": 436,
+    "module_roots": 2,
+    "module_nodes": 55,
+    "module_meshes": 53,
+    "source_operations": 56,
+    "partial_bindings": 29,
+    "not_built_bindings": 27,
+    "fully_implemented_operations": 0,
+    "affordances": 20,
+    "frames": 20,
+    "semantic_events": 21
+  },
+  "verification": [
+    {
+      "id": "portable_package_suite",
+      "result": "pass",
+      "tests": 29,
+      "command": "python -B -m unittest discover -s tests -v",
+      "upstream_operation_hash_check": "ran, not skipped"
+    },
+    {
+      "id": "native_blender_suite",
+      "result": "pass",
+      "checks": 26,
+      "tool": "Blender 4.3.2",
+      "method": "Loaded actual final native Blend; executed verify_blend.py without saving the Blend or replacing the author receipt"
+    },
+    {
+      "id": "independent_native_dimensions",
+      "result": "pass",
+      "assertions": 35,
+      "method": "Checked actual object envelopes and annular inner/outer vertex radii, source-sized films/emitter/shields, authored support height and display films; all native roots identity"
+    },
+    {
+      "id": "independent_semantic_graph",
+      "result": "pass",
+      "distinct_configurations": 798,
+      "accepted_event_attempts": 9312,
+      "rejected_event_attempts": 7446,
+      "method": "Traversed reachable finite configurations with positive revision counters normalized for deduplication; checked no input mutation, monotonic component revision and no physical/geometry qualification promotion. This is not exhaustive testing of arbitrary integer revisions."
+    },
+    {
+      "id": "actual_glb_structure",
+      "result": "pass",
+      "method": "Parsed actual GLB JSON/binary container, unique named nodes, roots, source-dimension vertices and metadata references; no image resources, external buffers or animations"
+    },
+    {
+      "id": "native_resources",
+      "result": "pass",
+      "image_datablocks": [
+        "Render Result"
+      ],
+      "font": "Bfont Regular, builtin and unpacked",
+      "physics_modifiers_found": false
+    },
+    {
+      "id": "operation_bindings",
+      "result": "pass",
+      "method": "All 56 IDs and source-file hash match actual upstream task; all declared asset, part and frame IDs resolve; documented 21-event mapping equals runtime"
+    },
+    {
+      "id": "public_allowlist_content",
+      "result": "pass",
+      "member_count": 30,
+      "method": "Explicit public paths only; source PDF/text/figure files, logs, caches and local state copies are excluded. Frozen archive integrity is a separate later review."
+    }
+  ],
+  "pixel_review": {
+    "result": "pass_with_documented_visibility_limits",
+    "final_build_completion_observed": true,
+    "all_three_final_images_confirmed_by_author": true,
+    "blender": "4.3.2",
+    "engine": "Cycles",
+    "device": "CPU",
+    "samples": 192,
+    "resolution": [
+      1500,
+      1080
+    ],
+    "images": [
+      {
+        "path": "evidence/overview.png",
+        "observed": "Coherent complete original bench with two independently labeled display devices, handling fixture, sensor rack, console and optical envelope; no source-paper image content"
+      },
+      {
+        "path": "evidence/sample_handling.png",
+        "observed": "Carrier handles/clamp levers, exploded films, 50x-thickness label, metric ruler, backside inspection coupon and six separately numbered probe displays visible"
+      },
+      {
+        "path": "evidence/equipment_closeup.png",
+        "observed": "ARM/STOP and idle logger readback, isolated-output visual console, optical reference/sample-port envelope, unqualified configuration and no-acquisition/thermal-model boundary visible"
+      }
+    ],
+    "limits": [
+      "Canonical baseline images only; moving/torn/replacement states were verified through native state binding rather than variant render pixels",
+      "Interior assembled components and much of the optical angle fixture are occluded in these views; inspect the editable Blend and named objects",
+      "Some small apparatus/port captions need zoom or metadata lookup; the images do not certify every local frame or contact region"
+    ]
+  },
+  "source_and_authored_boundary": {
+    "reported_dimensions": "Emitter 50 x 0.5 mm, two 50 x 25 mm insulation envelopes, PE support ID/OD 76/102 mm, ring ID/OD/thickness 107/127/6.4 mm, each target PE sheet 16 um, shield ID/OD/height 140/152/57 mm, 50 mm aperture, 60 mm reflector, 1.5 mm track stock",
+    "authored_dimensions": "52 mm PE support height, 9.3 mm pedestal, 3.5 mm shield adapter, upper-foam 23 mm radius/1.2 mm depth heater recess, installation gaps/planes, film trim, disk/plate thickness, mounting, track path and instrument/fixture envelopes",
+    "height_conflict": "100 mm figure label versus approximately 150 mm text retained unresolved; displayed 150 mm is not a qualified physical target",
+    "sensor_evidence": "Source schematic positions exist; rack poses are authored and qualified installation coordinates/tolerances remain null",
+    "film_scale": "Four paired-device membranes retain 16 um thickness; handling lower/upper components including lower torn variant display 0.8 mm thickness only (50x). XY trim is not enlarged.",
+    "identity_scope": "Lower tear preserves the current component identity; replacement increments component revision. This does not implement the task assembly lineage or immutable experimental receipts."
+  },
+  "issues_resolved_during_review": [
+    "Carrier nameplate now follows docked/held and clamp state",
+    "Visible torn-film variant receives the same current component identity as the intact representation",
+    "Emitter/lower-film overlap removed by explicitly authored installation offsets; upper-foam heater clearance recess authored while preserving source envelope",
+    "Final metadata counts, GLB exclusions, 50x torn-variant note and semantic-event mappings synchronized",
+    "Lid metadata now correctly states shared paired motion rather than independent per-device control"
+  ],
+  "retained_limits": [
+    "Straight reflector preview is not a site/date solar track",
+    "Shared clamp, lid and reflector states are coupled previews",
+    "Only lower handling film has a torn variant; GLBs are baseline static snapshots",
+    "No qualified sensor coordinate map, optical model, environmental/DAQ stream or real temperature data",
+    "No physical collision/contact/film mechanics, tool compatibility, robot feasibility or end-to-end operation completion"
+  ],
+  "rights_review": "Generator/resource inspection is consistent with original authored primitives, procedural materials and original renders. No vendor CAD, source images or external textures are embedded; builtin font is unpacked and its notice is supplied. Apache-2.0 attribution covers the contribution. This is a provenance/resource review, not legal certification.",
+  "archive_review": "Pending separate frozen-byte review; recorded externally after ZIP creation to avoid a self-referential archive hash.",
+  "reviewed_file_sha256": {
+    "README.md": "ff210647314280ba3a1b4212b55a22e90c054e44e882d87d999796cc512e8079",
+    "asset_metadata.json": "5234877be3096c62d3f6ae9704c4caaf81d055b1bf77af987843dee18b0e04a7",
+    "asset_inventory.json": "f6146fafa453303f3a5d805bbccf577fe793b554acb81e9ea5b49703b4a9db9e",
+    "operation_bindings.json": "ca39f69d42e2a06a405cba8b0a7c0b2f7cfeb86cf5c73c8e183a68097b11e77e",
+    "affordances.json": "e683305acfb9a69251883c4ba15a803cf7de8e19bb02d1537e75adbb7ee7d69d",
+    "states.json": "1f00f204724d12885b4928e0727521509eefec52e70cf3eead83102e7a22b43f",
+    "semantic_controls.py": "26fdb4f2515ca1070ba92dfcd6b7fba8cf7686ae76a753742f2bfd465e97695b",
+    "geometry/build_scene.py": "62ec9499b3807723bb41c6c05bc1f11f94e6a34d963681755513783a36ca4dc2",
+    "geometry/apply_demo_state.py": "9a7b98042b2a19219fc74e01e34031e8ce49dceeebe4ac563c18bf49c0cd5333",
+    "geometry/cooling_operations_lab.blend": "5a35853eebce1faa65b8b1f424ede841705c0c4a2110529429d828f809de7486",
+    "geometry/cooling_operations_lab.glb": "a2381aed6b2af268fb8f170ba768b3ac5922978adff9f635b58251e2bd90a09b",
+    "geometry/cooling_handling_module.glb": "26831ca3520b42674e0a4d6a1494b29daa10842d3936e50c41556ae55a89350f",
+    "materials/materials.json": "b73ec64ac8d7362ef24831c8b6c04f86121c25fc72b182b4ad9078de30f05c01",
+    "evidence/overview.png": "2ec01d3b911ec5606e59e39ba32a3968326774d6d9726f9c06e7514a64c30a23",
+    "evidence/sample_handling.png": "50b29d3b04282ba6748f2ddda33acc9d1d97b90b90ce93da4cb052db10584f51",
+    "evidence/equipment_closeup.png": "33cc5d7a8a68a106b9fdeb4f3304107a3f3e0c101c299c2ae6e98df3c1725add",
+    "tests/test_package.py": "cae36daee2ce2d0a0039994cc09c4a18e070b3829a99bed4c04ee8d5d75ec850",
+    "tests/verify_blend.py": "9be8e97c56ad516767bc51a90562fa44dd6d0a77b18fad2d9a02aa38778d78d1",
+    "LICENSES/Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "LICENSES/Blender-font-notice.txt": "85fb4b54a328aa460fd244d57ebd83b87cae5079ed52f9cf1f7f1cc450b18257",
+    "LICENSES/ATTRIBUTION.md": "cbedf09b455799f8840dcf86bf33db328a457dc0611937fb90e3facc84f0a353",
+    "review/render_receipt.json": "961aa112f27d3339f6998ae64581a1f8346190396c80e4675dfb9d813288e465",
+    "review/blend_validation.json": "2ad16d73224250554c4ade7608863ddb53fdbc0d15593de26499bff2abdb1a68",
+    "review/semantic_journal.json": "385e1c429a745ffcf7cb5ee61e20b5cc87440698e56795073f721d093574a2bc",
+    "review/test_report.txt": "ec3d59f47ebb4dd6086c6c51de4ee883d3eb3e341ffd1d5b0b2b7b1ff4069635",
+    "EXPORT_ALLOWLIST.json": "4b1b6b6118e82b97dd850f4bfdbef259e7715869f2528d0d27d9df8833d00f99",
+    "export_package.py": "b4e85fd28249cda9421c72096623b13872e2be4e2b3b79278155e338fe4ad2f7"
+  }
+}
