@@ -1,0 +1,153 @@
+{
+  "schema": "afm_independent_review.v1",
+  "reviewed_utc": "2026-10-04T04:25:13.061821+00:00",
+  "review_scope": "Independent review of final editable geometry, portable exports, metadata, source boundaries, local semantic/kinematic behavior, and rendered pixels",
+  "status": "pass_for_static_asset_display_with_declared_limitations",
+  "blocking_findings": [],
+  "reference_contracts": [
+    "docs/contributing/ASSET_GUIDE.md",
+    "tasks/afm_metrology_operations_v2/source_conflicts.json",
+    "tasks/afm_metrology_operations_v2/material_cards.json",
+    "tasks/afm_metrology_operations_v2/station_contracts.json",
+    "tasks/afm_metrology_operations_v2/unknown_parameters.json"
+  ],
+  "geometry": {
+    "blender_load_verified": "4.3.2",
+    "asset_roots": 17,
+    "inventory_parts": 348,
+    "editable_mesh_objects": 322,
+    "editable_text_objects": 26,
+    "apparatus_glb_meshes": 265,
+    "magnified_glb_meshes": 82,
+    "mapped_asset_roots": 15,
+    "distinct_mapped_operation_ids": 23,
+    "native_cone_count": 49,
+    "native_cylinder_count": 6,
+    "unmapped_operations": [
+      "ARCHIVE",
+      "FAB_LOAD",
+      "FAB_READOUT",
+      "FINAL_SESSION_TEARDOWN"
+    ],
+    "not_full_experimental_array": true
+  },
+  "checks": [
+    {
+      "name": "package_unit_tests",
+      "result": "pass",
+      "tests": 9,
+      "detail": "Independently executed against the rebuilt geometry; tests check identifiers, finite transforms, source gates, GLB/PNG structure, static state guards, and allowlist paths"
+    },
+    {
+      "name": "additional_semantic_guard_cases",
+      "result": "pass",
+      "cases": 11,
+      "detail": "Rejected handling/optics/lateral actions during contact, rejected invalid custody transitions and unknown events, verified optical revision change and false physical-calibration validity"
+    },
+    {
+      "name": "actual_blend_geometry_and_pose_roundtrip",
+      "result": "pass",
+      "detail": "Loaded final Blend independently; held -> docked -> held returns to the identical initial arm poses, preserving each 21 mm authored pivot radius"
+    },
+    {
+      "name": "metric_geometry_and_transform_conversion",
+      "result": "pass",
+      "detail": "Metric Blender scale=1; all 347 exported part translations match (x,y,z)->(x,z,-y) glTF conversion; finite GLB transform/accessor values and buffer bounds inspected; relevant microscopic dimensions verified in exported mesh accessors"
+    },
+    {
+      "name": "native_layer_attachment",
+      "result": "pass",
+      "detail": "Corrected native PDMS/Al/cone stack aligns within less than 9 nm stored-float tolerance; this checks authored mesh placement, not fabrication or optical qualification"
+    },
+    {
+      "name": "distinct_optical_configurations",
+      "result": "pass",
+      "detail": "Parallel Mitutoyo 10x NA 0.28 and characterization Olympus 10x with unknown NA remain distinct in metadata, scene roots, labels, and semantic configuration IDs"
+    },
+    {
+      "name": "source_vs_authored_dimensions",
+      "result": "pass",
+      "detail": "Conical dimensions remain SI numerical-model parameters; cylinder dimensions remain reported physical preparation values. Subset layout, radius allocation, apparatus, carriers, target motifs, display slabs and exploded offsets are explicitly authored"
+    },
+    {
+      "name": "unresolved_source_scale",
+      "result": "pass",
+      "detail": "0.5 mm versus 5 mm discrepancy remains unresolved; whole-array span is null and 1088-position allocation is not supplied"
+    },
+    {
+      "name": "embedded_resource_and_public_payload_review",
+      "result": "pass_for_examined_payload",
+      "detail": "No external Blend libraries or raster files, no GLB images/textures/external URIs; built-in Bfont only. Explicit publication allowlist excludes raw papers/source archives, logs and Blend backups. Final ZIP construction and manifest consistency are separate release-stage checks"
+    },
+    {
+      "name": "actual_rendered_pixels",
+      "result": "pass",
+      "detail": "All three final 1600x1100 PNGs inspected visually: distinct apparatus placement, labeled layer/cylinder detail, carrier/grasp proxy and XYZ datum are visible"
+    }
+  ],
+  "resolved_findings": [
+    "Native microcone/backing separation corrected",
+    "Clamp pose now orbits its visible pivot",
+    "Inventory evaluated before recording rotated text bounds",
+    "Empty explainer roots removed from apparatus export",
+    "Initial-state affordance-frame validity, authored clamp limits and unimplemented connector details disclosed"
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "V_CAPTION_CONTRAST",
+      "severity": "minor",
+      "detail": "Fine scale/hold captions in the microassembly render are small and low contrast. README and dimension metadata remain authoritative; higher-contrast captions would improve standalone image readability"
+    }
+  ],
+  "limitations": [
+    "Static authored approximation only; no manufacturer dimensional certification, optical alignment, working-distance validation or full experimental-array reconstruction",
+    "No physical simulation, calibrated material/contact behavior, collision validation, force sensing, real device execution or robot reachability",
+    "Toy semantic guards and kinematic pose changes are not physical release, custody, calibration or safety evidence",
+    "Carrier/fixture tolerances, gripper suitability, retained support and collision-free insertion remain unqualified; fixed affordance world poses require recomputation after pose changes",
+    "No scientific reproduction, target metrology or source-conflict resolution; microscopic materials and optical appearances are visual approximations"
+  ],
+  "evidence": [
+    {
+      "file": "evidence/overview.png",
+      "width": 1600,
+      "height": 1100,
+      "actual_pixels_inspected": true,
+      "sha256": "c7b2fda14681e1a145d7484339675d5fc94f1900691a05027efa999101f5de66"
+    },
+    {
+      "file": "evidence/equipment_closeup.png",
+      "width": 1600,
+      "height": 1100,
+      "actual_pixels_inspected": true,
+      "sha256": "c00d67c71807668ea9602c97045fb0496aa281208f0e7b4abc1fc5fae2311daf"
+    },
+    {
+      "file": "evidence/sample_handling.png",
+      "width": 1600,
+      "height": 1100,
+      "actual_pixels_inspected": true,
+      "sha256": "762fc4f41c074441fe054f2b5e110cbdd77f8ef743f8dd2eef439f94ca850046"
+    }
+  ],
+  "reviewed_artifact_sha256": {
+    "README.md": "3c4603752c399f787c179827b2ab702904ec9283f348436f47f283b3e25ca592",
+    "asset_metadata.json": "eeab2d8a64474b2daa93435bc8bdda65d2178ba3b0af1e94f3b5610d2b3adb86",
+    "asset_inventory.json": "b40265523c73ed6489b509fcebdf7962214d7dd96cb36336bc9aa600581cf572",
+    "operation_bindings.json": "730e00df1fac7d27eb95151379f4b3e239df0ef008937bc131e20a3dd44971e6",
+    "affordances.json": "47ff6e6488c38c80d20f88b02072492d29d6c2b6e004099d0dbf840c38462e41",
+    "states.json": "a2e266888e9296faddf95ad83c0476ca9d7469c7e8cec91d75347f218b60f3d9",
+    "semantic_controls.py": "e0e152d62864d7fe59df742dff1caff0586f6878e749d76ae6ae2f9eac28451f",
+    "geometry/build_scene.py": "dd961cec8eca3a9925c17f1770bbfd35dd994b829d14588a1bf1a21ae6936e5f",
+    "geometry/apply_demo_pose.py": "63fe8e46d1dbbf02e2f48d729c443ceef4f522f7712cf79a7b2c18a50e507315",
+    "geometry/afm_operations_lab.blend": "f4a575bebc8c8e352cf8ba6121fc55a3b64b803013aefefb6dc425cc0e98a99e",
+    "geometry/afm_operations_lab.glb": "9c19dd6b62f073e31ac2db2b32369eb998d6eac71e1d8a2babc40105b7b2c497",
+    "geometry/afm_magnified_explainer.glb": "a3b458d0a2a55324f5311054d30c870adc45480f1e7e36e16267cdbfb8c11393",
+    "materials/materials.json": "5bd56ca1f4613e208e8e727dd38dc30b130d800f7f25a0d5c498188ef29d7373",
+    "evidence/overview.png": "c7b2fda14681e1a145d7484339675d5fc94f1900691a05027efa999101f5de66",
+    "evidence/equipment_closeup.png": "c00d67c71807668ea9602c97045fb0496aa281208f0e7b4abc1fc5fae2311daf",
+    "evidence/sample_handling.png": "762fc4f41c074441fe054f2b5e110cbdd77f8ef743f8dd2eef439f94ca850046",
+    "tests/test_package.py": "6fe65f40b1ff32bcf46e34faf243afb71b1979730ef8efcb5ea14cb924639402"
+  },
+  "archive_status": "Archive not yet constructed at review-writing time; release owner must verify exact allowlist and manifest hashes after packaging",
+  "reviewer_modified_implementation": false
+}

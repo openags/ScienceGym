@@ -12,6 +12,24 @@ The unit of design is a **paper-level task family**. Its branches, dependencies,
 
 Start with [CONTRIBUTING.md](CONTRIBUTING.md) to claim a paper or asset, choose a contribution track and prepare a reviewable pull request. Read the [project vision](docs/PROJECT_VISION.md), [paper task guide](docs/contributing/PAPER_TASK_GUIDE.md), [asset guide](docs/contributing/ASSET_GUIDE.md) and [readiness checklist](docs/contributing/REVIEW_CHECKLIST.md). Task and asset work can proceed in parallel while physical simulation is paused.
 
+## Editable AFM 3D assets
+
+The [cantilever-free AFM operations lab](assets/afm_scene_assets_v1/README.md) adds original editable geometry for the [bounded inert-metrology task design](tasks/afm_metrology_operations_v2/TASK_DESIGN.md): parallel-imaging and characterization apparatus, probe and target assemblies, retained carriers, clamps and an authored grasp/access proxy.
+
+[![Original AFM laboratory scene: parallel-imaging apparatus, characterization apparatus and retained sample carrier](assets/afm_scene_assets_v1/evidence/overview.png)](assets/afm_scene_assets_v1/evidence/overview.png)
+
+[Download the editable Blender scene](assets/afm_scene_assets_v1/geometry/afm_operations_lab.blend?raw=true) · [Download the apparatus GLB](assets/afm_scene_assets_v1/geometry/afm_operations_lab.glb?raw=true) · [Download the magnified explainer GLB](assets/afm_scene_assets_v1/geometry/afm_magnified_explainer.glb?raw=true)
+
+[![Magnified AFM microassembly and cylinder-coupon explainer; support slabs and exploded gaps are authored display geometry](assets/afm_scene_assets_v1/evidence/equipment_closeup.png)](assets/afm_scene_assets_v1/evidence/equipment_closeup.png)
+
+[![Retained sample carrier, authored clamp interfaces and orange grasp proxy](assets/afm_scene_assets_v1/evidence/sample_handling.png)](assets/afm_scene_assets_v1/evidence/sample_handling.png)
+
+This package contains **17 asset roots and 348 inventory parts**; these are scene-organization counts, not distinct laboratory devices. Fifteen mapped roots cover **23 distinct task-operation IDs** through [static semantic bindings](assets/afm_scene_assets_v1/operation_bindings.json). The local carrier/clamp guards and demonstration poses do not implement device control, calibrated measurements, collision or contact physics, robot reachability, or a runnable task. The existing paper-design, bounded-subset and viewer counts are unchanged. Earlier asset inventories remain separate; no deduplicated repository-wide asset total is asserted.
+
+The [dimension and provenance ledger](assets/afm_scene_assets_v1/asset_metadata.json) distinguishes reported parameters, numerical-model dimensions and authored geometry. Device housings, fixtures, carriers, clearances and silicon target motifs are authored approximations, not manufacturer CAD or qualified replicas. Native microscopic parts use metres; the separate explainer enlarges cone/cylinder features 1000× while its support slabs, target relief and exploded gaps are authored display geometry. The 49-cone illustration is not the reported 1088-position array. The source's 0.5 mm versus 5 mm whole-array span conflict remains unresolved. The Mitutoyo 10× / NA 0.28 parallel configuration and Olympus 10× / NA unreported characterization configuration remain distinct.
+
+The [30-file publication allowlist](assets/afm_scene_assets_v1/EXPORT_ALLOWLIST.json) contains one editable Blender file, two GLBs, three original CPU renders, scripts, contracts, licenses and review records. [Independent review](assets/afm_scene_assets_v1/review/independent_review.md) passed for static display with declared limitations. Package tests and Blender checks cover static geometry and local semantic/kinematic behavior only. No publisher papers, figures, private archives, backup scenes or duplicate asset ZIP are included.
+
 ## Embodied laboratory task demonstration
 
 The R01 example binds a mobile humanoid, laboratory stations, manipulated objects and sample states to **26 reference-operation keyframes**. It shows stock collection, fabrication handoff, assembly, metrology, two authored loading cycles, archiving and cleanup. [Open the offline visual replay guide](viewer/embodied_r01/README.md).
@@ -186,7 +204,7 @@ Physical simulation is paused. No whole-paper robot execution or physical scient
 
 Source locators, provenance and unresolved claims are recorded within each task package. Source-reported facts, interpretations and authored task mechanics must remain distinguishable. Access to a paper does not imply permission to redistribute its text, figures, videos or datasets.
 
-This first public snapshot focuses on authored task specifications. It is not a complete mirror of the development archive: bulk binary scenes, asset exports and the early manuscript are not included while their publication and rights review is pending. Historical provenance references may identify resources that are not bundled. Original publisher source packets and scientific datasets are not supplied by this release.
+The original public snapshot focused on authored task specifications. The reviewed AFM asset package above now supplies a bounded set of original editable geometry and rendered evidence. Other historical bulk scenes, asset exports and the early manuscript remain outside this repository while their publication and rights review is pending. This is not a complete mirror of the development archive; historical provenance references may identify resources that are not bundled. Original publisher source packets and scientific datasets are not supplied by this release.
 
 ScienceGym is licensed under the [Apache License 2.0](LICENSE). Third-party publications, datasets and assets remain subject to their own licenses and notices; the project license does not relicense them. Obtain any required third-party materials from their lawful sources.
 

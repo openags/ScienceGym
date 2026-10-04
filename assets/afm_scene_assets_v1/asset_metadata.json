@@ -1,0 +1,206 @@
+{
+  "schema": "afm_original_scene.v1",
+  "contract_status": "asset_package_contract_not_universal_runtime_schema",
+  "package_id": "afm_scene_assets_v1",
+  "version": "1.0.0",
+  "title": "Cantilever-free AFM operations lab",
+  "readiness": {
+    "geometry": "original_editable_meshes_and_GLBs",
+    "appearance": "CPU_rendered_approximation",
+    "functionality": "static_kinematic_semantic_state_machine_only",
+    "physical_execution_implemented": false,
+    "calibration_execution_implemented": false,
+    "reachability_validated": false
+  },
+  "task_link": {
+    "family": "afm_metrology_operations_v2",
+    "doi": "10.1038/s41467-020-20612-3",
+    "operation_ids": [
+      "RECEIVE",
+      "VERIFY_INPUT",
+      "TRANSFER_IN",
+      "MOUNT_ARRAY",
+      "MOUNT_TARGET",
+      "LEVEL",
+      "BASELINE",
+      "CALIBRATE_CONTACT",
+      "REGISTER_TARGET",
+      "RASTER",
+      "LINE",
+      "MOUNT_LEVER",
+      "THERMAL_PSD",
+      "GLASS_SENSITIVITY",
+      "MOUNT_COUPON",
+      "LOCATE_CENTER",
+      "FORCE_DISTANCE",
+      "SYNCHRONIZED_FORCE_OPTICS",
+      "OFF_CENTER_SCHEDULE",
+      "RELEASE",
+      "TRANSFER_OUT",
+      "INSPECT",
+      "ARCHIVE",
+      "CLEAN_STORE",
+      "FAB_LOAD",
+      "FAB_READOUT",
+      "FINAL_SESSION_TEARDOWN"
+    ],
+    "coverage": "A subset of operations is mapped to concrete scene assets; analysis, fabrication and session records are not implemented"
+  },
+  "files": {
+    "editable": "geometry/afm_operations_lab.blend",
+    "apparatus": "geometry/afm_operations_lab.glb",
+    "magnified_display": "geometry/afm_magnified_explainer.glb",
+    "generator": "geometry/build_scene.py",
+    "inventory": "asset_inventory.json"
+  },
+  "frame_convention": {
+    "length_unit": "m",
+    "angle_unit": "rad",
+    "mass_unit": "kg",
+    "time_unit": "s",
+    "blender_handedness": "right",
+    "blender_up_axis": "+Z",
+    "blender_forward_axis": "+X",
+    "origin_datum": "bench plan center; floor datum z=0; bench base authored",
+    "transform_direction": "local_to_parent",
+    "rotation_representation": "quaternion_xyzw",
+    "GLB_conversion": "Blender exporter converts right-handed Z-up to right-handed glTF Y-up. Metres retained. Object matrices may include rotations; no scale normalization implied."
+  },
+  "scale": {
+    "apparatus_physical_scale": 1,
+    "apparatus_dimensions_status": "authored design envelopes, not manufacturer dimensions",
+    "native_micro_subset_display_scale": 1,
+    "explainer_display_scale": 1000,
+    "explainer_limits": "Only micro-cone dimensions/pitch and cylinder dimensions use 1000x. Support slab thickness/extent, target relief and exploded separations are authored display geometry. Do not use inset extents for whole-array span.",
+    "whole_array_span_m": null,
+    "C_SCALE": {
+      "values_in_source_m": [
+        0.0005,
+        0.005
+      ],
+      "resolved": false,
+      "handling": "No corrected experimental span inferred, no 1088-position qualified allocation supplied"
+    }
+  },
+  "dimension_ledger": [
+    {
+      "parameter": "cone height / base radius / tip radius",
+      "values_m": [
+        6e-06,
+        3e-06,
+        1e-07
+      ],
+      "status": "SI Note 2 numerical model, not measured fabrication geometry",
+      "geometry": "array.microcone.* and explainer.cone.*; cone apex uses a flat 100 nm radius truncation, not a spherical tip"
+    },
+    {
+      "parameter": "hexagonal probe pitch",
+      "value_m": 1.5e-05,
+      "status": "reported main experiment",
+      "geometry": "7x7 illustrative subset, not full 1088 probe layout"
+    },
+    {
+      "parameter": "cylinder height",
+      "value_m": 6e-06,
+      "status": "SI Note 3 physical preparation"
+    },
+    {
+      "parameter": "cylinder radius range",
+      "values_m": [
+        3e-06,
+        8e-06
+      ],
+      "status": "SI Note 3 physical range; six representative radii/positions authored, exact allocation unknown"
+    },
+    {
+      "parameter": "cylinder PDMS backing thickness",
+      "value_m": 1.4e-05,
+      "status": "SI Note 3 physical preparation"
+    },
+    {
+      "parameter": "reflective Al coating thickness",
+      "value_m": 3e-08,
+      "status": "source-reported preparation; shader plus thin visual sheet, no optical simulation"
+    },
+    {
+      "parameter": "instrument, sapphire-envelope and carrier dimensions",
+      "value_m": null,
+      "status": "authored design dimensions recorded per part; not manufacturer-certified or measured"
+    },
+    {
+      "parameter": "silicon target outline/pattern/relief",
+      "value_m": null,
+      "status": "authored iconographic region motifs; no TGXYZ02 traceable grid geometry or height reconstruction"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "CFG_PARALLEL_MITUTOYO",
+      "instrument_asset": "afm.parallel_instrument",
+      "source": "MAIN Methods Cantilever-free imaging",
+      "objective_brand_reference": "Mitutoyo",
+      "magnification": 10,
+      "numerical_aperture": 0.28,
+      "array_orientation": "downward",
+      "camera_reference": "Point Gray Grasshopper GS3-US-32S4C-C",
+      "motion_roles": "vertical+tilt array, lateral sample; only visual apparatus supplied",
+      "calibration_reuse_with_other_config": false
+    },
+    {
+      "id": "CFG_CHARACTERIZATION_OLYMPUS",
+      "instrument_asset": "afm.characterization_instrument",
+      "source": "SI Notes 3 and 5",
+      "objective_brand_reference": "Olympus",
+      "magnification": 10,
+      "numerical_aperture": null,
+      "microscope_reference": "Nikon Eclipse Ti inverted brightfield / MFP-3D Bio combined AFM",
+      "camera_reference": "Point Grey Grasshopper GS3-US-32S4C-C",
+      "calibration_reuse_with_other_config": false
+    }
+  ],
+  "collision": {
+    "implementation": "metadata_only_no_backend",
+    "representation": "parts may be treated as simplified boxes/cylinders only after backend validation",
+    "collision_meshes_supplied": false,
+    "contact_parameters": null,
+    "warning": "No dynamics, contact, force, deformation, optical raytracing or calibration model. Decorative text, lights, ruler, ports, paths and magnified insets must not collide."
+  },
+  "provenance": {
+    "creator": "Original parametric geometry authored for Protocol World by OpenAI assistant",
+    "created_utc": "2026-10-04",
+    "geometry_source": "Programmatic primitives and authored layouts; no vendor CAD, logo, textures or source pixels",
+    "source_references": [
+      {
+        "id": "MAIN",
+        "url": "https://www.nature.com/articles/s41467-020-20612-3",
+        "repository_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7810748/",
+        "title": "Massively parallel cantilever-free atomic force microscopy",
+        "authors": "Cao et al.",
+        "year": 2021,
+        "doi": "10.1038/s41467-020-20612-3",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "use": "Source facts and structure only; no source images, text dumps, meshes or PDFs redistributed"
+      },
+      {
+        "id": "SI",
+        "url": "https://www.nature.com/articles/s41467-020-20612-3#Sec18",
+        "locator": "Supplementary Information Notes 2, 3, 5; pp. 5, 8-9, 11",
+        "use": "Model dimensions, physical cylinder dimensions, and setup role distinction; SI pages 5, 9 and 11 inspected as pixels on 2026-10-04"
+      }
+    ],
+    "license": "Apache-2.0 for original code/geometry/metadata/renders; repository contribution license",
+    "material_model": "Procedural flat PBR approximations; no measured optical/material data",
+    "fonts": "Blender built-in Bfont; editable text in Blend, mesh-converted labels in GLB. No external font file bundled. See LICENSES/Blender-font-notice.txt for installed font-data notices and upstream license references.",
+    "reference_limit": "Main figure 1 image retrieval failed; source main figure captions/text and SI figure 3 pixels informed structure. No exact figure or manufacturer-apparatus reproduction claim."
+  },
+  "execution_gates": [
+    "Full qualified probe geometry and cylinder radius allocation",
+    "Resolved historical 0.5 / 5 mm source discrepancy",
+    "Manufacturer dimensions, working distances and optical alignments",
+    "Carrier tolerance, retention force, mass, friction, collision mesh and gripper fit",
+    "Sensor authority, acquisition, calibration and interlocks",
+    "Robot reachability and manipulation validation",
+    "Device adapter and source equation sign-conflict disposition"
+  ]
+}

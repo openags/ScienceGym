@@ -1,0 +1,227 @@
+{
+  "schema": "afm_affordances.v1",
+  "all_robot_interfaces_authored": true,
+  "physical_qualification": false,
+  "frame_validity": "World frames describe the initial raised/held render state only; recompute from current object transforms after any demo pose change.",
+  "clamp_joint_contract": {
+    "left_pivot_m": [
+      0.327,
+      -0.263,
+      0.281
+    ],
+    "right_pivot_m": [
+      0.473,
+      -0.263,
+      0.281
+    ],
+    "axis": "+Z",
+    "left_limit_rad": [
+      -1.57079632679,
+      0
+    ],
+    "right_limit_rad": [
+      0,
+      1.57079632679
+    ],
+    "qualification": "authored demonstration limits, not mechanical capability"
+  },
+  "port_contract": {
+    "part_id": "interface.sensor_port",
+    "connection_type": null,
+    "compatible_mates": null,
+    "interaction_mechanism": "unimplemented_visual_only"
+  },
+  "affordances": [
+    {
+      "id": "carrier_grasp",
+      "part_prefix": "carrier.demo.grasp_tab",
+      "operation_ids": [
+        "TRANSFER_IN",
+        "TRANSFER_OUT"
+      ],
+      "world_frame": {
+        "translation_m": [
+          0.297,
+          -0.29,
+          0.257
+        ],
+        "quaternion_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "compatible_tool": "parallel-jaw proxy; actual tool unknown",
+      "access": "Approach from front (-Y) or above (+Z) as drawn; keep off active probe and silicon surfaces; clearances unqualified",
+      "preconditions": [
+        "static input state valid",
+        "retained support for carrier moves",
+        "no physical device execution"
+      ],
+      "behavior": "Illustrative semantic state or kinematic pose only",
+      "observable_postcondition": "Named visual state and state journal; never a sensor receipt",
+      "failure_stop": "Reject invalid transitions or missing release; report gate without moving physical equipment",
+      "implementation": "local semantic_controls.py; optional Blender demo pose script"
+    },
+    {
+      "id": "carrier_seat",
+      "part_prefix": "handling.dock",
+      "operation_ids": [
+        "MOUNT_TARGET",
+        "TRANSFER_IN"
+      ],
+      "world_frame": {
+        "translation_m": [
+          0.4,
+          -0.29,
+          0.2
+        ],
+        "quaternion_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "compatible_tool": "retained carrier",
+      "access": "Approach from front (-Y) or above (+Z) as drawn; keep off active probe and silicon surfaces; clearances unqualified",
+      "preconditions": [
+        "static input state valid",
+        "retained support for carrier moves",
+        "no physical device execution"
+      ],
+      "behavior": "Illustrative semantic state or kinematic pose only",
+      "observable_postcondition": "Named visual state and state journal; never a sensor receipt",
+      "failure_stop": "Reject invalid transitions or missing release; report gate without moving physical equipment",
+      "implementation": "local semantic_controls.py; optional Blender demo pose script"
+    },
+    {
+      "id": "clamp_open_close",
+      "part_prefix": "clamp.demo.open_arm",
+      "operation_ids": [
+        "MOUNT_TARGET",
+        "TRANSFER_OUT"
+      ],
+      "world_frame": {
+        "translation_m": [
+          0.327,
+          -0.242,
+          0.29
+        ],
+        "quaternion_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "compatible_tool": "rotary tool placeholder",
+      "access": "Approach from front (-Y) or above (+Z) as drawn; keep off active probe and silicon surfaces; clearances unqualified",
+      "preconditions": [
+        "static input state valid",
+        "retained support for carrier moves",
+        "no physical device execution"
+      ],
+      "behavior": "Illustrative semantic state or kinematic pose only",
+      "observable_postcondition": "Named visual state and state journal; never a sensor receipt",
+      "failure_stop": "Reject invalid transitions or missing release; report gate without moving physical equipment",
+      "implementation": "local semantic_controls.py; optional Blender demo pose script"
+    },
+    {
+      "id": "array_perimeter_mount",
+      "part_prefix": "array.mount.rail",
+      "operation_ids": [
+        "MOUNT_ARRAY"
+      ],
+      "world_frame": {
+        "translation_m": [
+          -0.462,
+          -0.05,
+          0.44
+        ],
+        "quaternion_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "compatible_tool": "perimeter support tool unknown",
+      "access": "Approach from front (-Y) or above (+Z) as drawn; keep off active probe and silicon surfaces; clearances unqualified",
+      "preconditions": [
+        "static input state valid",
+        "retained support for carrier moves",
+        "no physical device execution"
+      ],
+      "behavior": "Illustrative semantic state or kinematic pose only",
+      "observable_postcondition": "Named visual state and state journal; never a sensor receipt",
+      "failure_stop": "Reject invalid transitions or missing release; report gate without moving physical equipment",
+      "implementation": "local semantic_controls.py; optional Blender demo pose script"
+    },
+    {
+      "id": "sample_lateral",
+      "part_prefix": "parallel.sample_stage",
+      "operation_ids": [
+        "RASTER",
+        "LINE"
+      ],
+      "world_frame": {
+        "translation_m": [
+          -0.39,
+          -0.065,
+          0.292
+        ],
+        "quaternion_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "compatible_tool": "piezo stage semantic adapter",
+      "access": "Approach from front (-Y) or above (+Z) as drawn; keep off active probe and silicon surfaces; clearances unqualified",
+      "preconditions": [
+        "static input state valid",
+        "retained support for carrier moves",
+        "no physical device execution"
+      ],
+      "behavior": "Illustrative semantic state or kinematic pose only",
+      "observable_postcondition": "Named visual state and state journal; never a sensor receipt",
+      "failure_stop": "Reject invalid transitions or missing release; report gate without moving physical equipment",
+      "implementation": "local semantic_controls.py; optional Blender demo pose script"
+    },
+    {
+      "id": "release_readback",
+      "part_prefix": "interface.release_readback",
+      "operation_ids": [
+        "RELEASE",
+        "BASELINE"
+      ],
+      "world_frame": {
+        "translation_m": [
+          -0.14,
+          -0.202,
+          0.345
+        ],
+        "quaternion_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "compatible_tool": "semantic state only",
+      "access": "Approach from front (-Y) or above (+Z) as drawn; keep off active probe and silicon surfaces; clearances unqualified",
+      "preconditions": [
+        "static input state valid",
+        "retained support for carrier moves",
+        "no physical device execution"
+      ],
+      "behavior": "Illustrative semantic state or kinematic pose only",
+      "observable_postcondition": "Named visual state and state journal; never a sensor receipt",
+      "failure_stop": "Reject invalid transitions or missing release; report gate without moving physical equipment",
+      "implementation": "local semantic_controls.py; optional Blender demo pose script"
+    }
+  ]
+}
