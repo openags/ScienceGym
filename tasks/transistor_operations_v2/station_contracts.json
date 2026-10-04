@@ -1,0 +1,102 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "stations": [
+    {
+      "id": "fabrication",
+      "roles": [
+        "chemical preparation",
+        "CVD",
+        "sputter",
+        "patterning"
+      ],
+      "source_instruments": "SCS-type coating system; DC Al/RF In2O3 sputtering; lithography incompletely specified",
+      "closed_service": true,
+      "recipe_complete": false,
+      "real_control_interface": null,
+      "safe_handoff": "Independent deenergized/cool/mechanically retained receipt before access; all environment-specific limits require qualification"
+    },
+    {
+      "id": "packaging",
+      "roles": [
+        "chip attachment",
+        "ultrasonic wire bonding"
+      ],
+      "source_instruments": "WeiChen Al ultrasonic bonder; numerical settings not recoverable from knob photos",
+      "closed_service": true,
+      "recipe_complete": false,
+      "real_control_interface": null,
+      "safe_handoff": "Independent deenergized/cool/mechanically retained receipt before access; all environment-specific limits require qualification"
+    },
+    {
+      "id": "electrical",
+      "roles": [
+        "transfer/output/leakage",
+        "C–V",
+        "circuit control"
+      ],
+      "source_instruments": "Keithley 4200 in ambient air; test programs missing",
+      "closed_service": true,
+      "recipe_complete": false,
+      "real_control_interface": null,
+      "safe_handoff": "Independent deenergized/cool/mechanically retained receipt before access; all environment-specific limits require qualification"
+    },
+    {
+      "id": "thermal_electrical",
+      "roles": [
+        "temperature/bias stress",
+        "hotplate removal/cooldown"
+      ],
+      "source_instruments": "Hotplate plus electrical testing; temperature metrology unspecified",
+      "closed_service": true,
+      "recipe_complete": false,
+      "real_control_interface": null,
+      "safe_handoff": "Independent deenergized/cool/mechanically retained receipt before access; all environment-specific limits require qualification"
+    },
+    {
+      "id": "storage_electrical",
+      "roles": [
+        "long-term storage and intermittent electrical testing"
+      ],
+      "source_instruments": "Storage environment unspecified",
+      "closed_service": true,
+      "recipe_complete": false,
+      "real_control_interface": null,
+      "safe_handoff": "Independent deenergized/cool/mechanically retained receipt before access; all environment-specific limits require qualification"
+    },
+    {
+      "id": "metrology",
+      "roles": [
+        "AFM",
+        "SEM",
+        "TEM",
+        "EDX",
+        "cross-section preparation"
+      ],
+      "source_instruments": "Instrument and acquisition settings missing",
+      "closed_service": true,
+      "recipe_complete": false,
+      "real_control_interface": null,
+      "safe_handoff": "Independent deenergized/cool/mechanically retained receipt before access; all environment-specific limits require qualification"
+    }
+  ],
+  "hazards": [
+    "Deposition vacuum/plasma/power and service internals",
+    "Chemical exposure and incompatible solvent damage",
+    "Electrical bias, stored charge and ESD damage",
+    "Hotplate and heated specimens",
+    "Ultrasonic bonding and fragile interconnects"
+  ],
+  "robot_may_access": [
+    "qualified deenergized retained carriers",
+    "closed-service handoff ports",
+    "approved low-energy fixture interface"
+  ],
+  "robot_may_not_access": [
+    "open deposition equipment",
+    "live electrical terminals",
+    "open chemical handling",
+    "unguarded ultrasonic bonding",
+    "hot unqualified surfaces"
+  ]
+}

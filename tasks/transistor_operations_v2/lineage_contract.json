@@ -1,0 +1,47 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "required_identities": [
+    "episode",
+    "attempt",
+    "service",
+    "specimen",
+    "specimen_version",
+    "carrier",
+    "chip",
+    "system",
+    "stack",
+    "architecture",
+    "cohort",
+    "layer_index",
+    "PCB",
+    "wire",
+    "pad",
+    "netlist_revision",
+    "mount_revision",
+    "setup_revision",
+    "calibration",
+    "case",
+    "raw_record",
+    "analysis_revision"
+  ],
+  "invariants": [
+    "Every acquisition belongs to a specific architecture, stack/device and cohort",
+    "State-altering service creates a new specimen version; no lineage merge by matching labels",
+    "Cross-section daughter samples retain parent link and destructive status",
+    "Rewiring invalidates continuity and acquisition configuration receipts",
+    "Remounting invalidates geometry-sensitive calibration",
+    "Bias/thermal history accumulates across interruptions and failed attempts",
+    "Thermal stack sequence uses the same registered sample and six-hour off-hotplate intervals",
+    "Long-term elapsed time comes from independent clock and custody records",
+    "No source-reported outcome or actor assertion proves acquisition",
+    "Safe-state readback must precede disconnect or carrier movement",
+    "Readout/archive/cleanup all required for bounded branch completion"
+  ],
+  "actor_mutable_fields": [
+    "event_id",
+    "job_id",
+    "phase"
+  ],
+  "observation_authority": "Independent environment/service channel; offline fixtures have synthetic authority only"
+}

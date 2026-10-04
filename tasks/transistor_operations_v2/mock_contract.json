@@ -1,0 +1,29 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "execution": "offline synthetic only",
+  "module": "tests/contract.py",
+  "entrypoints": [
+    "fixture(selected_branches, buffer_variant_nm, episode_id)",
+    "validate(context, actor_events)",
+    "plan_for(branch_id, buffer_variant_nm)"
+  ],
+  "actor_keys": [
+    "event_id",
+    "job_id",
+    "phase"
+  ],
+  "context_ownership": "Independent synthetic test harness; never actor-controlled in a future production setting. This fixture context has no authentication or real authority.",
+  "source_scope": "All source route groups represented; reduced population samples, virtual elapsed time, named control schedules and all 90 ordered inverter pairs.",
+  "raw_payloads": "Synthetic bookkeeping records with no scientific measurement values. SHA256 covers these payloads, not real acquired data.",
+  "success_claim": "Synthetic schedule, control, lineage and safe-state bookkeeping consistency only",
+  "unsupported_claims": [
+    "real actuation",
+    "physical simulation",
+    "scientific replication",
+    "numerical reproduction",
+    "whole historical fabrication",
+    "complete source population measurements"
+  ],
+  "analysis_evaluator_implemented": false
+}

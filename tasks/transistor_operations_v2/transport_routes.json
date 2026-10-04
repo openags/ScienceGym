@@ -1,0 +1,77 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "routes": [
+    {
+      "id": "input_to_service",
+      "from": "registered storage",
+      "to": "selected qualified station",
+      "retained": "approved carrier",
+      "requires": [
+        "identity",
+        "cleanliness status",
+        "safe service handoff",
+        "destination seating"
+      ]
+    },
+    {
+      "id": "chip_to_pcb",
+      "from": "qualified chip carrier",
+      "to": "PCB packaging fixture",
+      "retained": "qualified chip attachment service",
+      "requires": [
+        "pad map",
+        "keep-outs",
+        "attachment method card"
+      ]
+    },
+    {
+      "id": "pcb_to_test",
+      "from": "packaging release",
+      "to": "electrical fixture",
+      "retained": "PCB holder",
+      "requires": [
+        "bond inspection",
+        "netlist continuity/isolation",
+        "ESD handling card"
+      ]
+    },
+    {
+      "id": "thermal_to_cooldown",
+      "from": "hotplate",
+      "to": "retained cooldown support",
+      "retained": "qualified thermal holder",
+      "requires": [
+        "measured electrical isolation",
+        "safe removal card",
+        "six-hour elapsed-time receipt before next source stack"
+      ]
+    },
+    {
+      "id": "metrology_daughter",
+      "from": "parent coupon",
+      "to": "qualified destructive-section service",
+      "retained": "metrology carrier",
+      "requires": [
+        "parent-child lineage",
+        "consumed status"
+      ]
+    },
+    {
+      "id": "test_to_storage",
+      "from": "selected station",
+      "to": "registered retained storage",
+      "retained": "carrier or PCB holder",
+      "requires": [
+        "independent safe-zero",
+        "disconnect",
+        "post-use inspection",
+        "archive",
+        "cleanup"
+      ]
+    }
+  ],
+  "motion_coordinates": null,
+  "force_limits": null,
+  "authored_bridge": true
+}

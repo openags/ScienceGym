@@ -1,0 +1,46 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "netlists": [
+    {
+      "id": "ORDINARY_INVERTER_FIG4",
+      "source_locator": "Main Fig4b; SI FigS26b/c identifies left BG and right TG",
+      "source_visual_interpretation": {
+        "driver_BG": "VIN",
+        "driver_TG": "VIN",
+        "driver_source": "GND",
+        "driver_drain": "VOUT",
+        "load_drain": "VDD",
+        "load_source": "VOUT",
+        "load_left_gate_BG": "VDD",
+        "load_right_gate_TG": "VOUT"
+      },
+      "qualification_gate": "Independent circuit/pad-map review must verify actual source/drain and gate assignment; diagram-derived topology is not a PCB netlist."
+    },
+    {
+      "id": "PARALLEL_INVERTER_S30",
+      "source_locator": "SI FigS30a–d PDF p48",
+      "source_visual_interpretation": "S1 driver with one to nine distinct stacked loads in parallel; verify every gate connection against original schematic and approved pad map. No electrical connection is inferred solely from the word parallel.",
+      "qualification_gate": "Full gate and pad mapping for each selected load set required."
+    },
+    {
+      "id": "INDEPENDENT_INVERTER_S31",
+      "source_locator": "SI FigS31a PDF p49",
+      "source_visual_interpretation": {
+        "driver_BG": "VBG",
+        "driver_TG": "VTG1",
+        "driver_source": "GND",
+        "driver_drain": "VOUT",
+        "load_drain": "VDD",
+        "load_source": "VOUT",
+        "load_BG": "VOUT",
+        "load_TG": "VTG2"
+      },
+      "qualification_gate": "Separate TG1 and TG2 sources, terminal references and physical pad-map verification required; do not reuse ordinary-inverter gate shorting."
+    }
+  ],
+  "unknown_terminal_state_is_not_floating": true,
+  "rewire_requires_safe_zero": true,
+  "old_continuity_receipt_invalidated_on_rewire": true,
+  "diagram_interpretation_not_authorization": true
+}

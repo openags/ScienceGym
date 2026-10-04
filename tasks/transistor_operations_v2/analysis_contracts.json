@@ -1,0 +1,228 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "analyses": [
+    {
+      "id": "TRANSISTOR_METRICS",
+      "input_branch_ids": [
+        "BASELINE",
+        "DUAL_TRACE",
+        "SMALL"
+      ],
+      "outputs": [
+        "threshold",
+        "mobility",
+        "SS",
+        "ON/OFF",
+        "transconductance"
+      ],
+      "qualification_cards": [
+        "U_EQUATIONS",
+        "U_COHORT"
+      ],
+      "conflict_ids": [
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C10"
+      ],
+      "raw_record_required": true,
+      "source_outcome_is_input": false,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Numerical processing follows completed physical readout and uses immutable raw records, versioned algorithm, units, fit windows and cohort. It never substitutes for mounting, acquisition or cleanup.",
+      "unresolved_metric_policy": "Return unresolved with provenance instead of manufacturing a value or silently correcting a source formula."
+    },
+    {
+      "id": "CAPACITANCE",
+      "input_branch_ids": [
+        "MOSCAP"
+      ],
+      "outputs": [
+        "accumulation capacitance",
+        "area-normalized capacitance"
+      ],
+      "qualification_cards": [
+        "U_CAPACITANCE",
+        "U_EQUATIONS"
+      ],
+      "conflict_ids": [],
+      "raw_record_required": true,
+      "source_outcome_is_input": false,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Numerical processing follows completed physical readout and uses immutable raw records, versioned algorithm, units, fit windows and cohort. It never substitutes for mounting, acquisition or cleanup.",
+      "unresolved_metric_policy": "Return unresolved with provenance instead of manufacturing a value or silently correcting a source formula."
+    },
+    {
+      "id": "LEAKAGE_CLASSIFICATION",
+      "input_branch_ids": [
+        "CROSSBAR",
+        "GATE_LEAKAGE"
+      ],
+      "outputs": [
+        "current at specified bias",
+        "fraction below source study criterion"
+      ],
+      "qualification_cards": [
+        "U_ELECTRICAL",
+        "U_COHORT"
+      ],
+      "conflict_ids": [],
+      "raw_record_required": true,
+      "source_outcome_is_input": false,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Numerical processing follows completed physical readout and uses immutable raw records, versioned algorithm, units, fit windows and cohort. It never substitutes for mounting, acquisition or cleanup.",
+      "unresolved_metric_policy": "Return unresolved with provenance instead of manufacturing a value or silently correcting a source formula."
+    },
+    {
+      "id": "SURFACE_STRUCTURE",
+      "input_branch_ids": [
+        "STRUCTURAL",
+        "SURFACE"
+      ],
+      "outputs": [
+        "RMS",
+        "corner bump",
+        "layer continuity",
+        "EDX element mapping"
+      ],
+      "qualification_cards": [
+        "U_METROLOGY",
+        "U_COHORT"
+      ],
+      "conflict_ids": [
+        "C09"
+      ],
+      "raw_record_required": true,
+      "source_outcome_is_input": false,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Numerical processing follows completed physical readout and uses immutable raw records, versioned algorithm, units, fit windows and cohort. It never substitutes for mounting, acquisition or cleanup.",
+      "unresolved_metric_policy": "Return unresolved with provenance instead of manufacturing a value or silently correcting a source formula."
+    },
+    {
+      "id": "STABILITY",
+      "input_branch_ids": [
+        "POSITIVE_STRESS",
+        "LONG_TERM",
+        "NBS",
+        "NBTS",
+        "THERMAL"
+      ],
+      "outputs": [
+        "current change",
+        "threshold shift",
+        "transconductance change"
+      ],
+      "qualification_cards": [
+        "U_EQUATIONS",
+        "U_COHORT",
+        "U_STRESS",
+        "U_THERMAL"
+      ],
+      "conflict_ids": [
+        "C07"
+      ],
+      "raw_record_required": true,
+      "source_outcome_is_input": false,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Numerical processing follows completed physical readout and uses immutable raw records, versioned algorithm, units, fit windows and cohort. It never substitutes for mounting, acquisition or cleanup.",
+      "unresolved_metric_policy": "Return unresolved with provenance instead of manufacturing a value or silently correcting a source formula."
+    },
+    {
+      "id": "COUPLING_SHIFT",
+      "input_branch_ids": [
+        "COUPLING",
+        "MATERIAL"
+      ],
+      "outputs": [
+        "virgin-to-perturbed transfer comparison"
+      ],
+      "qualification_cards": [
+        "U_COUPLING",
+        "U_EQUATIONS"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C08"
+      ],
+      "raw_record_required": true,
+      "source_outcome_is_input": false,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Numerical processing follows completed physical readout and uses immutable raw records, versioned algorithm, units, fit windows and cohort. It never substitutes for mounting, acquisition or cleanup.",
+      "unresolved_metric_policy": "Return unresolved with provenance instead of manufacturing a value or silently correcting a source formula."
+    },
+    {
+      "id": "INVERTER_METRICS",
+      "input_branch_ids": [
+        "PAIRS",
+        "PARALLEL",
+        "INV_TUNE"
+      ],
+      "outputs": [
+        "signed derivative gain",
+        "reported gain magnitude",
+        "trip point",
+        "supply current",
+        "noise margins where supported"
+      ],
+      "qualification_cards": [
+        "U_GAIN"
+      ],
+      "conflict_ids": [],
+      "raw_record_required": true,
+      "source_outcome_is_input": false,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Numerical processing follows completed physical readout and uses immutable raw records, versioned algorithm, units, fit windows and cohort. It never substitutes for mounting, acquisition or cleanup.",
+      "unresolved_metric_policy": "Return unresolved with provenance instead of manufacturing a value or silently correcting a source formula."
+    },
+    {
+      "id": "GATE_TUNING",
+      "input_branch_ids": [
+        "DG_TUNE"
+      ],
+      "outputs": [
+        "ON voltage versus independently fixed TG"
+      ],
+      "qualification_cards": [
+        "U_EQUATIONS"
+      ],
+      "conflict_ids": [],
+      "raw_record_required": true,
+      "source_outcome_is_input": false,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Numerical processing follows completed physical readout and uses immutable raw records, versioned algorithm, units, fit windows and cohort. It never substitutes for mounting, acquisition or cleanup.",
+      "unresolved_metric_policy": "Return unresolved with provenance instead of manufacturing a value or silently correcting a source formula."
+    },
+    {
+      "id": "LITERATURE_CONTEXT",
+      "input_branch_ids": [],
+      "outputs": [
+        "number of stacks",
+        "reported mobility",
+        "processing temperature comparison"
+      ],
+      "qualification_cards": [],
+      "conflict_ids": [
+        "C05"
+      ],
+      "raw_record_required": false,
+      "source_outcome_is_input": true,
+      "implementation_supplied": false,
+      "numerical_reproduction_performed": false,
+      "separation": "Source-reported comparison only; no physical acquisition dependency and no computation or independent literature replication claimed.",
+      "unresolved_metric_policy": "Preserve each literature report and its original scope; do not compute a new performance ranking."
+    }
+  ],
+  "uncertainty_semantics_default": null,
+  "source_curve_digitization_performed": false
+}

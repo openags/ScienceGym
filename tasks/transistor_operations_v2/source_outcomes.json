@@ -1,0 +1,194 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "visibility": "author_and_evaluator_only",
+  "not_actor_targets": true,
+  "outcomes": [
+    {
+      "id": "headline_DG",
+      "source": "Main abstract and p772",
+      "values": {
+        "mobility_cm2_Vs": 15,
+        "SS_V_dec": 0.4,
+        "current_ratio_approx": 100000000.0
+      },
+      "conflicts": [
+        "C02",
+        "C03",
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "baseline_table_DG_peak",
+      "source": "SI TableS2",
+      "values": {
+        "S6_mobility_cm2_Vs": 16.64,
+        "printed_plusminus": 0.28
+      },
+      "uncertainty_type": null,
+      "conflicts": [
+        "C03",
+        "C05",
+        "C07"
+      ]
+    },
+    {
+      "id": "reliability_cohort_maxima",
+      "source": "SI Section5 PDF p27",
+      "values": {
+        "BG": 7.53,
+        "TG": 9.31,
+        "DG": 19.72
+      },
+      "unit": "cm2/V/s",
+      "cohort": "100 per architecture",
+      "conflicts": [
+        "C03",
+        "C05"
+      ]
+    },
+    {
+      "id": "crossbar_leakage",
+      "source": "SI Section3 PDF pp13–14",
+      "values": [
+        {
+          "nm": 10,
+          "bias_V": 2,
+          "current_order_A": 0.001
+        },
+        {
+          "nm": 25,
+          "range_V": [
+            -12,
+            12
+          ],
+          "current_order_A": 1e-12
+        },
+        {
+          "nm": 50,
+          "range_V": [
+            -23,
+            23
+          ],
+          "current_order_A": 1e-11
+        }
+      ]
+    },
+    {
+      "id": "gate_only_below_criterion",
+      "source": "SI FigS6",
+      "source_criterion_A": 2e-08,
+      "values_percent": {
+        "100_nm": {
+          "A": 4,
+          "B": 0,
+          "C": 4,
+          "D": 0
+        },
+        "20_nm": {
+          "A": 80,
+          "B": 88,
+          "C": 90,
+          "D": 94
+        }
+      },
+      "not_a_production_yield_spec": true
+    },
+    {
+      "id": "positive_bias_decay",
+      "source": "SI FigS18",
+      "values": "After 10 ks, BG/TG current drops more than one order and DG less than one order"
+    },
+    {
+      "id": "long_term_change",
+      "source": "SI FigS19",
+      "values": {
+        "threshold_shift_V": {
+          "BG": 3.81,
+          "TG": 4.77,
+          "DG": 2.68
+        },
+        "transconductance_reduction_percent": {
+          "BG": 57,
+          "TG": 92,
+          "DG": 48
+        }
+      },
+      "conflicts": [
+        "C07"
+      ]
+    },
+    {
+      "id": "NBS_threshold_shift",
+      "source": "SI FigS20",
+      "values_by_stack_V": [
+        -3.2,
+        -3.55,
+        -2.73,
+        -4.05,
+        -3.31,
+        -2.85,
+        -3.89,
+        -2.95,
+        -3.91,
+        -3.12
+      ]
+    },
+    {
+      "id": "NBTS_threshold_shift",
+      "source": "SI FigS21",
+      "values_by_stack_V": [
+        -2.42,
+        -2.69,
+        -2.35,
+        -3.21,
+        -3.12,
+        -2.33,
+        -3.61,
+        -1.95,
+        -3.55,
+        -3.17
+      ]
+    },
+    {
+      "id": "thermal_behavior",
+      "source": "SI Section6/FigS22",
+      "values": "Reported stable through 50 C and large negative threshold shifts above 75 C; no fabrication anneal demonstrated"
+    },
+    {
+      "id": "inverter_gain",
+      "source": "SI TableS4; main Fig4",
+      "values": {
+        "full_table_range_V_V": [
+          34.87,
+          50.05
+        ],
+        "S7_driver_S1_load": 50.05,
+        "first_nine_main_approx": 47
+      }
+    },
+    {
+      "id": "parallel_tradeoff",
+      "source": "SI FigS30",
+      "values": "More loads shifts trip positively, increases current and reduces gain"
+    },
+    {
+      "id": "tuned_inverter_trip",
+      "source": "Main Fig5e/f and p774",
+      "values": {
+        "TG1_V": -10,
+        "TG2_endpoints_V": [
+          10,
+          -10
+        ],
+        "trip_endpoints_V": [
+          5.0,
+          7.3
+        ]
+      }
+    }
+  ],
+  "benchmark_acceptance_thresholds": false,
+  "observed_values_are_not_completion_evidence": true
+}

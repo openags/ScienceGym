@@ -1,0 +1,62 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "safe_state_principle": "Commands never prove safe state. All carrier transfers and fixture access require independent safe-state evidence.",
+  "routes": {
+    "HIGHK": [
+      "distinct material specimen input",
+      "electrical mount and fresh calibration",
+      "baseline acquisition",
+      "deenergize",
+      "independent safe zero",
+      "disconnect",
+      "retrieve",
+      "fabrication transfer and mount",
+      "qualified dielectric service",
+      "independent safe zero",
+      "release fixture and retrieve",
+      "electrical transfer and new mount/calibration",
+      "post acquisition",
+      "deenergize",
+      "independent safe zero",
+      "disconnect",
+      "retrieve"
+    ],
+    "THERMAL": [
+      "safe transfer and mount for stack",
+      "temperature series with independent safe zero after acquisition",
+      "disconnect",
+      "remove hotplate",
+      "six hours off-hotplate cooldown",
+      "next stack transfer and new mount/calibration"
+    ],
+    "LONG_TERM": [
+      "architecture-specific custody and elapsed-time checkpoint",
+      "safe transfer and mount",
+      "acquire",
+      "deenergize",
+      "independent safe zero",
+      "disconnect",
+      "return storage"
+    ],
+    "PREP_TO_STACK": [
+      "same substrate identity",
+      "cleaning returns specimen version 2",
+      "STACK names PREP material parent and released version 2",
+      "layer service history begins only after PREP cleanup"
+    ],
+    "STRUCTURAL": [
+      "distinct SEM/TEM/EDX parent coupons from registered material inventory",
+      "safe transfer and fresh mount for each coupon",
+      "qualified destructive preparation consumes parent and creates identified daughter",
+      "image daughter",
+      "independent safe zero",
+      "fixture release",
+      "retrieve and inspect each daughter",
+      "archive and cleanup include all consumed parents and stored daughters"
+    ]
+  },
+  "mock_population_scope": "One authored representative per required architecture/control case; no source population count or elapsed-time replication.",
+  "mock_case_devices": "Qualified synthetic carrier manifests retain distinct architecture/material device identities. No apparatus geometry is implemented.",
+  "all_material_disposition_required": true
+}

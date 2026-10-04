@@ -1,0 +1,62 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "routes": [
+    {
+      "id": "PREP",
+      "source_route_group": "R01",
+      "closed_service": true,
+      "source_constraints": {
+        "substrate_si_um": 525,
+        "thermal_sio2_um": 2,
+        "cleaning_sequence": [
+          {
+            "material": "acetone",
+            "minutes": 5
+          },
+          {
+            "material": "isopropyl alcohol",
+            "minutes": 5
+          },
+          {
+            "material": "deionized water",
+            "minutes": 5
+          }
+        ]
+      },
+      "unknowns": [
+        "volumes",
+        "agitation",
+        "drying",
+        "clean endpoint",
+        "oxidation/dicing recipe"
+      ],
+      "room_temperature_claim_applies_to": "subsequent active-layer deposition, not thermal oxidation"
+    },
+    {
+      "id": "STACK",
+      "source_route_group": "R02",
+      "closed_service": true,
+      "source_constraints": {
+        "stack_count": 10,
+        "gate_al_nm": 20,
+        "gate_dielectric_nm": 25,
+        "channel_in2o3_approx_nm": 10,
+        "channel_rf_power_W": 100,
+        "argon_sccm": 20,
+        "oxygen_sccm": 20,
+        "pressure_mTorr": 10,
+        "active_layer_deposition_temperature": "room temperature"
+      },
+      "layer_contract": "layer_contract.json",
+      "buffer_choice": null,
+      "missing_settings_gate": [
+        "U_SPUTTER",
+        "U_PARYLENE",
+        "U_PATTERN",
+        "U_BUFFER"
+      ]
+    }
+  ],
+  "no_real_service_calls": true
+}

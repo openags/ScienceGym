@@ -1,0 +1,1025 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "controls": [
+    {
+      "id": "PREP",
+      "source_evidence_id": "E_R01",
+      "source_constraints": {
+        "sequence": [
+          "acetone",
+          "isopropyl alcohol",
+          "deionized water"
+        ],
+        "duration_minutes_each": 5,
+        "source_sample_extent_cm": [
+          2,
+          2
+        ],
+        "extent_role": "Main Fig2 example substrate, not a dicing recipe"
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "STACK",
+      "source_evidence_id": "E_R02",
+      "source_constraints": {
+        "source_table_layer_count": 72,
+        "stack_count": 10,
+        "buffer_variants_nm": [
+          25,
+          50
+        ],
+        "selected_buffer_nm": null,
+        "room_temperature_active_deposition": true,
+        "gate_dielectric_nm": 25,
+        "gate_al_nm": 20,
+        "channel_approx_nm": 10
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "OVERLAP",
+      "source_evidence_id": "E_R03",
+      "source_constraints": {
+        "architectures": [
+          "underlap",
+          "overlap_control"
+        ],
+        "underlap_definition": "No gate/source or gate/drain overlap",
+        "overlap_recipe_complete": false,
+        "source_failure": "gate leakage"
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "HIGHK",
+      "source_evidence_id": "E_R03",
+      "source_constraints": {
+        "materials": [
+          "HfO2",
+          "Al2O3"
+        ],
+        "states": [
+          "before_top_dielectric",
+          "after_top_dielectric"
+        ],
+        "HfO2_ALD_C": 250,
+        "Al2O3_ALD_C": null,
+        "source_outcome": "gate-control loss after top dielectric",
+        "not_a_replacement_for_parylene": true
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "CROSSBAR",
+      "source_evidence_id": "E_R04",
+      "source_constraints": {
+        "crossbar_um": [
+          5,
+          5
+        ],
+        "electrode_nm": 20,
+        "dielectric_variants_nm": [
+          10,
+          25,
+          50
+        ],
+        "source_characterization_pairs": [
+          {
+            "nm": 10,
+            "voltage_V": 2
+          },
+          {
+            "nm": 25,
+            "range_V": [
+              -12,
+              12
+            ]
+          },
+          {
+            "nm": 50,
+            "range_V": [
+              -23,
+              23
+            ]
+          }
+        ],
+        "not_an_executable_sweep": true
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "GATE_LEAKAGE",
+      "source_evidence_id": "E_R04",
+      "source_constraints": {
+        "gate_thicknesses_nm": [
+          100,
+          60,
+          20
+        ],
+        "regions": {
+          "A": [
+            "BG1",
+            "TG1"
+          ],
+          "B": [
+            "TG1",
+            "BG2"
+          ],
+          "C": [
+            "BG2",
+            "TG2"
+          ],
+          "D": [
+            "TG2",
+            "BG3"
+          ]
+        },
+        "source_drain_contacts_present": false,
+        "source_devices_per_region": 50,
+        "sweep_V": [
+          10,
+          -10
+        ],
+        "extraction_V": 10,
+        "source_classification_A": 2e-08,
+        "classification_is_not_universal_safety_limit": true
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "STRUCTURAL",
+      "source_evidence_id": "E_R05",
+      "source_constraints": {
+        "techniques": [
+          "SEM",
+          "TEM",
+          "EDX"
+        ],
+        "EDX_elements": [
+          "Al",
+          "C",
+          "In",
+          "O"
+        ],
+        "source_regions": [
+          "source_gate",
+          "gate_drain",
+          "stack_cross_section"
+        ],
+        "destructive_preparation_requires_daughter_identity": true
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "SURFACE",
+      "source_evidence_id": "E_R05",
+      "source_constraints": {
+        "stack_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "layer_roles": [
+          "BG",
+          "BG_dielectric",
+          "channel",
+          "TG_dielectric",
+          "TG",
+          "buffer"
+        ],
+        "measurements": [
+          "RMS_surface_roughness",
+          "BG_corner_bump",
+          "TG_corner_bump"
+        ],
+        "RMS_is_not_bump_height": true
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "PACKAGE",
+      "source_evidence_id": "E_R06",
+      "source_constraints": {
+        "source_wire": "Al",
+        "first_bond": "chip_metal_pad",
+        "second_bond": "PCB_Al_pad",
+        "terminal_families": [
+          "BG",
+          "TG",
+          "source",
+          "drain"
+        ],
+        "source_stacks": 10,
+        "manufacturer_settings_numeric": null,
+        "wire_diameter": null,
+        "pad_coordinates": null
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "BASELINE",
+      "source_evidence_id": "E_R07",
+      "source_constraints": {
+        "architectures": [
+          "BG",
+          "TG",
+          "DG"
+        ],
+        "stack_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "geometry_um": {
+          "W": 500,
+          "Lch": 15,
+          "Lg": 5
+        },
+        "main_BG_transfer_VGS_V": [
+          -10,
+          5
+        ],
+        "transfer_VDS_V": 5,
+        "SI_output_VGS_V": 5,
+        "TG_transfer_range": "Figure axes extend beyond the BG sweep; qualify architecture-specific endpoints, do not force every family to -10 V.",
+        "source_N_per_stack": 12,
+        "source_chips": 3,
+        "systems_per_chip": 4,
+        "statistical_definition": null
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "MOSCAP",
+      "source_evidence_id": "E_R07",
+      "source_constraints": {
+        "architectures": [
+          "BG",
+          "TG",
+          "DG"
+        ],
+        "stack_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "readout": "C-V and accumulation capacitance",
+        "frequency_Hz": null,
+        "ac_amplitude_V": null
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "DUAL_TRACE",
+      "source_evidence_id": "E_R08",
+      "source_constraints": {
+        "architectures": [
+          "BG",
+          "TG",
+          "DG"
+        ],
+        "source_devices_per_architecture": 100,
+        "trace_order": [
+          "forward",
+          "reverse"
+        ],
+        "VDS_V": 5,
+        "geometry_um": {
+          "W": 500,
+          "Lch": 15,
+          "Lg": 5
+        },
+        "sweep_range_and_rate": "Architecture-specific qualification required; figure axes differ"
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "POSITIVE_STRESS",
+      "source_evidence_id": "E_R09",
+      "source_constraints": {
+        "architectures": [
+          "BG",
+          "TG",
+          "DG"
+        ],
+        "source_devices_per_architecture": 100,
+        "VGS_V": 5,
+        "VDS_V": 5,
+        "source_duration_s": 10000,
+        "sampling_cadence_s": null
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "LONG_TERM",
+      "source_evidence_id": "E_R10",
+      "source_constraints": {
+        "architectures": [
+          "BG",
+          "TG",
+          "DG"
+        ],
+        "source_total_devices_stated": 50,
+        "per_architecture_allocation": null,
+        "source_duration_days": 200,
+        "source_interval_days": 10,
+        "storage_environment": null,
+        "main_broad_count_per_architecture": 100
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "NBS",
+      "source_evidence_id": "E_R11",
+      "source_constraints": {
+        "architecture": "DG",
+        "stack_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "VGS_V": -10,
+        "VDS_V": 5,
+        "duration_s": 4000,
+        "interval_s": 500,
+        "temperature_C": null
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "NBTS",
+      "source_evidence_id": "E_R11",
+      "source_constraints": {
+        "architecture": "DG",
+        "stack_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "VGS_V": -10,
+        "VDS_V": 5,
+        "duration_s": 4000,
+        "interval_s": 500,
+        "temperature_C": 80
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "THERMAL",
+      "source_evidence_id": "E_R12",
+      "source_constraints": {
+        "architecture": "DG",
+        "stack_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "table_temperatures_C": [
+          25,
+          50,
+          75,
+          100
+        ],
+        "nominal_measurement_hold_s": 60,
+        "VDS_V": 5,
+        "remove_after_each_stack": true,
+        "off_hotplate_cooldown_s": 21600,
+        "simultaneous_all_stack_measurement": false,
+        "temperature_ramp_C_per_s": null,
+        "device_temperature_equals_table": false
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "SMALL",
+      "source_evidence_id": "E_R13",
+      "source_constraints": {
+        "architectures": [
+          "BG",
+          "TG",
+          "DG"
+        ],
+        "W_um": 1,
+        "Lch_nm": 500,
+        "Lg_nm": 100,
+        "transfer_VGS_V": [
+          -5,
+          10
+        ],
+        "transfer_VDS_V": 2,
+        "output_VDS_V": [
+          0,
+          2
+        ],
+        "output_VGS_V": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "full_ten_stack_demonstration": false
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "MATERIAL",
+      "source_evidence_id": "E_R14",
+      "source_constraints": {
+        "materials": [
+          "Al2O3",
+          "parylene-C"
+        ],
+        "dielectric_thickness_nm": 25,
+        "matched_device_dimensions_required": true
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "COUPLING",
+      "source_evidence_id": "E_R14",
+      "source_constraints": {
+        "buffer_variants_nm": [
+          25,
+          50
+        ],
+        "devices": "two stacked DG transistors",
+        "section7_cases": {
+          "i": {
+            "perturber": "BG2",
+            "victim": "BG1"
+          },
+          "ii": {
+            "perturber": "BG1",
+            "victim": "BG2"
+          },
+          "iii": {
+            "perturber": "TG1",
+            "victim": "BG2"
+          },
+          "iv": {
+            "perturber": "BG2",
+            "victim": "TG1"
+          }
+        },
+        "caption_conflicting_cases": {
+          "iii": {
+            "perturber": "BG2",
+            "victim": "BG1"
+          },
+          "iv": {
+            "perturber": "BG2",
+            "victim": "BG1"
+          }
+        },
+        "states": [
+          "virgin",
+          "positive_10V",
+          "negative_10V"
+        ],
+        "source_perturbation_V": [
+          -10,
+          10
+        ],
+        "selected_interpretation": null,
+        "source_perturbation_order": null,
+        "source_dwell_s": null
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "PAIRS",
+      "source_evidence_id": "E_R15",
+      "source_constraints": {
+        "ordered_pairs": [
+          {
+            "driver": 1,
+            "load": 2
+          },
+          {
+            "driver": 1,
+            "load": 3
+          },
+          {
+            "driver": 1,
+            "load": 4
+          },
+          {
+            "driver": 1,
+            "load": 5
+          },
+          {
+            "driver": 1,
+            "load": 6
+          },
+          {
+            "driver": 1,
+            "load": 7
+          },
+          {
+            "driver": 1,
+            "load": 8
+          },
+          {
+            "driver": 1,
+            "load": 9
+          },
+          {
+            "driver": 1,
+            "load": 10
+          },
+          {
+            "driver": 2,
+            "load": 1
+          },
+          {
+            "driver": 2,
+            "load": 3
+          },
+          {
+            "driver": 2,
+            "load": 4
+          },
+          {
+            "driver": 2,
+            "load": 5
+          },
+          {
+            "driver": 2,
+            "load": 6
+          },
+          {
+            "driver": 2,
+            "load": 7
+          },
+          {
+            "driver": 2,
+            "load": 8
+          },
+          {
+            "driver": 2,
+            "load": 9
+          },
+          {
+            "driver": 2,
+            "load": 10
+          },
+          {
+            "driver": 3,
+            "load": 1
+          },
+          {
+            "driver": 3,
+            "load": 2
+          },
+          {
+            "driver": 3,
+            "load": 4
+          },
+          {
+            "driver": 3,
+            "load": 5
+          },
+          {
+            "driver": 3,
+            "load": 6
+          },
+          {
+            "driver": 3,
+            "load": 7
+          },
+          {
+            "driver": 3,
+            "load": 8
+          },
+          {
+            "driver": 3,
+            "load": 9
+          },
+          {
+            "driver": 3,
+            "load": 10
+          },
+          {
+            "driver": 4,
+            "load": 1
+          },
+          {
+            "driver": 4,
+            "load": 2
+          },
+          {
+            "driver": 4,
+            "load": 3
+          },
+          {
+            "driver": 4,
+            "load": 5
+          },
+          {
+            "driver": 4,
+            "load": 6
+          },
+          {
+            "driver": 4,
+            "load": 7
+          },
+          {
+            "driver": 4,
+            "load": 8
+          },
+          {
+            "driver": 4,
+            "load": 9
+          },
+          {
+            "driver": 4,
+            "load": 10
+          },
+          {
+            "driver": 5,
+            "load": 1
+          },
+          {
+            "driver": 5,
+            "load": 2
+          },
+          {
+            "driver": 5,
+            "load": 3
+          },
+          {
+            "driver": 5,
+            "load": 4
+          },
+          {
+            "driver": 5,
+            "load": 6
+          },
+          {
+            "driver": 5,
+            "load": 7
+          },
+          {
+            "driver": 5,
+            "load": 8
+          },
+          {
+            "driver": 5,
+            "load": 9
+          },
+          {
+            "driver": 5,
+            "load": 10
+          },
+          {
+            "driver": 6,
+            "load": 1
+          },
+          {
+            "driver": 6,
+            "load": 2
+          },
+          {
+            "driver": 6,
+            "load": 3
+          },
+          {
+            "driver": 6,
+            "load": 4
+          },
+          {
+            "driver": 6,
+            "load": 5
+          },
+          {
+            "driver": 6,
+            "load": 7
+          },
+          {
+            "driver": 6,
+            "load": 8
+          },
+          {
+            "driver": 6,
+            "load": 9
+          },
+          {
+            "driver": 6,
+            "load": 10
+          },
+          {
+            "driver": 7,
+            "load": 1
+          },
+          {
+            "driver": 7,
+            "load": 2
+          },
+          {
+            "driver": 7,
+            "load": 3
+          },
+          {
+            "driver": 7,
+            "load": 4
+          },
+          {
+            "driver": 7,
+            "load": 5
+          },
+          {
+            "driver": 7,
+            "load": 6
+          },
+          {
+            "driver": 7,
+            "load": 8
+          },
+          {
+            "driver": 7,
+            "load": 9
+          },
+          {
+            "driver": 7,
+            "load": 10
+          },
+          {
+            "driver": 8,
+            "load": 1
+          },
+          {
+            "driver": 8,
+            "load": 2
+          },
+          {
+            "driver": 8,
+            "load": 3
+          },
+          {
+            "driver": 8,
+            "load": 4
+          },
+          {
+            "driver": 8,
+            "load": 5
+          },
+          {
+            "driver": 8,
+            "load": 6
+          },
+          {
+            "driver": 8,
+            "load": 7
+          },
+          {
+            "driver": 8,
+            "load": 9
+          },
+          {
+            "driver": 8,
+            "load": 10
+          },
+          {
+            "driver": 9,
+            "load": 1
+          },
+          {
+            "driver": 9,
+            "load": 2
+          },
+          {
+            "driver": 9,
+            "load": 3
+          },
+          {
+            "driver": 9,
+            "load": 4
+          },
+          {
+            "driver": 9,
+            "load": 5
+          },
+          {
+            "driver": 9,
+            "load": 6
+          },
+          {
+            "driver": 9,
+            "load": 7
+          },
+          {
+            "driver": 9,
+            "load": 8
+          },
+          {
+            "driver": 9,
+            "load": 10
+          },
+          {
+            "driver": 10,
+            "load": 1
+          },
+          {
+            "driver": 10,
+            "load": 2
+          },
+          {
+            "driver": 10,
+            "load": 3
+          },
+          {
+            "driver": 10,
+            "load": 4
+          },
+          {
+            "driver": 10,
+            "load": 5
+          },
+          {
+            "driver": 10,
+            "load": 6
+          },
+          {
+            "driver": 10,
+            "load": 7
+          },
+          {
+            "driver": 10,
+            "load": 8
+          },
+          {
+            "driver": 10,
+            "load": 9
+          }
+        ],
+        "pair_count": 90,
+        "VDD_V": 15,
+        "VIN_V": [
+          -5,
+          5
+        ],
+        "netlist_id": "ORDINARY_INVERTER_FIG4",
+        "geometry_um": {
+          "W": 500,
+          "Lch": 15,
+          "Lg": 5
+        }
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "PARALLEL",
+      "source_evidence_id": "E_R16",
+      "source_constraints": {
+        "driver": 1,
+        "load_counts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "eligible_load_stacks": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "VDD_V": 15,
+        "netlist_id": "PARALLEL_INVERTER_S30",
+        "all_511_nonempty_subsets_claimed": false,
+        "full_intermediate_load_membership_requires_qualified_card": true
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "DG_TUNE",
+      "source_evidence_id": "E_R17",
+      "source_constraints": {
+        "stack_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "fixed_TG_V": [
+          10,
+          5,
+          0,
+          -5,
+          -10
+        ],
+        "swept_BG_V": [
+          -10,
+          15
+        ],
+        "VDS_V": 5,
+        "independent_gates": true
+      },
+      "executable_without_qualification": false
+    },
+    {
+      "id": "INV_TUNE",
+      "source_evidence_id": "E_R17",
+      "source_constraints": {
+        "driver": 1,
+        "load": 2,
+        "fixed_TG1_V": [
+          10,
+          5,
+          0,
+          -5,
+          -10
+        ],
+        "fixed_TG2_V": [
+          10,
+          5,
+          0,
+          -5,
+          -10
+        ],
+        "VDD_V": 15,
+        "netlist_id": "INDEPENDENT_INVERTER_S31",
+        "VIN_schedule": "Main optimized Fig5 e/f displays 0..15 V; SI S32 control axes extend -10..15 V. Qualify branch-specific actual sweep limits; no universal inherited -5..5 V.",
+        "noise_margin_cases_TG1_V": [
+          -10,
+          -5
+        ],
+        "noise_margin_endpoint_TG2_V": [
+          10,
+          -10
+        ]
+      },
+      "executable_without_qualification": false
+    }
+  ],
+  "unspecified_step_or_dwell_defaults": null,
+  "source_values_do_not_authorize_hardware": true
+}

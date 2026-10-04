@@ -1,0 +1,1679 @@
+{
+  "schema_version": "transistor_task.v1",
+  "doi": "10.1038/s41928-024-01205-0",
+  "operation_count": 44,
+  "operations": [
+    {
+      "id": "RECEIVE",
+      "title": "Receive",
+      "kind": "robot_custody",
+      "robot_actions": [
+        "Read specimen and carrier identities; verify custody transfer without touching active layers or bond wires."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "VERIFY_INPUT",
+      "title": "Verify Input",
+      "kind": "reader",
+      "robot_actions": [
+        "Check branch-specific qualified material, history, geometry, hazard and setup cards; stop on missing or stale evidence."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "TRANSFER_IN",
+      "title": "Transfer In",
+      "kind": "robot_transport",
+      "robot_actions": [
+        "Dock the retained carrier at a qualified fixture using approved geometry and keep-outs; verify seating before support release."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "MOUNT",
+      "title": "Mount",
+      "kind": "robot_fixture",
+      "robot_actions": [
+        "Seat carrier or PCB in its qualified holder. Record orientation, clamp state and new mount revision."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "VERIFY_SAFE_ZERO",
+      "title": "Verify Safe Zero",
+      "kind": "independent_readback",
+      "robot_actions": [
+        "Require measured deenergized electrical and mechanically safe service state; an off command alone is insufficient."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "CLEAN_SERVICE",
+      "title": "Clean Service",
+      "kind": "closed_chemical_service",
+      "robot_actions": [
+        "Request qualified cleaning of certified oxidized silicon; only carrier handoff and returned cleaning receipt are exposed."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "LAYER_SERVICE",
+      "title": "Layer Service",
+      "kind": "closed_fabrication_service",
+      "robot_actions": [
+        "Request one qualified deposition/patterning layer service against its immutable ledger index; verify material, thickness variant and prior-layer linkage."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "CONFIGURE",
+      "title": "Configure",
+      "kind": "closed_control_service",
+      "robot_actions": [
+        "Select a qualified route-specific netlist and bounded acquisition schedule while outputs are verified safe; include every floating, grounded and driven terminal."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "ACQUIRE",
+      "title": "Acquire",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire route-specific raw electrical record with compliance and independent measured-state receipt."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "BASELINE_ACQUIRE",
+      "title": "Baseline Acquire",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire the high-k specimen before top-dielectric addition, preserving specimen version and terminal map."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "DIELECTRIC_SERVICE",
+      "title": "Dielectric Service",
+      "kind": "closed_fabrication_service",
+      "robot_actions": [
+        "Use a qualified high-k service to add top dielectric; preserve prior state and mark new specimen version. Do not infer an Al2O3 temperature."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "POST_ACQUIRE",
+      "title": "Post Acquire",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire the same high-k lineage after top dielectric; gate-control loss is a source outcome, never an actor objective."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "SECTION_SERVICE",
+      "title": "Section Service",
+      "kind": "closed_metrology_preparation",
+      "robot_actions": [
+        "Hand a separately identified coupon to the qualified cross-section service; record destructive consumption and daughter-sample lineage."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "IMAGE_SERVICE",
+      "title": "Image Service",
+      "kind": "closed_metrology_service",
+      "robot_actions": [
+        "Request qualified AFM/SEM/TEM/EDX acquisition; preserve region, calibration, dimensions and raw observations separately from interpreted outcomes."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "REGISTER_REGION",
+      "title": "Register Region",
+      "kind": "closed_alignment_service",
+      "robot_actions": [
+        "Identify actual stack, layer and region on an approved metrology map; no invented stage coordinates."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "ATTACH_CHIP",
+      "title": "Attach Chip",
+      "kind": "closed_packaging_service",
+      "robot_actions": [
+        "Request qualified chip attachment to its registered PCB; adhesive, placement and force require external qualification."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "BOND_SERVICE",
+      "title": "Bond Service",
+      "kind": "closed_packaging_service",
+      "robot_actions": [
+        "Request approved two-ended Al wire bonding, chip pad first and PCB pad second; preserve wire/pad/net lineage."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "INSPECT_BONDS",
+      "title": "Inspect Bonds",
+      "kind": "closed_inspection_service",
+      "robot_actions": [
+        "Read qualified bond integrity inspection tied to the exact current chip/PCB/wire map."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "CONTINUITY_CHECK",
+      "title": "Continuity Check",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Verify intended continuity and isolation against qualified limits at safe test conditions, then bind the receipt to netlist revision."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "TRANSFER",
+      "title": "Transfer",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire transfer curves under the approved branch-specific bias program; observed voltage/current records remain independent of commands."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "OUTPUT",
+      "title": "Output",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire output curves with approved gate steps and drain sweep; never reuse a transfer record as output evidence."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "LEAKAGE",
+      "title": "Leakage",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire gate-current records with actual bias, architecture and stack identity; zero leakage is never inferred."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "CV_ACQUIRE",
+      "title": "Cv Acquire",
+      "kind": "closed_capacitance_service",
+      "robot_actions": [
+        "Acquire C–V raw records under a qualified frequency/amplitude/compensation program."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "FORWARD",
+      "title": "Forward",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire the identified forward trace before its reverse trace with elapsed-time and history binding."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "REVERSE",
+      "title": "Reverse",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire the paired reverse trace without relabeling an earlier forward record."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "STRESS_SERVICE",
+      "title": "Stress Service",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Request a qualified bias-stress interval; record actual voltage, compliance, duration and interruptions without automatic retry resetting exposure."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "TRANSIENT_READOUT",
+      "title": "Transient Readout",
+      "kind": "readout",
+      "robot_actions": [
+        "Read all time-resolved stress records, including interruptions and censored endpoints."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "CUSTODY_CHECK",
+      "title": "Custody Check",
+      "kind": "reader",
+      "robot_actions": [
+        "Confirm uninterrupted long-term storage lineage and actual elapsed time; a changed clock label does not constitute aging."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "RETURN_STORAGE",
+      "title": "Return Storage",
+      "kind": "closed_storage_service",
+      "robot_actions": [
+        "Return the measured specimen deenergized to its registered storage conditions; preserve the next due checkpoint."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "THERMAL_SERVICE",
+      "title": "Thermal Service",
+      "kind": "closed_thermal_service",
+      "robot_actions": [
+        "Request qualified temperature control and independent device/table readbacks; temperature labels alone do not prove stabilization."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "REMOVE_HOTPLATE",
+      "title": "Remove Hotplate",
+      "kind": "robot_transport",
+      "robot_actions": [
+        "After safe electrical isolation, use the qualified retained holder to remove the specimen from the hotplate; require destination custody confirmation."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "COOLDOWN",
+      "title": "Cooldown",
+      "kind": "closed_thermal_service",
+      "robot_actions": [
+        "Retain sample off the hotplate through the qualified cooldown interval and record elapsed time and safe handling state."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "VIRGIN",
+      "title": "Virgin",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire the correctly identified unperturbed coupling reference before perturbation; prior stressed material requires an explicit reference disposition."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "PERTURB_POSITIVE",
+      "title": "Perturb Positive",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Apply the qualified positive perturbation to the selected terminal and measure the distinct victim device."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "PERTURB_NEGATIVE",
+      "title": "Perturb Negative",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Apply the qualified negative perturbation to the selected terminal and record actual history; the source does not specify order or duration."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "VTC",
+      "title": "Vtc",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire raw inverter input/output voltage pairs for the selected driver, load set and gate-bias configuration."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "SUPPLY_CURRENT",
+      "title": "Supply Current",
+      "kind": "closed_electrical_service",
+      "robot_actions": [
+        "Acquire supply current aligned with the same VTC case and schedule; retain current sign and units."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "READOUT",
+      "title": "Readout",
+      "kind": "readout",
+      "robot_actions": [
+        "Retrieve immutable raw records and service receipts; separate commanded conditions, observed conditions and source-reported outcomes."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "DEENERGIZE",
+      "title": "Deenergize",
+      "kind": "closed_control_service",
+      "robot_actions": [
+        "Request the qualified off/discharge routine; dependent movement waits for independent safe-state evidence."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "DISCONNECT",
+      "title": "Disconnect",
+      "kind": "robot_fixture",
+      "robot_actions": [
+        "Disconnect the approved interface only after independent safe-zero readback; protect wire bonds and active surfaces."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "RETRIEVE",
+      "title": "Retrieve",
+      "kind": "robot_transport",
+      "robot_actions": [
+        "Return retained carrier or PCB to verified support and storage custody without gripping unsupported film or wires."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "INSPECT",
+      "title": "Inspect",
+      "kind": "closed_inspection_service",
+      "robot_actions": [
+        "Inspect condition and segregate damaged, consumed or uncertain specimens; destructive coupons cannot re-enter pristine branches."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive",
+      "kind": "record_management",
+      "robot_actions": [
+        "Commit lineage, failed attempts, control schedules and raw hashes; preserve separate device, sample and analysis identities."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    },
+    {
+      "id": "CLEAN_STORE",
+      "title": "Clean Store",
+      "kind": "closed_cleanup_service",
+      "robot_actions": [
+        "Close the qualified cleanup, waste and storage handoff; never infer solvent compatibility or repair."
+      ],
+      "source_vs_authored": "Physical handling and safety interface are authored; cited paper has no robot trajectory or executable service API.",
+      "preconditions": [
+        "current specimen and mount lineage",
+        "current route-specific qualification",
+        "independent safe-state where applicable"
+      ],
+      "required_receipt_fields": [
+        "episode_id",
+        "branch_id",
+        "case_id",
+        "operation_id",
+        "specimen_id",
+        "specimen_version",
+        "carrier_id",
+        "pcb_id",
+        "stack_ids",
+        "cohort_id",
+        "netlist_revision",
+        "setup_revision",
+        "mount_revision",
+        "calibration_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "safe_state",
+        "observation_authority"
+      ],
+      "failure_recovery": "Stop dependent actions; retain or isolate safely, archive the failed attempt, qualify a fresh state before a new attempt. Exposure and damage do not reset.",
+      "execution_mode": "static_design_only",
+      "physical_execution_implemented": false
+    }
+  ]
+}
