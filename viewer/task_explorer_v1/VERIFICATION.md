@@ -1,5 +1,25 @@
-# Verification: twenty-eight-family task explorer
+# Verification: 29 paper designs and 3 bounded subsets
 
+
+## Paired-design and bounded-subset integration — 2026-10-04
+
+Scope: viewer-only projection from parent-confirmed immutable base `f803612db28652d2e2dd574d8039c36b7136f399`, with 1,508 starting files. The viewer has **32 labeled families: 29 paper-level designs + 3 bounded subsets**, **736 inspection records** and **2,857 operation definitions**. This is not a claim of 32 whole-paper designs or runnable tasks. All source packages, assets, embodied players, scene bindings and LICENSE are protected byte-for-byte.
+
+The additions preserve **118 exact source JSON documents**, **147 operation definitions** and **52 source branch-array entries**, including the flow and direction holds. Sixty new inspection records also include the separate laser qualification hold, one session-teardown view and six conditional-recovery catalog views. These extra views are not scientific branches, independent specimens or completed experiments.
+
+Laser defaults to QUALIFICATION_HOLD and preserves design/service ownership, three DFB identities, in-loop versus independent channels and prepared-input versus full-preparation lineage. Solar is a bounded clean-water/nonbiological subset with no potability claim. Sucrose defaults to FLOW_HOLD; no numeric pump setting resolves the source conflict, profile changes invalidate calibration, and session teardown is separate from dependent measurement branches. Actuator defaults to DIRECTION_HOLD; signed frame-bound projection, alternative numerical parents and unresolved source-direction qualification remain exact. Unknowns, excluded scope, source gaps, failed attempts and existing closed-service boundaries stay visible.
+
+Verification is static and synthetic only:
+
+- **264 Python viewer tests** pass with source equality enabled and no skips: the original 247 checks plus 17 independent paired-view tests. Every source JSON document reconstructs with exact JSON types, including nested review documents. All operation records, branches, pointers, profiles, hold defaults and asset URLs/hashes are verified
+- **68 new negative projection mutations** reject lost data, fabricated actions/order, hold bypass, profile/custody loss, fabricated fabrication credit, booleans replaced by integers, and source-scope promotion
+- **60 new SVG route variants** parse with exact membership and no adjacency arrows. Four default SVGs were rendered using installed Inkscape and independently inspected as pixels. Real-browser rendering was not tested
+- Local-script and standalone mocked-DOM checks cover all **736 records / 16,541 displayed entries**, including **570 individually selected new entries**. Scope labels, source asset links, exact defaults, separate teardown/recovery, repeated clicks, search, tabs, invalid-route fallback, history restoration and no source mutation are checked. Invalid-route navigation resets the route tab/search even when its fallback is already the selected hold
+- Four task packages pass read-only checks on isolated copies: laser 43 author + 45 independent tests; solar 55 author + 19 independent; sucrose 17 author and 6,805 adversarial checks (5,871 positive, 887 negative, 1 static, 46 export); actuator 32 author + 33 independent. All four structural and frozen exact-export checks pass. No package bytes are changed and these tests establish no physical or scientific reproduction
+- The prior **112 generated family files** (28 JSON, 28 JavaScript, 28 Markdown, 28 SVG) remain byte-identical. All 1,508 base files remain present; changes are confined to this viewer and the scoped root README descriptions
+- Full and family-only rebuilds, standalone determinism, repository aggregate checks and exact publication-byte verification are recorded in the separate release receipts. Publication is handled separately; this candidate does not itself claim a remote update
+
+The added original-asset links are read-only guides and static renders for laser, sucrose and actuator. Solar has no paired asset bundle in the pinned release. No new binary asset, interactive browser physics, actor loader, hardware API, open optics operation, numerical solver or physical execution was added. Existing browser access restrictions were honored with no retry, hosting workaround or security change. Responsive/touch layout and real-browser focus/Back/Forward remain unverified. Historical sections below retain their original counts and verification scope.
 
 ## Cross-disciplinary integration — 2026-10-04
 

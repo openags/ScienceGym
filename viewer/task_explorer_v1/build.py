@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for twenty-eight public task schemas."""
+"""Deterministic, standard-library-only adapters for 32 public task schemas (29 paper-level designs and three bounded subsets)."""
 import argparse, json, pathlib, hashlib, html, textwrap, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from acoustic_adapters import adapt_wavefront, adapt_bianisotropic, adapt_edge, ACOUSTIC_COMMIT, PACKAGES as ACOUSTIC_PACKAGES
@@ -8,11 +8,12 @@ from assembly_adapters import adapt_granular_assembly, adapt_beaded, adapt_therm
 from final_materials_adapters import adapt_horn_acoustics, adapt_mechanical_logic, adapt_cold_shape, FINAL_MATERIALS_COMMIT, PACKAGES as FINAL_MATERIALS_PACKAGES
 from nature_materials_adapters import adapt_gear, adapt_hydrogel_optical, NATURE_MATERIALS_COMMIT, PACKAGES as NATURE_MATERIALS_PACKAGES
 from crossdisciplinary_adapters import adapt_atmospheric_optics, adapt_afm_metrology, adapt_martian_geophysics, adapt_transistor, CROSSDISCIPLINARY_COMMIT, PACKAGES as CROSSDISCIPLINARY_PACKAGES
+from paired_adapters import adapt_laser_control, adapt_solar_water, adapt_sucrose_metrology, adapt_actuator_metrology, PAIRED_COMMIT, PACKAGES as PAIRED_PACKAGES
 ROOT=pathlib.Path(__file__).resolve().parent
 COMMIT='293e32da790303c1a17131e036235f69a5f342e0'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
 COOLING_COMMIT='9a9472b996145ff7f7a4c138c7477b4e734d8835'
-SOURCE_COMMITS={**{key:CROSSDISCIPLINARY_COMMIT for key in CROSSDISCIPLINARY_PACKAGES}, **{key:NATURE_MATERIALS_COMMIT for key in NATURE_MATERIALS_PACKAGES}, **{key:FINAL_MATERIALS_COMMIT for key in FINAL_MATERIALS_PACKAGES}, **{key:ASSEMBLY_COMMIT for key in ASSEMBLY_PACKAGES}, **{key:MECHANICAL_COMMIT for key in MECHANICAL_PACKAGES}, 'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
+SOURCE_COMMITS={**{key:PAIRED_COMMIT for key in PAIRED_PACKAGES}, **{key:CROSSDISCIPLINARY_COMMIT for key in CROSSDISCIPLINARY_PACKAGES}, **{key:NATURE_MATERIALS_COMMIT for key in NATURE_MATERIALS_PACKAGES}, **{key:FINAL_MATERIALS_COMMIT for key in FINAL_MATERIALS_PACKAGES}, **{key:ASSEMBLY_COMMIT for key in ASSEMBLY_PACKAGES}, **{key:MECHANICAL_COMMIT for key in MECHANICAL_PACKAGES}, 'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
 def source_commit(key): return SOURCE_COMMITS.get(key,COMMIT)
 def source_base(key): return f'https://github.com/openags/ScienceGym/blob/{source_commit(key)}/tasks/'
 NAMES={'cooling':'Directional radiative cooling','emvp':'Embedded extrusion-volumetric printing','prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
@@ -550,7 +551,7 @@ def adapt_cooling(p):
             'detail':without(r,{'id','title'}),'source_file':'branches.json','source_pointer':f'/branches/{i}'})
     return f
 
-ADAPTERS={'atmospheric_optics':adapt_atmospheric_optics,'afm_metrology':adapt_afm_metrology,'martian_geophysics':adapt_martian_geophysics,'transistor':adapt_transistor,'gear':adapt_gear,'hydrogel_optical':adapt_hydrogel_optical,'horn_acoustics':adapt_horn_acoustics,'mechanical_logic':adapt_mechanical_logic,'cold_shape':adapt_cold_shape,'granular_assembly':adapt_granular_assembly,'beaded':adapt_beaded,'thermal_jamming':adapt_thermal_jamming,'origami_memory':adapt_origami_memory,'ring_origami':adapt_ring_origami,'mechanical_backprop':adapt_mechanical_backprop,'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
+ADAPTERS={'laser_control':adapt_laser_control,'solar_water':adapt_solar_water,'sucrose_metrology':adapt_sucrose_metrology,'actuator_metrology':adapt_actuator_metrology,'atmospheric_optics':adapt_atmospheric_optics,'afm_metrology':adapt_afm_metrology,'martian_geophysics':adapt_martian_geophysics,'transistor':adapt_transistor,'gear':adapt_gear,'hydrogel_optical':adapt_hydrogel_optical,'horn_acoustics':adapt_horn_acoustics,'mechanical_logic':adapt_mechanical_logic,'cold_shape':adapt_cold_shape,'granular_assembly':adapt_granular_assembly,'beaded':adapt_beaded,'thermal_jamming':adapt_thermal_jamming,'origami_memory':adapt_origami_memory,'ring_origami':adapt_ring_origami,'mechanical_backprop':adapt_mechanical_backprop,'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
 
 def walk(nodes,depth=0):
     for n in nodes:
@@ -615,6 +616,11 @@ def svg(f):
         result=result.replace('· every listed step', '· source template view')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'Source templates only. Typed scopes, bindings and conditional paths remain obligations; no execution is claimed.')
         result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', 'Source template view for the designated physical branch, with the complete physical, preparation, campaign and nonmanual index. Nested bodies are displayed once without instantiation. Exact conditions and bindings remain in the inspector and Markdown.')
+    if f['id'] in PAIRED_PACKAGES:
+        result=result.replace('DESIGN REFERENCE ONLY · Reported scientific stages + separately authored robot handling', html.escape(f['family_scope_label'] + ' · Source contracts and holds retained; no physical or numerical execution'))
+        result=result.replace('· every listed step', '· source inventory inspection')
+        result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows. Hold defaults, profile/lineage, exclusions and exact lifecycle constraints remain authoritative.')
+        result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', html.escape(f['source_warnings']+' Source inventory inspection only; no chronology is inferred.'))
     if f['id'] in CROSSDISCIPLINARY_PACKAGES:
         warning = {'atmospheric_optics': 'SOURCE-INCOMPLETE · Main figure pixels uninspected; identity hold active. Observed and numerical data separate.',
                    'afm_metrology': 'BOUNDED INERT IMAGING / METROLOGY ONLY · Not full fabrication; retained probe, exchanged target.',
@@ -669,6 +675,18 @@ def md(f):
                 if n.get('meta'):lines.append(indent+'  - Binding: '+json.dumps(n['meta'],ensure_ascii=False,separators=(',',':')))
         lines.extend(['','<details><summary>Branch state, choices, lineage and loop obligations</summary>','', '```json',json.dumps({k:resolve(f,v) for k,v in r['detail'].items()},ensure_ascii=False,indent=2),'```','','</details>',''])
     lines.extend(['## Operation contracts','','Every operation is clickable in the offline inspector, with robot actions, target objects, pre/post state, provenance, unknowns and acceptance/recovery. Raw task JSON is the source of truth; this visualization is a public evaluator/reference view, not an agent prompt.',''])
+    if f['id'] in PAIRED_PACKAGES:
+        lines.extend(['## Scope and exact source contracts', '', '**' + f['family_scope_label'] + '**', '',
+                      f['source_warnings'], '', 'Representation counts: ' + json.dumps(f['summary_counts'], ensure_ascii=False) + '.', '',
+                      'Every source JSON document is retained losslessly. Operation details, source branches, preparation, controls, unknowns, exclusions, profiles, lineage and source audits are exact. Navigation labels are authored; missing fields remain explicit absence notices. Required output is an acceptance obligation, never observed state.', '',
+                      'Inventories are unordered inspection membership. Separate teardown and conditional recovery views are not new scientific branches or mandatory normal steps. Source lifecycle ordering remains authoritative. Default hold selection never grants qualification or activates a device.', '',
+                      f['asset_boundary'], ''])
+        if f['asset_links']:
+            for entry in f['asset_links']: lines.append('- [' + entry['label'] + '](' + entry['url'] + ')')
+        else: lines.append('No paired original 3D asset bundle is present for this subset in the pinned release.')
+        lines.extend(['', '### Immutable source JSON', ''])
+        for name, entry in f['source_files'].items(): lines.append(f'- [{name}]({entry["url"]})')
+        lines.append('')
     if f['id'] in CROSSDISCIPLINARY_PACKAGES:
         lines.extend(['## Reference contracts and boundaries', '', 'Representation counts: ' + json.dumps(f['summary_counts'], ensure_ascii=False) + '.', '', f['source_warnings'], '',
           'All source JSON records, operations, branch metadata, source conflicts, unknown inputs, episode contracts, typed replicate distinctions and closed-service ownership remain exact. Each operation detail is its complete original record. Missing display fields are explicit absence notices, never guessed settings or acceptance predicates.', '',
@@ -740,7 +758,7 @@ def md(f):
         result='\n'.join(lines)
         return result.replace('numbered rows preserve reference-list occurrences.', 'rows show unordered template membership; only declared dependencies impose order.')
     result='\n'.join(lines)
-    if f['id'] in CROSSDISCIPLINARY_PACKAGES:
+    if f['id'] in {*CROSSDISCIPLINARY_PACKAGES, *PAIRED_PACKAGES}:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows show unordered source inventory for inspection. Exact phase, lifecycle and dependency contracts remain authoritative; no loop, specimen, condition or chronology is inferred.')
     if f['id'] in NATURE_MATERIALS_PACKAGES:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows are authored navigation over exact source records. Gear recipes preserve source-declared authored order; hydrogel memberships have no adjacency order. Conditions and repeats are not expanded or executed.')
@@ -780,6 +798,6 @@ def main():
             f=json.loads(data_path.read_text())
             manifest.append({'id':key,'operations':len(f['operations']),'routes':len(f['routes']),
                              'bytes':len(data_path.read_bytes().rstrip(b'\n'))})
-    (ROOT/'manifest.json').write_text(json.dumps({'commit':COMMIT,'source_commits':{key:source_commit(key) for key in ADAPTERS},'families':manifest},indent=2)+'\n')
+    (ROOT/'manifest.json').write_text(json.dumps({'commit':COMMIT,'source_commits':{key:source_commit(key) for key in ADAPTERS},'scope_counts':{'paper_level_design':29,'bounded_subset':3},'family_scopes':{key:('bounded_subset' if key in ('solar_water','sucrose_metrology','actuator_metrology') else 'paper_level_design') for key in ADAPTERS},'families':manifest},indent=2)+'\n')
     write_release_manifest()
 if __name__=='__main__':main()
