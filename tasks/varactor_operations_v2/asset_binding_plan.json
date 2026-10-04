@@ -1,0 +1,323 @@
+{
+  "schema_version": "quantum_paraelectric_varactor_task.v1",
+  "task_id": "quantum_paraelectric_varactors",
+  "binding_status": "STATIC_SCENE_BOUND",
+  "asset_package": "varactor_scene_assets_v1",
+  "scene_assets": [
+    {
+      "asset_id": "A_DESIGN_CONSOLE",
+      "role": "design_console",
+      "required_anchor_ids": [
+        "design_record",
+        "route_plan",
+        "qualification_record",
+        "release_record"
+      ],
+      "bind_operation_ids": [
+        "REGISTER_INPUTS",
+        "FREEZE_DESIGN",
+        "VERIFY_QUALIFICATION",
+        "FREEZE_ROUTE_PLAN",
+        "RELEASE_DESIGN"
+      ],
+      "source_facts_and_limits": "Original device topology, branch allocation, qualified external services and conflict disposition. No author CAD or fabrication control.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_CRYSTAL_CARRIER",
+      "role": "crystal_carrier",
+      "required_anchor_ids": [
+        "sample_origin",
+        "carrier_slot",
+        "identity_card",
+        "grasp_left",
+        "grasp_right",
+        "ancestry_record"
+      ],
+      "bind_operation_ids": [
+        "RECEIVE_CRYSTAL",
+        "VERIFY_CRYSTAL",
+        "RECEIVE_PREPARED",
+        "VERIFY_ANCESTRY",
+        "INSPECT_SAMPLE",
+        "TRANSFER_CARRIER"
+      ],
+      "source_facts_and_limits": "Separate STO/KTO crystals and prepared-module custody. Source crystal envelope is metadata; carrier dimensions and grasps are authored and unqualified.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_CLEANROOM_SERVICE",
+      "role": "cleanroom_service",
+      "required_anchor_ids": [
+        "closed_enclosure",
+        "process_card",
+        "crystal_in",
+        "service_receipt",
+        "crystal_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_BACK_METAL",
+        "VERIFY_BACK_METAL",
+        "REQUEST_PHOTOPATTERN",
+        "VERIFY_PHOTOPATTERN",
+        "REQUEST_PAD_METAL",
+        "VERIFY_PAD_METAL",
+        "REQUEST_LIFT_OFF",
+        "VERIFY_LIFT_OFF"
+      ],
+      "source_facts_and_limits": "Closed qualified metallization, photolithography and lift-off service only. No solvents, deposition, heating, sonication or exposure actuation.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_NANOTUBE_SERVICE",
+      "role": "nanotube_service",
+      "required_anchor_ids": [
+        "closed_enclosure",
+        "substrate_in",
+        "localization_record",
+        "device_out",
+        "service_receipt"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_NANOTUBE_GROWTH",
+        "VERIFY_NANOTUBE_GROWTH",
+        "REQUEST_FIRST_LITHOGRAPHY",
+        "VERIFY_FIRST_LITHOGRAPHY",
+        "REQUEST_AFM_LOCALIZATION",
+        "VERIFY_AFM_LOCALIZATION",
+        "REQUEST_SECOND_LITHOGRAPHY",
+        "VERIFY_SECOND_LITHOGRAPHY"
+      ],
+      "source_facts_and_limits": "Closed qualified nanotube growth, electron-beam lithography, evaporation and AFM service. No gases, high temperature, vacuum, chemical or beam controls.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_ASSEMBLY_SERVICE",
+      "role": "assembly_service",
+      "required_anchor_ids": [
+        "closed_enclosure",
+        "die_in",
+        "board_reference",
+        "bond_record",
+        "module_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_DIE_ATTACH",
+        "VERIFY_DIE_ATTACH",
+        "REQUEST_WIRE_BOND",
+        "VERIFY_WIRE_BOND",
+        "REQUEST_MODULE_ASSEMBLY",
+        "VERIFY_MODULE_ASSEMBLY"
+      ],
+      "source_facts_and_limits": "Closed qualified die attachment, bond and sample-holder assembly service; generic record anchors, no bond toolpaths or heating recipe.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_CIRCUIT_MODULE",
+      "role": "circuit_module",
+      "required_anchor_ids": [
+        "module_origin",
+        "rf_port",
+        "dc_port_map",
+        "ground_record",
+        "circuit_card",
+        "mount_record"
+      ],
+      "bind_operation_ids": [
+        "DOCK_MODULE",
+        "VERIFY_PORT_MAP",
+        "VERIFY_MOUNT",
+        "FREEZE_CIRCUIT_CARD",
+        "RELEASE_MODULE"
+      ],
+      "source_facts_and_limits": "Distinct fixed-load, SQD and DQD circuit cards. No live wiring changes; DQD series-capacitor topology explicit. RF/DC anchors are schematic metadata only.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_CRYOSTAT_SERVICE",
+      "role": "cryostat_service",
+      "required_anchor_ids": [
+        "closed_enclosure",
+        "module_in",
+        "thermal_record",
+        "interlock_record",
+        "safe_release_record",
+        "module_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_CRYOGENIC_SERVICE",
+        "VERIFY_THERMAL_RECORD",
+        "VERIFY_INTERLOCK",
+        "REQUEST_SAFE_OFF",
+        "VERIFY_SAFE_OFF",
+        "UNDOCK_MODULE"
+      ],
+      "source_facts_and_limits": "Closed qualified cryogenic service; no refrigerator, pressure, cooldown, warmup or electrical commands. Independent safe release is required for module removal.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_RF_CALIBRATION",
+      "role": "rf_calibration",
+      "required_anchor_ids": [
+        "line_reference",
+        "gain_noise_record",
+        "filter_record",
+        "baseline_record",
+        "calibration_hold"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_RF_CALIBRATION",
+        "VERIFY_GAIN_NOISE_CALIBRATION",
+        "VERIFY_FILTER_CALIBRATION",
+        "VERIFY_DEVICE_BASELINE",
+        "FREEZE_MEASUREMENT_PLAN"
+      ],
+      "source_facts_and_limits": "Separate reference plane, line attenuation/gain, noise, equivalent bandwidth and device baselines. Commanded settings are not observed calibration.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_FIELD_SERVICE",
+      "role": "field_service",
+      "required_anchor_ids": [
+        "closed_enclosure",
+        "field_plan",
+        "field_record",
+        "interlock_record"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_FIELD_SERVICE",
+        "VERIFY_FIELD_RECORD"
+      ],
+      "source_facts_and_limits": "Closed qualified high-field service. No magnet current, ramp, field target or access control; observation record is not a magnet controller.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_ACQUISITION_RECORDS",
+      "role": "acquisition_records",
+      "required_anchor_ids": [
+        "request_record",
+        "complex_rf_record",
+        "spectrum_record",
+        "quadrature_record",
+        "history_record",
+        "timebase_record"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_FIXED_LOAD_SCAN",
+        "REQUEST_DUAL_TUNING_SCAN",
+        "REQUEST_SQD_BASELINE",
+        "REQUEST_SQD_READOUT",
+        "REQUEST_DQD_BASELINE",
+        "REQUEST_DQD_READOUT",
+        "REQUEST_HYSTERESIS_SCAN",
+        "REQUEST_STABILITY_SERIES",
+        "ACQUIRE_RECORDS",
+        "VALIDATE_RECORDS"
+      ],
+      "source_facts_and_limits": "Independent readout records bound to sample, circuit, calibration, sweep history, amplification and acquisition mode. Requests are never observations.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_ANALYSIS_CONSOLE",
+      "role": "analysis_console",
+      "required_anchor_ids": [
+        "model_record",
+        "fit_record",
+        "analysis_record",
+        "comparison_record",
+        "archive_slot"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_CIRCUIT_MODEL",
+        "VERIFY_MODEL_RECORD",
+        "ANALYZE_REFLECTION",
+        "ANALYZE_LOSS_BOUND",
+        "ANALYZE_SQD_SENSITIVITY",
+        "ANALYZE_DQD_SENSITIVITY",
+        "ANALYZE_HYSTERESIS",
+        "ANALYZE_STABILITY",
+        "COMPARE_MATERIALS",
+        "COMPARE_READOUT",
+        "ARCHIVE_RECORDS"
+      ],
+      "source_facts_and_limits": "Original offline bookkeeping/arithmetic contracts only. No source solver, data, figures or reproduced sensitivity claim. Circuit-model fitting remains external.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    },
+    {
+      "asset_id": "A_HOLD_STORAGE",
+      "role": "hold_storage",
+      "required_anchor_ids": [
+        "qualification_hold",
+        "source_conflict_hold",
+        "calibration_hold",
+        "data_hold",
+        "isolation_hold",
+        "quarantine_slot",
+        "storage_slot",
+        "cleanup_record"
+      ],
+      "bind_operation_ids": [
+        "HOLD_QUALIFICATION",
+        "HOLD_SOURCE_CONFLICT",
+        "HOLD_CALIBRATION",
+        "HOLD_DATA",
+        "HOLD_ISOLATION",
+        "QUARANTINE_SAMPLE",
+        "STORE_SAMPLE",
+        "CLEAN_STATION"
+      ],
+      "source_facts_and_limits": "Holds, failed-attempt archive, independent isolation, quarantine and custody. Cleanup is a qualified-service receipt, never an implemented physical routine.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": true
+    }
+  ],
+  "global_requirements": [
+    "Original generic geometry; no author art, CAD, mesh or diagram layout",
+    "No physical execution, control API, robot contact, force, kinematics, thermal, electromagnetic or scientific validation",
+    "Actor provides IDs only; requests and acknowledgements never establish observations or safety",
+    "Device inset is explicitly display enlarged; nominal source sizes do not qualify geometry",
+    "Whole-paper DESIGN coverage is separate from whole-paper execution"
+  ],
+  "source_known_geometry": [
+    "STO/KTO substrate nominal envelope 3 by 3 mm, thickness 0.5 mm",
+    "STO orientation (001), TiO2 termination; KTO orientation (100)",
+    "Fixed-load characterization uses separate crystals and nominal circular pads 100 micrometers diameter",
+    "Quantum-dot experiments use square pads 120 by 120 micrometers on same crystal separated approximately 2 mm",
+    "Source metal thicknesses Ti/Au 5/60 nm; bond-wire nominal diameter 25 micrometers"
+  ],
+  "authored_unknown_geometry": [
+    "Exact pad edge, substrate defects, electrode contact, wiring path and port clearances",
+    "Carrier and fixture dimensions, coordinate frames, robot clearances and grasp qualification",
+    "Cryostat, magnet and instrument geometry and access envelopes",
+    "Exact nanotube placement and source drain gate layout"
+  ],
+  "model_build_assigned": true,
+  "asset_archive_sha256": "1582f7f7f9759f12aef5a388ea633d36b860644aa3826e427e9e9b0a48b94ba9",
+  "asset_archive_bytes": 11886908,
+  "asset_archive_member_count": 37,
+  "asset_scope": "Independently reviewed original static illustration only; no contact, robot, geometry or scientific execution qualification",
+  "snapshot_note": "The immutable asset archive retains its original pending-availability task snapshot; all 12 asset IDs, 65 anchors and 80 operation IDs are unchanged. Task availability was updated only after the exact-ZIP independent audit passed."
+}

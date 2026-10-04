@@ -1,0 +1,61 @@
+{
+  "schema_version": "quantum_paraelectric_varactor_task.v1",
+  "controls": [
+    {
+      "id": "FIXED_LOAD",
+      "purpose": "Separate circuit characterization from quantum-device response",
+      "required": [
+        "Known fixed-load identity",
+        "complex-response calibration",
+        "phase coupling evidence"
+      ]
+    },
+    {
+      "id": "MATERIAL_COMPARISON",
+      "purpose": "Compare STO/KTO with attribution limits",
+      "required": [
+        "geometry/topology/history matching",
+        "thermal and calibration compatibility",
+        "circuit-inclusive loss bounds"
+      ]
+    },
+    {
+      "id": "SQD_MATCHING",
+      "purpose": "Compare under/matched/over-coupled readout",
+      "required": [
+        "same device and baseline",
+        "independent phase evidence",
+        "power-broadening flags"
+      ]
+    },
+    {
+      "id": "DQD_JPA",
+      "purpose": "Paired pump-off/on readout",
+      "required": [
+        "same transition and region",
+        "gain/noise/bandwidth calibration",
+        "saturation and power-broadening checks"
+      ]
+    },
+    {
+      "id": "HYSTERESIS",
+      "purpose": "Direction-dependent response",
+      "required": [
+        "opposite ordered histories",
+        "matched coordinates",
+        "initialization records"
+      ]
+    },
+    {
+      "id": "STABILITY",
+      "purpose": "Time and noise comparison",
+      "required": [
+        "complete timestamps",
+        "run-mean convention",
+        "external noise model",
+        "drift uncertainty"
+      ]
+    }
+  ],
+  "source_repeats": "Independent device counts not established; points, repeated sweeps and times are not independent devices"
+}

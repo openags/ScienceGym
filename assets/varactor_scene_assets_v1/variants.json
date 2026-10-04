@@ -1,0 +1,204 @@
+{
+  "schema": "varactor_citation_variants.v1",
+  "source_doi": "10.1038/s41928-024-01214-z",
+  "purpose": "Cited branch distinctions, not build instructions or measured scene outcomes",
+  "live_control": false,
+  "asset_group": "A_CIRCUIT_MODULE",
+  "circuit_family_cards": {
+    "schema_version": "quantum_paraelectric_varactor_task.v1",
+    "cards": [
+      {
+        "id": "FIXED_LOAD",
+        "termination": "known_fixed_capacitor",
+        "varactor_geometry": "two separate crystals with nominal 100 micrometer circular pads",
+        "substrate_class": "not_a_quantum_device",
+        "model_inductor_nH": 220,
+        "inductor_part_code": "0805CS-221",
+        "manufacturer_nominal_inductor_nH": null,
+        "parasitic_or_fixed_pF": 2.8,
+        "bias_tee": {
+          "coupling_capacitor_pF": 220,
+          "resistor_ohm": 10000,
+          "inductor_nH": 470
+        },
+        "matching_series_capacitor_pF": null,
+        "JPA_incorporated": false,
+        "representation": "citation_only_not_wiring_or_simulation",
+        "physical_execution": false,
+        "energy_enabled": false,
+        "measured_scene_result": false
+      },
+      {
+        "id": "SQD",
+        "termination": "single_quantum_dot",
+        "varactor_geometry": "shared STO pair with nominal 120 micrometer square pads",
+        "substrate_class": "degenerately_doped_low_resistivity_Si_with_oxide",
+        "model_inductor_nH": 320,
+        "inductor_part_code": "0805CS-331",
+        "manufacturer_nominal_inductor_nH": null,
+        "parasitic_or_fixed_pF": 3.0,
+        "bias_tee": {
+          "coupling_capacitor_pF": 100,
+          "resistor_ohm": 1000,
+          "inductor_nH": 470
+        },
+        "matching_series_capacitor_pF": null,
+        "JPA_incorporated": false,
+        "representation": "citation_only_not_wiring_or_simulation",
+        "physical_execution": false,
+        "energy_enabled": false,
+        "measured_scene_result": false
+      },
+      {
+        "id": "DQD",
+        "termination": "double_quantum_dot_single_source_two_gates",
+        "varactor_geometry": "same physical STO pair previously used for SQD",
+        "substrate_class": "undoped_high_resistivity_Si_with_oxide",
+        "model_inductor_nH": 220,
+        "inductor_part_code": "0805CS-221",
+        "manufacturer_nominal_inductor_nH": null,
+        "parasitic_or_fixed_pF": 0.27,
+        "bias_tee": {
+          "coupling_capacitor_pF": 220,
+          "resistor_ohm": 10000,
+          "inductor_nH": 470
+        },
+        "matching_series_capacitor_pF": 20,
+        "JPA_incorporated": true,
+        "representation": "citation_only_not_wiring_or_simulation",
+        "physical_execution": false,
+        "energy_enabled": false,
+        "measured_scene_result": false
+      }
+    ],
+    "source_evidence_ids": [
+      "P7",
+      "P22",
+      "P30",
+      "SI1",
+      "SF1",
+      "SF2"
+    ],
+    "purpose": "Source circuit distinctions only; no executable connection or control specification",
+    "rear_metallization_role": "RF-line conductor, not assumed global ground",
+    "component_nominal_limit": "Manufacturer nominal values not independently verified; source model value and part code remain separate",
+    "source_substrate_resistivity_ohm_cm": {
+      "SQD_upper_bound": 0.0015,
+      "DQD_lower_bound": 4000
+    },
+    "source_oxide_nominal_nm": 280
+  },
+  "specimen_families": [
+    {
+      "id": "STO_CHARACTERIZATION_SEPARATE",
+      "material": "SrTiO3 (001), TiO2 terminated per main Methods; SI wording conflict C02 held",
+      "substrates": "two separate nominal 3 x 3 x 0.5 mm crystals",
+      "pad_geometry": "100 um nominal diameter circular pads",
+      "scene_representation": "unbuilt; citation only",
+      "same_as_qd_chip": false
+    },
+    {
+      "id": "KTO_CHARACTERIZATION_SEPARATE",
+      "material": "KTaO3 (100); termination unspecified",
+      "substrates": "separate characterization crystals; fabrication/dimensions/setup stated identical to STO characterization",
+      "pad_geometry": "100 um nominal diameter circular pads",
+      "scene_representation": "unpatterned native.kto / display.kto envelope reference only",
+      "same_as_qd_chip": false
+    },
+    {
+      "id": "STO_QD_SHARED",
+      "material": "SrTiO3",
+      "substrates": "one nominal 3 x 3 x 0.5 mm chip",
+      "pad_geometry": "two nominal 120 x 120 um square pads about 2 mm apart",
+      "scene_representation": "native.sto and uniformly enlarged display.sto",
+      "same_physical_pair_across": [
+        "SQD",
+        "DQD"
+      ],
+      "source_dimensional_reference_not_validated_interface": true
+    }
+  ],
+  "shared_specimen_lifecycle": {
+    "schema_version": "quantum_paraelectric_varactor_task.v1",
+    "source_evidence_ids": [
+      "P22",
+      "SI1",
+      "SF2"
+    ],
+    "same_physical_varactor_pair": true,
+    "required_stable_fields": [
+      "varactor_ids",
+      "material",
+      "prior_sweep_history"
+    ],
+    "required_changed_fields": [
+      "quantum_device_id",
+      "module_revision",
+      "circuit_revision",
+      "calibration_revision"
+    ],
+    "transition": "SQD readout module to DQD readout module with the same physical STO varactors",
+    "requirements": [
+      "Independent safe release before reassembly",
+      "Closed assembly receipt and new device ancestry",
+      "DQD-specific series capacitance and amplifier topology",
+      "New calibration after module/circuit changes",
+      "Sweep history cannot be reset merely by changing boards",
+      "Earlier SQD measurements remain archived and linked"
+    ],
+    "implemented_scope": "citation-only custody/lifecycle constraints; no specimen transitions implemented in this asset package"
+  },
+  "appearance_only_functional_parts": {
+    "circuit.module.Cm": "matching role; no electrical component model",
+    "circuit.module.Cf": "frequency role; no electrical component model",
+    "circuit.module.L": "inductor role; no solved model",
+    "circuit.module.SOURCE": "SQD or DQD device source, independent branch identity required",
+    "circuit.module.DRAIN": "SQD-only drain role; no DQD drain"
+  },
+  "scope_holds": [
+    "No separate circular-pad characterization geometry",
+    "No SQD/DQD CNT or electrode geometry",
+    "No wiring netlist or branch-specific installed components",
+    "No rear-plane global-ground assumption",
+    "No matching, loss, readout sensitivity or temperature achievement"
+  ],
+  "evidence_namespace": "quantum_paraelectric_varactor_task.v1 evidence_map; Pn means main JATS ParN, not the source-audit P01-P72 parameter namespace",
+  "local_evidence_locator_map": [
+    {
+      "id": "P7",
+      "source": "MAIN",
+      "locator": "JATS Par7",
+      "doi": "10.1038/s41928-024-01214-z"
+    },
+    {
+      "id": "P22",
+      "source": "MAIN",
+      "locator": "JATS Par22",
+      "doi": "10.1038/s41928-024-01214-z"
+    },
+    {
+      "id": "P30",
+      "source": "MAIN",
+      "locator": "JATS Par30",
+      "doi": "10.1038/s41928-024-01214-z"
+    },
+    {
+      "id": "SI1",
+      "source": "SI",
+      "locator": "Section I",
+      "doi": "10.1038/s41928-024-01214-z"
+    },
+    {
+      "id": "SF1",
+      "source": "SI",
+      "locator": "Supplementary Figure 1",
+      "doi": "10.1038/s41928-024-01214-z"
+    },
+    {
+      "id": "SF2",
+      "source": "SI",
+      "locator": "Supplementary Figure 2",
+      "doi": "10.1038/s41928-024-01214-z"
+    }
+  ]
+}

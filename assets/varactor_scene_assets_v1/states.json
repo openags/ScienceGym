@@ -1,0 +1,63 @@
+{
+  "schema": "symbolic_local_state.v1",
+  "implementation": "caller-owned labels only; never authorization or evidence",
+  "initial": "HOLD",
+  "states": [
+    "HOLD",
+    "RECORDS_ATTACHED",
+    "REVIEW_REQUESTED"
+  ],
+  "physical_states": [],
+  "energy_enabled_in_every_state": false,
+  "requires_external_qualification": true,
+  "does_not_enable_execution_on_receipt": true,
+  "closed_service_objects": [
+    "cleanroom.closed_door",
+    "nanotube.closed_door",
+    "assembly.closed_door",
+    "cryo.closed_vessel",
+    "field.closed_door"
+  ],
+  "transitions": [
+    {
+      "from": "HOLD",
+      "action": "attach_record_labels",
+      "to": "RECORDS_ATTACHED"
+    },
+    {
+      "from": "RECORDS_ATTACHED",
+      "action": "request_review",
+      "to": "REVIEW_REQUESTED"
+    },
+    {
+      "from": "REVIEW_REQUESTED",
+      "action": "clear_record_labels",
+      "to": "HOLD"
+    },
+    {
+      "from": "RECORDS_ATTACHED",
+      "action": "clear_record_labels",
+      "to": "HOLD"
+    }
+  ],
+  "forbidden_actions": [
+    "enable_rf",
+    "enable_dc",
+    "enable_magnet",
+    "ramp_field",
+    "cooldown",
+    "warmup",
+    "pump_vacuum",
+    "open_cryostat",
+    "transfer_sample",
+    "deposit_metal",
+    "expose_resist",
+    "dispense_solvent",
+    "grow_nanotube",
+    "heat_sample",
+    "wire_bond",
+    "acquire_data",
+    "fit_source_model",
+    "unlock_execution"
+  ]
+}

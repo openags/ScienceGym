@@ -1,0 +1,34 @@
+{
+  "schema_version": "quantum_paraelectric_varactor_task.v1",
+  "routes": [
+    {
+      "from": "input carrier",
+      "to": "closed fabrication or assembly service",
+      "requires": [
+        "identity",
+        "qualified carrier",
+        "independent safe handling receipt"
+      ]
+    },
+    {
+      "from": "verified module carrier",
+      "to": "closed cryogenic service",
+      "requires": [
+        "as-built circuit",
+        "mount and port map",
+        "independent service acceptance"
+      ]
+    },
+    {
+      "from": "closed cryogenic service",
+      "to": "storage or quarantine",
+      "requires": [
+        "independent safe-release evidence",
+        "post-service inspection",
+        "custody record"
+      ]
+    }
+  ],
+  "robot_kinematics_implemented": false,
+  "physical_transfers_executed": false
+}

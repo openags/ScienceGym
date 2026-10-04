@@ -1,0 +1,228 @@
+{
+  "review_id": "varactor-task-independent-review-v1",
+  "status": "PASS_DESIGN_AND_OFFLINE_CONTRACT_ONLY",
+  "review_scope": "Original whole-available-paper design and bounded offline contract/export behavior",
+  "source": {
+    "doi": "10.1038/s41928-024-01214-z",
+    "inspected": [
+      "Source handoff and route, conflict, parameter and evidence ledgers",
+      "Complete extracted main scientific text and all three Methods subsections",
+      "Complete supplied six-page supplementary extracted text",
+      "Supplementary pages 3 and 5 as images"
+    ],
+    "visual_scope_limit": "Full main/SI visual coverage relies on the separately supplied source-auditor record; this reviewer independently inspected only the listed SI pixels."
+  },
+  "findings": [
+    {
+      "id": "IR01",
+      "severity": "high",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "lineage_contract.json",
+        "shared_specimen_contract.json",
+        "tests/contract.py"
+      ],
+      "finding": "Shared physical STO identity across SQD and DQD was initially implicit rather than explicit.",
+      "evidence": "SI Section I page 3 and main Par22",
+      "resolution": "One stable STO varactor pair now survives SQD/DQD reconfiguration; device/module/circuit/calibration revisions must change and sweep history remains. Independent swap/reset/stale-calibration negatives pass."
+    },
+    {
+      "id": "IR02",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "source_conflicts.json"
+      ],
+      "finding": "The duplicated 215 MHz KTO frequency tick was initially omitted.",
+      "evidence": "SI Figure 4 page 5 pixels",
+      "resolution": "The repeated label and prohibition on deriving a precise lower boundary are now explicitly retained."
+    },
+    {
+      "id": "IR03",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "circuit_family_cards.json",
+        "tests/contract.py"
+      ],
+      "finding": "SQD and DQD bias-tee distinctions were initially absent.",
+      "evidence": "SI Figure 2 page 3 pixels",
+      "resolution": "Metadata-only family cards now preserve tees, substrate classes, source model/part-code distinction, DQD series capacitance and JPA. Wrong-family and substituted-component tests pass."
+    },
+    {
+      "id": "IR04",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/contract.py"
+      ],
+      "finding": "Phase-regime classification accepted absent or non-string equal calibration revisions.",
+      "evidence": "Independent malformed-input probe",
+      "resolution": "Both expected and observed calibration revisions now require nonempty strings; null, empty, boolean, numeric and container inputs are rejected."
+    },
+    {
+      "id": "IR05",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/contract.py"
+      ],
+      "finding": "Underflow could yield zero capacitance/sensitivity or an unnormalized math exception.",
+      "evidence": "Independent extreme-value probe",
+      "resolution": "Nonpositive derived values and out-of-range arithmetic now raise ContractError; regressions pass."
+    },
+    {
+      "id": "IR06",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/contract.py",
+        "TASK_DESIGN.md"
+      ],
+      "finding": "JPA paired-readout metadata did not initially represent carrier/acquisition plan, region or baseline compatibility.",
+      "evidence": "DQD_JPA_COMPARISON design requirements and independent schema inspection",
+      "resolution": "Mandatory shared carrier_plan_revision, acquisition_plan_revision, comparison_region_id and baseline_revision fields were added; each mismatch is rejected."
+    },
+    {
+      "id": "IR07",
+      "severity": "high",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/verify_export.py"
+      ],
+      "finding": "Freezing a package could overwrite an external symlink target through the manifest path before rejection.",
+      "evidence": "Disposable synthetic-tree test",
+      "resolution": "Freeze now rejects a linked/nonregular manifest before writing and atomically publishes a regular temporary manifest. External sentinel remains unchanged."
+    },
+    {
+      "id": "IR08",
+      "severity": "high",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/verify_export.py"
+      ],
+      "finding": "Building a ZIP could overwrite a symlink destination target.",
+      "evidence": "Disposable synthetic-tree test",
+      "resolution": "Archive destination and ancestor symlinks are rejected before opening the output. External sentinel remains unchanged."
+    },
+    {
+      "id": "IR09",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/verify_export.py"
+      ],
+      "finding": "Freeze could rewrite an existing manifest before rejecting an extra package file.",
+      "evidence": "Disposable synthetic-tree test",
+      "resolution": "Complete prefreeze inventory is checked before new hashes are published. Rejected trees leave the manifest unchanged."
+    },
+    {
+      "id": "IR10",
+      "severity": "low",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/verify_export.py"
+      ],
+      "finding": "Directory inventory accepted unlisted empty directories.",
+      "evidence": "Disposable synthetic-tree test",
+      "resolution": "Only directories derived from the exact file allowlist are permitted; an extra empty directory is rejected."
+    },
+    {
+      "id": "IR11",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "branches.json",
+        "tests/contract.py"
+      ],
+      "finding": "Field and dual-frequency scans needed the SQD-circuit context of Figure 4 rather than fixed-load ancestry.",
+      "evidence": "Main Par20 and Figure 4e/f caption",
+      "resolution": "Both branches now require SQD baseline and CNT_SQD full-preparation ancestry, with explicit complex-reflection/phase mode and no charge-sensitivity credit. Direct scope tests pass."
+    },
+    {
+      "id": "IR12",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/contract.py"
+      ],
+      "finding": "An assembly-only fixture needed incoming fabricated ancestry without raw-fabrication credit.",
+      "evidence": "Preparation and assembly boundary review",
+      "resolution": "Assembly now verifies prepared constituent ancestry before die attachment and keeps fabrication_credit false. Direct ordering/credit tests pass."
+    },
+    {
+      "id": "IR13",
+      "severity": "medium",
+      "status": "FIXED_AND_RETESTED",
+      "files": [
+        "tests/contract.py",
+        "TASK_DESIGN.md"
+      ],
+      "finding": "A generic comparison context could conflate STO and KTO constituent specimen identities.",
+      "evidence": "Independent comparison-fixture inspection",
+      "resolution": "Explicit distinct sample/material identities now accompany each appropriate full-preparation receipt and raw comparison record; prepared ancestry carries the same constituents. The top-level identity is a comparison bundle. A self-rehashed constituent-collision mutation is rejected."
+    }
+  ],
+  "open_blockers": [],
+  "coverage": {
+    "design_route_count": 28,
+    "operation_count": 80,
+    "asset_group_count": 12,
+    "anchor_count": 65,
+    "evidence_locator_count": 49,
+    "source_conflicts_and_scope_distinctions": 12,
+    "families_present": [
+      "STO/KTO and CNT SQD/DQD fabrication",
+      "Assembly and cryogenic/RF calibration",
+      "Fixed-load STO/KTO characterization and comparison",
+      "Reflection, loss, permittivity and SNR model-only work",
+      "SQD baseline, sidebands, carrier-power and matching studies",
+      "Dual tuning and magnetic-field response",
+      "DQD stability, paired JPA and capacitance sensitivity",
+      "Hysteresis and time stability",
+      "Source reconciliation and future-only scaling",
+      "Authored safe closure, quarantine, storage and cleanup"
+    ],
+    "qualification": "All available-paper families are represented as DESIGN; this is not complete operational or scientific coverage."
+  },
+  "test_results": {
+    "independent_contract_source_card_tests": 38,
+    "independent_export_tests": 21,
+    "independent_total": 59,
+    "independent_result": "PASS",
+    "author_contract_tests_rerun_independently": 54,
+    "author_contract_result": "PASS",
+    "all_registered_finite_fixtures_checked": 160,
+    "structural_verifier": "PASS",
+    "release_members_including_manifest": 45
+  },
+  "export_checks": [
+    "Exact hard-coded file inventory and sorted manifest membership",
+    "Altered, missing, duplicated and injected members",
+    "Noncanonical path aliases and traversal",
+    "File/directory/root symlinks and special files",
+    "No outside writes via manifest or archive symlinks",
+    "No manifest rewrite on rejected extra-file tree",
+    "Unlisted empty directories",
+    "ZIP duplicate names, symlink/special modes, oversize and empty members",
+    "Hash mutations and invalid manifest types",
+    "Private-path and binary payload rejection even after matching manifest rehash"
+  ],
+  "reviewed_code_sha256": {
+    "tests/contract.py": "6a091feda799e1afc07126367b5946b97c8a8695cffd88346649c8805d56b39a",
+    "tests/verify_export.py": "e68d5812b5f9d1b9bf538067ccd6b1825991f02b31a91eaf5f8e96b293d81dd5",
+    "tests/verify_package.py": "8eca3a73d24fbda4722dbe6eb5ee86c6b409c552486efd80ed42dc61cb153e7c",
+    "review/test_independent_contract.py": "bde5a198aafefe133e95cf8c55a4d39d772fb0a1ef170e3bfa4b7fa0e9c51785",
+    "review/test_independent_export.py": "e16becdf8cbd3311f74206b3d8348486571a33b9b92519c101183ce43e696dd6"
+  },
+  "release_gate": "The exact final directory and ZIP must pass the export verifier after manifest freeze. Any later file edit requires refreeze and rerun. This report establishes the reviewed design and code, and does not substitute for that final artifact check.",
+  "limitations": [
+    "Finite evaluator-pinned synthetic fixtures are public bookkeeping examples, not authenticated service evidence",
+    "No hardware, robot, chemical, cryogenic, magnetic or RF/DC execution",
+    "No scientific circuit solver, finite-element inversion, source-data reproduction or complete uncertainty propagation",
+    "No exact physical geometry/contact/kinematics qualification",
+    "No paper/SI pages, source art, author code, author CAD or private acquisition paths belong in release",
+    "No whole-paper execution or replication credit"
+  ],
+  "validated_runnable_whole_paper_tasks": 0
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "quantum_paraelectric_varactor_task.v1",
+  "source_evidence_ids": [
+    "P22",
+    "SI1",
+    "SF2"
+  ],
+  "same_physical_varactor_pair": true,
+  "required_stable_fields": [
+    "varactor_ids",
+    "material",
+    "prior_sweep_history"
+  ],
+  "required_changed_fields": [
+    "quantum_device_id",
+    "module_revision",
+    "circuit_revision",
+    "calibration_revision"
+  ],
+  "transition": "SQD readout module to DQD readout module with the same physical STO varactors",
+  "requirements": [
+    "Independent safe release before reassembly",
+    "Closed assembly receipt and new device ancestry",
+    "DQD-specific series capacitance and amplifier topology",
+    "New calibration after module/circuit changes",
+    "Sweep history cannot be reset merely by changing boards",
+    "Earlier SQD measurements remain archived and linked"
+  ],
+  "implemented_scope": "Finite synthetic reconfiguration metadata test only"
+}

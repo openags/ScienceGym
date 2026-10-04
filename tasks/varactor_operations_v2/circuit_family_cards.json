@@ -1,0 +1,72 @@
+{
+  "schema_version": "quantum_paraelectric_varactor_task.v1",
+  "cards": [
+    {
+      "id": "FIXED_LOAD",
+      "termination": "known_fixed_capacitor",
+      "varactor_geometry": "two separate crystals with nominal 100 micrometer circular pads",
+      "substrate_class": "not_a_quantum_device",
+      "model_inductor_nH": 220,
+      "inductor_part_code": "0805CS-221",
+      "manufacturer_nominal_inductor_nH": null,
+      "parasitic_or_fixed_pF": 2.8,
+      "bias_tee": {
+        "coupling_capacitor_pF": 220,
+        "resistor_ohm": 10000,
+        "inductor_nH": 470
+      },
+      "matching_series_capacitor_pF": null,
+      "JPA_incorporated": false
+    },
+    {
+      "id": "SQD",
+      "termination": "single_quantum_dot",
+      "varactor_geometry": "shared STO pair with nominal 120 micrometer square pads",
+      "substrate_class": "degenerately_doped_low_resistivity_Si_with_oxide",
+      "model_inductor_nH": 320,
+      "inductor_part_code": "0805CS-331",
+      "manufacturer_nominal_inductor_nH": null,
+      "parasitic_or_fixed_pF": 3.0,
+      "bias_tee": {
+        "coupling_capacitor_pF": 100,
+        "resistor_ohm": 1000,
+        "inductor_nH": 470
+      },
+      "matching_series_capacitor_pF": null,
+      "JPA_incorporated": false
+    },
+    {
+      "id": "DQD",
+      "termination": "double_quantum_dot_single_source_two_gates",
+      "varactor_geometry": "same physical STO pair previously used for SQD",
+      "substrate_class": "undoped_high_resistivity_Si_with_oxide",
+      "model_inductor_nH": 220,
+      "inductor_part_code": "0805CS-221",
+      "manufacturer_nominal_inductor_nH": null,
+      "parasitic_or_fixed_pF": 0.27,
+      "bias_tee": {
+        "coupling_capacitor_pF": 220,
+        "resistor_ohm": 10000,
+        "inductor_nH": 470
+      },
+      "matching_series_capacitor_pF": 20,
+      "JPA_incorporated": true
+    }
+  ],
+  "source_evidence_ids": [
+    "P7",
+    "P22",
+    "P30",
+    "SI1",
+    "SF1",
+    "SF2"
+  ],
+  "purpose": "Source circuit distinctions only; no executable connection or control specification",
+  "rear_metallization_role": "RF-line conductor, not assumed global ground",
+  "component_nominal_limit": "Manufacturer nominal values not independently verified; source model value and part code remain separate",
+  "source_substrate_resistivity_ohm_cm": {
+    "SQD_upper_bound": 0.0015,
+    "DQD_lower_bound": 4000
+  },
+  "source_oxide_nominal_nm": 280
+}

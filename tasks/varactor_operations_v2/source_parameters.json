@@ -1,0 +1,107 @@
+{
+  "schema_version": "quantum_paraelectric_varactor_task.v1",
+  "parameters": [
+    {
+      "id": "P_GEOMETRY",
+      "source_evidence_ids": [
+        "P7",
+        "P28",
+        "P29",
+        "SI1",
+        "SI3"
+      ],
+      "facts": {
+        "substrate_envelope_mm": [
+          3,
+          3,
+          0.5
+        ],
+        "STO_orientation": "001",
+        "STO_termination": "TiO2",
+        "KTO_orientation": "100",
+        "fixed_load_pad_nominal_diameter_um": 100,
+        "QD_pad_nominal_size_um": [
+          120,
+          120
+        ],
+        "QD_pair_separation_approx_mm": 2,
+        "Ti_Au_nominal_nm": [
+          5,
+          60
+        ],
+        "bond_wire_nominal_diameter_um": 25
+      },
+      "scope": "Nominal source geometry only; no fabrication or manipulation qualification"
+    },
+    {
+      "id": "P_CIRCUIT",
+      "source_evidence_ids": [
+        "P22",
+        "SI1",
+        "SF1",
+        "SF2"
+      ],
+      "facts": {
+        "fixed_load_pF": 2.8,
+        "SQD_parasitic_pF": 3.0,
+        "DQD_parasitic_pF": 0.27,
+        "SQD_model_inductor_nH": 320,
+        "DQD_model_inductor_nH": 220,
+        "DQD_series_capacitor_pF": 20,
+        "line_impedance_ohm": 50
+      },
+      "scope": "Circuit distinction and model metadata; not a wiring instruction"
+    },
+    {
+      "id": "P_THERMAL",
+      "source_evidence_ids": [
+        "P8",
+        "P24",
+        "P31"
+      ],
+      "facts": {
+        "source_lattice_base_mK": 6,
+        "source_electron_temperature_mK": 12
+      },
+      "scope": "Reported observations are distinct; no cooldown target or service command"
+    },
+    {
+      "id": "P_READOUT",
+      "source_evidence_ids": [
+        "P19",
+        "P23",
+        "P24",
+        "SI1"
+      ],
+      "facts": {
+        "SQD_resolution_bandwidth_Hz": 3.4,
+        "DQD_filter_order": 4,
+        "DQD_filter_coefficient": 0.0781,
+        "DQD_equivalent_bandwidth_Hz_reported": [
+          78000,
+          78100
+        ]
+      },
+      "scope": "Historical analysis conventions; required real bandwidth comes from independent calibration"
+    },
+    {
+      "id": "P_STABILITY",
+      "source_evidence_ids": [
+        "SI4",
+        "SF5"
+      ],
+      "facts": {
+        "reported_window_minutes": 60,
+        "reported_sample_interval_minutes": 1
+      },
+      "scope": "Reported sampling scope; no guarantee of exact endpoint count or stationarity"
+    }
+  ],
+  "excluded_control_settings": [
+    "Fabrication heat, chemical, gas, beam, vacuum and sonication recipes",
+    "Magnet targets, ramps or currents",
+    "Cryogenic setpoints, ramps, pressure or refrigerator controls",
+    "Bias, RF power, JPA pump and gate control commands"
+  ],
+  "exclusion_reason": "Qualified closed services own safe operating procedures; historical paper values do not qualify controls"
+}

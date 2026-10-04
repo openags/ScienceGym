@@ -1,0 +1,40 @@
+{
+  "schema_version": "quantum_paraelectric_varactor_task.v1",
+  "context_keys": [
+    "episode_id",
+    "attempt_id",
+    "branch_id",
+    "sample_id",
+    "crystal_lot",
+    "device_id",
+    "module_id",
+    "carrier_id",
+    "material_revision",
+    "geometry_revision",
+    "process_revision",
+    "circuit_revision",
+    "mount_revision",
+    "calibration_revision",
+    "reference_plane_revision",
+    "thermal_revision",
+    "field_revision",
+    "sweep_history_revision",
+    "amplifier_revision",
+    "filter_revision",
+    "baseline_revision",
+    "analysis_revision",
+    "qualification_revision"
+  ],
+  "requirements": [
+    "Every occurrence and receipt has a unique ID and immutable dependency edges",
+    "Crystal material, termination and orientation cannot be inferred from schematic color",
+    "Prepared input requires independent ancestry and earns no fabrication credit",
+    "Module/circuit/mount change invalidates dependent calibration and observations",
+    "Sweep direction and initialization persist through custody and matching changes",
+    "JPA state, reference plane and filter change invalidate paired comparisons",
+    "Field/thermal/time records must be paired with each readout",
+    "Failed attempts and damaged samples remain archived; replacement gets a new ID",
+    "Synthetic bookkeeping is not service authentication or scientific evidence",
+    "Same physical STO varactor IDs persist from SQD to DQD while device/module/circuit/calibration revisions change; sweep history persists"
+  ]
+}

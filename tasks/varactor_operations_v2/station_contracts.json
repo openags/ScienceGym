@@ -1,0 +1,190 @@
+{
+  "schema_version": "quantum_paraelectric_varactor_task.v1",
+  "stations": [
+    {
+      "id": "A_DESIGN_CONSOLE",
+      "role": "design_console",
+      "required_anchors": [
+        "design_record",
+        "route_plan",
+        "qualification_record",
+        "release_record"
+      ],
+      "service_boundary": "Original device topology, branch allocation, qualified external services and conflict disposition. No author CAD or fabrication control.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_CRYSTAL_CARRIER",
+      "role": "crystal_carrier",
+      "required_anchors": [
+        "sample_origin",
+        "carrier_slot",
+        "identity_card",
+        "grasp_left",
+        "grasp_right",
+        "ancestry_record"
+      ],
+      "service_boundary": "Separate STO/KTO crystals and prepared-module custody. Source crystal envelope is metadata; carrier dimensions and grasps are authored and unqualified.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_CLEANROOM_SERVICE",
+      "role": "cleanroom_service",
+      "required_anchors": [
+        "closed_enclosure",
+        "process_card",
+        "crystal_in",
+        "service_receipt",
+        "crystal_out"
+      ],
+      "service_boundary": "Closed qualified metallization, photolithography and lift-off service only. No solvents, deposition, heating, sonication or exposure actuation.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_NANOTUBE_SERVICE",
+      "role": "nanotube_service",
+      "required_anchors": [
+        "closed_enclosure",
+        "substrate_in",
+        "localization_record",
+        "device_out",
+        "service_receipt"
+      ],
+      "service_boundary": "Closed qualified nanotube growth, electron-beam lithography, evaporation and AFM service. No gases, high temperature, vacuum, chemical or beam controls.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_ASSEMBLY_SERVICE",
+      "role": "assembly_service",
+      "required_anchors": [
+        "closed_enclosure",
+        "die_in",
+        "board_reference",
+        "bond_record",
+        "module_out"
+      ],
+      "service_boundary": "Closed qualified die attachment, bond and sample-holder assembly service; generic record anchors, no bond toolpaths or heating recipe.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_CIRCUIT_MODULE",
+      "role": "circuit_module",
+      "required_anchors": [
+        "module_origin",
+        "rf_port",
+        "dc_port_map",
+        "ground_record",
+        "circuit_card",
+        "mount_record"
+      ],
+      "service_boundary": "Distinct fixed-load, SQD and DQD circuit cards. No live wiring changes; DQD series-capacitor topology explicit. RF/DC anchors are schematic metadata only.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_CRYOSTAT_SERVICE",
+      "role": "cryostat_service",
+      "required_anchors": [
+        "closed_enclosure",
+        "module_in",
+        "thermal_record",
+        "interlock_record",
+        "safe_release_record",
+        "module_out"
+      ],
+      "service_boundary": "Closed qualified cryogenic service; no refrigerator, pressure, cooldown, warmup or electrical commands. Independent safe release is required for module removal.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_RF_CALIBRATION",
+      "role": "rf_calibration",
+      "required_anchors": [
+        "line_reference",
+        "gain_noise_record",
+        "filter_record",
+        "baseline_record",
+        "calibration_hold"
+      ],
+      "service_boundary": "Separate reference plane, line attenuation/gain, noise, equivalent bandwidth and device baselines. Commanded settings are not observed calibration.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_FIELD_SERVICE",
+      "role": "field_service",
+      "required_anchors": [
+        "closed_enclosure",
+        "field_plan",
+        "field_record",
+        "interlock_record"
+      ],
+      "service_boundary": "Closed qualified high-field service. No magnet current, ramp, field target or access control; observation record is not a magnet controller.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_ACQUISITION_RECORDS",
+      "role": "acquisition_records",
+      "required_anchors": [
+        "request_record",
+        "complex_rf_record",
+        "spectrum_record",
+        "quadrature_record",
+        "history_record",
+        "timebase_record"
+      ],
+      "service_boundary": "Independent readout records bound to sample, circuit, calibration, sweep history, amplification and acquisition mode. Requests are never observations.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_ANALYSIS_CONSOLE",
+      "role": "analysis_console",
+      "required_anchors": [
+        "model_record",
+        "fit_record",
+        "analysis_record",
+        "comparison_record",
+        "archive_slot"
+      ],
+      "service_boundary": "Original offline bookkeeping/arithmetic contracts only. No source solver, data, figures or reproduced sensitivity claim. Circuit-model fitting remains external.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    },
+    {
+      "id": "A_HOLD_STORAGE",
+      "role": "hold_storage",
+      "required_anchors": [
+        "qualification_hold",
+        "source_conflict_hold",
+        "calibration_hold",
+        "data_hold",
+        "isolation_hold",
+        "quarantine_slot",
+        "storage_slot",
+        "cleanup_record"
+      ],
+      "service_boundary": "Holds, failed-attempt archive, independent isolation, quarantine and custody. Cleanup is a qualified-service receipt, never an implemented physical routine.",
+      "qualification": "Independent scope-specific card, current revision and interlock evidence",
+      "actor_can_control": false,
+      "physical_implemented": false
+    }
+  ]
+}

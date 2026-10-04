@@ -1,0 +1,156 @@
+{
+  "source_doi": "10.1038/s41928-024-01214-z",
+  "source_geometry_read": true,
+  "paper_exact_geometry": false,
+  "source_assets_redistributed": false,
+  "rendered_source_figures": false,
+  "scene_evidence": "original static authored roles and nominal metric references only",
+  "facts_used": {
+    "substrate_envelope_m": [
+      0.003,
+      0.003,
+      0.0005
+    ],
+    "qd_square_pad_m": [
+      0.00012,
+      0.00012
+    ],
+    "pair_spacing_approx_m": 0.002,
+    "ti_au_nominal_m": [
+      5e-09,
+      6e-08
+    ],
+    "bond_wire_diameter_m": 2.5e-05
+  },
+  "source_anchors": [
+    "Main Methods: SrTiO3 and KTaO3 varactor fabrication",
+    "Main Methods: carbon nanotube fabrication",
+    "Main Methods: Experimental methods",
+    "SI I: matching network simulation, pp.2-3",
+    "SI II: PCB photograph, p.4; role only, no tracing",
+    "SI III: KTO characterization, p.5"
+  ],
+  "authored_details": [
+    "all equipment housings and workbench dimensions",
+    "all equipment layout, materials, carriers, grasp tabs, ports, latches and access shapes",
+    "pad x-axis alignment and centered placement of the nominal shared-chip pair",
+    "visual leader lines and display supports",
+    "all symbolic anchor transforms",
+    "neutral reference source/drain modules without wiring topology"
+  ],
+  "explicit_nonclaims": [
+    "no vendor instrument reconstruction",
+    "no source PCB or wire-bond layout",
+    "no CNT source/drain/gate topology",
+    "no fixed-load circular-pad branch geometry in the shared-chip display",
+    "no source data, fitted curve, performance or successful measurement",
+    "no physical contact, thermal, electromagnetic, field or electrical simulation",
+    "no live device, robot, acquisition, source fitting or network controls"
+  ],
+  "source_conflicts": [
+    {
+      "id": "C01",
+      "type": "metadata_content_mismatch",
+      "source": [
+        "Main/JATS supplementary description",
+        "all six SI pages"
+      ],
+      "issue": "Description says sections I\u2013V; attached six-page PDF has I\u2013IV and no section V. Five figures are present.",
+      "handling": "Count only I\u2013IV as actually read. Do not invent Section V. Mark full available-source coverage, not proof of missing-section nonexistence.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    },
+    {
+      "id": "C02",
+      "type": "material_wording",
+      "source": [
+        "SI I p.2 first paragraph",
+        "Main Methods varactor fabrication"
+      ],
+      "issue": "SI calls the STO characterization substrate single-crystal (001) TiO2, whereas main specifies TiO2-terminated SrTiO3 and the SI itself repeatedly says SrTiO3 varactors.",
+      "handling": "Use main explicit material STO with TiO2 termination; preserve SI wording as unresolved probable shorthand/typo. Never substitute bulk TiO2.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    },
+    {
+      "id": "C03",
+      "type": "caption_pixel_mismatch",
+      "source": [
+        "SI Fig.4 p.5"
+      ],
+      "issue": "Caption describes panels a,b,c and a frequency-trace panel, but actual figure has a data/model heatmap (a) and capacitance/resistance graph (b); no panel c or frequency-trace panel is visible.",
+      "handling": "Anchor data by actual pixels. Do not assert the missing trace experiment was observed.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    },
+    {
+      "id": "C04",
+      "type": "unit_wording",
+      "source": [
+        "Main Methods Experimental methods",
+        "Main Matching network and device"
+      ],
+      "issue": "Methods calls approximately 3 kHz a DC filter time constant; earlier main text correctly uses filter bandwidth.",
+      "handling": "Keep approximately 3 kHz bandwidth as reported; do not silently convert it to a time constant without a filter model.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    },
+    {
+      "id": "C05",
+      "type": "component_nominal_uncertainty",
+      "source": [
+        "SI I p.3 and Fig.2"
+      ],
+      "issue": "SQD inductor is reported as L=320 nH while the stated model code is Coilcraft 0805CS-331. Manufacturer nominal value not independently verified in this packet.",
+      "handling": "Keep source-reported 320 nH, model ID and unresolved component nominal separately. Do not quietly replace with 330 nH.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    },
+    {
+      "id": "C06",
+      "type": "substrate_generalization",
+      "source": [
+        "Main Methods carbon nanotube fabrication",
+        "Main DQD capacitance sensitivity"
+      ],
+      "issue": "Fabrication opening generically says degenerately doped substrates but later specifies low-resistivity SQD and high-resistivity/undoped DQD substrates.",
+      "handling": "Maintain separate material lineages; DQD must not inherit SQD degenerately doped substrate.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    },
+    {
+      "id": "C07",
+      "type": "physical_model_limit",
+      "source": [
+        "Main Fig.2 discussion",
+        "SI I pp.2\u20133"
+      ],
+      "issue": "Effective Rf includes losses of varactor, inductor and board; room-temperature datasheet losses did not fit millikelvin measurements.",
+      "handling": "Do not grade Rf as intrinsic dielectric loss. Track model-fit uncertainty and phase-regime constraints.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    },
+    {
+      "id": "C08",
+      "type": "source_result_vs_future_inference",
+      "source": [
+        "Main DQD discussion and Conclusions"
+      ],
+      "issue": "225 ns spin-state readout is inferred using an assumed capacitance, not an experimental demonstrated spin readout; predicted gigahertz and lower-loss improvements are prospective.",
+      "handling": "Mark them theory/future-only and exclude from empirical task-success criteria.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    },
+    {
+      "id": "C09",
+      "type": "axis_typography",
+      "source": [
+        "SI Fig.4 p.5 pixels"
+      ],
+      "issue": "KTO heatmap frequency axis prints 215 at both the bottom and next tick.",
+      "handling": "Do not recover a precise lower frequency boundary from this duplicated label; retain qualitative reported matching/frequency response only.",
+      "status": "HOLD",
+      "affects_geometry_or_interpretation": true
+    }
+  ]
+}
