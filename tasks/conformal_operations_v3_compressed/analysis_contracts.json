@@ -1,0 +1,45 @@
+{
+  "schema_version": "conformal_task.v2",
+  "implemented_scientific_solver": false,
+  "raw_parents": [
+    "raw_manifest_digest",
+    "camera_calibration_id",
+    "clock_mapping_id",
+    "specimen_state_id",
+    "fixture_id",
+    "tracking_revision",
+    "coordinate_convention_id",
+    "quality_mask_digest",
+    "uncertainty_policy_digest"
+  ],
+  "fit": {
+    "input_scope": "eligible full observed point set under frozen masks",
+    "model_order": null,
+    "conditioning_policy": null,
+    "offset_registration_policy": null,
+    "error": "sum squared displacement residual / sum squared observed displacement",
+    "zero_denominator": "UNDEFINED; no fabricated zero error"
+  },
+  "boundary_inference": {
+    "input_scope": "only declared closed boundary dilation data; never interior target displacement fitting",
+    "boundary": "closed, densely sampled, simply connected coarse domain",
+    "model_order": null,
+    "order_must_be_below_half_boundary_count": true,
+    "rigid_body_gauge": "independently declared before outcomes; no post-hoc interior optimization",
+    "alpha_linear_and_J_area_distinct": true,
+    "detF_positive_required": true,
+    "global_injectivity_requires_separate_qualified_check": true
+  },
+  "source_conflicts": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05"
+  ],
+  "no_silent_source_correction": true,
+  "physical_and_numerical_separate": true,
+  "literature_99_percent_is_global_pass_threshold": false,
+  "ideal_alpha_interval_is_safety_limit": false,
+  "source_code": "Archive listed but unread; no source code executed or certified"
+}

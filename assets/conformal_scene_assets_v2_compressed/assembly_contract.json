@@ -1,0 +1,22 @@
+{
+  "units": "m",
+  "assets": "ASSET.A01 through ASSET.A12",
+  "operation_anchors": "ANCHOR.R01.primary/control through ANCHOR.R16.primary/control",
+  "semantic_anchors": "ANCHOR.Axx.<required_semantic_anchor>",
+  "root_parents": "All family nodes use their stable ASSET.Axx parent",
+  "physical_vs_symbolic": "A12 symbolic board denotes B04,B05,B07,B08, never physical actuator hardware; A11 keeps physical versus numerical analysis separate",
+  "load_policy": "No simultaneous foot/bridge operation; foot proxy is parked beside the tester; bridge proxy is the static mounted display",
+  "unqualified": [
+    "all contact geometry",
+    "robot reach",
+    "carrier grasp tolerances",
+    "load and sensor limits",
+    "safe motion",
+    "collision envelopes",
+    "elastic material model",
+    "optical calibration",
+    "pad identities",
+    "fixture span and radii"
+  ],
+  "negative_guards": "semantic_controls.py rejects real execution and stale or incompatible illustrative receipts"
+}

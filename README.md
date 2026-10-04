@@ -6,11 +6,40 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Release contents: 35 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (38 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
+**Release contents: 36 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (39 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
-## Inspect all 38 task families
+## Inspect all 39 task families
+
+The [Task Explorer](viewer/task_explorer_v1/index.html) covers **36 paper-level designs and 3 bounded subsets**, with **886 inspection records and 3,188 operation definitions**. The [conformal elasticity map](viewer/task_explorer_v1/docs/conformal.md) adds **16 authored operation templates and nine classified branches from one paper**, plus five reference views and one metadata-only **HOLD_QUALIFICATION**. Only the foot and bridge compression/decompression branches are physical experimental designs. Preparation, analysis and closeout retain their own roles; four numerical/theoretical branches remain documented and unexecuted. These counts describe static design content. There are **zero validated runnable whole-paper tasks**.
+
+The [conformal task](tasks/conformal_operations_v3_compressed/README.md) and [original editable static assets](assets/conformal_scene_assets_v2_compressed/README.md) retain **48 task files and 48 asset files**, exactly as reviewed in the frozen archives. All **34 task JSON documents**, nine controls, 28 source facts, five source conflicts and sixteen execution gaps remain losslessly inspectable. Twelve scene groups and 32 nominal operation anchors retain eleven task-pinned asset hashes, nine reciprocal task hashes and an exact binding-plan snapshot. The native Blender file uses lossless storage compression; this package revision does not add another paper design. The GLB and three original rendered PNGs retain their preceding reviewed bytes.
+
+[![Original conformal-elasticity laboratory illustration with supported specimen, separate foot and bridge fixture roles and closed qualified services; no experiment is shown](assets/conformal_scene_assets_v2_compressed/evidence/overview.png)](assets/conformal_scene_assets_v2_compressed/evidence/overview.png)
+
+[Editable Blender scene](assets/conformal_scene_assets_v2_compressed/geometry/conformal_lab.blend?raw=true) · [Static GLB](assets/conformal_scene_assets_v2_compressed/geometry/conformal_lab.glb?raw=true) · [Specimen illustration](assets/conformal_scene_assets_v2_compressed/evidence/specimen.png) · [Station illustration](assets/conformal_scene_assets_v2_compressed/evidence/stations.png)
+
+**Source facts, authored robot requirements, finite synthetic tests and illustrative geometry remain separate.** The reported specimen envelope and square count do not determine exact topology, contact geometry or qualified grasp locations. Four hundred frames are not four hundred specimens; 1 fps acquisition and 30 fps movie playback remain distinct. Compression/decompression, nearest conformal fits, boundary-only inference, measured results and numerical predictions retain separate parents. The five scientific conflicts are preserved without silent repairs. Requests are never completion receipts; failed attempts, current calibration, configuration epochs, capture readiness, custody and safe-release obligations remain explicit.
+
+Fabrication, unidentified powder/contact treatment and powered loading remain closed qualified services. Geometry, dimensions, anchors, grasps, camera optics and interfaces are **illustrative and unqualified**. No source-exact CAD, hardware controller, physics simulation, scientific solver, robot execution, safety qualification or scientific reproduction is supplied.
+
+Upstream review read nine main pages, sixteen written supplementary pages and the media-description sheet, with selected figure/equation inspection. Three movies were decoded and five frames each visually sampled; continuous visual review was not performed. **Zenodo archive contents remain unread.** This integration did not reread publications, reanalyze source data or independently prove mathematics. Publisher files, source figures/media, raw data/code/CAD, archives, private paths, caches, backups and build logs are excluded from the added payload.
+
+All **38 prior task packages, earlier assets, both embodied storyboards, the bounded R01 scene binding, original LICENSE and all 152 prior generated family artifacts** remain byte-identical to the baseline. The optional standalone embeds exact JSON and original guide/render bytes for six recent families. Local links and frozen hashes identify provenance; the repository commit establishes publication status. See the [verification scope](viewer/task_explorer_v1/VERIFICATION.md).
+
+```sh
+python3 -B scripts/verify_release.py
+(cd tasks/conformal_operations_v3_compressed && python3 -B -m unittest discover -s tests -v && python3 -B -m unittest discover -s review -v && python3 -B tests/verify_package.py && python3 -B tests/verify_export.py)
+python3 -B tasks/conformal_operations_v3_compressed/tests/verify_pairing.py assets/conformal_scene_assets_v2_compressed
+(cd assets/conformal_scene_assets_v2_compressed && python3 -B -m unittest discover -s tests -v)
+python3 -B assets/conformal_scene_assets_v2_compressed/verify_pair.py tasks/conformal_operations_v3_compressed
+```
+
+Frozen tests that require a separately distributed source-review or sibling-asset layout explicitly skip absent inputs. Independent release verification uses disposable paired copies to exercise those checks without changing frozen package bytes. Run native Blender rebuild/export scripts only in disposable copies because they can regenerate files.
+
+## Historical mid-infrared paired integration
+
 
 The [Task Explorer](viewer/task_explorer_v1/index.html) covers **35 paper-level designs and 3 bounded subsets**, with **871 inspection records and 3,172 operation definitions**. These are static navigation counts, not completed experiments or physical executions. The [mid-infrared imaging map](viewer/task_explorer_v1/docs/midinfrared.md) adds **eight experimental design branches and 22 authored operation templates**, five separate reference views and a metadata-only **HOLD_QUALIFICATION** default. One source paper remains one paper-level design. All 34 task JSON documents remain losslessly inspectable, including twelve controls, ten source conflicts, fourteen unresolved-input groups, preparation, dependencies, lineage and failed-attempt retention.
 

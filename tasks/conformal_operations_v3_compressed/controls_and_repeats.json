@@ -1,0 +1,104 @@
+{
+  "schema_version": "conformal_task.v2",
+  "controls": [
+    {
+      "id": "K01",
+      "name": "Source compression versus decompression",
+      "classification": "source_comparison",
+      "requirement": "Retain both phases and their difference; unloading cannot erase loading results.",
+      "branches": [
+        "B02",
+        "B03"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "Foot versus bridge",
+      "classification": "source_comparison",
+      "requirement": "Keep fixture and sequence effects separate; no independent-specimen claim from two conditions.",
+      "branches": [
+        "B02",
+        "B03"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "Porous versus conventional solid",
+      "classification": "source_numerical_comparison",
+      "requirement": "Treat as numerical source comparison; do not silently add a physical solid specimen.",
+      "branches": [
+        "B05",
+        "B06"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "Hinge thickness and loading mode sweep",
+      "classification": "source_numerical_comparison",
+      "requirement": "Preserve numerical sweep scope separately from physical 0.2 mm hinges.",
+      "branches": [
+        "B05"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "Nearest fit versus boundary-only prediction",
+      "classification": "source_analysis_comparison",
+      "requirement": "Prevent interior displacement leakage into boundary inference; report separate residuals.",
+      "branches": [
+        "B06"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "Imaging reference and drift",
+      "classification": "authored_quality_control",
+      "requirement": "Commission stationary/reference target captures and drift limits before trial; counts and tolerances are unknown until approved.",
+      "branches": [
+        "B02",
+        "B03"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "Mechanics zero and fixture state",
+      "classification": "authored_quality_control",
+      "requirement": "Commission sensor zero, fixture locks and load/stroke calibration; preserve pre/post records.",
+      "branches": [
+        "B02",
+        "B03"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "Tracking and transform robustness",
+      "classification": "authored_quality_control",
+      "requirement": "Qualify reference IDs, masks, pixel-to-world uncertainty and missing-point policy using declared checks; no claimed validation here.",
+      "branches": [
+        "B06"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "Independent samples and repeats",
+      "classification": "authored_prospective_policy",
+      "requirement": "Freeze independent specimen count, per-condition cycle count, condition order, recovery and stopping; no invented n.",
+      "branches": [
+        "B02",
+        "B03",
+        "B09"
+      ]
+    }
+  ],
+  "reported_repeats": "Main describes a sample and a compression-decompression cycle in each physical condition. It does not establish an independent specimen count, population statistic or replicate allocation.",
+  "repeat_policy": {
+    "status": "unresolved_execution_gate",
+    "independent_specimens": null,
+    "runs_per_condition": null,
+    "cycle_order": null,
+    "recovery_criterion": null,
+    "stopping_rule": null,
+    "must_be_frozen_before_outcomes": true
+  },
+  "frames_are_not_independent_specimens": true
+}

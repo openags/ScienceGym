@@ -1,0 +1,40 @@
+{
+  "schema_version": "conformal_task.v2",
+  "classification": "authored_robot_translation",
+  "chain": [
+    "material_lot_id",
+    "print_job_id",
+    "specimen_id",
+    "pad_layout_revision",
+    "fixture_id",
+    "contact_preparation_id",
+    "conditioning_state_id",
+    "carrier_id",
+    "dock_event_id",
+    "calibration_id",
+    "run_id",
+    "phase_id",
+    "frame_id",
+    "square_id",
+    "tracking_revision",
+    "analysis_revision",
+    "disposition_id"
+  ],
+  "requirements": [
+    "Many-to-one material lots and one-to-many trials must remain explicit",
+    "Every repeated or cross-fixture cycle advances sample state and retains prior load history",
+    "Frames retain original bytes/time, masks and corrections; never overwrite raw data",
+    "Camera, tester and analysis records join on run_id with versioned time and coordinate mappings",
+    "Specimen reuse and replacement are explicit events",
+    "Fixture replacement invalidates stale contact calibration",
+    "No sample provenance from a schematic asset or literature outcome"
+  ],
+  "nonmanual_chain": [
+    "source_version_id",
+    "source_anchor",
+    "dataset_record_version",
+    "archive_inspection_status",
+    "model_scope",
+    "interpretation_revision"
+  ]
+}

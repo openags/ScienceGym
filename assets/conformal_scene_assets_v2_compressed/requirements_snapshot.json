@@ -1,0 +1,236 @@
+{
+  "schema": "sciencegym.original_asset_requirements.v1",
+  "paper_doi": "10.1038/s41467-021-27825-0",
+  "assets_created": false,
+  "assets": [
+    {
+      "id": "A01",
+      "name": "Rotating-square beam visual",
+      "basis": "source_envelope_plus_authored_schematic",
+      "source_dimensions": {
+        "length_mm": 306,
+        "width_mm": 64,
+        "height_mm": 40,
+        "squares": [
+          48,
+          10
+        ],
+        "square_side_mm": 4.8,
+        "hinge_mm": 0.2
+      },
+      "required_semantic_anchors": [
+        "specimen_origin",
+        "support_left",
+        "support_right",
+        "camera_facing_surface",
+        "protected_grasp_zones"
+      ],
+      "execution_gaps": [
+        "U01",
+        "U02",
+        "U14"
+      ],
+      "fidelity_boundary": "No source mesh copying; preserve scalar dimensions but mark topology/pretwist unresolved. A visual lattice is not a fabricated or mechanically validated specimen."
+    },
+    {
+      "id": "A02",
+      "name": "Tracking pad layer",
+      "basis": "source_size_plus_unresolved_placement",
+      "source_dimensions": {
+        "pad_side_mm": 3.6
+      },
+      "required_semantic_anchors": [
+        "marker_plane",
+        "marker_index_origin"
+      ],
+      "execution_gaps": [
+        "U02",
+        "U07"
+      ],
+      "fidelity_boundary": "Original generated pads and IDs; never use source image textures."
+    },
+    {
+      "id": "A03",
+      "name": "Foot fixture visual",
+      "basis": "authored_placeholder",
+      "source_dimensions": {},
+      "required_semantic_anchors": [
+        "foot_mount",
+        "contact_reference",
+        "travel_axis"
+      ],
+      "execution_gaps": [
+        "U03",
+        "U05"
+      ],
+      "fidelity_boundary": "Approximate foot-like outline only until verified CAD; no realistic human body or medical test claim."
+    },
+    {
+      "id": "A04",
+      "name": "Bridge fixture visual",
+      "basis": "authored_placeholder",
+      "source_dimensions": {},
+      "required_semantic_anchors": [
+        "left_support",
+        "right_support",
+        "center_pusher",
+        "travel_axis"
+      ],
+      "execution_gaps": [
+        "U03",
+        "U05"
+      ],
+      "fidelity_boundary": "Span, radii and exact geometry unknown; do not infer them from figures."
+    },
+    {
+      "id": "A05",
+      "name": "Guarded tester station",
+      "basis": "authored_generic_enclosure",
+      "source_dimensions": {},
+      "required_semantic_anchors": [
+        "fixture_dock",
+        "load_axis",
+        "service_access",
+        "interlock",
+        "emergency_stop"
+      ],
+      "execution_gaps": [
+        "U05",
+        "U14"
+      ],
+      "fidelity_boundary": "Generic original instrument proxy; no copied brand CAD or validated machine API."
+    },
+    {
+      "id": "A06",
+      "name": "Camera and telephoto optical path",
+      "basis": "source_identification_plus_authored_proxy",
+      "source_dimensions": {
+        "reported_camera_distance_m": 4,
+        "image_pixels": [
+          6000,
+          4000
+        ],
+        "lens_focal_length_mm": 200
+      },
+      "required_semantic_anchors": [
+        "optical_center",
+        "optical_axis",
+        "focus_target"
+      ],
+      "execution_gaps": [
+        "U07"
+      ],
+      "fidelity_boundary": "Nikon identifiers source metadata only; geometry not reverse engineered from product images; lens F4 is not verified set aperture."
+    },
+    {
+      "id": "A07",
+      "name": "Lighting and background",
+      "basis": "source_configuration_plus_authored_proxy",
+      "source_dimensions": {
+        "led_panel_count": 2
+      },
+      "required_semantic_anchors": [
+        "light_left",
+        "light_right",
+        "background_plane"
+      ],
+      "execution_gaps": [
+        "U07"
+      ],
+      "fidelity_boundary": "Original low-detail panels with editable placement; power metadata is not a lighting simulation."
+    },
+    {
+      "id": "A08",
+      "name": "Supported carrier and storage trays",
+      "basis": "authored_translation",
+      "source_dimensions": {},
+      "required_semantic_anchors": [
+        "carrier_origin",
+        "supported_pick",
+        "storage_slot",
+        "quarantine_slot"
+      ],
+      "execution_gaps": [
+        "U14"
+      ],
+      "fidelity_boundary": "Carrier dimensions and grasp tolerances require later engineering; avoid hinge grasps."
+    },
+    {
+      "id": "A09",
+      "name": "Contact preparation service zone",
+      "basis": "authored_service_proxy",
+      "source_dimensions": {},
+      "required_semantic_anchors": [
+        "service_in",
+        "service_out",
+        "treatment_receipt"
+      ],
+      "execution_gaps": [
+        "U04"
+      ],
+      "fidelity_boundary": "No powder particle system, spraying action or unknown chemical asset; unresolved service card."
+    },
+    {
+      "id": "A10",
+      "name": "Calibration and reference station",
+      "basis": "authored_quality_control",
+      "source_dimensions": {},
+      "required_semantic_anchors": [
+        "target_origin",
+        "calibration_plane",
+        "reference_pose"
+      ],
+      "execution_gaps": [
+        "U07",
+        "U15"
+      ],
+      "fidelity_boundary": "Original target geometry only; no pretend calibration certificate."
+    },
+    {
+      "id": "A11",
+      "name": "Read-only analysis station",
+      "basis": "authored_translation",
+      "source_dimensions": {},
+      "required_semantic_anchors": [
+        "data_receipt",
+        "tracking_receipt",
+        "fit_receipt",
+        "inference_receipt"
+      ],
+      "execution_gaps": [
+        "U09",
+        "U10",
+        "U11",
+        "U12"
+      ],
+      "fidelity_boundary": "Source outcomes remain evaluator-only; no reproduced paper plots or runnable author code."
+    },
+    {
+      "id": "A12",
+      "name": "Whole-paper numerical scope display",
+      "basis": "authored_nonphysical_schematic",
+      "source_dimensions": {},
+      "required_semantic_anchors": [
+        "unit_cell_scope",
+        "fem_scope",
+        "spring_network_scope"
+      ],
+      "execution_gaps": [
+        "U11",
+        "U12"
+      ],
+      "fidelity_boundary": "Clearly separate symbolic source-theory/FEM/spring branches; do not create phantom physical actuators."
+    }
+  ],
+  "future_delivery_requirements": [
+    "Editable original scene",
+    "Single-scene GLB with meaningful names and documented scale",
+    "Original schematic previews",
+    "Source-basis and unknown-dimension ledger",
+    "Asset-to-operation bindings",
+    "Separate declared physical versus symbolic branches",
+    "No source PDFs, figures, textures, media or code",
+    "Static validity is not collision, robotics or scientific validation"
+  ],
+  "pose_status": "All poses and collision envelopes remain commissioning requirements, not supplied facts."
+}

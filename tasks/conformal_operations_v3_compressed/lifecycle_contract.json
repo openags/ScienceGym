@@ -1,0 +1,35 @@
+{
+  "schema_version": "conformal_task.v2",
+  "states": [
+    "UNQUALIFIED",
+    "POLICY_FROZEN",
+    "FABRICATED_ACCEPTED",
+    "FIXTURE_QUALIFIED",
+    "CONDITIONED",
+    "DOCKED",
+    "MECHANICS_READY",
+    "IMAGING_READY",
+    "SYNCHRONIZED_ARMED",
+    "ACQUIRING",
+    "UNLOADED_INSPECTED",
+    "RECOVERY_REVIEWED",
+    "ANALYSIS_BLOCKED_OR_REVIEWED",
+    "SAFE_RETURNED",
+    "SUPPORTED_HOLD",
+    "ARCHIVED_BOUNDED"
+  ],
+  "exclusive_resources": [
+    "S05 tester",
+    "S06 camera acquisition"
+  ],
+  "epoch_invalidation": [
+    "Fixture change invalidates contact and mechanics calibration",
+    "Specimen replacement invalidates prior specimen preparation, docking and calibration",
+    "Treatment or conditioning change advances specimen state and requires preparation review",
+    "Camera movement invalidates geometric calibration",
+    "Any affected configuration change invalidates arming and synchronization readiness"
+  ],
+  "failure_closeout_from_any_operation": true,
+  "failure_requires_analysis_success": false,
+  "supported_hold_is_execution_complete": false
+}

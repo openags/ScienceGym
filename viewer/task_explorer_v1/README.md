@@ -1,8 +1,20 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** 35 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
+**See the task before reading its JSON.** 36 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
 
-## Release contents: 38 families
+## Release contents: 39 families
+
+The explorer contains **36 paper-level designs + 3 bounded subsets**, **886 inspection records** and **3,188 operation definitions**. [Conformal elasticity](docs/conformal.md) adds **nine classified source-scope branches and sixteen authored operation templates**, five separate reference views and one metadata-only **HOLD_QUALIFICATION**. Only B02 foot and B03 bridge are physical experimental design routes. B01 is preparation, B06 is analysis, B09 is authored closeout, and B04/B05/B07/B08 remain documented, unexecuted numerical or analytical scope. One source paper remains one design.
+
+All **34 task JSON documents**, including nine controls, 28 source facts, five source conflicts and sixteen unresolved-input groups, remain losslessly inspectable. Source facts and authored robot requirements stay distinct; required outputs do not become observed states. Four hundred acquired frames, 1 fps acquisition and 30 fps playback are separate source references, never independent samples or qualified operating defaults. Compression and decompression, nearest fits and boundary-only predictions, physical observations and numerical outputs remain separate.
+
+The [original static asset guide](../../assets/conformal_scene_assets_v2_compressed/README.md) and three renders are hash-bound. Twelve original scene groups and 32 operation anchors bind all sixteen templates, retaining eleven task-pinned asset files and nine reciprocal task hashes. Geometry, dimensions, grasps, contact profiles and interfaces remain illustrative and unqualified. Fabrication, unidentified powder treatment and powered loading stay closed qualified-service boundaries. No physics, robot execution or scientific reproduction is added.
+
+Upstream review read nine main pages, sixteen written supplementary pages and the media-description sheet with selected figure/equation inspection. Three movies were fully decoded and five frames each visually sampled; they were not continuously reviewed. Zenodo archive contents remain unread. This integration does not reread the paper, reanalyze source data or prove the mathematics.
+
+Local source and original guide/render links retain exact hashes. The optional portable export embeds **200 exact source JSON documents, six guides and eighteen original renders** across six recent families. All **152 prior generated family artifacts** remain byte-identical. Publication status comes from the repository commit; frozen receipt fields remain historical snapshots. See [verification](VERIFICATION.md).
+
+## Historical mid-infrared integration: 38 families
 
 The explorer contains **35 paper-level designs + 3 bounded subsets**, **871 inspection records** and **3,172 operation definitions**. [Mid-infrared imaging](docs/midinfrared.md) adds eight experimental design branches, 22 authored operation templates, five separate reference views and one metadata-only qualification hold. All 34 task JSON documents, twelve controls, ten source conflicts and fourteen unresolved-input groups remain exact. Approximately 10 Hz is confined to analog 16×16, and raw data and modified source code remain unavailable.
 
@@ -170,7 +182,7 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 - `data/<family>.json`: compact, inspectable normalized records
 - `data/<family>.js`: the same JSON as a local-script assignment so `file://` does not require fetch
 - `diagrams/*.svg`, `docs/<family>.md`: GitHub-native alternatives
-- `build.py`, `acoustic_adapters.py`, `mechanical_adapters.py`, `assembly_adapters.py`, `final_materials_adapters.py`, `nature_materials_adapters.py` `crossdisciplinary_adapters.py` `paired_adapters.py` `woven_adapters.py` and `recent_paper_adapters.py`: 35 explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
+- `build.py`, `acoustic_adapters.py`, `mechanical_adapters.py`, `assembly_adapters.py`, `final_materials_adapters.py`, `nature_materials_adapters.py` `crossdisciplinary_adapters.py` `paired_adapters.py` `woven_adapters.py` and `recent_paper_adapters.py`, `wetting_adapters.py`, `arcmorph_adapters.py`, `midinfrared_adapters.py` and `conformal_adapters.py`: 39 explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
 - `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_cooling.py`, `tests/test_acoustic_designs.py`, `tests/test_mechanical_designs.py`, `tests/test_assembly_designs.py`, `tests/test_final_materials.py`, `tests/test_nature_materials.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 

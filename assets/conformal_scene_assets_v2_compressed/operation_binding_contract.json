@@ -1,0 +1,341 @@
+{
+  "schema": "sciencegym.conformal.asset_binding.v1",
+  "asset_pack_id": "conformal_scene_assets_v2_compressed",
+  "task_id": "conformal_operations_v3_compressed",
+  "paper_doi": "10.1038/s41467-021-27825-0",
+  "units": "m",
+  "native_coordinates": "right-handed; +Z up; display X length, Y thickness, Z width; source axis registration unverified",
+  "roots": {
+    "A01": "ASSET.A01",
+    "A02": "ASSET.A02",
+    "A03": "ASSET.A03",
+    "A04": "ASSET.A04",
+    "A05": "ASSET.A05",
+    "A06": "ASSET.A06",
+    "A07": "ASSET.A07",
+    "A08": "ASSET.A08",
+    "A09": "ASSET.A09",
+    "A10": "ASSET.A10",
+    "A11": "ASSET.A11",
+    "A12": "ASSET.A12"
+  },
+  "operation_ids": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16"
+  ],
+  "branch_ids": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09"
+  ],
+  "station_ids": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08"
+  ],
+  "operations": [
+    {
+      "operation_id": "R01",
+      "operation_name": "Freeze campaign and prospective controls",
+      "primary_asset_id": "A11",
+      "asset_ids": [
+        "A11"
+      ],
+      "primary_anchor": "ANCHOR.R01.primary",
+      "control_anchor": "ANCHOR.R01.control",
+      "primary_target": "analysis.campaign_port",
+      "control_target": "analysis.freeze_policy",
+      "source_station": "S01",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R02",
+      "operation_name": "Commission beam and printed parts",
+      "primary_asset_id": "A01",
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A08",
+        "A09"
+      ],
+      "primary_anchor": "ANCHOR.R02.primary",
+      "control_anchor": "ANCHOR.R02.control",
+      "primary_target": "beam.square.00.00",
+      "control_target": "beam.build_receipt",
+      "source_station": "S02",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R03",
+      "operation_name": "Inspect and qualify both fixtures",
+      "primary_asset_id": "A03",
+      "asset_ids": [
+        "A03",
+        "A04",
+        "A10"
+      ],
+      "primary_anchor": "ANCHOR.R03.primary",
+      "control_anchor": "ANCHOR.R03.control",
+      "primary_target": "foot.mount",
+      "control_target": "foot.inspection_tag",
+      "source_station": "S03",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R04",
+      "operation_name": "Record contact preparation and conditioning",
+      "primary_asset_id": "A09",
+      "asset_ids": [
+        "A01",
+        "A08",
+        "A09"
+      ],
+      "primary_anchor": "ANCHOR.R04.primary",
+      "control_anchor": "ANCHOR.R04.control",
+      "primary_target": "service.contact_in",
+      "control_target": "service.contact_receipt",
+      "source_station": "S03",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R05",
+      "operation_name": "Transfer supported specimen and dock",
+      "primary_asset_id": "A08",
+      "asset_ids": [
+        "A01",
+        "A05",
+        "A08"
+      ],
+      "primary_anchor": "ANCHOR.R05.primary",
+      "control_anchor": "ANCHOR.R05.control",
+      "primary_target": "carrier.handle_left",
+      "control_target": "carrier.dock_key",
+      "source_station": "S04",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R06",
+      "operation_name": "Qualify mechanics and branch zero",
+      "primary_asset_id": "A05",
+      "asset_ids": [
+        "A03",
+        "A04",
+        "A05",
+        "A10"
+      ],
+      "primary_anchor": "ANCHOR.R06.primary",
+      "control_anchor": "ANCHOR.R06.control",
+      "primary_target": "tester.loadcell",
+      "control_target": "tester.mechanics_receipt",
+      "source_station": "S05",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R07",
+      "operation_name": "Qualify image geometry and tracking visibility",
+      "primary_asset_id": "A10",
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A06",
+        "A07",
+        "A10"
+      ],
+      "primary_anchor": "ANCHOR.R07.primary",
+      "control_anchor": "ANCHOR.R07.control",
+      "primary_target": "calibration.target",
+      "control_target": "calibration.camera_receipt",
+      "source_station": "S06",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R08",
+      "operation_name": "Arm synchronized acquisition",
+      "primary_asset_id": "A11",
+      "asset_ids": [
+        "A05",
+        "A06",
+        "A11"
+      ],
+      "primary_anchor": "ANCHOR.R08.primary",
+      "control_anchor": "ANCHOR.R08.control",
+      "primary_target": "analysis.sync_port",
+      "control_target": "analysis.capture_gate",
+      "source_station": "S05+S06",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R09",
+      "operation_name": "Acquire approved branch cycle",
+      "primary_asset_id": "A05",
+      "asset_ids": [
+        "A01",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07"
+      ],
+      "primary_anchor": "ANCHOR.R09.primary",
+      "control_anchor": "ANCHOR.R09.control",
+      "primary_target": "tester.test_trigger",
+      "control_target": "tester.emergency_stop",
+      "source_station": "S05+S06",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R10",
+      "operation_name": "Unload inspect and establish recovery state",
+      "primary_asset_id": "A08",
+      "asset_ids": [
+        "A01",
+        "A05",
+        "A08"
+      ],
+      "primary_anchor": "ANCHOR.R10.primary",
+      "control_anchor": "ANCHOR.R10.control",
+      "primary_target": "storage.recovery_slot",
+      "control_target": "storage.quarantine_slot",
+      "source_station": "S05",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R11",
+      "operation_name": "Change fixture under isolation for paired branch",
+      "primary_asset_id": "A05",
+      "asset_ids": [
+        "A03",
+        "A04",
+        "A05",
+        "A08",
+        "A09"
+      ],
+      "primary_anchor": "ANCHOR.R11.primary",
+      "control_anchor": "ANCHOR.R11.control",
+      "primary_target": "tester.fixture_latch",
+      "control_target": "tester.isolation_port",
+      "source_station": "S04",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R12",
+      "operation_name": "Extract registered square trajectories",
+      "primary_asset_id": "A11",
+      "asset_ids": [
+        "A02",
+        "A06",
+        "A11"
+      ],
+      "primary_anchor": "ANCHOR.R12.primary",
+      "control_anchor": "ANCHOR.R12.control",
+      "primary_target": "analysis.tracking_port",
+      "control_target": "analysis.quality_mask",
+      "source_station": "S07",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R13",
+      "operation_name": "Compute separate fit and boundary inference analyses",
+      "primary_asset_id": "A11",
+      "asset_ids": [
+        "A11"
+      ],
+      "primary_anchor": "ANCHOR.R13.primary",
+      "control_anchor": "ANCHOR.R13.control",
+      "primary_target": "analysis.fit_port",
+      "control_target": "analysis.inference_port",
+      "source_station": "S07",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R14",
+      "operation_name": "Document nonmanual scientific branches",
+      "primary_asset_id": "A12",
+      "asset_ids": [
+        "A11",
+        "A12"
+      ],
+      "primary_anchor": "ANCHOR.R14.primary",
+      "control_anchor": "ANCHOR.R14.control",
+      "primary_target": "symbolic.unit_cell_card",
+      "control_target": "symbolic.scope_guard",
+      "source_station": "S07",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R15",
+      "operation_name": "Compare controls without leaking source answers",
+      "primary_asset_id": "A11",
+      "asset_ids": [
+        "A11",
+        "A12"
+      ],
+      "primary_anchor": "ANCHOR.R15.primary",
+      "control_anchor": "ANCHOR.R15.control",
+      "primary_target": "analysis.evaluation_port",
+      "control_target": "analysis.policy_port",
+      "source_station": "S07",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    },
+    {
+      "operation_id": "R16",
+      "operation_name": "Close campaign and archive originals",
+      "primary_asset_id": "A08",
+      "asset_ids": [
+        "A05",
+        "A08",
+        "A11"
+      ],
+      "primary_anchor": "ANCHOR.R16.primary",
+      "control_anchor": "ANCHOR.R16.control",
+      "primary_target": "storage.storage_slot",
+      "control_target": "storage.archive_port",
+      "source_station": "S08",
+      "qualified_pose": null,
+      "physical_execution_enabled": false
+    }
+  ],
+  "selector_scope": "Mesh and empty selectors only; no robot API, qualified pose or collision model",
+  "static_validity_is_physical_validation": false
+}

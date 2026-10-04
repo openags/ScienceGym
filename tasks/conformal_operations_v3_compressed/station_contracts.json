@@ -1,0 +1,66 @@
+{
+  "schema_version": "conformal_task.v2",
+  "classification": "authored_robot_translation",
+  "stations": [
+    {
+      "id": "S01",
+      "name": "Campaign and serialized receiving bench",
+      "contract": "Identity, condition records, carrier acceptance and storage; no fabrication machine control",
+      "commissioned": false
+    },
+    {
+      "id": "S02",
+      "name": "Qualified additive-fabrication service",
+      "contract": "Accept job specifications and return print/inspection receipts; isolated from robot task executor",
+      "commissioned": false
+    },
+    {
+      "id": "S03",
+      "name": "Fixture inspection and approved contact-preparation service",
+      "contract": "Foot/bridge geometry inspection, service-managed powder if separately qualified",
+      "commissioned": false
+    },
+    {
+      "id": "S04",
+      "name": "Protected transfer and docking zone",
+      "contract": "Supported carrier transfers, identity scan, locks and pose checks; actual robot interface absent",
+      "commissioned": false
+    },
+    {
+      "id": "S05",
+      "name": "Guarded mechanical testing station",
+      "contract": "Qualified tester with foot or bridge fixture, force/displacement/time and interlocks; source names Instron 5943 for bridge",
+      "commissioned": false
+    },
+    {
+      "id": "S06",
+      "name": "Calibrated synchronized imaging station",
+      "contract": "Camera, telephoto lens, two lights, background, calibration target and immutable image ledger",
+      "commissioned": false
+    },
+    {
+      "id": "S07",
+      "name": "Read-only analysis workstation",
+      "contract": "Tracking, metric and inference receipts; no source code executed; published target metrics evaluator-only",
+      "commissioned": false
+    },
+    {
+      "id": "S08",
+      "name": "Quarantine and closeout storage",
+      "contract": "Safe unload, service recovery, retain failed runs, inspect specimen and file archive",
+      "commissioned": false
+    }
+  ],
+  "coordinate_contract": {
+    "units": "metres in future scene; millimetres in source parameter ledger",
+    "frames": [
+      "world",
+      "carrier",
+      "specimen_reference",
+      "fixture_contact",
+      "camera_optical",
+      "image_pixels"
+    ],
+    "required_transforms": "Versioned calibrated transforms and covariance/uncertainty; no numerical pose is supplied by this review."
+  }
+}

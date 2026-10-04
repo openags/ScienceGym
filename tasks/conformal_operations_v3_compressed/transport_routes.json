@@ -1,0 +1,135 @@
+{
+  "schema_version": "conformal_task.v2",
+  "transfers": [
+    {
+      "id": "T01",
+      "operation_id": "R02",
+      "source_station": "S01",
+      "destination_station": "S02",
+      "object_role": "protected_stock_if_supplied",
+      "required_fields": [
+        "specimen_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy",
+        "destination_empty",
+        "retention_receipt",
+        "transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "supported_carrier_required": true,
+      "qualified_pose": null
+    },
+    {
+      "id": "T02",
+      "operation_id": "R02",
+      "source_station": "S02",
+      "destination_station": "S01",
+      "object_role": "printed_beam_and_foot",
+      "required_fields": [
+        "specimen_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy",
+        "destination_empty",
+        "retention_receipt",
+        "transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "supported_carrier_required": true,
+      "qualified_pose": null
+    },
+    {
+      "id": "T03",
+      "operation_id": "R04",
+      "source_station": "S01",
+      "destination_station": "S03",
+      "object_role": "supported_specimen_and_fixture",
+      "required_fields": [
+        "specimen_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy",
+        "destination_empty",
+        "retention_receipt",
+        "transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "supported_carrier_required": true,
+      "qualified_pose": null
+    },
+    {
+      "id": "T04",
+      "operation_id": "R05",
+      "source_station": "S03",
+      "destination_station": "S05",
+      "object_role": "supported_specimen_and_qualified_fixture",
+      "required_fields": [
+        "specimen_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy",
+        "destination_empty",
+        "retention_receipt",
+        "transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "supported_carrier_required": true,
+      "qualified_pose": null
+    },
+    {
+      "id": "T05",
+      "operation_id": "R11",
+      "source_station": "S05",
+      "destination_station": "S03",
+      "object_role": "unloaded_specimen_or_fixture_for_repreparation",
+      "required_fields": [
+        "specimen_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy",
+        "destination_empty",
+        "retention_receipt",
+        "transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "supported_carrier_required": true,
+      "qualified_pose": null
+    },
+    {
+      "id": "T06",
+      "operation_id": "R16",
+      "source_station": "S05",
+      "destination_station": "S08",
+      "object_role": "supported_specimen_to_storage_or_quarantine",
+      "required_fields": [
+        "specimen_id",
+        "carrier_id",
+        "source_slot",
+        "destination_slot",
+        "source_occupancy",
+        "destination_empty",
+        "retention_receipt",
+        "transform_revision",
+        "safe_release_receipt",
+        "custody_event_id"
+      ],
+      "supported_carrier_required": true,
+      "qualified_pose": null
+    }
+  ],
+  "transfer_zone": "S04 coordinates supported moves; it is not a teleportation shortcut. Each occurrence records actual source/destination custody.",
+  "fixture_loop": "R11 exchanges/returns fixtures under isolation and creates new docking/calibration occurrences. Replacement or changed treatment expands upstream service transfers.",
+  "no_hinge_or_pad_grip": true,
+  "uncertain_safe_release": "Leave current supported custody and lease unresolved, keep robot outside guarded station."
+}

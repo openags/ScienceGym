@@ -1,4 +1,16 @@
-# Release contents: mid-infrared paired integration
+# Integrating the compressed conformal elasticity paired design release
+
+The explorer contains **36 paper-level designs + 3 bounded subsets**, **886 inspection records** and **3,188 operation definitions**. [Conformal elasticity](docs/conformal.md) adds **nine classified source-scope branches and sixteen authored operation templates**, five separate reference views and one metadata-only **HOLD_QUALIFICATION**. Only B02 foot and B03 bridge are physical experimental design routes. B01 is preparation, B06 is analysis, B09 is authored closeout, and B04/B05/B07/B08 remain documented, unexecuted numerical or analytical scope. One source paper remains one design.
+
+All **34 task JSON documents**, including nine controls, 28 source facts, five source conflicts and sixteen unresolved-input groups, remain losslessly inspectable. Source facts and authored robot requirements stay distinct; required outputs do not become observed states. Four hundred acquired frames, 1 fps acquisition and 30 fps playback are separate source references, never independent samples or qualified operating defaults. Compression and decompression, nearest fits and boundary-only predictions, physical observations and numerical outputs remain separate.
+
+The [original static asset guide](../../assets/conformal_scene_assets_v2_compressed/README.md) and three renders are hash-bound. Twelve original scene groups and 32 operation anchors bind all sixteen templates, retaining eleven task-pinned asset files and nine reciprocal task hashes. Geometry, dimensions, grasps, contact profiles and interfaces remain illustrative and unqualified. Fabrication, unidentified powder treatment and powered loading stay closed qualified-service boundaries. No physics, robot execution or scientific reproduction is added.
+
+Upstream review read nine main pages, sixteen written supplementary pages and the media-description sheet with selected figure/equation inspection. Three movies were fully decoded and five frames each visually sampled; they were not continuously reviewed. Zenodo archive contents remain unread. This integration does not reread the paper, reanalyze source data or prove the mathematics.
+
+Local source and original guide/render links retain exact hashes. The optional portable export embeds **200 exact source JSON documents, six guides and eighteen original renders** across six recent families. All **152 prior generated family artifacts** remain byte-identical. Publication status comes from the repository commit; frozen receipt fields remain historical snapshots. See [verification](VERIFICATION.md).
+
+## Historical mid-infrared integration
 
 The explorer contains **35 paper-level designs + 3 bounded subsets**, **871 inspection records** and **3,172 operation definitions**. [Mid-infrared imaging](docs/midinfrared.md) adds eight experimental design branches, 22 authored operation templates, five separate reference views and one metadata-only qualification hold. All 34 task JSON documents, twelve controls, ten source conflicts and fourteen unresolved-input groups remain exact. Approximately 10 Hz is confined to analog 16×16, and raw data and modified source code remain unavailable.
 

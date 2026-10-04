@@ -1,0 +1,141 @@
+{
+  "paper_doi": "10.1038/s41467-021-27825-0",
+  "unknowns": [
+    {
+      "id": "U01",
+      "classification": "unknown_or_unverified",
+      "topic": "Fabrication recipe and material history",
+      "detail": "Layer settings, print orientation, support removal, post-treatment, storage/aging, lot certification and inspection tolerances are not reported sufficiently to reproduce the physical beam.",
+      "first_blocked_operation": "R02",
+      "execution_blocking": true
+    },
+    {
+      "id": "U02",
+      "classification": "unknown_or_unverified",
+      "topic": "Exact specimen topology",
+      "detail": "Full CAD, physical pretwist, pad placement and hinge fillet/section details are not fully specified by scalar dimensions. Do not infer them from FEM geometry or uncalibrated figures.",
+      "first_blocked_operation": "R02",
+      "execution_blocking": true
+    },
+    {
+      "id": "U03",
+      "classification": "unknown_or_unverified",
+      "topic": "Foot and bridge fixtures",
+      "detail": "Foot CAD, contact profile/dimensions, support span, support and pusher radii, alignment and secure attachment details require verified specifications.",
+      "first_blocked_operation": "R03",
+      "execution_blocking": true
+    },
+    {
+      "id": "U04",
+      "classification": "unknown_or_unverified",
+      "topic": "Powder identity and application",
+      "detail": "Composition, amount, application/removal and exposure controls are unknown. No unidentified powder handling or spraying; require an approved service method.",
+      "first_blocked_operation": "R04",
+      "execution_blocking": true
+    },
+    {
+      "id": "U05",
+      "classification": "unknown_or_unverified",
+      "topic": "Safe mechanical limits",
+      "detail": "Force/load-cell range, overload threshold, machine limits, collision envelope and approved unloading after a fault are unknown. Source stroke is not a safety limit.",
+      "first_blocked_operation": "R06",
+      "execution_blocking": true
+    },
+    {
+      "id": "U06",
+      "classification": "unknown_or_unverified",
+      "topic": "Experimental repeats and ordering",
+      "detail": "Independent specimen n, condition order, repeat cycles, rest/recovery time and cross-condition reuse history are not reported. Freeze an authored prospective plan before acquisition.",
+      "first_blocked_operation": "R01",
+      "execution_blocking": true
+    },
+    {
+      "id": "U07",
+      "classification": "unknown_or_unverified",
+      "topic": "Camera qualification",
+      "detail": "Exposure, aperture actually used, ISO, trigger, distortion calibration, pixel-to-world uncertainty, focus/lighting stability and occlusion criteria are unspecified. Lens F4 is identification, not a proved acquisition aperture.",
+      "first_blocked_operation": "R07",
+      "execution_blocking": true
+    },
+    {
+      "id": "U08",
+      "classification": "unknown_or_unverified",
+      "topic": "Synchronization and endpoints",
+      "detail": "Camera-machine clock mapping, endpoint dwell, acceleration ramps and initial/final frame conventions are unknown. Do not manufacture 400 valid synchronized frames or assume exactly known total elapsed time.",
+      "first_blocked_operation": "R08",
+      "execution_blocking": true
+    },
+    {
+      "id": "U09",
+      "classification": "unknown_or_unverified",
+      "topic": "Tracking implementation",
+      "detail": "Raw segmentation, tessellation, correspondence, missing-marker handling, uncertainty and rejection settings are not inspected. Source detection accuracy does not validate an authored pipeline.",
+      "first_blocked_operation": "R07",
+      "execution_blocking": true
+    },
+    {
+      "id": "U10",
+      "classification": "unknown_or_unverified",
+      "topic": "Metric and normalization definitions",
+      "detail": "Global strain epsilon and figure shear/dilation normalization, polynomial offset/order treatment, boundary point selection and rigid-body registration need a documented validated interpretation. Local metrics alone do not define the figure denominator.",
+      "first_blocked_operation": "R13",
+      "execution_blocking": true
+    },
+    {
+      "id": "U11",
+      "classification": "unknown_or_unverified",
+      "topic": "Scientific source conflicts",
+      "detail": "Alpha area/length wording, energy hinge-power and SI stress formulas require expert resolution before any affected scientific port is certified.",
+      "first_blocked_operation": "R13",
+      "execution_blocking": true
+    },
+    {
+      "id": "U12",
+      "classification": "unknown_or_unverified",
+      "topic": "Dataset version and archive contents",
+      "detail": "Only Zenodo metadata read. Raw images, processing code, PyLab, Abaqus models and Mathematica contents are unread; exact correspondence to final-paper panels is unverified. Unverified numerical implementation details include constrained-node coordinates and displacement schedules, Abaqus version and solver settings, mesh-convergence criteria, spring topology and rest lengths, target boundary fields, initialization and optimizer termination tolerances. The reported mesh minimum and conjugate-gradient name do not establish numerical convergence.",
+      "first_blocked_operation": "R14",
+      "execution_blocking": true,
+      "unverified_implementation_subitems": [
+        "Constrained-node coordinates and applied displacement schedules",
+        "Abaqus version, solver settings and mesh-convergence policy",
+        "Spring topology and interior/boundary rest lengths",
+        "Boundary target fields and optimizer initial state",
+        "Optimizer termination tolerances and convergence checks"
+      ]
+    },
+    {
+      "id": "U13",
+      "classification": "unknown_or_unverified",
+      "topic": "Safety qualified fabrication service",
+      "detail": "PolyJet and ABS fabrication require appropriate equipment/SDS controls. No resin preparation, chemical synthesis or printer machine control is authorized by this design review.",
+      "first_blocked_operation": "R02",
+      "execution_blocking": true
+    },
+    {
+      "id": "U14",
+      "classification": "unknown_or_unverified",
+      "topic": "Robot transfer and interfaces",
+      "detail": "Physical carriers, grasp zones, end effector, payload, pose tolerances, fixture locks, force sensing and camera/tester APIs are not commissioned.",
+      "first_blocked_operation": "R05",
+      "execution_blocking": true
+    },
+    {
+      "id": "U15",
+      "classification": "unknown_or_unverified",
+      "topic": "Prospective acceptance and stop policy",
+      "detail": "Uncertainty budget, per-control tolerances, repeat counts, reset/retirement rules and scientific evaluation criteria must be set before observing outcomes; literature curves must not be targets revealed to the agent.",
+      "first_blocked_operation": "R01",
+      "execution_blocking": true
+    },
+    {
+      "id": "U16",
+      "classification": "unknown_or_unverified",
+      "topic": "Viscoelastic recovery and environment",
+      "detail": "Temperature/humidity, dwell/recovery criterion, conditioning, irreversible damage and cycle-history effects must be measured/qualified rather than inferred from cited moduli.",
+      "first_blocked_operation": "R04",
+      "execution_blocking": true
+    }
+  ],
+  "resolution_policy": "Record evidence and an approved versioned value; never replace an unknown with an unmarked default."
+}

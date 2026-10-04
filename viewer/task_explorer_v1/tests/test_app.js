@@ -3,7 +3,7 @@
 class El{constructor(tag){this.tagName=tag;this.attrs={};this.children=[];this.style={setProperty(){}};this.dataset={};this.hidden=false;this.value='';this.className='';this.classList={toggle:(name,on)=>{let s=new Set(this.className.split(' ').filter(Boolean));on?s.add(name):s.delete(name);this.className=[...s].join(' ');}};}setAttribute(k,v){this.attrs[k]=String(v);if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=String(v);if(k==='value')this.value=v;}append(...x){this.children.push(...x);}replaceChildren(...x){this.children=x;}set textContent(v){this.text=String(v);this.children=[];}get textContent(){return this.text||'';}}
 const ids=[...fs.readFileSync(path.join(ROOT,'index.html'),'utf8').matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);const elements=Object.fromEntries(ids.map(id=>[id,new El('div')]));['route','dependencies','contract'].forEach(tab=>{elements['tab-'+tab].setAttribute('role','tab');elements['tab-'+tab].setAttribute('data-tab',tab);});
 const walk=(roots)=>roots.flatMap(n=>n instanceof El?[n,...walk(n.children)]:[]);const document={documentElement:new El('html'),getElementById:id=>elements[id],createElement:tag=>new El(tag),createTextNode:t=>String(t),querySelectorAll:selector=>{const all=walk(Object.values(elements));if(selector==='nav button')return elements.families.children;if(selector==='[role=tab]')return all.filter(x=>x.attrs.role==='tab');if(selector==='.operation')return all.filter(x=>x.className.split(' ').includes('operation'));throw Error('Unimplemented selector '+selector);}};
-const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop','granular_assembly','beaded','thermal_jamming','horn_acoustics','mechanical_logic','cold_shape','gear','hydrogel_optical','atmospheric_optics','afm_metrology','martian_geophysics','transistor','laser_control','solar_water','sucrose_metrology','actuator_metrology','woven','lockable_origami','varactor','wetting','arcmorph','midinfrared'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
+const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop','granular_assembly','beaded','thermal_jamming','horn_acoustics','mechanical_logic','cold_shape','gear','hydrogel_optical','atmospheric_optics','afm_metrology','martian_geophysics','transistor','laser_control','solar_water','sucrose_metrology','actuator_metrology','woven','lockable_origami','varactor','wetting','arcmorph','midinfrared','conformal'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
 let hash='',onHash;const location={get hash(){return hash;},set hash(value){hash=value.startsWith('#')?value:'#'+value;if(onHash)onHash();}};const window={SCIENCEGYM_DATA:data,addEventListener:(n,fn)=>{if(n==='hashchange')onHash=fn;}};const context={window,document,location,console,atob,Uint8Array,Blob:class{constructor(parts,options){this.parts=parts;this.options=options;}},URL:{createObjectURL:()=> 'blob:mock-test',revokeObjectURL:()=>{}}};vm.createContext(context);if(process.argv[2]){const standalone=fs.readFileSync(process.argv[2],'utf8');for(const match of standalone.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInContext(match[1],context);}else{vm.runInContext(fs.readFileSync(path.join(ROOT,'app.js'),'utf8'),context);}let routeCount=0,occurrenceCount=0;
 for(const [key,f]of Object.entries(window.ScienceGymExplorer.data)){for(const r of f.routes){location.hash=[key,r.id,'',0].join('/');const state=window.ScienceGymExplorer.state;assert.strictEqual(state.family,key);assert.strictEqual(state.route,r.id);assert(state.steps.length>0||r.route_kind==='numerical'||r.metadata_only);assert.strictEqual(document.querySelectorAll('.operation').length,state.steps.length);assert.strictEqual(document.querySelectorAll('.operation').filter(x=>x.attrs['aria-pressed']==='true').length,state.steps.length?1:0);if(state.steps.length){const last=state.steps[state.steps.length-1];location.hash=[key,r.id,last.id,last.index].join('/');assert.strictEqual(state.op,last.id);assert.strictEqual(state.occurrence,last.index);}else{assert.strictEqual(state.op,null);}routeCount++;occurrenceCount+=state.steps.length;}}
 location.hash='dispim/D-R01/P001/7';assert.strictEqual(window.ScienceGymExplorer.state.op,'P001');let ps=window.ScienceGymExplorer.state.steps.filter(s=>s.id==='P001');assert.strictEqual(ps.length,2);location.hash=['dispim','D-R01','P001',ps[1].index].join('/');assert.strictEqual(window.ScienceGymExplorer.state.occurrence,ps[1].index);
@@ -681,4 +681,111 @@ console.log(`PASS: recent paper designs ${recentRecords} records / ${recentEntri
  if(window.SCIENCEGYM_EMBEDDED_FILES){for(const item of [...Object.values(f.source_files),...f.asset_links])assert(window.SCIENCEGYM_EMBEDDED_FILES[item.url]);}
  assert.strictEqual(JSON.stringify(f),frozen);
  console.log(`PASS: midinfrared 14 views / eight experimental branches / 22 distinct templates / ${occurrences} selectable occurrences; controls, lineage, failed holds, default hold, local links and immutable data`);
+}
+
+// Conformal: derive branch membership from frozen task records, independently of the adapter.
+{
+ const taskRoot=path.resolve(ROOT,'../../tasks/conformal_operations_v3_compressed');
+ const readTask=name=>JSON.parse(fs.readFileSync(path.join(taskRoot,name),'utf8'));
+ const branches=readTask('branches.json').branches,operations=readTask('operations.json').operations;
+ const sourceOps=new Map(operations.map(o=>[o.id,o]));
+ const sourceBranches=new Map(branches.map(b=>[b.id,b]));
+ const f=window.ScienceGymExplorer.data.conformal,frozen=JSON.stringify(f),selected=new Set();let occurrences=0;
+ const textOf=el=>walk([el]).map(n=>n.textContent).join('\n');
+ const expectedEmpty=['PREPARATION_REFERENCE','CONTROLS_REFERENCE','RECOVERY_REFERENCE','NONMANUAL_REFERENCE','HOLD_QUALIFICATION'];
+ assert.strictEqual(f.routes.length,15);assert.strictEqual(f.operations.length,16);
+ assert.strictEqual(f.default_route,'HOLD_QUALIFICATION');
+ assert.deepStrictEqual(Array.from(f.routes.filter(r=>r.route_kind==='physical_experiment'),r=>r.id),['B02','B03']);
+ const familyButton=document.querySelectorAll('nav button').find(b=>b.dataset.family==='conformal');
+ familyButton.onclick();assert.strictEqual(window.ScienceGymExplorer.state.route,'HOLD_QUALIFICATION');
+ assert.strictEqual(window.ScienceGymExplorer.state.op,null);
+ for(const r of f.routes){
+  location.hash='conformal/'+r.id;
+  assert.strictEqual(elements.familyScope.textContent,'WHOLE-PAPER DESIGN');
+  const steps=[...window.ScienceGymExplorer.state.steps],source=sourceBranches.get(r.id);
+  const expectedIds=source?source.route_operations:r.id==='OPERATIONS_REFERENCE'?operations.map(o=>o.id):[];
+  assert.deepStrictEqual(Array.from(steps,s=>s.id),expectedIds);
+  assert.strictEqual(r.metadata_only,expectedEmpty.includes(r.id));
+  assert.strictEqual(document.querySelectorAll('.operation').length,expectedIds.length);
+  assert.strictEqual(window.ScienceGymExplorer.state.op,expectedIds[0]||null);
+  if(source){
+   assert.strictEqual(r.route_kind,source.classification);
+   assert(elements.routeBadge.textContent.includes(source.classification.toUpperCase()));
+   assert(textOf(elements.routeDetails).includes(source.execution_status));
+  }
+  assert(!walk([elements.routeCanvas]).some(n=>n.className.split(' ').includes('connector')),'Conformal membership must not invent adjacency');
+  assert(!textOf(elements.routeCanvas).includes('undefined'));
+  for(const step of steps){
+   const raw=sourceOps.get(step.id);
+   location.hash=['conformal',r.id,step.id,step.index].join('/');
+   assert.strictEqual(window.ScienceGymExplorer.state.op,step.id);assert.strictEqual(window.ScienceGymExplorer.state.occurrence,step.index);
+   const txt=textOf(elements.inspector);
+   for(const expected of [raw.name,raw.failure_closeout,'authored_robot_translation','No observed post-state field supplied',step.op.source_pointer])assert(txt.includes(expected),'conformal missing '+expected);
+   for(const action of raw.substeps)assert(txt.includes(action),'Conformal action missing for '+raw.id);
+   for(const output of raw.outputs)assert(txt.includes(output),'Conformal required output missing for '+raw.id);
+   for(const gap of raw.execution_gaps)assert(txt.includes(gap),'Conformal gap missing for '+raw.id);
+   const selectedButtons=document.querySelectorAll('.operation').filter(b=>b.attrs['aria-pressed']==='true');
+   assert.strictEqual(selectedButtons.length,1);assert.strictEqual(Number(selectedButtons[0].dataset.occurrence),step.index);
+   const button=document.querySelectorAll('.operation').find(b=>Number(b.dataset.occurrence)===step.index);
+   button.onclick();button.onclick();assert.strictEqual(window.ScienceGymExplorer.state.op,step.id);
+   assert.strictEqual(JSON.stringify(f),frozen,'Conformal repeated selection mutated source');
+   selected.add(step.id);occurrences++;
+  }
+  elements.operationSearch.oninput({target:{value:'U06'}});
+  assert.strictEqual(document.querySelectorAll('.operation').length,steps.length,'Search must not remove operation occurrences');
+  elements['tab-contract'].onclick();
+  const contract=textOf(elements.contractView);
+  for(const required of ['source conflicts','unknowns','controls and repeats','source access audit','lineage','analysis contracts','SUPPORTED_HOLD','prior-failure link','physical numeric defaults','Zenodo archive contents remain unread','Frozen local source files','remote publication is not asserted'])assert(contract.includes(required),'Conformal contract missing '+required);
+  elements['tab-dependencies'].onclick();assert.strictEqual(elements.dependenciesView.hidden,false);
+  for(const required of ['epoch_invalidation','safe_release_receipt_id','depends_on','No sample provenance from a schematic asset'])assert(textOf(elements.dependenciesView).includes(required),'Conformal dependencies missing '+required);
+  assert(!textOf(elements.dependenciesView).includes('undefined'));
+  assert.strictEqual(JSON.stringify(f),frozen,'Conformal tabs or search mutated source');
+  location.hash='conformal/INVALID_ROUTE/R09/999';
+  assert.strictEqual(window.ScienceGymExplorer.state.route,'HOLD_QUALIFICATION');
+  assert.strictEqual(window.ScienceGymExplorer.state.op,null);assert.strictEqual(window.ScienceGymExplorer.state.steps.length,0);
+  assert.strictEqual(document.querySelectorAll('.operation').length,0);assert.strictEqual(elements.routeView.hidden,false);
+  assert.strictEqual(elements.operationSearch.value,'');
+ }
+ assert.strictEqual(selected.size,16);assert.strictEqual(occurrences,47);
+ for(const id of expectedEmpty){
+  location.hash='conformal/B02/R09/4';assert.strictEqual(window.ScienceGymExplorer.state.op,'R09');
+  location.hash='conformal/'+id+'/R09/4';
+  assert.strictEqual(window.ScienceGymExplorer.state.op,null);assert.strictEqual(window.ScienceGymExplorer.state.steps.length,0);
+  assert(textOf(elements.inspector).includes('No physical operation, solver result or execution receipt is inferred'));
+  assert(!textOf(elements.inspector).includes(sourceOps.get('R09').name),'Stale operation inspector survived empty route');
+ }
+ for(const id of ['B04','B05','B07','B08']){
+  location.hash='conformal/'+id+'/R09/4';assert.strictEqual(window.ScienceGymExplorer.state.op,'R14');
+  assert.deepStrictEqual(Array.from(window.ScienceGymExplorer.state.steps,s=>s.id),['R14']);
+  assert(textOf(elements.routeDetails).includes('DOCUMENTED_UNEXECUTED'));
+ }
+ location.hash='conformal/B02/UNKNOWN_OPERATION/-1';assert.strictEqual(window.ScienceGymExplorer.state.op,'R05');
+ location.hash='conformal/B02/R09/not-an-integer';assert.strictEqual(window.ScienceGymExplorer.state.op,'R09');
+ assert.strictEqual(window.ScienceGymExplorer.state.occurrence,4);
+ location.hash='conformal';assert.strictEqual(window.ScienceGymExplorer.state.route,'HOLD_QUALIFICATION');
+ location.hash='unknown-conformal-family/B02/R09/4';assert.strictEqual(window.ScienceGymExplorer.state.family,'chiral');
+ location.hash='conformal/%invalid/R09/4';assert.strictEqual(window.ScienceGymExplorer.state.family,'chiral');
+ location.hash='conformal/B02';elements['tab-contract'].onclick();
+ const sourceLinks=walk([elements.contractView]).filter(e=>e.tagName==='a'&&Object.hasOwn(f.source_files,e.textContent));
+ assert.strictEqual(sourceLinks.length,34);
+ for(const a of sourceLinks){
+  const item=f.source_files[a.textContent];
+  assert.strictEqual(a.attrs.href,window.SCIENCEGYM_EMBEDDED_FILES?'blob:mock-test':item.url);
+  assert.strictEqual(item.url,'../../tasks/conformal_operations_v3_compressed/'+a.textContent);
+ }
+ const assetLinks=walk([elements.assetLinks]).filter(e=>e.tagName==='a');assert.strictEqual(assetLinks.length,4);
+ for(const [i,a]of assetLinks.entries())assert.strictEqual(a.attrs.href,window.SCIENCEGYM_EMBEDDED_FILES?'blob:mock-test':f.asset_links[i].url);
+ assert.strictEqual(elements.rawLink.href,window.SCIENCEGYM_EMBEDDED_FILES?'blob:mock-test':'../../tasks/conformal_operations_v3_compressed/branches.json');
+ if(window.SCIENCEGYM_EMBEDDED_FILES){
+  const crypto=require('crypto');
+  for(const item of [...Object.values(f.source_files),...f.asset_links]){
+   const embedded=window.SCIENCEGYM_EMBEDDED_FILES[item.url];assert(embedded,'Missing conformal embedded file '+item.url);
+   const actual=Buffer.from(embedded.base64,'base64'),expected=fs.readFileSync(path.resolve(ROOT,item.url));
+   assert(actual.equals(expected),'Embedded conformal bytes differ '+item.url);
+   assert.strictEqual(crypto.createHash('sha256').update(actual).digest('hex'),item.sha256);
+  }
+ }
+ location.hash='conformal/HOLD_QUALIFICATION';assert.strictEqual(elements.routeView.hidden,false);
+ assert.strictEqual(JSON.stringify(f),frozen);
+ console.log(`PASS: conformal 15 views / nine classified branches / two physical experimental designs / 16 templates / ${occurrences} selectable occurrences; source-derived memberships, no observed post-state, unexecuted theory, stale selection clearing, exact local/embedded bytes and immutable data`);
 }

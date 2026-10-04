@@ -1,5 +1,13 @@
 # Mid-infrared projection and current scope
 
+
+## Conformal elasticity: exact classified scope
+
+`conformal_adapters.py` preserves all 34 recursive source JSON documents, sixteen complete authored operation records, nine branch records, nine controls, 28 source facts, five conflicts and sixteen unresolved-input groups. Its fifteen inspection views include the nine classified branches, five authored reference views and a metadata-only `HOLD_QUALIFICATION`. Only B02 and B03 are physical experimental designs; numerical and analytical scope is documented and unexecuted. Required outputs never become observed state; missing fields are explicit absence notices. Source membership does not manufacture global chronology, specimen counts or operation executions.
+
+Per-file source hashes, eleven task-pinned scene hashes, the exact task-binding snapshot and nine reciprocal task hashes are validated before projection. A stored projection must equal a freshly derived complete projection. Lossless pooling changes representation only. The original guide and three renders are separately hash-bound; the standalone embeds those exact bytes and the exact task JSON. Source facts, task authoring, finite synthetic checks and illustrative geometry remain distinct. Unknowns, source access limits, local-pose qualification and source-reported values never become actuator permission.
+
+
 38 families comprise 35 paper-level designs and three bounded subsets. `midinfrared_adapters.py` retains all 34 recursive task JSON documents with existing filename aliases for unknowns, acceptance and lineage. Each operation retains its complete source record and pointer. Authored substeps, inputs, entry guards, required outputs, observations-to-record and failure policy remain separate; required observations never become observed post-state.
 
 B01-B08 preserve exact source operation memberships once, with no inferred adjacency chronology. Five explicitly authored navigation views expose the complete operation inventory, preparation, controls, recovery and nonmanual scope. A separate metadata-only default hold invents no operation. These six views are not extra experimental branches. No condition, frame, pulse, specimen or repeat expansion is introduced. Exact per-operation dependencies and lifecycle contracts remain authoritative.

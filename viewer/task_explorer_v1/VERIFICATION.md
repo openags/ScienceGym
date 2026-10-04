@@ -1,4 +1,22 @@
-# Verification: 35 paper designs and 3 bounded subsets
+# Verification: 36 paper designs and 3 bounded subsets
+
+## Conformal elasticity paired release
+
+This is a static design, byte-integrity and display verification boundary. There are **39 families: 36 paper-level task designs and three bounded subsets**, with **886 inspection records and 3,188 operation definitions**. Conformal contributes nine classified branches, sixteen templates, five reference views and a separate default qualification hold. Only two source branches are physical experimental designs. Zero validated runnable whole-paper tasks are claimed.
+
+The original task and static asset packages are preserved as **48 and 48 exact archive members**. All eleven task-pinned asset hashes, nine reciprocal task hashes, exact binding-plan snapshot and 32 actual GLB operation anchors are checked. The original repository LICENSE, all 38 prior task packages, older assets, embodied storyboards, scene binding and 152 prior generated family artifacts remain byte-identical.
+
+The compressed-storage revision keeps the preceding reviewed GLB and three PNGs byte-identical. Independent native comparison finds no scene differences across objects, meshes, materials, cameras, lights, world/render state, collections or visibility. The only excluded difference is an independently verified empty, unused, unreferenced Render Result runtime cache. This is a packaging revision, not another scientific design. The native scene remains illustrative and unqualified. Each serialized publication blob request is checked against a conservative 15 MiB cap, including JSON/base64 overhead and a safety margin.
+
+The new adapter and independent adversarial tests compare all 34 recursive JSON documents, source pointers, operation/branch fields, evidence, unknowns, conflicts, dependencies, lifecycle, failed-attempt retention and classifications. Projection and paired-file mutations must fail. The mocked-DOM suite inspects local and standalone navigation, operation occurrences, data immutability, repeated selection, invalid routes, default hold, stale selection clearing and original asset links. A displayed occurrence is not an executed operation.
+
+The root verification command checks eleven static groups, including Python and JavaScript suites, English hygiene, source/display integrity and original frame hashes. Frozen task/asset tests also run separately on disposable paired copies. Deterministic full rebuilds and serialized UTF-8/base64 payload replay establish the exact candidate tree. Detailed integration evidence is retained outside the published tree. Historical receipts below retain their original scope and counts.
+
+Original task/asset files are unchanged. Geometry is illustrative and unqualified; no new source reread, source-data reanalysis, mathematical proof, physical simulation, trusted hardware evidence, robot motion or science validation was performed. Native/GLB/render receipts are upstream static reviews, not new physical qualification. Three movies were decoded and sampled upstream, not continuously visually reviewed; all six Zenodo archive contents remain unread.
+
+Real-browser rendering, touch/responsive behavior, native history, actual downloads and remote CI are unverified. No previously denied browser route was retried. Repository-relative links and local freeze hashes identify exact snapshots; publication and CI require separate verification of the eventual remote commit. Frozen publication-status fields are historical authoring records.
+
+## Historical mid-infrared verification
 
 Publication status is established by the repository commit containing these files. The sections below record bounded verification snapshots; their publication fields describe the state at review time rather than live publication, deployment or remote CI status. Scientific, source-access and real-browser verification limits remain unchanged.
 

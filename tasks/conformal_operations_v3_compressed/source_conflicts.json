@@ -1,0 +1,45 @@
+{
+  "schema_version": "conformal_task.v2",
+  "paper_doi": "10.1038/s41467-021-27825-0",
+  "conflicts": [
+    {
+      "id": "C01",
+      "source_a": "Main Eq3, alpha=(det C)^(1/4); SI Note9 Eq76 and dA -> alpha²dA",
+      "source_b": "Main Methods boundary inference, alpha_k described as A-prime/A",
+      "issue": "Linear dilation versus area ratio; silent use doubles logarithmic dilation.",
+      "treatment": "Retain both source statements. Store J_area and alpha_linear separately in an authored implementation; block validated boundary-inference claims until expert sign-off."
+    },
+    {
+      "id": "C02",
+      "source_a": "Main Eqs2,6 and SI Eq34 use l²/a² for dilation energy",
+      "source_b": "SI p11 Eq59 visibly prints l/a",
+      "issue": "Hinge power differs in perturbative energy.",
+      "treatment": "No certified energy/theory port until reviewed. Do not silently correct the source."
+    },
+    {
+      "id": "C03",
+      "source_a": "Main Eqs4,5 use signed s1,s2; SI Eq44 gives C=I+2epsilon",
+      "source_b": "SI Note6 Eqs46,47 display s1²,s2²; Eq46 prints determinant involving 2epsilon-I; prose gives F=gradient(u)",
+      "issue": "Stress derivation has incompatible notation/sign/kinematic expressions.",
+      "treatment": "Keep stress theory as documented, unexecuted scope. No stress-solver certification from transcription."
+    },
+    {
+      "id": "C04",
+      "source_a": "Main and SI polynomial expansion begins with constant coefficient",
+      "source_b": "Normal-equation displayed sum begins at n=1; global rigid-body registration/offset handling is not fully specified",
+      "issue": "Offset convention affects translation-sensitive residuals.",
+      "treatment": "Qualify an explicit coordinate and registration convention; no hidden post-hoc optimal registration."
+    },
+    {
+      "id": "C05",
+      "source_a": "Main Methods a=12 mm, pretwist 0.39, G1 approximately 5.2e4 Pa*m, G2 approximately 2e4 Pa*m; SI Eq63",
+      "source_b": "SI Note7 p11 reports K-tilde=125 Pa*m^3 at l0=0.1 mm",
+      "issue": "Under direct substitution using a=0.012 m and angle 0.39 radians, Eq63 yields approximately 15.6635 Pa*m^3, unlike the printed 125 value. A reference or convention mismatch may explain the difference; this audit does not resolve it.",
+      "treatment": "Retain both printed values and the explicitly labelled scalar arithmetic check. Require expert interpretation before reproducing the linear-prediction branch; do not silently replace 125.",
+      "audit_kind": "scalar arithmetic consistency check, not physical/FEM simulation",
+      "arithmetic_result_Pa_m3": 15.663459025787105,
+      "reported_Pa_m3": 125
+    }
+  ],
+  "status": "Unresolved source issues; review can be accepted with explicit execution gates."
+}

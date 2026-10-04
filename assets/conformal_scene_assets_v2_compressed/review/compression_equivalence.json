@@ -1,0 +1,370 @@
+{
+  "schema": "sciencegym.conformal.exact_scene_equivalence.v1",
+  "decision": "PASS",
+  "baseline_package": "conformal_scene_assets_v1",
+  "candidate_package": "conformal_scene_assets_v2_compressed",
+  "method": "Two independent fresh Blender background processes reopen the baseline and compressed native files; exact per-datablock canonical JSON hashes and visibility snapshots are compared without numeric tolerance. Float.hex retains exact loaded values.",
+  "scope": "Every saved non-editor scene datablock, all object transforms/hierarchy/visibility/custom properties, full mesh topology/vertices/attributes/material assignments, curves/text, cameras, lights, worlds, material/compositor nodes and links, scene/render/unit/view-layer settings. Portable and preview bytes are separately compared.",
+  "checks": {
+    "expected_baseline_native_sha256": true,
+    "expected_baseline_archive_sha256": true,
+    "both_fresh_reopens_without_serialization_errors": true,
+    "all_canonical_scene_values_exactly_equal": true,
+    "sole_excluded_image_is_proven_empty_unreferenced_runtime_cache": true,
+    "portable_and_all_three_png_bytes_unchanged": true,
+    "semantic_guard_source_bytes_unchanged": true,
+    "compressed_native_below_10_decimal_megabytes": true
+  },
+  "baseline_native_sha256": "056cfd2253ab5aad183cfbae6ee21c87011439e584a81656c6b259b5cd350a19",
+  "baseline_archive_sha256": "aaf173b21e34c7245a31df4ef1066bb4f3a0c4a54d268f4a03ac9722ee9c9cce",
+  "candidate_native_sha256": "04bca96b666543d103f39dcd3fb8451b3b2722c72037734a3e4db37c1ddfadb0",
+  "inspected_artifact": "geometry/conformal_lab.blend",
+  "audit_script": "tests/independent_compression_audit.py",
+  "audit_script_sha256": "f97acc32bd047b692aaaebceda8ca1ba64af8a940330e7589317a49b2eb8cd7a",
+  "baseline_native_bytes": 18020828,
+  "candidate_native_bytes": 2638323,
+  "blender_version": "4.3.2",
+  "baseline_canonical_sha256": "54af4cf5bb653c250882d392a25e163e10d321a9e6c7e0f72481a94898864391",
+  "candidate_canonical_sha256": "54af4cf5bb653c250882d392a25e163e10d321a9e6c7e0f72481a94898864391",
+  "baseline_raw_snapshot_sha256": "4b5a68b97db06b23c95839c7d2ab0ee7a9a73e267af7bfd624827e4909820c64",
+  "candidate_raw_snapshot_sha256": "54af4cf5bb653c250882d392a25e163e10d321a9e6c7e0f72481a94898864391",
+  "sole_non_scene_serialization_difference": {
+    "kind": "Empty unused runtime Render Result image is discarded by official save",
+    "excluded_records": [
+      {
+        "side": "baseline",
+        "proof": {
+          "name": "Render Result",
+          "type": "RENDER_RESULT",
+          "source": "VIEWER",
+          "users": 0,
+          "use_fake_user": false,
+          "has_data": false,
+          "size": [
+            0,
+            0
+          ],
+          "pixels_length": 0,
+          "filepath": "",
+          "packed_file": false,
+          "custom_property_count": 0,
+          "id_user_map_references": [],
+          "material_world_compositor_node_texture_camera_object_references": []
+        },
+        "excluded_canonical_record": {
+          "canonical_sha256": "523a5975d983380d0ea0fdd84bd7d35dd6752f677582de02cdb8bdfb199db97d",
+          "rna_property_count": 49,
+          "rna_type": "Image"
+        }
+      }
+    ],
+    "fresh_image_probes": [
+      {
+        "artifact_sha256": "056cfd2253ab5aad183cfbae6ee21c87011439e584a81656c6b259b5cd350a19",
+        "images": [
+          {
+            "name": "Render Result",
+            "type": "RENDER_RESULT",
+            "source": "VIEWER",
+            "users": 0,
+            "use_fake_user": false,
+            "has_data": false,
+            "size": [
+              0,
+              0
+            ],
+            "pixels_length": 0,
+            "filepath": "",
+            "packed_file": false,
+            "custom_property_count": 0,
+            "id_user_map_references": [],
+            "material_world_compositor_node_texture_camera_object_references": []
+          }
+        ],
+        "reference_method": "Blender full ID user_map plus every material/world/scene/group node image socket, legacy texture, camera background image and object data image reference"
+      },
+      {
+        "artifact_sha256": "04bca96b666543d103f39dcd3fb8451b3b2722c72037734a3e4db37c1ddfadb0",
+        "images": [],
+        "reference_method": "Blender full ID user_map plus every material/world/scene/group node image socket, legacy texture, camera background image and object data image reference"
+      }
+    ]
+  },
+  "float_comparison": "Exact float.hex values; no rounding and no tolerance",
+  "excluded_rna_properties": [
+    "depsgraph",
+    "id_data",
+    "is_evaluated",
+    "is_runtime_data",
+    "is_updated",
+    "is_updated_data",
+    "is_updated_geometry",
+    "is_updated_shading",
+    "is_updated_transform",
+    "library_weak_reference",
+    "original",
+    "preview",
+    "rna_path",
+    "rna_type",
+    "session_uid",
+    "tag",
+    "tool_settings"
+  ],
+  "excluded_data_collections": [
+    "screens",
+    "window_managers",
+    "workspaces"
+  ],
+  "exclusion_reason": "Editor/window/workspace and sculpt/paint tool brush state, session IDs, evaluated/runtime cache pointers, original self-pointers and previews are outside scene equivalence. The sole image exclusion is separately proved to be an empty unreferenced Render Result runtime cache. Every object, geometry record, custom property, PBR/node graph, camera/light/world and render setting remains in scope.",
+  "section_hashes": {
+    "actions": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "armatures": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "brushes": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "cache_files": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "cameras": {
+      "baseline_sha256": "694c5b5baa4f6bb9fcde08c977e22d96b7cab98e63fbbcd1f6b92a6201eea47b",
+      "candidate_sha256": "694c5b5baa4f6bb9fcde08c977e22d96b7cab98e63fbbcd1f6b92a6201eea47b",
+      "datablock_count": 3,
+      "equal": true
+    },
+    "collections": {
+      "baseline_sha256": "a49d818a188f30c29ee8fd6379a7b34c8521213d694679866175b2fe3478074b",
+      "candidate_sha256": "a49d818a188f30c29ee8fd6379a7b34c8521213d694679866175b2fe3478074b",
+      "datablock_count": 2,
+      "equal": true
+    },
+    "curves": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "fonts": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "grease_pencils": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "grease_pencils_v3": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "hair_curves": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "images": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "lattices": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "libraries": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "lightprobes": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "lights": {
+      "baseline_sha256": "55d0fb89a6a493473424d7dd14420472143825467647f99c2926c0b6d07fbd5a",
+      "candidate_sha256": "55d0fb89a6a493473424d7dd14420472143825467647f99c2926c0b6d07fbd5a",
+      "datablock_count": 3,
+      "equal": true
+    },
+    "linestyles": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "masks": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "materials": {
+      "baseline_sha256": "1c931eee01a2953343a9533910852494e027501b593252f5f79c3d5145a404f6",
+      "candidate_sha256": "1c931eee01a2953343a9533910852494e027501b593252f5f79c3d5145a404f6",
+      "datablock_count": 15,
+      "equal": true
+    },
+    "meshes": {
+      "baseline_sha256": "145cf6144c6b5b9f744a41a65541ec79af33abe066d733a40e820e9715f358b2",
+      "candidate_sha256": "145cf6144c6b5b9f744a41a65541ec79af33abe066d733a40e820e9715f358b2",
+      "datablock_count": 1174,
+      "equal": true
+    },
+    "metaballs": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "movieclips": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "node_groups": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "objects": {
+      "baseline_sha256": "a69b305b46416104f6b224aae7170d14b5dda7f52a7f388afdd21d2a03c6b0e8",
+      "candidate_sha256": "a69b305b46416104f6b224aae7170d14b5dda7f52a7f388afdd21d2a03c6b0e8",
+      "datablock_count": 1266,
+      "equal": true
+    },
+    "paint_curves": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "palettes": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "particles": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "pointclouds": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "scenes": {
+      "baseline_sha256": "28e54579cefb29c8e5096171698afff4574a5abcddb782d3153f7bc6f869f4f4",
+      "candidate_sha256": "28e54579cefb29c8e5096171698afff4574a5abcddb782d3153f7bc6f869f4f4",
+      "datablock_count": 1,
+      "equal": true
+    },
+    "shape_keys": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "sounds": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "speakers": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "texts": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "textures": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "volumes": {
+      "baseline_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "candidate_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "datablock_count": 0,
+      "equal": true
+    },
+    "worlds": {
+      "baseline_sha256": "8d16d66d685122d0b93948d24e43492c391dd2c4f927c878ca44fa434448884c",
+      "candidate_sha256": "8d16d66d685122d0b93948d24e43492c391dd2c4f927c878ca44fa434448884c",
+      "datablock_count": 1,
+      "equal": true
+    }
+  },
+  "retained_artifacts": {
+    "geometry/conformal_lab.glb": {
+      "baseline_sha256": "5b011007711927cac53fee1ff0d683930f3da33fd3760e9a6abafaf533758945",
+      "candidate_sha256": "5b011007711927cac53fee1ff0d683930f3da33fd3760e9a6abafaf533758945",
+      "byte_equal": true
+    },
+    "evidence/overview.png": {
+      "baseline_sha256": "5183a1da581e192af45c43a283699069cc3cb1f81957e8dce69c4295970f2609",
+      "candidate_sha256": "5183a1da581e192af45c43a283699069cc3cb1f81957e8dce69c4295970f2609",
+      "byte_equal": true
+    },
+    "evidence/specimen.png": {
+      "baseline_sha256": "5d5795b6866ca9c066ecb0a8a1db98c2d41c08d7b15739a9aa5f8a88e0a0fdbf",
+      "candidate_sha256": "5d5795b6866ca9c066ecb0a8a1db98c2d41c08d7b15739a9aa5f8a88e0a0fdbf",
+      "byte_equal": true
+    },
+    "evidence/stations.png": {
+      "baseline_sha256": "3893046f95ff87e46d01e46ca7963952cb3fd83ba950a3f04bab602e9c5e5118",
+      "candidate_sha256": "3893046f95ff87e46d01e46ca7963952cb3fd83ba950a3f04bab602e9c5e5118",
+      "byte_equal": true
+    },
+    "semantic_controls.py": {
+      "baseline_sha256": "2724d21c84d2a9e3ede129534cd142a074d061626cc9632ff127a22bcef14964",
+      "candidate_sha256": "2724d21c84d2a9e3ede129534cd142a074d061626cc9632ff127a22bcef14964",
+      "byte_equal": true
+    }
+  },
+  "differences_first_100": [],
+  "serialization_errors": {
+    "baseline": [],
+    "candidate": []
+  },
+  "boundary": "Serialization and static semantics only; no new geometry, scientific result, source paper, physical permission or completed conversion."
+}
