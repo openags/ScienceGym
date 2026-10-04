@@ -6,7 +6,7 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Current release: twenty-eight reviewed task-design drafts, including partial-source gated drafts; zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
+**Current release: 28 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 1 bounded nonbiological subset (29 packages total); zero validated runnable whole-paper tasks.** The repository currently supports reading and inspecting static specifications. Task execution is future work.
 
 ## Contribute a task or asset
 
@@ -312,3 +312,23 @@ Four cross-disciplinary views add 135 inspection records and 521 operation defin
 Atmospheric optics separates seven physical branches, thirteen observed-data/analysis branches and eight numerical branches. Mounted camera hardware stays under its lease while acquisition jobs and records move; computational TIS is not a piezo scan. Main figure pixels remain uninspected and the direct-byte identity hold remains active. AFM is bounded inert imaging/metrology, not full fabrication: eight branches retain the installed calibrated probe while exchanging targets, with two incomplete preparation contracts and a separate final session teardown that invalidates calibration. Martian geophysics retains 26 physical, four measurement-analysis, seven numerical and one data-curation branch; all pressure, heat, gas, laser, radiation and cutting operations stay within closed qualified facility services. Transistor operation inventories are explicitly unordered; exact lifecycle contracts preserve safe-zero evidence, separate cohorts and destructive daughters, elapsed-time/cooldown requirements, netlists and damage history. Typed frame, probe, region, stack, configuration, layer, population and numerical-sample counts never supply missing independent replicates. No source conflict, control setting, global chronology or completed service is invented.
 
 All four new source pins use [990f98529182af0ddd03fba53587b0931630de96](https://github.com/openags/ScienceGym/tree/990f98529182af0ddd03fba53587b0931630de96). All 28 task packages, both embodied storyboards, scene bindings and LICENSE remain unchanged. No source assets, binary files, physics engine, actor loader, task runner or real execution is added.
+
+
+## Bounded solar-water physical-measurement subset
+
+The [solar-water physical-measurement subset](tasks/solar_water_operations_v2/TASK_DESIGN.md), based on [Nature Sustainability DOI 10.1038/s41893-020-0566-x](https://doi.org/10.1038/s41893-020-0566-x), adds 15 bounded branches and 34 operation templates for qualified prefabricated coupons, clean-water assemblies, physical optics, wicking, thermal and mass measurements, orientation, condensation bookkeeping and benign-only qualified maintenance. All 14 source conflicts remain explicit. Fabrication and hazardous chemistry stay within closed qualified-service boundaries without operational recipes.
+
+This is **1 bounded nonbiological subset alongside the existing 28 paper-level task-design drafts: 29 packages total, not 29 whole-paper designs**. Its full_paper_complete flag is false. Biological operations, environmental or unknown contaminated-water handling, sanitation certification, potability and pathogen-efficacy claims are excluded. Source access or a successful synthetic check does not establish full-paper experimental coverage.
+
+All 55 author tests and 19 independent tests pass. The all-branch fixture accepts 808 visibly synthetic events; it contains no scientific measurement values or physical time. Caller-owned synthetic receipt context does not establish production authentication or persistent retry/exposure-history enforcement. Qualification values, station adapters, geometry and independent experimental evidence remain absent. Literature outcomes remain evaluator annotations and never serve as robot success targets. Only agent_visible.json is eligible for an acting-agent context.
+
+The [exact 40-file export allowlist](tasks/solar_water_operations_v2/EXPORT_ALLOWLIST.json) contains original Markdown, JSON and Python only. Its 39 payload files and manifest are copied unchanged from the independently approved bounded package. Publisher PDFs, source text dumps, figures, videos, datasets and other source assets are not included. Package review/publication fields describe the frozen local review snapshot rather than live deployment status.
+
+The repository retains **28 viewer families, 676 inspection records and 2,710 viewer operation definitions**. This subset adds no explorer family, embodied route, scene, CAD, image or other binary asset. All 28 earlier task packages, the complete existing viewer, both embodied storyboards, bounded R01 scene binding and Apache 2.0 license remain byte-identical. No robot execution, apparatus qualification, physical simulation, numerical reproduction or scientific replication is established.
+
+From the repository root, run the eleven static/display check groups and the bounded package checks separately:
+
+```sh
+python3 -B scripts/verify_release.py
+(cd tasks/solar_water_operations_v2 && python3 -B -m unittest discover -s tests -v && python3 -B -m unittest discover -s review -v && python3 -B tests/verify_package.py && python3 -B tests/verify_export.py)
+```

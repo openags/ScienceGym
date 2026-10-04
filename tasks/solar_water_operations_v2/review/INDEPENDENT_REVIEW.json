@@ -1,0 +1,93 @@
+{
+  "schema_version": "solar_water_independent_review.v1",
+  "doi": "10.1038/s41893-020-0566-x",
+  "review_date_utc": "2026-10-04",
+  "decision": "passed_for_bounded_nonbiological_design_only",
+  "outstanding_substantive_design_blockers": [],
+  "independent_tests": {
+    "passed": 19,
+    "failed": 0,
+    "file": "review/test_independent_contracts.py",
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -B -m unittest discover -s review -p 'test_independent_contracts.py' -v"
+  },
+  "author_tests_observed": {
+    "passed": 48,
+    "failed": 0,
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -B tests/test_contract.py"
+  },
+  "synthetic_fixture": {
+    "jobs": 15,
+    "events": 808,
+    "scope": "synthetic_contract_only"
+  },
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "severity": "high_for_contract_lineage",
+      "finding": "Initial parent releases hashed child inventories without actual released material. Intermediate assembly intake omitted emitted downstream coupons.",
+      "resolution": "Explicit target-bound release manifests now preserve exact incoming coupon/device identities through RECEIPT, ASSEMBLE and downstream routes. Independent batch carriers are named; assembly service invalidates calibration and is followed by geometry registration and recalibration.",
+      "independently_retested": true
+    },
+    {
+      "id": "R2",
+      "severity": "medium_for_offline_receipt_integrity",
+      "finding": "Initial episode A actor sequence was accepted against episode B because event identities were episode-independent.",
+      "resolution": "Actor event IDs include the episode digest; observations and raw records carry episode_id; cross-episode replay is rejected.",
+      "independently_retested": true
+    },
+    {
+      "id": "R3",
+      "severity": "medium_for_causal_measurement_order",
+      "finding": "Initial bifacial rear-flux acquisition occurred while light was inactive, before configuration and protection checks.",
+      "resolution": "Rear-flux acquisition now follows configuration, current interlocks and light acquisition and binds the current active exposure.",
+      "independently_retested": true
+    },
+    {
+      "id": "R4",
+      "severity": "low_test_entrypoint",
+      "finding": "The direct author-test entrypoint initially ran before the additional test class was defined.",
+      "resolution": "The entrypoint is now last. Following an additional receipt-schema test, direct invocation runs all 48 author contract tests.",
+      "independently_retested": true
+    }
+  ],
+  "source_review": {
+    "provided_audit_reviewed": true,
+    "actual_main_and_si_physical_text_checked": true,
+    "independent_full_55_page_visual_reinspection": false,
+    "locators": [
+      "Main Fig. 2 and physical characterization Methods",
+      "Main Fig. 3 and indoor evaporation Methods",
+      "Main Fig. 4 and orientation/outdoor Methods; Extended Data Fig. 8",
+      "SI Note 4 / Figs. 6-7",
+      "SI Notes 5-6 / Figs. 8-9",
+      "SI Note 13 / Fig. 17",
+      "SI Notes 14 and 16 / Figs. 18 and 20"
+    ],
+    "conflicts_preserved": 14,
+    "mechanism_treatment": "Effective enthalpy remains a model-dependent hypothesis, not direct calorimetry or a truth-based success target",
+    "field_level_provenance_inspected": true
+  },
+  "limitations": [
+    "No hardware execution, robot actuation, physics simulation or numerical source reproduction was performed.",
+    "This is not full-paper physical coverage or a biological/chemical laboratory protocol. All biological operational work remains excluded.",
+    "Fabrication, advanced enclosed metrology and hazardous chemical work remain qualified-service boundaries; no hazardous operational recipes are supplied.",
+    "Fixture authority is caller-owned and synthetic. Production authentication, persistent anti-replay enforcement, protected actor views, hardware adapters and independent physical observations remain absent.",
+    "All unresolved robot geometry, equipment tolerances, safety thresholds and qualified actual setpoints remain unresolved; source dimensions and concentrations are not executable commands.",
+    "Source reading and retained literature outcomes are not proof of reproduction, mechanism validity, contaminant removal, disinfection or potable-water safety.",
+    "Final export allowlist/digest and publication eligibility are separate checks after this report; this review does not claim publication occurred."
+  ],
+  "reviewed_file_sha256": {
+    "tests/contract.py": "8f3a8ab7f550ab3b940d9fd0b322c29e204b5dca1584766e9c702c6f29717e55",
+    "tests/test_contract.py": "568f131b15fbd3f6c5e397e54973f5d5253acd8a8f5d7375791db04c7ef586a1",
+    "operations.json": "514a53db9a54bf715b58dbfefd08fdd79cbc437f2aa0d9f13fb5a8eb37105c5b",
+    "branches.json": "77111204c89a02f5101c34b05492b5d0c0b8ec047efbc3db6be9e7d7f9f221ae",
+    "control_packages.json": "f55e571036f9a12b391cc93ff59fbc791c2a4e779a5f06a305dadd86fb70be5d",
+    "lineage_contract.json": "edf4316ed4e9497259bd37b7511e0193d0f3100a724350ac1d64fc3ce072d3e4",
+    "lifecycle_contract.json": "6f826c93a96cc3d525d6b7826ff18e87137b234509b4d8f20043edb261876c6a",
+    "analysis_contracts.json": "4dea37e527f9ca23f447205a1ff228d78dc8d3ab4bb6debddadc2c8ba5b130f0",
+    "source_conflicts.json": "fa0a9ef71c2fd0333559deec0a82e882d4693d5b51145cb4c7af08f43a042f43",
+    "source_outcomes.json": "646975c3922103413332ea53fc6c84e7c3d75b5a8e4c92e9e87262e23e0e0ae5",
+    "review/test_independent_contracts.py": "55a7d092b074b965436ac8412e603d45d0af09c6d1ee2844a91adc074a044083",
+    "mock_contract.json": "e113facafe5ec35aea92bb37548256c2a4864fbb81aa54f5dd40f64cdde9fe2d"
+  }
+}

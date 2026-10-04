@@ -1,0 +1,745 @@
+{
+  "schema_version": "solar_water_task.v1",
+  "doi": "10.1038/s41893-020-0566-x",
+  "controls": [
+    {
+      "id": "RECEIPT",
+      "cases": [
+        {
+          "case_id": "qualified_inventory",
+          "source_constraints": {
+            "service": "prefabricated coupon and lineage intake",
+            "source_fabrication_recipe_exported": false
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "service": "authored_guard_or_task_label",
+            "source_fabrication_recipe_exported": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ASSEMBLE",
+      "cases": [
+        {
+          "case_id": "horizontal",
+          "source_constraints": {
+            "source_active_top_mm": [
+              20,
+              20
+            ],
+            "source_arms_mm": [
+              8,
+              20
+            ],
+            "source_foam_thickness_mm": 7,
+            "source_form": "bent U",
+            "geometry_not_robot_asset": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "source_active_top_mm": "source_fact_or_reported_assumption",
+            "source_arms_mm": "source_fact_or_reported_assumption",
+            "source_foam_thickness_mm": "source_fact_or_reported_assumption",
+            "source_form": "source_fact_or_reported_assumption",
+            "geometry_not_robot_asset": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "vertical",
+          "source_constraints": {
+            "source_active_area_mm": [
+              20,
+              20
+            ],
+            "source_feed_segment_mm": [
+              20,
+              8
+            ],
+            "geometry_not_robot_asset": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "source_active_area_mm": "source_fact_or_reported_assumption",
+            "source_feed_segment_mm": "source_fact_or_reported_assumption",
+            "geometry_not_robot_asset": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "OPTICAL",
+      "cases": [
+        {
+          "case_id": "uv_hemispherical",
+          "source_constraints": {
+            "measured_quantity": "hemispherical reflectance",
+            "source_wavelength_um": [
+              0.25,
+              2.5
+            ],
+            "derivation": "A=1-R only if opacity and correct measurement convention are qualified"
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "measured_quantity": "source_fact_or_reported_assumption",
+            "source_wavelength_um": "source_fact_or_reported_assumption",
+            "derivation": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "ir_hemispherical",
+          "source_constraints": {
+            "measured_quantity": "hemispherical reflectance",
+            "source_wavelength_um": [
+              2.5,
+              25
+            ],
+            "derivation": "A=1-R only if opacity and correct measurement convention are qualified"
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "measured_quantity": "source_fact_or_reported_assumption",
+            "source_wavelength_um": "source_fact_or_reported_assumption",
+            "derivation": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "uv_angular",
+          "source_constraints": {
+            "measured_quantity": "specular reflectance",
+            "source_wavelength_um": [
+              0.25,
+              2.5
+            ],
+            "derivation": "A=1-R only if opacity and correct measurement convention are qualified"
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "measured_quantity": "source_fact_or_reported_assumption",
+            "source_wavelength_um": "source_fact_or_reported_assumption",
+            "derivation": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "ir_angular",
+          "source_constraints": {
+            "measured_quantity": "specular reflectance",
+            "source_wavelength_um": [
+              2.5,
+              25
+            ],
+            "derivation": "A=1-R only if opacity and correct measurement convention are qualified"
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "measured_quantity": "source_fact_or_reported_assumption",
+            "source_wavelength_um": "source_fact_or_reported_assumption",
+            "derivation": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "TOPOGRAPHY",
+      "cases": [
+        {
+          "case_id": "confocal_profile",
+          "source_constraints": {
+            "service": "confocal_profile",
+            "registered_region_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "service": "authored_guard_or_task_label",
+            "registered_region_required": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "SEM_morphology",
+          "source_constraints": {
+            "service": "SEM_morphology",
+            "registered_region_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "service": "authored_guard_or_task_label",
+            "registered_region_required": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "WET_FRONT",
+      "cases": [
+        {
+          "case_id": "dry_start",
+          "source_constraints": {
+            "source_acquisition_fps": 200,
+            "published_playback_slowdown": 10,
+            "wetness": "qualified initial state",
+            "quantity": "wet-front position versus acquisition time"
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "source_acquisition_fps": "source_fact_or_reported_assumption",
+            "published_playback_slowdown": "source_fact_or_reported_assumption",
+            "wetness": "authored_guard_or_task_label",
+            "quantity": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "TRANSFER",
+      "cases": [
+        {
+          "case_id": "contact_cycle",
+          "source_constraints": {
+            "coupon_support": "external to reservoir balance",
+            "phases": [
+              "precontact",
+              "unprocessed_contact",
+              "processed_contact",
+              "uptake",
+              "withdrawal",
+              "retained_water_release",
+              "reservoir_evaporation"
+            ],
+            "quantity": "reservoir force-equivalent mass transient"
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "coupon_support": "source_fact_or_reported_assumption",
+            "phases": "source_fact_or_reported_assumption",
+            "quantity": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "DARK",
+      "cases": [
+        {
+          "case_id": "bulk_water",
+          "source_constraints": {
+            "material": "bulk_water",
+            "illumination": "dark",
+            "source_projected_area_mm": [
+              20,
+              20
+            ],
+            "source_room_C": 21,
+            "source_RH_percent": 33,
+            "equal_heat_flux_assumed_not_measured": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "illumination": "authored_guard_or_task_label",
+            "source_projected_area_mm": "source_fact_or_reported_assumption",
+            "source_room_C": "source_fact_or_reported_assumption",
+            "source_RH_percent": "source_fact_or_reported_assumption",
+            "equal_heat_flux_assumed_not_measured": "source_fact_or_reported_assumption"
+          }
+        },
+        {
+          "case_id": "processed_coupon",
+          "source_constraints": {
+            "material": "processed_coupon",
+            "illumination": "dark",
+            "source_projected_area_mm": [
+              20,
+              20
+            ],
+            "source_room_C": 21,
+            "source_RH_percent": 33,
+            "equal_heat_flux_assumed_not_measured": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "illumination": "authored_guard_or_task_label",
+            "source_projected_area_mm": "source_fact_or_reported_assumption",
+            "source_room_C": "source_fact_or_reported_assumption",
+            "source_RH_percent": "source_fact_or_reported_assumption",
+            "equal_heat_flux_assumed_not_measured": "source_fact_or_reported_assumption"
+          }
+        }
+      ]
+    },
+    {
+      "id": "HORIZONTAL",
+      "cases": [
+        {
+          "case_id": "bulk_water_source_1_sun",
+          "source_constraints": {
+            "material": "bulk_water",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 1,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "bulk_water_source_2_sun",
+          "source_constraints": {
+            "material": "bulk_water",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 2,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "bulk_water_source_3_sun",
+          "source_constraints": {
+            "material": "bulk_water",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 3,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "bulk_water_source_4_sun",
+          "source_constraints": {
+            "material": "bulk_water",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 4,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "bulk_water_source_5_sun",
+          "source_constraints": {
+            "material": "bulk_water",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 5,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "processed_coupon_source_1_sun",
+          "source_constraints": {
+            "material": "processed_coupon",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 1,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "processed_coupon_source_2_sun",
+          "source_constraints": {
+            "material": "processed_coupon",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 2,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "processed_coupon_source_3_sun",
+          "source_constraints": {
+            "material": "processed_coupon",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 3,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "processed_coupon_source_4_sun",
+          "source_constraints": {
+            "material": "processed_coupon",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 4,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        },
+        {
+          "case_id": "processed_coupon_source_5_sun",
+          "source_constraints": {
+            "material": "processed_coupon",
+            "one_sun_W_m2": 1000,
+            "actual_setpoints": "qualified local card, no automatic escalation",
+            "water_replaced_between_conditions": true,
+            "balance_contains": "whole floating assembly and reservoir",
+            "source_concentration_suns": 5,
+            "actual_station_setpoint": null
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "one_sun_W_m2": "source_fact_or_reported_assumption",
+            "actual_setpoints": "unknown_actual_setting",
+            "water_replaced_between_conditions": "source_fact_or_reported_assumption",
+            "balance_contains": "source_fact_or_reported_assumption",
+            "source_concentration_suns": "source_fact_or_reported_assumption",
+            "actual_station_setpoint": "unknown_actual_setting"
+          }
+        }
+      ]
+    },
+    {
+      "id": "THERMAL_DRY",
+      "cases": [
+        {
+          "case_id": "unprocessed_aluminium",
+          "source_constraints": {
+            "material": "unprocessed_aluminium",
+            "water_present": false,
+            "channels": [
+              "front_temperature",
+              "back_temperature"
+            ],
+            "response_time_definition_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "water_present": "source_fact_or_reported_assumption",
+            "channels": "source_fact_or_reported_assumption",
+            "response_time_definition_required": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "processed_coupon",
+          "source_constraints": {
+            "material": "processed_coupon",
+            "water_present": false,
+            "channels": [
+              "front_temperature",
+              "back_temperature"
+            ],
+            "response_time_definition_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "water_present": "source_fact_or_reported_assumption",
+            "channels": "source_fact_or_reported_assumption",
+            "response_time_definition_required": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "VERTICAL",
+      "cases": [
+        {
+          "case_id": "single_side",
+          "source_constraints": {
+            "material": "single_side",
+            "orientation": "registered vertical",
+            "matched_dark_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "orientation": "authored_guard_or_task_label",
+            "matched_dark_required": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ANGLE",
+      "cases": [
+        {
+          "case_id": "angle_0",
+          "source_constraints": {
+            "source_incidence_angle_deg": 0,
+            "reference": "source angle label; physical normal/beam registration required",
+            "matched_dark_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "source_incidence_angle_deg": "source_fact_or_reported_assumption",
+            "reference": "authored_guard_or_task_label",
+            "matched_dark_required": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "angle_30",
+          "source_constraints": {
+            "source_incidence_angle_deg": 30,
+            "reference": "source angle label; physical normal/beam registration required",
+            "matched_dark_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "source_incidence_angle_deg": "source_fact_or_reported_assumption",
+            "reference": "authored_guard_or_task_label",
+            "matched_dark_required": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "angle_45",
+          "source_constraints": {
+            "source_incidence_angle_deg": 45,
+            "reference": "source angle label; physical normal/beam registration required",
+            "matched_dark_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "source_incidence_angle_deg": "source_fact_or_reported_assumption",
+            "reference": "authored_guard_or_task_label",
+            "matched_dark_required": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "angle_60",
+          "source_constraints": {
+            "source_incidence_angle_deg": 60,
+            "reference": "source angle label; physical normal/beam registration required",
+            "matched_dark_required": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "source_incidence_angle_deg": "source_fact_or_reported_assumption",
+            "reference": "authored_guard_or_task_label",
+            "matched_dark_required": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "BIFACIAL",
+      "cases": [
+        {
+          "case_id": "single_side",
+          "source_constraints": {
+            "material": "single_side",
+            "rear_scattering_screen": false,
+            "front_rear_flux_required": true,
+            "area_denominator": "declared explicitly; no silent doubling"
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "rear_scattering_screen": "source_fact_or_reported_assumption",
+            "front_rear_flux_required": "authored_guard_or_task_label",
+            "area_denominator": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "double_side",
+          "source_constraints": {
+            "material": "double_side",
+            "rear_scattering_screen": true,
+            "front_rear_flux_required": true,
+            "area_denominator": "declared explicitly; no silent doubling"
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "material": "source_fact_or_reported_assumption",
+            "rear_scattering_screen": "source_fact_or_reported_assumption",
+            "front_rear_flux_required": "authored_guard_or_task_label",
+            "area_denominator": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "OUTDOOR",
+      "cases": [
+        {
+          "case_id": "flat_fixed",
+          "source_constraints": {
+            "mount": "flat_fixed",
+            "automatic_tracking": false,
+            "weather_and_sensor_plane_required": true,
+            "source_date": "2018-06-30",
+            "source_comparison_hours": 8,
+            "time_compression_allowed_as_physics": false
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "mount": "authored_guard_or_task_label",
+            "automatic_tracking": "source_fact_or_reported_assumption",
+            "weather_and_sensor_plane_required": "authored_guard_or_task_label",
+            "source_date": "source_fact_or_reported_assumption",
+            "source_comparison_hours": "source_fact_or_reported_assumption",
+            "time_compression_allowed_as_physics": "authored_guard_or_task_label"
+          }
+        },
+        {
+          "case_id": "tilted_fixed",
+          "source_constraints": {
+            "mount": "tilted_fixed",
+            "automatic_tracking": false,
+            "weather_and_sensor_plane_required": true,
+            "source_date": "2018-06-30",
+            "source_comparison_hours": 8,
+            "time_compression_allowed_as_physics": false
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "mount": "authored_guard_or_task_label",
+            "automatic_tracking": "source_fact_or_reported_assumption",
+            "weather_and_sensor_plane_required": "authored_guard_or_task_label",
+            "source_date": "source_fact_or_reported_assumption",
+            "source_comparison_hours": "source_fact_or_reported_assumption",
+            "time_compression_allowed_as_physics": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CONDENSATE",
+      "cases": [
+        {
+          "case_id": "clean_water_only",
+          "source_constraints": {
+            "clean_water_only": true,
+            "open_mass_loss_equals_collected_yield": false,
+            "sanitation_claim": false
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "clean_water_only": "authored_guard_or_task_label",
+            "open_mass_loss_equals_collected_yield": "authored_guard_or_task_label",
+            "sanitation_claim": "authored_guard_or_task_label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "REUSE",
+      "cases": [
+        {
+          "case_id": "benign_service_return",
+          "source_constraints": {
+            "known_benign_material_only": true,
+            "field_dirt_allowed": false,
+            "cleaned_appearance_proves_decontamination": false,
+            "source_cycle_count_not_established": true
+          },
+          "physical_setpoints_not_authorized_by_source": true,
+          "field_provenance": {
+            "known_benign_material_only": "authored_guard_or_task_label",
+            "field_dirt_allowed": "authored_guard_or_task_label",
+            "cleaned_appearance_proves_decontamination": "authored_guard_or_task_label",
+            "source_cycle_count_not_established": "source_fact_or_reported_assumption"
+          }
+        }
+      ]
+    }
+  ],
+  "repetition": "No undocumented independent-replicate count is supplied; fixture uses one bookkeeping case per listed control, not replication",
+  "source_constraints_container_semantics": "Each field is individually marked as source fact/reported assumption, original task guard, or unresolved actual setting. Container name does not promote original guards to source facts."
+}

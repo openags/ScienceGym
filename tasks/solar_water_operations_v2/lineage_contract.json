@@ -1,0 +1,34 @@
+{
+  "schema_version": "solar_water_task.v1",
+  "doi": "10.1038/s41893-020-0566-x",
+  "identity_fields": [
+    "coupon_id",
+    "coupon_version",
+    "parent_coupon_id",
+    "fabrication_lot_id",
+    "surface_state_revision",
+    "assembly_id",
+    "support_id",
+    "aperture_id",
+    "reservoir_id",
+    "water_lot_id",
+    "collector_id",
+    "station_id",
+    "mount_revision",
+    "setup_revision",
+    "calibration_id"
+  ],
+  "material_rules": [
+    "Receipt inventory names every case input and parent service record",
+    "Assembly service preserves coupon identity and adds assembly/support/aperture/reservoir identities",
+    "Bulk-water controls retain distinct no-coupon identity rather than borrowing processed-coupon history",
+    "Bifacial and processed/unprocessed comparisons retain distinct coupons",
+    "Cleaning changes coupon version and surface-state revision; prior calibrations and wetting baselines cannot be reused",
+    "Fresh water creates new lot identity and thermal history; old fluid disposition stays recorded",
+    "Evaporated mass and collected condensate have different raw records",
+    "Each dependency release must precede child intake and bind matching inventory entry"
+  ],
+  "history_is_append_only": true,
+  "damage_and_exposure_do_not_reset_on_retry": true,
+  "all_material_dispositions_required": true
+}

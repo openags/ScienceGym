@@ -1,0 +1,815 @@
+{
+  "schema_version": "solar_water_task.v1",
+  "doi": "10.1038/s41893-020-0566-x",
+  "scope": "bounded_nonbiological_physical_design",
+  "full_paper_complete": false,
+  "branch_count": 15,
+  "branches": [
+    {
+      "id": "RECEIPT",
+      "title": "Receive qualified prefabricated coupons",
+      "route_group_id": "B1",
+      "station_id": "intake",
+      "depends_on": [],
+      "conflict_ids": [
+        "C1"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_COUPON"
+      ],
+      "source_evidence_ids": [
+        "E_B1"
+      ],
+      "expected_output": "Qualified coupon identity, fabrication receipt and nonbiological clearance",
+      "type": "closed_service_interface",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "SERVICE_RECEIPT",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "ASSEMBLE",
+      "title": "Register clean-water device assemblies",
+      "route_group_id": "B6",
+      "station_id": "assembly",
+      "depends_on": [
+        "RECEIPT"
+      ],
+      "conflict_ids": [],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_GEOMETRY",
+        "U_AREA"
+      ],
+      "source_evidence_ids": [
+        "E_B6"
+      ],
+      "expected_output": "Assembly identity for coupon, support, aperture and reservoir; geometry qualified locally",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "ASSEMBLY_SERVICE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "OPTICAL",
+      "title": "Measure optical response",
+      "route_group_id": "B2",
+      "station_id": "enclosed_metrology",
+      "depends_on": [
+        "RECEIPT"
+      ],
+      "conflict_ids": [
+        "C11"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_OPTICS"
+      ],
+      "source_evidence_ids": [
+        "E_B2"
+      ],
+      "expected_output": "Reflectance records with measured quantity, wavelength, angle and references",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "OPTICAL_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "TOPOGRAPHY",
+      "title": "Obtain surface metrology records",
+      "route_group_id": "B2",
+      "station_id": "enclosed_metrology",
+      "depends_on": [
+        "RECEIPT"
+      ],
+      "conflict_ids": [],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_METROLOGY"
+      ],
+      "source_evidence_ids": [
+        "E_B2"
+      ],
+      "expected_output": "Qualified topography or microscopy service receipt tied to region and surface version",
+      "type": "closed_service_interface",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "METROLOGY_SERVICE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "WET_FRONT",
+      "title": "Observe clean-water wet fronts",
+      "route_group_id": "B3",
+      "station_id": "wicking_camera",
+      "depends_on": [
+        "RECEIPT"
+      ],
+      "conflict_ids": [],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_CAMERA",
+        "U_WETTING"
+      ],
+      "source_evidence_ids": [
+        "E_B3"
+      ],
+      "expected_output": "Calibrated wet-front video with acquisition time and scale",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "WET_FRONT_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "TRANSFER",
+      "title": "Measure reservoir transfer transients",
+      "route_group_id": "B3",
+      "station_id": "transfer_balance",
+      "depends_on": [
+        "RECEIPT"
+      ],
+      "conflict_ids": [],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_BALANCE",
+        "U_CONTACT"
+      ],
+      "source_evidence_ids": [
+        "E_B3"
+      ],
+      "expected_output": "Time-labelled contact, uptake, withdrawal and release transients",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "CONTACT_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "DARK",
+      "title": "Compare dark mass loss",
+      "route_group_id": "B4",
+      "station_id": "evaporation_balance",
+      "depends_on": [
+        "ASSEMBLE"
+      ],
+      "conflict_ids": [
+        "C4",
+        "C5"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_BALANCE",
+        "U_ENVIRONMENT",
+        "U_AREA",
+        "U_FIT"
+      ],
+      "source_evidence_ids": [
+        "E_B4"
+      ],
+      "expected_output": "Matched clean-water dark controls and area-specific mass records",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "DARK_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "HORIZONTAL",
+      "title": "Measure horizontal light-driven evaporation",
+      "route_group_id": "B6",
+      "station_id": "enclosed_illumination",
+      "depends_on": [
+        "ASSEMBLE"
+      ],
+      "conflict_ids": [
+        "C4",
+        "C5",
+        "C11"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_BALANCE",
+        "U_ILLUMINATION",
+        "U_THERMAL",
+        "U_AREA",
+        "U_FIT"
+      ],
+      "source_evidence_ids": [
+        "E_B6"
+      ],
+      "expected_output": "Matched dark and illuminated mass/temperature/irradiance records",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "DARK_ACQUIRE",
+        "RESET_WATER",
+        "CONFIGURE_LIGHT",
+        "CHECK_INTERLOCKS",
+        "LIGHT_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "THERMAL_DRY",
+      "title": "Compare dry coupon thermal response",
+      "route_group_id": "B6",
+      "station_id": "enclosed_illumination",
+      "depends_on": [
+        "RECEIPT"
+      ],
+      "conflict_ids": [],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_ILLUMINATION",
+        "U_THERMAL"
+      ],
+      "source_evidence_ids": [
+        "E_B6"
+      ],
+      "expected_output": "Separate front/back thermal records for processed and unprocessed coupons",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "CONFIGURE_LIGHT",
+        "CHECK_INTERLOCKS",
+        "THERMAL_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "VERTICAL",
+      "title": "Measure vertical light-driven evaporation",
+      "route_group_id": "B7",
+      "station_id": "enclosed_illumination",
+      "depends_on": [
+        "ASSEMBLE"
+      ],
+      "conflict_ids": [
+        "C3",
+        "C13"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_ILLUMINATION",
+        "U_ORIENTATION",
+        "U_AREA",
+        "U_FIT"
+      ],
+      "source_evidence_ids": [
+        "E_B7"
+      ],
+      "expected_output": "Vertical single-side mass records and current geometry-matched dark baseline",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "DARK_ACQUIRE",
+        "RESET_WATER",
+        "CONFIGURE_LIGHT",
+        "CHECK_INTERLOCKS",
+        "LIGHT_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "ANGLE",
+      "title": "Compare registered orientations",
+      "route_group_id": "B7",
+      "station_id": "enclosed_illumination",
+      "depends_on": [
+        "ASSEMBLE"
+      ],
+      "conflict_ids": [
+        "C2",
+        "C3",
+        "C13"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_ILLUMINATION",
+        "U_ORIENTATION",
+        "U_AREA",
+        "U_FIT"
+      ],
+      "source_evidence_ids": [
+        "E_B7"
+      ],
+      "expected_output": "Per-orientation dark and light records with explicit normal/beam geometry",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "ORIENT",
+        "DARK_ACQUIRE",
+        "RESET_WATER",
+        "CONFIGURE_LIGHT",
+        "CHECK_INTERLOCKS",
+        "LIGHT_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "BIFACIAL",
+      "title": "Compare single and double sides",
+      "route_group_id": "B7",
+      "station_id": "enclosed_illumination",
+      "depends_on": [
+        "ASSEMBLE"
+      ],
+      "conflict_ids": [
+        "C3",
+        "C13"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_ILLUMINATION",
+        "U_REAR_FLUX",
+        "U_AREA",
+        "U_FIT"
+      ],
+      "source_evidence_ids": [
+        "E_B7"
+      ],
+      "expected_output": "Separate coupon and front/rear energy records with reflector identity",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "DARK_ACQUIRE",
+        "RESET_WATER",
+        "CONFIGURE_LIGHT",
+        "CHECK_INTERLOCKS",
+        "LIGHT_ACQUIRE",
+        "REAR_FLUX_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "OUTDOOR",
+      "title": "Observe fixed outdoor orientations",
+      "route_group_id": "B7",
+      "station_id": "outdoor_enclosure",
+      "depends_on": [
+        "ASSEMBLE"
+      ],
+      "conflict_ids": [
+        "C2",
+        "C14"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_WEATHER",
+        "U_ORIENTATION",
+        "U_FIT"
+      ],
+      "source_evidence_ids": [
+        "E_B7"
+      ],
+      "expected_output": "Fixed mount records, ambient/wind/shading metadata and sensor-plane irradiance",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "ORIENT",
+        "DARK_ACQUIRE",
+        "RESET_WATER",
+        "CHECK_INTERLOCKS",
+        "WEATHER_ACQUIRE",
+        "LIGHT_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "CONDENSATE",
+      "title": "Audit clean-water condensation balance",
+      "route_group_id": "B8",
+      "station_id": "closed_condensation",
+      "depends_on": [
+        "ASSEMBLE"
+      ],
+      "conflict_ids": [
+        "C12"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_CONDENSATION",
+        "U_BALANCE"
+      ],
+      "source_evidence_ids": [
+        "E_B8"
+      ],
+      "expected_output": "Input, reservoir, condensate, holdup and loss identities; no safety claim",
+      "type": "bounded_physical_design",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "PREPARE_CLEAN_WATER",
+        "REGISTER_INITIAL_WETNESS",
+        "DARK_ACQUIRE",
+        "RESET_WATER",
+        "CONFIGURE_LIGHT",
+        "CHECK_INTERLOCKS",
+        "LIGHT_ACQUIRE",
+        "CONDENSATE_ACQUIRE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    },
+    {
+      "id": "REUSE",
+      "title": "Inspect benign-material reuse",
+      "route_group_id": "B9",
+      "station_id": "closed_cleaning",
+      "depends_on": [
+        "RECEIPT"
+      ],
+      "conflict_ids": [
+        "C10",
+        "C12",
+        "C14"
+      ],
+      "unknown_parameter_ids": [
+        "U_AUTHORITY",
+        "U_ROBOT",
+        "U_CUSTODY",
+        "U_CALIBRATION",
+        "U_CLEANUP",
+        "U_BENIGN",
+        "U_REUSE"
+      ],
+      "source_evidence_ids": [
+        "E_B9"
+      ],
+      "expected_output": "Approved benign deposit/service-cleaning handoff and changed surface-state record",
+      "type": "closed_service_interface",
+      "operation_ids_semantics": "Available action inventory; causal ordering is defined by lifecycle_contract.json and tests/contract.py",
+      "physical_execution_implemented": false,
+      "replicate_count": null,
+      "numerical_analysis_is_separate": true,
+      "operation_ids": [
+        "RECEIVE",
+        "CHECK_INPUT",
+        "VERIFY_SAFE",
+        "TRANSFER_IN",
+        "MOUNT",
+        "REGISTER_GEOMETRY",
+        "CALIBRATE",
+        "CLEANING_SERVICE",
+        "METROLOGY_SERVICE",
+        "DEENERGIZE",
+        "COOLDOWN",
+        "READOUT",
+        "DISCONNECT",
+        "RETRIEVE",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "canonical_lifecycle": "lifecycle_contract.json and tests/contract.py",
+      "source_vs_authored": "Cited physical observable and controls are source facts; custody, qualified service handoff and safe ordering are original design interfaces"
+    }
+  ]
+}

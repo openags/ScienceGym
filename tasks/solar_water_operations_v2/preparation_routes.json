@@ -1,0 +1,27 @@
+{
+  "schema_version": "solar_water_task.v1",
+  "routes": [
+    {
+      "id": "prefabricated_coupon",
+      "mode": "qualified_service_receipt_only",
+      "fabrication_recipe_included": false,
+      "input": "identified nonbiological carrier",
+      "output": "coupon, lot, surface version and provider record"
+    },
+    {
+      "id": "clean_water_assembly",
+      "mode": "qualified_batch_assembly_service",
+      "input": "exact coupon inventory released from RECEIPT to ASSEMBLE",
+      "output": "same coupon identities plus qualified assembly/support/aperture/reservoir records",
+      "service_invalidates_calibration": true
+    },
+    {
+      "id": "benign_maintenance",
+      "mode": "closed_qualified_service",
+      "input": "approved benign-only surface and waste plan",
+      "output": "same coupon with advanced surface revision and inspection record",
+      "biology_or_unknown_contamination_allowed": false
+    }
+  ],
+  "chemical_and_biological_operational_recipes_included": false
+}

@@ -1,0 +1,1027 @@
+{
+  "schema_version": "solar_water_task.v1",
+  "doi": "10.1038/s41893-020-0566-x",
+  "operation_count": 34,
+  "operations": [
+    {
+      "id": "RECEIVE",
+      "title": "Receive",
+      "robot_actions": [
+        "Read carrier and coupon identifiers; accept only the named qualified, nonbiological input"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "CHECK_INPUT",
+      "title": "Check Input",
+      "robot_actions": [
+        "Verify current material, provenance, history, station and hazard cards"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "VERIFY_SAFE",
+      "title": "Verify Safe",
+      "robot_actions": [
+        "Obtain independent current optical/electrical/thermal safe-state receipt before access"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "TRANSFER_IN",
+      "title": "Transfer In",
+      "robot_actions": [
+        "Transport retained carrier using a qualified path and keep-outs; no geometry supplied"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "MOUNT",
+      "title": "Mount",
+      "robot_actions": [
+        "Seat identified carrier or assembly in the qualified fixture and verify retention"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "REGISTER_GEOMETRY",
+      "title": "Register Geometry",
+      "robot_actions": [
+        "Bind measured assembly, aperture, illuminated area, normals and water-feed region to setup revision"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "CALIBRATE",
+      "title": "Calibrate",
+      "robot_actions": [
+        "Obtain current instrument and time-base calibration bound to setup and mount"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "SERVICE_RECEIPT",
+      "title": "Service Receipt",
+      "robot_actions": [
+        "Receive signed qualified-facility fabrication or metrology result; no process recipe or hazard actuation"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "ASSEMBLY_SERVICE",
+      "title": "Assembly Service",
+      "robot_actions": [
+        "Receive qualified clean-water assembly with identified coupon, support, aperture and reservoir"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "OPTICAL_ACQUIRE",
+      "title": "Optical Acquire",
+      "robot_actions": [
+        "Acquire the approved spectral or angular measurement in an enclosed instrument"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "METROLOGY_SERVICE",
+      "title": "Metrology Service",
+      "robot_actions": [
+        "Obtain region-registered surface-characterization records from an enclosed qualified instrument"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "PREPARE_CLEAN_WATER",
+      "title": "Prepare Clean Water",
+      "robot_actions": [
+        "Admit identified approved clean-water lot to the qualified contained reservoir"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "REGISTER_INITIAL_WETNESS",
+      "title": "Register Initial Wetness",
+      "robot_actions": [
+        "Record surface wetness state and contact geometry before observation"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "WET_FRONT_ACQUIRE",
+      "title": "Wet Front Acquire",
+      "robot_actions": [
+        "Observe clean-water wet-front motion with independently calibrated scale and acquisition time"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "CONTACT_ACQUIRE",
+      "title": "Contact Acquire",
+      "robot_actions": [
+        "Record balance response across registered contact, uptake, withdrawal and release phases"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "DARK_ACQUIRE",
+      "title": "Dark Acquire",
+      "robot_actions": [
+        "Acquire matched dark mass, temperature and ambient records without assuming equal heat flux"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "RESET_WATER",
+      "title": "Reset Water",
+      "robot_actions": [
+        "Replace reservoir water through the approved contained workflow; archive old lot and thermal history"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "CONFIGURE_LIGHT",
+      "title": "Configure Light",
+      "robot_actions": [
+        "Request only approved enclosed illumination conditions from the station card"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "CHECK_INTERLOCKS",
+      "title": "Check Interlocks",
+      "robot_actions": [
+        "Verify dry-out, spill, access, optical and over-temperature protection from independent observations"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "LIGHT_ACQUIRE",
+      "title": "Light Acquire",
+      "robot_actions": [
+        "Acquire mass, irradiance and thermal records while independent station protection remains current"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "THERMAL_ACQUIRE",
+      "title": "Thermal Acquire",
+      "robot_actions": [
+        "Record front/back or absorber/bulk thermal channels under the registered thermal measurement plan"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "ORIENT",
+      "title": "Orient",
+      "robot_actions": [
+        "Adjust only in independently safe state, then re-register geometry and recalibrate before exposure"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "REAR_FLUX_ACQUIRE",
+      "title": "Rear Flux Acquire",
+      "robot_actions": [
+        "Measure or obtain qualified front and rear flux records and reflector geometry"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "WEATHER_ACQUIRE",
+      "title": "Weather Acquire",
+      "robot_actions": [
+        "Record clock-aligned ambient temperature, humidity, airflow, shading and sensor plane"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "CONDENSATE_ACQUIRE",
+      "title": "Condensate Acquire",
+      "robot_actions": [
+        "Track separate clean-water condensate collector and reservoir mass records and holdup"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "CLEANING_SERVICE",
+      "title": "Cleaning Service",
+      "robot_actions": [
+        "Hand off approved benign-only material under a closed qualified cleanup plan and receive surface-state receipt"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "DEENERGIZE",
+      "title": "Deenergize",
+      "robot_actions": [
+        "Request shutter closure and source shutdown; command itself is not proof of safety"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "COOLDOWN",
+      "title": "Cooldown",
+      "robot_actions": [
+        "Wait for independent qualified temperature and pressure clearance; duration is not invented"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "READOUT",
+      "title": "Readout",
+      "robot_actions": [
+        "Read immutable raw records with hashes, channel/unit maps and missing-data labels"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "DISCONNECT",
+      "title": "Disconnect",
+      "robot_actions": [
+        "Release instrument and fluid interfaces only after independent clearance"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "RETRIEVE",
+      "title": "Retrieve",
+      "robot_actions": [
+        "Retain coupon or device carrier before removing it from the fixture"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "INSPECT",
+      "title": "Inspect",
+      "robot_actions": [
+        "Record damage, wetness, residue, surface-state and custody without declaring decontamination"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "ARCHIVE",
+      "title": "Archive",
+      "robot_actions": [
+        "Archive raw data, controls, failures, qualification decisions and all material dispositions"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    },
+    {
+      "id": "CLEAN_STORE",
+      "title": "Clean Store",
+      "robot_actions": [
+        "Close approved clean-water/benign waste plan and store or quarantine identified materials"
+      ],
+      "execution_mode": "static_design_only",
+      "source_vs_authored": "Original robot/service abstraction; the paper supplies no robot commands, fixture tolerances or authenticated API",
+      "physical_execution_implemented": false,
+      "failure_recovery": "Stop dependent acquisition, request safe state, retain/isolate material, archive failure and require new qualification before retry",
+      "required_receipt_fields": [
+        "episode_id",
+        "job_id",
+        "branch_id",
+        "operation_id",
+        "coupon_id",
+        "coupon_version",
+        "assembly_id",
+        "water_lot_id",
+        "mount_revision",
+        "setup_revision",
+        "calibration_id",
+        "station_id",
+        "attempt_id",
+        "raw_record_id",
+        "record_hash",
+        "authority",
+        "independent_safe_state"
+      ]
+    }
+  ]
+}

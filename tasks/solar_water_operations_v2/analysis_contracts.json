@@ -1,0 +1,95 @@
+{
+  "schema_version": "solar_water_task.v1",
+  "doi": "10.1038/s41893-020-0566-x",
+  "implemented": false,
+  "physical_records_and_analysis_separate": true,
+  "analyses": [
+    {
+      "id": "wet_front",
+      "inputs": [
+        "original camera acquisition timestamps",
+        "scale calibration",
+        "wet-front coordinates"
+      ],
+      "guards": [
+        "Playback slowdown is metadata, never acquisition time",
+        "Fit range and uncertainty explicitly selected; no target velocity gate"
+      ]
+    },
+    {
+      "id": "transfer",
+      "inputs": [
+        "reservoir balance time series",
+        "coupon contact/position records"
+      ],
+      "guards": [
+        "Distinguish buoyancy and meniscus forces from transfer",
+        "Separate uptake, release and ordinary evaporation"
+      ]
+    },
+    {
+      "id": "evaporation",
+      "inputs": [
+        "raw mass/time",
+        "area definition",
+        "matched dark trace",
+        "temperatures",
+        "irradiance"
+      ],
+      "guards": [
+        "Preserve fit windows and source conflicts",
+        "Do not count within-trace fits as independent specimens",
+        "Mass-loss sign and hour/second conversion declared"
+      ]
+    },
+    {
+      "id": "thermal",
+      "inputs": [
+        "front/back or absorber/bulk channels",
+        "placement and response calibration"
+      ],
+      "guards": [
+        "Sensor attachment and emissivity uncertainty where relevant",
+        "No invented thermal gradient geometry"
+      ]
+    },
+    {
+      "id": "bifacial",
+      "inputs": [
+        "front/rear irradiance",
+        "side identities",
+        "area convention",
+        "dark/light mass traces"
+      ],
+      "guards": [
+        "Extra rear flux prevents equal-input efficiency claim"
+      ]
+    },
+    {
+      "id": "condensation",
+      "inputs": [
+        "input/reservoir/collector mass",
+        "holdup and leakage estimates"
+      ],
+      "guards": [
+        "Open mass loss is not collected yield",
+        "No potability/pathogen efficacy inference"
+      ]
+    },
+    {
+      "id": "enthalpy_hypothesis",
+      "inputs": [
+        "dark rates",
+        "area correction",
+        "assumed heat input"
+      ],
+      "guards": [
+        "Model-dependent hypothesis, not direct calorimetry",
+        "Equal ambient temperature does not establish equal heat flux",
+        "C4/C5 unresolved; no validated enthalpy truth score"
+      ]
+    }
+  ],
+  "physics_simulation_implemented": false,
+  "raw_source_numeric_reproduction_performed": false
+}

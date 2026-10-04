@@ -1,0 +1,50 @@
+{
+  "schema_version": "solar_water_task.v1",
+  "doi": "10.1038/s41893-020-0566-x",
+  "causal_source": "tests/contract.py plan_for",
+  "pre_access": [
+    "RECEIVE",
+    "CHECK_INPUT",
+    "VERIFY_SAFE",
+    "TRANSFER_IN",
+    "MOUNT",
+    "VERIFY_SAFE",
+    "REGISTER_GEOMETRY",
+    "CALIBRATE"
+  ],
+  "illumination": [
+    "PREPARE_CLEAN_WATER if wet route",
+    "DARK_ACQUIRE with current geometry",
+    "RESET_WATER",
+    "CONFIGURE_LIGHT",
+    "CHECK_INTERLOCKS",
+    "LIGHT_ACQUIRE",
+    "DEENERGIZE",
+    "COOLDOWN",
+    "VERIFY_SAFE"
+  ],
+  "orientation_change": [
+    "DEENERGIZE",
+    "COOLDOWN",
+    "VERIFY_SAFE",
+    "ORIENT",
+    "REGISTER_GEOMETRY",
+    "CALIBRATE",
+    "new geometry-matched DARK_ACQUIRE"
+  ],
+  "release": [
+    "DEENERGIZE",
+    "COOLDOWN",
+    "VERIFY_SAFE",
+    "READOUT",
+    "DISCONNECT",
+    "RETRIEVE",
+    "INSPECT",
+    "ARCHIVE",
+    "CLEAN_STORE"
+  ],
+  "command_does_not_prove_state": true,
+  "new_mount_invalidates_calibration": true,
+  "cleaning_invalidates_surface_baselines": true,
+  "full_paper_complete": false
+}

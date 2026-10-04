@@ -1,0 +1,177 @@
+{
+  "schema_version": "solar_water_task.v1",
+  "doi": "10.1038/s41893-020-0566-x",
+  "conflict_count": 14,
+  "conflicts": [
+    {
+      "id": "C1",
+      "topic": "Manufacturing scan path",
+      "source_statement_a": "Main Methods: spiral",
+      "source_statement_b": "SI Note 1: line-by-line",
+      "handling": "Provider must supply its actual route; neither printed description is silently preferred",
+      "branch_ids": [
+        "RECEIPT"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C2",
+      "topic": "Outdoor angular reference",
+      "source_statement_a": "Main text: 25 degrees from horizontal; Methods: 65 degrees from vertical",
+      "source_statement_b": "Extended Data 8 parts: 25 degrees from vertical",
+      "handling": "Bind physical surface normal, gravity vector and beam direction rather than a bare angle label",
+      "branch_ids": [
+        "ANGLE",
+        "OUTDOOR"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C3",
+      "topic": "Evaporation time unit",
+      "source_statement_a": "Main Fig. 4/text: kg/m2/h",
+      "source_statement_b": "SI Note 16: kg/m2/s",
+      "handling": "Keep source strings distinct; any analysis conversion requires explicit reviewed unit interpretation",
+      "branch_ids": [
+        "VERTICAL",
+        "ANGLE",
+        "BIFACIAL"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C4",
+      "topic": "Dark fitting windows",
+      "source_statement_a": "SI Note 6: three 30-minute fits",
+      "source_statement_b": "SI Fig. 9: three 2000-second fits",
+      "handling": "Do not call these independent replicates or the same fitting interval",
+      "branch_ids": [
+        "DARK",
+        "HORIZONTAL"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C5",
+      "topic": "Raw versus corrected slope",
+      "source_statement_a": "SI Fig. 9: approximately 0.42 +/- 0.005 g/m2/s",
+      "source_statement_b": "SI Note 6: approximately 0.55 +/- 0.0065 and area factor 1.30",
+      "handling": "Retain raw slope, chosen denominator and model-dependent enthalpy inference separately",
+      "branch_ids": [
+        "DARK",
+        "HORIZONTAL"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C6",
+      "topic": "Hydrogen-bond population",
+      "source_statement_a": "SI text DDA-OH: 28.28 percent",
+      "source_statement_b": "SI Fig. 13: 28.18 percent with additional weight/label ambiguity",
+      "handling": "Theory-only annotation; cannot serve as physical task truth",
+      "branch_ids": [],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C7",
+      "topic": "Chromium identity",
+      "source_statement_a": "Main descriptive text/caption names Cr(II); Fig.5/Table1 name Cr(VI)",
+      "source_statement_b": "Named Methods oxide implies Cr(III); service report reports total chromium",
+      "handling": "Chemical work excluded from executable physical route; no species-specific efficacy inference",
+      "branch_ids": [],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C8",
+      "topic": "Light-metal assignment",
+      "source_statement_a": "SI Fig.23: Ca 2.64, Mg 0.60, K 0.62, Na 2.60 mg/L",
+      "source_statement_b": "SI Table1: Na 2.64, K 0.60, Ca 0.62, Mg 2.60 mg/L",
+      "handling": "Retain both mappings as literature annotations only",
+      "branch_ids": [],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C9",
+      "topic": "Dye value and missing units",
+      "source_statement_a": "SI Fig.24: 0.12 ppm",
+      "source_statement_b": "SI Table1: 0.68 ppm; some other post-treatment cells omit units",
+      "handling": "No exact contaminant-removal acceptance target",
+      "branch_ids": [],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C10",
+      "topic": "Cross-references and missing note labels",
+      "source_statement_a": "SI note labels skip 18-20; some text names nonmatching figures",
+      "source_statement_b": "Extended Data10 points at Video3; cleaning content belongs to Video4",
+      "handling": "Use content-based coverage; missing labels do not mean missing pages",
+      "branch_ids": [
+        "REUSE"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C11",
+      "topic": "Absorption conventions",
+      "source_statement_a": "Approximately 97 percent spectral absorption",
+      "source_statement_b": "Approximately 92 percent solar-weighted absorptance; angular/wavelength dependence",
+      "handling": "Distinct instrument quantities; no universal 97 percent gate",
+      "branch_ids": [
+        "OPTICAL",
+        "HORIZONTAL"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C12",
+      "topic": "Water safety evidence",
+      "source_statement_a": "Article makes broad sanitation claims",
+      "source_statement_b": "Lab reports disclaim determination of human-consumption safety; historical thresholds and limited assays",
+      "handling": "No potable, sterile, disinfected or universal contaminant-removal claim",
+      "branch_ids": [
+        "CONDENSATE",
+        "REUSE"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C13",
+      "topic": "Bifacial energy and area",
+      "source_statement_a": "Single/double mass-loss comparison",
+      "source_statement_b": "Backscatter sheet adds rear input and changes transport/heat loss; active-area convention needs declaration",
+      "handling": "Mass-loss gain cannot become equal-input energy efficiency",
+      "branch_ids": [
+        "VERTICAL",
+        "ANGLE",
+        "BIFACIAL"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    },
+    {
+      "id": "C14",
+      "topic": "Usage duration",
+      "source_statement_a": "More than 30 hours continuous-use wording",
+      "source_statement_b": "Later daily windows total 29 hours; earlier comparison day may contribute",
+      "handling": "No verified uninterrupted 30-hour or lifetime claim",
+      "branch_ids": [
+        "OUTDOOR",
+        "REUSE"
+      ],
+      "status": "unresolved",
+      "silently_corrected": false
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "stage": "independently_reviewed_design_export_frozen",
+  "author_contract_tests": 48,
+  "synthetic_events": 808,
+  "static_package_check": "passed",
+  "independent_review": "passed_for_bounded_nonbiological_design_only",
+  "export_verification": "exact_allowlist_digest_and_negative_tests",
+  "real_actuation": false,
+  "physics_simulation": false,
+  "scientific_replication": false,
+  "full_paper_complete": false,
+  "author_export_tests": 7,
+  "author_tests": 55,
+  "independent_tests": 19,
+  "commands": [
+    "python3 -B -m unittest discover -s tests -v",
+    "python3 -B -m unittest discover -s review -v",
+    "python3 -B tests/verify_package.py",
+    "python3 -B tests/verify_export.py"
+  ],
+  "test_scope": "Synthetic ordering, source boundaries, lineage and export integrity only; no real equipment, physical model or experimental result"
+}
