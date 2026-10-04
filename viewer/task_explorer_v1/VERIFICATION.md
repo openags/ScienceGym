@@ -1,5 +1,27 @@
-# Verification: twenty-four-family task explorer
+# Verification: twenty-eight-family task explorer
 
+
+## Cross-disciplinary integration — 2026-10-04
+
+Scope: read-only projections from immutable published source commit `990f98529182af0ddd03fba53587b0931630de96`, starting from the 1,124-file release. All 28 source task packages, both embodied storyboards, scene bindings and LICENSE are protected. No source retrieval, denied browser retry, hardware execution or scientific computation was attempted.
+
+The explorer now contains **28 families, 676 inspection records and 2,710 operation definitions**. The four additions preserve **521 operation definitions, 98 original branches, 123 JSON documents, 91 unknown-input groups, 53 control records and 34 unresolved conflicts**. Their 135 navigation records include 65 physical designs, 17 observed-data/derived analyses, 26 numerical dispositions, one data-curation record, two incomplete bounded-fabrication contracts, one session-teardown obligation, 15 prospective records, three reference dependencies and five excluded-scope notices. Extra navigation records are not extra source branches or experiments.
+
+Atmospheric main figure pixels remain uninspected and its direct-byte identity hold remains active. Mounted hardware stays under lease while acquisition jobs/records move; computational TIS never becomes physical piezo actuation. AFM is **bounded inert imaging/metrology, not full fabrication**. Retained probe versus exchanged target custody and final calibration-invalidating session teardown stay separate. Martian hazards remain closed facility services; powder/glass provenance, destructive parent retirement and measured/calculated results retain their types. Transistor unordered inventories never replace lifecycle, safe-zero, independent cohort, netlist, damage or elapsed-time constraints. Source counts remain typed, with no default independent-replicate allocations.
+
+### Verification of this integration
+
+- **247/247 Python viewer tests pass, zero skips/failures** with source tasks supplied: the original 229 plus 18 cross-disciplinary tests. All source documents and pointers reconstruct exactly; **80 new projection mutation fixtures** reject erased records, control/lineage/episode loss, fabricated order/counts, promoted numerical/physical scope, opened hazard authority, lost safe-state/lifecycle gates and source-access claims
+- All **135 added SVG route variants** parse and retain exact operation membership without adjacency arrows. Prior 24-family JSON, JavaScript, Markdown and SVG outputs (**96 files**) remain byte-identical
+- All **11/11 repository aggregate static groups pass**, including Python viewer tests, JavaScript syntax, scene-binding checks, explorer and storyboard mocked-DOM checks, English hygiene and **220 image-hash assertions over 71 frames / 75 unique images**
+- Local-script and standalone mocked-DOM tests cover **676 inspection records / 15,971 display entries**, individually selecting all **920 added entries**. Empty nonmanual views clear stale operation state; search reset, tabs, repeated clicks, invalid route fallback, restoration and immutable navigation pass
+- Full rebuilds and each of four family-only rebuilds are deterministic across **1,142 candidate files**; standalone regeneration is byte-identical. The standalone has all 28 data/SVG payloads and no local-file links or external runtime dependencies
+- Four package author suites, static structure checks and exact-export checks pass read-only: atmospheric 21 tests, AFM 39, Martian 119 and transistor 81. Included independent package suites also pass: AFM 15, Martian 95 and transistor 62. These checks are static/synthetic bookkeeping, not measured outcomes or numerical reproduction. No source package changed
+- Independent viewer review additionally passes **15 tests**, reconstructing all 521 operations, 98 branches, 123 source JSON documents and 135 navigation variants; **40 adversarial mutations** are rejected. Its separate mocked-DOM harness covers all 135 added routes, 920 entries and 34 empty metadata records. Four default SVGs were rendered with installed Inkscape and inspected as pixels without clipping or invented arrows
+- The **36-file publication delta** has **18 additions and 18 modifications**, no deletion or binary addition. All **983 protected files** and 96 older generated family files remain byte-identical. A separate exact manifest records UTF-8 characters/bytes, SHA-256 and Git blob SHA-1/SHA-256 for each changed file. Publication is a separate action
+- All four new source links use the immutable pin above; historical source pins and the earlier documented perovskite local-hash caveat are unchanged
+
+This is an author/evaluator logical inspector, not actor-safe input, executable protocol, scientific solver, physics simulation or robot execution. Real-browser, responsive/touch and full accessibility behavior remain unverified. Existing browser restrictions were honored without retry or workaround. Earlier verification sections below retain their historical scope and counts.
 
 ## Gear and hydrogel integration — 2026-10-03
 
