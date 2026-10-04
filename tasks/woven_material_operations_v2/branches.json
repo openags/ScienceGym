@@ -1,0 +1,668 @@
+{
+  "schema_version": "woven_material_task.v1",
+  "branches": [
+    {
+      "id": "GRAPH_DESIGN",
+      "execution_class": "design_only",
+      "source_evidence_ids": [
+        "M008",
+        "M012",
+        "M013",
+        "SI_N1",
+        "SI_F1",
+        "SI_F2"
+      ],
+      "required_inputs": [
+        "Original topology graph",
+        "constant node-graph degree",
+        "common chirality",
+        "rational turns and reviewed centerlines"
+      ],
+      "design_sequence": [
+        "Declare beam topology",
+        "construct compatible nodal connectivity",
+        "freeze continuity and units"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "No author code or CAD is executed; illustrative mesh does not establish geometry",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "NONUNIFORM_MATCHING",
+      "execution_class": "design_only",
+      "source_evidence_ids": [
+        "M014",
+        "SI_N2",
+        "SI_F3",
+        "SI_F5"
+      ],
+      "required_inputs": [
+        "Per-beam radius/turn map",
+        "node-clearance certificate",
+        "explicit reviewed strand adjacency"
+      ],
+      "design_sequence": [
+        "Accommodate neighboring radii",
+        "verify tangent continuity and noncrossing",
+        "hold unresolved modular algorithm"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "SI F5 modular arithmetic conflicts with examples; no silently repaired rule",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "FABRICABILITY",
+      "execution_class": "design_only",
+      "source_evidence_ids": [
+        "M013",
+        "M049",
+        "SI_F4"
+      ],
+      "required_inputs": [
+        "Source-independent released fabrication CAD",
+        "qualified process resolution",
+        "clearance checks and external acceptance tolerances"
+      ],
+      "design_sequence": [
+        "Validate geometry",
+        "validate source-specific manufacturability",
+        "release or hold"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Figure examples and loose separation heuristic are not universal acceptance thresholds",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "FULL_FABRICATION",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "M051",
+        "SI_F10"
+      ],
+      "required_inputs": [
+        "Released geometry/material lot",
+        "silicon substrate identity",
+        "qualified hazard services"
+      ],
+      "design_sequence": [
+        "Request/verify print",
+        "request/verify development and rinse",
+        "request/verify CPD",
+        "request/verify coating"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "No laser, solvent, pressure or coating hardware adapter",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "SUPPORT_REMOVAL",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "SI_N5",
+        "M043",
+        "SI_F16"
+      ],
+      "required_inputs": [
+        "Co-printed simple-cubic scaffold",
+        "developed/dried specimen",
+        "qualified plasma service",
+        "external plasma/coating order card"
+      ],
+      "design_sequence": [
+        "Co-print scaffold into base and fixture",
+        "verify development and CPD",
+        "request removal",
+        "independently inspect removal"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Source does not establish plasma/coating relative order; patterned axes remain unresolved",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "TENSION_BCC",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "M023",
+        "M024",
+        "M027",
+        "M028",
+        "M052",
+        "SI_F10"
+      ],
+      "required_inputs": [
+        "Identified inspected coated specimen",
+        "current mount and nominal geometry",
+        "force/displacement/time/image calibration",
+        "approved endpoint/limits"
+      ],
+      "design_sequence": [
+        "Dock carrier",
+        "verify mount/interlocks",
+        "freeze plan",
+        "request tension",
+        "acquire synchronized observations",
+        "reduce nominal stress/stretch",
+        "safe release and archive"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Source curves, peaks, stretch and energy never constitute pass thresholds",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "TENSION_OCTAHEDRON",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "M024",
+        "M028",
+        "M052",
+        "SI_F10"
+      ],
+      "required_inputs": [
+        "Identified inspected coated specimen",
+        "current mount and nominal geometry",
+        "force/displacement/time/image calibration",
+        "approved endpoint/limits"
+      ],
+      "design_sequence": [
+        "Dock carrier",
+        "verify mount/interlocks",
+        "freeze plan",
+        "request tension",
+        "acquire synchronized observations",
+        "reduce nominal stress/stretch",
+        "safe release and archive"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Source curves, peaks, stretch and energy never constitute pass thresholds",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "TENSION_DIAMOND",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "M024",
+        "M028",
+        "M052",
+        "SI_F10"
+      ],
+      "required_inputs": [
+        "Identified inspected coated specimen",
+        "current mount and nominal geometry",
+        "force/displacement/time/image calibration",
+        "approved endpoint/limits"
+      ],
+      "design_sequence": [
+        "Dock carrier",
+        "verify mount/interlocks",
+        "freeze plan",
+        "request tension",
+        "acquire synchronized observations",
+        "reduce nominal stress/stretch",
+        "safe release and archive"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Source curves, peaks, stretch and energy never constitute pass thresholds",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "TENSION_CUBIC",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "SI_F11",
+        "M052",
+        "SI_F10"
+      ],
+      "required_inputs": [
+        "Identified inspected coated specimen",
+        "current mount and nominal geometry",
+        "force/displacement/time/image calibration",
+        "approved endpoint/limits"
+      ],
+      "design_sequence": [
+        "Dock carrier",
+        "verify mount/interlocks",
+        "freeze plan",
+        "request tension",
+        "acquire synchronized observations",
+        "reduce nominal stress/stretch",
+        "safe release and archive"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Source curves, peaks, stretch and energy never constitute pass thresholds",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "TETRAKAIDECAHEDRON_HOLD",
+      "execution_class": "conflict_hold",
+      "source_evidence_ids": [
+        "M049",
+        "SI_F2",
+        "M017"
+      ],
+      "required_inputs": [
+        "Authoritative strand-count resolution",
+        "new geometry release"
+      ],
+      "design_sequence": [
+        "Retain three-versus-four strand conflict",
+        "hold affected topology"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Do not choose a count or spread this hold to BCC/cubic",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "CYCLIC_BCC_COMPRESSION",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "SI_N3",
+        "SI_F8"
+      ],
+      "required_inputs": [
+        "Identified direction-specific specimen",
+        "approved waveform/limits",
+        "calibration",
+        "external cycle segmentation and closure tolerance"
+      ],
+      "design_sequence": [
+        "Acquire signed loading/unloading cycles",
+        "validate loop closure",
+        "report loss and first-cycle normalization"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Reported ten cycles to15percent is context, not universal safe envelope; compression/tension remain distinct",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "CYCLIC_BCC_TENSION",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "SI_N3",
+        "SI_F8"
+      ],
+      "required_inputs": [
+        "Identified direction-specific specimen",
+        "approved waveform/limits",
+        "calibration",
+        "external cycle segmentation and closure tolerance"
+      ],
+      "design_sequence": [
+        "Acquire signed loading/unloading cycles",
+        "validate loop closure",
+        "report loss and first-cycle normalization"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Reported ten cycles to15percent is context, not universal safe envelope; compression/tension remain distinct",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "CYCLIC_OCTAHEDRON_COMPRESSION",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "SI_N3",
+        "SI_F8"
+      ],
+      "required_inputs": [
+        "Identified direction-specific specimen",
+        "approved waveform/limits",
+        "calibration",
+        "external cycle segmentation and closure tolerance"
+      ],
+      "design_sequence": [
+        "Acquire signed loading/unloading cycles",
+        "validate loop closure",
+        "report loss and first-cycle normalization"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Reported ten cycles to15percent is context, not universal safe envelope; compression/tension remain distinct",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "GRADED_RADIUS",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "SI_N4",
+        "SI_F9"
+      ],
+      "required_inputs": [
+        "Spatial radius map and orientation",
+        "approved geometry",
+        "registered image regions"
+      ],
+      "design_sequence": [
+        "Load along declared gradient",
+        "map local observations to design cells",
+        "report uncertainty"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "No invented deformation target or registration threshold",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "GRADED_TURNS",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "SI_N4",
+        "SI_F9"
+      ],
+      "required_inputs": [
+        "Cubic spatial turn map",
+        "gradient orientation",
+        "image calibration"
+      ],
+      "design_sequence": [
+        "Freeze turn map",
+        "request qualified tension",
+        "compare local deformation"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Source larger graded cubic example is distinct from uniform2x2x2; no corrected modular rule inferred",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "PROGRAMMED_FAILURE_EXPERIMENT",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "M043",
+        "M040",
+        "SI_N5",
+        "VIDEO5"
+      ],
+      "required_inputs": [
+        "Independent physical pattern map",
+        "explicit axis map",
+        "support/coating order qualification",
+        "damage definition"
+      ],
+      "design_sequence": [
+        "Preserve fabrication/support ancestry",
+        "acquire tension/images",
+        "separate initiation/coalescence/final failure"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Main10x5x2 versus SI10x2x5 axes unresolved; physical Fig5c8/3 cannot inherit numerical7/3",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "LINEAR_HOMOGENIZATION",
+      "execution_class": "external_numerical_design",
+      "source_evidence_ids": [
+        "M016",
+        "M017",
+        "M020",
+        "M021",
+        "M055",
+        "SI_F6",
+        "SI_F7"
+      ],
+      "required_inputs": [
+        "Original periodic mesh",
+        "material elastic tensor",
+        "independent strain basis",
+        "convergence criteria"
+      ],
+      "design_sequence": [
+        "Request convergence",
+        "request perturbations",
+        "inspect tensors and directional extrema"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "No solver; all five topologies covered but tetra unresolved. Main1/5 versus Fig2b1/10 radius example cannot calibrate stiffness",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "MATERIAL_CHARACTERIZATION",
+      "execution_class": "closed_qualified_service",
+      "source_evidence_ids": [
+        "M054",
+        "SI_F14"
+      ],
+      "required_inputs": [
+        "Calibrated IP-Dip2 micropillar record",
+        "material lot/geometry",
+        "elastic/plastic convention"
+      ],
+      "design_sequence": [
+        "Request qualified material characterization",
+        "bind constitutive metadata to evidence"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "No digitized source curve or inferred material law",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "BEAM_CONTINUUM_COMPARISON",
+      "execution_class": "external_numerical_design",
+      "source_evidence_ids": [
+        "M032",
+        "M033",
+        "M034",
+        "SI_F12"
+      ],
+      "required_inputs": [
+        "Matched beam/continuum meshes",
+        "boundary/material/contact cards",
+        "hardware/runtime context",
+        "convergence criteria"
+      ],
+      "design_sequence": [
+        "Request matched discretization study",
+        "compare common support",
+        "report runtime with hardware"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "SI F12 caption support disagrees with plot/main; no extrapolated validation",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "NONLINEAR_BEAM_MODEL",
+      "execution_class": "external_numerical_design",
+      "source_evidence_ids": [
+        "M033",
+        "M034",
+        "M054",
+        "SI_F13",
+        "SI_F17"
+      ],
+      "required_inputs": [
+        "B31 mesh",
+        "calibrated constitutive law",
+        "contact cards",
+        "resolved failure definition",
+        "density-matched monolithic/woven comparison controls"
+      ],
+      "design_sequence": [
+        "Request nonlinear model",
+        "compare experiment on common support",
+        "compare monolithic/woven stretch modulus and work at declared densities"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Model friction is fitted context; maximum-strain0.0377 and SI plastic-failure mean near0.13 are not interchangeable",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "FAILURE_VARIABILITY",
+      "execution_class": "external_numerical_design",
+      "source_evidence_ids": [
+        "M033",
+        "SI_F14"
+      ],
+      "required_inputs": [
+        "Resolved failure variable",
+        "seed/assignment map",
+        "distribution support/replicate policy"
+      ],
+      "design_sequence": [
+        "Request baseline",
+        "request variability ensemble",
+        "separate calibration and validation"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Neither unresolved source threshold is a physical failure rule",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "CURVATURE_CONTACT",
+      "execution_class": "external_numerical_design",
+      "source_evidence_ids": [
+        "M037",
+        "M034",
+        "SI_F15",
+        "VIDEO2"
+      ],
+      "required_inputs": [
+        "Registered centerlines",
+        "derivative/smoothing convention",
+        "contact/mesh/time mapping"
+      ],
+      "design_sequence": [
+        "Request fields",
+        "validate units and correspondence",
+        "report spatial pathways"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Scene color/curvature is not simulation or observation",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "PATTERNED_DEFORMATION_MODEL",
+      "execution_class": "external_numerical_design",
+      "source_evidence_ids": [
+        "M039",
+        "SI_F16",
+        "VIDEO3"
+      ],
+      "required_inputs": [
+        "Original region map",
+        "region parameters",
+        "model qualification"
+      ],
+      "design_sequence": [
+        "Freeze parameters",
+        "request pattern model",
+        "inspect registered response"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "No copied source lettering/layout; numerical7/3 is separate from physical8/3",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    },
+    {
+      "id": "PATTERNED_FAILURE_MODEL",
+      "execution_class": "external_numerical_design",
+      "source_evidence_ids": [
+        "M043",
+        "SI_F16",
+        "VIDEO4"
+      ],
+      "required_inputs": [
+        "Original failure path",
+        "explicit gradient units/axis",
+        "resolved failure law"
+      ],
+      "design_sequence": [
+        "Freeze pattern/gradient",
+        "request model",
+        "separate onset and final failure"
+      ],
+      "required_outputs": [
+        "Immutable branch-bound design/data record with provenance, uncertainty and missing inputs"
+      ],
+      "interpretation_limit": "Main/SI gradient context needs clarification; numerical7/3 is separate from physical8/3",
+      "design_covered": true,
+      "physical_executed": false,
+      "numerical_executed": false
+    }
+  ]
+}

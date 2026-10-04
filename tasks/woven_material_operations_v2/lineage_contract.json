@@ -1,0 +1,29 @@
+{
+  "schema_version": "woven_material_task.v1",
+  "required_keys": [
+    "episode_id",
+    "attempt_id",
+    "branch_id",
+    "preparation_route",
+    "design_hash",
+    "material_lot",
+    "sample_id",
+    "carrier_id",
+    "stage_revision",
+    "mount_revision",
+    "calibration_revision",
+    "control_revision",
+    "analysis_revision",
+    "qualification_revision",
+    "raw_hash"
+  ],
+  "required_keys_scope": "Union across episode: base context identifies sample/revisions; stage revision belongs to each receipt; raw hash is required for acquisition",
+  "context_is_evaluator_owned": true,
+  "invalidation": [
+    "Any identity/revision mismatch rejects receipt",
+    "Remount invalidates calibration/control/data",
+    "Control/analysis changes break matched comparison",
+    "Damage prevents reuse",
+    "Held attempt cannot resume using stale evidence"
+  ]
+}

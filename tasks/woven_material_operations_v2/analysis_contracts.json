@@ -1,0 +1,35 @@
+{
+  "schema_version": "woven_material_task.v1",
+  "measurements": [
+    "force_N",
+    "displacement_m",
+    "time_s",
+    "registered_image_ids",
+    "nominal_area_m2",
+    "gauge_height_m",
+    "relative_density",
+    "constituent_density_kg_m3",
+    "constituent_modulus_Pa"
+  ],
+  "definitions": {
+    "engineering_stress_Pa": "force / nominal area",
+    "engineering_strain": "displacement / initial gauge height",
+    "stretch": "1 + engineering strain",
+    "loading_work_density_J_m3": "Declared monotonic stress-strain integral",
+    "cycle_loss_density_J_m3": "Signed closed-cycle stress-strain integral with explicit segmentation and closure tolerance",
+    "specific_loading_work_J_kg": "work / (relative density * solid density)",
+    "modulus_per_density": "modulus / (relative density * solid density)",
+    "relative_specific_modulus": "modulus / (relative density * solid modulus)",
+    "source_figure_specific_modulus": "modulus / (relative density * solid density * solid modulus), units m3/kg"
+  },
+  "validation": [
+    "Finite strict numerics, booleans rejected",
+    "Matching arrays and strictly increasing time",
+    "Positive geometry/material scales, relative density(0,1]",
+    "Monotonic tensile loading; cycles explicitly segmented",
+    "Declared fit indices/support; no extrapolation",
+    "Positive cycle baseline; retain signed compression",
+    "Checked high-precision intermediates reject unrepresentable outputs"
+  ],
+  "implemented_scope": "Original synthetic arithmetic only; no constitutive/deformation solver"
+}

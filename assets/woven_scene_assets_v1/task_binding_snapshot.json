@@ -1,0 +1,252 @@
+{
+  "schema_version": "woven_material_task.v1",
+  "task_id": "programmable_3d_woven_metamaterials",
+  "binding_status": "STATIC_SCENE_BOUND",
+  "scene_assets": [
+    {
+      "asset_id": "A_DESIGN_CONSOLE",
+      "role": "design_console",
+      "required_anchor_ids": [
+        "design_record",
+        "topology_card",
+        "conflict_hold"
+      ],
+      "bind_operation_ids": [
+        "DECLARE_DESIGN",
+        "FREEZE_GRAPH",
+        "VERIFY_FABRICABILITY",
+        "RELEASE_DESIGN"
+      ],
+      "source_facts_and_limits": "Original independent graph and node/strand geometry only. Source CAD/code are not copied. Exact fabrication geometry, strand continuity, process resolution and external tolerances remain required-input gates; tetra strand count and SI F5 modular rule remain held.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_MICROCARRIER",
+      "role": "microcarrier",
+      "required_anchor_ids": [
+        "sample_origin",
+        "carrier_slot",
+        "identity_card",
+        "grasp_left",
+        "grasp_right",
+        "native_cell_reference"
+      ],
+      "bind_operation_ids": [
+        "REGISTER_INPUTS",
+        "RECEIVE_SAMPLE",
+        "INSPECT_SAMPLE",
+        "CLEAN_STORE"
+      ],
+      "source_facts_and_limits": "Only symbolic carrier custody. Standard source cell size60um and fiber radius1um are distinct from display scale. Tetrakaidecahedron120um fact is held. No microfiber grasp, collision, fit or clearance qualification.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_FABRICATION_SERVICE",
+      "role": "fabrication_service",
+      "required_anchor_ids": [
+        "design_in",
+        "fabrication_receipt",
+        "development_receipt",
+        "sample_out"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_QUALIFICATION",
+        "REQUEST_PRINT",
+        "VERIFY_PRINT",
+        "REQUEST_DEVELOP_RINSE",
+        "VERIFY_DEVELOP_RINSE"
+      ],
+      "source_facts_and_limits": "Permanently unimplemented closed two-photon-printing and development/rinse services. Material lot, authorized released CAD, process and safety cards are required. No laser toolpaths, solvent manipulation or machine control.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_CPD_SERVICE",
+      "role": "cpd_service",
+      "required_anchor_ids": [
+        "sample_in",
+        "cpd_receipt",
+        "sample_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_CPD",
+        "VERIFY_CPD"
+      ],
+      "source_facts_and_limits": "Permanently unimplemented closed critical-point drying pressure service; request acknowledgement is not completion.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_COATING_SERVICE",
+      "role": "coating_service",
+      "required_anchor_ids": [
+        "sample_in",
+        "coating_receipt",
+        "sample_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_COATING",
+        "VERIFY_COATING"
+      ],
+      "source_facts_and_limits": "Permanently unimplemented closed gold-coating service; factual source coating is not an executable setting.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_TENSION_FIXTURE",
+      "role": "tension_fixture",
+      "required_anchor_ids": [
+        "fixture_origin",
+        "lower_grip",
+        "upper_grip",
+        "alignment_record",
+        "disabled_state"
+      ],
+      "bind_operation_ids": [
+        "DOCK_SAMPLE",
+        "VERIFY_MOUNT",
+        "FREEZE_TEST_PLAN",
+        "REQUEST_TENSION",
+        "REQUEST_CYCLIC",
+        "UNDOCK_SAMPLE"
+      ],
+      "source_facts_and_limits": "Generic unqualified holder/gripper, symbolic mount/control handoff only. No mechanical force/displacement actuation.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_SEM_HOLDER",
+      "role": "sem_holder",
+      "required_anchor_ids": [
+        "holder_slot",
+        "closed_cover",
+        "identity_card",
+        "acquisition_record"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_INTERLOCK",
+        "REQUEST_SAFE_OFF",
+        "VERIFY_SAFE_OFF"
+      ],
+      "source_facts_and_limits": "Closed SEM/vacuum/electrical service permanently unimplemented. Current independent safe release is required before undock.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_ACQUISITION_RECORDS",
+      "role": "acquisition_records",
+      "required_anchor_ids": [
+        "mechanical_record",
+        "sem_record",
+        "timebase_record",
+        "calibration_record"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_CALIBRATION",
+        "ACQUIRE_TEST_DATA",
+        "VALIDATE_DATA"
+      ],
+      "source_facts_and_limits": "Independent force/displacement/time/image records with current sample, mount, calibration and timebase lineage. No source curves or command acknowledgements as measurements.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_ANALYSIS_CONSOLE",
+      "role": "analysis_console",
+      "required_anchor_ids": [
+        "analysis_record",
+        "numerical_record",
+        "archive_slot"
+      ],
+      "bind_operation_ids": [
+        "ANALYZE_TENSION",
+        "ANALYZE_CYCLES",
+        "COMPARE_RESPONSE",
+        "ARCHIVE",
+        "REQUEST_HOMOGENIZATION",
+        "REQUEST_MATERIAL_MODEL",
+        "REQUEST_BEAM_CONTINUUM",
+        "REQUEST_NONLINEAR_MODEL",
+        "REQUEST_FAILURE_VARIABILITY",
+        "REQUEST_CURVATURE_CONTACT",
+        "REQUEST_PATTERN_MODELS"
+      ],
+      "source_facts_and_limits": "Original synthetic record arithmetic and separate external numerical-model metadata only. No solver, source-data import or physical reproduction. Loading work and cyclic loss are distinct.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_HOLD_PANEL",
+      "role": "hold_panel",
+      "required_anchor_ids": [
+        "qualification_hold",
+        "topology_hold",
+        "calibration_hold",
+        "lineage_hold"
+      ],
+      "bind_operation_ids": [
+        "HOLD_QUALIFICATION",
+        "HOLD_GEOMETRY",
+        "HOLD_CALIBRATION",
+        "HOLD_DATA",
+        "HOLD_ISOLATION",
+        "QUARANTINE"
+      ],
+      "source_facts_and_limits": "Scoped qualification, geometry, calibration, data, isolation and damage holds. Held branches earn no execution credit. BCC/cubic are not held by tetra conflict.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_PLASMA_SERVICE",
+      "role": "plasma_service",
+      "required_anchor_ids": [
+        "sample_in",
+        "closed_chamber",
+        "removal_receipt",
+        "sample_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_SUPPORT_REMOVAL",
+        "VERIFY_SUPPORT_REMOVAL"
+      ],
+      "source_facts_and_limits": "Optional patterned-failure support removal only. Development/CPD precede plasma; coating precedes SEM, but relative plasma/coating order is source-unspecified and needs external order approval. No plasma actuation.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    }
+  ],
+  "global_requirements": [
+    "All scene geometry is original, generic and illustrative; no source figure, CAD, mesh, code or letter-pattern copy",
+    "All hazard services are closed and permanently unimplemented",
+    "Exact CAD, service safety qualification and acceptance tolerances are required external gates",
+    "Native units and display scale are distinct; no robot contact/fit/collision qualification",
+    "Requests are not observations; actor cannot supply source outcomes, service qualifications or sensor values",
+    "Whole-paper design coverage is not physical/numerical reproduction",
+    "Tetra strand conflict stays scoped; physical8/3 and numerical7/3 patterns stay separate",
+    "Plasma versus coating order is not fixed by the paper"
+  ],
+  "source_known_geometry": [
+    "Standard fabricated cell60um; tetrakaidecahedron120um exception held",
+    "Fixed woven fiber radius1um; experimental effective radii2-6um",
+    "Patterned sacrificial scaffold radius one quarter of woven fibers"
+  ],
+  "authored_unknown_geometry": [
+    "Released fabrication CAD and exact fiber centerlines",
+    "Carrier/gripper/holder dimensions and transforms",
+    "Robot grasps, collision margins, service thresholds"
+  ],
+  "model_build_assigned": true,
+  "source_doi": "10.1038/s41467-026-68298-3"
+}

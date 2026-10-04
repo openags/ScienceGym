@@ -1,0 +1,57 @@
+{
+  "schema_version": "woven_material_task.v1",
+  "routes": [
+    {
+      "id": "FULL",
+      "sequence": [
+        "design_release",
+        "print_receipt",
+        "develop_rinse_receipt",
+        "cpd_receipt",
+        "coating_receipt",
+        "prepared_sample_receipt"
+      ],
+      "preparation_credit": true,
+      "note": "Synthetic lineage only, no physical fabrication"
+    },
+    {
+      "id": "FULL_SUPPORT",
+      "partial_order": [
+        [
+          "print_receipt",
+          "develop_rinse_receipt"
+        ],
+        [
+          "develop_rinse_receipt",
+          "cpd_receipt"
+        ],
+        [
+          "cpd_receipt",
+          "support_removal_receipt"
+        ],
+        [
+          "cpd_receipt",
+          "coating_receipt"
+        ],
+        [
+          "support_removal_receipt",
+          "prepared_sample_receipt"
+        ],
+        [
+          "coating_receipt",
+          "prepared_sample_receipt"
+        ]
+      ],
+      "requires_external_order_card": true,
+      "source_order_between_plasma_and_coating": "unspecified"
+    },
+    {
+      "id": "PREPARED",
+      "sequence": [
+        "independent_prepared_sample_receipt"
+      ],
+      "preparation_credit": false,
+      "note": "Independent ancestry required; no fabrication credit"
+    }
+  ]
+}
