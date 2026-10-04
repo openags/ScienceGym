@@ -1,0 +1,108 @@
+{
+  "schema_version": "lockable_origami_task.v1",
+  "parameters": [
+    {
+      "id": "P_BASE",
+      "source_evidence_ids": [
+        "M063"
+      ],
+      "facts": {
+        "paperboard_g_m2": 200,
+        "dry_thickness_mm": 0.21,
+        "fold_cut_length_mm": 2,
+        "fold_cut_intervals_mm": 1.4,
+        "temperature_C": 22,
+        "relative_humidity_about_percent": 30,
+        "load_cell_capacity_kN": 12.5,
+        "quasi_static_strain_rate_s_inverse": 0.001
+      },
+      "scope": "reported methods; not an executable recipe or qualified control"
+    },
+    {
+      "id": "P_GEOMETRY",
+      "source_evidence_ids": [
+        "M064",
+        "M039"
+      ],
+      "facts": {
+        "standard_a_b_mm": 15,
+        "phi_degrees": 60,
+        "density_study_a_b_mm": [
+          10,
+          15,
+          20
+        ]
+      },
+      "scope": "branch-local physical geometry"
+    },
+    {
+      "id": "P_COUPON",
+      "source_evidence_ids": [
+        "S10",
+        "SF13"
+      ],
+      "facts": {
+        "nominal_length_mm": 240,
+        "nominal_width_mm": 5,
+        "grip_region_each_end_mm": 30,
+        "crosshead_gauge_mm": 180,
+        "dic_gauge_mm": 20
+      },
+      "scope": "nominal coupon; gauge length and effective measured area require qualification"
+    },
+    {
+      "id": "P_COUNTS",
+      "source_evidence_ids": [
+        "F5",
+        "M039",
+        "SF14"
+      ],
+      "facts": {
+        "main_compression_curve_independent_samples": 3,
+        "density_per_scale_independent_samples": 5,
+        "finite_size_per_geometry_independent_samples": 5,
+        "N4_reported_cycles": 10,
+        "N6_reported_cycles": 4
+      },
+      "scope": "Do not convert repeated cycles, points or unknown repeats into independent samples"
+    },
+    {
+      "id": "P_FINITE_GRID",
+      "source_evidence_ids": [
+        "SF14"
+      ],
+      "facts": {
+        "planar_tessellation_grid": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            9,
+            9
+          ]
+        ],
+        "N4_stack_layer_grid": [
+          1,
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      "scope": "Visually checked finite-size source axes; not independent full polygon counts"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "symbolic_local_state.v1",
+  "implementation": "local caller-owned metadata; never authorization or evidence",
+  "initial": "HOLD",
+  "states": [
+    "HOLD",
+    "RECORDS_ATTACHED",
+    "REVIEW_REQUESTED"
+  ],
+  "physical_states": [],
+  "source_modes_rendered": [],
+  "static_proxy_snapshots": [
+    "proxy.0",
+    "proxy.35",
+    "proxy.65"
+  ],
+  "energy_enabled_in_every_state": false,
+  "requires_external_qualification": true,
+  "does_not_enable_execution_on_receipt": true,
+  "transitions": [
+    {
+      "from": "HOLD",
+      "action": "attach_record_labels",
+      "to": "RECORDS_ATTACHED"
+    },
+    {
+      "from": "RECORDS_ATTACHED",
+      "action": "request_review",
+      "to": "REVIEW_REQUESTED"
+    },
+    {
+      "from": "REVIEW_REQUESTED",
+      "action": "clear_record_labels",
+      "to": "HOLD"
+    },
+    {
+      "from": "RECORDS_ATTACHED",
+      "action": "clear_record_labels",
+      "to": "HOLD"
+    }
+  ],
+  "forbidden_actions": [
+    "laser_on",
+    "dispense_adhesive",
+    "fold_hardware",
+    "apply_load",
+    "cut_band_under_preload",
+    "acquire_DIC",
+    "unlock_execution",
+    "predict_force",
+    "validate_topology"
+  ]
+}

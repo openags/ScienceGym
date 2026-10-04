@@ -1,0 +1,32 @@
+{
+  "schema_version": "lockable_origami_task.v1",
+  "context_keys": [
+    "episode_id",
+    "attempt_id",
+    "branch_id",
+    "sample_id",
+    "parent_sheet_id",
+    "material_lot",
+    "design_hash",
+    "layer_set_hash",
+    "carrier_id",
+    "configuration_revision",
+    "mount_revision",
+    "calibration_revision",
+    "control_revision",
+    "analysis_revision",
+    "qualification_revision",
+    "axis_map_revision",
+    "baseline_revision"
+  ],
+  "requirements": [
+    "Every event occurrence has a unique event and evidence ID",
+    "Layer IDs unique and sheet-direction map immutable",
+    "Prepared input requires independent ancestry and earns no preparation credit",
+    "Configuration changes invalidate mode/area/calibration-dependent readouts",
+    "Mount/control/calibration changes invalidate dependent records",
+    "Damage, plastic set and prior cycle count persist through custody changes",
+    "Replacement specimen gets a new ID and ancestry; failed evidence stays archived",
+    "Models cannot impersonate specimens or count as physical repetitions"
+  ]
+}

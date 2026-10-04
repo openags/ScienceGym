@@ -1,0 +1,100 @@
+{
+  "schema_version": "lockable_origami_independent_review.v1",
+  "status": "PASS_WITH_EXPLICIT_SCOPE_LIMITS",
+  "reviewed_utc": "2026-10-04T11:18:00Z",
+  "scope": "Whole-paper DESIGN coverage, internal contract consistency, finite offline synthetic integrity and exact original-file export",
+  "doi": "10.1038/s41467-022-29484-1",
+  "source_basis": {
+    "source_auditor_materials_read": ["HANDOFF.md", "source_access_audit.json", "source_conflicts.json", "route_plan.json"],
+    "source_audit_utc": "2026-10-04T10:55:00Z",
+    "source_auditor_routes_mapped": 29,
+    "reviewer_independently_replayed_source_movies": false,
+    "reviewer_independently_reinspected_all_publisher_figures": false,
+    "reading_limit": "Source visual/full-text coverage relies on the completed independent source audit; this reviewer inspected the entire task narrative, registries, contracts, code, tests and audit-to-design mapping."
+  },
+  "coverage": {
+    "design_routes": 30,
+    "closed_service_physical_program_routes": 16,
+    "generative_design_routes": 1,
+    "separate_analytical_numerical_routes": 12,
+    "source_only_demonstration_routes": 1,
+    "operations": 60,
+    "source_locators": 110,
+    "retained_conflict_or_scope_records": 11,
+    "scene_asset_groups": 11,
+    "scene_semantic_anchors": 53,
+    "all_source_auditor_routes_represented": true,
+    "whole_paper_design_coverage_accepted": true,
+    "whole_paper_scientific_execution_verified": false
+  },
+  "verification": {
+    "author_contract_tests_passed": 50,
+    "author_export_tests_passed": 14,
+    "independent_contract_design_tests_passed": 29,
+    "independent_export_tests_passed": 23,
+    "total_test_methods_passed": 116,
+    "synthetic_fixture_ids_checked": 143,
+    "independent_receipt_context_tamper_cases": 612,
+    "structural_package_check": "PASS",
+    "sealed_package_and_exact_zip_check": "PASS",
+    "exact_export_member_count": 43,
+    "export_scope": "Forty-two fixed original files plus one manifest; any changed final reporting/status files require resealing and rerunning exact verification.",
+    "commands": [
+      "python3 -B -m unittest discover -s tests -v",
+      "python3 -B -m unittest discover -s review -v",
+      "python3 -B tests/verify_package.py",
+      "python3 -B tests/verify_export.py <task-archive.zip>"
+    ]
+  },
+  "findings": [
+    {
+      "id": "IR01",
+      "severity": "design_contract_consistency",
+      "issue": "Composed FULL/PREPARED fixture events were absent from some branch operation membership lists and operation branch backreferences.",
+      "resolution": "Author included composed fixture memberships, recomputed reverse links and documented branch-specific shared preparation. Independent bidirectional coverage test now passes for all fixture instances.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "IR02",
+      "severity": "design_contract_consistency",
+      "issue": "VERIFY_GEOMETRY required released geometry although RELEASE_DESIGN depended on geometry review.",
+      "resolution": "Author changed the prerequisite to declared versioned candidate geometry with independent acceptance; review now precedes release and cutting without a circular prerequisite.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "IR03",
+      "severity": "minor_registry_cleanup",
+      "issue": "The U_MOTION affected-branch list repeated PROTOTYPE_RECONFIGURATION.",
+      "resolution": "Author removed the duplicate.",
+      "status": "RESOLVED"
+    }
+  ],
+  "open_review_blockers": [],
+  "paired_static_scene": {
+    "binding_signature_independently_compared": true,
+    "all_asset_anchor_operation_ids_match": true,
+    "archive_bytes": 11755616,
+    "archive_sha256": "c8a3cb0de4eb3cc3ae067443543f9d2c6731a7e24216c3bdc5c4faffb55f9ed3",
+    "snapshot_scope": "The immutable scene snapshot predates the task's static-availability update. Exact IDs, anchors and operation memberships match; this review makes no new geometry or physics validation claim."
+  },
+  "reviewed_core_sha256": {
+    "branches.json": "aa11ed81a5146cf41fe30336cec0db33b19f4ca3bba1698bca2adc9d42580de5",
+    "operations.json": "63ae5a69b582319b69808de3ada51ca2128adc1c1a177869bd92bbc5304eea5b",
+    "tests/contract.py": "c6705b928cb82d9779c8bf46f7d64c68bbd537375a813ac283f90b1e94843b2c",
+    "tests/verify_export.py": "9950dcd7528f732d272cd2e00c222892a0e7c6a5a2277269f11328d408da1fd4",
+    "asset_binding_plan.json": "92df4727231390cc664b0c41454830aa604f16b49d09977e2a04b001a80238c3"
+  },
+  "explicit_nonclaims": [
+    "No actual cutting, folding, bonding, curing, loading, unloading, transport or robot operation occurred",
+    "No numerical scientific solver or source-author code was executed",
+    "No source curve, modulus, strength or density exponent was used as a fixture success target",
+    "No calibrated geometry, contact, self-collision, grasp, stability, force capacity or human-load safety was established",
+    "No production authentication or arbitrary real-world episode evaluation is provided by public pinned synthetic fixtures",
+    "No complete MD/CD, finite-size, density, cycle, direction, mixed-mode or band-control experimental campaign was executed or scientifically scored",
+    "No full-paper scientific reproduction or runnable whole-paper task was validated"
+  ],
+  "physical_execution_verified": false,
+  "numerical_solver_execution_verified": false,
+  "scientific_reproduction_verified": false,
+  "validated_runnable_whole_paper_tasks": 0
+}

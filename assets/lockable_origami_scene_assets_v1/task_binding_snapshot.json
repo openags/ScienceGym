@@ -1,0 +1,275 @@
+{
+  "schema_version": "lockable_origami_task.v1",
+  "task_id": "lockable_flat_foldable_origami_metamaterials",
+  "binding_status": "PLAN_FOR_ORIGINAL_STATIC_SCENE",
+  "asset_package": "lockable_origami_scene_assets_v1",
+  "scene_assets": [
+    {
+      "asset_id": "A_DESIGN_CONSOLE",
+      "role": "design_console",
+      "required_anchor_ids": [
+        "design_record",
+        "mode_map",
+        "geometry_hold"
+      ],
+      "bind_operation_ids": [
+        "DECLARE_DESIGN",
+        "FREEZE_MODE_MAP",
+        "VERIFY_GEOMETRY",
+        "RELEASE_DESIGN"
+      ],
+      "source_facts_and_limits": "Original crease/cut topology, mirror stacking and permitted mode/tessellation record; no source CAD reconstruction.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_PAPERBOARD_CARRIER",
+      "role": "paperboard_carrier",
+      "required_anchor_ids": [
+        "sample_origin",
+        "carrier_slot",
+        "identity_card",
+        "grasp_left",
+        "grasp_right",
+        "sheet_reference"
+      ],
+      "bind_operation_ids": [
+        "REGISTER_INPUTS",
+        "RECEIVE_SAMPLE",
+        "INSPECT_SAMPLE",
+        "TRANSFER_CARRIER",
+        "STORE_SAMPLE"
+      ],
+      "source_facts_and_limits": "Generic sheet and sample carrier; paperboard source 200 g/m2 and dry thickness 0.21 mm are metadata. Carrier/grasp geometry is authored and unqualified.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_CUT_SERVICE",
+      "role": "cut_service",
+      "required_anchor_ids": [
+        "design_in",
+        "closed_enclosure",
+        "cut_receipt",
+        "sample_out"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_QUALIFICATION",
+        "REQUEST_CUT",
+        "VERIFY_CUT"
+      ],
+      "source_facts_and_limits": "Closed laser-cut/perforation service. Source cuts 2 mm separated by 1.4 mm intervals do not establish a toolpath or machine settings. No laser actuation.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_FOLD_BOND_STATION",
+      "role": "fold_bond_station",
+      "required_anchor_ids": [
+        "sheet_in",
+        "fold_support",
+        "stack_alignment",
+        "bond_record",
+        "cure_record",
+        "sample_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_FOLD",
+        "VERIFY_FOLD",
+        "REQUEST_STACK_BOND",
+        "VERIFY_STACK_BOND",
+        "VERIFY_CURE"
+      ],
+      "source_facts_and_limits": "Generic folding/stacking support. Source partial fold then mirrored stack and PVA triangular-face bonding; adhesive amount, cure, force and registration tolerances are unknown.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_RECONFIGURATION_FIXTURE",
+      "role": "reconfiguration_fixture",
+      "required_anchor_ids": [
+        "fixture_origin",
+        "axis_x",
+        "axis_y",
+        "mode_record",
+        "confinement_record"
+      ],
+      "bind_operation_ids": [
+        "FREEZE_RECONFIGURATION_PLAN",
+        "REQUEST_RECONFIGURATION",
+        "VERIFY_CONFIGURATION"
+      ],
+      "source_facts_and_limits": "Closed symbolic confinement/reconfiguration fixture, never an executable fold trajectory. Distinct uniform/mixed mode maps and loaded/unloaded retention states.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_TENSILE_FIXTURE",
+      "role": "tensile_fixture",
+      "required_anchor_ids": [
+        "fixture_origin",
+        "lower_grip",
+        "upper_grip",
+        "alignment_record",
+        "disabled_state"
+      ],
+      "bind_operation_ids": [
+        "DOCK_TENSILE",
+        "VERIFY_MOUNT",
+        "VERIFY_INTERLOCK",
+        "VERIFY_CALIBRATION",
+        "FREEZE_TEST_PLAN",
+        "REQUEST_TENSION"
+      ],
+      "source_facts_and_limits": "Empty generic base-material coupon tensile fixture. MD and CD orientation, gauge and grip qualification remain external. No force/displacement actuation.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_COMPRESSION_FIXTURE",
+      "role": "compression_fixture",
+      "required_anchor_ids": [
+        "fixture_origin",
+        "lower_platen",
+        "upper_platen",
+        "axis_record",
+        "band_record",
+        "disabled_state"
+      ],
+      "bind_operation_ids": [
+        "DOCK_COMPRESSION",
+        "REQUEST_COMPRESSION",
+        "REQUEST_CYCLES",
+        "REQUEST_BAND_RELEASE",
+        "VERIFY_BAND_RELEASE"
+      ],
+      "source_facts_and_limits": "Empty generic compression fixture with distinct smooth-platen and removable-band record roles. Band release under load is closed qualified service only; no cutting or loading action.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_ACQUISITION_RECORDS",
+      "role": "acquisition_records",
+      "required_anchor_ids": [
+        "force_record",
+        "crosshead_record",
+        "dic_record",
+        "timebase_record",
+        "calibration_record",
+        "safe_release_record"
+      ],
+      "bind_operation_ids": [
+        "ACQUIRE_RECORDS",
+        "VALIDATE_RECORDS",
+        "REQUEST_SAFE_OFF",
+        "VERIFY_SAFE_OFF",
+        "UNDOCK_SAMPLE"
+      ],
+      "source_facts_and_limits": "Independent force, displacement, DIC, environmental and safety evidence with current sample/mount/control lineage; requests and acknowledgements are not observations.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_ANALYSIS_CONSOLE",
+      "role": "analysis_console",
+      "required_anchor_ids": [
+        "analysis_record",
+        "comparison_record",
+        "archive_slot"
+      ],
+      "bind_operation_ids": [
+        "ANALYZE_MATERIAL",
+        "ANALYZE_COMPRESSION",
+        "ANALYZE_CYCLES",
+        "ANALYZE_MODE_CHANNELS",
+        "COMPARE_RESPONSES",
+        "ARCHIVE_RECORDS"
+      ],
+      "source_facts_and_limits": "Original offline arithmetic only. Initial engaged linear segment, first peak, cyclic residual set and open-channel area are distinct observables; no copied source curves.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_NUMERICAL_CONSOLE",
+      "role": "numerical_console",
+      "required_anchor_ids": [
+        "model_record",
+        "parameter_record",
+        "convergence_record"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_KINEMATIC_MODEL",
+        "REQUEST_ENUMERATION",
+        "REQUEST_TESSELLATION_MODEL",
+        "REQUEST_RIGIDITY_MODEL",
+        "REQUEST_RUC_MODEL",
+        "REQUEST_DENSITY_MODEL",
+        "REQUEST_POISSON_MODEL",
+        "REQUEST_INPLANE_ENERGY_MODEL",
+        "REQUEST_OUTPLANE_ENERGY_MODEL",
+        "VERIFY_MODEL_RECORD"
+      ],
+      "source_facts_and_limits": "Separate externally supplied numerical/analytical model metadata. No MATLAB, solver, source code or copied diagrams.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_HOLD_STORAGE",
+      "role": "hold_storage",
+      "required_anchor_ids": [
+        "qualification_hold",
+        "configuration_hold",
+        "calibration_hold",
+        "lineage_hold",
+        "quarantine_slot",
+        "cleanup_record"
+      ],
+      "bind_operation_ids": [
+        "HOLD_QUALIFICATION",
+        "HOLD_GEOMETRY",
+        "HOLD_CONFIGURATION",
+        "HOLD_CALIBRATION",
+        "HOLD_DATA",
+        "HOLD_ISOLATION",
+        "QUARANTINE_SAMPLE",
+        "CLEAN_STATION"
+      ],
+      "source_facts_and_limits": "Scoped holds, independently verified safe release, irreversible damage quarantine and final station/custody bookkeeping; no physical cleanup automation.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    }
+  ],
+  "global_requirements": [
+    "Original generic geometry only; no source figure, source CAD, source mesh, source video frames or original figure layout",
+    "All physical actions and numerical solvers remain unimplemented; closed-service metadata only",
+    "Known material/geometric facts are distinct from authored display dimensions and unknown qualified geometry",
+    "Requests never establish observations or safety; actor provides IDs only",
+    "No robot contact, grasp, fit, collision, kinematics, force, dynamics or scientific reproduction validation",
+    "Whole-paper DESIGN coverage is separate from execution completeness"
+  ],
+  "source_known_geometry": [
+    "Demonstrative a=b=15 mm, phi=60 degrees",
+    "Density study a=b=10,15,20 mm",
+    "Paperboard nominal dry thickness 0.21 mm; areal density 200 g/m2",
+    "Base paperboard tensile strips 240 by 5 mm with 30 mm grip regions per side",
+    "Representative compression 7 by 7 planar tessellation and six layers"
+  ],
+  "authored_unknown_geometry": [
+    "Exact cut/fold CAD and glue/stack maps",
+    "Fixture/carrier/grasp dimensions, transforms and robot clearances",
+    "Contact, hinge, cure and process parameters",
+    "Mixed-mode configuration region geometry"
+  ],
+  "model_build_assigned": true
+}

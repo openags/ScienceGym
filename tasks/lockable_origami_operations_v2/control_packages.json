@@ -1,0 +1,97 @@
+{
+  "schema_version": "lockable_origami_task.v1",
+  "packages": [
+    {
+      "id": "MD_CD",
+      "branches": [
+        "BASE_MATERIAL_TENSION"
+      ],
+      "required": [
+        "independent MD and CD sibling allocations",
+        "orientation and same-lot context"
+      ]
+    },
+    {
+      "id": "MODE_COMPRESSION",
+      "branches": [
+        "COMPRESS_N4_A2",
+        "COMPRESS_N4_AO",
+        "COMPRESS_N6_A3",
+        "COMPRESS_N6_A2O"
+      ],
+      "required": [
+        "three independent sample IDs per source mode curve",
+        "configuration-specific geometry"
+      ]
+    },
+    {
+      "id": "SIZE_CONVERGENCE",
+      "branches": [
+        "FINITE_SIZE_PLANAR_N4",
+        "FINITE_SIZE_STACKING_N4",
+        "FINITE_SIZE_N4_N6"
+      ],
+      "required": [
+        "explicit figure-supported grid",
+        "five independent sample IDs per geometry",
+        "raw values and uncertainty"
+      ]
+    },
+    {
+      "id": "DENSITY_SERIES",
+      "branches": [
+        "DENSITY_SCALING_N4"
+      ],
+      "required": [
+        "three scales and five independent samples each",
+        "MD source material references"
+      ]
+    },
+    {
+      "id": "CYCLIC_SCHEDULE",
+      "branches": [
+        "CYCLIC_N4_A2",
+        "CYCLIC_N6_A3"
+      ],
+      "required": [
+        "ten vs four cycles",
+        "baseline peak provenance",
+        "explicit segments and residual set"
+      ]
+    },
+    {
+      "id": "DIRECTIONS",
+      "branches": [
+        "MULTIDIRECTIONAL_N4"
+      ],
+      "required": [
+        "A=45 degrees, B=90 degrees and z",
+        "separate area/height and damage allocation"
+      ]
+    },
+    {
+      "id": "MIXED_MODE_BASELINES",
+      "branches": [
+        "MIXED_MODES_N4"
+      ],
+      "required": [
+        "seven maps",
+        "configuration1 modulus",
+        "positive configuration4 channel area",
+        "no measured permeability claim"
+      ]
+    },
+    {
+      "id": "BAND_RETAINED_RELEASED",
+      "branches": [
+        "RUBBER_BAND_CONTROL"
+      ],
+      "required": [
+        "matched arms",
+        "independent peak baseline",
+        "preload and release chronology",
+        "external safe release card"
+      ]
+    }
+  ]
+}

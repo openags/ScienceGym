@@ -1,0 +1,34 @@
+{
+  "schema_version": "lockable_origami_task.v1",
+  "mechanical": [
+    "Stress uses branch-specific nominal effective area; strain uses declared initial gauge/height",
+    "Engaged linear fit is explicitly selected before analysis and within source max strain 0.05 for compression",
+    "Yield is first qualified peak before densification, not global maximum",
+    "MD/CD baseline material normalization is direction-aware",
+    "Crosshead and DIC remain independent with alignment, calibration and uncertainty",
+    "Specimen-level mean/sample SD require at least two independent specimens; time samples/cycles never qualify"
+  ],
+  "cyclic": [
+    "Explicit start/turn/end segmentation; preserve signed work and residual set",
+    "Measured open-path work differs from closed-loop hysteretic loss",
+    "No forced closure for paperboard permanent set",
+    "Independent first-cycle peak reference fixed before requests; no future-value leakage"
+  ],
+  "mixed": [
+    "Use configuration 1 modulus and configuration 4 positive channel-area denominator separately",
+    "Channel masks and pixel-to-area transform must be independently qualified",
+    "No flow-permeability estimate from area alone"
+  ],
+  "numerical": [
+    "Separate external input/assumption/convergence record",
+    "No solver or paper-exact equation implementation",
+    "Maintain theta versus pi-theta and force-axis conventions"
+  ],
+  "density_scaling": [
+    "Three positive relative-density groups from a=b=10,15,20 mm; five independent specimens each",
+    "Normalize modulus and first-peak strength with same-lot independently qualified MD base values",
+    "Freeze aggregation, log transform, fit weights, uncertainty propagation and support before observing data",
+    "Fit log normalized response versus log relative density; report slope/uncertainty without source exponent target",
+    "No source exact density formula until C05 has an independent qualified resolution"
+  ]
+}

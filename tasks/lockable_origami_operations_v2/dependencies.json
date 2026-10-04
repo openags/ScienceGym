@@ -1,0 +1,15 @@
+{
+  "schema_version": "lockable_origami_task.v1",
+  "preparation": [
+    "REGISTER_INPUTS -> design release and qualification -> REQUEST_CUT -> VERIFY_CUT -> REQUEST_FOLD -> VERIFY_FOLD -> REQUEST_STACK_BOND -> VERIFY_STACK_BOND -> VERIFY_CURE -> RECEIVE_SAMPLE"
+  ],
+  "measurement": [
+    "receive/inspect/configure -> dock -> mount/interlock/calibration -> frozen test plan -> request -> independent records -> validate -> analyze",
+    "request safe off -> independent current safe off -> undock -> inspect -> store or quarantine -> cleanup"
+  ],
+  "model": [
+    "register -> qualify metadata scope -> declare original model -> request model -> verify model record -> archive"
+  ],
+  "alternatives": "Independent analysis and safe-off paths may occur in either order after acquisition. Exported synthetic evaluator accepts valid topological event orders.",
+  "holds": "Missing prerequisites select scoped hold; failed/held attempt cannot gain completion credit"
+}
