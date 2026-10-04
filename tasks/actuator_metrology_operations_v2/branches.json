@@ -1,0 +1,415 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "branches": [
+    {
+      "id": "TRIANGULAR_SEARCH",
+      "title": "Regular-lattice displacement design",
+      "phase_class": "numerical_design",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_SEARCH",
+        "E_MODEL",
+        "E_MATERIAL_MODEL"
+      ],
+      "operation_ids": [
+        "DECLARE_DESIGN",
+        "VALIDATE_TOPOLOGY",
+        "REQUEST_DEM",
+        "ARCHIVE"
+      ],
+      "contract": "Select input/output/frozen nodes; protect those nodes from pruning; remove or reinsert beams; rebuild angular neighborhoods; evaluate trial response with independent relaxation; track attempted and accepted moves, seeds and temperature. Default 100 accepted annealing steps is separate from scaling-study schedule.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "AMORPHOUS_SEARCH",
+      "title": "Disordered-lattice displacement design",
+      "phase_class": "numerical_design",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_MODEL",
+        "E_NONLINEAR"
+      ],
+      "operation_ids": [
+        "DECLARE_DESIGN",
+        "VALIDATE_TOPOLOGY",
+        "REQUEST_DEM",
+        "ARCHIVE"
+      ],
+      "contract": "Prepare a mechanically stable jammed-disk contact network through a separate qualified numerical service; do not relabel an arbitrary random graph as jammed. Keep topology and dimensional scaling explicit.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "SCALING",
+      "title": "Search size scaling",
+      "phase_class": "numerical_analysis",
+      "depends_on": [
+        "TRIANGULAR_SEARCH"
+      ],
+      "source_evidence_ids": [
+        "E_SCALING"
+      ],
+      "operation_ids": [
+        "DECLARE_DESIGN",
+        "REQUEST_DEM",
+        "ARCHIVE"
+      ],
+      "contract": "Retain six exact bond counts and 100 independent runs each. Measure actual wall-clock times and environment, never synthesize a runtime from bond count. Fit log runtime against log bond count only after raw runs.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "FEM_VALIDATE",
+      "title": "Continuum validation of selected topology",
+      "phase_class": "numerical_validation",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_MODEL",
+        "E_MATERIAL_MODEL"
+      ],
+      "operation_ids": [
+        "VALIDATE_TOPOLOGY",
+        "REQUEST_FEM",
+        "ARCHIVE"
+      ],
+      "contract": "Convert selected bond geometry to beam representation with traceable dimensions and measured material properties. Preserve frozen/input/output sets and compare DEM/FEM estimates; source linear-elastic model is not material certification.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ],
+      "input_topology_route": "One qualified selected topology: regular search, disordered search or independently frozen human reference; do not require all alternatives",
+      "alternative_upstream_branches": [
+        "TRIANGULAR_SEARCH",
+        "AMORPHOUS_SEARCH"
+      ]
+    },
+    {
+      "id": "FABRICATE",
+      "title": "Fabrication service and specimen intake",
+      "phase_class": "physical_preparation",
+      "depends_on": [
+        "FEM_VALIDATE"
+      ],
+      "source_evidence_ids": [
+        "E_MATERIAL"
+      ],
+      "operation_ids": [
+        "REQUEST_FABRICATION",
+        "RECEIVE_SPECIMEN",
+        "VERIFY_SPECIMEN",
+        "ARCHIVE"
+      ],
+      "contract": "Pass approved independent CAD to qualified FDM service; bind print job, material lot, process card, topology and specimen. No inferred nozzle temperature, speed, infill or constitutive behavior.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_PRINT",
+        "U_TOPOLOGY",
+        "U_MATERIAL",
+        "U_IP"
+      ]
+    },
+    {
+      "id": "PHYSICAL_ORTHOGONAL",
+      "title": "Prepared-specimen orthogonal metrology",
+      "phase_class": "physical_metrology",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_MOUNT",
+        "E_INPUT",
+        "E_IMAGES",
+        "E_METRIC",
+        "E_ORTHO",
+        "E_MOVIES"
+      ],
+      "operation_ids": [
+        "VERIFY_SPECIMEN",
+        "VERIFY_CARDS",
+        "RESOLVE_DIRECTION",
+        "DOCK_SPECIMEN",
+        "FIX_BASE",
+        "VERIFY_BASE",
+        "CALIBRATE_IMAGE",
+        "CAPTURE_BEFORE",
+        "REQUEST_INPUT",
+        "VERIFY_INPUT",
+        "CAPTURE_AFTER",
+        "MEASURE_NODES",
+        "COMPUTE_EFFICIENCY",
+        "RELEASE_INPUT",
+        "VERIFY_UNLOADED",
+        "UNFIX_BASE",
+        "RETRIEVE_SPECIMEN",
+        "INSPECT_SPECIMEN",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "contract": "Qualified prepared human-designed and machine-designed control specimens, each with downward input and specimen-frame leftward target output. Whole fabrication is not credited by accepting prepared samples.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": true,
+      "unknown_parameter_ids": [
+        "U_DIRECTION",
+        "U_FIXTURE",
+        "U_CALIPER",
+        "U_CAMERA",
+        "U_SEGMENTATION",
+        "U_RATE",
+        "U_ANGULAR_N",
+        "U_CLEANUP"
+      ]
+    },
+    {
+      "id": "PHYSICAL_ANTIPARALLEL",
+      "title": "Prepared-specimen anti-parallel metrology",
+      "phase_class": "physical_metrology",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_MOUNT",
+        "E_INPUT",
+        "E_IMAGES",
+        "E_METRIC",
+        "E_ANTI",
+        "E_MOVIES"
+      ],
+      "operation_ids": [
+        "VERIFY_SPECIMEN",
+        "VERIFY_CARDS",
+        "RESOLVE_DIRECTION",
+        "DOCK_SPECIMEN",
+        "FIX_BASE",
+        "VERIFY_BASE",
+        "CALIBRATE_IMAGE",
+        "CAPTURE_BEFORE",
+        "REQUEST_INPUT",
+        "VERIFY_INPUT",
+        "CAPTURE_AFTER",
+        "MEASURE_NODES",
+        "COMPUTE_EFFICIENCY",
+        "RELEASE_INPUT",
+        "VERIFY_UNLOADED",
+        "UNFIX_BASE",
+        "RETRIEVE_SPECIMEN",
+        "INSPECT_SPECIMEN",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "contract": "Qualified prepared human-designed and machine-designed control specimens, each with downward input and specimen-frame upward target output. Resolve actual specimen identity rather than caption movie pointers.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": true,
+      "unknown_parameter_ids": [
+        "U_DIRECTION",
+        "U_FIXTURE",
+        "U_CALIPER",
+        "U_CAMERA",
+        "U_SEGMENTATION",
+        "U_RATE",
+        "U_ANGULAR_N",
+        "U_CLEANUP"
+      ]
+    },
+    {
+      "id": "AMPLITUDE_SCAN",
+      "title": "Numerical amplitude and topology comparison",
+      "phase_class": "numerical_analysis",
+      "depends_on": [
+        "TRIANGULAR_SEARCH",
+        "AMORPHOUS_SEARCH"
+      ],
+      "source_evidence_ids": [
+        "E_NONLINEAR"
+      ],
+      "operation_ids": [
+        "DECLARE_DESIGN",
+        "REQUEST_DEM",
+        "ARCHIVE"
+      ],
+      "contract": "Keep matched triangular/amorphous configurations, displacement scan and 100-actuator distributions separate. No physical amplitude sweep or return-to-zero hysteresis measurements are provided.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "FORCE_PLIERS",
+      "title": "Force-transfer pliers design",
+      "phase_class": "numerical_design",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_FORCE_SEPARATE"
+      ],
+      "operation_ids": [
+        "DECLARE_DESIGN",
+        "VALIDATE_TOPOLOGY",
+        "REQUEST_DEM",
+        "ARCHIVE"
+      ],
+      "contract": "Keep applied force, gauge-spring stiffness, fixed pivot and symmetry-line y constraints. Simulate upper half then mirror. Evaluation stiffness 10 and visualization stiffness 0.01 cannot be substituted; units are dimensionless model units.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "CNN_DATA",
+      "title": "Direction-balanced design dataset",
+      "phase_class": "numerical_data",
+      "depends_on": [
+        "TRIANGULAR_SEARCH"
+      ],
+      "source_evidence_ids": [
+        "E_CNN"
+      ],
+      "operation_ids": [
+        "FREEZE_DATASET",
+        "ARCHIVE"
+      ],
+      "contract": "Accepted and rejected configurations from desired and opposite directions carry signed efficiency. Split by independent simulation run, not adjacent frames, before resampling or fitting.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "CNN_TRAIN",
+      "title": "Image-regression model training",
+      "phase_class": "numerical_learning",
+      "depends_on": [
+        "CNN_DATA"
+      ],
+      "source_evidence_ids": [
+        "E_CNN"
+      ],
+      "operation_ids": [
+        "REQUEST_CNN",
+        "ARCHIVE"
+      ],
+      "contract": "Single-output regression; immutable split IDs, train-only resampling, model/optimizer versions and held-out metrics. No model weights are supplied.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "CNN_SEARCH",
+      "title": "Surrogate-assisted proposal search",
+      "phase_class": "numerical_design",
+      "depends_on": [
+        "CNN_TRAIN"
+      ],
+      "source_evidence_ids": [
+        "E_CNN_SEARCH"
+      ],
+      "operation_ids": [
+        "DECLARE_DESIGN",
+        "REQUEST_CNN",
+        "REQUEST_DEM",
+        "ARCHIVE"
+      ],
+      "contract": "CNN efficiency guides search, but DEM separately measures final structures. Preserve minimum bond-distance novelty checks against all training structures. Do not claim speedup from metadata.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "HEATMAP",
+      "title": "Perturbation heatmap validation",
+      "phase_class": "numerical_analysis",
+      "depends_on": [
+        "CNN_TRAIN"
+      ],
+      "source_evidence_ids": [
+        "E_HEATMAP"
+      ],
+      "operation_ids": [
+        "REQUEST_HEATMAP",
+        "REQUEST_DEM",
+        "ARCHIVE"
+      ],
+      "contract": "Keep black/add and white/remove image perturbations separate; subtract unperturbed prediction; 400 positions on 200 by 200 images; cubic interpolation produces a visualization, not measured mechanics. Integrate over each bond before correlation.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "CROSS_LATTICE",
+      "title": "Cross-lattice heatmap transfer",
+      "phase_class": "numerical_analysis",
+      "depends_on": [
+        "HEATMAP"
+      ],
+      "source_evidence_ids": [
+        "E_HEATMAP"
+      ],
+      "operation_ids": [
+        "REQUEST_HEATMAP",
+        "REQUEST_DEM",
+        "ARCHIVE"
+      ],
+      "contract": "Train on 172-bond lattices and evaluate separate 694-bond configurations; preserve out-of-domain status and DEM ground truth. Same-lattice and transferred-lattice correlations must not be pooled.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": false,
+      "unknown_parameter_ids": [
+        "U_NUMERICAL"
+      ]
+    },
+    {
+      "id": "DIRECTION_HOLD",
+      "title": "Unresolved direction safe hold",
+      "phase_class": "failure_hold",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E_MOVIES"
+      ],
+      "operation_ids": [
+        "HOLD_DIRECTION",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "contract": "No mounting, input request, image result or efficiency calculation is permitted when specimen direction is unresolved.",
+      "physical_execution_implemented": false,
+      "numerical_execution_implemented": false,
+      "synthetic_lifecycle_verified": true,
+      "unknown_parameter_ids": [
+        "U_DIRECTION"
+      ]
+    }
+  ],
+  "experiment_branch_count": 14,
+  "failure_hold_branch_count": 1,
+  "whole_paper_complete": false,
+  "physical_metrology_input_route": "PREPARED_SPECIMEN_SERVICE",
+  "source_fabrication_completion_credited": false
+}

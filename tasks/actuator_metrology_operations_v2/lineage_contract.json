@@ -1,0 +1,36 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "required_bindings": [
+    "episode_id",
+    "fixture_instance_id",
+    "attempt_id",
+    "specimen_id",
+    "specimen_role",
+    "branch_id",
+    "topology_hash",
+    "material_lot",
+    "mount_revision",
+    "node_map_id",
+    "calibration_id",
+    "camera_pose_id",
+    "direction_card_id",
+    "qualification_revision",
+    "before_frame_id",
+    "after_frame_id",
+    "raw_record_hash"
+  ],
+  "freshness_invalidations": [
+    "remount",
+    "camera move",
+    "calibration revision",
+    "node map edit",
+    "specimen swap",
+    "direction revision",
+    "damage",
+    "input release before displaced frame"
+  ],
+  "failure_records_immutable": true,
+  "prepared_specimen_does_not_complete_fabrication": true,
+  "technical_repeats_are_independent_samples": false,
+  "fixture_namespace": "SHA-256 of episode ID, branch ID, scenario and variant; all event, evidence, specimen, calibration and frame identities include this instance"
+}

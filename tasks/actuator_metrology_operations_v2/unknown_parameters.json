@@ -1,0 +1,77 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "unknown_parameters": [
+    {
+      "id": "U_TOPOLOGY",
+      "gap": "Exact CAD/node coordinates, beam cross-section and extrusion depth not in written main/SI",
+      "required_handling": "Prepared original benchmark specimens only; no claim exact paper reproduction"
+    },
+    {
+      "id": "U_PRINT",
+      "gap": "Printer, infill, temperature, speed, orientation, support, conditioning and fabrication variability not specified",
+      "required_handling": "Preparation service boundary; no fabrication recipe inferred"
+    },
+    {
+      "id": "U_CALIPER",
+      "gap": "Caliper resolution, uncertainty and calibration details absent",
+      "required_handling": "Episode-supplied benchmark instrument specification; never source fact"
+    },
+    {
+      "id": "U_CAMERA",
+      "gap": "Camera/lens, imaging distance, pixel scale, pose, calibration and segmentation method unspecified",
+      "required_handling": "Original calibrated imaging fixture and episode-supplied transformation; include stale/missing calibration guards"
+    },
+    {
+      "id": "U_RATE",
+      "gap": "Loading speed, dwell, repetitions, recovery and drift limits unspecified",
+      "required_handling": "Declare benchmark choices independently; no source-based relaxation curve"
+    },
+    {
+      "id": "U_ANGULAR_N",
+      "gap": "n used for the reported physical ηd values is not explicitly specified",
+      "required_handling": "Choose n=2 for bounded task by design; do not use reported η as exact acceptance threshold"
+    },
+    {
+      "id": "U_MATERIAL",
+      "gap": "Numerical TPU constitutive properties, moduli and Poisson ratio not supplied in written methods",
+      "required_handling": "No certified deformation physics; synthetic surrogate must be labeled"
+    },
+    {
+      "id": "U_FORCE",
+      "gap": "Applied physical force and clamp compliance not measured/reported",
+      "required_handling": "Do not infer force, energy efficiency, stresses or safety ratings"
+    },
+    {
+      "id": "U_IP",
+      "gap": "Current patent status and separate data/model licenses unverified",
+      "required_handling": "No author code/data reuse or commercial fabrication clearance claims"
+    },
+    {
+      "id": "U_FIXTURE",
+      "gap": "Mount geometry, contact force, release clearance, supported retrieval and output occlusion limits absent",
+      "required_handling": "Externally qualify mechanical service before any real operation"
+    },
+    {
+      "id": "U_DIRECTION",
+      "gap": "Figure/movie cross-reference conflicts and specimen-to-camera frame mapping",
+      "required_handling": "Explicit specimen node and world-direction qualification card; retain source conflicts"
+    },
+    {
+      "id": "U_SEGMENTATION",
+      "gap": "Node detection, group membership, uncertainty and image registration acceptance not supplied",
+      "required_handling": "Qualified image-processing service; benchmark uses synthetic coordinates only"
+    },
+    {
+      "id": "U_CLEANUP",
+      "gap": "Inspection, recovery, cleaning and storage sequence not supplied",
+      "required_handling": "Authored lifecycle closure using an externally qualified custody and cleanup card"
+    },
+    {
+      "id": "U_NUMERICAL",
+      "gap": "Full initial coordinates, seeds, stopping rule, meshes and trained model are not supplied by this package",
+      "required_handling": "Numerical service contract only, independently implemented and legally reviewed before use"
+    }
+  ],
+  "qualification_cards_are_not_source_facts": true,
+  "default_qualified": false
+}

@@ -1,0 +1,110 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "controls": [
+    {
+      "id": "PHYSICAL_MATCHED_CONTROLS",
+      "branches": [
+        "PHYSICAL_ORTHOGONAL",
+        "PHYSICAL_ANTIPARALLEL"
+      ],
+      "roles": [
+        "human_design",
+        "machine_design"
+      ],
+      "same_conditions": [
+        "nominal 5 mm input",
+        "matched qualification version",
+        "same direction-aware n=2 analysis",
+        "separate specimen and attempt IDs"
+      ],
+      "source_replication_count": null,
+      "fixture_specimens_per_branch": 2,
+      "fixture_repeats_per_specimen": 1,
+      "fixture_origin": "authored_reduced_synthetic",
+      "success_is_high_efficiency": false,
+      "source_control_selection": "Human-designed baselines were selected before optimization simulations or obtained from prior literature to limit hindsight bias; this package supplies no copied baseline CAD"
+    },
+    {
+      "id": "SCALING",
+      "bond_counts": [
+        172,
+        271,
+        392,
+        543,
+        694,
+        885
+      ],
+      "source_runs_per_size": 100,
+      "source_total_runs": 600,
+      "accepted_annealing_steps": "10 * initial_bond_count",
+      "zero_temperature_steps": "2 * initial_bond_count",
+      "input_fraction_of_side_length": 0.01,
+      "executed_runs": 0
+    },
+    {
+      "id": "FORCE",
+      "source_input_force": 0.01,
+      "evaluation_gauge_stiffness": 10.0,
+      "visualization_gauge_stiffness": 0.01,
+      "units": "dimensionless",
+      "physical_force_command": false
+    },
+    {
+      "id": "CNN",
+      "source_image_count": 1163733,
+      "source_runs_per_direction": 1000,
+      "split_unit": "simulation_run",
+      "training_fraction": 0.75,
+      "validation_fraction": 0.25,
+      "epochs": 10,
+      "batch_size": 32,
+      "executed_training": false
+    },
+    {
+      "id": "HEATMAP",
+      "perturbation_pixels": [
+        10,
+        10
+      ],
+      "representation_pixels": [
+        200,
+        200
+      ],
+      "step_pixels": 10,
+      "positions": 400,
+      "modes": [
+        "add_black",
+        "remove_white"
+      ],
+      "same_lattice_bonds": 172,
+      "transfer_lattice_bonds": 694,
+      "independent_runs_in_source": 50,
+      "executed": false
+    },
+    {
+      "id": "DEFAULT_DISPLACEMENT_SEARCH",
+      "source_annealing_accepted_steps": 100,
+      "source_initial_temperature": 0.06,
+      "source_final_temperature": 0.0,
+      "temperature_schedule": "linear over accepted annealing steps",
+      "subsequent_phase": "zero temperature with source run-dependent stopping",
+      "objective": "negative selected signed efficiency",
+      "move": "remove or reinsert one randomly selected beam",
+      "protected_sets": [
+        "input nodes",
+        "output nodes",
+        "frozen nodes"
+      ],
+      "angular_neighbor_update_required": true,
+      "optimizer": "FIRE relaxation in paper; not implemented",
+      "default_dem_parameters": {
+        "k": 5,
+        "lambda": 0.1,
+        "rest_length": 1
+      },
+      "units": "dimensionless",
+      "source_exact_seed_and_stopping_configuration_supplied": false,
+      "executed": false
+    }
+  ]
+}

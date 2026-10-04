@@ -1,0 +1,119 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "evidence": [
+    {
+      "id": "E_ID",
+      "locator": "MAIN front + Crossref",
+      "use": "Bibliographic identity",
+      "fact": "Journal, title, DOI, publication date and CC BY4.0 final published version are independently matched."
+    },
+    {
+      "id": "E_MATERIAL",
+      "locator": "MAIN Methods Sec19",
+      "use": "Material card and preparation-service evidence; 0.32mm is arithmetic derivation, not quoted value",
+      "fact": "Specimens made by FDM using NinjaFlex thermoplastic polyurethane; nozzle size 0.4 mm and layer thickness0.8 times nozzle size."
+    },
+    {
+      "id": "E_MOUNT",
+      "locator": "MAIN Methods Sec19",
+      "use": "Fixed-base relation; exact clamp geometry is an original benchmark fixture",
+      "fact": "Bottom part holder is kept fixed during physical measurement."
+    },
+    {
+      "id": "E_INPUT",
+      "locator": "MAIN Methods Sec19",
+      "use": "Actuation displacement target; tolerance/dwell/force are not specified",
+      "fact": "Input nodes are manually moved by 5 mm with the aid of a caliper."
+    },
+    {
+      "id": "E_IMAGES",
+      "locator": "MAIN Methods Sec19",
+      "use": "Before/after lineage and measurement workflow",
+      "fact": "Images of the initial and displaced structure are captured with a camera; input and output displacements obtained by image processing."
+    },
+    {
+      "id": "E_METRIC",
+      "locator": "MAIN Methods Sec14, Eqs1-2",
+      "use": "Select n=2 explicitly as benchmark design; not assert original experiment n",
+      "fact": "Efficiency is directional output displacement divided by directional input displacement; generalized ηd uses f(γ)=2cos(γ/2)^n−1, n≥2; n=2 reduces to projection metric."
+    },
+    {
+      "id": "E_ANTI",
+      "locator": "MAIN Figure2 caption and pixels",
+      "use": "Reference-only outcome values; not reward constants or evidence of new simulator fidelity",
+      "fact": "Downward input and upward output; FEM human66%/machine241%; physical human67%/machine240%."
+    },
+    {
+      "id": "E_ORTHO",
+      "locator": "SI page4, Figure3 caption and pixels",
+      "use": "Reference-only outcome values and branch directions",
+      "fact": "Downward input and leftward output; FEM human100%/machine152%; physical human100%/machine153%."
+    },
+    {
+      "id": "E_NONLINEAR",
+      "locator": "MAIN Sec5, Figure4",
+      "use": "Do not extend one displacement observation to all input magnitudes",
+      "fact": "Efficiency varies nonlinearly with imposed displacement through local buckling; random and triangular networks differ."
+    },
+    {
+      "id": "E_FORCE_SEPARATE",
+      "locator": "MAIN Sec6, Eq3 and Fig5",
+      "use": "Exclude from physical displacement metrology claim; displacement efficiency is not energy/force efficiency",
+      "fact": "Pliers force-transfer simulations use gauge springs; machine target 50% versus human 22% at given dimensionless model settings."
+    },
+    {
+      "id": "E_MODEL",
+      "locator": "MAIN Sec15-Sec17 + SI page3 Fig2",
+      "use": "Background only. No optimization/CNN/FEM execution represented by bench action",
+      "fact": "DEM is used for design search, FEM for validation before printing; neighbor angular springs updated when beams removed."
+    },
+    {
+      "id": "E_SEARCH",
+      "locator": "MAIN Sec3 and SI page2 Fig1",
+      "use": "Do not present automatic design as deterministic oracle",
+      "fact": "Different seeds yield different efficiency paths; first 100 accepted MC moves are annealing in the default search."
+    },
+    {
+      "id": "E_MOVIES",
+      "locator": "SI descriptions and full-duration sampled Movie2/Movie3",
+      "use": "Movie identity must be observed, not inferred from erroneous cross-reference",
+      "fact": "Movie2 title/content orthogonal; Movie3 title/content anti-parallel, contradicting figure movie pointers."
+    },
+    {
+      "id": "E_BOUNDARY",
+      "locator": "MAIN Code availability + Competing interests",
+      "use": "Do not copy code, trained models, datasets or source geometry, and do not claim patent clearance",
+      "fact": "Code reuse has separate research-only restriction and the authors disclose patent application."
+    },
+    {
+      "id": "E_SCALING",
+      "locator": "Main Sec4, Fig3",
+      "fact": "Six lattice sizes 172, 271, 392, 543, 694, 885 bonds; 100 runs per size; 1 percent side-length input; 10 times bond-count accepted annealing steps and 2 times bond-count zero-temperature steps.",
+      "use": "Whole-paper design accounting only; no numerical execution claim"
+    },
+    {
+      "id": "E_CNN",
+      "locator": "Main Sec18, Fig6",
+      "fact": "Images 192 by 128 pixels; 1,163,733 images from 1,000 desired-direction and 1,000 opposite-direction DEM simulations; split by runs 75/25; ResNet50 regression, Adam/MSE, 10 epochs, batches of 32.",
+      "use": "Whole-paper design accounting only; no numerical execution claim"
+    },
+    {
+      "id": "E_CNN_SEARCH",
+      "locator": "Main Sec8",
+      "fact": "CNN proposals must still be evaluated with DEM; reported speedup does not eliminate the training cost; distance comparison to training configurations checks novelty.",
+      "use": "Whole-paper design accounting only; no numerical execution claim"
+    },
+    {
+      "id": "E_HEATMAP",
+      "locator": "Main Sec20-Sec21, Fig7",
+      "fact": "Non-overlapping 10 by 10 pixel perturbations in a 200 by 200 representation give 400 evaluations; black/add and white/remove maps remain separate; bond-level integration precedes correlation; 172-to-694-bond transfer is separate.",
+      "use": "Whole-paper design accounting only; no numerical execution claim"
+    },
+    {
+      "id": "E_MATERIAL_MODEL",
+      "locator": "Main Sec16-Sec17",
+      "fact": "DEM dimensionless k=5, lambda=0.1, rest length=1; axial and angular terms and angular neighbor updates; linear elastic FEM uses experimentally estimated material properties, Euler-Bernoulli beams and stationary studies.",
+      "use": "Whole-paper design accounting only; no numerical execution claim"
+    }
+  ]
+}

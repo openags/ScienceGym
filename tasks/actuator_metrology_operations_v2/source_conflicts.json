@@ -1,0 +1,40 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "conflicts": [
+    {
+      "id": "C_DIRECTION_CROSSREF",
+      "source_a": "MAIN Sec3 says orthogonal Figure2 and anti-parallel SI Figure3",
+      "source_b": "Actual main Fig2 caption/arrows are anti-parallel; actual SI Fig3 caption/arrows orthogonal",
+      "disposition": "Use explicit caption+arrow geometry for branch direction; retain contradictory narrative in audit. Do not silently rewrite source.",
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C_MOVIE_POINTERS",
+      "source_a": "Main Fig2 points to Movie2; SI Fig3 points to Movie3",
+      "source_b": "Supplement description, actual title cards and sampled content show Movie2 orthogonal, Movie3 anti-parallel",
+      "disposition": "Exclude figure-to-movie pointers as authoritative evidence; pin actual filename and observed title card separately.",
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C_PHYSICAL_RESULTS_POINTER",
+      "source_a": "MAIN Sec19 says measured efficiencies reported in Figure2 and SI Figure1",
+      "source_b": "SI Figure1 is optimization trajectories; SI Figure3 has printed specimen efficiencies",
+      "disposition": "Treat SI1 cross-reference as erroneous for physical result lookup; use explicitly labeled printed panel in SI3 and preserve conflict.",
+      "resolved": false,
+      "qualification_gate": true
+    },
+    {
+      "id": "C_FORCE_PANEL_POINTER",
+      "source_a": "MAIN Sec6 calls both stiffness scan and force scan Figure5c in prose",
+      "source_b": "Figure5c is stiffness scan and Figure5d is input-force scan",
+      "disposition": "Out of chosen task scope; preserve rather than assume force branch uses panel c.",
+      "resolved": false,
+      "qualification_gate": true
+    }
+  ],
+  "default_direction_state": "UNRESOLVED_HOLD",
+  "qualified_interpretation": "Only an externally supplied specimen/node/world-frame direction card may authorize a branch. A fixture-only interpretation does not resolve source errata.",
+  "screen_axis_caution": "Fig1 schematic points right; Sec3 uses negative x for an orthogonal example. No universal screen-axis mapping is inferred from an illustration."
+}

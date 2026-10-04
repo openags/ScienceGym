@@ -1,0 +1,42 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "stations": [
+    {
+      "id": "METROLOGY",
+      "asset_groups": [
+        "A_SPECIMEN_CUSTODY",
+        "A_DISPLACEMENT_FIXTURE",
+        "A_IMAGE_STATION",
+        "A_RECORDS_CONSOLE"
+      ],
+      "requires": [
+        "output free",
+        "base observed fixed",
+        "camera calibration and node registration current",
+        "5 mm input independently verified",
+        "raw paired record custody"
+      ]
+    },
+    {
+      "id": "NUMERICAL",
+      "asset_groups": [
+        "A_COMPUTE_DESK"
+      ],
+      "requires": [
+        "immutable run/config/model lineage",
+        "independent implementation and licensing"
+      ]
+    },
+    {
+      "id": "FABRICATION",
+      "asset_groups": [
+        "A_FABRICATION_SERVICE"
+      ],
+      "requires": [
+        "qualified service",
+        "separate process/material records"
+      ]
+    }
+  ],
+  "hardware_implemented": false
+}

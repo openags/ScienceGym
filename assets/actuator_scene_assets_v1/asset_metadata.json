@@ -1,0 +1,163 @@
+{
+  "schema": "actuator_original_scene.v1",
+  "package_id": "actuator_scene_assets_v1",
+  "version": "1.0.0",
+  "title": "Actuator metrology static laboratory",
+  "task_family": "actuator_metrology_operations_v2",
+  "source_doi": "10.1038/s41467-020-17947-2",
+  "readiness": {
+    "geometry": "original generic diamond lattice, generic apparatus and original AFM carrier reuse",
+    "functionality": "static scene and caller-owned local metadata guards only",
+    "physical_execution": false,
+    "device_io": false,
+    "mechanics_physics": false,
+    "optical_physics": false,
+    "deformation_prediction": false,
+    "collision_validated": false,
+    "physical_geometry_validated": false,
+    "source_conflicts_resolved": false
+  },
+  "files": {
+    "editable": "geometry/actuator_metrology_lab.blend",
+    "apparatus": "geometry/actuator_metrology_lab.glb",
+    "display_only": "geometry/actuator_measurement_display.glb",
+    "generator": "geometry/build_scene.py"
+  },
+  "frame_convention": {
+    "main_scene": "ACTUATOR_AUTHORED_METRIC",
+    "display_scene": "DISPLAY_ONLY_10X",
+    "unit": "m",
+    "handedness": "right",
+    "up_axis_blender": "+Z",
+    "up_axis_gltf": "+Y",
+    "transform_direction": "local_to_parent",
+    "rotation_representation": "quaternion_xyzw",
+    "physical_qualified_transforms": null,
+    "source_to_scene_axis_map": null,
+    "note": "Specimen plane XZ and upright ruler are authored presentation choices. No paper direction inferred from Blender axes."
+  },
+  "display_separation": {
+    "display_only": true,
+    "lattice_uniform_scale_factor": 10,
+    "main_lattice_dimensions": "authored, not source measured",
+    "reference_gauge_native_m": 0.005,
+    "reference_gauge_display_m": 0.05,
+    "scale_applies_to": "diamond lattice and source-labelled distance gauge only, not display furniture or typography"
+  },
+  "source_known_facts": [
+    {
+      "fact": "material",
+      "value": "NinjaFlex thermoplastic polyurethane",
+      "basis": "Main Methods: Human designed structures and 3D printing",
+      "implemented": "teal appearance only; no constitutive model"
+    },
+    {
+      "fact": "nominal nozzle diameter",
+      "value_m": 0.0004,
+      "implemented": "metadata only; no nozzle geometry or print recipe"
+    },
+    {
+      "fact": "nominal layer relation",
+      "value": 0.8,
+      "unit": "times nozzle diameter",
+      "derived_layer_m": 0.00032,
+      "implemented": "metadata only; no slicing or printer settings"
+    },
+    {
+      "fact": "imposed input magnitude",
+      "value_m": 0.005,
+      "implemented": "exact authored static reference segment; no displacement delivered"
+    },
+    {
+      "fact": "physical workflow",
+      "value": "bottom holder fixed; caliper-aided manual input; initial and displaced camera images",
+      "implemented": "generic roles only; parked stage is an authored interface substitute"
+    }
+  ],
+  "authored_geometry": {
+    "lattice": "6 by 4 repeated diamond cells, 14 mm pitch, 1.4 mm beam width, 4 mm extrusion, 88 x 6 x 4 mm base; original generic stand-in",
+    "known_source_cad": false,
+    "optimized_design": false,
+    "source_geometry_traced": false,
+    "all_apparatus_and_contact_dimensions": "authored unqualified",
+    "ruler_tick_spacing_m": 0.001,
+    "ruler_extent_m": 0.06,
+    "ruler_calibrated": false,
+    "target_positions": "author-selected visual targets, not source node IDs",
+    "stage_pose": "parked with positive visible gap; no contact, loaded or safe-state inference"
+  },
+  "source_conflicts": [
+    {
+      "id": "C_DIRECTION_CROSSREF",
+      "source_difference": "Main body calls Fig 2 orthogonal and Supplementary Fig 3 anti-parallel. Main Fig 2 caption and inspected arrows are anti-parallel (input down, output up). Supplementary Fig 3 inspected arrows are orthogonal (input down, output left).",
+      "resolved": false,
+      "required_handling": "Explicit reviewed direction card and source-to-image-to-scene axis map; no default; scene never repairs source labels."
+    },
+    {
+      "id": "C_MOVIE_POINTERS",
+      "source_difference": "Fig 2 caption points to Movie 2; inspected Movie 2 is orthogonal. Supplementary Fig 3 points to Movie 3; inspected Movie 3 is anti-parallel. Keep declared cross-reference and observed visual evidence separate.",
+      "resolved": false,
+      "required_handling": "No automatic relabeling, correction or source branch selection."
+    },
+    {
+      "id": "C_PHYSICAL_RESULTS_POINTER",
+      "source_difference": "Main Methods points to Fig 2 and Supplementary Fig 1 for measured efficiencies; SI Fig 1 contains optimization trajectories, whereas SI Fig 3 contains printed specimen efficiencies.",
+      "resolved": false,
+      "required_handling": "Keep the source pointer discrepancy; do not draw or emit those outcome values."
+    },
+    {
+      "id": "C_FORCE_PANEL_POINTER",
+      "source_difference": "Main force-scan prose points twice to Fig 5c, while caption identifies stiffness in 5c and input force in 5d.",
+      "resolved": false,
+      "required_handling": "Out of displacement-metrology scope; preserve instead of interpreting force outcomes."
+    }
+  ],
+  "source_gaps": [
+    {
+      "id": "U_ANGULAR_N",
+      "gap": "Printed-result exponent n not established; n=2 belongs to the benchmark, not source reproduction."
+    },
+    {
+      "id": "U_IP",
+      "gap": "Separate source-code research-only terms and disclosed patent application do not establish commercial fabrication clearance; current patent status unverified."
+    }
+  ],
+  "provenance": {
+    "geometry": "Original authored geometry and generic helper conventions adapted from original Apache-2.0 transistor/sucrose scenes. No research algorithm, code, figure geometry, source CAD, screenshots, pixels or video frames copied.",
+    "source_reference": {
+      "title": "Automatic design of mechanical metamaterial actuators",
+      "url": "https://www.nature.com/articles/s41467-020-17947-2",
+      "doi": "10.1038/s41467-020-17947-2",
+      "license": "CC BY 4.0, subject to third-party exceptions",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_art_redistributed": false,
+      "source_code_reused": false,
+      "source_code_license_scope": "separate research-only terms; no code used",
+      "patent_application_disclosed": true,
+      "current_patent_status_verified": false,
+      "commercial_fabrication_clearance_claimed": false
+    },
+    "original_work_license": "Apache-2.0",
+    "reused_asset_families": [
+      "afm.sample_carrier",
+      "afm.retention_clamps"
+    ],
+    "reused_mesh_count": 15,
+    "reused_new_unique_asset_credit": 0,
+    "reuse_fit_status": "Empty carrier is a custody-role visual; no actuator is loaded onto it and no physical fit is asserted. Mesh scale retained.",
+    "unique_asset_count": null,
+    "counting_policy": "Seven groups, repeated cells, labels, original-family reuse, GLBs and renders do not inflate independent asset counts.",
+    "fonts": "Built-in Blender Bfont; notice included"
+  },
+  "execution_gates": [
+    "Qualified specimen geometry, contacts, clamp force, handling and collision plan",
+    "Resolved experiment-specific direction interpretation and calibrated axis maps",
+    "Qualified calibration, images, node identities, uncertainty and unloaded evidence",
+    "External physical services remain unavailable in every local state"
+  ],
+  "publication_boundary": {
+    "public_files": "EXPORT_ALLOWLIST.json only",
+    "remote_writes": "none by asset builder",
+    "excluded": "source images/video/PDF/text/code; caches, logs and backups"
+  }
+}

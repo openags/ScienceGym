@@ -1,0 +1,49 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "normal_phases": [
+    "VERIFY_SPECIMEN",
+    "VERIFY_CARDS",
+    "RESOLVE_DIRECTION",
+    "DOCK_SPECIMEN",
+    "FIX_BASE",
+    "VERIFY_BASE",
+    "CALIBRATE_IMAGE",
+    "CAPTURE_BEFORE",
+    "REQUEST_INPUT",
+    "VERIFY_INPUT",
+    "CAPTURE_AFTER",
+    "MEASURE_NODES",
+    "COMPUTE_EFFICIENCY",
+    "RELEASE_INPUT",
+    "VERIFY_UNLOADED",
+    "UNFIX_BASE",
+    "RETRIEVE_SPECIMEN",
+    "INSPECT_SPECIMEN",
+    "ARCHIVE",
+    "CLEAN_STORE"
+  ],
+  "hold_phases": [
+    "HOLD_DIRECTION",
+    "ARCHIVE",
+    "CLEAN_STORE"
+  ],
+  "paired_control_specimens": true,
+  "commands_are_not_state_observations": [
+    "FIX_BASE",
+    "REQUEST_INPUT",
+    "RELEASE_INPUT"
+  ],
+  "independent_state_observations": [
+    "VERIFY_BASE",
+    "VERIFY_INPUT",
+    "VERIFY_UNLOADED"
+  ],
+  "safe_unmount_order": [
+    "RELEASE_INPUT",
+    "VERIFY_UNLOADED",
+    "UNFIX_BASE",
+    "RETRIEVE_SPECIMEN"
+  ],
+  "cleanup_requires_observation": true,
+  "real_adapter_implemented": false
+}

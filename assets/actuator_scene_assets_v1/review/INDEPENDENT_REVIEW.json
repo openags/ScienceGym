@@ -1,0 +1,416 @@
+{
+  "schema": "independent_static_asset_review.v1",
+  "package": "actuator_scene_assets_v1",
+  "paired_task": "actuator_metrology_operations_v2",
+  "reviewed_at_utc": "2026-10-04T07:16:00Z",
+  "verdict": "PASS_CONTENT_AND_EXPORT_POLICY",
+  "blocking_findings": [],
+  "scope": "Independent static geometry, visual evidence, metadata guard, provenance and explicit export-boundary review. Not scientific, physical, manufacturing, legal, patent or hardware qualification.",
+  "reviewed_source_doi": "10.1038/s41467-020-17947-2",
+  "source_evidence": [
+    {
+      "locator_relative_to_local_source": "main.xml",
+      "sha256": "bc696667c3b3748906a35010ffaaa141a4cb81389f900683e1bae3007db4e099",
+      "redistributed": false
+    },
+    {
+      "locator_relative_to_local_source": "main_structured.txt",
+      "sha256": "b9ff653915efda89ab1931e3c66b3516b3d42a5422af210262bc47b02e2397c2",
+      "redistributed": false
+    },
+    {
+      "locator_relative_to_local_source": "si.txt",
+      "sha256": "5557c9383108eea19823fe2f974f8dbc123bea4fd7dae02aff1dfc3621e96a59",
+      "redistributed": false
+    },
+    {
+      "locator_relative_to_local_source": "supplementary/41467_2020_17947_Fig2_HTML.jpg",
+      "sha256": "32a37022b5e2180dfa103667050fde455369f3cedf5b3b934b88814315cef61f",
+      "redistributed": false
+    },
+    {
+      "locator_relative_to_local_source": "renders/si-2.png",
+      "sha256": "562004868ccceb6aa5727e66d207fe7c45610b5df6fbc09d7cbb3d4b7c1e0d8d",
+      "redistributed": false
+    },
+    {
+      "locator_relative_to_local_source": "renders/si-4.png",
+      "sha256": "f2fb675b4ded94e6659b5ca9711cf0fe662e5f9563fc20add583eeed0b1fc7e5",
+      "redistributed": false
+    },
+    {
+      "locator_relative_to_local_source": "renders/movie5_full_contact.png",
+      "sha256": "3a245f13dca7ee0428173628221800f47481d60916fe0784bbfaaf71eb20f7e1",
+      "redistributed": false
+    },
+    {
+      "locator_relative_to_local_source": "renders/movie6_full_contact.png",
+      "sha256": "fdb860021667b8b45010fe26a6577152d6d51177afe56a873e1fdd990bcaf0ff",
+      "redistributed": false
+    }
+  ],
+  "tests": {
+    "stdlib_suite": {
+      "tests": 31,
+      "failures": 0,
+      "status": "PASS"
+    },
+    "independent_native_glb_reuse": {
+      "checks": 691,
+      "failures": 0,
+      "status": "PASS"
+    },
+    "independent_adversarial_semantics": {
+      "checks": 547,
+      "failures": 0,
+      "status": "PASS"
+    },
+    "exporter_isolated_smoke": {
+      "status": "PASS",
+      "checks": [
+        "first-run MANIFEST creation",
+        "byte-identical repeated ZIP",
+        "exact 36 file members",
+        "ZIP CRC integrity",
+        "all 35 manifest entry hashes",
+        "reject allowlisted symlink"
+      ],
+      "note": "Smoke test used reviewer placeholders only in isolated scratch copy. It is not the final release ZIP."
+    }
+  },
+  "visual_review": {
+    "actual_pngs_opened": [
+      "evidence/overview.png",
+      "evidence/sample_handling.png",
+      "evidence/measurement.png"
+    ],
+    "size_pixels": [
+      1600,
+      1100
+    ],
+    "status": "PASS",
+    "findings": [
+      "Overview shows the static apparatus roles and visible direction HOLD.",
+      "Handling view shows empty AFM carrier with retained identity, no specimen-fit claim.",
+      "Measurement close-up shows generic lattice, visual targets, ruler and 5 mm static gauge.",
+      "No source plots, image overlays, efficiency numbers, animated motion or deformation appear.",
+      "48-sample render noise and view-specific cropped/occluded labels are minor presentation limitations; the overview and close-up jointly expose the key boundaries."
+    ]
+  },
+  "geometry": {
+    "native_scenes": [
+      "ACTUATOR_AUTHORED_METRIC",
+      "DISPLAY_ONLY_10X"
+    ],
+    "disjoint_scene_objects": true,
+    "native_font_labels_editable": true,
+    "native_authored_unit": "metre",
+    "gltf_up_axis": "+Y",
+    "native_blender_up_axis": "+Z",
+    "native_reference_m": 0.005,
+    "display_reference_m": 0.05,
+    "lattice_display_scale": 10,
+    "source_to_scene_axis_map": null,
+    "source_geometry_reconstructed": false,
+    "generic_lattice": "6 by 4 diamonds; original 14 mm pitch, 1.4 mm beam width, 4 mm extrusion",
+    "animations_present": false,
+    "external_libraries_present": false,
+    "source_textures_present": false,
+    "embedded_scripts_present": false
+  },
+  "glbs": [
+    {
+      "file": "geometry/actuator_metrology_lab.glb",
+      "self_contained": true,
+      "nodes": 294,
+      "meshes": 240,
+      "semantic_roots": 7,
+      "anchors": 47,
+      "imported_in_blender": true
+    },
+    {
+      "file": "geometry/actuator_measurement_display.glb",
+      "self_contained": true,
+      "nodes": 112,
+      "meshes": 111,
+      "semantic_roots": 0,
+      "anchors": 0,
+      "imported_in_blender": true
+    }
+  ],
+  "bindings": {
+    "operation_bindings": 32,
+    "canonical_anchor_bindings": 30,
+    "total_scene_anchors": 47,
+    "exact_operation_and_canonical_anchor_sets_match_current_task_plan": true,
+    "scene_target_objects_verified": true,
+    "scope": "visual-role metadata only; complete coverage does not imply operation implementation"
+  },
+  "semantic_guard": {
+    "untrusted_local_claims_only": true,
+    "tested": [
+      "malformed card, version, image and run identities",
+      "missing and extra cards",
+      "unreviewed direction disposition",
+      "cross-instance/wrong-kind/wrong-identity/wrong-context/stale/reused claims",
+      "calibration revision context binding",
+      "same-image and mismatched-run rejection",
+      "defensive snapshot, card and manifest copies",
+      "fresh unloading claim before unfix",
+      "used run rejection after repeat lifecycle",
+      "quarantine prevents reopening",
+      "all 32 service names reject across all lifecycle states"
+    ],
+    "physical_execution": false,
+    "displacements_emitted": false,
+    "efficiency_emitted": false,
+    "claims_authenticate_real_world_evidence": false
+  },
+  "provenance": {
+    "original_afm_mesh_count": 15,
+    "reuse_family_count": 2,
+    "new_unique_asset_credit": 0,
+    "original_afm_blend_sha256": "f4a575bebc8c8e352cf8ba6121fc55a3b64b803013aefefb6dc425cc0e98a99e",
+    "original_afm_blend_read_and_compared": true,
+    "preserved": [
+      "vertices",
+      "faces",
+      "relative placement",
+      "rotation",
+      "scale",
+      "modifiers"
+    ],
+    "permitted_changes": [
+      "common root placement offset",
+      "appearance materials"
+    ],
+    "empty_carrier_fit_qualified": false,
+    "source_geometry_code_or_pixels_redistributed": false,
+    "exact_source_file_hash_matches_in_export": 0,
+    "unique_asset_count_inflated": false,
+    "font_notice_present": true,
+    "license_review_scope": "Provenance/disclosure check only; no legal opinion, current patent clearance or commercial fabrication clearance."
+  },
+  "source_interpretation": {
+    "direction_default": "HOLD",
+    "unresolved_conflict_ids": [
+      "C_DIRECTION_CROSSREF",
+      "C_MOVIE_POINTERS",
+      "C_PHYSICAL_RESULTS_POINTER",
+      "C_FORCE_PANEL_POINTER"
+    ],
+    "source_gaps": [
+      "U_ANGULAR_N",
+      "U_IP"
+    ],
+    "source_5mm_used_only_as_static_reference": true,
+    "benchmark_n2_not_source_reproduction": true,
+    "figure_and_movie_labels_silently_repaired": false
+  },
+  "resolved_findings": [
+    {
+      "id": "R_EXPORT_BOOTSTRAP",
+      "finding": "Initial exporter required MANIFEST.sha256 to exist before generating it.",
+      "resolution": "Exporter exempts only that generated file from first-run existence validation, still rejects symlinks, and validates all other required files.",
+      "retest": "PASS in isolated first-freeze, manifest, deterministic-repeat and symlink smoke tests."
+    }
+  ],
+  "nonblocking_limitations": [
+    "The local metadata guard is caller-owned, forgeable symbolic state; it is not authentication, sensor evidence, calibration or hardware authority.",
+    "Static geometry does not reproduce the paper optimized actuator, source node coordinates, mechanics, force, optical physics or any scientific outcome.",
+    "Font licensing notice and article attribution are disclosures, not a general IP or commercial fabrication clearance.",
+    "Review of movie directions used local source contact sheets, not a new quantitative motion analysis."
+  ],
+  "export_policy": {
+    "allowlist_file": "EXPORT_ALLOWLIST.json",
+    "expected_member_count": 36,
+    "manifest_entry_count": 35,
+    "excluded": [
+      "source PDFs/XML/prose dumps/figures/movies/code",
+      "logs",
+      "caches",
+      "Blender backups",
+      "external textures or fonts"
+    ],
+    "status": "PASS"
+  },
+  "freeze_boundary": {
+    "final_zip_verified_in_this_embedded_report": false,
+    "reason": "The final ZIP embeds this report. Exact final ZIP member/manifest/hash verification is performed and reported separately after freeze, without mutating these reviewed bytes.",
+    "required_post_freeze_checks": [
+      "exact allowlist member set",
+      "all manifest hashes",
+      "ZIP CRC",
+      "all member bytes equal reviewed package",
+      "no source data or excluded files",
+      "isolated stdlib tests"
+    ]
+  },
+  "reviewed_payload_files": [
+    {
+      "path": "EXPORT_ALLOWLIST.json",
+      "sha256": "4fcdb679b4fd479c8f25aa47790f54a22bea4908009667b3d8a022fa82f96bad",
+      "bytes": 1297
+    },
+    {
+      "path": "LICENSES/ATTRIBUTION.md",
+      "sha256": "36d4d5cd66289d4c820a0271f497258bd080414752308138c53c9e559b0bccac",
+      "bytes": 1435
+    },
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "path": "LICENSES/Blender-font-notice.txt",
+      "sha256": "85fb4b54a328aa460fd244d57ebd83b87cae5079ed52f9cf1f7f1cc450b18257",
+      "bytes": 1499
+    },
+    {
+      "path": "README.md",
+      "sha256": "29ca0ce8544f3bf01a1a5adf72a8198cc5d40fdd2a0292c38b049bcc0a1e8c54",
+      "bytes": 7137
+    },
+    {
+      "path": "affordances.json",
+      "sha256": "82cd8f3f2c9f89ec3cf51158c05110290aedd9749b4bd027015bb5367679af41",
+      "bytes": 41834
+    },
+    {
+      "path": "asset_inventory.json",
+      "sha256": "04d48adac53dd171ad6eee57914904fd796265de4330c94be792a936b7533d40",
+      "bytes": 173129
+    },
+    {
+      "path": "asset_metadata.json",
+      "sha256": "7518c5767290c1a7b70dd0ab2352230e2e6f802d9766f7eadaf5fdeecd8542c8",
+      "bytes": 7617
+    },
+    {
+      "path": "evidence/measurement.png",
+      "sha256": "04623d00e868f35a4d6ca7446781b4f2f6c512ad87d1965c847500d4ab9c1096",
+      "bytes": 3331845
+    },
+    {
+      "path": "evidence/overview.png",
+      "sha256": "51718c86cefa7a2a1921b25597715075ae7ae7327c160f1746a63e3c0c580eef",
+      "bytes": 2630522
+    },
+    {
+      "path": "evidence/sample_handling.png",
+      "sha256": "cf40f134a1a9a392af7f561127136af6c5b394e19e63fe97ae4c6d4a610ed175",
+      "bytes": 3281370
+    },
+    {
+      "path": "export_package.py",
+      "sha256": "e71109d4b59fc6a769e55f41aafc08f8a6495318220ce8ef05d2659fbdb26838",
+      "bytes": 1259
+    },
+    {
+      "path": "geometry/actuator_measurement_display.glb",
+      "sha256": "bd2359b722763d2d9d190f48527716db83f2f4a6823ee9cfbfb3991b7278fa6c",
+      "bytes": 976164
+    },
+    {
+      "path": "geometry/actuator_metrology_lab.blend",
+      "sha256": "2f106d16ef44e922ac0dca61af1b14b38f06ac690847c72afb5ca23d5e510399",
+      "bytes": 2969160
+    },
+    {
+      "path": "geometry/actuator_metrology_lab.glb",
+      "sha256": "adc98ea9df9852cdf70796ec888ddd74c3640f8d2edfcbfce8efacd43625f41d",
+      "bytes": 3188960
+    },
+    {
+      "path": "geometry/build_scene.py",
+      "sha256": "1024a9d44f281e85a2abd70166fe0d70673e59a7291758013643be0851656d04",
+      "bytes": 21826
+    },
+    {
+      "path": "geometry/reused_carrier_components.json",
+      "sha256": "c2a31f58305ab5b63665eea98944cc6ad9f782b825f027ac1bed98350ea8f183",
+      "bytes": 94219
+    },
+    {
+      "path": "materials/materials.json",
+      "sha256": "f1303afbe7e35bd26c5253bd8470aa3ca461ca973c9de5585eb5d21f91fcd46a",
+      "bytes": 2371
+    },
+    {
+      "path": "operation_bindings.json",
+      "sha256": "67a47e23599c8646088187a9ea64ae6602c628294ceb1b66971bd7dea1c67bdf",
+      "bytes": 13005
+    },
+    {
+      "path": "review/SOURCE_TO_ASSET_AUDIT.md",
+      "sha256": "52f5301ee776aaa2881997293902651b108effb51c33fc5232b532eddbd3c203",
+      "bytes": 4702
+    },
+    {
+      "path": "review/blend_validation.json",
+      "sha256": "0d9b599740faab35d5de416008fe1349b789b9684e540d0e601613047a70ab16",
+      "bytes": 37485
+    },
+    {
+      "path": "review/glb_import_validation.json",
+      "sha256": "a35516134810306feaaab801f7b5aa1be0a3ebf29bc7be2eab9fa4abf8cbc7f2",
+      "bytes": 573
+    },
+    {
+      "path": "review/render_receipt.json",
+      "sha256": "150059e6db7b88f2606963218dc55dac68b7a0396b5575a9fd73a484d0529f30",
+      "bytes": 871
+    },
+    {
+      "path": "review/source_comparison.json",
+      "sha256": "e7c205de9cbcade7bc7a266e263d3a71f805fcb162263ae4c1bfaad4c6dbd731",
+      "bytes": 1619
+    },
+    {
+      "path": "review/test_receipt.txt",
+      "sha256": "7fc2c98f8d7cb414eba37c7a34f4b75a35bef68ee5ca84a0a1d7ab686b5b9813",
+      "bytes": 2507
+    },
+    {
+      "path": "semantic_controls.py",
+      "sha256": "7cf632f7615795d6e1653f341a11dbceb11dc5d89c6812cc9fe737a980bf4139",
+      "bytes": 7535
+    },
+    {
+      "path": "states.json",
+      "sha256": "a0dfdc9dcfa95eae65199daa9432faf8040900f0c7effe53bc7000805b9db049",
+      "bytes": 877
+    },
+    {
+      "path": "task_binding_snapshot.json",
+      "sha256": "dd1425823864ed22da4eec15f943e3cb93dd26c12c3da0f7abdce8304557cc99",
+      "bytes": 6490
+    },
+    {
+      "path": "tests/test_package.py",
+      "sha256": "292d7648789703021cffb4562540a19063facaf02bc9db9c3c251519f123853a",
+      "bytes": 2983
+    },
+    {
+      "path": "tests/test_semantic_controls.py",
+      "sha256": "d75af72b64d500fb4f5a8d1769d25dc854da193e9fc8b6d7125f3718346c8b39",
+      "bytes": 5171
+    },
+    {
+      "path": "tests/verify_blend.py",
+      "sha256": "17abe5b5e638879eeea4d6e8d422d1b2575379b4fd876231c4fd67f050255b26",
+      "bytes": 4577
+    },
+    {
+      "path": "tests/verify_glb_import.py",
+      "sha256": "cbb9eb17dd430084377eb56579fc0e00d910aa87150f2ec09c3c3b55081dbc97",
+      "bytes": 1351
+    },
+    {
+      "path": "write_contracts.py",
+      "sha256": "3fd4516d0d4108059c69d6d7d18daeb4b738db7cc21bdf6eda4dc4eb4c76f425",
+      "bytes": 8481
+    }
+  ]
+}

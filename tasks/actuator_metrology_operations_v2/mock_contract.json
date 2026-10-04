@@ -1,0 +1,29 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "mode": "offline_authored_synthetic_only",
+  "implemented": [
+    "record ordering",
+    "matched specimen/image/calibration lineage",
+    "closed-world typed receipt validation",
+    "signed coordinate projection arithmetic",
+    "safe release/retrieval/cleanup sequence",
+    "replay and actor-result injection rejection"
+  ],
+  "not_implemented": [
+    "image segmentation",
+    "camera acquisition",
+    "robot movement",
+    "TPU deformation",
+    "FDM fabrication",
+    "DEM",
+    "FEM",
+    "CNN",
+    "physical authentication"
+  ],
+  "measurement_origin": "synthetic node-coordinate records; no source pixel data",
+  "qualification_origin": "fixture author only",
+  "source_conflicts_resolved": false,
+  "whole_paper_complete": false,
+  "cross_configuration_replay_protection": "The complete evaluator-owned fixture selection is part of immutable instance identity",
+  "replay_scope": "Reject duplicate/reordered events within a trace and traces from another fixture configuration. No persistent registry prevents resubmitting an identical complete fixture to a later independent verifier invocation."
+}

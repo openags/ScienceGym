@@ -1,0 +1,59 @@
+{
+  "schema_version": "actuator_metrology_independent_review.v1",
+  "source_doi": "10.1038/s41467-020-17947-2",
+  "reviewed_date_utc": "2026-10-04",
+  "status": "PASSED_BOUNDED_OFFLINE_CONTRACT_AND_EXACT_EXPORT",
+  "scope": "closed-world offline prepared-specimen metrology and direction-hold record checks",
+  "whole_paper_complete": false,
+  "qualifies_for_full_paper_target_count": false,
+  "physical_validated": false,
+  "physical_simulation_run": false,
+  "numerical_reproduction_run": false,
+  "author_source_code_used": false,
+  "source_pixels_exported": false,
+  "external_writes": false,
+  "contract_test_file": "review/test_independent_adversarial.py",
+  "contract_test_methods_passed": 26,
+  "synthetic_physical_fixture_configurations": 48,
+  "synthetic_direction_hold_configurations": 1,
+  "export_test_file": "review/test_independent_export.py",
+  "export_test_methods": 7,
+  "export_tests_status": "passed",
+  "findings": [
+    {
+      "id": "R1_ACTOR_PROJECTION",
+      "status": "corrected",
+      "resolution": "Exact actor allowlist contains only agent_visible.json; all other members are evaluator/audit-only"
+    },
+    {
+      "id": "R2_CONFIGURATION_REPLAY",
+      "status": "corrected_and_independently_retested",
+      "resolution": "Immutable fixture_instance_id binds episode, branch, scenario and variant; derived IDs and lineage separate configurations"
+    }
+  ],
+  "source_conflicts_preserved": [
+    "C_DIRECTION_CROSSREF",
+    "C_MOVIE_POINTERS",
+    "C_PHYSICAL_RESULTS_POINTER",
+    "C_FORCE_PANEL_POINTER"
+  ],
+  "metric": "n=2 benchmark-only signed mean output projection divided by signed mean input projection",
+  "source_physical_n": null,
+  "limitations": [
+    "No production authentication or persistent anti-replay registry",
+    "Whole evaluator bundle is pinned to public synthetic fixtures",
+    "No general physical-data validator, calibration qualification, image processing, or safety controller",
+    "All numerical and fabrication routes remain design-only"
+  ],
+  "review_files": [
+    "review/INDEPENDENT_REVIEW.md",
+    "review/INDEPENDENT_REVIEW.json",
+    "review/test_independent_adversarial.py",
+    "review/test_independent_export.py"
+  ],
+  "export_test_methods_passed": 7,
+  "exact_export_member_count_including_manifest": 41,
+  "author_test_methods_independently_rerun_passed": 32,
+  "static_package_verification": "passed",
+  "public_zip_exact_inventory_and_bytes": "passed"
+}

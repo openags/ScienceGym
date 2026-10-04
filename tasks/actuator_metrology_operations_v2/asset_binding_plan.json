@@ -1,0 +1,175 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "binding_status": "STABLE_INTERFACE_PLAN_ONLY",
+  "scene_assets": [
+    {
+      "asset_id": "A_COMPUTE_DESK",
+      "role": "numerical_design",
+      "required_anchor_ids": [
+        "lattice_record",
+        "run_record",
+        "model_record"
+      ],
+      "bind_operation_ids": [
+        "DECLARE_DESIGN",
+        "VALIDATE_TOPOLOGY",
+        "REQUEST_DEM",
+        "REQUEST_FEM",
+        "FREEZE_DATASET",
+        "REQUEST_CNN",
+        "REQUEST_HEATMAP"
+      ],
+      "source_facts_and_limits": "Numerical records only. No optimization, neural network or physics solver implemented.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_FABRICATION_SERVICE",
+      "role": "closed_fabrication_service",
+      "required_anchor_ids": [
+        "design_in",
+        "job_status",
+        "carrier_out"
+      ],
+      "bind_operation_ids": [
+        "REQUEST_FABRICATION",
+        "RECEIVE_SPECIMEN"
+      ],
+      "source_facts_and_limits": "NinjaFlex TPU FDM; source nozzle 0.4 mm, layer 0.8 times nozzle (derived 0.32 mm). No recipe or printer command.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_SPECIMEN_CUSTODY",
+      "role": "specimen_and_carrier",
+      "required_anchor_ids": [
+        "specimen_origin",
+        "carrier_slot",
+        "identity_card",
+        "inspection_view"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_SPECIMEN",
+        "DOCK_SPECIMEN",
+        "RETRIEVE_SPECIMEN",
+        "INSPECT_SPECIMEN",
+        "CLEAN_STORE"
+      ],
+      "source_facts_and_limits": "Exact paper mesh and beam dimensions unknown. Generic rigid visual stand-in; no deformation or source tracing.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_DISPLACEMENT_FIXTURE",
+      "role": "fixed_base_and_input_stage",
+      "required_anchor_ids": [
+        "bottom_holder",
+        "input_contact",
+        "input_origin",
+        "input_5mm_reference",
+        "release_position"
+      ],
+      "bind_operation_ids": [
+        "FIX_BASE",
+        "VERIFY_BASE",
+        "REQUEST_INPUT",
+        "VERIFY_INPUT",
+        "RELEASE_INPUT",
+        "VERIFY_UNLOADED",
+        "UNFIX_BASE"
+      ],
+      "source_facts_and_limits": "Source fixed bottom holder and manually imposed 5 mm input with caliper. Robot stage and clamp geometry are authored interfaces, not source methods.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_IMAGE_STATION",
+      "role": "camera_and_calibration",
+      "required_anchor_ids": [
+        "camera_view",
+        "calibration_plane",
+        "input_marker",
+        "output_marker",
+        "base_marker"
+      ],
+      "bind_operation_ids": [
+        "CALIBRATE_IMAGE",
+        "CAPTURE_BEFORE",
+        "CAPTURE_AFTER",
+        "MEASURE_NODES"
+      ],
+      "source_facts_and_limits": "Source initial/after camera images and image processing. Calibration scale, transforms, lens model, fiducials, camera distance and tolerances require qualification.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_RECORDS_CONSOLE",
+      "role": "lineage_and_analysis",
+      "required_anchor_ids": [
+        "specimen_card",
+        "direction_card",
+        "calibration_card",
+        "run_card",
+        "archive_slot"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_CARDS",
+        "RESOLVE_DIRECTION",
+        "COMPUTE_EFFICIENCY",
+        "ARCHIVE"
+      ],
+      "source_facts_and_limits": "Immutable metadata and direction-aware n=2 benchmark projection. Source exponent for printed results is unknown.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_HOLD_PANEL",
+      "role": "failure_hold",
+      "required_anchor_ids": [
+        "direction_hold",
+        "qualification_hold",
+        "damage_hold",
+        "image_hold",
+        "input_hold"
+      ],
+      "bind_operation_ids": [
+        "HOLD_DIRECTION",
+        "HOLD_QUALIFICATION",
+        "QUARANTINE"
+      ],
+      "source_facts_and_limits": "Authored holds preserve the source discrepancies and prevent dependent work.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    }
+  ],
+  "global_requirements": [
+    "Source text, images, meshes, videos and author code are excluded from the export",
+    "No dynamic deformation, physical contact, calibrated scene millimetres or real motor/camera/printer control",
+    "A 5 mm rendered marker is a source-labelled visual reference, never a metrology calibration",
+    "Do not overlay measured efficiency or source outcomes on actor-visible assets",
+    "Unknown physical geometry, contacts, grasp poses and tolerances must not be invented as qualified",
+    "Numerical design, fabrication service and prepared-specimen metrology are separate completion classes",
+    "Stable group IDs remain distinct from local mesh object IDs"
+  ],
+  "source_known_geometry": [
+    "Nozzle nominal diameter 0.4 mm",
+    "Layer thickness 0.8 times nozzle diameter, derived 0.32 mm",
+    "Input displacement nominal 5 mm",
+    "Bottom holder fixed; before and after images share registered input/output node identity"
+  ],
+  "authored_unknown_geometry": [
+    "All external bench/stage/camera/carrier dimensions",
+    "Specimen lattice topology, beam cross sections and extrusion depth",
+    "Clamp contact regions, force, pad materials and release motion",
+    "Robot grasp/collision frames and transforms",
+    "Camera optics, scale, placement, distortion and lighting"
+  ],
+  "model_build_assigned": true
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "analyses": [
+    {
+      "id": "PROJECTED_DISPLACEMENT",
+      "implementation_supplied": "synthetic-coordinate arithmetic only",
+      "metric": "mean_j(t_out dot delta_r_j) / mean_i(t_in dot delta_r_i)",
+      "metric_n": 2,
+      "choice_origin": "authored_benchmark_from_source_special_case",
+      "source_physical_n": null,
+      "negative_output_preserved": true,
+      "input_denominator_must_be_positive": true,
+      "interpretation": "displacement transfer ratio, not energy efficiency or force gain",
+      "uncertainty": "Synthetic fixture bounds validate contract arithmetic only; qualified propagation required for real data"
+    },
+    {
+      "id": "GENERALIZED_DIRECTION",
+      "implementation_supplied": false,
+      "source_metric": "mean output magnitude weighted by f(gamma) divided by projected input",
+      "source_f": "2 * cos(gamma / 2)^n - 1",
+      "source_n_minimum": 2,
+      "source_printed_n": null
+    },
+    {
+      "id": "NUMERICAL_ANALYSES",
+      "implementation_supplied": false,
+      "analyses": [
+        "DEM relaxation and angular neighbor update",
+        "FEM validation",
+        "log scaling fit",
+        "force-transfer response",
+        "CNN regression and held-out scoring",
+        "novelty distance",
+        "perturbed-image heatmaps",
+        "bondwise correlation"
+      ]
+    }
+  ]
+}

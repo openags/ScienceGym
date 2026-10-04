@@ -1,0 +1,493 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "operations": [
+    {
+      "id": "ARCHIVE",
+      "asset_ids": [
+        "A_RECORDS_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Raw records or held-attempt record retained",
+      "required_output": "Immutable successful and failed attempt lineage",
+      "failure": "Never delete failed attempt to manufacture success",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "CALIBRATE_IMAGE",
+      "asset_ids": [
+        "A_IMAGE_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Current camera pose, mount and specimen",
+      "required_output": "Current image-to-plane map, node map, uncertainty and registration receipt",
+      "failure": "Moving camera or mount invalidates the receipt",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "CAPTURE_AFTER",
+      "asset_ids": [
+        "A_IMAGE_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Input independently verified and current fixed-base state",
+      "required_output": "Fresh displaced frame bound to same specimen, node map, mount and camera calibration",
+      "failure": "No pair across a remount or calibration revision",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "CAPTURE_BEFORE",
+      "asset_ids": [
+        "A_IMAGE_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Unloaded specimen, fixed base, free output, valid calibration",
+      "required_output": "Fresh immutable initial frame with semantic node coordinates and timestamp",
+      "failure": "No stale frame, same-frame pair, wrong specimen or occluded node",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "CLEAN_STORE",
+      "asset_ids": [
+        "A_SPECIMEN_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Safe supported final custody and cleanup card",
+      "required_output": "Observed station cleanup and retained specimen storage",
+      "failure": "Cleanup acknowledgement alone cannot close lifecycle",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "COMPUTE_EFFICIENCY",
+      "asset_ids": [
+        "A_RECORDS_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Traceable signed displacements and declared n=2",
+      "required_output": "Signed mean output projection divided by signed mean input projection",
+      "failure": "Zero/negative input projection invalid; wrong-way output is negative, never absolute-valued",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "DECLARE_DESIGN",
+      "asset_ids": [
+        "A_COMPUTE_DESK"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MODEL"
+      ]
+    },
+    {
+      "id": "DOCK_SPECIMEN",
+      "asset_ids": [
+        "A_SPECIMEN_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Supported carrier and qualified fixture",
+      "required_output": "Mount revision linked to specimen and station",
+      "failure": "Remount invalidates prior baseline and calibration",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "FIX_BASE",
+      "asset_ids": [
+        "A_DISPLACEMENT_FIXTURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Docked specimen and qualified base contact",
+      "required_output": "Command acknowledgement only",
+      "failure": "Acknowledgement is not fixed-base evidence",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "FREEZE_DATASET",
+      "asset_ids": [
+        "A_COMPUTE_DESK"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MODEL"
+      ]
+    },
+    {
+      "id": "HOLD_DIRECTION",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_BOUNDARY"
+      ]
+    },
+    {
+      "id": "HOLD_QUALIFICATION",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_BOUNDARY"
+      ]
+    },
+    {
+      "id": "INSPECT_SPECIMEN",
+      "asset_ids": [
+        "A_SPECIMEN_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Retrieved supported specimen",
+      "required_output": "Post-measurement condition observation",
+      "failure": "Damage prohibits reuse without new qualification",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "MEASURE_NODES",
+      "asset_ids": [
+        "A_IMAGE_STATION"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Valid image pair and qualified segmentation",
+      "required_output": "Signed averaged input/output/base displacements in the same plane",
+      "failure": "Pixel-coordinate y inversion and group identity must be explicit",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "QUARANTINE",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_BOUNDARY"
+      ]
+    },
+    {
+      "id": "RECEIVE_SPECIMEN",
+      "asset_ids": [
+        "A_FABRICATION_SERVICE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MATERIAL"
+      ]
+    },
+    {
+      "id": "RELEASE_INPUT",
+      "asset_ids": [
+        "A_DISPLACEMENT_FIXTURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Sample remains supported",
+      "required_output": "Release command acknowledgement only",
+      "failure": "No unmount until independent unloaded-state observation",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "REQUEST_CNN",
+      "asset_ids": [
+        "A_COMPUTE_DESK"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MODEL"
+      ]
+    },
+    {
+      "id": "REQUEST_DEM",
+      "asset_ids": [
+        "A_COMPUTE_DESK"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MODEL"
+      ]
+    },
+    {
+      "id": "REQUEST_FABRICATION",
+      "asset_ids": [
+        "A_FABRICATION_SERVICE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MATERIAL"
+      ]
+    },
+    {
+      "id": "REQUEST_FEM",
+      "asset_ids": [
+        "A_COMPUTE_DESK"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MODEL"
+      ]
+    },
+    {
+      "id": "REQUEST_HEATMAP",
+      "asset_ids": [
+        "A_COMPUTE_DESK"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MODEL"
+      ]
+    },
+    {
+      "id": "REQUEST_INPUT",
+      "asset_ids": [
+        "A_DISPLACEMENT_FIXTURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Fresh baseline and qualified mechanical service",
+      "required_output": "Input request acknowledgement for nominal 5 mm in declared direction",
+      "failure": "No inference of actual motion from request",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "RESOLVE_DIRECTION",
+      "asset_ids": [
+        "A_RECORDS_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Explicit evidence-backed specimen frame",
+      "required_output": "Declared input/output unit vectors, n=2 benchmark choice and preserved conflict IDs",
+      "failure": "No automatic mapping from a disputed cross-reference",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "RETRIEVE_SPECIMEN",
+      "asset_ids": [
+        "A_SPECIMEN_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Base released and retrieval clear",
+      "required_output": "Specimen returned to identified carrier",
+      "failure": "Custody discontinuity quarantines",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "UNFIX_BASE",
+      "asset_ids": [
+        "A_DISPLACEMENT_FIXTURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Unloaded state independently observed",
+      "required_output": "Base release record with specimen supported",
+      "failure": "Do not free a loaded unsupported sample",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "VALIDATE_TOPOLOGY",
+      "asset_ids": [
+        "A_COMPUTE_DESK"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Qualified independent service input",
+      "required_output": "Immutable service receipt, with work and validation scope explicitly bounded",
+      "failure": "Missing qualification, lineage or evidence fails closed",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_MODEL"
+      ]
+    },
+    {
+      "id": "VERIFY_BASE",
+      "asset_ids": [
+        "A_DISPLACEMENT_FIXTURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Base fixation requested",
+      "required_output": "Independent fixed-base observation; output remains free",
+      "failure": "Unknown fixation or output contact blocks capture",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "VERIFY_CARDS",
+      "asset_ids": [
+        "A_RECORDS_CONSOLE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Current specimen and intended station",
+      "required_output": "Current qualified direction, mechanics, calibration, imaging, segmentation and cleanup cards",
+      "failure": "Missing, expired, stale or actor-authored card holds",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "VERIFY_INPUT",
+      "asset_ids": [
+        "A_DISPLACEMENT_FIXTURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Input request accepted",
+      "required_output": "Independent caliper/stage displacement observation with calibrated uncertainty",
+      "failure": "Wrong sign, magnitude, lateral motion, unknown base or constrained output holds",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "VERIFY_SPECIMEN",
+      "asset_ids": [
+        "A_SPECIMEN_CUSTODY"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Identified retained specimen",
+      "required_output": "Material/lot, independent CAD/topology digest, specimen role and input/output/base semantic nodes observed",
+      "failure": "Unknown or damaged specimen quarantines",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    },
+    {
+      "id": "VERIFY_UNLOADED",
+      "asset_ids": [
+        "A_DISPLACEMENT_FIXTURE"
+      ],
+      "origin": "original_authored_contract",
+      "precondition": "Release requested",
+      "required_output": "Current measured unloaded and supported condition",
+      "failure": "No claim elastic restoration from command alone",
+      "device_command_implemented": false,
+      "source_evidence_ids": [
+        "E_INPUT",
+        "E_MOUNT",
+        "E_IMAGES"
+      ]
+    }
+  ]
+}

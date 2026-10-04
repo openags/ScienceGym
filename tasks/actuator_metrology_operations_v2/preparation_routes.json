@@ -1,0 +1,28 @@
+{
+  "schema_version": "actuator_metrology_task.v1",
+  "routes": [
+    {
+      "id": "FULL_DESIGN_TO_PRINT",
+      "sequence": [
+        "TRIANGULAR_SEARCH or AMORPHOUS_SEARCH",
+        "FEM_VALIDATE",
+        "FABRICATE"
+      ],
+      "implementation": "design-only contracts; all numerical and fabrication services external and unimplemented"
+    },
+    {
+      "id": "PREPARED_METROLOGY",
+      "sequence": [
+        "qualified prepared specimen intake",
+        "PHYSICAL_ORTHOGONAL or PHYSICAL_ANTIPARALLEL"
+      ],
+      "implementation": "offline synthetic task trace only",
+      "does_not_credit": [
+        "TRIANGULAR_SEARCH",
+        "AMORPHOUS_SEARCH",
+        "FEM_VALIDATE",
+        "FABRICATE"
+      ]
+    }
+  ]
+}
