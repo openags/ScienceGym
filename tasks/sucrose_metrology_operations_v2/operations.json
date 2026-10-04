@@ -1,0 +1,450 @@
+{
+  "schema_version": "sucrose_metrology_task.v1",
+  "doi": "10.1038/s41467-026-72281-3",
+  "operations": [
+    {
+      "id": "ARCHIVE",
+      "asset_ids": [
+        "A_CUSTODY_RECORDS"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Failure records are not deleted",
+      "precondition": "Attempt and raw records present",
+      "required_output": "Immutable sample/reference/frame/calibration custody archive"
+    },
+    {
+      "id": "BIND_RECORDS",
+      "asset_ids": [
+        "A_CUSTODY_RECORDS"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "CHECK_REFERENCE",
+      "asset_ids": [
+        "A_REFERENCE_STATION"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Stored historical RI cannot pass",
+      "precondition": "Current session and instrument qualification",
+      "required_output": "Fresh reference job bound to aliquot"
+    },
+    {
+      "id": "CLAMP",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Never treat acknowledgement as clamp-state evidence",
+      "precondition": "Inlet transfer planned, chip docked",
+      "required_output": "Clamp command acknowledgement only"
+    },
+    {
+      "id": "CLEAN_REFERENCE",
+      "asset_ids": [
+        "A_REFERENCE_STATION"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "No wash chemistry or rinse amount invented",
+      "precondition": "Measurement complete and sample retained",
+      "required_output": "Qualified cleaning completion and aliquot custody"
+    },
+    {
+      "id": "CLEAN_STORE",
+      "asset_ids": [
+        "A_CUSTODY_RECORDS"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "No invented flush, waste or disposal settings",
+      "precondition": "Qualified cleaning/storage card and safe custody",
+      "required_output": "Observed cleanup and storage closure"
+    },
+    {
+      "id": "DOCK_CARTRIDGE",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "FILTER",
+      "asset_ids": [
+        "A_STANDARDS_BENCH"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Hold on unsupported filter membrane or recovery",
+      "precondition": "Compatible filter/recovery qualification and identified receiver",
+      "required_output": "Parent bottle to filtered aliquot mapping"
+    },
+    {
+      "id": "FREEZE_CALIBRATION",
+      "asset_ids": [
+        "A_CUSTODY_RECORDS"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "No numerical PCA implementation; test leakage rejects",
+      "precondition": "All declared training references and frames present",
+      "required_output": "Frozen train-only preprocessing and PCA/linear-fit lineage contract"
+    },
+    {
+      "id": "HOLD_BUBBLE",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "HOLD_DRIFT",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "HOLD_FLOW_CONFLICT",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "HOLD_RANGE",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "INSPECT",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Qualified independent state observation",
+      "failure": "Damage or unknown condition quarantines",
+      "precondition": "Retrieved cartridge supported",
+      "required_output": "Current condition observation"
+    },
+    {
+      "id": "INVALIDATE_CALIBRATION",
+      "asset_ids": [
+        "A_OPTICAL_ENCLOSURE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Never reuse after profile/mount change or episode close",
+      "precondition": "Station isolated",
+      "required_output": "Active calibration retired; archived fit stays interpretation-only"
+    },
+    {
+      "id": "LABEL_CAP",
+      "asset_ids": [
+        "A_STANDARDS_BENCH"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Quarantine unlabeled or mismatched specimen",
+      "precondition": "Mixed sample identity retained",
+      "required_output": "Matching sample label and closed-cap observation"
+    },
+    {
+      "id": "LOG_TEMPERATURE",
+      "asset_ids": [
+        "A_OPTICAL_ENCLOSURE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Source observed variations are not acceptance thresholds",
+      "precondition": "Chamber sensor qualification present",
+      "required_output": "Timestamped sensor record, unit and run link"
+    },
+    {
+      "id": "MIX",
+      "asset_ids": [
+        "A_STANDARDS_BENCH"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "No guessed duration, stirring speed or completion from command alone",
+      "precondition": "Recipe-bound mass transfer accepted",
+      "required_output": "Qualified endpoint observation"
+    },
+    {
+      "id": "OBSERVE_BUBBLES",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Unknown or observed bubbles hold acquisition",
+      "precondition": "Exchange receipt current",
+      "required_output": "Separate absent-bubble observation"
+    },
+    {
+      "id": "PRESENT_REFERENCE",
+      "asset_ids": [
+        "A_REFERENCE_STATION"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Carryover uncertainty holds",
+      "precondition": "Fresh aliquot and clean reference surface clearance",
+      "required_output": "Custody transfer and reference presentation receipt"
+    },
+    {
+      "id": "QUARANTINE",
+      "asset_ids": [
+        "A_HOLD_PANEL"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "READ_DARK",
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current bound independent qualified observation",
+      "failure": "Never relabel dark frame as sample speckle",
+      "asset_ids": [
+        "A_OPTICAL_ENCLOSURE"
+      ],
+      "precondition": "Named dark job current",
+      "required_output": "Dark-channel record without sample RI estimate"
+    },
+    {
+      "id": "READ_PAIR",
+      "asset_ids": [
+        "A_OPTICAL_ENCLOSURE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Wrong channel, sample, profile, setup or calibration rejects",
+      "precondition": "Matching acquisition request pending",
+      "required_output": "Distinct synchronized beam-profile and speckle records"
+    },
+    {
+      "id": "READ_REFERENCE",
+      "asset_ids": [
+        "A_REFERENCE_STATION"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Never substitute repeatability for reference uncertainty",
+      "precondition": "Current qualified reference job",
+      "required_output": "RI value, unit, wavelength, temperature and uncertainty record"
+    },
+    {
+      "id": "RECORD_CUSTODY",
+      "asset_ids": [
+        "A_CUSTODY_RECORDS"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "REQUEST_ACQUISITION",
+      "asset_ids": [
+        "A_OPTICAL_ENCLOSURE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Never open optics or request numerical pump/laser controls",
+      "precondition": "Current fresh reference, qualified enclosed station, no drift/bubble alarm",
+      "required_output": "Named closed-service acquisition request"
+    },
+    {
+      "id": "REQUEST_DARK",
+      "asset_ids": [
+        "A_OPTICAL_ENCLOSURE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "No manual source access",
+      "precondition": "Qualified closed station and current profile",
+      "required_output": "Independent laser-off confirmation and dark job"
+    },
+    {
+      "id": "SAFE_ISOLATE",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "No retrieval on command acknowledgement alone",
+      "precondition": "Active or held session known",
+      "required_output": "Independent isolation and safe-exchange receipt"
+    },
+    {
+      "id": "SERVICE_EXCHANGE",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Default unresolved flow holds; synthetic card is not real certification",
+      "precondition": "Qualified service card; source flow discrepancy remains visible",
+      "required_output": "Opaque exchange/carryover receipt, no actor numeric pump value"
+    },
+    {
+      "id": "SWITCH_SAMPLE",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Unclamped transfer prohibited",
+      "precondition": "Verified closed inlet clamp and matched target aliquot",
+      "required_output": "New inlet sample identity; prior clearance invalidated"
+    },
+    {
+      "id": "TARE",
+      "asset_ids": [
+        "A_STANDARDS_BENCH"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "No transfer until tare verified",
+      "precondition": "Empty assigned container on identified balance",
+      "required_output": "Independent zero/tare observation"
+    },
+    {
+      "id": "UNDOCK",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Active flow/optics or unsupported carrier blocks motion",
+      "precondition": "Isolation verified and calibration inactive",
+      "required_output": "Supported carrier retrieval custody"
+    },
+    {
+      "id": "VERIFY_CARTRIDGE",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "VERIFY_CLAMP",
+      "asset_ids": [
+        "A_CARTRIDGE_SERVICE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Missing/stale/unknown state blocks transfer",
+      "precondition": "Current clamp command pending",
+      "required_output": "Independent current closed-clamp observation"
+    },
+    {
+      "id": "VERIFY_ENCLOSURE",
+      "asset_ids": [
+        "A_OPTICAL_ENCLOSURE"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Preserve receipt; quarantine affected sample; do not continue dependent acquisition",
+      "precondition": "Current bound identity and qualified input",
+      "required_output": "Independent record with immutable attempt and custody"
+    },
+    {
+      "id": "VERIFY_MATERIAL",
+      "asset_ids": [
+        "A_STANDARDS_BENCH"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Unknown stock, biological material or absent recipe holds",
+      "precondition": "Qualified water/sucrose lot and authored recipe card present",
+      "required_output": "Material identity and recipe receipt"
+    },
+    {
+      "id": "WEIGH",
+      "asset_ids": [
+        "A_STANDARDS_BENCH"
+      ],
+      "origin": "authored_robot_service_interface",
+      "device_command_implemented": false,
+      "guard": "Current identity, qualified service state and custody; unknown or conflicting state holds",
+      "failure": "Mass mismatch holds; no concentration inferred from appearance",
+      "precondition": "Current tare, recipe and material identities",
+      "required_output": "Separate sucrose/water mass records and accepted transfer"
+    }
+  ]
+}

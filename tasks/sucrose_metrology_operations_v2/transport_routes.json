@@ -1,0 +1,38 @@
+{
+  "schema_version": "sucrose_metrology_task.v1",
+  "doi": "10.1038/s41467-026-72281-3",
+  "routes": [
+    {
+      "id": "STOCK_TO_FILTER",
+      "from_role": "capped bottle",
+      "to_role": "filter inlet",
+      "guard": "qualified aliquot identity and spill-safe support"
+    },
+    {
+      "id": "FILTER_TO_TUBE",
+      "from_role": "filter outlet",
+      "to_role": "labeled tube",
+      "guard": "compatibility card and receiving identity"
+    },
+    {
+      "id": "TUBE_TO_REFERENCE",
+      "from_role": "aliquot",
+      "to_role": "reference station",
+      "guard": "fresh-session custody"
+    },
+    {
+      "id": "TUBE_TO_INLET",
+      "from_role": "aliquot",
+      "to_role": "cartridge inlet",
+      "guard": "independently verified inlet clamp before transfer"
+    },
+    {
+      "id": "CARTRIDGE_TO_STORE",
+      "from_role": "docked cartridge",
+      "to_role": "qualified storage",
+      "guard": "safe isolation receipt, calibration invalidation and inspection"
+    }
+  ],
+  "robot_motion_implemented": false,
+  "poses_known": false
+}

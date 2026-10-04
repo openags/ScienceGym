@@ -1,0 +1,272 @@
+{
+  "schema_version": "sucrose_metrology_task.v1",
+  "doi": "10.1038/s41467-026-72281-3",
+  "branch_count": 7,
+  "branches": [
+    {
+      "id": "PREPARE",
+      "title": "Prepare aqueous standards",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E01"
+      ],
+      "operation_ids": [
+        "ARCHIVE",
+        "CLEAN_STORE",
+        "FILTER",
+        "LABEL_CAP",
+        "MIX",
+        "RECORD_CUSTODY",
+        "TARE",
+        "VERIFY_MATERIAL",
+        "WEIGH"
+      ],
+      "unknown_parameter_ids": [
+        "U_FILTER",
+        "U_STANDARD_LABELS",
+        "U_CUSTODY",
+        "U_CLEANUP"
+      ],
+      "branch_type": "authored_bounded_nonbiological_design",
+      "physical_execution_implemented": false,
+      "whole_paper_complete": false
+    },
+    {
+      "id": "REFERENCE",
+      "title": "Refresh reference measurements",
+      "depends_on": [
+        "PREPARE"
+      ],
+      "source_evidence_ids": [
+        "E01",
+        "E02"
+      ],
+      "operation_ids": [
+        "ARCHIVE",
+        "CHECK_REFERENCE",
+        "CLEAN_REFERENCE",
+        "CLEAN_STORE",
+        "PRESENT_REFERENCE",
+        "READ_REFERENCE",
+        "RECORD_CUSTODY"
+      ],
+      "unknown_parameter_ids": [
+        "U_REFERENCE",
+        "U_CUSTODY",
+        "U_CLEANUP"
+      ],
+      "branch_type": "authored_bounded_nonbiological_design",
+      "physical_execution_implemented": false,
+      "whole_paper_complete": false
+    },
+    {
+      "id": "CALIBRATE",
+      "title": "Lock speckle calibration",
+      "depends_on": [
+        "REFERENCE"
+      ],
+      "source_evidence_ids": [
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "operation_ids": [
+        "ARCHIVE",
+        "CLAMP",
+        "DOCK_CARTRIDGE",
+        "FREEZE_CALIBRATION",
+        "OBSERVE_BUBBLES",
+        "READ_PAIR",
+        "REQUEST_ACQUISITION",
+        "SERVICE_EXCHANGE",
+        "SWITCH_SAMPLE",
+        "VERIFY_CARTRIDGE",
+        "VERIFY_CLAMP",
+        "VERIFY_ENCLOSURE"
+      ],
+      "unknown_parameter_ids": [
+        "U_FLOW",
+        "U_EXCHANGE",
+        "U_GEOMETRY",
+        "U_ENCLOSURE",
+        "U_REFERENCE",
+        "U_FILTER",
+        "U_STANDARD_LABELS",
+        "U_CAMERA",
+        "U_ANALYSIS",
+        "U_CUSTODY",
+        "U_CLEANUP",
+        "U_AUTHORITY"
+      ],
+      "branch_type": "authored_bounded_nonbiological_design",
+      "physical_execution_implemented": false,
+      "whole_paper_complete": false,
+      "session_teardown_operation_ids": [
+        "SAFE_ISOLATE",
+        "INVALIDATE_CALIBRATION",
+        "UNDOCK",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ]
+    },
+    {
+      "id": "INTERPOLATE",
+      "title": "Measure held-out sucrose",
+      "depends_on": [
+        "CALIBRATE"
+      ],
+      "source_evidence_ids": [
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "operation_ids": [
+        "ARCHIVE",
+        "BIND_RECORDS",
+        "CLAMP",
+        "OBSERVE_BUBBLES",
+        "READ_PAIR",
+        "REQUEST_ACQUISITION",
+        "SERVICE_EXCHANGE",
+        "SWITCH_SAMPLE",
+        "VERIFY_CLAMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_FLOW",
+        "U_EXCHANGE",
+        "U_GEOMETRY",
+        "U_ENCLOSURE",
+        "U_REFERENCE",
+        "U_FILTER",
+        "U_STANDARD_LABELS",
+        "U_CAMERA",
+        "U_ANALYSIS",
+        "U_CUSTODY",
+        "U_CLEANUP",
+        "U_AUTHORITY"
+      ],
+      "branch_type": "authored_bounded_nonbiological_design",
+      "physical_execution_implemented": false,
+      "whole_paper_complete": false,
+      "session_teardown_operation_ids": [
+        "SAFE_ISOLATE",
+        "INVALIDATE_CALIBRATION",
+        "UNDOCK",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ]
+    },
+    {
+      "id": "REPEATABILITY",
+      "title": "Collect same-sample repeats",
+      "depends_on": [
+        "CALIBRATE"
+      ],
+      "source_evidence_ids": [
+        "E02",
+        "E06"
+      ],
+      "operation_ids": [
+        "ARCHIVE",
+        "BIND_RECORDS",
+        "CLAMP",
+        "OBSERVE_BUBBLES",
+        "READ_PAIR",
+        "REQUEST_ACQUISITION",
+        "SERVICE_EXCHANGE",
+        "SWITCH_SAMPLE",
+        "VERIFY_CLAMP"
+      ],
+      "unknown_parameter_ids": [
+        "U_FLOW",
+        "U_EXCHANGE",
+        "U_GEOMETRY",
+        "U_ENCLOSURE",
+        "U_REFERENCE",
+        "U_FILTER",
+        "U_STANDARD_LABELS",
+        "U_CAMERA",
+        "U_ANALYSIS",
+        "U_CUSTODY",
+        "U_CLEANUP",
+        "U_AUTHORITY"
+      ],
+      "branch_type": "authored_bounded_nonbiological_design",
+      "physical_execution_implemented": false,
+      "whole_paper_complete": false,
+      "session_teardown_operation_ids": [
+        "SAFE_ISOLATE",
+        "INVALIDATE_CALIBRATION",
+        "UNDOCK",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ]
+    },
+    {
+      "id": "DRIFT_NOISE",
+      "title": "Record drift and dark frames",
+      "depends_on": [
+        "CALIBRATE"
+      ],
+      "source_evidence_ids": [
+        "E04",
+        "E05"
+      ],
+      "operation_ids": [
+        "ARCHIVE",
+        "BIND_RECORDS",
+        "LOG_TEMPERATURE",
+        "READ_DARK",
+        "REQUEST_DARK"
+      ],
+      "unknown_parameter_ids": [
+        "U_FLOW",
+        "U_EXCHANGE",
+        "U_GEOMETRY",
+        "U_ENCLOSURE",
+        "U_REFERENCE",
+        "U_FILTER",
+        "U_STANDARD_LABELS",
+        "U_CAMERA",
+        "U_ANALYSIS",
+        "U_CUSTODY",
+        "U_CLEANUP",
+        "U_AUTHORITY"
+      ],
+      "branch_type": "authored_bounded_nonbiological_design",
+      "physical_execution_implemented": false,
+      "whole_paper_complete": false,
+      "session_teardown_operation_ids": [
+        "SAFE_ISOLATE",
+        "INVALIDATE_CALIBRATION",
+        "UNDOCK",
+        "INSPECT",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ]
+    },
+    {
+      "id": "FLOW_HOLD",
+      "title": "Preserve unresolved flow conflict",
+      "depends_on": [],
+      "source_evidence_ids": [
+        "E03"
+      ],
+      "operation_ids": [
+        "ARCHIVE",
+        "CLEAN_STORE",
+        "HOLD_FLOW_CONFLICT",
+        "SAFE_ISOLATE"
+      ],
+      "unknown_parameter_ids": [
+        "U_FLOW"
+      ],
+      "branch_type": "authored_bounded_nonbiological_design",
+      "physical_execution_implemented": false,
+      "whole_paper_complete": false
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "E01",
+    "locator": "Main Methods sucrose solution preparation",
+    "fact": "Aqueous sucrose standards; example 5g sucrose plus 95g water for 5% by mass; stirred; RI checked using MyBrix; capped 100mL bottles; 0.22µm syringe filter into 1.5mL tubes; remeasure RI at each experiment start.",
+    "physical_operations": [
+      "weigh",
+      "mix",
+      "label",
+      "cap",
+      "filter",
+      "transfer",
+      "measure reference RI"
+    ],
+    "boundary": "Exact mixing duration, filter membrane and rinse/carryover procedure unspecified."
+  },
+  {
+    "id": "E02",
+    "locator": "Main Methods optical measurements and PCA; main Results precision",
+    "fact": "Eleven calibration solutions spanning approximately 0–5% sucrose and RI 1.3328–1.3403; transform speckle frames by PCA and linear PC1/reference-RI fit; unknowns are interpolation within calibration range.",
+    "physical_operations": [
+      "select known standards",
+      "present sample to qualified service",
+      "record reference reading",
+      "capture speckle image",
+      "preserve sample/frame/calibration lineage"
+    ],
+    "boundary": "No extrapolation or concentration prediction from unmatched wavelength reference."
+  },
+  {
+    "id": "E03",
+    "locator": "Main Methods chamber and Fig5; main Results protein paragraph",
+    "fact": "Prebuilt PDMS chip has bubble trap, reversible vacuum chuck, inlet/outlet and SPP chamber; reported chamber sample volume 22µL but optically interrogated volume about 300pL; clamp inlet during transfer between sample tubes.",
+    "physical_operations": [
+      "inspect assembly identity",
+      "map inlet/outlet",
+      "check bubble trap",
+      "clamp",
+      "switch sample",
+      "unclamp after service clearance"
+    ],
+    "boundary": "22µL is chamber capacity, 300pL is optical interrogation region, neither is full required handling volume. Flow conflict blocks invented numeric pump settings."
+  },
+  {
+    "id": "E04",
+    "locator": "Main Fig1 and Methods optical measurements; SI 4.1–4.4 pp10–13",
+    "fact": "Two cameras separate beam profile and speckle measurement. Diffuser is tape; laser wavelength and hardware geometry are calibrated service attributes. SI tests optical drift, position dependence, shot noise and dark frames.",
+    "physical_operations": [
+      "request enclosed acquisition",
+      "store beam/speckle pairs",
+      "request dark frames",
+      "record temperature",
+      "detect geometry drift"
+    ],
+    "boundary": "No open-beam alignment or custom light-source construction in agent task."
+  },
+  {
+    "id": "E05",
+    "locator": "SI 3.3 pp8–9",
+    "fact": "Experiment was not temperature controlled; thermistor on chamber monitored approximately ±50mK over ~30min run and ±5mK over ~30s precision measurement.",
+    "physical_operations": [
+      "log chamber temperature",
+      "associate time stamps",
+      "flag drift"
+    ],
+    "boundary": "These are observed conditions, not validated controller tolerances or mandatory acceptance cutoffs."
+  },
+  {
+    "id": "E06",
+    "locator": "Main Results precision; SI Tables3–4 pp12–13",
+    "fact": "Repeated readings estimate within-sample SD; 4–5 calibration/measurement runs generate 32–40 precision estimates. Averaged precision error is SEM across estimates.",
+    "physical_operations": [
+      "keep calibration run ID",
+      "repeat without relabeling as new independent sample",
+      "maintain training/test distinction"
+    ],
+    "boundary": "Source values are reference outcomes and may not be pass/fail thresholds."
+  }
+]

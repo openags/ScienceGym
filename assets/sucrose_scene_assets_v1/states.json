@@ -1,0 +1,50 @@
+{
+  "implementation": "static_fixture_only",
+  "default_state": {
+    "flow_hold": true,
+    "flow_conflict_id": "FLOW_40X",
+    "source_flow_resolved": false,
+    "pump_enabled": false,
+    "physical_execution": false,
+    "cartridge_docked": false,
+    "inlet_isolated": true,
+    "inlet_isolation_verified": false,
+    "inlet_clamp_cycle": 0,
+    "inlet_verified_cycle": null,
+    "inlet_consumed_cycle": 0,
+    "retention_closed": false,
+    "calibration_valid_for_physical_execution": false
+  },
+  "canonical_scene_pose": {
+    "description": "Authored illustration shows retained cartridge on dock; reset static fixture starts undocked. These are separate named states, not hardware readbacks.",
+    "cartridge_docked": true,
+    "inlet_isolated": true,
+    "retention_closed": true,
+    "pump_enabled": false
+  },
+  "fixture_acknowledgement": "Only permits mock metadata examples; cannot resolve flow source conflict or enable pump/physical acquisition.",
+  "configuration_changes_invalidate": [
+    "setup_version",
+    "plate_id",
+    "wavelength_profile_id"
+  ],
+  "supported_static_states": [
+    "undocked",
+    "docked_unretained",
+    "docked_retained",
+    "inlet_isolated",
+    "source_flow_hold",
+    "fixture_metadata_ready"
+  ],
+  "sample_switch_gate": "A docked cartridge is required for CLAMP, VERIFY_CLAMP and SWITCH_SAMPLE. Undocking invalidates any pending observation. Every successful switch consumes its independent clamp observation. A new CLAMP and VERIFY_CLAMP cycle is required before every subsequent switch; re-verification alone cannot reuse a consumed cycle.",
+  "display_status": "NO LIVE DATA",
+  "not_implemented": [
+    "hardware I/O",
+    "laser operation",
+    "fluid physics",
+    "speckle synthesis",
+    "robot control",
+    "collision or grasp validation",
+    "calibration execution"
+  ]
+}

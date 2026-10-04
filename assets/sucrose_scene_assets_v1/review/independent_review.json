@@ -1,0 +1,398 @@
+{
+  "schema": "sucrose_scene_independent_review.v1",
+  "review_date_utc": "2026-10-04",
+  "reviewer": "Independent asset reviewer, separate from implementer",
+  "status": "PASS_STATIC_ASSET_SCOPE",
+  "approved": true,
+  "approval_scope": "Original editable generic static scene, explicit metadata-only bindings and local fixture guards. This is not laboratory execution, validated scientific simulation, physical safety certification, legal advice or public-publishing authorization.",
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "id": "R01",
+      "severity": "blocking",
+      "finding": "Initial GLBs contained unintended second scenes; display GLB also contained the six apparatus groups, and main GLB contained an extra studio floor.",
+      "resolution": "Final exports use active-scene isolation; both independently decoded exports contain exactly one intended scene, with no extra floors, cross-scene assets, or orphan nodes.",
+      "verified": true
+    },
+    {
+      "id": "R02",
+      "severity": "blocking",
+      "finding": "Initial fixture accepted blank setup, plate and wavelength identifiers.",
+      "resolution": "Receipt validates all ten identity fields as nonempty, non-whitespace strings; method and direct-state invalid values are covered by regression tests.",
+      "verified": true
+    },
+    {
+      "id": "R03",
+      "severity": "blocking",
+      "finding": "Mixed valid/invalid change_setup input could mutate plate before raising and retain stale calibration.",
+      "resolution": "Prevalidation makes rejected multi-field changes atomic. Valid changes invalidate calibration; saved calibration context rejects direct valid-ID configuration mutation. Regression tests pass.",
+      "verified": true
+    },
+    {
+      "id": "R04",
+      "severity": "blocking",
+      "finding": "A successful metadata sample switch previously left the clamp observation reusable; a second switch or re-verification could reuse the previous cycle.",
+      "resolution": "Every successful switch consumes the current verified clamp cycle. A new CLAMP and independent positive VERIFY_CLAMP are required for each subsequent switch. A fresh command invalidates previous observation; initial verification without a command and re-verification of consumed cycles are blocked.",
+      "verified": true
+    },
+    {
+      "id": "R05",
+      "severity": "blocking",
+      "finding": "Initial metadata guard allowed CLAMP/VERIFY_CLAMP/SWITCH_SAMPLE while the cartridge was undocked and could carry a pending observation across undock/redock.",
+      "resolution": "All three actions require a docked cartridge. Undock consumes/discards pending observation; redocking requires a fresh command and verification.",
+      "verified": true
+    }
+  ],
+  "verification": {
+    "package_tests": {
+      "command": "python -m unittest discover -s tests -v",
+      "independently_rerun": true,
+      "passed": 38,
+      "failed": 0,
+      "coverage": "Contracts, stable groups/anchors, source labels, reuse accounting, isolated GLBs, image dimensions, allowlist, default flow hold, fixture acknowledgement, retention/isolation, observed clamp, lineage, calibration invalidation and stale-context protection; one-use clamp cycles, repeated switch rejection, fresh-cycle recovery, dock preconditions and undock/redock invalidation"
+    },
+    "native_blend_tests": {
+      "command": "blender --background --disable-autoexec geometry/sucrose_operations_lab.blend --python tests/verify_blend.py",
+      "independently_rerun": true,
+      "passed": 65,
+      "failed": 0,
+      "version": "4.3.2"
+    },
+    "binding_authority": {
+      "file": "task_binding_snapshot.json",
+      "exact_match_to_task_authority": true,
+      "sha256": "8394cd350e7667c69192f30e240fc8ed16ad5f07674572ae45c158007e096839",
+      "main_groups": 6,
+      "anchors": 31,
+      "operation_ids": 37,
+      "physical_adapter": null
+    },
+    "blend_inspection": {
+      "scenes": [
+        {
+          "name": "DISPLAY_ONLY_NOT_TO_SCALE",
+          "unit_system": "METRIC",
+          "unit_scale": 1.0,
+          "objects": 21,
+          "camera": "CAM.volume_lineage"
+        },
+        {
+          "name": "SUCROSE_AUTHORED_METRIC",
+          "unit_system": "METRIC",
+          "unit_scale": 1.0,
+          "objects": 182,
+          "camera": "CAM.overview"
+        }
+      ],
+      "editable_text_objects": 48,
+      "root_asset_count": 6,
+      "all_root_transforms_identity": true,
+      "anchors": 31,
+      "all_anchor_targets_exist": true,
+      "external_images": false,
+      "inert_viewer_image": "Render Result: VIEWER, no filepath, no packed data",
+      "external_fonts": false,
+      "font": "Blender built-in Bfont Regular",
+      "linked_libraries": false,
+      "embedded_scripts": false,
+      "animation_or_drivers": false,
+      "physics_or_particles": false,
+      "texture_or_script_material_nodes": false
+    },
+    "glb_inspection": [
+      {
+        "file": "geometry/sucrose_operations_lab.glb",
+        "sha256": "605bf7e134c77d29956143132d493c1f08ee61370a98ed7bfd964291df0ccaae",
+        "bytes": 3961364,
+        "scenes": 1,
+        "scene_name": "SUCROSE_AUTHORED_METRIC",
+        "root_names": [
+          "A_STANDARDS_BENCH",
+          "A_REFERENCE_STATION",
+          "A_CARTRIDGE_SERVICE",
+          "A_OPTICAL_ENCLOSURE",
+          "A_CUSTODY_RECORDS",
+          "A_HOLD_PANEL"
+        ],
+        "nodes": 176,
+        "meshes": 139,
+        "all_nodes_reachable": true,
+        "buffer_and_accessor_bounds_valid": true,
+        "all_float_attributes_finite": true,
+        "no_external_resources_textures_animation_skins": true,
+        "no_studio_floor": true,
+        "anchor_axis_mapping_matches": 31
+      },
+      {
+        "file": "geometry/sucrose_volume_lineage_display.glb",
+        "sha256": "712060eaebe9fbd5b5280d68911b0507d2e86d8c3f61f3a4bff5451ce93a7105",
+        "bytes": 2365596,
+        "scenes": 1,
+        "scene_name": "DISPLAY_ONLY_NOT_TO_SCALE",
+        "root_names": [
+          "DISPLAY.volume_lineage"
+        ],
+        "nodes": 17,
+        "meshes": 16,
+        "all_nodes_reachable": true,
+        "buffer_and_accessor_bounds_valid": true,
+        "all_float_attributes_finite": true,
+        "no_external_resources_textures_animation_skins": true,
+        "no_studio_floor": true
+      }
+    ],
+    "blender_glb_reimport": {
+      "status": "PASS",
+      "blender_version": "4.3.2",
+      "files": [
+        {
+          "file": "geometry/sucrose_operations_lab.glb",
+          "sha256": "605bf7e134c77d29956143132d493c1f08ee61370a98ed7bfd964291df0ccaae",
+          "imported_object_count": 176,
+          "asset_root_count": 6,
+          "anchor_count": 31,
+          "status": "PASS"
+        },
+        {
+          "file": "geometry/sucrose_volume_lineage_display.glb",
+          "sha256": "712060eaebe9fbd5b5280d68911b0507d2e86d8c3f61f3a4bff5451ce93a7105",
+          "imported_object_count": 17,
+          "asset_root_count": 0,
+          "anchor_count": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    "reuse": {
+      "source_package": "afm_scene_assets_v1",
+      "source_blend_hash_matches": true,
+      "all_15_source_mesh_vertices_faces_rotations_scales_translations_and_modifiers_match": true,
+      "all_15_final_meshes_match_reuse_snapshot": true,
+      "family_count": 2,
+      "new_unique_asset_credit": 0,
+      "license": "Apache-2.0",
+      "materials_changed": true,
+      "final_translation_authored": true
+    },
+    "pixels": [
+      {
+        "file": "evidence/overview.png",
+        "sha256": "9ca9fe411b188183eec93f00f03a8703304f4c8dee0872193fb449116ba0be87",
+        "dimensions": [
+          1600,
+          1100
+        ],
+        "actual_pixels_independently_inspected": true,
+        "observations": "Coherent original generic lab arrangement. Closed pump with BLOCKED, hold panel with FLOW CONFLICT 40x and optical NO LIVE DATA are legible. No source figure, open beam, numeric pump control or simulated measurement visible."
+      },
+      {
+        "file": "evidence/cartridge_service.png",
+        "sha256": "8aab89b3a8f4b7a9f78f6aaae83160d87681fd2ab45da9f96a7d4776c66c4f9a",
+        "dimensions": [
+          1600,
+          1100
+        ],
+        "actual_pixels_independently_inspected": true,
+        "observations": "Closed cartridge shell, reused retained carrier/clamps, nominal 22 uL label, blocked pump and no-open-beam/no-device-I/O warnings visible. Cropping is intentional close-up composition."
+      },
+      {
+        "file": "evidence/volume_lineage.png",
+        "sha256": "f08e0cd8e9ffc806ffb38c78b13dc4a8c29a89150af437773d74e9a5fb1e0d20",
+        "dimensions": [
+          1600,
+          1100
+        ],
+        "actual_pixels_independently_inspected": true,
+        "observations": "Three distinct equal-size cards identify 22 uL nominal chamber, approximately 300 pL optical region and UNKNOWN handling volume. Explicit display-only/non-volume-scaled warning; no proportional science geometry."
+      }
+    ],
+    "rights_and_allowlist": {
+      "entries": 35,
+      "all_files_exist": true,
+      "explicit_allowlist_and_exporter_read": true,
+      "absolute_paths_traversal_symlinks_private_source_paths_and_blocked_extensions_absent": true,
+      "source_figures_pdfs_extractions_cad_and_textures_absent": true,
+      "source_license": "CC BY-NC-ND 4.0",
+      "original_asset_license": "Apache-2.0",
+      "attribution_and_font_notice_present": true,
+      "source_facts_used_as_labels_only": true,
+      "original_primitive_generation_and_declared_AFМ_reuse_inspected": true
+    },
+    "lifecycle_regressions": {
+      "status": "PASS",
+      "case_count": 21,
+      "cases": [
+        {
+          "case": "undocked clamp",
+          "passed": true,
+          "hold": "CARTRIDGE_NOT_DOCKED"
+        },
+        {
+          "case": "undocked verify",
+          "passed": true,
+          "hold": "CARTRIDGE_NOT_DOCKED"
+        },
+        {
+          "case": "undocked switch",
+          "passed": true,
+          "hold": "CARTRIDGE_NOT_DOCKED"
+        },
+        {
+          "case": "initial verification requires command",
+          "passed": true,
+          "hold": "FRESH_CLAMP_CYCLE_REQUIRED"
+        },
+        {
+          "case": "command alone cannot permit switch",
+          "passed": true,
+          "hold": "CLAMP_NOT_VERIFIED"
+        },
+        {
+          "case": "negative observation cannot qualify",
+          "passed": true,
+          "hold": "CLAMP_NOT_VERIFIED"
+        },
+        {
+          "case": "negative observation blocks switch",
+          "passed": true,
+          "hold": "CLAMP_NOT_VERIFIED"
+        },
+        {
+          "case": "first switch consumes current observation",
+          "passed": true
+        },
+        {
+          "case": "second switch cannot reuse observation",
+          "passed": true,
+          "hold": "CLAMP_NOT_VERIFIED"
+        },
+        {
+          "case": "blocked switch preserves identities and reference",
+          "passed": true
+        },
+        {
+          "case": "consumed cycle cannot be reverified",
+          "passed": true,
+          "hold": "FRESH_CLAMP_CYCLE_REQUIRED"
+        },
+        {
+          "case": "fresh command still requires independent observation",
+          "passed": true,
+          "hold": "CLAMP_NOT_VERIFIED"
+        },
+        {
+          "case": "fresh cycle changes identity and clears reference",
+          "passed": true
+        },
+        {
+          "case": "second successful switch consumed fresh cycle",
+          "passed": true
+        },
+        {
+          "case": "new command invalidates old observation",
+          "passed": true,
+          "hold": "CLAMP_NOT_VERIFIED"
+        },
+        {
+          "case": "undock/redock invalidates observation",
+          "passed": true,
+          "hold": "CLAMP_NOT_VERIFIED"
+        },
+        {
+          "case": "undock/redock cannot reverify old cycle",
+          "passed": true,
+          "hold": "FRESH_CLAMP_CYCLE_REQUIRED"
+        },
+        {
+          "case": "fresh cycle recovers after redock",
+          "passed": true
+        },
+        {
+          "case": "fixture acknowledgement cannot enable pump",
+          "passed": true,
+          "hold": "FLOW_40X_UNRESOLVED_NO_DEVICE_ADAPTER"
+        },
+        {
+          "case": "fixture acknowledgement cannot enable physical acquisition",
+          "passed": true,
+          "hold": "NO_PHYSICAL_ACQUISITION_ADAPTER"
+        },
+        {
+          "case": "source conflict remains held",
+          "passed": true
+        }
+      ],
+      "unchanged_geometry_and_pixels": {
+        "geometry/sucrose_operations_lab.blend": true,
+        "geometry/sucrose_operations_lab.glb": true,
+        "geometry/sucrose_volume_lineage_display.glb": true,
+        "evidence/overview.png": true,
+        "evidence/cartridge_service.png": true,
+        "evidence/volume_lineage.png": true
+      },
+      "scope": "Implemented clamp/switch metadata lifecycle only; not full task evaluator parity, physical execution, persistent replay defense or authentication."
+    },
+    "task_lifecycle_comparison": {
+      "authority": "sucrose_metrology_operations_v2/operations.json and tests/contract.py",
+      "compared_operations": [
+        "CLAMP",
+        "VERIFY_CLAMP",
+        "SWITCH_SAMPLE"
+      ],
+      "aligned_requirements": [
+        "Docked cartridge",
+        "Fresh pending clamp command",
+        "Separate current positive closed-clamp observation",
+        "New command and observation for every switch",
+        "Clear prior sample reference after successful switch",
+        "Physical pump/acquisition stay blocked"
+      ],
+      "scope": "The scene implements a small static metadata guard. The task evaluator is an exact canonical-trace checker. This review does not assert full evaluator parity, observation authentication or persistent replay protection."
+    }
+  },
+  "nonblocking_observations": [
+    "Some small labels and the qualification indicator are partially occluded in the overview. The close-up and editable scene provide better inspection; no essential blocked-pump/no-live-data warning is lost.",
+    "Fine base text on the volume display is smaller and lower-contrast than its main cards, but the three volume categories and values are clear and the explicit scale warning is present.",
+    "Pixel evidence predates metadata-only binding and export-isolation corrections. Generator inspection shows unchanged geometry, materials, cameras and lighting for the final native scenes."
+  ],
+  "limits": [
+    "All dimensions, anchors, port placement and docking/grasp relationships are authored and unqualified. Metres and correct glTF axis conversion do not imply real-device fit or safety.",
+    "Default 40-fold flow conflict remains unresolved and all pump/physical acquisition requests raise holds. Fixture acknowledgement and metadata receipts are never scientific measurements or device permission.",
+    "The 22 uL chamber, approximately 300 pL optical region and unknown handling volume remain distinct. No internal source-shaped SPP, channel, optical path, fluid simulation or precision-as-accuracy claim is supplied.",
+    "Reuse is fifteen mesh parts across two pre-existing original families with zero new unique credit. Six semantic groups, repeated vials and multiple exports are not independent asset designs.",
+    "Review establishes what is visible in the supplied code, geometry, source fact contracts and exports; it is not a global plagiarism search or legal determination.",
+    "Archive has not yet been frozen in this review. The builder must run the reviewed exporter after this report, then verify ZIP membership and manifest hashes against the final allowlist.",
+    "Revised lifecycle approval covers the implemented clamp/switch metadata subset; it is not a replacement for the complete task evaluator, persistent replay protection or authenticated independent service observations."
+  ],
+  "reviewed_file_sha256": {
+    "README.md": "3c1353ff3362501aa3b2245af19467a4c0076feafbd1e5d9f35b26bbf2be37a3",
+    "asset_metadata.json": "87a76c56fb6c718b087c99602485d182f0e84003d3b8de28fce1ff4475c269eb",
+    "asset_inventory.json": "8f6b94d85cc94847cf9486b65224896f3d525cb993c1e67699edc6dbb8a86c00",
+    "affordances.json": "9d716e54e7aeceb3cbaf3814b26bfb9dcffd1de577c0f3bcab2f40d5150bb5aa",
+    "operation_bindings.json": "4ec3fda1b884fd6facf4b4f244743f68b47b52374acbec4980cffb92c03982e9",
+    "states.json": "aa0f2fdad6a6335307b9697932acd6b26511ab49507a8b6afb143d6bf9b32090",
+    "task_binding_snapshot.json": "8394cd350e7667c69192f30e240fc8ed16ad5f07674572ae45c158007e096839",
+    "semantic_controls.py": "926985374d42e57ca4bafa2624559fe06d7e14ddd225daf560f280cacad58b96",
+    "write_contracts.py": "5b09ce2d26a7ebeef01c953181ae5a3eca6e467f00bab335aeaa9693d0c99a52",
+    "geometry/build_scene.py": "227af0953a886f13e4b7dcc309c7ef42aefec3d555704daa87ae854e0d3f1848",
+    "geometry/reused_carrier_components.json": "c2a31f58305ab5b63665eea98944cc6ad9f782b825f027ac1bed98350ea8f183",
+    "geometry/extract_reusable_components.py": "841f12bb33ca8c88954b49ef6029f65ba96da01761325546c7b33b14e7c1a175",
+    "geometry/sucrose_operations_lab.blend": "ff5373ae458db3b7848ff8dd1d9c237f379d93dbdbcf567c4bf8fb2911aba6cf",
+    "geometry/sucrose_operations_lab.glb": "605bf7e134c77d29956143132d493c1f08ee61370a98ed7bfd964291df0ccaae",
+    "geometry/sucrose_volume_lineage_display.glb": "712060eaebe9fbd5b5280d68911b0507d2e86d8c3f61f3a4bff5451ce93a7105",
+    "materials/materials.json": "05f6845c26ec85ef4e7ffce7b3173965d9d1d15a667a1d437f43bb202e9f6a9c",
+    "evidence/overview.png": "9ca9fe411b188183eec93f00f03a8703304f4c8dee0872193fb449116ba0be87",
+    "evidence/cartridge_service.png": "8aab89b3a8f4b7a9f78f6aaae83160d87681fd2ab45da9f96a7d4776c66c4f9a",
+    "evidence/volume_lineage.png": "f08e0cd8e9ffc806ffb38c78b13dc4a8c29a89150af437773d74e9a5fb1e0d20",
+    "tests/test_package.py": "65e5ea3016cb354162f3ac909beaba50e2028041799dba8c9eaa60fd055b9560",
+    "tests/verify_blend.py": "75e1e2dfc687728ad40d8b91286bc32b321d8ea06dd23e24437d925b5b2c3f26",
+    "LICENSES/Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "LICENSES/ATTRIBUTION.md": "e2706be183b00376bd221850c54c49f3631fbcb86850800f3a77dcc7e43a3587",
+    "LICENSES/Blender-font-notice.txt": "85fb4b54a328aa460fd244d57ebd83b87cae5079ed52f9cf1f7f1cc450b18257",
+    "EXPORT_ALLOWLIST.json": "16659579a47062fa6b1716e5cfa4748c2c9e58ff48da68b7cbedb9a368a768e2",
+    "export_package.py": "1ef36cc8bc3315c1c9b8f5168dab873ced5fadf88a46efe9090a8937f8e195f7",
+    "tests/verify_glb_import.py": "7aaa4e9a73be0dd6925a9bbeba0726e50a1ae77c7d4d43a6ebd98e83b6d37884"
+  },
+  "review_revision": 2,
+  "reopened_review_reason": "Rechecked implemented clamp/switch metadata lifecycle against current task preconditions after stale observation reuse was found."
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "sucrose_metrology_task.v1",
+  "doi": "10.1038/s41467-026-72281-3",
+  "role": "actor",
+  "brief": "Prepare and track aqueous sucrose aliquots, refresh references, request bounded enclosed measurements only when qualified, preserve calibration lineage and close custody. Hold on missing, stale or conflicting state.",
+  "allowed_branch_ids": [
+    "PREPARE",
+    "REFERENCE",
+    "CALIBRATE",
+    "INTERPOLATE",
+    "REPEATABILITY",
+    "DRIFT_NOISE",
+    "FLOW_HOLD"
+  ],
+  "action_keys": [
+    "event_id",
+    "job_id",
+    "phase"
+  ],
+  "default_pump": "HOLD unresolved source conflict",
+  "forbidden": [
+    "numeric pump commands",
+    "open enclosure",
+    "fabricate chip",
+    "reuse calibration after profile/mount change",
+    "claim absolute accuracy from precision",
+    "claim whole-paper completion"
+  ],
+  "evaluation_information_included": false
+}

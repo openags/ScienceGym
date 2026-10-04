@@ -1,0 +1,48 @@
+{
+  "schema_version": "sucrose_metrology_task.v1",
+  "doi": "10.1038/s41467-026-72281-3",
+  "contracts": [
+    {
+      "id": "PCA_LOCK",
+      "requirements": [
+        "Fit only declared calibration frames and fresh reference records",
+        "Freeze preprocessing/ROI/gain/setup/profile and transformation before test frames",
+        "No test labels or test frames enter fitting",
+        "Calibration belongs to one run and optical profile",
+        "Raw pair and reference links retained"
+      ],
+      "implementation": "Not implemented; mock validates lineage, not PCA mathematics"
+    },
+    {
+      "id": "INTERPOLATION",
+      "requirements": [
+        "Unknown query lies inside qualified calibration domain",
+        "No extrapolation",
+        "Reference-equivalent RI is not wavelength-corrected absolute optical RI"
+      ],
+      "implementation": "No optical prediction implemented"
+    },
+    {
+      "id": "REPEATABILITY",
+      "requirements": [
+        "SD over repeated observations of the same sample within one run",
+        "Run ID distinct from technical-repeat ID",
+        "SEM of precision estimates separately labeled",
+        "Do not turn 10 technical repeats into 10 independent specimens",
+        "Retain main eight-sample plan separately from four plotted/reporting tests"
+      ],
+      "implementation": "Schema checks only; no measured precision result"
+    },
+    {
+      "id": "BIAS",
+      "requirements": [
+        "Reference accuracy, within-sample precision, wavelength bias and temperature drift are separate",
+        "SI estimates wavelength-dependent offset up to about 0.63 percent and lacks correction at intermediate concentrations",
+        "Best source precision 6.4e-7 RIU is never an acceptance criterion or absolute-accuracy claim"
+      ],
+      "implementation": "No numerical bias correction supplied"
+    }
+  ],
+  "source_numeric_outcomes_are_pass_thresholds": false,
+  "grid_simulation_implemented": false
+}

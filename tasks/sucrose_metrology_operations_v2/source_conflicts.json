@@ -1,0 +1,88 @@
+[
+  {
+    "id": "FLOW_40X",
+    "severity": "execution_blocking",
+    "sources": [
+      "Main Methods fabrication of microfluidic chamber",
+      "Main Fig. 5b caption"
+    ],
+    "values": [
+      "2 cc/min",
+      "approximately 50 µL/min with 1 mL withdrawal"
+    ],
+    "finding": "Forty-fold disagreement; context may differ but source does not reconcile it.",
+    "resolution": "Do not choose or average. Sample-switch pump execution remains unresolved until qualified service provides validated flow/pressure and source-specific authority. A simulator may expose the conflict and require a hold."
+  },
+  {
+    "id": "PRECISION_NOT_ACCURACY",
+    "severity": "claim_boundary",
+    "sources": [
+      "Main abstract and Results measurement precision",
+      "SI 3.1 pp7-8; SI 3.3 pp8-9"
+    ],
+    "finding": "Best 6.4e-7 RIU is repeatability precision. Calibration is at sodium D line near 589.29 nm while optical measurements are 532/1064 nm. SI cannot correct intermediate concentrations and estimates wavelength-dependent bias as large as 0.63%, far above refractometer stated ±3e-4 RIU accuracy.",
+    "resolution": "Keep measurement precision, reference accuracy, and wavelength/model bias as separate fields; do not claim absolute RI accuracy of 6.4e-7."
+  },
+  {
+    "id": "PLATE_LABEL_SWAP",
+    "severity": "local_source_inconsistency",
+    "sources": [
+      "SI 2.1 p5 final paragraph before prospective studies",
+      "Main Results measurement precision; SI Table7 p15"
+    ],
+    "finding": "SI prose lists SPP2/SPP5 heights in reversed order in one sentence; main and table consistently identify SPP2=10.34 µm, SPP5=25.85 µm.",
+    "resolution": "Use main+table identity for bounded design with explicit conflict annotation; no silent correction."
+  },
+  {
+    "id": "REPEAT_COUNT",
+    "severity": "evaluation_boundary",
+    "sources": [
+      "Main Results precision",
+      "Reporting Summary p2"
+    ],
+    "finding": "Main describes eight solutions (four on-calibration, four off-calibration), 10 measurements each, 4-5 runs. Reporting summary describes four precision tests. Figures show four off-calibration tests.",
+    "resolution": "Separate full main sampling plan from subset figure/reporting wording. Do not assert 10 technical repeats are independent samples."
+  },
+  {
+    "id": "SPP5_SEM",
+    "severity": "numeric_reference_only",
+    "sources": [
+      "Main Results and SI Table3 p12",
+      "SI 4.2 p11"
+    ],
+    "values": [
+      "(3.4 ± 0.4)e-6 RIU",
+      "(3.4 ± 0.9)e-6 RIU"
+    ],
+    "resolution": "Retain both; primary result table matches main. No hard acceptance tolerance from either source outcome."
+  },
+  {
+    "id": "GRID_DISCRETIZATION",
+    "severity": "simulation_blocking",
+    "sources": [
+      "SI 1.2 p3"
+    ],
+    "finding": "SI says 8×8 mm area at 20 µm discretization gives 41×41 grid; arithmetic would normally yield roughly 401×401 including endpoints.",
+    "resolution": "No source-faithful numerical simulation implementation until resolved; source audit does not rewrite this claim."
+  },
+  {
+    "id": "DATA_AVAILABILITY_VERSION",
+    "severity": "version_boundary",
+    "sources": [
+      "Main Data availability + reference98",
+      "Reporting Summary p1 dated 2026-01-12"
+    ],
+    "finding": "Main identifies Figshare data DOI; older reporting summary says data available on request. Main metadata says published May8 and VoR July15, whereas SI PDF metadata May5.",
+    "resolution": "Treat main as latest availability statement; preserve date/version differences; dataset not inspected."
+  },
+  {
+    "id": "SECTION_REFERENCE",
+    "severity": "minor_locator",
+    "sources": [
+      "Main Discussion multiplexing",
+      "SI p16"
+    ],
+    "finding": "Main points to SI section9; supplied SI places multiplexing in section7.",
+    "resolution": "Use SI section7 as observed locator; hypothetical multiplexing is excluded."
+  }
+]

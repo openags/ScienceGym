@@ -1,0 +1,166 @@
+{
+  "schema": "sucrose_original_scene.v1",
+  "package_id": "sucrose_scene_assets_v1",
+  "version": "1.0.0",
+  "title": "Sucrose enclosed metrology service",
+  "task_family": "sucrose_metrology_operations_v2",
+  "source_doi": "10.1038/s41467-026-72281-3",
+  "readiness": {
+    "geometry": "original_editable_generic_scene",
+    "rendering": "Cycles CPU evidence",
+    "functionality": "static_scene_and_local_metadata_guards_only",
+    "physical_execution": false,
+    "physical_geometry_validated": false,
+    "source_flow_resolved": false,
+    "collision_validated": false,
+    "calibration_execution": false
+  },
+  "files": {
+    "editable": "geometry/sucrose_operations_lab.blend",
+    "apparatus": "geometry/sucrose_operations_lab.glb",
+    "display_only": "geometry/sucrose_volume_lineage_display.glb",
+    "generator": "geometry/build_scene.py",
+    "reuse_meshes": "geometry/reused_carrier_components.json"
+  },
+  "frame_convention": {
+    "main_scene": "SUCROSE_AUTHORED_METRIC",
+    "main_unit": "m",
+    "up_axis_blender": "+Z",
+    "up_axis_gltf": "+Y",
+    "handedness": "right",
+    "transform_direction": "local_to_parent",
+    "rotation_representation": "quaternion_xyzw",
+    "root_transforms": "identity",
+    "physical_qualified_transforms": null,
+    "all_coordinates": "authored unqualified metric layout, including anchors and bounds"
+  },
+  "display_separation": {
+    "scene": "DISPLAY_ONLY_NOT_TO_SCALE",
+    "file": "geometry/sucrose_volume_lineage_display.glb",
+    "display_only": true,
+    "scale_factor": null,
+    "equal_card_sizes": "non-proportional; do not encode volumes",
+    "microscopic_geometry_supplied": false,
+    "scientific_dimensions_drawn": false
+  },
+  "dimension_ledger": [
+    {
+      "parameter": "chamber_nominal_volume",
+      "value": 22,
+      "unit": "uL",
+      "value_m3": 2.2e-08,
+      "status": "reported nominal volume; label only",
+      "geometry": "No chamber internal mesh or volume validation"
+    },
+    {
+      "parameter": "optically_interrogated_region",
+      "value": 300,
+      "unit": "pL",
+      "approximate": true,
+      "value_m3": 3e-13,
+      "status": "reported optical region; label only",
+      "geometry": "No optical-region mesh or optical model"
+    },
+    {
+      "parameter": "total_handling_volume",
+      "value": null,
+      "unit": "uL",
+      "status": "unknown; chamber/optical volumes are not transfer requirements"
+    },
+    {
+      "parameter": "bottle_nominal_capacity",
+      "value": 100,
+      "unit": "mL",
+      "status": "factual label; external bottle dimensions authored"
+    },
+    {
+      "parameter": "receiving_tube_nominal_capacity",
+      "value": 1.5,
+      "unit": "mL",
+      "status": "factual role; external tube dimensions authored"
+    },
+    {
+      "parameter": "filter_pore_designation",
+      "value": 0.22,
+      "unit": "um",
+      "status": "factual designation; not a mesh feature"
+    },
+    {
+      "parameter": "SPP_diameter",
+      "value": 50,
+      "unit": "um",
+      "status": "reported fact, no source-shaped SPP geometry supplied"
+    },
+    {
+      "parameter": "SPP_step_height_identity",
+      "values_um": {
+        "SPP2": 10.34,
+        "SPP5": 25.85
+      },
+      "status": "main and table identity retained; SI prose reverses names in one sentence; not drawn"
+    },
+    {
+      "parameter": "apparatus_envelopes_and_all_anchors",
+      "value": null,
+      "status": "original authored dimensions listed in inventory; no qualified tolerances"
+    }
+  ],
+  "source_conflicts": [
+    {
+      "id": "FLOW_40X",
+      "resolved": false,
+      "values": [
+        "2 cc/min",
+        "approximately 50 uL/min"
+      ],
+      "default": "PUMP BLOCKED",
+      "fixture_ack_resolves": false,
+      "numeric_pump_control_supplied": false
+    },
+    {
+      "id": "PLATE_LABEL_SWAP",
+      "resolved": false,
+      "handling": "Main/table identity annotated, no silent correction"
+    },
+    {
+      "id": "PRECISION_NOT_ACCURACY",
+      "handling": "No asset claims 6.4e-7 RIU as absolute accuracy or emits any measurement"
+    },
+    {
+      "id": "GRID_DISCRETIZATION",
+      "handling": "No numerical optical simulation implemented"
+    }
+  ],
+  "provenance": {
+    "geometry": "Original generic primitive geometry and original AFM carrier/clamp reuse; no publisher pixels/CAD/figures traced, copied, adapted or embedded",
+    "source_reference": {
+      "title": "Speckle-based measurement of the fractional azimuthal index of orbital angular momentum beams for refractive index sensing",
+      "url": "https://www.nature.com/articles/s41467-026-72281-3",
+      "doi": "10.1038/s41467-026-72281-3",
+      "license": "CC BY-NC-ND 4.0",
+      "source_art_redistributed": false,
+      "source_shape_accuracy_claimed": false
+    },
+    "original_work_license": "Apache-2.0",
+    "reused_asset_families": [
+      "afm.sample_carrier",
+      "afm.retention_clamps"
+    ],
+    "reused_mesh_count": 15,
+    "reused_new_unique_asset_credit": 0,
+    "counting_policy": "Six semantic groups are not six new papers or six proven unique asset families. Repeated parts and exports are not independent assets.",
+    "fonts": "Blender built-in Bfont; native editable text and GLB mesh labels; notice included"
+  },
+  "publication_boundary": {
+    "public_files": "EXPORT_ALLOWLIST.json only",
+    "excluded": "Private sources, figures, raw papers, source dumps, logs, backup Blend files, caches, secrets",
+    "upload_status": "not published by asset builder"
+  },
+  "execution_gates": [
+    "Resolve 40x flow discrepancy with qualified authority",
+    "Qualified chip geometry and actual required handling volume",
+    "Physical docking/grasp/retention/collision and pressure validation",
+    "Device adapters and optical enclosure service authority",
+    "Real reference/calibration/wavelength lineage and drift qualification"
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": "sucrose_metrology_task.v1",
+  "binding_status": "INTERFACE_PLAN_ONLY",
+  "geometry_policy": "Original generic authored meshes only; no tracing, copying, adapting or embedding publisher art. Source facts do not establish shape accuracy.",
+  "scene_assets": [
+    {
+      "asset_id": "A_STANDARDS_BENCH",
+      "role": "standards_bench",
+      "required_anchor_ids": [
+        "weigh_pan",
+        "mix_position",
+        "bottle_slot",
+        "tube_rack",
+        "filter_in",
+        "filter_out"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_MATERIAL",
+        "TARE",
+        "WEIGH",
+        "MIX",
+        "LABEL_CAP",
+        "FILTER"
+      ],
+      "source_evidence_ids": [
+        "E01"
+      ],
+      "source_facts_and_limits": "Bottle nominal capacity 100 mL; receiving tube nominal capacity 1.5 mL; filter pore designation 0.22 micrometre are factual labels, not mesh dimensions.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_REFERENCE_STATION",
+      "role": "reference_station",
+      "required_anchor_ids": [
+        "sample_present",
+        "read_display",
+        "clean_tray"
+      ],
+      "bind_operation_ids": [
+        "CHECK_REFERENCE",
+        "PRESENT_REFERENCE",
+        "READ_REFERENCE",
+        "CLEAN_REFERENCE"
+      ],
+      "source_evidence_ids": [
+        "E01",
+        "E02"
+      ],
+      "source_facts_and_limits": "Two distinct identities: bottle aliquot and reference record. Refractometer service at its qualified reference wavelength; no imported manufacturer shape.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_CARTRIDGE_SERVICE",
+      "role": "cartridge_service",
+      "required_anchor_ids": [
+        "inlet_logical",
+        "outlet_logical",
+        "inlet_clamp",
+        "bubble_window",
+        "dock_anchor",
+        "retained_mount"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_CARTRIDGE",
+        "DOCK_CARTRIDGE",
+        "CLAMP",
+        "SWITCH_SAMPLE",
+        "OBSERVE_BUBBLES",
+        "SERVICE_EXCHANGE",
+        "SAFE_ISOLATE",
+        "UNDOCK",
+        "VERIFY_CLAMP",
+        "INSPECT"
+      ],
+      "source_evidence_ids": [
+        "E03"
+      ],
+      "source_facts_and_limits": "Logical inlet/outlet/bubble-trap/reversible-mount topology known. Source 22 microlitre chamber and about 300 picolitre optical region must be separate labels, not total handling volume. Full chip CAD unknown.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_OPTICAL_ENCLOSURE",
+      "role": "optical_enclosure",
+      "required_anchor_ids": [
+        "sealed_dock",
+        "status_display",
+        "temperature_display",
+        "beam_channel",
+        "speckle_channel",
+        "dark_channel"
+      ],
+      "bind_operation_ids": [
+        "VERIFY_ENCLOSURE",
+        "REQUEST_ACQUISITION",
+        "REQUEST_DARK",
+        "READ_PAIR",
+        "LOG_TEMPERATURE",
+        "INVALIDATE_CALIBRATION",
+        "READ_DARK"
+      ],
+      "source_evidence_ids": [
+        "E04",
+        "E05"
+      ],
+      "source_facts_and_limits": "Two camera roles known. 50 micrometre SPP diameter and plate step heights may appear as factual scale labels only; no publisher-derived internal geometry, light ray or optics construction.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_CUSTODY_RECORDS",
+      "role": "custody_records",
+      "required_anchor_ids": [
+        "sample_card",
+        "reference_card",
+        "calibration_card",
+        "run_card",
+        "archive_slot"
+      ],
+      "bind_operation_ids": [
+        "RECORD_CUSTODY",
+        "FREEZE_CALIBRATION",
+        "BIND_RECORDS",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "source_evidence_ids": [
+        "E01",
+        "E02",
+        "E06"
+      ],
+      "source_facts_and_limits": "Authored record UI, immutable ID references and states. Must distinguish same-sample technical repeats, independent calibration runs and stored specimens.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    },
+    {
+      "asset_id": "A_HOLD_PANEL",
+      "role": "hold_panel",
+      "required_anchor_ids": [
+        "flow_conflict",
+        "drift_hold",
+        "bubble_hold",
+        "range_hold",
+        "qualification_hold"
+      ],
+      "bind_operation_ids": [
+        "HOLD_FLOW_CONFLICT",
+        "HOLD_DRIFT",
+        "HOLD_BUBBLE",
+        "HOLD_RANGE",
+        "QUARANTINE"
+      ],
+      "source_evidence_ids": [
+        "E03",
+        "E04",
+        "E05"
+      ],
+      "source_facts_and_limits": "Authored warnings; no pump controls with numerical setting and no real service activation.",
+      "render_geometry": "authored_generic",
+      "physical_geometry_validated": false,
+      "asset_available": false
+    }
+  ],
+  "global_requirements": [
+    "No open-beam controls or manufacturing station",
+    "No physics engine or synthetic speckle claimed as validated science",
+    "No source pixels or hidden answer overlays",
+    "All collision envelopes, grasp poses, handles, bounding boxes and docking transforms authored unknown; separate render coordinates from qualified physical coordinates",
+    "Every accepted acquisition binds current sample, aliquot, setup version, plate identity, wavelength profile, reference, calibration, frame pair and run ID",
+    "Default flow state is unresolved hold; mock service acknowledgement is fixture-only and never a source resolution"
+  ],
+  "source_known_geometry": [
+    "SPP diameter 50 micrometre",
+    "SPP2 step height 10.34 micrometre and SPP5 step height 25.85 micrometre, with explicit SI prose label conflict",
+    "Chamber nominal volume 22 microlitre, optically interrogated region about 300 picolitre",
+    "Inlet, bubble trap, chamber, outlet, reversible vacuum mounting topology"
+  ],
+  "authored_unknown_geometry": [
+    "All external dimensions of generic service enclosure, bench and carriers",
+    "Cartridge channel layout, cross-sections, connector dimensions and torque",
+    "Robot grasp/collision/docking transforms",
+    "Detailed SPP surface/CAD; renderer must use closed generic cartridge rather than a source-traced plate model"
+  ],
+  "model_build_assigned": false
+}

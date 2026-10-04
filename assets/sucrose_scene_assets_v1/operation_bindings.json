@@ -1,0 +1,187 @@
+{
+  "schema": "sucrose_scene_binding.v1",
+  "task_family": "sucrose_metrology_operations_v2",
+  "source_plan_sha256": "8394cd350e7667c69192f30e240fc8ed16ad5f07674572ae45c158007e096839",
+  "allowed_operation_ids": [
+    "VERIFY_MATERIAL",
+    "TARE",
+    "WEIGH",
+    "MIX",
+    "LABEL_CAP",
+    "FILTER",
+    "CHECK_REFERENCE",
+    "PRESENT_REFERENCE",
+    "READ_REFERENCE",
+    "CLEAN_REFERENCE",
+    "VERIFY_CARTRIDGE",
+    "DOCK_CARTRIDGE",
+    "CLAMP",
+    "SWITCH_SAMPLE",
+    "OBSERVE_BUBBLES",
+    "SERVICE_EXCHANGE",
+    "SAFE_ISOLATE",
+    "UNDOCK",
+    "VERIFY_CLAMP",
+    "INSPECT",
+    "VERIFY_ENCLOSURE",
+    "REQUEST_ACQUISITION",
+    "REQUEST_DARK",
+    "READ_PAIR",
+    "LOG_TEMPERATURE",
+    "INVALIDATE_CALIBRATION",
+    "READ_DARK",
+    "RECORD_CUSTODY",
+    "FREEZE_CALIBRATION",
+    "BIND_RECORDS",
+    "ARCHIVE",
+    "CLEAN_STORE",
+    "HOLD_FLOW_CONFLICT",
+    "HOLD_DRIFT",
+    "HOLD_BUBBLE",
+    "HOLD_RANGE",
+    "QUARANTINE"
+  ],
+  "bindings": [
+    {
+      "asset_id": "A_STANDARDS_BENCH",
+      "scene_root": "A_STANDARDS_BENCH",
+      "instance_id": "A_STANDARDS_BENCH.01",
+      "operation_ids": [
+        "VERIFY_MATERIAL",
+        "TARE",
+        "WEIGH",
+        "MIX",
+        "LABEL_CAP",
+        "FILTER"
+      ],
+      "anchors": {
+        "weigh_pan": "A_STANDARDS_BENCH.weigh_pan",
+        "mix_position": "A_STANDARDS_BENCH.mix_position",
+        "bottle_slot": "A_STANDARDS_BENCH.bottle_slot",
+        "tube_rack": "A_STANDARDS_BENCH.tube_rack",
+        "filter_in": "A_STANDARDS_BENCH.filter_in",
+        "filter_out": "A_STANDARDS_BENCH.filter_out"
+      },
+      "implementation": "static_scene_metadata_only",
+      "physical_execution": false
+    },
+    {
+      "asset_id": "A_REFERENCE_STATION",
+      "scene_root": "A_REFERENCE_STATION",
+      "instance_id": "A_REFERENCE_STATION.01",
+      "operation_ids": [
+        "CHECK_REFERENCE",
+        "PRESENT_REFERENCE",
+        "READ_REFERENCE",
+        "CLEAN_REFERENCE"
+      ],
+      "anchors": {
+        "sample_present": "A_REFERENCE_STATION.sample_present",
+        "read_display": "A_REFERENCE_STATION.read_display",
+        "clean_tray": "A_REFERENCE_STATION.clean_tray"
+      },
+      "implementation": "static_scene_metadata_only",
+      "physical_execution": false
+    },
+    {
+      "asset_id": "A_CARTRIDGE_SERVICE",
+      "scene_root": "A_CARTRIDGE_SERVICE",
+      "instance_id": "A_CARTRIDGE_SERVICE.01",
+      "operation_ids": [
+        "VERIFY_CARTRIDGE",
+        "DOCK_CARTRIDGE",
+        "CLAMP",
+        "SWITCH_SAMPLE",
+        "OBSERVE_BUBBLES",
+        "SERVICE_EXCHANGE",
+        "SAFE_ISOLATE",
+        "UNDOCK",
+        "VERIFY_CLAMP",
+        "INSPECT"
+      ],
+      "anchors": {
+        "inlet_logical": "A_CARTRIDGE_SERVICE.inlet_logical",
+        "outlet_logical": "A_CARTRIDGE_SERVICE.outlet_logical",
+        "inlet_clamp": "A_CARTRIDGE_SERVICE.inlet_clamp",
+        "bubble_window": "A_CARTRIDGE_SERVICE.bubble_window",
+        "dock_anchor": "A_CARTRIDGE_SERVICE.dock_anchor",
+        "retained_mount": "A_CARTRIDGE_SERVICE.retained_mount"
+      },
+      "implementation": "static_scene_metadata_only",
+      "physical_execution": false
+    },
+    {
+      "asset_id": "A_OPTICAL_ENCLOSURE",
+      "scene_root": "A_OPTICAL_ENCLOSURE",
+      "instance_id": "A_OPTICAL_ENCLOSURE.01",
+      "operation_ids": [
+        "VERIFY_ENCLOSURE",
+        "REQUEST_ACQUISITION",
+        "REQUEST_DARK",
+        "READ_PAIR",
+        "LOG_TEMPERATURE",
+        "INVALIDATE_CALIBRATION",
+        "READ_DARK"
+      ],
+      "anchors": {
+        "sealed_dock": "A_OPTICAL_ENCLOSURE.sealed_dock",
+        "status_display": "A_OPTICAL_ENCLOSURE.status_display",
+        "temperature_display": "A_OPTICAL_ENCLOSURE.temperature_display",
+        "beam_channel": "A_OPTICAL_ENCLOSURE.beam_channel",
+        "speckle_channel": "A_OPTICAL_ENCLOSURE.speckle_channel",
+        "dark_channel": "A_OPTICAL_ENCLOSURE.dark_channel"
+      },
+      "implementation": "static_scene_metadata_only",
+      "physical_execution": false
+    },
+    {
+      "asset_id": "A_CUSTODY_RECORDS",
+      "scene_root": "A_CUSTODY_RECORDS",
+      "instance_id": "A_CUSTODY_RECORDS.01",
+      "operation_ids": [
+        "RECORD_CUSTODY",
+        "FREEZE_CALIBRATION",
+        "BIND_RECORDS",
+        "ARCHIVE",
+        "CLEAN_STORE"
+      ],
+      "anchors": {
+        "sample_card": "A_CUSTODY_RECORDS.sample_card",
+        "reference_card": "A_CUSTODY_RECORDS.reference_card",
+        "calibration_card": "A_CUSTODY_RECORDS.calibration_card",
+        "run_card": "A_CUSTODY_RECORDS.run_card",
+        "archive_slot": "A_CUSTODY_RECORDS.archive_slot"
+      },
+      "implementation": "static_scene_metadata_only",
+      "physical_execution": false
+    },
+    {
+      "asset_id": "A_HOLD_PANEL",
+      "scene_root": "A_HOLD_PANEL",
+      "instance_id": "A_HOLD_PANEL.01",
+      "operation_ids": [
+        "HOLD_FLOW_CONFLICT",
+        "HOLD_DRIFT",
+        "HOLD_BUBBLE",
+        "HOLD_RANGE",
+        "QUARANTINE"
+      ],
+      "anchors": {
+        "drift_hold": "A_HOLD_PANEL.drift_hold",
+        "bubble_hold": "A_HOLD_PANEL.bubble_hold",
+        "range_hold": "A_HOLD_PANEL.range_hold",
+        "qualification_hold": "A_HOLD_PANEL.qualification_hold",
+        "flow_conflict": "A_HOLD_PANEL.flow_conflict"
+      },
+      "implementation": "static_scene_metadata_only",
+      "physical_execution": false
+    }
+  ],
+  "runtime_device_adapter": null,
+  "critical_operation_anchor_map": {
+    "CLAMP": "A_CARTRIDGE_SERVICE.inlet_clamp",
+    "VERIFY_CLAMP": "A_CARTRIDGE_SERVICE.inlet_clamp",
+    "SWITCH_SAMPLE": "A_CARTRIDGE_SERVICE.inlet_logical",
+    "HOLD_FLOW_CONFLICT": "A_HOLD_PANEL.flow_conflict"
+  }
+}
