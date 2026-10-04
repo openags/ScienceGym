@@ -1,8 +1,16 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** 33 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
+**See the task before reading its JSON.** 34 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
 
-## Release contents: 36 families
+## Release contents: 37 families
+
+The explorer contains **34 paper-level designs + 3 bounded subsets**, **857 inspection records** and **3,150 operation definitions**. [Arc-Morph](docs/arcmorph.md) adds seven physical route families, 31 operation templates, two auxiliary records, six nonmanual dispositions and one metadata-only qualification hold. All 33 source JSON documents, ten source facts, ten conflicts and fourteen unknown cards remain exact. One quantitative polymer specimen retains eight configuration slots without becoming eight repeats or samples.
+
+Source-listed transport occurrences and authored local phase bodies remain distinct. The same-specimen configuration loop is shown once; cardstock mode ordering and conditional fixture release never become an invented global execution path. The exact original [asset guide](../../assets/arcmorph_scene_assets_v1/README.md) and three static renders are hash-bound. Twelve groups and 66 nominal anchors are illustrative and unqualified, with no source-exact CAD, physics or motion authority. Task-pinned scene hashes are checked during projection validation.
+
+Links resolve to frozen local files without asserting remote publication. Portable export embeds **132 exact source JSON files, four guides and twelve renders** across Arc-Morph, wetting, origami and varactor. All 144 earlier generated family artifacts remain byte-identical. The inspector is author/evaluator material; no actor loader or scientific execution is added. See [verification](VERIFICATION.md).
+
+## Historical wetting integration: 36 families
 
 The explorer contains **33 paper-level designs + 3 bounded subsets**, **841 inspection records** and **3,119 operation definitions**. These are static inspection contents, with zero validated runnable whole-paper tasks.
 

@@ -1,0 +1,177 @@
+{
+  "schema_version": "arcmorph_task.v2",
+  "stations": [
+    {
+      "id": "A01",
+      "role": "Records and allocation console",
+      "lease_required": false,
+      "qualification_default": null,
+      "operation_ids": [
+        "R00",
+        "R01",
+        "R25"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A02",
+      "role": "Separated benign stock storage",
+      "lease_required": false,
+      "qualification_default": null,
+      "operation_ids": [
+        "R02"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A03",
+      "role": "Retained flat and folded carriers",
+      "lease_required": false,
+      "qualification_default": null,
+      "operation_ids": [
+        "R03",
+        "R08",
+        "R23",
+        "R30"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A04",
+      "role": "Closed fabrication service",
+      "lease_required": true,
+      "qualification_default": null,
+      "operation_ids": [
+        "R04",
+        "R05",
+        "R06"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A05",
+      "role": "Original crease-pattern specimen families",
+      "lease_required": false,
+      "qualification_default": null,
+      "operation_ids": [
+        "R07",
+        "R08",
+        "R13",
+        "R21",
+        "R26",
+        "R27",
+        "R28",
+        "R29"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A06",
+      "role": "Supported folding bench",
+      "lease_required": true,
+      "qualification_default": null,
+      "operation_ids": [
+        "R07"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A07",
+      "role": "Rigid metrology fixture",
+      "lease_required": true,
+      "qualification_default": null,
+      "operation_ids": [
+        "R09",
+        "R10",
+        "R13",
+        "R14",
+        "R19",
+        "R30"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A08",
+      "role": "Frontal camera station",
+      "lease_required": true,
+      "qualification_default": null,
+      "operation_ids": [
+        "R11",
+        "R16"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A09",
+      "role": "Lateral camera station",
+      "lease_required": true,
+      "qualification_default": null,
+      "operation_ids": [
+        "R11",
+        "R17"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A10",
+      "role": "Length references and authored calibration target",
+      "lease_required": false,
+      "qualification_default": null,
+      "operation_ids": [
+        "R12",
+        "R15"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A11",
+      "role": "Enclosed qualitative loading fixture",
+      "lease_required": true,
+      "qualification_default": null,
+      "operation_ids": [
+        "R20",
+        "R21",
+        "R22",
+        "R26",
+        "R27",
+        "R28",
+        "R30"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    },
+    {
+      "id": "A12",
+      "role": "Inspection, rest and quarantine storage",
+      "lease_required": false,
+      "qualification_default": null,
+      "operation_ids": [
+        "R06",
+        "R08",
+        "R23",
+        "R24",
+        "R29"
+      ],
+      "units": "m for nominal scene geometry; factual source cm/mm retained with explicit units",
+      "control_boundary": "Record-level proposed interaction only; no equipment endpoint or command."
+    }
+  ],
+  "lease_rules": [
+    "A device is owned by one compatible active job at a time",
+    "Mount lease links specimen, fixture and supported carrier",
+    "Both cameras are exclusively reserved during the pair interval",
+    "Guard-open, interruption, job mismatch or expired lease invalidates dependent receipt",
+    "Release requires matching lease ID and independent supported-unload evidence",
+    "Closeout records unresolved leases explicitly instead of deleting them"
+  ]
+}

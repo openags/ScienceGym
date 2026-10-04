@@ -1,0 +1,1616 @@
+{
+  "schema_version": "arcmorph_task.v2",
+  "operations": [
+    {
+      "id": "R00",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "campaign record",
+      "tool": "records interface",
+      "station": "records",
+      "interaction": "Read requested branches and obtain immutable campaign and allocation IDs.",
+      "preconditions": [
+        "Authorized design or future qualified episode input exists."
+      ],
+      "postconditions": [
+        "Branch queue and scope fixed; no undeclared experiments."
+      ],
+      "completion_evidence": [
+        "Signed scope record and nonempty allocation."
+      ],
+      "failure_response": "Hold if route, material or safety scope is ambiguous.",
+      "source_fact_ids": [],
+      "unknown_ids": [
+        "U10"
+      ],
+      "required_record_type": "scope_allocation",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A01"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R00.primary",
+        "ANCHOR.R00.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A01",
+      "primary_target": "records.branch_queue",
+      "control_target": "records.console.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R01",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "design and qualification records",
+      "tool": "records interface",
+      "station": "records",
+      "interaction": "Resolve family-specific drawing, stock, fold plan and station qualification without inventing values.",
+      "preconditions": [
+        "R00 complete."
+      ],
+      "postconditions": [
+        "Every required input resolved or branch explicitly held."
+      ],
+      "completion_evidence": [
+        "Input versions, approval provenance and null/hold ledger."
+      ],
+      "failure_response": "Do not execute a held branch; continue independent valid branches.",
+      "source_fact_ids": [
+        "F01",
+        "F02",
+        "F08"
+      ],
+      "unknown_ids": [
+        "U01",
+        "U02",
+        "U03",
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U09",
+        "U11",
+        "U12",
+        "U13"
+      ],
+      "required_record_type": "scoped_qualification_dispositions",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A01"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R01.primary",
+        "ANCHOR.R01.control"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C04",
+        "C09"
+      ],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A01",
+      "primary_target": "records.branch_queue",
+      "control_target": "records.console.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R02",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "identified sheet stock",
+      "tool": "label reader and supported gripper",
+      "station": "stock",
+      "interaction": "Read batch/material ID; inspect both supported sheet faces and place accepted sheet on its own carrier.",
+      "preconditions": [
+        "Resolved material card and accessible safe stock."
+      ],
+      "postconditions": [
+        "One stock ID assigned to one prospective specimen."
+      ],
+      "completion_evidence": [
+        "Label, material acceptance and visible condition record."
+      ],
+      "failure_response": "Return mismatched stock to its original slot; quarantine damaged stock.",
+      "source_fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "unknown_ids": [
+        "U02",
+        "U12"
+      ],
+      "required_record_type": "stock_acceptance",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A02"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R02.primary",
+        "ANCHOR.R02.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A02",
+      "primary_target": "stock.sheet.0.0",
+      "control_target": "stock.pickup_support",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R03",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "sheet or specimen on retained carrier",
+      "tool": "carrier handle",
+      "station": "transport",
+      "interaction": "Lift only an unmounted supported carrier, transport and dock at the nominated station.",
+      "preconditions": [
+        "Carrier retained; object not mounted or loaded; route and destination confirmed."
+      ],
+      "postconditions": [
+        "Object and carrier arrive together; source slot becomes empty."
+      ],
+      "completion_evidence": [
+        "Carrier ID, object ID, source/destination custody and dock status."
+      ],
+      "failure_response": "Stop with support maintained if identity or docking is uncertain.",
+      "source_fact_ids": [],
+      "unknown_ids": [
+        "U12"
+      ],
+      "required_record_type": "custody_transfer",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A03"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R03.primary",
+        "ANCHOR.R03.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A03",
+      "primary_target": "carrier.flat.base",
+      "control_target": "carrier.flat.retention_lock",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R04",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "stock/carrier and fabrication job record",
+      "tool": "service dock controls",
+      "station": "closed fabrication",
+      "interaction": "Seat stock in the approved loading carrier and bind the exact job ID to stock and drawing revisions.",
+      "preconditions": [
+        "R01 resolves service; service idle and safe-to-load; R03 destination matches."
+      ],
+      "postconditions": [
+        "Job input custody transferred; fixture occupied."
+      ],
+      "completion_evidence": [
+        "Dock lock, stock ID, job ID and receipt."
+      ],
+      "failure_response": "Do not request processing for an unresolved or mismatched job.",
+      "source_fact_ids": [
+        "F02"
+      ],
+      "unknown_ids": [
+        "U01",
+        "U03"
+      ],
+      "required_record_type": "fabrication_job_binding",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "request_binding",
+      "asset_ids": [
+        "A04"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R04.primary",
+        "ANCHOR.R04.control"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C04",
+        "C09"
+      ],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A04",
+      "primary_target": "fab.load_dock",
+      "control_target": "fab.job_token_slot",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R05",
+      "provenance_class": "authored_robot_translation",
+      "actor": "qualified_device",
+      "object": "qualified fabrication job",
+      "tool": "sealed service interface",
+      "station": "closed fabrication",
+      "interaction": "Run only the prequalified job; robot observes status and waits outside the guarded process.",
+      "preconditions": [
+        "R04 accepted; guards and service authorization verified by trusted controller."
+      ],
+      "postconditions": [
+        "Processed job is complete, rejected, or faulted with immutable status."
+      ],
+      "completion_evidence": [
+        "Trusted service receipt naming input/output identities and explicit safe-release state."
+      ],
+      "failure_response": "Robot does not supply machining settings, repair the process, or unload before safe release.",
+      "source_fact_ids": [
+        "F02"
+      ],
+      "unknown_ids": [
+        "U03"
+      ],
+      "required_record_type": "service_completion_and_safe_release",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A04"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R05.primary",
+        "ANCHOR.R05.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A04",
+      "primary_target": "fab.load_dock",
+      "control_target": "fab.job_token_slot",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R06",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "returned prepared sheet",
+      "tool": "supported gripper and inspection view",
+      "station": "safe fabrication output inspection dock",
+      "interaction": "Unload after safe release; inspect cut boundary, vertex relief, crease map and sheet condition against the approved drawing. Complete the inspection at the safe fabrication handoff and reseat the sheet in its retained supported carrier before transport.",
+      "preconditions": [
+        "R05 safe release and output identity receipt."
+      ],
+      "postconditions": [
+        "Prepared sheet accepted or quarantined; service dock freed.",
+        "Accepted sheet is supported on its identified carrier for R03."
+      ],
+      "completion_evidence": [
+        "Output-to-stock lineage, inspection findings and tool inventory."
+      ],
+      "failure_response": "Quarantine wrong pattern, incomplete crease or damaged sheet; never relabel it into acceptance.",
+      "source_fact_ids": [
+        "F02"
+      ],
+      "unknown_ids": [
+        "U01",
+        "U03"
+      ],
+      "required_record_type": "prepared_sheet_inspection",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A04",
+        "A12"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R06.primary",
+        "ANCHOR.R06.control"
+      ],
+      "conflict_ids": [
+        "C01"
+      ],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A04",
+      "primary_target": "fab.load_dock",
+      "control_target": "fab.job_token_slot",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R07",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "prepared sheet and its per-edge fold plan",
+      "tool": "qualified crease tool and panel supports",
+      "station": "folding bench",
+      "interaction": "Support designated panels, engage the allowed contact patch, perform one approved crease motion, release the tool, inspect that edge, and iterate over the supplied dependency-ordered edge plan. Seat the completed folded object in its separately identified supported carrier and verify retention.",
+      "preconditions": [
+        "Prepared sheet accepted; R01 resolved complete fold plan and handling capability."
+      ],
+      "postconditions": [
+        "Each required crease has a recorded result; finished specimen has new state revision and retained material lineage.",
+        "Folded specimen supported and transportable only after all fold tools are disengaged."
+      ],
+      "completion_evidence": [
+        "Per-edge pre/post observations, failed edge history and final inspection."
+      ],
+      "failure_response": "Stop at tearing, undesired face bending or unresolved path; do not shortcut flat stock to a folded-state label.",
+      "source_fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "unknown_ids": [
+        "U01",
+        "U04",
+        "U12"
+      ],
+      "required_record_type": "per_edge_fold_ledger",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A05",
+        "A06"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R07.primary",
+        "ANCHOR.R07.control"
+      ],
+      "conflict_ids": [
+        "C01",
+        "C04",
+        "C09"
+      ],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A06",
+      "primary_target": "fold.removable_support",
+      "control_target": "fold.tool_handle",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R08",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "folded specimen",
+      "tool": "supported cradle and camera",
+      "station": "inspection",
+      "interaction": "Place specimen in a qualified rest cradle and document its current resting geometry and defects.",
+      "preconditions": [
+        "R07 complete; loading removed; support safe."
+      ],
+      "postconditions": [
+        "Baseline state revision available for this branch.",
+        "After the rest observation, specimen is retained on its supported carrier for the next authorized transfer."
+      ],
+      "completion_evidence": [
+        "Specimen ID, rest/cradle revision and baseline image ID."
+      ],
+      "failure_response": "Do not erase plastic conditioning or replace a baseline after observing later results.",
+      "source_fact_ids": [
+        "F01",
+        "F02"
+      ],
+      "unknown_ids": [
+        "U04",
+        "U13"
+      ],
+      "required_record_type": "rest_baseline",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A03",
+        "A05",
+        "A12"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R08.primary",
+        "ANCHOR.R08.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A12",
+      "primary_target": "inspection.rest_cradle",
+      "control_target": "inspection.history.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R09",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "rigid-test fixture components",
+      "tool": "qualified fastener tool",
+      "station": "rigid metrology",
+      "interaction": "Inspect rail and locks; seat three sample-slider interfaces, two independent plate sliders, approved spacers and plates.",
+      "preconditions": [
+        "Fixture unoccupied; approved assembly drawing; all parts and tool IDs available."
+      ],
+      "postconditions": [
+        "Fixture assembly revision established without specimen."
+      ],
+      "completion_evidence": [
+        "Part membership, mount datum, lock readback and assembly inspection."
+      ],
+      "failure_response": "Hold on missing part, loose interface or unresolved mounting limit.",
+      "source_fact_ids": [
+        "F03"
+      ],
+      "unknown_ids": [
+        "U05",
+        "U12"
+      ],
+      "required_record_type": "empty_fixture_membership",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A07"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R09.primary",
+        "ANCHOR.R09.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A07",
+      "primary_target": "rig.rail_datum",
+      "control_target": "rig.plate_control.0",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R10",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "polypropylene specimen",
+      "tool": "supported carrier and safe fastener tool",
+      "station": "rigid metrology",
+      "interaction": "Support specimen, connect its designated mounts to the three sample sliders, verify support and retain the now-empty carrier locally.",
+      "preconditions": [
+        "R08 baseline; R09 qualified fixture; specimen intact; no applied load."
+      ],
+      "postconditions": [
+        "Specimen mounted under exclusive station lease; transport forbidden."
+      ],
+      "completion_evidence": [
+        "Specimen/fixture membership, attachment observations, carrier-empty record."
+      ],
+      "failure_response": "Maintain support; release only using qualified recovery when mounting fails.",
+      "source_fact_ids": [
+        "F03"
+      ],
+      "unknown_ids": [
+        "U05",
+        "U12"
+      ],
+      "required_record_type": "supported_mount_lease",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A07"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R10.primary",
+        "ANCHOR.R10.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A07",
+      "primary_target": "rig.mount.0",
+      "control_target": "rig.M2_reference_bolt.0",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R11",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "two identified camera/lens assemblies",
+      "tool": "protected mount handles",
+      "station": "rigid metrology",
+      "interaction": "Seat and identify both cameras, align approved views, read back allowed settings and record each mount/configuration revision.",
+      "preconditions": [
+        "Fixture geometry fixed; approved camera setup available."
+      ],
+      "postconditions": [
+        "Both views registered to this session; no old calibration reused after movement."
+      ],
+      "completion_evidence": [
+        "Camera IDs, lens IDs, view roles and readbacks."
+      ],
+      "failure_response": "Invalidate affected calibration on any movement, lens change or setting mismatch.",
+      "source_fact_ids": [
+        "F04"
+      ],
+      "unknown_ids": [
+        "U06"
+      ],
+      "required_record_type": "dual_camera_configuration",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A08",
+        "A09",
+        "A10"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R11.primary",
+        "ANCHOR.R11.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A08",
+      "primary_target": "camera.front.body",
+      "control_target": "camera.front.carry_handle",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R12",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "length references and authored calibration target",
+      "tool": "reference holders",
+      "station": "rigid metrology",
+      "interaction": "Install both distinct scale references; acquire approved calibration evidence and bind it to camera, lens, fixture and reference revisions.",
+      "preconditions": [
+        "R11 complete; reference validity and calibration method approved."
+      ],
+      "postconditions": [
+        "Current metrology package valid or session held."
+      ],
+      "completion_evidence": [
+        "Calibration record, scale visibility, geometry mapping and expiry."
+      ],
+      "failure_response": "Do not substitute a screen pixel scale, literature curve or camera model name for calibration.",
+      "source_fact_ids": [
+        "F03",
+        "F04"
+      ],
+      "unknown_ids": [
+        "U06",
+        "U08"
+      ],
+      "required_record_type": "revision_bound_calibration",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A10"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R12.primary",
+        "ANCHOR.R12.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A10",
+      "primary_target": "reference.height_ruler",
+      "control_target": "reference.tape_case",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R13",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "mounted specimen and L-shaped plate controls",
+      "tool": "qualified fixture interface",
+      "station": "rigid metrology",
+      "interaction": "Support the specimen, release permitted motion locks, change configuration using the qualified bounded plate interface and establish the requested height.",
+      "preconditions": [
+        "Mounted lease; R12 valid; designated target from F05; qualified motion envelope."
+      ],
+      "postconditions": [
+        "New configuration revision; all earlier capture tokens invalidated."
+      ],
+      "completion_evidence": [
+        "Target, actual readback, fixture movement event and condition inspection."
+      ],
+      "failure_response": "Stop at jam, contact violation or damage; use supported safe-release procedure.",
+      "source_fact_ids": [
+        "F03",
+        "F05"
+      ],
+      "unknown_ids": [
+        "U05",
+        "U07"
+      ],
+      "required_record_type": "supported_configuration_change",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A05",
+        "A07"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R13.primary",
+        "ANCHOR.R13.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A07",
+      "primary_target": "rig.L_plate_upright.0",
+      "control_target": "rig.plate_control.0",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R14",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "sample sliders",
+      "tool": "locking controls",
+      "station": "rigid metrology",
+      "interaction": "Engage each required lock and verify mechanical readback without disturbing the specimen.",
+      "preconditions": [
+        "R13 configuration established."
+      ],
+      "postconditions": [
+        "Configuration locked and stable-state check requested."
+      ],
+      "completion_evidence": [
+        "Per-lock status plus configuration revision."
+      ],
+      "failure_response": "Never infer lock closure from an unchanged image.",
+      "source_fact_ids": [
+        "F03",
+        "F04"
+      ],
+      "unknown_ids": [
+        "U05",
+        "U07"
+      ],
+      "required_record_type": "all_locks_readback",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A07"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R14.primary",
+        "ANCHOR.R14.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A07",
+      "primary_target": "rig.sample_slider.0",
+      "control_target": "rig.sample_lock.0",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R15",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "locked specimen and tape/reference",
+      "tool": "qualified non-damaging measurement tool",
+      "station": "rigid metrology",
+      "interaction": "Check height at the approved multiple positions; record actual readings and stable-state observations.",
+      "preconditions": [
+        "R14 locked; R12 valid; approved locations and tolerances."
+      ],
+      "postconditions": [
+        "A time-bounded capture token issued only for acceptable uniformity and stability."
+      ],
+      "completion_evidence": [
+        "Position-tagged readings, lock state, calibration IDs and token."
+      ],
+      "failure_response": "If nonuniform or drifting, invalidate token and return to supported reconfiguration; preserve failed readings.",
+      "source_fact_ids": [
+        "F04",
+        "F05"
+      ],
+      "unknown_ids": [
+        "U06",
+        "U07"
+      ],
+      "required_record_type": "uniformity_stability_and_capture_token",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A10"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R15.primary",
+        "ANCHOR.R15.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A10",
+      "primary_target": "reference.height_ruler",
+      "control_target": "reference.tape_case",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R16",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "frontal camera",
+      "tool": "capture control",
+      "station": "rigid metrology",
+      "interaction": "Capture the frontal image under the current locked-configuration token and verify file creation and image-quality checks.",
+      "preconditions": [
+        "R15 live token; correct front-camera revision."
+      ],
+      "postconditions": [
+        "Immutable frontal capture record."
+      ],
+      "completion_evidence": [
+        "File hash, camera/session/specimen/configuration IDs, timestamp, scale visibility."
+      ],
+      "failure_response": "Mark partial/blurred/occluded acquisition invalid; no analysis from a missing image.",
+      "source_fact_ids": [
+        "F04"
+      ],
+      "unknown_ids": [
+        "U06",
+        "U07"
+      ],
+      "required_record_type": "front_capture_record",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A08"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R16.primary",
+        "ANCHOR.R16.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A08",
+      "primary_target": "camera.front.body",
+      "control_target": "camera.front.carry_handle",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R17",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "lateral camera",
+      "tool": "capture control",
+      "station": "rigid metrology",
+      "interaction": "Capture the lateral image before the token is invalidated; verify file creation and image quality.",
+      "preconditions": [
+        "R15 live token; R16 exists for this same configuration; correct side-camera revision."
+      ],
+      "postconditions": [
+        "Immutable lateral capture record."
+      ],
+      "completion_evidence": [
+        "File hash, camera/session/specimen/configuration IDs, timestamp, scale visibility."
+      ],
+      "failure_response": "Do not pair it with a different state or later replacement image.",
+      "source_fact_ids": [
+        "F04"
+      ],
+      "unknown_ids": [
+        "U06",
+        "U07"
+      ],
+      "required_record_type": "side_capture_record",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A09"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R17.primary",
+        "ANCHOR.R17.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A09",
+      "primary_target": "camera.side.body",
+      "control_target": "camera.side.carry_handle",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R18",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "paired capture records",
+      "tool": "record verifier",
+      "station": "rigid metrology",
+      "interaction": "Check camera roles, specimen identity, shared configuration, stable lock interval and calibration coverage; seal the pair.",
+      "preconditions": [
+        "R16 and R17 records exist."
+      ],
+      "postconditions": [
+        "Accepted pair or explicit rejected pair with cause."
+      ],
+      "completion_evidence": [
+        "Pair hash, both file hashes and validation receipt."
+      ],
+      "failure_response": "Preserve both originals; reacquire a complete pair under a new token if needed.",
+      "source_fact_ids": [
+        "F04",
+        "F05"
+      ],
+      "unknown_ids": [
+        "U06",
+        "U07",
+        "U08"
+      ],
+      "required_record_type": "sealed_pair",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A01",
+        "A08",
+        "A09",
+        "A10"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R18.primary",
+        "ANCHOR.R18.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A01",
+      "primary_target": "records.branch_queue",
+      "control_target": "records.console.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R19",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "loaded configuration",
+      "tool": "qualified release control and supports",
+      "station": "active mechanical station",
+      "interaction": "Stop acquisition, apply prescribed support, remove applied load through the approved bounded interface and only then release locks.",
+      "preconditions": [
+        "Any accepted or aborted state; station-specific release method qualified."
+      ],
+      "postconditions": [
+        "Unloaded supported state or held-safe fault; capture tokens invalid."
+      ],
+      "completion_evidence": [
+        "Load-removed indication, support state, lock transitions and defect check."
+      ],
+      "failure_response": "Never detach or transport an object while load or mount status is uncertain.",
+      "source_fact_ids": [],
+      "unknown_ids": [
+        "U05",
+        "U09",
+        "U13"
+      ],
+      "required_record_type": "load_removal_and_token_invalidation",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A03",
+        "A07",
+        "A11"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R19.primary",
+        "ANCHOR.R19.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A07",
+      "primary_target": "rig.sample_slider.0",
+      "control_target": "rig.sample_lock.0",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R20",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "specimen and qualified corner-load fixture",
+      "tool": "supported carrier and fixture controls",
+      "station": "qualitative loading",
+      "interaction": "Confirm family-specific support/attachment map, seat specimen, close guard and bind the approved job to this specimen revision.",
+      "preconditions": [
+        "Baseline recorded; correct loading job; safe service idle; no unresolved load envelope."
+      ],
+      "postconditions": [
+        "Specimen mounted with a protected load path and exclusive lease."
+      ],
+      "completion_evidence": [
+        "Attachment/guard observations, job ID, specimen ID and fixture revision."
+      ],
+      "failure_response": "Hold if support or load value is unknown; do not estimate masses from images.",
+      "source_fact_ids": [
+        "F01",
+        "F06"
+      ],
+      "unknown_ids": [
+        "U09",
+        "U12"
+      ],
+      "required_record_type": "corner_fixture_mount_lease",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A11"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R20.primary",
+        "ANCHOR.R20.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A11",
+      "primary_target": "qual.corner.base",
+      "control_target": "qual.control.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R21",
+      "provenance_class": "authored_robot_translation",
+      "actor": "qualified_device",
+      "object": "qualitative corner-load job",
+      "tool": "closed bounded loading interface",
+      "station": "qualitative loading",
+      "interaction": "Apply only the approved qualitative loading job while the robot observes status from outside the guard.",
+      "preconditions": [
+        "R20 valid; trusted controller authorizes bounded load."
+      ],
+      "postconditions": [
+        "Loaded state available for observation; load-removal remains required."
+      ],
+      "completion_evidence": [
+        "Job receipt, actual state/limit status and specimen revision."
+      ],
+      "failure_response": "Fault to a supported safe state; never enlarge load to force a literature-like shape.",
+      "source_fact_ids": [
+        "F01",
+        "F06"
+      ],
+      "unknown_ids": [
+        "U09"
+      ],
+      "required_record_type": "bounded_qualitative_service",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A05",
+        "A11"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R21.primary",
+        "ANCHOR.R21.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A11",
+      "primary_target": "qual.corner.base",
+      "control_target": "qual.control.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R22",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "qualitatively loaded specimen",
+      "tool": "guard controls and supported gripper",
+      "station": "qualitative loading",
+      "interaction": "After R19 confirms load removal and safe release, detach supported specimen and return it to its retained carrier. Confirm the fixture is unoccupied and close its exclusive mount lease.",
+      "preconditions": [
+        "Guarded job complete or aborted; explicit load removed and safe-to-open."
+      ],
+      "postconditions": [
+        "Specimen unmounted; fixture empty; load hardware accounted for.",
+        "Exclusive mount lease closed before any R03 transport."
+      ],
+      "completion_evidence": [
+        "Unload custody receipt, zero-load/safe-release evidence and fixture inventory.",
+        "Lease-close receipt naming the fixture and specimen."
+      ],
+      "failure_response": "If load removal is unconfirmed, leave specimen supported and report hold.",
+      "source_fact_ids": [],
+      "unknown_ids": [
+        "U09",
+        "U13"
+      ],
+      "required_record_type": "corner_fixture_unmount",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A11"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R22.primary",
+        "ANCHOR.R22.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A11",
+      "primary_target": "qual.corner.base",
+      "control_target": "qual.control.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R23",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "unloaded specimen",
+      "tool": "retained carrier",
+      "station": "storage",
+      "interaction": "Transport only the unmounted specimen to inspection, then to accepted storage or quarantine with its full history.",
+      "preconditions": [
+        "All loads removed and leases closed."
+      ],
+      "postconditions": [
+        "Final custody fixed; no phantom duplicate specimen."
+      ],
+      "completion_evidence": [
+        "Specimen/carrier IDs, storage slot, defect record and history digest."
+      ],
+      "failure_response": "Quarantine damage and invalidate only scientifically dependent future comparisons.",
+      "source_fact_ids": [],
+      "unknown_ids": [
+        "U12",
+        "U13"
+      ],
+      "required_record_type": "final_custody",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A03",
+        "A12"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R23.primary",
+        "ANCHOR.R23.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A12",
+      "primary_target": "inspection.rest_cradle",
+      "control_target": "inspection.history.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R24",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "station, tools and components",
+      "tool": "inspection and inventory interface",
+      "station": "all used stations",
+      "interaction": "Check fixtures empty, park controls, account for tools/references and separate retained waste or rejected material through the qualified service policy.",
+      "preconditions": [
+        "Specimen safely stored or held with declared reason."
+      ],
+      "postconditions": [
+        "Stations restored or explicit unresolved safe holds remain."
+      ],
+      "completion_evidence": [
+        "Before/after occupancy, component inventory and safe-state receipt."
+      ],
+      "failure_response": "Never mark closeout complete with a missing component, loaded specimen or unexplained custody gap.",
+      "source_fact_ids": [],
+      "unknown_ids": [
+        "U13"
+      ],
+      "required_record_type": "station_and_campaign_closeout",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A12"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R24.primary",
+        "ANCHOR.R24.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A12",
+      "primary_target": "inspection.rest_cradle",
+      "control_target": "inspection.history.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R25",
+      "provenance_class": "authored_robot_translation",
+      "actor": "analysis_worker",
+      "object": "accepted evidence package",
+      "tool": "qualified photo-analysis method",
+      "station": "analysis",
+      "interaction": "Check input hashes; derive separately named height, inner-radius and outer-radius observations with uncertainty; preserve raw, processed and theoretical records as different data classes.",
+      "preconditions": [
+        "R18 valid pairs; qualified extraction method; unresolved source-model conflicts do not contaminate acquisition records."
+      ],
+      "postconditions": [
+        "Measured dataset and interpretation with provenance, or explicit analysis hold."
+      ],
+      "completion_evidence": [
+        "Input hashes, algorithm/version, point/scale selections, uncertainties and exclusions."
+      ],
+      "failure_response": "No expected-value substitution; near-flat discrepancy is reported, not edited away.",
+      "source_fact_ids": [
+        "F05",
+        "F07",
+        "F10"
+      ],
+      "unknown_ids": [
+        "U08",
+        "U11",
+        "U14"
+      ],
+      "required_record_type": "separate_observables_and_uncertainty",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A01"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R25.primary",
+        "ANCHOR.R25.control"
+      ],
+      "conflict_ids": [
+        "C02",
+        "C03",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10"
+      ],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A01",
+      "primary_target": "records.branch_queue",
+      "control_target": "records.console.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R26",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "cardstock specimen and rigid demonstration support",
+      "tool": "broad-support fixture",
+      "station": "qualitative bench",
+      "interaction": "Register the correct family-specific rigid-mode support and mount the specimen without erasing its baseline.",
+      "preconditions": [
+        "CS family and rigid-mode envelope qualified; baseline recorded."
+      ],
+      "postconditions": [
+        "Rigid-demo mount lease and support state."
+      ],
+      "completion_evidence": [
+        "Family, interface and baseline linkage."
+      ],
+      "failure_response": "Stop on incompatible support or unknown limit.",
+      "source_fact_ids": [
+        "F01"
+      ],
+      "unknown_ids": [
+        "U01",
+        "U04",
+        "U12"
+      ],
+      "required_record_type": "rigid_demo_mount_lease",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A05",
+        "A11"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R26.primary",
+        "ANCHOR.R26.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A11",
+      "primary_target": "qual.rigid_demo_support",
+      "control_target": "qual.rigid.support_handle-0.25",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R27",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "supported cardstock specimen",
+      "tool": "qualified broad contact tool",
+      "station": "qualitative bench",
+      "interaction": "Apply the supplied bounded rigid-fold motion through permitted contact regions, pause at the authorized state and hold support for observation.",
+      "preconditions": [
+        "R26 mounted; motion and contact envelope qualified."
+      ],
+      "postconditions": [
+        "Rigid-mode observation state; historical folds preserved."
+      ],
+      "completion_evidence": [
+        "Contact/movement log, displacement or force-limit observations and state image."
+      ],
+      "failure_response": "Do not force the extended design through a locked configuration; stop on unexpected face damage.",
+      "source_fact_ids": [
+        "F01"
+      ],
+      "unknown_ids": [
+        "U04",
+        "U12"
+      ],
+      "required_record_type": "bounded_rigid_demo",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A05",
+        "A11"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R27.primary",
+        "ANCHOR.R27.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A11",
+      "primary_target": "qual.rigid_demo_support",
+      "control_target": "qual.rigid.support_handle-0.25",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R28",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "qualitative specimen state",
+      "tool": "documentary camera",
+      "station": "active observation station",
+      "interaction": "Capture identified baseline, rigid or sheared state with its support/loading context and a declared qualitative label.",
+      "preconditions": [
+        "Correct specimen/state token and stable safe observation state."
+      ],
+      "postconditions": [
+        "Immutable qualitative observation record."
+      ],
+      "completion_evidence": [
+        "Image hash, specimen ID, support/job IDs, state label and limitations."
+      ],
+      "failure_response": "Do not convert visual agreement into measured modal stiffness or quantitative shear success.",
+      "source_fact_ids": [
+        "F01",
+        "F06"
+      ],
+      "unknown_ids": [
+        "U06",
+        "U09"
+      ],
+      "required_record_type": "qualitative_capture",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A05",
+        "A11"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R28.primary",
+        "ANCHOR.R28.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A05",
+      "primary_target": "PP1.illustrative_folded.P000",
+      "control_target": "families.warning.plate",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R29",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "released specimen",
+      "tool": "rest cradle and inspection view",
+      "station": "inspection",
+      "interaction": "After the approved recovery interval inspect rest geometry and damage against the preserved baseline.",
+      "preconditions": [
+        "R19 load removed; appropriate support; interval and acceptance checks qualified."
+      ],
+      "postconditions": [
+        "Recovered, changed or damaged disposition appended.",
+        "After inspection, the object is supported on its carrier for storage or another authorized branch."
+      ],
+      "completion_evidence": [
+        "Rest image IDs, baseline link, elapsed interval and defect findings."
+      ],
+      "failure_response": "A changed rest shape is recorded; never restore a historical state by changing metadata.",
+      "source_fact_ids": [],
+      "unknown_ids": [
+        "U04",
+        "U13"
+      ],
+      "required_record_type": "post_release_rest_inspection",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A05",
+        "A12"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R29.primary",
+        "ANCHOR.R29.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A12",
+      "primary_target": "inspection.rest_cradle",
+      "control_target": "inspection.history.screen",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    },
+    {
+      "id": "R30",
+      "provenance_class": "authored_robot_translation",
+      "actor": "robot",
+      "object": "rigid-fixture-mounted specimen",
+      "tool": "supported carrier and qualified fastener tool",
+      "station": "rigid metrology or qualitative rigid bench",
+      "interaction": "After load removal, support the specimen in its carrier, release each approved mount, confirm complete separation and close the station lease.",
+      "preconditions": [
+        "R19 confirms load removal; capture tokens invalid; carrier present; qualified unmount method."
+      ],
+      "postconditions": [
+        "Specimen unmounted and supported; fixture unoccupied; mount lease closed."
+      ],
+      "completion_evidence": [
+        "Support and fastener observations, carrier occupancy, fixture-empty check and lease-close receipt."
+      ],
+      "failure_response": "Keep specimen supported; never transport or close the branch if an attachment remains uncertain.",
+      "source_fact_ids": [
+        "F03"
+      ],
+      "unknown_ids": [
+        "U05",
+        "U12",
+        "U13"
+      ],
+      "required_record_type": "rigid_fixture_unmount",
+      "status": "AUTHORED_SYMBOLIC_DESIGN",
+      "source_is_robot_protocol": false,
+      "physical_implemented": false,
+      "actor_event_fields": [
+        "event_id",
+        "operation_id",
+        "evidence_id"
+      ],
+      "evidence_role": "independent_scoped_record",
+      "asset_ids": [
+        "A03",
+        "A07",
+        "A11"
+      ],
+      "anchor_ids": [
+        "ANCHOR.R30.primary",
+        "ANCHOR.R30.control"
+      ],
+      "conflict_ids": [],
+      "scope_rule": "Unknowns are resolved per family and operation occurrence; not every R01 field applies to every route.",
+      "failure_transition": "SAFE_HOLD_OR_QUALIFIED_RELEASE; preserve all failures and partial observations",
+      "primary_asset_id": "A07",
+      "primary_target": "rig.mount.0",
+      "control_target": "rig.M2_reference_bolt.0",
+      "target_qualification": "Nominal original-scene object selector only; a context-bound qualified pose and independently verified actual object are still required."
+    }
+  ],
+  "operation_count": 31,
+  "template_is_occurrence": false
+}

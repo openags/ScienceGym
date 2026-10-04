@@ -1,0 +1,40 @@
+{
+  "schema_version": "arcmorph_task.v2",
+  "physical_families": [
+    "CS1",
+    "CS2",
+    "CS3",
+    "CS4",
+    "PP"
+  ],
+  "source_polymer_steps": [
+    "CNC machining",
+    "crease engraving",
+    "vertex holes",
+    "manual folding"
+  ],
+  "authored_cardstock_steps": "Qualified cut/crease candidate service and robot folding; historical cardstock manufacturing steps are not established.",
+  "fold_operation": "R07",
+  "per_edge_expansion": [
+    "support named panels",
+    "engage qualified contact patch",
+    "bounded fold motion",
+    "release contact tool",
+    "inspect edge",
+    "append edge completion record"
+  ],
+  "fold_plan_required_keys": [
+    "plan_id",
+    "family_id",
+    "drawing_revision",
+    "edge_ids",
+    "dependency_edges",
+    "panel_supports",
+    "contact_patch_ids",
+    "motion_limit_record",
+    "inspection_method"
+  ],
+  "all_limits_default": null,
+  "no_service_shortcut": true,
+  "new_specimen_identity": "Allocated before preparation and becomes eligible only with full parent stock, service, inspection and edge ledger."
+}

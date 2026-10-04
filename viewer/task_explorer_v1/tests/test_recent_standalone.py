@@ -27,11 +27,11 @@ class RecentStandaloneTests(unittest.TestCase):
 
     def test_exact_embedded_inventory_and_source_bytes(self):
         expected = {}
-        for key in ('lockable_origami', 'varactor', 'wetting'):
+        for key in ('lockable_origami', 'varactor', 'wetting', 'arcmorph'):
             f = get(key)
             for item in list(f['source_files'].values()) + f['asset_links']:
                 expected[item['url']] = item
-        self.assertEqual(len(expected), 111)  # 99 JSON, three guides and nine renders
+        self.assertEqual(len(expected), 148)  # 132 JSON, four guides and twelve renders
         self.assertEqual(set(expected), set(self.embedded))
         for url, item in expected.items():
             with self.subTest(url=url):
@@ -49,15 +49,15 @@ class RecentStandaloneTests(unittest.TestCase):
         self.assertIn('remote publication is not asserted', self.page)
         self.assertNotIn('https://github.com/openags/ScienceGym/blob/e1e4a74', self.page)
         self.assertNotIn('https://github.com/openags/ScienceGym/blob/98d3bfe', self.page)
-        self.assertIn('33 paper-level designs and three bounded subsets', self.page)
-        self.assertIn('all 841 route views in a mocked DOM', self.page)
+        self.assertIn('34 paper-level designs and three bounded subsets', self.page)
+        self.assertIn('all 857 route views in a mocked DOM', self.page)
 
     def test_exact_original_png_bytes_and_safe_no_execution_scope(self):
         pngs = [base64.b64decode(e['base64'], validate=True) for e in self.embedded.values() if e['mime'] == 'image/png']
-        self.assertEqual(len(pngs), 9)
+        self.assertEqual(len(pngs), 12)
         self.assertTrue(all(blob.startswith(b'\x89PNG\r\n\x1a\n') for blob in pngs))
-        for key in ('lockable_origami', 'varactor', 'wetting'):
+        for key in ('lockable_origami', 'varactor', 'wetting', 'arcmorph'):
             family = get(key)
             self.assertFalse(family['actor_projection_implemented'])
             self.assertFalse(family['context']['episode_input_contract']['physical_runtime_available'])
-            self.assertFalse(family['context']['STATUS']['whole_paper_execution_complete'])
+            self.assertFalse(family['context']['RELEASE_BOUNDARY']['whole_paper_execution_complete'])

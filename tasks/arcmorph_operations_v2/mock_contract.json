@@ -1,0 +1,20 @@
+{
+  "schema_version": "arcmorph_task.v2",
+  "scope": "Finite offline synthetic record replays plus guard-rule unit tests only. No pixels, physics, hardware or actual robot action.",
+  "outcomes": [
+    "METADATA_OK",
+    "QUALIFICATION_HOLD",
+    "DATA_HOLD",
+    "SAFE_RELEASE_HOLD"
+  ],
+  "whole_campaign_execution": false,
+  "fixture_kind": "Evaluator-pinned synthetic lineage and event schedule; concrete fake values only live in tests and are never qualification defaults.",
+  "not_supported": [
+    "Real sensor authentication",
+    "Actor/evaluator filesystem isolation",
+    "Image extraction or source raw-data reproduction",
+    "Scientific-model oracle",
+    "Motion controller or physics backend",
+    "Qualified fabrication or safety procedure"
+  ]
+}

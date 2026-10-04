@@ -1,0 +1,231 @@
+{
+  "schema": "arcmorph.independent_asset_review.v1",
+  "review_date_utc": "2026-10-04",
+  "status": "PASS_WITH_EXPLICIT_STATIC_SCOPE",
+  "reviewer_independence": "Reviewer independently read accepted requirements and source facts, authored separate native/GLB checks, inspected actual render pixels and authored adversarial guard mutations. Asset builder and production controls were not edited by this reviewer.",
+  "scope": "Original static representative scene assets and synthetic record-consistency examples; no physical qualification, complete runtime, scientific reproduction or public-archive validation.",
+  "accepted_sources": [
+    {
+      "delivered": "requirements_snapshot.json",
+      "accepted_source_name": "asset_requirements.json",
+      "sha256": "50e478f124722cd983a2333214386cbbcdf08853f962a9f2da14d7beced00450",
+      "byte_identical_to_accepted": true
+    },
+    {
+      "delivered": "source_facts_snapshot.json",
+      "accepted_source_name": "source_facts.json",
+      "sha256": "5e088d1e92a8b0ba635a64685a76c57f2855d8c23250eda8949bede1be2627b8",
+      "byte_identical_to_accepted": true
+    }
+  ],
+  "checks": {
+    "native_reopen": {
+      "passed": true,
+      "checks": 38,
+      "report": "review/native_verification.json"
+    },
+    "portable_reimport": {
+      "passed": true,
+      "checks": 18,
+      "report": "review/glb_import_verification.json"
+    },
+    "semantic_and_package_tests": {
+      "passed": true,
+      "executed_test_methods": 104,
+      "failures": 0,
+      "errors": 0,
+      "per_file_method_counts": {
+        "test_semantic_adversarial": 13,
+        "test_package": 10,
+        "test_semantic_controls": 81
+      },
+      "independent_adversarial_methods": 13,
+      "note": "Author-provided valid synthetic fixtures were reused; independent adversarial mutations/assertions are separate."
+    }
+  },
+  "geometry_summary": {
+    "asset_groups": 12,
+    "operation_bindings": 31,
+    "main_primary_control_anchors": 62,
+    "additional_fixture_specific_anchors": 4,
+    "native_objects": 1725,
+    "native_meshes": 1593,
+    "editable_native_text_objects": 48,
+    "family_role_templates": 5,
+    "static_state_exemplars": 20,
+    "panels_per_state": 24,
+    "interior_creases_per_state": 38,
+    "default_glb_objects": 780,
+    "default_glb_meshes": 702,
+    "family_aliases": {
+      "PP1": "PP"
+    },
+    "role_camera_axis_dot_product": 0.0
+  },
+  "dimensions": {
+    "units": "m",
+    "C01_resolution": null,
+    "source_PP_length_readings_mm": [
+      383.63,
+      383.65
+    ],
+    "source_PP_width_mm": 428.78,
+    "PP_nominal_generator_spans_mm": [
+      420,
+      360
+    ],
+    "PP_default_authored_surface_extents_mm": [
+      425.49997568130493,
+      384.0000033378601,
+      40.00002145767212
+    ],
+    "surface_extent_note": "Extent Z includes authored folded embedding, not sheet thickness. Actual warped surface extents differ from generator spans; modifiers, crease cylinders and carrier are excluded.",
+    "nominal_PP_thickness_mm": 1,
+    "authored_cardstock_thickness_mm": 0.35
+  },
+  "images": [
+    {
+      "path": "evidence/overview.png",
+      "sha256": "f4a23d9ba55313d97c62c887cc44ec8318683588a8722415c0f4b641b40d4da6",
+      "receipt_hash_matches": true,
+      "resolution": [
+        1920,
+        1280
+      ],
+      "actual_pixels_visually_inspected": true,
+      "text_chunks_absent": true,
+      "assessment": "Actual pixels inspected. Coherent original laboratory layout presents records, stock, carriers, closed fabrication, folding bench, five representative templates, metrology, separate qualitative supports and inspection/quarantine. Warning banner clearly states static/non-experimental scope."
+    },
+    {
+      "path": "evidence/handling.png",
+      "sha256": "95f4e4ab45a197da5918d7a5bc237303c96625413d43015f38d7ac8b81b8a3d6",
+      "receipt_hash_matches": true,
+      "resolution": [
+        1920,
+        1280
+      ],
+      "actual_pixels_visually_inspected": true,
+      "text_chunks_absent": true,
+      "assessment": "Actual pixels inspected. Five differently colored family-role templates, explicit panel/crease outlines, retained carriers, broad support and illustrative gripper are visible. No apparent missing material or overlapping duplicate text. This does not depict a performed robot action."
+    },
+    {
+      "path": "evidence/metrology.png",
+      "sha256": "02a3167d8ffcf6d6e213181ac3dcd24ae9ead19810bde1a7deb9c7a4bce0e87d",
+      "receipt_hash_matches": true,
+      "resolution": [
+        1920,
+        1280
+      ],
+      "actual_pixels_visually_inspected": true,
+      "text_chunks_absent": true,
+      "assessment": "Actual pixels inspected. Three sample sliders, separate plate assemblies, transparent PMMA-role spacers, rulers/checkerboard and two camera housings are visible. The fixture is explicitly empty. This is a studio view, not either scientific acquisition view."
+    }
+  ],
+  "findings_corrected_before_pass": [
+    "Rigid-demo R26/R27 bindings now select the separate qualitative rigid support instead of corner-loading base.",
+    "Operation target precision and R06 released-output custody binding were refined during paired review.",
+    "Anchor and hidden-alternative inventory transforms and surface bounds are now evaluated before metadata is written.",
+    "Generator spans are distinguished from measured authored surface extents; footprint wording was corrected.",
+    "Independent adversarial cases prompted nonempty attachment/job IDs, fixture-scoped capture/pairing, distinct lens identities, prepared qualification/dimensional binding and literal support booleans.",
+    "Paired review restricted quantitative R13 configuration records to PP rigid-metrology mounts.",
+    "Saved relative render output resolves from the native geometry directory to the package evidence directory."
+  ],
+  "originality_and_rights": {
+    "assessment": "Original procedural primitives, independent panel embeddings and materials are consistent with declared provenance. No source image texture, linked mesh library, imported source CAD, raw archive artifact or external GLB asset dependency was found. This is an artifact/code inspection, not a forensic proof of all prior authoring history.",
+    "paper_images_or_source_cad_included": false,
+    "raw_archive_inspected_by_review": false,
+    "source_theory_parameters_used_as_physical_drawing": false,
+    "original_work_license": "Apache-2.0",
+    "font_notice_present": true,
+    "publisher_rights_retained": "CC BY-NC-ND 4.0; article imagery is not redistributed"
+  },
+  "retained_limits": [
+    "All geometry, contact regions, mount poses, collision proxies, optics and service/loading interfaces remain unqualified nominal placeholders.",
+    "The five families are representative role templates, not the source patterns or verified Arc-Miura/spiral/lemniscate solutions. Some quadrilateral panels are non-planar. Static variants are not a fold trajectory or hinge model.",
+    "The native file has all 20 states; GLB contains only five default illustrative-folded states. Qualified geometry is intentionally unavailable.",
+    "Three path-traced views are asset evidence, not source/raw/experimental front-lateral captures. Noise from CPU96 rendering is visible but does not obscure the asset-level review.",
+    "The source C01 discrepancy remains unresolved. Exact source fabrication is held. Source and authored dimensions remain distinct.",
+    "Semantic tests check supplied synthetic records only; they cannot authenticate evidence, enforce process isolation, establish safe physical motion or implement every route operation.",
+    "No physics engine, real controller/device I/O, experimental measurement, quantitative shear validation, raw-data reanalysis or scientific oracle was tested.",
+    "This review does not claim that a public ZIP was inspected. Packaging must exclude logs, caches, backups and source reading copies, verify archive contents and bind their hashes separately."
+  ],
+  "blocking_findings": [],
+  "artifact_hashes": [
+    {
+      "path": "geometry/arcmorph_lab.blend",
+      "sha256": "02bb2fe12ce074141f192880cd72eb15debe39c3059bdb3f46fb2fa3162e9894"
+    },
+    {
+      "path": "geometry/arcmorph_lab.glb",
+      "sha256": "30448c449ad5431295341df92d9e8d430e14ff29775ad29b1650137895359931"
+    },
+    {
+      "path": "geometry/build_scene.py",
+      "sha256": "ad3e2dbacae9f551437aa18e710c030127b757256ea534a383e2c4ef63a8114c"
+    },
+    {
+      "path": "geometry/render_scene.py",
+      "sha256": "7fbb5160ed84e9cb02be9d6b3ef93d20b32316e5dd8bc9570ad7b4b591b97b06"
+    },
+    {
+      "path": "semantic_controls.py",
+      "sha256": "ae0861189877604a327712e26bf9cfdf73a5940028d632fe103c395276f99f8d"
+    },
+    {
+      "path": "states.json",
+      "sha256": "294ad7ca58129ec6d4c484536116f723a79c2594956a080e169d6489577c24da"
+    },
+    {
+      "path": "asset_metadata.json",
+      "sha256": "ee8b8bc5dc253430d2bc9263875a1cf8e3a913acb68868c2c84444014a3763d2"
+    },
+    {
+      "path": "asset_inventory.json",
+      "sha256": "c97a2782e618675c3b1664a740f629611a47a69aa049267c361c6c4e508a8474"
+    },
+    {
+      "path": "affordances.json",
+      "sha256": "21b771118d3c23deda7c0b4bc0a7b069e1434677efd3efd71107f8000b96512f"
+    },
+    {
+      "path": "operation_binding_contract.json",
+      "sha256": "1ed26c1d83181514379e6c6df03f1aaf34691455e42ba6b095400022c94011ba"
+    },
+    {
+      "path": "operation_bindings.json",
+      "sha256": "c45f75379301318e835afc0cdd3f7a98993d245521e07ccc6f59a3a7cafa26e6"
+    },
+    {
+      "path": "specimen_topology.json",
+      "sha256": "04435a36fb150b775b7757763b74d5ae2ddbdfe469d69e783dce4037a113f26a"
+    },
+    {
+      "path": "variants.json",
+      "sha256": "8bed336e34bdd4c1645a0f9e957bfcd8222b0050e55799988213577e3bee432f"
+    },
+    {
+      "path": "tests/verify_blend.py",
+      "sha256": "c4adc5b942ac0d126c38a930952aab1a0f4cef3d4862cf153d3f61a4872c8b15"
+    },
+    {
+      "path": "tests/verify_glb_import.py",
+      "sha256": "5a4e2e5778599d6fd323047d5e92c7246bf78023a369d08a3144fcbf08743141"
+    },
+    {
+      "path": "tests/test_semantic_adversarial.py",
+      "sha256": "e593f132a0f72e4b8b47bfadf2a18e127e20f07bd7114082a5137cee8cd275e5"
+    },
+    {
+      "path": "tests/test_semantic_controls.py",
+      "sha256": "cc94fd9d623af7f5bd82c7ace5c64ca280bdf930a5780b1e4e1c7f9c5c1a40ad"
+    },
+    {
+      "path": "tests/test_package.py",
+      "sha256": "7c114572fb27db4e5829710d4f620f8a749c97219ebc96b4ef45cfc8fc131f2f"
+    },
+    {
+      "path": "README.md",
+      "sha256": "34a61f17d3dd51c06a0057e2efc1b03156e194d66b3f58cac51a422906dec158"
+    }
+  ]
+}

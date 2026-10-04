@@ -1,0 +1,135 @@
+{
+  "schema_version": "arcmorph_task.v2",
+  "semantic_chains": [
+    [
+      "stock_identity",
+      "fabrication_job",
+      "prepared_sheet",
+      "per_edge_folding",
+      "specimen_baseline"
+    ],
+    [
+      "specimen_baseline",
+      "mount_membership",
+      "camera_setup",
+      "current_calibration",
+      "target_configuration",
+      "all_locks",
+      "uniformity_stability",
+      "front_capture",
+      "side_capture",
+      "sealed_pair",
+      "analysis"
+    ],
+    [
+      "specimen_baseline",
+      "qualified_corner_fixture",
+      "bounded_load",
+      "qualitative_capture",
+      "load_removed",
+      "safe_unmount",
+      "rest_inspection",
+      "storage"
+    ],
+    [
+      "any_physical_branch",
+      "safe_release",
+      "custody_reconciliation",
+      "station_restore",
+      "campaign_closeout"
+    ]
+  ],
+  "cross_device_handoffs": [
+    {
+      "from": "stock",
+      "to": "fabrication",
+      "must_preserve": [
+        "stock_id",
+        "carrier_id",
+        "drawing_revision",
+        "job_id"
+      ],
+      "forbidden": "An output receipt with no identified input."
+    },
+    {
+      "from": "fabrication",
+      "to": "folding",
+      "must_preserve": [
+        "stock_id",
+        "prepared_sheet_id",
+        "job_receipt",
+        "inspection_disposition"
+      ],
+      "forbidden": "Service completion standing in for unrepresented folding."
+    },
+    {
+      "from": "folding",
+      "to": "metrology",
+      "must_preserve": [
+        "specimen_id",
+        "family",
+        "crease_history",
+        "baseline",
+        "carrier_id"
+      ],
+      "forbidden": "Photographing a substitute or ideal rendered shape."
+    },
+    {
+      "from": "front_camera",
+      "to": "side_camera",
+      "must_preserve": [
+        "configuration_revision",
+        "specimen_id",
+        "lock_interval",
+        "capture_token",
+        "calibration_bundle"
+      ],
+      "forbidden": "Pairing images taken across a state change."
+    },
+    {
+      "from": "metrology",
+      "to": "analysis",
+      "must_preserve": [
+        "original_file_hashes",
+        "reference_revision",
+        "validity",
+        "all_rejections"
+      ],
+      "forbidden": "Replacing measured values by target or literature values."
+    },
+    {
+      "from": "rigid_fixture",
+      "to": "qualitative_fixture",
+      "must_preserve": [
+        "specimen_id",
+        "history",
+        "load_removed",
+        "mount_released",
+        "rest_inspection"
+      ],
+      "forbidden": "Skipping release/recovery because the material is passive."
+    }
+  ],
+  "revision_invalidation": {
+    "camera_or_lens_or_reference_or_fixture_change": [
+      "calibration",
+      "capture_token",
+      "unsealed_pair"
+    ],
+    "configuration_or_lock_change": [
+      "capture_token",
+      "unsealed_pair"
+    ],
+    "specimen_replacement": [
+      "baseline_comparison",
+      "series_membership",
+      "mount",
+      "capture_token"
+    ],
+    "damage_or_rest_change": [
+      "unchanged_state_comparison",
+      "future_mode_eligibility"
+    ]
+  },
+  "safe_path_rule": "Missing model or analysis qualification cannot block recording a hold. Physical unloading still requires its own qualified method and observed load removal; it is never inferred."
+}

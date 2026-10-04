@@ -1,4 +1,8 @@
-# Release contents: wetting paired integration
+# Release contents: Arc-Morph paired integration
+
+37 families: 34 paper-level design drafts + 3 bounded subsets; 857 inspection records and 3,150 symbolic operation definitions. Zero validated runnable whole-paper tasks. Arc-Morph adds seven physical route families, 31 templates, two auxiliary records, six nonmanual references and a metadata-only qualification hold. It preserves all 33 source JSON documents, ten conflicts, fourteen unknowns and the single-specimen eight-configuration boundary. Twelve original scene groups and 66 nominal anchors remain illustrative and unqualified. The 46 task files and 42 asset files match their reviewed archives byte-for-byte. Source links are local and hash-bound; repository commits establish publication status. Historical receipts below remain snapshots. See [Arc-Morph](docs/arcmorph.md) and [verification](VERIFICATION.md).
+
+# Historical wetting paired integration
 
 36 families: 33 paper-level design drafts + 3 bounded subsets; 841 inspection records and 3,119 symbolic operation definitions. Zero validated runnable whole-paper tasks. The task and asset packages are exact reviewed archives, with source media/private paths excluded. The lossless wetting inspector adds 16 source routes and a separate metadata-only qualification hold. New links use repository-relative files and frozen source hashes. Publication status is established by the repository commit containing these files; frozen package fields and historical verification receipts describe review snapshots rather than live publication, deployment or remote CI status. See [verification](VERIFICATION.md) and [wetting map](docs/wetting.md).
 

@@ -1,0 +1,62 @@
+{
+  "schema_version": "arcmorph_task.v2",
+  "records": [
+    {
+      "fault": "Service incomplete or guard fault",
+      "response": "Hold supported stock; wait for trusted safe release or qualified service recovery.",
+      "result": "partial_or_held"
+    },
+    {
+      "fault": "Wrong specimen, family or material",
+      "response": "Stop; preserve evidence; quarantine mismatch and require new allocation.",
+      "result": "rejected"
+    },
+    {
+      "fault": "Nonuniform or slipping configuration",
+      "response": "Invalidate token and both affected captures; retain readings; reconfigure only after supported release.",
+      "result": "retry_with_new_revision"
+    },
+    {
+      "fault": "One image missing, blurred or occluded",
+      "response": "Preserve partial pair; reacquire both views under a valid token; link new acquisition to rejected attempt.",
+      "result": "retry_without_erasure"
+    },
+    {
+      "fault": "Calibration changes between views",
+      "response": "Reject pair and recalibrate; no backfilled calibration.",
+      "result": "held_until_requalified"
+    },
+    {
+      "fault": "Near-flat radius discrepancy",
+      "response": "Retain valid observations and uncertainty; flag measurement limitation; do not force the expected curve.",
+      "result": "valid_measurement_with_limited_inference"
+    },
+    {
+      "fault": "Torn crease, changed rest state or unrecovered specimen",
+      "response": "Unload safely and quarantine; a replacement is a new specimen/series.",
+      "result": "partial_with_lineage"
+    },
+    {
+      "fault": "Unknown corner load or support",
+      "response": "Do not start; hold only the affected qualitative branch.",
+      "result": "input_hold"
+    },
+    {
+      "fault": "Source formula conflict",
+      "response": "Block model-based acceptance; continue legitimate image custody if metrology requirements are met.",
+      "result": "analysis_hold"
+    },
+    {
+      "fault": "Load-removal or lease status uncertain",
+      "response": "Leave specimen supported and protected; report exact unresolved state.",
+      "result": "safe_hold_not_completion"
+    }
+  ],
+  "release_selection": {
+    "corner_fixture": "R19 then R22",
+    "rigid_fixture": "R19 then R30",
+    "unmounted_unloaded": "No fictitious mount release; retain custody and inspect"
+  },
+  "retry": "New attempt, token and capture IDs; link prior failure, preserve rejected raw records. Replacement specimen starts a new series.",
+  "closeout": "Held state is a legitimate terminal accounting disposition but never physical completion. Unknown attachment or load means supported hold, no storage transfer."
+}

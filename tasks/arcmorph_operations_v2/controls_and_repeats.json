@@ -1,0 +1,49 @@
+{
+  "schema_version": "arcmorph_task.v2",
+  "controls": [
+    {
+      "id": "CP01",
+      "class": "source_reported",
+      "facts": [
+        "F03",
+        "F04"
+      ],
+      "requirement": "Retain both independent length references, multidimensional height check, orthogonal view roles and locked capture state."
+    },
+    {
+      "id": "CP02",
+      "class": "authored_validity_control",
+      "requirement": "Pre-session calibration and before/after inspection linked to each specimen and camera configuration. Numeric criteria remain null until qualified."
+    },
+    {
+      "id": "CP03",
+      "class": "authored_validity_control",
+      "requirement": "Preserve baseline/rest checks around mode changes; if recovery fails, retain data but gate comparisons requiring unchanged specimen state."
+    },
+    {
+      "id": "CP04",
+      "class": "source_repeat_boundary",
+      "facts": [
+        "F05"
+      ],
+      "requirement": "One reported sample and one quantitative set. Do not infer error bars, repeatability, fatigue cycles, randomized order or multiple specimens."
+    },
+    {
+      "id": "CP05",
+      "class": "authored_optional_extension",
+      "requirement": "Any added technical repeat or independent specimen must be requested in episode inputs, separately identified and reported as a benchmark extension, never attributed to the paper."
+    },
+    {
+      "id": "CP06",
+      "class": "analysis_control",
+      "requirement": "Theoretical curves and source outcomes stay separate from newly acquired images; mismatching the curve is not alone an operational failure."
+    }
+  ],
+  "source_quantitative_specimens": 1,
+  "source_quantitative_sets": 1,
+  "source_configurations": 8,
+  "source_technical_repeats_per_configuration": null,
+  "authored_repeat_default": null,
+  "new_replication_requires_frozen_plan": true,
+  "qualitative_counts": "12 cardstock state slots are evidential slots, not inferred sample counts."
+}

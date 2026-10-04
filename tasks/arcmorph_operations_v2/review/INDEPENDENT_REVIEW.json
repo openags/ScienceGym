@@ -1,0 +1,135 @@
+{
+  "schema": "sciencegym.independent_task_review.v1",
+  "status": "accept_as_source_grounded_execution_gated_static_design",
+  "review_date": "2026-10-04",
+  "reviewer": "independent_task_contract_reviewer",
+  "scope": "Source-contract fidelity, original static task design, finite synthetic guards, nominal sibling binding and sanitized text export",
+  "counts": {
+    "physical_route_families": 7,
+    "operation_templates": 31,
+    "coverage_records": 20,
+    "conflicts": 10,
+    "unknowns": 14,
+    "assets": 12,
+    "cardstock_families": 4,
+    "source_quantitative_specimens": 1,
+    "source_quantitative_sets": 1,
+    "source_configurations": 8,
+    "nonmanual_dispositions": 6,
+    "auxiliary_dispositions": 2,
+    "finite_replay_fixtures": 36,
+    "independent_contract_tests": 33,
+    "independent_export_tests": 21,
+    "independent_tests_total": 54,
+    "export_text_members_excluding_manifest": 45,
+    "observed_sibling_semantic_files": 9
+  },
+  "blocking_findings_open": [],
+  "resolved_findings": [
+    {
+      "id": "IR01",
+      "issue": "Unbound camera/lens/reference identities",
+      "resolution": "Role-specific current device binding, distinct identities and complete current calibration references",
+      "regression": "IndependentGuards.test_cameras_lenses_and_references_must_bind_current_identities"
+    },
+    {
+      "id": "IR02",
+      "issue": "Unmount chosen from self-declared fixture state",
+      "resolution": "Independent current mount binds fixture kind/ID, specimen and live lease",
+      "regression": "IndependentGuards.test_fixture_specific_unmount_and_incomplete_release_reject"
+    },
+    {
+      "id": "IR03",
+      "issue": "Model/raw-data unknowns held unrelated new-image work",
+      "resolution": "U11 and U14 scoped to applicable claims",
+      "regression": "IndependentGuards.test_scoped_model_and_raw_gates_allow_new_image_custody"
+    },
+    {
+      "id": "IR04",
+      "issue": "Task/scene binding drift",
+      "resolution": "R11 asset membership, v2 task ID, explicit PP1 alias and six contextual release selectors agree",
+      "regression": "IndependentSceneBinding"
+    },
+    {
+      "id": "IR05",
+      "issue": "R06 selector implied inspection-station custody before the declared transport",
+      "resolution": "R06 binds A04 dual-purpose fabrication input/safe-output dock and job receipt control",
+      "regression": "IndependentSceneBinding.test_concrete_targets_match_operation_scope_and_task_mapping"
+    },
+    {
+      "id": "IR06",
+      "issue": "Scene state registry retained stale R11/R18/R19 asset sets",
+      "resolution": "All 31 state operations now match canonical binding assets and selectors",
+      "regression": "IndependentSceneBinding.test_scene_state_registry_matches_current_bindings_and_guard_scope"
+    },
+    {
+      "id": "IR07",
+      "issue": "R13 configuration candidate accepted cardstock rigid-demo/corner scope",
+      "resolution": "R13 now requires PP rigid_metrology; R27 remains metadata-only",
+      "regression": "IndependentSceneBinding.test_scene_r13_cannot_substitute_for_cardstock_or_corner_operations"
+    }
+  ],
+  "source_preservation": {
+    "original_fields_preserved": true,
+    "source_fact_rows": 10,
+    "source_outcome_rows": 8,
+    "source_review_document_hashes_verified": 11,
+    "source_pdfs_reopened_by_this_review": false,
+    "source_archive_read": false
+  },
+  "scope_limits": [
+    "Finite synthetic evaluator-pinned registry, not live sensor authentication",
+    "No actor/evaluator filesystem isolation",
+    "No physical, hardware, physics, optical, fabrication, safety or scientific qualification",
+    "No source-media or source-model-code export",
+    "No remote writes or frozen-repository edits"
+  ],
+  "physical_qualification": false,
+  "hardware_safety_qualification": false,
+  "scientific_reproduction": false,
+  "validated_runnable_whole_paper_tasks": 0,
+  "verification_basis": "All 54 independent tests are run on a freshly frozen disposable snapshot with all nine pinned sibling semantic files and the accepted source review present. Final delivered-tree freeze and verification are required after review edits.",
+  "release_gate": "Freeze complete final text inventory; run all four README verification commands and verify the produced ZIP before distribution.",
+  "reviewed_implementation_hashes": {
+    "tests/contract.py": "6a9cbc54549c58532a796843277175b4734c8cbb2f25a7748cc2ff49a490ef3c",
+    "tests/verify_package.py": "9a89ad1bd5dfddbc334fc9d13a94c78211a6b23528df3055a0f4acfabf6fdeae",
+    "tests/verify_export.py": "a0ad818099872676265df12f7082c359b25d39da5619ad17b4479569657c15e9",
+    "review/test_independent_contract.py": "7f01893870bba8932cec8796f9a24f3194e49d9dce928b2ff6fdd9ab0fd7fbfd",
+    "review/test_independent_export.py": "f85b9502aa211a02ea923d442ac027f1802d122f003d890eabcea38121799ec8",
+    "asset_binding_plan.json": "c58ceb688ea4e132ed3e6b0c9d6ed363e84138e105e50f3b5caaf9af4cddf41a",
+    "operations.json": "e0e9438c6046733687fc6c72c3d2e9772f663a864c857a1df73dbd5e69d5340f",
+    "TASK_DESIGN.md": "a05af6a667d15a329c5c2477792e2d9958e5e541d75addd8e7e5fdf0ae254a80",
+    "provenance.json": "e7eb732eacaddeb568c59296fa19da93fd5776477195290c9e0f9496e4850c19",
+    "source_conflicts.json": "cdde667966340a9fc533508a72b9827d0c3bc155c0a441f09fd3e0b961bf2b3c",
+    "unknown_parameters.json": "5084643dae9396179360bc0c8da31dd8963a0a85a166ea063388910055bf38ee"
+  },
+  "observed_sibling_contract_hashes": {
+    "operation_binding_contract.json": "1ed26c1d83181514379e6c6df03f1aaf34691455e42ba6b095400022c94011ba",
+    "operation_bindings.json": "c45f75379301318e835afc0cdd3f7a98993d245521e07ccc6f59a3a7cafa26e6",
+    "asset_metadata.json": "ee8b8bc5dc253430d2bc9263875a1cf8e3a913acb68868c2c84444014a3763d2",
+    "affordances.json": "21b771118d3c23deda7c0b4bc0a7b069e1434677efd3efd71107f8000b96512f",
+    "variants.json": "8bed336e34bdd4c1645a0f9e957bfcd8222b0050e55799988213577e3bee432f",
+    "asset_inventory.json": "c97a2782e618675c3b1664a740f629611a47a69aa049267c361c6c4e508a8474",
+    "specimen_topology.json": "04435a36fb150b775b7757763b74d5ae2ddbdfe469d69e783dce4037a113f26a",
+    "semantic_controls.py": "ae0861189877604a327712e26bf9cfdf73a5940028d632fe103c395276f99f8d",
+    "states.json": "294ad7ca58129ec6d4c484536116f723a79c2594956a080e169d6489577c24da"
+  },
+  "test_commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s review -v",
+    "PYTHONDONTWRITEBYTECODE=1 python tests/verify_export.py"
+  ],
+  "review_revision": 2,
+  "paired_recheck_date": "2026-10-04",
+  "superseded_task_zip_sha256": "90490be0d04fda025886eb7e6ae6d05aa24b34fedd748e7e8e23abdd5db1d958",
+  "paired_recheck_scope": [
+    "All 31 concrete primary/control target mappings",
+    "All 66 nominal anchor owners, target membership and coordinates",
+    "All 31 state-to-binding asset sets",
+    "Six contextual release selectors and three actual mount classes",
+    "R06 fabrication safe-output custody",
+    "R26/R27 separate rigid-demo support",
+    "R13 PP rigid-metrology guard restriction",
+    "Nominal generation inputs versus twenty measured static variant bounds",
+    "Nine-file scene semantic hash receipt; no paired-reference circular dependency"
+  ]
+}
