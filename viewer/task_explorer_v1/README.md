@@ -1,10 +1,20 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** 29 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
+**See the task before reading its JSON.** 30 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
 
-## Paired-design and bounded-subset views — 2026-10-04
+## Woven whole-paper design view — 2026-10-04
 
-The explorer now has **32 clearly scoped families: 29 paper-level designs + 3 bounded subsets**, **736 inspection records** and **2,857 operation definitions**. This is not 32 whole-paper designs or 32 runnable tasks. Zero validated runnable whole-paper tasks are claimed.
+The explorer now has **33 clearly scoped families: 30 paper-level designs + 3 bounded subsets**, **761 inspection records** and **2,905 operation definitions**. Whole-paper DESIGN coverage is not scientific reproduction, a runnable environment or evidence of physical execution. Zero validated runnable whole-paper tasks are claimed.
+
+The [woven map](docs/woven.md) and [SVG](diagrams/woven.svg) retain **24 source scientific routes plus one separate default QUALIFICATION_HOLD inspection**, **48 symbolic operations**, **11 scene groups** and **43 symbolic anchors**. The source suite reports **96 synthetic contract configurations**; the viewer preserves their count and JSON contracts without copying the Python fixture registry. The configurations are offline bookkeeping fixtures; groups and anchors are original unqualified scene interfaces. The 53 source-evidence entries are a different count. All 30 source JSON documents, including nested review evidence, remain losslessly available in the reference context.
+
+The three design-only, thirteen closed-service, seven external-numerical and one source-conflict routes keep their source classifications. All eleven source conflicts, twelve input gates, eight control cards, preparation alternatives, physical/model distinctions, qualified-service requirements and sample/mount/calibration/control/attempt lineage remain exact. Conditional holds and quarantine are inspectable without becoming a required successful path. No source outcome becomes a target or receipt, and no request becomes an observation. The plasma/coating partial order is not silently resolved. Videos remain unplayed and raw workbook values uninspected.
+
+[Original editable static 3D asset guide](https://github.com/openags/ScienceGym/blob/d62daed913e2ea04f0b7b0a0f20de9f6d42b7df6/assets/woven_scene_assets_v1/README.md) and its three renders are linked at the same immutable [source snapshot](https://github.com/openags/ScienceGym/tree/d62daed913e2ea04f0b7b0a0f20de9f6d42b7df6). These links add no interactive physics, source-exact CAD, hardware control, solver or new storyboard. All 33 task packages, all seven asset bundles, both embodied players, scene bindings and LICENSE remain unchanged. The previous 32 generated JSON/JS, Markdown and SVG family outputs remain byte-identical.
+
+## Historical paired-design and bounded-subset views — 2026-10-04
+
+At that integration stage the explorer had **32 clearly scoped families: 29 paper-level designs + 3 bounded subsets**, **736 inspection records** and **2,857 operation definitions**. This is not 32 whole-paper designs or 32 runnable tasks. Zero validated runnable whole-paper tasks are claimed.
 
 The four added views retain all 118 source JSON documents, 147 operation definitions and 52 source branch-array entries (including the flow and direction holds), plus one separate qualification hold, one session-teardown view and six conditional-recovery catalog views. Their 60 inspection records are navigation records, not additional experiments or independent specimens. The earlier 28 JSON/JS, SVG and Markdown family outputs remain byte-identical.
 
@@ -119,7 +129,7 @@ Each SVG shows the designated reference view: Chiral R01, Deconwolf tubulin, fib
 - `data/<family>.json`: compact, inspectable normalized records
 - `data/<family>.js`: the same JSON as a local-script assignment so `file://` does not require fetch
 - `diagrams/*.svg`, `docs/<family>.md`: GitHub-native alternatives
-- `build.py`, `acoustic_adapters.py`, `mechanical_adapters.py`, `assembly_adapters.py`, `final_materials_adapters.py`, `nature_materials_adapters.py` `crossdisciplinary_adapters.py` and `paired_adapters.py`: 32 explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
+- `build.py`, `acoustic_adapters.py`, `mechanical_adapters.py`, `assembly_adapters.py`, `final_materials_adapters.py`, `nature_materials_adapters.py` `crossdisciplinary_adapters.py` `paired_adapters.py` and `woven_adapters.py`: 33 explicit source-schema adapters, standard library only; rebuilds counts and release-file checksums
 - `tests/test_semantics.py`, `tests/test_prismatic.py`, `tests/test_emvp.py`, `tests/test_cooling.py`, `tests/test_acoustic_designs.py`, `tests/test_mechanical_designs.py`, `tests/test_assembly_designs.py`, `tests/test_final_materials.py`, `tests/test_nature_materials.py`, `tests/test_app.js`: source-level fidelity and mocked-DOM UI state checks
 - [Adapter notes](docs/ADAPTERS.md), [verification report](VERIFICATION.md), [README integration snippet](README_INTEGRATION.md)
 

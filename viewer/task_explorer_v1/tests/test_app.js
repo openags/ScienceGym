@@ -3,7 +3,7 @@
 class El{constructor(tag){this.tagName=tag;this.attrs={};this.children=[];this.style={setProperty(){}};this.dataset={};this.hidden=false;this.value='';this.className='';this.classList={toggle:(name,on)=>{let s=new Set(this.className.split(' ').filter(Boolean));on?s.add(name):s.delete(name);this.className=[...s].join(' ');}};}setAttribute(k,v){this.attrs[k]=String(v);if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=String(v);if(k==='value')this.value=v;}append(...x){this.children.push(...x);}replaceChildren(...x){this.children=x;}set textContent(v){this.text=String(v);this.children=[];}get textContent(){return this.text||'';}}
 const ids=[...fs.readFileSync(path.join(ROOT,'index.html'),'utf8').matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);const elements=Object.fromEntries(ids.map(id=>[id,new El('div')]));['route','dependencies','contract'].forEach(tab=>{elements['tab-'+tab].setAttribute('role','tab');elements['tab-'+tab].setAttribute('data-tab',tab);});
 const walk=(roots)=>roots.flatMap(n=>n instanceof El?[n,...walk(n.children)]:[]);const document={documentElement:new El('html'),getElementById:id=>elements[id],createElement:tag=>new El(tag),createTextNode:t=>String(t),querySelectorAll:selector=>{const all=walk(Object.values(elements));if(selector==='nav button')return elements.families.children;if(selector==='[role=tab]')return all.filter(x=>x.attrs.role==='tab');if(selector==='.operation')return all.filter(x=>x.className.split(' ').includes('operation'));throw Error('Unimplemented selector '+selector);}};
-const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop','granular_assembly','beaded','thermal_jamming','horn_acoustics','mechanical_logic','cold_shape','gear','hydrogel_optical','atmospheric_optics','afm_metrology','martian_geophysics','transistor','laser_control','solar_water','sucrose_metrology','actuator_metrology'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
+const data={};for(const key of ['chiral','microscopy','fibre','thermoelectric','dispim','acoustic','perovskite','prismatic','emvp','cooling','wavefront','bianisotropic','edge','origami_memory','ring_origami','mechanical_backprop','granular_assembly','beaded','thermal_jamming','horn_acoustics','mechanical_logic','cold_shape','gear','hydrogel_optical','atmospheric_optics','afm_metrology','martian_geophysics','transistor','laser_control','solar_water','sucrose_metrology','actuator_metrology','woven'])data[key]=JSON.parse(fs.readFileSync(path.join(ROOT,'data',key+'.json'),'utf8'));
 let hash='',onHash;const location={get hash(){return hash;},set hash(value){hash=value.startsWith('#')?value:'#'+value;if(onHash)onHash();}};const window={SCIENCEGYM_DATA:data,addEventListener:(n,fn)=>{if(n==='hashchange')onHash=fn;}};const context={window,document,location,console,Blob:class{constructor(parts,options){this.parts=parts;this.options=options;}},URL:{createObjectURL:()=> 'blob:mock-test',revokeObjectURL:()=>{}}};vm.createContext(context);if(process.argv[2]){const standalone=fs.readFileSync(process.argv[2],'utf8');for(const match of standalone.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInContext(match[1],context);}else{vm.runInContext(fs.readFileSync(path.join(ROOT,'app.js'),'utf8'),context);}let routeCount=0,occurrenceCount=0;
 for(const [key,f]of Object.entries(window.ScienceGymExplorer.data)){for(const r of f.routes){location.hash=[key,r.id,'',0].join('/');const state=window.ScienceGymExplorer.state;assert.strictEqual(state.family,key);assert.strictEqual(state.route,r.id);assert(state.steps.length>0||r.route_kind==='numerical'||r.metadata_only);assert.strictEqual(document.querySelectorAll('.operation').length,state.steps.length);assert.strictEqual(document.querySelectorAll('.operation').filter(x=>x.attrs['aria-pressed']==='true').length,state.steps.length?1:0);if(state.steps.length){const last=state.steps[state.steps.length-1];location.hash=[key,r.id,last.id,last.index].join('/');assert.strictEqual(state.op,last.id);assert.strictEqual(state.occurrence,last.index);}else{assert.strictEqual(state.op,null);}routeCount++;occurrenceCount+=state.steps.length;}}
 location.hash='dispim/D-R01/P001/7';assert.strictEqual(window.ScienceGymExplorer.state.op,'P001');let ps=window.ScienceGymExplorer.state.steps.filter(s=>s.id==='P001');assert.strictEqual(ps.length,2);location.hash=['dispim','D-R01','P001',ps[1].index].join('/');assert.strictEqual(window.ScienceGymExplorer.state.occurrence,ps[1].index);
@@ -465,3 +465,42 @@ const pairedHistory=location.hash;location.hash='actuator_metrology/DIRECTION_HO
 location.hash='laser_control/QUALIFICATION_HOLD';assert(!window.ScienceGymExplorer.state.steps.some(s=>s.id==='REQUEST_LOCK'));
 location.hash='chiral/R01';assert.strictEqual(elements.familyScope.textContent,'PAPER-LEVEL DESIGN');assert.strictEqual(elements.assetLinks.children.length,0);
 console.log(`PASS: paired ${pairedRoutes} records / ${pairedEntries} display entries / ${pairedSelections} individual selections; explicit 29+3 scopes, default holds, separate teardown/recovery, source contracts, asset links and immutable navigation`);
+// Woven whole-paper DESIGN: independent source classes, no scientific execution.
+const woven=window.ScienceGymExplorer.data.woven,wovenBefore=JSON.stringify(woven);
+const wovenNav=elements.families.children.find(e=>e.dataset.family==='woven');assert(wovenNav);wovenNav.onclick();
+assert.strictEqual(window.ScienceGymExplorer.state.route,'QUALIFICATION_HOLD');
+assert.strictEqual(elements.familyScope.textContent,'WHOLE-PAPER DESIGN');
+assert.deepStrictEqual(Array.from(window.ScienceGymExplorer.state.steps,s=>s.id),['HOLD_QUALIFICATION']);
+const wovenAssets=walk([elements.assetLinks]).filter(x=>x.tagName==='a');assert.strictEqual(wovenAssets.length,4);
+for(const a of wovenAssets)assert(a.attrs.href.includes('/d62daed913e2ea04f0b7b0a0f20de9f6d42b7df6/assets/woven_scene_assets_v1/'));
+let wovenEntries=0,wovenSelections=0;
+for(const r of woven.routes){
+ location.hash=['woven',r.id].join('/');const nodes=walk([elements.routeCanvas]);
+ assert(!nodes.some(x=>x.className.split(' ').includes('connector')),r.id+' invented chronology');
+ assert(!nodes.some(x=>x.textContent.includes('undefined')),r.id+' has undefined source data');
+ const steps=[...window.ScienceGymExplorer.state.steps];
+ if(r.source_file==='branches.json')assert.deepStrictEqual(Array.from(steps,s=>s.id),Array.from(woven.operations.filter(o=>o.detail.branch_ids.includes(r.id)),o=>o.id));
+ for(const step of steps){
+  location.hash=['woven',r.id,step.id,step.index].join('/');assert.strictEqual(window.ScienceGymExplorer.state.op,step.id);
+  assert.strictEqual(window.ScienceGymExplorer.state.occurrence,step.index);
+  const txt=walk([elements.inspector]).map(x=>x.textContent).join('\n');
+  for(const value of [step.id,step.op.detail.precondition,step.op.detail.required_output,step.op.detail.failure,'No actions field supplied','No post-state field supplied'])assert(txt.includes(value),r.id+' missing '+value);
+  wovenSelections++;
+ }
+ document.querySelectorAll('.operation').at(-1).onclick();document.querySelectorAll('.operation').at(-1).onclick();
+ elements.operationSearch.oninput({target:{value:'hold'}});assert.strictEqual(document.querySelectorAll('.operation').length,steps.length);
+ elements['tab-contract'].onclick();let txt=walk([elements.contractView]).map(x=>x.textContent).join('\n');
+ for(const value of ['WHOLE-PAPER DESIGN, NOT REPRODUCTION','synthetic','source conflicts','TETRA_STRAND_COUNT','PLASMA_COATING_ORDER','PATTERN_PARAMETER_MAP','lineage','control packages','source access audit','agent visible','No silent correction','Prepared route earns no fabrication credit'])assert(txt.includes(value),value);
+ elements['tab-dependencies'].onclick();txt=walk([elements.dependenciesView]).map(x=>x.textContent).join('\n');
+ for(const value of ['preparation routes','lifecycle contract','transport routes','unspecified','external order card'])assert(txt.includes(value),value);
+ wovenEntries+=steps.length;
+}
+assert.strictEqual(woven.routes.length,25);assert.strictEqual(wovenEntries,601);assert.strictEqual(wovenSelections,601);
+location.hash='woven/PROGRAMMED_FAILURE_EXPERIMENT/REQUEST_SUPPORT_REMOVAL/0';assert.strictEqual(window.ScienceGymExplorer.state.op,'REQUEST_SUPPORT_REMOVAL');
+const wovenHistory=location.hash;location.hash='woven/TETRAKAIDECAHEDRON_HOLD';assert(!window.ScienceGymExplorer.state.steps.some(s=>s.id==='REQUEST_TENSION'));
+assert(elements.routeTitle.textContent.includes('SOURCE-CONFLICT HOLD'));location.hash=wovenHistory;assert.strictEqual(window.ScienceGymExplorer.state.op,'REQUEST_SUPPORT_REMOVAL');
+location.hash='woven/LINEAR_HOMOGENIZATION';assert(elements.routeTitle.textContent.includes('NO SOLVER RUN'));assert(!window.ScienceGymExplorer.state.steps.some(s=>s.id==='REQUEST_TENSION'));
+location.hash='woven/INVALID_ROUTE';assert.strictEqual(window.ScienceGymExplorer.state.route,'QUALIFICATION_HOLD');assert.strictEqual(elements.operationSearch.value,'');assert.strictEqual(elements.routeView.hidden,false);
+location.hash='woven/QUALIFICATION_HOLD/REQUEST_TENSION/999';assert.strictEqual(window.ScienceGymExplorer.state.op,'HOLD_QUALIFICATION');
+assert.strictEqual(JSON.stringify(woven),wovenBefore);
+console.log(`PASS: woven 25 inspection records (24 scientific design routes + separate default hold), ${wovenEntries} entries / ${wovenSelections} individual selections; source conflicts, closed services, immutable navigation, 30+3 family scopes`);

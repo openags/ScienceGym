@@ -1,7 +1,29 @@
-# Verification: 29 paper designs and 3 bounded subsets
+# Verification: 30 paper designs and 3 bounded subsets
 
 
-## Paired-design and bounded-subset integration — 2026-10-04
+## Woven whole-paper DESIGN integration — 2026-10-04
+
+Scope: viewer-only projection from parent-confirmed immutable remote source `d62daed913e2ea04f0b7b0a0f20de9f6d42b7df6`. The isolated baseline contains exactly 1,599 tracked files at tree `97eb3d1982df964c0532ad913f0d32ea6655f6eb`; no private untracked metadata was copied. The candidate contains 1,605 files. The explorer now has **33 families: 30 paper-level designs + 3 bounded subsets**, **761 inspection records** and **2,905 operation definitions**. Whole-paper DESIGN coverage is not scientific reproduction or physical readiness.
+
+Woven preserves **24 source scientific branches plus one separate default qualification-hold inspection**, **48 symbolic operations**, all **30 source JSON documents**, **53 evidence entries**, **11 source conflicts**, **12 required input groups**, **8 control cards**, **11 scene groups** and **43 symbolic anchors**. The source suite reports 96 finite synthetic configurations. The viewer retains their count and JSON contracts, not a copied fixture registry or scientific results. Three design-only, thirteen closed-service, seven external-numerical and one conflict-hold routes remain distinct. Exact source reverse-index membership is unordered; no adjacent causal edges, completed services, sample counts or execution credit are invented.
+
+Verification is static and synthetic only:
+
+- **287 source-bound Python explorer tests pass, no skips**: all 264 prior tests remain, with 23 independent woven tests. Prior historical-count tests exclude the new family while preserving their original exact totals; overall inventory assertions now require 33 families. All 30 source JSON documents and 48 operation records reconstruct exactly, with boolean/integer type distinctions protected
+- **93 independent hostile projection mutations** are rejected, covering source omissions, fabricated actions/stations/post-states, reordered membership, default/conditional hold bypass, opened service authority, physical/numerical mixing, lost controls/lineage/conflicts, source-reading overclaims, altered pins and invented configuration credit
+- All **25 woven SVG inspection variants** parse and preserve exact operation membership without adjacency arrows. Four representative default, physical patterned-failure, numerical and topology-hold variants were rendered with installed Inkscape and independently inspected as pixels. Visible labels distinguish 24 routes from the separate default hold and identify recovery holds/quarantine as conditional
+- Local-script and standalone mocked-DOM tests cover all **761 records / 17,142 displayed operation entries**, including individually selecting all **601 new woven entries**. Whole-paper DESIGN labels, pinned asset links, source contracts, tabs, search, repeated clicks, malformed route/operation fallback, hash restoration and immutable data pass. Mock DOM is not real-browser coverage
+- **11/11 root static groups pass**, including **19 verifier regressions**, **77 unchanged scene-binding negative tests**, **41 JavaScript syntax checks**, all three mocked-DOM suites and **220 image-hash assertions over 71 frames / 75 unique images**
+- The unchanged woven task passes **46 author tests**, **49 independent tests**, **576 structural checks** and its exact **41-member export** verifier. The unchanged woven asset package passes **30 author/semantic-control tests**. Native geometry and GLB import checks were not rerun because no asset byte changed; historical native receipts keep their original scope
+- Independent viewer review passes **531 source/artifact assertions**, including complete inverse source reconstruction, source pointers, scope, gates, lineage and prior-output preservation. Its evidence is recorded separately from the immutable source package reviews
+- All **1,422 protected files** across 33 task packages, seven asset bundles, both embodied players, scene bindings and LICENSE remain byte-identical. All **128 earlier generated family files** (32 JSON, 32 JS, 32 Markdown and 32 SVG) also remain byte-identical. There are no deleted files or binary additions
+- Full rebuild, woven-only rebuild and standalone regeneration are deterministic. The standalone contains 33 data and SVG payloads with no external runtime dependencies. Exact UTF-8 byte/character counts, SHA-256 and Git blob hashes are recorded in the separate publication manifest. Publication is a separate parent action and is not claimed here
+
+Physical and numerical pattern maps, distinct cyclic directions, held tetra geometry, plasma/coating partial order, signed cycle loss, prepared-input versus full-fabrication ancestry, current sample/mount/calibration/control/attempt revisions and independent safe release remain explicit. Only source agent_visible.json is actor context; this public inspector includes evaluator-only content. Main/SI design coverage does not become video playback or raw workbook inspection. Original asset README/render links add no new geometry, physics, controller, solver or storyboard.
+
+Previously denied browser routes were not retried or bypassed. Real-browser rendering, responsive/touch layout, focus and native Back/Forward remain unverified. No physical or numerical science was executed. Historical sections below preserve their earlier counts and scope.
+
+## Historical paired-design and bounded-subset integration — 2026-10-04
 
 Scope: viewer-only projection from parent-confirmed immutable base `f803612db28652d2e2dd574d8039c36b7136f399`, with 1,508 starting files. The viewer has **32 labeled families: 29 paper-level designs + 3 bounded subsets**, **736 inspection records** and **2,857 operation definitions**. This is not a claim of 32 whole-paper designs or runnable tasks. All source packages, assets, embodied players, scene bindings and LICENSE are protected byte-for-byte.
 
