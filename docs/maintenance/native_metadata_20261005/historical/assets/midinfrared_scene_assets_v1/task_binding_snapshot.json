@@ -1,0 +1,1184 @@
+{
+  "schema": "sciencegym.midinfrared.task_binding_snapshot.v1",
+  "task_id": "midinfrared_operations_v2",
+  "source_files": [
+    {
+      "task_file": "operations.json",
+      "sha256": "318daecc237ea0ecd4e9a3d443b0798e586b7d6848c3bdc4706047a9752ac444",
+      "bytes": 38837
+    },
+    {
+      "task_file": "asset_binding_plan.json",
+      "sha256": "751ee1bb2eb3332d56a55612632fcf8aef402adedeeda118fb51749f419658be",
+      "bytes": 25019
+    }
+  ],
+  "operation_summary": [
+    {
+      "id": "R01",
+      "name": "Freeze campaign and evidence references",
+      "asset_ids": [
+        "A03",
+        "A08",
+        "A11"
+      ]
+    },
+    {
+      "id": "R02",
+      "name": "Commission protected samples through service",
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A04",
+        "A10"
+      ]
+    },
+    {
+      "id": "R03",
+      "name": "Receive and inspect protected carriers",
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A09",
+        "A12"
+      ]
+    },
+    {
+      "id": "R04",
+      "name": "Obtain qualified optical station readiness",
+      "asset_ids": [
+        "A05",
+        "A06",
+        "A13"
+      ]
+    },
+    {
+      "id": "R05",
+      "name": "Register station frames and protected transfers",
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A05",
+        "A08",
+        "A12"
+      ]
+    },
+    {
+      "id": "R06",
+      "name": "Freeze calibration and acquisition configuration",
+      "asset_ids": [
+        "A05",
+        "A06",
+        "A08",
+        "A13"
+      ]
+    },
+    {
+      "id": "R07",
+      "name": "Acquire object-removed calibration branch",
+      "asset_ids": [
+        "A05",
+        "A06",
+        "A08",
+        "A09",
+        "A13"
+      ]
+    },
+    {
+      "id": "R08",
+      "name": "Evaluate registration and correction evidence",
+      "asset_ids": [
+        "A08",
+        "A10",
+        "A11",
+        "A13"
+      ]
+    },
+    {
+      "id": "R09",
+      "name": "Load copper carrier and acquire static analog letters",
+      "asset_ids": [
+        "A01",
+        "A03",
+        "A05",
+        "A06",
+        "A08",
+        "A12"
+      ]
+    },
+    {
+      "id": "R10",
+      "name": "Acquire protected dynamic-target branch",
+      "asset_ids": [
+        "A01",
+        "A05",
+        "A06",
+        "A07",
+        "A08"
+      ]
+    },
+    {
+      "id": "R11",
+      "name": "Switch to photon-counting service configuration",
+      "asset_ids": [
+        "A05",
+        "A06",
+        "A08"
+      ]
+    },
+    {
+      "id": "R12",
+      "name": "Acquire full photon-sparse copper matrix",
+      "asset_ids": [
+        "A01",
+        "A05",
+        "A06",
+        "A08"
+      ]
+    },
+    {
+      "id": "R13",
+      "name": "Acquire raster/random/Hadamard comparison",
+      "asset_ids": [
+        "A01",
+        "A05",
+        "A06",
+        "A08"
+      ]
+    },
+    {
+      "id": "R14",
+      "name": "Acquire fixed-flux integration-time matrix",
+      "asset_ids": [
+        "A01",
+        "A05",
+        "A06",
+        "A08"
+      ]
+    },
+    {
+      "id": "R15",
+      "name": "Acquire random compressed measurement branch",
+      "asset_ids": [
+        "A01",
+        "A05",
+        "A06",
+        "A08"
+      ]
+    },
+    {
+      "id": "R16",
+      "name": "Compare baseline and denoised reconstruction",
+      "asset_ids": [
+        "A08",
+        "A11"
+      ]
+    },
+    {
+      "id": "R17",
+      "name": "Exchange copper for protected silicon sample",
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A05",
+        "A09",
+        "A12"
+      ]
+    },
+    {
+      "id": "R18",
+      "name": "Acquire silicon-star transmission matrix",
+      "asset_ids": [
+        "A02",
+        "A05",
+        "A06",
+        "A08",
+        "A09"
+      ]
+    },
+    {
+      "id": "R19",
+      "name": "Reconstruct and evaluate all eligible branches",
+      "asset_ids": [
+        "A08",
+        "A10",
+        "A11"
+      ]
+    },
+    {
+      "id": "R20",
+      "name": "Run approved independent repeats and controls",
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13"
+      ]
+    },
+    {
+      "id": "R21",
+      "name": "Return samples and close station",
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A05",
+        "A07",
+        "A12"
+      ]
+    },
+    {
+      "id": "R22",
+      "name": "Archive complete evidence and declare bounded outcome",
+      "asset_ids": [
+        "A03",
+        "A08",
+        "A11"
+      ]
+    }
+  ],
+  "binding_plan": {
+    "schema_version": "midinfrared_task.v2",
+    "asset_pack_id": "midinfrared_scene_assets_v1",
+    "status": "frozen_nominal_pairing",
+    "operation_bindings": [
+      {
+        "operation_id": "R01",
+        "asset_ids": [
+          "A03",
+          "A08",
+          "A11"
+        ],
+        "root_node_ids": [
+          "ASSET.A03",
+          "ASSET.A08",
+          "ASSET.A11"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R01.primary",
+          "ANCHOR.R01.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A03",
+        "primary_target": "receiving.plan_token",
+        "control_target": "receiving.id_reader",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R01.primary": [
+            -2.380000114440918,
+            -0.4300000071525574,
+            0.8479999899864197
+          ],
+          "ANCHOR.R01.control": [
+            -1.7200000286102295,
+            -0.17000000178813934,
+            1.100000023841858
+          ]
+        }
+      },
+      {
+        "operation_id": "R02",
+        "asset_ids": [
+          "A01",
+          "A02",
+          "A04",
+          "A10"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A02",
+          "ASSET.A04",
+          "ASSET.A10"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R02.primary",
+          "ANCHOR.R02.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A04",
+        "primary_target": "fabrication.load_dock",
+        "control_target": "fabrication.receipt_port",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R02.primary": [
+            -2.0199999809265137,
+            0.949999988079071,
+            0.8899999856948853
+          ],
+          "ANCHOR.R02.control": [
+            -1.399999976158142,
+            1.1469999551773071,
+            1.2899999618530273
+          ]
+        }
+      },
+      {
+        "operation_id": "R03",
+        "asset_ids": [
+          "A01",
+          "A02",
+          "A03",
+          "A09",
+          "A12"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A02",
+          "ASSET.A03",
+          "ASSET.A09",
+          "ASSET.A12"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R03.primary",
+          "ANCHOR.R03.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A03",
+        "primary_target": "receiving.inspection_cradle",
+        "control_target": "receiving.id_reader",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R03.primary": [
+            -2.049999952316284,
+            -0.23000000417232513,
+            0.8199999928474426
+          ],
+          "ANCHOR.R03.control": [
+            -1.7200000286102295,
+            -0.17000000178813934,
+            1.100000023841858
+          ]
+        }
+      },
+      {
+        "operation_id": "R04",
+        "asset_ids": [
+          "A05",
+          "A06",
+          "A13"
+        ],
+        "root_node_ids": [
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A13"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R04.primary",
+          "ANCHOR.R04.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A05",
+        "primary_target": "optics.safe_access_port",
+        "control_target": "optics.interlock_status",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R04.primary": [
+            0.5799999833106995,
+            0.9890000224113464,
+            1.2100000381469727
+          ],
+          "ANCHOR.R04.control": [
+            0.5799999833106995,
+            0.9890000224113464,
+            1.399999976158142
+          ]
+        }
+      },
+      {
+        "operation_id": "R05",
+        "asset_ids": [
+          "A01",
+          "A02",
+          "A03",
+          "A05",
+          "A08",
+          "A12"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A02",
+          "ASSET.A03",
+          "ASSET.A05",
+          "ASSET.A08",
+          "ASSET.A12"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R05.primary",
+          "ANCHOR.R05.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A12",
+        "primary_target": "transport.supported_cradle",
+        "control_target": "transport.registration_fiducial",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R05.primary": [
+            -2.119999885559082,
+            -1.2000000476837158,
+            0.8349999785423279
+          ],
+          "ANCHOR.R05.control": [
+            -2.119999885559082,
+            -1.3899999856948853,
+            0.8799999952316284
+          ]
+        }
+      },
+      {
+        "operation_id": "R06",
+        "asset_ids": [
+          "A05",
+          "A06",
+          "A08",
+          "A13"
+        ],
+        "root_node_ids": [
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08",
+          "ASSET.A13"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R06.primary",
+          "ANCHOR.R06.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A08",
+        "primary_target": "timing.configuration_port",
+        "control_target": "timing.configuration_token",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R06.primary": [
+            1.3200000524520874,
+            0.12999999523162842,
+            0.8339999914169312
+          ],
+          "ANCHOR.R06.control": [
+            1.3200000524520874,
+            0.04100000113248825,
+            0.8659999966621399
+          ]
+        }
+      },
+      {
+        "operation_id": "R07",
+        "asset_ids": [
+          "A05",
+          "A06",
+          "A08",
+          "A09",
+          "A13"
+        ],
+        "root_node_ids": [
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08",
+          "ASSET.A09",
+          "ASSET.A13"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R07.primary",
+          "ANCHOR.R07.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A13",
+        "primary_target": "diagnostic.map_transfer_port",
+        "control_target": "diagnostic.registration_port",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R07.primary": [
+            1.9500000476837158,
+            2.1989998817443848,
+            1.4199999570846558
+          ],
+          "ANCHOR.R07.control": [
+            1.9500000476837158,
+            2.1989998817443848,
+            1.2899999618530273
+          ]
+        }
+      },
+      {
+        "operation_id": "R08",
+        "asset_ids": [
+          "A08",
+          "A10",
+          "A11",
+          "A13"
+        ],
+        "root_node_ids": [
+          "ASSET.A08",
+          "ASSET.A10",
+          "ASSET.A11",
+          "ASSET.A13"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R08.primary",
+          "ANCHOR.R08.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A11",
+        "primary_target": "archive.evaluation_port",
+        "control_target": "archive.reference_token",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R08.primary": [
+            2.5999999046325684,
+            0.30000001192092896,
+            0.8309999704360962
+          ],
+          "ANCHOR.R08.control": [
+            2.5999999046325684,
+            0.1940000057220459,
+            0.8560000061988831
+          ]
+        }
+      },
+      {
+        "operation_id": "R09",
+        "asset_ids": [
+          "A01",
+          "A03",
+          "A05",
+          "A06",
+          "A08",
+          "A12"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A03",
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08",
+          "ASSET.A12"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R09.primary",
+          "ANCHOR.R09.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A05",
+        "primary_target": "optics.load_dock",
+        "control_target": "optics.dock_latch",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R09.primary": [
+            -0.27000001072883606,
+            0.7400000095367432,
+            0.9100000262260437
+          ],
+          "ANCHOR.R09.control": [
+            0.10000000149011612,
+            0.550000011920929,
+            0.949999988079071
+          ]
+        }
+      },
+      {
+        "operation_id": "R10",
+        "asset_ids": [
+          "A01",
+          "A05",
+          "A06",
+          "A07",
+          "A08"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A07",
+          "ASSET.A08"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R10.primary",
+          "ANCHOR.R10.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A07",
+        "primary_target": "dynamic.retained_mount",
+        "control_target": "dynamic.service_port",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R10.primary": [
+            0.3700000047683716,
+            -0.10000000149011612,
+            1.024999976158142
+          ],
+          "ANCHOR.R10.control": [
+            0.699999988079071,
+            -0.4050000011920929,
+            0.8999999761581421
+          ]
+        }
+      },
+      {
+        "operation_id": "R11",
+        "asset_ids": [
+          "A05",
+          "A06",
+          "A08"
+        ],
+        "root_node_ids": [
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R11.primary",
+          "ANCHOR.R11.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A06",
+        "primary_target": "instruments.detector_mode_port",
+        "control_target": "instruments.mode_receipt_slot",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R11.primary": [
+            1.659999966621399,
+            0.9919999837875366,
+            0.8450000286102295
+          ],
+          "ANCHOR.R11.control": [
+            1.9299999475479126,
+            0.9940000176429749,
+            0.8450000286102295
+          ]
+        }
+      },
+      {
+        "operation_id": "R12",
+        "asset_ids": [
+          "A01",
+          "A05",
+          "A06",
+          "A08"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R12.primary",
+          "ANCHOR.R12.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A08",
+        "primary_target": "timing.photon_port",
+        "control_target": "timing.event_ledger",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R12.primary": [
+            1.5499999523162842,
+            0.12999999523162842,
+            0.8339999914169312
+          ],
+          "ANCHOR.R12.control": [
+            2.0199999809265137,
+            0.12999999523162842,
+            0.8339999914169312
+          ]
+        }
+      },
+      {
+        "operation_id": "R13",
+        "asset_ids": [
+          "A01",
+          "A05",
+          "A06",
+          "A08"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R13.primary",
+          "ANCHOR.R13.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A08",
+        "primary_target": "timing.encoding_port",
+        "control_target": "timing.event_ledger",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R13.primary": [
+            1.7799999713897705,
+            0.12999999523162842,
+            0.8339999914169312
+          ],
+          "ANCHOR.R13.control": [
+            2.0199999809265137,
+            0.12999999523162842,
+            0.8339999914169312
+          ]
+        }
+      },
+      {
+        "operation_id": "R14",
+        "asset_ids": [
+          "A01",
+          "A05",
+          "A06",
+          "A08"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R14.primary",
+          "ANCHOR.R14.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A08",
+        "primary_target": "timing.photon_port",
+        "control_target": "timing.event_ledger",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R14.primary": [
+            1.5499999523162842,
+            0.12999999523162842,
+            0.8339999914169312
+          ],
+          "ANCHOR.R14.control": [
+            2.0199999809265137,
+            0.12999999523162842,
+            0.8339999914169312
+          ]
+        }
+      },
+      {
+        "operation_id": "R15",
+        "asset_ids": [
+          "A01",
+          "A05",
+          "A06",
+          "A08"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R15.primary",
+          "ANCHOR.R15.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A08",
+        "primary_target": "timing.encoding_port",
+        "control_target": "timing.event_ledger",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R15.primary": [
+            1.7799999713897705,
+            0.12999999523162842,
+            0.8339999914169312
+          ],
+          "ANCHOR.R15.control": [
+            2.0199999809265137,
+            0.12999999523162842,
+            0.8339999914169312
+          ]
+        }
+      },
+      {
+        "operation_id": "R16",
+        "asset_ids": [
+          "A08",
+          "A11"
+        ],
+        "root_node_ids": [
+          "ASSET.A08",
+          "ASSET.A11"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R16.primary",
+          "ANCHOR.R16.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A11",
+        "primary_target": "archive.analysis_port",
+        "control_target": "archive.version_token",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R16.primary": [
+            2.880000114440918,
+            0.30000001192092896,
+            0.8309999704360962
+          ],
+          "ANCHOR.R16.control": [
+            2.880000114440918,
+            0.1940000057220459,
+            0.8560000061988831
+          ]
+        }
+      },
+      {
+        "operation_id": "R17",
+        "asset_ids": [
+          "A01",
+          "A02",
+          "A03",
+          "A05",
+          "A09",
+          "A12"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A02",
+          "ASSET.A03",
+          "ASSET.A05",
+          "ASSET.A09",
+          "ASSET.A12"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R17.primary",
+          "ANCHOR.R17.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A05",
+        "primary_target": "optics.load_dock",
+        "control_target": "optics.dock_latch",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R17.primary": [
+            -0.27000001072883606,
+            0.7400000095367432,
+            0.9100000262260437
+          ],
+          "ANCHOR.R17.control": [
+            0.10000000149011612,
+            0.550000011920929,
+            0.949999988079071
+          ]
+        }
+      },
+      {
+        "operation_id": "R18",
+        "asset_ids": [
+          "A02",
+          "A05",
+          "A06",
+          "A08",
+          "A09"
+        ],
+        "root_node_ids": [
+          "ASSET.A02",
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A08",
+          "ASSET.A09"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R18.primary",
+          "ANCHOR.R18.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A08",
+        "primary_target": "timing.photon_port",
+        "control_target": "timing.event_ledger",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R18.primary": [
+            1.5499999523162842,
+            0.12999999523162842,
+            0.8339999914169312
+          ],
+          "ANCHOR.R18.control": [
+            2.0199999809265137,
+            0.12999999523162842,
+            0.8339999914169312
+          ]
+        }
+      },
+      {
+        "operation_id": "R19",
+        "asset_ids": [
+          "A08",
+          "A10",
+          "A11"
+        ],
+        "root_node_ids": [
+          "ASSET.A08",
+          "ASSET.A10",
+          "ASSET.A11"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R19.primary",
+          "ANCHOR.R19.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A11",
+        "primary_target": "archive.evaluation_port",
+        "control_target": "archive.branch_ledger",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R19.primary": [
+            2.5999999046325684,
+            0.30000001192092896,
+            0.8309999704360962
+          ],
+          "ANCHOR.R19.control": [
+            2.880000114440918,
+            0.03999999910593033,
+            0.8309999704360962
+          ]
+        }
+      },
+      {
+        "operation_id": "R20",
+        "asset_ids": [
+          "A01",
+          "A02",
+          "A03",
+          "A05",
+          "A06",
+          "A07",
+          "A08",
+          "A09",
+          "A10",
+          "A11",
+          "A12",
+          "A13"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A02",
+          "ASSET.A03",
+          "ASSET.A05",
+          "ASSET.A06",
+          "ASSET.A07",
+          "ASSET.A08",
+          "ASSET.A09",
+          "ASSET.A10",
+          "ASSET.A11",
+          "ASSET.A12",
+          "ASSET.A13"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R20.primary",
+          "ANCHOR.R20.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A10",
+        "primary_target": "metrology.reference_cradle",
+        "control_target": "metrology.registration_token",
+        "qualified_pose": null,
+        "anchor_scope": "Representative repeat-plan and reference interface; repeated acquisition re-enters actual branch-specific anchors with fresh records",
+        "anchor_positions_m": {
+          "ANCHOR.R20.primary": [
+            1.3799999952316284,
+            -1.1299999952316284,
+            0.8399999737739563
+          ],
+          "ANCHOR.R20.control": [
+            2.0,
+            -1.0800000429153442,
+            0.8700000047683716
+          ]
+        }
+      },
+      {
+        "operation_id": "R21",
+        "asset_ids": [
+          "A01",
+          "A02",
+          "A03",
+          "A05",
+          "A07",
+          "A12"
+        ],
+        "root_node_ids": [
+          "ASSET.A01",
+          "ASSET.A02",
+          "ASSET.A03",
+          "ASSET.A05",
+          "ASSET.A07",
+          "ASSET.A12"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R21.primary",
+          "ANCHOR.R21.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A03",
+        "primary_target": "receiving.return_slot",
+        "control_target": "receiving.custody_port",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R21.primary": [
+            -2.049999952316284,
+            0.019999999552965164,
+            0.925000011920929
+          ],
+          "ANCHOR.R21.control": [
+            -1.7000000476837158,
+            -0.3199999928474426,
+            0.8700000047683716
+          ]
+        }
+      },
+      {
+        "operation_id": "R22",
+        "asset_ids": [
+          "A03",
+          "A08",
+          "A11"
+        ],
+        "root_node_ids": [
+          "ASSET.A03",
+          "ASSET.A08",
+          "ASSET.A11"
+        ],
+        "anchor_ids": [
+          "ANCHOR.R22.primary",
+          "ANCHOR.R22.control"
+        ],
+        "binding_kind": "nominal_semantic_interface",
+        "physical_qualified": false,
+        "primary_asset_id": "A11",
+        "primary_target": "archive.manifest_port",
+        "control_target": "archive.failure_bin",
+        "qualified_pose": null,
+        "anchor_scope": "Representative operation interface; expanded actions retain their own current qualified context.",
+        "anchor_positions_m": {
+          "ANCHOR.R22.primary": [
+            3.1600000858306885,
+            0.30000001192092896,
+            0.8309999704360962
+          ],
+          "ANCHOR.R22.control": [
+            3.1500000953674316,
+            -0.03500000014901161,
+            0.8999999761581421
+          ]
+        }
+      }
+    ],
+    "final_asset_hashes": [
+      {
+        "path": "affordances.json",
+        "bytes": 36297,
+        "sha256": "e6dc0ba2d08c3fcf89df1b099a403949fa1bb6308b20143aad18c30727287c94"
+      },
+      {
+        "path": "assembly_contract.json",
+        "bytes": 7267,
+        "sha256": "fb4f7eefa6c3b7431e6b91e524f1fa801a78338973dc074d079c4d26a0bbadd8"
+      },
+      {
+        "path": "asset_inventory.json",
+        "bytes": 159083,
+        "sha256": "d45cca9d1f18e9994a1b55fc3274c52b5e69ebd02bba0f9c2b82370c0b92318b"
+      },
+      {
+        "path": "asset_metadata.json",
+        "bytes": 2703,
+        "sha256": "df63d585e3f0e797a743f1df3109516fb435df80e847454094b23b634e532bb7"
+      },
+      {
+        "path": "geometry/midinfrared_lab.blend",
+        "bytes": 2915168,
+        "sha256": "9143567b8086b782166e755e0eeaf06281e50a5c51638f2563abbda11679c365"
+      },
+      {
+        "path": "geometry/midinfrared_lab.glb",
+        "bytes": 9273104,
+        "sha256": "f831367be8b8d9c7f2ebfaccfef3ac01dec8e4c4cae8d86850a8d33d8f0f2c44"
+      },
+      {
+        "path": "operation_binding_contract.json",
+        "bytes": 10863,
+        "sha256": "1c4645f7e75c3ee6b796153c72722d7bd35d5c9228400d877642676b630754a6"
+      },
+      {
+        "path": "operation_bindings.json",
+        "bytes": 9851,
+        "sha256": "ee8403429830e3eecd3d8b42455ee631c3906ca106f6dd2e32aead1d50d738fb"
+      },
+      {
+        "path": "semantic_controls.py",
+        "bytes": 8671,
+        "sha256": "1a0ec8fd8a11e0acdf8e8c6341a9b83ac7aa71a70a0cd35543254fd70a07d8cd"
+      },
+      {
+        "path": "specimen_geometry.json",
+        "bytes": 2227,
+        "sha256": "7e94d59576e7487ef475913389b73d15fe0464769214bd6cd170b0e8c39e71ae"
+      },
+      {
+        "path": "states.json",
+        "bytes": 13832,
+        "sha256": "7a3896ab6d23f8350b719a4f3743aa123bf703d8ebec2bf6efbbd9203abfd7b1"
+      },
+      {
+        "path": "station_layout.json",
+        "bytes": 1486,
+        "sha256": "3641a1b7a86aedc2426bb2894cefb9c96ebd79f0dc1dc17c7ba67f39bdb5006b"
+      }
+    ],
+    "freeze_boundary": "Hashes bind the stable asset semantic and geometry core. Final task/asset ZIP hashes are cross-sealed outside both packages to avoid circular hashes."
+  },
+  "physical_execution_enabled": false
+}

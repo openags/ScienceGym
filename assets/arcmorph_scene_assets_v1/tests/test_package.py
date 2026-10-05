@@ -1,5 +1,5 @@
 """Independent-of-Blender integrity and claims-boundary checks."""
-import unittest,json,hashlib,struct
+import unittest,json,hashlib,struct,io,zstandard
 from pathlib import Path
 P=Path(__file__).resolve().parents[1]
 def read(n):return json.loads((P/n).read_text())
@@ -37,7 +37,9 @@ class PackageTests(unittest.TestCase):
    while pos<len(raw):
     n=struct.unpack_from('>I',raw,pos)[0];self.assertNotIn(raw[pos+4:pos+8],{b'tEXt',b'zTXt',b'iTXt'});pos+=n+12
  def test_native_and_glb_signature(self):
-  self.assertTrue((P/'geometry/arcmorph_lab.blend').read_bytes().startswith(b'BLENDER'))
+  native=(P/'geometry/arcmorph_lab.blend').read_bytes()
+  if native.startswith(bytes.fromhex('28b52ffd')):native=zstandard.ZstdDecompressor().stream_reader(io.BytesIO(native)).read()
+  self.assertTrue(native.startswith(b'BLENDER-v'))
   data=(P/'geometry/arcmorph_lab.glb').read_bytes();magic,version,length=struct.unpack_from('<4sII',data);self.assertEqual((magic,version,length),(b'glTF',2,len(data)))
  def test_portable_no_external_assets(self):
   data=(P/'geometry/arcmorph_lab.glb').read_bytes();n,kind=struct.unpack_from('<II',data,12);self.assertEqual(kind,0x4e4f534a);j=json.loads(data[20:20+n]);self.assertFalse(j.get('images'));self.assertTrue(all('uri' not in x for x in j.get('buffers',[])));self.assertEqual(len([n for n in j['nodes'] if n.get('name','').startswith('ASSET.')]),12)

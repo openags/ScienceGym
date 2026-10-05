@@ -6,7 +6,7 @@ from paired_adapters import clone, read, context_key, contract, absent
 PACKAGES = {'conformal': 'conformal_operations_v3_compressed'}
 SOURCE_COMMIT = 'b43ae101e388c4555c0ec68637b96cee54ce6257'
 ASSET_PACKAGE = 'conformal_scene_assets_v2_compressed'
-SNAPSHOT_SHA256 = '0aa255f0ce86937c49284c9141f67bf1bada9a81a29be9c531d0c062af00f255'
+SNAPSHOT_SHA256 = '097445ec4d24cda9674739088747fcdff360d0cbcd26975b2cae5de362de9104'
 EXPECTED_TASK_PINS = ('operations.json', 'branches.json', 'unknown_parameters.json', 'controls_and_repeats.json', 'lineage_contract.json', 'tests/contract.py', 'tests/verify_pairing.py', 'RELEASE_BOUNDARY.json', 'asset_binding_plan.json')
 EXPECTED_ASSET_PINS = ('affordances.json', 'assembly_contract.json', 'asset_inventory.json', 'asset_metadata.json', 'geometry/conformal_lab.blend', 'geometry/conformal_lab.glb', 'operation_binding_contract.json', 'operation_bindings.json', 'semantic_controls.py', 'specimen_geometry.json', 'states.json')
 BOUNDARY = ('Whole-paper DESIGN only; zero validated runnable whole-paper tasks. '

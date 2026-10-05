@@ -32,7 +32,9 @@ ALIASES = {'unknown_parameters.json': 'unknowns', 'evaluator_reference.json': 'a
            'lineage_contract.json': 'lineage'}
 EARLIER = tuple('acoustic actuator_metrology afm_metrology atmospheric_optics beaded bianisotropic chiral cold_shape cooling dispim edge emvp fibre gear granular_assembly horn_acoustics hydrogel_optical laser_control lockable_origami martian_geophysics mechanical_backprop mechanical_logic microscopy origami_memory perovskite prismatic ring_origami solar_water sucrose_metrology thermal_jamming thermoelectric transistor varactor wavefront woven'.split())
 EARLIER_DIGEST = '28812bfd777164893e6e887b3b96a5fec90f0085c20487765f84a64c69c6a097'
-FROZEN_PACKAGE_DIGEST = '3a565c060b8c0c600a0df0f31e6796d2b076afdc24372b80f1cc6e4e1b08b66e'
+# Prior aggregate remains historical; the metadata-maintenance receipt binds current bytes.
+HISTORICAL_PRE_MAINTENANCE_PACKAGE_DIGEST = '3a565c060b8c0c600a0df0f31e6796d2b076afdc24372b80f1cc6e4e1b08b66e'
+FROZEN_PACKAGE_DIGEST = '68dff13f5091160c05f27dd4fc96d75d14023de9639881f61e82a13ea58c788b'
 
 
 def read(path):
@@ -441,7 +443,7 @@ class WettingIndependentFidelityTests(unittest.TestCase):
         self.assertEqual((len(EARLIER), len(paths)), (35, 140))
         self.assertEqual(digest_files(REPO, paths), EARLIER_DIGEST)
 
-    def test_18_frozen_task_and_asset_bytes_are_unchanged(self):
+    def test_18_current_metadata_revision_bytes_are_pinned(self):
         paths = []
         for directory in (PACKAGE, ASSETS):
             for path in directory.rglob('*'):

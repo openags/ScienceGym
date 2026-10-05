@@ -31,7 +31,9 @@ ASSET_ZIP_SHA256 = 'fa089646f79274c0e75d4525babba76d7977d2fe09b3dfd9275f92a5d025
 BASE_COMMIT = '4152571bcd56cf10387ba36df913b790873c018d'
 EARLIER = tuple('acoustic actuator_metrology afm_metrology atmospheric_optics beaded bianisotropic chiral cold_shape cooling dispim edge emvp fibre gear granular_assembly horn_acoustics hydrogel_optical laser_control lockable_origami martian_geophysics mechanical_backprop mechanical_logic microscopy origami_memory perovskite prismatic ring_origami solar_water sucrose_metrology thermal_jamming thermoelectric transistor varactor wavefront wetting woven'.split())
 EARLIER_DIGEST = 'c8d32636b3f7944888cb4a4879c503d3445b689f758af1eb2163d5a9371d8c3d'
-FROZEN_PACKAGE_DIGEST = '2b8f55eab0a1dd8b10e521741acdcf4b676600d77594d331f8e45b1c8cd577e9'
+# Prior aggregate remains historical; the metadata-maintenance receipt binds current bytes.
+HISTORICAL_PRE_MAINTENANCE_PACKAGE_DIGEST = '2b8f55eab0a1dd8b10e521741acdcf4b676600d77594d331f8e45b1c8cd577e9'
+FROZEN_PACKAGE_DIGEST = '93b76d0ad7ed1ac22fec45a17e2baf372dde713b9689970a99e48ebb36bba29b'
 ALIASES = {'unknown_parameters.json': 'unknowns', 'evaluator_reference.json': 'acceptance',
            'lineage_contract.json': 'lineage'}
 sys.path.insert(0, str(VIEWER))
@@ -439,7 +441,7 @@ class ArcMorphIndependentFidelityTests(unittest.TestCase):
         self.assertEqual((len(EARLIER), len(paths)), (36, 144))
         self.assertEqual(digest_files(REPO, paths), EARLIER_DIGEST)
 
-    def test_20_all_88_frozen_task_and_asset_files_are_byte_identical(self):
+    def test_20_all_88_current_metadata_revision_files_are_byte_identical(self):
         paths = [path.relative_to(TASKS.parent).as_posix()
                  for directory in (PACKAGE, ASSETS) for path in directory.rglob('*')
                  if path.is_file() and '__pycache__' not in path.parts and path.suffix != '.pyc']

@@ -255,7 +255,9 @@ class PackageTests(unittest.TestCase):
             self.assertTrue(set(asset['operation_ids']).issubset(all_ops))
 
     def test_upstream_contract_hash_and_operation_ids_if_available(self):
-        upstream = P.parent/'afm-assets-release-candidate/tasks/directional_cooling_operations_v2/operations.json'
+        upstream = P.parents[1]/'tasks/directional_cooling_operations_v2/operations.json'
+        if not upstream.exists():
+            upstream = P.parent/'afm-assets-release-candidate/tasks/directional_cooling_operations_v2/operations.json'
         if not upstream.exists():
             self.skipTest('Reference checkout absent; portable package checks still run')
         expected = json.loads(upstream.read_text())['operations']

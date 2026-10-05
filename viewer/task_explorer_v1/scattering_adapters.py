@@ -5,8 +5,8 @@ from paired_adapters import clone, read, context_key, contract, absent
 
 PACKAGES = {'scattering': 'scattering_operations_v2'}
 SOURCE_COMMIT = None  # Archive/file identities, not an invented public commit.
-TASK_ARCHIVE_SHA256 = '0c44f9a2a03127109e60944acd73bba68d206f18e77414e81ec195f093d48e6d'
-ASSET_ARCHIVE_SHA256 = '4f7497018028205c57ebc18274c971db79a61e466f9c5ce43ea2b0a0f701fefb'
+TASK_ARCHIVE_SHA256 = '02cf39abb287bed41d282a4996a50d51630713c98d4b9adf244452c8fd06f74b'
+ASSET_ARCHIVE_SHA256 = '241e32c2812a2ed534044a99ecc380c67c5e2e26f9d7a12255b599233d1acb78'
 ASSET_PACKAGE = 'scattering_scene_assets_v1'
 BOUNDARY = ('Whole-paper DESIGN only; zero validated runnable whole-paper tasks. '
     'Read-only author/evaluator inspection, not an actor context, acoustic controller, simulation or scientific reproduction. '
