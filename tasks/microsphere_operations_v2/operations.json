@@ -1,0 +1,599 @@
+{
+  "schema_version": "microsphere_task.v2",
+  "operations": [
+    {
+      "id": "R01",
+      "name": "Verify source, rights and duplicates",
+      "station": "ST01",
+      "depends_on": [],
+      "unresolved_input_refs": [
+        "U01"
+      ],
+      "required_output": "Source identity/version, hold-list audit and deduplication receipts",
+      "rule": "Reject any held source or duplicated paper; preserve restricted rights",
+      "branch_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "C01",
+        "C02",
+        "C03",
+        "E05",
+        "C04",
+        "N01",
+        "N02",
+        "N03",
+        "N04"
+      ],
+      "asset_ids": [
+        "A01",
+        "A08"
+      ],
+      "kind": "evidence_review",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A01.intake_support",
+        "A01.carrier_identity",
+        "A01.custody_receipt",
+        "A08.raw_evidence",
+        "A08.claim_ledger",
+        "A08.model_unrun",
+        "A08.analysis_qualification"
+      ]
+    },
+    {
+      "id": "R02",
+      "name": "Receive and identify target families",
+      "station": "ST01",
+      "depends_on": [
+        "R01"
+      ],
+      "unresolved_input_refs": [
+        "U04",
+        "U05",
+        "U06",
+        "U07"
+      ],
+      "required_output": "Four target-family receipts plus explicitly optional uncoated comparator",
+      "rule": "Composition ambiguity quarantines the star branch; other independent branches remain recorded",
+      "branch_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "asset_ids": [
+        "A01",
+        "A02"
+      ],
+      "kind": "closed_service_receipt",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A01.intake_support",
+        "A01.carrier_identity",
+        "A01.custody_receipt",
+        "A02.grating_identity",
+        "A02.aao_identity",
+        "A02.disc_identity",
+        "A02.star_identity",
+        "A02.dimension_context"
+      ]
+    },
+    {
+      "id": "R03",
+      "name": "Obtain finished specimens from qualified services",
+      "station": "ST02",
+      "depends_on": [
+        "R02"
+      ],
+      "unresolved_input_refs": [
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U16"
+      ],
+      "required_output": "Final dimensions, surface state, fabrication provenance and protected carriers",
+      "rule": "Route represents every reported preparation family without exposing hazardous operations",
+      "branch_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "asset_ids": [
+        "A01",
+        "A02",
+        "A06"
+      ],
+      "kind": "closed_service_receipt",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A01.intake_support",
+        "A01.carrier_identity",
+        "A01.custody_receipt",
+        "A02.grating_identity",
+        "A02.aao_identity",
+        "A02.disc_identity",
+        "A02.star_identity",
+        "A02.dimension_context",
+        "A06.preparation_service_receipt",
+        "A06.sem_reference_receipt",
+        "A06.preservation_history"
+      ]
+    },
+    {
+      "id": "R04",
+      "name": "Obtain reference characterization and baseline-state frame map",
+      "station": "ST05",
+      "depends_on": [
+        "R03"
+      ],
+      "unresolved_input_refs": [
+        "U11",
+        "U12"
+      ],
+      "required_output": "Calibrated reference data, pre-alteration baseline-state record and specimen/ROI linkage",
+      "rule": "Source acquisition order is unknown; service plan must preserve history and avoid damage",
+      "branch_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "asset_ids": [
+        "A02",
+        "A06",
+        "A07"
+      ],
+      "kind": "closed_service_receipt",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A02.grating_identity",
+        "A02.aao_identity",
+        "A02.disc_identity",
+        "A02.star_identity",
+        "A02.dimension_context",
+        "A06.preparation_service_receipt",
+        "A06.sem_reference_receipt",
+        "A06.preservation_history",
+        "A07.object_frame",
+        "A07.virtual_frame",
+        "A07.detector_frame",
+        "A07.registration_receipt"
+      ]
+    },
+    {
+      "id": "R05",
+      "name": "Qualify sphere stocks and lens controls",
+      "station": "ST01",
+      "depends_on": [
+        "R01"
+      ],
+      "unresolved_input_refs": [
+        "U02",
+        "U10"
+      ],
+      "required_output": "Sphere lot records; separate 0.5/2.5 mm SIL IDs; objective compatibility receipts",
+      "rule": "Keep 1,3,4.74,10,50 um conditions distinct; star sphere size remains unreported",
+      "branch_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "C01",
+        "C02"
+      ],
+      "asset_ids": [
+        "A03",
+        "A04"
+      ],
+      "kind": "closed_service_receipt",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A03.stock_identity",
+        "A03.contained_assembly",
+        "A03.coating_state_receipt",
+        "A04.sil_0p5mm_identity",
+        "A04.sil_2p5mm_identity",
+        "A04.objective_compatibility"
+      ]
+    },
+    {
+      "id": "R06",
+      "name": "Prepare documented coating or lens-contact states",
+      "station": "ST03",
+      "depends_on": [
+        "R04",
+        "R05"
+      ],
+      "unresolved_input_refs": [
+        "U03",
+        "U09",
+        "U16"
+      ],
+      "required_output": "Child-state receipts for each preparation/contact condition",
+      "rule": "Retain pre-alteration baseline state and its reference record. Bare optical controls require an uncoated branch or explicitly documented matched specimen; no assumption a coated coupon can be restored identically.",
+      "branch_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "C01"
+      ],
+      "asset_ids": [
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "kind": "closed_service_receipt",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A02.grating_identity",
+        "A02.aao_identity",
+        "A02.disc_identity",
+        "A02.star_identity",
+        "A02.dimension_context",
+        "A03.stock_identity",
+        "A03.contained_assembly",
+        "A03.coating_state_receipt",
+        "A04.sil_0p5mm_identity",
+        "A04.sil_2p5mm_identity",
+        "A04.objective_compatibility"
+      ]
+    },
+    {
+      "id": "R07",
+      "name": "Acquire transmission target observations",
+      "station": "ST04",
+      "depends_on": [
+        "R04",
+        "R06"
+      ],
+      "unresolved_input_refs": [
+        "U08",
+        "U09",
+        "U11",
+        "U12",
+        "U13"
+      ],
+      "required_output": "E01 and E02 optical records with independent focus and calibration",
+      "rule": "Targets and output examples are source-grounded; acquisition commands remain unqualified",
+      "branch_ids": [
+        "E01",
+        "E02"
+      ],
+      "asset_ids": [
+        "A02",
+        "A05",
+        "A07"
+      ],
+      "kind": "closed_service_receipt",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A02.grating_identity",
+        "A02.aao_identity",
+        "A02.disc_identity",
+        "A02.star_identity",
+        "A02.dimension_context",
+        "A05.microscope_safe_state",
+        "A05.carrier_stage_support",
+        "A05.optical_record",
+        "A05.objective_clearance",
+        "A07.object_frame",
+        "A07.virtual_frame",
+        "A07.detector_frame",
+        "A07.registration_receipt"
+      ]
+    },
+    {
+      "id": "R08",
+      "name": "Acquire reflection target observations",
+      "station": "ST04",
+      "depends_on": [
+        "R04",
+        "R06"
+      ],
+      "unresolved_input_refs": [
+        "U07",
+        "U08",
+        "U09",
+        "U11",
+        "U12",
+        "U13"
+      ],
+      "required_output": "E03 and E04 records, mode/target state and composition qualifications",
+      "rule": "Do not insert 4.74 um for the star panel without a new qualified specimen receipt",
+      "branch_ids": [
+        "E03",
+        "E04"
+      ],
+      "asset_ids": [
+        "A02",
+        "A05",
+        "A07"
+      ],
+      "kind": "closed_service_receipt",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A02.grating_identity",
+        "A02.aao_identity",
+        "A02.disc_identity",
+        "A02.star_identity",
+        "A02.dimension_context",
+        "A05.microscope_safe_state",
+        "A05.carrier_stage_support",
+        "A05.optical_record",
+        "A05.objective_clearance",
+        "A07.object_frame",
+        "A07.virtual_frame",
+        "A07.detector_frame",
+        "A07.registration_receipt"
+      ]
+    },
+    {
+      "id": "R09",
+      "name": "Retain bare and SIL comparator branches",
+      "station": "ST04",
+      "depends_on": [
+        "R04",
+        "R05",
+        "R06"
+      ],
+      "unresolved_input_refs": [
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "U12",
+        "U13",
+        "U14"
+      ],
+      "required_output": "CTRL01/02 records with objective/focus differences and explicit SIL-contact state receipts; bare records must link to a preserved uncoated state or documented matched specimen",
+      "rule": "A source control failure is a result; it is not an instruction to force a success",
+      "branch_ids": [
+        "C01"
+      ],
+      "asset_ids": [
+        "A02",
+        "A04",
+        "A05",
+        "A07"
+      ],
+      "kind": "closed_service_receipt",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A02.grating_identity",
+        "A02.aao_identity",
+        "A02.disc_identity",
+        "A02.star_identity",
+        "A02.dimension_context",
+        "A04.sil_0p5mm_identity",
+        "A04.sil_2p5mm_identity",
+        "A04.objective_compatibility",
+        "A05.microscope_safe_state",
+        "A05.carrier_stage_support",
+        "A05.optical_record",
+        "A05.objective_clearance",
+        "A07.object_frame",
+        "A07.virtual_frame",
+        "A07.detector_frame",
+        "A07.registration_receipt"
+      ]
+    },
+    {
+      "id": "R10",
+      "name": "Represent size, coating, array and extension claims",
+      "station": "ST06",
+      "depends_on": [
+        "R07",
+        "R08",
+        "R09"
+      ],
+      "unresolved_input_refs": [
+        "U13",
+        "U14"
+      ],
+      "required_output": "C02/C03/C04/E05 claim ledger with explicit text-only, proposed or unrun state",
+      "rule": "No synthetic completion for unseen data; no invented full Cartesian experiment matrix",
+      "branch_ids": [
+        "C02",
+        "C03",
+        "C04",
+        "E05"
+      ],
+      "asset_ids": [
+        "A08"
+      ],
+      "kind": "evidence_review",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A08.raw_evidence",
+        "A08.claim_ledger",
+        "A08.model_unrun",
+        "A08.analysis_qualification"
+      ]
+    },
+    {
+      "id": "R11",
+      "name": "Compare optical and reference evidence",
+      "station": "ST06",
+      "depends_on": [
+        "R07",
+        "R08",
+        "R09"
+      ],
+      "unresolved_input_refs": [
+        "U11",
+        "U12",
+        "U13"
+      ],
+      "required_output": "Units, transforms, metric/uncertainty and limitation report",
+      "rule": "No hard-coded source outcome as task success; no independent 50 nm certification here",
+      "branch_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "C01"
+      ],
+      "asset_ids": [
+        "A07",
+        "A08"
+      ],
+      "kind": "evidence_review",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A07.object_frame",
+        "A07.virtual_frame",
+        "A07.detector_frame",
+        "A07.registration_receipt",
+        "A08.raw_evidence",
+        "A08.claim_ledger",
+        "A08.model_unrun",
+        "A08.analysis_qualification"
+      ]
+    },
+    {
+      "id": "R12",
+      "name": "Review theoretical branches without execution",
+      "station": "ST06",
+      "depends_on": [
+        "R01"
+      ],
+      "unresolved_input_refs": [
+        "U15"
+      ],
+      "required_output": "N01-N04 source-method inventory and explicit unrun receipts",
+      "rule": "Keep measured, heuristic, analytic and numerical results separate",
+      "branch_ids": [
+        "N01",
+        "N02",
+        "N03",
+        "N04"
+      ],
+      "asset_ids": [
+        "A08"
+      ],
+      "kind": "evidence_review",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A08.raw_evidence",
+        "A08.claim_ledger",
+        "A08.model_unrun",
+        "A08.analysis_qualification"
+      ]
+    },
+    {
+      "id": "R13",
+      "name": "Close out and archive all outcomes",
+      "station": "ST07",
+      "depends_on": [
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "unresolved_input_refs": [
+        "U16"
+      ],
+      "required_output": "Specimen disposition, service release, raw/derived record hashes and final branch ledger",
+      "rule": "Quarantined branches remain visible; do not count an unresolved route as complete",
+      "branch_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "C01",
+        "C02",
+        "C03",
+        "E05",
+        "C04",
+        "N01",
+        "N02",
+        "N03",
+        "N04"
+      ],
+      "asset_ids": [
+        "A01",
+        "A09"
+      ],
+      "kind": "evidence_review",
+      "device_command_implemented": false,
+      "physical_execution_authority": false,
+      "actor_action": "Select operation_id and independently supplied evidence_id only",
+      "precondition": "Frozen campaign/epoch and exact dependency receipt hashes; qualification holds remain explicit",
+      "failure": "Preserve rejected proposal and hold affected scope; do not alter earlier observations",
+      "recovery": "At most two digital validation attempts; separately issued receipt and documented safe recovery. No operational parameter search.",
+      "anchor_ids": [
+        "A01.intake_support",
+        "A01.carrier_identity",
+        "A01.custody_receipt",
+        "A09.return_support",
+        "A09.quarantine_custody",
+        "A09.archive_receipt",
+        "A09.receiver_acceptance"
+      ]
+    }
+  ]
+}

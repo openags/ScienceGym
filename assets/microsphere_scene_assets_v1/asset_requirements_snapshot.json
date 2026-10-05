@@ -1,0 +1,119 @@
+{
+  "classification": "Original future asset requirements only; zero assets created",
+  "synchronization_rule": "Any future paired task and scene must share branch IDs, material/state IDs, station IDs, asset IDs, units, gate meanings and a versioned semantic-core digest. Package-level tests must reject drift.",
+  "assets": [
+    {
+      "id": "A01",
+      "name": "Labeled intake rack and protective coupon carriers",
+      "routes": [
+        "R02",
+        "R03",
+        "R13"
+      ],
+      "geometry_rule": "Original generic geometry; carrier dimensions/clearance remain qualified unknowns",
+      "required_semantics": "carrier_id, specimen_id, orientation, custody state"
+    },
+    {
+      "id": "A02",
+      "name": "Four inert target proxies",
+      "routes": [
+        "R02",
+        "R03",
+        "R07",
+        "R08"
+      ],
+      "geometry_rule": "Original plain coupons with authored pattern metadata; no traced figure geometry, exact experimental CAD or fabricated nanoscale surface claims",
+      "required_semantics": "target family, dimensional specification, qualified versus illustrative"
+    },
+    {
+      "id": "A03",
+      "name": "Sphere-stock and contained assembly station",
+      "routes": [
+        "R05",
+        "R06"
+      ],
+      "geometry_rule": "Original generic sealed stock bottles and dispensing envelope; no chemical recipe or operational liquid quantities",
+      "required_semantics": "lot identity, nominal size, containment, unresolved preparation"
+    },
+    {
+      "id": "A04",
+      "name": "Two SIL-control placeholders",
+      "routes": [
+        "R05",
+        "R09"
+      ],
+      "geometry_rule": "Distinct source-reported diameter metadata; independently authored optical proxies, not copies of SI photos or exact optical prescriptions",
+      "required_semantics": "0.5mm versus 2.5mm; objective-condition relationship"
+    },
+    {
+      "id": "A05",
+      "name": "White-light microscope station",
+      "routes": [
+        "R07",
+        "R08",
+        "R09"
+      ],
+      "geometry_rule": "Generic original model and state-only control labels; no vendor model export or dangerous optical commands",
+      "required_semantics": "transmission/reflection, specimen location, objective, focus/reference plane"
+    },
+    {
+      "id": "A06",
+      "name": "Closed SEM/reference and fabrication service docks",
+      "routes": [
+        "R03",
+        "R04"
+      ],
+      "geometry_rule": "Generic boxes/receipt interfaces, no internal beam/laser/electrochemical process",
+      "required_semantics": "job status, document receipts, quarantine and safe-state gates"
+    },
+    {
+      "id": "A07",
+      "name": "Cross-device coordinate overlays",
+      "routes": [
+        "R04",
+        "R11"
+      ],
+      "geometry_rule": "Original diagrammatic coordinate frames, not publisher images; object/virtual/detector planes explicitly separated",
+      "required_semantics": "transform provenance, units, ROI and calibration"
+    },
+    {
+      "id": "A08",
+      "name": "Read-only evidence dashboard and failure states",
+      "routes": [
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "geometry_rule": "Original authored state machine visualization; no fabricated detector plots",
+      "required_semantics": "reported, text-only, missing, unrun, quarantined, qualified"
+    },
+    {
+      "id": "A09",
+      "name": "Closeout and archive objects",
+      "routes": [
+        "R13"
+      ],
+      "geometry_rule": "Original generic containment, storage and archive affordances",
+      "required_semantics": "specimen disposition, raw/derived hashes, service release"
+    }
+  ],
+  "source_media_prohibited": [
+    "Publisher figure pixels, screenshots, crops or textures",
+    "Publisher PDF or extracted prose",
+    "Traced figure geometry or reconstructed exact surface from a source image",
+    "Publisher or author CAD, source code or raw data packages"
+  ],
+  "nanometer_scale_representation": "Use explicit scale metadata and separate illustrative micro/nano inset only when necessary; do not claim a scene proxy resolves 50 nm or physically simulates light.",
+  "rendering_boundary": "Assets must be clearly illustrative with qualified dimensions only where independently justified; camera-like output requires actual qualified acquisition data, never invented evidence.",
+  "physical_simulation": false,
+  "geometry_qualification": "Unknown specimen exterior dimensions, roughness, masses, optical prescriptions, contact models and collision tolerances are holds, not defaults.",
+  "future_tests": [
+    "Object and route ID consistency",
+    "No branch silently missing including controls/failures",
+    "No unknown physical value replaced by a guess",
+    "No source media/embedded copied binaries",
+    "Correct unit and plane distinction",
+    "Closed hazardous-service interfaces",
+    "Native asset metadata sanitized and original authorship documented"
+  ]
+}

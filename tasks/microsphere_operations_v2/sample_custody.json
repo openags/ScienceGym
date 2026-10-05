@@ -1,0 +1,62 @@
+{
+  "classification": "Entire custody schema is authored robot translation, not a chain reported by the paper.",
+  "sample_classes": [
+    "grating",
+    "gold_AAO",
+    "uncoated_AAO_comparator",
+    "Blu_ray",
+    "star_film",
+    "sphere_stock",
+    "SIL_0p5mm",
+    "SIL_2p5mm"
+  ],
+  "source_ids": "No unique experimental specimen or stock lot identifiers are supplied.",
+  "required_fields": [
+    "paper_doi",
+    "specimen_id",
+    "parent_specimen_id",
+    "material_certificate_id",
+    "lot_id",
+    "service_job_id",
+    "state_id",
+    "preparation_history",
+    "container_id",
+    "orientation_fiducial",
+    "surface_identity",
+    "ROI_id",
+    "target_feature_definition",
+    "sphere_lot_id",
+    "sphere_diameter_measurement",
+    "coating_receipt_id",
+    "lens_condition_id",
+    "instrument_id",
+    "calibration_id",
+    "operator_or_service_receipt_id",
+    "time_utc",
+    "raw_record_hash",
+    "derived_record_hash",
+    "analysis_version",
+    "quarantine_reason",
+    "release_status"
+  ],
+  "states": [
+    "received_unqualified",
+    "identity_verified",
+    "reference_characterized",
+    "surface_prepared",
+    "sphere_coated_or_SIL_contacted",
+    "optically_observed",
+    "comparison_pending",
+    "reviewed",
+    "quarantined_or_archived"
+  ],
+  "invariants": [
+    "Never relabel material identity to settle the SbTe/GeSbTe conflict",
+    "Each coating, stripping, SEM preparation or contact operation creates a new state linked to its parent",
+    "Do not assume SEM is nonperturbing; record any added coating, beam exposure or damage",
+    "Pair records by specimen/state/ROI and calibration, not by filename or visual resemblance alone",
+    "Record transfer counts and orientation, keep target face protected and particles contained",
+    "If same-ROI comparison is unavailable, state specimen-equivalence limits rather than inventing matched evidence"
+  ],
+  "unknown_chronology": "Source does not establish whether a given SEM image was obtained before/after optical imaging, nor whether both images use the exact same physical ROI."
+}

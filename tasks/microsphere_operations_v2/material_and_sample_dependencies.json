@@ -1,0 +1,84 @@
+{
+  "classification": "All IDs and receipt requirements are authored translation; dimensions/model names in reported_identity are source facts.",
+  "materials": [
+    {
+      "id": "M01",
+      "name": "Silica sphere stock",
+      "reported_identity": "Bangs Laboratories; silica; source index 1.46; principal diameter 4.74 um, comparison 3.0 um; failure sizes 1,10,50 um",
+      "unresolved": "Supplier lot, diameter distribution, solvent, solids content, surface condition and safety documentation missing",
+      "authorized_future_boundary": "receipt and contained dispensing service"
+    },
+    {
+      "id": "M02",
+      "name": "Chrome-on-fused-silica grating",
+      "reported_identity": "30 nm chrome; 360 nm lines and 130 nm gaps; FIB-made",
+      "unresolved": "Coupon size, thickness of fused silica, grating area, target tolerance, topography and cleanliness not stated",
+      "authorized_future_boundary": "closed nanofabrication service"
+    },
+    {
+      "id": "M03",
+      "name": "Gold/AAO fishnet target",
+      "reported_identity": "20 nm gold formed on 300 um AAO template; nominal 50 nm pores and 50 nm spacing",
+      "unresolved": "Pore topology/depth, spacing definition, coating uniformity, adhesion and surface-flatness criteria missing",
+      "authorized_future_boundary": "closed electrochemical/template/coating service"
+    },
+    {
+      "id": "M04",
+      "name": "Blu-ray track coupon",
+      "reported_identity": "Commercial optical disc; 100 um transparent protective layer removed; reported 200 nm line/100 nm gap",
+      "unresolved": "Brand, layer stack, coupon dimensions, removal method, residues and resulting surface integrity not stated",
+      "authorized_future_boundary": "qualified coupon-preparation service"
+    },
+    {
+      "id": "M05",
+      "name": "Star-pattern phase-change film",
+      "reported_identity": "Optical-disc film; 90 nm corner claim; prior contact particle lens patterning method",
+      "unresolved": "SbTe versus GeSbTe conflict; exact composition, film thickness, star geometry, patterning specification and identity unresolved",
+      "authorized_future_boundary": "closed qualified patterning/materials service; hard hold until identity is resolved"
+    },
+    {
+      "id": "M06",
+      "name": "0.5 mm fused-silica half-ball SIL",
+      "reported_identity": "Edmund Optics; source uses 80x objective",
+      "unresolved": "SKU, radius convention, figure tolerances, surface quality, contact load and objective clearance missing",
+      "authorized_future_boundary": "qualified optical handling"
+    },
+    {
+      "id": "M07",
+      "name": "2.5 mm fused-silica half-ball SIL",
+      "reported_identity": "Edmund Optics; source uses 40x objective",
+      "unresolved": "SKU, figure tolerances, surface quality, contact load, 40x NA/model missing",
+      "authorized_future_boundary": "qualified optical handling"
+    },
+    {
+      "id": "M08",
+      "name": "Microscope and white-light source",
+      "reported_identity": "Olympus MX-850; MDPlan 80x NA0.9; halogen spectrum peak approximately 600 nm",
+      "unresolved": "Camera, spectrum/power, illumination aperture, reflected-light routing, gain/exposure, calibration and stage/focus precision missing",
+      "authorized_future_boundary": "qualified optical metrology station"
+    },
+    {
+      "id": "M09",
+      "name": "SEM reference service",
+      "reported_identity": "Hitachi S-3400N",
+      "unresolved": "Specimen preparation, coating, calibration, acquisition settings, region registration and uncertainty missing",
+      "authorized_future_boundary": "closed SEM service; no beam/vacuum operating recipe"
+    },
+    {
+      "id": "M10",
+      "name": "Analysis evidence and records",
+      "reported_identity": "Source reports Mathematica, Mie/FDTD, Fortran; no attached code/raw dataset",
+      "unresolved": "Exact source version, boundary conditions, grid/convergence and reproducibility inputs missing",
+      "authorized_future_boundary": "read-only analysis provenance review"
+    }
+  ],
+  "dependency_order": [
+    "Certified solid target receipt precedes sphere coating or SIL contact",
+    "Target baseline and coordinate map precede any state-altering preparation",
+    "Sphere lot and coating receipt precede optical branch comparison",
+    "Reference metrology and optical calibration must both exist before quantitative cross-device interpretation",
+    "Source-conflict resolution precedes material-specific fabrication specification",
+    "Branch data receipt precedes any resolution claim"
+  ],
+  "recipe_boundary": "Named source fabrication operations are documented as provenance only. No acid concentrations, anodization voltages, beam settings, deposition or laser instructions are released."
+}

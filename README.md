@@ -6,11 +6,45 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Release contents: 39 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (42 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
+**Release contents: 40 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (43 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
-## Inspect all 42 task families
+## Microsphere microscopy: paired task and original scene
+
+The [microsphere task](tasks/microsphere_operations_v2/README.md), [original static scene](assets/microsphere_scene_assets_v1/README.md) and [lossless viewer](viewer/task_explorer_v1/docs/microsphere.md) add one paper-level design. The current explorer has **40 paper-level designs + 3 bounded subsets (43 families)**, **978 inspection records** and **3,250 operation definitions**. Microsphere adds thirteen source-scope branch views, six reference views and a separate default qualification hold. All **13 authored stages and 13 source branches**, **7 stations**, **9 original asset groups**, **33 evidence-only anchors** and **16 unresolved qualification gaps** remain explicit. No validated runnable whole-paper task is added.
+
+The task and scene contain **54 and 49 exact accepted archive members**. All **38 task JSON and 30 asset JSON documents** remain losslessly inspectable. Reciprocal **41-file task and 31-file scene cores** and the exact shared binding contract preserve the accepted pairing. Only the actor-facing task file is eligible for an acting-agent context; the explorer is read-only author/evaluator inspection.
+
+### Source evidence and representation limits
+
+The illustrated 50 nm transmission example and the text-only 50 nm reflection claim retain different evidence categories. Four illustrated experimental branches remain distinct from text-only extensions, a proposed array combination, theory/model outputs and speculation. Reported magnification and resolution claims are historical references, never generated measurements, completion receipts or success thresholds. Star-film composition differs between source body and caption, and its sphere size remains unreported. These gaps are not silently repaired. Bare and two SIL comparator branches retain their own source conditions and custody; a coated target never silently restores an uncoated baseline.
+
+Actual-size context and enlarged illustration are separate collections. The source-scale spheres and SIL proxies do not qualify optical geometry. The 4.74 micrometer sphere is illustrated at 40000 times linear size and SIL diagrams at 200 times linear size; these display scales are not optical magnification. Target icons have no length scale and are original category illustrations, not acquired images or copied source figures. Object, virtual, detector and SEM frames remain distinct identities, without measured coordinate transformations.
+
+Target preparation, sphere assembly/contact, optical acquisition, SEM reference and physical closeout remain closed qualified services under **HOLD_QUALIFICATION**. The static scene has no hardware commands, physics, optical solver, animation or generated telemetry. Drawn supports and anchors do not establish physical contact safety, robot reachability, calibrated optics or scientific reproduction. Sixteen source/service input gaps remain unresolved.
+
+The accepted upstream review covers all six main pages and seven supplementary pages, four main figures and six supplementary figures. No movie link was listed; no movie, separate raw-data package or source code package was read. This integration does not reread publications, digitize figures, rerun numerical models or independently verify the paper's scientific claims. The source paper is free to read with **restricted reuse rights**; no unrestricted or Creative Commons source-content grant was established. Apache-2.0 applies to original authored content, not the paper or omitted publisher media, code, CAD or data.
+
+### Preservation and verification
+
+All **42 preceding task packages**, existing assets, both embodied storyboards, scene bindings, metadata-maintenance tools and receipts, historical verification records, the original LICENSE and all **168 previous generated family artifacts** remain byte-identical to the metadata-maintenance baseline. Only the new paired packages and viewer integration are added. Exact hashes describe frozen artifacts; the repository commit establishes publication status. Archives, publisher originals, backups and private evidence are not committed.
+
+[![Original microsphere laboratory illustration with separate source-scale and enlarged diagrams, protected carriers and closed services](assets/microsphere_scene_assets_v1/previews/preview_01_overview.png)](assets/microsphere_scene_assets_v1/previews/preview_01_overview.png)
+
+[Editable Blender scene](assets/microsphere_scene_assets_v1/geometry/microsphere_lab.blend?raw=true) · [Static GLB](assets/microsphere_scene_assets_v1/geometry/microsphere_lab.glb?raw=true) · [Target illustrations](assets/microsphere_scene_assets_v1/previews/preview_02_targets.png) · [Closed-service illustration](assets/microsphere_scene_assets_v1/previews/preview_03_services.png)
+
+```sh
+python3 -B scripts/verify_release.py
+(cd tasks/microsphere_operations_v2 && python3 -B -m unittest discover -s tests -v && python3 -B -m unittest discover -s review -p 'independent_task*tests.py' -v && python3 -B tests/verify_package.py)
+python3 -B tasks/microsphere_operations_v2/verify_pair.py assets/microsphere_scene_assets_v1
+python3 -B assets/microsphere_scene_assets_v1/verify_pair.py tasks/microsphere_operations_v2
+(cd assets/microsphere_scene_assets_v1 && python3 -B -m unittest discover -s tests -v)
+```
+
+Static tests establish scoped software and export properties only. Run rebuild, sanitation and exporter tools in disposable copies; resaving a native file can reintroduce metadata and invalidates its accepted hash. Exact archive verification uses separately distributed ZIPs. See [viewer verification](viewer/task_explorer_v1/VERIFICATION.md) for source-to-display and display-testing limits.
+
+## Historical QHA and thermal meta-device integration: 42 families
 
 The explorer contains **39 paper-level designs + 3 bounded subsets (42 families)**, **958 inspection records** and **3,237 operation definitions**. [Graphene quantum Hall arrays](viewer/task_explorer_v1/docs/qha.md) and [thermal meta-devices](viewer/task_explorer_v1/docs/thermalmeta.md) each add one paper-level design. Metadata cleanup changes no scientific scope or design count. There are **zero validated runnable whole-paper tasks**.
 

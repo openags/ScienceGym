@@ -1,4 +1,16 @@
-# Thermal meta-device lossless projection
+# Microsphere lossless projection
+
+The current explorer has **43 families: 40 paper-level designs and three bounded subsets**, with **978 inspection records and 3,250 operation definitions**. `microsphere_adapters.py` retains all 38 recursive task JSON and 30 recursive asset JSON documents. Every exact raw JSON file is linked with its original SHA-256 and embedded without reserialization in the portable export. Compact JSON/JS may pool repeated values; resolved objects equal the accepted sources. The unusually large native-buffer audit is retained completely rather than summarized away.
+
+Thirteen source branches use memberships inverted only from each exact operation's `branch_ids`, retaining the original JSON pointer. Membership groups are unordered. Thirteen complete operations preserve required outputs, rules, dependencies, station, asset and anchor IDs, failure/recovery, unresolved inputs and service ownership. The displayed action is the exact authored operation name; no additional physical command is invented. Required outputs stay acceptance obligations, never observed post-state or received evidence. Complete stage inventory and five other reference views are authored navigation, not extra scientific branches. The default HOLD_QUALIFICATION has zero operations.
+
+All seven stations, nine original groups, 33 evidence-only anchors and sixteen qualification gaps remain exact. All 27 source facts, ten conflicts/distinctions, six reported outcomes and six controls are retained. Source-scale context is separate from magnified schematic geometry. The 50 nm figure-backed gold/AAO transmission claim is not promoted to figure-backed reflection; complex transmission and 50 nm reflection remain text-only claims. Star composition and sphere size remain unresolved. SEM, preparation, particle/contact handling, acquisition and cleanup are closed qualified services. Source outcomes never become generated telemetry, rewards or acceptance thresholds. Repeats and uncertainty budgets remain unresolved.
+
+The task and scene share exact binding bytes and reciprocal 41-file/31-file cores. The adapter verifies every core member, shared manifest bytes, canonical semantic digest and route/asset/station/anchor bindings. The task station wrapper and historical scene station snapshot stay separately lossless; only their station arrays coincide. No blanket source/snapshot equality is inferred.
+
+The source remains restricted, all rights reserved; free-to-read is not unrestricted reuse. Only original authored material carries Apache-2.0. Publisher originals, source images, traces, raw data, CAD and scientific code are excluded. The viewer exposes author/evaluator material and implements no actor loader, instrument interface, optics solver or execution.
+
+# Historical thermal meta-device lossless projection
 
 The combined explorer has 42 families: 39 paper-level designs and three bounded subsets. thermalmeta_adapters.py retains all 29 recursive task JSON and 27 asset JSON documents. Each of the twenty P01–P20 stages retains complete detail and source pointer. The exact stage title is used as an authored navigation action; input, dependencies, gate, required output, receipt fields, failure route and service ownership remain distinct obligations. Required outputs never become observed post-state.
 

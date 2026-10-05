@@ -1,0 +1,228 @@
+{
+  "classification": "Authored proposed translation of the full reported route; review-only and not executable",
+  "physical_default": "HOLD_QUALIFICATION",
+  "routes": [
+    {
+      "id": "R01",
+      "name": "Verify source, rights and duplicates",
+      "station": "ST01",
+      "depends_on": [],
+      "unresolved_input_refs": [
+        "U01"
+      ],
+      "required_output": "Source identity/version, hold-list audit and deduplication receipts",
+      "rule": "Reject any held source or duplicated paper; preserve restricted rights",
+      "implemented": false
+    },
+    {
+      "id": "R02",
+      "name": "Receive and identify target families",
+      "station": "ST01",
+      "depends_on": [
+        "R01"
+      ],
+      "unresolved_input_refs": [
+        "U04",
+        "U05",
+        "U06",
+        "U07"
+      ],
+      "required_output": "Four target-family receipts plus explicitly optional uncoated comparator",
+      "rule": "Composition ambiguity quarantines the star branch; other independent branches remain recorded",
+      "implemented": false
+    },
+    {
+      "id": "R03",
+      "name": "Obtain finished specimens from qualified services",
+      "station": "ST02",
+      "depends_on": [
+        "R02"
+      ],
+      "unresolved_input_refs": [
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U16"
+      ],
+      "required_output": "Final dimensions, surface state, fabrication provenance and protected carriers",
+      "rule": "Route represents every reported preparation family without exposing hazardous operations",
+      "implemented": false
+    },
+    {
+      "id": "R04",
+      "name": "Obtain reference characterization and baseline-state frame map",
+      "station": "ST05",
+      "depends_on": [
+        "R03"
+      ],
+      "unresolved_input_refs": [
+        "U11",
+        "U12"
+      ],
+      "required_output": "Calibrated reference data, pre-alteration baseline-state record and specimen/ROI linkage",
+      "rule": "Source acquisition order is unknown; service plan must preserve history and avoid damage",
+      "implemented": false
+    },
+    {
+      "id": "R05",
+      "name": "Qualify sphere stocks and lens controls",
+      "station": "ST01",
+      "depends_on": [
+        "R01"
+      ],
+      "unresolved_input_refs": [
+        "U02",
+        "U10"
+      ],
+      "required_output": "Sphere lot records; separate 0.5/2.5 mm SIL IDs; objective compatibility receipts",
+      "rule": "Keep 1,3,4.74,10,50 um conditions distinct; star sphere size remains unreported",
+      "implemented": false
+    },
+    {
+      "id": "R06",
+      "name": "Prepare documented coating or lens-contact states",
+      "station": "ST03",
+      "depends_on": [
+        "R04",
+        "R05"
+      ],
+      "unresolved_input_refs": [
+        "U03",
+        "U09",
+        "U16"
+      ],
+      "required_output": "Child-state receipts for each preparation/contact condition",
+      "rule": "Retain pre-alteration baseline state and its reference record. Bare optical controls require an uncoated branch or explicitly documented matched specimen; no assumption a coated coupon can be restored identically.",
+      "implemented": false
+    },
+    {
+      "id": "R07",
+      "name": "Acquire transmission target observations",
+      "station": "ST04",
+      "depends_on": [
+        "R04",
+        "R06"
+      ],
+      "unresolved_input_refs": [
+        "U08",
+        "U09",
+        "U11",
+        "U12",
+        "U13"
+      ],
+      "required_output": "E01 and E02 optical records with independent focus and calibration",
+      "rule": "Targets and output examples are source-grounded; acquisition commands remain unqualified",
+      "implemented": false
+    },
+    {
+      "id": "R08",
+      "name": "Acquire reflection target observations",
+      "station": "ST04",
+      "depends_on": [
+        "R04",
+        "R06"
+      ],
+      "unresolved_input_refs": [
+        "U07",
+        "U08",
+        "U09",
+        "U11",
+        "U12",
+        "U13"
+      ],
+      "required_output": "E03 and E04 records, mode/target state and composition qualifications",
+      "rule": "Do not insert 4.74 um for the star panel without a new qualified specimen receipt",
+      "implemented": false
+    },
+    {
+      "id": "R09",
+      "name": "Retain bare and SIL comparator branches",
+      "station": "ST04",
+      "depends_on": [
+        "R04",
+        "R05",
+        "R06"
+      ],
+      "unresolved_input_refs": [
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "U12",
+        "U13",
+        "U14"
+      ],
+      "required_output": "CTRL01/02 records with objective/focus differences and explicit SIL-contact state receipts; bare records must link to a preserved uncoated state or documented matched specimen",
+      "rule": "A source control failure is a result; it is not an instruction to force a success",
+      "implemented": false
+    },
+    {
+      "id": "R10",
+      "name": "Represent size, coating, array and extension claims",
+      "station": "ST06",
+      "depends_on": [
+        "R07",
+        "R08",
+        "R09"
+      ],
+      "unresolved_input_refs": [
+        "U13",
+        "U14"
+      ],
+      "required_output": "C02/C03/C04/E05 claim ledger with explicit text-only, proposed or unrun state",
+      "rule": "No synthetic completion for unseen data; no invented full Cartesian experiment matrix",
+      "implemented": false
+    },
+    {
+      "id": "R11",
+      "name": "Compare optical and reference evidence",
+      "station": "ST06",
+      "depends_on": [
+        "R07",
+        "R08",
+        "R09"
+      ],
+      "unresolved_input_refs": [
+        "U11",
+        "U12",
+        "U13"
+      ],
+      "required_output": "Units, transforms, metric/uncertainty and limitation report",
+      "rule": "No hard-coded source outcome as task success; no independent 50 nm certification here",
+      "implemented": false
+    },
+    {
+      "id": "R12",
+      "name": "Review theoretical branches without execution",
+      "station": "ST06",
+      "depends_on": [
+        "R01"
+      ],
+      "unresolved_input_refs": [
+        "U15"
+      ],
+      "required_output": "N01-N04 source-method inventory and explicit unrun receipts",
+      "rule": "Keep measured, heuristic, analytic and numerical results separate",
+      "implemented": false
+    },
+    {
+      "id": "R13",
+      "name": "Close out and archive all outcomes",
+      "station": "ST07",
+      "depends_on": [
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "unresolved_input_refs": [
+        "U16"
+      ],
+      "required_output": "Specimen disposition, service release, raw/derived record hashes and final branch ledger",
+      "rule": "Quarantined branches remain visible; do not count an unresolved route as complete",
+      "implemented": false
+    }
+  ],
+  "scope_limit": "A future implementation must include preparation, identities, dependencies, comparisons, failures and closeout, rather than just move finished coupons between instruments.",
+  "all_service_commands": "Absent by design; qualified service receipts are prerequisites, not generated substitutes for actual work."
+}

@@ -1,0 +1,48 @@
+{
+  "classification": "Reported instrument pairing plus authored acceptance contract",
+  "reported_devices": [
+    "Olympus MX-850 optical microscope with MDPlan 80x NA0.9; 40x objective for larger SIL",
+    "Hitachi S-3400N SEM",
+    "Quanta 200 3D focused-ion-beam preparation service, not a measurement equivalent"
+  ],
+  "measurements": [
+    {
+      "id": "X01",
+      "quantity": "Target line width, gap, pore size or corner scale",
+      "reference": "SEM image and calibrated reference service receipt",
+      "optical_comparison": "Registered optical feature observation with mode/lens/plane identity",
+      "caveat": "SEM figure labels are reported dimensions, not calibrated certificates provided to this review"
+    },
+    {
+      "id": "X02",
+      "quantity": "Virtual-image magnification",
+      "reference": "Physical object feature definition and independently calibrated optical detector scale",
+      "optical_comparison": "Keep optical objective magnification distinct from added microsphere magnification",
+      "caveat": "The reported 4.17x and about 8x are contextual source results; no raw data were available to recompute them"
+    },
+    {
+      "id": "X03",
+      "quantity": "Resolution/contrast",
+      "reference": "Prospectively qualified criterion, raw optical records, instrument noise and feature definition",
+      "optical_comparison": "Bare, SIL and sphere records at separately documented focus and objective settings",
+      "caveat": "Visible pattern recognition is not alone a validated system-wide 50 nm resolution specification"
+    },
+    {
+      "id": "X04",
+      "quantity": "Sphere dimension and contact geometry",
+      "reference": "Supplier/qualified size metrology plus surface-contact inspection",
+      "optical_comparison": "Nominal diameter must not be silently substituted for measured size or material dispersion",
+      "caveat": "Source provides nominal sizes, no lot distribution or uncertainty"
+    }
+  ],
+  "no_cross_device_equivalence": "A model intensity field is not a camera image; SEM topography, optical contrast and theoretical focus width are different observables.",
+  "acceptance_gate": [
+    "Matched target identity/state/ROI or documented equivalence",
+    "Instrument calibrations and units",
+    "Coordinate-frame and transform record",
+    "Non-saturation and data integrity",
+    "Metric convention and uncertainty",
+    "Independent reviewer sign-off before a resolution claim"
+  ],
+  "no_thresholds_invented": true
+}

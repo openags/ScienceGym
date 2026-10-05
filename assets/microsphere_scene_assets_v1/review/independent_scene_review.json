@@ -1,0 +1,145 @@
+{
+  "schema": "sciencegym.independent_scene_review.v1",
+  "date_utc": "2026-10-05",
+  "source_doi": "10.1038/ncomms1211",
+  "verdict": "ACCEPT_ORIGINAL_REVIEW_SCENE_WITH_QUALIFICATION_HOLD",
+  "blocking_findings": [],
+  "physical_qualification": "HOLD_QUALIFICATION",
+  "physical_actuation_enabled": false,
+  "scientific_simulation_performed": false,
+  "new_measurement_or_resolution_claim": false,
+  "source_rights_boundary": "Only original authored geometry, icons, labels and source-analysis metadata; no publisher or author media/CAD/code/raw-data asset reuse grant is asserted",
+  "counts": {
+    "source_snapshot_files_exact": 10,
+    "assets": 9,
+    "binding_anchors": 33,
+    "routes": 13,
+    "unresolved_inputs": 16,
+    "native_objects": 282,
+    "native_meshes": 234,
+    "glb_imported_objects": 279,
+    "geometry_checks_passed": 49,
+    "declared_contact_pairs_passed": 15,
+    "additional_contact_pairs_passed": 16,
+    "guard_cases_passed": 376,
+    "deep_native_fixed_char_arrays_checked": 7060,
+    "actual_preview_images_inspected": 3
+  },
+  "checks": {
+    "source_contract": true,
+    "all_source_snapshots_byte_identical": true,
+    "compressed_native_reopened": true,
+    "native_geometry_and_guards": true,
+    "branch_route_bindings_match_paired_operations": true,
+    "glb_actual_blender_import": true,
+    "actual_and_magnified_geometry_separate_and_correct": true,
+    "cpu_render_configuration_and_receipt": true,
+    "all_three_final_previews_pixel_inspected": true,
+    "deep_native_privacy": true,
+    "no_native_images_scripts_actions_drivers": true,
+    "glb_no_images_textures_or_external_dependencies": true
+  },
+  "native_reopen": {
+    "blender_version": "4.3.2",
+    "compressed_sha256": "bd6c696826b1287a0a4fe082865d9da3958dd8a6cbcf0238ec3f8365d250da75",
+    "independent_deep_semantic_sha256": "6c9ba9ff67fe1dc52c823a7a27cdfda1bfa8a7cc01b98d384f04588c4f990264",
+    "exact_match_to_authored_final_snapshot": true,
+    "runtime_note": "Thread settings are runtime-sensitive. Independent matching invocation used fixed four threads. Default-thread re-open differed only in render threads and threads_mode, with every other snapshot value identical."
+  },
+  "visual_review": [
+    {
+      "file": "previews/preview_01_overview.png",
+      "inspected_actual_pixels": true,
+      "observations": [
+        "Complete authored room and wall title are framed",
+        "All 9 asset groups represented: intake, target icons, sealed stock, lens controls, guarded microscope, closed service docks, coordinate cards, evidence dashboard and archive",
+        "Visible illustration-only, no optical measurements, no hardware commands and qualification-hold warnings"
+      ]
+    },
+    {
+      "file": "previews/preview_02_targets.png",
+      "inspected_actual_pixels": true,
+      "observations": [
+        "Four original schematic family icons explicitly labeled as no length scale and not an optical image",
+        "Distinct 0.5 mm and 2.5 mm SIL identities with 80x and 40x objective context",
+        "SIL display multiplier 200 and sphere display multiplier 40000 are visible; 4.74 um sphere is distinctly contextual",
+        "Protected carrier and archive remain visibly supported"
+      ]
+    },
+    {
+      "file": "previews/preview_03_services.png",
+      "inspected_actual_pixels": true,
+      "observations": [
+        "Closed preparation and SEM receipt-only service faces remain on HOLD",
+        "Evidence panel separates reported examples, retained comparators, text-only extensions, proposed array combination, unrun models and no new data",
+        "Object, virtual and detector cards remain distinct and calibration/transform missing label is visible"
+      ]
+    }
+  ],
+  "resolved_findings": [
+    {
+      "finding": "Two 25 mm unsupported gaps in microscope components",
+      "resolution": "Original turret connector and illumination support were added; independent contact tests pass"
+    },
+    {
+      "finding": "Target-family metadata could contradict the selected target anchor",
+      "resolution": "Anchor-specific family checks added; independent adversarial cases reject contradictions"
+    },
+    {
+      "finding": "SIL objective contradiction accepted when diameter field omitted",
+      "resolution": "Anchor-specific objective checks added; both omitted-diameter bypass tests now reject"
+    },
+    {
+      "finding": "Initial overview cropped wall title",
+      "resolution": "Overview camera widened; final pixel inspection confirms complete title"
+    }
+  ],
+  "nonblocking_observations": [
+    "Microscope interior remains intentionally behind a stationary guard and is faint from the wide review views",
+    "Some station subtitles are partially occluded in individual views; other views and preserved object label metadata retain their identity",
+    "This is illustrative contact and dimensional consistency, not collision, force, handling or optical qualification"
+  ],
+  "reviewed_input_sha256": {
+    "shared_binding_contract.json": "98a65630d36191e98e4eb894e46b7e089a78d1abfa6ad88f9143d04acc09b841",
+    "scene_guards.py": "df98c7cc39cd79439e03652fefe4d03fc58004ac954b5860746b77a268de715b",
+    "scene_manifest.json": "8faa28d933866f87fc894080cb08090180d2363f8535c50abf386b050b1400d6",
+    "geometry/build_scene.py": "9236154c6d826581c1738d7819eae160d988ef8aa96dbdd5bffee3b70e2541c1",
+    "geometry/microsphere_lab.blend": "bd6c696826b1287a0a4fe082865d9da3958dd8a6cbcf0238ec3f8365d250da75",
+    "geometry/microsphere_lab.glb": "1b065559763bf1a83dd8dc3c135a2730f7c2b43880f556deef142f9a6d6f78dc",
+    "geometry/deep_native_buffers.py": "78a68745be9eef6169e0aa997c2b9676bd68b00935735137eef9659e83bd608f",
+    "geometry/finalize_native.py": "bdfa11732e0681abef199c3b152e3cbd443337bf8da96c69f7d03e91e9c987ed",
+    "tests/native_semantic_snapshot.py": "d51d495ba951213b04fdbbe1a34d3ebcb09f234a1684bb5303bf1534cd192a99",
+    "tests/test_scene_guards.py": "1d804b64f6dd3fe4e9cf700f3f81a45f1c127595b00f20e4bcec63d6989274ac",
+    "review/render_receipt.json": "d599329dc26e71de2b4d6ca496a1bfcbffbf3cbcda52938dbf20b65e261713bd",
+    "review/native_equivalence.json": "40c276b109aefe66f2fe2b4d485951b6163edef6fa48f9065d42af1ef43f4ec8",
+    "review/deep_buffer_scan.json": "de94b9d1583609e4fa9cb26b23c4d7d82996f16d5a08a24fc157a55711d476fb",
+    "review/deep_buffer_cleanup.json": "7ec6a8eecf8ba8fe297dd8644a4679c4782b01968c207c8a29708b9f56432e0f",
+    "review/preview_sanitization.json": "f1c4f0943d386a36f980092b28b47cc7398cd274f0c4d3b187649b778f48ec72",
+    "asset_requirements_snapshot.json": "921efc3d220b32d2b3ce35c6c1a1ba461d0dacbf756b1cc6ec9a8038ae0ec21f",
+    "controls_and_repeats_snapshot.json": "d6ab3741806dc14b14c61752207d4334e7f3a67fdda88f4bf21fc479d560cce2",
+    "coverage_map_snapshot.json": "673d8cdb74eefab3fd8d62782ae9066c4607f4f77316800899a2eacdc5bafaad",
+    "lineage_contract_snapshot.json": "f9dc6cb1b2da9f04f3c934762b71aaf5ec32d59affcbad8dd8da55f10a7d74ed",
+    "route_proposal_snapshot.json": "4346cfcab5687ff0cde9132d4142fd5749b2ad4005c5b75af8e40c24136a9d5d",
+    "sample_custody_snapshot.json": "3f70073290d29a5d6d8e28548c93b736d712491a71d635a808b16c521df9b07b",
+    "source_conflicts_snapshot.json": "845768a69cbec003fb4591e3e7a01289548d06bc126f8eaf23a5e0b9e9e3aa72",
+    "source_facts_snapshot.json": "f114797a380cad7193d7f185649b89ec1b6df325e083209cf8522a730a9f63fd",
+    "station_contracts_snapshot.json": "6e6d83c637b5572556d5ebb55db803f08851881d2ff836a787b217a1012a355e",
+    "unknown_inputs_snapshot.json": "f2caef22c6144324e232ef8cc64d379176e81ea07ea41236ae2ba8b2972e6cca",
+    "previews/preview_01_overview.png": "18187ec4143de0c7612a3f9ebeb7198724c9f0c5b2d71b2e27934129d1448f7c",
+    "previews/preview_02_targets.png": "0371ab840ff310a48cba08c25422e6597ea409142d3845fb8449de5db5972bee",
+    "previews/preview_03_services.png": "ea89e043ac8691949c563af60f8f5aa6df914bf6ee67e98294d8b98691557808"
+  },
+  "export_conditions": [
+    "Only the reviewed sanitized native file is accepted for export; exclude raw and backup Blend files, cache files, local logs and full semantic snapshots",
+    "Final archive and inventory sealing are outside this asset-level review and must preserve the reviewed input hashes",
+    "All 16 unresolved input holds must remain; service requests stay non-dispatching and physical permission remains false"
+  ],
+  "report_artifacts": [
+    "independent_scene_review.json",
+    "independent_scene_review.md",
+    "independent_guard_results.json",
+    "independent_geometry_results.json",
+    "independent_privacy_results.json"
+  ],
+  "privacy": "Reports contain only package-relative artifact identifiers, semantic object IDs, hashes, offsets or counts; no recovered C-string buffer contents"
+}

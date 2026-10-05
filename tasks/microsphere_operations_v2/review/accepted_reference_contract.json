@@ -1,0 +1,1386 @@
+{
+  "schema": "sciencegym.microsphere.independent_reference.v1",
+  "scope": "Original accepted source-review annotations used as independent static contract expectations; no publisher prose, media, raw data, CAD or code. These are source context, not generated observations.",
+  "source_files": {
+    "asset_requirements.json": {
+      "assets": [
+        {
+          "geometry_rule": "Original generic geometry; carrier dimensions/clearance remain qualified unknowns",
+          "id": "A01",
+          "name": "Labeled intake rack and protective coupon carriers",
+          "required_semantics": "carrier_id, specimen_id, orientation, custody state",
+          "routes": [
+            "R02",
+            "R03",
+            "R13"
+          ]
+        },
+        {
+          "geometry_rule": "Original plain coupons with authored pattern metadata; no traced figure geometry, exact experimental CAD or fabricated nanoscale surface claims",
+          "id": "A02",
+          "name": "Four inert target proxies",
+          "required_semantics": "target family, dimensional specification, qualified versus illustrative",
+          "routes": [
+            "R02",
+            "R03",
+            "R07",
+            "R08"
+          ]
+        },
+        {
+          "geometry_rule": "Original generic sealed stock bottles and dispensing envelope; no chemical recipe or operational liquid quantities",
+          "id": "A03",
+          "name": "Sphere-stock and contained assembly station",
+          "required_semantics": "lot identity, nominal size, containment, unresolved preparation",
+          "routes": [
+            "R05",
+            "R06"
+          ]
+        },
+        {
+          "geometry_rule": "Distinct source-reported diameter metadata; independently authored optical proxies, not copies of SI photos or exact optical prescriptions",
+          "id": "A04",
+          "name": "Two SIL-control placeholders",
+          "required_semantics": "0.5mm versus 2.5mm; objective-condition relationship",
+          "routes": [
+            "R05",
+            "R09"
+          ]
+        },
+        {
+          "geometry_rule": "Generic original model and state-only control labels; no vendor model export or dangerous optical commands",
+          "id": "A05",
+          "name": "White-light microscope station",
+          "required_semantics": "transmission/reflection, specimen location, objective, focus/reference plane",
+          "routes": [
+            "R07",
+            "R08",
+            "R09"
+          ]
+        },
+        {
+          "geometry_rule": "Generic boxes/receipt interfaces, no internal beam/laser/electrochemical process",
+          "id": "A06",
+          "name": "Closed SEM/reference and fabrication service docks",
+          "required_semantics": "job status, document receipts, quarantine and safe-state gates",
+          "routes": [
+            "R03",
+            "R04"
+          ]
+        },
+        {
+          "geometry_rule": "Original diagrammatic coordinate frames, not publisher images; object/virtual/detector planes explicitly separated",
+          "id": "A07",
+          "name": "Cross-device coordinate overlays",
+          "required_semantics": "transform provenance, units, ROI and calibration",
+          "routes": [
+            "R04",
+            "R11"
+          ]
+        },
+        {
+          "geometry_rule": "Original authored state machine visualization; no fabricated detector plots",
+          "id": "A08",
+          "name": "Read-only evidence dashboard and failure states",
+          "required_semantics": "reported, text-only, missing, unrun, quarantined, qualified",
+          "routes": [
+            "R10",
+            "R11",
+            "R12"
+          ]
+        },
+        {
+          "geometry_rule": "Original generic containment, storage and archive affordances",
+          "id": "A09",
+          "name": "Closeout and archive objects",
+          "required_semantics": "specimen disposition, raw/derived hashes, service release",
+          "routes": [
+            "R13"
+          ]
+        }
+      ],
+      "classification": "Original future asset requirements only; zero assets created",
+      "future_tests": [
+        "Object and route ID consistency",
+        "No branch silently missing including controls/failures",
+        "No unknown physical value replaced by a guess",
+        "No source media/embedded copied binaries",
+        "Correct unit and plane distinction",
+        "Closed hazardous-service interfaces",
+        "Native asset metadata sanitized and original authorship documented"
+      ],
+      "geometry_qualification": "Unknown specimen exterior dimensions, roughness, masses, optical prescriptions, contact models and collision tolerances are holds, not defaults.",
+      "nanometer_scale_representation": "Use explicit scale metadata and separate illustrative micro/nano inset only when necessary; do not claim a scene proxy resolves 50 nm or physically simulates light.",
+      "physical_simulation": false,
+      "rendering_boundary": "Assets must be clearly illustrative with qualified dimensions only where independently justified; camera-like output requires actual qualified acquisition data, never invented evidence.",
+      "source_media_prohibited": [
+        "Publisher figure pixels, screenshots, crops or textures",
+        "Publisher PDF or extracted prose",
+        "Traced figure geometry or reconstructed exact surface from a source image",
+        "Publisher or author CAD, source code or raw data packages"
+      ],
+      "synchronization_rule": "Any future paired task and scene must share branch IDs, material/state IDs, station IDs, asset IDs, units, gate meanings and a versioned semantic-core digest. Package-level tests must reject drift."
+    },
+    "controls_and_repeats.json": {
+      "authored_future_repeat_plan": "A qualified experiment owner must prospectively choose independent specimens/fields/spheres, acquisition repeats, ordering, day-to-day conditions, exclusions and metrics before any test. No numerical repeat count is invented.",
+      "no_pseudoreplication": "Frames from one particle or multiple particles on one coupon are not automatically independent material preparations.",
+      "no_success_fabrication": "Reported failure controls must remain valid observations; do not retune or delete them to make all routes pass.",
+      "reported_controls": [
+        {
+          "authored_requirement": "Bare and sphere focal planes differ; a fair authored comparison requires independent best-focus provenance, no copied focus command",
+          "branches": [
+            "E01",
+            "E03",
+            "C01"
+          ],
+          "control": "Bare target at its own focus",
+          "id": "CTRL01",
+          "reported": "Reported uncovered grating and bare Blu-ray observation"
+        },
+        {
+          "authored_requirement": "Retain 80x/40x objective difference and lens/contact receipt",
+          "branches": [
+            "C01"
+          ],
+          "control": "Half-ball SIL pair",
+          "id": "CTRL02",
+          "reported": "0.5 and 2.5 mm physical SILs; failures illustrated on Blu-ray"
+        },
+        {
+          "authored_requirement": "Preserve successful/unsuccessful observations and practical versus theoretical distinction; full target cross-matrix unavailable",
+          "branches": [
+            "C02"
+          ],
+          "control": "Sphere-size screen",
+          "id": "CTRL03",
+          "reported": "1,3,4.74,10,50 um sizes reported"
+        },
+        {
+          "authored_requirement": "Require paired supporting evidence and specimen state lineage before asserting causal contribution",
+          "branches": [
+            "C03"
+          ],
+          "control": "Uncoated/coated AAO",
+          "id": "CTRL04",
+          "reported": "Coating improvement claimed in text"
+        },
+        {
+          "authored_requirement": "Require separately calibrated image scales and registered ROI; source does not establish matched specimen history",
+          "branches": [
+            "E01",
+            "E02",
+            "E03",
+            "E04"
+          ],
+          "control": "Optical/SEM pairing",
+          "id": "CTRL05",
+          "reported": "Published SEM/optical comparisons"
+        },
+        {
+          "authored_requirement": "Treat as text-only unless new qualified data supplied",
+          "branches": [
+            "E05"
+          ],
+          "control": "Cross-mode target checks",
+          "id": "CTRL06",
+          "reported": "Text states complex transmission and 50 nm reflection"
+        }
+      ],
+      "reported_repeat_counts": null,
+      "reported_uncertainty_budget": null
+    },
+    "coverage_map.json": {
+      "all_source_sections_mapped": true,
+      "branches": [
+        {
+          "fact_refs": [
+            "F03",
+            "F04",
+            "F05",
+            "F06",
+            "F07"
+          ],
+          "id": "E01",
+          "implemented": false,
+          "location": "MAIN Figs1,2a; pp2-3,5",
+          "material_or_analysis_scope": "Grating coupon and sphere-coated child state",
+          "name": "Transmission grating",
+          "reviewed": true,
+          "source_evidence_type": "experimental figure-backed"
+        },
+        {
+          "fact_refs": [
+            "F03",
+            "F04",
+            "F05",
+            "F08",
+            "F09",
+            "F10"
+          ],
+          "id": "E02",
+          "implemented": false,
+          "location": "MAIN Fig2b; pp2-3,5",
+          "material_or_analysis_scope": "Gold-coated AAO coupon and sphere-coated child state",
+          "name": "Transmission gold/AAO pores",
+          "reviewed": true,
+          "source_evidence_type": "experimental figure-backed"
+        },
+        {
+          "fact_refs": [
+            "F03",
+            "F04",
+            "F05",
+            "F11"
+          ],
+          "id": "E03",
+          "implemented": false,
+          "location": "MAIN Fig3a; p3,5",
+          "material_or_analysis_scope": "Exposed track coupon and sphere-coated child state",
+          "name": "Reflection Blu-ray tracks",
+          "reviewed": true,
+          "source_evidence_type": "experimental figure-backed"
+        },
+        {
+          "fact_refs": [
+            "F03",
+            "F04",
+            "F05",
+            "F12",
+            "F13"
+          ],
+          "id": "E04",
+          "implemented": false,
+          "location": "MAIN Fig3b; p3,5",
+          "material_or_analysis_scope": "Certified inert phase-change-film target; composition unresolved",
+          "name": "Reflection star-pattern target",
+          "reviewed": true,
+          "source_evidence_type": "experimental figure-backed"
+        },
+        {
+          "fact_refs": [
+            "F15",
+            "F16",
+            "F17"
+          ],
+          "id": "C01",
+          "implemented": false,
+          "location": "SI S1-S2; MAIN pp3,5",
+          "material_or_analysis_scope": "Three comparator optical conditions, retaining objective difference",
+          "name": "Bare and SIL controls",
+          "reviewed": true,
+          "source_evidence_type": "mixed figure-backed and text-only"
+        },
+        {
+          "fact_refs": [
+            "F18",
+            "F19"
+          ],
+          "id": "C02",
+          "implemented": false,
+          "location": "MAIN pp3-5",
+          "material_or_analysis_scope": "1,3,4.74,10,50 micrometer sphere lots; size/sample pairing incompletely reported",
+          "name": "Sphere-size success and failure screen",
+          "reviewed": true,
+          "source_evidence_type": "text-only experiment"
+        },
+        {
+          "fact_refs": [
+            "F10"
+          ],
+          "id": "C03",
+          "implemented": false,
+          "location": "MAIN p3",
+          "material_or_analysis_scope": "Uncoated versus coated AAO comparison is claimed; paired evidence not supplied",
+          "name": "Gold-coating contribution",
+          "reviewed": true,
+          "source_evidence_type": "text-only experiment"
+        },
+        {
+          "fact_refs": [
+            "F20"
+          ],
+          "id": "E05",
+          "implemented": false,
+          "location": "MAIN p3",
+          "material_or_analysis_scope": "Complex-shape transmission and 50 nm reflection remain unsupported-by-panel branches",
+          "name": "Cross-mode extension claims",
+          "reviewed": true,
+          "source_evidence_type": "text-only experiment"
+        },
+        {
+          "fact_refs": [
+            "F27"
+          ],
+          "id": "C04",
+          "implemented": false,
+          "location": "MAIN p3 and Fig2",
+          "material_or_analysis_scope": "Multiple sphere-covered fields; no invented complete mosaic, stitching algorithm or independent repeat count",
+          "name": "Array coverage and proposed image combination",
+          "reviewed": true,
+          "source_evidence_type": "illustrated array coverage plus unqualified processing prospect"
+        },
+        {
+          "fact_refs": [
+            "F21",
+            "F22",
+            "F25"
+          ],
+          "id": "N01",
+          "implemented": false,
+          "location": "MAIN Fig4a,d",
+          "material_or_analysis_scope": "Qualified analysis receipt only; no new simulated fields",
+          "name": "Index and sphere-size focusing survey",
+          "reviewed": true,
+          "source_evidence_type": "reported numerical work"
+        },
+        {
+          "fact_refs": [
+            "F21",
+            "F22"
+          ],
+          "id": "N02",
+          "implemented": false,
+          "location": "MAIN Fig4b,c",
+          "material_or_analysis_scope": "Keep model geometry separate from physical SILs and experimental gold layer",
+          "name": "SIL/sphere/surface field comparison",
+          "reviewed": true,
+          "source_evidence_type": "reported numerical work"
+        },
+        {
+          "fact_refs": [
+            "F21",
+            "F23"
+          ],
+          "id": "N03",
+          "implemented": false,
+          "location": "SI S3-S4; MAIN pp4-5",
+          "material_or_analysis_scope": "Geometrical-optics assumptions and singular regions explicitly identified",
+          "name": "Ray and field-enhancement magnification",
+          "reviewed": true,
+          "source_evidence_type": "reported analytical/numerical work"
+        },
+        {
+          "fact_refs": [
+            "F21",
+            "F24"
+          ],
+          "id": "N04",
+          "implemented": false,
+          "location": "SI S5-S6; MAIN p5",
+          "material_or_analysis_scope": "Separate line-dependent construction, no source Fortran code ingested",
+          "name": "Poynting-flow image construction",
+          "reviewed": true,
+          "source_evidence_type": "reported numerical work"
+        }
+      ],
+      "not_experiments": [
+        "Historical methods in the Introduction",
+        "Future high-index/sub-20 nm predictions",
+        "Prospective biological applications"
+      ],
+      "paper_doi": "10.1038/ncomms1211",
+      "program_unit": "One paper-level experiment family. Targets, sphere diameters, controls and model variants are not separate completed papers."
+    },
+    "cross_device_measurements.json": {
+      "acceptance_gate": [
+        "Matched target identity/state/ROI or documented equivalence",
+        "Instrument calibrations and units",
+        "Coordinate-frame and transform record",
+        "Non-saturation and data integrity",
+        "Metric convention and uncertainty",
+        "Independent reviewer sign-off before a resolution claim"
+      ],
+      "classification": "Reported instrument pairing plus authored acceptance contract",
+      "measurements": [
+        {
+          "caveat": "SEM figure labels are reported dimensions, not calibrated certificates provided to this review",
+          "id": "X01",
+          "optical_comparison": "Registered optical feature observation with mode/lens/plane identity",
+          "quantity": "Target line width, gap, pore size or corner scale",
+          "reference": "SEM image and calibrated reference service receipt"
+        },
+        {
+          "caveat": "The reported 4.17x and about 8x are contextual source results; no raw data were available to recompute them",
+          "id": "X02",
+          "optical_comparison": "Keep optical objective magnification distinct from added microsphere magnification",
+          "quantity": "Virtual-image magnification",
+          "reference": "Physical object feature definition and independently calibrated optical detector scale"
+        },
+        {
+          "caveat": "Visible pattern recognition is not alone a validated system-wide 50 nm resolution specification",
+          "id": "X03",
+          "optical_comparison": "Bare, SIL and sphere records at separately documented focus and objective settings",
+          "quantity": "Resolution/contrast",
+          "reference": "Prospectively qualified criterion, raw optical records, instrument noise and feature definition"
+        },
+        {
+          "caveat": "Source provides nominal sizes, no lot distribution or uncertainty",
+          "id": "X04",
+          "optical_comparison": "Nominal diameter must not be silently substituted for measured size or material dispersion",
+          "quantity": "Sphere dimension and contact geometry",
+          "reference": "Supplier/qualified size metrology plus surface-contact inspection"
+        }
+      ],
+      "no_cross_device_equivalence": "A model intensity field is not a camera image; SEM topography, optical contrast and theoretical focus width are different observables.",
+      "no_thresholds_invented": true,
+      "reported_devices": [
+        "Olympus MX-850 optical microscope with MDPlan 80x NA0.9; 40x objective for larger SIL",
+        "Hitachi S-3400N SEM",
+        "Quanta 200 3D focused-ion-beam preparation service, not a measurement equivalent"
+      ]
+    },
+    "failure_and_closeout.json": {
+      "authored_recovery": [
+        "Save the current evidence and quarantine affected branch",
+        "Return a failed service job to the qualified service owner; no autonomous parameter search",
+        "Replace damaged material only through a separately identified certified receipt and new state",
+        "Retest only under a preapproved plan and retain all earlier failed observations",
+        "Do not synthesize images, omit failed sizes or reinterpret the source to make a pass"
+      ],
+      "authored_stop_conditions": [
+        "Missing material identity, lot certificate or required service approval",
+        "Damaged, delaminated, contaminated or uncontained specimen",
+        "Sphere agglomeration/multilayer/contact state outside qualified acceptance",
+        "Unverified objective/sample clearance or unsafe light source state",
+        "Missing calibration, saturation, unstable focus or incomplete acquisition metadata",
+        "Untraceable image pair, incompatible plane/scale convention or altered specimen state",
+        "Requested biological, hazardous-laser or fabrication operation outside scope",
+        "Any access restriction or held source encountered during future source refresh"
+      ],
+      "classification": "Reported failure observations plus authored recovery/closeout boundary",
+      "closeout": [
+        "Use qualified station procedure to place equipment in a safe state; obtain its receipt",
+        "Return optics to protective storage and document surface/contact condition",
+        "Contain sphere suspensions/residues and route all waste through qualified local disposition; no drain/disposal recipe",
+        "Record specimen archive, return or quarantine destination and state",
+        "Seal raw-record hashes, analysis versions, calibration references and all holds",
+        "Report branch completeness and unresolved conditions; count remains zero for this review"
+      ],
+      "reported_failures": [
+        {
+          "condition": "Bare/uncovered target",
+          "limit": "Focus is not necessarily matched",
+          "observation": "Unresolved grating regions and bare Blu-ray comparator",
+          "source": "MAIN p2 Fig2a; SI S2a"
+        },
+        {
+          "condition": "0.5 and 2.5 mm SILs",
+          "limit": "Different objectives and geometry",
+          "observation": "Reported failure on all samples; Blu-ray examples illustrated",
+          "source": "MAIN pp3,5; SI S1-S2"
+        },
+        {
+          "condition": "1 um silica sphere",
+          "limit": "Practical limitation, not fundamental prohibition",
+          "observation": "High-resolution imaging unsuccessful due to small usable view window",
+          "source": "MAIN pp3-4"
+        },
+        {
+          "condition": "10 and 50 um silica spheres",
+          "limit": "No full target/mode/replicate matrix",
+          "observation": "Reported unsuccessful 100 nm imaging tests",
+          "source": "MAIN p3"
+        }
+      ],
+      "source_closeout_reported": false
+    },
+    "lineage_contract.json": {
+      "branches": "coverage_map.json is the authoritative branch ID inventory",
+      "classification": "Authored future data contract",
+      "derived_record_requirements": [
+        "Keep immutable raw records separate from processed views",
+        "Store transformations, pixel-size units, magnification convention and ROI coordinates",
+        "Preserve separate object plane, virtual-image plane and detector plane coordinates",
+        "Record missing data explicitly; no generated image can substitute for a measured field",
+        "Report source-outcome comparison as context, never as a measurement event"
+      ],
+      "failed_lineage_action": "Quarantine the comparison and retain the individual records. No automatic nearest-looking-image or timestamp pairing.",
+      "links": [
+        "material receipt -> specimen_id -> preparation state -> ROI",
+        "sphere receipt -> sphere size condition -> specimen coating state",
+        "SIL receipt -> objective condition -> contact state",
+        "instrument calibration -> acquisition record -> optical or SEM image record",
+        "raw image record -> non-destructive analysis -> declared metric -> reviewed conclusion"
+      ],
+      "roots": [
+        "paper source identity",
+        "certified material receipt",
+        "qualified station receipt"
+      ]
+    },
+    "material_and_sample_dependencies.json": {
+      "classification": "All IDs and receipt requirements are authored translation; dimensions/model names in reported_identity are source facts.",
+      "dependency_order": [
+        "Certified solid target receipt precedes sphere coating or SIL contact",
+        "Target baseline and coordinate map precede any state-altering preparation",
+        "Sphere lot and coating receipt precede optical branch comparison",
+        "Reference metrology and optical calibration must both exist before quantitative cross-device interpretation",
+        "Source-conflict resolution precedes material-specific fabrication specification",
+        "Branch data receipt precedes any resolution claim"
+      ],
+      "materials": [
+        {
+          "authorized_future_boundary": "receipt and contained dispensing service",
+          "id": "M01",
+          "name": "Silica sphere stock",
+          "reported_identity": "Bangs Laboratories; silica; source index 1.46; principal diameter 4.74 um, comparison 3.0 um; failure sizes 1,10,50 um",
+          "unresolved": "Supplier lot, diameter distribution, solvent, solids content, surface condition and safety documentation missing"
+        },
+        {
+          "authorized_future_boundary": "closed nanofabrication service",
+          "id": "M02",
+          "name": "Chrome-on-fused-silica grating",
+          "reported_identity": "30 nm chrome; 360 nm lines and 130 nm gaps; FIB-made",
+          "unresolved": "Coupon size, thickness of fused silica, grating area, target tolerance, topography and cleanliness not stated"
+        },
+        {
+          "authorized_future_boundary": "closed electrochemical/template/coating service",
+          "id": "M03",
+          "name": "Gold/AAO fishnet target",
+          "reported_identity": "20 nm gold formed on 300 um AAO template; nominal 50 nm pores and 50 nm spacing",
+          "unresolved": "Pore topology/depth, spacing definition, coating uniformity, adhesion and surface-flatness criteria missing"
+        },
+        {
+          "authorized_future_boundary": "qualified coupon-preparation service",
+          "id": "M04",
+          "name": "Blu-ray track coupon",
+          "reported_identity": "Commercial optical disc; 100 um transparent protective layer removed; reported 200 nm line/100 nm gap",
+          "unresolved": "Brand, layer stack, coupon dimensions, removal method, residues and resulting surface integrity not stated"
+        },
+        {
+          "authorized_future_boundary": "closed qualified patterning/materials service; hard hold until identity is resolved",
+          "id": "M05",
+          "name": "Star-pattern phase-change film",
+          "reported_identity": "Optical-disc film; 90 nm corner claim; prior contact particle lens patterning method",
+          "unresolved": "SbTe versus GeSbTe conflict; exact composition, film thickness, star geometry, patterning specification and identity unresolved"
+        },
+        {
+          "authorized_future_boundary": "qualified optical handling",
+          "id": "M06",
+          "name": "0.5 mm fused-silica half-ball SIL",
+          "reported_identity": "Edmund Optics; source uses 80x objective",
+          "unresolved": "SKU, radius convention, figure tolerances, surface quality, contact load and objective clearance missing"
+        },
+        {
+          "authorized_future_boundary": "qualified optical handling",
+          "id": "M07",
+          "name": "2.5 mm fused-silica half-ball SIL",
+          "reported_identity": "Edmund Optics; source uses 40x objective",
+          "unresolved": "SKU, figure tolerances, surface quality, contact load, 40x NA/model missing"
+        },
+        {
+          "authorized_future_boundary": "qualified optical metrology station",
+          "id": "M08",
+          "name": "Microscope and white-light source",
+          "reported_identity": "Olympus MX-850; MDPlan 80x NA0.9; halogen spectrum peak approximately 600 nm",
+          "unresolved": "Camera, spectrum/power, illumination aperture, reflected-light routing, gain/exposure, calibration and stage/focus precision missing"
+        },
+        {
+          "authorized_future_boundary": "closed SEM service; no beam/vacuum operating recipe",
+          "id": "M09",
+          "name": "SEM reference service",
+          "reported_identity": "Hitachi S-3400N",
+          "unresolved": "Specimen preparation, coating, calibration, acquisition settings, region registration and uncertainty missing"
+        },
+        {
+          "authorized_future_boundary": "read-only analysis provenance review",
+          "id": "M10",
+          "name": "Analysis evidence and records",
+          "reported_identity": "Source reports Mathematica, Mie/FDTD, Fortran; no attached code/raw dataset",
+          "unresolved": "Exact source version, boundary conditions, grid/convergence and reproducibility inputs missing"
+        }
+      ],
+      "recipe_boundary": "Named source fabrication operations are documented as provenance only. No acid concentrations, anodization voltages, beam settings, deposition or laser instructions are released."
+    },
+    "route_proposal.json": {
+      "all_service_commands": "Absent by design; qualified service receipts are prerequisites, not generated substitutes for actual work.",
+      "classification": "Authored proposed translation of the full reported route; review-only and not executable",
+      "physical_default": "HOLD_QUALIFICATION",
+      "routes": [
+        {
+          "depends_on": [],
+          "id": "R01",
+          "implemented": false,
+          "name": "Verify source, rights and duplicates",
+          "required_output": "Source identity/version, hold-list audit and deduplication receipts",
+          "rule": "Reject any held source or duplicated paper; preserve restricted rights",
+          "station": "ST01",
+          "unresolved_input_refs": [
+            "U01"
+          ]
+        },
+        {
+          "depends_on": [
+            "R01"
+          ],
+          "id": "R02",
+          "implemented": false,
+          "name": "Receive and identify target families",
+          "required_output": "Four target-family receipts plus explicitly optional uncoated comparator",
+          "rule": "Composition ambiguity quarantines the star branch; other independent branches remain recorded",
+          "station": "ST01",
+          "unresolved_input_refs": [
+            "U04",
+            "U05",
+            "U06",
+            "U07"
+          ]
+        },
+        {
+          "depends_on": [
+            "R02"
+          ],
+          "id": "R03",
+          "implemented": false,
+          "name": "Obtain finished specimens from qualified services",
+          "required_output": "Final dimensions, surface state, fabrication provenance and protected carriers",
+          "rule": "Route represents every reported preparation family without exposing hazardous operations",
+          "station": "ST02",
+          "unresolved_input_refs": [
+            "U04",
+            "U05",
+            "U06",
+            "U07",
+            "U16"
+          ]
+        },
+        {
+          "depends_on": [
+            "R03"
+          ],
+          "id": "R04",
+          "implemented": false,
+          "name": "Obtain reference characterization and baseline-state frame map",
+          "required_output": "Calibrated reference data, pre-alteration baseline-state record and specimen/ROI linkage",
+          "rule": "Source acquisition order is unknown; service plan must preserve history and avoid damage",
+          "station": "ST05",
+          "unresolved_input_refs": [
+            "U11",
+            "U12"
+          ]
+        },
+        {
+          "depends_on": [
+            "R01"
+          ],
+          "id": "R05",
+          "implemented": false,
+          "name": "Qualify sphere stocks and lens controls",
+          "required_output": "Sphere lot records; separate 0.5/2.5 mm SIL IDs; objective compatibility receipts",
+          "rule": "Keep 1,3,4.74,10,50 um conditions distinct; star sphere size remains unreported",
+          "station": "ST01",
+          "unresolved_input_refs": [
+            "U02",
+            "U10"
+          ]
+        },
+        {
+          "depends_on": [
+            "R04",
+            "R05"
+          ],
+          "id": "R06",
+          "implemented": false,
+          "name": "Prepare documented coating or lens-contact states",
+          "required_output": "Child-state receipts for each preparation/contact condition",
+          "rule": "Retain pre-alteration baseline state and its reference record. Bare optical controls require an uncoated branch or explicitly documented matched specimen; no assumption a coated coupon can be restored identically.",
+          "station": "ST03",
+          "unresolved_input_refs": [
+            "U03",
+            "U09",
+            "U16"
+          ]
+        },
+        {
+          "depends_on": [
+            "R04",
+            "R06"
+          ],
+          "id": "R07",
+          "implemented": false,
+          "name": "Acquire transmission target observations",
+          "required_output": "E01 and E02 optical records with independent focus and calibration",
+          "rule": "Targets and output examples are source-grounded; acquisition commands remain unqualified",
+          "station": "ST04",
+          "unresolved_input_refs": [
+            "U08",
+            "U09",
+            "U11",
+            "U12",
+            "U13"
+          ]
+        },
+        {
+          "depends_on": [
+            "R04",
+            "R06"
+          ],
+          "id": "R08",
+          "implemented": false,
+          "name": "Acquire reflection target observations",
+          "required_output": "E03 and E04 records, mode/target state and composition qualifications",
+          "rule": "Do not insert 4.74 um for the star panel without a new qualified specimen receipt",
+          "station": "ST04",
+          "unresolved_input_refs": [
+            "U07",
+            "U08",
+            "U09",
+            "U11",
+            "U12",
+            "U13"
+          ]
+        },
+        {
+          "depends_on": [
+            "R04",
+            "R05",
+            "R06"
+          ],
+          "id": "R09",
+          "implemented": false,
+          "name": "Retain bare and SIL comparator branches",
+          "required_output": "CTRL01/02 records with objective/focus differences and explicit SIL-contact state receipts; bare records must link to a preserved uncoated state or documented matched specimen",
+          "rule": "A source control failure is a result; it is not an instruction to force a success",
+          "station": "ST04",
+          "unresolved_input_refs": [
+            "U08",
+            "U09",
+            "U10",
+            "U11",
+            "U12",
+            "U13",
+            "U14"
+          ]
+        },
+        {
+          "depends_on": [
+            "R07",
+            "R08",
+            "R09"
+          ],
+          "id": "R10",
+          "implemented": false,
+          "name": "Represent size, coating, array and extension claims",
+          "required_output": "C02/C03/C04/E05 claim ledger with explicit text-only, proposed or unrun state",
+          "rule": "No synthetic completion for unseen data; no invented full Cartesian experiment matrix",
+          "station": "ST06",
+          "unresolved_input_refs": [
+            "U13",
+            "U14"
+          ]
+        },
+        {
+          "depends_on": [
+            "R07",
+            "R08",
+            "R09"
+          ],
+          "id": "R11",
+          "implemented": false,
+          "name": "Compare optical and reference evidence",
+          "required_output": "Units, transforms, metric/uncertainty and limitation report",
+          "rule": "No hard-coded source outcome as task success; no independent 50 nm certification here",
+          "station": "ST06",
+          "unresolved_input_refs": [
+            "U11",
+            "U12",
+            "U13"
+          ]
+        },
+        {
+          "depends_on": [
+            "R01"
+          ],
+          "id": "R12",
+          "implemented": false,
+          "name": "Review theoretical branches without execution",
+          "required_output": "N01-N04 source-method inventory and explicit unrun receipts",
+          "rule": "Keep measured, heuristic, analytic and numerical results separate",
+          "station": "ST06",
+          "unresolved_input_refs": [
+            "U15"
+          ]
+        },
+        {
+          "depends_on": [
+            "R10",
+            "R11",
+            "R12"
+          ],
+          "id": "R13",
+          "implemented": false,
+          "name": "Close out and archive all outcomes",
+          "required_output": "Specimen disposition, service release, raw/derived record hashes and final branch ledger",
+          "rule": "Quarantined branches remain visible; do not count an unresolved route as complete",
+          "station": "ST07",
+          "unresolved_input_refs": [
+            "U16"
+          ]
+        }
+      ],
+      "scope_limit": "A future implementation must include preparation, identities, dependencies, comparisons, failures and closeout, rather than just move finished coupons between instruments."
+    },
+    "sample_custody.json": {
+      "classification": "Entire custody schema is authored robot translation, not a chain reported by the paper.",
+      "invariants": [
+        "Never relabel material identity to settle the SbTe/GeSbTe conflict",
+        "Each coating, stripping, SEM preparation or contact operation creates a new state linked to its parent",
+        "Do not assume SEM is nonperturbing; record any added coating, beam exposure or damage",
+        "Pair records by specimen/state/ROI and calibration, not by filename or visual resemblance alone",
+        "Record transfer counts and orientation, keep target face protected and particles contained",
+        "If same-ROI comparison is unavailable, state specimen-equivalence limits rather than inventing matched evidence"
+      ],
+      "required_fields": [
+        "paper_doi",
+        "specimen_id",
+        "parent_specimen_id",
+        "material_certificate_id",
+        "lot_id",
+        "service_job_id",
+        "state_id",
+        "preparation_history",
+        "container_id",
+        "orientation_fiducial",
+        "surface_identity",
+        "ROI_id",
+        "target_feature_definition",
+        "sphere_lot_id",
+        "sphere_diameter_measurement",
+        "coating_receipt_id",
+        "lens_condition_id",
+        "instrument_id",
+        "calibration_id",
+        "operator_or_service_receipt_id",
+        "time_utc",
+        "raw_record_hash",
+        "derived_record_hash",
+        "analysis_version",
+        "quarantine_reason",
+        "release_status"
+      ],
+      "sample_classes": [
+        "grating",
+        "gold_AAO",
+        "uncoated_AAO_comparator",
+        "Blu_ray",
+        "star_film",
+        "sphere_stock",
+        "SIL_0p5mm",
+        "SIL_2p5mm"
+      ],
+      "source_ids": "No unique experimental specimen or stock lot identifiers are supplied.",
+      "states": [
+        "received_unqualified",
+        "identity_verified",
+        "reference_characterized",
+        "surface_prepared",
+        "sphere_coated_or_SIL_contacted",
+        "optically_observed",
+        "comparison_pending",
+        "reviewed",
+        "quarantined_or_archived"
+      ],
+      "unknown_chronology": "Source does not establish whether a given SEM image was obtained before/after optical imaging, nor whether both images use the exact same physical ROI."
+    },
+    "source_conflicts.json": {
+      "items": [
+        {
+          "evidence": "MAIN p3 body calls it SbTe; Fig3b caption says GeSbTe",
+          "id": "D01",
+          "required_handling": "Do not choose one silently. Require certified specimen identity before fabrication/interpretation.",
+          "subject": "Star-film composition",
+          "unknown_refs": [
+            "U07"
+          ]
+        },
+        {
+          "evidence": "MAIN body and SEM labels show 200 nm lines and 100 nm gaps; caption calls 100 nm lines",
+          "id": "D02",
+          "required_handling": "Store line width and gap separately; treat figure caption wording as unresolved labeling rather than changing geometry.",
+          "subject": "Blu-ray feature naming",
+          "unknown_refs": [
+            "U06",
+            "U12"
+          ]
+        },
+        {
+          "evidence": "20 nm porous experimental gold in Methods versus 40 nm film in Fig4 model",
+          "id": "D03",
+          "required_handling": "Different reported systems; no assumption that model thickness is the experimental thickness.",
+          "subject": "Experimental versus modeled gold",
+          "unknown_refs": [
+            "U05",
+            "U15"
+          ]
+        },
+        {
+          "evidence": "Experimental half-ball controls differ from model H=a(1+1/n) SIL; 0.5 mm uses 80x, 2.5 mm uses 40x",
+          "id": "D04",
+          "required_handling": "No fully matched pure-shape control; preserve physical and model identities.",
+          "subject": "SIL geometry and objectives",
+          "unknown_refs": [
+            "U10"
+          ]
+        },
+        {
+          "evidence": "Measured grating 4.17x and AAO about 8x; heuristic about 5.5x; Poynting construction 2-4x",
+          "id": "D05",
+          "required_handling": "Do not combine into one validated forward model or use these source outcomes as enforced pass thresholds.",
+          "subject": "Magnification evidence categories",
+          "unknown_refs": [
+            "U12",
+            "U15"
+          ]
+        },
+        {
+          "evidence": "50 nm illustrated for gold/AAO transmission. Both-mode 50 nm and complex transmission are text-only claims",
+          "id": "D06",
+          "required_handling": "Source reading complete does not upgrade the evidence class. Keep extensions visibly unverified.",
+          "subject": "Headline versus figure-supported scope",
+          "unknown_refs": [
+            "U14"
+          ]
+        },
+        {
+          "evidence": "Fig4c caption mentions FWHM but panel plots normalized intensity versus x/a",
+          "id": "D07",
+          "required_handling": "Treat curves as intensity profiles, not a supplied table of measured FWHM. No digitization here.",
+          "subject": "Figure-caption quantity mismatch",
+          "unknown_refs": [
+            "U15"
+          ]
+        },
+        {
+          "evidence": "Text extraction drops radicals in Eq1; visual PDF shows sqrt(2) as branch boundary and inside the denominator",
+          "id": "D08",
+          "required_handling": "Source not amended; any future formula transcription must use the visual original and qualified math review.",
+          "subject": "Equation extraction artifact",
+          "unknown_refs": [
+            "U15"
+          ]
+        },
+        {
+          "evidence": "Source gives 50 nm pores/50 nm spacing and 400 nm image-plane feature; no full traceable coordinate model",
+          "id": "D09",
+          "required_handling": "Do not silently equate edge gap, pitch, pore diameter and optical period.",
+          "subject": "Pore spacing and virtual calibration",
+          "unknown_refs": [
+            "U05",
+            "U12"
+          ]
+        },
+        {
+          "evidence": "Paper discusses combining images from a self-assembled lens array, without supplying an algorithm, registration or quantitative mosaic test",
+          "id": "D10",
+          "required_handling": "Preserve as concept, not a completed stitched image, demonstrated field coverage or verified robot capability.",
+          "subject": "Large-area composition",
+          "unknown_refs": [
+            "U11",
+            "U12"
+          ]
+        }
+      ],
+      "meaning": "Some entries are source-internal conflicts; others are scientifically important distinctions or extraction hazards, not corrections to the authors."
+    },
+    "source_facts.json": {
+      "facts": [
+        {
+          "claim": "Silica microspheres act as contact optical elements in an ordinary white-light microscope; actual targets are fabricated inorganic/optical-storage structures.",
+          "evidence_class": "reported experimental fact",
+          "id": "F01",
+          "source_location": "MAIN pp1-3,5"
+        },
+        {
+          "claim": "The source states sphere refractive index 1.46 and recommends a practical diameter interval strictly between 2 and 9 micrometers.",
+          "evidence_class": "reported experimental fact",
+          "id": "F02",
+          "source_location": "MAIN pp2-4"
+        },
+        {
+          "claim": "The explicitly identified grating, AAO and Blu-ray examples use 4.74 micrometer spheres; an additional successful 3.0 micrometer size is reported. The associated star-panel text/caption does not separately state its sphere diameter.",
+          "evidence_class": "reported experimental fact",
+          "id": "F03",
+          "source_location": "MAIN pp2-3,5"
+        },
+        {
+          "claim": "Commercial colloidal silica spheres came from Bangs Laboratories; a diluted suspension was drop-coated onto the target and formed an ordered monolayer through self-assembly. Solvent, concentration, volume, drying program and lot are not supplied.",
+          "evidence_class": "reported experimental fact",
+          "id": "F04",
+          "source_location": "MAIN p5, sample preparation"
+        },
+        {
+          "claim": "The reported optical platform is Olympus MX-850 with an Olympus MDPlan 80x objective of numerical aperture 0.9. A halogen lamp peaking near 600 nm supplied white light.",
+          "evidence_class": "reported experimental fact",
+          "id": "F05",
+          "source_location": "MAIN pp2,5"
+        },
+        {
+          "claim": "The transmission grating comprises 360 nm wide lines with 130 nm gaps in a 30 nm chrome coating on fused silica. Fabrication used a Quanta 200 3D focused-ion-beam instrument.",
+          "evidence_class": "reported experimental fact",
+          "id": "F06",
+          "source_location": "MAIN pp2-3 Fig2a, p5"
+        },
+        {
+          "claim": "For that grating, the reported virtual plane lies 2.5 micrometers below the substrate surface and magnification is 4.17x. Features outside sphere-covered areas were unresolved.",
+          "evidence_class": "reported experimental fact",
+          "id": "F07",
+          "source_location": "MAIN pp2-3 Fig2a"
+        },
+        {
+          "claim": "The transmission fishnet target has gold on anodic aluminum oxide; the source gives 50 nm pore diameter and 50 nm spacing, an AAO template thickness of 300 micrometers and a gold film thickness of 20 nm.",
+          "evidence_class": "reported experimental fact",
+          "id": "F08",
+          "source_location": "MAIN pp2-3 Fig2b, p5"
+        },
+        {
+          "claim": "Two-stage anodization and template-based formation of the porous gold film are reported preparation stages. The source provides only partial preparation details.",
+          "evidence_class": "reported preparation identity; hazardous operating recipe intentionally excluded",
+          "id": "F09",
+          "source_location": "MAIN p5, sample preparation"
+        },
+        {
+          "claim": "The AAO example reports about 8x magnification and a 400 nm image-plane separation associated with the 50 nm object feature. Gold is described as improving resolution and magnification relative to the uncoated condition, without a paired uncoated figure/data series.",
+          "evidence_class": "reported experimental fact",
+          "id": "F10",
+          "source_location": "MAIN pp2-3 Fig2b"
+        },
+        {
+          "claim": "The reflection track sample is a commercial Blu-ray optical disc. A 100 micrometer transparent protective layer was removed. Body and SEM labels give 200 nm lines with 100 nm gaps.",
+          "evidence_class": "reported experimental fact",
+          "id": "F11",
+          "source_location": "MAIN p3 Fig3a and body"
+        },
+        {
+          "claim": "A star-shaped pattern on an optical-disc phase-change thin film was imaged in reflection; the source claims 90 nm corner detail. Body calls the film SbTe, while Fig3b caption says GeSbTe.",
+          "evidence_class": "reported experimental fact",
+          "id": "F12",
+          "source_location": "MAIN p3 Fig3b and body"
+        },
+        {
+          "claim": "The star-pattern preparation is attributed to a contact particle lens array method described in reference 20, an earlier laser-patterning paper. The current source does not supply its complete fabrication recipe.",
+          "evidence_class": "reported experimental fact",
+          "id": "F13",
+          "source_location": "MAIN p5, sample preparation and reference 20"
+        },
+        {
+          "claim": "All reported SEM images used a Hitachi S-3400N. SEM provides feature-size/reference morphology comparisons to optical images, not a stated traceable calibration chain.",
+          "evidence_class": "reported experimental fact",
+          "id": "F14",
+          "source_location": "MAIN p5 and Figs2-3"
+        },
+        {
+          "claim": "Experimental fused-silica half-ball SIL controls from Edmund Optics have diameters 0.5 mm and 2.5 mm. The smaller used an 80x objective and the larger a 40x objective because of physical clearance.",
+          "evidence_class": "reported experimental fact",
+          "id": "F15",
+          "source_location": "MAIN p5; SI p2 S1"
+        },
+        {
+          "claim": "Bare target, 0.5 mm SIL, 2.5 mm SIL and 4.74 micrometer sphere conditions are displayed for the Blu-ray target. Only the sphere condition resolves the track pattern in the reported example.",
+          "evidence_class": "reported experimental fact",
+          "id": "F16",
+          "source_location": "SI p3 S2"
+        },
+        {
+          "claim": "Authors state both SILs failed across all target types with 50-130 nm features. Those non-Blu-ray controls are not shown individually.",
+          "evidence_class": "reported text-only experimental claim",
+          "id": "F17",
+          "source_location": "MAIN pp3,5; SI p3 S2"
+        },
+        {
+          "claim": "Ten- and fifty-micrometer spheres failed reported 100 nm imaging tests. One-micrometer spheres were unsuccessful because their view windows were too small; that lower limitation is explicitly practical, not a theoretical impossibility.",
+          "evidence_class": "reported text-only experimental claim",
+          "id": "F18",
+          "source_location": "MAIN pp3-4"
+        },
+        {
+          "claim": "Three-micrometer spheres are reported to yield 50 nm images; 4.74 micrometer spheres are reported to magnify about 1.2 times as much as 3.0 micrometer spheres. No replicate counts or uncertainty are supplied.",
+          "evidence_class": "reported text-only experimental claim",
+          "id": "F19",
+          "source_location": "MAIN pp3,5"
+        },
+        {
+          "claim": "Authors claim complex structures can also be imaged in transmission and that both modes reach 50 nm. No corresponding 50 nm reflection or complex-shape transmission panel is supplied.",
+          "evidence_class": "reported text-only experimental claim",
+          "id": "F20",
+          "source_location": "MAIN p3"
+        },
+        {
+          "claim": "Source theoretical work includes Mie analysis of sphere size/index, FDTD comparisons of SIL/sphere/particle-on-surface, geometrical ray tracing in Mathematica 7.0, and a Fortran Mie/Poynting-flow calculation.",
+          "evidence_class": "reported numerical/theoretical method; not run here",
+          "id": "F21",
+          "source_location": "MAIN pp3-5; SI pp4-7"
+        },
+        {
+          "claim": "The Fig4 particle-on-surface calculation uses a 40 nm gold film, sphere radius 2.37 micrometers, index 1.46 and wavelength 600 nm. Displayed peak intensities are 90, 107 and 153 for SIL, sphere and particle-on-surface, respectively. These are model outputs, not detector readings.",
+          "evidence_class": "reported numerical result",
+          "id": "F22",
+          "source_location": "MAIN p4 Fig4"
+        },
+        {
+          "claim": "A geometrical-optics-based field-enhancement heuristic has exponent about 0.34; the source says it differs from the geometrical-optics comparison by less than 1 percent for index 1-1.95. Its particle-on-surface estimate is about 5.5x.",
+          "evidence_class": "reported approximation, not a validated experimental transfer model",
+          "id": "F23",
+          "source_location": "MAIN pp4-5; SI p5 S4"
+        },
+        {
+          "claim": "Poynting-line extrapolation yields a 2-4x virtual magnification depending on the selected line, separate from the roughly 5.5x heuristic and measured 4-8x examples.",
+          "evidence_class": "reported theoretical construction",
+          "id": "F24",
+          "source_location": "MAIN p5; SI pp6-7 S5-S6"
+        },
+        {
+          "claim": "A high-index optimum near 1.8, possible larger spheres and sub-20 nm imaging are predictive extrapolations, not experimentally demonstrated branches of this paper.",
+          "evidence_class": "reported speculation; no task branch",
+          "id": "F25",
+          "source_location": "MAIN pp4-5"
+        },
+        {
+          "claim": "No replicate/sample counts, uncertainty budgets, predefined quantitative experimental image-resolution acceptance criterion, camera specification, measurement calibration certificate, raw-data repository or detailed closeout protocol is supplied in the inspected main/SI.",
+          "evidence_class": "bounded absence in inspected source",
+          "id": "F26",
+          "source_location": "MAIN all; SI all"
+        },
+        {
+          "claim": "The paper shows multiple sphere-covered regions and discusses combining the corresponding views into a larger image; no complete stitching method, calibrated mosaic, error map or throughput result is supplied.",
+          "evidence_class": "illustrated array coverage plus proposed image combination",
+          "id": "F27",
+          "source_location": "MAIN p3 and Fig2"
+        }
+      ],
+      "paper_doi": "10.1038/ncomms1211",
+      "safe_scope": "No biological specimens, cultivation, engineering, viral work or molecular protocol is proposed. Future biological applications in the source are excluded."
+    },
+    "source_outcomes_reference.json": {
+      "classification": "Reported outcomes for context, never executable acceptance thresholds",
+      "no_scientific_reproduction": true,
+      "not_independently_remeasured": true,
+      "outcomes": [
+        {
+          "branch": "E01",
+          "evidence": "MAIN Fig2a",
+          "reported": "360 nm lines/130 nm gaps visible in transmission; 4.17x virtual magnification"
+        },
+        {
+          "branch": "E02",
+          "evidence": "MAIN Fig2b",
+          "reported": "50 nm pore/gap structures visible in transmission; approximately 8x magnification"
+        },
+        {
+          "branch": "E03",
+          "evidence": "MAIN Fig3a; caption conflict retained",
+          "reported": "Blu-ray 200 nm lines/100 nm gaps visible in reflection"
+        },
+        {
+          "branch": "E04",
+          "evidence": "MAIN Fig3b; composition and sphere-size details unresolved",
+          "reported": "Star corner detail claimed at 90 nm"
+        },
+        {
+          "branch": "C01",
+          "evidence": "SI S2; all-target extension text-only",
+          "reported": "Bare and both SIL conditions do not resolve the displayed track pattern"
+        },
+        {
+          "branch": "C02",
+          "evidence": "MAIN pp3-5; no complete matrix",
+          "reported": "3.0 and 4.74 um successful examples; 1,10,50 um unsuccessful at reported tests"
+        }
+      ]
+    },
+    "station_contracts.json": {
+      "classification": "Proposed closed-service contracts only, not an implemented robot task",
+      "stations": [
+        {
+          "boundary": "No preparation until identity and containment are qualified",
+          "entry_gate": "Identity, safety and calibration documents; empty labeled carriers",
+          "id": "ST01",
+          "name": "Intake and custody",
+          "required_receipt": "Accepted inventory or explicit quarantine",
+          "scope": "Certified solid targets and documented contained sphere stocks"
+        },
+        {
+          "boundary": "No fabrication, delamination, anodization, laser, beam or deposition controls exposed",
+          "entry_gate": "Approved service job with final-material specifications",
+          "id": "ST02",
+          "name": "Qualified specimen preparation service",
+          "required_receipt": "Finished specimen, history, certificate, ROI map and condition report",
+          "scope": "Grating, porous coated/uncoated AAO, exposed optical-disc target and star coupon requests"
+        },
+        {
+          "boundary": "Unknown recipe parameters hold this station; no guessed dilution/drying defaults",
+          "entry_gate": "Accepted material state, validated handling SOP and fixture clearance",
+          "id": "ST03",
+          "name": "Qualified sphere assembly and optical handling",
+          "required_receipt": "Coating/contact state receipt including coverage and any damage",
+          "scope": "Target, sphere stock, optional SIL"
+        },
+        {
+          "boundary": "No high-power laser; unsafe light, collision risk or undefined contact state causes stop",
+          "entry_gate": "Calibration receipt, approved illumination/acquisition contract and safe objective-to-specimen clearance; sphere-to-target contact is part of the reported arrangement",
+          "id": "ST04",
+          "name": "White-light optical metrology",
+          "required_receipt": "Immutable optical records with target, lens, mode, focus and detector metadata",
+          "scope": "Qualified transmission/reflection microscope and registered specimen"
+        },
+        {
+          "boundary": "Closed instrument service, no beam/vacuum controls; flag perturbation",
+          "entry_gate": "Registered service request and preservation constraints",
+          "id": "ST05",
+          "name": "SEM dimensional reference service",
+          "required_receipt": "Calibrated reference record, feature definitions, uncertainty and post-service state",
+          "scope": "Qualified target or accepted paired specimen"
+        },
+        {
+          "boundary": "No new simulation and no source code execution; model fields never become measured data",
+          "entry_gate": "Rights-clear records, branch coverage and declared analysis conventions",
+          "id": "ST06",
+          "name": "Evidence and model review",
+          "required_receipt": "Comparison report retaining uncertainty and text-only/unrun states",
+          "scope": "Data receipts and source context"
+        },
+        {
+          "boundary": "Closeout is authored because no detailed source procedure is supplied",
+          "entry_gate": "Qualified disposal/cleaning/storage SOP and completed state ledger",
+          "id": "ST07",
+          "name": "Closeout and archive",
+          "required_receipt": "Equipment safe-state receipt, sample disposition, immutable archive",
+          "scope": "All specimens, fixtures, particles and records"
+        }
+      ]
+    },
+    "unknown_inputs.json": {
+      "physical_default": "HOLD_QUALIFICATION",
+      "unknowns": [
+        {
+          "blocks": "publisher content reuse/export; does not block this original review or original task/asset authoring within the stated boundary",
+          "group": "Source rights",
+          "id": "U01",
+          "required_resolution": "No broad publisher-content reuse grant established. Preserve the accepted original-analysis-only boundary; obtain separate permission if future publisher-asset reuse is proposed.",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "all coated specimens",
+          "group": "Sphere lot and chemistry",
+          "id": "U02",
+          "required_resolution": "Supplier catalogue/lot, particle diameter distribution, refractive-index dispersion, solvent, concentration and surface treatment",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "all coated specimens",
+          "group": "Coating process",
+          "id": "U03",
+          "required_resolution": "Dilution ratio, dispensing volume, coverage target, drying conditions, time, fixture orientation and acceptance of multilayers/agglomerates",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "E01",
+          "group": "Grating specification",
+          "id": "U04",
+          "required_resolution": "Full area/layout, substrate thickness, fabrication tolerances and reference uncertainty",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "E02,C03",
+          "group": "AAO structure and coating",
+          "id": "U05",
+          "required_resolution": "Spacing convention, pore topology/depth, uniformity, adhesion, flatness and complete preparation qualification",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "E03,C01",
+          "group": "Optical disc layer handling",
+          "id": "U06",
+          "required_resolution": "Commercial identity, all layer identities, safe coupon geometry, stripping/removal evidence and post-removal condition",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "E04",
+          "group": "Star film identity",
+          "id": "U07",
+          "required_resolution": "Resolve SbTe/GeSbTe, composition, thickness and traceable intended pattern; prior fabrication article alone is not a recipe here",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "E01-E05,C01-C03",
+          "group": "Optical source and detector",
+          "id": "U08",
+          "required_resolution": "Lamp spectrum/irradiance, illumination path, camera model/pixel calibration/linearity, focus, exposure/gain and saturation criteria",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "all optical routes",
+          "group": "Lens and stage handling",
+          "id": "U09",
+          "required_resolution": "Physical clearance, contact force, XY/Z accuracy, autofocus strategy, dwell/stabilization, baseline focusing convention",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "C01,N02",
+          "group": "SIL comparison comparability",
+          "id": "U10",
+          "required_resolution": "40x model/NA and geometry differences; cannot attribute all control differences solely to sphere shape",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "all paired comparisons",
+          "group": "Registration and custody",
+          "id": "U11",
+          "required_resolution": "Explicit sample IDs, ROI correspondence, processing history and SEM-before/after chronology absent",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "analysis and claims",
+          "group": "Resolution and magnification metrics",
+          "id": "U12",
+          "required_resolution": "Independent objective detector scale, image-plane scale, feature-separation convention, quantitative contrast/resolution decision and uncertainty",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "all empirical branches",
+          "group": "Repeats and statistics",
+          "id": "U13",
+          "required_resolution": "Numbers of specimens, fields, particles, days and observations; independence, randomization and exclusion rules absent",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "C01-C03,E05",
+          "group": "Text-only branch evidence",
+          "id": "U14",
+          "required_resolution": "No supplied raw/graphical support for all-target SIL tests, sphere-size comparison, gold-coating contribution and cross-mode extension",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "N01-N04",
+          "group": "Numerical reproducibility",
+          "id": "U15",
+          "required_resolution": "Model geometry, boundary conditions, source versions, mesh/convergence and input datasets; cannot recreate exact figures",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        },
+        {
+          "blocks": "all physical activity",
+          "group": "Safe service qualification and closeout",
+          "id": "U16",
+          "required_resolution": "Facility procedures, job authorization, waste/particle containment, optical risk assessment, storage, cleaning and equipment release",
+          "rule": "Do not supply guessed operational defaults",
+          "status": "unresolved"
+        }
+      ]
+    }
+  },
+  "source_review_manifest_sha256": "d6a59b7b52a51e64e072509fe4459af433f7ded7250d152e3209ffb2bbcb67d8"
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic, standard-library-only adapters for 42 public task schemas (39 paper-level designs and three bounded subsets)."""
+"""Deterministic, standard-library-only adapters for 43 public task schemas (40 paper-level designs and three bounded subsets)."""
 import argparse, json, pathlib, hashlib, html, textwrap, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from acoustic_adapters import adapt_wavefront, adapt_bianisotropic, adapt_edge, ACOUSTIC_COMMIT, PACKAGES as ACOUSTIC_PACKAGES
@@ -10,6 +10,7 @@ from nature_materials_adapters import adapt_gear, adapt_hydrogel_optical, NATURE
 from crossdisciplinary_adapters import adapt_atmospheric_optics, adapt_afm_metrology, adapt_martian_geophysics, adapt_transistor, CROSSDISCIPLINARY_COMMIT, PACKAGES as CROSSDISCIPLINARY_PACKAGES
 from paired_adapters import adapt_laser_control, adapt_solar_water, adapt_sucrose_metrology, adapt_actuator_metrology, PAIRED_COMMIT, PACKAGES as PAIRED_PACKAGES
 from recent_paper_adapters import adapt_lockable_origami, adapt_varactor, SOURCE_COMMITS as RECENT_SOURCE_COMMITS, PACKAGES as RECENT_PACKAGES
+from microsphere_adapters import adapt_microsphere, SOURCE_COMMIT as MICROSPHERE_COMMIT, PACKAGES as MICROSPHERE_PACKAGES
 from thermalmeta_adapters import adapt_thermalmeta, SOURCE_COMMIT as THERMALMETA_COMMIT, PACKAGES as THERMALMETA_PACKAGES
 from qha_adapters import adapt_qha, SOURCE_COMMIT as QHA_COMMIT, PACKAGES as QHA_PACKAGES
 from scattering_adapters import adapt_scattering, SOURCE_COMMIT as SCATTERING_COMMIT, PACKAGES as SCATTERING_PACKAGES
@@ -22,7 +23,7 @@ ROOT=pathlib.Path(__file__).resolve().parent
 COMMIT='293e32da790303c1a17131e036235f69a5f342e0'
 BASE=f'https://github.com/openags/ScienceGym/blob/{COMMIT}/tasks/'
 COOLING_COMMIT='9a9472b996145ff7f7a4c138c7477b4e734d8835'
-SOURCE_COMMITS={'thermalmeta':THERMALMETA_COMMIT, 'qha':QHA_COMMIT, 'scattering':SCATTERING_COMMIT, 'conformal':CONFORMAL_COMMIT, 'midinfrared':MIDINFRARED_COMMIT, 'arcmorph':ARCMORPH_COMMIT, 'wetting':WETTING_COMMIT, **RECENT_SOURCE_COMMITS, 'woven':WOVEN_COMMIT, **{key:PAIRED_COMMIT for key in PAIRED_PACKAGES}, **{key:CROSSDISCIPLINARY_COMMIT for key in CROSSDISCIPLINARY_PACKAGES}, **{key:NATURE_MATERIALS_COMMIT for key in NATURE_MATERIALS_PACKAGES}, **{key:FINAL_MATERIALS_COMMIT for key in FINAL_MATERIALS_PACKAGES}, **{key:ASSEMBLY_COMMIT for key in ASSEMBLY_PACKAGES}, **{key:MECHANICAL_COMMIT for key in MECHANICAL_PACKAGES}, 'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
+SOURCE_COMMITS={'microsphere':MICROSPHERE_COMMIT, 'thermalmeta':THERMALMETA_COMMIT, 'qha':QHA_COMMIT, 'scattering':SCATTERING_COMMIT, 'conformal':CONFORMAL_COMMIT, 'midinfrared':MIDINFRARED_COMMIT, 'arcmorph':ARCMORPH_COMMIT, 'wetting':WETTING_COMMIT, **RECENT_SOURCE_COMMITS, 'woven':WOVEN_COMMIT, **{key:PAIRED_COMMIT for key in PAIRED_PACKAGES}, **{key:CROSSDISCIPLINARY_COMMIT for key in CROSSDISCIPLINARY_PACKAGES}, **{key:NATURE_MATERIALS_COMMIT for key in NATURE_MATERIALS_PACKAGES}, **{key:FINAL_MATERIALS_COMMIT for key in FINAL_MATERIALS_PACKAGES}, **{key:ASSEMBLY_COMMIT for key in ASSEMBLY_PACKAGES}, **{key:MECHANICAL_COMMIT for key in MECHANICAL_PACKAGES}, 'cooling':COOLING_COMMIT, **{key:ACOUSTIC_COMMIT for key in ACOUSTIC_PACKAGES}}
 def source_commit(key): return SOURCE_COMMITS.get(key,COMMIT)
 def source_base(key): return f'https://github.com/openags/ScienceGym/blob/{source_commit(key)}/tasks/'
 NAMES={'cooling':'Directional radiative cooling','emvp':'Embedded extrusion-volumetric printing','prismatic':'Prismatic metamaterials','perovskite':'Perovskite solar modules','chiral':'Chiral metamaterials','microscopy':'Deconwolf microscopy','fibre':'Semiconductor fibres','thermoelectric':'Thermoelectric devices','dispim':'diSPIM microscopy','acoustic':'Helical acoustic metamaterials'}
@@ -467,7 +468,7 @@ def adapt_emvp(p):
     return f
 
 # This schema names its package differently from the public navigation key.
-PACKAGE_NAMES={**THERMALMETA_PACKAGES,**QHA_PACKAGES,**SCATTERING_PACKAGES,**CONFORMAL_PACKAGES,**WETTING_PACKAGES, **RECENT_PACKAGES, **WOVEN_PACKAGES, **ASSEMBLY_PACKAGES, **MECHANICAL_PACKAGES, 'cooling':'directional_cooling_operations_v2', **ACOUSTIC_PACKAGES}
+PACKAGE_NAMES={**MICROSPHERE_PACKAGES,**THERMALMETA_PACKAGES,**QHA_PACKAGES,**SCATTERING_PACKAGES,**CONFORMAL_PACKAGES,**WETTING_PACKAGES, **RECENT_PACKAGES, **WOVEN_PACKAGES, **ASSEMBLY_PACKAGES, **MECHANICAL_PACKAGES, 'cooling':'directional_cooling_operations_v2', **ACOUSTIC_PACKAGES}
 def package_name(key): return PACKAGE_NAMES.get(key,key+'_operations_v2')
 
 # Explicit source-loop scopes. These bind metadata only, never expanded bodies.
@@ -560,7 +561,7 @@ def adapt_cooling(p):
             'detail':without(r,{'id','title'}),'source_file':'branches.json','source_pointer':f'/branches/{i}'})
     return f
 
-ADAPTERS={'thermalmeta':adapt_thermalmeta,'qha':adapt_qha,'scattering':adapt_scattering,'conformal':adapt_conformal,'midinfrared':adapt_midinfrared,'arcmorph':adapt_arcmorph,'wetting':adapt_wetting,'lockable_origami':adapt_lockable_origami,'varactor':adapt_varactor,'woven':adapt_woven,'laser_control':adapt_laser_control,'solar_water':adapt_solar_water,'sucrose_metrology':adapt_sucrose_metrology,'actuator_metrology':adapt_actuator_metrology,'atmospheric_optics':adapt_atmospheric_optics,'afm_metrology':adapt_afm_metrology,'martian_geophysics':adapt_martian_geophysics,'transistor':adapt_transistor,'gear':adapt_gear,'hydrogel_optical':adapt_hydrogel_optical,'horn_acoustics':adapt_horn_acoustics,'mechanical_logic':adapt_mechanical_logic,'cold_shape':adapt_cold_shape,'granular_assembly':adapt_granular_assembly,'beaded':adapt_beaded,'thermal_jamming':adapt_thermal_jamming,'origami_memory':adapt_origami_memory,'ring_origami':adapt_ring_origami,'mechanical_backprop':adapt_mechanical_backprop,'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
+ADAPTERS={'microsphere':adapt_microsphere,'thermalmeta':adapt_thermalmeta,'qha':adapt_qha,'scattering':adapt_scattering,'conformal':adapt_conformal,'midinfrared':adapt_midinfrared,'arcmorph':adapt_arcmorph,'wetting':adapt_wetting,'lockable_origami':adapt_lockable_origami,'varactor':adapt_varactor,'woven':adapt_woven,'laser_control':adapt_laser_control,'solar_water':adapt_solar_water,'sucrose_metrology':adapt_sucrose_metrology,'actuator_metrology':adapt_actuator_metrology,'atmospheric_optics':adapt_atmospheric_optics,'afm_metrology':adapt_afm_metrology,'martian_geophysics':adapt_martian_geophysics,'transistor':adapt_transistor,'gear':adapt_gear,'hydrogel_optical':adapt_hydrogel_optical,'horn_acoustics':adapt_horn_acoustics,'mechanical_logic':adapt_mechanical_logic,'cold_shape':adapt_cold_shape,'granular_assembly':adapt_granular_assembly,'beaded':adapt_beaded,'thermal_jamming':adapt_thermal_jamming,'origami_memory':adapt_origami_memory,'ring_origami':adapt_ring_origami,'mechanical_backprop':adapt_mechanical_backprop,'wavefront':adapt_wavefront,'bianisotropic':adapt_bianisotropic,'edge':adapt_edge,'cooling':adapt_cooling,'emvp':adapt_emvp,'perovskite':adapt_perovskite,'chiral':adapt_chiral,'microscopy':adapt_microscopy,'fibre':adapt_fibre,'thermoelectric':adapt_thermoelectric,'dispim':adapt_dispim,'acoustic':adapt_acoustic,'prismatic':adapt_prismatic}
 
 def walk(nodes,depth=0):
     for n in nodes:
@@ -600,7 +601,7 @@ def svg(f):
         out.append(f'<rect x="{x}" y="{y}" width="{w}" height="64" rx="8" fill="{fill}" stroke="{col}" stroke-opacity=".5"/>')
         out.append(f'<text x="{x+14}" y="{y+20}" fill="{col}" font-size="12" font-weight="700">{idx+1:02d} · {e(badge+tail)}</text>')
         label_lines=textwrap.wrap(label,99-depth*3)
-        if f['id'] in ('wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta') and len(label_lines)>2:
+        if f['id'] in ('wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta', 'microsphere') and len(label_lines)>2:
             label_lines=label_lines[:2]; label_lines[-1]=label_lines[-1].rstrip(' .,;')+'…'
         for k,line in enumerate(label_lines[:2]):out.append(f'<text x="{x+14}" y="{y+40+k*16}" fill="#edf3fc" font-size="14">{e(line)}</text>')
         # Display connectors only at root ordered level; group children can be loop bodies or unordered obligations.
@@ -628,15 +629,15 @@ def svg(f):
         result=result.replace('· every listed step', '· source template view')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'Source templates only. Typed scopes, bindings and conditional paths remain obligations; no execution is claimed.')
         result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', 'Source template view for the designated physical branch, with the complete physical, preparation, campaign and nonmanual index. Nested bodies are displayed once without instantiation. Exact conditions and bindings remain in the inspector and Markdown.')
-    if f['id'] in {*PAIRED_PACKAGES, *WOVEN_PACKAGES, *RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES}:
+    if f['id'] in {*PAIRED_PACKAGES, *WOVEN_PACKAGES, *RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES, *MICROSPHERE_PACKAGES}:
         result=result.replace('DESIGN REFERENCE ONLY · Reported scientific stages + separately authored robot handling', html.escape(f['family_scope_label'] + ' · Source contracts and holds retained; no physical or numerical execution'))
         result=result.replace('· every listed step', '· source inventory inspection')
         result=result.replace('Dashes = reference display order, not proven source chronology. Branch choices are not connected to each other.', 'No adjacency arrows. Hold defaults, profile/lineage, exclusions and exact lifecycle constraints remain authoritative.')
         result=result.replace('All operations in the first or designated complete reference route, plus the full branch index. Dashed connectors show authored reference order only. Loop bodies are shown once with original loop metadata in the interactive inspector.', html.escape(f['source_warnings']+' Source inventory inspection only; no chronology is inferred.'))
-    if f['id'] in {*RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES}:
+    if f['id'] in {*RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES, *MICROSPHERE_PACKAGES}:
         result=result.replace('All route choices', 'Scientific routes + separate holds')
         result=result.replace('route / branch records', 'inspection records')
-    if f['id'] in ('midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta'):
+    if f['id'] in ('midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta', 'microsphere'):
         result=result.replace('Scientific routes + separate holds', 'Branches / references / hold')
     if f['id']=='arcmorph':
         result=result.replace('Scientific routes + separate holds', 'Physical / auxiliary / reference / hold')
@@ -700,7 +701,7 @@ def md(f):
                 if n.get('meta'):lines.append(indent+'  - Binding: '+json.dumps(n['meta'],ensure_ascii=False,separators=(',',':')))
         lines.extend(['','<details><summary>Branch state, choices, lineage and loop obligations</summary>','', '```json',json.dumps({k:resolve(f,v) for k,v in r['detail'].items()},ensure_ascii=False,indent=2),'```','','</details>',''])
     lines.extend(['## Operation contracts','','Every operation is clickable in the offline inspector, with robot actions, target objects, pre/post state, provenance, unknowns and acceptance/recovery. Raw task JSON is the source of truth; this visualization is a public evaluator/reference view, not an agent prompt.',''])
-    if f['id'] in {*PAIRED_PACKAGES, *WOVEN_PACKAGES, *RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES}:
+    if f['id'] in {*PAIRED_PACKAGES, *WOVEN_PACKAGES, *RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES, *MICROSPHERE_PACKAGES}:
         lines.extend(['## Scope and exact source contracts', '', '**' + f['family_scope_label'] + '**', '',
                       f['source_warnings'], '', 'Representation counts: ' + json.dumps(f['summary_counts'], ensure_ascii=False) + '.', '',
                       'Every source JSON document is retained losslessly. Operation details, source branches, preparation, controls, unknowns, exclusions, profiles, lineage and source audits are exact. Navigation labels are authored; missing fields remain explicit absence notices. Required output is an acceptance obligation, never observed state.', '',
@@ -783,7 +784,7 @@ def md(f):
         result='\n'.join(lines)
         return result.replace('numbered rows preserve reference-list occurrences.', 'rows show unordered template membership; only declared dependencies impose order.')
     result='\n'.join(lines)
-    if f['id'] in {*CROSSDISCIPLINARY_PACKAGES, *PAIRED_PACKAGES, *WOVEN_PACKAGES, *RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES}:
+    if f['id'] in {*CROSSDISCIPLINARY_PACKAGES, *PAIRED_PACKAGES, *WOVEN_PACKAGES, *RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES, *MICROSPHERE_PACKAGES}:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows show unordered source inventory for inspection. Exact phase, lifecycle and dependency contracts remain authoritative; no loop, specimen, condition or chronology is inferred.')
     if f['id']=='arcmorph':
         result=result.replace('rows show unordered source inventory for inspection. Exact phase, lifecycle and dependency contracts remain authoritative; no loop, specimen, condition or chronology is inferred.', 'rows retain exact source-listed occurrences and phase bodies. Local list order is authored; cross-phase chronology is not inferred. The same-specimen loop is shown once and fixture-release alternatives remain conditional.')
@@ -794,11 +795,11 @@ def md(f):
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows retain the source display structure only. Membership has no inferred chronology. Where the source supplies a typed body, one unexpanded template is shown; no condition, trial or specimen count is inferred.')
     if f['id']=='cooling' or f['id'] in ACOUSTIC_PACKAGES:
         result=result.replace('numbered rows preserve reference-list occurrences. A loop body is shown once and must be repeated under its original binding, not treated as executed.', 'rows preserve source operation membership once, without chronology. Loop bodies, count text and nesting obligations are retained as metadata, not added occurrences or executed repetitions.')
-    if f['id'] in {*RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES}:
+    if f['id'] in {*RECENT_PACKAGES, *WETTING_PACKAGES, *ARCMORPH_PACKAGES, *MIDINFRARED_PACKAGES, *CONFORMAL_PACKAGES, *SCATTERING_PACKAGES, *QHA_PACKAGES, *THERMALMETA_PACKAGES, *MICROSPHERE_PACKAGES}:
         result=result.replace('](../../', '](../../../')
         result=result.replace('[Immutable source task package]', '[Frozen local source task package]')
         result+='\nSource links are repository-relative. The recorded local commit and file hashes do not assert remote publication.\n'
-    if f['id'] in ('scattering', 'qha', 'thermalmeta'):
+    if f['id'] in ('scattering', 'qha', 'thermalmeta', 'microsphere'):
         result=result.replace('The recorded local commit and file hashes do not assert remote publication.', 'The recorded archive SHA-256 and file hashes do not assert remote publication.')
     return result
 

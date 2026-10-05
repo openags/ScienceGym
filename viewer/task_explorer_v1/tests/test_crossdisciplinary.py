@@ -31,7 +31,7 @@ class CrossdisciplinaryBundleTests(unittest.TestCase):
     def setUpClass(cls): cls.families = {key: get(key) for key in KEYS}
 
     def test_global_and_unchanged_historical_counts(self):
-        records = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta')]
+        records = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta', 'microsphere')]
         self.assertEqual((len(records), sum(x['operations'] for x in records), sum(x['routes'] for x in records)), (28, 2710, 676))
         old = [x for x in records if x['id'] not in KEYS]
         self.assertEqual((len(old), sum(x['operations'] for x in old), sum(x['routes'] for x in old)), (24, 2189, 541))

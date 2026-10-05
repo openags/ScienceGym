@@ -1,0 +1,24 @@
+{
+  "classification": "Authored future data contract",
+  "roots": [
+    "paper source identity",
+    "certified material receipt",
+    "qualified station receipt"
+  ],
+  "branches": "coverage_map.json is the authoritative branch ID inventory",
+  "links": [
+    "material receipt -> specimen_id -> preparation state -> ROI",
+    "sphere receipt -> sphere size condition -> specimen coating state",
+    "SIL receipt -> objective condition -> contact state",
+    "instrument calibration -> acquisition record -> optical or SEM image record",
+    "raw image record -> non-destructive analysis -> declared metric -> reviewed conclusion"
+  ],
+  "derived_record_requirements": [
+    "Keep immutable raw records separate from processed views",
+    "Store transformations, pixel-size units, magnification convention and ROI coordinates",
+    "Preserve separate object plane, virtual-image plane and detector plane coordinates",
+    "Record missing data explicitly; no generated image can substitute for a measured field",
+    "Report source-outcome comparison as context, never as a measurement event"
+  ],
+  "failed_lineage_action": "Quarantine the comparison and retain the individual records. No automatic nearest-looking-image or timestamp pairing."
+}

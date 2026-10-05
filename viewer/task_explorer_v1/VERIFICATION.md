@@ -1,6 +1,31 @@
-# Verification: 39 paper designs and 3 bounded subsets
+# Verification: 40 paper designs and 3 bounded subsets
 
-## Combined QHA and thermal meta-device release
+## Microsphere paired-design release: 43 families
+
+The explorer contains **40 paper-level designs + 3 bounded subsets (43 families)**, **978 inspection records** and **3,250 operation definitions**. [Microsphere optical imaging](docs/microsphere.md) adds one paper-level design with thirteen authored stages, thirteen source-scope branches, six reference views and a separate metadata-only **HOLD_QUALIFICATION**. There are **zero validated runnable whole-paper tasks**.
+
+The [accepted task](../../tasks/microsphere_operations_v2/README.md) and [original static scene](../../assets/microsphere_scene_assets_v1/README.md) contain **54 and 49 exact archive members**. All **38 task JSON and 30 asset JSON documents** remain losslessly inspectable, including review and native-sanitation records. Seven stations, nine scene groups and 33 evidence-only anchors retain exact reciprocal **41-file task and 31-file scene cores**. Twenty-seven source facts, ten source conflicts/distinctions, six reported outcomes, six controls and all **sixteen qualification gaps** stay explicit. Operation branch membership never creates adjacency chronology; exact dependency, custody and lifecycle contracts remain authoritative.
+
+Actual-size SOURCE_SCALE context and magnified SCHEMATIC_ENLARGEMENTS are separate, original, unqualified illustrations. Neither nanoscopic patterns nor rendered images establish optical resolution. The figure-backed 50 nm claim concerns gold/AAO transmission. Cross-mode 50 nm reflection and complex transmission remain text-only source claims. Star-film SbTe/GeSbTe composition and the star-panel sphere diameter remain unresolved. Experimental/model gold thicknesses, physical/model SIL identities and object/virtual/detector/SEM frames remain distinct. Source magnifications and outcomes are reference context, never generated measurements, rewards or executable acceptance thresholds.
+
+Target preparation, SEM reference characterization, sphere assembly/contact handling, optical acquisition and cleanup remain closed qualified services. Uncoated baselines and coated/contact child states retain provenance; no identical restoration or historical acquisition order is assumed. Failures, rejected attempts, safe closeout and custody remain explicit. Frames, fields and multiple spheres do not become independent specimen repeats. No device controls, physical/optical simulation, new measurements, numerical rerun or scientific reproduction is added.
+
+Upstream accepted source review read and visually inspected all six main and seven SI pages, four main and six SI figures. It did not digitize figures or independently validate resolution. No movie was listed on the inspected record; no separate raw-data or source-code package was read or executed. The integration did not reread publications or resolve conflicts. The source remains **2011 Macmillan all rights reserved**: official free-to-read access does not establish a CC license or unrestricted reuse. Apache-2.0 applies only to original authored materials. Publisher PDFs, images, figure traces, CAD, code and raw data are not bundled. Bounded source-update checks are not exhaustive.
+
+All **168 prior generated family artifacts** remain byte-identical, and historical release notes below retain their snapshot meaning. Portable export embeds **432 exact task/asset JSON documents, ten guides and 30 original PNGs** across ten recent families. Archive SHA-256 and per-file hashes establish identity; the repository commit establishes publication status. Frozen authoring/review fields do not claim current deployment or CI status.
+
+## Microsphere verification scope
+
+Source-equality, hostile-mutation, mocked-DOM, deterministic-build, source-byte and static-diagram checks establish only display and byte-integrity behavior. They do not qualify hardware, authenticate new service receipts, validate reported optical resolution or establish scientific reproduction. Completed viewer checks:
+
+- Full deterministic build: 43 families, 978 inspection records and 3,250 operation definitions; all 168 earlier generated JSON, JavaScript, Markdown and SVG files remain byte-identical
+- Existing source-bound viewer suite: 587 tests passed in 60.761 seconds; the new microsphere-focused suite separately passed all 10 tests in 17.574 seconds, including supplied archive checks, all 68 exact JSON projections, document-loss and hostile-mutation rejection, reciprocal cores and publication-size budgets
+- Global local-script and standalone mocked DOM: 978 views and 19,576 displayed operation occurrences; the focused microsphere audit individually selected all 80 source-derived occurrences across 20 views, preserved six zero-operation reference/hold views, and rejected stale or hostile selections
+- Exact portable inventory: 432 original task/asset JSON files, ten original guides and 30 original PNGs; source hashes and embedded bytes are unchanged. The generated standalone is an optional external build output, not a new runtime dependency
+- All 20 microsphere SVG variants parse without invented adjacency connectors; the default hold and complete-stage diagrams were rendered and visually inspected without clipping or overlap. This is static SVG review, not real-browser layout testing
+- Viewer JavaScript syntax, local documentation links and English-language hygiene passed. No current real-browser, responsive/touch, instrument, optical-resolution or scientific verification is claimed
+
+## Historical combined QHA and thermal meta-device release
 
 The explorer contains **39 paper-level designs + 3 bounded subsets (42 families)**, **958 inspection records** and **3,237 operation definitions**. [Graphene quantum Hall arrays](docs/qha.md) and [thermal meta-devices](docs/thermalmeta.md) each add one paper-level design. Metadata cleanup changes no scientific scope or design count. There are **zero validated runnable whole-paper tasks**.
 
