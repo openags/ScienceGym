@@ -1,0 +1,28 @@
+{
+  "classification": "authored_unqualified_requirement",
+  "required_fields": [
+    "instrument_id",
+    "physical_resource_id",
+    "calibration_id",
+    "calibration_revision",
+    "calibration_authority",
+    "valid_from",
+    "valid_until",
+    "qualified_range_id",
+    "configuration_revision",
+    "method_revision",
+    "sample_mount_id",
+    "terminal_map_revision",
+    "reference_calibration_ids",
+    "field_calibration_id",
+    "thermometer_calibration_id",
+    "leakage_evidence_id",
+    "bath_stability_evidence_id",
+    "before_check_id",
+    "after_check_id"
+  ],
+  "expiry_policy": "Hold affected measurement if calibration invalid at any acquisition timestamp or a relevant configuration/reference changes; downstream analysis inherits hold. Never rewrite calibration history.",
+  "bracketing": "Prospective drift checks require qualified cadence/tolerance; neither supplied nor fabricated here.",
+  "calibration_values": null,
+  "qualification": "HOLD_QUALIFICATION"
+}

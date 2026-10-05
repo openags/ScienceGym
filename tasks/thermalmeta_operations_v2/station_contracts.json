@@ -1,0 +1,68 @@
+{
+  "all_hazardous_work": "Closed qualified-service boundary; no pump,oven,knife,laser,powder,mains or fluid-system operating commands",
+  "stations": [
+    {
+      "id": "ST_REVIEW",
+      "role": "source and plan workstation",
+      "safe_actions": [
+        "verify DOI",
+        "read manifests",
+        "validate coverage/lineage"
+      ],
+      "asset_need": "original document terminal and labeled tray"
+    },
+    {
+      "id": "ST_FAB",
+      "role": "external fabrication/casting service",
+      "request": "approved design/material ID only",
+      "receipt": "lattice/intermediate/specimen state, inspection and safe release",
+      "asset_need": "closed service enclosure, receipt port and custody tray"
+    },
+    {
+      "id": "ST_RECEIVE",
+      "role": "dry ambient inspection bench",
+      "safe_actions": [
+        "read ID",
+        "inspect released specimen",
+        "place in qualified cradle"
+      ],
+      "receipt": "identity/condition/dimension record",
+      "asset_need": "original cradle, scale marker, camera, orientation fiducials"
+    },
+    {
+      "id": "ST_IR_CAL",
+      "role": "qualified calibration service",
+      "request": "approved calibration contract",
+      "receipt": "reference identity, emissivity and uncertainty, camera configuration",
+      "asset_need": "reference target stand and metadata display"
+    },
+    {
+      "id": "ST_THERMAL",
+      "role": "qualified temperature-gradient and IR service",
+      "request": "run plan plus specimen identity and orientation",
+      "receipt": "temperature maps, boundary records, stable/abort state, zero-energy/cool/dry release",
+      "asset_need": "closed wet/powered bay, noninteractive source/sink proxies, slotted fixture, side insulation, bath lid, IR line of sight"
+    },
+    {
+      "id": "ST_ANALYSIS",
+      "role": "qualified registered-profile analysis",
+      "safe_actions": [
+        "verify data origin and registration",
+        "review authored metric report"
+      ],
+      "receipt": "comparisons, uncertainty, conflicts and claim limits",
+      "asset_need": "analysis terminal; observed channels distinct from expected results"
+    },
+    {
+      "id": "ST_CLOSE",
+      "role": "archive/quarantine/store",
+      "safe_actions": [
+        "store safe released specimen",
+        "label quarantine",
+        "verify hashes and custody"
+      ],
+      "receipt": "safe disposition and complete/incomplete decision",
+      "asset_need": "separate accepted/quarantine trays and archive terminal"
+    }
+  ]
+}

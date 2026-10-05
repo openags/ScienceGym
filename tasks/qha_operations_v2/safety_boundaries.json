@@ -1,0 +1,32 @@
+{
+  "classification": "authored_qualification_boundary",
+  "physical_execution_enabled": false,
+  "default": "HOLD_QUALIFICATION",
+  "closed_services": [
+    "ST02_microfabrication_chemicals_hot_plasma_e_beam_vacuum",
+    "ST03_cryogenic_magnet_pressure_quench",
+    "ST04_precision_electrical_characterization",
+    "ST05_CCC_wiring_reversal_timing",
+    "ST06_reference_baths_and_loads"
+  ],
+  "agent_interface": "Evidence IDs and operation IDs only; no numerical setpoints, hardware arguments, scripts, live control endpoints or low-level action channels",
+  "prohibited": [
+    "bare-chip handling",
+    "pad contact or rewiring",
+    "entry into magnet exclusion zone",
+    "microfabrication operating recipe",
+    "cryostat loading or opening",
+    "magnet/cryogen/pressure/vacuum operations",
+    "automatic current/range escalation",
+    "physical or electrical simulation",
+    "source value as safety limit",
+    "claiming visual state proves safety"
+  ],
+  "allowed_package_actions": [
+    "Read original annotations",
+    "Validate static contracts",
+    "Evaluate finite synthetic metadata fixtures",
+    "Inspect original illustrative scene"
+  ],
+  "real_execution_conditions": "Outside this package: named qualified services and personnel, facility review, calibrated measurement configuration, actual safe-state channels, handling interfaces, approved operating envelope and prospective scientific plan"
+}

@@ -1,0 +1,199 @@
+{
+  "schema": "sciencegym3d.independent_scene_review.v1",
+  "review_date_utc": "2026-10-05",
+  "source_doi": "10.1038/s41467-024-49630-1",
+  "asset_package": "thermalmeta_scene_assets_v1",
+  "paired_task_package": "thermalmeta_operations_v2",
+  "reviewer_role": "independent_asset_reviewer",
+  "decision": "ACCEPTED_AS_ORIGINAL_STATIC_REVIEW_ASSETS",
+  "blocking_findings": [],
+  "acceptance_boundary": {
+    "static_authored_scene_accepted": true,
+    "physical_interfaces_qualified": false,
+    "hardware_execution_authorized": false,
+    "scientific_reproduction_performed": false,
+    "measured_or_simulated_thermal_results_present": false,
+    "final_export_gate_is_separate": true,
+    "native_fixed_buffer_privacy_gate_passed": true
+  },
+  "audits": [
+    {
+      "artifact": "review/independent_contract_audit.json",
+      "checks_passed": 28,
+      "checks_total": 28,
+      "scope": "Seven accepted snapshots, exact paired contract, P01-P20, A01-A10, 25 anchors, 24 branch bindings, six views/three synthetic identities and retained source holds"
+    },
+    {
+      "artifact": "review/independent_geometry_audit.json",
+      "checks_passed": 183,
+      "checks_total": 183,
+      "scope": "Compressed native reopen and GLB reimport, six nominal envelopes, support chain and 20 declared contacts, canonical anchor identity/positions, coordinate/profile relations, no embedded scripts/external assets/animation/dynamics, and portable alpha representation"
+    },
+    {
+      "artifact": "review/test_independent_scene_guards.py",
+      "test_methods_passed": 14,
+      "scope": "All incorrect stage/anchor pairings, identity spoofing, unbound revision, malformed types/CLI inputs, physical-action and telemetry payloads, unsupported claims, source-as-measurement attempts, held service requests, incomplete/spoofed release records and complete-looking receipts"
+    },
+    {
+      "artifact": "tests/test_scene_guards.py",
+      "test_methods_passed": 30,
+      "scope": "Authored guard suite independently rerun"
+    },
+    {
+      "artifact": "review/independent_native_sanitization_audit.json",
+      "passed": true,
+      "fixed_char_array_instances_checked": 21306,
+      "string_field_classes": 61,
+      "nonzero_post_nul_tails": 0,
+      "full_width_path_buffers_checked": 47,
+      "scope": "Independent full-width SDNA scan, active-path classification, post-NUL padding, allowed metadata-only byte changes, and short path-named field completeness check"
+    },
+    {
+      "artifact": "review/independent_blender_equivalence.json",
+      "passed": true,
+      "differing_sections": [],
+      "scope": "Original-render native and sanitized-native deep scene comparison; per-open runtime IDs and cleared UI state excluded"
+    }
+  ],
+  "geometry_summary": {
+    "native_object_count": 1280,
+    "native_editable_text_objects": 80,
+    "glb_object_count": 1274,
+    "nominal_envelope_m": [
+      0.12,
+      0.12,
+      0.0045
+    ],
+    "native_dimension_tolerance_m": 1e-06,
+    "glb_dimension_tolerance_m": 2e-05,
+    "declared_static_contact_count": 20,
+    "canonical_anchor_count": 25,
+    "asset_group_count": 10,
+    "condition_views": 6,
+    "synthetic_specimen_identities": 3
+  },
+  "visual_inspection": [
+    {
+      "file": "previews/preview_01_overview.png",
+      "sha256": "6aff30fe4ce0ec22952a6a2021fd01fd2b58c8f8cd7d8e1190764ff341f94071",
+      "pixel_sha256": "54a74eb001d75630dde686c6f55704d60adc5ec8db0b4de2d8a3210416e5688d",
+      "size_px": [
+        1600,
+        1100
+      ],
+      "metadata_empty": true,
+      "direct_pixel_inspection_passed": true,
+      "finding": "Full original laboratory layout shows closed fabrication and thermal-service boundaries, supported fixtures/displays, parked handler proxy and separate custody-held storage/return/quarantine. Qualification and no-control/no-data labels are visible."
+    },
+    {
+      "file": "previews/preview_02_condition_views.png",
+      "sha256": "29da1364439d1edcd5ad4e545da1384f97b5161819d58401697b0985d8bafaed",
+      "pixel_sha256": "33c9956617f3bb729a4cdcf070c2d34c41c48302999bffae1fbfe05bdf3a91b7",
+      "size_px": [
+        1600,
+        1100
+      ],
+      "metadata_empty": true,
+      "direct_pixel_inspection_passed": true,
+      "finding": "Six enclosed view states are legible as flower cloak, four-lobed rotator and heart concentrator. X/Y labels and K1/K2, R1/R2, C1/C2 selectors are readable. Cloak/concentrator profiles are parallel and rotator profiles transverse to the static reference arrows. Every view says VIEW ONLY."
+    },
+    {
+      "file": "previews/preview_03_guarded_services.png",
+      "sha256": "f7fe8f106d8f77639ff49ec165de78383ad18ebd2e623a707419d61560fac350",
+      "pixel_sha256": "696929b82b012cdc05d94d0d90350310fc1a8568075551125473f3636e1439c0",
+      "size_px": [
+        1600,
+        1100
+      ],
+      "metadata_empty": true,
+      "direct_pixel_inspection_passed": true,
+      "finding": "Closed transparent service guard, supported empty fixture, external IR camera and held calibration/status displays are visible. STATE: HOLD, DATA/STABILITY/RELEASE: NONE and 45 min != SAFE are legible. No temperatures, thermal fields or measured outputs appear."
+    }
+  ],
+  "render_provenance_checks": {
+    "three_cpu_cycles_receipts_preserve_original_render_native_sha256": true,
+    "original_render_native_sha256": "109689347649f7e59c6f332843509d85a0f5e5e0d8115a8c7bdf0cdd58fcd7a9",
+    "final_sanitized_native_sha256": "3cc7befd296e393e318bfe4654284d5507ddb33653c615e44dd9e41d3e4f8573",
+    "source_to_final_nonvisual_equivalence_independently_verified": true,
+    "equivalence_artifacts": [
+      "review/independent_native_sanitization_audit.json",
+      "review/independent_blender_equivalence.json"
+    ],
+    "samples": 128,
+    "resolution_px": [
+      1600,
+      1100
+    ],
+    "final_png_and_pixel_hashes_unchanged": true,
+    "lossless_sanitization_pixel_hashes_independently_verified": true,
+    "new_render_claimed_after_native_sanitization": false
+  },
+  "source_geometry_telemetry_boundaries": [
+    "Accepted source-fact, conflict and unknown-input snapshots are unchanged; all nine conflicts and thirteen unknown-input constraints remain held",
+    "Source nominal dimensions carry no manufacturing tolerance or physical-fit qualification",
+    "K1/R1/C1-to-X and K2/R2/C2-to-Y remain explicitly authored visual selectors, not verified source-number orientation mapping",
+    "Six views share exactly three synthetic specimen identities; no independent specimen-count inference",
+    "Procedural flower/four-lobed/heart symbols are declared original unqualified proxies; no publisher images, source CAD, scientific code or dataset arrays are imported by the reviewed builder",
+    "Native/GLB contain no external image resources, linked libraries, embedded scripts, animation or rigid-body dynamics",
+    "Thermal/arbitrary numerical claims and physical controls are denied or held; guard outputs always deny physical permission and evidence authentication",
+    "Transparent-panel GLB alpha is explicitly an illustrative portability approximation, not optical physics"
+  ],
+  "issues_resolved_during_review": [
+    {
+      "issue": "Unbound design_revision was accepted while other condition-identity fields were rejected",
+      "resolution": "Builder included design_revision in the unbound-identity check; independent regression passes"
+    },
+    {
+      "issue": "Builder identified floating/cantilevered props and minor support gaps",
+      "resolution": "Explicit supports added; independent native and GLB tests pass all 20 declared contacts and the six specimen/carrier/table support chains"
+    },
+    {
+      "issue": "Builder identified glTF loss of transparent-panel alpha",
+      "resolution": "Public normalization helper uses standard alphaMode BLEND with alpha 0.07; builder invokes helper; independent raw-GLB and reimport checks pass"
+    },
+    {
+      "issue": "Stricter publication gate identified nonzero post-NUL residue and unused native UI selectors after the initial review",
+      "resolution": "Native metadata sanitation corrected 795 decompressed bytes only in approved string/UI buffers. Independent rescan finds zero nonzero tails across 21,306 arrays and all 47 path/selector buffers approved. Deep original-versus-clean Blender scene equivalence and 183 geometry/reimport checks pass. The initial acceptance was reopened until these checks passed; original preview pixels are preserved, without a new-render claim."
+    }
+  ],
+  "limitations": [
+    "Acceptance is for an editable static training/review scene only",
+    "No source solver, thermal simulation, instrument calibration, physical fabrication or experiment was performed",
+    "Contact audits establish authored geometric contact only; they do not validate load, friction, collision dynamics, reach, safety clearance, grasp force or hardware fit",
+    "Evidence-schema acceptance is not evidence authentication or custody-release authority",
+    "Source arrays and author scientific implementation remain unexamined; exact scientific reproduction remains blocked",
+    "This report pins the reviewed assets; final sanitized export, upload and release authorization are separate checks",
+    "Native-buffer clearance applies to this exact sanitized file. Saving again in Blender can reintroduce UI history and requires sanitation and review again."
+  ],
+  "reviewed_file_sha256": {
+    "geometry/thermalmeta_lab.blend": "3cc7befd296e393e318bfe4654284d5507ddb33653c615e44dd9e41d3e4f8573",
+    "geometry/thermalmeta_lab.glb": "cd683ed5cec07c3e2bc8cb144113bb956b8a6e3f0e10f123ece9d0a9c3f7aa5f",
+    "geometry/build_scene.py": "5fe7fe75356f99b2e9a5bb6d30f545411361c9a712ebe72a4887f2183c94a627",
+    "geometry/normalize_glb_panels.py": "f8be8f70b8b737141715b7de79b59782810e957a72745eb41e8470f53048882d",
+    "scene_binding_contract.json": "1bf845101a77aa329fb27e75f7ecd43357fbafd9f78cadf5458e3d23dae2cc4c",
+    "contact_contract.json": "0994ae0b38ef1e05951c77d8de8be7c6f4fd5d510d1a03a364682b52360da8bf",
+    "scene_guards.py": "67aab3cb1a41432f59925614ef6fc90d9f5607b5faec983bcf13ed64d70da4d0",
+    "static_controls.json": "92beb40384aeaefb7da46d0d07c062f11c76b47f3c8d3a26132926c01a975f63",
+    "README.md": "97566686d8cd8e0c6be11a694a08e4ed1a2561eae059ce72c583b481cfded66f",
+    "geometry/sanitize_native_buffers.py": "678816c1f4ba45c68cdf6735d65c285077f3a4c35edecfa05d32b48b1931055e",
+    "sanitize_previews.py": "c9c60ff401525fc3e87df4e42853089eb325f52fd825a1e8635385d0446c3032",
+    "provenance.json": "9027915ae1026abf0d8528a11459027c65d44fa958a966d1524574c00680bb44",
+    "review/render_receipt.json": "0c0da1da73df2ef54d779e9315e37f32a184efcaad7fb2d0705e0c0351dd24c6",
+    "review/native_buffer_sanitization.json": "3f894fd8badc2acc18b52564a641adfc2bf4c8adf0371caf46e1e7ba635573a4",
+    "review/independent_native_sanitization_audit.json": "4cb6e5166cb46460695fb7472fe6a4fc72225b9ddd5ff967a684be33cbb02a29",
+    "review/independent_blender_equivalence.json": "fa69d3df28c450638372daf8235d1d60309ffdc04a46b43b4f3422bf118bd7ed",
+    "review/independent_geometry_audit.json": "144a8cfeb3326563d41a0852cf3e392439a00b4771033fa38c09b50696c2fde3",
+    "review/independent_contract_audit.json": "234beb9bd9b222d3a5487c78e40e24720586a30355fcc2046513928fcf98d587"
+  },
+  "review_artifacts": [
+    "review/independent_scene_review.json",
+    "review/independent_scene_review.md",
+    "review/independent_contract_audit.json",
+    "review/independent_geometry_audit.json",
+    "review/test_independent_scene_guards.py",
+    "review/verify_independent_contracts.py",
+    "review/verify_independent_geometry.py",
+    "review/independent_native_sanitization_audit.json",
+    "review/independent_blender_equivalence.json"
+  ]
+}

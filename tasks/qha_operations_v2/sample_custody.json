@@ -1,0 +1,31 @@
+{
+  "classification": "newly_authored",
+  "custody_chain": [
+    "qualified supplier/fabricator",
+    "accepted protected carrier",
+    "room-temperature intake support",
+    "qualified cryogenic-service recipient and mount",
+    "same-chip electrical region selections under provider lease",
+    "provider-approved safe release",
+    "accepted return carrier",
+    "qualified storage or quarantine"
+  ],
+  "transfer_record_required": [
+    "event ID",
+    "sample ID and physical chip ID",
+    "from/to custodian and support IDs",
+    "carrier/mount ID",
+    "before/after occupancy",
+    "orientation/datum evidence",
+    "condition before/after",
+    "time and acceptance receipt",
+    "active leases and unresolved hazards"
+  ],
+  "release_rule": "Never infer receiver acceptance from sent request, attempted place, elapsed time, or empty command queue. Last accepted support/custodian remains responsible until receipt. Chip, subarray, reference Hall bar and secondary resistor IDs cannot be aliased.",
+  "condition_rules": [
+    "Do not reopen or recondition sealed/protected sample as a recovery action",
+    "Provider preparation changes create a new process revision and invalidate dependent measurements as appropriate",
+    "Preserve pre-test condition, thermal/field exposure history and electrical over-limit flags",
+    "Unknown storage conditions or visible damage trigger supported quarantine and no further measurement request"
+  ]
+}

@@ -1,3 +1,25 @@
+# Thermal meta-device lossless projection
+
+The combined explorer has 42 families: 39 paper-level designs and three bounded subsets. thermalmeta_adapters.py retains all 29 recursive task JSON and 27 asset JSON documents. Each of the twenty P01–P20 stages retains complete detail and source pointer. The exact stage title is used as an authored navigation action; input, dependencies, gate, required output, receipt fields, failure route and service ownership remain distinct obligations. Required outputs never become observed post-state.
+
+B01–B12 use only exact coverage_matrix memberships, inverted for branch inspection with original stage-record pointers and unordered groups. This adds no chronology. Twelve child scopes do not inherit operation membership that the source did not supply. Six condition views retain exact shared-binding objects and synthetic identity; they are not independent specimens. Five authored reference views and two metadata-only holds remain separate from scientific scope. The initial HOLD_UNQUALIFIED and failure SERVICE_CUSTODY_HOLD are exact source states, not operation definitions.
+
+All operations, dependencies, loops, failure edges, controls, preparation, lineage, observations, analysis holds, source conflicts, outcomes and unknowns remain lossless. Child analytical/numerical scopes remain unimplemented and unexecuted. Stage P15 is the mandatory release review after powered failure; administrative incomplete closure cannot release custody. Per-family source geometry, actual specimen identity, X/Y frames, profile direction and authored label-number mapping are never conflated. Scientific source facts never become new telemetry or thresholds.
+
+The adapter validates all 41 task and 48 asset content-manifest members, exact reciprocal seal bytes and exact shared binding bytes. All ten asset groups and 25 anchors remain unqualified. Full fixed-width native sanitation includes post-NUL padding and adds no scientific design unit. Repository-relative sources and guide/render bytes remain hash-bound and embed identically in the optional standalone.
+
+# QHA lossless projection
+
+The explorer contains 42 families: 39 paper-level task designs and three bounded subsets. qha_adapters.py retains all 40 recursive task JSON documents and 28 recursive asset JSON documents. Existing filename aliases apply only to lineage and evaluator context. Each of the fifteen R00–R14 operation records retains its complete detail, exact source pointer, stations, declared predecessors, guards, required evidence, failure closeout, unresolved inputs and authored provenance. Required evidence never becomes an observed post-state.
+
+Eleven exact authored coverage branches preserve source membership without adjacency chronology. Five separate reference views expose operation inventory, controls, failure/closeout, static binding and author-reported outcomes. A metadata-only default HOLD_QUALIFICATION creates no operation or scientific branch. Exact workflow, material dependencies, lineage, identity, measurement, station, lease and closeout documents remain authoritative and unexpanded.
+
+All 29 facts, 18 ambiguities, 14 outcomes, 14 controls and 20 unknown groups remain lossless. A 118-element/~109-ohm subarray is never aliased to the 236-element/~219-ohm whole series array. Source outcomes, Eq. 1, disputed SI algebra, pooled uncertainty, per-set Allan uncertainty and reference offsets retain their distinct roles. Empty or partial acquired-edge sets cannot be promoted to five-edge experimental completion. Optional branches do not force hazardous acquisition. R14 joins all actually started jobs even if analysis fails.
+
+The adapter validates both reciprocal semantic cores, every core file, byte-identical shared contract and task manifest copies, and the asset archive pin. All eleven original groups and 32 symbolic anchors remain illustrative and unqualified. Microfabrication, cryogenics, magnetic fields and precision instruments stay closed services. No controller, numerical solver, physics simulation, generated scientific data or physical qualification is added. Repository-relative source/render links carry exact hashes and embed byte-identically in standalone export; remote publication is established separately by the repository commit.
+
+## Historical scattering projection
+
 # Scattering adapter addition
 
 scattering_adapters.py preserves all 27 task JSON and 13 asset JSON documents, every complete operation and branch record, exact source pointers, membership lists and reciprocal binding hashes. Five experimental branches remain distinct from four numerical-review extensions, three supporting branches, closeout, four navigation references and a metadata-only qualification hold. Missing per-operation source/unknown mappings are explicit, never invented. Archive SHA-256 identities replace unavailable publication commit identities.

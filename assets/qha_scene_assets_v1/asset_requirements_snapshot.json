@@ -1,0 +1,261 @@
+{
+  "classification": "newly_authored_requirements_only",
+  "assets_built": false,
+  "source_CAD_imported": false,
+  "publisher_art_used": false,
+  "geometry_default": "Illustrative original placeholders; unknown dimensions remain null qualified inputs, not inferred from image pixels",
+  "requirements": [
+    {
+      "id": "AS01",
+      "name": "Protected chip carrier and intake nest",
+      "routes": [
+        "R01",
+        "R02",
+        "R14"
+      ],
+      "states": [
+        "carrier_closed",
+        "supported",
+        "accepted",
+        "quarantined"
+      ],
+      "qualified_inputs_needed": [
+        "carrier outer envelope",
+        "datums",
+        "ESD/nonmagnetic material approval",
+        "grasp and support load limits"
+      ],
+      "evidence_boundary": "Original generic geometry only; no source micrograph texture"
+    },
+    {
+      "id": "AS02",
+      "name": "Logical chip identity with separate electrical regions",
+      "routes": [
+        "R02",
+        "R04",
+        "R05",
+        "R08"
+      ],
+      "states": [
+        "chip_registered",
+        "Array1_selected",
+        "Array2_selected",
+        "HB_selected"
+      ],
+      "qualified_inputs_needed": [
+        "7×7 mm source chip extent",
+        "qualified package orientation",
+        "unknown chip thickness",
+        "actual contact map"
+      ],
+      "evidence_boundary": "Show physical one-chip identity; microstructures explanatory, not exact fabrication CAD"
+    },
+    {
+      "id": "AS03",
+      "name": "Array topology explanation object",
+      "routes": [
+        "R04",
+        "R05",
+        "R13"
+      ],
+      "states": [
+        "two_subarrays",
+        "series_whole_device",
+        "per_subarray_measurement"
+      ],
+      "qualified_inputs_needed": [
+        "118 parallel elements per logical region",
+        "236 total",
+        "109-ohm subarray versus 219-ohm whole-device labels"
+      ],
+      "evidence_boundary": "No 236 independent specimens; unit scale cannot change topology/resistance semantics"
+    },
+    {
+      "id": "AS04",
+      "name": "External preparation service enclosure",
+      "routes": [
+        "R01"
+      ],
+      "states": [
+        "awaiting_receipt",
+        "process_external",
+        "released",
+        "rejected"
+      ],
+      "qualified_inputs_needed": [
+        "closed boundary and custody port",
+        "facility/provider identity placeholder"
+      ],
+      "evidence_boundary": "Do not model executable plasma/solvent/EBL controls or transcribe a fabrication recipe"
+    },
+    {
+      "id": "AS05",
+      "name": "Closed cryostat/magnet service and exclusion region",
+      "routes": [
+        "R03",
+        "R04",
+        "R05",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R14"
+      ],
+      "states": [
+        "service_locked",
+        "operator_custody",
+        "acquiring",
+        "alarm_hold",
+        "safe_release_pending",
+        "safe_release_accepted"
+      ],
+      "qualified_inputs_needed": [
+        "actual hazard-zone envelope",
+        "port location",
+        "nonmagnetic transport clearance",
+        "safe-state channels"
+      ],
+      "evidence_boundary": "Magnet/cryostat exterior is illustrative; no inferred internal dimensions or commanded field physics"
+    },
+    {
+      "id": "AS06",
+      "name": "Electrical characterization and CCC service faces",
+      "routes": [
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10",
+        "R11"
+      ],
+      "states": [
+        "configured",
+        "mapping_unverified",
+        "measurement",
+        "partial",
+        "disabled"
+      ],
+      "qualified_inputs_needed": [
+        "instrument footprints",
+        "connector identities",
+        "cable constraints",
+        "shared equipment lease"
+      ],
+      "evidence_boundary": "Logical instruments may share hardware; no simulation that pretends a geometry asset is calibrated circuitry"
+    },
+    {
+      "id": "AS07",
+      "name": "Distinct oil-bath100-ohm reference",
+      "routes": [
+        "R06",
+        "R07",
+        "R09"
+      ],
+      "states": [
+        "reference_registered",
+        "bath_stable",
+        "drift_hold",
+        "load_hold"
+      ],
+      "qualified_inputs_needed": [
+        "resistor container",
+        "oil-bath approved enclosure",
+        "asset ID plate",
+        "current/temperature evidence slot"
+      ],
+      "evidence_boundary": "Do not interchange with 12.9-kiloohm reference or on-chip HB"
+    },
+    {
+      "id": "AS08",
+      "name": "Distinct air-bath12.9-kiloohm reference",
+      "routes": [
+        "R11"
+      ],
+      "states": [
+        "reference_registered",
+        "bath_stable",
+        "identity_hold",
+        "load_hold"
+      ],
+      "qualified_inputs_needed": [
+        "air-bath approved enclosure",
+        "resistor ID",
+        "separate load/current evidence slot"
+      ],
+      "evidence_boundary": "Visual resemblance cannot imply same reference, current or calibration"
+    },
+    {
+      "id": "AS09",
+      "name": "Evidence review and comparison-network panel",
+      "routes": [
+        "R12",
+        "R13"
+      ],
+      "states": [
+        "raw_missing",
+        "analysis_hold",
+        "derived",
+        "inconsistent",
+        "reviewed"
+      ],
+      "qualified_inputs_needed": [
+        "record anchors",
+        "signed reference/test edges",
+        "uncertainty category",
+        "source/design/unknown tags"
+      ],
+      "evidence_boundary": "No publisher graphs or invented live data; all illustrative placeholders labeled"
+    },
+    {
+      "id": "AS10",
+      "name": "Supported return and quarantine station",
+      "routes": [
+        "R14"
+      ],
+      "states": [
+        "safe_receipt_pending",
+        "support_confirmed",
+        "custody_accepted",
+        "quarantine"
+      ],
+      "qualified_inputs_needed": [
+        "qualified support pose",
+        "storage environment",
+        "receiver acceptance sensor/channel"
+      ],
+      "evidence_boundary": "Safe visuals require evidence binding; a green icon alone never validates safety"
+    },
+    {
+      "id": "AS11",
+      "name": "Original carrier-transfer path envelope",
+      "routes": [
+        "R02",
+        "R03",
+        "R14"
+      ],
+      "states": [
+        "unqualified",
+        "approved_unloaded_path",
+        "blocked",
+        "occupied"
+      ],
+      "qualified_inputs_needed": [
+        "collision mesh",
+        "approach/retreat datums",
+        "robot workspace limits",
+        "field-zone clearance"
+      ],
+      "evidence_boundary": "No path is executable until robot, mass, fixture and hazard interfaces qualified"
+    }
+  ],
+  "future_acceptance": [
+    "Validate units, coordinate systems, datums, hierarchy, ownership and collision meshes",
+    "Every carrier and physical sample has unique IDs; subarray selection is not sample duplication",
+    "Asset states bind to actual provider receipts, never source-reported outcomes",
+    "All contact/grasp/path/enclosure geometry needs a qualified interface contract",
+    "No copied publisher figures/PDFs, source CAD/code, photogrammetric source reconstruction or unlicensed textures",
+    "No measured physical behavior or electrical model is implied by a static explanatory mesh"
+  ]
+}

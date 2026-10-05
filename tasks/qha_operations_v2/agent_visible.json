@@ -1,0 +1,176 @@
+{
+  "schema_version": "sciencegym.qha.agent_view.v1",
+  "task_id": "graphene_quantum_hall_arrays",
+  "purpose": "Review service-mediated whole-paper task-design evidence",
+  "mode": "HOLD_QUALIFICATION",
+  "physical_execution_enabled": false,
+  "action_keys": [
+    "operation_id",
+    "evidence_ids"
+  ],
+  "operations": [
+    {
+      "id": "R00",
+      "name": "Approve the scientific and safety contract",
+      "required_evidence": [
+        "approved_scope",
+        "qualified_service_contract",
+        "analysis_decisions"
+      ]
+    },
+    {
+      "id": "R01",
+      "name": "Receive qualified material and preparation evidence",
+      "required_evidence": [
+        "supplier_lot",
+        "die_id",
+        "process_receipt",
+        "encapsulation_condition",
+        "release_record"
+      ]
+    },
+    {
+      "id": "R02",
+      "name": "Register protected custody and pre-test condition",
+      "required_evidence": [
+        "carrier_id",
+        "sample_id",
+        "condition_observation",
+        "orientation_datum",
+        "storage_record"
+      ]
+    },
+    {
+      "id": "R03",
+      "name": "Hand over and qualify the closed measurement configuration",
+      "required_evidence": [
+        "accepted_handoff",
+        "mount_id",
+        "terminal_map_revision",
+        "calibration_receipts",
+        "leakage_check",
+        "approved_envelope"
+      ]
+    },
+    {
+      "id": "R04",
+      "name": "Request initial Hall-bar and subarray characterization",
+      "required_evidence": [
+        "HB_Rxx_Rxy_series",
+        "contact_check",
+        "subarray_transition_series",
+        "voltmeter_offset",
+        "noise_floor"
+      ]
+    },
+    {
+      "id": "R05",
+      "name": "Request direct subarray precision comparisons",
+      "required_evidence": [
+        "A1_A2_ratio_series",
+        "cycle_timestamps",
+        "per_reading_SD",
+        "field_temperature_logs"
+      ]
+    },
+    {
+      "id": "R06",
+      "name": "Request Hall-bar versus 100-ohm transfer comparison",
+      "required_evidence": [
+        "HB_100_ratio_series",
+        "reference_state",
+        "bath_stability",
+        "per_device_current"
+      ]
+    },
+    {
+      "id": "R07",
+      "name": "Request both subarray versus 100-ohm comparisons",
+      "required_evidence": [
+        "A1_100_ratio_series",
+        "A2_100_ratio_series",
+        "shared_reference_covariance_inputs"
+      ]
+    },
+    {
+      "id": "R08",
+      "name": "Request direct Hall-bar versusArray1 checks",
+      "required_evidence": [
+        "HB_A1_ratio_series",
+        "field_sign",
+        "field_magnitude",
+        "current_by_device"
+      ]
+    },
+    {
+      "id": "R09",
+      "name": "Request nonquantizing comparison controls",
+      "required_evidence": [
+        "off_plateau_A1_A2",
+        "off_plateau_A1_100",
+        "off_plateau_A2_100"
+      ]
+    },
+    {
+      "id": "R10",
+      "name": "Request bounded high-bias exploration",
+      "required_evidence": [
+        "short_screen_series",
+        "long_record_series",
+        "field_dependent_bias_check"
+      ]
+    },
+    {
+      "id": "R11",
+      "name": "Request the external high-bias common-mode check",
+      "required_evidence": [
+        "identified_subarray_12k9_series",
+        "reference_current_power",
+        "air_bath_state",
+        "actual_temperature"
+      ]
+    },
+    {
+      "id": "R12",
+      "name": "Validate each measurement bundle and approved analysis",
+      "required_evidence": [
+        "qualified_algorithm_revision",
+        "ratio_direction",
+        "weighted_summaries",
+        "Allan_checks",
+        "uncertainty_budget",
+        "exclusion_log"
+      ]
+    },
+    {
+      "id": "R13",
+      "name": "Evaluate the comparison network and coverage",
+      "required_evidence": [
+        "direct_edge_register",
+        "derived_path_register",
+        "covariance_aware_closure",
+        "comparison_limitations",
+        "branch_coverage"
+      ]
+    },
+    {
+      "id": "R14",
+      "name": "Close the service session and return custody",
+      "required_evidence": [
+        "safe_state_receipt",
+        "supported_handoff",
+        "post_test_condition",
+        "storage_acceptance",
+        "final_run_status"
+      ]
+    }
+  ],
+  "guardrails": [
+    "Only evaluator-issued finite synthetic evidence IDs accepted in test fixtures",
+    "No source outcomes are observations, rewards or pass thresholds",
+    "No numeric setpoints, hardware actions or live endpoints",
+    "No fabricated measurements or qualification claims",
+    "Keep safe closeout independent of scientific success"
+  ],
+  "source_context_in_actor_view": false
+}

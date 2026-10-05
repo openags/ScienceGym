@@ -1,0 +1,134 @@
+{
+  "classification": "authored_dependency_and_failure_graph",
+  "operation_ids": [
+    "R00",
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14"
+  ],
+  "dependency_edges": [
+    {
+      "from": "R00",
+      "to": "R01"
+    },
+    {
+      "from": "R01",
+      "to": "R02"
+    },
+    {
+      "from": "R02",
+      "to": "R03"
+    },
+    {
+      "from": "R03",
+      "to": "R04"
+    },
+    {
+      "from": "R04",
+      "to": "R05"
+    },
+    {
+      "from": "R04",
+      "to": "R06"
+    },
+    {
+      "from": "R05",
+      "to": "R07"
+    },
+    {
+      "from": "R06",
+      "to": "R07"
+    },
+    {
+      "from": "R05",
+      "to": "R08"
+    },
+    {
+      "from": "R05",
+      "to": "R09"
+    },
+    {
+      "from": "R07",
+      "to": "R09"
+    },
+    {
+      "from": "R05",
+      "to": "R10"
+    },
+    {
+      "from": "R08",
+      "to": "R10"
+    },
+    {
+      "from": "R10",
+      "to": "R11"
+    },
+    {
+      "from": "R05",
+      "to": "R12"
+    },
+    {
+      "from": "R06",
+      "to": "R12"
+    },
+    {
+      "from": "R07",
+      "to": "R12"
+    },
+    {
+      "from": "R08",
+      "to": "R12"
+    },
+    {
+      "from": "R12",
+      "to": "R13"
+    },
+    {
+      "from": "R03",
+      "to": "R14"
+    }
+  ],
+  "initial_operation_states": {
+    "R00": "held_qualification",
+    "R01": "held_qualification",
+    "R02": "held_qualification",
+    "R03": "held_qualification",
+    "R04": "held_qualification",
+    "R05": "held_qualification",
+    "R06": "held_qualification",
+    "R07": "held_qualification",
+    "R08": "held_qualification",
+    "R09": "held_qualification",
+    "R10": "held_qualification",
+    "R11": "held_qualification",
+    "R12": "held_qualification",
+    "R13": "held_qualification",
+    "R14": "held_qualification"
+  },
+  "closeout_operation": "R14",
+  "closeout_entry": "Any started R03 service session, irrespective of observation/analysis success",
+  "closeout_join": "All actually started jobs across R03–R11; terminal acknowledgement required, or explicit provider-owned supported hold with leases retained",
+  "analysis_may_not_delay_physical_safety": true,
+  "claim_scope": "Distinguish complete_design, complete_observation, partial_observation, failed_observation, held_qualification, unattempted, analysis_hold and safe_closeout. These are not interchangeable.",
+  "transitions": [
+    "not_requested→held_qualification",
+    "qualified_external_permit→requested→accepted→acquiring",
+    "acquiring→partial_evidence|completed_observation|failed_observation",
+    "any_started_session→closeout_pending",
+    "closeout_pending→closed_safe only with independent safety and custody receipts",
+    "closeout_pending→quarantined or supported_hold when unresolved"
+  ],
+  "actual_started_jobs": [],
+  "actual_closed_jobs": []
+}

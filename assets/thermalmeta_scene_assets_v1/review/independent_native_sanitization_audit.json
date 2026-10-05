@@ -1,0 +1,113 @@
+{
+  "schema": "sciencegym3d.independent_native_sanitization_audit.v1",
+  "source_doi": "10.1038/s41467-024-49630-1",
+  "passed": true,
+  "checks": [
+    {
+      "check": "equal_decompressed_lengths",
+      "passed": true
+    },
+    {
+      "check": "no_unsupported_sdna_layouts",
+      "passed": true
+    },
+    {
+      "check": "same_complete_scanned_field_ranges",
+      "passed": true
+    },
+    {
+      "check": "all_21306_clean_buffer_tails_zero",
+      "passed": true
+    },
+    {
+      "check": "all_inspected_string_buffers_terminated",
+      "passed": true
+    },
+    {
+      "check": "all_path_buffers_classified_and_full_width_clean",
+      "passed": true
+    },
+    {
+      "check": "only_permitted_ui_active_strings_cleared",
+      "passed": true
+    },
+    {
+      "check": "all_other_active_strings_and_nonbuffer_bytes_identical",
+      "passed": true
+    },
+    {
+      "check": "short_path_named_arrays_are_five_theme_color_fields",
+      "passed": true
+    },
+    {
+      "check": "deep_blender_scene_equivalence",
+      "passed": true
+    },
+    {
+      "check": "clean_native_and_glb_geometry_reimport_audit",
+      "passed": true
+    }
+  ],
+  "fixed_char_array_instances_checked": 21306,
+  "minimum_buffer_bytes": 32,
+  "unsupported_layouts": [],
+  "nonzero_post_nul_tail_fields_before": 34,
+  "nonzero_post_nul_tail_fields_after": 0,
+  "full_width_path_buffers_checked": 47,
+  "path_value_class_counts": {
+    "empty": 44,
+    "intentional_package_relative_path": 2,
+    "builtin_font": 1
+  },
+  "active_ui_strings_cleared": 22,
+  "changed_decompressed_byte_count": 795,
+  "masked_nonbuffer_sha256_before": "f7efe819b0837e2a13a7ebfdd14ffff90f02106ec6ac416271949112a15e5a31",
+  "masked_nonbuffer_sha256_after": "f7efe819b0837e2a13a7ebfdd14ffff90f02106ec6ac416271949112a15e5a31",
+  "source_render_native_sha256": "109689347649f7e59c6f332843509d85a0f5e5e0d8115a8c7bdf0cdd58fcd7a9",
+  "sanitized_native_sha256": "3cc7befd296e393e318bfe4654284d5507ddb33653c615e44dd9e41d3e4f8573",
+  "raw_field_values_or_private_paths_in_public_report": false,
+  "deep_blender_equivalence": {
+    "passed": true,
+    "artifact": "review/independent_blender_equivalence.json",
+    "source_and_sanitized_scene_sha256": "0008943f14854a0582de8104ed34f76be93d57ec096665a2e7f07c6f0ca3f904",
+    "differing_sections": [],
+    "runtime_exclusions": "UI workspaces and per-open session_uid values"
+  },
+  "limits": [
+    "Covers every inspected SDNA fixed char array of at least 32 bytes, with no unsupported encountered layouts",
+    "This is a metadata privacy/nonvisual-equivalence audit, not a scientific or hardware qualification"
+  ],
+  "independently_enumerated_string_field_class_count": 61,
+  "short_path_named_array_review": {
+    "field_count": 5,
+    "fields": [
+      {
+        "structure": "ThemeSpace",
+        "field": "path_before[4]",
+        "size": 4
+      },
+      {
+        "structure": "ThemeSpace",
+        "field": "path_after[4]",
+        "size": 4
+      },
+      {
+        "structure": "ThemeSpace",
+        "field": "path_keyframe_before[4]",
+        "size": 4
+      },
+      {
+        "structure": "ThemeSpace",
+        "field": "path_keyframe_after[4]",
+        "size": 4
+      },
+      {
+        "structure": "ThemeSpace",
+        "field": "camera_path[4]",
+        "size": 4
+      }
+    ],
+    "disposition": "Five ThemeSpace RGBA color arrays, not file-path strings; no omitted short path-string class found"
+  },
+  "geometry_reimport_checks_passed": 183
+}

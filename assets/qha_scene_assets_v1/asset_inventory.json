@@ -1,0 +1,720 @@
+{
+  "assets": [
+    {
+      "asset_id": "AS01",
+      "name": "Protected chip carrier and intake nest",
+      "root": "AS01",
+      "routes": [
+        "R01",
+        "R02",
+        "R14"
+      ],
+      "stations": [
+        "ST01",
+        "ST08"
+      ],
+      "states": [
+        "carrier_closed",
+        "supported",
+        "accepted",
+        "quarantined"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS01.carrier_identity",
+          "object_name": "AS01.carrier_identity",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.349999904632568,
+            -0.75,
+            1.3200000524520874
+          ]
+        },
+        {
+          "anchor_id": "AS01.intake_support",
+          "object_name": "AS01.intake_support",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.349999904632568,
+            -0.75,
+            1.0499999523162842
+          ]
+        },
+        {
+          "anchor_id": "AS01.custody_receipt",
+          "object_name": "AS01.custody_receipt",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.349999904632568,
+            -1.649999976158142,
+            1.0499999523162842
+          ]
+        }
+      ],
+      "mesh_count": 19,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "carrier outer envelope",
+        "datums",
+        "ESD/nonmagnetic material approval",
+        "grasp and support load limits"
+      ]
+    },
+    {
+      "asset_id": "AS02",
+      "name": "Logical chip identity with separate electrical regions",
+      "root": "AS02",
+      "routes": [
+        "R02",
+        "R04",
+        "R05",
+        "R08"
+      ],
+      "stations": [
+        "ST01",
+        "ST03",
+        "ST04",
+        "ST05"
+      ],
+      "states": [
+        "chip_registered",
+        "Array1_selected",
+        "Array2_selected",
+        "HB_selected"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS02.chip_identity",
+          "object_name": "AS02.chip_identity",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.349999904632568,
+            -0.75,
+            1.218000054359436
+          ]
+        },
+        {
+          "anchor_id": "AS02.array1_region",
+          "object_name": "AS02.array1_region",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -1.8799999952316284,
+            -0.6299999952316284,
+            1.2000000476837158
+          ]
+        },
+        {
+          "anchor_id": "AS02.array2_region",
+          "object_name": "AS02.array2_region",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -0.9100000262260437,
+            -0.6299999952316284,
+            1.2000000476837158
+          ]
+        },
+        {
+          "anchor_id": "AS02.hall_bar_region",
+          "object_name": "AS02.hall_bar_region",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            0.03999999910593033,
+            -0.6100000143051147,
+            1.2000000476837158
+          ]
+        }
+      ],
+      "mesh_count": 49,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "7\u00d77 mm source chip extent",
+        "qualified package orientation",
+        "unknown chip thickness",
+        "actual contact map"
+      ]
+    },
+    {
+      "asset_id": "AS03",
+      "name": "Array topology explanation object",
+      "root": "AS03",
+      "routes": [
+        "R04",
+        "R05",
+        "R13"
+      ],
+      "stations": [
+        "ST04",
+        "ST05",
+        "ST07"
+      ],
+      "states": [
+        "two_subarrays",
+        "series_whole_device",
+        "per_subarray_measurement"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS03.subarray_topology",
+          "object_name": "AS03.subarray_topology",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -2.0199999809265137,
+            0.44999998807907104,
+            2.200000047683716
+          ]
+        },
+        {
+          "anchor_id": "AS03.whole_device_topology",
+          "object_name": "AS03.whole_device_topology",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -1.149999976158142,
+            0.44999998807907104,
+            1.5800000429153442
+          ]
+        },
+        {
+          "anchor_id": "AS03.source_dimension_key",
+          "object_name": "AS03.source_dimension_key",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -2.3499999046325684,
+            0.1899999976158142,
+            1.1299999952316284
+          ]
+        }
+      ],
+      "mesh_count": 10,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "118 parallel elements per logical region",
+        "236 total",
+        "109-ohm subarray versus 219-ohm whole-device labels"
+      ]
+    },
+    {
+      "asset_id": "AS04",
+      "name": "External preparation service enclosure",
+      "root": "AS04",
+      "routes": [
+        "R01"
+      ],
+      "stations": [
+        "ST02"
+      ],
+      "states": [
+        "awaiting_receipt",
+        "process_external",
+        "released",
+        "rejected"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS04.preparation_receipt",
+          "object_name": "AS04.preparation_receipt",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.599999904632568,
+            1.9199999570846558,
+            1.0
+          ]
+        },
+        {
+          "anchor_id": "AS04.provider_custody_port",
+          "object_name": "AS04.provider_custody_port",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.599999904632568,
+            1.9199999570846558,
+            0.699999988079071
+          ]
+        }
+      ],
+      "mesh_count": 9,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "closed boundary and custody port",
+        "facility/provider identity placeholder"
+      ]
+    },
+    {
+      "asset_id": "AS05",
+      "name": "Closed cryostat/magnet service and exclusion region",
+      "root": "AS05",
+      "routes": [
+        "R03",
+        "R04",
+        "R05",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R14"
+      ],
+      "stations": [
+        "ST03"
+      ],
+      "states": [
+        "service_locked",
+        "operator_custody",
+        "acquiring",
+        "alarm_hold",
+        "safe_release_pending",
+        "safe_release_accepted"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS05.service_boundary",
+          "object_name": "AS05.service_boundary",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -1.5,
+            1.4700000286102295,
+            0.05000000074505806
+          ]
+        },
+        {
+          "anchor_id": "AS05.handoff_port",
+          "object_name": "AS05.handoff_port",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -3.630000114440918,
+            1.159999966621399,
+            0.9700000286102295
+          ]
+        },
+        {
+          "anchor_id": "AS05.independent_safe_state",
+          "object_name": "AS05.independent_safe_state",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -1.5,
+            2.119999885559082,
+            1.4800000190734863
+          ]
+        }
+      ],
+      "mesh_count": 25,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "actual hazard-zone envelope",
+        "port location",
+        "nonmagnetic transport clearance",
+        "safe-state channels"
+      ]
+    },
+    {
+      "asset_id": "AS06",
+      "name": "Electrical characterization and CCC service faces",
+      "root": "AS06",
+      "routes": [
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10",
+        "R11"
+      ],
+      "stations": [
+        "ST04",
+        "ST05"
+      ],
+      "states": [
+        "configured",
+        "mapping_unverified",
+        "measurement",
+        "partial",
+        "disabled"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS06.characterization_receipt",
+          "object_name": "AS06.characterization_receipt",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            2.049999952316284,
+            2.4700000286102295,
+            1.2599999904632568
+          ]
+        },
+        {
+          "anchor_id": "AS06.ccc_comparison_receipt",
+          "object_name": "AS06.ccc_comparison_receipt",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            2.049999952316284,
+            2.4700000286102295,
+            1.8600000143051147
+          ]
+        },
+        {
+          "anchor_id": "AS06.shared_instrument_lease",
+          "object_name": "AS06.shared_instrument_lease",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            2.049999952316284,
+            2.109999895095825,
+            0.8299999833106995
+          ]
+        }
+      ],
+      "mesh_count": 18,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "instrument footprints",
+        "connector identities",
+        "cable constraints",
+        "shared equipment lease"
+      ]
+    },
+    {
+      "asset_id": "AS07",
+      "name": "Distinct oil-bath100-ohm reference",
+      "root": "AS07",
+      "routes": [
+        "R06",
+        "R07",
+        "R09"
+      ],
+      "stations": [
+        "ST06"
+      ],
+      "states": [
+        "reference_registered",
+        "bath_stable",
+        "drift_hold",
+        "load_hold"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS07.reference_100_identity",
+          "object_name": "AS07.reference_100_identity",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            2.5999999046325684,
+            -1.0800000429153442,
+            1.5299999713897705
+          ]
+        },
+        {
+          "anchor_id": "AS07.oil_bath_state",
+          "object_name": "AS07.oil_bath_state",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            2.5999999046325684,
+            -1.0800000429153442,
+            1.2899999618530273
+          ]
+        }
+      ],
+      "mesh_count": 15,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "resistor container",
+        "oil-bath approved enclosure",
+        "asset ID plate",
+        "current/temperature evidence slot"
+      ]
+    },
+    {
+      "asset_id": "AS08",
+      "name": "Distinct air-bath12.9-kiloohm reference",
+      "root": "AS08",
+      "routes": [
+        "R11"
+      ],
+      "stations": [
+        "ST06"
+      ],
+      "states": [
+        "reference_registered",
+        "bath_stable",
+        "identity_hold",
+        "load_hold"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS08.reference_12k9_identity",
+          "object_name": "AS08.reference_12k9_identity",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            5.300000190734863,
+            -1.0800000429153442,
+            1.5299999713897705
+          ]
+        },
+        {
+          "anchor_id": "AS08.air_bath_state",
+          "object_name": "AS08.air_bath_state",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            5.300000190734863,
+            -1.0800000429153442,
+            1.2899999618530273
+          ]
+        }
+      ],
+      "mesh_count": 15,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "air-bath approved enclosure",
+        "resistor ID",
+        "separate load/current evidence slot"
+      ]
+    },
+    {
+      "asset_id": "AS09",
+      "name": "Evidence review and comparison-network panel",
+      "root": "AS09",
+      "routes": [
+        "R00",
+        "R12",
+        "R13"
+      ],
+      "stations": [
+        "ST07"
+      ],
+      "states": [
+        "raw_missing",
+        "analysis_hold",
+        "derived",
+        "inconsistent",
+        "reviewed"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS09.scope_approval",
+          "object_name": "AS09.scope_approval",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            4.239999771118164,
+            3.3399999141693115,
+            2.759999990463257
+          ]
+        },
+        {
+          "anchor_id": "AS09.raw_evidence",
+          "object_name": "AS09.raw_evidence",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            4.239999771118164,
+            3.3399999141693115,
+            2.359999895095825
+          ]
+        },
+        {
+          "anchor_id": "AS09.analysis_qualification",
+          "object_name": "AS09.analysis_qualification",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            4.239999771118164,
+            3.3399999141693115,
+            1.8200000524520874
+          ]
+        },
+        {
+          "anchor_id": "AS09.comparison_network",
+          "object_name": "AS09.comparison_network",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            4.239999771118164,
+            3.3399999141693115,
+            0.6299999952316284
+          ]
+        }
+      ],
+      "mesh_count": 22,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "record anchors",
+        "signed reference/test edges",
+        "uncertainty category",
+        "source/design/unknown tags"
+      ]
+    },
+    {
+      "asset_id": "AS10",
+      "name": "Supported return and quarantine station",
+      "root": "AS10",
+      "routes": [
+        "R14"
+      ],
+      "stations": [
+        "ST08"
+      ],
+      "states": [
+        "safe_receipt_pending",
+        "support_confirmed",
+        "custody_accepted",
+        "quarantine"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS10.return_support",
+          "object_name": "AS10.return_support",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.300000190734863,
+            -3.5,
+            1.0
+          ]
+        },
+        {
+          "anchor_id": "AS10.quarantine_custody",
+          "object_name": "AS10.quarantine_custody",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.300000190734863,
+            -4.239999771118164,
+            0.6499999761581421
+          ]
+        },
+        {
+          "anchor_id": "AS10.receiver_acceptance",
+          "object_name": "AS10.receiver_acceptance",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -5.300000190734863,
+            -4.239999771118164,
+            0.44999998807907104
+          ]
+        }
+      ],
+      "mesh_count": 8,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "qualified support pose",
+        "storage environment",
+        "receiver acceptance sensor/channel"
+      ]
+    },
+    {
+      "asset_id": "AS11",
+      "name": "Original carrier-transfer path envelope",
+      "root": "AS11",
+      "routes": [
+        "R02",
+        "R03",
+        "R14"
+      ],
+      "stations": [
+        "ST01",
+        "ST03",
+        "ST08"
+      ],
+      "states": [
+        "unqualified",
+        "approved_unloaded_path",
+        "blocked",
+        "occupied"
+      ],
+      "anchors": [
+        {
+          "anchor_id": "AS11.carrier_grasp_datum",
+          "object_name": "AS11.carrier_grasp_datum",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -0.4699999988079071,
+            -3.0799999237060547,
+            1.590000033378601
+          ]
+        },
+        {
+          "anchor_id": "AS11.transport_envelope",
+          "object_name": "AS11.transport_envelope",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            -2.799999952316284,
+            -1.2999999523162842,
+            0.03999999910593033
+          ]
+        },
+        {
+          "anchor_id": "AS11.robot_base_datum",
+          "object_name": "AS11.robot_base_datum",
+          "mode": "evidence_only",
+          "physical_actuation_enabled": false,
+          "position_m": [
+            0.10000000149011612,
+            -3.4000000953674316,
+            0.27000001072883606
+          ]
+        }
+      ],
+      "mesh_count": 19,
+      "source_cad": false,
+      "physical_actuation_enabled": false,
+      "qualification_state": "HOLD_UNQUALIFIED",
+      "collision_representation": "Illustrative visible geometry only; no qualified collision model or robot reachability claim",
+      "qualified_inputs_needed": [
+        "collision mesh",
+        "approach/retreat datums",
+        "robot workspace limits",
+        "field-zone clearance"
+      ]
+    }
+  ]
+}

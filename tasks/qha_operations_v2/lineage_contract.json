@@ -1,0 +1,43 @@
+{
+  "classification": "authored",
+  "entities": [
+    "source fact",
+    "authored design requirement",
+    "unknown qualified input",
+    "physical chip and electrical region",
+    "provider process release",
+    "carrier/mount/custodian",
+    "reference resistor and bath",
+    "calibrated instrument",
+    "approved method revision",
+    "service job",
+    "raw time-series block",
+    "derived comparison",
+    "review decision"
+  ],
+  "required_chains": [
+    "supplier/fabrication receipt→chip→carrier→accepted mount",
+    "chip→region and contact map→comparison pair",
+    "instrument calibration→configuration→service permit→job",
+    "actual field/temperature/current/bath records→timestamped raw CCC cycles",
+    "raw ratio/time/SD→qualified analysis revision→weighted/Allan result",
+    "direct comparison edges→shared covariance→derived loops",
+    "started services→independent safe-state observations→accepted return custody→archive"
+  ],
+  "immutability": "Raw observations and original service receipts remain immutable. Corrections/derived results carry new versions and explicit supersession; no replacement of failed runs by source outcomes.",
+  "branch_states": [
+    "not_requested",
+    "held_qualification",
+    "requested",
+    "accepted",
+    "acquiring",
+    "partial_evidence",
+    "completed_observation",
+    "failed_observation",
+    "analysis_hold",
+    "closeout_pending",
+    "closed_safe",
+    "quarantined"
+  ],
+  "no_fake_completion": "Review completion, artifact validation, observed source results and service request acceptance are distinct from physical experiment completion."
+}

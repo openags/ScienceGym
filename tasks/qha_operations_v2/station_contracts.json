@@ -1,0 +1,70 @@
+{
+  "classification": "authored_design_not_source_equipment_interface",
+  "stations": [
+    {
+      "id": "ST01",
+      "name": "Protected sample intake and inspection",
+      "boundary": "Room-temperature, ESD-managed and outside any magnet hazard zone",
+      "inputs": "Sealed or protected chip carrier; non-contact identity/condition observation",
+      "required_receipts": "Carrier ID, occupancy, condition photos, handling authorization",
+      "prohibition": "No bare-chip grasp or probe contact unless separately qualified"
+    },
+    {
+      "id": "ST02",
+      "name": "Qualified external fabrication and preparation service",
+      "boundary": "All microfabrication, chemicals, hot processing, e-beam, plasma and vacuum operations remain with named specialist service",
+      "inputs": "Specification and traceable wafer/die identity",
+      "required_receipts": "Process-history/release receipt and safely packaged chip",
+      "prohibition": "No robot-executable synthesis, etch, solvent, anneal or deposition recipe"
+    },
+    {
+      "id": "ST03",
+      "name": "Closed cryogenic magnet measurement service",
+      "boundary": "All cryostat, condensed-helium, pressure/vacuum, strong-field and quench operations held by specialist operator",
+      "inputs": "Accepted protected carrier and approved measurement request",
+      "required_receipts": "Sample mount ID, condition/state observations, run permit and result bundle",
+      "prohibition": "Robot does not enter field exclusion zone, insert/remove cold sample, open vacuum/cryogen circuit or operate magnet"
+    },
+    {
+      "id": "ST04",
+      "name": "Qualified electrical characterization service",
+      "boundary": "Interlocked low-noise source/nanovoltmeter path owned by specialist",
+      "inputs": "Mounted identity, approved terminal map and condition list",
+      "required_receipts": "Raw Rxx/Rxy/contact/transition evidence with calibration/noise flags",
+      "prohibition": "No automatic range/current escalation; shared hardware with ST03 is possible and requires one lease"
+    },
+    {
+      "id": "ST05",
+      "name": "Qualified precision CCC service",
+      "boundary": "Calibrated bridge, protected connections, polarity reversal and timing managed by specialist",
+      "inputs": "Accepted comparisons with explicit reference/test roles and qualified operating envelope",
+      "required_receipts": "Raw ratio/cycle/time/SD series, bridge settings, field/temperature logs",
+      "prohibition": "No energized rewire, unlocked winding switch or source-specified current as a safety limit"
+    },
+    {
+      "id": "ST06",
+      "name": "Controlled reference-resistor services",
+      "boundary": "Separate 100-ohm oil-bath and 12.9-kiloohm air-bath identities, each with qualified thermal/power limits",
+      "inputs": "Calibrated reference identity and approved load/measurement configuration",
+      "required_receipts": "Bath stability, resistor current, temperature and drift/calibration receipt",
+      "prohibition": "Same bath cabinet artwork must never merge the two distinct thermal services"
+    },
+    {
+      "id": "ST07",
+      "name": "Read-only evidence and analysis workstation",
+      "boundary": "No physical control path; uses qualified evidence schema",
+      "inputs": "Immutable run bundles and approved analysis method",
+      "required_receipts": "Derived results with uncertainty/covariance, provenance and exceptions",
+      "prohibition": "Eq 3/Eq 4/loop implementation held pending qualification; no fabricated or source-digitized raw observations"
+    },
+    {
+      "id": "ST08",
+      "name": "Safe return, supported hold and quarantine",
+      "boundary": "Accepted carrier support and approved storage outside active hazard zones",
+      "inputs": "Independent warm/field/pressure/electrical/motion safe evidence and sample condition",
+      "required_receipts": "Final custody acceptance, location and complete/partial/failed/unattempted state",
+      "prohibition": "A stop request, timer, display icon or source-current zero command is not safe-state proof"
+    }
+  ],
+  "lease_rule": "One owner per physical sample and shared instrument; software station labels do not authorize simultaneous use of one cryostat/CCC. Distinct service names may be logical roles on the same equipment."
+}

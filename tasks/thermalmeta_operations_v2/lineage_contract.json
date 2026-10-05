@@ -1,0 +1,45 @@
+{
+  "relations": [
+    "material_lot -> lattice_service_job -> lattice",
+    "lattice + PDMS_lot -> filled_intermediate",
+    "filled_intermediate + background_lot -> specimen",
+    "specimen + fixture + orientation + calibration -> run",
+    "run + camera/sensor metadata -> dataset",
+    "dataset + registered masks + metric_contract + controls -> analysis",
+    "analysis + all safety releases + custody -> paper_episode_closeout"
+  ],
+  "required_record_fields": [
+    "record_id",
+    "record_type",
+    "paper_id",
+    "sample_family_id",
+    "design_id",
+    "design_revision",
+    "specimen_id_when_applicable",
+    "parent_ids",
+    "content_hash",
+    "issuer_role",
+    "configuration_revision",
+    "timestamp",
+    "timebase",
+    "validity",
+    "evidence_class",
+    "supersedes_when_applicable"
+  ],
+  "evidence_classes": [
+    "source_reported_reference",
+    "authored_design",
+    "synthetic_bookkeeping_fixture",
+    "qualified_observation_external"
+  ],
+  "per_run_required_parents": [
+    "specific_specimen",
+    "specific_mount",
+    "specific_calibration",
+    "approved_plan"
+  ],
+  "duplicate_ids": "Reject; do not overwrite or silently merge.",
+  "stale_revision": "Reject receipt reuse after a design/specimen revision change.",
+  "orphan_or_cross_family_parent": "Hold before receipt acceptance or transfer.",
+  "trusted_receipts": "The offline guard checks structure only. It cannot authenticate a facility, cryptographic signature, actual temperature, image, observation, or safe state."
+}

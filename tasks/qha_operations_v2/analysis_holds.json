@@ -1,0 +1,118 @@
+{
+  "classification": "authored_explicit_blocks",
+  "default": "ANALYSIS_HOLD",
+  "holds": [
+    {
+      "id": "AH_ALLAN_INPUT",
+      "source_conflicts": [
+        "C05"
+      ],
+      "unknowns": [
+        "U10",
+        "U11"
+      ],
+      "blocks": [
+        "R12"
+      ],
+      "requires": [
+        "approved input units/representation",
+        "accumulation convention",
+        "timestamp/overlap rules",
+        "independent method verification"
+      ]
+    },
+    {
+      "id": "AH_ALLAN_ERROR",
+      "source_conflicts": [
+        "C13"
+      ],
+      "unknowns": [
+        "U11",
+        "U12"
+      ],
+      "blocks": [
+        "R12"
+      ],
+      "requires": [
+        "qualified relative-error equation",
+        "bin-size behavior disposition",
+        "percentage convention"
+      ]
+    },
+    {
+      "id": "AH_LOOP",
+      "source_conflicts": [
+        "C04",
+        "C06",
+        "C17"
+      ],
+      "unknowns": [
+        "U12",
+        "U17"
+      ],
+      "blocks": [
+        "R13"
+      ],
+      "requires": [
+        "signed edge definitions",
+        "printed repeated-edge discrepancy disposition",
+        "covariance-aware independent review"
+      ]
+    },
+    {
+      "id": "AH_OFF_PLATEAU",
+      "source_conflicts": [
+        "C07"
+      ],
+      "unknowns": [
+        "U12",
+        "U16"
+      ],
+      "blocks": [
+        "R09",
+        "R13"
+      ],
+      "requires": [
+        "covariance/drift review before consistency claim"
+      ]
+    },
+    {
+      "id": "AH_EXTERNAL_ID",
+      "source_conflicts": [
+        "C12",
+        "C15"
+      ],
+      "unknowns": [
+        "U13",
+        "U14"
+      ],
+      "blocks": [
+        "R11"
+      ],
+      "requires": [
+        "actual source or new-run array identity",
+        "actual temperature",
+        "separate reference load record"
+      ]
+    },
+    {
+      "id": "AH_HIGH_BIAS_SIGN",
+      "source_conflicts": [
+        "C14"
+      ],
+      "unknowns": [
+        "U17"
+      ],
+      "blocks": [
+        "R10",
+        "R13"
+      ],
+      "requires": [
+        "source table/plot sign disposition"
+      ]
+    }
+  ],
+  "resolutions": [],
+  "approved_algorithms": [],
+  "rule": "All 18 conflicts remain preserved. Resolving one new-run method does not rewrite printed-source evidence. No Allan or loop numerical implementation is shipped."
+}

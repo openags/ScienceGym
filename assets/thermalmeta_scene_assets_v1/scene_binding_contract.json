@@ -1,0 +1,925 @@
+{
+  "schema": "sciencegym3d.thermalmeta.binding.v1",
+  "paper_id": "thermalmeta-2024-49630",
+  "route_id": "RT_THERMALMETA_MAIN",
+  "source_doi": "10.1038/s41467-024-49630-1",
+  "task_package": "thermalmeta_operations_v2",
+  "asset_package": "thermalmeta_scene_assets_v1",
+  "coordinate_system": {
+    "handedness": "right",
+    "up_axis": "Z",
+    "unit": "metre"
+  },
+  "default_state": "HOLD_UNQUALIFIED",
+  "physical_actuation_enabled": false,
+  "hardware_commands_allowed": false,
+  "physics_simulation_performed": false,
+  "source_dimensions_nominal_mm": [
+    120,
+    120,
+    4.5
+  ],
+  "geometry_interface_qualified": false,
+  "assets": [
+    {
+      "asset_id": "A01",
+      "asset_root_object": "A01",
+      "name": "Paper and plan workstation",
+      "station_id": "ST_REVIEW",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "anchor_ids": [
+        "AN_REVIEW",
+        "AN_PLAN",
+        "AN_DESIGN"
+      ]
+    },
+    {
+      "asset_id": "A02",
+      "asset_root_object": "A02",
+      "name": "Six condition-view specimen cassettes",
+      "station_id": "ST_RECEIVE",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P08",
+        "P10",
+        "P14",
+        "P16"
+      ],
+      "anchor_ids": []
+    },
+    {
+      "asset_id": "A03",
+      "asset_root_object": "A03",
+      "name": "Closed manufacturing service",
+      "station_id": "ST_FAB",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P04",
+        "P05",
+        "P06",
+        "P07"
+      ],
+      "anchor_ids": [
+        "AN_FAB_RECEIPT",
+        "AN_LATTICE_RECEIPT",
+        "AN_INTERMEDIATE_RECEIPT",
+        "AN_FINAL_RECEIPT"
+      ]
+    },
+    {
+      "asset_id": "A04",
+      "asset_root_object": "A04",
+      "name": "Dry metrology cradle",
+      "station_id": "ST_RECEIVE",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P08",
+        "P10",
+        "P14",
+        "P16"
+      ],
+      "anchor_ids": [
+        "AN_INSPECT"
+      ]
+    },
+    {
+      "asset_id": "A05",
+      "asset_root_object": "A05",
+      "name": "IR calibration reference stand",
+      "station_id": "ST_IR_CAL",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P09",
+        "P17"
+      ],
+      "anchor_ids": [
+        "AN_IR_CAL",
+        "AN_CONTROL"
+      ]
+    },
+    {
+      "asset_id": "A06",
+      "asset_root_object": "A06",
+      "name": "Guarded thermal service bay",
+      "station_id": "ST_THERMAL",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P15"
+      ],
+      "anchor_ids": [
+        "AN_MOUNT",
+        "AN_SERVICE_HANDOFF",
+        "AN_TRANSIENT",
+        "AN_STABILITY",
+        "AN_SAFE_RELEASE"
+      ]
+    },
+    {
+      "asset_id": "A07",
+      "asset_root_object": "A07",
+      "name": "Orientation and profile overlays",
+      "station_id": "ST_THERMAL",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P08",
+        "P10",
+        "P14",
+        "P16"
+      ],
+      "anchor_ids": [
+        "AN_REGISTER",
+        "AN_ORIENT"
+      ]
+    },
+    {
+      "asset_id": "A08",
+      "asset_root_object": "A08",
+      "name": "Evidence analysis terminal",
+      "station_id": "ST_ANALYSIS",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P18",
+        "P19",
+        "P20"
+      ],
+      "anchor_ids": [
+        "AN_ANALYSIS",
+        "AN_NUMERICAL"
+      ]
+    },
+    {
+      "asset_id": "A09",
+      "asset_root_object": "A09",
+      "name": "Closeout and quarantine",
+      "station_id": "ST_CLOSE",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P20"
+      ],
+      "anchor_ids": [
+        "AN_CLOSEOUT",
+        "AN_QUARANTINE",
+        "AN_STORAGE"
+      ]
+    },
+    {
+      "asset_id": "A10",
+      "asset_root_object": "A10",
+      "name": "Lineage tokens and protected robot-operation proxies",
+      "station_id": "all",
+      "geometry_status": "original_illustrative_unqualified",
+      "stage_ids": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20"
+      ],
+      "anchor_ids": [
+        "AN_CARRIER_GRASP",
+        "AN_ROBOT_BASE",
+        "AN_SAFE_PARK"
+      ]
+    }
+  ],
+  "stage_bindings": [
+    {
+      "stage_id": "P01",
+      "title": "Lock review identity and exclusions",
+      "anchor_id": "AN_REVIEW",
+      "asset_ids": [
+        "A01",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P02",
+      "title": "Approve paper-level condition plan",
+      "anchor_id": "AN_PLAN",
+      "asset_ids": [
+        "A01",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P03",
+      "title": "Accept qualified design package",
+      "anchor_id": "AN_DESIGN",
+      "asset_ids": [
+        "A01",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P04",
+      "title": "Receive materials and tooling identities",
+      "anchor_id": "AN_FAB_RECEIPT",
+      "asset_ids": [
+        "A03",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P05",
+      "title": "Produce and release metal lattice",
+      "anchor_id": "AN_LATTICE_RECEIPT",
+      "asset_ids": [
+        "A03",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P06",
+      "title": "Produce filled lattice intermediate",
+      "anchor_id": "AN_INTERMEDIATE_RECEIPT",
+      "asset_ids": [
+        "A03",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P07",
+      "title": "Produce encapsulated specimen",
+      "anchor_id": "AN_FINAL_RECEIPT",
+      "asset_ids": [
+        "A03",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P08",
+      "title": "Receive and inspect released specimen",
+      "anchor_id": "AN_INSPECT",
+      "asset_ids": [
+        "A04",
+        "A10",
+        "A02",
+        "A07"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P09",
+      "title": "Qualify calibration and control measurements",
+      "anchor_id": "AN_IR_CAL",
+      "asset_ids": [
+        "A05",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P10",
+      "title": "Stage orientation-specific unpowered fixture",
+      "anchor_id": "AN_MOUNT",
+      "asset_ids": [
+        "A06",
+        "A10",
+        "A02",
+        "A04",
+        "A07"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P11",
+      "title": "Transfer custody to thermal-test service",
+      "anchor_id": "AN_SERVICE_HANDOFF",
+      "asset_ids": [
+        "A06",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P12",
+      "title": "Acquire transient observation series",
+      "anchor_id": "AN_TRANSIENT",
+      "asset_ids": [
+        "A06",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P13",
+      "title": "Review steady-state qualification",
+      "anchor_id": "AN_STABILITY",
+      "asset_ids": [
+        "A06",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P14",
+      "title": "Acquire registered steady-state result",
+      "anchor_id": "AN_REGISTER",
+      "asset_ids": [
+        "A07",
+        "A10",
+        "A02",
+        "A04"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P15",
+      "title": "Release station and specimen safely",
+      "anchor_id": "AN_SAFE_RELEASE",
+      "asset_ids": [
+        "A06",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P16",
+      "title": "Execute condition/repeat traversal",
+      "anchor_id": "AN_ORIENT",
+      "asset_ids": [
+        "A07",
+        "A10",
+        "A02",
+        "A04"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P17",
+      "title": "Reconcile empirical controls",
+      "anchor_id": "AN_CONTROL",
+      "asset_ids": [
+        "A05",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P18",
+      "title": "Perform qualified result assessment",
+      "anchor_id": "AN_ANALYSIS",
+      "asset_ids": [
+        "A08",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P19",
+      "title": "Reconcile broader paper numerical families",
+      "anchor_id": "AN_NUMERICAL",
+      "asset_ids": [
+        "A08",
+        "A10"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    },
+    {
+      "stage_id": "P20",
+      "title": "Close paper-level episode",
+      "anchor_id": "AN_CLOSEOUT",
+      "asset_ids": [
+        "A09",
+        "A10",
+        "A08"
+      ],
+      "route_id": "RT_THERMALMETA_MAIN",
+      "mode": "static_evidence_only"
+    }
+  ],
+  "anchors": [
+    {
+      "anchor_id": "AN_REVIEW",
+      "object_name": "AN_REVIEW",
+      "asset_id": "A01",
+      "position_m": [
+        -1.8,
+        0.9,
+        1.1
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_PLAN",
+      "object_name": "AN_PLAN",
+      "asset_id": "A01",
+      "position_m": [
+        -1.75,
+        0.72,
+        0.91
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_DESIGN",
+      "object_name": "AN_DESIGN",
+      "asset_id": "A01",
+      "position_m": [
+        -1.5,
+        0.72,
+        0.91
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_FAB_RECEIPT",
+      "object_name": "AN_FAB_RECEIPT",
+      "asset_id": "A03",
+      "position_m": [
+        -2.05,
+        1.7,
+        0.8
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_LATTICE_RECEIPT",
+      "object_name": "AN_LATTICE_RECEIPT",
+      "asset_id": "A03",
+      "position_m": [
+        -2.3,
+        1.68,
+        1.05
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_INTERMEDIATE_RECEIPT",
+      "object_name": "AN_INTERMEDIATE_RECEIPT",
+      "asset_id": "A03",
+      "position_m": [
+        -2.05,
+        1.68,
+        1.05
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_FINAL_RECEIPT",
+      "object_name": "AN_FINAL_RECEIPT",
+      "asset_id": "A03",
+      "position_m": [
+        -1.8,
+        1.68,
+        1.05
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_INSPECT",
+      "object_name": "AN_INSPECT",
+      "asset_id": "A04",
+      "position_m": [
+        -1.7,
+        -0.67,
+        0.88
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_IR_CAL",
+      "object_name": "AN_IR_CAL",
+      "asset_id": "A05",
+      "position_m": [
+        0.05,
+        1.6,
+        1.12
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_MOUNT",
+      "object_name": "AN_MOUNT",
+      "asset_id": "A06",
+      "position_m": [
+        1.6,
+        0.48,
+        0.9
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_SERVICE_HANDOFF",
+      "object_name": "AN_SERVICE_HANDOFF",
+      "asset_id": "A06",
+      "position_m": [
+        1.8,
+        0.4,
+        0.9
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_TRANSIENT",
+      "object_name": "AN_TRANSIENT",
+      "asset_id": "A06",
+      "position_m": [
+        2.12,
+        0.72,
+        1.4
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_STABILITY",
+      "object_name": "AN_STABILITY",
+      "asset_id": "A06",
+      "position_m": [
+        2.12,
+        0.72,
+        1.2
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_REGISTER",
+      "object_name": "AN_REGISTER",
+      "asset_id": "A07",
+      "position_m": [
+        0.0,
+        -0.55,
+        0.9
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_SAFE_RELEASE",
+      "object_name": "AN_SAFE_RELEASE",
+      "asset_id": "A06",
+      "position_m": [
+        1.8,
+        0.4,
+        0.7
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_ORIENT",
+      "object_name": "AN_ORIENT",
+      "asset_id": "A07",
+      "position_m": [
+        0.0,
+        -0.55,
+        1.0
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_CONTROL",
+      "object_name": "AN_CONTROL",
+      "asset_id": "A05",
+      "position_m": [
+        0.27,
+        1.5,
+        0.92
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_ANALYSIS",
+      "object_name": "AN_ANALYSIS",
+      "asset_id": "A08",
+      "position_m": [
+        0.85,
+        1.8,
+        1.2
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_NUMERICAL",
+      "object_name": "AN_NUMERICAL",
+      "asset_id": "A08",
+      "position_m": [
+        1.15,
+        1.8,
+        1.2
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_CLOSEOUT",
+      "object_name": "AN_CLOSEOUT",
+      "asset_id": "A09",
+      "position_m": [
+        1.72,
+        -1.15,
+        0.8
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_CARRIER_GRASP",
+      "object_name": "AN_CARRIER_GRASP",
+      "asset_id": "A10",
+      "position_m": [
+        -0.25,
+        -1.6,
+        1.0
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_ROBOT_BASE",
+      "object_name": "AN_ROBOT_BASE",
+      "asset_id": "A10",
+      "position_m": [
+        -0.5,
+        -1.68,
+        0.1
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_SAFE_PARK",
+      "object_name": "AN_SAFE_PARK",
+      "asset_id": "A10",
+      "position_m": [
+        -0.5,
+        -1.6,
+        0.95
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_QUARANTINE",
+      "object_name": "AN_QUARANTINE",
+      "asset_id": "A09",
+      "position_m": [
+        2.15,
+        -1.2,
+        0.8
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    },
+    {
+      "anchor_id": "AN_STORAGE",
+      "object_name": "AN_STORAGE",
+      "asset_id": "A09",
+      "position_m": [
+        1.45,
+        -1.2,
+        0.8
+      ],
+      "mode": "static_evidence_only",
+      "physical_actuation_enabled": false
+    }
+  ],
+  "condition_views": [
+    {
+      "condition_id": "COND_CLOAK_X",
+      "sample_family_id": "CLOAK",
+      "orientation": "X",
+      "specimen_id": "SPEC_CLOAK_DEMO_001",
+      "design_id": "DES_CLOAK_DEMO",
+      "design_revision": "R0",
+      "asset_id": "A02",
+      "root_object": "COND_CLOAK_X",
+      "envelope_object": "COND_CLOAK_X.source_envelope",
+      "carrier_object": "COND_CLOAK_X.protected_carrier",
+      "support_object": "COND_CLOAK_X.support_pad",
+      "cover_object": "COND_CLOAK_X.closed_clear_cover",
+      "profile_object": "COND_CLOAK_X.profile_selector",
+      "profile_id": "K1",
+      "profile_direction": "parallel_to_applied_reference",
+      "position_m": [
+        -0.25,
+        -0.35,
+        0.883
+      ],
+      "rotation_deg": 0,
+      "identity_status": "synthetic_demo_token_not_executed",
+      "independent_specimen_claim": false,
+      "profile_number_to_orientation_status": "authored_visual_selector_not_source_verified"
+    },
+    {
+      "condition_id": "COND_CLOAK_Y",
+      "sample_family_id": "CLOAK",
+      "orientation": "Y",
+      "specimen_id": "SPEC_CLOAK_DEMO_001",
+      "design_id": "DES_CLOAK_DEMO",
+      "design_revision": "R0",
+      "asset_id": "A02",
+      "root_object": "COND_CLOAK_Y",
+      "envelope_object": "COND_CLOAK_Y.source_envelope",
+      "carrier_object": "COND_CLOAK_Y.protected_carrier",
+      "support_object": "COND_CLOAK_Y.support_pad",
+      "cover_object": "COND_CLOAK_Y.closed_clear_cover",
+      "profile_object": "COND_CLOAK_Y.profile_selector",
+      "profile_id": "K2",
+      "profile_direction": "parallel_to_applied_reference",
+      "position_m": [
+        -0.25,
+        -0.63,
+        0.883
+      ],
+      "rotation_deg": 90,
+      "identity_status": "synthetic_demo_token_not_executed",
+      "independent_specimen_claim": false,
+      "profile_number_to_orientation_status": "authored_visual_selector_not_source_verified"
+    },
+    {
+      "condition_id": "COND_ROTATOR45_X",
+      "sample_family_id": "ROTATOR45",
+      "orientation": "X",
+      "specimen_id": "SPEC_ROTATOR45_DEMO_001",
+      "design_id": "DES_ROTATOR45_DEMO",
+      "design_revision": "R0",
+      "asset_id": "A02",
+      "root_object": "COND_ROTATOR45_X",
+      "envelope_object": "COND_ROTATOR45_X.source_envelope",
+      "carrier_object": "COND_ROTATOR45_X.protected_carrier",
+      "support_object": "COND_ROTATOR45_X.support_pad",
+      "cover_object": "COND_ROTATOR45_X.closed_clear_cover",
+      "profile_object": "COND_ROTATOR45_X.profile_selector",
+      "profile_id": "R1",
+      "profile_direction": "transverse_to_applied_reference",
+      "position_m": [
+        0.0,
+        -0.35,
+        0.883
+      ],
+      "rotation_deg": 0,
+      "identity_status": "synthetic_demo_token_not_executed",
+      "independent_specimen_claim": false,
+      "profile_number_to_orientation_status": "authored_visual_selector_not_source_verified"
+    },
+    {
+      "condition_id": "COND_ROTATOR45_Y",
+      "sample_family_id": "ROTATOR45",
+      "orientation": "Y",
+      "specimen_id": "SPEC_ROTATOR45_DEMO_001",
+      "design_id": "DES_ROTATOR45_DEMO",
+      "design_revision": "R0",
+      "asset_id": "A02",
+      "root_object": "COND_ROTATOR45_Y",
+      "envelope_object": "COND_ROTATOR45_Y.source_envelope",
+      "carrier_object": "COND_ROTATOR45_Y.protected_carrier",
+      "support_object": "COND_ROTATOR45_Y.support_pad",
+      "cover_object": "COND_ROTATOR45_Y.closed_clear_cover",
+      "profile_object": "COND_ROTATOR45_Y.profile_selector",
+      "profile_id": "R2",
+      "profile_direction": "transverse_to_applied_reference",
+      "position_m": [
+        0.0,
+        -0.63,
+        0.883
+      ],
+      "rotation_deg": 90,
+      "identity_status": "synthetic_demo_token_not_executed",
+      "independent_specimen_claim": false,
+      "profile_number_to_orientation_status": "authored_visual_selector_not_source_verified"
+    },
+    {
+      "condition_id": "COND_CONCENTRATOR18_X",
+      "sample_family_id": "CONCENTRATOR18",
+      "orientation": "X",
+      "specimen_id": "SPEC_CONCENTRATOR18_DEMO_001",
+      "design_id": "DES_CONCENTRATOR18_DEMO",
+      "design_revision": "R0",
+      "asset_id": "A02",
+      "root_object": "COND_CONCENTRATOR18_X",
+      "envelope_object": "COND_CONCENTRATOR18_X.source_envelope",
+      "carrier_object": "COND_CONCENTRATOR18_X.protected_carrier",
+      "support_object": "COND_CONCENTRATOR18_X.support_pad",
+      "cover_object": "COND_CONCENTRATOR18_X.closed_clear_cover",
+      "profile_object": "COND_CONCENTRATOR18_X.profile_selector",
+      "profile_id": "C1",
+      "profile_direction": "parallel_to_applied_reference",
+      "position_m": [
+        0.25,
+        -0.35,
+        0.883
+      ],
+      "rotation_deg": 0,
+      "identity_status": "synthetic_demo_token_not_executed",
+      "independent_specimen_claim": false,
+      "profile_number_to_orientation_status": "authored_visual_selector_not_source_verified"
+    },
+    {
+      "condition_id": "COND_CONCENTRATOR18_Y",
+      "sample_family_id": "CONCENTRATOR18",
+      "orientation": "Y",
+      "specimen_id": "SPEC_CONCENTRATOR18_DEMO_001",
+      "design_id": "DES_CONCENTRATOR18_DEMO",
+      "design_revision": "R0",
+      "asset_id": "A02",
+      "root_object": "COND_CONCENTRATOR18_Y",
+      "envelope_object": "COND_CONCENTRATOR18_Y.source_envelope",
+      "carrier_object": "COND_CONCENTRATOR18_Y.protected_carrier",
+      "support_object": "COND_CONCENTRATOR18_Y.support_pad",
+      "cover_object": "COND_CONCENTRATOR18_Y.closed_clear_cover",
+      "profile_object": "COND_CONCENTRATOR18_Y.profile_selector",
+      "profile_id": "C2",
+      "profile_direction": "parallel_to_applied_reference",
+      "position_m": [
+        0.25,
+        -0.63,
+        0.883
+      ],
+      "rotation_deg": 90,
+      "identity_status": "synthetic_demo_token_not_executed",
+      "independent_specimen_claim": false,
+      "profile_number_to_orientation_status": "authored_visual_selector_not_source_verified"
+    }
+  ],
+  "safe_release_requires": [
+    "zero_energy_evidence",
+    "cool_dry_evidence",
+    "supported_carrier_evidence",
+    "service_release_receipt",
+    "receiver_custody_acceptance"
+  ],
+  "analysis_holds": [
+    "C01 metric norm versus squared error",
+    "C02 mapping residual index",
+    "C03 feature label 3.0 versus curve 2.5",
+    "C05 physical units and absolute heat flux"
+  ],
+  "prohibitions": [
+    "real heating",
+    "fabrication or casting recipe",
+    "bare sample grasp",
+    "powered zone access",
+    "source values as pass thresholds",
+    "synthetic heat-flow telemetry",
+    "automatic retrieval after abort",
+    "scene pose as qualified robot trajectory"
+  ],
+  "profile_mapping_boundary": "K1/R1/C1 -> X and K2/R2/C2 -> Y are authored scene selectors, not an independently verified source label-number mapping; the parallel/transverse relation is source-reported."
+}

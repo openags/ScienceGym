@@ -1,0 +1,104 @@
+{
+  "classification": "source_graph_facts_plus_authored_receipt_contract",
+  "source_graph": {
+    "nodes": [
+      "Array1",
+      "Array2",
+      "on-chip Hall bar",
+      "100-ohm standard"
+    ],
+    "direct_edges": [
+      {
+        "id": "E01",
+        "listed_pair": [
+          "Array1",
+          "Array2"
+        ],
+        "route": "R05",
+        "reported_winding_ratio": "64/64",
+        "reference_test_orientation": "unresolved qualified mapping; pair labels alone do not authorize sign"
+      },
+      {
+        "id": "E02",
+        "listed_pair": [
+          "on-chip Hall bar",
+          "100-ohm standard"
+        ],
+        "route": "R06",
+        "reported_winding_ratio": "4130/32",
+        "reference_test_orientation": "unresolved qualified mapping; pair labels alone do not authorize sign"
+      },
+      {
+        "id": "E03",
+        "listed_pair": [
+          "Array1",
+          "100-ohm standard"
+        ],
+        "route": "R07",
+        "reported_winding_ratio": "70/64",
+        "reference_test_orientation": "unresolved qualified mapping; pair labels alone do not authorize sign"
+      },
+      {
+        "id": "E04",
+        "listed_pair": [
+          "Array2",
+          "100-ohm standard"
+        ],
+        "route": "R07",
+        "reported_winding_ratio": "70/64",
+        "reference_test_orientation": "unresolved qualified mapping; pair labels alone do not authorize sign"
+      },
+      {
+        "id": "E05",
+        "listed_pair": [
+          "on-chip Hall bar",
+          "Array1"
+        ],
+        "route": "R08",
+        "reported_winding_ratio": "3776/32",
+        "reference_test_orientation": "unresolved qualified mapping; pair labels alone do not authorize sign"
+      }
+    ],
+    "connected_graph_independent_cycle_count": 2,
+    "cycle_count_basis": "Authored graph-theory count E−V+1 = 5−4+1 = 2 independent graph cycles. Three simple closed comparison loops can be named; they are not all linearly independent and none establishes statistical independence.",
+    "derived_paths": [
+      "Hall bar↔Array1 via100-ohm",
+      "Hall bar↔Array2 via100-ohm",
+      "Array1↔Array2 via100-ohm"
+    ],
+    "not_source_observed": [
+      "No direct Hall bar↔Array2 measurement is reported",
+      "No separate-chip/laboratory validation performed",
+      "No Kibble balance operated"
+    ],
+    "simple_closed_loop_count": 3
+  },
+  "external_high_bias_edge": {
+    "subarray": "unnamed in SI4; must be qualified",
+    "reference": "separate12.9-kiloohm air-bath standard",
+    "route": "R11",
+    "reported_winding_ratio": null,
+    "actual_reference_current": null
+  },
+  "record_required": [
+    "reference device ID",
+    "test device ID",
+    "actual nominal and calibrated values",
+    "ratio orientation and units",
+    "field vector sign and magnitude",
+    "local temperature and uncertainty",
+    "each device current/power",
+    "bath/stability states",
+    "CCC winding/configuration revision",
+    "raw sample timestamps and polarity cycles",
+    "per-reading SD and derived uncertainty category",
+    "shared-reference/cycle dependencies",
+    "current custody and service job IDs"
+  ],
+  "interpretation_guards": [
+    "Cross-device agreement tests consistency under finite uncertainty, not literal proof of exact zero error",
+    "Common hardware/reference drifts create correlations; test explicit covariance",
+    "Source secondary-reference offsets are not array quantization errors",
+    "The source comparison graph is factual; a new execution must not assume all edges acquired"
+  ]
+}

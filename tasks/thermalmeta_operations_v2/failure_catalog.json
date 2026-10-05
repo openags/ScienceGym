@@ -1,0 +1,123 @@
+{
+  "failure_routes": [
+    {
+      "id": "H_SOURCE",
+      "trigger": "Identity/hold/version mismatch",
+      "disposition": "Stop review and keep source excluded"
+    },
+    {
+      "id": "H_PLAN",
+      "trigger": "Scope or repeats/controls undefined",
+      "disposition": "Hold dependent work; request owner decision"
+    },
+    {
+      "id": "H_GEOMETRY",
+      "trigger": "Units,metric/design formula,revision or fit unresolved",
+      "disposition": "Withhold physically qualified geometry; semantic proxy only"
+    },
+    {
+      "id": "H_MATERIAL",
+      "trigger": "Unverified lot or wrong grade",
+      "disposition": "Quarantine with no substitution"
+    },
+    {
+      "id": "H_FAB",
+      "trigger": "Print defect/unreleased lattice",
+      "disposition": "Closed-service diagnosis; preserve failed receipt"
+    },
+    {
+      "id": "H_CAST",
+      "trigger": "Voids,wrong core or incomplete intermediate release",
+      "disposition": "Qualified-service rework or replacement with revision"
+    },
+    {
+      "id": "H_ENCAP",
+      "trigger": "Damaged,warped or untraceable final specimen",
+      "disposition": "Quarantine; no manual trimming/repair task"
+    },
+    {
+      "id": "H_CUSTODY",
+      "trigger": "ID mismatch or lost orientation",
+      "disposition": "Stop transfer; reconcile before touching next station"
+    },
+    {
+      "id": "H_CAL",
+      "trigger": "Calibration expired,reference missing or drift failure",
+      "disposition": "Hold quantitative results; service recalibration"
+    },
+    {
+      "id": "H_MOUNT",
+      "trigger": "Wrong orientation,misfit or insecure seating",
+      "disposition": "Remain unpowered; qualified reseat or withdraw"
+    },
+    {
+      "id": "H_SERVICE",
+      "trigger": "Interlock,wet-zone or authorization failure",
+      "disposition": "Service-controlled abort; no robot entry",
+      "next_state": "P15: mandatory service-owned release assessment, regardless of measurement validity"
+    },
+    {
+      "id": "H_RUN",
+      "trigger": "Spill,overtemperature,data gap or sensor fault",
+      "disposition": "Service-controlled stop and data invalidity flag; record cause",
+      "next_state": "P15: mandatory service-owned release assessment, regardless of measurement validity"
+    },
+    {
+      "id": "H_STABILITY",
+      "trigger": "45 minutes elapsed but qualified stability absent",
+      "disposition": "No automatic success; wait/abort under approved bounded plan",
+      "next_state": "P15: mandatory service-owned release assessment, regardless of measurement validity"
+    },
+    {
+      "id": "H_MEASURE",
+      "trigger": "Bad registration,missing boundaries or corrupt array",
+      "disposition": "Retain raw data; repeat only with approved plan",
+      "next_state": "P15: mandatory service-owned release assessment, regardless of measurement validity"
+    },
+    {
+      "id": "H_RELEASE",
+      "trigger": "No zero-energy,cool/dry release",
+      "disposition": "Do not retrieve specimen",
+      "next_state": "SERVICE_CUSTODY_HOLD until documented qualified release; P20 may only record administrative incomplete status"
+    },
+    {
+      "id": "H_MATRIX",
+      "trigger": "Missing cells or repetitions mislabeled",
+      "disposition": "Incomplete paper route; reconcile identifiers"
+    },
+    {
+      "id": "H_CONTROL",
+      "trigger": "Unmatched/invalid reference denominator",
+      "disposition": "Do not compute affected empirical metric"
+    },
+    {
+      "id": "H_ANALYSIS",
+      "trigger": "Formula,unit or uncertainty issue",
+      "disposition": "Report qualitative evidence only if justified; numeric claim held"
+    },
+    {
+      "id": "H_MODEL",
+      "trigger": "Unrun/unread numerical branch",
+      "disposition": "Explicitly mark absent; no invented matrix/result"
+    },
+    {
+      "id": "H_CLOSEOUT",
+      "trigger": "Missing cleanup/custody/hash or unresolved data disposition",
+      "disposition": "Close as incomplete/aborted, not successful"
+    }
+  ],
+  "source_reported_failure_protocol": "No complete abort,repair,cleanup or statistical rejection protocol supplied",
+  "authored_closeout_requirements": [
+    "All active service jobs stopped and safely released",
+    "Each specimen disposition recorded: safe storage,service return or quarantine",
+    "Fluid,electrical and waste handling closed by qualified facility",
+    "All data stored read-only with hashes and unambiguous measured/simulated labels",
+    "Failed runs and exclusions preserved",
+    "Experimental six-cell coverage reconciled with approved repeats/controls",
+    "Optional/analytical model families marked inspected,unread,unrun or held",
+    "Public/export packet contains authored review only"
+  ],
+  "cleanup_boundary": "No new disposal action or recovery procedure authorized; facility-specific rules remain required inputs",
+  "mandatory_powered_failure_routing": "Successful intermediate stages continue P11 -> P12 -> P13 -> P14. Terminal completion after P14, requested stop, failure or abort at P11-P14 must enter the service-owned P15 release gate. No invalid dataset or early stop bypasses safe release. H_RELEASE retains service custody and blocks retrieval/reorientation.",
+  "custody_hold_closeout": "If safe release is not established, any administrative closure explicitly preserves the open service custody and hazard obligation. It is not successful episode closeout."
+}

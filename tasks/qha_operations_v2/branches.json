@@ -1,0 +1,144 @@
+{
+  "classification": "authored_whole_paper_coverage",
+  "branches": [
+    {
+      "id": "PREP",
+      "operations": [
+        "R00",
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "purpose": "preparation_and_acceptance",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "CHAR",
+      "operations": [
+        "R04"
+      ],
+      "purpose": "ordinary_characterization",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "DIRECT",
+      "operations": [
+        "R05"
+      ],
+      "purpose": "direct_Array1_Array2",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "TRANSFER_HB",
+      "operations": [
+        "R06"
+      ],
+      "purpose": "HB_REF100",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "TRANSFER_ARRAYS",
+      "operations": [
+        "R07"
+      ],
+      "purpose": "Array1_REF100_and_Array2_REF100",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "DIRECT_HB",
+      "operations": [
+        "R08"
+      ],
+      "purpose": "HB_Array1_both_field_signs",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "OFF_PLATEAU",
+      "operations": [
+        "R09"
+      ],
+      "purpose": "intentional_nonquantizing_controls",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "HIGH_BIAS",
+      "operations": [
+        "R10"
+      ],
+      "purpose": "bounded_performance_limit_exploration",
+      "optional_physical_execution": true,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "EXTERNAL",
+      "operations": [
+        "R11"
+      ],
+      "purpose": "separate_REF12K9_common_mode_check",
+      "optional_physical_execution": true,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "ANALYSIS",
+      "operations": [
+        "R12",
+        "R13"
+      ],
+      "purpose": "qualified_analysis_network_review",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    },
+    {
+      "id": "CLOSE",
+      "operations": [
+        "R14"
+      ],
+      "purpose": "safe_closeout_any_started_session",
+      "optional_physical_execution": false,
+      "initial_state": "held_qualification",
+      "planned_conditions": null,
+      "repeat_count": null,
+      "qualification": "External evidence required; no operation may execute from this package"
+    }
+  ],
+  "R09_scope": "Required whole-paper design coverage; no requirement to acquire unsafe conditions. Qualified plan may hold it and report incomplete execution.",
+  "R10_R11_scope": "Explicitly designed and held; optional acquisition never silently marked complete or required to match paper maxima.",
+  "closeout": "R14 is available after R03 from every started branch, including partial/failure paths, independently of R12/R13 success."
+}

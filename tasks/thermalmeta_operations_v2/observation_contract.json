@@ -1,0 +1,35 @@
+{
+  "required_fields": [
+    "paper/design/specimen/run identifiers",
+    "family and orientation",
+    "fixture revision and mount record",
+    "IR calibration/reference ID and emissivity mapping",
+    "camera configuration",
+    "timestamp/timebase",
+    "measured hot/cold boundary and ambient values",
+    "raw temperature array or qualified source data path/hash",
+    "coordinate transform and registered core/background masks",
+    "profile location and normalized coordinate",
+    "steady-state evidence",
+    "measurement uncertainty and invalid/masked pixel flags",
+    "control run linkage",
+    "analysis contract/version",
+    "service safe-release receipt"
+  ],
+  "observed_data_present": false,
+  "temperature_arrays_present": false,
+  "profile_source_rules": {
+    "source": "MAIN Fig.5 p7",
+    "cloak_and_concentrator": "K1/K2 and C1/C2 align with the imposed-gradient direction",
+    "rotator": "R1/R2 run transversely to the imposed-gradient direction",
+    "constraint": "Do not apply a common line-direction rule to all three families"
+  },
+  "record_layers": {
+    "source_reference": "Static, cited reported claims and parameters. Never inserted into observed data.",
+    "synthetic_fixture": "Boolean and identity test tokens; no temperature, heat-flux or physical trajectory synthesis.",
+    "qualified_observed": "External receipts, actual measured boundary/ambient values and raw data identity required; unavailable here."
+  },
+  "orientation_contract": "Store condition coordinate frame and explicit orientation transform with every run. Do not infer direction from shape symmetry. Transform profiles/masks together.",
+  "boundary_rule": "Controller reference and elapsed movie/clock time are not measured specimen boundary temperatures.",
+  "stability_rule": "A reported 45-minute interval is context only. An approved bounded drift/uncertainty contract and qualified decision are required."
+}

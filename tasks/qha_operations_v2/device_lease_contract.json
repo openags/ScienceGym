@@ -1,0 +1,39 @@
+{
+  "classification": "authored_resource_ownership_contract",
+  "initial_leases": [],
+  "resource_classes": [
+    "physical_chip",
+    "carrier_support",
+    "sample_mount",
+    "cryostat_magnet",
+    "characterization_electronics",
+    "CCC_bridge",
+    "reference_100_oil_bath",
+    "reference_12k9_air_bath"
+  ],
+  "logical_station_aliases_possible": [
+    [
+      "ST03",
+      "ST04",
+      "ST05"
+    ],
+    [
+      "ST06:oil",
+      "ST06:air"
+    ]
+  ],
+  "rule": "Leases keyed by actual physical_resource_id, never by software station name. Acquire all required resource leases atomically before a qualified service accepts a job; same owner may retain but two distinct jobs cannot simultaneously own one resource. No real lease is created by this package.",
+  "release_gate": "Terminal acknowledged jobs, independent physical safe-state and accepted receiving custody; a timeout, failed analysis or stop request does not release a lease.",
+  "unknown_mapping": "HOLD; do not assume independent resources from distinct station IDs",
+  "records_required": [
+    "lease_id",
+    "resource_id",
+    "owner_job_id",
+    "custodian_id",
+    "acquired_at",
+    "accepted_at",
+    "state_evidence_id",
+    "release_acknowledgement_id"
+  ],
+  "on_communications_loss": "Retain last accepted custody and leases. Await independent qualified state. No blind retry or autonomous unload."
+}

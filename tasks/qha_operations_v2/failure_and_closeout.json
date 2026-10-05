@@ -1,0 +1,80 @@
+{
+  "classification": "authored_closed_service_policy",
+  "failures": [
+    {
+      "id": "FL01",
+      "trigger": "Sample or region identity mismatch",
+      "response": "Block measurement; preserve supported carrier and compare release/custody records",
+      "forbidden_shortcut": "No guessing from visual resemblance"
+    },
+    {
+      "id": "FL02",
+      "trigger": "Carrier handoff uncertain",
+      "response": "Keep last accepted support/custodian and active lease; resolve occupancy/receipt",
+      "forbidden_shortcut": "No release until positive acceptance"
+    },
+    {
+      "id": "FL03",
+      "trigger": "Leakage/contact/continuity or calibration fails",
+      "response": "Quarantine affected configuration; retain diagnostics; provider decides approved repair/requalification",
+      "forbidden_shortcut": "No live cable reseating or automatic current increase"
+    },
+    {
+      "id": "FL04",
+      "trigger": "Thermal, pressure/vacuum, oxygen, quench or field alarm",
+      "response": "Provider executes its independently approved emergency plan; robot stays outside exclusion boundary",
+      "forbidden_shortcut": "No invented magnet ramp, venting, cryogen transfer or chamber-opening response"
+    },
+    {
+      "id": "FL05",
+      "trigger": "Current/power/heating or noise anomaly",
+      "response": "Request approved service stop; preserve partial evidence; provider validates isolation and state",
+      "forbidden_shortcut": "No attempt to force paper-level signal by increasing current or averaging indefinitely"
+    },
+    {
+      "id": "FL06",
+      "trigger": "Lost communications or timed-out job",
+      "response": "Maintain lease and pending closeout; obtain independent provider state and containment status",
+      "forbidden_shortcut": "Timeout is neither stop confirmation nor safe-to-handle proof"
+    },
+    {
+      "id": "FL07",
+      "trigger": "Insufficient/irregular/noisy measurement sequence",
+      "response": "Flag incomplete set and preserve raw timestamps; evaluate only with qualified method or hold",
+      "forbidden_shortcut": "No padding readings, zero fill, arbitrary exclusion or fake independent repeats"
+    },
+    {
+      "id": "FL08",
+      "trigger": "Conflicting comparison signs/covariances or Eq 3/Eq 4 ambiguity",
+      "response": "Hold dependent statistics and interpretation while preserving raw data and source conflicts",
+      "forbidden_shortcut": "No silent equation repair or forced loop closure"
+    },
+    {
+      "id": "FL09",
+      "trigger": "Scientific disagreement without physical fault",
+      "response": "Report magnitude/uncertainty and hypotheses; separately decide whether qualified follow-up is warranted",
+      "forbidden_shortcut": "Scientific failure is a valid observation, not reward-driven equipment escalation"
+    },
+    {
+      "id": "FL10",
+      "trigger": "Unsafe or incomplete closeout",
+      "response": "Provider retains supported custody; record unresolved energy/temperature/pressure/field/motion evidence; quarantine as qualified",
+      "forbidden_shortcut": "No automatic robot unloading and no lease release merely because analysis is finished"
+    }
+  ],
+  "required_independent_closeout_observations": [
+    "Electrical sources isolated and connector-access state accepted by provider",
+    "Accessible magnetic field state and exclusion-zone release accepted by provider; no assumption magnet power-off means field absent",
+    "Sample/carrier temperature and pressure/vacuum accessibility accepted by provider",
+    "Mechanisms stopped/supported and active motion jobs reconciled",
+    "Receiving carrier supported, identity/occupancy verified, recipient acceptance recorded"
+  ],
+  "final_receipt": [
+    "all jobs terminal or explicitly retained in supported service hold",
+    "per-branch complete/partial/failed/held/unattempted labels",
+    "raw/derived evidence and unresolved claims archived",
+    "sample post-condition and storage/quarantine accepted",
+    "custodian and station lease closure acknowledged"
+  ],
+  "boundary": "These are evidence requirements, not an emergency operating procedure. Qualification, observation channels, tolerances and actual emergency actions remain external SOP inputs."
+}

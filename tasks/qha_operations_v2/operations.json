@@ -1,0 +1,868 @@
+{
+  "schema_version": "sciencegym.qha.operations.v2",
+  "task_id": "graphene_quantum_hall_arrays",
+  "operations": [
+    {
+      "id": "R00",
+      "action": "Approve the scientific and safety contract",
+      "depends_on": [],
+      "stations": [
+        "ST07"
+      ],
+      "unresolved_inputs": [
+        "U01",
+        "U02",
+        "U15",
+        "U16"
+      ],
+      "required_evidence": [
+        "approved_scope",
+        "qualified_service_contract",
+        "analysis_decisions"
+      ],
+      "guards": [
+        "All safety-critical unknowns resolved before physical work; source outcomes excluded from action rewards"
+      ],
+      "failure_closeout": "No physical action; unresolved branches remain held",
+      "name": "Approve the scientific and safety contract",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "read_only_evidence_review",
+      "branch_ids": [
+        "PREP"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS09"
+      ],
+      "anchor_ids": [
+        "AS09.scope_approval",
+        "AS09.raw_evidence",
+        "AS09.analysis_qualification",
+        "AS09.comparison_network"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R01",
+      "action": "Receive qualified material and preparation evidence",
+      "depends_on": [
+        "R00"
+      ],
+      "stations": [
+        "ST01",
+        "ST02"
+      ],
+      "unresolved_inputs": [
+        "U03",
+        "U19"
+      ],
+      "required_evidence": [
+        "supplier_lot",
+        "die_id",
+        "process_receipt",
+        "encapsulation_condition",
+        "release_record"
+      ],
+      "guards": [
+        "Preparation is not skipped: require full service receipt, measured dimensions/condition and sample identity"
+      ],
+      "failure_closeout": "Quarantine ambiguous, damaged, unqualified or unmatched carrier; no attempt to repair chemically",
+      "name": "Receive qualified material and preparation evidence",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "read_only_evidence_review",
+      "branch_ids": [
+        "PREP"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS01",
+        "AS04"
+      ],
+      "anchor_ids": [
+        "AS01.carrier_identity",
+        "AS01.intake_support",
+        "AS01.custody_receipt",
+        "AS04.preparation_receipt",
+        "AS04.provider_custody_port"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R02",
+      "action": "Register protected custody and pre-test condition",
+      "depends_on": [
+        "R01"
+      ],
+      "stations": [
+        "ST01"
+      ],
+      "unresolved_inputs": [
+        "U02",
+        "U18",
+        "U19"
+      ],
+      "required_evidence": [
+        "carrier_id",
+        "sample_id",
+        "condition_observation",
+        "orientation_datum",
+        "storage_record"
+      ],
+      "guards": [
+        "Carrier supported before releasing previous holder; receiving occupancy and identity accepted"
+      ],
+      "failure_closeout": "Keep last accepted holder; do not drop, place bare die on generic surface or claim transfer completed from a command",
+      "name": "Register protected custody and pre-test condition",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "read_only_evidence_review",
+      "branch_ids": [
+        "PREP"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS01",
+        "AS02",
+        "AS11"
+      ],
+      "anchor_ids": [
+        "AS01.carrier_identity",
+        "AS01.intake_support",
+        "AS01.custody_receipt",
+        "AS02.chip_identity",
+        "AS02.array1_region",
+        "AS02.array2_region",
+        "AS02.hall_bar_region",
+        "AS11.carrier_grasp_datum",
+        "AS11.transport_envelope",
+        "AS11.robot_base_datum"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R03",
+      "action": "Hand over and qualify the closed measurement configuration",
+      "depends_on": [
+        "R02"
+      ],
+      "stations": [
+        "ST03",
+        "ST04",
+        "ST05",
+        "ST06"
+      ],
+      "unresolved_inputs": [
+        "U04",
+        "U05",
+        "U06",
+        "U13",
+        "U15"
+      ],
+      "required_evidence": [
+        "accepted_handoff",
+        "mount_id",
+        "terminal_map_revision",
+        "calibration_receipts",
+        "leakage_check",
+        "approved_envelope"
+      ],
+      "guards": [
+        "Named provider accepts sample custody; verify independent interlock/status evidence; no robot enters magnet zone"
+      ],
+      "failure_closeout": "Freeze dependent requests; service owns safe containment and support; preserve lease until acknowledged",
+      "name": "Hand over and qualify the closed measurement configuration",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "read_only_evidence_review",
+      "branch_ids": [
+        "PREP"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS05",
+        "AS11"
+      ],
+      "anchor_ids": [
+        "AS05.service_boundary",
+        "AS05.handoff_port",
+        "AS05.independent_safe_state",
+        "AS11.carrier_grasp_datum",
+        "AS11.transport_envelope",
+        "AS11.robot_base_datum"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R04",
+      "action": "Request initial Hall-bar and subarray characterization",
+      "depends_on": [
+        "R03"
+      ],
+      "stations": [
+        "ST03",
+        "ST04"
+      ],
+      "unresolved_inputs": [
+        "U05",
+        "U08",
+        "U16"
+      ],
+      "required_evidence": [
+        "HB_Rxx_Rxy_series",
+        "contact_check",
+        "subarray_transition_series",
+        "voltmeter_offset",
+        "noise_floor"
+      ],
+      "guards": [
+        "Cover MAIN Fig 3 and SI S1 as distinct paths; flag apparent plateau versus precision quantization; no per-element carrier values inferred"
+      ],
+      "failure_closeout": "Preserve failed characterization and block precision interpretation; qualified provider decides disposition",
+      "name": "Request initial Hall-bar and subarray characterization",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "closed_service_evidence_request",
+      "branch_ids": [
+        "CHAR"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS02",
+        "AS03",
+        "AS05",
+        "AS06"
+      ],
+      "anchor_ids": [
+        "AS02.chip_identity",
+        "AS02.array1_region",
+        "AS02.array2_region",
+        "AS02.hall_bar_region",
+        "AS03.subarray_topology",
+        "AS03.whole_device_topology",
+        "AS03.source_dimension_key",
+        "AS05.service_boundary",
+        "AS05.handoff_port",
+        "AS05.independent_safe_state",
+        "AS06.characterization_receipt",
+        "AS06.ccc_comparison_receipt",
+        "AS06.shared_instrument_lease"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R05",
+      "action": "Request direct subarray precision comparisons",
+      "depends_on": [
+        "R04"
+      ],
+      "stations": [
+        "ST03",
+        "ST05"
+      ],
+      "unresolved_inputs": [
+        "U06",
+        "U07",
+        "U08"
+      ],
+      "required_evidence": [
+        "A1_A2_ratio_series",
+        "cycle_timestamps",
+        "per_reading_SD",
+        "field_temperature_logs"
+      ],
+      "guards": [
+        "Reference/test identities and winding mapping explicit; current reversal is a provider-owned method; count readings without inventing chip replicates"
+      ],
+      "failure_closeout": "Stop only by approved service action; retain partial/time-gap/fault evidence and no automatic restart",
+      "name": "Request direct subarray precision comparisons",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "closed_service_evidence_request",
+      "branch_ids": [
+        "DIRECT"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS02",
+        "AS03",
+        "AS05",
+        "AS06"
+      ],
+      "anchor_ids": [
+        "AS02.chip_identity",
+        "AS02.array1_region",
+        "AS02.array2_region",
+        "AS02.hall_bar_region",
+        "AS03.subarray_topology",
+        "AS03.whole_device_topology",
+        "AS03.source_dimension_key",
+        "AS05.service_boundary",
+        "AS05.handoff_port",
+        "AS05.independent_safe_state",
+        "AS06.characterization_receipt",
+        "AS06.ccc_comparison_receipt",
+        "AS06.shared_instrument_lease"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R06",
+      "action": "Request Hall-bar versus 100-ohm transfer comparison",
+      "depends_on": [
+        "R04"
+      ],
+      "stations": [
+        "ST03",
+        "ST05",
+        "ST06"
+      ],
+      "unresolved_inputs": [
+        "U06",
+        "U07",
+        "U13"
+      ],
+      "required_evidence": [
+        "HB_100_ratio_series",
+        "reference_state",
+        "bath_stability",
+        "per_device_current"
+      ],
+      "guards": [
+        "100-ohm standard heating/current limit independently qualified; source 3 mA is reference context, not safety permission"
+      ],
+      "failure_closeout": "Hold reference-chain inference if reference drift, identity or stability is unacceptable",
+      "name": "Request Hall-bar versus 100-ohm transfer comparison",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "closed_service_evidence_request",
+      "branch_ids": [
+        "TRANSFER_HB"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS06",
+        "AS07"
+      ],
+      "anchor_ids": [
+        "AS06.characterization_receipt",
+        "AS06.ccc_comparison_receipt",
+        "AS06.shared_instrument_lease",
+        "AS07.reference_100_identity",
+        "AS07.oil_bath_state"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R07",
+      "action": "Request both subarray versus 100-ohm comparisons",
+      "depends_on": [
+        "R05",
+        "R06"
+      ],
+      "stations": [
+        "ST03",
+        "ST05",
+        "ST06"
+      ],
+      "unresolved_inputs": [
+        "U06",
+        "U07",
+        "U13"
+      ],
+      "required_evidence": [
+        "A1_100_ratio_series",
+        "A2_100_ratio_series",
+        "shared_reference_covariance_inputs"
+      ],
+      "guards": [
+        "Maintain two directed edges, common reference ID and time interval; do not treat as independent references"
+      ],
+      "failure_closeout": "Partial completion remains per-edge; do not substitute one array result for the other",
+      "name": "Request both subarray versus 100-ohm comparisons",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "closed_service_evidence_request",
+      "branch_ids": [
+        "TRANSFER_ARRAYS"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS06",
+        "AS07"
+      ],
+      "anchor_ids": [
+        "AS06.characterization_receipt",
+        "AS06.ccc_comparison_receipt",
+        "AS06.shared_instrument_lease",
+        "AS07.reference_100_identity",
+        "AS07.oil_bath_state"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R08",
+      "action": "Request direct Hall-bar versusArray1 checks",
+      "depends_on": [
+        "R05"
+      ],
+      "stations": [
+        "ST03",
+        "ST05"
+      ],
+      "unresolved_inputs": [
+        "U06",
+        "U07",
+        "U08"
+      ],
+      "required_evidence": [
+        "HB_A1_ratio_series",
+        "field_sign",
+        "field_magnitude",
+        "current_by_device"
+      ],
+      "guards": [
+        "Source includes both field signs and three magnitudes; hold exact cycle plan; no source direct HB_Array2 edge invented"
+      ],
+      "failure_closeout": "Reject ambiguous sign/polarity mapping; keep all acquired results and service state",
+      "name": "Request direct Hall-bar versusArray1 checks",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "closed_service_evidence_request",
+      "branch_ids": [
+        "DIRECT_HB"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS02",
+        "AS05",
+        "AS06"
+      ],
+      "anchor_ids": [
+        "AS02.chip_identity",
+        "AS02.array1_region",
+        "AS02.array2_region",
+        "AS02.hall_bar_region",
+        "AS05.service_boundary",
+        "AS05.handoff_port",
+        "AS05.independent_safe_state",
+        "AS06.characterization_receipt",
+        "AS06.ccc_comparison_receipt",
+        "AS06.shared_instrument_lease"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R09",
+      "action": "Request nonquantizing comparison controls",
+      "depends_on": [
+        "R05",
+        "R07"
+      ],
+      "stations": [
+        "ST03",
+        "ST05",
+        "ST06"
+      ],
+      "unresolved_inputs": [
+        "U05",
+        "U06",
+        "U08",
+        "U16"
+      ],
+      "required_evidence": [
+        "off_plateau_A1_A2",
+        "off_plateau_A1_100",
+        "off_plateau_A2_100"
+      ],
+      "guards": [
+        "This is an intentionally failing quantization condition, not equipment failure; qualified envelope still required; retain precision versus crude-plateau distinction"
+      ],
+      "failure_closeout": "An unexpected physical state is handled by provider; scientific lack of quantization alone never triggers unbounded control escalation",
+      "name": "Request nonquantizing comparison controls",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "closed_service_evidence_request",
+      "branch_ids": [
+        "OFF_PLATEAU"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS05",
+        "AS06",
+        "AS07"
+      ],
+      "anchor_ids": [
+        "AS05.service_boundary",
+        "AS05.handoff_port",
+        "AS05.independent_safe_state",
+        "AS06.characterization_receipt",
+        "AS06.ccc_comparison_receipt",
+        "AS06.shared_instrument_lease",
+        "AS07.reference_100_identity",
+        "AS07.oil_bath_state"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R10",
+      "action": "Request bounded high-bias exploration",
+      "depends_on": [
+        "R05",
+        "R08"
+      ],
+      "stations": [
+        "ST03",
+        "ST05"
+      ],
+      "unresolved_inputs": [
+        "U06",
+        "U07",
+        "U08",
+        "U15"
+      ],
+      "required_evidence": [
+        "short_screen_series",
+        "long_record_series",
+        "field_dependent_bias_check"
+      ],
+      "guards": [
+        "Separate 5–10-reading screen SD from long-record Allan SEM; high-current branch optional and held without approved performance-limit test contract"
+      ],
+      "failure_closeout": "Abort/request containment per service policy at abnormal heating/current/contact/noise state; no autonomous attempt to reproduce paper maximum",
+      "name": "Request bounded high-bias exploration",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "closed_service_evidence_request",
+      "branch_ids": [
+        "HIGH_BIAS"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS05",
+        "AS06"
+      ],
+      "anchor_ids": [
+        "AS05.service_boundary",
+        "AS05.handoff_port",
+        "AS05.independent_safe_state",
+        "AS06.characterization_receipt",
+        "AS06.ccc_comparison_receipt",
+        "AS06.shared_instrument_lease"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R11",
+      "action": "Request the external high-bias common-mode check",
+      "depends_on": [
+        "R10"
+      ],
+      "stations": [
+        "ST03",
+        "ST05",
+        "ST06"
+      ],
+      "unresolved_inputs": [
+        "U13",
+        "U14",
+        "U16"
+      ],
+      "required_evidence": [
+        "identified_subarray_12k9_series",
+        "reference_current_power",
+        "air_bath_state",
+        "actual_temperature"
+      ],
+      "guards": [
+        "Resolve SI 4 unknown array and 2-versus 2.1 K; distinguish subarray current from reference current; outcome bounds change only at its uncertainty"
+      ],
+      "failure_closeout": "If reference or identities are unqualified, mark this branch unattempted/held and limit common-mode conclusions",
+      "name": "Request the external high-bias common-mode check",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "closed_service_evidence_request",
+      "branch_ids": [
+        "EXTERNAL"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS05",
+        "AS06",
+        "AS08"
+      ],
+      "anchor_ids": [
+        "AS05.service_boundary",
+        "AS05.handoff_port",
+        "AS05.independent_safe_state",
+        "AS06.characterization_receipt",
+        "AS06.ccc_comparison_receipt",
+        "AS06.shared_instrument_lease",
+        "AS08.reference_12k9_identity",
+        "AS08.air_bath_state"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R12",
+      "action": "Validate each measurement bundle and approved analysis",
+      "depends_on": [
+        "R05",
+        "R06",
+        "R07",
+        "R08"
+      ],
+      "stations": [
+        "ST07"
+      ],
+      "unresolved_inputs": [
+        "U10",
+        "U11",
+        "U12",
+        "U17"
+      ],
+      "required_evidence": [
+        "qualified_algorithm_revision",
+        "ratio_direction",
+        "weighted_summaries",
+        "Allan_checks",
+        "uncertainty_budget",
+        "exclusion_log"
+      ],
+      "guards": [
+        "No printed Eq 3/Eq 4 execution until semantics resolved; no plot-digitized raw evidence; dependent optional branches analyzed only if actually acquired"
+      ],
+      "failure_closeout": "Freeze derived claims for missing units/timestamps/reference; retain source and new-observation categories separately",
+      "name": "Validate each measurement bundle and approved analysis",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "read_only_evidence_review",
+      "branch_ids": [
+        "ANALYSIS"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS09"
+      ],
+      "anchor_ids": [
+        "AS09.scope_approval",
+        "AS09.raw_evidence",
+        "AS09.analysis_qualification",
+        "AS09.comparison_network"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R13",
+      "action": "Evaluate the comparison network and coverage",
+      "depends_on": [
+        "R12"
+      ],
+      "stations": [
+        "ST07"
+      ],
+      "unresolved_inputs": [
+        "U09",
+        "U12",
+        "U16",
+        "U17"
+      ],
+      "required_evidence": [
+        "direct_edge_register",
+        "derived_path_register",
+        "covariance_aware_closure",
+        "comparison_limitations",
+        "branch_coverage"
+      ],
+      "guards": [
+        "Five direct edge types and four connected nodes give three simple closed loops but only two independent graph cycles. Shared-reference relations do not establish statistically independent measurements or independent sample replication; do not claim exact absolute quantization from agreement alone."
+      ],
+      "failure_closeout": "Report disagreement and uncertainties without forcing zero or paper-matching results; unresolved/source-bug analysis stays held",
+      "name": "Evaluate the comparison network and coverage",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "read_only_evidence_review",
+      "branch_ids": [
+        "ANALYSIS"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS03",
+        "AS09"
+      ],
+      "anchor_ids": [
+        "AS03.subarray_topology",
+        "AS03.whole_device_topology",
+        "AS03.source_dimension_key",
+        "AS09.scope_approval",
+        "AS09.raw_evidence",
+        "AS09.analysis_qualification",
+        "AS09.comparison_network"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    },
+    {
+      "id": "R14",
+      "action": "Close the service session and return custody",
+      "depends_on": [
+        "R03"
+      ],
+      "stations": [
+        "ST03",
+        "ST08",
+        "ST01"
+      ],
+      "unresolved_inputs": [
+        "U02",
+        "U15",
+        "U19"
+      ],
+      "required_evidence": [
+        "safe_state_receipt",
+        "supported_handoff",
+        "post_test_condition",
+        "storage_acceptance",
+        "final_run_status"
+      ],
+      "guards": [
+        "Join every started service branch and pending job; require independently observed electrical-safe, accessible field-safe, warm/pressure-safe, motion-safe and support-safe state according to provider SOP; close leases only after acknowledged final custody"
+      ],
+      "failure_closeout": "Maintain supported hold/quarantine and provider custody while any safety state or receiver acceptance is unverified",
+      "name": "Close the service session and return custody",
+      "origin": "authored_robot_contract_derived_from_accepted_route",
+      "kind": "read_only_evidence_review",
+      "branch_ids": [
+        "CLOSE"
+      ],
+      "physical_execution_enabled": false,
+      "action_interface": {
+        "allowed_keys": [
+          "operation_id",
+          "evidence_ids"
+        ],
+        "numeric_or_hardware_arguments_allowed": false
+      },
+      "asset_ids": [
+        "AS01",
+        "AS05",
+        "AS10",
+        "AS11"
+      ],
+      "anchor_ids": [
+        "AS01.carrier_identity",
+        "AS01.intake_support",
+        "AS01.custody_receipt",
+        "AS05.service_boundary",
+        "AS05.handoff_port",
+        "AS05.independent_safe_state",
+        "AS10.return_support",
+        "AS10.quarantine_custody",
+        "AS10.receiver_acceptance",
+        "AS11.carrier_grasp_datum",
+        "AS11.transport_envelope",
+        "AS11.robot_base_datum"
+      ],
+      "receipt_authentication": "not_implemented; finite synthetic metadata tests only",
+      "completion": "Design/evidence-schema coverage only. No physical step is completed by validation."
+    }
+  ]
+}

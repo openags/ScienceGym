@@ -1,0 +1,176 @@
+{
+  "one_paper_count_unit": true,
+  "families": [
+    {
+      "id": "B01",
+      "evidence_class": "source-reported experiment",
+      "coverage": "CLOAK \u00d7 Y/X; K1/K2 profiles",
+      "source": "MAIN Figs.4-5; Movie1",
+      "proposal_handling": "Required two orientation records on tracked specimen(s)"
+    },
+    {
+      "id": "B02",
+      "evidence_class": "source-reported experiment",
+      "coverage": "ROTATOR45 \u00d7 Y/X; R1/R2 profiles",
+      "source": "MAIN Figs.4-5; Movie2",
+      "proposal_handling": "Required two orientation records; distinguish signed angle from absolute orientation"
+    },
+    {
+      "id": "B03",
+      "evidence_class": "source-reported experiment",
+      "coverage": "CONCENTRATOR18 \u00d7 Y/X; C1/C2 profiles",
+      "source": "MAIN Figs.4-5; Movie3",
+      "proposal_handling": "Required two orientation records; core and background separately registered"
+    },
+    {
+      "id": "B04",
+      "evidence_class": "source-reported experimental media",
+      "coverage": "Transient progress then reported 45-minute steady state for each reference device",
+      "source": "Movies1-3 and SI Note9",
+      "proposal_handling": "Continuous acquisition/release proposal; movie samples are qualitative, not raw timing evidence"
+    },
+    {
+      "id": "B05",
+      "evidence_class": "source-reported numerical family",
+      "coverage": "Cloak feature-size sweep and constituent-material sweep",
+      "source": "MAIN Fig.2F/G",
+      "proposal_handling": "Ingest qualified result receipts only; coarsest feature label held by C03"
+    },
+    {
+      "id": "B06",
+      "evidence_class": "source-reported numerical family",
+      "coverage": "Rotation targets 22.5,45,67.5 degrees in X/Y",
+      "source": "MAIN Fig.3B-D",
+      "proposal_handling": "Track as model comparisons, never three physical rotator experiments"
+    },
+    {
+      "id": "B07",
+      "evidence_class": "source-reported numerical family",
+      "coverage": "Concentration targets1.5,1.7,1.8 in X/Y",
+      "source": "MAIN Fig.3F-H",
+      "proposal_handling": "Track as model comparisons; only reference physical route above"
+    },
+    {
+      "id": "B08",
+      "evidence_class": "source-reported numerical family",
+      "coverage": "Cloaked and bare cases with air,PDMS,steel,aluminum cores under Y",
+      "source": "SI Note8.1, Fig.6",
+      "proposal_handling": "Keep core provenance; no unsupported X-direction sweep"
+    },
+    {
+      "id": "B09",
+      "evidence_class": "source-reported numerical family",
+      "coverage": "Relative feature sizes0.5,1,2,4 for45-degree rotator and1.8 concentrator in X/Y",
+      "source": "SI Fig.7",
+      "proposal_handling": "No physical extension implied; no monotonic predicate"
+    },
+    {
+      "id": "B10",
+      "evidence_class": "source-reported design dependencies",
+      "coverage": "Transformation, feasible projection, volume-equivalent conversion, mapping and validation",
+      "source": "SI Notes1-7",
+      "proposal_handling": "Complete dependency register, no simulation execution or hidden solver implementation"
+    },
+    {
+      "id": "B11",
+      "evidence_class": "authored proposed controls",
+      "coverage": "Matched homogeneous and bare-inclusion controls; calibration/reference checks",
+      "source": "Authored, motivated by SI Note7 reference definitions",
+      "proposal_handling": "Separate control specimen IDs and empirical evidence required; not claimed source experiments"
+    },
+    {
+      "id": "B12",
+      "evidence_class": "authored reliability/closeout",
+      "coverage": "Independent specimen/reseat repeats, failed-run handling, data/custody archive",
+      "source": "Authored",
+      "proposal_handling": "Counts and tolerances must be approved before any execution"
+    }
+  ],
+  "counting_rule": "Branches, controls, parameter sweeps and stages are not additional paper conversions; this packet adds zero.",
+  "child_branches": [
+    {
+      "id": "B05_FEATURE",
+      "parent": "B05",
+      "source": "MAIN Fig2F/G",
+      "scope": "Cloak relative feature-size comparison",
+      "status": "numerical_source_evidence_only; coarsest3.0/2.5 pairing held"
+    },
+    {
+      "id": "B05_MATERIAL",
+      "parent": "B05",
+      "source": "MAIN Fig2F/G",
+      "scope": "Copper,aluminum,cast iron,steel,titanium comparison",
+      "status": "numerical_source_evidence_only"
+    },
+    {
+      "id": "B09_ROTATOR",
+      "parent": "B09",
+      "source": "SI Fig7B",
+      "scope": "45-degree rotator relative feature sizes0.5,1,2,4 in X/Y",
+      "status": "numerical_source_evidence_only"
+    },
+    {
+      "id": "B09_CONCENTRATOR",
+      "parent": "B09",
+      "source": "SI Fig7C",
+      "scope": "1.8 concentrator relative feature sizes0.5,1,2,4 in X/Y",
+      "status": "numerical_source_evidence_only"
+    },
+    {
+      "id": "B10_THERMOTICS",
+      "parent": "B10",
+      "source": "SI Notes1-2",
+      "scope": "Three transformation families and domain definitions; rotator inverse and homothetic concentrator-core assumption",
+      "status": "analytical_and_numerical_dependency_not_implemented"
+    },
+    {
+      "id": "B10_LAMINATE",
+      "parent": "B10",
+      "source": "SI Notes3.1-3.2,Figs1-2",
+      "scope": "Forward/inverse laminate relations,feasible property region and projection",
+      "status": "analytical_dependency_not_implemented"
+    },
+    {
+      "id": "B10_CONVERSION",
+      "parent": "B10",
+      "source": "SI Note3.3,Fig3",
+      "scope": "Single-scale conversion,Type2 cloak/rotator vs Type1 concentrator,error normalized by conductor conductivity",
+      "status": "analytical_and_numerical_dependency_not_implemented"
+    },
+    {
+      "id": "B10_CIRCULAR",
+      "parent": "B10",
+      "source": "SI Note4",
+      "scope": "Exact mapping for circular cloak/concentrator,not extra physical specimens",
+      "status": "analytical_dependency_not_implemented"
+    },
+    {
+      "id": "B10_MAPPING",
+      "parent": "B10",
+      "source": "SI Note5.1-5.2,Fig4",
+      "scope": "Arbitrary-domain least-squares mapping,cut domain,jump constraints and phase matching",
+      "status": "numerical_dependency_not_implemented; C02,C08 held"
+    },
+    {
+      "id": "B10_UNION",
+      "parent": "B10",
+      "source": "SI Note5.3,Fig5",
+      "scope": "Level-set combination of the two laminate families",
+      "status": "design_dependency_not_implemented"
+    },
+    {
+      "id": "B10_HEAT",
+      "parent": "B10",
+      "source": "SI Note6; MAIN Figs2D/E,3C/D/G/H",
+      "scope": "Separate FEM post-evaluation of reference X/Y fields",
+      "status": "numerical_source_evidence_only; no solver run"
+    },
+    {
+      "id": "B10_METRICS",
+      "parent": "B10",
+      "source": "SI Note7",
+      "scope": "RTD,RAD,RGD definitions,reference denominators and source conflicts",
+      "status": "analysis_contract_held; no metric computation"
+    }
+  ]
+}

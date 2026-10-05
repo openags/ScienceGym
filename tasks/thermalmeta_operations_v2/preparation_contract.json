@@ -1,0 +1,38 @@
+{
+  "closed_service_only": true,
+  "per_specimen_chain": [
+    "qualified design revision",
+    "material/tooling acceptance",
+    "metal lattice receipt",
+    "PDMS-filled intermediate receipt",
+    "background-encapsulated specimen receipt",
+    "safe release and incoming inspection"
+  ],
+  "required_identity_per_node": [
+    "paper_id",
+    "sample_family_id",
+    "design_id",
+    "design_revision",
+    "service_job_id",
+    "object_id",
+    "parent_ids",
+    "material_lot_ids",
+    "receipt_id",
+    "issuer_role",
+    "validity",
+    "content_hash"
+  ],
+  "cross_family_substitution_allowed": false,
+  "shared_lot_policy": "One material lot may have many explicitly linked children, but a common supplier/job/process never substitutes for object-specific design, lattice, intermediate and final specimen parentage.",
+  "rework": "Preserve original failed object and all run references. New revision or replacement records superseded_by and derives_from. Do not rewrite original history.",
+  "prohibited_controls": [
+    "metal-powder handling",
+    "laser parameters",
+    "casting recipes",
+    "degassing/vacuum settings",
+    "cure settings",
+    "blade operation",
+    "thermal actuation",
+    "fluid handling"
+  ]
+}

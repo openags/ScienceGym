@@ -1,0 +1,3 @@
+# Export boundary
+
+Only authored task-design text, structured original annotations, finite synthetic metadata tests, review findings and exact pairing metadata may be exported. No publisher PDFs, images, source pages, extracted full source text, raw measurements, original CAD/code, secrets, signed URLs, runtime sessions, caches or hardware endpoint may appear. The task ZIP contains no external scene bytes: it references the separately accepted scene archive by hash. EXPORT_ALLOWLIST.json lists exact permitted members and byte hashes. The manifest does not hash itself. Final ZIP hashes live outside both ZIPs.

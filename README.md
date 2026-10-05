@@ -6,11 +6,59 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Release contents: 37 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (40 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
+**Release contents: 39 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (42 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
-## Inspect all 40 task families
+## Inspect all 42 task families
+
+The explorer contains **39 paper-level designs + 3 bounded subsets (42 families)**, **958 inspection records** and **3,237 operation definitions**. [Graphene quantum Hall arrays](viewer/task_explorer_v1/docs/qha.md) and [thermal meta-devices](viewer/task_explorer_v1/docs/thermalmeta.md) each add one paper-level design. Metadata cleanup changes no scientific scope or design count. There are **zero validated runnable whole-paper tasks**.
+
+### Graphene quantum Hall arrays
+
+The [QHA task](tasks/qha_operations_v2/README.md) and [original static assets](assets/qha_scene_assets_v1/README.md) contain **53 and 49 exact archive members**. All **40 task JSON and 28 asset JSON documents** are losslessly inspectable, including sanitation and review records. Fifteen authored stages, eleven coverage branches, five reference views and a separate default qualification hold retain **29 source facts, 18 ambiguities, 14 reported outcomes, 14 controls and 20 unresolved-input groups**. Eleven scene groups and 32 anchors retain reciprocal **41-file task and 30-file asset cores**, exact shared binding bytes and archive pins.
+
+Each **118-element parallel subarray is approximately 109 ohm**; the **236-element whole series device is approximately 219 ohm**. These identities stay distinct from the Hall bar and external references. Source inconsistencies, disputed equations and comparison-loop algebra remain held. Five design edges never prove five acquired comparisons; empty, failed and partial acquisition remain possible. Source outcomes are reference facts, never generated measurements, actor rewards or success thresholds. R14 joins every actually started service job after R03, even if analysis fails. Microfabrication, cryogenics, magnetic fields, electrical work and precision instruments stay closed qualified services.
+
+The native metadata-clean revision preserves all 41 task-core files, scientific bindings, geometry semantics, GLB and original PNG pixels. All **6,055 native fixed character buffers** were inspected, including bytes after NUL; complete UI/path buffers were sanitized. This is export hygiene, not new scene geometry, physical qualification or scientific work. The retained internal package identifiers do not imply use of an earlier archive.
+
+### Thermal meta-devices
+
+The [thermal task](tasks/thermalmeta_operations_v2/README.md) and [original static assets](assets/thermalmeta_scene_assets_v1/README.md) contain **43 and 50 exact archive members**. All **29 task JSON and 27 asset JSON documents** remain lossless. Twenty authored stages retain twelve parent coverage families, twelve child scopes, six static condition views, five reference views and separate default/service-custody holds. **Three physical reference device families** (cloak, 45-degree rotator, 1.8 concentrator) retain X/Y conditions. Six cells and views are not six independent specimens. Ten original scene groups and 25 anchors bind all stages; exact reciprocal seals validate **41 task-content files and 48 asset-content files**.
+
+All **15 source facts, nine ambiguities, thirteen unknown groups, six authored control proposals and six symbolic loops** remain explicit. Numerical and analytical branches are unexecuted; proposed controls do not become reported source experiments. The metric norm/squared-ratio discrepancy, residual-index conflict, feature-label inconsistency and physical-unit/absolute-flux gaps remain held. The source method includes numerical iterations. No optimizer, thermal solver or metric computation is implemented. Profile-number-to-X/Y mapping remains an authored visual selector; reported profile-direction relations retain their own provenance.
+
+Preparation requires family/specimen-specific design, lattice, intermediate and final-specimen lineage. Every powered failure at P11–P14 leads to P15 release review; uncertain release keeps service custody. Administrative closure, a stop request, successful capture or the reported 45-minute interval never permits retrieval. Reported temperature context is not a command. Fabrication, casting, thermal, wet and electrical work remain closed qualified services. All **21,306 native fixed character buffers**, including post-NUL padding, passed strict sanitation review with zero residue tails and unchanged scene semantics/preview pixels.
+
+### Shared scope and preservation
+
+Source facts, authored requirements, finite synthetic tests and illustrative geometry remain separate. Neither family supplies hardware control, qualified motion, physical/electrical/thermal simulation, new scientific measurements or scientific reproduction. Nominal geometry and static anchors never qualify contact, grasps, clearances or operating limits. Repeat plans, specimen counts and physical interfaces stay unresolved until qualified evidence exists.
+
+QHA upstream review covered nine main and four SI pages with full page-image inspection; raw data, source code, CAD and optional peer review remain unread. Thermal upstream review covered ten main and twelve SI pages, five main and seven SI figures, nine SI notes, and six sampled frames per movie across three decoded movies. Movies were not continuously reviewed or calibrated to raw acquisition time. The Zenodo README was read; matrices, source code, experimental raw data and optional peer review remain unread. This integration did not reread publications, compute results or resolve scientific discrepancies. Bounded publication-update checks are not exhaustive.
+
+All **40 prior task packages**, earlier assets, both embodied storyboards, scene bindings, original LICENSE and **160 prior generated family artifacts** remain byte-identical to the preceding public baseline. Portable export embeds **364 exact task/asset JSON documents, nine guides and 27 original PNGs** across nine recent families. ZIPs, publisher originals, source arrays/code/CAD, backups, private audit extracts and build logs are outside the Git delta. Archive and per-file hashes establish identity; the repository commit establishes publication status. Frozen authoring/review fields retain their snapshot meaning. See [verification](viewer/task_explorer_v1/VERIFICATION.md).
+
+[![Original quantum Hall array laboratory illustration with closed services and distinct electrical identities](assets/qha_scene_assets_v1/previews/preview_01_overview.png)](assets/qha_scene_assets_v1/previews/preview_01_overview.png)
+
+[QHA Blender](assets/qha_scene_assets_v1/geometry/qha_lab.blend?raw=true) · [QHA GLB](assets/qha_scene_assets_v1/geometry/qha_lab.glb?raw=true)
+
+[![Original thermal meta-device illustration; X/Y condition views remain distinct from independent specimens](assets/thermalmeta_scene_assets_v1/previews/preview_01_overview.png)](assets/thermalmeta_scene_assets_v1/previews/preview_01_overview.png)
+
+[Thermal Blender](assets/thermalmeta_scene_assets_v1/geometry/thermalmeta_lab.blend?raw=true) · [Thermal GLB](assets/thermalmeta_scene_assets_v1/geometry/thermalmeta_lab.glb?raw=true) · [Condition views](assets/thermalmeta_scene_assets_v1/previews/preview_02_condition_views.png) · [Closed services](assets/thermalmeta_scene_assets_v1/previews/preview_03_guarded_services.png)
+
+```sh
+python3 -B scripts/verify_release.py
+(cd tasks/qha_operations_v2 && python3 -B -m unittest discover -s tests -v && python3 -B -m unittest discover -s review -v && python3 -B tests/verify_package.py && python3 -B tests/verify_export.py)
+python3 -B assets/qha_scene_assets_v1/verify_pair.py tasks/qha_operations_v2
+(cd tasks/thermalmeta_operations_v2 && python3 -B -m unittest discover -s tests -v && python3 -B -m unittest discover -s review -v)
+python3 -B assets/thermalmeta_scene_assets_v1/verify_pair.py tasks/thermalmeta_operations_v2
+(cd assets/qha_scene_assets_v1 && python3 -B -m unittest discover -s tests -v)
+(cd assets/thermalmeta_scene_assets_v1 && python3 -B -m unittest discover -s tests -v)
+```
+
+Native rebuilds and export scripts belong in disposable copies; later native saves can reintroduce UI metadata and require complete sanitation again. Exact archive checks use separately distributed ZIPs, never Git-committed archives.
+
+## Historical scattering integration: 40 families
 
 The explorer contains **37 paper-level designs + 3 bounded subsets (40 families)**, **904 inspection records** and **3,202 operation definitions**. [Anomalous acoustic scattering](viewer/task_explorer_v1/docs/scattering.md) adds **five experimental branches and four numerical-review extensions**, three separate preparation/calibration records, one authored closeout, four reference views and a metadata-only **HOLD_QUALIFICATION**. Fourteen symbolic operations describe one new paper design. These are static inspection counts; there are **zero validated runnable whole-paper tasks**.
 

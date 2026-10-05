@@ -1,0 +1,70 @@
+{
+  "classification": "authored_dependency_contract_with_source_basis",
+  "dependencies": [
+    {
+      "id": "D01",
+      "item": "Protected epigraphene-on-SiC chip",
+      "required_input": "Purchased 7×7 mm input plus specialist process release",
+      "lineage": "Supplier batch→wafer/die→chip→carrier→mount",
+      "routes": "R01–R14",
+      "guard": "Do not treat a generic silicon tile as equivalent; dimensions/material identity alone do not qualify doping or contacts"
+    },
+    {
+      "id": "D02",
+      "item": "Array1 and Array2",
+      "required_input": "Distinct electrical regions of one chip,118 parallel elements each",
+      "lineage": "chip ID→subarray ID→terminal map",
+      "routes": "R04–R13",
+      "guard": "Do not split into two physical independent-chip samples; no bare on-chip pad manipulation by robot"
+    },
+    {
+      "id": "D03",
+      "item": "On-chip reference Hall bar",
+      "required_input": "200 micrometre-wide rectangular reference with qualified voltage terminals",
+      "lineage": "same chip ID→HB ID→terminal map",
+      "routes": "R04,R06,R08",
+      "guard": "Indirect density/mobility proxy only for arrays; not an independently manufactured validation sample"
+    },
+    {
+      "id": "D04",
+      "item": "100-ohm transfer reference",
+      "required_input": "Calibrated resistance and historical drift, oil-bath stability",
+      "lineage": "resistor asset ID→calibration revision→bath ID→load/time series",
+      "routes": "R06,R07,R09",
+      "guard": "A historical paper value is not a calibration certificate for a new resistor"
+    },
+    {
+      "id": "D05",
+      "item": "12.9-kiloohm secondary reference",
+      "required_input": "Calibrated value/history and air-bath stability",
+      "lineage": "resistor asset ID→calibration revision→bath ID→load/time series",
+      "routes": "R11",
+      "guard": "Separate from on-chip Hall bar, despite similar nominal resistance; separate from 100-ohm reference bath"
+    },
+    {
+      "id": "D06",
+      "item": "Electrical and thermal metrology chain",
+      "required_input": "Calibrated CCC, current source, nanovoltmeter, thermometer and field measurement",
+      "lineage": "instrument serial→calibration→configuration→job→raw bundle",
+      "routes": "R03–R13",
+      "guard": "One hardware setup may span several logical station roles; exclusive lease required"
+    },
+    {
+      "id": "D07",
+      "item": "Carrier and storage",
+      "required_input": "Qualified ESD, nonmagnetic protected handling; approved condition/storage history",
+      "lineage": "from holder→to holder, identity/occupancy/support acceptance",
+      "routes": "R01,R02,R03,R14",
+      "guard": "No inferred robot grasp, pad-contact or magnetic clearance from source micrograph"
+    },
+    {
+      "id": "D08",
+      "item": "Qualified analysis contract",
+      "required_input": "Directed ratio definitions; validated Allan/statistical method and covariance",
+      "lineage": "method revision→raw checksums→derived record→review decision",
+      "routes": "R12,R13",
+      "guard": "No hidden synthetic result, digitized trace, automatic fit-to-paper or source equation patch"
+    }
+  ],
+  "preparation_boundary": "No chemical procurement, hazardous process action, hardware use or provider communication occurred. Supplier and fabrication service names in the source are historical facts, not endorsed/selected providers."
+}

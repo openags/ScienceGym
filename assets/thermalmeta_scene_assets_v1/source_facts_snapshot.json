@@ -1,0 +1,152 @@
+{
+  "paper": {
+    "title": "Analytical realization of complex thermal meta-devices",
+    "authors": [
+      "Weichen Li",
+      "Ole Sigmund",
+      "Xiaojia Shelly Zhang"
+    ],
+    "journal": "Nature Communications",
+    "volume": 15,
+    "article_number": 5527,
+    "doi": "10.1038/s41467-024-49630-1",
+    "published": "2024-07-15",
+    "official_record": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11250795/",
+    "eligible_formal_Nature_journal": true,
+    "npj": false,
+    "experimental": true
+  },
+  "facts": [
+    {
+      "id": "F01",
+      "source_location": "MAIN pp3,7; SI Note 9",
+      "field": "material_identity",
+      "value": {
+        "A": "17-4PH steel alloy",
+        "B": "PDMS, DOW SYLGARD 184",
+        "background": "DOW DOWSIL TC-6020 thermally conductive encapsulant"
+      },
+      "interpretation_boundary": "reported; supplier grades are not substitutes for lot receipts"
+    },
+    {
+      "id": "F02",
+      "source_location": "MAIN p3",
+      "field": "conductivity_reference_W_mK",
+      "value": {
+        "steel": 17.9,
+        "PDMS": 0.16,
+        "background": 2.72
+      },
+      "interpretation_boundary": "reported model/reference values; not independently measured lot properties"
+    },
+    {
+      "id": "F03",
+      "source_location": "MAIN p7",
+      "field": "experimental_specimen_envelope_mm",
+      "value": {
+        "width": 120,
+        "height": 120,
+        "thickness": 4.5
+      },
+      "interpretation_boundary": "reported nominal; tolerances not supplied"
+    },
+    {
+      "id": "F04",
+      "source_location": "MAIN Fig.4 and p7; SI Note9",
+      "field": "preparation_chain",
+      "value": "Vendor direct metal laser sintering; lattice plus PDMS casting; background encapsulation in PLA molds; degassing, curing and demolding described",
+      "interpretation_boundary": "reported process classes; qualified-service boundary only, no equipment recipe in this proposal"
+    },
+    {
+      "id": "F05",
+      "source_location": "MAIN p7; SI Note9",
+      "field": "experimental_apparatus",
+      "value": "Slotted hot and cold metal plates, electric temperature controller, iced-water tank, thermal grease, foam side insulation, lid and Telops FAST M100hd IR camera",
+      "interpretation_boundary": "reported apparatus; supplier power settings, camera settings and fixture clearances unknown"
+    },
+    {
+      "id": "F06",
+      "source_location": "MAIN p7; SI Note9",
+      "field": "hot_plate_reference",
+      "value": {
+        "celsius": 37,
+        "main_kelvin_rounded": 310
+      },
+      "interpretation_boundary": "reported boundary reference, never an actuator command"
+    },
+    {
+      "id": "F07",
+      "source_location": "SI Note9, p12; sampled movies",
+      "field": "steady_state_report_time_minutes",
+      "value": 45,
+      "interpretation_boundary": "reported waiting period; not a quantitative stability criterion"
+    },
+    {
+      "id": "F08",
+      "source_location": "MAIN p7",
+      "field": "emissivity_calibration",
+      "value": "Reference material used",
+      "interpretation_boundary": "reported; material identity, emissivity number and uncertainty are unspecified"
+    },
+    {
+      "id": "F09",
+      "source_location": "MAIN Figs.4-5; SI Fig.7",
+      "field": "physical_reference_variants",
+      "value": [
+        "flower cloak with PDMS core",
+        "45-degree rotator with encapsulant core",
+        "1.8-concentration device with encapsulant core"
+      ],
+      "interpretation_boundary": "reported reference set; geometry file/version link not independently certified"
+    },
+    {
+      "id": "F10",
+      "source_location": "MAIN Fig.5, pp7-8",
+      "field": "physical_conditions",
+      "value": "Three reference devices each shown under X and Y heat directions, with middle-section profiles K1/K2, R1/R2, C1/C2",
+      "interpretation_boundary": "reported distinct conditions; not six independent specimens or an n=6 sample size"
+    },
+    {
+      "id": "F11",
+      "source_location": "SI Notes1-5",
+      "field": "design_method",
+      "value": "Transformation thermotics; inverse rank-2 homogenization; feasible-property projection; single-scale conversion; mapping and level-set union",
+      "interpretation_boundary": "reported scientific design route, not performed here"
+    },
+    {
+      "id": "F12",
+      "source_location": "SI Note5.1 and Note6",
+      "field": "numerical_dependency",
+      "value": "Arbitrary-domain mapping uses MATLAB R2020b FEM/Newton/penalty continuation; heat-conduction post-evaluation uses a separate fine mesh",
+      "interpretation_boundary": "reported numerical work; no simulation run or code reproduction here"
+    },
+    {
+      "id": "F13",
+      "source_location": "MAIN p8; Zenodo Readme",
+      "field": "data_dependency",
+      "value": "Three MATLAB datasets contain binary MatA_id design masks and X/Y simulated-temperature matrices",
+      "interpretation_boundary": "record and Readme inspected only, matrices unread"
+    },
+    {
+      "id": "F14",
+      "source_location": "MAIN p2; SI Notes1-2,6",
+      "field": "model_and_claim_scope",
+      "value": "Steady, two-dimensional, source-free conduction with temperature-independent conductivity; radial inner/outer boundary representation and bijective mapping assumptions",
+      "interpretation_boundary": "The source presents an omnidirectional theory with X/Y experimental evidence. No experimental sampling of every direction, arbitrary topology,3D field or nonlinear temperature regime is claimed here."
+    },
+    {
+      "id": "F15",
+      "source_location": "SI Fig3 pp5-6",
+      "field": "conversion_comparison",
+      "value": {
+        "lamination_types": {
+          "cloak": "Type2",
+          "rotator": "Type2",
+          "concentrator": "Type1"
+        },
+        "error_normalizer": "conductivity of Material A"
+      },
+      "interpretation_boundary": "A percentage of conductor conductivity is not a percentage of the local target tensor; no universal less-than-5-percent target-relative error bound."
+    }
+  ]
+}

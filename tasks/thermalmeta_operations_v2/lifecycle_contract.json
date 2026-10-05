@@ -1,0 +1,53 @@
+{
+  "normal_powered_path": [
+    "P11",
+    "P12",
+    "P13",
+    "P14",
+    "P15"
+  ],
+  "failure_or_stop_at": [
+    "P11",
+    "P12",
+    "P13",
+    "P14"
+  ],
+  "failure_target": "P15",
+  "release_failure_target": "SERVICE_CUSTODY_HOLD",
+  "custody_during_release_uncertainty": "qualified thermal service",
+  "handler_allowed_only_if": [
+    "matching specimen/run release",
+    "zero-energy attestation",
+    "cool attestation",
+    "dry attestation",
+    "service-issued release identity",
+    "valid specimen condition"
+  ],
+  "after_release": [
+    "retrieval",
+    "approved reorientation",
+    "approved reseat",
+    "next specimen",
+    "safe storage or quarantine"
+  ],
+  "administrative_incomplete_closeout": "Allowed while service custody is held, preserving open custody and hazard obligations. Never successful and never authorizes retrieval.",
+  "no_implicit_release": [
+    "timeout",
+    "data invalidity",
+    "stop request",
+    "software exit",
+    "successful profile capture",
+    "restarting an episode",
+    "administrative closure"
+  ],
+  "final_success_requires": [
+    "complete required condition matrix",
+    "approved repeat accounting",
+    "matched controls for claims",
+    "qualified analysis evidence or narrow explicitly held claim scope",
+    "all service releases",
+    "data integrity",
+    "safe custody dispositions"
+  ],
+  "safety_and_cleanup": "Only the qualified service determines facility-specific shutdown, fluid/electrical isolation, cleanup, waste handling and real release criteria. No physical procedure is implemented."
+}

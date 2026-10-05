@@ -1,0 +1,74 @@
+[
+  {
+    "id": "C01",
+    "severity": "high",
+    "source_location": "MAIN pp4,6 versus SI Eqs.22-24 p10",
+    "observation": "Main describes relative 2-norm error, while all three printed SI formulas are squared-error ratios without a square root.",
+    "disposition": "Metric contract must select and label an interpretation, state percentage convention and validate independently before comparisons; no silent square-root fix.",
+    "resolved": false
+  },
+  {
+    "id": "C02",
+    "severity": "high",
+    "source_location": "SI Eq.16 p7 versus Eq.15 and derivative Eq.17",
+    "observation": "The Eq.16 first residual uses e2; preceding objective and subsequent I11 derivative imply e1.",
+    "disposition": "Do not implement the discrete optimizer from this transcription without qualified correction/derivation or a separately verified implementation.",
+    "resolved": false
+  },
+  {
+    "id": "C03",
+    "severity": "medium",
+    "source_location": "MAIN Fig.2F/G p4",
+    "observation": "Last displayed cloak feature-size variant is labeled 3.0, but paired curve terminates at a 2.5 abscissa.",
+    "disposition": "Preserve both labels; do not assign its performance to either size without resolution.",
+    "resolved": false
+  },
+  {
+    "id": "C04",
+    "severity": "medium",
+    "source_location": "MAIN overview and SI Notes1,3.2,5.1",
+    "observation": "Broad analytical/iteration-free wording coexists with bisection, Newton iterations and penalty continuation for parts of the pipeline.",
+    "disposition": "Describe a hybrid analytical/numerical design method; do not claim entirely closed-form or iteration-free generation for arbitrary domains.",
+    "resolved": false
+  },
+  {
+    "id": "C05",
+    "severity": "medium",
+    "source_location": "MAIN Fig.2/3 and SI Notes2,6",
+    "observation": "Model coordinates lack an explicit physical-unit statement and flux axes are not independently reconciled with the experimental millimetre specimen.",
+    "disposition": "No absolute flux target, inferred device length or unit conversion is released; require dimensioned design and unit audit.",
+    "resolved": false
+  },
+  {
+    "id": "C06",
+    "severity": "low",
+    "source_location": "MAIN p6; SI Note8.2",
+    "observation": "RAD discussion uses RTD labels in one parenthesis; SI prose refers to RAE/RGE and points to panels A/B while plotted results are B/C.",
+    "disposition": "Retain canonical plotted RAD/RGD identifiers and explicit panel references; record text-label discrepancies.",
+    "resolved": false
+  },
+  {
+    "id": "C07",
+    "severity": "medium",
+    "source_location": "SI Note8.2 and Fig.7 p11",
+    "observation": "General worsening-with-size language is not strictly monotonic in the displayed values.",
+    "disposition": "No invariant monotonic success predicate; use reported finite cases only.",
+    "resolved": false
+  },
+  {
+    "id": "C08",
+    "severity": "low",
+    "source_location": "SI Note4 p6 and Note5.2 p8",
+    "observation": "Circular-mapping prose repeats gradient phi1 for the second relation; gap statement describes phi differences as multiples of 2pi although the level-set phase contains a scale factor.",
+    "disposition": "Treat as notation/phase-interpretation questions, not permission to alter source. Qualified analysis should verify phase continuity before geometry generation.",
+    "resolved": false
+  },
+  {
+    "id": "C09",
+    "severity": "medium",
+    "source_location": "SI Eq21 p9",
+    "observation": "Printed adiabatic condition sets the heat-flux vector to zero; normal-component insulation is the standard Neumann interpretation and is not textually identical.",
+    "disposition": "Any normal-component implementation is an authored qualified interpretation; no model run or operating instruction is inferred.",
+    "resolved": false
+  }
+]

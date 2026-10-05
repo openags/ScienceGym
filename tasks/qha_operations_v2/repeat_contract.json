@@ -1,0 +1,33 @@
+{
+  "classification": "authored_prospective_design_not_executed",
+  "independent_units": [
+    "fabrication_lot",
+    "physical_chip",
+    "cooldown",
+    "remount",
+    "qualified_provider_or_lab"
+  ],
+  "unit_counts": {
+    "fabrication_lot": null,
+    "physical_chip": null,
+    "cooldown": null,
+    "remount": null,
+    "qualified_provider_or_lab": null
+  },
+  "within_run_units": [
+    "CCC_polarity_cycle",
+    "CCC_reading",
+    "time_series_block",
+    "condition_repeat"
+  ],
+  "requirements": [
+    "Every replicate declares unit type, parent unit, sample identity and prospectively approved count",
+    "Shared-chip subarrays remain paired dependent regions",
+    "45 or 53 CCC readings do not become 45 or 53 chips",
+    "Shared reference, apparatus, cooldown and time interval preserve covariance dependencies",
+    "All attempted, failed, excluded and held replicates retain lineage",
+    "Independent repeats remain unperformed until qualified plan and new immutable evidence exist"
+  ],
+  "source_repeat_evidence": "controls_and_repeats.json CT02 and source_facts.json F12",
+  "positive_fixture_boundary": "Any synthetic unit IDs used by tests are metadata examples, not measured specimens or fabricated scientific values"
+}

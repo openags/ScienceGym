@@ -1,0 +1,131 @@
+{
+  "policy": "Preserve source inconsistencies and interpretation limits; do not silently repair",
+  "items": [
+    {
+      "id": "C01",
+      "topic": "Whole-device versus subarray resistance",
+      "finding": "Abstract and Table 1 attach 236 total elements to~109 ohm, whereas Device design explicitly gives 118-parallel per subarray and two in series.",
+      "evidence": "MAIN pp1–4",
+      "guard": "Keep physical chip, subarray and single-element identities distinct. Do not model the full series object as 109 ohm."
+    },
+    {
+      "id": "C02",
+      "topic": "Fig2 current labels",
+      "finding": "Fig 2 a/b use 3 mA; Fig 2 c uses 5 mA. The caption links panels as a general analysis example but exact dataset correspondence is not supplied.",
+      "evidence": "MAIN p3 Fig2",
+      "guard": "No single inferred shared condition or synthetic merged dataset; require raw series provenance."
+    },
+    {
+      "id": "C03",
+      "topic": "Fig5 panel labeling",
+      "finding": "The drawn figure has panelsa,b,c with Allan subplot inb; caption repeatsc and prose refers to 5 d.",
+      "evidence": "MAIN pp5–6 Fig5",
+      "guard": "Use physical panel position plus content, not guessed repaired labels."
+    },
+    {
+      "id": "C04",
+      "topic": "SI cross-references and loop algebra",
+      "finding": "SI p3 calls its summary Fig2 although the displayed summary is S3. Its expanded loop replaces a distinct edge with a repeated Array2–100 term, causing false cancellation. The resulting single-edge value is not evidence validating the intended three-edge loop. SI p4 refers to S3b rather than displayed S4b.",
+      "evidence": "SI pp3–4",
+      "guard": "Preserve printed-source discrepancy; independent metrologist defines signed graph and covariance before any new loop calculation. Do not execute the printed loop formula."
+    },
+    {
+      "id": "C05",
+      "topic": "Allan input definition",
+      "finding": "Main Eq 3 uses second differences divided by averaging time squared, while prose calls x_i CCC-reading data. The precise integrated/phase versus direct ratio input semantics are not supplied.",
+      "evidence": "MAIN p7 Eq3",
+      "guard": "Hold executable analysis until x_i units, accumulation convention, timestamps and overlap definition are validated. Do not silently replace the source equation."
+    },
+    {
+      "id": "C06",
+      "topic": "Aggregation and uncertainty",
+      "finding": "0.033±0.082 nΩ/Ω pooled result,~0.2 nΩ/Ω practical Allan limit, SI aggregate 0.03±0.04 nΩ/Ω and Table 1 rounded values are different summaries. Shared readings also imply correlations.",
+      "evidence": "MAIN pp3–4; SI p3",
+      "guard": "No interchangeable accuracy claims; no uncorrelated pooling of overlapping network edges."
+    },
+    {
+      "id": "C07",
+      "topic": "Nonquantizing comparison agreement",
+      "finding": "Printed direct−0.0690±0.0006 and indirect−0.0730±0.0013 microΩ/Ω differ by 0.0040 microΩ/Ω. Assuming independent k=1 errors gives about 2.8 combined standard uncertainties; independence/covariance are not established.",
+      "evidence": "SI pp2–3 S2",
+      "guard": "Record author agreement wording as interpretation; qualify statistical consistency separately. Arithmetic difference is an authored check, not source raw-data reanalysis."
+    },
+    {
+      "id": "C08",
+      "topic": "Apparent versus precision plateau",
+      "finding": "S1 appears flat above~3 T using regular voltmeter, while S2 precision tests detect loss below~4 T.",
+      "evidence": "SI pp1–3; MAIN pp4–5",
+      "guard": "Different measurement sensitivity; do not use 3 T as a universal quantization gate."
+    },
+    {
+      "id": "C09",
+      "topic": "High-bias failure attribution",
+      "finding": "Text considers either epigraphene departure, resistive NbN contacts, or both. The external 12.9 kiloohm check narrows common-mode departure but does not isolate its microscopic cause.",
+      "evidence": "MAIN pp5–6; SI p4",
+      "guard": "Retain multiple hypotheses; do not invent a root-cause label."
+    },
+    {
+      "id": "C10",
+      "topic": "CCC ratio orientation",
+      "finding": "Winding ratio and approximate currents are given but current routing, bridge corrections, polarity cycle timing, integration configuration and signs are not complete.",
+      "evidence": "MAIN p7; Fig4",
+      "guard": "Use provider-qualified recipe with explicit target/reference identities; never convert listed integer ratio to a full measurement implementation."
+    },
+    {
+      "id": "C11",
+      "topic": "Independent sample count",
+      "finding": "Repeated CCC blocks and two subarrays on one chip do not establish independent fabrication-batch or chip replicates.",
+      "evidence": "MAIN pp2–7; SI pp1–4",
+      "guard": "Do not report 236 specimens, two independent chips or>=45 fabrication repeats."
+    },
+    {
+      "id": "C12",
+      "topic": "Standard-current wording",
+      "finding": "SI says the 12.9 kiloohm standard can withstand higher currents, while its plotted 3,5,8.5 mA values describe subarray bias; the actual reference-resistor current and ratio are not explicitly specified there.",
+      "evidence": "SI p4",
+      "guard": "Keep source wording bounded; no inference that 8.5 mA flows through 12.9 kiloohm standard. Require separate current/power limits for each device."
+    },
+    {
+      "id": "C13",
+      "topic": "Eq4 error-model ambiguity",
+      "finding": "Printed estimated relative error is 1/sqrt[2(N/n−1)], which increases with n for fixed N, although nearby prose says inverse-bin-size behavior. The percent subscript lacks an explicit×100 convention.",
+      "evidence": "MAIN p7 Eq4",
+      "guard": "Do not implement or use a full uncertainty budget from this expression without metrologist validation."
+    },
+    {
+      "id": "C14",
+      "topic": "High-bias table sign",
+      "finding": "Table 1 final row gives positive 0.5 nΩ/Ω; the plotted 4.25 T point is negative around−0.5 nΩ/Ω. It may be a magnitude but is not labeled as such.",
+      "evidence": "MAIN p4 Table1 and p6 Fig5 lower panel",
+      "guard": "Store both contexts and hold sign reconciliation; no exact digitization or silent sign fix."
+    },
+    {
+      "id": "C15",
+      "topic": "SI4 sample identity and temperature",
+      "finding": "SI 4 identifies only one subarray, without naming Array1/Array2. Plot label is 2 K whereas general precision Methods says 2.1 K.",
+      "evidence": "SI p4; MAIN p7",
+      "guard": "Actual subarray, thermal history and temperature records are required; do not force 2.1 K onto this dataset."
+    },
+    {
+      "id": "C16",
+      "topic": "SI2 caption and baseline references",
+      "finding": "S2 title mentions array/Hall-bar but panels show subarrays and 100-ohm comparisons; its continuation references a supplementary main-text 2 a baseline instead of the matching main Fig 4 context.",
+      "evidence": "SI pp2–3",
+      "guard": "Use depicted measurement identities and preserve caption/reference mismatch as source annotation."
+    },
+    {
+      "id": "C17",
+      "topic": "Directed deviation convention",
+      "finding": "MAIN definesQ=RB/RA and deviation of testB relative to referenceA; labels usingA−B need not mean an ordinary subtraction of two absolute resistances.",
+      "evidence": "MAIN p7 Data analysis",
+      "guard": "Store reference/test roles, measured ratio and sign explicitly; define inverse edges before closure."
+    },
+    {
+      "id": "C18",
+      "topic": "SI3 expanded uncertainty",
+      "finding": "SI 3 calls loop bounds expanded without an explicit coverage factor in that sentence.",
+      "evidence": "SI p3",
+      "guard": "Do not silently assignk=2 or mix with its figure k=1-style SEM errors."
+    }
+  ]
+}

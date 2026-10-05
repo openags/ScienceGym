@@ -1,0 +1,105 @@
+{
+  "classification_policy": "Each item says source-reported or authored prospective; authored items are proposals pending qualification",
+  "controls": [
+    {
+      "id": "CT01",
+      "classification": "Source-reported",
+      "design": "Repeated current polarity within a CCC reading reduces thermal-offset and short-term-drift influence. Exact sequence unresolved.",
+      "basis": "F12",
+      "routes": "R05–R11"
+    },
+    {
+      "id": "CT02",
+      "classification": "Source-reported",
+      "design": "At least 45 readings for full direct comparison sets; 53 in the example; approximately 20 min each. Readings can become time-correlated outside the white-noise region; they are not independent fabricated-chip replicates.",
+      "basis": "F12",
+      "routes": "R05"
+    },
+    {
+      "id": "CT03",
+      "classification": "Source-reported",
+      "design": "Single-Hall-bar longitudinal/transverse/contact tests provide a distinct physical characterization path.",
+      "basis": "F09,F10",
+      "routes": "R04"
+    },
+    {
+      "id": "CT04",
+      "classification": "Source-reported",
+      "design": "Near 12 K NbN transition and basic subarray magnetotransport are distinct tests; visual plateau does not certify ppb performance.",
+      "basis": "F11",
+      "routes": "R04"
+    },
+    {
+      "id": "CT05",
+      "classification": "Source-reported",
+      "design": "Direct/indirect comparisons against an oil-bath 100-ohm resistor build a five-edge network. Shared measurements create covariance.",
+      "basis": "F15,F17",
+      "routes": "R05–R08,R13"
+    },
+    {
+      "id": "CT06",
+      "classification": "Source-reported",
+      "design": "Direct HB–Array1 comparisons include field sign reversal and multiple magnitudes.",
+      "basis": "F18",
+      "routes": "R08"
+    },
+    {
+      "id": "CT07",
+      "classification": "Source-reported",
+      "design": "Intentional nonquantizing condition tests sensitivity to differential resistance; it is not a positive quantization reference.",
+      "basis": "F21",
+      "routes": "R09"
+    },
+    {
+      "id": "CT08",
+      "classification": "Source-reported",
+      "design": "Short high-current screens useSD without Allan analysis; long records use Allan-based uncertainty. Do not merge error conventions.",
+      "basis": "F19,F20",
+      "routes": "R10"
+    },
+    {
+      "id": "CT09",
+      "classification": "Source-reported",
+      "design": "External 12.9-kiloohm reference restricts common-mode change at higher bias with a noisier few-ppb bound.",
+      "basis": "F22,F23",
+      "routes": "R11"
+    },
+    {
+      "id": "CT10",
+      "classification": "Authored prospective",
+      "design": "Before/after reference and baseline checks bracket drift, connection changes and thermal history. Exact cadence and limits must be approved before acquisition.",
+      "basis": "U08,U13,U16",
+      "routes": "R03–R13"
+    },
+    {
+      "id": "CT11",
+      "classification": "Authored prospective",
+      "design": "Repeat-chip, remount/cooldown and independent-provider tests require named sample populations, covariance-aware analysis and predeclared counts; no default count is invented.",
+      "basis": "U09",
+      "routes": "R01,R13"
+    },
+    {
+      "id": "CT12",
+      "classification": "Authored prospective",
+      "design": "Use qualified open/short/leakage or instrument-diagnostic controls only under provider-approved configurations; never disconnect live measurement leads.",
+      "basis": "U04,U06",
+      "routes": "R03"
+    },
+    {
+      "id": "CT13",
+      "classification": "Authored prospective",
+      "design": "Preserve chronological order, timing gaps, rejected transients and all failed observations. Missing data are not zero deviation; no adaptive deletion to improve agreement.",
+      "basis": "U07,U08,U10",
+      "routes": "R12"
+    },
+    {
+      "id": "CT14",
+      "classification": "Authored prospective",
+      "design": "Randomization or blinded analysis may reduce analyst/ordering bias only when compatible with thermal/field safety and explicitly predeclared; not attributed to the paper.",
+      "basis": "U08,U09",
+      "routes": "R00,R13"
+    }
+  ],
+  "independent_sample_count": "not established beyond the described chip; no number invented",
+  "time_budget": "A>=45×20-min measurement set entails at least~15 hours of nominal reading time, excluding stabilization and overhead. This is an authored arithmetic implication, not a promised runtime."
+}

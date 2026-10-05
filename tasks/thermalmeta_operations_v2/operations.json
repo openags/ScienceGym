@@ -1,0 +1,775 @@
+{
+  "route_id": "RT_THERMALMETA_MAIN",
+  "stages": [
+    {
+      "id": "P01",
+      "title": "Lock review identity and exclusions",
+      "role": "reviewer",
+      "input": "source records",
+      "output": "revisioned source/hold register",
+      "gate": "DOI, journal, prior holds and version are consistent",
+      "failure_route": "H_SOURCE",
+      "coverage": "B10",
+      "depends_on": [],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P01",
+      "required_receipt_fields": [
+        "source_identity",
+        "review_revision",
+        "exclusion_register"
+      ],
+      "station_id": "ST_REVIEW",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A01",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_REVIEW"
+    },
+    {
+      "id": "P02",
+      "title": "Approve paper-level condition plan",
+      "role": "experiment owner",
+      "input": "source review and unknown register",
+      "output": "condition list covering B01-B12 with experimental/numerical flags",
+      "gate": "Scope, repeats, controls and admissible observations signed off",
+      "failure_route": "H_PLAN",
+      "coverage": "B01-B12",
+      "depends_on": [
+        "P01"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P02",
+      "required_receipt_fields": [
+        "approved_plan",
+        "six_cell_scope",
+        "repeat_policy",
+        "control_policy",
+        "abort_policy"
+      ],
+      "station_id": "ST_REVIEW",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A01",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_PLAN"
+    },
+    {
+      "id": "P03",
+      "title": "Accept qualified design package",
+      "role": "design specialist",
+      "input": "new original geometry or separately approved verified drawing",
+      "output": "Per-family design receipt with design_id,design_revision,sample_family_id,units,shape,baseline mapping and fit metadata",
+      "gate": "C02/C03/C05 disposition and geometry provenance complete for claimed use",
+      "failure_route": "H_GEOMETRY",
+      "coverage": "B10",
+      "depends_on": [
+        "P02"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P03",
+      "required_receipt_fields": [
+        "design_id",
+        "design_revision",
+        "sample_family_id",
+        "design_units",
+        "geometry_provenance",
+        "qualified_fit_receipt",
+        "C02_disposition",
+        "C03_disposition",
+        "C05_disposition"
+      ],
+      "station_id": "ST_REVIEW",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A01",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_DESIGN"
+    },
+    {
+      "id": "P04",
+      "title": "Receive materials and tooling identities",
+      "role": "qualified fabrication service",
+      "input": "supplier and lot records",
+      "output": "Material acceptance and tooling manifest attached to the specific family design/job; shared lots may be referenced but never substitute specimen-specific lineage",
+      "gate": "Specified grades and traceability accepted; unknowns remain held",
+      "failure_route": "H_MATERIAL",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P03"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P04",
+      "required_receipt_fields": [
+        "service_job_id",
+        "material_lot_ids",
+        "tooling_id",
+        "design_parent_id"
+      ],
+      "station_id": "ST_FAB",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A03",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_FAB_RECEIPT"
+    },
+    {
+      "id": "P05",
+      "title": "Produce and release metal lattice",
+      "role": "qualified closed service",
+      "input": "design/material acceptance",
+      "output": "Family-specific lattice receipt with design/job/lattice IDs and inspection evidence",
+      "gate": "Vendor manufacturing work complete; no robot powder or laser control",
+      "failure_route": "H_FAB",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P04"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P05",
+      "required_receipt_fields": [
+        "lattice_id",
+        "service_job_id",
+        "design_parent_id",
+        "material_lot_ids",
+        "lattice_inspection"
+      ],
+      "station_id": "ST_FAB",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A03",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_LATTICE_RECEIPT"
+    },
+    {
+      "id": "P06",
+      "title": "Produce filled lattice intermediate",
+      "role": "qualified closed service",
+      "input": "lattice receipt and approved PDMS lot",
+      "output": "Family-specific intermediate receipt linking lattice and PDMS lot,core assignment and service job",
+      "gate": "Service certifies cast/degassed/cured/trimmed intermediate; no recipe exposed",
+      "failure_route": "H_CAST",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P05"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P06",
+      "required_receipt_fields": [
+        "intermediate_id",
+        "lattice_parent_id",
+        "pdms_lot_id",
+        "core_assignment",
+        "service_job_id"
+      ],
+      "station_id": "ST_FAB",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A03",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_INTERMEDIATE_RECEIPT"
+    },
+    {
+      "id": "P07",
+      "title": "Produce encapsulated specimen",
+      "role": "qualified closed service",
+      "input": "intermediate and background lot",
+      "output": "Final specimen receipt binding specimen_id,sample_family_id,design_revision,all lattice/intermediate/material parents,nominal envelope and safe-release evidence",
+      "gate": "Core material correct for family; void/damage/flatness limits qualified",
+      "failure_route": "H_ENCAP",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P06"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P07",
+      "required_receipt_fields": [
+        "specimen_id",
+        "intermediate_parent_id",
+        "lattice_parent_id",
+        "design_id",
+        "design_revision",
+        "sample_family_id",
+        "material_lot_ids",
+        "core_assignment",
+        "safe_release_receipt"
+      ],
+      "station_id": "ST_FAB",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A03",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_FINAL_RECEIPT"
+    },
+    {
+      "id": "P08",
+      "title": "Receive and inspect released specimen",
+      "role": "safe handling agent plus metrologist",
+      "input": "dry ambient specimen and release receipt",
+      "output": "identity/photo/condition/dimension report",
+      "gate": "All P03-P07 family-specific parent receipts exist and match incoming specimen ID/design revision; geometry,condition and safe handling envelope verified",
+      "failure_route": "H_CUSTODY",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P07"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P08",
+      "required_receipt_fields": [
+        "specimen_identity_match",
+        "all_preparation_parents_match",
+        "dry_ambient_release",
+        "inspection_receipt",
+        "handling_qualification"
+      ],
+      "station_id": "ST_RECEIVE",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A04",
+        "A10",
+        "A02",
+        "A07"
+      ],
+      "scene_anchor_id": "AN_INSPECT"
+    },
+    {
+      "id": "P09",
+      "title": "Qualify calibration and control measurements",
+      "role": "IR specialist",
+      "input": "calibration reference and planned controls",
+      "output": "dated calibration receipt and matched control data",
+      "gate": "U04/U09/U11 resolved; reference and bare data not confused with simulation",
+      "failure_route": "H_CAL",
+      "coverage": "B11",
+      "depends_on": [
+        "P08"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P09",
+      "required_receipt_fields": [
+        "calibration_id",
+        "reference_identity",
+        "emissivity_contract",
+        "uncertainty_contract",
+        "camera_configuration",
+        "control_plan"
+      ],
+      "station_id": "ST_IR_CAL",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A05",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_IR_CAL"
+    },
+    {
+      "id": "P10",
+      "title": "Stage orientation-specific unpowered fixture",
+      "role": "safe handling agent",
+      "input": "released specimen and zero-energy fixture",
+      "output": "mount record with orientation transform and slot engagement evidence",
+      "gate": "Qualified dry/ambient fixture permits touch; placement accepted without forcing",
+      "failure_route": "H_MOUNT",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P09"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P10",
+      "required_receipt_fields": [
+        "specimen_id",
+        "condition_id",
+        "orientation",
+        "coordinate_transform",
+        "fixture_revision",
+        "zero_energy_fixture",
+        "dry_ambient_fixture",
+        "mount_id",
+        "qualified_placement"
+      ],
+      "station_id": "ST_THERMAL",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A06",
+        "A10",
+        "A02",
+        "A04",
+        "A07"
+      ],
+      "scene_anchor_id": "AN_MOUNT"
+    },
+    {
+      "id": "P11",
+      "title": "Transfer custody to thermal-test service",
+      "role": "qualified powered station",
+      "input": "mount, calibration and run plan",
+      "output": "station acceptance/run ID",
+      "gate": "Water/electric isolation, permitted envelope and abort channels verified by service",
+      "failure_route": "H_SERVICE",
+      "coverage": "B01-B04",
+      "depends_on": [
+        "P10"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P11",
+      "required_receipt_fields": [
+        "run_id",
+        "mount_id",
+        "specimen_id",
+        "calibration_id",
+        "service_acceptance",
+        "service_interlocks",
+        "custody_acceptance"
+      ],
+      "station_id": "ST_THERMAL",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A06",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_SERVICE_HANDOFF"
+    },
+    {
+      "id": "P12",
+      "title": "Acquire transient observation series",
+      "role": "qualified powered station",
+      "input": "accepted run ID",
+      "output": "timestamped IR and boundary-sensor stream",
+      "gate": "No manipulation inside powered zone; no dropped metadata or out-of-envelope state",
+      "failure_route": "H_RUN",
+      "coverage": "B04",
+      "depends_on": [
+        "P11"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P12",
+      "required_receipt_fields": [
+        "dataset_id",
+        "run_id",
+        "timestamps",
+        "timebase",
+        "camera_configuration",
+        "boundary_records",
+        "stream_integrity"
+      ],
+      "station_id": "ST_THERMAL",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A06",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_TRANSIENT"
+    },
+    {
+      "id": "P13",
+      "title": "Review steady-state qualification",
+      "role": "IR specialist",
+      "input": "time series plus stability contract",
+      "output": "stable/not-stable decision with reasons",
+      "gate": "Reported45-minute interval is context; quantitative drift/uncertainty criteria also pass",
+      "failure_route": "H_STABILITY",
+      "coverage": "B01-B04",
+      "depends_on": [
+        "P12"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P13",
+      "required_receipt_fields": [
+        "run_id",
+        "stability_contract_id",
+        "drift_assessment",
+        "uncertainty_assessment",
+        "qualified_stable_decision"
+      ],
+      "station_id": "ST_THERMAL",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A06",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_STABILITY"
+    },
+    {
+      "id": "P14",
+      "title": "Acquire registered steady-state result",
+      "role": "IR specialist",
+      "input": "stable run and verified masks",
+      "output": "temperature map, line profiles, boundary/ambient record",
+      "gate": "Coordinate/orientation, calibration, masks and data integrity all valid",
+      "failure_route": "H_MEASURE",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P13"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P14",
+      "required_receipt_fields": [
+        "dataset_id",
+        "run_id",
+        "registered_masks",
+        "profile_family_rule",
+        "coordinate_transform",
+        "measured_boundary_values",
+        "ambient_record",
+        "data_hash",
+        "measurement_uncertainty"
+      ],
+      "station_id": "ST_THERMAL",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A07",
+        "A10",
+        "A02",
+        "A04"
+      ],
+      "scene_anchor_id": "AN_REGISTER"
+    },
+    {
+      "id": "P15",
+      "title": "Release station and specimen safely",
+      "role": "qualified powered station",
+      "input": "Successful acquisition OR failed/aborted/stopped run from any accepted or possibly energized service stage P11-P14",
+      "output": "zero-energy,cool/dry release and condition report",
+      "gate": "No handling until service release; abort record kept intact",
+      "failure_route": "H_RELEASE",
+      "coverage": "B01-B04",
+      "depends_on": [],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "entry_contract": {
+        "required": "Service owns stopping,energy isolation and cool/dry qualification; a failure never returns custody to handler automatically",
+        "success_exit": "P16 only after signed zero-energy,cool/dry release",
+        "blocked_exit": "SERVICE_CUSTODY_HOLD; no retrieval,rotation,reseat or material disposal",
+        "successful_terminal_stage": [
+          "P14"
+        ],
+        "stop_failure_or_abort_from_stages": [
+          "P11",
+          "P12",
+          "P13",
+          "P14"
+        ],
+        "normal_intermediate_success_path": "P11 -> P12 -> P13 -> P14; no mandatory release between successful intermediate stages"
+      },
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P15",
+      "required_receipt_fields": [
+        "run_id",
+        "service_release_id",
+        "zero_energy",
+        "cool",
+        "dry",
+        "service_signature",
+        "specimen_condition"
+      ],
+      "station_id": "ST_THERMAL",
+      "execution_surface": "receipt_only_closed_service",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A06",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_SAFE_RELEASE"
+    },
+    {
+      "id": "P16",
+      "title": "Execute condition/repeat traversal",
+      "role": "experiment owner plus safe handler",
+      "input": "released specimen and remaining run slots",
+      "output": "new IDs for each rotation,reseat,repeat or replacement",
+      "gate": "P15 release succeeds,all incoming specimen family-parent receipts are valid,and approved matrix remains; technical repeats never become independent specimens",
+      "failure_route": "H_MATRIX",
+      "coverage": "B01-B04,B12",
+      "depends_on": [
+        "P15"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P16",
+      "required_receipt_fields": [
+        "release_parent_id",
+        "remaining_approved_matrix",
+        "new_run_identity",
+        "specimen_parent_check"
+      ],
+      "station_id": "ST_THERMAL",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A07",
+        "A10",
+        "A02",
+        "A04"
+      ],
+      "scene_anchor_id": "AN_ORIENT"
+    },
+    {
+      "id": "P17",
+      "title": "Reconcile empirical controls",
+      "role": "IR specialist",
+      "input": "matched homogeneous/bare calibration/control runs",
+      "output": "control linkage and validity report",
+      "gate": "Controls match material,boundary,orientation and time conditions; no fabricated reference arrays",
+      "failure_route": "H_CONTROL",
+      "coverage": "B11",
+      "depends_on": [
+        "P16"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P17",
+      "required_receipt_fields": [
+        "control_run_ids",
+        "control_dataset_hashes",
+        "matching_report",
+        "denominator_policy"
+      ],
+      "station_id": "ST_IR_CAL",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A05",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_CONTROL"
+    },
+    {
+      "id": "P18",
+      "title": "Perform qualified result assessment",
+      "role": "analysis specialist",
+      "input": "registered measured data and approved metric contract",
+      "output": "profile comparisons,uncertainty,failures and limitations",
+      "gate": "C01/C05/U09 resolved for any numeric claim; qualitative result remains distinct",
+      "failure_route": "H_ANALYSIS",
+      "coverage": "B01-B04",
+      "depends_on": [
+        "P17"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P18",
+      "required_receipt_fields": [
+        "analysis_id",
+        "dataset_hashes",
+        "metric_contract_id",
+        "coordinate_contract",
+        "uncertainty_report",
+        "claim_scope",
+        "C01_disposition",
+        "C05_disposition"
+      ],
+      "station_id": "ST_ANALYSIS",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A08",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_ANALYSIS"
+    },
+    {
+      "id": "P19",
+      "title": "Reconcile broader paper numerical families",
+      "role": "reviewer/analysis specialist",
+      "input": "lawfully sourced or newly qualified result receipts only",
+      "output": "coverage ledger for B05-B10",
+      "gate": "Label unrun,unread and unresolved branches; no synthetic result passed as source truth",
+      "failure_route": "H_MODEL",
+      "coverage": "B05-B10",
+      "depends_on": [
+        "P18"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P19",
+      "required_receipt_fields": [
+        "branch_ledger",
+        "source_vs_observed_labels",
+        "all_numerical_branches_unexecuted"
+      ],
+      "station_id": "ST_ANALYSIS",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A08",
+        "A10"
+      ],
+      "scene_anchor_id": "AN_NUMERICAL"
+    },
+    {
+      "id": "P20",
+      "title": "Close paper-level episode",
+      "role": "experiment owner and custodian",
+      "input": "all branch records and safe releases",
+      "output": "complete/incomplete/aborted decision; archive and custody disposition",
+      "gate": "Open holds explicitly block affected claims; lineage and cleanup receipts verified",
+      "failure_route": "H_CLOSEOUT",
+      "coverage": "B01-B12",
+      "depends_on": [
+        "P19"
+      ],
+      "status": "authored_contract_not_executed",
+      "evidence_class": "authored_task_design",
+      "route_id": "RT_THERMALMETA_MAIN",
+      "source_proposal_id": "P20",
+      "required_receipt_fields": [
+        "data_archive_hashes",
+        "failed_run_ledger",
+        "matrix_report",
+        "specimen_dispositions",
+        "service_release_reconciliation",
+        "open_hold_register"
+      ],
+      "station_id": "ST_CLOSE",
+      "execution_surface": "symbolic_review_or_qualified_ambient_handling",
+      "commands_enabled": false,
+      "scene_asset_ids": [
+        "A09",
+        "A10",
+        "A08"
+      ],
+      "scene_anchor_id": "AN_CLOSEOUT"
+    }
+  ],
+  "loops": [
+    {
+      "id": "L_ORIENTATION",
+      "from": "P16",
+      "to": "P10",
+      "condition": "Next approved orthogonal orientation exists; require safe release and coordinate transform"
+    },
+    {
+      "id": "L_REPEAT",
+      "from": "P16",
+      "to": "P10",
+      "condition": "Approved repeated mount/run remains; new run ID, same specimen ID where appropriate"
+    },
+    {
+      "id": "L_NEXT_SPECIMEN",
+      "from": "P16",
+      "to": "P08",
+      "condition": "Next independently identified specimen/device family has complete matching P03-P07 parent receipts; otherwise use L_NEXT_PREPARATION before P08"
+    },
+    {
+      "id": "L_CONTROL",
+      "from": "P17",
+      "to": "P09",
+      "condition": "Approved missing control is feasible; do not fill with simulation"
+    },
+    {
+      "id": "L_REWORK",
+      "from": "P08",
+      "to": "P04",
+      "condition": "Specimen defect; qualified service creates replacement/rework receipt and new revision; no uncontrolled robot repair"
+    },
+    {
+      "id": "L_NEXT_PREPARATION",
+      "from": "P16",
+      "to": "P03",
+      "condition": "New family/design/revision or missing preparation receipts; complete family-specific P03-P07 before P08"
+    }
+  ],
+  "failure_edges": [
+    {
+      "from": "P11",
+      "on": "any stop,fault,abort,failed acquisition,invalid measurement or indeterminate energy state",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Mandatory even when no valid dataset exists"
+    },
+    {
+      "from": "P12",
+      "on": "any stop,fault,abort,failed acquisition,invalid measurement or indeterminate energy state",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Mandatory even when no valid dataset exists"
+    },
+    {
+      "from": "P13",
+      "on": "any stop,fault,abort,failed acquisition,invalid measurement or indeterminate energy state",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Mandatory even when no valid dataset exists"
+    },
+    {
+      "from": "P14",
+      "on": "any stop,fault,abort,failed acquisition,invalid measurement or indeterminate energy state",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Mandatory even when no valid dataset exists"
+    },
+    {
+      "from": "P15",
+      "on": "release qualification cannot be established",
+      "to": "SERVICE_CUSTODY_HOLD",
+      "owner": "qualified thermal-test service",
+      "guard": "Keep specimen and station in service custody; no handler retrieval or implicit safe state"
+    },
+    {
+      "from": "SERVICE_CUSTODY_HOLD",
+      "on": "service independently establishes signed safe release",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Recheck release evidence; elapsed time is not a release"
+    }
+  ],
+  "exception_closeout": {
+    "from": "SERVICE_CUSTODY_HOLD",
+    "to": "P20",
+    "allowed_claim": "administrative incomplete/aborted record only",
+    "retained_obligation": "Service-custody hold remains open until evidenced release; never count successful closeout or transfer material"
+  },
+  "completion_contract": "A design package may be accepted with open scientific qualification holds. An actual successful episode cannot close with incomplete required cells, unqualified controls, missing safe release, or missing provenance. The symbolic suite demonstrates bookkeeping only."
+}

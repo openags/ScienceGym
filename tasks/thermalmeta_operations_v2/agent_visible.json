@@ -1,0 +1,39 @@
+{
+  "task": "Coordinate receipt-only evidence and safe-custody bookkeeping for one thermal meta-device paper.",
+  "route_id": "RT_THERMALMETA_MAIN",
+  "action_space": [
+    "inspect_identity_token",
+    "review_receipt",
+    "record_hold",
+    "request_qualified_service_receipt",
+    "register_orientation",
+    "link_observation_metadata",
+    "register_failed_attempt",
+    "check_release",
+    "record_safe_disposition"
+  ],
+  "disabled_actions": [
+    "physical motion",
+    "fabrication",
+    "casting",
+    "heating",
+    "cooling",
+    "electrical control",
+    "fluid handling",
+    "PDE solving",
+    "metric calculation",
+    "claiming experiment success from source results"
+  ],
+  "observations": [
+    "stage ID",
+    "synthetic specimen token",
+    "orientation label",
+    "receipt presence and status",
+    "custody owner",
+    "hold reason",
+    "branch coverage status"
+  ],
+  "goal": "Maintain truthful provenance and fail closed while traversing the authored paper-level design.",
+  "scoring": "No scientific-score or paper-result matching. Structural contract checks only.",
+  "source_outcome_targets_visible": false
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "sciencegym3d.static_controls.v1",
+  "state": "HOLD_UNQUALIFIED",
+  "side_effects": false,
+  "hardware_adapter": null,
+  "network_transport": null,
+  "actuator_commands": [],
+  "controls": [
+    {
+      "id": "inspect_stage",
+      "kind": "read_only_selection",
+      "allowed_stage_ids": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20"
+      ]
+    },
+    {
+      "id": "inspect_condition",
+      "kind": "read_only_selection",
+      "allowed_condition_ids": [
+        "COND_CLOAK_X",
+        "COND_CLOAK_Y",
+        "COND_ROTATOR45_X",
+        "COND_ROTATOR45_Y",
+        "COND_CONCENTRATOR18_X",
+        "COND_CONCENTRATOR18_Y"
+      ]
+    },
+    {
+      "id": "inspect_evidence",
+      "kind": "schema_only_registration",
+      "acceptance_is_authentication": false
+    },
+    {
+      "id": "request_service",
+      "kind": "guarded_static_placeholder",
+      "always_returns": "HOLD_UNQUALIFIED",
+      "dispatch_enabled": false
+    }
+  ],
+  "disabled": [
+    "heat",
+    "cool",
+    "cast",
+    "fabricate",
+    "move",
+    "grasp",
+    "retrieve",
+    "rotate",
+    "open_guard",
+    "dispose",
+    "simulate",
+    "play_thermal_field"
+  ],
+  "condition_frame": {
+    "X": "original illustrative frame",
+    "Y": "90-degree orientation label and proxy rotation; same specimen demo identity",
+    "profile_numbers": "authored visual selector not source verified"
+  },
+  "default_telemetry": {
+    "temperature": null,
+    "heat_flux": null,
+    "stability": null,
+    "safe_release": null,
+    "calibration": null
+  }
+}

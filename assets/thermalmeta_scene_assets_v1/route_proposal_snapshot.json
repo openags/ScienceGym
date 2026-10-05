@@ -1,0 +1,439 @@
+{
+  "schema": "sciencegym.paper_route_proposal.v1",
+  "name": "Qualify three thermal meta-devices across orthogonal boundary conditions",
+  "paper": {
+    "title": "Analytical realization of complex thermal meta-devices",
+    "authors": [
+      "Weichen Li",
+      "Ole Sigmund",
+      "Xiaojia Shelly Zhang"
+    ],
+    "journal": "Nature Communications",
+    "volume": 15,
+    "article_number": 5527,
+    "doi": "10.1038/s41467-024-49630-1",
+    "published": "2024-07-15",
+    "official_record": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11250795/",
+    "eligible_formal_Nature_journal": true,
+    "npj": false,
+    "experimental": true
+  },
+  "completed_conversion_increment": 0,
+  "source_experiment_condition_minimum": {
+    "families": [
+      "CLOAK",
+      "ROTATOR45",
+      "CONCENTRATOR18"
+    ],
+    "orientations": [
+      "Y",
+      "X"
+    ],
+    "total_distinct_family_orientation_cells": 6,
+    "independent_specimen_count": "not reported; must not infer six",
+    "technical_repeat_count": "not reported; authored plan pending"
+  },
+  "stage_semantics": "Each stage is a proposal, not an actual task file, simulation, device operation or observation",
+  "stages": [
+    {
+      "id": "P01",
+      "title": "Lock review identity and exclusions",
+      "role": "reviewer",
+      "input": "source records",
+      "output": "revisioned source/hold register",
+      "gate": "DOI, journal, prior holds and version are consistent",
+      "failure_route": "H_SOURCE",
+      "coverage": "B10",
+      "depends_on": [],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P02",
+      "title": "Approve paper-level condition plan",
+      "role": "experiment owner",
+      "input": "source review and unknown register",
+      "output": "condition list covering B01-B12 with experimental/numerical flags",
+      "gate": "Scope, repeats, controls and admissible observations signed off",
+      "failure_route": "H_PLAN",
+      "coverage": "B01-B12",
+      "depends_on": [
+        "P01"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P03",
+      "title": "Accept qualified design package",
+      "role": "design specialist",
+      "input": "new original geometry or separately approved verified drawing",
+      "output": "Per-family design receipt with design_id,design_revision,sample_family_id,units,shape,baseline mapping and fit metadata",
+      "gate": "C02/C03/C05 disposition and geometry provenance complete for claimed use",
+      "failure_route": "H_GEOMETRY",
+      "coverage": "B10",
+      "depends_on": [
+        "P02"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P04",
+      "title": "Receive materials and tooling identities",
+      "role": "qualified fabrication service",
+      "input": "supplier and lot records",
+      "output": "Material acceptance and tooling manifest attached to the specific family design/job; shared lots may be referenced but never substitute specimen-specific lineage",
+      "gate": "Specified grades and traceability accepted; unknowns remain held",
+      "failure_route": "H_MATERIAL",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P03"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P05",
+      "title": "Produce and release metal lattice",
+      "role": "qualified closed service",
+      "input": "design/material acceptance",
+      "output": "Family-specific lattice receipt with design/job/lattice IDs and inspection evidence",
+      "gate": "Vendor manufacturing work complete; no robot powder or laser control",
+      "failure_route": "H_FAB",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P04"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P06",
+      "title": "Produce filled lattice intermediate",
+      "role": "qualified closed service",
+      "input": "lattice receipt and approved PDMS lot",
+      "output": "Family-specific intermediate receipt linking lattice and PDMS lot,core assignment and service job",
+      "gate": "Service certifies cast/degassed/cured/trimmed intermediate; no recipe exposed",
+      "failure_route": "H_CAST",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P05"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P07",
+      "title": "Produce encapsulated specimen",
+      "role": "qualified closed service",
+      "input": "intermediate and background lot",
+      "output": "Final specimen receipt binding specimen_id,sample_family_id,design_revision,all lattice/intermediate/material parents,nominal envelope and safe-release evidence",
+      "gate": "Core material correct for family; void/damage/flatness limits qualified",
+      "failure_route": "H_ENCAP",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P06"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P08",
+      "title": "Receive and inspect released specimen",
+      "role": "safe handling agent plus metrologist",
+      "input": "dry ambient specimen and release receipt",
+      "output": "identity/photo/condition/dimension report",
+      "gate": "All P03-P07 family-specific parent receipts exist and match incoming specimen ID/design revision; geometry,condition and safe handling envelope verified",
+      "failure_route": "H_CUSTODY",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P07"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P09",
+      "title": "Qualify calibration and control measurements",
+      "role": "IR specialist",
+      "input": "calibration reference and planned controls",
+      "output": "dated calibration receipt and matched control data",
+      "gate": "U04/U09/U11 resolved; reference and bare data not confused with simulation",
+      "failure_route": "H_CAL",
+      "coverage": "B11",
+      "depends_on": [
+        "P08"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P10",
+      "title": "Stage orientation-specific unpowered fixture",
+      "role": "safe handling agent",
+      "input": "released specimen and zero-energy fixture",
+      "output": "mount record with orientation transform and slot engagement evidence",
+      "gate": "Qualified dry/ambient fixture permits touch; placement accepted without forcing",
+      "failure_route": "H_MOUNT",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P09"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P11",
+      "title": "Transfer custody to thermal-test service",
+      "role": "qualified powered station",
+      "input": "mount, calibration and run plan",
+      "output": "station acceptance/run ID",
+      "gate": "Water/electric isolation, permitted envelope and abort channels verified by service",
+      "failure_route": "H_SERVICE",
+      "coverage": "B01-B04",
+      "depends_on": [
+        "P10"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P12",
+      "title": "Acquire transient observation series",
+      "role": "qualified powered station",
+      "input": "accepted run ID",
+      "output": "timestamped IR and boundary-sensor stream",
+      "gate": "No manipulation inside powered zone; no dropped metadata or out-of-envelope state",
+      "failure_route": "H_RUN",
+      "coverage": "B04",
+      "depends_on": [
+        "P11"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P13",
+      "title": "Review steady-state qualification",
+      "role": "IR specialist",
+      "input": "time series plus stability contract",
+      "output": "stable/not-stable decision with reasons",
+      "gate": "Reported45-minute interval is context; quantitative drift/uncertainty criteria also pass",
+      "failure_route": "H_STABILITY",
+      "coverage": "B01-B04",
+      "depends_on": [
+        "P12"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P14",
+      "title": "Acquire registered steady-state result",
+      "role": "IR specialist",
+      "input": "stable run and verified masks",
+      "output": "temperature map, line profiles, boundary/ambient record",
+      "gate": "Coordinate/orientation, calibration, masks and data integrity all valid",
+      "failure_route": "H_MEASURE",
+      "coverage": "B01-B03",
+      "depends_on": [
+        "P13"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P15",
+      "title": "Release station and specimen safely",
+      "role": "qualified powered station",
+      "input": "Successful acquisition OR failed/aborted/stopped run from any accepted or possibly energized service stage P11-P14",
+      "output": "zero-energy,cool/dry release and condition report",
+      "gate": "No handling until service release; abort record kept intact",
+      "failure_route": "H_RELEASE",
+      "coverage": "B01-B04",
+      "depends_on": [],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls",
+      "entry_contract": {
+        "required": "Service owns stopping,energy isolation and cool/dry qualification; a failure never returns custody to handler automatically",
+        "success_exit": "P16 only after signed zero-energy,cool/dry release",
+        "blocked_exit": "SERVICE_CUSTODY_HOLD; no retrieval,rotation,reseat or material disposal",
+        "successful_terminal_stage": [
+          "P14"
+        ],
+        "stop_failure_or_abort_from_stages": [
+          "P11",
+          "P12",
+          "P13",
+          "P14"
+        ],
+        "normal_intermediate_success_path": "P11 -> P12 -> P13 -> P14; no mandatory release between successful intermediate stages"
+      }
+    },
+    {
+      "id": "P16",
+      "title": "Execute condition/repeat traversal",
+      "role": "experiment owner plus safe handler",
+      "input": "released specimen and remaining run slots",
+      "output": "new IDs for each rotation,reseat,repeat or replacement",
+      "gate": "P15 release succeeds,all incoming specimen family-parent receipts are valid,and approved matrix remains; technical repeats never become independent specimens",
+      "failure_route": "H_MATRIX",
+      "coverage": "B01-B04,B12",
+      "depends_on": [
+        "P15"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P17",
+      "title": "Reconcile empirical controls",
+      "role": "IR specialist",
+      "input": "matched homogeneous/bare calibration/control runs",
+      "output": "control linkage and validity report",
+      "gate": "Controls match material,boundary,orientation and time conditions; no fabricated reference arrays",
+      "failure_route": "H_CONTROL",
+      "coverage": "B11",
+      "depends_on": [
+        "P16"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P18",
+      "title": "Perform qualified result assessment",
+      "role": "analysis specialist",
+      "input": "registered measured data and approved metric contract",
+      "output": "profile comparisons,uncertainty,failures and limitations",
+      "gate": "C01/C05/U09 resolved for any numeric claim; qualitative result remains distinct",
+      "failure_route": "H_ANALYSIS",
+      "coverage": "B01-B04",
+      "depends_on": [
+        "P17"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P19",
+      "title": "Reconcile broader paper numerical families",
+      "role": "reviewer/analysis specialist",
+      "input": "lawfully sourced or newly qualified result receipts only",
+      "output": "coverage ledger for B05-B10",
+      "gate": "Label unrun,unread and unresolved branches; no synthetic result passed as source truth",
+      "failure_route": "H_MODEL",
+      "coverage": "B05-B10",
+      "depends_on": [
+        "P18"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    },
+    {
+      "id": "P20",
+      "title": "Close paper-level episode",
+      "role": "experiment owner and custodian",
+      "input": "all branch records and safe releases",
+      "output": "complete/incomplete/aborted decision; archive and custody disposition",
+      "gate": "Open holds explicitly block affected claims; lineage and cleanup receipts verified",
+      "failure_route": "H_CLOSEOUT",
+      "coverage": "B01-B12",
+      "depends_on": [
+        "P19"
+      ],
+      "status": "proposed_not_executed",
+      "evidence_class": "authored workflow organization of source-reported processes and declared additional controls"
+    }
+  ],
+  "loops": [
+    {
+      "id": "L_ORIENTATION",
+      "from": "P16",
+      "to": "P10",
+      "condition": "Next approved orthogonal orientation exists; require safe release and coordinate transform"
+    },
+    {
+      "id": "L_REPEAT",
+      "from": "P16",
+      "to": "P10",
+      "condition": "Approved repeated mount/run remains; new run ID, same specimen ID where appropriate"
+    },
+    {
+      "id": "L_NEXT_SPECIMEN",
+      "from": "P16",
+      "to": "P08",
+      "condition": "Next independently identified specimen/device family has complete matching P03-P07 parent receipts; otherwise use L_NEXT_PREPARATION before P08"
+    },
+    {
+      "id": "L_CONTROL",
+      "from": "P17",
+      "to": "P09",
+      "condition": "Approved missing control is feasible; do not fill with simulation"
+    },
+    {
+      "id": "L_REWORK",
+      "from": "P08",
+      "to": "P04",
+      "condition": "Specimen defect; qualified service creates replacement/rework receipt and new revision; no uncontrolled robot repair"
+    },
+    {
+      "id": "L_NEXT_PREPARATION",
+      "from": "P16",
+      "to": "P03",
+      "condition": "New family/design/revision or missing preparation receipts; complete family-specific P03-P07 before P08"
+    }
+  ],
+  "completion_contract": "One paper route closes only when required experimental cells, conditional controls, qualified analysis and service/custody closeout have valid evidence or explicit affected-claim holds. No iteration or specimen can inflate paper count.",
+  "failure_edges": [
+    {
+      "from": "P11",
+      "on": "any stop,fault,abort,failed acquisition,invalid measurement or indeterminate energy state",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Mandatory even when no valid dataset exists"
+    },
+    {
+      "from": "P12",
+      "on": "any stop,fault,abort,failed acquisition,invalid measurement or indeterminate energy state",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Mandatory even when no valid dataset exists"
+    },
+    {
+      "from": "P13",
+      "on": "any stop,fault,abort,failed acquisition,invalid measurement or indeterminate energy state",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Mandatory even when no valid dataset exists"
+    },
+    {
+      "from": "P14",
+      "on": "any stop,fault,abort,failed acquisition,invalid measurement or indeterminate energy state",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Mandatory even when no valid dataset exists"
+    },
+    {
+      "from": "P15",
+      "on": "release qualification cannot be established",
+      "to": "SERVICE_CUSTODY_HOLD",
+      "owner": "qualified thermal-test service",
+      "guard": "Keep specimen and station in service custody; no handler retrieval or implicit safe state"
+    },
+    {
+      "from": "SERVICE_CUSTODY_HOLD",
+      "on": "service independently establishes signed safe release",
+      "to": "P15",
+      "owner": "qualified thermal-test service",
+      "guard": "Recheck release evidence; elapsed time is not a release"
+    }
+  ],
+  "exception_closeout": {
+    "from": "SERVICE_CUSTODY_HOLD",
+    "to": "P20",
+    "allowed_claim": "administrative incomplete/aborted record only",
+    "retained_obligation": "Service-custody hold remains open until evidenced release; never count successful closeout or transfer material"
+  }
+}

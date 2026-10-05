@@ -68,7 +68,7 @@ class RecentPaperBundleTests(unittest.TestCase):
     def test_previous_33_family_generated_bytes_are_preserved(self):
         files = sorted(p for directory in ('data', 'docs', 'diagrams')
                        for p in (ROOT / directory).glob('*') if p.is_file()
-                       and p.stem not in ('ADAPTERS', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering') + KEYS)
+                       and p.stem not in ('ADAPTERS', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta') + KEYS)
         self.assertEqual(len(files), 132)
         digest = hashlib.sha256()
         for path in files:

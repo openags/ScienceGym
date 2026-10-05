@@ -1,0 +1,58 @@
+{
+  "classification": "authored_identity_schema_source_topology_preserved",
+  "physical_chip_family": "QHA_CHIP",
+  "physical_chip_id": null,
+  "supplier_lot_id": null,
+  "wafer_die_id": null,
+  "carrier_id": null,
+  "mount_id": null,
+  "electrical_regions": [
+    {
+      "region_id": "Array1",
+      "physical_parent": "QHA_CHIP",
+      "parallel_elements": 118,
+      "nominal_resistance_source": "R_K/236, about 109 ohm"
+    },
+    {
+      "region_id": "Array2",
+      "physical_parent": "QHA_CHIP",
+      "parallel_elements": 118,
+      "nominal_resistance_source": "R_K/236, about 109 ohm"
+    },
+    {
+      "region_id": "HB",
+      "physical_parent": "QHA_CHIP",
+      "role": "on-chip Hall bar, not separate manufactured chip"
+    }
+  ],
+  "whole_series_array": {
+    "composed_regions": [
+      "Array1",
+      "Array2"
+    ],
+    "total_elements": 236,
+    "nominal_resistance_source": "R_K/118, about 219 ohm",
+    "independent_sample": false
+  },
+  "external_reference_roles": [
+    {
+      "logical_id": "REF100",
+      "nominal_source": "100 ohm",
+      "bath_role": "OIL100",
+      "runtime_id": null
+    },
+    {
+      "logical_id": "REF12K9",
+      "nominal_source": "12.9 kiloohm",
+      "bath_role": "AIR12K9",
+      "runtime_id": null
+    }
+  ],
+  "anti_alias_rules": [
+    "Array1, Array2 and HB share exactly one physical chip ID per described-device session",
+    "Region selection is not a custody transfer or independent sample",
+    "External standards may never use a chip-region ID or each other's identity",
+    "Do not assign an Array1/Array2 identity to the unnamed SI4 source result",
+    "Runtime samples and standards must be registered from qualified evidence; illustrative object IDs are not physical identities"
+  ]
+}
