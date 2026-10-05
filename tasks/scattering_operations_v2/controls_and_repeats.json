@@ -1,0 +1,119 @@
+{
+  "classification_policy": "Each record states source-reported, numerical-only or authored status.",
+  "source_independent_specimen_count": null,
+  "source_independent_repeat_count": null,
+  "prospective_default_repeat_count": null,
+  "repeat_units": [
+    "design family",
+    "fabricated specimen",
+    "mounting epoch",
+    "trial",
+    "measurement condition",
+    "camera frame",
+    "video playback frame"
+  ],
+  "prohibitions": [
+    "Unit-cell count is not replicate count",
+    "Video frames are not independent experiments",
+    "SD does not establish sample n or confidence level",
+    "No fixed repeat count inferred from plotted markers"
+  ],
+  "controls": [
+    {
+      "id": "K01",
+      "name": "Source-off baseline and recovery",
+      "kind": "reported",
+      "source_fact": "F10",
+      "branch": "B01",
+      "review_requirement": "Preserve pre-on, on, post-off records as distinct phases; return of an image coordinate is not safety release."
+    },
+    {
+      "id": "K02",
+      "name": "Pattern-flip sign reversal",
+      "kind": "reported",
+      "source_fact": "F11",
+      "branch": "B03",
+      "review_requirement": "Reorientation is a new mounting epoch; link pre/post specimen identity and sign mapping."
+    },
+    {
+      "id": "K03",
+      "name": "Array uniformity screening",
+      "kind": "reported_unspecified_method",
+      "source_fact": "F08",
+      "branch": "P02",
+      "review_requirement": "Preserve rejected element IDs and failed screening attempts; no inferred tolerance."
+    },
+    {
+      "id": "K04",
+      "name": "Torsion-axis isolation",
+      "kind": "reported_reasoning",
+      "source_fact": "F25",
+      "branch": "P03",
+      "review_requirement": "Geometric argument is not comprehensive experimental parasitic-force elimination."
+    },
+    {
+      "id": "K05",
+      "name": "Source trajectory paired with pendulum response",
+      "kind": "reported",
+      "source_fact": "F12",
+      "branch": "B04",
+      "review_requirement": "Keep source degrees and response centimetres on separate calibrated channels."
+    },
+    {
+      "id": "K06",
+      "name": "Angle-dependent sign change",
+      "kind": "reported",
+      "source_fact": "F14",
+      "branch": "B05",
+      "review_requirement": "Keep the whole planned angle series and failed attempts; no selective inclusion around the transition."
+    },
+    {
+      "id": "K07",
+      "name": "Analytical prism versus finite elements",
+      "kind": "numerical_only",
+      "source_fact": "F16",
+      "branch": "A01",
+      "review_requirement": "Not a measured calibration or fabricated control."
+    },
+    {
+      "id": "K08",
+      "name": "Analytical versus optimized design",
+      "kind": "numerical_only",
+      "source_fact": "F19",
+      "branch": "A02",
+      "review_requirement": "No manufactured baseline inferred."
+    },
+    {
+      "id": "K09",
+      "name": "Coiled topology comparison",
+      "kind": "numerical_only",
+      "source_fact": "F21",
+      "branch": "A03",
+      "review_requirement": "No experimental coiled specimen or yield inferred."
+    },
+    {
+      "id": "K10",
+      "name": "Beam-diameter sensitivity",
+      "kind": "numerical_only",
+      "source_fact": "F22",
+      "branch": "A04",
+      "review_requirement": "No physical beam-width sweep inferred."
+    },
+    {
+      "id": "K11",
+      "name": "Pre/post calibration and drift checks",
+      "kind": "authored_proposed_control",
+      "source_fact": null,
+      "branch": "P03",
+      "review_requirement": "Needs qualified thresholds and review plan; not stated as performed by paper authors."
+    },
+    {
+      "id": "K12",
+      "name": "Blind identity and completeness accounting",
+      "kind": "authored_proposed_control",
+      "source_fact": null,
+      "branch": "CLOSE",
+      "review_requirement": "Retain every admitted attempt, exclusions and custody return."
+    }
+  ]
+}

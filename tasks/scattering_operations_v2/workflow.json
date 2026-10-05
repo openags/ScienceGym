@@ -1,0 +1,68 @@
+{
+  "schema_version": "sciencegym.scattering.workflow.v1",
+  "source_route_reference": "Reviewed R01–R14 proposal extended into finite synthetic guards",
+  "common_prefix": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06"
+  ],
+  "experimental_loop": [
+    "R07",
+    "R08",
+    "R09",
+    "R10"
+  ],
+  "numerical_review": [
+    "R11"
+  ],
+  "closeout": [
+    "R12",
+    "R13",
+    "R14"
+  ],
+  "experimental_branches": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05"
+  ],
+  "numerical_branches": [
+    "A01",
+    "A02",
+    "A03",
+    "A04"
+  ],
+  "preparation_branches": [
+    "P01",
+    "P02",
+    "P03"
+  ],
+  "no_forced_scientific_branch_order": true,
+  "numeric_condition_defaults": null,
+  "repeat_count_default": null,
+  "fault_route": {
+    "from": "Any step, including admission and closeout",
+    "sequence": [
+      "Keep current accepted holder and resource lease",
+      "Record failed/interrupted/uncertain attempt and raw evidence",
+      "Request qualified containment or safe hold",
+      "Wait for independently observed safe state and support",
+      "Reconcile actual custody and service status",
+      "Return/quarantine only with receiver acceptance",
+      "Archive or issue a new fully qualified attempt without overwriting failure"
+    ],
+    "prohibited": [
+      "Blind duplicate service requests",
+      "Automatic physical retry",
+      "Unqualified resumption",
+      "Release based solely on command acknowledgement",
+      "Claiming completed experiment when branch or custody is pending"
+    ]
+  },
+  "iteration_rule": "Each experimental attempt has unique trial_id/attempt_id; remount/flip requires safe hold and new mount/calibration/coordinate evidence. No automatic physical retry.",
+  "no_physical_execution": true
+}

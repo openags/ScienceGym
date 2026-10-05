@@ -1,0 +1,32 @@
+{
+  "classification": "authored_failure_and_custody_contract",
+  "faults": [
+    "missing_receipt",
+    "stale_receipt",
+    "wrong_specimen",
+    "wrong_array_revision",
+    "lost_tracking",
+    "clock_discontinuity",
+    "sign_unresolved",
+    "support_fault",
+    "unknown_service_status",
+    "duplicate_admission",
+    "unknown_final_custody",
+    "partial_sweep",
+    "unexplained_drift",
+    "interlock_fault"
+  ],
+  "on_fault": [
+    "Retain current accepted holder and lease",
+    "Record terminal or uncertain attempt status without rewriting raw records",
+    "Keep all partial traces and exclusions with reasons",
+    "Require qualified containment and independently observed safe state",
+    "Reconcile service status before any newly authorized attempt",
+    "Preserve failure ancestry and requalify affected scope",
+    "Return or quarantine only after receiver acceptance"
+  ],
+  "no_automatic_retries": true,
+  "commands_are_not_observations": true,
+  "failure_is_not_scientific_zero": true,
+  "unknown_final_custody_blocks_normal_completion": true
+}

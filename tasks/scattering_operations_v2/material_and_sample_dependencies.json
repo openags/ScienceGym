@@ -1,0 +1,147 @@
+{
+  "classification": "authored_proposed_dependency_contract",
+  "implemented": false,
+  "materials": [
+    {
+      "id": "GROOVE_M1",
+      "source_design": "M1",
+      "state_required": "Qualified cured inert specimen in supported labelled carrier",
+      "source_facts": [
+        "F03",
+        "F04",
+        "F05"
+      ],
+      "sample_count": null
+    },
+    {
+      "id": "GROOVE_M2",
+      "source_design": "M2",
+      "state_required": "Separate qualified specimen identity; center-symmetric profile",
+      "source_facts": [
+        "F03",
+        "F04",
+        "F05"
+      ],
+      "sample_count": null
+    },
+    {
+      "id": "GROOVE_M3",
+      "source_design": "M3",
+      "state_required": "Separate qualified specimen identity; do not reuse M1 envelope",
+      "source_facts": [
+        "F03",
+        "F04",
+        "F05"
+      ],
+      "sample_count": null
+    },
+    {
+      "id": "ARRAY_SETS",
+      "source_design": null,
+      "state_required": "Characterized assembled arrays with individual transducer membership",
+      "source_facts": [
+        "F08",
+        "F09"
+      ],
+      "sample_count": null
+    }
+  ],
+  "qualified_services": [
+    {
+      "id": "FAB",
+      "scope": "Fabrication, resin handling, curing, finishing, quality inspection and release of inert specimens",
+      "dependency_unknowns": [
+        "U02",
+        "U03"
+      ],
+      "result": "Specimen QA and safe-to-handle receipts, rejected-piece records"
+    },
+    {
+      "id": "ACOUSTIC",
+      "scope": "Transducer screening, electrical/acoustic setup and all powered ultrasonic exposure",
+      "dependency_unknowns": [
+        "U04",
+        "U09",
+        "U10"
+      ],
+      "result": "Current array characterization, exposure qualification, observed event and safe-state receipts"
+    },
+    {
+      "id": "METROLOGY",
+      "scope": "Pendulum support, mounting, counterweight, laser alignment, tracking and calibrated force inference",
+      "dependency_unknowns": [
+        "U05",
+        "U06",
+        "U10",
+        "U11",
+        "U15"
+      ],
+      "result": "Support acceptance, calibration epoch, raw observation IDs and independent release evidence"
+    },
+    {
+      "id": "MOTION",
+      "scope": "Source translation or rotation inside the qualified enclosure",
+      "dependency_unknowns": [
+        "U08",
+        "U09",
+        "U10",
+        "U15"
+      ],
+      "result": "Actual pose/time readback and terminal motion-safe state"
+    },
+    {
+      "id": "CUSTODY",
+      "scope": "Protected receipt, approved mounting transfer, post-run return or quarantine",
+      "dependency_unknowns": [
+        "U11",
+        "U12",
+        "U13"
+      ],
+      "result": "From/to holder identity, occupancy, condition and acceptance"
+    }
+  ],
+  "edges": [
+    {
+      "parent": "FAB",
+      "child": "P01",
+      "reason": "No unqualified printed specimen admitted"
+    },
+    {
+      "parent": "P01",
+      "child": "P03",
+      "reason": "Identity and support before loading"
+    },
+    {
+      "parent": "ACOUSTIC",
+      "child": "P02",
+      "reason": "Current output evidence before array assignment"
+    },
+    {
+      "parent": "P02",
+      "child": "P03",
+      "reason": "Array geometry must match optical/pendulum calibration"
+    },
+    {
+      "parent": "P03",
+      "child": "B01-B05",
+      "reason": "Current support, coordinate transforms and valid calibration before any measured branch"
+    },
+    {
+      "parent": "MOTION",
+      "child": "B04-B05",
+      "reason": "Actual source-position evidence required"
+    },
+    {
+      "parent": "B01-B05",
+      "child": "CLOSE",
+      "reason": "Every successful, failed or interrupted branch has evidence and custody closeout"
+    }
+  ],
+  "nonphysical_records": [
+    "A01",
+    "A02",
+    "A03",
+    "A04"
+  ],
+  "no_recipe_policy": "All hazardous services are closed and unimplemented; no equipment-control syntax, wiring instructions, exposure settings, chemical recipe or fabrication operation is supplied."
+}

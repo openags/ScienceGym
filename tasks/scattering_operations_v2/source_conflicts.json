@@ -1,0 +1,70 @@
+{
+  "classification": "reviewer_identified_source_ambiguities_and_scope_distinctions",
+  "silent_repair_allowed": false,
+  "records": [
+    {
+      "id": "C01",
+      "topic": "Overall shape/size wording",
+      "locator": "MAIN pp2,5 versus p6",
+      "issue": "General prose emphasizes same overall blocks; design 3 explicitly has fewer cells and is smaller.",
+      "handling": "Use design-specific identity and dimensions; never reuse M1 envelope for M3.",
+      "physical_binding_blocked_until_resolved": true
+    },
+    {
+      "id": "C02",
+      "topic": "Depth-phase figure citation",
+      "locator": "MAIN p2; SI p4",
+      "issue": "Main cites Fig S3 for the depth-phase relationship; S3 is force-model validation and S4 contains the depth-phase plot.",
+      "handling": "Preserve both original locator and corrected review locator; no silent publisher correction.",
+      "physical_binding_blocked_until_resolved": false
+    },
+    {
+      "id": "C03",
+      "topic": "Nonexistent figure panel reference",
+      "locator": "MAIN p5; MAIN Fig1 p2",
+      "issue": "Text cites Fig1d for transmission, but the published figure has panels a-c and transmission appears within c.",
+      "handling": "Flag the reference mismatch; do not invent a panel or experimental transmission arm.",
+      "physical_binding_blocked_until_resolved": false
+    },
+    {
+      "id": "C04",
+      "topic": "Standard deviation versus confidence interval",
+      "locator": "MAIN pp3,5 captions and p6",
+      "issue": "Captions call bars standard deviation; Methods also calls plus/minus one sigma a confidence interval. Sample n is absent.",
+      "handling": "Record stated SD only, no confidence level, SEM, or inferred n.",
+      "physical_binding_blocked_until_resolved": true
+    },
+    {
+      "id": "C05",
+      "topic": "Rod length versus effective lever",
+      "locator": "MAIN pp3,6; SI p2",
+      "issue": "The torsion formula uses arm length while Methods gives an 18 cm rod; the effective lever is not explicitly resolved.",
+      "handling": "Require facility geometry and calibration; no adopted half-length assumption.",
+      "physical_binding_blocked_until_resolved": true
+    },
+    {
+      "id": "C06",
+      "topic": "Screen versus specimen displacement",
+      "locator": "MAIN pp3,6; SI p2",
+      "issue": "Screen spot subtraction is described as yielding metasurface displacement, without the full optical transfer calibration.",
+      "handling": "Preserve raw pixels/screen units separately; refuse uncalibrated physical displacement and force.",
+      "physical_binding_blocked_until_resolved": true
+    },
+    {
+      "id": "C07",
+      "topic": "Self-guiding plot polarity",
+      "locator": "MAIN p4 Fig3d and prose",
+      "issue": "In the displayed dual-axis trace, positive source-angle steps correspond to negative displacement trends; prose describes following.",
+      "handling": "Treat as unresolved coordinate convention, not proof of contradicted physics; require sign-tested coordinate transform.",
+      "physical_binding_blocked_until_resolved": true
+    },
+    {
+      "id": "C08",
+      "topic": "Simulation versus experiment spacing",
+      "locator": "MAIN p6",
+      "issue": "All experiments state 8 cm; self-guiding simulation states 12 cm for visualizing scattering.",
+      "handling": "This is an explicit source distinction, not an error. Keep separate lineage and do not call the configurations matched.",
+      "physical_binding_blocked_until_resolved": false
+    }
+  ]
+}

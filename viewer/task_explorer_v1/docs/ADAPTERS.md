@@ -1,3 +1,7 @@
+# Scattering adapter addition
+
+scattering_adapters.py preserves all 27 task JSON and 13 asset JSON documents, every complete operation and branch record, exact source pointers, membership lists and reciprocal binding hashes. Five experimental branches remain distinct from four numerical-review extensions, three supporting branches, closeout, four navigation references and a metadata-only qualification hold. Missing per-operation source/unknown mappings are explicit, never invented. Archive SHA-256 identities replace unavailable publication commit identities.
+
 # Mid-infrared projection and current scope
 
 

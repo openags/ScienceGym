@@ -6,11 +6,37 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Release contents: 36 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (39 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
+**Release contents: 37 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (40 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
-## Inspect all 39 task families
+## Inspect all 40 task families
+
+The explorer contains **37 paper-level designs + 3 bounded subsets (40 families)**, **904 inspection records** and **3,202 operation definitions**. [Anomalous acoustic scattering](viewer/task_explorer_v1/docs/scattering.md) adds **five experimental branches and four numerical-review extensions**, three separate preparation/calibration records, one authored closeout, four reference views and a metadata-only **HOLD_QUALIFICATION**. Fourteen symbolic operations describe one new paper design. These are static inspection counts; there are **zero validated runnable whole-paper tasks**.
+
+All **27 task JSON documents and 13 static-asset JSON documents** remain losslessly inspectable, including twelve controls, 26 source facts, eight ambiguities and sixteen unknown groups. Source facts, authored requirements, finite synthetic checks and original geometry stay separate. Required receipts and outputs never become observed states. Unit cells, image frames and source conditions are not independent replicates; prospective repeat counts remain null.
+
+The [task package](tasks/scattering_operations_v2/README.md) and [original static asset guide](assets/scattering_scene_assets_v1/README.md) retain **38 task files and 29 asset files**, byte-identical to their reviewed ZIP members. Eleven scene groups and 32 exact anchors bind every operation. Five task-pinned asset files, thirteen reciprocal task-core hashes and the byte-identical shared binding contract remain checked. Original BLEND, GLB and three PNGs are illustrative and unqualified. Fabrication, acoustic actuation, laser calibration, source motion, fault containment and safe release stay closed qualified services.
+
+The reported system is a suspended torsion pendulum, not free-flight levitation. Screen pixels, angles, displacement, force and numerical quantities retain separate identities. Experimental and numerical configurations are distinct; requested commands never prove completion, accepted custody or safe release. No physical execution, acoustic actuation, simulation or scientific reproduction is supplied.
+
+Upstream review covered eight main pages, eight SI pages, the media-description sheet and all five tables with 152 entries. Three movies were decoded and 6/6/5 frames sampled, not continuously visually reviewed. Additional supporting data, code and CAD remain unread. The bounded publication-update check is not exhaustive. This integration did not reread papers, reanalyze source data or prove mathematics.
+
+All 39 prior task packages, earlier assets, both embodied storyboards, scene bindings, original LICENSE and **156 prior generated family artifacts** remain byte-identical. Portable export embeds **240 exact task/asset JSON files, seven guides and 21 original PNGs** across seven recent families. Archive and per-file hashes establish source identity; the repository commit establishes publication status. Frozen authoring/publication fields and historical verification receipts retain their original snapshot meaning. See [verification](viewer/task_explorer_v1/VERIFICATION.md).
+
+[![Original illustrative acoustic-scattering review scene with closed qualified services and supported specimen custody; no actuation or experiment is shown](assets/scattering_scene_assets_v1/preview_01_overview.png)](assets/scattering_scene_assets_v1/preview_01_overview.png)
+
+[Editable Blender scene](assets/scattering_scene_assets_v1/scattering_review_scene.blend?raw=true) · [Static GLB](assets/scattering_scene_assets_v1/scattering_review_scene.glb?raw=true) · [Preparation illustration](assets/scattering_scene_assets_v1/preview_02_preparation.png) · [Metrology illustration](assets/scattering_scene_assets_v1/preview_03_metrology.png)
+
+```sh
+python3 -B scripts/verify_release.py
+(cd tasks/scattering_operations_v2 && python3 -B -m unittest discover -s tests -v && python3 -B -m unittest discover -s review -v && python3 -B tests/verify_package.py)
+python3 -B assets/scattering_scene_assets_v1/verify_pair.py --task-root tasks/scattering_operations_v2
+```
+
+Run scene guard scripts, native rebuilds and export scripts only in disposable copies because they regenerate receipts or files. The scene checks are test_scene_guards.py (42 cases) and independent_guard_probes.py (479 assertions plus 170 fuzz cases). Exact archive checks use separately distributed archives; archives are not committed to Git.
+
+## Historical conformal integration: 39 families
 
 The [Task Explorer](viewer/task_explorer_v1/index.html) covers **36 paper-level designs and 3 bounded subsets**, with **886 inspection records and 3,188 operation definitions**. The [conformal elasticity map](viewer/task_explorer_v1/docs/conformal.md) adds **16 authored operation templates and nine classified branches from one paper**, plus five reference views and one metadata-only **HOLD_QUALIFICATION**. Only the foot and bridge compression/decompression branches are physical experimental designs. Preparation, analysis and closeout retain their own roles; four numerical/theoretical branches remain documented and unexecuted. These counts describe static design content. There are **zero validated runnable whole-paper tasks**.
 

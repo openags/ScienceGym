@@ -1,0 +1,121 @@
+{
+  "classification": "authored_proposed_station_contracts",
+  "implemented": false,
+  "stations": [
+    {
+      "id": "S01",
+      "name": "Evidence and plan desk",
+      "kind": "nonphysical",
+      "permitted_scope": "Read metadata, approved plans and service receipts",
+      "boundary": "No physical action",
+      "required_evidence": "Source coverage, distinct evidence types and null unresolved inputs"
+    },
+    {
+      "id": "S02",
+      "name": "Supported carrier staging",
+      "kind": "protected_interface",
+      "permitted_scope": "Identify supported carriers and inspect qualified receipt labels",
+      "boundary": "No raw resin, no unsupported suspended specimen",
+      "required_evidence": "Accepted custody, carrier occupancy and safe access"
+    },
+    {
+      "id": "S03",
+      "name": "Closed fabrication and QA service",
+      "kind": "closed_qualified_service",
+      "permitted_scope": "Exchange specification identity and review qualified outputs",
+      "boundary": "No printing, curing, finishing or operational settings",
+      "required_evidence": "QA release including material and geometry qualification"
+    },
+    {
+      "id": "S04",
+      "name": "Closed acoustic service",
+      "kind": "closed_qualified_service",
+      "permitted_scope": "Review array assignment, qualification and measured event records",
+      "boundary": "No drive, pressure, exposure or wiring commands",
+      "required_evidence": "Current characterization, guarded enclosure and observed safe state"
+    },
+    {
+      "id": "S05",
+      "name": "Closed torsion and optical service",
+      "kind": "closed_qualified_service",
+      "permitted_scope": "Review mount, optical tracking and metrology receipts",
+      "boundary": "No live beam alignment, suspended-object handling or direct actuation",
+      "required_evidence": "Support/lease status, valid transforms and safe-to-access receipt"
+    },
+    {
+      "id": "S06",
+      "name": "Closed source-motion service",
+      "kind": "closed_qualified_service",
+      "permitted_scope": "Review plan identity and actual pose/time records",
+      "boundary": "No powered stage command",
+      "required_evidence": "Pose trace, observed stop and handoff status"
+    },
+    {
+      "id": "S07",
+      "name": "Evidence analysis desk",
+      "kind": "nonphysical",
+      "permitted_scope": "Review measurement lineage, uncertainty and completeness",
+      "boundary": "No physical simulation or source code execution",
+      "required_evidence": "Analysis references actual raw records; numerical source evidence separately typed"
+    },
+    {
+      "id": "S08",
+      "name": "Return and quarantine station",
+      "kind": "protected_interface",
+      "permitted_scope": "Review safe-release and receiver acceptance",
+      "boundary": "No automatic disposal, cleaning or unqualified unloading",
+      "required_evidence": "Closed specimen accounting and retained failed-attempt archive"
+    }
+  ],
+  "exclusive_lease": {
+    "resources": [
+      "specimen",
+      "supported_mount",
+      "pendulum",
+      "optical_path",
+      "acoustic_array",
+      "motion_stage"
+    ],
+    "lease_owner_required": true,
+    "release_requires": [
+      "independent facility safe-state receipt",
+      "specimen supported or accepted return/quarantine",
+      "terminal observed stage state",
+      "custody holder known",
+      "raw and failed attempt records sealed"
+    ],
+    "branch_end_is_session_end": false
+  },
+  "receipt_policy": {
+    "request_is_receipt": false,
+    "required_fields": [
+      "request_id",
+      "service_id",
+      "issuer_identity",
+      "facility_qualification_reference",
+      "specimen_and_array_ids",
+      "configuration_epoch",
+      "calibration_epoch_if_applicable",
+      "observed_state",
+      "observation_time_and_clock",
+      "scope",
+      "valid_until_or_invalidation_conditions",
+      "raw_evidence_refs",
+      "limitations",
+      "terminal_or_pending_status"
+    ],
+    "on_unknown_or_missing": "HOLD_QUALIFICATION; retain service custody and obtain authoritative status without blind duplicate requests",
+    "receipt_authenticity_implemented": false
+  },
+  "invalidation_events": [
+    "specimen remount or flip",
+    "array element replacement or geometry change",
+    "laser/camera/screen movement",
+    "interlock fault",
+    "unexplained drift",
+    "lost tracking",
+    "clock discontinuity",
+    "support damage",
+    "expired qualification"
+  ]
+}

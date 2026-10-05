@@ -1,4 +1,18 @@
-# Integrating the compressed conformal elasticity paired design release
+# Integrating the scattering paired design release
+
+The explorer contains **37 paper-level designs + 3 bounded subsets (40 families)**, **904 inspection records** and **3,202 operation definitions**. [Anomalous acoustic scattering](docs/scattering.md) adds **five experimental branches and four numerical-review extensions**, three separate preparation/calibration records, one authored closeout, four reference views and a metadata-only **HOLD_QUALIFICATION**. Fourteen symbolic operations describe one new paper design. These are static inspection counts; there are **zero validated runnable whole-paper tasks**.
+
+All **27 task JSON documents and 13 static-asset JSON documents** remain losslessly inspectable, including twelve controls, 26 source facts, eight ambiguities and sixteen unknown groups. Source facts, authored requirements, finite synthetic checks and original geometry stay separate. Required receipts and outputs never become observed states. Unit cells, image frames and source conditions are not independent replicates; prospective repeat counts remain null.
+
+The [task package](../../tasks/scattering_operations_v2/README.md) and [original static asset guide](../../assets/scattering_scene_assets_v1/README.md) retain **38 task files and 29 asset files**, byte-identical to their reviewed ZIP members. Eleven scene groups and 32 exact anchors bind every operation. Five task-pinned asset files, thirteen reciprocal task-core hashes and the byte-identical shared binding contract remain checked. Original BLEND, GLB and three PNGs are illustrative and unqualified. Fabrication, acoustic actuation, laser calibration, source motion, fault containment and safe release stay closed qualified services.
+
+The reported system is a suspended torsion pendulum, not free-flight levitation. Screen pixels, angles, displacement, force and numerical quantities retain separate identities. Experimental and numerical configurations are distinct; requested commands never prove completion, accepted custody or safe release. No physical execution, acoustic actuation, simulation or scientific reproduction is supplied.
+
+Upstream review covered eight main pages, eight SI pages, the media-description sheet and all five tables with 152 entries. Three movies were decoded and 6/6/5 frames sampled, not continuously visually reviewed. Additional supporting data, code and CAD remain unread. The bounded publication-update check is not exhaustive. This integration did not reread papers, reanalyze source data or prove mathematics.
+
+All 39 prior task packages, earlier assets, both embodied storyboards, scene bindings, original LICENSE and **156 prior generated family artifacts** remain byte-identical. Portable export embeds **240 exact task/asset JSON files, seven guides and 21 original PNGs** across seven recent families. Archive and per-file hashes establish source identity; the repository commit establishes publication status. Frozen authoring/publication fields and historical verification receipts retain their original snapshot meaning. See [verification](VERIFICATION.md).
+
+## Historical compressed conformal integration
 
 The explorer contains **36 paper-level designs + 3 bounded subsets**, **886 inspection records** and **3,188 operation definitions**. [Conformal elasticity](docs/conformal.md) adds **nine classified source-scope branches and sixteen authored operation templates**, five separate reference views and one metadata-only **HOLD_QUALIFICATION**. Only B02 foot and B03 bridge are physical experimental design routes. B01 is preparation, B06 is analysis, B09 is authored closeout, and B04/B05/B07/B08 remain documented, unexecuted numerical or analytical scope. One source paper remains one design.
 

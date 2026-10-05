@@ -38,7 +38,7 @@ class AssemblyBundleTests(unittest.TestCase):
     def setUpClass(cls): cls.families = {k: get(k) for k in KEYS}
 
     def test_counts_and_all_prior_sixteen(self):
-        manifest = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal')]
+        manifest = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering')]
         self.assertEqual((len(manifest), sum(r['routes'] for r in manifest), sum(r['operations'] for r in manifest)), (24, 541, 2189))
         old = [r for r in manifest if r['id'] not in ('gear', 'hydrogel_optical') and r['id'] not in KEYS and r['id'] not in ('horn_acoustics', 'mechanical_logic', 'cold_shape')]
         self.assertEqual((len(old), sum(r['routes'] for r in old), sum(r['operations'] for r in old)), (16, 308, 1693))

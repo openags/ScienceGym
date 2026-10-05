@@ -67,7 +67,7 @@ class MechanicalBundleTests(unittest.TestCase):
                 self.assertEqual(f['summary_counts']['unresolved_input_groups'], unknowns)
 
     def test_global_totals_and_unchanged_earlier_thirteen_counts(self):
-        manifest = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal')]
+        manifest = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering')]
         self.assertEqual((len(manifest), sum(x['routes'] for x in manifest), sum(x['operations'] for x in manifest)), (24, 541, 2189))
         older = [x for x in manifest if x['id'] not in {*PACKAGES, 'granular_assembly', 'beaded', 'thermal_jamming', 'horn_acoustics', 'mechanical_logic', 'cold_shape', 'gear', 'hydrogel_optical'}]
         self.assertEqual((len(older), sum(x['routes'] for x in older), sum(x['operations'] for x in older)), (13, 248, 1533))

@@ -1,0 +1,74 @@
+{
+  "classification": "authored_evidence_graph",
+  "channels": [
+    {
+      "id": "raw_camera_pixels",
+      "unit": "pixel",
+      "parent": null
+    },
+    {
+      "id": "screen_displacement",
+      "unit": "m",
+      "parent": "raw_camera_pixels"
+    },
+    {
+      "id": "pendulum_angle",
+      "unit": "rad",
+      "parent": "screen_displacement"
+    },
+    {
+      "id": "specimen_displacement",
+      "unit": "m",
+      "parent": "pendulum_angle"
+    },
+    {
+      "id": "inferred_force",
+      "unit": "N",
+      "parent": "specimen_displacement"
+    },
+    {
+      "id": "source_angle_readback",
+      "unit": "deg",
+      "parent": null
+    },
+    {
+      "id": "source_offset_readback",
+      "unit": "m",
+      "parent": null
+    }
+  ],
+  "every_derived_node_requires": [
+    "raw_parent_ids_and_hashes",
+    "transform_id",
+    "input_and_output_units",
+    "coordinate_frame",
+    "sign_test_reference",
+    "uncertainty",
+    "calibration_epoch",
+    "validity_scope"
+  ],
+  "forbidden_substitutions": [
+    "commanded_source_pose for observed pose",
+    "movie playback time for camera acquisition time",
+    "normalized_simulated_force for measured N",
+    "force_per_length N/m for measured N",
+    "pixels for specimen displacement",
+    "reported rod length for calibrated effective lever",
+    "source off trace for facility safe access release"
+  ],
+  "cross_device_clock_requirements": [
+    "clock_ids",
+    "synchronization_evidence",
+    "residual_error",
+    "approved_tolerance",
+    "continuous_epoch"
+  ],
+  "branch_specific": {
+    "B01": "Complete pre-on, on and post-off records with observed event times",
+    "B02": "All prospective source-condition labels and independent repeat-unit records, including failed conditions",
+    "B03": "Paired opposite orientation receipts for same specimen; distinct mount/calibration epochs and common approved comparison mapping",
+    "B04": "Actual source pose and camera response with separate units/sign transforms; no dynamic lag or speed claim without timing qualification",
+    "B05": "Complete prospective angle conditions and actual angle readback; preserve nonresponses and do not select around reported transition"
+  },
+  "physical_values_and_thresholds": null
+}

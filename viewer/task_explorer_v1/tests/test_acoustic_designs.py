@@ -28,7 +28,7 @@ class AcousticBundleTests(unittest.TestCase):
         self.assertEqual(sum(r['route_kind'] == 'campaign' for r in f['routes']), 1)
 
     def test_total_counts_and_existing_ten_preserved(self):
-        manifest = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal')]
+        manifest = [r for r in json.loads((ROOT / 'manifest.json').read_text())['families'] if r['id'] not in ('atmospheric_optics', 'afm_metrology', 'martian_geophysics', 'transistor', 'laser_control', 'solar_water', 'sucrose_metrology', 'actuator_metrology', 'woven', 'lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering')]
         self.assertEqual((len(manifest), sum(r['routes'] for r in manifest), sum(r['operations'] for r in manifest)), (24, 541, 2189))
         old = [r for r in manifest if r['id'] not in (*KEYS, 'origami_memory', 'ring_origami', 'mechanical_backprop', 'granular_assembly', 'beaded', 'thermal_jamming', 'horn_acoustics', 'mechanical_logic', 'cold_shape', 'gear', 'hydrogel_optical')]
         self.assertEqual((len(old), sum(r['routes'] for r in old), sum(r['operations'] for r in old)), (10, 202, 1376))
