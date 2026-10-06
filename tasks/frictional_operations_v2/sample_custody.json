@@ -1,0 +1,37 @@
+{
+  "classification": "Authored future custody requirements, not a paper-reported tracking system",
+  "identity_fields": [
+    "material_lot_id",
+    "host_lot_id",
+    "dispersion_batch_id",
+    "aliquot_id",
+    "cell_id",
+    "cell_variant",
+    "loaded_state_id",
+    "settled_state_id",
+    "run_id",
+    "condition_id",
+    "branch_id",
+    "service_job_id",
+    "instrument_config_id",
+    "calibration_id",
+    "clock_map_id",
+    "raw_evidence_id",
+    "derived_evidence_id",
+    "disposition_id"
+  ],
+  "lineage": [
+    "Stock lots -> dispersion batch -> aliquot",
+    "Cell acceptance + aliquot -> loaded child state -> settled initial state",
+    "Settled state + approved condition + calibration/clock map -> immutable run",
+    "Run -> raw sensor stream and image stream -> versioned derived products",
+    "Spent run -> closed service safe-state receipt -> disposition; any reloading receives a new child/run ID"
+  ],
+  "custody_rules": [
+    "Every transfer checks matching label, orientation, container closure and contamination condition",
+    "Same cell identifier does not mean the same grain microstate; previous displacement makes the state history-dependent",
+    "Do not assume reset/reuse between phi, reservoir or rate points; source practice is insufficiently specified",
+    "Retain failed and censored runs with reason; never overwrite source or original observations",
+    "A pressure-cell dock carries contained specimens; no robot uncoupling until qualified-service safe-release receipt"
+  ]
+}

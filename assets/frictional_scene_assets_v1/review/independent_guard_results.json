@@ -1,0 +1,346 @@
+{
+  "schema": "sciencegym.independent_scene_guards.v1",
+  "verdict": "PASS",
+  "script_under_test_sha256": "afd351a20aa2a2f1d0380b84fdbd23cabb1eeac763ef08299607f8d582648711",
+  "independent_checks": 1902,
+  "pass_count": 1902,
+  "failure_count": 0,
+  "failures": [],
+  "coverage": [
+    "all 12 routes by 32 anchors by all 3 allowed actions",
+    "route-branch and route-station matrices including foreign/invalid IDs",
+    "all prohibited boolean flags and type-confusion values",
+    "string identity fields and exact cell variants",
+    "NaN, infinity, huge integers and invalid numerical types",
+    "unknown fields, hardware commands, malformed selectors and actions",
+    "per-field closeout corruption and output alias mutation"
+  ],
+  "physical_permission_ever_granted": false,
+  "commands_from_guard": 0,
+  "required_holds": [
+    "U01",
+    "U02",
+    "U03",
+    "U04",
+    "U05",
+    "U06",
+    "U07",
+    "U08",
+    "U09",
+    "U10",
+    "U11",
+    "U12",
+    "U13",
+    "U14",
+    "U15",
+    "U16",
+    "U17",
+    "U18",
+    "U19",
+    "U20"
+  ],
+  "limitations": [
+    "Metadata validation is not independent safe-state observation or apparatus qualification.",
+    "No physical operations or scientific fluid model executed."
+  ],
+  "packaging_and_entrypoint_guards": {
+    "schema": "sciencegym.independent_export_guards.v1",
+    "verdict": "PASS",
+    "exporter_sha256": "63047161d4693b6f5a75b341bed0eb42e98314b40ec824582397d0e747a39628",
+    "preview_sanitizer_sha256": "153bc1add3091fc32334b417eccc018eaedacdaef9827673b4676455200f39cb",
+    "check_count": 47,
+    "checks": [
+      {
+        "name": "reject_invalid_member:sentinel",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_invalid_member:sentinel",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_invalid_member:missing.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_invalid_member:child",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_member_symlink",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_ancestor_directory_symlink",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_dangling_member_symlink",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_metadata_symlink:scene_core_manifest.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_archive_metadata_symlink_before_reads:scene_core_manifest.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_freeze_destination_symlink",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_metadata_symlink:paired_task_reference.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_archive_metadata_symlink_before_reads:paired_task_reference.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_metadata_symlink:paired_task_core_manifest.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_archive_metadata_symlink_before_reads:paired_task_core_manifest.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_metadata_symlink:EXPORT_ALLOWLIST.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_archive_metadata_symlink_before_reads:EXPORT_ALLOWLIST.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_metadata_symlink:MANIFEST.sha256",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_archive_metadata_symlink_before_reads:MANIFEST.sha256",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_metadata_symlink:public_metadata_audit.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_archive_metadata_symlink_before_reads:public_metadata_audit.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "reject_final_output_symlink:package.zip:False",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "FileExistsError"
+      },
+      {
+        "name": "reject_final_output_symlink:package.zip:True",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "FileExistsError"
+      },
+      {
+        "name": "reject_existing_final_output_before_metadata:package.zip",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "FileExistsError"
+      },
+      {
+        "name": "reject_final_output_symlink:package_export_receipt.json:False",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "FileExistsError"
+      },
+      {
+        "name": "reject_final_output_symlink:package_export_receipt.json:True",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "FileExistsError"
+      },
+      {
+        "name": "reject_existing_final_output_before_metadata:package_export_receipt.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "FileExistsError"
+      },
+      {
+        "name": "reject_existing_core_manifest",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "FileExistsError"
+      },
+      {
+        "name": "reject_symlink_core_input_before_freeze",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "sealed_preview_sanitizer_refuses_before_writes",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "RuntimeError"
+      },
+      {
+        "name": "preview_file_symlink_refused",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "preview_directory_symlink_refused",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "sanitizer_rejects_report_path:review/preview_sanitization.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "sanitizer_rejects_report_path:review",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_directory_symlink:build_scene.py:review",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_directory_symlink:build_scene.py:previews",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:build_scene.py:geometry/frictional_lab.raw.blend",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:build_scene.py:geometry/frictional_lab.glb",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:build_scene.py:scene_manifest.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:build_scene.py:review/render_receipt.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:build_scene.py:previews/preview_01_overview.png",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:build_scene.py:previews/preview_02_closed_service.png",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:build_scene.py:previews/preview_03_evidence.png",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_directory_symlink:finalize_native.py:review",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:finalize_native.py:geometry/frictional_lab.raw.blend",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:finalize_native.py:geometry/frictional_lab.blend",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:finalize_native.py:review/deep_buffer_cleanup.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      },
+      {
+        "name": "entry_rejects_named_symlink:finalize_native.py:review/deep_buffer_scan.json",
+        "passed": true,
+        "rejected": true,
+        "exception_type": "ValueError"
+      }
+    ],
+    "authored_package_mutated": false,
+    "actual_core_frozen": false,
+    "actual_archive_created": false,
+    "scope": "Hostile input/output and sealed-preview checks used independent disposable local fixtures; final archive remains separately reviewable."
+  },
+  "authored_suite_independently_rerun": {
+    "methods": 10,
+    "passed": true
+  },
+  "closeout_scope": "check_closeout validates aggregate final R12 archive metadata only; no_pending_service_jobs is not an R11 per-job prerequisite"
+}

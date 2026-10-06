@@ -1,0 +1,19 @@
+{
+  "default": "HOLD_QUALIFICATION",
+  "receipt_acceptance": "Digital validation only",
+  "stage_dependency_rule": "Exact canonical predecessor receipt hashes; independent R05/R06/R07 after R03/R04",
+  "closeout_rule": "R11 repeatable per registered job; can precede other independent branches and aggregate metrology",
+  "final_rule": "R12 requires R01-R10 disposition and all job closeouts plus rejected-event hashes",
+  "retry_rule": "At most two digital validation attempts per route or R11 job; no physical tuning loop",
+  "final_science_states": {
+    "B01": "UNRUN",
+    "B02": "UNRUN",
+    "B03": "UNRUN",
+    "B04": "UNRUN",
+    "B05": "UNRUN",
+    "B06": "UNRUN",
+    "B07": "UNRUN",
+    "B08": "SOURCE_CONTEXT_ONLY",
+    "B09": "SOURCE_CONTEXT_ONLY"
+  }
+}

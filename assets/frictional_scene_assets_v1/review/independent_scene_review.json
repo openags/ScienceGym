@@ -1,0 +1,464 @@
+{
+  "schema": "sciencegym.independent_scene_review.v1",
+  "verdict": "ACCEPT_ORIGINAL_STATIC_SCENE_ASSETS",
+  "source_doi": "10.1038/ncomms1289",
+  "scope": "Exact 36-file core snapshot below is accepted as original editable static review assets. Final reciprocal core pinning and the subsequently created archive are separate outstanding release gates.",
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "id": "S01",
+      "issue": "Guard results exposed the shared qualification-hold list to caller mutation.",
+      "resolution": "Defensive copies implemented and independently tested across accepted, rejected, held and closeout outputs."
+    },
+    {
+      "id": "S02",
+      "issue": "Extremely large integer plate-thickness input raised OverflowError.",
+      "resolution": "Type-specific finite checks and known-variant validation now return REJECTED without throwing."
+    },
+    {
+      "id": "S03",
+      "issue": "Preview directory/report symlink paths could escape the intended output package.",
+      "resolution": "Directory, ancestor and report-target checks run before mutation; hostile fixtures independently passed."
+    },
+    {
+      "id": "S04",
+      "issue": "Initial GLB guard material exported opaque.",
+      "resolution": "Author changed only the guard shader to export-supported alpha; final GLB alphaMode BLEND at 0.08 and native final views independently verified."
+    }
+  ],
+  "checks_summary": {
+    "scene_guard_checks": 1902,
+    "scene_guard_failures": 0,
+    "authored_guard_test_methods_rerun": 10,
+    "hostile_packaging_entrypoint_checks": 47,
+    "geometry_check_groups": 22,
+    "exact_anchors": 32,
+    "asset_roots": 8,
+    "stations": 6,
+    "route_bindings": 12,
+    "native_objects": 281,
+    "native_meshes": 235,
+    "source_dimension_objects": 9,
+    "declared_support_contacts": 62,
+    "additional_selected_support_contacts": 35,
+    "qualification_holds_retained": 20,
+    "source_snapshots_identical": 14,
+    "native_actual_reopens": 2,
+    "glb_actual_reimports": 1,
+    "independent_cpu_rerenders": 3,
+    "pixel_identical_previews": 3,
+    "independently_parsed_fixed_char_arrays": 7108,
+    "post_nul_nonzero_tails": 0,
+    "native_private_path_pattern_matches": 0
+  },
+  "native_equivalence": {
+    "before_after_semantic_sha256": "ae3aa32229aad16c9116cee54c3f22d7cd285dd1fb03be0b5b182c10d7c302e9",
+    "full_snapshots_byte_identical": true,
+    "method": "Inspected the provided deep read-only snapshot harness, then independently reran it in fresh Blender 4.3.2 processes for raw and final compressed native files with auto-execution disabled. Compared complete decoded snapshots, not just producer claims.",
+    "scope": [
+      "object names/types/parents/world and local matrices/bounds/dimensions/custom properties",
+      "full mesh vertices/edges/polygons/material assignments and UVs",
+      "curve properties/materials",
+      "material node graph properties, inputs and links",
+      "cameras, lights, worlds and collections",
+      "render, Cycles, color-management, units and scene state",
+      "zero text blocks, images, actions, object drivers, modifiers, constraints or rigid-body world"
+    ]
+  },
+  "privacy": {
+    "method": "Independent SDNA parser enumerated complete fixed char arrays at least 32 bytes, active prefixes and post-NUL tails; whole decompressed-container scan supplemented paths/dynamic strings. Compared raw/final byte changes against declared buffer ranges.",
+    "changed_buffers": 34,
+    "bytes_changed_outside_declared_buffers": 0,
+    "only_allowed_inactive_ui_active_value_changes": true,
+    "native_images": 0,
+    "native_scripts": 0,
+    "glb_external_uris": 0,
+    "png_text_exif_time_chunks": 0,
+    "all_individual_base64_plus_4096_margin_under_15MiB": true,
+    "full_raw_snapshots_logs_and_raw_native_excluded": true
+  },
+  "preview_review": {
+    "method": "Inspected actual final pixels of all three PNGs, then rendered each again using final native scene, CPU Cycles, 80 samples and the saved cameras. All decoded pixels match exactly.",
+    "blender_version": "4.3.2",
+    "native_source_unchanged": true,
+    "renders": [
+      {
+        "camera": "CAM_overview",
+        "output": "fresh_preview_01_overview.png",
+        "elapsed_seconds": 24.094,
+        "engine": "CYCLES",
+        "device": "CPU",
+        "samples": 80
+      },
+      {
+        "camera": "CAM_closed_service",
+        "output": "fresh_preview_02_closed_service.png",
+        "elapsed_seconds": 46.415,
+        "engine": "CYCLES",
+        "device": "CPU",
+        "samples": 80
+      },
+      {
+        "camera": "CAM_evidence",
+        "output": "fresh_preview_03_evidence.png",
+        "elapsed_seconds": 43.361,
+        "engine": "CYCLES",
+        "device": "CPU",
+        "samples": 80
+      }
+    ],
+    "views": [
+      {
+        "file": "previews/preview_01_overview.png",
+        "sha256": "f2d27ca4280e2dd348a6e6a1610c9e98a270cfa2ccebae532f7f1d61a471fb5c",
+        "pixel_sha256": "4575d92f5341fe094634093ee1c36c730a132409795ac26b93c981d067bd07e1",
+        "inspected_actual_pixels": true,
+        "independent_cpu_rerender_pixel_identical": true,
+        "observation": "Overview shows all six station groups, separate intake variants, closed preparation/measurement, five category symbols, hold ledger and custody/quarantine; no floating declared supports or fabricated scientific trace."
+      },
+      {
+        "file": "previews/preview_02_closed_service.png",
+        "sha256": "75cdeb05e0756754ba56c838049ba4d3c5ecc47d60fc20bddf2bb658f8e9a46c",
+        "pixel_sha256": "5e353fba5f1e42f0be542d9116a795f15a0764e0da30ace6ca126b01e8720014",
+        "inspected_actual_pixels": true,
+        "independent_cpu_rerender_pixel_identical": true,
+        "observation": "Closed-service view visibly retains a closed transparent guard, below-cell camera proxy and supported prepared/return carriers; held-service and independent-safe-release labels remain legible."
+      },
+      {
+        "file": "previews/preview_03_evidence.png",
+        "sha256": "dfe1e5047976556e7df604adf72a84a2d9a6a2d8aa4e211acd4fe7d00e91af2b",
+        "pixel_sha256": "1c1ac31d2dce12a5353060133f71a9123e9c64092102e5c8967c3576bd64d599",
+        "inspected_actual_pixels": true,
+        "independent_cpu_rerender_pixel_identical": true,
+        "observation": "Evidence view clearly distinguishes five static category symbols, B08 external context, B09 unexecuted model, both unresolved source conflicts and the 20 individually labeled qualification holds."
+      }
+    ]
+  },
+  "source_and_rights": {
+    "schema": "sciencegym.independent_source_contract.v1",
+    "snapshot_count": 14,
+    "snapshots": [
+      {
+        "file": "asset_requirements_snapshot.json",
+        "source_file": "asset_requirements.json",
+        "byte_identical": true,
+        "sha256": "446ef74c4db6568f375ea91a33b02f94cd1585e5f8be2ea020b29db74a223b8a"
+      },
+      {
+        "file": "controls_and_repeats_snapshot.json",
+        "source_file": "controls_and_repeats.json",
+        "byte_identical": true,
+        "sha256": "3560913d2761841255b141522a30c9c386376e41dda525da1c8cb537fec54dac"
+      },
+      {
+        "file": "coverage_map_snapshot.json",
+        "source_file": "coverage_map.json",
+        "byte_identical": true,
+        "sha256": "99f6b0acf14cb94ce2dbe9d8d2d1ed0b276dac9c7e930e2916746d1b42989924"
+      },
+      {
+        "file": "cross_device_measurements_snapshot.json",
+        "source_file": "cross_device_measurements.json",
+        "byte_identical": true,
+        "sha256": "703da68dd0956ad28403df86617970d5fd07e2418edd95db7683c48a935f6049"
+      },
+      {
+        "file": "failure_and_closeout_snapshot.json",
+        "source_file": "failure_and_closeout.json",
+        "byte_identical": true,
+        "sha256": "946748e4c1b1ce954110fb316fdba345c6a960ac7cda11e3fb6d5845a863773f"
+      },
+      {
+        "file": "lineage_contract_snapshot.json",
+        "source_file": "lineage_contract.json",
+        "byte_identical": true,
+        "sha256": "e2250a7214ccdab26915a3f0ea6b636b586ac664a514fca8e8e078f9cb2633f1"
+      },
+      {
+        "file": "material_and_sample_dependencies_snapshot.json",
+        "source_file": "material_and_sample_dependencies.json",
+        "byte_identical": true,
+        "sha256": "7636e10ff25e23475d64731075e4c56a71edb010438db3222f45ecbfbc13cfbd"
+      },
+      {
+        "file": "route_proposal_snapshot.json",
+        "source_file": "route_proposal.json",
+        "byte_identical": true,
+        "sha256": "d7ca74ede66eb920bfda36cc19bb38adc5ea880e3b73f281e03e9a74cc031bab"
+      },
+      {
+        "file": "safety_boundaries_snapshot.json",
+        "source_file": "safety_boundaries.json",
+        "byte_identical": true,
+        "sha256": "ec429590d7b8303d2d28e2cfeb41371583145d4cec4d2e4e9a3b2ad479670c7a"
+      },
+      {
+        "file": "sample_custody_snapshot.json",
+        "source_file": "sample_custody.json",
+        "byte_identical": true,
+        "sha256": "533151ec6b3a1cf75f98e4b0e0f700e43fe0df053dde01d9d9875854272a006e"
+      },
+      {
+        "file": "source_conflicts_snapshot.json",
+        "source_file": "source_conflicts.json",
+        "byte_identical": true,
+        "sha256": "0acc74664428c1a8086e8773f3cacb5654acc0fa19898e1dbf08a9a31c0c3d4d"
+      },
+      {
+        "file": "source_facts_snapshot.json",
+        "source_file": "source_facts.json",
+        "byte_identical": true,
+        "sha256": "547ea67ae711eaf9336b5f141697432ab30fcd8e2b252451a49b264d4cdb4282"
+      },
+      {
+        "file": "station_contracts_snapshot.json",
+        "source_file": "station_contracts.json",
+        "byte_identical": true,
+        "sha256": "2fa2ee3ace16f53440b60ba3831bf61b41bb3eb9713dc030fcc48a9a04c14bcf"
+      },
+      {
+        "file": "unknown_inputs_snapshot.json",
+        "source_file": "unknown_inputs.json",
+        "byte_identical": true,
+        "sha256": "10456853aac4dd6cb25500757bbd3634b3169f00d28020dce31d2827950c1209"
+      }
+    ],
+    "all_source_snapshots_byte_identical": true,
+    "task_scene_contract_byte_identical": true,
+    "task_scene_semantic_core_byte_identical": true,
+    "counts": {
+      "routes": 12,
+      "stations": 6,
+      "assets": 8,
+      "anchors": 32,
+      "branches": 9,
+      "holds": 20
+    },
+    "exact_20_holds": true,
+    "asset_inventory_anchor_contract_equal": true,
+    "coral_and_boyle_conflicts_retained": true,
+    "source_rights_separate": true,
+    "original_apache_license_present": true,
+    "physical_and_model_execution_disabled": true,
+    "source_license_does_not_apply_to_originals": true,
+    "accepted_source_review_basis": "Accepted source and packet review records inspected; no new claim of source reacquisition or full movie playback.",
+    "verdict": "PASS",
+    "source_license_assertion": "Full Creative Commons Attribution-NonCommercial-ShareAlike 3.0 terms and link in attribution; CC BY-NC-SA 3.0 in provenance; third-party exclusions explicit."
+  },
+  "scientific_and_safety_boundaries": [
+    "U01-U20 remain unresolved qualification holds; no inspection or closeout metadata grants physical permission.",
+    "All pressure, chemical preparation, glass fabrication, robot movement and hardware-dispatch actions remain unavailable.",
+    "No fluid simulation, numerical Boyle model, generated observations or reproduced scientific outcomes are included.",
+    "Coral 0.1 versus 1.0 ml/min and Boyle-law sign ambiguity remain explicit and unresolved.",
+    "Source-scale objects are nominal dimension context only; generic architecture and carrier geometry remain illustrative.",
+    "B01-B07 original-source branches, B08 external comparison and B09 unexecuted analytical context remain distinct.",
+    "CC BY-NC-SA 3.0 source/supplement rights and separately credited third-party content are not relabeled Apache-2.0; only original assets/code use Apache-2.0."
+  ],
+  "pending_release_gates": [
+    "Freeze this exact reviewed scene core without changing its members.",
+    "Verify reciprocal task/scene core manifests and byte-identical shared contract/semantic core using finalized peer bytes.",
+    "Independently inspect final archive members, hashes, CRC and size including base64 plus JSON margin; archive did not yet exist during this acceptance."
+  ],
+  "limitations": [
+    "Read-only metadata, visual/static geometric checks and CPU render reproduction do not qualify an apparatus, collision model, robot interface, safe load, scientific theory or experiment.",
+    "Source fidelity relies on byte-identical accepted source snapshots plus the independently read accepted source/packet audits; no new PDF acquisition, full movie playback or source-media rights clearance was performed.",
+    "Only the listed exact core bytes are accepted; future changes require renewed scoped review."
+  ],
+  "reviewed_core_files": [
+    {
+      "path": "LICENSES/ATTRIBUTION.md",
+      "bytes": 1488,
+      "sha256": "364e6bd9f6e4804ea3cdcd7ec599585af850bd64358f3ce73bb42b7a3d575a08"
+    },
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4866,
+      "sha256": "23017ba58de5d3898251137b3ada4dfba0fa2974380115315628d5e63687c28e"
+    },
+    {
+      "path": "asset_inventory.json",
+      "bytes": 15052,
+      "sha256": "6cd600f6ef3ff7fa8bad101c52ac77ae434c0ad59cf86ae8946bdc4c5ac920f3"
+    },
+    {
+      "path": "asset_requirements_snapshot.json",
+      "bytes": 2991,
+      "sha256": "446ef74c4db6568f375ea91a33b02f94cd1585e5f8be2ea020b29db74a223b8a"
+    },
+    {
+      "path": "controls_and_repeats_snapshot.json",
+      "bytes": 2374,
+      "sha256": "3560913d2761841255b141522a30c9c386376e41dda525da1c8cb537fec54dac"
+    },
+    {
+      "path": "coverage_map_snapshot.json",
+      "bytes": 4540,
+      "sha256": "99f6b0acf14cb94ce2dbe9d8d2d1ed0b276dac9c7e930e2916746d1b42989924"
+    },
+    {
+      "path": "cross_device_measurements_snapshot.json",
+      "bytes": 2129,
+      "sha256": "703da68dd0956ad28403df86617970d5fd07e2418edd95db7683c48a935f6049"
+    },
+    {
+      "path": "export_package.py",
+      "bytes": 7322,
+      "sha256": "63047161d4693b6f5a75b341bed0eb42e98314b40ec824582397d0e747a39628"
+    },
+    {
+      "path": "failure_and_closeout_snapshot.json",
+      "bytes": 2711,
+      "sha256": "946748e4c1b1ce954110fb316fdba345c6a960ac7cda11e3fb6d5845a863773f"
+    },
+    {
+      "path": "geometry/build_scene.py",
+      "bytes": 21005,
+      "sha256": "b56c7436d390471d5fc838b5fd8b3524a029dbe853e3237315351e8b5e4e4604"
+    },
+    {
+      "path": "geometry/deep_native_buffers.py",
+      "bytes": 10456,
+      "sha256": "78a68745be9eef6169e0aa997c2b9676bd68b00935735137eef9659e83bd608f"
+    },
+    {
+      "path": "geometry/finalize_native.py",
+      "bytes": 1058,
+      "sha256": "83c7e4d8704a8996876ac2fa287fd5bcfaf756bf4fc86e1f3d71a664a6ce183d"
+    },
+    {
+      "path": "geometry/frictional_lab.blend",
+      "bytes": 751784,
+      "sha256": "c84b726074cdd1e4d98847cfe33047f5107d03e0c6c80de774d4aeb4082d60a2"
+    },
+    {
+      "path": "geometry/frictional_lab.glb",
+      "bytes": 3868972,
+      "sha256": "c2a40b404b89eacb632d4d1bc7efcbbb6650087b908eb7632023fe16bb4223ee"
+    },
+    {
+      "path": "lineage_contract_snapshot.json",
+      "bytes": 1005,
+      "sha256": "e2250a7214ccdab26915a3f0ea6b636b586ac664a514fca8e8e078f9cb2633f1"
+    },
+    {
+      "path": "material_and_sample_dependencies_snapshot.json",
+      "bytes": 3863,
+      "sha256": "7636e10ff25e23475d64731075e4c56a71edb010438db3222f45ecbfbc13cfbd"
+    },
+    {
+      "path": "previews/preview_01_overview.png",
+      "bytes": 2130252,
+      "sha256": "f2d27ca4280e2dd348a6e6a1610c9e98a270cfa2ccebae532f7f1d61a471fb5c"
+    },
+    {
+      "path": "previews/preview_02_closed_service.png",
+      "bytes": 2602338,
+      "sha256": "75cdeb05e0756754ba56c838049ba4d3c5ecc47d60fc20bddf2bb658f8e9a46c"
+    },
+    {
+      "path": "previews/preview_03_evidence.png",
+      "bytes": 2687705,
+      "sha256": "dfe1e5047976556e7df604adf72a84a2d9a6a2d8aa4e211acd4fe7d00e91af2b"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 1097,
+      "sha256": "a56257b581e54dac7c9e13db4e17d98817042e9ea95e224efaf9c14112e8c4a9"
+    },
+    {
+      "path": "route_proposal_snapshot.json",
+      "bytes": 5631,
+      "sha256": "d7ca74ede66eb920bfda36cc19bb38adc5ea880e3b73f281e03e9a74cc031bab"
+    },
+    {
+      "path": "safety_boundaries_snapshot.json",
+      "bytes": 883,
+      "sha256": "ec429590d7b8303d2d28e2cfeb41371583145d4cec4d2e4e9a3b2ad479670c7a"
+    },
+    {
+      "path": "sample_custody_snapshot.json",
+      "bytes": 1526,
+      "sha256": "533151ec6b3a1cf75f98e4b0e0f700e43fe0df053dde01d9d9875854272a006e"
+    },
+    {
+      "path": "sanitize_previews.py",
+      "bytes": 1297,
+      "sha256": "153bc1add3091fc32334b417eccc018eaedacdaef9827673b4676455200f39cb"
+    },
+    {
+      "path": "scene_guards.py",
+      "bytes": 5289,
+      "sha256": "afd351a20aa2a2f1d0380b84fdbd23cabb1eeac763ef08299607f8d582648711"
+    },
+    {
+      "path": "scene_manifest.json",
+      "bytes": 146658,
+      "sha256": "90e97a8b2b406881db6d9076064f0e18e8fa8a71d04a281dbfa30d41a6442ebf"
+    },
+    {
+      "path": "semantic_core.json",
+      "bytes": 957,
+      "sha256": "76f92a2f694fa07c67d4912cc287a9561c92321c7a02b2c76909ad6efc4009b2"
+    },
+    {
+      "path": "shared_binding_contract.json",
+      "bytes": 27627,
+      "sha256": "70b2b760d46ed054904323d1ae24e18c89930f9638ea7a42781220c931071df2"
+    },
+    {
+      "path": "source_conflicts_snapshot.json",
+      "bytes": 2216,
+      "sha256": "0acc74664428c1a8086e8773f3cacb5654acc0fa19898e1dbf08a9a31c0c3d4d"
+    },
+    {
+      "path": "source_facts_snapshot.json",
+      "bytes": 9624,
+      "sha256": "547ea67ae711eaf9336b5f141697432ab30fcd8e2b252451a49b264d4cdb4282"
+    },
+    {
+      "path": "station_contracts_snapshot.json",
+      "bytes": 2469,
+      "sha256": "2fa2ee3ace16f53440b60ba3831bf61b41bb3eb9713dc030fcc48a9a04c14bcf"
+    },
+    {
+      "path": "tests/native_semantic_snapshot.py",
+      "bytes": 4548,
+      "sha256": "d51d495ba951213b04fdbbe1a34d3ebcb09f234a1684bb5303bf1534cd192a99"
+    },
+    {
+      "path": "tests/test_scene_guards.py",
+      "bytes": 3737,
+      "sha256": "d8cd1156c7a76cafb9a3e832b3cbfbd52439172e59f7ac73cdf1035a217c2762"
+    },
+    {
+      "path": "unknown_inputs_snapshot.json",
+      "bytes": 5305,
+      "sha256": "10456853aac4dd6cb25500757bbd3634b3169f00d28020dce31d2827950c1209"
+    },
+    {
+      "path": "verify_pair.py",
+      "bytes": 2147,
+      "sha256": "ea2d9a263fd2a6029ac67aebbb21ba753b383ecf062703277cb352e94bb8d6b6"
+    }
+  ],
+  "reviewed_core_canonical_sha256": "8e3174e17fbd5567e971b3eb19ad3aaf598fb959e7318e428e4c014b11ce756b",
+  "result_artifacts": [
+    {
+      "file": "independent_geometry_results.json",
+      "sha256": "9e07609543c6ec5af7acc8b4b9ed981d0a28dc91fa501363e4725cccb72f1bf8"
+    },
+    {
+      "file": "independent_guard_results.json",
+      "sha256": "e1d94256c0b89487f23e8863d238758eadbd37fb5e7a6f1eb92ec3301c65545a"
+    },
+    {
+      "file": "independent_privacy_results.json",
+      "sha256": "e7a899c72c5fdcd01eec0ad307c3d3b5a770cc2b1280236cd64a416f5d38b29f"
+    }
+  ]
+}

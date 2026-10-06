@@ -1,0 +1,128 @@
+{
+  "classification": "Reported material dependencies with authored receiving gates",
+  "materials": [
+    {
+      "id": "M01",
+      "name": "Glass-grain lot",
+      "source_refs": [
+        "F03"
+      ],
+      "source_preparation": "Generic polydisperse stock; detailed sourcing/cleaning unspecified",
+      "receiving_requirement": "Sealed wet/contained material certificate, lot and particle-distribution record",
+      "depends_on": [],
+      "unknown_refs": [
+        "U02"
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "Water/glycerol host lot",
+      "source_refs": [
+        "F04"
+      ],
+      "source_preparation": "50% solution reported without percentage basis",
+      "receiving_requirement": "Composition convention, purity, temperature, viscosity and density certificate",
+      "depends_on": [],
+      "unknown_refs": [
+        "U03"
+      ]
+    },
+    {
+      "id": "M03",
+      "name": "Prepared dispersion / condition-specific aliquot",
+      "source_refs": [
+        "F04",
+        "F05"
+      ],
+      "source_preparation": "Grains distributed during loading, followed by settling",
+      "receiving_requirement": "Parent M01/M02, aliquot ID, normalized phi evidence, no assumed preparation recipe",
+      "depends_on": [
+        "M01",
+        "M02"
+      ],
+      "unknown_refs": [
+        "U04"
+      ]
+    },
+    {
+      "id": "M04",
+      "name": "Finished cell10 mm variant",
+      "source_refs": [
+        "F02"
+      ],
+      "source_preparation": "Paper reports plate/tape/inlet architecture",
+      "receiving_requirement": "Qualified service supplies inspected, rated, clean complete cell; fabrication not exposed as robot recipe",
+      "depends_on": [],
+      "unknown_refs": [
+        "U01",
+        "U05"
+      ]
+    },
+    {
+      "id": "M05",
+      "name": "Finished cell19 mm variant",
+      "source_refs": [
+        "F02"
+      ],
+      "source_preparation": "Used to reduce plate bending in high-stiffness experiments",
+      "receiving_requirement": "Distinct cell ID, compliance certificate and explicit branch allocation",
+      "depends_on": [],
+      "unknown_refs": [
+        "U05",
+        "U06"
+      ]
+    },
+    {
+      "id": "M06",
+      "name": "Air reservoir / fluidic path configuration",
+      "source_refs": [
+        "F06",
+        "F19"
+      ],
+      "source_preparation": "Syringe air reservoir, pumped into inlet",
+      "receiving_requirement": "Qualified sealed pressure service records configuration and gas reference state; no direct valve/pump instruction",
+      "depends_on": [],
+      "unknown_refs": [
+        "U01",
+        "U07"
+      ],
+      "requires_one_accepted_cell_from": [
+        "M04",
+        "M05"
+      ]
+    },
+    {
+      "id": "M07",
+      "name": "Altered-viscosity control host and dispersion",
+      "source_refs": [
+        "F15"
+      ],
+      "source_preparation": "100-fold higher viscosity comparison reported; recipe absent",
+      "receiving_requirement": "New formulation/aliquot identity; independent qualified preparation receipt",
+      "depends_on": [
+        "M01"
+      ],
+      "unknown_refs": [
+        "U14"
+      ]
+    },
+    {
+      "id": "M08",
+      "name": "High-phi prepared granular state",
+      "source_refs": [
+        "F16"
+      ],
+      "source_preparation": "Approximately phi > 0.9 extension",
+      "receiving_requirement": "Distinct closed-service state, qualified pressure envelope, never inferred from ordinary-phi run",
+      "depends_on": [
+        "M01",
+        "M02"
+      ],
+      "unknown_refs": [
+        "U15",
+        "U01"
+      ]
+    }
+  ],
+  "preparation_coverage": "All reported preparations remain represented, including alternative plate stiffness, changed viscosity and high filling fraction. Unreported recipes remain unresolved; none are replaced by a convenient purchasable object without provenance."
+}

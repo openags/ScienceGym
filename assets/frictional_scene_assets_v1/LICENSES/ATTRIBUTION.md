@@ -1,0 +1,7 @@
+# Rights and provenance
+
+Scientific reference: B. Sandnes, E. G. Flekkøy, H. A. Knudsen, K. J. Måløy and H. See, Patterns and flow in frictional fluid dynamics, Nature Communications 2:288 (2011), DOI [10.1038/ncomms1289](https://doi.org/10.1038/ncomms1289); [reviewed final record](https://pmc.ncbi.nlm.nih.gov/articles/PMC3104512/). The reviewed source and listed supplements carry Creative Commons Attribution-NonCommercial-ShareAlike 3.0 terms; [license text](https://creativecommons.org/licenses/by-nc-sa/3.0/). Third-party porous-medium photos/comparisons in the source have separate provenance. This package does not contain them or relicense them.
+
+All geometry, original category symbols, scene composition, procedural code, explanatory wording and guard implementation in this package are original ScienceGym work licensed under Apache-2.0, matching the existing repository. The included Apache license applies to that original work only. Schema-aware sanitation, native comparison and packaging helpers reuse prior original Apache-2.0 ScienceGym tooling.
+
+Source facts remain explicitly labeled reference context with provenance, not generated experimental evidence. No source figure, movie frame, PDF, source CAD, source code, vendor design or commercial qualification is bundled or claimed. Future source-derived or commercial media use still needs U20 rights review. No request to execute machinery, prepare chemical mixtures or manipulate pressure equipment is encoded.

@@ -1,0 +1,205 @@
+{
+  "classification": "Authored non-executable task proposal",
+  "physical_default": "HOLD_QUALIFICATION",
+  "execution_semantics": "Dependencies describe evidence flow; R05-R07 are independent branches after shared gates. R08 waits for all required branch receipts in a full-program promotion. R11 is instantiated for each completed/failed physical job and does not require all jobs to finish before safe closeout.",
+  "routes": [
+    {
+      "id": "R01",
+      "name": "Admit source and condition schema",
+      "station": "ST01",
+      "depends_on": [],
+      "unknown_refs": [
+        "U20"
+      ],
+      "required_output": "Evidence records and exact-tree dedup receipt",
+      "gate": "No held/duplicate source; no copied media",
+      "implemented": false
+    },
+    {
+      "id": "R02",
+      "name": "Receive identified materials and finished cells",
+      "station": "ST01",
+      "depends_on": [
+        "R01"
+      ],
+      "unknown_refs": [
+        "U01",
+        "U02",
+        "U03",
+        "U05",
+        "U06"
+      ],
+      "required_output": "Lot/cell certificates and accepted variant IDs",
+      "gate": "Unknown identity/ratings quarantine physical work",
+      "implemented": false
+    },
+    {
+      "id": "R03",
+      "name": "Request contained preparation and settling",
+      "station": "ST02",
+      "depends_on": [
+        "R02"
+      ],
+      "unknown_refs": [
+        "U03",
+        "U04",
+        "U14",
+        "U15"
+      ],
+      "required_output": "Independent condition-specific preparation receipts",
+      "gate": "Alternative-viscosity and high-phi states remain separate",
+      "implemented": false
+    },
+    {
+      "id": "R04",
+      "name": "Qualify synchronized measurement interfaces",
+      "station": "ST03",
+      "depends_on": [
+        "R02"
+      ],
+      "unknown_refs": [
+        "U01",
+        "U07",
+        "U08",
+        "U09"
+      ],
+      "required_output": "Calibration, clock map and closed-service admission",
+      "gate": "No direct pump/valve/pressure commands",
+      "implemented": false
+    },
+    {
+      "id": "R05",
+      "name": "Request low-rate comparison and sparse sweep",
+      "station": "ST03",
+      "depends_on": [
+        "R03",
+        "R04"
+      ],
+      "unknown_refs": [
+        "U06",
+        "U11",
+        "U12"
+      ],
+      "required_output": "B02/B03 run evidence bundles",
+      "gate": "Source-reported values remain reference metadata, not executable defaults",
+      "implemented": false
+    },
+    {
+      "id": "R06",
+      "name": "Request rate-dependence branch",
+      "station": "ST03",
+      "depends_on": [
+        "R03",
+        "R04"
+      ],
+      "unknown_refs": [
+        "U11",
+        "U13"
+      ],
+      "required_output": "B05 run bundles with conflict flags",
+      "gate": "No auto-assignment of coral rate until conflict is resolved",
+      "implemented": false
+    },
+    {
+      "id": "R07",
+      "name": "Request viscosity control and high-phi extension",
+      "station": "ST03",
+      "depends_on": [
+        "R03",
+        "R04"
+      ],
+      "unknown_refs": [
+        "U14",
+        "U15",
+        "U01"
+      ],
+      "required_output": "B06/B07 separate condition bundles",
+      "gate": "Closed qualified service only; missing branches cannot be called completed",
+      "implemented": false
+    },
+    {
+      "id": "R08",
+      "name": "Measure patterns and correlate pressure events",
+      "station": "ST04",
+      "depends_on": [
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "unknown_refs": [
+        "U09",
+        "U10",
+        "U17"
+      ],
+      "required_output": "B04 morphometry and source-aligned event evidence",
+      "gate": "Raw time and movie time separate; no digitized plot treated as raw data",
+      "implemented": false
+    },
+    {
+      "id": "R09",
+      "name": "Review repeats, controls and model comparisons",
+      "station": "ST05",
+      "depends_on": [
+        "R08"
+      ],
+      "unknown_refs": [
+        "U11",
+        "U12",
+        "U13",
+        "U16"
+      ],
+      "required_output": "Per-branch evidence assessment and unresolved outcomes",
+      "gate": "No20-point pseudoreplication; no model execution here",
+      "implemented": false
+    },
+    {
+      "id": "R10",
+      "name": "Tag external context and synthesize conclusion",
+      "station": "ST05",
+      "depends_on": [
+        "R09"
+      ],
+      "unknown_refs": [
+        "U16",
+        "U20"
+      ],
+      "required_output": "B08 context-only references and B09 model-limit statement",
+      "gate": "Borrowed porous-medium photographs do not become task evidence",
+      "implemented": false
+    },
+    {
+      "id": "R11",
+      "name": "Close each physical service job safely",
+      "station": "ST06",
+      "depends_on": [
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "unknown_refs": [
+        "U01",
+        "U18",
+        "U19"
+      ],
+      "required_output": "Safe release, contained disposition and cleaning/inspection receipt",
+      "gate": "Job-level closeout can run immediately after each independent run, before aggregate analysis",
+      "implemented": false
+    },
+    {
+      "id": "R12",
+      "name": "Archive and review qualification",
+      "station": "ST06",
+      "depends_on": [
+        "R10",
+        "R11"
+      ],
+      "unknown_refs": [
+        "U17",
+        "U18"
+      ],
+      "required_output": "Immutable evidence, decisions, holds and final manifest",
+      "gate": "Review-only packet adds zero completed conversions; future promotion requires separate implementation/audit",
+      "implemented": false
+    }
+  ]
+}

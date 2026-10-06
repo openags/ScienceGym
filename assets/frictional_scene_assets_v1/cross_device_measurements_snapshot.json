@@ -1,0 +1,73 @@
+{
+  "classification": "Source measurement inventory plus authored data handoffs",
+  "measurements": [
+    {
+      "id": "X01",
+      "source": "Camera below cell",
+      "output": "Time-indexed brightfield frames",
+      "source_refs": [
+        "F06"
+      ],
+      "authored_handoff": "Bind cell/run/frame ID, detector-to-cell transform, scale, exposure, timestamp and calibration version",
+      "unknown_refs": [
+        "U09"
+      ]
+    },
+    {
+      "id": "X02",
+      "source": "Pressure sensor -> NI DAQ",
+      "output": "Pressure-vs-time record",
+      "source_refs": [
+        "F06",
+        "F07"
+      ],
+      "authored_handoff": "Preserve raw voltage/counts when available, conversion/calibration, pressure reference and common time map",
+      "unknown_refs": [
+        "U08",
+        "U09"
+      ]
+    },
+    {
+      "id": "X03",
+      "source": "Pump and air reservoir",
+      "output": "Reported condition q and Vair",
+      "source_refs": [
+        "F07",
+        "F08",
+        "F12"
+      ],
+      "authored_handoff": "Service confirms actual condition and uncertainty independently from requested label; do not equate pump q with burst instantaneous invaded-volume rate",
+      "unknown_refs": [
+        "U07"
+      ]
+    },
+    {
+      "id": "X04",
+      "source": "Image analysis",
+      "output": "A,S,2A/S,S/A,width ratios,bubble areas/volumes and time derivatives",
+      "source_refs": [
+        "F09",
+        "F10"
+      ],
+      "authored_handoff": "Use a declared geometry/calibration model to convert planar area to volume where justified; paper does not specify the estimator/segmentation details",
+      "unknown_refs": [
+        "U10"
+      ]
+    },
+    {
+      "id": "X05",
+      "source": "Material/viscosity characterization service",
+      "output": "Host composition, viscosity/density/temperature and condition uncertainty",
+      "source_refs": [
+        "F04",
+        "F15",
+        "F20"
+      ],
+      "authored_handoff": "Future requirement; not an instrument measurement fully documented by this paper",
+      "unknown_refs": [
+        "U03",
+        "U14"
+      ]
+    }
+  ]
+}

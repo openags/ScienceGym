@@ -1,0 +1,62 @@
+{
+  "conflicts_and_extraction_hazards": [
+    {
+      "id": "C01",
+      "topic": "Coral rate",
+      "locations": [
+        "MAIN p 5",
+        "Official MOVIE_2 written description",
+        "MOVIE_2 intro/summary and t = 60/t = 70 s labels"
+      ],
+      "observations": [
+        "Main and displayed movie:1.0 ml/min",
+        "Written movie caption:0.1 ml/min"
+      ],
+      "classification": "Unresolved source label discrepancy",
+      "handling": "Retain both values and their provenance;1.0 has convergent support, but do not silently revise caption or auto-fill an operating command",
+      "unknown_ref": "U13"
+    },
+    {
+      "id": "C02",
+      "topic": "Boyle-law intermediate sign",
+      "locations": [
+        "MAIN p 7 model derivation",
+        "MAIN p3 Eq 1"
+      ],
+      "observations": [
+        "The p 7 printed relation uses Vair minus deltaV while discussing expansion",
+        "The same paragraph and Eq 1 use negative pressure-drop approximation for increasing bubble volume"
+      ],
+      "classification": "Apparent sign-convention/transcription inconsistency; reviewer inference, not a published correction",
+      "handling": "Require independent scientific resolution before numerical implementation; preserve source as read",
+      "unknown_ref": "U16"
+    },
+    {
+      "id": "C03",
+      "topic": "Phi and diagram axes",
+      "locations": [
+        "MAIN p2",
+        "Fig5 p 5"
+      ],
+      "observations": [
+        "Phi is normalized to close-packed grain fraction",
+        "Figure 5 uses inverse phi, not phi minus1"
+      ],
+      "classification": "Extraction hazard resolved by visual inspection",
+      "handling": "Canonical authored fields normalized_phi and inverse_normalized_phi; preserve absolute fraction separately"
+    },
+    {
+      "id": "C04",
+      "topic": "Rate threshold scope",
+      "locations": [
+        "MAIN p 5,p 7"
+      ],
+      "observations": [
+        "0.05 is theoretical lower bound",
+        "Observed transition is above 0.1 with mixed behavior at 0.3"
+      ],
+      "classification": "Distinct concepts, not contradictory values",
+      "handling": "No scalar pass/fail threshold borrowed from lower-bound theory"
+    }
+  ]
+}

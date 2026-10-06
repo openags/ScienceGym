@@ -6,13 +6,49 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Release contents: 40 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (43 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
+**Release contents: 41 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (44 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
-## Microsphere microscopy: paired task and original scene
+## Frictional fluid dynamics: paired task and original scene
 
-The [microsphere task](tasks/microsphere_operations_v2/README.md), [original static scene](assets/microsphere_scene_assets_v1/README.md) and [lossless viewer](viewer/task_explorer_v1/docs/microsphere.md) add one paper-level design. The current explorer has **40 paper-level designs + 3 bounded subsets (43 families)**, **978 inspection records** and **3,250 operation definitions**. Microsphere adds thirteen source-scope branch views, six reference views and a separate default qualification hold. All **13 authored stages and 13 source branches**, **7 stations**, **9 original asset groups**, **33 evidence-only anchors** and **16 unresolved qualification gaps** remain explicit. No validated runnable whole-paper task is added.
+The [frictional-fluid task](tasks/frictional_operations_v2/README.md), [original static scene](assets/frictional_scene_assets_v1/README.md) and [lossless viewer](viewer/task_explorer_v1/docs/frictional.md) add one paper-level design. The explorer now contains **41 paper-level designs + 3 bounded subsets (44 families)**, **994 inspection records** and **3,262 operation definitions**. Nine source-program branches, twelve authored evidence routes, six stations, eight original asset groups and **32 evidence-only anchors** remain explicit. The inspector provides nine branch views, six reference views including the operation inventory, and a separate default qualification hold. All **twenty physical qualification holds** remain unresolved; no validated runnable whole-paper task is added.
+
+The task and scene retain **55 and 54 exact accepted archive members**. All **38 task JSON and 35 asset JSON documents** remain losslessly inspectable, including source conflicts, required evidence, failure records and native sanitation review. Reciprocal **42-file task and 36-file scene cores** preserve exact shared contracts and accepted pairing. Only the actor-facing task file is eligible for an acting-agent context; the explorer is a read-only author/evaluator inspector.
+
+### Source distinctions and qualification boundaries
+
+The coral-rate conflict remains explicit: the written movie description gives 0.1 ml/min, while displayed movie labels and the main paper give 1.0 ml/min. Neither value becomes an operating command. The apparent printed Boyle-law intermediate sign inconsistency remains unresolved; the package supplies no repaired numerical model. Normalized filling fraction is distinct from absolute volume fraction, reservoir volume from total compliance, pump rate from instantaneous burst flow, and movie playback time from experiment time.
+
+The viscosity-rate scaling control and high-filling granular-fracture extension remain required source branches, with incomplete recipes and conditions held. Granular fracture never means intentionally breaking the glass cell. The borrowed porous-medium comparisons retain external-author provenance and do not become experiments from this paper or additional task families. Sparse illustrated conditions do not imply a complete factorial schedule; twenty local width measurements do not establish twenty independent preparations. Source outcomes, fitted model parameters and theoretical bounds remain reference facts, never generated measurements, qualified defaults or reward thresholds.
+
+Preparation/run identities, immutable raw-parent references, clock/calibration associations, failures and service custody remain exact. Per-job R11 safe closeout can occur while other jobs remain open; R12 is the separate aggregate archive/accounting gate. Passing a metadata receipt check does not authenticate a service or inspect its external raw files. Pressure-cell preparation, loading, measurement and physical closeout remain closed qualified services under **HOLD_QUALIFICATION**. Geometry and anchors establish no pressure rating, safe load, calibrated contact, robot reachability or motion authority.
+
+The original native scene, embedded-only GLB and three CPU renders illustrate source-scale cell context alongside unqualified fixtures and categorical morphology tokens. The tokens were not traced from source figures or calculated from fluid dynamics. No fluid simulation, hardware controller, physical experiment, new scientific measurement or scientific reproduction is supplied.
+
+The accepted upstream source review covers all eight final main pages, five figures, nine equations and both movie descriptions. Both movies were decoded in full and nine/eleven selected frames inspected; continuous playback, raw-time validation, numeric datasets and external cited references remain unreviewed. No separate technical written SI was listed. This integration does not reread publications, reanalyze raw data or independently validate source claims. The source remains **CC BY-NC-SA 3.0**, with separate provenance for borrowed Figure 5 imagery. Apache-2.0 applies only to original authored contracts, code and assets. Publisher PDFs, figures, movies, frames, photographs, source CAD/code and raw data are not bundled.
+
+### Preservation and verification
+
+All **43 previous task packages**, earlier assets, both embodied storyboards, scene bindings, original LICENSE, metadata-maintenance tools and all **172 prior generated family artifacts** remain byte-identical to the preceding microsphere baseline. Historical release sections below retain their snapshot meaning. Archive and per-file hashes identify frozen bytes; the repository commit establishes publication status. ZIPs, native backups, private audit extracts and logs remain outside the Git delta.
+
+[![Original frictional-fluid laboratory illustration with closed services, supported carriers and evidence-only selectors](assets/frictional_scene_assets_v1/previews/preview_01_overview.png)](assets/frictional_scene_assets_v1/previews/preview_01_overview.png)
+
+[Editable Blender scene](assets/frictional_scene_assets_v1/geometry/frictional_lab.blend?raw=true) · [Static GLB](assets/frictional_scene_assets_v1/geometry/frictional_lab.glb?raw=true) · [Closed-service illustration](assets/frictional_scene_assets_v1/previews/preview_02_closed_service.png) · [Evidence-review illustration](assets/frictional_scene_assets_v1/previews/preview_03_evidence.png)
+
+```sh
+python3 -B scripts/verify_release.py
+(cd tasks/frictional_operations_v2 && python3 -B -m unittest discover -s tests -v && python3 -B -m unittest discover -s review -p 'independent_*tests.py' -v)
+python3 -B tasks/frictional_operations_v2/verify_pair.py assets/frictional_scene_assets_v1
+python3 -B assets/frictional_scene_assets_v1/verify_pair.py tasks/frictional_operations_v2
+(cd assets/frictional_scene_assets_v1 && python3 -B -m unittest discover -s tests -v)
+```
+
+These checks cover static design, finite synthetic bookkeeping and display/export properties. Native rebuilds, sanitation and exporter tools belong in disposable copies; resaving an accepted scene invalidates its hash and requires renewed review. Exact archive verification uses separately distributed ZIPs. See [viewer verification](viewer/task_explorer_v1/VERIFICATION.md).
+
+## Historical microsphere microscopy integration: 43 families
+
+The [microsphere task](tasks/microsphere_operations_v2/README.md), [original static scene](assets/microsphere_scene_assets_v1/README.md) and [lossless viewer](viewer/task_explorer_v1/docs/microsphere.md) add one paper-level design. At that integration stage, the explorer had **40 paper-level designs + 3 bounded subsets (43 families)**, **978 inspection records** and **3,250 operation definitions**. Microsphere adds thirteen source-scope branch views, six reference views and a separate default qualification hold. All **13 authored stages and 13 source branches**, **7 stations**, **9 original asset groups**, **33 evidence-only anchors** and **16 unresolved qualification gaps** remain explicit. No validated runnable whole-paper task is added.
 
 The task and scene contain **54 and 49 exact accepted archive members**. All **38 task JSON and 30 asset JSON documents** remain losslessly inspectable. Reciprocal **41-file task and 31-file scene cores** and the exact shared binding contract preserve the accepted pairing. Only the actor-facing task file is eligible for an acting-agent context; the explorer is read-only author/evaluator inspection.
 

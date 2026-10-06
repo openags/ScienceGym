@@ -14,7 +14,7 @@ def get(key):
 def ids(nodes):return [n['id'] for n,d in builder.walk(nodes) if n['type']=='op']
 
 class BundleTests(unittest.TestCase):
- def test_forty_three_families(self):self.assertEqual(len(list((ROOT/'data').glob('*.json'))),43)
+ def test_forty_four_families(self):self.assertEqual(len(list((ROOT/'data').glob('*.json'))),44)
  def test_all_operation_references_resolve(self):
   for key in builder.ADAPTERS:
    f=get(key);mapping={o['id']:o for o in f['operations']};self.assertEqual(len(mapping),len(f['operations']))
@@ -29,7 +29,7 @@ class BundleTests(unittest.TestCase):
     if o.get('action_macro'):self.assertIn(o['action_macro'],f['macros'])
  def test_compact_payloads(self):
   # Microsphere retains the full 7,060-buffer native sanitation audit; its lossless payload is approximately 3.65 MB.
-  for path in (ROOT/'data').glob('*.json'):self.assertLess(path.stat().st_size,6000000 if path.stem=='microsphere' else 3000000 if path.stem=='thermalmeta' else 4000000 if path.stem=='qha' else 800000 if path.stem in ('lockable_origami','varactor','wetting','arcmorph','midinfrared','conformal','scattering','qha','thermalmeta','microsphere') else 400000 if path.stem in ('woven','laser_control','solar_water','sucrose_metrology','actuator_metrology') else 900000 if path.stem in ('atmospheric_optics','martian_geophysics') else 450000 if path.stem=='transistor' else 2000000 if path.stem=='beaded' else 800000 if path.stem in ('granular_assembly','thermal_jamming','cold_shape','gear','hydrogel_optical') else 1500000 if path.stem=='perovskite' else 500000 if path.stem=='mechanical_backprop' else 400000 if path.stem in ('prismatic','emvp','wavefront','ring_origami') else 200000,path.name)
+  for path in (ROOT/'data').glob('*.json'):self.assertLess(path.stat().st_size,6000000 if path.stem in ('microsphere','frictional') else 3000000 if path.stem=='thermalmeta' else 4000000 if path.stem=='qha' else 800000 if path.stem in ('lockable_origami','varactor','wetting','arcmorph','midinfrared','conformal','scattering','qha','thermalmeta','microsphere','frictional') else 400000 if path.stem in ('woven','laser_control','solar_water','sucrose_metrology','actuator_metrology') else 900000 if path.stem in ('atmospheric_optics','martian_geophysics') else 450000 if path.stem=='transistor' else 2000000 if path.stem=='beaded' else 800000 if path.stem in ('granular_assembly','thermal_jamming','cold_shape','gear','hydrogel_optical') else 1500000 if path.stem=='perovskite' else 500000 if path.stem=='mechanical_backprop' else 400000 if path.stem in ('prismatic','emvp','wavefront','ring_origami') else 200000,path.name)
  def test_js_payload_matches_json(self):
   for key in builder.ADAPTERS:
    js=(ROOT/'data'/f'{key}.js').read_text();payload=js.split('['+json.dumps(key)+']=',1)[1].rsplit(';',1)[0]
@@ -82,7 +82,7 @@ class BundleTests(unittest.TestCase):
  def test_source_hashes(self):
   for key in builder.ADAPTERS:
    f=get(key)
-   for name,record in f['source_files'].items():self.assertEqual(record['sha256'],hashlib.sha256(((TASKS.parent/record['repository_path']) if key in ('scattering','qha','thermalmeta','microsphere') else (TASKS/builder.package_name(key)/name)).read_bytes()).hexdigest())
+   for name,record in f['source_files'].items():self.assertEqual(record['sha256'],hashlib.sha256(((TASKS.parent/record['repository_path']) if key in ('scattering','qha','thermalmeta','microsphere','frictional') else (TASKS/builder.package_name(key)/name)).read_bytes()).hexdigest())
  @unittest.skipUnless(TASKS,'SCIENCEGYM_TASKS not set; source comparison not run')
  def test_acoustic_rebuild_keeps_every_nested_value(self):
   expected=builder.adapt_acoustic(TASKS/'acoustic_operations_v2')

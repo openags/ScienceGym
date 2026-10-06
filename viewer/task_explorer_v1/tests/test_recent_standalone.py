@@ -27,11 +27,11 @@ class RecentStandaloneTests(unittest.TestCase):
 
     def test_exact_embedded_inventory_and_source_bytes(self):
         expected = {}
-        for key in ('lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta', 'microsphere'):
+        for key in ('lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal', 'scattering', 'qha', 'thermalmeta', 'microsphere', 'frictional'):
             f = get(key)
             for item in list(f['source_files'].values()) + f['asset_links']:
                 expected[item['url']] = item
-        self.assertEqual(len(expected), 472)  # 432 task/asset JSON, ten guides and thirty renders
+        self.assertEqual(len(expected), 549)  # 505 task/asset JSON, eleven guides and thirty-three renders
         self.assertEqual(set(expected), set(self.embedded))
         for url, item in expected.items():
             with self.subTest(url=url):
@@ -49,12 +49,12 @@ class RecentStandaloneTests(unittest.TestCase):
         self.assertIn('remote publication is not asserted', self.page)
         self.assertNotIn('https://github.com/openags/ScienceGym/blob/e1e4a74', self.page)
         self.assertNotIn('https://github.com/openags/ScienceGym/blob/98d3bfe', self.page)
-        self.assertIn('40 paper-level designs and three bounded subsets', self.page)
-        self.assertIn('all 978 route views in a mocked DOM', self.page)
+        self.assertIn('41 paper-level designs and three bounded subsets', self.page)
+        self.assertIn('all 994 route views in a mocked DOM', self.page)
 
     def test_exact_original_png_bytes_and_safe_no_execution_scope(self):
         pngs = [base64.b64decode(e['base64'], validate=True) for e in self.embedded.values() if e['mime'] == 'image/png']
-        self.assertEqual(len(pngs), 30)
+        self.assertEqual(len(pngs), 33)
         self.assertTrue(all(blob.startswith(b'\x89PNG\r\n\x1a\n') for blob in pngs))
         for key in ('lockable_origami', 'varactor', 'wetting', 'arcmorph', 'midinfrared', 'conformal'):
             family = get(key)

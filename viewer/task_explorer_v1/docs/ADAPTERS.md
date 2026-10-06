@@ -1,4 +1,20 @@
-# Microsphere lossless projection
+# Frictional lossless projection
+
+The current explorer has **44 families: 41 paper-level designs and three bounded subsets**, with **994 inspection records and 3,262 operation definitions**. `frictional_adapters.py` preserves all **38 recursive task JSON and 35 asset JSON documents**, including the full native-buffer audit. Raw source links have exact SHA-256 pins; standalone export embeds their original bytes without reserialization. Shared-value pooling changes only storage, not resolved values.
+
+Nine B01–B09 inspection branches invert only the exact operation `branch_ids` membership. Every occurrence carries a membership JSON pointer plus its operation-ID pointer. Groups are unordered, and twelve complete R01–R12 operations retain station, asset, anchor, dependency, gate, required-output, unresolved-input and ownership contracts. Required outputs stay acceptance obligations; absent observed post-state and absent per-operation recovery are explicit rather than invented. The family retains complete failure, custody and lifecycle documents.
+
+Six authored reference views comprise complete operation inventory, preparation, controls, failure/closeout, bindings and reported outcomes. A separate metadata-only default HOLD_QUALIFICATION has zero operations. R11 is repeatable per registered job, including failures, and does not depend on R10 or on closure of unrelated jobs. R12 requires all relevant dispositions and every job closeout. There is no added chronology, same-cell reset, scientific completion or global closeout token.
+
+Exact bindings retain six stations, eight original scene groups and 32 evidence-only anchors. Both reciprocal cores (42 task files, 36 scene files), byte-identical manifests, scene-task/shared binding and semantic-core copies, canonical binding digests and all route/asset/station/anchor/dependency associations are verified. Twenty holds remain unresolved. All 22 facts, four conflicts/hazards, eight outcomes and nine controls stay exact.
+
+Coral-rate 0.1/1.0 ml/min provenance and the apparent Boyle-law intermediate-sign inconsistency are not resolved. Viscosity control B06 and granular-fracture B07 remain required; B08 is attributed external context and B09 analytical context is unimplemented. Normalized/absolute filling, reservoir/total compliance, pump/burst rate, playback/experiment time, local sampling/independent repeats and theoretical/observed thresholds remain distinct.
+
+Original morphology tokens and source-scale dimensions are illustrative, never qualified apparatus, fluid fields or measured data. Pressure, preparation and cleanup remain closed services. Source CC BY-NC-SA 3.0 and separate third-party rights are not flattened into the original Apache-2.0 license. No source media, raw dataset, source code/CAD, hardware command, actor loader, fluid simulation or scientific reproduction is supplied.
+
+The new frozen-ZIP oracle and mutation suite import no adapter/runtime validator. Root Python discovery covers them; root mocked-DOM discovery runs the dedicated lossless-family suites. All 172 prior generated family artifacts remain byte-identical.
+
+# Historical microsphere lossless projection
 
 The current explorer has **43 families: 40 paper-level designs and three bounded subsets**, with **978 inspection records and 3,250 operation definitions**. `microsphere_adapters.py` retains all 38 recursive task JSON and 30 recursive asset JSON documents. Every exact raw JSON file is linked with its original SHA-256 and embedded without reserialization in the portable export. Compact JSON/JS may pool repeated values; resolved objects equal the accepted sources. The unusually large native-buffer audit is retained completely rather than summarized away.
 

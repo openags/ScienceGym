@@ -1,8 +1,26 @@
 # ScienceGym Task Explorer
 
-**See the task before reading its JSON.** 40 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
+**See the task before reading its JSON.** 41 paper-level designs and 3 bounded subsets, with exact scope, source contracts, default holds and evidence.
 
-## Microsphere paired-design release: 43 families
+## Frictional paired-design release: 44 families
+
+The explorer contains **41 paper-level designs + 3 bounded subsets (44 families)**, **994 inspection records** and **3,262 operation definitions**. [Frictional fluid dynamics](docs/frictional.md) adds one paper-level design with **12 authored evidence routes**, **nine source-scope branches**, **six authored reference views** (complete operation inventory plus five other references), and a separate metadata-only **HOLD_QUALIFICATION**. These are **16 inspection views**, with **zero validated runnable whole-paper tasks**.
+
+The [accepted task](../../tasks/frictional_operations_v2/README.md) and [original static scene](../../assets/frictional_scene_assets_v1/README.md) retain **55 and 54 exact archive members**. All **38 task JSON + 35 asset JSON documents** remain recursively lossless, including nested source-review and native-sanitation records. Exact reciprocal **42-file task and 36-file scene cores** bind **six stations, eight groups and 32 evidence-only anchors**. All **22 source facts, four conflicts/extraction hazards, eight reported outcomes, nine controls and twenty qualification holds** remain inspectable.
+
+Operation membership creates no adjacency chronology. Material lots, dispersion batches, aliquots, cell variants, loaded/settled/spent child states, runs, calibration/clock maps and service-job identities remain distinct. **R11 closes each registered service job independently**, including failures, and may occur before aggregate R08–R10 while other jobs remain open. **R12 requires every registered job closed**, all route dispositions and retained rejected history; one global R11 token cannot substitute for these obligations.
+
+The coral-rate **0.1 versus 1.0 ml/min** discrepancy retains both provenances. The apparent printed Boyle-law intermediate-sign conflict remains a reviewer inference, not a published correction or repaired model. **B06 viscosity-rate scaling and B07 high-filling granular fracture** remain required, separate unresolved branches. Granular fracture does not mean glass-cell breakage. **B08 porous-medium comparisons remain attributed external context** and **B09 analytical scope is unimplemented**. Normalized phi is not absolute volume fraction; reservoir volume is not total compliance; pump rate is not burst flow; playback time is not experimental time. Sparse conditions are not a factorial schedule, and twenty local widths are not twenty independent preparations.
+
+Reported dimensions and five original morphology tokens are static context, not pressure-rated hardware, fluid simulation or measured patterns. Preparation, cell qualification, pressure measurement, release and cleanup remain closed qualified services. Required receipts, outputs and source expectations never become observed states, authenticated laboratory evidence or success thresholds. Hash checks do not inspect external raw files.
+
+The accepted upstream review covered eight main pages, five figures, nine equations and both movie descriptions. Both movies were decoded; nine and eleven sampled file-time frames were inspected, without continuous or raw-time validation. Raw numeric datasets and external cited references were not reviewed. This integration does not reread the publications or resolve scientific conflicts.
+
+**Source CC BY-NC-SA 3.0 Unported and third-party Figure 5 rights remain separate from Apache-2.0 for original authored artifacts.** Publisher PDFs, source text/figures, movies/frames, borrowed photographs, source CAD/code and raw datasets are not bundled. Frozen archive/review fields retain their snapshot meaning; repository publication is established separately by the public commit.
+
+All **172 prior generated family artifacts** remain byte-identical. Portable export embeds **505 exact task/asset JSON documents, eleven original guides and 33 original PNG renders**, **549 exact files** across eleven recent families. The UI is author/evaluator reference only and supplies no actor loader, hardware operation, pressure procedure, fluid model or scientific reproduction.
+
+## Historical microsphere paired-design release: 43 families
 
 The explorer contains **40 paper-level designs + 3 bounded subsets (43 families)**, **978 inspection records** and **3,250 operation definitions**. [Microsphere optical imaging](docs/microsphere.md) adds one paper-level design with thirteen authored stages, thirteen source-scope branches, six reference views and a separate metadata-only **HOLD_QUALIFICATION**. There are **zero validated runnable whole-paper tasks**.
 

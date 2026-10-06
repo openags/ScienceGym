@@ -1,0 +1,692 @@
+{
+  "schema": "sciencegym.frictional.asset_inventory.v1",
+  "asset_groups": [
+    {
+      "id": "A01",
+      "name": "Intake rack and labeled contained stocks",
+      "route_refs": [
+        "R02",
+        "R03"
+      ],
+      "requirements": "Original generic containers; explicit lot/aliquot/containment semantics"
+    },
+    {
+      "id": "A02",
+      "name": "Two accepted cell variants and protected carriers",
+      "route_refs": [
+        "R02",
+        "R03",
+        "R11"
+      ],
+      "requirements": "Original proxy geometry with source outer/channel dimensions as metadata;10/19 mm variants distinct, no copied schematic or exact pressure certification"
+    },
+    {
+      "id": "A03",
+      "name": "Closed preparation/service dock",
+      "route_refs": [
+        "R03"
+      ],
+      "requirements": "Generic enclosed job/receipt interface; no glass drilling, cutting, sealing recipe or loose-powder handling"
+    },
+    {
+      "id": "A04",
+      "name": "Closed pump-pressure-imaging station",
+      "route_refs": [
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "requirements": "Generic interlocked enclosure and receipt ports; no executable pressure controls, hidden internal operating steps or vendor CAD"
+    },
+    {
+      "id": "A05",
+      "name": "Run-condition and calibration/clock metadata objects",
+      "route_refs": [
+        "R04",
+        "R08"
+      ],
+      "requirements": "Explicit requested/observed conditions, units, reference state, timestamps and calibration IDs"
+    },
+    {
+      "id": "A06",
+      "name": "Original schematic pattern-state tokens",
+      "route_refs": [
+        "R08",
+        "R09"
+      ],
+      "requirements": "Authored symbolic fingers/bubbles/coral/suspension/fracture categories only; not traced images, simulated fields or measured outcomes"
+    },
+    {
+      "id": "A07",
+      "name": "Read-only evidence and uncertainty dashboard",
+      "route_refs": [
+        "R08",
+        "R09",
+        "R10"
+      ],
+      "requirements": "Separate reported fact, raw observation, authored requirement, model context, conflict and unknown labels"
+    },
+    {
+      "id": "A08",
+      "name": "Quarantine and safe-closeout objects",
+      "route_refs": [
+        "R11",
+        "R12"
+      ],
+      "requirements": "Contained spent-state carriers, safe-release receipts, reuse inspection and archive IDs"
+    }
+  ],
+  "anchors": [
+    {
+      "anchor_id": "A01.intake_identity",
+      "object_name": "ANCHOR__A01__intake_identity",
+      "asset_id": "A01",
+      "station_id": "ST01",
+      "position_m": [
+        -3.12,
+        1.15,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A01.grain_lot",
+      "object_name": "ANCHOR__A01__grain_lot",
+      "asset_id": "A01",
+      "station_id": "ST01",
+      "position_m": [
+        -2.64,
+        1.15,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A01.host_lot",
+      "object_name": "ANCHOR__A01__host_lot",
+      "asset_id": "A01",
+      "station_id": "ST01",
+      "position_m": [
+        -2.16,
+        1.15,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A01.custody_record",
+      "object_name": "ANCHOR__A01__custody_record",
+      "asset_id": "A01",
+      "station_id": "ST01",
+      "position_m": [
+        -1.68,
+        1.15,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A02.cell_10mm",
+      "object_name": "ANCHOR__A02__cell_10mm",
+      "asset_id": "A02",
+      "station_id": "ST01",
+      "position_m": [
+        -3.12,
+        1.85,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A02.cell_19mm",
+      "object_name": "ANCHOR__A02__cell_19mm",
+      "asset_id": "A02",
+      "station_id": "ST01",
+      "position_m": [
+        -2.64,
+        1.85,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A02.geometry_record",
+      "object_name": "ANCHOR__A02__geometry_record",
+      "asset_id": "A02",
+      "station_id": "ST01",
+      "position_m": [
+        -2.16,
+        1.85,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A02.cell_inspection",
+      "object_name": "ANCHOR__A02__cell_inspection",
+      "asset_id": "A02",
+      "station_id": "ST01",
+      "position_m": [
+        -1.68,
+        1.85,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A03.contained_preparation",
+      "object_name": "ANCHOR__A03__contained_preparation",
+      "asset_id": "A03",
+      "station_id": "ST02",
+      "position_m": [
+        -0.72,
+        1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A03.loaded_state",
+      "object_name": "ANCHOR__A03__loaded_state",
+      "asset_id": "A03",
+      "station_id": "ST02",
+      "position_m": [
+        -0.24,
+        1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A03.settled_state",
+      "object_name": "ANCHOR__A03__settled_state",
+      "asset_id": "A03",
+      "station_id": "ST02",
+      "position_m": [
+        0.24,
+        1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A03.preparation_receipt",
+      "object_name": "ANCHOR__A03__preparation_receipt",
+      "asset_id": "A03",
+      "station_id": "ST02",
+      "position_m": [
+        0.72,
+        1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A04.closed_service",
+      "object_name": "ANCHOR__A04__closed_service",
+      "asset_id": "A04",
+      "station_id": "ST03",
+      "position_m": [
+        1.68,
+        1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A04.condition_receipt",
+      "object_name": "ANCHOR__A04__condition_receipt",
+      "asset_id": "A04",
+      "station_id": "ST03",
+      "position_m": [
+        2.16,
+        1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A04.safe_release",
+      "object_name": "ANCHOR__A04__safe_release",
+      "asset_id": "A04",
+      "station_id": "ST03",
+      "position_m": [
+        2.64,
+        1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A04.raw_stream_port",
+      "object_name": "ANCHOR__A04__raw_stream_port",
+      "asset_id": "A04",
+      "station_id": "ST03",
+      "position_m": [
+        3.12,
+        1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A05.pump_reference",
+      "object_name": "ANCHOR__A05__pump_reference",
+      "asset_id": "A05",
+      "station_id": "ST04",
+      "position_m": [
+        -3.12,
+        -1.85,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A05.pressure_calibration",
+      "object_name": "ANCHOR__A05__pressure_calibration",
+      "asset_id": "A05",
+      "station_id": "ST04",
+      "position_m": [
+        -2.64,
+        -1.85,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A05.camera_calibration",
+      "object_name": "ANCHOR__A05__camera_calibration",
+      "asset_id": "A05",
+      "station_id": "ST04",
+      "position_m": [
+        -2.16,
+        -1.85,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A05.clock_map",
+      "object_name": "ANCHOR__A05__clock_map",
+      "asset_id": "A05",
+      "station_id": "ST04",
+      "position_m": [
+        -1.68,
+        -1.85,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A06.pattern_token",
+      "object_name": "ANCHOR__A06__pattern_token",
+      "asset_id": "A06",
+      "station_id": "ST04",
+      "position_m": [
+        -3.12,
+        -1.15,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A06.segmentation_record",
+      "object_name": "ANCHOR__A06__segmentation_record",
+      "asset_id": "A06",
+      "station_id": "ST04",
+      "position_m": [
+        -2.64,
+        -1.15,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A06.event_record",
+      "object_name": "ANCHOR__A06__event_record",
+      "asset_id": "A06",
+      "station_id": "ST04",
+      "position_m": [
+        -2.16,
+        -1.15,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A06.uncertainty_record",
+      "object_name": "ANCHOR__A06__uncertainty_record",
+      "asset_id": "A06",
+      "station_id": "ST04",
+      "position_m": [
+        -1.68,
+        -1.15,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A07.branch_ledger",
+      "object_name": "ANCHOR__A07__branch_ledger",
+      "asset_id": "A07",
+      "station_id": "ST05",
+      "position_m": [
+        -0.72,
+        -1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A07.conflict_record",
+      "object_name": "ANCHOR__A07__conflict_record",
+      "asset_id": "A07",
+      "station_id": "ST05",
+      "position_m": [
+        -0.24,
+        -1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A07.repeat_hierarchy",
+      "object_name": "ANCHOR__A07__repeat_hierarchy",
+      "asset_id": "A07",
+      "station_id": "ST05",
+      "position_m": [
+        0.24,
+        -1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A07.model_context",
+      "object_name": "ANCHOR__A07__model_context",
+      "asset_id": "A07",
+      "station_id": "ST05",
+      "position_m": [
+        0.72,
+        -1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A08.quarantine_carrier",
+      "object_name": "ANCHOR__A08__quarantine_carrier",
+      "asset_id": "A08",
+      "station_id": "ST06",
+      "position_m": [
+        1.68,
+        -1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A08.safe_closeout",
+      "object_name": "ANCHOR__A08__safe_closeout",
+      "asset_id": "A08",
+      "station_id": "ST06",
+      "position_m": [
+        2.16,
+        -1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A08.reuse_inspection",
+      "object_name": "ANCHOR__A08__reuse_inspection",
+      "asset_id": "A08",
+      "station_id": "ST06",
+      "position_m": [
+        2.64,
+        -1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    },
+    {
+      "anchor_id": "A08.archive_receipt",
+      "object_name": "ANCHOR__A08__archive_receipt",
+      "asset_id": "A08",
+      "station_id": "ST06",
+      "position_m": [
+        3.12,
+        -1.5,
+        1.0
+      ],
+      "rotation_euler_rad": [
+        0,
+        0,
+        0
+      ],
+      "kind": "evidence_only_proxy",
+      "physical_motion_target": false
+    }
+  ],
+  "representation_classes": [
+    "LAB_REVIEW",
+    "SOURCE_SCALE",
+    "SCHEMATIC_TOKENS",
+    "EVIDENCE_ANCHORS"
+  ],
+  "route_count": 12,
+  "station_count": 6,
+  "asset_group_count": 8,
+  "anchor_count": 32,
+  "source_doi": "10.1038/ncomms1289",
+  "all_physical_work": "HOLD_QUALIFICATION",
+  "qualifying_unknown_ids": [
+    "U01",
+    "U02",
+    "U03",
+    "U04",
+    "U05",
+    "U06",
+    "U07",
+    "U08",
+    "U09",
+    "U10",
+    "U11",
+    "U12",
+    "U13",
+    "U14",
+    "U15",
+    "U16",
+    "U17",
+    "U18",
+    "U19",
+    "U20"
+  ]
+}
