@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **68**.
+Last screened: **2026-10-07**. Candidate count: **72**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -342,3 +342,27 @@ Five additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Heated apparatus, liquid/electrical separation, reference contact and humidity control, granular containment, pressure sensing, moving machinery, shaker guarding and optical tracking need separate qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 63 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - Passive cooling, textile metrology, soil drainage, rotating robots and its correction display **CC BY 4.0**. Active diffusion displays **CC BY-NC-ND 4.0**. These are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: droplet handling, acoustic lenses and circuit metrology (2026-10-07)
+
+Four additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Mechano-regulated surface for manipulating liquid droplets](https://www.nature.com/articles/ncomms14831) | Nature Communications / 2017 | 10.1038/ncomms14831 | Prepared-device assembly, water-droplet capture and release, tilt/contact-angle measurements and image-based volume comparisons suggest a handling-and-verification task | Reader HTML; cookie-error marker; OA |
+| [Manipulation and control of droplets on surfaces in a homogeneous electric field](https://www.nature.com/articles/s41467-021-27879-0) | Nature Communications / 2022 | 10.1038/s41467-021-27879-0 | Prepared-surface placement, camera calibration, water dispensing and repeated droplet/field comparisons suggest an instrument-coordination and imaging task | Reader HTML; cookie-error marker; OA |
+| [Wide field-of-hearing metalens for aberration-free sound capture](https://www.nature.com/articles/s41467-024-47050-9) | Nature Communications / 2024 | 10.1038/s41467-024-47050-9 | Prepared-lens assembly, orientation changes, microphone positioning and repeated field comparisons suggest an acoustic configuration-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Non-Hermitian Dirac cones with valley-dependent lifetimes](https://www.nature.com/articles/s41467-025-56882-y) | Nature Communications / 2025 | 10.1038/s41467-025-56882-y | Prepared-board interconnection, component checks, configuration changes and repeated node-voltage comparisons suggest an electrical setup-and-verification task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these four additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Mechanical droplet handling: selected Methods, Fabrication of mechano-regulated surfaces and Instruments and characterization; Results, Manipulation of aqueous liquid droplets using an MRS in air. Suitability concerns prepared meshes/fibres and water-droplet measurements. Biological microassays, reactive chemistry demonstrations, nanoparticle synthesis, organic-solvent droplets and coating fabrication are outside this preliminary scope
+- Electric-field droplet control: Methods, Applying the electric field; Camera adjustment and calibration; Volume of the mobile droplets; Validation of the friction law. Suitability concerns prepared surfaces, water droplets and physical image measurements. Numerical and analytical models remain distinct; substrate fabrication and field-induced emission are not proposed workflows. The publisher's publication date is in 2022 despite the DOI's 2021 identifier
+- Acoustic metalens: Methods, Experiments; Results, Experimental realization of wide field-of-hearing metalens. Suitability concerns prepared cured lens sections and audible-sound measurements. Simulations and proposed medical, ultrasonic or submerged applications remain distinct; fabrication is outside this preliminary scope
+- Circuit metrology: Methods, Sample design and fabrication; Circuit details; Circuit stability; Experimental measurements. Suitability concerns prepared circuit modules, interconnections and electrical measurements. Fourier-derived dispersions remain distinct from directly measured node voltages; board fabrication and unqualified active-circuit operation are outside this scope
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No alternate route was used to resolve access failures; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Liquid handling, surface chemistry, high-voltage and laser apparatus, guarded motion, acoustic exposure, probe clearances, active-circuit stability, grounding and instrument protection need separate qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 68 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- All four additions display **CC BY 4.0**. These are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
