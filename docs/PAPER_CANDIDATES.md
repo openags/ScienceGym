@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **42**.
+Last screened: **2026-10-07**. Candidate count: **48**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -210,3 +210,31 @@ Four additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Fabrication, mechanical loading, tendon release, particle containment, ionizing radiation, laser and scanning apparatus, soldering and electrical safety need separate qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 38 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - All four additions display **CC BY 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified. The origami-shell article expressly distinguishes third-party components in its Figure 5
+
+## Additional candidate titles: drop friction, turbulent flows and photonic measurements (2026-10-07)
+
+Six additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. These additions include *Nature Physics* and *Nature Photonics* alongside *Nature Communications*. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Kinetic drop friction](https://www.nature.com/articles/s41467-023-40289-8) | Nature Communications / 2023 | 10.1038/s41467-023-40289-8 | Prepared-coupon placement, water-based drop handling, incline changes and repeated camera-based motion comparisons suggest a staged surface-measurement task | Reader HTML; cookie-error marker; OA |
+| [Fragmentation in turbulence by small eddies](https://www.nature.com/articles/s41467-022-28092-3) | Nature Communications / 2022 | 10.1038/s41467-022-28092-3 | Prepared water-tank apparatus, alignment checks, coordinated bubble observations and repeated multi-camera comparisons suggest a staged fluid-measurement task | Reader HTML; cookie-error marker; OA |
+| [Inverse centrifugal effect induced by collective motion of vortices in rotating thermal convection](https://www.nature.com/articles/s41467-021-25838-3) | Nature Communications / 2021 | 10.1038/s41467-021-25838-3 | Prepared-cell mounting, alignment verification, thermal-state observation and extended flow-imaging comparisons suggest an instrument-coordination task | Reader HTML; cookie-error marker; OA |
+| [Wave-momentum shaping for moving objects in heterogeneous and dynamic media](https://www.nature.com/articles/s41567-024-02538-5) | Nature Physics / 2024 | 10.1038/s41567-024-02538-5 | Prepared inert-object and scatterer placement, microphone/camera coordination, repeated acoustic measurements and field scans suggest a reconfiguration-and-verification task | Reader HTML; cookie-error marker; OA |
+| [Wide-field spectroscopic imaging of optical activity](https://www.nature.com/articles/s41566-025-01722-0) | Nature Photonics / 2025 | 10.1038/s41566-025-01722-0 | Prepared inert patterned-sample exchange, reference registration, polarization/wavelength-series coordination and spectrometer comparisons suggest an optical acquisition-and-validation task | Reader HTML; cookie-error marker; OA |
+| [Space-time-topological events in photonic quantum walks](https://www.nature.com/articles/s41566-025-01653-w) | Nature Photonics / 2025 | 10.1038/s41566-025-01653-w | Prepared fibre-loop modules, alignment checks, detector/oscilloscope coordination, calibration checks and repeated wave-evolution comparisons suggest an instrument-configuration task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these six additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Drop friction: Methods, Liquids; Measurement of static advancing and receding contact angles; Measurement of sliding drop. Suitability concerns prepared surfaces with water or qualified glycerol-water liquids; coating fabrication and other chemicals are not proposed
+- Bubble fragmentation: Methods, Vortex ring; Time delays and system control; 3D measurements. Suitability concerns the prepared air-water apparatus and synchronized physical measurements; data available on request were not acquired
+- Rotating thermal convection: Methods, Experimental setup. The physical imaging experiment remains distinct from numerical simulations; specialized rotating, thermal and optical infrastructure limits accessibility
+- Wave-momentum shaping: Methods, Experimental set-up; Scattering matrix measurement; selected Results, Acoustic pressure field maps. Suitability concerns prepared macroscopic inert objects; biomedical extensions are not proposed
+- Optical-activity imaging: Methods, Polarization-sensitive holography, including Microscope, Acquisition and Post-processing; CD spectroscopy. Suitability concerns prepared inert patterned-gold samples. Nanofabrication and biological applications are not proposed; detailed setup and noise analysis in supplementary material remain unreviewed
+- Photonic quantum walks: Methods, Experimental set-up; Experimental error and power calibration. Suitability concerns prepared qualified fibre-loop modules and physical measurements; no amplifier construction or quantitative outcome claim is adopted
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Surface chemistry, dispensing, pneumatic and rotating machinery, thermal control, water/electrical separation, acoustic exposure, magnetic handling, laser apparatus and moving stages need separate safety qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 42 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- All six additions display **CC BY 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
