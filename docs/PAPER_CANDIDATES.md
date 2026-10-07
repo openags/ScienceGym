@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **17**.
+Last screened: **2026-10-07**. Candidate count: **23**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -80,3 +80,31 @@ Five additional **CANDIDATES** broaden the list to *Nature*, *Nature Physics* an
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Optical, thermal, electrical, fabrication and mechanical-test safety need separate qualification; no operating parameters are supplied
 - Exact titles and DOIs were deduplicated against the 12 existing candidates, current public task sources and the previously accepted task-design inventory
 - The first four additions display **CC BY 4.0**; modular disassembly displays **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: freezing, droplet dynamics, mechanical materials and acoustics (2026-10-07)
+
+Six additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Interfacial ice sprouting during salty water droplet freezing](https://www.nature.com/articles/s41467-024-46518-y) | Nature Communications / 2024 | 10.1038/s41467-024-46518-y | Salt-water preparation, prepared-substrate exchange, cooled-stage and Hele-Shaw positioning, microscopy and temperature comparisons suggest a sample-tracking and instrument-coordination task | Reader HTML; cookie-error marker; OA |
+| [The limit of droplet rebound angle](https://www.nature.com/articles/s41467-025-61300-4) | Nature Communications / 2025 | 10.1038/s41467-025-61300-4 | Prepared-patterned-substrate placement, droplet handling, synchronized high-speed imaging/force sensing and repeated comparisons suggest an embodied measurement task | Reader HTML; cookie-error marker; OA |
+| [Zero modes activation to reconcile floppiness, rigidity, and multistability into an all-in-one class of reprogrammable metamaterials](https://www.nature.com/articles/s41467-024-47180-0) | Nature Communications / 2024 | 10.1038/s41467-024-47180-0 | Printed-part preparation and assembly, selective hinge activation, compression measurements and camera-based rotation comparisons suggest a staged reconfiguration-and-testing task | Reader HTML; cookie-error marker; OA |
+| [Amorphous-amorphous transitions in granular packings](https://www.nature.com/articles/s41467-025-65575-5) | Nature Communications / 2025 | 10.1038/s41467-025-65575-5 | Particle-batch preparation, container loading, controlled tapping, settling checks and repeated tomography across shapes and packing states suggest a sample-tracking and instrument-coordination task | Reader HTML; cookie-error marker; OA |
+| [Integrated mechanical computing for autonomous soft machines](https://www.nature.com/articles/s41467-024-47201-y) | Nature Communications / 2024 | 10.1038/s41467-024-47201-y | Prepared printed logic specimens, lattice-frame mounting, mechanical loading and video comparisons of bistable states suggest an assembly-and-verification task | Reader HTML; cookie-error marker; OA |
+| [Structural reconfiguration of interacting multi-particle systems through parametric pumping](https://www.nature.com/articles/s41467-025-59631-3) | Nature Communications / 2025 | 10.1038/s41467-025-59631-3 | Prepared-particle loading, acoustic-trap setup, pressure sensing and synchronized camera tracking suggest a multi-instrument configuration-comparison task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these six additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with selected experimental passages
+- Ice sprouting: Methods, Preparation of surfaces and fluids; Droplet icing experiments; Temperature measurements of icing droplets. Suitability is limited to salt-water measurements with prepared substrates
+- Droplet rebound: Methods, Droplet impacting process; High-speed photography; Force measurement. Suitability is limited to water tests with prepared patterned substrates; hazardous surface fabrication is not proposed
+- Zero-mode metamaterials: Methods, Fabrication; Compression test; Mechanical signal guiding through biaxial zero modes
+- Granular packings: selected Methods, Experiment, covering particle batches, packing-state comparisons and tomography
+- Mechanical computing: Methods, Material characterization; Fabrication of integrated mechanical computing systems; Mechanical characterization; Experimental analysis of computational propagation of mechanical signals. Suitability is limited to prepared dry mechanical components
+- Acoustic reconfiguration: Methods, Acoustic levitation experiments; selected Results on repeated particle-configuration comparisons
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; denied or unusable sources were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Surface chemistry, fabrication, cold/electrical apparatus, mechanical loading, ultrasound, particle containment, X-ray tomography and the acoustic apparatus's X-ray de-ionizer need separate safety qualification; no operating parameters are supplied
+- Exact titles and DOIs were deduplicated against the 17 existing candidates, current public task sources and the previously accepted task-design inventory
+- Ice sprouting, zero-mode metamaterials and mechanical computing display **CC BY 4.0**. Droplet rebound, granular packings and acoustic reconfiguration display **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
