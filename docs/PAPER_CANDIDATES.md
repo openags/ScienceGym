@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **7**.
+Last screened: **2026-10-07**. Candidate count: **12**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -28,3 +28,29 @@ Scope: experimental papers in *Nature*, journals whose full titles begin with *N
 - The entangled-network and polymer-inspired-metamaterials pages list **CC BY-NC-ND 4.0**. Their inclusion is a citation and discovery record, not permission to adapt or redistribute their source content. Other source-component rights require their own check before reuse
 
 Further source review and task conversion are separate work. This list adds no operating parameters, biological-engineering procedures, 3D assets or experimental execution claims.
+
+## Additional candidate titles: optics, fluids and mechanics (2026-10-07)
+
+Five additional **CANDIDATES** are listed below. The original seven entries and their screening notes above are retained. These additions have metadata, abstract and selected experimental-section screening only; they add no reviewed or converted task designs.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Rapid sensing of hidden objects and defects using a single-pixel diffractive terahertz sensor](https://www.nature.com/articles/s41467-023-42554-2) | Nature Communications / 2023 | 10.1038/s41467-023-42554-2 | Optical-layer assembly, prepared silicon-sample exchange and repeated spectral comparisons suggest a staged setup-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Propagation-adaptive 4K computer-generated holography using physics-constrained spatial and Fourier neural operator](https://www.nature.com/articles/s41467-025-62997-z) | Nature Communications / 2025 | 10.1038/s41467-025-62997-z | Optical alignment, display-pattern changes and camera-stage depth sweeps suggest an instrument-coordination and image-comparison task | Reader HTML; cookie-error marker; OA |
+| [Compact light field photography towards versatile three-dimensional vision](https://www.nature.com/articles/s41467-022-31087-9) | Nature Communications / 2022 | 10.1038/s41467-022-31087-9 | Lenslet-holder assembly, stage alignment and repeated inert-target calibration across orientations suggest an optical assembly-and-verification task | Reader HTML; cookie-error marker; OA |
+| [Effects of nonlinearity on Anderson localization of surface gravity waves](https://www.nature.com/articles/s41467-024-49575-5) | Nature Communications / 2024 | 10.1038/s41467-024-49575-5 | Water-channel setup, periodic or random obstacle placement and repeated wave imaging suggest a reconfigurable fluid-experiment task | Reader HTML; cookie-error marker; OA |
+| [Topological mechanical metamaterial for robust and ductile one-way fracturing](https://www.nature.com/articles/s41467-026-69026-7) | Nature Communications / 2026 | 10.1038/s41467-026-69026-7 | Cut-sheet specimen preparation, pre-test inspection, mechanical loading and polarized imaging suggest a fabrication-and-testing task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these five additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07; abstracts and the selected sections below were screened
+- Terahertz sensing: experimental-validation Results and selected Methods on the holder/sample overview and spectroscopy apparatus. Suitability is limited to prepared-sample handling, assembly and measurement; hazardous wafer fabrication and laser qualification remain unresolved
+- Propagation-adaptive holography: Methods, Experimental details
+- Compact light-field photography: Methods, Experimental setup and Camera calibration
+- Surface gravity waves: Results, Experimental setup; Methods, Experiments
+- One-way fracturing: selected experimental Results; Methods, Experiments
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; papers with actual access denials or unusable returns were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed** for these additions. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability remains a preliminary inference, not a robot-feasibility or experimental-reproduction claim. Apparatus, laser, fabrication and mechanical-test safety need separate qualification before any task conversion
+- Exact titles and DOIs were deduplicated against the seven existing candidates, current public task sources and the previously accepted task-design inventory
+- The first four additions display **CC BY 4.0**; the one-way-fracturing article displays **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
