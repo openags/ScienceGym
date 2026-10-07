@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **23**.
+Last screened: **2026-10-07**. Candidate count: **28**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -108,3 +108,29 @@ Six additional **CANDIDATES** have metadata, abstract and selected experimental-
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Surface chemistry, fabrication, cold/electrical apparatus, mechanical loading, ultrasound, particle containment, X-ray tomography and the acoustic apparatus's X-ray de-ionizer need separate safety qualification; no operating parameters are supplied
 - Exact titles and DOIs were deduplicated against the 17 existing candidates, current public task sources and the previously accepted task-design inventory
 - Ice sprouting, zero-mode metamaterials and mechanical computing display **CC BY 4.0**. Droplet rebound, granular packings and acoustic reconfiguration display **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: magnetocapillary assembly, electrical circuits and acoustics (2026-10-07)
+
+Five additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Interactions and pattern formation in a macroscopic magnetocapillary SALR system of mermaid cereal](https://www.nature.com/articles/s41467-024-49754-4) | Nature Communications / 2024 | 10.1038/s41467-024-49754-4 | Prepared disk-and-magnet assembly, water-glycerol bath setup, sequential particle placement and repeated equilibrium-pattern observations suggest a reconfigurable assembly-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Digitally virtualized atoms for acoustic metamaterials](https://www.nature.com/articles/s41467-019-14124-y) | Nature Communications / 2020 | 10.1038/s41467-019-14124-y | Transducer-module assembly, waveguide mounting, programmed-condition changes and repeated acoustic measurements suggest a setup-and-instrument-coordination task | Reader HTML; cookie-error marker; OA |
+| [Scale-tailored localization and its observation in non-Hermitian electrical circuits](https://www.nature.com/articles/s41467-024-53434-8) | Nature Communications / 2024 | 10.1038/s41467-024-53434-8 | Prepared-board configuration, switch changes and repeated node-voltage measurements suggest an electrical setup-and-verification task | Reader HTML; cookie-error marker; OA |
+| [Hyperbolic matter in electrical circuits with tunable complex phases](https://www.nature.com/articles/s41467-023-36359-6) | Nature Communications / 2023 | 10.1038/s41467-023-36359-6 | Circuit-element assembly, component matching, controlled configuration changes and repeated electrical-response comparisons suggest a staged setup-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Metamaterial bricks and quantization of meta-surfaces](https://www.nature.com/articles/ncomms14608) | Nature Communications / 2017 | 10.1038/ncomms14608 | Prepared-brick placement, grid-frame assembly, layer stacking and microphone-stage measurements suggest a reconfiguration-and-measurement task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these five additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07; abstracts and the selected sections below were screened
+- Magnetocapillary assembly: Methods, Experimental details; selected Results on sequential disk loading and equilibrium-pattern comparisons. Suitability focuses on prepared disks and magnets with a water-glycerol bath
+- Digital acoustic metamaterials: Methods, Measurement setup and metamaterial structure
+- Scale-tailored circuits: Results, Unidirectional electrical circuit and Experimental demonstration of STL; selected Methods on voltage-response analysis
+- Hyperbolic circuits: Methods, Tunable complex-phase element; selected experimental Results on implemented networks and measured responses. Important technical implementation details are deferred to supplementary sections that remain unreviewed
+- Acoustic bricks: Methods, Manufacturing and assembly; Transmission measurements; Field mapping measurements. Suitability focuses on prepared parts
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Fabrication, magnetic handling, electrical apparatus, acoustic exposure and scanning-stage safety need separate qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 23 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- Magnetocapillary assembly, digital acoustic metamaterials, hyperbolic circuits and acoustic bricks display **CC BY 4.0**. Scale-tailored circuits displays **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
