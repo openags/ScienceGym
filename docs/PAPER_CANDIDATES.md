@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **38**.
+Last screened: **2026-10-07**. Candidate count: **42**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -186,3 +186,27 @@ Six additional **CANDIDATES** have metadata, abstract and selected experimental-
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Acoustic exposure, optical and laser apparatus, scanning stages, particle containment, liquid chemistry, rotating machinery, fabrication and impact guarding need separate safety qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 32 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - All six additions display **CC BY 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: curved shells, granular plasticity, optical imaging and circuit measurements (2026-10-07)
+
+Four additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Smooth doubly curved origami shells with reprogrammable rigidity](https://www.nature.com/articles/s41467-026-69562-2) | Nature Communications / 2026 | 10.1038/s41467-026-69562-2 | Prepared paperboard-shell and tendon assembly, fixture mounting, configuration changes and repeated bending-response comparisons suggest a staged reconfiguration-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Structural and topological nature of plasticity in sheared granular materials](https://www.nature.com/articles/s41467-018-05329-8) | Nature Communications / 2018 | 10.1038/s41467-018-05329-8 | Prepared-grain loading, packing-state changes, shear-cell configuration and repeated tomography comparisons suggest a staged granular-mechanics measurement task | Reader HTML; cookie-error marker; OA |
+| [Low-latency time-of-flight non-line-of-sight imaging at 5 frames per second](https://www.nature.com/articles/s41467-021-26721-x) | Nature Communications / 2021 | 10.1038/s41467-021-26721-x | Prepared inert-target placement, relay-wall and detector alignment, calibration checks and repeated scan comparisons suggest a scene-configuration and instrument-coordination task | Reader HTML; cookie-error marker; OA |
+| [Observation of Bloch oscillations dominated by effective anyonic particle statistics](https://www.nature.com/articles/s41467-022-29895-0) | Nature Communications / 2022 | 10.1038/s41467-022-29895-0 | Prepared-board placement, switch reconfiguration, instrument connection and repeated node-voltage comparisons suggest a staged electrical setup-and-verification task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these four additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Curved origami shells: Methods, Materials and fabrication; Mechanical testing; Tendon pre-stress tuning mechanism. Suitability concerns prepared dry components; detailed mechanism implementation in supplementary notes remains unreviewed
+- Granular plasticity: Methods, Experimental details. Suitability concerns prepared grains in the shear apparatus; specialized synchrotron infrastructure and X-ray qualification limit accessibility. The publisher's change-history note concerns the addition of a Peer Review File, which was not opened
+- Low-latency imaging: selected Methods, Details on the hardware configuration, calibration, and acquisition; Comparison with other methods. Suitability is limited to the prepared inert diffuse-target branch; human scenes are not proposed
+- Anyonic circuit measurements: Methods, Sample fabrications and circuit signal measurements; selected Results, Experimental observation of anyonic Bloch oscillations in electric circuits. Suitability concerns prepared physical circuit boards and measurements; no quantitative oscillation-outcome claim is adopted
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Fabrication, mechanical loading, tendon release, particle containment, ionizing radiation, laser and scanning apparatus, soldering and electrical safety need separate qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 38 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- All four additions display **CC BY 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified. The origami-shell article expressly distinguishes third-party components in its Figure 5
