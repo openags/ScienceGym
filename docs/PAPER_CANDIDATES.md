@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **32**.
+Last screened: **2026-10-07**. Candidate count: **38**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -158,3 +158,31 @@ Four additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Fabrication, motors and batteries, high-voltage/electrical apparatus, water handling, acoustic exposure, probe handling and laser safety need separate qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 28 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - Hierarchical origami, triboelectric wave-energy measurements and edge-resolved imaging display **CC BY 4.0**. Phononic crystals displays **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: acoustic fields, dynamic imaging, granular flows and mechanical response (2026-10-07)
+
+Six additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Topologically crafted spatiotemporal vortices in acoustics](https://www.nature.com/articles/s41467-023-41776-8) | Nature Communications / 2023 | 10.1038/s41467-023-41776-8 | Prepared-grating exchange, structural-perturbation placement, reference/probe coordination and repeated microphone scans suggest a reconfiguration-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Superwavelength self-healing of spoof surface sonic Airy-Talbot waves](https://www.nature.com/articles/s41467-023-43379-9) | Nature Communications / 2023 | 10.1038/s41467-023-43379-9 | Prepared acoustic-surface placement, obstacle changes, source-array configuration and microphone-stage measurements suggest a handling-and-comparison task | Reader HTML; cookie-error marker; OA |
+| [Matrix-based imaging through dynamic scattering](https://www.nature.com/articles/s41467-025-64422-x) | Nature Communications / 2025 | 10.1038/s41467-025-64422-x | Prepared inert-target and scatterer exchange, optical positioning, reference acquisition and camera-image comparisons suggest an optical measurement task | Reader HTML; cookie-error marker; OA |
+| [Origin of slow earthquake statistics in low-friction soft granular shear](https://www.nature.com/articles/s41467-025-65230-z) | Nature Communications / 2025 | 10.1038/s41467-025-65230-z | Prepared-particle and prepared-liquid loading, arrangement changes, shear-apparatus alignment and coordinated torque/imaging comparisons suggest a granular-physics task | Reader HTML; cookie-error marker; OA |
+| [River-bed armouring as a granular segregation phenomenon](https://www.nature.com/articles/s41467-017-01681-3) | Nature Communications / 2017 | 10.1038/s41467-017-01681-3 | Prepared-grain handling, bed resets, flume configuration and repeated particle-imaging comparisons suggest a staged fluid-and-granular measurement task | Reader HTML; cookie-error marker; OA |
+| [Non-reciprocal and non-Newtonian mechanical metamaterials](https://www.nature.com/articles/s41467-023-40493-6) | Nature Communications / 2023 | 10.1038/s41467-023-40493-6 | Prepared macroscopic-specimen placement, orientation changes and camera-based mechanical-response comparisons suggest a materials handling-and-testing task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these six additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Acoustic vortices: Methods, Experimental setup and methods to measure the transmission spectrum function; Experimental setup and measurement principle of STVP. Suitability focuses on prepared samples and reference/probe measurements
+- Airy-Talbot waves: Methods, Experimental configuration; Results, Experimental demonstration of the self-reconstruction and self-healing effect
+- Dynamic-scattering imaging: selected Methods, Experimental setup, covering the LED-illuminated inert-test-target branch. Prepared targets and scatterers are the proposed scope; biological specimens, custom target fabrication and other optical modalities are not proposed as workflows
+- Slow granular shear: Methods, Experimental setup. Suitability concerns prepared particles and prepared liquids; chemical compatibility, equilibration and mechanical qualification remain unresolved
+- River-bed armouring: Methods, Experimental setup and protocol; Imaging technique and particle detection/tracking; Determination of armour thickness. Suitability concerns prepared grains and liquids in the laboratory apparatus; numerical models remain distinct from the physical experiment
+- Mechanical metamaterials: selected Methods, Fabrication and Test. Suitability focuses on prepared macroscopic specimens; some force-response plots are numerical, and detailed experimental comparisons in supplementary material remain unreviewed
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Acoustic exposure, optical and laser apparatus, scanning stages, particle containment, liquid chemistry, rotating machinery, fabrication and impact guarding need separate safety qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 32 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- All six additions display **CC BY 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
