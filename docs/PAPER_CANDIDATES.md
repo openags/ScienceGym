@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **58**.
+Last screened: **2026-10-07**. Candidate count: **63**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -290,3 +290,29 @@ Five additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Water/electrical separation, tank stability, moving machinery and sample recovery, powder/liquid handling, guarded mechanical loading, laser/optical apparatus, acoustic exposure and probe/stage clearances need separate qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 53 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - Buoyant spheres, aqueous composites and hidden-target imaging display **CC BY 4.0**. C540 metamaterial and acoustic quasicrystals display **CC BY-NC-ND 4.0**. These are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: magnetic jamming, thermal convection, nanoscale friction and electromagnetic measurement (2026-10-07)
+
+Five additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Jamming with magnetic composites](https://www.nature.com/articles/s41467-025-63729-z) | Nature Communications / 2025 | 10.1038/s41467-025-63729-z | Prepared composite arrangement, fixture alignment and repeated field-dependent force-displacement comparisons suggest a staged mechanical-characterization task | Reader HTML; cookie-error marker; OA |
+| [Convective dynamics in mantle of tidally-locked exoplanets](https://www.nature.com/articles/s41467-025-62026-z) | Nature Communications / 2025 | 10.1038/s41467-025-62026-z | Prepared fluid loading, thermal-boundary configuration and repeated particle-imaging comparisons suggest a staged laboratory-convection measurement task | Reader HTML; cookie-error marker; OA |
+| [Imaging high-speed friction at the nanometer scale](https://www.nature.com/articles/ncomms13836) | Nature Communications / 2016 | 10.1038/ncomms13836 | Prepared graphite-sample exchange, cantilever calibration checks and repeated friction mapping suggest a specialist scanning-probe measurement task | Reader HTML; cookie-error marker; OA |
+| [Imaging nodal knots in momentum space through topolectrical circuits](https://www.nature.com/articles/s41467-020-17716-1) | Nature Communications / 2020 | 10.1038/s41467-020-17716-1 | Prepared circuit-board configuration, component calibration checks, switch-state changes and repeated impedance mapping suggest an electrical setup-and-verification task | Reader HTML; cookie-error marker; OA |
+| [Tailored compliant mechanisms for reconfigurable electromagnetic devices](https://www.nature.com/articles/s41467-023-36143-6) | Nature Communications / 2023 | 10.1038/s41467-023-36143-6 | Prepared antenna mounting, controlled mechanical reconfiguration, alignment checks and receive-mode pattern comparisons suggest a specialist configuration-and-measurement task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these five additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Magnetic jamming: Methods, Materials and manufacturing; Magnetic characterization; Actuation with a magnetic field; Mechanical characterization. Suitability concerns prepared cured specimens and guarded bench measurements; fabrication, biomedical deployment and autonomous reassembly are outside this preliminary scope
+- Thermal convection: Methods, Laboratory experiment; Data analysis. The experiment is a physical fluid-tank analogue of planetary convection. Measured velocity fields remain distinct from reconstructed temperature fields, which rely on a quasi-two-dimensional assumption; raw image sequences available on request were not acquired
+- Nanoscale friction: Methods, Sample, cantilever and calibration; Force sensitivity and image resolution; Intermodulation measurement and scanning feedback. Suitability concerns prepared graphite samples in a qualified specialist AFM system. Explanatory simulations remain distinct; robotic access to delicate instrument interfaces is unestablished
+- Topolectrical circuits: selected Results, Experimental mapping of surface drumhead states; Methods, Drumhead state experiment, including Impedance data measurement and analysis. The physical demonstration concerns the Hopf-link drumhead region; other knot examples and broader reconstructions are not treated as physical demonstrations
+- Reconfigurable electromagnetic devices: Methods, Device fabrication; Measurement methodology, with selected measured Results. Suitability concerns a prepared antenna and receive-mode characterization under mechanical reconfiguration. Fabrication, supplemental designs, high-power or harsh-environment deployment and proposed motorization are outside the screened experimental scope
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No alternate route was used to resolve access failures; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Magnetic handling, guarded mechanical loading, thermal and vacuum apparatus, liquid/electrical separation, tracer materials, probe/stage clearances, instrument lasers and RF facilities need separate safety qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 58 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- All five additions display **CC BY 4.0**. These are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
