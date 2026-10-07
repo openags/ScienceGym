@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **72**.
+Last screened: **2026-10-07**. Candidate count: **76**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -366,3 +366,27 @@ Four additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Liquid handling, surface chemistry, high-voltage and laser apparatus, guarded motion, acoustic exposure, probe clearances, active-circuit stability, grounding and instrument protection need separate qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 68 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - All four additions display **CC BY 4.0**. These are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: granular mixtures, thin shells and optical metrology (2026-10-07)
+
+Four additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Reentrant melting of scarred odd crystals by self-shear](https://www.nature.com/articles/s41467-026-68510-4) | Nature Communications / 2026 | 10.1038/s41467-026-68510-4 | Prepared-spinner sorting, mixture placement, vibration-stage checks and repeated overhead trajectory comparisons suggest a granular configuration-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Vibration-assisted fabrication of thin shells with spatially distributed imperfections](https://www.nature.com/articles/s41467-026-73343-2) | Nature Communications / 2026 | 10.1038/s41467-026-73343-2 | Prepared-shell exchange, illumination and fixture checks, thickness imaging and repeated pressure-response comparisons suggest a staged mechanical-characterization task | Reader HTML; cookie-error marker; OA |
+| [Compressed ultrahigh-speed single-pixel imaging by swept aggregate patterns](https://www.nature.com/articles/s41467-022-35585-8) | Nature Communications / 2022 | 10.1038/s41467-022-35585-8 | Prepared inert-target placement, optical-mode configuration, synchronization checks and repeated single-detector measurements suggest an imaging setup-and-verification task | Reader HTML; cookie-error marker; OA |
+| [Accurate and fast event-based shape measurement of mixed reflectance scenes](https://www.nature.com/articles/s41467-026-72254-6) | Nature Communications / 2026 | 10.1038/s41467-026-72254-6 | Prepared reference-target arrangement, camera-projector calibration checks, controlled stage translation and repeated shape comparisons suggest an optical-metrology task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these four additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Granular mixtures: Methods, Particle fabrication and Imaging the particles; Results, Tuning the oddness of dense granular spinner assemblies. Suitability concerns prepared cured spinners, mixture comparisons and physical trajectory measurements. Printing/postprocessing and simulated contact stresses are outside this preliminary scope
+- Thin shells: Methods, Thickness measurement and Mechanical buckling experiments; selected Results on imperfection fields and mechanical response. Suitability concerns prepared cured specimens and qualified measurement fixtures. Image-inferred thickness is calibrated against destructive measurements; gas-law-derived volumes and numerical modes remain distinct from direct observations. Casting chemistry and destructive preparation are outside this scope
+- Single-pixel imaging: selected Results, System setup and transmission/reflection demonstrations using pendulum and watch targets; Methods, Geometry of beam scanning and Aggregate pattern sequencing and data segmentation for video reconstruction. Suitability concerns inert targets and synchronized detector measurements. Reconstructed videos remain distinct from measured signals; heating, filament failure and proposed gas or biomedical applications are excluded
+- Event-based shape measurement: selected experimental Results, physical setup, diffuse/specular reference comparisons and Relative distance benchmark; Methods, Reflection classification and Iterative shape optimization for deflectometry. Suitability concerns inert laboratory targets, calibration checks and stage-translation comparisons. Reconstructed depths remain distinct from raw camera events; proposed medical and navigation deployments are excluded. Raw data and code are request-only and were not acquired
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No alternate route was used to resolve access failures; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Granular containment, shaker and rotating-mirror guarding, fragile-sample handling, pneumatic seals and pressure limits, laser exposure and reflections, synchronization and stage clearances need separate qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 72 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- Granular mixtures, thin shells and single-pixel imaging display **CC BY 4.0**; event-based shape measurement displays **CC BY-NC-ND 4.0**. These are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
