@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **48**.
+Last screened: **2026-10-07**. Candidate count: **53**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -238,3 +238,29 @@ Six additional **CANDIDATES** have metadata, abstract and selected experimental-
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Surface chemistry, dispensing, pneumatic and rotating machinery, thermal control, water/electrical separation, acoustic exposure, magnetic handling, laser apparatus and moving stages need separate safety qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 42 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - All six additions display **CC BY 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: laboratory faults, particle-laden droplets, optical spaceplates and acoustic spin (2026-10-07)
+
+Five additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Experimental evidence of seismic ruptures initiated by aseismic slip](https://www.nature.com/articles/s41467-024-52492-2) | Nature Communications / 2024 | 10.1038/s41467-024-52492-2 | Prepared solid-block and grain placement, packing changes, fixture alignment and coordinated force/strain/imaging comparisons suggest a staged frictional-mechanics measurement task | Reader HTML; cookie-error marker; OA |
+| [Ultrafast bounce of particle-laden droplets](https://www.nature.com/articles/s41467-024-54288-w) | Nature Communications / 2024 | 10.1038/s41467-024-54288-w | Prepared inert-particle and liquid handling, surface-coupon exchange, release-position changes and repeated high-speed imaging comparisons suggest a staged droplet-impact measurement task | Reader HTML; cookie-error marker; OA |
+| [Experimental demonstration of high space compression by optical spaceplates](https://www.nature.com/articles/s41467-026-71500-1) | Nature Communications / 2026 | 10.1038/s41467-026-71500-1 | Prepared optical-sample and reference exchange, alignment checks, angle changes and repeated camera-based beam/image comparisons suggest an optical configuration-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Realization of acoustic spin transport in metasurface waveguides](https://www.nature.com/articles/s41467-020-18599-y) | Nature Communications / 2020 | 10.1038/s41467-020-18599-y | Prepared waveguide-module assembly, configuration changes, source/detector positioning and repeated amplitude/phase scans suggest a staged acoustic reconfiguration-and-comparison task | Reader HTML; cookie-error marker; OA |
+| [Spin-orbit interactions of transverse sound](https://www.nature.com/articles/s41467-021-26375-9) | Nature Communications / 2021 | 10.1038/s41467-021-26375-9 | Prepared lattice placement, source-array coordination, microphone/oscilloscope connections and repeated pressure-field scans suggest an acoustic setup-and-verification task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these five additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Laboratory faults: Methods, Experimental setup; Materials; Particle tracking method; Force, strain, and stress measurements. Suitability concerns prepared solid blocks and nylon grains in the laboratory apparatus; machining and mechanical-load qualification remain unresolved
+- Particle-laden droplets: selected Methods, Generation of DEP; Impact experiments; Characterization. Suitability concerns prepared inert particles, qualified liquids and prepared surfaces; particle synthesis, coating fabrication and icing extensions are not proposed workflows
+- Optical spaceplates: selected Methods on the experimental setup; Measurement of the lateral beam shift; Measurement of the focal shift; The spaceplate in an imaging system. Suitability concerns prepared optical samples, glass references and inert patterned targets; thin-film fabrication is not proposed
+- Acoustic spin transport: Methods, Sample fabrication and experimental measurements. Suitability concerns prepared waveguide modules and physical amplitude/phase measurements; simulations remain distinct
+- Transverse sound: Methods, Experiments. Suitability concerns prepared lattices and the physical band-structure and negative-refraction measurements; vortex-scattering simulations are not treated as physical experiments
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Mechanical loading and stored energy, particle containment, liquid chemistry and dispensing, impact handling, laser/optical apparatus, acoustic exposure, probe clearances and moving-stage safety need separate qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 48 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- Laboratory faults, optical spaceplates, acoustic spin transport and transverse sound display **CC BY 4.0**. Particle-laden droplets displays **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
