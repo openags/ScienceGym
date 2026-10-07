@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **28**.
+Last screened: **2026-10-07**. Candidate count: **32**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -134,3 +134,27 @@ Five additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Fabrication, magnetic handling, electrical apparatus, acoustic exposure and scanning-stage safety need separate qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 23 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - Magnetocapillary assembly, digital acoustic metamaterials, hyperbolic circuits and acoustic bricks display **CC BY 4.0**. Scale-tailored circuits displays **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: origami, wave-energy measurements, acoustic crystals and imaging (2026-10-07)
+
+Four additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Adaptive hierarchical origami-based metastructures](https://www.nature.com/articles/s41467-024-50497-5) | Nature Communications / 2024 | 10.1038/s41467-024-50497-5 | Prepared cube-and-hinge assembly, reconfiguration across shapes and motor-driven shape-change comparisons suggest a staged assembly-and-verification task | Reader HTML; cookie-error marker; OA |
+| [Pumping up the charge density of a triboelectric nanogenerator by charge-shuttling](https://www.nature.com/articles/s41467-020-17891-1) | Nature Communications / 2020 | 10.1038/s41467-020-17891-1 | Prepared mechanical-component assembly, instrument connection and wave-tank/electrical-response comparisons suggest a multi-stage electromechanical measurement task | Reader HTML; cookie-error marker; OA |
+| [Satellite Dirac cones in phononic crystals](https://www.nature.com/articles/s41467-025-67305-3) | Nature Communications / 2026 (online 2025) | 10.1038/s41467-025-67305-3 | Prepared-sample mounting, stopper and source repositioning, reference checks and repeated probe scans suggest a reconfiguration-and-measurement task | Reader HTML; cookie-error marker; OA |
+| [Seeing around corners with edge-resolved transient imaging](https://www.nature.com/articles/s41467-020-19727-4) | Nature Communications / 2020 | 10.1038/s41467-020-19727-4 | Inert-scene and occluder positioning, optical alignment, detector orientation and synchronized scan comparisons suggest a scene-configuration and instrument-coordination task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these four additions
+
+- Exact titles, official journal names, publication dates and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Hierarchical origami: Methods, Sample fabrication of cube-based origami structures; Fabrication of autonomous robotic transformers. Suitability focuses on prepared parts; detailed robotic implementation is deferred to unreviewed supplementary material
+- Triboelectric wave-energy measurements: Methods, Fabrication of the integrated device; Characterization of the device. Suitability focuses on prepared components. Corona charging, high-voltage tests, fabrication and water/electrical apparatus remain unqualified
+- Phononic crystals: Methods, Experiments. The publisher's citation and version-of-record year is **2026**; its first-publication date is **18 December 2025**, and the version of record is dated **20 January 2026**
+- Edge-resolved imaging: Methods, Experimental setup. Suitability concerns prepared inert scenes; laser and optical-apparatus qualification remains necessary
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Fabrication, motors and batteries, high-voltage/electrical apparatus, water handling, acoustic exposure, probe handling and laser safety need separate qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 28 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- Hierarchical origami, triboelectric wave-energy measurements and edge-resolved imaging display **CC BY 4.0**. Phononic crystals displays **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
