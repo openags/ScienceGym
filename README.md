@@ -10,6 +10,10 @@ The unit of design is a **paper-level task family**. Its branches, dependencies,
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
+## Paper discovery candidates
+
+Browse the [paper candidate list](docs/PAPER_CANDIDATES.md) for titles screened for possible robot-laboratory task conversion. These are discovery candidates, not fully reviewed or converted tasks, and are excluded from the reviewed-design counts above.
+
 ## Frictional fluid dynamics: paired task and original scene
 
 The [frictional-fluid task](tasks/frictional_operations_v2/README.md), [original static scene](assets/frictional_scene_assets_v1/README.md) and [lossless viewer](viewer/task_explorer_v1/docs/frictional.md) add one paper-level design. The explorer now contains **41 paper-level designs + 3 bounded subsets (44 families)**, **994 inspection records** and **3,262 operation definitions**. Nine source-program branches, twelve authored evidence routes, six stations, eight original asset groups and **32 evidence-only anchors** remain explicit. The inspector provides nine branch views, six reference views including the operation inventory, and a separate default qualification hold. All **twenty physical qualification holds** remain unresolved; no validated runnable whole-paper task is added.
