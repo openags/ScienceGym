@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **53**.
+Last screened: **2026-10-07**. Candidate count: **58**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -264,3 +264,29 @@ Five additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Mechanical loading and stored energy, particle containment, liquid chemistry and dispensing, impact handling, laser/optical apparatus, acoustic exposure, probe clearances and moving-stage safety need separate qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 48 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - Laboratory faults, optical spaceplates, acoustic spin transport and transverse sound display **CC BY 4.0**. Particle-laden droplets displays **CC BY-NC-ND 4.0**. These are citations and discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: buoyant spheres, aqueous composites, hidden-target imaging and acoustic structures (2026-10-07)
+
+Five additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Flutter to tumble transition of buoyant spheres triggered by rotational inertia changes](https://www.nature.com/articles/s41467-018-04177-w) | Nature Communications / 2018 | 10.1038/s41467-018-04177-w | Prepared-sphere inspection, release and recovery, synchronized trajectory imaging and comparisons across mass distributions suggest a staged fluid-mechanics measurement task | Reader HTML; cookie-error marker; OA |
+| [Discontinuous rate-stiffening in a granular composite modeled after cornstarch and water](https://www.nature.com/articles/s41467-019-09300-z) | Nature Communications / 2019 | 10.1038/s41467-019-09300-z | Aqueous sample preparation, hydration-volume measurements, fixture loading and repeated force-displacement comparisons suggest a bounded materials-characterization task | Reader HTML; cookie-error marker; OA |
+| [Computational imaging of moving objects obscured by a random corridor via speckle correlations](https://www.nature.com/articles/s41467-022-31669-7) | Nature Communications / 2022 | 10.1038/s41467-022-31669-7 | Prepared inert-target placement, optical alignment checks, target-position changes and repeated image/reference comparisons suggest a staged imaging-measurement task | Reader HTML; cookie-error marker; OA |
+| [Visualizing the topological pentagon states of a giant C540 metamaterial](https://www.nature.com/articles/s41467-024-53819-9) | Nature Communications / 2024 | 10.1038/s41467-024-53819-9 | Prepared-module assembly inspection, source/probe placement and cavity-by-cavity pressure comparisons suggest an acoustic manipulation-and-metrology task | Reader HTML; cookie-error marker; OA |
+| [Observation of dispersive acoustic quasicrystals](https://www.nature.com/articles/s41467-025-57067-3) | Nature Communications / 2025 | 10.1038/s41467-025-57067-3 | Prepared-bilayer positioning, geometry checks, microphone-stage scans and reference-normalized comparisons suggest an acoustic configuration-and-measurement task | Reader HTML; cookie-error marker; OA |
+
+### Screening scope for these five additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-07 and independently cross-checked with abstracts and selected experimental passages
+- Buoyant spheres: Methods, Experimental methods; Image processing; selected Results, Turbulence experiments and Free-rise experiments. Suitability concerns prepared inert spheres and physical tracking. Still-water observations do not reproduce the turbulence-specific findings; the original turbulent-flow facility remains a separate equipment requirement
+- Aqueous composites: selected Methods, Water absorption measurement; Suspension impact experiments; Flat-punch indentation experiments. Preliminary suitability is limited to aqueous cornstarch hydration and guarded indentation. Solvent comparisons, heated polymer coatings and impact configurations are not proposed workflows; the bounded scope does not reproduce every whole-paper claim
+- Hidden-target imaging: Methods, Experimental setup; Image processing; Spatial- and ensemble-speckle intensity correlation; Image reconstruction of hidden objects. Suitability concerns inert metal targets and camera measurements in the prepared optical apparatus; data and code available on request were not acquired
+- C540 metamaterial: Methods, Experimental measurements, with selected physical-measurement Results. Suitability concerns prepared cured acoustic modules, probe placement and pressure measurements. Numerical simulations remain distinct; resin fabrication is not proposed. The title uses plain-text C540 for the publisher's subscripted chemical-style label
+- Acoustic quasicrystals: Methods, Sample preparation and measurements. Suitability concerns prepared cured bilayers, spatial field scans and simultaneous reference measurements. The reported motorized stage does not establish general robot feasibility; fabrication and simulations remain outside this preliminary measurement scope
+- **Access caveat for every addition:** Publisher HTML readable through web reader; cookie-error marker reported; PDF/supplement access not verified. This is not a claim of clean live access or complete full-text review. No retry or alternate route was used to resolve the marker; denied, unusable and subscription-preview sources without the required experimental sections were excluded
+- Complete written sources, supplementary information, movies, code and raw datasets were **not reviewed**. No PDF, supplement, media or dataset was acquired for this batch
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Water/electrical separation, tank stability, moving machinery and sample recovery, powder/liquid handling, guarded mechanical loading, laser/optical apparatus, acoustic exposure and probe/stage clearances need separate qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 53 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
+- Buoyant spheres, aqueous composites and hidden-target imaging display **CC BY 4.0**. C540 metamaterial and acoustic quasicrystals display **CC BY-NC-ND 4.0**. These are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
