@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **120**.
+Last screened: **2026-10-08**. Candidate count: **122**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -681,3 +681,21 @@ Four additional **CANDIDATES** have metadata and selected experimental-section s
 - None of the complete main articles or supplements was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. Author-request data were not obtained. No source file, media, operating parameters or execution authority is supplied. Prepared-input quality, electrical/beam safety, stage clearance, fragile-part handling and calibration require separate qualification
 - Suitability is a preliminary inference, not robot feasibility, task conversion or experimental reproduction. Exact DOIs were checked against the 116 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching
 - The hyperbolic-lattice and optical-metrology pages display **CC BY-NC-ND 4.0**; the other two display **CC BY 4.0**. These entries are citations and independent factual discovery notes. Source adaptation, redistribution and third-party rights require separate review
+
+## Additional candidate titles: mechanical kink control and structured-light imaging (2026-10-08)
+
+Two additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Observation of mechanical kink control and generation via acoustic waves](https://www.nature.com/articles/s41467-026-68688-7) | Nature Communications / 2026 | 10.1038/s41467-026-68688-7 | Prepared-chain inspection, state reset, fixture checks and repeated synchronized video comparisons suggest a reconfiguration-and-metrology task | Reader HTML; cookie-error marker; OA; SI retrieval failed |
+| [Metasurface-driven full-space structured light for three-dimensional imaging](https://www.nature.com/articles/s41467-022-32117-2) | Nature Communications / 2022 | 10.1038/s41467-022-32117-2 | Prepared-optics mounting, inert-target placement, camera calibration and repeated image comparisons suggest an instrument-coordination task | Reader HTML; cookie-error marker; OA; selected SI text read |
+
+### Screening scope for these two additions
+
+- Exact titles, journal names, citation years and DOIs were checked against the linked publisher pages on 2026-10-08. Selected experimental evidence was distinguished from simulations and reconstructed quantities
+- Mechanical kink control: selected experimental Results and embedded apparatus/acquisition methods describe a spring-coupled rotor chain, shaker excitation and synchronized video measurements. Experimental propagation was limited, and repulsion was not experimentally attempted. Suitability concerns prepared dry components and separately qualified guarded actuation; fabrication is excluded. Elastic stored energy, rotating-part pinch points, mounting and electrical/shaker limits require qualification. The linked SI exceeded the reader size limit on its first retrieval and remains unread; it was held without retry or alternate access
+- Structured-light imaging: selected characterization/imaging Results and measurement/calibration Methods, plus selected SI Figure 6 and Figure 8 caption text and Note 3, describe physical optical measurements, inert-mask imaging and stereo calibration. Depth maps and registered point clouds are computational reconstructions. Suitability requires externally prepared optics and inert targets in a qualified enclosed station; nanofabrication, nanoparticle/resin preparation, open-beam alignment and higher-power demonstrations are excluded. Beam containment, stage clearance and calibration remain unresolved
+- **Access caveat:** Both main HTML pages were readable through the web reader with a cookie-error marker; this does not establish clean live access or complete full-text review. Neither complete main article nor supplement was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed. No source file, media, operating parameters or execution authority is supplied
+- Suitability is a preliminary inference, not robot feasibility, task conversion or experimental reproduction. Exact DOIs were checked against the 120 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching
+- Both pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes; source adaptation, redistribution and third-party component rights require separate review
