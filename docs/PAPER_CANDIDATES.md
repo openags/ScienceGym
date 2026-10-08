@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **136**.
+Last screened: **2026-10-08**. Candidate count: **137**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -841,3 +841,20 @@ One additional **CANDIDATE** has metadata and selected experimental-section scre
 - Complete main article and supplement review, main PDF, figure pixels, movies and raw datasets remain outstanding. No converted task, robot-feasibility validation, safety qualification or reproduction claim is added
 - Exact DOI and normalized title were checked against the 135 existing candidates, README and public task-source records. A fresh remote tree verified the stored task-source records were unchanged. Recovered prior exclusions were also checked and known holds preserved; incomplete historical exclusion recovery prevents exhaustive historical screening claims
 - The publisher displays **CC BY-NC-ND 4.0**. Only a citation and independent factual discovery notes are included; source adaptation, redistribution and third-party component rights require separate review
+## Additional candidate title: buoyancy and body-motion metrology (2026-10-08)
+
+One additional **CANDIDATE** has metadata and selected experimental-text screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Levitation and dynamics of bodies in supersaturated fluids](https://www.nature.com/articles/s41467-024-47672-z) | Nature Communications / 2024 | 10.1038/s41467-024-47672-z | Prepared-polymer-body placement, fixed/free comparisons and repeated balance/video acquisition suggest a sample-history and metrology task | Reader HTML; cookie-error marker; OA; selected SI text read; figure rendering unverified |
+
+### Screening scope for this addition
+
+- Exact title, journal name, citation year and DOI were checked against the linked publisher page on 2026-10-08. Experimental methods embedded in Results describe fluid mass-loss, stationary-body scale readings and video-tracked free-sphere motion. Concentration and additional buoyancy are derived quantities; discrete-bubble and continuum calculations are model evidence
+- Selected SI experimental text covers approximate force estimation and additional fixed-body observations. Main text/caption mass-loss repetition counts disagree; the relationship between free-body trial counts and the smaller frequency-analysis subset is not established. A raisin force-growth unit conflict also remains unresolved. No numerical value, count or success threshold is adopted from these conflicts
+- Suitability is a preliminary robot-task inference limited to supplied polymer specimens and prepared carbonated-water inputs. Fabrication, carbonation-system operation and the raisin branch are outside the proposed scope. Vessel stability, fixtures, liquid/electrical separation, handling and cleanup require qualification; no operating procedure or execution authority is supplied
+- **Access caveat:** Main HTML was readable with a cookie-error marker, and the first linked SI PDF yielded readable text. A subsequent SI page-render request failed; figure pixels remain unverified, with no retry or alternate route. This does not establish clean live-browser access
+- Complete main article and supplement review, main PDF, figure pixels, movies, code and raw datasets remain outstanding. No converted task, robot-feasibility validation, safety qualification or reproduction claim is added
+- DOI and normalized title were checked against the 136 existing candidates, README and 114 task-source records whose blobs match a fresh remote tree. Recovered exclusions were checked and known holds preserved; incomplete historical recovery prevents exhaustive historical-screening claims
+- The publisher displays **CC BY 4.0**. Only a citation and independent factual discovery notes are included; supplement-specific and third-party component rights require separate review
