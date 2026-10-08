@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **127**.
+Last screened: **2026-10-08**. Candidate count: **129**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -740,4 +740,24 @@ Three additional **CANDIDATES** have metadata and selected experimental-section 
 - Complete main articles and supplements, main PDFs, figure pixels, movies, code and raw datasets remain unreviewed. These citations add no converted task, robot-feasibility validation, safety qualification or reproduction claim
 - Exact DOIs were checked against the 124 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching
 - The two acoustic pages display **CC BY-NC-ND 4.0**; the gripper page displays **CC BY 4.0**. These entries are citations and independent factual discovery notes. Source adaptation, redistribution and third-party component rights require separate review
+
+## Additional candidate titles: speckle measurement and mobile manipulation (2026-10-08)
+
+Two additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Speckle-driven single-shot orbital angular momentum recognition with ultra-low sampling density](https://www.nature.com/articles/s41467-025-66074-3) | Nature Communications / 2025 | 10.1038/s41467-025-66074-3 | Prepared-component mounting, fiber/camera positioning, configuration changes and repeated reference captures suggest an instrument-coordination task | Reader HTML; cookie-error marker; OA; selected SI text read |
+| [A detachable crawling robotic hand](https://www.nature.com/articles/s41467-025-67675-8) | Nature Communications / 2026 | 10.1038/s41467-025-67675-8 | Prepared-hand and inert-block placement, tracking checks, grasp-and-crawl trials and docking comparisons suggest a staged manipulation-and-measurement task | Reader HTML; cookie-error marker; OA; SI retrieval exceeded size limit |
+
+### Screening scope for these two additions
+
+- Exact titles, journal names, citation years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical measurements were distinguished from simulations, computational outputs and preliminary robot-task inferences
+- Speckle measurement: selected acquisition Results and Methods, plus selected SI Notes 2–3, describe modulated-light transmission through a prepared fiber and synchronized camera captures. The reported single-pixel detectors are numerical masks applied to CCD images, not a demonstrated standalone detector array. Classification and image reconstruction are computational outputs. MNIST/Fashion-MNIST and selected SI axicon/perturbation extensions are simulations and are excluded from the physical-experiment claim. Suitability concerns prepared components in a qualified enclosed optical station
+- Crawling hand: selected physical-trial Results and Robot mechanical design and Control and docking strategy Methods describe prepared robotic hardware retrieving inert wooden blocks, crawling while grasping and reconnecting to an arm. MuJoCo design/gait optimization is separate simulation evidence. Suitability is limited to prepared hardware and inert tabletop objects; no hardware transfer or controller validation is established
+- Safety remains unqualified. Optical exposure, fiber handling, electrical protection and fixture clearance require review for the speckle candidate; laser commissioning and open-beam alignment are excluded. Robot pinch zones, magnetic docking, latch verification, collision clearance and object escape require review for the crawling hand; fabrication and human-contact demonstrations are excluded. No operating parameters or execution authority are supplied
+- **Access caveat:** Both main HTML pages were readable through the web reader with a cookie-error marker. The first linked speckle SI retrieval yielded readable extracted text, of which only selected passages were screened. The hand's first linked SI retrieval exceeded the reader size limit and remains unread and resource-held, without retry or alternate access. This does not establish clean live-browser access or complete full-text review
+- Complete main articles and supplements, main PDFs, figure pixels, movies, code/CAD and raw datasets remain unreviewed. Speckle data/code are listed as available on request and were not acquired. These citations add no converted task, robot-feasibility validation, safety qualification or reproduction claim
+- Exact DOIs were checked against the 127 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching. Prior unopened search leads were not treated as reviewed candidates
+- Both pages display **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes. Source adaptation, redistribution and third-party component rights require separate review
 
