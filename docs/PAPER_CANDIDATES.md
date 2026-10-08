@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **124**.
+Last screened: **2026-10-08**. Candidate count: **127**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -718,3 +718,26 @@ Two additional **CANDIDATES** have metadata and selected experimental-section sc
 - Neither complete main article nor supplement was reviewed. Main PDFs, movies, code and raw datasets remain unreviewed. No source file, media, operating parameters or execution authority is supplied. These citations add no converted task, robot-feasibility validation or reproduction claim
 - Exact DOIs were checked against the 122 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching
 - Both pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes; source adaptation, redistribution and third-party component rights require separate review
+
+## Additional candidate titles: acoustic field mapping and compliant grasping (2026-10-08)
+
+Three additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Orbital angular momentum- and frequency-dependent high-capacity encrypted hologram through multi-dimensional multiplexing acoustic metasurface](https://www.nature.com/articles/s41467-025-66793-7) | Nature Communications / 2025 | 10.1038/s41467-025-66793-7 | Prepared-sample mounting, source configuration changes, microphone positioning and repeated pattern comparisons suggest an assembly-and-measurement task | Reader HTML; cookie-error marker; OA; selected SI text read |
+| [Chirality-protected extreme asymmetric acoustic information transport with noise immunity](https://www.nature.com/articles/s41467-025-63557-1) | Nature Communications / 2025 | 10.1038/s41467-025-63557-1 | Prepared duct-module mounting/reversal, source-program changes, probe positioning and repeatable transmission comparisons suggest a multi-instrument manipulation task | Reader HTML; cookie-error marker; OA; selected SI text read |
+| [Angle-programmed tendril-like trajectories enable a multifunctional gripper with ultradelicacy, ultrastrength, and ultraprecision](https://www.nature.com/articles/s41467-023-39741-6) | Nature Communications / 2023 | 10.1038/s41467-023-39741-6 | Prepared-gripper mounting, inert-target placement, repeated grasp/release trials and force measurement suggest an embodied assembly-and-testing candidate | Reader HTML; cookie-error marker; OA; selected SI text read |
+
+### Screening scope for these three additions
+
+- Exact titles, journal names, citation years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical measurements were distinguished from simulations, reconstructed outputs and preliminary robot-task inferences
+- Multiplexed acoustic holography: selected experimental-realization Results and Experimental configuration Method, plus selected SI Section 7 and Sections 7–8 caption/text passages, describe a prepared metasurface, speaker array and scanned-microphone sound-field measurements. The SI particle-sorting extension is simulation only and is excluded from the physical-experiment claim. Suitability concerns prepared-sample positioning and repeated acoustic-pattern comparisons
+- Chiral acoustic transport: selected experimental Results and Experiments Methods describe prepared duct modules, speakers and microphones for directional transmission measurements and signal-derived image reconstruction. Selected SI Notes 2–3 explain beam excitation and mode decomposition; their equations were not fully audited. Suitability concerns prepared-module positioning, source-program changes and repeatable probe measurements; reconstructed images are derived outputs
+- Tendril-like gripper: selected force-test and robot-demonstration Results, testing/demonstration Methods and SI Note 4 with selected limitation passages and caption text describe physical specimens, force measurements and robotic manipulation. Simulations are separate evidence. Suitability is limited to prepared grippers and lightweight inert targets for repeated grasp/release comparisons; target size, shape and grasp mode constrain performance. Living-organism, human-prosthesis, medical-sharps, liquid and heavy-load demonstrations are excluded
+- Safety remains unqualified. Acoustic exposure, electrical protection and moving-stage clearance require review for both acoustic candidates. Prepared-gripper edges, robot pinch zones and specimen rupture require review for the grasping candidate. Resin printing, laser cutting and other fabrication are outside the proposed prepared-input scope; no operating parameters or execution authority are supplied
+- **Access caveat:** All three main HTML pages were readable through the web reader with a cookie-error marker. Each first linked SI PDF yielded readable extracted text, of which only selected passages were screened. This does not establish clean live-browser access or complete full-text review. No access retry or alternate route was used; failed sources were held and omitted
+- Complete main articles and supplements, main PDFs, figure pixels, movies, code and raw datasets remain unreviewed. These citations add no converted task, robot-feasibility validation, safety qualification or reproduction claim
+- Exact DOIs were checked against the 124 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching
+- The two acoustic pages display **CC BY-NC-ND 4.0**; the gripper page displays **CC BY 4.0**. These entries are citations and independent factual discovery notes. Source adaptation, redistribution and third-party component rights require separate review
+
