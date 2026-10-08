@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **82**.
+Last screened: **2026-10-08**. Candidate count: **85**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -433,4 +433,25 @@ Four additional **CANDIDATES** have metadata, abstract and selected experimental
 - None of the complete main articles was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. No publisher source file or media is included in the repository. Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim; no operating parameters are supplied
 - Exact DOIs were checked against the 78 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against the existing candidate list and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
 - Hollow-droplet and Janus-metascreen articles display **CC BY 4.0**. The two origami articles display **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights and future reuse permissions remain unverified
+
+## Additional candidate titles: folded geometry, mechanical logic and optical motion sensing (2026-10-08)
+
+Three additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Invariant and smooth limit of discrete geometry folded from bistable origami leading to multistable metasurfaces](https://www.nature.com/articles/s41467-019-11935-x) | Nature Communications / 2019 | 10.1038/s41467-019-11935-x | Sheet handling, controlled folding, specimen positioning and repeated shape scans suggest a fabrication-and-metrology task | Reader HTML; cookie-error marker; OA; SI retrieval failed |
+| [Digital logic gates in soft, conductive mechanical metamaterials](https://www.nature.com/articles/s41467-021-21920-y) | Nature Communications / 2021 | 10.1038/s41467-021-21920-y | Prepared-specimen placement, mechanical-input changes and synchronized displacement/electrical readout suggest a testing-and-verification task | Reader HTML; cookie-error marker; OA; SI retrieval failed |
+| [Doppler effect tailoring: extra-red shift of structured light](https://www.nature.com/articles/s41467-025-64913-x) | Nature Communications / 2025 | 10.1038/s41467-025-64913-x | Optical alignment, target-stage setup, detector configuration changes and repeated motion/beam comparisons suggest a calibration-and-measurement task | Reader HTML; cookie-error marker; OA; selected SI text read |
+
+### Screening scope for these three additions
+
+- Exact titles, journal names, years and DOIs were checked against the linked publisher pages on 2026-10-08. Selected physical experimental passages were distinguished from theory, simulation and proposed applications
+- Folded geometry: selected physical-model Results and main Methods on specimen fabrication and testing were read. Physical Mylar sheets were folded and scanned for shape comparisons. Cutting safeguards, folding dexterity, scanner calibration and fixture design remain unqualified. The linked SI failed on its first retrieval and was not read
+- Mechanical logic: selected experimental Results and main Methods on fabrication, characterization and reproducibility were read. Suitability is limited to testing prepared specimens; solvent-based conductive-ink preparation and particle handling are outside this preliminary scope. Load-frame guarding, electrical protection and sensing calibration require qualification. The linked SI failed on its first retrieval and was not read
+- Optical motion sensing: selected experimental Results and main Methods on optical implementation were read, along with SI Notes 3-4 and setup-caption text from the accessible eleven-page PDF. Suitability concerns laboratory mirror targets; laser containment, protected detectors, guarded stages and calibration remain unqualified. An apparent numerical-example inconsistency in the HTML remains unresolved; no corrected value or operating parameter is supplied
+- **Access caveat for all three additions:** Publisher HTML was readable through the web reader with a cookie-error marker. This does not establish clean live access or complete full-text review. Failed resources were held without retry or alternative access; other unavailable sources were excluded
+- None of the complete main articles was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. No publisher source file or media is included. Suitability is a preliminary inference, not a robot-feasibility, task-conversion or reproduction claim
+- Exact DOIs were checked against the 82 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against the existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
+- The folded-geometry and mechanical-logic articles display **CC BY 4.0**; the optical article displays **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
 
