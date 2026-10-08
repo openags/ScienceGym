@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **133**.
+Last screened: **2026-10-08**. Candidate count: **135**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -802,3 +802,24 @@ Two additional **CANDIDATES** have metadata and selected experimental-section sc
 - Selected metadata, experimental Results/Methods and rights text were screened. Complete main articles, supplements, main PDFs, figure pixels, movies, code and raw datasets remain unreviewed. No converted task, robot-feasibility validation, safety qualification or reproduction claim is added
 - Exact DOIs were checked against the 131 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, README and source-inventory titles; legacy DOI-only records prevent exhaustive title-only matching
 - Both pages display **CC BY 4.0**, with third-party rights requiring separate review. Only citations and independent factual discovery notes are included; no source assets are redistributed
+
+
+## Additional candidate titles: sediment-bed dynamics and photonic metrology (2026-10-08)
+
+Two additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Bimodality in subaqueous dune height suggests flickering behavior at high flow](https://www.nature.com/articles/s41467-025-61248-5) | Nature Communications / 2025 | 10.1038/s41467-025-61248-5 | Supplied-sediment bed setup, sensor positioning, time-series acquisition and end-state inspection suggest a long-horizon hydraulic-metrology task | Reader HTML; cookie-error marker; OA; SI first fetch failed, unread |
+| [Disordered-guiding photonic chip enabled high-dimensional light field detection](https://www.nature.com/articles/s41467-025-63130-w) | Nature Communications / 2025 | 10.1038/s41467-025-63130-w | Prepared-mask placement, stage positioning, optical-input changes and repeated reference comparisons suggest an instrument-coordination task | Reader HTML; cookie-error marker; OA; SI first fetch failed, unread |
+
+### Screening scope for these two additions
+
+- Exact titles, journal names, citation years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical measurements were distinguished from reanalyzed datasets, numerical models and preliminary robot-task inferences
+- Sediment-bed dynamics: selected Results and Temporal data of bed morphology Methods identify a new recirculating-flume experiment with fixed acoustic sensors and an extended bed-elevation record. Most comparative conditions come from earlier studies; those datasets are not new experiments from this paper. Flickering mechanisms remain hypotheses. Suitability concerns supplied sediment, prepared facility setup and repeated acquisition, with substantial facility-scale and temporal-resolution constraints
+- Photonic metrology: selected detection/imaging Results and Characterization methods/Single-pixel imaging system Methods describe physical photocurrent acquisition, commercial reference instruments and translated inert patterned masks. Reconstructed spectra, polarization and images are learned computational outputs; device optimization simulations are separate evidence. Suitability concerns prepared chips and masks in a qualified enclosed optical station, not semiconductor fabrication
+- Safety remains unqualified. Water/electrical separation, sediment containment, access around the flume and sensor-fixture security require review; dry dust handling and entry into operating equipment are excluded. Optical exposure, fiber handling, electrical protection and moving-stage clearance require review for photonic metrology; open-beam alignment and laser commissioning are excluded. No operating parameters, fabrication procedure or execution authority are supplied
+- **Access caveat:** Both main HTML pages were readable through the web reader with a cookie-error marker. The first linked sediment SI PDF and photonic SI DOCX retrievals each returned an internal reader error. Both supplements remain unread and resource-held, with no retry or alternate route. This does not establish clean live-browser access or complete full-text review
+- Complete main articles and supplements, main PDFs, figure pixels, code and raw datasets remain unreviewed. No converted task, robot-feasibility validation, safety qualification or reproduction claim is added
+- Exact DOIs and normalized titles were checked against the 133 existing candidates and freshly read public task-source records. Recovered prior exclusions were also checked and known holds preserved; the historical exclusion record is incomplete, so exhaustive historical screening cannot be claimed
+- Both pages display **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes; source adaptation, redistribution and third-party component rights require separate review
