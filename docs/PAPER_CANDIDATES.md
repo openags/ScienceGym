@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **131**.
+Last screened: **2026-10-08**. Candidate count: **133**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -781,3 +781,24 @@ Two additional **CANDIDATES** have metadata and selected experimental-section sc
 - Complete main articles and supplements, main PDFs, figure pixels, movies, code and raw datasets remain unreviewed. These citations add no converted task, robot-feasibility validation, safety qualification or reproduction claim
 - Exact DOIs were checked against the 129 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching. Previously unopened search leads were not treated as reviewed candidates
 - Both pages display **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes. Source adaptation, redistribution and third-party component rights require separate review
+
+
+## Additional candidate titles: pebble abrasion and bistable surface programming (2026-10-08)
+
+Two additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Reconstructing the transport history of pebbles on Mars](https://www.nature.com/articles/ncomms9366) | Nature Communications / 2015 | 10.1038/ncomms9366 | Prepared-fragment transfer, guarded drum-cycle coordination and repeated weighing/imaging suggest a sample-history and metrology task | Reader HTML; cookie-error marker; OA; SI first fetch failed, unread |
+| [Magnetoactive bistable soft actuators for programmable large shape transformations at low magnetic fields](https://www.nature.com/articles/s41467-025-64855-4) | Nature Communications / 2025 | 10.1038/s41467-025-64855-4 | Prepared-array placement, staged magnetic state writing and repeated state readout suggest a surface-programming and measurement task | Reader HTML; cookie-error marker; OA; SI first fetch failed, unread |
+
+### Screening scope for these two additions
+
+- Exact titles, journal names, citation years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical measurements were distinguished from observational/model-based conclusions and preliminary robot-task inferences
+- Pebble abrasion: selected Results and Data collection/Image analysis Methods describe physical limestone drum experiments with repeated total weighing and high-contrast photography. Terrestrial field comparisons and inferred Martian transport distances are separate evidence; no experiment on Mars is claimed. Suitability is limited to supplied, characterized fragments and a qualified guarded apparatus
+- Bistable surface programming: selected Results and Methods report physical actuator deformation, repeat cycling and binary surface-array writing using a permanent magnet on a three-axis mechanical stage. This supports prepared-array testing, not general-purpose robot autonomy. Fabrication, high-field magnetization and other application branches are outside the proposed scope
+- Safety remains unqualified. Drum guarding, stopped-state access, fragment containment and respirable dust control require review; crushing and open dust handling are excluded. Magnetic interference, pinch zones, stage collision limits and prepared-actuator integrity require review for the array. No operating parameters, fabrication procedure or execution authority are supplied
+- **Access caveat:** Both main HTML pages were readable through the web reader with a cookie-error marker. Each first linked SI PDF retrieval failed; both supplements remain unread and resource-held, with no retry or alternate route. This does not establish clean live-browser access or complete full-text review
+- Selected metadata, experimental Results/Methods and rights text were screened. Complete main articles, supplements, main PDFs, figure pixels, movies, code and raw datasets remain unreviewed. No converted task, robot-feasibility validation, safety qualification or reproduction claim is added
+- Exact DOIs were checked against the 131 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, README and source-inventory titles; legacy DOI-only records prevent exhaustive title-only matching
+- Both pages display **CC BY 4.0**, with third-party rights requiring separate review. Only citations and independent factual discovery notes are included; no source assets are redistributed
