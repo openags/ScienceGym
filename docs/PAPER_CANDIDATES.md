@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **135**.
+Last screened: **2026-10-08**. Candidate count: **136**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -823,3 +823,21 @@ Two additional **CANDIDATES** have metadata and selected experimental-section sc
 - Complete main articles and supplements, main PDFs, figure pixels, code and raw datasets remain unreviewed. No converted task, robot-feasibility validation, safety qualification or reproduction claim is added
 - Exact DOIs and normalized titles were checked against the 133 existing candidates and freshly read public task-source records. Recovered prior exclusions were also checked and known holds preserved; the historical exclusion record is incomplete, so exhaustive historical screening cannot be claimed
 - Both pages display **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes; source adaptation, redistribution and third-party component rights require separate review
+
+## Additional candidate title: wind-tunnel ripple metrology (2026-10-08)
+
+One additional **CANDIDATE** has metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ripples formed in low-pressure wind tunnels suggest Mars’s large windblown ripples are not impact ripples](https://www.nature.com/articles/s41467-025-58140-7) | Nature Communications / 2025 | 10.1038/s41467-025-58140-7 | Prepared-bed setup, sensor coordination, extended imaging and final-state inspection suggest a facility-scale geophysical-metrology task | Reader HTML; cookie-error marker; OA; selected SI text read |
+
+### Screening scope for this addition
+
+- Exact title, journal name, citation year and DOI were checked against the linked publisher page on 2026-10-08. Selected Results and Experimental conditions/Bedform dimensions Methods describe Earth-based wind-tunnel experiments using crushed-nutshell proxy sediment, camera monitoring and final-bed scans. Martian ripple origins are inferred from terrestrial experiments and models; this is not an experiment on Mars
+- Selected SI captions and Table S1 text were screened. Small-ripple heights and one migration-rate condition are calculated rather than directly measured. Prepared-bed handling, repeated acquisition and final-state documentation are prospective robot-task interpretations, not demonstrated robot autonomy
+- Safety remains unqualified. Suitability is limited to supplied, characterized sediment in a qualified contained facility. Pressure-system integrity, interlocked access, dust/allergen exposure, combustible particulates and moving-equipment hazards require review. Crushing, open dust handling, pressure-system commissioning and access during operation are excluded; no operating parameters or execution authority are supplied
+- **Access caveat:** Main HTML was readable through the web reader with a cookie-error marker. The first actual linked SI PDF yielded readable extracted text. No failed-resource retry or alternate route was used. This does not establish clean live-browser access or complete source review
+- Complete main article and supplement review, main PDF, figure pixels, movies and raw datasets remain outstanding. No converted task, robot-feasibility validation, safety qualification or reproduction claim is added
+- Exact DOI and normalized title were checked against the 135 existing candidates, README and public task-source records. A fresh remote tree verified the stored task-source records were unchanged. Recovered prior exclusions were also checked and known holds preserved; incomplete historical exclusion recovery prevents exhaustive historical screening claims
+- The publisher displays **CC BY-NC-ND 4.0**. Only a citation and independent factual discovery notes are included; source adaptation, redistribution and third-party component rights require separate review
