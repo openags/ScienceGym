@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-07**. Candidate count: **76**.
+Last screened: **2026-10-08**. Candidate count: **78**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -390,3 +390,23 @@ Four additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Granular containment, shaker and rotating-mirror guarding, fragile-sample handling, pneumatic seals and pressure limits, laser exposure and reflections, synchronization and stage clearances need separate qualification; no operating parameters are supplied
 - Exact DOIs were checked against the 72 existing candidates, all current public task sources and the prior accepted-design DOI inventory. Candidate titles were also checked against the existing candidate list
 - Granular mixtures, thin shells and single-pixel imaging display **CC BY 4.0**; event-based shape measurement displays **CC BY-NC-ND 4.0**. These are citations and independent factual discovery notes, not permission to adapt or redistribute source content; third-party component rights remain unverified
+
+## Additional candidate titles: soft-surface force sensing and radiative cooling (2026-10-08)
+
+Two additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and screening notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Direct force measurement of microscopic droplets pulled along soft surfaces](https://www.nature.com/articles/s41467-022-31910-3) | Nature Communications / 2022 | 10.1038/s41467-022-31910-3 | Prepared-film exchange, calibrated probe positioning, coordinated imaging and repeated stage-translation comparisons suggest a force-metrology task | Reader HTML; cookie-error marker; OA; selected SI text read |
+| [A dual-selective thermal emitter with enhanced subambient radiative cooling performance](https://www.nature.com/articles/s41467-024-45095-4) | Nature Communications / 2024 | 10.1038/s41467-024-45095-4 | Prepared-emitter mounting, sensor calibration, water-exposure comparisons and repeated thermal/spectral measurements suggest a staged characterization task | Reader HTML; cookie-error marker; OA; SI retrieval failed |
+
+### Screening scope for these two additions
+
+- Exact titles, official journal names, publication years and DOIs were checked against the linked publisher pages on 2026-10-08 and independently cross-checked with selected experimental passages
+- Soft-surface force sensing: Results and Discussion, Sample properties and preparation and Measuring the dissipation; Methods, Substrate preparation and Droplet preparation. The linked seven-page Supplementary Information PDF was accessible; selected text in Notes 2 and 3 on pages 2-4 was screened for specimen checks, probe calibration and image-based measurement. Suitability concerns prepared films and qualified liquid/probe handling. Solvent-based fabrication, probe manufacture and rotating-equipment demonstrations are outside this preliminary scope; force and perimeter estimates remain distinct from recorded images. Raw data are author-request-only and were not acquired
+- Radiative cooling: Methods, Spectral characterization, Water resistance test and Thermal measurements, including Subambient cooling performance test and Net cooling power test; selected experimental Results. Suitability concerns prepared emitters, sample comparisons, sensor checks and environmental records. Electrospinning, solvent fabrication and accelerated UV ageing are outside this preliminary scope; model predictions remain distinct from physical measurements. The linked Supplementary Information PDF returned an unusable Internal Error on its first retrieval and was not read; no retry or alternate route was used
+- **Access caveat for both additions:** Publisher HTML was readable through the web reader with a cookie-error marker. This is not a claim of clean live access or complete full-text review. Other denied or unusable article sources were excluded without retry or bypass
+- Neither complete main article was reviewed. Main PDFs, movies, code and raw datasets were not reviewed. Only the selected supplementary text stated above was read; supplementary theory, all figure pixels and complete supplement coverage remain unreviewed. No publisher source file or media is included in the repository
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Liquid and fragile-probe handling, contamination controls, instrument calibration, guarded stage motion, electrical/thermal apparatus and outdoor fixtures require separate qualification; no operating parameters are supplied
+- Exact DOIs were checked against the 76 existing candidates, current public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against the existing candidate list and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
+- Both additions display **CC BY 4.0**. These are citations and independent factual discovery notes; third-party component rights and permissions for any future source-content reuse remain unverified
