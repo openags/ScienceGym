@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **106**.
+Last screened: **2026-10-08**. Candidate count: **108**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -593,3 +593,22 @@ Three additional **CANDIDATES** have metadata and selected experimental-section 
 - None of the complete main articles was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. Author-request data were not acquired. No publisher source file or media is included. Fixtures, machine pinch points, film snapback, probe clearances, acoustic/electrical exposure, liquid containment, sample history and calibration require separate qualification. No operating parameters or execution authority are supplied
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Exact DOIs were checked against the 103 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
 - All three publisher pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
+
+## Additional candidate titles: food rheometry and water-tank metrology (2026-10-08)
+
+Two additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Predicting thickness perception of liquid food products from their non-Newtonian rheology](https://www.nature.com/articles/s41467-021-26687-w) | Nature Communications / 2021 | 10.1038/s41467-021-26687-w | Prepared-sample allocation, rheometer loading, coordinated imaging and repeated physical-property measurements suggest a sample-handling-and-metrology task | Reader HTML; cookie-error marker; OA; SI retrieval failed |
+| [Data-driven modeling and prediction of non-linearizable dynamics via spectral submanifolds](https://www.nature.com/articles/s41467-022-28518-y) | Nature Communications / 2022 | 10.1038/s41467-022-28518-y | Prepared water-tank checks, camera calibration and repeated forcing/decay acquisitions suggest an instrument-coordination-and-metrology task | Reader HTML; cookie-error marker; OA; selected SI text read |
+
+### Screening scope for these two additions
+
+- Exact titles, journal names, years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical experimental evidence was distinguished from numerical examples and fitted models
+- Food rheometry: selected physical-rheology Results and shear/extensional Methods support instrument measurements of prepared liquid-food samples. Suitability is limited to physical sample handling and metrology; cooking, tasting, human-subject studies and sensory-perception validation are excluded. Some sample compositions are undisclosed. Temperature/humidity control, sample identity, preparation history and instrument hygiene remain qualification requirements. The linked SI failed on first retrieval and was not read
+- Water-tank metrology: selected experimental sloshing Results, acquisition/calibration Methods and Section 1.3 and selected Figures 5–6 caption text from the thirteen-page SI support repeated camera-observed forced and freely decaying water motion. Motor-driven and shaker-based apparatus descriptions remain distinct; the cited apparatus paper was not reviewed. Available data did not establish the proposed higher-dimensional resonant model. Beam and vortex examples are numerical and excluded. Fitted models and predictions remain derived results, not new measurements or robot completion targets
+- **Access caveat for both additions:** Publisher HTML was readable through the web reader with a cookie-error marker. This does not establish clean live access or complete full-text review. Failed resources were held without retry or alternative access; inaccessible article sources were excluded
+- Neither complete main article was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. No publisher source file or media is included. Qualified prepared inputs, fixtures, moving-stage clearance, liquid/electrical separation, calibration and containment require separate review. No operating parameters or execution authority are supplied
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Exact DOIs were checked against the 106 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
+- Both publisher pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
