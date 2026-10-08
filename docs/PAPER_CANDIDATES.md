@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **89**.
+Last screened: **2026-10-08**. Candidate count: **93**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -478,4 +478,30 @@ Four additional **CANDIDATES** have metadata, abstract and selected experimental
 - None of the complete main articles was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. No publisher source file or media is included. Acoustic exposure, electrical protection, fixture stability, moving-stage clearance, mechanical loading, magnetic interference and calibration need separate qualification. No operating parameters or execution authority are supplied
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Exact DOIs were checked against the 85 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against the existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
 - The acoustic-vortex article displays **CC BY-NC-ND 4.0**; the other three display **CC BY 4.0**. The lossy-acoustic article also contains separately licensed illustrations. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
+
+
+
+## Additional candidate titles: acoustic topology, magnetic assemblies and sliding suction (2026-10-08)
+
+Four additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Synthetic Pseudo-Spin-Hall effect in acoustic metamaterials](https://www.nature.com/articles/s41467-022-34072-4) | Nature Communications / 2022 | 10.1038/s41467-022-34072-4 | Prepared-module assembly, port-cap handling, source/probe repositioning and repeated spectral comparisons suggest a configuration-and-metrology task | Reader HTML; cookie-error marker; OA; SI retrieval failed |
+| [Structured sonic tube with carbon nanotube-like topological edge states](https://www.nature.com/articles/s41467-022-32777-0) | Nature Communications / 2022 | 10.1038/s41467-022-32777-0 | Prepared-tube exchange, cover and absorber placement, source/probe positioning and repeated field scans suggest a handling-and-measurement task | Reader HTML; cookie-error marker; OA; selected SI text read |
+| [A universal state and its relaxation mechanisms of long-range interacting polygons](https://www.nature.com/articles/s41467-019-09795-6) | Nature Communications / 2019 | 10.1038/s41467-019-09795-6 | Prepared-particle sorting, confined-cell loading, repeated perturbation/reset and configuration imaging suggest a sample-tracking and measurement task | Reader HTML; cookie-error marker; OA; SI retrieval failed |
+| [Snail-inspired water-enhanced soft sliding suction for climbing robots](https://www.nature.com/articles/s41467-024-48293-2) | Nature Communications / 2024 | 10.1038/s41467-024-48293-2 | Prepared-component mounting, surface/water comparisons, friction measurements and camera-tracked motion suggest a staged characterization task | Reader HTML; cookie-error marker; OA; selected SI text read, later visual retrieval failed |
+
+### Screening scope for these four additions
+
+- Exact titles, journal names, years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical experimental evidence was distinguished from simulations, derived comparisons and proposed applications
+- Acoustic pseudo-spin: selected physical Results and main Methods on structure measurements and directional excitation. Some directional plots combine separately measured complex responses; edge-transmission sweeps are physical measurements. The linked SI failed on first retrieval and was not read
+- Sonic tubes: selected physical Results and main experimental Methods; selected text from Section IV and the Figure S5 caption in the thirteen-page SI. These are macroscopic acoustic analogues, not carbon-nanotube fabrication. Dispersion is derived from measured pressure fields. Author-request data and simulation code were not acquired
+- Magnetic polygons: selected physical Results and main Methods, Experimental details. Shape/density comparisons, pair-force measurements and perturbation/relaxation observations are physical; interaction-cutoff sweeps are numerical. The linked SI failed on first retrieval and was not read. Author-request data and code were not acquired
+- Sliding suction: selected physical Results and main Methods on suction-cup design and robot structure; selected SI Sections S1-S4, S5.3, S6, S8 and opening S9 text from the seventeen-page PDF. An apparent formulation inconsistency between main Methods and extracted SI text remains unresolved. A first SI visual check failed; no figure-image review is claimed. Suitability is limited to prepared-component bench measurements; fabrication, overhead loaded demonstrations and solvent-cleaning demonstrations are excluded
+- **Access caveat for all four additions:** Publisher HTML was readable through the web reader with a cookie-error marker. This does not establish clean live access or complete full-text review. Failed resources were held without retry or alternative access; inaccessible article sources were excluded
+- None of the complete main articles was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. No publisher source file or media is included. Acoustic exposure, electrical protection, magnetic interference, particle containment, glass and pinch hazards, suction fixtures, moving equipment and calibration require separate qualification. No operating parameters or execution authority are supplied
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Exact DOIs were checked against the 89 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against the existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
+- All four publisher pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
+
 
