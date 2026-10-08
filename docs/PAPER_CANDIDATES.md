@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **97**.
+Last screened: **2026-10-08**. Candidate count: **99**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -528,3 +528,22 @@ Four additional **CANDIDATES** have metadata, abstract and selected experimental
 - Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Exact DOIs were checked against the 93 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
 - All four publisher pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
 
+
+## Additional candidate titles: acoustic transmission and viscoelastic wetting (2026-10-08)
+
+Two additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Three-dimensional topological acoustic crystals with pseudospin-valley coupled saddle surface states](https://www.nature.com/articles/s41467-018-07030-2) | Nature Communications / 2018 | 10.1038/s41467-018-07030-2 | Prepared-crystal exchange, source/detector positioning, air-reference calibration and repeated directional transmission comparisons suggest a handling-and-measurement task | Reader HTML; cookie-error marker; OA; SI retrieval failed |
+| [Droplets move over viscoelastic substrates by surfing a ridge](https://www.nature.com/articles/ncomms8891) | Nature Communications / 2015 | 10.1038/ncomms8891 | Prepared silicone-gel slide handling, water-drop inflation, relaxation imaging and independent rheometry suggest a staged soft-material measurement task | Reader HTML; cookie-error marker; OA; listed supplementary movie not reviewed |
+
+### Screening scope for these two additions
+
+- Exact titles, journal names, years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical experiments were distinguished from theoretical analysis, simulations and proposed applications
+- Acoustic crystals: selected Results on anisotropic sound transport and main Methods, Experiments. Printed polymer specimens were measured with acoustic source/detector apparatus; straight/bent path and directional transmission comparisons include air-reference normalization. Fabrication tolerances and coupling efficiency limit comparisons with models. Suitability concerns prepared, cured specimens and configuration measurements, excluding printing, resin handling and curing. The linked SI failed on first retrieval and was not read
+- Viscoelastic wetting: selected experimental Results, Figure 2 caption and main Methods, Wetting experiments. Water-drop inflation and subsequent contact-line relaxation on silicone gel were imaged, with substrate rheology independently measured. The selected experiment concerns expanding/relaxing contact lines, not whole-drop translation. Suitability concerns prepared, cured gel slides and water, excluding synthesis and curing. The publisher citation gives article number 7891 and DOI suffix ncomms8891; both are retained as printed. Only a supplementary movie was listed; it was not opened
+- **Access caveat for both additions:** Publisher HTML was readable through the web reader with a cookie-error marker. This does not establish clean live access or complete full-text review. Failed resources were held without retry or alternative access; inaccessible article sources were excluded
+- Neither complete main article was reviewed. Main PDFs, figure pixels, supplementary media and raw datasets remain unreviewed. No publisher source file or media is included. Acoustic exposure, electrical protection, fixture stability, moving-stage clearance, sharp/glass handling, fluid/electrical separation, sample history and calibration require separate qualification. No operating parameters or execution authority are supplied
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Exact DOIs were checked against the 97 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
+- Both publisher pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
