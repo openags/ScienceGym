@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **129**.
+Last screened: **2026-10-08**. Candidate count: **131**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -761,3 +761,23 @@ Two additional **CANDIDATES** have metadata and selected experimental-section sc
 - Exact DOIs were checked against the 127 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching. Prior unopened search leads were not treated as reviewed candidates
 - Both pages display **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes. Source adaptation, redistribution and third-party component rights require separate review
 
+
+## Additional candidate titles: circuit memory and acoustic tomography (2026-10-08)
+
+Two additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Collective behavior and memory states in flow networks with tunable bistability](https://www.nature.com/articles/s41467-026-71072-0) | Nature Communications / 2026 | 10.1038/s41467-026-71072-0 | Prepared-board placement, de-energized connection checks, configuration changes and repeated state measurements suggest an assembly-and-metrology task | Reader HTML; cookie-error marker; OA; selected SI text read |
+| [Three-dimensional diffractive acoustic tomography](https://www.nature.com/articles/s41467-025-56435-3) | Nature Communications / 2025 | 10.1038/s41467-025-56435-3 | Prepared graphite-phantom placement, slit/stage coordination and repeated image comparisons suggest a bounded ultrasound measurement task | Reader HTML; cookie-error marker; OA; selected SI text read |
+
+### Screening scope for these two additions
+
+- Exact titles, journal names, citation years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical measurements were distinguished from simulations, reconstructed outputs and preliminary robot-task inferences
+- Circuit memory: selected Results and Device construction/Experimental supervision Methods describe physical electronic networks, manually adjusted resistances and computer-assisted voltage measurements. These are electronic analogs of flow networks, not fluidic or biological experiments. Selected SI Section II reports incomplete state-sequence sampling; Sections III–IV passages distinguish capacitance modeling and a simulated cooperative-interaction extension. SPICE predictions are separate from hardware measurements
+- Acoustic tomography: selected characterization Results and system Methods, plus selected SI Notes 2–4 and graphite-related captions, identify physical graphite-phantom measurements in ultrasound-only DUST mode. Suitability is limited to supplied nonliving phantoms and a prepared qualified apparatus. Reconstructed images are derived outputs. Animal, blood, other biomedical, photoacoustic-laser and phantom-fabrication work are excluded
+- Safety remains unqualified. Circuit limits, grounding, short-circuit prevention, component heating and stored charge require review for the electronic candidate. Ultrasound exposure, electrical/water isolation, fragile-glass containment and stage clearance require review for tomography. Only prepared inputs are contemplated; no fabrication procedure, operating parameters or execution authority are supplied
+- **Access caveat:** Both main HTML pages were readable through the web reader with a cookie-error marker. Each first linked SI PDF yielded readable extracted text; only selected passages were screened, with no figure-pixel review. This does not establish clean live-browser access or complete full-text review. No access retry or alternate route was used
+- Complete main articles and supplements, main PDFs, figure pixels, movies, code and raw datasets remain unreviewed. These citations add no converted task, robot-feasibility validation, safety qualification or reproduction claim
+- Exact DOIs were checked against the 129 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching. Previously unopened search leads were not treated as reviewed candidates
+- Both pages display **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes. Source adaptation, redistribution and third-party component rights require separate review
