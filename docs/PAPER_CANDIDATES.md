@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **137**.
+Last screened: **2026-10-08**. Candidate count: **138**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -858,3 +858,20 @@ One additional **CANDIDATE** has metadata and selected experimental-text screeni
 - Complete main article and supplement review, main PDF, figure pixels, movies, code and raw datasets remain outstanding. No converted task, robot-feasibility validation, safety qualification or reproduction claim is added
 - DOI and normalized title were checked against the 136 existing candidates, README and 114 task-source records whose blobs match a fresh remote tree. Recovered exclusions were checked and known holds preserved; incomplete historical recovery prevents exhaustive historical-screening claims
 - The publisher displays **CC BY 4.0**. Only a citation and independent factual discovery notes are included; supplement-specific and third-party component rights require separate review
+
+## Additional candidate title: directional vibration metrology (2026-10-08)
+
+One additional **CANDIDATE** has metadata and selected experimental-text screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Polarization bandgaps and fluid-like elasticity in fully solid elastic metamaterials](https://www.nature.com/articles/ncomms13536) | Nature Communications / 2016 | 10.1038/ncomms13536 | Prepared-specimen tracking, coordinated response acquisition and directional comparisons suggest an instrument-and-record management task | Reader HTML; cookie-error marker; OA; selected main text read; SI first fetch failed, unread |
+
+### Screening scope for this addition
+
+- Exact title, journal name, citation year and DOI were checked against the linked publisher page on 2026-10-08. Selected Results and Methods describe physical shaker/accelerometer, motor-driven torsion and laser-vibrometer measurements on prepared metamaterial rods. Band structures, eigenmodes and effective inertia are model-based evidence; the reported fluid-like response concerns dynamic wave behaviour, not literal fluidity
+- The predicted sample-kz torsional bandgap was not observed experimentally. Interfacial slipping is a proposed explanation. Measured displacement maps and simulated profiles remain distinct; neither predictions nor published outcomes become required future measurements or success thresholds
+- Robot-task suitability is an inference limited to supplied, fully cured, inspected and pre-mounted specimens in qualified fixtures. Sample identity, measurement scheduling, instrument readout and comparison records could support a future task. Fixture retention, resonant motion, noise exposure, guarding, electrical protection and laser controls require qualification. Fabrication, resin/adhesive handling, machining, mounting changes, unqualified actuation and laser alignment are excluded; no procedure or execution authority is supplied
+- **Access caveat:** Main HTML was readable with a cookie-error marker. Selected main text, Methods and captions were screened; equation images and figure pixels were not inspected. The first linked SI PDF returned an internal reader error and remains unread and resource-held, with no retry or alternate route. Complete main-plus-SI review, main PDF, movies and source data remain outstanding; clean live-browser access is not established
+- DOI and normalized title were checked against the 137 existing candidates, README and 114 task-source records whose blobs match a fresh remote tree; issue and PR searches found no matching source. Recovered exclusions were checked and known holds preserved; incomplete historical recovery prevents exhaustive historical-screening claims
+- The publisher displays **CC BY 4.0**, with third-party credit-line exceptions. Only a citation and independent factual discovery notes are included. No source visuals, data, converted task, robot-feasibility validation, safety qualification or reproduction claim is added
