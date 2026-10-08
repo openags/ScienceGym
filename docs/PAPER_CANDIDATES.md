@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **122**.
+Last screened: **2026-10-08**. Candidate count: **124**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -698,4 +698,23 @@ Two additional **CANDIDATES** have metadata and selected experimental-section sc
 - Structured-light imaging: selected characterization/imaging Results and measurement/calibration Methods, plus selected SI Figure 6 and Figure 8 caption text and Note 3, describe physical optical measurements, inert-mask imaging and stereo calibration. Depth maps and registered point clouds are computational reconstructions. Suitability requires externally prepared optics and inert targets in a qualified enclosed station; nanofabrication, nanoparticle/resin preparation, open-beam alignment and higher-power demonstrations are excluded. Beam containment, stage clearance and calibration remain unresolved
 - **Access caveat:** Both main HTML pages were readable through the web reader with a cookie-error marker; this does not establish clean live access or complete full-text review. Neither complete main article nor supplement was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed. No source file, media, operating parameters or execution authority is supplied
 - Suitability is a preliminary inference, not robot feasibility, task conversion or experimental reproduction. Exact DOIs were checked against the 120 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching
+- Both pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes; source adaptation, redistribution and third-party component rights require separate review
+
+## Additional candidate titles: passive acoustic metrology and robot contact control (2026-10-08)
+
+Two additional **CANDIDATES** have metadata and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Reversal of transmission and reflection based on acoustic metagratings with integer parity design](https://www.nature.com/articles/s41467-019-10377-9) | Nature Communications / 2019 | 10.1038/s41467-019-10377-9 | Prepared-sample exchange, alignment checks and repeated microphone scans suggest an instrument-coordination and acoustic-comparison task | Reader HTML; cookie-error marker; OA; selected SI text read; figure rendering failed |
+| [Koopman global linearization of contact dynamics for robot locomotion and manipulation enables elaborate control](https://www.nature.com/articles/s41467-026-72485-7) | Nature Communications / 2026 | 10.1038/s41467-026-72485-7 | Prepared-slider placement and reset, initial-state checks and guarded trajectory comparisons suggest a tabletop manipulation-and-measurement task | Reader HTML; cookie-error marker; OA; selected SI text read; figure rendering failed |
+
+### Screening scope for these two additions
+
+- Exact titles, journal names, citation years and DOIs were checked against the linked publisher pages on 2026-10-08. Selected physical experiments were distinguished from analytical predictions, simulations and inferred robot-task suitability
+- Acoustic metagratings: selected experimental-verification Results and Experimental apparatus Methods, plus selected SI Notes 3 and 4 and the opening limitation paragraph of Note 6, describe prepared passive samples in a waveguide, loudspeaker-array excitation and scanning-microphone measurements. Measured amplitudes differ from modeled values, and narrowband performance is a limitation. Suitability concerns prepared inert samples and a qualified acoustic station; printing and fabrication are excluded. Sound exposure, moving-stage clearance and electrical limits require separate review
+- Robot contact control: selected dynamic-pushing Results, implementation Methods and SI Methods 2.3.1 and the opening of 2.3.2 describe physical square- and circular-slider experiments. The reduced-friction comparison, controller-runtime plots and rimless-wheel comparisons are simulations. Suitability is limited to prepared inert sliders and an approved guarded robot station; contact impacts, object escape, sensing and station integration remain unqualified. The reviewed square-slider model restricts contact to one edge. Published hardware results do not establish transfer to ScienceGym
+- **Access caveat:** Both main HTML pages were readable through the web reader with a cookie-error marker; this does not establish clean live access or complete full-text review. Both first linked SI PDFs yielded selected readable text. Later batched rendering requests failed or yielded no inspectable image, so the SI resources were held without retry or alternate access. No figure pixels were reviewed
+- Neither complete main article nor supplement was reviewed. Main PDFs, movies, code and raw datasets remain unreviewed. No source file, media, operating parameters or execution authority is supplied. These citations add no converted task, robot-feasibility validation or reproduction claim
+- Exact DOIs were checked against the 122 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against available catalog, repository and source-inventory text; legacy DOI-only records prevent exhaustive title-only matching
 - Both pages display **CC BY 4.0**. These entries are citations and independent factual discovery notes; source adaptation, redistribution and third-party component rights require separate review
