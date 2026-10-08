@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **85**.
+Last screened: **2026-10-08**. Candidate count: **89**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -454,4 +454,28 @@ Three additional **CANDIDATES** have metadata, abstract and selected experimenta
 - None of the complete main articles was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. No publisher source file or media is included. Suitability is a preliminary inference, not a robot-feasibility, task-conversion or reproduction claim
 - Exact DOIs were checked against the 82 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against the existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
 - The folded-geometry and mechanical-logic articles display **CC BY 4.0**; the optical article displays **CC BY-NC-ND 4.0**. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
+
+
+## Additional candidate titles: acoustic field control and deformable mechanical structures (2026-10-08)
+
+Four additional **CANDIDATES** have metadata, abstract and selected experimental-section screening only. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Generation of spatiotemporal acoustic vortices with arbitrarily oriented orbital angular momentum](https://www.nature.com/articles/s41467-025-58154-1) | Nature Communications / 2025 | 10.1038/s41467-025-58154-1 | Prepared-array inspection, source/detector coordination, repeated microphone scans and field comparisons suggest an acoustic configuration-and-metrology task | Reader HTML; cookie-error marker; OA; selected SI text read, later visual retrieval failed |
+| [Fine manipulation of sound via lossy metamaterials with independent and arbitrary reflection amplitude and phase](https://www.nature.com/articles/s41467-018-04103-0) | Nature Communications / 2018 | 10.1038/s41467-018-04103-0 | Prepared-sample exchange, absorber placement, probe positioning and repeated reflection/field-map comparisons suggest a handling-and-metrology task | Reader HTML; cookie-error marker; OA; selected SI text read |
+| [Suppressing torsional buckling in auxetic meta-shells](https://www.nature.com/articles/s41467-024-51104-3) | Nature Communications / 2024 | 10.1038/s41467-024-51104-3 | Prepared-shell handling, fixture placement, twist-direction selection and synchronized shape/torque measurements suggest a mechanical characterization task | Reader HTML; cookie-error marker; OA; seven-page SI text read |
+| [Physics-aware differentiable design of magnetically actuated kirigami for shape morphing](https://www.nature.com/articles/s41467-023-44303-x) | Nature Communications / 2023 | 10.1038/s41467-023-44303-x | Prepared-coupon positioning, stimulus selection and repeated deployed-shape comparisons suggest an inverse-design verification task | Reader HTML; cookie-error marker; OA; selected SI text read |
+
+### Screening scope for these four additions
+
+- Exact titles, journal names, years and DOIs were checked against the linked publisher pages on 2026-10-08. Physical experimental evidence was distinguished from theory, numerical demonstrations and prospective applications
+- Acoustic vortices: selected physical Results; Methods, Experimental setup; selected signal-generation, measurement and raw-measurement text/captions in the seventeen-page SI. The experiments use a phased loudspeaker array and scanned microphones; particle manipulation is prospective. An SI screenshot request failed after readable text was returned, so that resource was parked. No supplementary figure-image review is claimed
+- Lossy acoustic metamaterials: selected physical Results; Methods, Sample fabrication and experiment measurement; selected SI captions and Notes 5-6 on image comparison and reflection measurement. Impedance-tube characterization and acoustic holograms are physical experiments; Airy-beam and multifocal comparisons are numerical. Suitability is limited to prepared cured parts and acoustic measurements, excluding resin fabrication and speculative medical uses
+- Auxetic shells: selected Results and main Methods, including fabrication, mechanical experiments and replication; all seven SI pages were read as extracted text, including captions. Figure images were not inspected. Main measurements use one sample per design, with limited additional qualitative replication; repeated robot trials and reproducibility remain unvalidated
+- Magnetic kirigami: selected physical Results and main Methods; SI contents and selected geometry, kinematics, optimization and printing text, including Notes 1 and 7, from the thirty-page PDF. Suitability concerns prepared specimens and shape comparisons. Specialist composite printing, magnetization and fabrication are outside this preliminary scope
+- **Access caveat for all four additions:** Publisher HTML was readable through the web reader with a cookie-error marker. This does not establish clean live access or complete full-text review. Failed or uncertain resources were held without retry or alternative access; unavailable article sources were excluded
+- None of the complete main articles was reviewed. Main PDFs, figure pixels, movies, code and raw datasets remain unreviewed; supplementary reading is limited to the text stated above. No publisher source file or media is included. Acoustic exposure, electrical protection, fixture stability, moving-stage clearance, mechanical loading, magnetic interference and calibration need separate qualification. No operating parameters or execution authority are supplied
+- Suitability is a preliminary inference, not a robot-feasibility, task-conversion or experimental-reproduction claim. Exact DOIs were checked against the 85 existing candidates, unchanged public task-source inventory and prior accepted-design DOI inventory. Normalized titles were checked against the existing candidates and available repository/source inventory text; legacy DOI-only records do not establish exhaustive title-only matching
+- The acoustic-vortex article displays **CC BY-NC-ND 4.0**; the other three display **CC BY 4.0**. The lossy-acoustic article also contains separately licensed illustrations. These entries are citations and independent factual discovery notes, not permission to adapt or redistribute source content. Third-party component rights and future reuse permissions remain unverified
 
