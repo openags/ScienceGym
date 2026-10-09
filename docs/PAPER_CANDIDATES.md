@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **150**.
+Last screened: **2026-10-09**. Candidate count: **152**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1051,4 +1051,22 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - Complete main-plus-SI review, main PDF, figure pixels, videos, code and raw data remain outstanding. Main HTML retained a cookie-error marker, leaving clean live-browser access unverified. No failed-resource retry or alternate route was used for this candidate
 - DOI/title checks covered 149 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Current recovered exclusions and known holds were checked; historical recovery remains incomplete
 - The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent factual discovery notes are included; source-content adaptation or reuse needs separate rights review
+
+## Additional candidate titles: passive acoustics and composite metrology (2026-10-09)
+
+Two additional **CANDIDATES** have verified metadata and partial source screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Meta-neural-network for real-time and passive deep-learning-based object recognition](https://www.nature.com/articles/s41467-020-19693-x) | Nature Communications / 2020 | 10.1038/s41467-020-19693-x | Prepared digit-target identification, target exchange and detection-region comparisons suggest passive-acoustic metrology | Selected main HTML and 25-page SI text read; cookie-error marker; CC BY 4.0 |
+| [On-demand auxeticity and co-existing pre-tension induced compression stage in a sandwich design with kinematically constrained 3D suture tiles](https://www.nature.com/articles/s41467-024-50664-8) | Nature Communications / 2024 | 10.1038/s41467-024-50664-8 | Prepared composite-specimen tracking, fixture exchange and paired deformation-image/force records suggest mechanical metrology | Selected main HTML and 14-page SI text read; cookie-error marker; CC BY-NC-ND 4.0 |
+
+### Screening scope for these additions
+
+- Acoustic recognition: physical measurements use a preselected small digit cohort; the 10,000-image evaluation and orbital-angular-momentum recognition are numerical. Additional digit-4 trials expose misclassification. Selected main experimental/Methods passages and SI Notes 8–9 were read; sensor arrangement and normalization remain unresolved
+- Composite metrology: physical tension/imaging and indentation measurements differ from analytical and finite-element results. Damage histories and repeated cycles need separate records. Selected main Results/Methods and SI constraint/contact-model text were read. Overall-versus-layer thickness and O/D design-label inconsistencies remain unresolved
+- Task suitability is an inference for prepared inert specimens and qualified guarded measurement services. Fabrication, destructive testing instructions, human/animal work and clinical or protective-equipment claims are excluded. No operating parameters, safety qualification or task conversion are supplied
+- Complete main-plus-SI review, main PDFs, figure pixels, movies, code and raw-data analysis remain outstanding. Cookie-error markers leave clean live-browser access unverified; no failed-resource retry or alternate access route was used
+- DOI/title checks covered 150 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. All known recovered exclusions and holds were checked; historical recovery remains incomplete
+- Only citations and independent discovery notes are included. Both licenses retain third-party exceptions; reuse needs separate rights review, and the second license does not permit sharing adapted publisher content
 
