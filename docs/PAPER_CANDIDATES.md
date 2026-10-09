@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **144**.
+Last screened: **2026-10-09**. Candidate count: **146**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -962,3 +962,21 @@ One additional **CANDIDATE** has partial source screening only. Prior entries an
 - DOI/title checks covered 143 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
 - The publisher displays **CC BY 4.0**, with third-party exceptions. Only citation and independent factual notes are included; source reuse requires separate review
 
+
+## Additional candidate titles: reconfigurable mechanics and spectral-camera metrology (2026-10-09)
+
+Two additional **CANDIDATES** have verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Engineering zero modes in transformable mechanical metamaterials](https://www.nature.com/articles/s41467-023-36975-2) | Nature Communications / 2023 | 10.1038/s41467-023-36975-2 | Prepared-specimen identification, orientation-aware fixture checks and compression/shear comparisons suggest a mechanical-characterization task | Main HTML and selected SI PDF text read; cookie-error marker; OA, CC BY 4.0 |
+| [Video-rate hyperspectral camera based on a CMOS-compatible random array of Fabry–Pérot filters](https://www.nature.com/articles/s41566-022-01141-5) | Nature Photonics / 2023 | 10.1038/s41566-022-01141-5 | Prepared-target exchange, calibration-preset tracking and paired spectral/image comparisons suggest a camera-metrology task | Main HTML and selected SI PDF text read; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for these additions
+
+- Official titles, journals, citation years and DOIs were verified on 2026-10-09. No correction notice was located; this is not an exhaustive correction audit
+- **Reconfigurable mechanics:** Physical printed-TPU compression/shear and planar wave tests remain distinct from numerical two- and three-dimensional wave-control demonstrations. Selected main experimental text and SI Notes 4, 6 and 8 were read. Main/SI initial-configuration and alternative axial-direction labels conflict and remain unresolved. Fit assumes prepared, cool specimens and qualified guarded testing; fabrication, thermal reconfiguration, adhesive/degumming work and laser commissioning are excluded
+- **Spectral camera:** Physical calibration and resolution/colour-target comparisons remain distinct from mask-design simulations and borrowed image-dataset reconstructions. Selected main Methods and selected text from SI sections 4–9 were read. Wavelength-bin conventions, mismatched section references and reference-target descriptions remain unresolved; no numeric schedule or material equivalence is inferred. Fit assumes prepared cameras and inert targets; fabrication, coating/adhesive work and laser commissioning are excluded
+- Both main HTML sources retained cookie-error markers. The first actual linked SI PDFs yielded text; complete main-plus-SI audits, main PDFs, figure pixels, videos, source data and code remain outstanding. Clean live-browser access is unverified; no failed-resource retry or alternate route was used
+- DOI/title checks covered 144 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Current recovered exclusions and known holds were checked; historical recovery remains incomplete
+- Both publisher pages display **CC BY 4.0**, with third-party exceptions. Only citations and independent factual discovery notes are included. Suitability is an inference; no operating parameters, robot-feasibility validation, conversion, safety qualification or reproduction claim is added
