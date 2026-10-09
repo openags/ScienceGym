@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **159**.
+Last screened: **2026-10-09**. Candidate count: **160**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1190,3 +1190,19 @@ One **CANDIDATE** is added after selected main-text and scientific-SI screening.
 - Main HTML carried a cookie-error redirect marker. SI text was readable before one three-page screenshot request returned Cache miss errors. No retry or alternate route followed. Figure pixels, main PDF, movies, movie descriptions, raw data/code and peer review remain unreviewed; no complete-source review is claimed.
 - Suitability is an inference limited to prepared aqueous samples and qualified instruments. Polymer synthesis, chip fabrication/coating, hazardous cleaning, RF commissioning and biological/medical applications are excluded from this candidate scope. Sample handling, acoustic actuation and laser metrology still require separate safety qualification. No procedures, operating settings, task conversion or assets are supplied.
 - The article states **CC BY 4.0**, subject to component-specific credits. These independent discovery notes reproduce no publisher assets. DOI/title checks covered 158 prior candidates, README, 114 task-source records matching the fresh tree, issues/PRs and all currently recovered exclusions/holds. Historical recovery remains incomplete.
+
+## Additional candidate title: lamp-based multispectral phase microscopy (2026-10-09)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Single-shot hyperspectral wavefront imaging](https://www.nature.com/articles/s41467-025-66847-w) | Nature Communications / 2026; first online 2025 | 10.1038/s41467-025-66847-w | Prepared sealed-slide tracking, wavelength-specific calibration and paired sequential/multiplexed microscopy records suggest bounded optical metrology | Selected main HTML and selected 12-page scientific-SI text; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope and limits
+
+- The official citation is volume 17, article 137 (2026); first publication was 4 December 2025 and version of record 6 January 2026. Selected experimental Results and microscopy/calibration Methods were screened. Physical measurements remain distinct from numerical refocusing and fitted models; pixels and spectral channels do not establish independent specimens.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66847-w/MediaObjects/41467_2025_66847_MOESM1_ESM.pdf) Sections S3, S5–S7 and the S2.2.4 model-limit passage cover characterization, calibration, sample/index models and post-processing. Model applicability limits and fitted composition parameters prevent an independent-validation claim.
+- Suitability is an inference limited to prepared sealed PMMA-bead slides and qualified lamp-based microscopy. Sample preparation, fiber fabrication and all laser-facility work are excluded. Optical/electrical/thermal safety and robot interfaces still need qualification. No procedures, operating settings, task conversion or assets are supplied.
+- Main HTML retained a cookie-error marker; clean browser access is unverified. SI text was read through the publisher-listed link. Complete review, main PDF, figure pixels, data/code and peer review remain outstanding. DOI/title checks covered 159 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds; historical recovery remains incomplete. The publisher's **CC BY-NC-ND 4.0** has component-specific exceptions; these independent discovery notes do not establish adapted-source redistribution rights.
+
