@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **140**.
+Last screened: **2026-10-09**. Candidate count: **141**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -895,3 +895,19 @@ Two additional **CANDIDATES** have verified metadata and actual, partial-source 
 - DOIs and normalized titles were checked against the 138 existing candidates, README and 114 task-source records whose blobs match a fresh remote tree; issue and PR searches found no matching source. Recovered exclusions were checked and known holds preserved. Incomplete historical exclusion recovery prevents exhaustive historical-screening claims
 - The bubble-impact publisher page displays **CC BY-NC-ND 4.0**; the elastocapillarity page displays **CC BY 4.0**, with third-party credit-line exceptions. Only citations and independent factual discovery notes are included. No publisher prose, visuals or datasets are redistributed, and the repository license does not establish rights to adapt source material
 
+
+## Additional candidate title: magnetic granular stiffness metrology (2026-10-09)
+
+One additional **CANDIDATE** has partial source screening only. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Stiffening iron particles to modulate physical interactions](https://www.nature.com/articles/s41467-025-65479-4) | Nature Communications / 2025 | 10.1038/s41467-025-65479-4 | Prepared-module tracking and stiffness/displacement comparisons suggest a future instrument-coordination task | Reader HTML; cookie-error marker; OA; selected main Methods and SI text read |
+
+### Screening scope for this addition
+
+- Official metadata was verified on 2026-10-09. Physical stiffness and gripper-displacement measurements are distinguished from FEA, lumped-element models and literature comparisons. Same-specimen repeats do not establish independent-specimen replication
+- Task fit is an inference for prepared membrane-contained modules in qualified apparatus. A filtered vent prevents assuming sealed containment. Fabrication, powder handling, electrical control, loading protocols and actuation are excluded; no operating parameters, conversion or safety qualification is supplied
+- Main HTML and the first actual linked SI PDF yielded selected text. Complete main-plus-SI review, main PDF, figure pixels, movies and data remain outstanding. Clean live-browser access is unverified; no failed-resource retry or alternate route was used
+- DOI/title checks covered 140 prior candidates, README, 114 task-source records matching the fresh tree, issues and PRs. Known recovered exclusions/holds were checked; historical recovery remains incomplete
+- **CC BY-NC-ND 4.0** is displayed, with third-party exceptions. Only citation and independent factual notes are included; source reuse requires separate review
