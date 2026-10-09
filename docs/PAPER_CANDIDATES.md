@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **149**.
+Last screened: **2026-10-09**. Candidate count: **150**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1034,3 +1034,21 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - Main HTML retained a cookie-error marker; clean live-browser access is unverified. No failed-resource retry or alternate access route was used for this candidate
 - DOI/title checks covered 148 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
 - The publisher displays **CC BY 4.0**, with third-party exceptions. Only citation and independent factual discovery notes are included; source reuse requires separate review
+
+## Additional candidate title: nonbiological slipknot metrology (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Slipknot-gauged mechanical transmission and robotic operation](https://www.nature.com/articles/s41586-025-09673-w) | Nature / 2025 | 10.1038/s41586-025-09673-w | Prepared-filament identification, loop-configuration records and paired force/imaging comparisons suggest a bounded nonbiological metrology task | Selected main HTML and SI PDF text read; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope for this addition
+
+- Official metadata was verified on 2026-10-09. Physical filament-tension measurements and configuration imaging remain distinct from analytical and finite-element models. The large consistency cohort remains distinct from smaller parameter-comparison cohorts; no repeat-count schedule is inferred
+- Task fit is an inference for prepared inert monofilaments and qualified guarded fixtures. Surgical, animal, tissue, clinical and DNA work, human-contact robot trials, micro-CT commissioning and hot cutting are excluded. No operating parameters, conversion or safety qualification are supplied
+- Selected main mechanical-characterization and Methods passages, SI Notes 1–2 excerpts and selected experimental captions from the linked 58-page SI were read. Main/SI friction labels differ; no unified friction protocol or material equivalence is inferred
+- Complete main-plus-SI review, main PDF, figure pixels, videos, code and raw data remain outstanding. Main HTML retained a cookie-error marker, leaving clean live-browser access unverified. No failed-resource retry or alternate route was used for this candidate
+- DOI/title checks covered 149 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Current recovered exclusions and known holds were checked; historical recovery remains incomplete
+- The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent factual discovery notes are included; source-content adaptation or reuse needs separate rights review
+
