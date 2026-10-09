@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **147**.
+Last screened: **2026-10-09**. Candidate count: **148**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -998,3 +998,21 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - Complete main-plus-SI review, main PDF, figure pixels, movies and raw data remain outstanding. The main HTML retained a cookie-error marker, so clean live-browser access is unverified. No failed-resource retry or alternate route was used
 - DOI/title checks covered 146 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Current recovered exclusions and known holds were checked; historical recovery remains incomplete
 - The publisher displays **CC BY 4.0**, with third-party exceptions. Only the citation and independent factual discovery notes are included; source reuse requires separate review
+
+
+## Additional candidate title: patterned particle-deposition metrology (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Self-assembly of highly ordered micro- and nanoparticle deposits](https://www.nature.com/articles/s41467-022-30660-6) | Nature Communications / 2022 | 10.1038/s41467-022-30660-6 | Prepared polystyrene-sample and mold identification, time-resolved imaging and deposited-layer comparisons suggest a sample-tracking and metrology task | Main HTML and selected SI PDF text read; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for this addition
+
+- Official metadata was verified on 2026-10-09. Physical microscopy and AFM observations remain distinct from the theoretical phase diagram and calculated pore-size estimates. Imaging multiple positions on a film does not establish independent-specimen replication or filtration performance
+- Task fit is an inference for prepared, qualified polystyrene dispersions, molds and surfaces in qualified microscopy services. Carbon-nanohorn processing, synthesis, plasma/laser fabrication, electrochemistry and apparatus commissioning are excluded; no operating parameters, conversion or safety qualification are supplied
+- Selected main experimental Results/Methods and captions from the first linked 18-page SI were read. Main and SI film-thickness units differ and remain unresolved; no corrected thickness or operating schedule is inferred
+- Complete main-plus-SI review, main PDF, figure pixels, movies and raw data remain outstanding. The main HTML retained a cookie-error marker, leaving clean live-browser access unverified. No failed-resource retry or alternate route was used
+- DOI/title checks covered 147 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
+- The publisher displays **CC BY 4.0**, with third-party exceptions. Only citation and independent factual discovery notes are included; source reuse requires separate review
