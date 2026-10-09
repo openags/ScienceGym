@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **142**.
+Last screened: **2026-10-09**. Candidate count: **143**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -928,3 +928,20 @@ One additional **CANDIDATE** has partial source screening only. Prior entries an
 - Main HTML and the first actual linked SI PDF yielded selected text. Complete main-plus-SI review, main PDF, figure pixels, movies, data and numerical validation remain outstanding. A cookie-error marker leaves clean live-browser access unverified; no failed-resource retry or alternate route was used
 - DOI/title checks covered 141 prior candidates, README, 114 task-source records matching the fresh tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
 - The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent factual notes are included; source reuse requires separate review
+
+## Additional candidate title: nanomechanical ringdown metrology (2026-10-09)
+
+One additional **CANDIDATE** has partial source screening only. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Centimeter-scale nanomechanical resonators with low dissipation](https://www.nature.com/articles/s41467-024-48183-7) | Nature Communications / 2024 | 10.1038/s41467-024-48183-7 | Prepared-device exchange, alignment verification and repeated ringdown comparisons suggest a staged measurement task using qualified optical/vacuum services | Main HTML + selected SI PDF text; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for this addition
+
+- Official metadata was verified on 2026-10-09. Physical ringdown measurements remain distinct from computational design optimization. Selected SI pressure-control text uses a different, geometrically equal device; repeated traces from three illustrated devices do not establish uniform performance
+- Task fit is an inference for prepared devices and qualified optical/vacuum services. Fabrication, hazardous chemistry, commissioning and operating parameters are excluded; no conversion or safety qualification is supplied
+- Main HTML and the first linked 12-page SI yielded selected text. Complete main-plus-SI review, main PDF, figure pixels, video, data and code remain outstanding. A cookie-error marker leaves clean live-browser access unverified; no failed-resource retry or alternate route was used
+- DOI/title checks covered 142 prior candidates, README, 114 task-source records matching the fresh tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
+- The main publisher page displays **CC BY 4.0**, with third-party exceptions. Only citation and independent factual notes are included; source reuse requires separate review
+
