@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **148**.
+Last screened: **2026-10-09**. Candidate count: **149**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1015,4 +1015,22 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - Selected main experimental Results/Methods and captions from the first linked 18-page SI were read. Main and SI film-thickness units differ and remain unresolved; no corrected thickness or operating schedule is inferred
 - Complete main-plus-SI review, main PDF, figure pixels, movies and raw data remain outstanding. The main HTML retained a cookie-error marker, leaving clean live-browser access unverified. No failed-resource retry or alternate route was used
 - DOI/title checks covered 147 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
+- The publisher displays **CC BY 4.0**, with third-party exceptions. Only citation and independent factual discovery notes are included; source reuse requires separate review
+
+
+## Additional candidate title: deployable-structure metrology (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Deployable 3D architectures from wafer-fabricated precursors](https://www.nature.com/articles/s41467-026-76052-y) | Nature Communications / 2026 | 10.1038/s41467-026-76052-y | Prepared polyimide-specimen tracking, fixture transfers, staged imaging and mechanical-readout comparisons suggest a manipulation-and-metrology task | Selected main HTML and SI PDF text read; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for this addition
+
+- Official metadata was verified on 2026-10-09. Physical deployment, indentation and focal-stack imaging remain distinct from finite-element predictions. Deployment and subsequent off-path loading have different damage histories; shape retention does not imply complete recovery after indentation
+- Task fit is an inference for qualified prefabricated inert specimens and guarded mechanical/metrology services. Cleanroom fabrication, etching, solvent processing, cutting, laser optics and apparatus commissioning are excluded. No operating parameters, conversion or safety qualification are supplied
+- Selected main Results/Methods and selected text from the linked 18-page SI, including mechanical testing and deployment notes, were read. Complete main-plus-SI review, main PDF, figure pixels, movies, code and source data remain outstanding
+- Main HTML retained a cookie-error marker; clean live-browser access is unverified. No failed-resource retry or alternate access route was used for this candidate
+- DOI/title checks covered 148 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
 - The publisher displays **CC BY 4.0**, with third-party exceptions. Only citation and independent factual discovery notes are included; source reuse requires separate review
