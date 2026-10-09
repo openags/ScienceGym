@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **160**.
+Last screened: **2026-10-09**. Candidate count: **161**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1205,4 +1205,20 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66847-w/MediaObjects/41467_2025_66847_MOESM1_ESM.pdf) Sections S3, S5–S7 and the S2.2.4 model-limit passage cover characterization, calibration, sample/index models and post-processing. Model applicability limits and fitted composition parameters prevent an independent-validation claim.
 - Suitability is an inference limited to prepared sealed PMMA-bead slides and qualified lamp-based microscopy. Sample preparation, fiber fabrication and all laser-facility work are excluded. Optical/electrical/thermal safety and robot interfaces still need qualification. No procedures, operating settings, task conversion or assets are supplied.
 - Main HTML retained a cookie-error marker; clean browser access is unverified. SI text was read through the publisher-listed link. Complete review, main PDF, figure pixels, data/code and peer review remain outstanding. DOI/title checks covered 159 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds; historical recovery remains incomplete. The publisher's **CC BY-NC-ND 4.0** has component-specific exceptions; these independent discovery notes do not establish adapted-source redistribution rights.
+
+## Additional candidate title: reconfigurable acoustic-crystal metrology (2026-10-09)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Acoustic analogues of three-dimensional topological insulators](https://www.nature.com/articles/s41467-020-16131-w) | Nature Communications / 2020 | 10.1038/s41467-020-16131-w | Prepared block identification, configuration changes, air-reference checks and paired transmission/field records suggest staged assembly and metrology | Selected main HTML and selected 33-page scientific-SI text; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results, Discussion and measurement Methods were screened. Physical transmission and microphone-field measurements remain distinct from computed bandstructures and simulated fields. Boundary conditions affect the reported transport; scan positions and unit cells do not establish independent specimen replication.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-020-16131-w/MediaObjects/41467_2020_16131_MOESM1_ESM.pdf) captions 2–4, 6–8 and 21 cover assemblies and measurements; captions 9, 11–12 and 22–23 describe model/boundary comparisons. The main associates Supplementary Figs. 3–4 with simulated fields, whereas their SI captions label them experimentally measured; this discrepancy remains unresolved.
+- Suitability is an inference limited to prepared inert blocks and qualified acoustic/electrical measurement services. Printing, resin processing and commissioning are excluded. Supports, sound exposure, probe access and robot interfaces require qualification. No procedures, operating settings, conversion or assets are supplied.
+- Complete review, main PDF, figure pixels, raw data and peer review remain outstanding. Main HTML retained a cookie-error marker; clean browser access is unverified. Scientific SI text was readable through its publisher-listed link; no failed-resource retry or alternate route was used.
+- DOI/title checks covered 160 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds; historical recovery remains incomplete. The publisher states **CC BY 4.0**, with component-specific exceptions. Only citation and independent discovery notes are included.
 
