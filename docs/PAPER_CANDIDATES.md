@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **141**.
+Last screened: **2026-10-09**. Candidate count: **142**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -911,3 +911,20 @@ One additional **CANDIDATE** has partial source screening only. Prior entries an
 - Main HTML and the first actual linked SI PDF yielded selected text. Complete main-plus-SI review, main PDF, figure pixels, movies and data remain outstanding. Clean live-browser access is unverified; no failed-resource retry or alternate route was used
 - DOI/title checks covered 140 prior candidates, README, 114 task-source records matching the fresh tree, issues and PRs. Known recovered exclusions/holds were checked; historical recovery remains incomplete
 - **CC BY-NC-ND 4.0** is displayed, with third-party exceptions. Only citation and independent factual notes are included; source reuse requires separate review
+
+
+## Additional candidate title: elastocaloric measurement coordination (2026-10-09)
+
+One additional **CANDIDATE** has partial source screening only. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Efficient roller-driven elastocaloric refrigerator](https://www.nature.com/articles/s41467-024-51632-y) | Nature Communications / 2024 | 10.1038/s41467-024-51632-y | Prepared-ribbon identification, fixture checks and synchronized thermal/electrical record comparison on qualified guarded apparatus suggest a measurement-coordination task | Main HTML + selected Methods; first SI PDF experimental text read; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope for this addition
+
+- Official metadata was verified on 2026-10-09. Selected Methods report physical temperature, electrical-power and torque measurements. SI apparatus and work-recovery text was read; modeled optimization remains distinct from performed experiments
+- Task fit is an inference for prepared ribbons and qualified guarded apparatus. Identity, fixture-check and synchronized-measurement records could support future instrument coordination. Alloy production, energized mechanical intervention and apparatus operation are excluded; no protocol, operating parameters, conversion or safety qualification is supplied
+- Main HTML and the first actual linked SI PDF yielded selected text. Complete main-plus-SI review, main PDF, figure pixels, movies, data and numerical validation remain outstanding. A cookie-error marker leaves clean live-browser access unverified; no failed-resource retry or alternate route was used
+- DOI/title checks covered 141 prior candidates, README, 114 task-source records matching the fresh tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
+- The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent factual notes are included; source reuse requires separate review
