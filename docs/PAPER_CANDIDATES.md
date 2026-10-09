@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **153**.
+Last screened: **2026-10-09**. Candidate count: **154**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1087,3 +1087,21 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - Complete main-plus-SI review, main PDF, figure pixels, movies, code and raw-data analysis remain outstanding. The main HTML retained a cookie-error marker, leaving clean live-browser access unverified. No failed-resource retry or alternate access route was used
 - DOI/title checks covered 152 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Known recovered exclusions and holds were checked; historical recovery remains incomplete
 - The publisher displays **CC BY 4.0**, with third-party exceptions. Only a citation and independent discovery notes are included; source reuse requires separate rights review
+
+
+## Additional candidate title: orbital-acoustic metrology (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Orbital topological edge states and phase transitions in one-dimensional acoustic resonator chains](https://www.nature.com/articles/s41467-023-44042-z) | Nature Communications / 2023 | 10.1038/s41467-023-44042-z | Prepared acoustic-specimen tracking, port/orientation checks and paired spectral/field-map records suggest an instrument-coordination and metrology task | Selected main HTML and 26-page SI text read; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for this addition
+
+- Official metadata was verified on 2026-10-09. Physical dimer, periodic-chain, aperiodic-chain and modified-coupling measurements remain distinct from numerical predictions. The 50 random bonding-angle cases are calculated, not 50 measured specimens
+- Selected main experimental Results/Methods and SI Notes 1, 7–9 were screened. SI Note 8 includes measured results despite its numerical-results heading. SI Notes 3 and 5 give different chain-size descriptions for the Figure 2c calculation; this remains unresolved
+- Task fit is an inference for prepared inert specimens and qualified acoustic/electrical services. Fabrication, machining, printing and apparatus commissioning are excluded. Sound exposure, fixture integrity, port sealing, calibration and robot interfaces need qualification; no operating parameters, task conversion or safety qualification are supplied
+- Complete main-plus-SI review, main PDF, figure pixels, source-data workbook, repository data and peer review remain outstanding. The main HTML retained a cookie-error marker, leaving clean live-browser access unverified. No failed-resource retry or alternate access route was used
+- DOI/title checks covered 153 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs, and the full currently recovered exclusion/hold registry. Historical recovery remains incomplete
+- The publisher displays **CC BY 4.0**, with third-party exceptions. Only the citation and independent discovery notes are included; source reuse requires separate review
