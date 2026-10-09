@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-08**. Candidate count: **138**.
+Last screened: **2026-10-09**. Candidate count: **140**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -875,3 +875,23 @@ One additional **CANDIDATE** has metadata and selected experimental-text screeni
 - **Access caveat:** Main HTML was readable with a cookie-error marker. Selected main text, Methods and captions were screened; equation images and figure pixels were not inspected. The first linked SI PDF returned an internal reader error and remains unread and resource-held, with no retry or alternate route. Complete main-plus-SI review, main PDF, movies and source data remain outstanding; clean live-browser access is not established
 - DOI and normalized title were checked against the 137 existing candidates, README and 114 task-source records whose blobs match a fresh remote tree; issue and PR searches found no matching source. Recovered exclusions were checked and known holds preserved; incomplete historical recovery prevents exhaustive historical-screening claims
 - The publisher displays **CC BY 4.0**, with third-party credit-line exceptions. Only a citation and independent factual discovery notes are included. No source visuals, data, converted task, robot-feasibility validation, safety qualification or reproduction claim is added
+
+## Additional candidate titles: bubble-interface observation and metrology (2026-10-09)
+
+Two additional **CANDIDATES** have verified metadata and actual, partial-source experimental-text screening. All prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [When bubbles bounce or stick](https://www.nature.com/articles/s41467-026-70921-2) | Nature Communications / 2026 | 10.1038/s41467-026-70921-2 | Prepared-input bubble-impact imaging suggests an instrument-coordination, sample-history and observation-comparison task | Reader HTML; cookie-error marker; OA; main scientific text/Methods and selected experimental SI text read; figure pixels unverified |
+| [Bubbles enable volumetric negative compressibility in metastable elastocapillary systems](https://www.nature.com/articles/s41467-024-49136-w) | Nature Communications / 2024 | 10.1038/s41467-024-49136-w | Prepared-lamina identity tracking, paired optical/pressure records and repeat-observation comparison suggest a bounded measurement task | Reader HTML; cookie-error marker; OA; selected main text/Methods read; first SI fetch failed, unread and held |
+
+### Screening scope for these additions
+
+- Exact titles, journal names, citation years and DOIs were checked against the linked official publisher pages on 2026-10-09. These are discovery records only; no whole-paper conversion, runnable task, robot-feasibility validation, safety qualification or reproduction claim is added
+- **Bubble impact:** The paper reports physical air-bubble interactions with a quartz surface in glycerol-water solutions, recorded by high-speed imaging. Numerical sweeps and mechanical-model predictions remain separate from measured trajectories and geometry; the regime map is not wholly experimental. Main text and caption assignments for one experimental example disagree, and some main-to-SI section references do not match SI headings. These inconsistencies remain unresolved; no operating value or success threshold is adopted
+- **Elastocapillarity:** The paper reports diffraction measurements and optical observations of facing hydrophobic laminae in water. Proposed task fit is limited to prepared-lamina observations: tip separation, air-bridge changes and repeat-measurement records. The capillarity model and interpretation of prior ion-channel literature are separate evidence, not new biological experiments. Negative compressibility concerns the solid component, not the combined solid-liquid system. A diffraction-capillary description and lamina pressure notation are internally inconsistent; neither is resolved here
+- Task suitability is an authoring inference limited to supplied, qualified inputs and apparatus. Sample identity, instrument scheduling, image provenance and cycle histories could support future task design. Fluid/surface preparation, fabrication, sharp tools, gas-delivery setup, pressure/vacuum operation, synchrotron work and biological work are excluded from the proposed robot scope. Enclosure, liquid/electrical separation, fixtures, illumination and apparatus controls require independent qualification; no protocol or operating parameters are supplied
+- **Access and reading:** Both main HTML sources were readable with cookie-error markers; clean live-browser access is not established. The bubble-impact SI PDF yielded selected experimental and validation text, but not a complete supplement audit. Its first selected-page rendering returned no viewable image to the reviewer; pixel inspection remains unverified, with no repeat. The elastocapillarity SI failed on its first actual file fetch and remains unread and resource-held, with no retry or alternate route. Main PDFs, figure pixels, movies and source data remain unreviewed; complete main-plus-SI review remains outstanding
+- DOIs and normalized titles were checked against the 138 existing candidates, README and 114 task-source records whose blobs match a fresh remote tree; issue and PR searches found no matching source. Recovered exclusions were checked and known holds preserved. Incomplete historical exclusion recovery prevents exhaustive historical-screening claims
+- The bubble-impact publisher page displays **CC BY-NC-ND 4.0**; the elastocapillarity page displays **CC BY 4.0**, with third-party credit-line exceptions. Only citations and independent factual discovery notes are included. No publisher prose, visuals or datasets are redistributed, and the repository license does not establish rights to adapt source material
+
