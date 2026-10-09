@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **158**.
+Last screened: **2026-10-09**. Candidate count: **159**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1175,3 +1175,18 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - DOI/title checks covered 157 prior candidates, README, 114 task-source records matching the fresh tree, issues/PRs and all currently recovered exclusions/holds. Historical recovery remains incomplete
 - The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent discovery notes are included; adapted-source redistribution permission is not established
 
+## Additional candidate title: microgel-stabilized water jets (2026-10-09)
+
+One **CANDIDATE** is added after selected main-text and scientific-SI screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Soft microgel networks stabilize and extend nozzle-free water jets](https://www.nature.com/articles/s41467-026-76854-0) | Nature Communications / 2026 | 10.1038/s41467-026-76854-0 | Prepared aqueous-sample tracking, droplet placement, high-speed imaging and complementary interface measurements suggest a staged physical-metrology candidate | OA main HTML; selected 13-page scientific-SI text; figure-pixel access failed |
+
+### Screening scope and limits
+
+- Official metadata, selected Discussion and experimental Methods, and rights were checked. The main reports physical acoustic jetting, microscopy and rheology alongside separate simulations; simulations are not experimental runs. Image/frame counts do not establish independent samples.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76854-0/MediaObjects/41467_2026_76854_MOESM1_ESM.pdf) text covers microgel characterization, jetting observations, interfacial rheology and polymer-reference comparisons. Its jet-duration wording conflicts with millisecond-scale main-text descriptions; this remains unresolved.
+- Main HTML carried a cookie-error redirect marker. SI text was readable before one three-page screenshot request returned Cache miss errors. No retry or alternate route followed. Figure pixels, main PDF, movies, movie descriptions, raw data/code and peer review remain unreviewed; no complete-source review is claimed.
+- Suitability is an inference limited to prepared aqueous samples and qualified instruments. Polymer synthesis, chip fabrication/coating, hazardous cleaning, RF commissioning and biological/medical applications are excluded from this candidate scope. Sample handling, acoustic actuation and laser metrology still require separate safety qualification. No procedures, operating settings, task conversion or assets are supplied.
+- The article states **CC BY 4.0**, subject to component-specific credits. These independent discovery notes reproduce no publisher assets. DOI/title checks covered 158 prior candidates, README, 114 task-source records matching the fresh tree, issues/PRs and all currently recovered exclusions/holds. Historical recovery remains incomplete.
