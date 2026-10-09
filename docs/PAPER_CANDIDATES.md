@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **157**.
+Last screened: **2026-10-09**. Candidate count: **158**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1158,4 +1158,20 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - Complete main-plus-SI review, main PDF, figure pixels, movies and their separate description file, raw data, code and peer review remain outstanding. Main HTML retained a cookie-error marker; clean live-browser access is unverified. No failed-resource retry or alternate route was used
 - DOI/title checks covered 156 prior candidates, README, 114 task-source records matching the fresh tree, issues/PRs and all currently recovered exclusions/holds. Historical recovery remains incomplete
 - The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent discovery notes are included; permission to share adapted source content is not established
+
+## Additional candidate title: directional acoustic-field metrology (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [All-angle unidirectional flat-band acoustic metasurfaces](https://www.nature.com/articles/s41467-025-55937-4) | Nature Communications / 2025 | 10.1038/s41467-025-55937-4 | Prepared bilayer-specimen tracking, orientation/reference checks and paired acoustic-field records suggest bounded metrology | Selected main HTML and selected sections of 12-page scientific SI read; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope for this addition
+
+- Selected main experimental Results and measurement Methods, plus SI Sections 2 and 5–7, were screened. Measured fields and directional pressure-amplitude ratios remain distinct from simulations and theoretical dispersion. SI parallel trials do not establish independent specimen preparation
+- Task fit is an inference for prepared inert specimens and qualified acoustic/electrical measurement services. Fabrication, printing and commissioning are excluded. Sound exposure, motion limits, supports, calibration and robot interfaces need qualification; no procedures, operating parameters or task conversion are supplied
+- Complete scientific review, main PDF, figure pixels, source-data workbook and peer review remain outstanding. Main HTML retained a cookie-error marker; clean live-browser access is unverified. Scientific SI was retrieved through the publisher-listed link; no failed-resource retry or alternate route was used
+- DOI/title checks covered 157 prior candidates, README, 114 task-source records matching the fresh tree, issues/PRs and all currently recovered exclusions/holds. Historical recovery remains incomplete
+- The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent discovery notes are included; adapted-source redistribution permission is not established
 
