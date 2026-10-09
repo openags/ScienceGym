@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **143**.
+Last screened: **2026-10-09**. Candidate count: **144**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -944,4 +944,21 @@ One additional **CANDIDATE** has partial source screening only. Prior entries an
 - Main HTML and the first linked 12-page SI yielded selected text. Complete main-plus-SI review, main PDF, figure pixels, video, data and code remain outstanding. A cookie-error marker leaves clean live-browser access unverified; no failed-resource retry or alternate route was used
 - DOI/title checks covered 142 prior candidates, README, 114 task-source records matching the fresh tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
 - The main publisher page displays **CC BY 4.0**, with third-party exceptions. Only citation and independent factual notes are included; source reuse requires separate review
+
+
+## Additional candidate title: reconfigurable hinge-lattice assembly (2026-10-09)
+
+One additional **CANDIDATE** has partial source screening only. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Transformable topological mechanical metamaterials](https://www.nature.com/articles/ncomms14201) | Nature Communications / 2017 | 10.1038/ncomms14201 | Part tracking, hinge-lattice assembly checks, boundary reconfiguration and before/after shape records suggest a future assembly-and-inspection task | Main HTML and selected SI PDF text read; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for this addition
+
+- Official metadata was verified on 2026-10-09. This theory-led study includes a hand-manipulated plastic-part prototype. Main Methods and SI Note 1 describe the physical assembly; Figure 2 stiffness results and SI Note 3 are numerical calculations. The publisher's movie description is not a reviewed video or a quantitative experimental protocol
+- Task fit is an inference for prepared parts and a qualified fixture. Controlled reconfiguration, configuration identity and image records could support later robot-task design. Robot reachability, hinge forces, pinch protection and measurement validation remain unresolved; no operating parameters or conversion are supplied
+- Selected text from the main article and first linked five-page SI was read. Complete main-plus-SI review, main PDF, figure pixels, movie and raw data remain outstanding. Clean live-browser access is unverified because the HTML reader shows a cookie-error marker; no failed-resource retry or alternate route was used
+- DOI/title checks covered 143 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Recovered exclusions and known holds were checked; historical recovery remains incomplete
+- The publisher displays **CC BY 4.0**, with third-party exceptions. Only citation and independent factual notes are included; source reuse requires separate review
 
