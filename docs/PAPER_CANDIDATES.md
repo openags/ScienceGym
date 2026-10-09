@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **162**.
+Last screened: **2026-10-09**. Candidate count: **163**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1237,4 +1237,19 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Suitability is an inference restricted to prepared coupons and qualified lamp-based spectroscopy, thermal sensing and water-droplet measurements. Fabrication, surface chemistry, vapor generation, abrasion, pressure testing and outdoor LiDAR operation are excluded. Optical/thermal exposure, glass handling, coating containment and robot interfaces still require qualification.
 - Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, figure pixels, movies, raw data/code and peer review remain outstanding. No procedures, operating settings, task conversion or assets are supplied. CC BY-NC-ND 4.0 does not authorize adapted-source redistribution; component rights need separate review.
 - DOI/title checks covered 161 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete.
+
+## Additional candidate title: prepared transparent-wood optical metrology (2026-10-09)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Scalable aesthetic transparent wood for energy efficient buildings](https://www.nature.com/articles/s41467-020-17513-w) | Nature Communications / 2020 | 10.1038/s41467-020-17513-w | Prepared coupon identification, orientation tracking, reversible layer stacking and glass-reference optical comparisons suggest staged metrology | Selected main HTML and 18-page scientific-SI text; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected main experimental Results and characterization Methods, plus [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-020-17513-w/MediaObjects/41467_2020_17513_MOESM1_ESM.pdf) captions 7–13 and Tables 1–3, were screened. Measured optical records remain distinct from calculated house-temperature scenarios. Spatial measurement points are not independent specimens; compared wood orientations also differ in thickness.
+- Suitability is an inference limited to prepared, cured coupons and qualified enclosed optical services. Chemical processing, microtomy, UV/laser/thermal commissioning and destructive testing are excluded. Specimen custody, optical safety and robot interfaces require qualification; no procedures, operating settings, conversion or assets are supplied.
+- Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, figure pixels, underlying data and cited sources remain outstanding. Scientific SI text was readable through its listed link; no failed-source retry or alternate route was used. CC BY 4.0 has component-specific exceptions; only citation and independent discovery notes are included.
+- DOI/title checks covered 162 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete.
 
