@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **161**.
+Last screened: **2026-10-09**. Candidate count: **162**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1221,4 +1221,20 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Suitability is an inference limited to prepared inert blocks and qualified acoustic/electrical measurement services. Printing, resin processing and commissioning are excluded. Supports, sound exposure, probe access and robot interfaces require qualification. No procedures, operating settings, conversion or assets are supplied.
 - Complete review, main PDF, figure pixels, raw data and peer review remain outstanding. Main HTML retained a cookie-error marker; clean browser access is unverified. Scientific SI text was readable through its publisher-listed link; no failed-resource retry or alternate route was used.
 - DOI/title checks covered 160 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds; historical recovery remains incomplete. The publisher states **CC BY 4.0**, with component-specific exceptions. Only citation and independent discovery notes are included.
+
+## Additional candidate title: coated-window optical and thermal metrology (2026-10-09)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Plasmonic nanocomposite helices for weather-adaptive LiDAR function](https://www.nature.com/articles/s41467-026-75037-1) | Nature Communications / 2026 | 10.1038/s41467-026-75037-1 | Prepared coated/control-window tracking, orientation changes and paired optical, thermal and droplet records suggest staged physical metrology | Selected main HTML and selected 15-page scientific-SI text; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results and optical/thermal measurement Methods were screened. Measured spectra and temperature records remain distinct from simulations. Laboratory condensation and outdoor LiDAR tests have different conditions; as-fabricated and reinforced specimens are separate. Main text and Fig. 6 caption disagree on a low-irradiance condition; no value is adopted.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75037-1/MediaObjects/41467_2026_75037_MOESM1_ESM.pdf) captions 6, 8–12 and 14–15 cover optical, illumination, wetting and durability comparisons. Main/SI movie numbering is inconsistent. Repeated cycles and measurement points do not establish independent specimens.
+- Suitability is an inference restricted to prepared coupons and qualified lamp-based spectroscopy, thermal sensing and water-droplet measurements. Fabrication, surface chemistry, vapor generation, abrasion, pressure testing and outdoor LiDAR operation are excluded. Optical/thermal exposure, glass handling, coating containment and robot interfaces still require qualification.
+- Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, figure pixels, movies, raw data/code and peer review remain outstanding. No procedures, operating settings, task conversion or assets are supplied. CC BY-NC-ND 4.0 does not authorize adapted-source redistribution; component rights need separate review.
+- DOI/title checks covered 161 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete.
 
