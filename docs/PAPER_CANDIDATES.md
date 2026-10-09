@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **156**.
+Last screened: **2026-10-09**. Candidate count: **157**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1141,4 +1141,21 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - Complete main-plus-SI review, main PDF, figure pixels, source-data workbook, simulations and peer review remain outstanding. Main HTML retained a cookie-error marker; clean live-browser access remains unverified. No failed-source retry or alternate route was used
 - DOI/title checks covered 154 existing candidates, README, 114 task-source records matching the fresh tree, issues and PRs, and the full currently recovered exclusion/hold registry. Historical recovery remains incomplete
 - The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent discovery notes are included; permission to share adapted publisher content is not established
+
+## Additional candidate title: static-deformation comparison (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Static mechanical cloaking and camouflage from disorder](https://www.nature.com/articles/s41467-025-63939-5) | Nature Communications / 2025 | 10.1038/s41467-025-63939-5 | Prepared specimen tracking, reference/void/cloak comparisons, fixture checks and matched displacement-image records suggest a bounded mechanical-metrology task | Selected main HTML and 32-page SI text read; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope for this addition
+
+- Selected main experimental Results and testing Methods, plus SI Notes 1–2, 8, 12 and 15–16, were screened. Physical tensile and non-uniform-loading measurements remain distinct from virtual design populations, stiffness calculations and dynamic-wave predictions; generated sample counts do not establish independent physical replication
+- SI setup text refers to Fig. 23 where the experimental-detail caption is numbered Fig. 24. This cross-reference discrepancy remains unresolved. The ceramic micro-model's reported surface inspection is not a mechanical validation
+- Task fit is an inference for prepared nonbiological specimens and qualified, guarded testing/imaging services. Sintering, powder handling, spray preparation, SEM commissioning, impact testing and biomedical applications are excluded. Fixture interfaces and imaging repeatability need qualification; no operating parameters, safety qualification or task conversion are supplied
+- Complete main-plus-SI review, main PDF, figure pixels, movies and their separate description file, raw data, code and peer review remain outstanding. Main HTML retained a cookie-error marker; clean live-browser access is unverified. No failed-resource retry or alternate route was used
+- DOI/title checks covered 156 prior candidates, README, 114 task-source records matching the fresh tree, issues/PRs and all currently recovered exclusions/holds. Historical recovery remains incomplete
+- The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent discovery notes are included; permission to share adapted source content is not established
 
