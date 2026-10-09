@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **154**.
+Last screened: **2026-10-09**. Candidate count: **156**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1105,3 +1105,40 @@ One additional **CANDIDATE** has verified metadata and partial experimental-text
 - Complete main-plus-SI review, main PDF, figure pixels, source-data workbook, repository data and peer review remain outstanding. The main HTML retained a cookie-error marker, leaving clean live-browser access unverified. No failed-resource retry or alternate access route was used
 - DOI/title checks covered 153 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs, and the full currently recovered exclusion/hold registry. Historical recovery remains incomplete
 - The publisher displays **CC BY 4.0**, with third-party exceptions. Only the citation and independent discovery notes are included; source reuse requires separate review
+
+
+## Additional candidate title: optocapillary assembly observation (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Optocapillarity-driven assembly and reconfiguration of liquid crystal polymer actuators](https://www.nature.com/articles/s41467-020-19522-1) | Nature Communications / 2020 | 10.1038/s41467-020-19522-1 | Prepared polymer-actuator identification, configuration tracking and paired image records suggest a bounded assembly-observation task | Selected main HTML and 26-page SI text read; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for this addition
+
+- Physical assembly, reconfiguration and perturbation-recovery observations remain distinct from finite-element predictions. SI random-mesh repetitions are calculations; individual contact-angle measurements do not establish independent-specimen replication
+- Selected main experimental Results/Discussion, observation Methods, SI experimental captions and Note 2 were screened. Visible-light wavelength descriptions differ between the main Methods and reconfiguration captions; the discrepancy remains unresolved
+- Task fit is an inference for prepared nonbiological actuators at an air–water interface and qualified enclosed imaging/illumination services. Synthesis, solvents, cutting, UV/laser commissioning, multilayer-liquid systems and biological applications are excluded. No operating parameters, task conversion or safety qualification are supplied
+- Complete main-plus-SI review, main PDF, figure pixels, movies and movie-description file, source data, Figshare data and peer review remain outstanding. The main HTML retained a cookie-error marker; clean live-browser access is unverified. No failed-resource retry or alternate route was used
+- DOI/title checks covered 154 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs, and all currently recovered exclusions and holds. Historical recovery remains incomplete
+- The publisher displays **CC BY 4.0**, with third-party exceptions. Only the citation and independent discovery notes are included; source reuse needs separate rights review
+
+
+## Additional candidate title: graphite-interface friction metrology (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [The effects of disordered edge and vanishing friction in microscale structural superlubric graphite contact](https://www.nature.com/articles/s41467-024-55069-1) | Nature Communications / 2024 | 10.1038/s41467-024-55069-1 | Prepared graphite-specimen tracking, contact-state controls, AFM calibration records and repeated force comparisons suggest a bounded metrology task | Selected main HTML and 10-page SI text read; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope for this addition
+
+- Selected main experimental Results and friction-measurement Methods, plus SI Sections 1–2, 7–8 and 10, were screened. Physical measurements remain distinct from molecular-dynamics simulations; repeated scans and per-point tests do not establish independent specimens
+- SI contact-area estimation follows an unsuccessful direct warpage measurement; inferred geometry must not become a measured shape. Section 10 uses different headings in its contents and body. The main text gives inconsistent surface-friction uncertainty values, retained unresolved
+- Task fit is an inference for prepared inert specimens and qualified AFM services. Microfabrication, etching, annealing, ion-beam work and X-ray/electron-beam commissioning are excluded. Calibration, tip contact, sample custody and apparatus interfaces need qualification; no operating parameters, safety qualification or conversion are supplied
+- Complete main-plus-SI review, main PDF, figure pixels, source-data workbook, simulations and peer review remain outstanding. Main HTML retained a cookie-error marker; clean live-browser access remains unverified. No failed-source retry or alternate route was used
+- DOI/title checks covered 154 existing candidates, README, 114 task-source records matching the fresh tree, issues and PRs, and the full currently recovered exclusion/hold registry. Historical recovery remains incomplete
+- The publisher displays **CC BY-NC-ND 4.0**, with third-party exceptions. Only citation and independent discovery notes are included; permission to share adapted publisher content is not established
+
