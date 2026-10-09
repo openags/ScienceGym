@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **152**.
+Last screened: **2026-10-09**. Candidate count: **153**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1070,3 +1070,20 @@ Two additional **CANDIDATES** have verified metadata and partial source screenin
 - DOI/title checks covered 150 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. All known recovered exclusions and holds were checked; historical recovery remains incomplete
 - Only citations and independent discovery notes are included. Both licenses retain third-party exceptions; reuse needs separate rights review, and the second license does not permit sharing adapted publisher content
 
+
+## Additional candidate title: dynamic colloidal-interface imaging (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Dynamic capillary assembly of colloids at interfaces with 10,000g accelerations](https://www.nature.com/articles/s41467-018-06049-9) | Nature Communications / 2018 | 10.1038/s41467-018-06049-9 | Prepared colloid-coated bubble identification, sample-cell exchange and paired before/during/after microscopy suggest a staged sample-tracking and imaging task | Selected main HTML and 30-page SI text read; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for this addition
+
+- Physical high-speed and still-image measurements remain distinct from particle simulations. String formation, unchanged arrangements and particle expulsion are separate outcomes; transient strings can relax after excitation. Selected main Results/Methods and SI Note 1 on image analysis were read
+- SI particle detection uses manual initialization followed by refinement; image blur and limited sampling area constrain measurements. A local field of view does not establish whole-bubble coverage or independent-specimen replication
+- Task fit is an inference for prepared inert polystyrene samples and qualified acoustical-optical services. Ultrasound/RF commissioning, UV illumination, solvent handling and fabrication are excluded. The acceleration in the title is source context, not a robot command or safe-operating limit. No operating parameters, safety qualification or task conversion are supplied
+- Complete main-plus-SI review, main PDF, figure pixels, movies, code and raw-data analysis remain outstanding. The main HTML retained a cookie-error marker, leaving clean live-browser access unverified. No failed-resource retry or alternate access route was used
+- DOI/title checks covered 152 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Known recovered exclusions and holds were checked; historical recovery remains incomplete
+- The publisher displays **CC BY 4.0**, with third-party exceptions. Only a citation and independent discovery notes are included; source reuse requires separate rights review
