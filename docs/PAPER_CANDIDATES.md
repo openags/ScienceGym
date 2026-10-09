@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **146**.
+Last screened: **2026-10-09**. Candidate count: **147**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -980,3 +980,21 @@ Two additional **CANDIDATES** have verified metadata and partial experimental-te
 - Both main HTML sources retained cookie-error markers. The first actual linked SI PDFs yielded text; complete main-plus-SI audits, main PDFs, figure pixels, videos, source data and code remain outstanding. Clean live-browser access is unverified; no failed-resource retry or alternate route was used
 - DOI/title checks covered 144 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Current recovered exclusions and known holds were checked; historical recovery remains incomplete
 - Both publisher pages display **CC BY 4.0**, with third-party exceptions. Only citations and independent factual discovery notes are included. Suitability is an inference; no operating parameters, robot-feasibility validation, conversion, safety qualification or reproduction claim is added
+
+
+## Additional candidate title: patterned-surface droplet imaging (2026-10-09)
+
+One additional **CANDIDATE** has verified metadata and partial experimental-text screening. Prior entries and notes are retained; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Spontaneous droplets gyrating via asymmetric self-splitting on heterogeneous surfaces](https://www.nature.com/articles/s41467-019-08919-2) | Nature Communications / 2019 | 10.1038/s41467-019-08919-2 | Prepared-surface identification, pattern-orientation checks and repeated water-drop imaging suggest a sample-tracking and measurement task | Main HTML and selected SI PDF text read; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope for this addition
+
+- Official title, journal, year and DOI were verified on 2026-10-09. Physical droplet-imaging and substrate-rotation observations remain distinct from simulated flow fields and mechanical calculations. No correction notice was located; this is not an exhaustive correction audit
+- Task fit is an inference limited to prepared, qualified surfaces, water and a guarded imaging fixture. Surface fabrication, hazardous etching, coatings, UV exposure and magnetic-levitation commissioning are excluded. No operating parameters, conversion or safety qualification are supplied
+- Selected main Results/Methods text and selected captions and text from the first linked 19-page SI were screened. Inner/outer retraction descriptions differ within the SI and remain unresolved; no timing or force model is extracted
+- Complete main-plus-SI review, main PDF, figure pixels, movies and raw data remain outstanding. The main HTML retained a cookie-error marker, so clean live-browser access is unverified. No failed-resource retry or alternate route was used
+- DOI/title checks covered 146 prior candidates, README, 114 task-source records matching the fresh remote tree, issues and PRs. Current recovered exclusions and known holds were checked; historical recovery remains incomplete
+- The publisher displays **CC BY 4.0**, with third-party exceptions. Only the citation and independent factual discovery notes are included; source reuse requires separate review
