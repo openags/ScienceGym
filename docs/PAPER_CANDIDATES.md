@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **177**.
+Last screened: **2026-10-10**. Candidate count: **178**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1488,3 +1488,20 @@ One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
 - Suitability is an inference limited to prepared, sealed nonliving fluid systems, finished devices and qualified enclosed flow/imaging services. Particle synthesis, phase preparation, microfabrication and exposed-laser work are excluded. Leakage control, optical safety, sample history, instrument calibration and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
 - The inspected supplementary section lists three movies with short descriptions, but no separate scientific SI document. Only their descriptions on the main page were read; no movie was opened or visually reviewed. A separate document elsewhere is unverified. Cited preparation/calibration sources, complete review, main PDF, figure pixels, image-based equations and raw-data verification remain outstanding.
 - DOI/title and main-resource checks cleared the current catalog, README, task-source records and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried. CC BY 4.0 has component-specific exceptions; only citations and independent notes are supplied.
+
+
+## Additional candidate title: enclosed photon-counting metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [Mode engineering for realistic quantum-enhanced interferometry](https://www.nature.com/articles/ncomms11411) | Nature Communications / 2016 | 10.1038/ncomms11411 | Linked optical-reference checks, configuration records and spatially resolved detection suggest a staged calibration and uncertainty-assessment task | Selected official main Experiment/Methods; no SI listed on inspected page; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental text describes photon-pair interference, independently measured spectral visibility and camera-based coincidence positions. Phase estimates and precision are derived from detection records and a statistical model. The experimental check covers three nearby operating points; wider-range and three-photon claims include theoretical analysis.
+- Precision is assessed from subsets of detected pairs, which are not independent instrument runs. This detected-event proof of principle does not establish unconditional quantum advantage after source and detector losses. The small-sample estimator and its limited operating neighborhood matter.
+- Suitability is an inference combining optics, mechatronics and statistical validation: maintain configuration/reference provenance, reconcile repeated acquisitions and check drift before comparing estimates. Scope is restricted to finished nonliving optical modules and separately qualified enclosed instruments. Laser-source construction, exposed-beam alignment and detector high-voltage work are excluded. Enclosure, interlocks, calibration, robot interfaces and independently restarted runs require qualification; no procedures, settings, conversion or assets are supplied.
+- No supplementary section or SI link was listed on the inspected official page; no SI was reviewed. Selected-text screening is not complete paper review. Main PDF, figure pixels, image-based equations and raw data/code remain unverified. Conflicting prose/caption descriptions of the wave-plate angle mapping are unresolved and no mapping is adopted.
+- DOI/title and resource gates cleared the current catalog, README, task-source inventory and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried. CC BY 4.0 has component-specific exceptions; only citations and independent notes are supplied.
