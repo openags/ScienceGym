@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **179**.
+Last screened: **2026-10-10**. Candidate count: **180**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1521,4 +1521,21 @@ One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
 - Long-horizon suitability is an inference: preserve specimen identity across instruments, reconcile geometry and optical records, maintain calibration/configuration provenance and check repeated acquisitions. Scope is limited to finished nonliving samples and separately qualified enclosed measurement services. Powder handling, heating, coating, focused-ion-beam fabrication and exposed-laser alignment are excluded. Fixtures, interlocks, calibration and robot interfaces need qualification; no procedures, settings, conversion or assets are supplied.
 - Experimental methods are embedded in Results. No SI section/link was listed on the inspected official page; no SI was read. Main HTML retained a cookie-error marker. Complete review, main PDF, figure pixels, image-based equations, raw data and code remain unverified.
 - DOI/title and resource checks cleared the current catalog, README, task-source inventory and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried. CC BY 4.0 has component-specific exceptions; only citations and independent notes are supplied.
+
+
+## Additional candidate title: correlative electron-imaging metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [Ptychographic electron microscopy using high-angle dark-field scattering for sub-nanometre resolution imaging](https://www.nature.com/articles/ncomms1733) | Nature Communications / 2012 | 10.1038/ncomms1733 | Prepared-specimen custody, calibration records and paired diffraction/reconstruction checks suggest staged microscopy metrology | Selected official Results/Methods; no SI listed on inspected page; cookie-error marker; OA, CC BY-NC-ND 3.0 |
+
+### Screening scope and limits
+
+- Selected experimental text describes overlapping diffraction acquisitions from a nonliving gold/carbon test specimen, computational phase recovery and comparison with conventional transmission microscopy. Scan positions are not independent specimen replicates; reconstructed images and propagated probe profiles are derived evidence.
+- Thickness/projection assumptions, multiple scattering, dose damage, drift, detector response and geometric calibration limit interpretation. Reported resolution is source evidence, not a task threshold; prospective improvements are not demonstrated results.
+- Long-horizon suitability is an inference combining materials metrology, instrument coordination and data provenance: link specimen history, references, acquisitions and reconstructions. Scope is limited to prepared nonliving specimens and separately qualified, enclosed microscopy services. Source apparatus modifications, high-voltage/vacuum work, plasma cleaning and nanoparticle preparation are excluded. Interlocks, authorized loading, calibration and robot interfaces need qualification; no procedures, settings, conversion or assets are supplied.
+- No supplementary section/link was listed on the inspected official page; no SI was read. This is selected-text screening, not complete review. Main PDF, figure pixels, image-based equations, raw data and code remain unverified.
+- DOI/title and resource checks cleared current catalog, README, task-source records and recovered restrictions; historical recovery remains incomplete. No failed resource was retried. The NC-ND license and patent notice do not establish implementation or adaptation rights. Only citations and independent notes are supplied.
 
