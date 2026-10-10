@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **170**.
+Last screened: **2026-10-10**. Candidate count: **171**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1371,3 +1371,20 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Suitability is an inference restricted to prepared sealed cells and qualified enclosed optical-trap, imaging, stage and magnetic-field services. Solvent handling, cell fabrication, exposed-beam alignment, source commissioning and biological work are excluded. Optical/interlock safety, magnet restraint, sample custody and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
 - Main HTML retained a cookie-error marker. No scientific SI link or supplementary-text reference appeared on the inspected publisher page; absence elsewhere is unverified. The cited setup/calibration source was not opened. Complete review, main PDF, image-based equations, figure pixels, raw trajectories and external references remain outstanding.
 - DOI/title checks covered 169 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted source was retried or reached elsewhere. CC BY 4.0 has component-specific exceptions; only citation and independent discovery notes are included.
+
+## Additional candidate title: prepared-fluid aging and rheological metrology (2026-10-10)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Aerogel-involved triple-state viscoelastic fluidic materials enable high-efficiency dual-purpose energy management](https://www.nature.com/articles/s41467-026-73150-9) | Nature Communications / 2026 | 10.1038/s41467-026-73150-9 | Prepared-fluid custody, aging observations, composition/reference comparisons and reconciled rheology records suggest a staged materials-metrology task | Selected main HTML and text from 26-page scientific SI; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope and limits
+
+- Selected stability/rheology Results and characterization Methods were screened. Particle loading and dispersion-medium composition affect stability; a primary-particle estimate does not account for agglomerates. Measured flow curves, fitted yield stresses and inferred networks remain separate. Shear and compression responses are distinct; fluid and dried-coating thermal measurements use different techniques.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73150-9/MediaObjects/41467_2026_73150_MOESM1_ESM.pdf) materials context and captions for Figures 3–7, 10–13 and 18–32 were screened. Time-indexed phase separation and bottom-layer density provide different stability observations. Energy normalized by fluid mass differs from normalization by porous-solid mass; repeated cycles do not establish independent preparations.
+- Suitability is an inference limited to prepared, contained aqueous dispersions and qualified rheometry/imaging services. Aerogel synthesis, dry-powder handling, high-speed mixing, vacuum processing, pressure-cell operation, solvent absorption and heated-device demonstrations are excluded. Containment, sample history, instrument access and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
+- Main HTML retained a cookie-error marker. Complete review, main PDF, figure pixels, equation validation, movies, reporting summary, source-data workbook and peer review remain outstanding. CC BY-NC-ND 4.0 does not authorize sharing adaptations; only citation and independent discovery notes are included.
+- DOI/title checks covered 170 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried or reached through an alternate route.
+
