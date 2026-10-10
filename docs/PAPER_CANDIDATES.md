@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **166**.
+Last screened: **2026-10-10**. Candidate count: **167**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1306,3 +1306,20 @@ One additional **CANDIDATE** is listed below. It adds a preliminary assembly-and
 - The publisher labels the article Open Access under CC BY 4.0. This entry supplies original citation and screening notes only; no publisher content, figures, data or assets are redistributed. Source-component permissions require separate checks before reuse
 
 The candidate count is **166**. Reviewed-design and runnable-task counts remain unchanged. This text-only addition changes no task package, README, LICENSE, viewer or 3D asset and supplies no operating procedure or experimental success threshold.
+
+
+## Additional candidate title: prepared soft-lens acoustic metrology (2026-10-10)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Flat acoustics with soft gradient-index metasurfaces](https://www.nature.com/articles/s41467-018-07990-5) | Nature Communications / 2019 | 10.1038/s41467-018-07990-5 | Prepared lens custody, specimen/reference exchanges and registered hydrophone scans suggest staged wavefront metrology | Selected main HTML and four-page scientific-SI text; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results and Experiments Methods were screened. Steering, focusing and vortex-field measurements remain separate from finite-element predictions; the measured focal position differs from its design target. Spatial scan points and frequency samples do not establish independent specimen replication.
+- [Scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-07990-5/MediaObjects/41467_2018_7990_MOESM1_ESM.pdf) Notes 1–3 and figure captions distinguish whole-field energy transmission, local impedance mismatch and focal-point amplitude. These are not interchangeable efficiency measures. Several mathematical symbols are missing from extracted SI text; equation fidelity remains unresolved. Two same-call screenshot requests for SI pages 2–3 failed; no figure pixels were inspected or failed requests retried.
+- Suitability is an inference limited to finished, cured specimens and qualified contained water-tank, ultrasound and motorized-stage services. Chemical synthesis, supercritical drying, transducer commissioning and biological use are excluded. Wet/electrical isolation, acoustic exposure, specimen contact and robot interfaces require qualification; no procedures, operating settings, conversion or assets are supplied.
+- Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, movies, raw data and cited sources remain outstanding. Underlying data are available on author request, not verified openly deposited. CC BY 4.0 has component-specific exceptions; only citation and independent discovery notes are included.
+- DOI/title checks covered 166 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was reached through an alternate route.
