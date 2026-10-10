@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **185**.
+Last screened: **2026-10-10**. Candidate count: **187**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1619,3 +1619,35 @@ One further **CANDIDATE** is added after selected-source screening; reviewed-des
 - Methods describes 50 actuation cycles; Results reports 200. Their relationship remains unresolved, and no endurance schedule is inferred
 - Synthesis, UV curing, laser programming and fabrication are excluded. Cured-specimen provenance and thermal/mechanical services require separate qualification. No operating procedure, conversion or assets are supplied
 - Publisher license: **CC BY-NC-ND 4.0**; citation inclusion grants no adaptation rights. Known repository/restriction records were checked; the historical447 recovery gap remains
+
+
+## Additional candidate title: calibrated acoustic-lattice metrology (2026-10-10)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Gauge-field-induced duality group in metamaterials](https://www.nature.com/articles/s41467-026-73117-w) | Nature Communications / 2026 | 10.1038/s41467-026-73117-w | Prepared-specimen custody, calibrated pressure mapping and configuration comparisons suggest staged acoustic metrology | Selected official main and scientific-SI text accessible; main cookie-error marker; OA |
+
+### Screening scope and limits
+
+- Status: **CANDIDATE**. Suitability is an inference linking acoustic measurement, materials configuration and computational analysis; robotic feasibility remains unvalidated.
+- Selected main experimental Results/Methods and Notes 2–3, 5, 9–10 and associated captions from the [15-page scientific supplement](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-73117-w/MediaObjects/41467_2026_73117_MOESM1_ESM.pdf) were screened. This is not full-source review.
+- Complex pressure measurements are normalized against a reference; band structures are Fourier-derived. Theoretical spectra receive manual frequency offsets. Modal weights combine measurements with simulated eigenmodes. Scan locations and excitation configurations are not independent specimen replicates.
+- SI adds a 1D experimental comparison; difficult tilted-tube configurations are studied through dual counterparts and numerical comparisons, not all directly measured. Note 9 and Figure 6 call a zero-flux example “self-dual,” inconsistent with the main classification; this remains unresolved. Garbled mathematical extraction is not repaired.
+- Limit any future scope to finished, cured, nonliving specimens and separately qualified enclosed acoustic services. Printing, solvent cleaning, adhesive assembly and apparatus construction are excluded. Calibration, sealing, exposure limits, fixtures and robot interfaces need qualification. No procedures, conversion or assets are supplied.
+- Main PDF, rendered figures, full derivations, movie, additional-file description, raw data and peer review remain unreviewed. The publisher displays **CC BY-NC-ND 4.0**; citation inclusion grants no adaptation rights.
+- Known catalog/task/restriction records were checked; the historical447 recovery gap remains.
+
+
+## Additional candidate title: thermoelectric-device characterization (2026-10-10)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Printed origami thermoelectric generator achieves > 20 Wm−² from low-grade heat via material and process design](https://www.nature.com/articles/s41467-026-68852-z) | Nature Communications / 2026 | 10.1038/s41467-026-68852-z | Qualified prepared-device positioning, electrical measurements and mechanical/thermal-history comparisons suggest a multidisciplinary characterization task | Selected main and nine-page scientific SI text screened; main cookie-error marker; OA |
+
+### Screening scope and limits
+
+- Status: **CANDIDATE**. Selected experimental Results, characterization Methods and [scientific-SI text](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-68852-z/MediaObjects/41467_2026_68852_MOESM1_ESM.pdf) were screened; no full-source review, rendered figures, main PDF or raw-data verification
+- Bending histories, repeat measurements and independently prepared batches remain distinct. Pressed-film thermal conductivity and ZT are estimates; simulated device maps are not observations
+- Main text gives differing power-factor improvements, current-sweep ranges and peak-power values. These remain unresolved; no operating settings are inferred
+- Synthesis, powders, solvents, sintering, hot pressing and radiation-based characterization are excluded. Specimen containment and thermal/electrical/mechanical services require separate qualification
+- Publisher license: **CC BY 4.0**; third-party components require their own rights check. Known records were deduplicated; the historical447 recovery gap remains. No conversion, assets or validated robotic feasibility
