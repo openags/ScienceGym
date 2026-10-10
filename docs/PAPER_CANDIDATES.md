@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **188**.
+Last screened: **2026-10-10**. Candidate count: **190**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1666,3 +1666,34 @@ One further **CANDIDATE** is added after selected-source screening; reviewed-des
 - Main Methods and SI Note 1 report different ambient humidities; their relationship remains unresolved. Extracted calibration equations are garbled and are not repaired
 - Future scope is limited to qualified finished-device metrology. Fabrication, etching, annealing, wire bonding, exposed optical work and apparatus construction are excluded; fixtures, electrical/mechanical services and robot interfaces need separate qualification
 - Main PDF, rendered figures, movie and raw data remain unreviewed. Publisher license: **CC BY-NC-ND 4.0**; citation inclusion grants no adaptation rights. Known records were deduplicated; the historical447 recovery gap remains. No procedure, conversion or assets are supplied
+
+## Additional candidate title: soft-sensor calibration (2026-10-10)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Computationally intelligent calibration framework for durable soft strain sensors](https://www.nature.com/articles/s41467-026-72113-4) | Nature Communications / 2026 | 10.1038/s41467-026-72113-4 | Prepared-sensor tracking, cyclic mechanical/electrical measurements and held-out batch comparisons suggest an interdisciplinary calibration task | Selected official main and scientific-SI text screened; main cookie-error marker; OA |
+
+### Screening scope and limits
+
+- Status: **CANDIDATE**; robot suitability is inferred and unvalidated. Selected main Results/Methods and [114-page SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-72113-4/MediaObjects/41467_2026_72113_MOESM1_ESM.pdf) text, especially specimen identities and robotic sensing comparisons, were screened. No full-source review
+- Signal compensation does not repair physical degradation. Cycles, data points, training seeds and independent sensors are different units; held-out batches and acquisition histories matter
+- Source inconsistencies remain unresolved: arm sensor placement, hand train/test batch labels, and acquisition/latency descriptions differ across passages. Batched inference timing does not establish deployed control-loop latency
+- Raw sensor data are declared unavailable; processed-data links do not establish raw-data access. Main PDF, rendered figures, additional supplement descriptions, movies, code and external datasets remain unreviewed
+- Future scope is qualified finished-sensor characterization. Fabrication, powder handling, robot construction and pneumatic/electrical actuation require separate qualification; no operating procedure or conversion is supplied
+- Publisher license: **CC BY-NC-ND 4.0**; citation inclusion grants no adaptation rights. Known records were deduplicated; the historical447 recovery gap remains
+
+## Additional candidate title: prepared-hydrogel mechanical and optical metrology (2026-10-10)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Mechanically adaptive crack-resistant hydrogels based on strain-induced macroscopic phase separation and hierarchical energy dissipation](https://www.nature.com/articles/s41467-026-74084-y) | Nature Communications / 2026 | 10.1038/s41467-026-74084-y | Prepared, equilibrated specimen tracking, paired intact/precut measurements, synchronized optical and force records, and recovery-history comparisons suggest a staged metrology task | Official main experimental body and Methods + 16-page scientific-SI text readable; OA; cookie-redirect caveat |
+
+### Screening scope and limits
+
+- **CANDIDATE only**: no reviewed design, runnable task, reproduced measurement or task-family count change
+- Screened the main experimental text and Methods, plus all returned [scientific-SI text](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74084-y/MediaObjects/41467_2026_74084_MOESM1_ESM.pdf), including 20 supplementary figure captions and two tables. Main HTML carried a cookie-error redirect while remaining readable. No figure-pixel review is claimed
+- Keep feed-ratio labels, specimen histories, intact/precut pairs and independent replicates distinct. Tensile and pure-shear replication are separate (n = 5 and n = 3); toughness uses matched uncut/precut measurements and depends on rate and temperature. Experimental, fitted and simulation evidence are separate
+- Suitability is an inference for prepared-specimen work under qualified, guarded services. Chemistry, UV processing, synchrotron operation, heated tests and cutting a loaded specimen are outside this proposed scope. Material safety, fixtures, hydration control and instrument coordination remain unqualified
+- The main PDF, movies, their separate description PDF, supplementary-data XLSX, source-data XLSX and peer-review file were not opened
+- Publisher licence: **CC BY-NC-ND 4.0**. Only original citation and screening prose is proposed; no publisher content is bundled
+- No match appeared in the fresh repository files or recursively scanned known restrictions. The historical inventory gap remains unresolved, so complete historical uniqueness is not claimed
