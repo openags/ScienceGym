@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **184**.
+Last screened: **2026-10-10**. Candidate count: **185**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1604,3 +1604,18 @@ One further **CANDIDATE** is added after selected-source screening; reviewed-des
 - The physical demonstration reliably resolved about 50 nm lateral misalignment; picometer-scale precision estimates use simulated noisy images and must not be presented as demonstrated positioning accuracy. Main Methods and SI Fig. 8 report different simulation sample counts; this remains unresolved
 - Fabrication, chemicals, bonding, exposed-beam alignment and laser operation are outside this candidate scope and need separate qualification. No procedure or operating parameters are added
 - The publisher displays **CC BY-NC-ND 4.0**. Citation inclusion is not permission to adapt or redistribute the paper. Known records were deduplicated; the historical447 recovery gap remains. Robotic feasibility and reproducibility are unvalidated
+
+
+## Additional candidate title: programmable-fiber characterization (2026-10-10)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Continuous fabrication of Janus liquid crystal elastomer fibers with programmable actuation](https://www.nature.com/articles/s41467-026-68992-2) | Nature Communications / 2026 | 10.1038/s41467-026-68992-2 | Prepared, cured-fiber handling, mechanical loading and image-based shape comparisons suggest a materials-characterization task | Main HTML and selected scientific SI text accessible; main cookie-error marker; OA |
+
+### Screening scope and limits
+
+- Status: **CANDIDATE**, with unvalidated robotic feasibility
+- Selected main Results/Methods and text/captions from the [27-page scientific supplement](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-68992-2/MediaObjects/41467_2026_68992_MOESM1_ESM.pdf) were screened. Main HTML retained a cookie-error marker. This is not full-source review; main PDF, rendered figures, movies and source data were not inspected. SI equations contain extraction artifacts
+- Methods describes 50 actuation cycles; Results reports 200. Their relationship remains unresolved, and no endurance schedule is inferred
+- Synthesis, UV curing, laser programming and fabrication are excluded. Cured-specimen provenance and thermal/mechanical services require separate qualification. No operating procedure, conversion or assets are supplied
+- Publisher license: **CC BY-NC-ND 4.0**; citation inclusion grants no adaptation rights. Known repository/restriction records were checked; the historical447 recovery gap remains
