@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **182**.
+Last screened: **2026-10-10**. Candidate count: **183**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1572,3 +1572,20 @@ One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
 - Suitability is an inference limited to finished, cured nonliving specimens and separately qualified enclosed acoustic services. Printing, curing, drilling and apparatus construction are excluded. Fixtures, sealing, calibration, exposure limits and robot interfaces need qualification; no procedures, settings, conversion or assets are supplied.
 - Selected-text screening is not complete review. Main PDF, figure pixels, garbled SI equations, raw data, code and peer review remain unverified. Data are available from the authors upon request. CC BY 4.0 has component exceptions; only citations and independent notes are supplied.
 - DOI/title and resource gates cleared known restrictions and current repository inventories; historical recovery remains incomplete. The SI's publisher-parent/link selector was gated before its destination was exposed; the returned target then cleared separately. No failed or restricted resource was retried.
+
+## Additional candidate title: optoacoustic metrology (2026-10-10)
+
+One further **CANDIDATE** is added after selected-source screening; reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Revealing intrinsic 3D spin angular momentum of evanescent acoustic phonons on a single-crystal surface using ultrafast optoacoustics](https://www.nature.com/articles/s41467-026-70019-9) | Nature Communications / 2026 | 10.1038/s41467-026-70019-9 | Prepared-wafer custody, orientation records and linked acquisitions suggest staged metrology using separately qualified enclosed instrument services; hybrid spin maps require tracked numerical inputs | Selected main HTML and technical SI text accessible; HTML cookie-error marker; OA |
+
+### Screening and interpretation limits
+
+- Selected main experimental discussion and Methods, plus the [26-page technical supplement](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-70019-9/MediaObjects/41467_2026_70019_MOESM1_ESM.pdf) contents and selected Section 4 text, were screened. This is not full-source review; main PDF and rendered figure pixels were not inspected
+- The measurement records out-of-plane particle velocity. Three-dimensional spin maps combine it with simulated in-plane components. Supplementary numerical calibration does not turn those components into direct measurements
+- Dense derivations, movies, code and raw data remain unreviewed. Fabrication, exposed-beam alignment, lasers and apparatus operation remain outside the proposed scope and require separate qualification; no operating procedure or parameter is added
+- The publisher displays **CC BY-NC-ND 4.0**. This entry is citation and discovery information, not authorization to adapt or redistribute source content
+- Known catalog, task and restriction records were checked; the historical447 recovery gap remains unresolved. Candidate status does not establish robotic feasibility or reproducibility
+
