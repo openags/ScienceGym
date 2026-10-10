@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **165**.
+Last screened: **2026-10-10**. Candidate count: **166**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1286,3 +1286,23 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Suitability is an inference limited to finished, encapsulated sensors, inert test objects and qualified guarded mechanical/electrical services. Ink chemistry, fabrication, thermal/vacuum processing, destructive testing and human-contact use are excluded. Force limits, pinch/drop containment, electrical protection and robot interfaces require qualification; no procedures, operating settings, conversion or assets are supplied.
 - Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, figure pixels, movies, raw data/code, external model calibration and peer review remain outstanding. CC BY-NC-ND 4.0 does not authorize adapted-source redistribution; only citation and independent discovery notes are included.
 - DOI/title checks covered 164 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted source was retried or reached through an alternate route.
+
+## Additional candidate title: programmable acoustic-cavity metrology (2026-10-10)
+
+One additional **CANDIDATE** is listed below. It adds a preliminary assembly-and-measurement lead, with no reviewed task design, conversion or execution claim.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Robust temporal adiabatic passage with perfect frequency conversion between detuned acoustic cavities](https://www.nature.com/articles/s41467-024-45932-6) | Nature Communications / 2024 | 10.1038/s41467-024-45932-6 | Prepared-cavity and detuning-plate configuration, microphone checks, repeated sound-transfer measurements and matched control comparisons suggest a staged assembly-and-metrology task | Selected main HTML and selected text from 20-page scientific SI; main cookie marker; SI screenshots failed |
+
+### Screening scope for this addition
+
+- Publisher metadata, abstract, selected experimental Results and apparatus Methods were checked. The study reports two- and three-cavity measurements, including directional-transfer and absorber comparisons. Measured traces, fitted responses and simulated parameter maps remain separate evidence categories
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-45932-6/MediaObjects/41467_2024_45932_MOESM1_ESM.pdf) text from Sections I-IV was screened for apparatus, calibration and control context. It describes interchangeable detuning plates and separate gain/coupling characterization. Transfer normalized to remaining sound differs from transfer relative to initial sound; neither becomes an absolute efficiency guarantee
+- The extracted SI text contains an apparent damping-value discrepancy between Section II prose and the following caption. Attempts to inspect PDF pages 4 and 5 visually both returned cache-miss errors. This remains unresolved; no value is corrected or proposed as a setting, and no screenshot retry or alternate retrieval was attempted
+- Main HTML was readable with a cookie-error marker. The 20-page SI returned extractable text, but only the stated portions were screened. No complete-paper review is claimed; main PDF, figure pixels, remaining SI sections, raw data, code and peer-review material were not reviewed
+- Preliminary suitability is limited to prepared inert cavities, qualified enclosed electronics and controlled acoustic measurements. Machining, energized circuit work, feedback stability, sound exposure and robot handling need separate safety qualification. Configuration changes, repeated records and control comparisons suggest a possible long-horizon workflow; robot feasibility and reproducibility remain unverified
+- DOI and normalized title were checked against the current catalog, README, unchanged task-source inventory and recovered exclusion records. Known restrictions were respected; the historical exclusion inventory remains incomplete
+- The publisher labels the article Open Access under CC BY 4.0. This entry supplies original citation and screening notes only; no publisher content, figures, data or assets are redistributed. Source-component permissions require separate checks before reuse
+
+The candidate count is **166**. Reviewed-design and runnable-task counts remain unchanged. This text-only addition changes no task package, README, LICENSE, viewer or 3D asset and supplies no operating procedure or experimental success threshold.
