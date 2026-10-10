@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **175**.
+Last screened: **2026-10-10**. Candidate count: **177**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1455,3 +1455,36 @@ One additional **CANDIDATE** is listed below. It adds no reviewed design, conver
 - The main page displays [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Component-specific and third-party rights need separate review before reuse
 - Exact title and DOI were clear against the current catalog, task sources and recovered exclusions/holds. Earlier historical recovery remains incomplete; no exhaustive historical-deduplication claim is made
 
+
+## Additional candidate title: contained granular-packing metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [The structural origin of the hard-sphere glass transition in granular packing](https://www.nature.com/articles/ncomms9409) | Nature Communications / 2015 | 10.1038/ncomms9409 | Prepared-container custody, packing-history comparisons and linked reference/tomography records suggest staged granular metrology | Selected official main Results/Methods; no SI listed on inspected page; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected Results and projection-imaging, microtomography and displacement-analysis Methods describe glass-particle packings with different preparation histories. Absorption-based packing fractions are compared with tomography; particle positions support derived structural and motion measures. Relaxation times are fitted, and entropy/compactivity depend on assumptions and extrapolation. These are not direct thermodynamic measurements.
+- Consecutive taps and thousands of particles within one packing do not establish independent specimen replication. Some reported conditions had insufficient tapping to reach steady state. The paper explicitly limits a direct equivalence between granular and thermal-glass entropy.
+- Suitability is an inference restricted to prepared, contained nonbiological particles and separately qualified closed imaging services. Fabrication, loose-powder or dust-generating handling, radiation-source commissioning and radiation-service operation instructions are excluded. Containment, vibration fixtures, sample-history preservation and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
+- No supplementary section or SI link was listed on the inspected official page; no SI was reviewed. Main HTML retained a cookie-error marker and several equations appeared as image placeholders. Complete review, main PDF, figure pixels, equation fidelity, raw data and code remain unverified.
+- DOI/title and resource gates cleared the current catalog, README, task-source inventory and recovered exclusions/holds. Historical recovery remains incomplete. Only citations and independent notes are supplied; CC BY 4.0 has component-specific exceptions. No failed or restricted resource was retried.
+
+
+## Additional candidate title: confined-fluid interface metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [Superconfinement tailors fluid flow at microscales](https://www.nature.com/articles/ncomms8297) | Nature Communications / 2015 | 10.1038/ncomms8297 | Prepared-device custody, fluid/geometry reconciliation and coordinated interface imaging suggest a staged microfluidic-measurement task | Selected main HTML Results and Methods; no separate written scientific SI listed on inspected official page; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results and Methods describe aqueous colloid–polymer phases in microchannels, gravity-controlled pressure differences and confocal imaging. The source's “gas” phase is a colloid-poor liquid phase. Leading-front and contact-line speeds are different observables; jet volume and estimated droplet volume also differ.
+- Geometry comparisons support prospective measurement structure. Slip length is fitted from a model, and simulation fields are separate from observations. The operational onset criterion may underestimate the true critical angle. Repeated images and drops do not establish independent sample preparations.
+- Suitability is an inference limited to prepared, sealed nonliving fluid systems, finished devices and qualified enclosed flow/imaging services. Particle synthesis, phase preparation, microfabrication and exposed-laser work are excluded. Leakage control, optical safety, sample history, instrument calibration and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
+- The inspected supplementary section lists three movies with short descriptions, but no separate scientific SI document. Only their descriptions on the main page were read; no movie was opened or visually reviewed. A separate document elsewhere is unverified. Cited preparation/calibration sources, complete review, main PDF, figure pixels, image-based equations and raw-data verification remain outstanding.
+- DOI/title and main-resource checks cleared the current catalog, README, task-source records and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried. CC BY 4.0 has component-specific exceptions; only citations and independent notes are supplied.
