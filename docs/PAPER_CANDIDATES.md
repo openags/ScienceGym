@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **168**.
+Last screened: **2026-10-10**. Candidate count: **169**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1339,3 +1339,19 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Suitability is an inference restricted to dry seed handling as physical objects and qualified guarded conveyor/acoustic services. Germination, coatings, biological treatment, sharp debris, energized electronics work and transducer commissioning are excluded. Exposure, dust/allergens, pinch points, ejected-object containment and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
 - Main HTML retained a cookie-error marker. The separately listed additional-file-description PDF returned an Internal Error on its first click and was not retried or retrieved elsewhere. Main and scientific-SI text remained readable. Complete review, main PDF, figure pixels, movies, raw data, code and peer review remain outstanding; study-specific code is available on author request.
 - DOI/title checks covered 167 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. CC BY 4.0 has component-specific exceptions; only citation and independent discovery notes are included.
+
+## Additional candidate title: optical-trap transport metrology (2026-10-10)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Experimentally achieving minimal dissipation via thermodynamically optimal transport](https://www.nature.com/articles/s41467-025-66519-9) | Nature Communications / 2025 | 10.1038/s41467-025-66519-9 | Prepared sample exchange, particle-specific calibration, repeated transport comparisons and trajectory reconciliation suggest long-horizon optical metrology | Selected main HTML and text from nineteen-page scientific SI; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results and setup/measurement Methods were screened. Translation-compression and information-erasure experiments compare distribution evolution with theoretical bounds. Repetitions on one particle are not independent particle samples; measured trajectories, reconstructed potentials and model predictions remain distinct. Inverse-duration scaling alone does not establish optimality, and reported erasure is imperfect.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66519-9/MediaObjects/41467_2025_66519_MOESM1_ESM.pdf) S1, S5 and Figure S13 text covers scan constraints/calibration, protocol-dependent estimator convergence and per-particle comparisons. Target potentials are constrained by fixed total power and finite scan range. Resampling existing trajectories adds no independent physical trials. Below-bound outliers are attributed to statistical variation by the authors, not evidence of a violated bound.
+- Suitability is an inference restricted to prepared sealed chambers and qualified enclosed optical-trap/imaging services. Laser alignment, exposed-beam operation, source commissioning, chemical sealing and biological experiments are excluded. Laser/interlock safety, sample custody, calibration and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
+- Main HTML retained a cookie-error marker. Complete review, main PDF, figure pixels, equation validation, raw trajectories, code and cited sources remain outstanding. The article links data/code but those deposits were not inspected. CC BY-NC-ND 4.0 does not authorize sharing adaptations; only citation and independent discovery notes are included.
+- DOI/title checks covered 168 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried or reached through an alternate route.
