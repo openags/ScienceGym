@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **164**.
+Last screened: **2026-10-10**. Candidate count: **165**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1269,3 +1269,20 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Suitability is an inference limited to finished, cured specimens and qualified guarded tensile/visible-imaging services. Fabrication, resin/solvent handling, laser/UV operation, pressure processing and compressive loading are excluded. Specimen restraint, force limits, illumination and robot interfaces still require qualification; no procedures, operating settings, conversion or assets are supplied.
 - Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, figure pixels, movies, raw data/code and peer review remain outstanding. CC BY 4.0 has component-specific exceptions; only citation and independent discovery notes are included.
 - DOI/title checks covered 163 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted source was retried or reached through an alternate route.
+
+
+## Additional candidate title: prepared tactile-sensor slip metrology (2026-10-10)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Slip-actuated bionic tactile sensing system with dynamic DC generator integrated E-textile for dexterous robotic manipulation](https://www.nature.com/articles/s41467-025-61843-6) | Nature Communications / 2025 | 10.1038/s41467-025-61843-6 | Prepared sensor custody, sliding/contact comparisons and synchronized force/electrical records suggest staged tactile metrology with guarded feedback-control tests | Selected main HTML and 18-page scientific-SI text; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results and mechanical/electrical characterization and robotic-demonstration Methods were screened. Sliding signals, normal-force sensing and feedback-on/off comparisons remain distinct; model-derived grip force is not a direct force measurement. A proposed reinforcement-learning system is future work.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-61843-6/MediaObjects/41467_2025_61843_MOESM1_ESM.pdf) captions S1, S6-S8 and S10-S16, plus response-time text, were screened. Main text reports eighteen acquisition sessions for the endurance test, whereas S6 says ten. The main airgap description and printed update equation have opposing directions. Both discrepancies remain unresolved; cycling and sampled points do not establish independent specimens.
+- Suitability is an inference limited to finished, encapsulated sensors, inert test objects and qualified guarded mechanical/electrical services. Ink chemistry, fabrication, thermal/vacuum processing, destructive testing and human-contact use are excluded. Force limits, pinch/drop containment, electrical protection and robot interfaces require qualification; no procedures, operating settings, conversion or assets are supplied.
+- Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, figure pixels, movies, raw data/code, external model calibration and peer review remain outstanding. CC BY-NC-ND 4.0 does not authorize adapted-source redistribution; only citation and independent discovery notes are included.
+- DOI/title checks covered 164 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted source was retried or reached through an alternate route.
