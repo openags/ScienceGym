@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **171**.
+Last screened: **2026-10-10**. Candidate count: **172**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1388,3 +1388,19 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Main HTML retained a cookie-error marker. Complete review, main PDF, figure pixels, equation validation, movies, reporting summary, source-data workbook and peer review remain outstanding. CC BY-NC-ND 4.0 does not authorize sharing adaptations; only citation and independent discovery notes are included.
 - DOI/title checks covered 170 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried or reached through an alternate route.
 
+
+## Additional candidate title: acoustic ring-array metrology (2026-10-10)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Experimental demonstration of anomalous Floquet topological insulator for sound](https://www.nature.com/articles/ncomms13368) | Nature Communications / 2016 | 10.1038/ncomms13368 | Prepared ring-array custody, configuration checks, sequential microphone scans and linked spectral/spatial comparisons suggest a staged acoustic-measurement task | Selected main HTML and scientific SI text; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected main Results, experimental Methods and figure captions support real acoustic measurements on fabricated aluminum ring waveguides. Sound attenuation remains present; normalized output/bulk spectra are not absolute transmission efficiencies. Acoustic pseudo-spin is a circulation label, and imperfect coupling can mix the two directions.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms13368/MediaObjects/41467_2016_BFncomms13368_MOESM1236_ESM.pdf) captions for Figures 4–7 and 9–13 plus Note 3 clarify port sealing, source placement and two-hole averaging for each spectral site. Distortion evidence in Figure 4 is simulated. Note 3 appears to point to Figure 12 for the gradient structure, while that structure is captioned Figure 13; do not silently repair this citation.
+- Suitability is an inference limited to prepared, deburred passive samples and an acoustically enclosed, electrically qualified measurement bench. Machining and custom amplifier construction are excluded. Microphone positioning, repeatable sealing, calibration, exposure limits and robot interfaces need qualification; no executable task or operating settings are supplied.
+- This is selected-text screening, not complete review. Main HTML retained a cookie-error marker. Main PDF, figure pixels, equations and source data were not assessed; underlying data are available on request. CC BY 4.0 applies subject to third-party credit lines; only citation and independent screening notes are proposed.
+- DOI/title checks covered 171 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted source was retried or reached through an alternate route.
