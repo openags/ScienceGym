@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **178**.
+Last screened: **2026-10-10**. Candidate count: **179**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1505,3 +1505,20 @@ One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
 - Suitability is an inference combining optics, mechatronics and statistical validation: maintain configuration/reference provenance, reconcile repeated acquisitions and check drift before comparing estimates. Scope is restricted to finished nonliving optical modules and separately qualified enclosed instruments. Laser-source construction, exposed-beam alignment and detector high-voltage work are excluded. Enclosure, interlocks, calibration, robot interfaces and independently restarted runs require qualification; no procedures, settings, conversion or assets are supplied.
 - No supplementary section or SI link was listed on the inspected official page; no SI was reviewed. Selected-text screening is not complete paper review. Main PDF, figure pixels, image-based equations and raw data/code remain unverified. Conflicting prose/caption descriptions of the wave-plate angle mapping are unresolved and no mapping is adopted.
 - DOI/title and resource gates cleared the current catalog, README, task-source inventory and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried. CC BY 4.0 has component-specific exceptions; only citations and independent notes are supplied.
+
+## Additional candidate title: solid-waveguide optical metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [Wavefront shaping through emulated curved space in waveguide settings](https://www.nature.com/articles/ncomms10747) | Nature Communications / 2016 | 10.1038/ncomms10747 | Finished-sample custody, cross-instrument registration and linked optical-profile comparisons suggest staged waveguide metrology | Selected official main experimental Results; no SI listed on inspected page; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results describe AFM shape characterization and fluorescence imaging of solid polymer waveguides. Effective refractive index is calculated from thickness. Measured profiles and simulations remain separate evidence; spatial samples do not establish independent specimen replication.
+- The Einstein-ring analogy uses relative angular radii and a fitted parameter, avoiding an absolute factor-of-two difference from the relativistic expression. Evolution is spatial. Arbitrary-trajectory beam shaping is simulated; the optical experiment does not measure gravitational curvature.
+- Long-horizon suitability is an inference: preserve specimen identity across instruments, reconcile geometry and optical records, maintain calibration/configuration provenance and check repeated acquisitions. Scope is limited to finished nonliving samples and separately qualified enclosed measurement services. Powder handling, heating, coating, focused-ion-beam fabrication and exposed-laser alignment are excluded. Fixtures, interlocks, calibration and robot interfaces need qualification; no procedures, settings, conversion or assets are supplied.
+- Experimental methods are embedded in Results. No SI section/link was listed on the inspected official page; no SI was read. Main HTML retained a cookie-error marker. Complete review, main PDF, figure pixels, image-based equations, raw data and code remain unverified.
+- DOI/title and resource checks cleared the current catalog, README, task-source inventory and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried. CC BY 4.0 has component-specific exceptions; only citations and independent notes are supplied.
+
