@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-09**. Candidate count: **163**.
+Last screened: **2026-10-10**. Candidate count: **164**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1253,3 +1253,19 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, figure pixels, underlying data and cited sources remain outstanding. Scientific SI text was readable through its listed link; no failed-source retry or alternate route was used. CC BY 4.0 has component-specific exceptions; only citation and independent discovery notes are included.
 - DOI/title checks covered 162 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete.
 
+
+## Additional candidate title: prepared metamaterial-beam tensile metrology (2026-10-10)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Anomalous frozen evanescent phonons](https://www.nature.com/articles/s41467-024-52956-5) | Nature Communications / 2024 | 10.1038/s41467-024-52956-5 | Prepared beam identification, loading-site configuration, repeated tensile cycling and paired force/image records suggest staged mechanical metrology | Selected main HTML and 9-page scientific-SI text; additional-file descriptions; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected physical Results and stretching/stiffness Methods were screened. Side-view marker displacements and force records support fitted effective stiffness; calculated phonon modes remain separate. Repeated cycles on each beam do not establish independent specimen replication. Single-site and simultaneous two-site loading remain distinct.
+- The [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-52956-5/MediaObjects/41467_2024_52956_MOESM1_ESM.pdf) Fig. 4 caption distinguishes measured stiffness from finite-element and spring-model results. Other captions cover theoretical comparisons; duplicated symbols/digits in extracted text remain unresolved. The one-page additional-file description was read, but its ten movies were not viewed.
+- Suitability is an inference limited to finished, cured specimens and qualified guarded tensile/visible-imaging services. Fabrication, resin/solvent handling, laser/UV operation, pressure processing and compressive loading are excluded. Specimen restraint, force limits, illumination and robot interfaces still require qualification; no procedures, operating settings, conversion or assets are supplied.
+- Main HTML retained a cookie-error marker; clean browser access is unverified. Complete review, main PDF, figure pixels, movies, raw data/code and peer review remain outstanding. CC BY 4.0 has component-specific exceptions; only citation and independent discovery notes are included.
+- DOI/title checks covered 163 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted source was retried or reached through an alternate route.
