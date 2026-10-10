@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **187**.
+Last screened: **2026-10-10**. Candidate count: **188**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1651,3 +1651,18 @@ One further **CANDIDATE** is added after selected-source screening; reviewed-des
 - Main text gives differing power-factor improvements, current-sweep ranges and peak-power values. These remain unresolved; no operating settings are inferred
 - Synthesis, powders, solvents, sintering, hot pressing and radiation-based characterization are excluded. Specimen containment and thermal/electrical/mechanical services require separate qualification
 - Publisher license: **CC BY 4.0**; third-party components require their own rights check. Known records were deduplicated; the historical447 recovery gap remains. No conversion, assets or validated robotic feasibility
+
+
+## Additional candidate title: triboelectric-interface metrology (2026-10-10)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Structural superlubricity triboelectric nanogenerator with negligible wear and high triboelectrification efficiency](https://www.nature.com/articles/s41467-026-74450-w) | Nature Communications / 2026 | 10.1038/s41467-026-74450-w | Prepared-device custody, calibrated force/electrical measurements and aging comparisons suggest an interdisciplinary characterization task | Selected official main and scientific-SI text screened; main cookie-error marker; OA |
+
+### Screening scope and limits
+
+- Status: **CANDIDATE**; suitability is inferred and robotic feasibility unvalidated. Selected main Results/Methods and [23-page SI text/captions](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-74450-w/MediaObjects/41467_2026_74450_MOESM1_ESM.pdf) were screened, including calibration and environmental comparisons. No full-source review
+- Mechanical endurance and electrical-output endurance are separate measurements. Repeat tests, scan locations and independent specimens must remain distinct. Microscale open-circuit voltage is calculated from charge and capacitance, not directly measured
+- Main Methods and SI Note 1 report different ambient humidities; their relationship remains unresolved. Extracted calibration equations are garbled and are not repaired
+- Future scope is limited to qualified finished-device metrology. Fabrication, etching, annealing, wire bonding, exposed optical work and apparatus construction are excluded; fixtures, electrical/mechanical services and robot interfaces need separate qualification
+- Main PDF, rendered figures, movie and raw data remain unreviewed. Publisher license: **CC BY-NC-ND 4.0**; citation inclusion grants no adaptation rights. Known records were deduplicated; the historical447 recovery gap remains. No procedure, conversion or assets are supplied
