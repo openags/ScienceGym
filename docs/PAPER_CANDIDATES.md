@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **180**.
+Last screened: **2026-10-10**. Candidate count: **182**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1539,3 +1539,36 @@ One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
 - No supplementary section/link was listed on the inspected official page; no SI was read. This is selected-text screening, not complete review. Main PDF, figure pixels, image-based equations, raw data and code remain unverified.
 - DOI/title and resource checks cleared current catalog, README, task-source records and recovered restrictions; historical recovery remains incomplete. No failed resource was retried. The NC-ND license and patent notice do not establish implementation or adaptation rights. Only citations and independent notes are supplied.
 
+
+
+## Additional candidate title: focal-series nanocrystal metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [In-line three-dimensional holography of nanocrystalline objects at atomic resolution](https://www.nature.com/articles/ncomms10603) | Nature Communications / 2016 | 10.1038/ncomms10603 | Prepared-specimen custody, linked focal-series acquisitions and calibration/reconstruction checks suggest staged microscopy metrology | Selected official Results/Methods; no SI listed on inspected page; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected text describes electron-microscopy focal series from germanium, gold and magnesium oxide specimens. Reconstructed column masses, surface profiles and three-dimensional structures are model-dependent derived evidence. Known crystal structure and homogeneous column occupancy matter; MgO {100} surface termination as Mg versus O is not unambiguously resolved from one projection.
+- Exposure can alter specimens during acquisition. Reconstructions can represent time-averaged structures; image subsets and atomic columns are not independent specimen replicates. Dose-dependent phase calibration and disagreement between simulations and measurements require scrutiny. Reported precision is not a task threshold.
+- Suitability is an inference combining materials characterization, instrument coordination and reconstruction provenance. Restrict any future design to prepared nonliving specimens and separately qualified enclosed microscopy services. Ion milling, etching, deposition, intentional beam-induced reshaping and high-voltage/vacuum work are excluded. Loading interfaces, interlocks and calibration need qualification; no procedures, settings, conversion or assets are supplied.
+- No supplementary section/link was listed on the inspected official page; no SI was read. This is selected-text screening, not complete review. Main PDF, figure pixels, image-based equations, cited preparation sources and raw data/code remain unverified. Main HTML retained a cookie-error marker.
+- DOI/title and resource checks cleared the current catalog, README, task-source records and recovered restrictions; historical recovery remains incomplete. No failed resource was retried. Only citations and independent notes are supplied; CC BY 4.0 has component-specific exceptions.
+
+## Additional candidate title: boundary-configured acoustic metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [Observation of boundary induced chiral anomaly bulk states and their transport properties](https://www.nature.com/articles/s41467-022-33447-x) | Nature Communications / 2022 | 10.1038/s41467-022-33447-x | Finished-sample custody, boundary-configuration comparisons and phase-referenced spatial scans suggest staged acoustic metrology | Selected main Results/Methods and 21-page scientific-SI text; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results and Methods describe passive acoustic waveguides compared across boundaries, bends and disorder. Scanned and fixed-reference microphones provide pressure records; Fourier spectra and simulated fields remain distinct evidence. Photonic extensions are numerical. Spatial points do not establish independent specimen replication.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-33447-x/MediaObjects/41467_2022_33447_MOESM1_ESM.pdf), Sections 3–5 and Figures S3–S6 captions, adds frequency comparisons and configuration detail. Transmission curves include simulations; boundary-specific tests do not establish robustness against arbitrary defects.
+- Suitability is an inference limited to finished, cured nonliving specimens and separately qualified enclosed acoustic services. Printing, curing, drilling and apparatus construction are excluded. Fixtures, sealing, calibration, exposure limits and robot interfaces need qualification; no procedures, settings, conversion or assets are supplied.
+- Selected-text screening is not complete review. Main PDF, figure pixels, garbled SI equations, raw data, code and peer review remain unverified. Data are available from the authors upon request. CC BY 4.0 has component exceptions; only citations and independent notes are supplied.
+- DOI/title and resource gates cleared known restrictions and current repository inventories; historical recovery remains incomplete. The SI's publisher-parent/link selector was gated before its destination was exposed; the returned target then cleared separately. No failed or restricted resource was retried.
