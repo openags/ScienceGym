@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **183**.
+Last screened: **2026-10-10**. Candidate count: **184**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1589,3 +1589,18 @@ One further **CANDIDATE** is added after selected-source screening; reviewed-des
 - The publisher displays **CC BY-NC-ND 4.0**. This entry is citation and discovery information, not authorization to adapt or redistribute source content
 - Known catalog, task and restriction records were checked; the historical447 recovery gap remains unresolved. Candidate status does not establish robotic feasibility or reproducibility
 
+
+
+## Additional candidate titles: alignment metrology (2026-10-10)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [3D alignment of distant patterns with deep-subwavelength precision using metasurfaces](https://www.nature.com/articles/s41467-024-53219-z) | Nature Communications / 2024 | 10.1038/s41467-024-53219-z | Pre-fabricated workpiece positioning, image capture, calibration checks and displacement-estimation comparisons suggest a future optical-metrology task. | Public main experimental text and selected 15-page scientific-SI text screened; not full-source review. |
+
+### 3D alignment of distant patterns with deep-subwavelength precision using metasurfaces
+
+- Status: **CANDIDATE**. Optical metrology, precision positioning and computational inference could support repeated setup checks, sample histories and comparison of measured images with model estimates
+- Selected main Results, Discussion and measurement Methods, plus captions and selected estimator discussion in the [15-page scientific supplement](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-024-53219-z/MediaObjects/41467_2024_53219_MOESM1_ESM.pdf), were screened. The main text was readable despite a cookie-error redirect marker. Main PDF, rendered figure pixels, full derivations, data and code were not reviewed
+- The physical demonstration reliably resolved about 50 nm lateral misalignment; picometer-scale precision estimates use simulated noisy images and must not be presented as demonstrated positioning accuracy. Main Methods and SI Fig. 8 report different simulation sample counts; this remains unresolved
+- Fabrication, chemicals, bonding, exposed-beam alignment and laser operation are outside this candidate scope and need separate qualification. No procedure or operating parameters are added
+- The publisher displays **CC BY-NC-ND 4.0**. Citation inclusion is not permission to adapt or redistribute the paper. Known records were deduplicated; the historical447 recovery gap remains. Robotic feasibility and reproducibility are unvalidated
