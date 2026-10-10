@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **169**.
+Last screened: **2026-10-10**. Candidate count: **170**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1355,3 +1355,19 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Suitability is an inference restricted to prepared sealed chambers and qualified enclosed optical-trap/imaging services. Laser alignment, exposed-beam operation, source commissioning, chemical sealing and biological experiments are excluded. Laser/interlock safety, sample custody, calibration and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
 - Main HTML retained a cookie-error marker. Complete review, main PDF, figure pixels, equation validation, raw trajectories, code and cited sources remain outstanding. The article links data/code but those deposits were not inspected. CC BY-NC-ND 4.0 does not authorize sharing adaptations; only citation and independent discovery notes are included.
 - DOI/title checks covered 168 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried or reached through an alternate route.
+
+## Additional candidate title: driven-colloid synchronization metrology (2026-10-10)
+
+One **CANDIDATE** is added after selected experimental-text screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Microscopic dynamics of synchronization in driven colloids](https://www.nature.com/articles/ncomms8187) | Nature Communications / 2015 | 10.1038/ncomms8187 | Prepared sample custody, optical-landscape checks, single-particle/chain comparisons and trajectory reconciliation suggest staged synchronization metrology | Selected main HTML Results and Methods; no scientific SI listed on the inspected page; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected Results on single particles, driven chains and density-wave kinks, plus model-system, optical/imaging and image-analysis Methods, were screened. Equal average velocities can conceal different trajectories; zero net transport need not mean rest. Chain position uses its terminal particles, whereas kink position is density-derived. These are different observables.
+- Flexible/stiff-chain comparisons and repeated drive conditions provide preliminary control structure. Repeats do not establish independent sample preparations. The authors leave hydrodynamic coupling unresolved; the engineered pinned-chain kink does not directly resolve the faster density wave in a moving short chain.
+- Suitability is an inference restricted to prepared sealed cells and qualified enclosed optical-trap, imaging, stage and magnetic-field services. Solvent handling, cell fabrication, exposed-beam alignment, source commissioning and biological work are excluded. Optical/interlock safety, magnet restraint, sample custody and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
+- Main HTML retained a cookie-error marker. No scientific SI link or supplementary-text reference appeared on the inspected publisher page; absence elsewhere is unverified. The cited setup/calibration source was not opened. Complete review, main PDF, image-based equations, figure pixels, raw trajectories and external references remain outstanding.
+- DOI/title checks covered 169 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted source was retried or reached elsewhere. CC BY 4.0 has component-specific exceptions; only citation and independent discovery notes are included.
