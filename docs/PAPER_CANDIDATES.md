@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **172**.
+Last screened: **2026-10-10**. Candidate count: **173**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1404,3 +1404,19 @@ One **CANDIDATE** is added after selected experimental-text screening. Reviewed-
 - Suitability is an inference limited to prepared, deburred passive samples and an acoustically enclosed, electrically qualified measurement bench. Machining and custom amplifier construction are excluded. Microphone positioning, repeatable sealing, calibration, exposure limits and robot interfaces need qualification; no executable task or operating settings are supplied.
 - This is selected-text screening, not complete review. Main HTML retained a cookie-error marker. Main PDF, figure pixels, equations and source data were not assessed; underlying data are available on request. CC BY 4.0 applies subject to third-party credit lines; only citation and independent screening notes are proposed.
 - DOI/title checks covered 171 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted source was retried or reached through an alternate route.
+
+## Additional candidate title: scattering-image optical metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [An optical meta-image-processor for enhanced imaging through strongly scattering media](https://www.nature.com/articles/s41467-025-64746-8) | Nature Communications / 2025 | 10.1038/s41467-025-64746-8 | Prepared-optics custody, reference exchanges, repeated alignment checks and linked image records | Selected main HTML and selected text from 24-page scientific SI; cookie-error marker; OA, CC BY-NC-ND 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results and optical-characterization Methods describe target imaging through fat emulsion. Raw and post-processed images remain different evidence; enhanced visibility does not preserve all fine detail.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-64746-8/MediaObjects/41467_2025_64746_MOESM1_ESM.pdf) Discussions 4–6 and 10 cover apparatus, optical-thickness estimation, resolution and misalignment. At weak transmission, thickness is extrapolated; alignment tolerance uses a permissive relative image-similarity criterion.
+- Suitability is an inference restricted to finished metasurfaces, contained nonliving samples and qualified enclosed optics. Nanofabrication, exposed-beam alignment and biomedical use are excluded. Laser/interlock safety, sample history and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
+- Main HTML retained a cookie-error marker. Complete review, main PDF, figure pixels, equations, raw data and code remain unverified. Only citations and independent notes are supplied; CC BY-NC-ND 4.0 does not authorize sharing adaptations.
+- DOI/title checks covered 172 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. SI identifiers also cleared known restrictions. Historical recovery remains incomplete. No failed or restricted resource was retried.
