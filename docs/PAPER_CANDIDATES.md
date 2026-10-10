@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **173**.
+Last screened: **2026-10-10**. Candidate count: **175**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1420,3 +1420,38 @@ One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
 - Suitability is an inference restricted to finished metasurfaces, contained nonliving samples and qualified enclosed optics. Nanofabrication, exposed-beam alignment and biomedical use are excluded. Laser/interlock safety, sample history and robot interfaces require qualification; no procedures, settings, conversion or assets are supplied.
 - Main HTML retained a cookie-error marker. Complete review, main PDF, figure pixels, equations, raw data and code remain unverified. Only citations and independent notes are supplied; CC BY-NC-ND 4.0 does not authorize sharing adaptations.
 - DOI/title checks covered 172 prior candidates, README, 114 unchanged task-source records, issues/PRs and recovered exclusions/holds. SI identifiers also cleared known restrictions. Historical recovery remains incomplete. No failed or restricted resource was retried.
+
+## Additional candidate title: acoustic braiding sample-series metrology (2026-10-10)
+
+One **CANDIDATE**; reviewed-design and task-package counts are unchanged.
+
+| Paper | Journal / year | DOI | Preliminary suitability | Access checked |
+| --- | --- | --- | --- | --- |
+| [Minimal non-abelian nodal braiding in ideal metamaterials](https://www.nature.com/articles/s41467-023-36952-9) | Nature Communications / 2023 | 10.1038/s41467-023-36952-9 | Prepared-sample custody, configuration reconciliation and linked phase-sensitive acoustic maps | Selected main HTML and selected text from 18-page scientific SI; cookie-error marker; OA, CC BY 4.0 |
+
+### Screening scope and limits
+
+- Selected experimental Results and Methods describe measurements across fabricated acoustic arrays. Synthetic time labels different samples, not continuous evolution of one specimen. Finite size and dissipation broaden measured bands; spectra and simulations remain separate evidence.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-36952-9/MediaObjects/41467_2023_36952_MOESM1_ESM.pdf) Note 5 and Figures 6–10 captions clarify separate cavity excitations, a phase reference, source normalization and derived mirror expectations. Cavity-wise measurements are not independent sample replicates. Normalized fields are not absolute transmission efficiencies.
+- Suitability is an inference limited to finished, cured passive samples and qualified enclosed acoustic services. Resin printing, curing and machining are excluded. Sample identity, port sealing, microphone calibration, exposure limits and robot interfaces need qualification; no procedures, settings, conversion or assets are supplied.
+- This is selected-text screening. Complete review, main PDF, figure pixels, garbled SI equations, raw data and peer review remain outstanding. Data are available on request. CC BY 4.0 has component-specific exceptions; only citations and independent notes are supplied.
+- DOI/title and resource checks cleared the current catalog, README, task-source records and recovered exclusions/holds. Historical recovery remains incomplete. No failed or restricted resource was retried.
+
+
+## Additional candidate title: prepared-target optical imaging (2026-10-10)
+
+One additional **CANDIDATE** is listed below. It adds no reviewed design, converted task, runnable experiment or asset package.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Trilobite-inspired neural nanophotonic light-field camera with extreme depth-of-field](https://www.nature.com/articles/s41467-022-29568-y) | Nature Communications / 2022 | 10.1038/s41467-022-29568-y | Prepared metalens handling, pinhole and resolution-target positioning, polarization comparisons and repeated camera measurements suggest an optical-calibration and image-validation task | Official main HTML and selected scientific-SI PDF text readable; main cookie-error redirect marker; CC BY 4.0 |
+
+### Screening scope and limits
+
+- Publisher metadata, abstract, selected experimental Results, characterization Methods, availability statements and licensing were checked. The official 24-page scientific SI was accessible; selected optical-design, calibration and experimental-details text was read
+- Proposed suitability is limited to prepared nonliving optics and inert targets in separately qualified enclosed instruments. Enclosure, robot readiness and experimental reproducibility are unverified. Specialist nanofabrication and exposed-beam work are outside this discovery scope
+- Main HTML retained a cookie-error redirect marker while Results and Methods were readable. No failed or restricted resource was retried or rerouted
+- Complete paper/SI review and figure-pixel review were not performed. Main PDF, raw data and code were not reviewed; the article makes data and code available from the authors upon request
+- The main page displays [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Component-specific and third-party rights need separate review before reuse
+- Exact title and DOI were clear against the current catalog, task sources and recovered exclusions/holds. Earlier historical recovery remains incomplete; no exhaustive historical-deduplication claim is made
+
