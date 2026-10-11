@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **211**.
+Last screened: **2026-10-11**. Candidate count: **212**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1954,3 +1954,15 @@ One additional **CANDIDATE**, screened for possible future long-horizon instrume
 - Selected main Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-63305-5/MediaObjects/41467_2025_63305_MOESM1_ESM.pdf) sections I, II, IV and V screened. Measured scattering spectra, scattering-derived absorption, fitted damping/chirality and simulated field maps remain distinct. Absorption is not direct calorimetry. Multiple positions, field sweeps and two spheres in one device do not establish independent fabrication replication; generalized many-sphere predictions remain theoretical.
 - SI text extraction loses equation symbols; no equation-level validation is claimed. Future scope requires qualified finished specimens, protected magnetic/RF equipment, guarded positioning and validated interfaces. Fabrication, adhesive processing and unqualified instrument operation are excluded; no operating recipe is supplied.
 - Selected-text screening is not full-source review. Figure pixels, main PDF, peer review, external raw data and request-only code remain unread. Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no publisher content or adaptations are bundled. Known records checked; historical inventory gap remains.
+
+
+## Additional candidate title: time-dependent underwater adhesion metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Autonomous underwater adhesion driven by water-induced interfacial rearrangement](https://www.nature.com/articles/s41467-023-42209-2) | Nature Communications / 2023 | 10.1038/s41467-023-42209-2 | Finished-strip custody, timed immersion, substrate exchange and coordinated peel/wetting measurements suggest long-horizon materials metrology | Selected main and scientific-SI text; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without task conversion or validated robotic feasibility. Citation: 14, 6563; published 17 October 2023.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-023-42209-2/MediaObjects/41467_2023_42209_MOESM1_ESM.pdf) methods/captions distinguish wet aging from a dry-time control, exposed from substrate-contacting surfaces, and early repositioning from immerse-peel-dry reuse. Initial contact preload differs from subsequent unloaded immersion. Reported n = 3 does not establish independent synthesis batches; repeated cycles are distinct. Molecular simulation is separate evidence.
+- Future scope requires qualified finished synthetic specimens, contained liquid handling and guarded mechanical interfaces. Monomer/ionic-liquid processing, UV curing, heated drying, X-ray work and load-bearing demonstrations need separate qualification; tissue-contact and clinical applications are excluded. No operating recipe or safe-load claim is supplied.
+- Selected text from the 25-page SI is not full-source review; a main/SI storage-versus-loss-modulus labeling discrepancy remains unresolved. Figures, equations, main PDF, peer review and source workbook were not validated. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
