@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **221**.
+Last screened: **2026-10-11**. Candidate count: **222**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2081,3 +2081,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred for a future qualified finished-sample setup. Chemical synthesis, nanomaterial handling, biological/soil tests and drinking-water use are outside this screening scope. Optical, thermal and sample-containment controls require separate review; no operating recipe or robotic feasibility claim is supplied
 - Reading was selective: main Results/Methods and portions of the 96-page SI. Figure pixels, rendered equations, other SI sections, main PDF, reporting summary, peer review and Source Data were not reviewed. Usable HTML carried a cookie-error marker; no repair or bypass was attempted
 - Publisher licence is CC BY-NC-ND 4.0 with third-party exceptions. This citation grants no adaptation rights. Known catalog/task/restriction records were checked; the historical recovery gap remains
+
+## Additional candidate: registered nanoconfinement spectroscopy (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Interfaces govern the structure of angstrom-scale confined water solutions](https://www.nature.com/articles/s41467-025-62625-w) | Nature Communications / 2025 | 10.1038/s41467-025-62625-w | Finished-sample custody, humidity histories and co-registered microscopy/spectroscopy suggest long-horizon interface metrology | Selected main HTML + scientific SI text; cookie marker; CC BY 4.0 |
+
+- **CANDIDATE only.** Wang et al., 16, 7288; published 7 August 2025. Reported measurements compare confined electrolyte layers with separate interface controls; molecular-dynamics calculations remain distinct from experimental spectra. The structural conclusion does not establish unchanged water dynamics
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-62625-w/MediaObjects/41467_2025_62625_MOESM1_ESM.pdf) Methods and Discussions S3/S5 identify shared sample-position registration and slow humidity equilibration. Repeated spectra differ from independent-sample replication; inferred water thickness depends on an assumed graphene contribution
+- Suitability is inferred only for qualified finished specimens and enclosed metrology services. Chemical preparation, etching, aggressive cleaning and laser commissioning are excluded. Sample containment, optical exposure and gas-system qualification need separate review; no operating recipe or robotic-feasibility claim is supplied
+- Reading was selective across main text and the 52-page SI. Figure pixels, rendered equations, remaining SI sections, main PDF, peer review and external datasets were not reviewed. Usable HTML carried a cookie-error marker; no repair or bypass was attempted
+- Publisher licence: CC BY 4.0, with third-party exceptions; no source content bundled. Known catalog, README, task-source and restriction records were checked; the historical recovery gap remains
