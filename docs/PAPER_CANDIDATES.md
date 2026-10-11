@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-10**. Candidate count: **190**.
+Last screened: **2026-10-11**. Candidate count: **192**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1697,3 +1697,32 @@ One further **CANDIDATE** is added after selected-source screening; reviewed-des
 - The main PDF, movies, their separate description PDF, supplementary-data XLSX, source-data XLSX and peer-review file were not opened
 - Publisher licence: **CC BY-NC-ND 4.0**. Only original citation and screening prose is proposed; no publisher content is bundled
 - No match appeared in the fresh repository files or recursively scanned known restrictions. The historical inventory gap remains unresolved, so complete historical uniqueness is not claimed
+
+## Additional candidate title: integrated spectrometer metrology (2026-10-11)
+
+One additional **CANDIDATE**; selected source text was screened, with no task conversion.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Compact and high-resolution spectrometer via Brillouin integrated circuits](https://www.nature.com/articles/s41467-025-66638-3) | Nature Communications / 2026 | 10.1038/s41467-025-66638-3 | Prepared-chip tracking, reference calibration, coupling-mode comparisons and repeated spectral measurements suggest a staged optics/RF metrology task | Official main HTML + selected scientific-SI PDF text; OA; cookie-redirect caveat |
+
+- Publisher citation: volume 17, article 68 (2026); displayed publication date 29 November 2025 and version-of-record date 5 January 2026 are retained separately. The listed correction concerns equal-contributor attribution
+- [Scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-66638-3/MediaObjects/41467_2025_66638_MOESM1_ESM.pdf), 10 pages: selected characterization, reconstruction and comparison text was screened. Intrinsic response, reconstructed spectra and projected improvements remain distinct; accessory hardware is excluded from the reported device footprint
+- The extracted regularization expression needs clarification; no repaired equation or reconstruction implementation is supplied. Further source data and equation-solving code are available on request, not obtained. Figures, full visual/equation review, raw-data verification and independent reproduction remain outstanding
+- Suitability is limited to prepared devices and qualified, enclosed instrument services. Fabrication, exposed-laser alignment and unqualified electrical/RF operations are excluded. Long-horizon coordination is a preliminary inference, not demonstrated robot capability
+- Main text is readable despite a cookie-error redirect. Selected reading does not establish whole-paper completeness. CC BY-NC-ND 4.0 does not grant permission to share adaptations; no publisher media or code is bundled
+
+## Additional candidate title: prepared-wood electromechanical metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Enhanced strain gradient in structural wood for high flexoelectricity](https://www.nature.com/articles/s41467-026-72374-z) | Nature Communications / 2026 | 10.1038/s41467-026-72374-z | Prepared-specimen tracking, paired bending/electrical records, environmental comparisons and artifact controls suggest an interdisciplinary characterization task | Official main experimental text and Methods + 28-page scientific-SI text screened; OA; main cookie-redirect caveat |
+
+### Screening scope and limits
+
+- **CANDIDATE only**; suitability is inferred, with no converted task, assets or validated robotic feasibility
+- Screened main text and [scientific-SI extraction](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-72374-z/MediaObjects/41467_2026_72374_MOESM1_ESM.pdf), including 20 figure captions, one note and two tables. Figure pixels, mathematical validity, main PDF, source-data workbook and peer review remain unreviewed
+- Keep measured current, integrated charge, inferred coefficients and simulations separate. Repeated cycles do not establish independent specimens. SI temperature comparisons concern pre-annealed specimens, not demonstrated in-situ thermal sweeps
+- Main/SI mechanical-test labels and a comparison-table reference differ; frequency lists have different coverage. These and garbled extracted equations remain unresolved
+- Future scope is restricted to qualified prepared, nonliving specimen metrology. Chemistry, cryogenic processing, pressing, coating, radiation-based characterization and human testing are excluded. Mechanical/electrical services, fixtures, environmental conditioning and robot interfaces need separate qualification
+- Publisher licence: **CC BY-NC-ND 4.0**. Only original citation and screening prose is proposed; no source content is bundled. Known records were checked; the historical inventory recovery gap remains
