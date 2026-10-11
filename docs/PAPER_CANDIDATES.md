@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **219**.
+Last screened: **2026-10-11**. Candidate count: **220**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2052,3 +2052,20 @@ One additional **CANDIDATE**; literature screening only, with no converted task 
 - Results/Methods distinguish the two-signal demonstration from the proposed mmWave receiver and estimated power savings. Repeated identification attempts are not independent-device replication. Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-023-43982-w/MediaObjects/41467_2023_43982_MOESM1_ESM.pdf) Notes/Methods identify repeating-waveform sampling artifacts and separate modeled transfer functions from measurements.
 - Requires qualified devices, enclosed optics and validated RF/electrical interfaces. Fabrication, laser commissioning and over-air transmission are excluded; no operating recipe is supplied.
 - Selected text from the main and six-page SI is not full-source review. Figure pixels, rendered equations, main PDF, peer review, external data and request-only code remain unread or unvalidated. Publisher licence: **CC BY 4.0**, with third-party exceptions; no content bundled. Known records checked; historical inventory gap remains.
+
+## Additional candidate: programmable thermal-pulse metrology (2026-10-11)
+
+One **CANDIDATE** is added after selected official main-text and scientific-SI screening. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Electronically driven soliton-like thermal pulses](https://www.nature.com/articles/s41467-026-72201-5) | Nature Communications / 2026 | 10.1038/s41467-026-72201-5 | Finished-platform condition registration and synchronized sensor/infrared measurements suggest a thermal-transport comparison task | Selected main HTML + scientific SI text; cookie marker; CC BY-NC-ND 4.0 |
+
+### Evidence and limits
+
+- The reported experiment uses ten copper sites with individually controlled thermoelectric couplers, temperature sensors and infrared imaging. Different boundary conditions produce localized pulses that stop at an edge or circulate while gradually decaying. These are finite-lived soliton-like responses; the paper distinguishes them from strict theoretical solitons
+- Scientific SI Note 1 describes coupler and sensor calibration and error sources. Notes 4–5 describe theoretical multidimensional extensions and numerical propagation-distance sweeps; these do not establish a larger experimental apparatus
+- Task suitability is an inference restricted to a future qualified finished platform. Electrical, contact-temperature, control-stability and output limits require separate review. No operating recipe, fabrication, execution or robot-feasibility claim is supplied
+- Selected HTML and extracted text from the 32-page scientific SI were read. Main HTML returned usable content with a cookie-error query marker, which was not repaired or bypassed. Figure pixels, rendered equations, remaining SI sections, movies, Source Data and peer-review files were not reviewed
+- Publisher licence: CC BY-NC-ND 4.0, subject to third-party exceptions. This is a citation/discovery record, not permission to share adaptations or redistribute source components
+- Exact DOI/title checks passed the available catalog, README, task-source inventory and recursive restriction ledger. Historical inventory recovery remains incomplete, so exhaustive historical uniqueness is not claimed
