@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **194**.
+Last screened: **2026-10-11**. Candidate count: **195**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1752,3 +1752,15 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Future scope is already-formed, contained fibers and separately qualified enclosed optical/electrical measurement services. Synthesis, printing, chemical exchange, cutting, repair injection, ferrofluid manipulation and exposed-laser work are excluded. Material safety, containment, stability, fixtures and robot interfaces need qualification.
 - Main PDF, rendered figures, videos, source-data ZIP, code and peer review remain unreviewed. Publisher licence: **CC BY-NC-ND 4.0**; no publisher content or adaptations are supplied. Known records were checked; the historical inventory gap remains.
 
+
+## Additional candidate title: phononic-crystal field mapping (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Acoustic higher-order topological metals with bound corner states in the continuum](https://www.nature.com/articles/s41467-026-76445-z) | Nature Communications / 2026 | 10.1038/s41467-026-76445-z | Specimen registration, port/plug handling, source/probe repositioning and linked bulk/edge/corner measurements suggest a long-horizon acoustics/manipulation task | Selected official main Results/Methods and 24-page scientific-SI text screened; OA; main cookie-redirect caveat |
+
+- **CANDIDATE only**; no conversion or validated robotic feasibility. Publisher citation: 17, 9409; published 5 August, version of record 3 September 2026.
+- Screened [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-76445-z/MediaObjects/41467_2026_76445_MOESM1_ESM.pdf), especially boundary/model distinctions and the region-map caption. Acoustic measurements, reconstructed pseudospin/dispersion and calculated localization ratios remain distinct from simulations. The SI circuit network and geometric alternatives are modeled extensions, not additional demonstrated experiments.
+- Multiple cavity positions do not establish independent specimen replicates. Hard-wall acoustic boundaries differ from the ideal model; SI treats their dispersion discrepancy with a boundary-potential model. Main cavity-height labels, sound-speed units and normalization/running-average expressions need clarification; extraction artifacts and cross-references remain unresolved, with no silent correction.
+- Future scope requires a qualified prepared specimen, guarded acoustic/electrical instruments, exposure limits, verified probe/plug interfaces and calibration. Printing chemistry and unqualified apparatus operation are excluded.
+- Selected text review is not full-source validation. Figure pixels, main PDF and peer review remain unread; additional data/code are request-only and were not obtained. Publisher licence: **CC BY-NC-ND 4.0**. No source media, code or adaptations are bundled. Known records were checked; the historical inventory gap remains.
