@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **216**.
+Last screened: **2026-10-11**. Candidate count: **217**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2016,3 +2016,15 @@ One additional **CANDIDATE**; literature screening only, with no converted task 
 - Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-76508-1/MediaObjects/41467_2026_76508_MOESM1_ESM.pdf) Notes 3–7/captions distinguish a theoretical comparison from experimental evidence, and single-loop eigenstate exchange from double-loop return. Equation glyphs are garbled; numerical Table S1 cells were not extracted. Neither equations nor table values were validated.
 - Future scope requires qualified finished devices, acoustic/electrical safeguards and validated positioning interfaces. Resin processing, drilling and circuit commissioning are excluded; no operating recipe is supplied.
 - Selected-text screening is not full-source review. Figure pixels, main PDF, peer review and request-only raw data remain unread. Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no source content or adaptations bundled. Known records checked; historical inventory gap remains.
+
+## Additional candidate title: optomechanical transition metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Observation of optomechanical buckling transitions](https://www.nature.com/articles/ncomms14481) | Nature Communications / 2017 | 10.1038/ncomms14481 | Finished-device custody, calibration, configuration tracking and linked displacement/spectral measurements suggest long-horizon optical-mechanical metrology | Selected main and scientific-SI text (6-page PDF); OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: Xu et al., 8, 14481; published 1 March 2017.
+- Selected main results distinguish recorded membrane displacement from calculated steady states and spectra derived from detector signals. The experiment is classical and ambient; proposed quantum applications are not demonstrated. Noise-induced switching and repeated time samples do not establish independent device replication. Feedback bandwidth and unmodelled higher modes limit comparisons with the single-mode theory.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fncomms14481/MediaObjects/41467_2017_BFncomms14481_MOESM1910_ESM.pdf) Notes 3–6 distinguish low-frequency beat readout from higher-frequency error-signal spectra. Photothermal estimates are simulated bounds, not measured temperatures. Main/SI optical-wavelength wording differs and remains unresolved.
+- Future scope requires qualified finished devices, enclosed/interlocked optics and validated positioning/electrical interfaces. Membrane fabrication, chemical processing, lithography and laser commissioning are excluded; no operating recipe or safety validation is supplied.
+- Selected-text screening is not full-source review. Figure pixels, rendered equations, main PDF and request-only data remain unread or unvalidated. The HTML cookie marker was not repaired or bypassed. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
