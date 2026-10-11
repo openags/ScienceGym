@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **212**.
+Last screened: **2026-10-11**. Candidate count: **214**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1966,3 +1966,27 @@ One additional **CANDIDATE**, screened for possible future long-horizon instrume
 - Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-023-42209-2/MediaObjects/41467_2023_42209_MOESM1_ESM.pdf) methods/captions distinguish wet aging from a dry-time control, exposed from substrate-contacting surfaces, and early repositioning from immerse-peel-dry reuse. Initial contact preload differs from subsequent unloaded immersion. Reported n = 3 does not establish independent synthesis batches; repeated cycles are distinct. Molecular simulation is separate evidence.
 - Future scope requires qualified finished synthetic specimens, contained liquid handling and guarded mechanical interfaces. Monomer/ionic-liquid processing, UV curing, heated drying, X-ray work and load-bearing demonstrations need separate qualification; tissue-contact and clinical applications are excluded. No operating recipe or safe-load claim is supplied.
 - Selected text from the 25-page SI is not full-source review; a main/SI storage-versus-loss-modulus labeling discrepancy remains unresolved. Figures, equations, main PDF, peer review and source workbook were not validated. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
+
+
+## Additional candidate title: coupled salt-transport and solar-evaporation metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Highly efficient and salt rejecting solar evaporation via a wick-free confined water layer](https://www.nature.com/articles/s41467-022-28457-8) | Nature Communications / 2022 | 10.1038/s41467-022-28457-8 | Finished-device tracking, configuration exchange and coordinated salinity, mass and temperature records suggest long-horizon liquid-handling and thermal metrology | Selected main and scientific-SI text; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: Zhang et al., 13, 849; published/version of record 14 February 2022.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-022-28457-8/MediaObjects/41467_2022_28457_MOESM1_ESM.pdf) notes/captions distinguish measured reservoir mass loss from collected water, and salinity/temperature measurements from simulations. Efficiency uses dark-evaporation subtraction; reported reliability/outdoor mass rates include dark evaporation. Week-long cycling includes replenishment. Repeated measurements and cycles do not establish independent device replication.
+- Future scope requires qualified finished devices, contained water/brine, protected illumination and validated interfaces. Machining, coating/adhesive processing and steam applications require separate qualification; no operating recipe, drinking-water or sterilization claim is supplied.
+- Selected text from the 20-page SI is not full-source review. Figures, equations, main PDF, movie, peer review and request-only data remain unvalidated or unread. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
+
+
+## Additional candidate title: compression-controlled thermal metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Wide range continuously tunable and fast thermal switching based on compressible graphene composite foams](https://www.nature.com/articles/s41467-021-25083-8) | Nature Communications / 2021 | 10.1038/s41467-021-25083-8 | Finished-specimen custody, calibration, compression-state tracking and linked thermal measurements suggest long-horizon materials metrology | Selected main and scientific-SI text/captions (7-page PDF); OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without task conversion or validated robotic feasibility. Citation: Du et al., 12, 4915; published/version of record 13 August 2021.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-021-25083-8/MediaObjects/41467_2021_25083_MOESM1_ESM.pdf) Notes 1–3/captions distinguish material-level switching (~8) from prototype performance (~2.5), and resistance adjustment from slower temperature equilibration. SI threshold-response times and main settling times have different endpoints. Mechanical tests used a later vendor batch; ten thermal and three mechanical cycles are not independent specimen replication. Models remain separate from measured data. Results report six heat-flux levels whereas Methods report five heater-power levels; the difference remains unresolved.
+- Future scope requires qualified, contained finished specimens, protected thermal fixtures and guarded compression interfaces. Foam fabrication, dust-generating processing, spray coating, heater/chiller commissioning and battery tests are excluded; no operating recipe or safety validation is supplied.
+- Selected-text screening is not full-source review. Figure pixels, rendered equations, main PDF, movies, peer review, additional-file descriptions, source workbook and request-only code remain unread or unvalidated. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
