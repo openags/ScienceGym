@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **192**.
+Last screened: **2026-10-11**. Candidate count: **194**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1726,3 +1726,29 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Main/SI mechanical-test labels and a comparison-table reference differ; frequency lists have different coverage. These and garbled extracted equations remain unresolved
 - Future scope is restricted to qualified prepared, nonliving specimen metrology. Chemistry, cryogenic processing, pressing, coating, radiation-based characterization and human testing are excluded. Mechanical/electrical services, fixtures, environmental conditioning and robot interfaces need separate qualification
 - Publisher licence: **CC BY-NC-ND 4.0**. Only original citation and screening prose is proposed; no source content is bundled. Known records were checked; the historical inventory recovery gap remains
+## Additional candidate title: prepared-sapphire surface and wear metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Atomic-scale reconstruction of sapphire induced by selective tribochemical removal of surface atoms](https://www.nature.com/articles/s41467-026-71385-0) | Nature Communications / 2026 | 10.1038/s41467-026-71385-0 | Prepared-specimen registration, paired surface measurements, counterface controls and endurance-history comparisons suggest a staged mechanics/materials/electrical metrology task | Official main experimental text and Methods + selected 36-page scientific-SI text; OA; main cookie-redirect caveat |
+
+- **CANDIDATE only**; no converted task or demonstrated robotic feasibility. Publisher citation: volume 17, article 4673; publication 1 April and version of record 26 May 2026
+- Screened [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-71385-0/MediaObjects/41467_2026_71385_MOESM1_ESM.pdf), especially calibration, specimen histories and measurement comparisons. Repeated regions and friction runs on one substrate are not independent specimens; endurance snapshots do not establish continuous stability
+- Keep measured signals, area-normalized densities, calculated contact stresses and atomistic simulations distinct. The literature comparison includes calculated values. Extracted equations, an SI figure cross-reference and the comparison-table label need clarification; none is silently repaired
+- Suitability is limited to qualified prepared-specimen metrology. Coating, cutting, cleaning chemistry, vacuum/radiation-based processing and unqualified electrical or friction operations are excluded; instrument guarding and robot interfaces require separate assessment
+- Figure pixels, main PDF, movies, their separate description, source-data workbook and peer review remain unreviewed. Selected text access is not full-source validation
+- Publisher licence: **CC BY-NC-ND 4.0**. No source media or adapted material is bundled. Known records were deduplicated; the historical inventory gap remains
+
+## Additional candidate title: prepared liquid-fiber optical metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Structured liquid-based reconfigurable all-liquid optical fibers](https://www.nature.com/articles/s41467-025-67954-4) | Nature Communications / 2026 | 10.1038/s41467-025-67954-4 | Prepared-fiber tracking, optical readouts and comparisons across coupling, channel and repair histories suggest staged materials/communications metrology | Selected main HTML and 28-page scientific-SI text screened; OA; main cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred and robotic feasibility unvalidated. Publisher citation: volume 17, article 1186 (2026); published 31 December 2025, version of record 30 January 2026.
+- Screened selected main Results and communication Methods plus [scientific-SI text/captions](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-67954-4/MediaObjects/41467_2025_67954_MOESM1_ESM.pdf), especially Notes 2–3 and measurement/comparison captions. This is not full-source or figure-pixel review.
+- The outer phase is oil; underwater deployment remains prospective. The abstract’s up-to-1-Gbps Ethernet claim differs from Methods’ 100-Mbps platform. Eye diagrams span 0.2–1 Gbps; SI Note 3 estimates a 600-Mbps error-free limit rather than reporting counted bit errors. Main’s 1.28-Gbps transmission statement and SI Fig. 14’s bandwidth label also differ. These relationships remain unresolved; no corrected performance claim is inferred.
+- SI refractive-index and power error bars describe three measured values per sample. Same-fiber positions, acquisition repeats and repair histories do not establish independent fiber replicates. Extracted stability equations contain formatting artifacts and are not repaired.
+- Future scope is already-formed, contained fibers and separately qualified enclosed optical/electrical measurement services. Synthesis, printing, chemical exchange, cutting, repair injection, ferrofluid manipulation and exposed-laser work are excluded. Material safety, containment, stability, fixtures and robot interfaces need qualification.
+- Main PDF, rendered figures, videos, source-data ZIP, code and peer review remain unreviewed. Publisher licence: **CC BY-NC-ND 4.0**; no publisher content or adaptations are supplied. Known records were checked; the historical inventory gap remains.
+
