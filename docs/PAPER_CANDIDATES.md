@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **199**.
+Last screened: **2026-10-11**. Candidate count: **201**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1806,3 +1806,27 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - **Acoustic strain imaging:** citation 16, 2822; published/version of record 22 March 2025. The [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-57814-6/MediaObjects/41467_2025_57814_MOESM1_ESM.pdf) separates measured diffraction, fitted wave components and finite-element displacement estimates. Repeated synchronized acquisitions and bootstrapped pixels are not independent device replications. The alternative-optics resolution target does not establish that resolution for this acoustic experiment; proposed electrode changes are not demonstrated mitigation. Extracted exponents, uncertainty-sign notation and fit-parameter names remain unverified against rendered source.
 - Future scope is qualified prepared-specimen handling and enclosed, interlocked facility measurements. Growth, chemical processing, coating, cutting, bonding, exposed beams and unqualified radiation/electrical operation are excluded. Fixtures, sample-damage limits, instrument custody and robot interfaces require separate qualification.
 - Selected text screening is not full-source review. Figure pixels, main PDFs, peer review, external datasets/code and the acoustic movies/additional-file description remain unreviewed. Both publisher licences are **CC BY-NC-ND 4.0**; no source media or adaptations are bundled. Known records were deduplicated; the historical inventory gap remains.
+
+## Additional candidate title: direction-resolved infrared microscopy (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Direction-resolved nanoscale optical imaging with near-nanometer resolution by emerging infrared torsional force microscopy](https://www.nature.com/articles/s41467-026-74654-0) | Nature Communications / 2026 | 10.1038/s41467-026-74654-0 | Prepared-specimen registration, probe calibration, reference spectra and linked spatial/wavelength scans suggest long-horizon materials/optical metrology | Selected official main Results/Methods and 26-page scientific-SI text screened; OA; main cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: 17, 7794; published 20 June, version of record 5 August 2026.
+- Measured signals, crosstalk-corrected maps and FEM predictions remain distinct. The near-nanometer claim uses feature width; its mechanism remains unresolved. Fifteen sites within one moiré cell are not independent specimen replicates.
+- The [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-74654-0/MediaObjects/41467_2026_74654_MOESM1_ESM.pdf) describes finite-contact and mode-coupling limitations. Fit confidence intervals do not establish between-specimen variability. Main's unfiltered-image claim versus Methods' processing description, damping signs and extracted SI reconstruction notation need clarification; no corrections are inferred.
+- Future scope requires qualified prepared specimens, protected probes, substrate handling and enclosed/interlocked optics. Exfoliation, transfer, annealing, chemical cleaning and exposed-beam work are excluded.
+- Selected text screening is not full-source review. Figure pixels, main PDF, peer review and external data remain unreviewed. Publisher licence: **CC BY-NC-ND 4.0**; no source media or adaptations are bundled. Known records were checked; the historical inventory gap remains.
+
+## Additional candidate title: prepared CFRP lattice metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Mesoscale carbon fiber lattices with foam-like weight and bulk strength](https://www.nature.com/articles/s41467-026-72105-4) | Nature Communications / 2026 | 10.1038/s41467-026-72105-4 | Prepared-specimen tracking, compression/bending comparisons and linked microscopy suggest long-horizon materials metrology | Selected main HTML and 27-page scientific-SI text; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; no conversion or validated robotic feasibility. Citation: 17, 3615; published/version of record 21 April 2026.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-72105-4/MediaObjects/41467_2026_72105_MOESM1_ESM.pdf), especially Methods 2 and 7–9, screened. Measured loads/images remain distinct from fitted buckling predictions. Ten specimens support one reproducibility check; cycling and image fields do not establish independent replication.
+- Stress/area normalization, retained-support accounting, beam mass caps and extracted equations/cross-references remain unresolved.
+- Future scope requires qualified prepared specimens, guarded metrology, debris containment and validated fixtures/robot interfaces. Fabrication, sectioning/polishing, flight and unqualified instrument operation are excluded.
+- Figure pixels, main PDF, movies, source data/code and peer review remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
