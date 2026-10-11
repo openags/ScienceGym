@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **208**.
+Last screened: **2026-10-11**. Candidate count: **209**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1919,4 +1919,16 @@ One additional **CANDIDATE**, screened for possible future long-horizon instrume
 - Future scope requires qualified prepared surfaces, protected dispensing and validated camera/environment interfaces. Resin handling, coating spray and heated fabrication are excluded; no operating recipe is supplied.
 - Selected-text screening of the main article and 11-page SI is not full-source review. Figure pixels, main PDF, movies, peer review and request-only raw data remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
 
+
+
+## Additional candidate title: solar evaporation and salt-crystallization metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Multicellular architectures for high-rate solar evaporation with spatial salt crystallization under high-salinity](https://www.nature.com/articles/s41467-026-75913-w) | Nature Communications / 2026 | 10.1038/s41467-026-75913-w | Finished-specimen tracking, wetting, coordinated mass/temperature measurements and salt-recovery cycles suggest long-horizon liquid handling and metrology | Selected main and scientific-SI text; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: 17, 8946; published 22 July 2026, version of record 25 August 2026.
+- Selected main Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-75913-w/MediaObjects/41467_2026_75913_MOESM1_ESM.pdf) tables/captions screened. Reservoir mass loss differs from collected condensate; measured transport differs from simulation. Methods report three independently prepared samples per evaporation condition unless specified; reuse cycles and timepoints are distinct. SI's third reuse cycle ended before zero-liquid-discharge completion.
+- Future scope requires qualified finished specimens, protected illumination, water-compatible equipment and validated interfaces. Resin/solvent processing, UV/plasma treatment, heated fabrication and dye testing are excluded; no operating recipe or potable-water claim is supplied.
+- Selected text from the 54-page SI, through printed page 45, is not full-source review. Figure pixels, later SI methods, main PDF, movies, source workbook and request-only raw data remain unread. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
 
