@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **204**.
+Last screened: **2026-10-11**. Candidate count: **205**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1866,4 +1866,16 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Twelve repeats at the same location with one tip are technical replicates. SI tip checks, reference-drive calibration, scan averaging/filtering and relative-height provenance matter; model-derived correlations do not establish independent specimen replication.
 - Extracted equations and SI cross-references require verification; no silent correction is supplied. Future scope requires qualified prepared specimens, closed vacuum/cryogenic services, protected tips and validated robot interfaces. Gas dosing, deposition, sputtering/annealing, cryogen handling and unqualified instrument operation are excluded.
 - Figure pixels, main PDF, movie, peer review, source workbook and external data/code remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
+
+## Additional candidate title: suspended-graphene force metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strong repulsive Lifshitz-van der Waals forces on suspended graphene](https://www.nature.com/articles/s41467-025-63074-1) | Nature Communications / 2025 | 10.1038/s41467-025-63074-1 | Prepared-chip registration, probe calibration and linked topography/force comparisons suggest long-horizon surface metrology | Selected main and scientific-SI text/captions (18-page PDF); OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: 16, 7726; published/version of record 19 August 2025.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-63074-1/MediaObjects/41467_2025_63074_MOESM1_ESM.pdf) screened. Calibrated force-displacement maps remain distinct from effective-medium interpretations, calculated force densities and fitted interaction areas. Contact-referenced displacement is not an independently established absolute gap.
+- SI background subtraction is consequential: raw gold-tip comparisons do not meet the stated significance threshold; corrected comparisons narrowly do. Spatial force curves and multiple pore regions are not independent specimen replication. Tip-radius labels and incomplete cross-references require verification.
+- Future scope requires qualified prepared specimens, protected probes, contamination controls and validated robot interfaces. Chip fabrication, chemical transfer, annealing, electron-beam deposition and unqualified instrument operation are excluded.
+- Selected text screening is not full-source review. Figure pixels, main PDF, peer review, source archive and request-only data/code remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
 
