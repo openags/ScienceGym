@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **197**.
+Last screened: **2026-10-11**. Candidate count: **199**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1792,3 +1792,17 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Main humidity-control descriptions conflict; SI calibration timing/rate labels and main uncertainty/equation descriptions need clarification. These are retained as unresolved, without inferred corrections or performance guarantees.
 - Future scope is limited to qualified prepared, dry, unenergized specimens and enclosed/interlocked metrology. Electrode chemistry, coating, cutting, ion milling, battery assembly/cycling and exposed-beam work are excluded. Material release, fixtures, electrical/optical safety and robot interfaces require separate qualification.
 - Figure pixels, main PDF, peer review and request-only raw data remain unreviewed. Text screening is not full-source validation. Publisher licence: **CC BY 4.0**; no publisher media or adaptations are bundled. Known records were checked; the historical inventory gap remains.
+
+
+## Additional candidate titles: diffraction-based thermal and acoustic metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Spatiotemporal mapping of anisotropic thermal transport in GaN thin films via ultrafast X-ray diffraction](https://www.nature.com/articles/s41467-026-75414-w) | Nature Communications / 2026 | 10.1038/s41467-026-75414-w | Prepared-film registration, reference measurements, linked position/time scans and cross-instrument comparisons suggest long-horizon materials/thermal metrology | Selected official main and 31-page scientific-SI text screened; OA; main cookie-redirect caveat |
+| [High-resolution high-throughput spatiotemporal strain imaging reveals loss mechanisms in a surface acoustic wave device](https://www.nature.com/articles/s41467-025-57814-6) | Nature Communications / 2025 | 10.1038/s41467-025-57814-6 | Prepared-device tracking, electrical checks, synchronized diffraction scans and spatial comparisons suggest long-horizon acoustics/electronics metrology | Selected official main and 12-page scientific-SI text/captions screened; OA; main cookie-redirect caveat |
+
+- Both remain **CANDIDATES**: suitability is inferred; no task conversion, experimental reproduction or validated robotic feasibility.
+- **GaN thermal metrology:** citation 17, 9195; published 29 July, version of record 28 August 2026. The [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-75414-w/MediaObjects/41467_2026_75414_MOESM1_ESM.pdf) distinguishes detector centroids, inferred temperatures and model-fitted transport properties. Its corrected strain-temperature conversion, regularization and assumed cross-plane properties matter; fitted parameters are not direct measurements. Same-film positions and repeat scans do not establish independent specimens. SI distinguishes fitting confidence intervals from variation between measurement positions. Substrate thickness/composition, FDTR caption labels and fitting expressions require clarification; no silent correction is supplied. Reported sample degradation prevents treating non-contact measurement as inherently non-destructive.
+- **Acoustic strain imaging:** citation 16, 2822; published/version of record 22 March 2025. The [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-57814-6/MediaObjects/41467_2025_57814_MOESM1_ESM.pdf) separates measured diffraction, fitted wave components and finite-element displacement estimates. Repeated synchronized acquisitions and bootstrapped pixels are not independent device replications. The alternative-optics resolution target does not establish that resolution for this acoustic experiment; proposed electrode changes are not demonstrated mitigation. Extracted exponents, uncertainty-sign notation and fit-parameter names remain unverified against rendered source.
+- Future scope is qualified prepared-specimen handling and enclosed, interlocked facility measurements. Growth, chemical processing, coating, cutting, bonding, exposed beams and unqualified radiation/electrical operation are excluded. Fixtures, sample-damage limits, instrument custody and robot interfaces require separate qualification.
+- Selected text screening is not full-source review. Figure pixels, main PDFs, peer review, external datasets/code and the acoustic movies/additional-file description remain unreviewed. Both publisher licences are **CC BY-NC-ND 4.0**; no source media or adaptations are bundled. Known records were deduplicated; the historical inventory gap remains.
