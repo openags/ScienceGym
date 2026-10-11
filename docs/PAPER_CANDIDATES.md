@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **201**.
+Last screened: **2026-10-11**. Candidate count: **203**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1830,3 +1830,28 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Stress/area normalization, retained-support accounting, beam mass caps and extracted equations/cross-references remain unresolved.
 - Future scope requires qualified prepared specimens, guarded metrology, debris containment and validated fixtures/robot interfaces. Fabrication, sectioning/polishing, flight and unqualified instrument operation are excluded.
 - Figure pixels, main PDF, movies, source data/code and peer review remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
+## Additional candidate title: levitated optomechanical noise metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Thermomechanically squeezed multi-mode phonon lasers with levitated optomechanics](https://www.nature.com/articles/s41467-026-75601-9) | Nature Communications / 2026 | 10.1038/s41467-026-75601-9 | Specimen tracking, detector calibration, synchronized acquisitions and reference comparisons suggest long-horizon optics/mechanics metrology | Selected main Results/Methods and 13-page scientific-SI text screened; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: 17, 8852; published 14 July, version of record 24 August 2026.
+- Detector signals, derivative-estimated momentum, reconstructed noise distributions and theoretical predictions remain distinct. Repeated pulses and twenty repeated parameter-set experiments do not establish independent microsphere replication. This is classical thermomechanical squeezing; proposed sensing improvements are not demonstrated performance.
+- The [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-75601-9/MediaObjects/41467_2026_75601_MOESM1_ESM.pdf), especially Notes 3–5, distinguishes measured reference data from synthetic processing controls. Filtering, coherence loss, mass-dependent absolute calibration and extracted equation/beam labels need separate verification; no silent correction is supplied.
+- Future scope requires qualified prepared specimens, enclosed/interlocked optics and vacuum systems, protected detectors and validated robot interfaces. Aerosol loading, cleaning, exposed beams and unqualified instrument operation are excluded.
+- Selected text screening is not full-source review. Figure pixels, main PDF, peer review and external data/code remain unreviewed. Publisher licence: **CC BY-NC-ND 4.0**; no source media or adaptations are bundled. Known records checked; historical inventory gap remains.
+
+## Additional candidate title: prepared-membrane acoustic metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Highly sensitive microphones based on large freestanding reduced graphene oxide membranes](https://www.nature.com/articles/s41467-026-72771-4) | Nature Communications / 2026 | 10.1038/s41467-026-72771-4 | Prepared-membrane registration, reference measurements, linked displacement scans and durability comparisons suggest long-horizon acoustic metrology | Selected main and 44-page scientific-SI text/captions; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: 17, 6092; published 6 May, version of record 13 July 2026.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-72771-4/MediaObjects/41467_2026_72771_MOESM1_ESM.pdf) screened. SI title and DOI-associated URL were reconciled after following the publisher's scientific-SI selector, distinct from peer review.
+- Measured displacements and acoustic responses remain distinct from fitted prestress/modulus, simulated fracture strengths, theoretical sensitivity limits and downstream speech-recognition scores. SI Note 3 describes separate thickness, cross-batch property and deformation-consistency sample sets; fatigue cycles and ten audio files do not establish independent microphone replication. Static and acoustic responsivities describe different conditions.
+- Extracted equations/noise normalization and inconsistent chemical naming between main and SI remain unresolved; no correction is inferred.
+- Future scope requires qualified prepared specimens, protected membrane fixtures, enclosed optics, guarded motion, controlled acoustic exposure and validated robot interfaces. Fabrication, chemical processing, transfer, destructive rupture testing, high-voltage force balancing and unqualified electrical operation are excluded.
+- Selected text screening is not full-source review. Figure pixels, main PDF, peer review and request-only raw data remain unread. Publisher licence: **CC BY-NC-ND 4.0**; no publisher media or adaptations are bundled. Known records checked; historical inventory gap remains.
+
