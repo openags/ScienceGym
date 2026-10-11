@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **195**.
+Last screened: **2026-10-11**. Candidate count: **196**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1764,3 +1764,17 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Multiple cavity positions do not establish independent specimen replicates. Hard-wall acoustic boundaries differ from the ideal model; SI treats their dispersion discrepancy with a boundary-potential model. Main cavity-height labels, sound-speed units and normalization/running-average expressions need clarification; extraction artifacts and cross-references remain unresolved, with no silent correction.
 - Future scope requires a qualified prepared specimen, guarded acoustic/electrical instruments, exposure limits, verified probe/plug interfaces and calibration. Printing chemistry and unqualified apparatus operation are excluded.
 - Selected text review is not full-source validation. Figure pixels, main PDF and peer review remain unread; additional data/code are request-only and were not obtained. Publisher licence: **CC BY-NC-ND 4.0**. No source media, code or adaptations are bundled. Known records were checked; the historical inventory gap remains.
+
+
+## Additional candidate title: speckle spectropolarimetry (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Resonant microtaper leaky-mode computational spectropolarimetry with tens of femtometers spectral resolution and full Stokes measurement](https://www.nature.com/articles/s41467-026-72313-y) | Nature Communications / 2026 | 10.1038/s41467-026-72313-y | Prepared-optics positioning, camera calibration, reference-source changes and repeated spectral/polarization measurements suggest a long-horizon instrument-coordination task | Selected official main Results/Methods and scientific-SI text screened; OA; main cookie-redirect caveat |
+
+- **CANDIDATE only**; no task conversion or validated robotic feasibility. Publisher citation: 17, 6341; published 12 May, version of record 16 July 2026.
+- The [30-page scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-72313-y/MediaObjects/41467_2026_72313_MOESM1_ESM.pdf) was screened selectively, especially geometry comparisons and stability limitations. Measured speckles, reconstructed spectra/polarization and theoretical optical-path estimates remain distinct. Six fabricated spheres establish a dimensional-tolerance sample, not six independent replications of every performance test.
+- SI distinguishes maintained line separation from drifting wavelength accuracy; source polarization also drifts. Controlled-vibration testing and reference broadband-polarization data are absent. The reported stage limitation does not demonstrate precise submicrometre gap control, and the core optical footprint excludes the full apparatus.
+- Main text disagrees on source-fiber diameter; error-metric wording and main/SI regularization expressions also differ. These and extracted-equation artifacts remain unresolved, without silent correction or performance guarantees.
+- Future scope requires qualified prepared optics, guarded/interlocked optical equipment, protected fragile-fiber fixtures, calibrated motion and contamination controls. Flame pulling, arc-discharge fabrication, chemical handling and exposed-beam work are excluded.
+- Selected text screening is not full-source review. Figure pixels, main PDF, peer review, linked code and raw datasets remain unreviewed. Publisher licence: **CC BY-NC-ND 4.0**; no publisher media or adaptations are bundled. Known records were checked; the historical inventory gap remains.
