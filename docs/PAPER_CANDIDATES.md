@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **206**.
+Last screened: **2026-10-11**. Candidate count: **207**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1894,3 +1894,17 @@ One additional **CANDIDATE**, screened for possible future long-horizon instrume
 - Screening is selected-text only, not full-paper review. Main figure pixels, rendered equations, raw data and external fabrication references remain unreviewed. Main HTML retained a cookie-error redirect marker while readable text was returned; no paywall is inferred
 - Semiconductor fabrication, hazardous processing and laser operation require qualified facilities. Suitability is a preliminary inference about future task structure; no operating recipe, safe equipment limit, robot capability, executable task or scientific reproduction is supplied
 - CC BY 4.0 is the publisher's stated article license, subject to third-party credit lines. This addition contains citation metadata and original screening text, with no publisher figures, PDFs, datasets or assets bundled. All earlier entries, task packages, viewer content and repository licensing remain unchanged
+
+
+## Additional candidate title: cryogenic calorimeter noise metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Reaching the ultimate energy resolution of a quantum detector](https://www.nature.com/articles/s41467-019-14247-2) | Nature Communications / 2020 | 10.1038/s41467-019-14247-2 | Prepared-device tracking, cooldown-specific calibration, reference-noise measurements and linked acquisitions suggest long-horizon thermal/electrical metrology | Selected main Results/Methods text; OA; no scientific SI listed; cookie-redirect caveat |
+
+- **CANDIDATE only**; no conversion or validated robotic feasibility. Citation: 11, 367; published/version of record 17 January 2020.
+- RF transmission, calibrated temperature noise and model-projected photon resolution remain distinct; individual microwave-photon detection is prospective. Background subtraction and frequency interpolation determine uncertainty. Repeated acquisitions do not establish independent device replication.
+- No scientific SI was listed on the inspected publisher page; the listed peer-review file remains unread. External fabrication, shielding and RF-setup references were not reviewed. Extracted noise equations require separate verification.
+- Future scope requires qualified prepared devices, closed cryogenic services and validated instrument interfaces. Fabrication, cryogen handling and unqualified electrical operation are excluded.
+- Selected-text screening is not full-source review. Figure pixels, main PDF and request-only data/code remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
+
