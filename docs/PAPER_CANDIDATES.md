@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **214**.
+Last screened: **2026-10-11**. Candidate count: **216**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1990,3 +1990,29 @@ One additional **CANDIDATE**, screened for possible future long-horizon instrume
 - Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-021-25083-8/MediaObjects/41467_2021_25083_MOESM1_ESM.pdf) Notes 1–3/captions distinguish material-level switching (~8) from prototype performance (~2.5), and resistance adjustment from slower temperature equilibration. SI threshold-response times and main settling times have different endpoints. Mechanical tests used a later vendor batch; ten thermal and three mechanical cycles are not independent specimen replication. Models remain separate from measured data. Results report six heat-flux levels whereas Methods report five heater-power levels; the difference remains unresolved.
 - Future scope requires qualified, contained finished specimens, protected thermal fixtures and guarded compression interfaces. Foam fabrication, dust-generating processing, spray coating, heater/chiller commissioning and battery tests are excluded; no operating recipe or safety validation is supplied.
 - Selected-text screening is not full-source review. Figure pixels, rendered equations, main PDF, movies, peer review, additional-file descriptions, source workbook and request-only code remain unread or unvalidated. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
+
+## Additional candidate title: elastocaloric polymer metrology (2026-10-11)
+
+One additional **CANDIDATE**; literature screening only, with no converted task or runnable experiment.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Solid-state cooling by elastocaloric polymer with uniform chain-lengths](https://www.nature.com/articles/s41467-021-27746-y) | Nature Communications / 2022 | 10.1038/s41467-021-27746-y | Finished-specimen tracking, guarded mechanical-test coordination, thermal imaging and repeated cooling comparisons suggest a staged thermomechanical measurement task | OA main HTML with cookie-error marker; selected scientific-SI PDF text |
+
+### Screening scope for this addition
+
+- Exact identity checked against the publisher record: Zhang et al., volume 13, article 9; published/version of record 10 January 2022. The DOI's 2021 segment is not the publication year.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-021-27746-y/MediaObjects/41467_2021_27746_MOESM1_ESM.pdf) Discussions 1, 5–7 distinguish measured specimen surface temperature from calculated entropy/material performance and outlet-water cooling. The quoted system-performance estimate covers the recovery process; it is not independently verified whole-cycle efficiency. Cycling histories and altered stretching/recovery rates must stay distinct; repeated cycles do not establish independent specimen replication.
+- Future scope is limited to qualified finished specimens and guarded measurement equipment. Hot pressing, solvent analysis, toxic-vapor staining, X-ray characterization and apparatus commissioning are excluded; no operating recipe or safety validation is supplied.
+- Selected-text screening is not complete review of the main paper or 63-page SI. Figure pixels, rendered equations, later SI pages, main PDF and request-only underlying data remain unread or unvalidated. The HTML cookie marker was not repaired or bypassed. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
+## Additional candidate title: reconfigurable acoustic-lattice metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Counterintuitive collision of exceptional points on nonorientable manifolds](https://www.nature.com/articles/s41467-026-76508-1) | Nature Communications / 2026 | 10.1038/s41467-026-76508-1 | Finished-device tracking, reference calibration, source/probe registration and linked acoustic measurements suggest long-horizon metrology | Selected main and scientific-SI text/captions (11-page PDF); OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: Wang et al., 17, 9638; published 11 August 2026, version of record 9 September 2026.
+- Selected main Results/Methods distinguish measured acoustic responses from fitted couplings, reconstructed Hamiltonians and derived topological quantities. The evolution parameter is virtual, not elapsed laboratory time. Sixteen-by-sixteen source/probe maps and averaging over 51 frequencies do not establish independent specimen replication.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-76508-1/MediaObjects/41467_2026_76508_MOESM1_ESM.pdf) Notes 3–7/captions distinguish a theoretical comparison from experimental evidence, and single-loop eigenstate exchange from double-loop return. Equation glyphs are garbled; numerical Table S1 cells were not extracted. Neither equations nor table values were validated.
+- Future scope requires qualified finished devices, acoustic/electrical safeguards and validated positioning interfaces. Resin processing, drilling and circuit commissioning are excluded; no operating recipe is supplied.
+- Selected-text screening is not full-source review. Figure pixels, main PDF, peer review and request-only raw data remain unread. Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no source content or adaptations bundled. Known records checked; historical inventory gap remains.
