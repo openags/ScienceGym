@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **207**.
+Last screened: **2026-10-11**. Candidate count: **208**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1907,4 +1907,16 @@ One additional **CANDIDATE**, screened for possible future long-horizon instrume
 - No scientific SI was listed on the inspected publisher page; the listed peer-review file remains unread. External fabrication, shielding and RF-setup references were not reviewed. Extracted noise equations require separate verification.
 - Future scope requires qualified prepared devices, closed cryogenic services and validated instrument interfaces. Fabrication, cryogen handling and unqualified electrical operation are excluded.
 - Selected-text screening is not full-source review. Figure pixels, main PDF and request-only data/code remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
+
+## Additional candidate title: droplet evaporation across shaped surfaces (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Snap evaporation of droplets on smooth topographies](https://www.nature.com/articles/s41467-018-03840-6) | Nature Communications / 2018 | 10.1038/s41467-018-03840-6 | Prepared-substrate tracking, water-droplet placement, environmental logging and extended imaging suggest long-horizon liquid handling and metrology | Selected main and scientific-SI text; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: 9, 1380; published 11 April 2018.
+- Selected main experimental text and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-018-03840-6/MediaObjects/41467_2018_3840_MOESM1_ESM.pdf) Notes 1–3/captions screened. Observed droplet configurations remain distinct from simulations and two-dimensional bifurcation models. Time-lapse sequences do not resolve rapid snap dynamics; repeat experiments do not establish independent substrate fabrication replicates. Main/SI egg-box examples specify differing initial volumes.
+- Future scope requires qualified prepared surfaces, protected dispensing and validated camera/environment interfaces. Resin handling, coating spray and heated fabrication are excluded; no operating recipe is supplied.
+- Selected-text screening of the main article and 11-page SI is not full-source review. Figure pixels, main PDF, movies, peer review and request-only raw data remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
+
 
