@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **217**.
+Last screened: **2026-10-11**. Candidate count: **219**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2028,3 +2028,27 @@ One additional **CANDIDATE**; literature screening only, with no converted task 
 - Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fncomms14481/MediaObjects/41467_2017_BFncomms14481_MOESM1910_ESM.pdf) Notes 3–6 distinguish low-frequency beat readout from higher-frequency error-signal spectra. Photothermal estimates are simulated bounds, not measured temperatures. Main/SI optical-wavelength wording differs and remains unresolved.
 - Future scope requires qualified finished devices, enclosed/interlocked optics and validated positioning/electrical interfaces. Membrane fabrication, chemical processing, lithography and laser commissioning are excluded; no operating recipe or safety validation is supplied.
 - Selected-text screening is not full-source review. Figure pixels, rendered equations, main PDF and request-only data remain unread or unvalidated. The HTML cookie marker was not repaired or bypassed. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
+
+
+## Additional candidate title: textile-circuit mechanical metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Laser-programmed stiffness and interfaces for textile hybrid electronics](https://www.nature.com/articles/s41467-025-67149-x) | Nature Communications / 2026 | 10.1038/s41467-025-67149-x | Finished-specimen custody, fixture registration and linked deformation/resistance measurements suggest long-horizon electromechanical metrology | Selected main and scientific-SI text/captions (52-page PDF); OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: Luo et al., 17, 357; published 13 January 2026.
+- Selected Results/Methods distinguish measured resistance and force from calculated mechanical properties and simulated strain fields. Cyclic endurance does not establish independent specimen replication. Wire-only and chip-connected measurements remain separate.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-67149-x/MediaObjects/41467_2025_67149_MOESM1_ESM.pdf) captions distinguish mask thickness from approximate wire thickness and local contact failure from whole-circuit disconnection. Main/SI precursor product codes differ and remain unresolved.
+- Future scope requires qualified finished specimens and guarded mechanical/electrical interfaces. UV processing, chemical preparation, electrospinning, cell assays and human-contact studies are excluded; no operating recipe or safety validation is supplied.
+- Selected-text screening is not full-source review. Figure pixels, equations, later SI pages, main PDF, movies and source-data ZIP remain unread or unvalidated. Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
+
+## Additional candidate title: photonic signal-recovery metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Real-time photonic blind interference cancellation](https://www.nature.com/articles/s41467-023-43982-w) | Nature Communications / 2023 | 10.1038/s41467-023-43982-w | Device custody, optical/electrical registration and repeated signal-recovery comparisons suggest long-horizon metrology | Selected main/SI text; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: Lederman et al., 14, 8197; 11 December 2023.
+- Results/Methods distinguish the two-signal demonstration from the proposed mmWave receiver and estimated power savings. Repeated identification attempts are not independent-device replication. Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-023-43982-w/MediaObjects/41467_2023_43982_MOESM1_ESM.pdf) Notes/Methods identify repeating-waveform sampling artifacts and separate modeled transfer functions from measurements.
+- Requires qualified devices, enclosed optics and validated RF/electrical interfaces. Fabrication, laser commissioning and over-air transmission are excluded; no operating recipe is supplied.
+- Selected text from the main and six-page SI is not full-source review. Figure pixels, rendered equations, main PDF, peer review, external data and request-only code remain unread or unvalidated. Publisher licence: **CC BY 4.0**, with third-party exceptions; no content bundled. Known records checked; historical inventory gap remains.
