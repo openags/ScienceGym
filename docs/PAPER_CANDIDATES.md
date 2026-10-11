@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **220**.
+Last screened: **2026-10-11**. Candidate count: **221**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2069,3 +2069,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Selected HTML and extracted text from the 32-page scientific SI were read. Main HTML returned usable content with a cookie-error query marker, which was not repaired or bypassed. Figure pixels, rendered equations, remaining SI sections, movies, Source Data and peer-review files were not reviewed
 - Publisher licence: CC BY-NC-ND 4.0, subject to third-party exceptions. This is a citation/discovery record, not permission to share adaptations or redistribute source components
 - Exact DOI/title checks passed the available catalog, README, task-source inventory and recursive restriction ledger. Historical inventory recovery remains incomplete, so exhaustive historical uniqueness is not claimed
+
+## Additional candidate: humidity-cycle sorbent metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Asymmetric hydrophilicity-driven fast water diffusion enabling heterogeneous hygroscopic gels toward high-yield atmospheric water harvest](https://www.nature.com/articles/s41467-026-71259-5) | Nature Communications / 2026 | 10.1038/s41467-026-71259-5 | Finished-sample tracking, environmental conditioning, repeated weighing and thermal imaging suggest long-horizon sorption metrology | Selected main HTML + scientific SI text; cookie marker; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Han et al., 17, 4571; published 28 March 2026. Controlled-humidity measurements compare layered pectin/graphene-oxide organogels with component and homogeneous controls; mass and temperature records distinguish uptake from release
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-71259-5/MediaObjects/41467_2026_71259_MOESM1_ESM.pdf) Notes 5–7 distinguish evolving outdoor histories from fixed laboratory conditions. First-day productivity is not a sustained multi-day average; outdoor cycle timing and the written efficiency-ratio description need reconciliation before task design
+- Suitability is inferred for a future qualified finished-sample setup. Chemical synthesis, nanomaterial handling, biological/soil tests and drinking-water use are outside this screening scope. Optical, thermal and sample-containment controls require separate review; no operating recipe or robotic feasibility claim is supplied
+- Reading was selective: main Results/Methods and portions of the 96-page SI. Figure pixels, rendered equations, other SI sections, main PDF, reporting summary, peer review and Source Data were not reviewed. Usable HTML carried a cookie-error marker; no repair or bypass was attempted
+- Publisher licence is CC BY-NC-ND 4.0 with third-party exceptions. This citation grants no adaptation rights. Known catalog/task/restriction records were checked; the historical recovery gap remains
