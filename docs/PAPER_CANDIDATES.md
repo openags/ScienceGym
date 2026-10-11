@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **205**.
+Last screened: **2026-10-11**. Candidate count: **206**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1879,3 +1879,18 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Future scope requires qualified prepared specimens, protected probes, contamination controls and validated robot interfaces. Chip fabrication, chemical transfer, annealing, electron-beam deposition and unqualified instrument operation are excluded.
 - Selected text screening is not full-source review. Figure pixels, main PDF, peer review, source archive and request-only data/code remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
 
+
+## Additional candidate title: photonic–phononic device metrology (2026-10-11)
+
+One additional **CANDIDATE**, screened for possible future long-horizon instrument coordination; no task conversion is claimed.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Control of coherent information via on-chip photonic–phononic emitter–receivers](https://www.nature.com/articles/ncomms7427) | Nature Communications / 2015 | 10.1038/ncomms7427 | Tracking fabricated chip variants, fibre alignment, reference-waveguide measurements and coordinated optical/RF response comparisons suggest a staged characterization task across photonics, acoustics and metrology | OA main HTML and selected experimental/Methods text; selected scientific-SI PDF text; CC BY 4.0 |
+
+### Screening scope and limits
+
+- Official metadata and selected main experimental passages were checked. The linked seven-page scientific SI was screened in text form for response comparisons and the distinction between measured loss/lifetime inputs and theoretical power-handling estimates. Main/SI text includes model fits and simulations; these are not independent measurements. Device variants and spectra do not establish independent fabrication replicates or a complete factorial schedule
+- Screening is selected-text only, not full-paper review. Main figure pixels, rendered equations, raw data and external fabrication references remain unreviewed. Main HTML retained a cookie-error redirect marker while readable text was returned; no paywall is inferred
+- Semiconductor fabrication, hazardous processing and laser operation require qualified facilities. Suitability is a preliminary inference about future task structure; no operating recipe, safe equipment limit, robot capability, executable task or scientific reproduction is supplied
+- CC BY 4.0 is the publisher's stated article license, subject to third-party credit lines. This addition contains citation metadata and original screening text, with no publisher figures, PDFs, datasets or assets bundled. All earlier entries, task packages, viewer content and repository licensing remain unchanged
