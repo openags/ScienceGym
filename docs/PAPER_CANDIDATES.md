@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **196**.
+Last screened: **2026-10-11**. Candidate count: **197**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1778,3 +1778,17 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Main text disagrees on source-fiber diameter; error-metric wording and main/SI regularization expressions also differ. These and extracted-equation artifacts remain unresolved, without silent correction or performance guarantees.
 - Future scope requires qualified prepared optics, guarded/interlocked optical equipment, protected fragile-fiber fixtures, calibrated motion and contamination controls. Flame pulling, arc-discharge fabrication, chemical handling and exposed-beam work are excluded.
 - Selected text screening is not full-source review. Figure pixels, main PDF, peer review, linked code and raw datasets remain unreviewed. Publisher licence: **CC BY-NC-ND 4.0**; no publisher media or adaptations are bundled. Known records were checked; the historical inventory gap remains.
+
+
+## Additional candidate title: terahertz specimen metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Nanometre-precision terahertz interferometry for battery electrode metrology](https://www.nature.com/articles/s41467-026-74193-8) | Nature Communications / 2026 | 10.1038/s41467-026-74193-8 | Prepared-specimen registration, reference comparisons, repeated spectra and spatial mapping suggest a long-horizon materials/optical-metrology task | Selected official main Results/Methods and six-page scientific-SI text/captions screened; OA; main cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, with no conversion or validated robotic feasibility. Citation: 17, 7382; published 10 June, version of record 27 July 2026.
+- The [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-74193-8/MediaObjects/41467_2026_74193_MOESM1_ESM.pdf) separates measured signals, model fitting and uncertainty sources. Repeated traces establish single-position repeatability, not independent-specimen replication or absolute accuracy; refractive-index ambiguity and reference-section damage remain relevant.
+- Spatial mapping uses a PLA surrogate; dynamic testing varies optical path through tilted quartz, rather than demonstrating changing electrode thickness. Frequency traceability does not independently identify thickness and refractive index. Industrial deployment remains prospective.
+- Main humidity-control descriptions conflict; SI calibration timing/rate labels and main uncertainty/equation descriptions need clarification. These are retained as unresolved, without inferred corrections or performance guarantees.
+- Future scope is limited to qualified prepared, dry, unenergized specimens and enclosed/interlocked metrology. Electrode chemistry, coating, cutting, ion milling, battery assembly/cycling and exposed-beam work are excluded. Material release, fixtures, electrical/optical safety and robot interfaces require separate qualification.
+- Figure pixels, main PDF, peer review and request-only raw data remain unreviewed. Text screening is not full-source validation. Publisher licence: **CC BY 4.0**; no publisher media or adaptations are bundled. Known records were checked; the historical inventory gap remains.
