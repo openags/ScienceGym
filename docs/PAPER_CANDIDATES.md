@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **203**.
+Last screened: **2026-10-11**. Candidate count: **204**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1854,4 +1854,16 @@ One additional **CANDIDATE**; selected source text was screened, with no task co
 - Extracted equations/noise normalization and inconsistent chemical naming between main and SI remain unresolved; no correction is inferred.
 - Future scope requires qualified prepared specimens, protected membrane fixtures, enclosed optics, guarded motion, controlled acoustic exposure and validated robot interfaces. Fabrication, chemical processing, transfer, destructive rupture testing, high-voltage force balancing and unqualified electrical operation are excluded.
 - Selected text screening is not full-source review. Figure pixels, main PDF, peer review and request-only raw data remain unread. Publisher licence: **CC BY-NC-ND 4.0**; no publisher media or adaptations are bundled. Known records checked; historical inventory gap remains.
+
+## Additional candidate title: atomic-friction metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Sliding friction over individual aromatic bonds correlates with bond order](https://www.nature.com/articles/s41467-026-72128-x) | Nature Communications / 2026 | 10.1038/s41467-026-72128-x | Prepared-specimen registration, tip checks, calibration and linked scan comparisons suggest long-horizon surface metrology | Selected main and 23-page scientific-SI text/captions; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: 17, 3694; published/version of record 22 April 2026.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-72128-x/MediaObjects/41467_2026_72128_MOESM1_ESM.pdf) screened. Drive-derived dissipation, concurrent frequency shifts, DFT-derived bond orders and predicted landscapes remain distinct. Experimental heights were aligned to simulations; experimental and simulated rankings of maxima differ.
+- Twelve repeats at the same location with one tip are technical replicates. SI tip checks, reference-drive calibration, scan averaging/filtering and relative-height provenance matter; model-derived correlations do not establish independent specimen replication.
+- Extracted equations and SI cross-references require verification; no silent correction is supplied. Future scope requires qualified prepared specimens, closed vacuum/cryogenic services, protected tips and validated robot interfaces. Gas dosing, deposition, sputtering/annealing, cryogen handling and unqualified instrument operation are excluded.
+- Figure pixels, main PDF, movie, peer review, source workbook and external data/code remain unread. Publisher licence: **CC BY 4.0**; no source content bundled. Known records checked; historical inventory gap remains.
 
