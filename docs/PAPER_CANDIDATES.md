@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **209**.
+Last screened: **2026-10-11**. Candidate count: **211**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -1932,3 +1932,25 @@ One additional **CANDIDATE**, screened for possible future long-horizon instrume
 - Future scope requires qualified finished specimens, protected illumination, water-compatible equipment and validated interfaces. Resin/solvent processing, UV/plasma treatment, heated fabrication and dye testing are excluded; no operating recipe or potable-water claim is supplied.
 - Selected text from the 54-page SI, through printed page 45, is not full-source review. Figure pixels, later SI methods, main PDF, movies, source workbook and request-only raw data remain unread. Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Known records checked; historical inventory gap remains.
 
+
+## Additional candidate title: porous-elastomer wetting and shape metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Bioinspired hydrophobic pseudo-hydrogel for programmable shape-morphing](https://www.nature.com/articles/s41467-025-56291-1) | Nature Communications / 2025 | 10.1038/s41467-025-56291-1 | Finished-specimen custody, timed water exposure, mass/dimension tracking and reconfigurable lattice inspection suggest long-horizon materials metrology | Selected main and scientific-SI text; OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; task suitability is inferred, without conversion or validated robotic feasibility. Citation: 16, 875; published 21 January 2025.
+- Selected Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-56291-1/MediaObjects/41467_2025_56291_MOESM1_ESM.pdf) captions/tables distinguish initial wetting from expansion, thickness-dependent equilibration and measured geometry from finite-element predictions. Selected main plots identify three independent replicates; timepoints and modeled cells are distinct. Differing pore-threshold descriptions remain unreconciled.
+- Future scope is limited to qualified finished synthetic specimens and water-compatible measurement interfaces. Precursor processing, particle handling, cutting, heating, vacuum and magnetic operations require separate qualification; plant microscopy, human-contact/ECG work and clinical claims are excluded. No operating recipe is supplied.
+- This is selected textual screening, including portions of the 28-page SI, not full-source review. Figure pixels, main PDF, movies, additional-file descriptions, peer review and source workbook remain unread. Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; citation is not permission to adapt or redistribute source content. Known records checked; historical inventory gap remains.
+
+## Additional candidate title: directional microwave–magnetic metrology (2026-10-11)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Unidirectional perfect absorption induced by chiral coupling in spin-momentum locked waveguide magnonics](https://www.nature.com/articles/s41467-025-63305-5) | Nature Communications / 2025 | 10.1038/s41467-025-63305-5 | Prepared-specimen tracking, positional registration and linked directional spectra suggest long-horizon magnetic/microwave metrology | Selected main and scientific-SI text/captions (8-page PDF); OA; cookie-redirect caveat |
+
+- **CANDIDATE only**; suitability is inferred, without conversion or validated robotic feasibility. Citation: Qian et al., 16, 8100; published/version of record 29 August 2025.
+- Selected main Results/Methods and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-63305-5/MediaObjects/41467_2025_63305_MOESM1_ESM.pdf) sections I, II, IV and V screened. Measured scattering spectra, scattering-derived absorption, fitted damping/chirality and simulated field maps remain distinct. Absorption is not direct calorimetry. Multiple positions, field sweeps and two spheres in one device do not establish independent fabrication replication; generalized many-sphere predictions remain theoretical.
+- SI text extraction loses equation symbols; no equation-level validation is claimed. Future scope requires qualified finished specimens, protected magnetic/RF equipment, guarded positioning and validated interfaces. Fabrication, adhesive processing and unqualified instrument operation are excluded; no operating recipe is supplied.
+- Selected-text screening is not full-source review. Figure pixels, main PDF, peer review, external raw data and request-only code remain unread. Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no publisher content or adaptations are bundled. Known records checked; historical inventory gap remains.
