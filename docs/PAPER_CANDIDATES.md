@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **231**.
+Last screened: **2026-10-12**. Candidate count: **232**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2206,3 +2206,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified prepared resonators, enclosed electronics and guarded measurement interfaces. Resin printing, drilling, soldering, exposed-board modifications and instrument commissioning are excluded. Electrical, acoustic-exposure and positioning safety need separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
 - Reading was selective: main experimental passages and Methods; selected text from the 18-page SI and rendered pages 5 and 12, with independent spot checks of Notes 15–16 and pages 4, 11, 12 and 15. SI was not exhaustively reviewed; main figure pixels/PDF, peer review and external data/code were not reviewed. Successful cloud-browser access established the main page and publisher-linked scientific supplement without retries or alternate routes after failure.
 - Publisher licence: **CC BY 4.0**, with third-party exceptions. No source content is bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared aerogel-fiber mechanical metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Bio-inspired cellular aerogel fibers integrating high mechanical strength and softness for thermal insulation textiles](https://www.nature.com/articles/s41467-026-71723-2) | Nature Communications / 2026 | 10.1038/s41467-026-71723-2 | Prepared-fiber registration, comparative mechanical measurements and repeated cycle tracking suggest long-horizon materials metrology | Selected browser main HTML and scientific-SI text/figures; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Hu et al., 17, 5327; published 17 April 2026, version of record 17 June 2026. Experiments compare tensile behavior and repeated bending/compression of cellular aerogel fibers with controls. Internal stress distributions are simulated rather than directly measured.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71723-2/MediaObjects/41467_2026_71723_MOESM1_ESM.pdf), Figures 23–25, provides tensile/modulus comparisons, specimen images and cyclic responses. Figure 23 identifies three replicates for its error bars; this does not establish independent fabrication batches or replication of every cyclic test. Cycle counts are not specimen counts. Main-text single-cycle bending-stress values disagree and remain unresolved; no disputed value is carried forward.
+- Suitability is inferred only for qualified, finished, contained specimens and guarded mechanical-testing interfaces. Chemical synthesis, spinning/coating, drying, irradiation, thermal/flame tests and human-garment experiments are excluded. Fiber shedding, specimen containment, grip and pinch-point safety require separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
+- Reading was selective: main mechanical-property Results, Figure 4 caption, characterization and scope/safety context; SI identity/contents, selected simulation context and Figures 23–26 captions, with rendered pages 19–20 of 24 inspected. SI was not exhaustively reviewed; main figure pixels/PDF, movie, supplemental-file descriptions, peer review, Source Data and request-only data were not reviewed. Local PDF rendering emitted font-cache warnings but produced readable selected pages; no publisher access failure or retry occurred.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source assets are bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
