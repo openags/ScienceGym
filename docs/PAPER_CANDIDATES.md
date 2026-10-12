@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **239**.
+Last screened: **2026-10-12**. Candidate count: **240**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2300,3 +2300,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - **CANDIDATE only.** Mandal et al., 16, 9104; published 14 October 2025. The paper reports AFM hardware experiments. Future suitability is inferred only for qualified prepared specimens and guarded, commissioned instruments; fabrication, assembly, critical calibration and code deployment are excluded. No recipe, task conversion or validated robotic feasibility is supplied.
 - [Scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-64105-7/MediaObjects/41467_2025_64105_MOESM1_ESM.docx), S4–S5, provides evaluation criteria and selected experimental logs. Agent trials do not establish independent-specimen replication. Instruction-adherence failures remain relevant. The main calibration cross-reference points to S4 rather than the S5 logs; SI labels a friction log “roughness.” These discrepancies remain unresolved.
 - This is a selective citation screen: main experimental/safety passages, SI identity and selected S3.2–S5 text, plus rendered pages 14 and 18 of 24. First main-browser access and publisher-linked DOCX download succeeded. Extraction/rendering was not exhaustive review; main PDF/figure pixels, code, peer review and raw data were not reviewed. CC BY 4.0 has third-party exceptions; no source assets are bundled. Available dedup/restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared transparency-switching film metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Bio-inspired sensitive and reversible mechanochromisms via strain-dependent cracks and folds](https://www.nature.com/articles/ncomms11802) | Nature Communications / 2016 | 10.1038/ncomms11802 | Prepared-film registration, strain-history tracking and coordinated optical measurements before/after fatigue suggest long-horizon materials metrology | Selected cloud-browser main HTML and scientific-SI text/figure; CC BY 4.0 |
+
+- **CANDIDATE only.** Zeng et al., 7, 11802; published 8 July 2016. The selected transparency-change branch measures strain-dependent transmittance, surface profiles and microscopy of prepared bilayer films. Finite-element fold geometry remains model output.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms11802/MediaObjects/41467_2016_BFncomms11802_MOESM1513_ESM.pdf), Figure 1, compares spectra before/after fatigue. Its broken-axis stress panel shows early and late segments, not a continuous per-cycle record. Cycle count does not establish independent-specimen replication; the number of independent specimens is unresolved in the selected evidence.
+- Fit is inferred only for qualified prepared films and guarded strain/optical interfaces. Chemical preparation, fluorescent variants and chemically treated wetting tests are outside this branch. Grip safety, fragments and instrument qualification remain open; no recipe, conversion or validated robotic feasibility is supplied.
+- Reading was selective: main transparency-change Results and Characterization; SI captions and rendered page 1 of 14. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, movies and external data were not reviewed. Main HTML and the first SI download succeeded; local rendering warned about font caches but yielded a readable page.
+- **CC BY 4.0**, with third-party exceptions; no source assets bundled. Available catalog, task and restriction records were checked; the historical inventory gap remains.
