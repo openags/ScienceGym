@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **230**.
+Last screened: **2026-10-12**. Candidate count: **231**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2194,3 +2194,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Reading was selective: main circuit-implementation/measurement passages and limitations; SI Notes 4–6 text and rendered pages 4–6 of 13, with independent spot checks of Notes 5–6 and rendered pages 5 and 7. SI was not exhaustively reviewed; main figure pixels/PDF, peer review, Source Data and request-only code were not reviewed.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source assets are bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
 
+
+## Additional candidate: prepared acoustic-chain metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Acoustic non-Hermitian skin effect from twisted winding topology](https://www.nature.com/articles/s41467-021-26619-8) | Nature Communications / 2021 | 10.1038/s41467-021-26619-8 | Prepared-chain registration, reciprocal controls and repeated source/detector positioning suggest long-horizon acoustic metrology | Selected browser main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Zhang et al., 12, 6297; published 2 November 2021. Experiments measure acoustic transmission and site-resolved responses in coupled resonator chains. Coupling parameters are fitted through a model; spectral topology and robustness calculations are distinct from directly measured pressure signals.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-021-26619-8/MediaObjects/41467_2021_26619_MOESM1_ESM.pdf), Notes 2–10 and 12–13, supplies component, normalization and reciprocal-control context. Source-normalized responses are not absolute sound-pressure measurements; site/frequency scans do not establish independent-specimen replication. Main Measurements and SI Note 12/Figure 11 give different pulse bandwidths for the latter experiment; this remains unresolved.
+- Suitability is inferred only for qualified prepared resonators, enclosed electronics and guarded measurement interfaces. Resin printing, drilling, soldering, exposed-board modifications and instrument commissioning are excluded. Electrical, acoustic-exposure and positioning safety need separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
+- Reading was selective: main experimental passages and Methods; selected text from the 18-page SI and rendered pages 5 and 12, with independent spot checks of Notes 15–16 and pages 4, 11, 12 and 15. SI was not exhaustively reviewed; main figure pixels/PDF, peer review and external data/code were not reviewed. Successful cloud-browser access established the main page and publisher-linked scientific supplement without retries or alternate routes after failure.
+- Publisher licence: **CC BY 4.0**, with third-party exceptions. No source content is bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
