@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **228**.
+Last screened: **2026-10-12**. Candidate count: **229**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2169,3 +2169,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Reading was selective: main Methods and transport/discussion passages; SI title page, selected text and rendered pages 27 and 33. Remaining SI, main PDF, movies, supplementary-file descriptions, reporting summary and Source Data were not reviewed. Reconstructed phase-ordered frames are distinct from directly acquired frames.
 - Publisher licence: **CC BY 4.0**, with third-party exceptions. No source content is bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
 
+
+## Additional candidate: nanopillar motion-envelope microscopy (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Observing polarization patterns in the collective motion of nanomechanical arrays](https://www.nature.com/articles/s41467-022-30024-0) | Nature Communications / 2022 | 10.1038/s41467-022-30024-0 | Prepared-array registration, focus tracking and paired reference/driven images suggest long-horizon microscopy metrology | Selected browser main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Doster et al., 13, 2478; published 5 May 2022. Ambient-condition LED microscopy records motion envelopes of piezo-driven nanopillars. Elliptical paths are inferred from integrated images; motion is not time-resolved and circulation handedness is not measured.
+- [Scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-30024-0/MediaObjects/41467_2022_30024_MOESM1_ESM.pdf) Notes 1–2 describe drive-off references for drift, central-array analysis because edge gradients are unreliable, high-amplitude cropping limits and adjacent-frequency smoothing. Fit agreement is not independent trajectory validation; pillar/frequency counts do not establish independent-array replication. Tight-binding comparisons are qualitative.
+- Suitability is inferred only for qualified contained chips and guarded measurement interfaces. Fabrication, etching, exposed-chip handling, instrument commissioning and nonlinear-drive extensions are excluded. Instrument and fragile-chip containment safety need separate qualification; no recipe, conversion or validated robotic feasibility is supplied.
+- Reading was selective: main sample/imaging passages, Figure 2 caption and Methods; SI Notes 1–2 and rendered pages 1–3 of 13, with independent spot checks of Notes 8–9 and pages 9 and 11. SI was not exhaustively reviewed; main figure pixels, main PDF, peer review and external data/code were not reviewed.
+- Publisher licence: **CC BY 4.0**, with third-party exceptions. No source content is bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
