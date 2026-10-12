@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **223**.
+Last screened: **2026-10-12**. Candidate count: **224**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2105,4 +2105,16 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred for qualified finished components and contained nonbiological tests. Resin fabrication, surface-treatment chemistry, plant experiments and methane use are excluded. Gas, moving-part and wet-electrical safety require separate qualification; no operating recipe or robotic-feasibility claim is supplied
 - Reading was selective across main Results/Methods and the 17-page SI. Figure pixels, rendered equations, main PDF, movies, additional-file descriptions, peer review and Source Data were not reviewed. Usable HTML carried a cookie-error marker; no repair or bypass was attempted
 - Publisher licence: CC BY 4.0 with third-party exceptions; no source content bundled. Known catalog, README, task-source and restriction records were checked; the historical recovery gap remains
+
+## Additional candidate: time-sliced optical-field metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Spatiotemporally localized optical links and knots](https://www.nature.com/articles/s41467-026-72774-1) | Nature Communications / 2026 | 10.1038/s41467-026-72774-1 | Prepared-optics registration, phase-pattern tracking and coordinated delay-stage/camera measurements suggest long-horizon optical metrology | Selected main HTML + scientific-SI text; cookie marker; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Zhou et al., 17, 6027; published 30 April 2026, version of record 9 July 2026. Suitability is inferred, without task conversion or validated robotic feasibility.
+- Main Results and [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-72774-1/MediaObjects/41467_2026_72774_MOESM1_ESM.pdf) Note 3 distinguish recorded interferograms from reconstructed fields and numerical conjugate superposition used to construct the topology. Reference-phase normalization assumes temporal constancy at a chosen spatial point. Delay slices are not independent experimental replications. Nested structures and propagation studies remain theoretical or simulated.
+- Future scope requires qualified prepared apparatus, enclosed/interlocked optics and validated positioning/electrical interfaces. Laser commissioning and proposed high-power material processing are excluded; no operating recipe or safety validation is supplied.
+- Reading was selective across main text and the 15-page SI, focusing on experimental reconstruction. Figure pixels, rendered equations, remaining SI sections, main PDF, peer review and request-only underlying data were not reviewed. Readable main HTML carried a cookie-error marker; no repair or bypass was attempted.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no source content bundled or adaptation rights granted. Known catalog, README, current task sources and restriction records were checked; the historical inventory gap remains.
 
