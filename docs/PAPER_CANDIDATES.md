@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **235**.
+Last screened: **2026-10-12**. Candidate count: **236**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2254,3 +2254,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified finished specimens, containment and guarded mechanical/optical interfaces. Synthesis, coating, recycling, solvents, plasma treatment, abrasion, thermal/UV exposure, ion-gun charging and human-touch tests are excluded. Residues, fragments, pinch points and optical exposure need separate safety qualification; no recipe, task conversion or validated robotic feasibility is supplied.
 - Reading was selective: main experimental passages, Methods and availability; SI identity, selected captions and rendered pages 14 and 19 of 29. Main reader HTML carried a cookie-error marker; cloud-browser main HTML and the first publisher-linked SI download succeeded. Main PDF/figure pixels, movie descriptions, movies, peer review and raw data were not reviewed; neither source was exhaustively read.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source assets are bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared acoustofluidic-array metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Dynamically reconfigurable acoustofluidic metasurface for subwavelength particle manipulation and assembly](https://www.nature.com/articles/s41467-024-55337-0) | Nature Communications / 2025 | 10.1038/s41467-024-55337-0 | Prepared-device registration, source-position tracking and paired displacement/microscopy records suggest long-horizon acoustic-particle metrology | Selected cloud-browser main HTML and scientific-SI text; CC BY 4.0 |
+
+- **CANDIDATE only.** Surappa et al., 16, 494; published 15 January 2025. The screened nonbiological branch measures membrane displacement and images inert-bead patterns and motion. The article also contains biological experiments, all outside this candidate's scope. Reconstructed wavefields are distinct from directly measured displacement and bead images; intensity-derived capture estimates are not absolute particle counts.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-55337-0/MediaObjects/41467_2024_55337_MOESM1_ESM.pdf), Note 2 and Figure 3 caption, explains that free-field displacement measurements and channel-confined bead experiments have different boundaries. Their pattern correlation is condition-dependent and does not establish identical fields. Three adjacent beads tracked over six cycles do not establish independent-device replication. Main Figure 3b reports at least three independent experiments without establishing independent fabrication batches.
+- Suitability is inferred only for qualified prepared devices, contained nonbiological samples and guarded acoustic, electrical and optical interfaces. Fabrication, etching, laser cutting, exposed-electronics work, biological samples and instrument commissioning are excluded. Containment, exposure and positioning safety need separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
+- Reading was selective: main characterization, bead-patterning, imaging and availability passages; SI identity, selected Notes 1–3 and Figures 2–6 captions from the 18-page PDF. Main browser HTML and the first publisher-linked SI download succeeded. Main PDF, figure pixels, movies, supplementary-file descriptions, reporting summary, peer review and raw data/code were not reviewed; neither source was exhaustively read.
+- Publisher licence: **CC BY 4.0**, with third-party exceptions. No source content is bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
