@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **227**.
+Last screened: **2026-10-12**. Candidate count: **228**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2156,3 +2156,16 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred for qualified prepared specimens and enclosed, interlocked metrology. Fabrication, wet etching, ion-beam processing, electrical actuation and optical-encryption demonstrations are excluded. Fragile-sample containment, probe calibration and instrument safety need separate qualification; no recipe, conversion or validated robotic feasibility is supplied.
 - Reading was selective: main elastic-response passages and fabrication/safety context; SI title page and pages 8–9, including rendered figures. Remaining SI, movies, main PDF, peer review and request-only data/code were not reviewed.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source assets are bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: inert-bead microbubble imaging (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Acoustic microbubble propulsion, train-like assembly and cargo transport](https://www.nature.com/articles/s41467-023-40387-7) | Nature Communications / 2023 | 10.1038/s41467-023-40387-7 | Prepared nonbiological sample registration, condition tracking and repeated microscopy records suggest long-horizon acoustic-particle metrology | Selected browser main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Janiak et al., 14, 4705; published 5 August 2023. The screened physical branch observes microbubble assemblies and inert polystyrene-bead transport in a confined gel. Directional control is not established; approximate force modeling does not establish quantitative force validation.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-40387-7/MediaObjects/41467_2023_40387_MOESM16_ESM.pdf), Notes 5, 9–12 and 14, supplies orientation, assembly and gel-characterization context. Assembly/location counts do not establish independent-sample replication. Qualitative characterization alone is carried forward; detailed figure/text alignment needs reconciliation before task design.
+- Suitability is inferred only for qualified prepared nonbiological samples and guarded microscopy. Yeast-cell transport, biological applications, specimen fabrication and acoustic/laser commissioning are excluded. Glass, acoustic-exposure, electrical and containment safety need separate qualification; no recipe, conversion or validated robotic feasibility is supplied.
+- Reading was selective: main Methods and transport/discussion passages; SI title page, selected text and rendered pages 27 and 33. Remaining SI, main PDF, movies, supplementary-file descriptions, reporting summary and Source Data were not reviewed. Reconstructed phase-ordered frames are distinct from directly acquired frames.
+- Publisher licence: **CC BY 4.0**, with third-party exceptions. No source content is bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
