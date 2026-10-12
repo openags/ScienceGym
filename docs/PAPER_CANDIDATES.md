@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **224**.
+Last screened: **2026-10-12**. Candidate count: **225**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2117,4 +2117,17 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Future scope requires qualified prepared apparatus, enclosed/interlocked optics and validated positioning/electrical interfaces. Laser commissioning and proposed high-power material processing are excluded; no operating recipe or safety validation is supplied.
 - Reading was selective across main text and the 15-page SI, focusing on experimental reconstruction. Figure pixels, rendered equations, remaining SI sections, main PDF, peer review and request-only underlying data were not reviewed. Readable main HTML carried a cookie-error marker; no repair or bypass was attempted.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no source content bundled or adaptation rights granted. Known catalog, README, current task sources and restriction records were checked; the historical inventory gap remains.
+
+
+## Additional candidate: controlled hydrogel evaporation metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ultralow-density rigid network hydrogels enable ultrafast and stable solar water desalination](https://www.nature.com/articles/s41467-026-72288-w) | Nature Communications / 2026 | 10.1038/s41467-026-72288-w | Finished-sample tracking, reference-condition registration and coordinated weighing/infrared measurements suggest long-horizon evaporation metrology | Selected main HTML + scientific-SI text; cookie marker; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Liu et al., 17, 5822; published 28 April 2026, version of record 3 July 2026. Measurements compare prepared hydrogel networks with conventional controls. Dark-corrected laboratory mass loss and collected outdoor water are distinct observables. Triplicate measurements are reported; independent-specimen replication is not established by this screening.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-026-72288-w/MediaObjects/41467_2026_72288_MOESM1_ESM.pdf) Notes 1–5 and figure captions distinguish measured evaporation from inferred transport limits and modeled water profiles. Efficiency uses an equivalent enthalpy inferred from dark-evaporation comparisons. Note 2's modulus-figure cross-reference differs from the corresponding caption and needs reconciliation before task design.
+- Suitability is inferred only for qualified finished samples and contained, guarded instruments. Monomer synthesis, CNT/contaminant handling, toxic-ion wastewater tests, cryogenic preparation, mercury porosimetry, concentrated-sunlight commissioning and potable-water validation/use are excluded. Optical, thermal, wet-electrical and containment safety require separate qualification; no operating recipe or robotic-feasibility claim is supplied.
+- Reading was selective across main Results/Methods and the 43-page SI. Figure pixels, rendered equations, remaining SI sections, main PDF, peer review and Source Data were not reviewed. Readable HTML carried a cookie-error marker; no repair or bypass was attempted.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no source content bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
 
