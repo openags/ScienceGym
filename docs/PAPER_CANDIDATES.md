@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-11**. Candidate count: **222**.
+Last screened: **2026-10-12**. Candidate count: **223**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2093,3 +2093,16 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified finished specimens and enclosed metrology services. Chemical preparation, etching, aggressive cleaning and laser commissioning are excluded. Sample containment, optical exposure and gas-system qualification need separate review; no operating recipe or robotic-feasibility claim is supplied
 - Reading was selective across main text and the 52-page SI. Figure pixels, rendered equations, remaining SI sections, main PDF, peer review and external datasets were not reviewed. Usable HTML carried a cookie-error marker; no repair or bypass was attempted
 - Publisher licence: CC BY 4.0, with third-party exceptions; no source content bundled. Known catalog, README, task-source and restriction records were checked; the historical recovery gap remains
+
+## Additional candidate: passive bubble-valve metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Mechanical self-adaptive porous valve relying on surface tension for energy harvesting from low-flux bubbles](https://www.nature.com/articles/s41467-025-66500-6) | Nature Communications / 2025 | 10.1038/s41467-025-66500-6 | Prepared-valve exchange, gas-flux calibration and synchronized imaging/electrical records suggest long-horizon fluid metrology | Selected main HTML + scientific SI text; cookie marker; CC BY 4.0 |
+
+- **CANDIDATE only.** Du et al., 16, 11544; published 22 November 2025. The reported valve uses a deforming liquid interface; its solid structure is passive. Valve and valveless comparisons separate continuous supply from intermittent release
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art:10.1038%2Fs41467-025-66500-6/MediaObjects/41467_2025_66500_MOESM1_ESM.pdf) Sections 3–5 and 12 cover circulation, gas-flux calibration and disturbance/impingement tests. Repeated release events are not independent device replication; laboratory stability does not establish ocean deployment
+- Suitability is inferred for qualified finished components and contained nonbiological tests. Resin fabrication, surface-treatment chemistry, plant experiments and methane use are excluded. Gas, moving-part and wet-electrical safety require separate qualification; no operating recipe or robotic-feasibility claim is supplied
+- Reading was selective across main Results/Methods and the 17-page SI. Figure pixels, rendered equations, main PDF, movies, additional-file descriptions, peer review and Source Data were not reviewed. Usable HTML carried a cookie-error marker; no repair or bypass was attempted
+- Publisher licence: CC BY 4.0 with third-party exceptions; no source content bundled. Known catalog, README, task-source and restriction records were checked; the historical recovery gap remains
+
