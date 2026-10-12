@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **234**.
+Last screened: **2026-10-12**. Candidate count: **235**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2242,3 +2242,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified, prepared specimens and guarded acoustic, electrical and positioning interfaces. Fabrication, drilling, resin processing and source construction are excluded. Exposure, probe-contact, port-state and motion safety require separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
 - Reading was selective: main experimental Results, Methods and availability; SI cover/contents and selected text on pages 9–12 of 14. The SI cover says "Lossy phononic metamaterials for valley manipulation"; the official link and authors associate it with this article, but the title difference remains unresolved. Malformed extracted equation symbols were not validated. Main reader HTML carried a cookie-error marker; cloud-browser HTML and the first publisher-linked SI download succeeded. Main PDF, figure pixels, peer review, raw data and code were not reviewed; neither source was exhaustively read. Additional data and code are request-only.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source content is bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared flexible-coating metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Organic–inorganic covalent–ionic network enabled all–in–one multifunctional coating for flexible displays](https://www.nature.com/articles/s41467-024-54083-7) | Nature Communications / 2024 | 10.1038/s41467-024-54083-7 | Prepared-specimen registration, optical comparison and cycle-aware mechanical measurement suggest long-horizon materials metrology | Selected main HTML and scientific-SI text/figures; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Lin et al., 15, 9680; published 8 November 2024. Experiments compare coating mechanics, optical response and cyclic bending. Indentation-derived properties are model-based estimates, distinct from measured force–displacement curves.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54083-7/MediaObjects/41467_2024_54083_MOESM1_ESM.pdf), Figures 12 and 17, supports load comparisons and bending-test context. Quartz-supported indentation specimens differ from flexible film specimens. Main text describes three parallel samples/repeats, whereas selected SI plots show five measurements; their hierarchy is unresolved. Five plotted measurements do not establish independent fabrication batches; cycle counts are not specimen counts. Tighter bending produced cracks, so durability is condition-specific.
+- Suitability is inferred only for qualified finished specimens, containment and guarded mechanical/optical interfaces. Synthesis, coating, recycling, solvents, plasma treatment, abrasion, thermal/UV exposure, ion-gun charging and human-touch tests are excluded. Residues, fragments, pinch points and optical exposure need separate safety qualification; no recipe, task conversion or validated robotic feasibility is supplied.
+- Reading was selective: main experimental passages, Methods and availability; SI identity, selected captions and rendered pages 14 and 19 of 29. Main reader HTML carried a cookie-error marker; cloud-browser main HTML and the first publisher-linked SI download succeeded. Main PDF/figure pixels, movie descriptions, movies, peer review and raw data were not reviewed; neither source was exhaustively read.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source assets are bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
