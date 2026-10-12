@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **229**.
+Last screened: **2026-10-12**. Candidate count: **230**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2181,3 +2181,16 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified contained chips and guarded measurement interfaces. Fabrication, etching, exposed-chip handling, instrument commissioning and nonlinear-drive extensions are excluded. Instrument and fragile-chip containment safety need separate qualification; no recipe, conversion or validated robotic feasibility is supplied.
 - Reading was selective: main sample/imaging passages, Figure 2 caption and Methods; SI Notes 1–2 and rendered pages 1–3 of 13, with independent spot checks of Notes 8–9 and pages 9 and 11. SI was not exhaustively reviewed; main figure pixels, main PDF, peer review and external data/code were not reviewed.
 - Publisher licence: **CC BY 4.0**, with third-party exceptions. No source content is bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared-circuit temporal-scattering metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Observation of topological braiding and dynamical criticality in time reflection and refraction](https://www.nature.com/articles/s41467-026-68887-2) | Nature Communications / 2026 | 10.1038/s41467-026-68887-2 | Prepared-board registration, channel mapping and repeated initialization/acquisition suggest long-horizon circuit metrology | Selected browser main HTML and scientific-SI text/figures; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Li et al., 17, 2068; published 27 January 2026, version of record 27 February 2026. Classical circuit voltages encode a wavefunction model. Scattering coefficients and topological quantities require reconstruction; these are not measurements of quantum matter.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-68887-2/MediaObjects/41467_2026_68887_MOESM1_ESM.pdf), Notes 4–6, supports condition tracking and qualified measurement interfaces. Phase errors restrict reported experimental evolution; longer-time invariant jumps and disorder comparisons are simulated. Figure S4 disorder labels disagree with its caption/prose and need reconciliation. Neither simulated realizations nor momentum scans establish independent-board replication. Finite sampling and imperfect evolution limit direct identification of nonanalyticity.
+- Suitability is inferred only for qualified finished boards, guarded power supplies and validated acquisition interfaces. Fabrication, soldering, exposed-board modification and instrument commissioning are excluded. Electrical safety and grounding need separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
+- Reading was selective: main circuit-implementation/measurement passages and limitations; SI Notes 4–6 text and rendered pages 4–6 of 13, with independent spot checks of Notes 5–6 and rendered pages 5 and 7. SI was not exhaustively reviewed; main figure pixels/PDF, peer review, Source Data and request-only code were not reviewed.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source assets are bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
