@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **238**.
+Last screened: **2026-10-12**. Candidate count: **239**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2290,3 +2290,13 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified, prepared arrays, finished load-pattern fixtures and guarded mechanical/electrical interfaces. Fabrication, chemical processing, etching, deposition, printing, circuit assembly and instrument commissioning are excluded. Contact, pinch-point, electrical and specimen-integrity safety require separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
 - Reading was selective: main characterization, pattern-sensing, computational-context, Methods and availability passages; SI identity and selected captions from pages 1–10, with rendered pages 3 and 9 of 12 inspected. Main reader HTML carried a cookie-error marker; cloud-browser main HTML and first publisher-linked SI download succeeded. Main PDF/figure pixels, remaining SI pages, supplementary-code/file descriptions, peer review and Source Data were not reviewed; neither written source was exhaustively read.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source content is bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared-surface AFM metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Evaluating large language model agents for automation of atomic force microscopy](https://www.nature.com/articles/s41467-025-64105-7) | Nature Communications / 2025 | 10.1038/s41467-025-64105-7 | Prepared-surface imaging and linked condition/image/analysis records suggest long-horizon physical metrology | Selected main HTML and scientific-SI DOCX text/rendered pages; CC BY 4.0 |
+
+- **CANDIDATE only.** Mandal et al., 16, 9104; published 14 October 2025. The paper reports AFM hardware experiments. Future suitability is inferred only for qualified prepared specimens and guarded, commissioned instruments; fabrication, assembly, critical calibration and code deployment are excluded. No recipe, task conversion or validated robotic feasibility is supplied.
+- [Scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-64105-7/MediaObjects/41467_2025_64105_MOESM1_ESM.docx), S4–S5, provides evaluation criteria and selected experimental logs. Agent trials do not establish independent-specimen replication. Instruction-adherence failures remain relevant. The main calibration cross-reference points to S4 rather than the S5 logs; SI labels a friction log “roughness.” These discrepancies remain unresolved.
+- This is a selective citation screen: main experimental/safety passages, SI identity and selected S3.2–S5 text, plus rendered pages 14 and 18 of 24. First main-browser access and publisher-linked DOCX download succeeded. Extraction/rendering was not exhaustive review; main PDF/figure pixels, code, peer review and raw data were not reviewed. CC BY 4.0 has third-party exceptions; no source assets are bundled. Available dedup/restriction records were checked; the historical inventory gap remains.
