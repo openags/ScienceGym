@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **240**.
+Last screened: **2026-10-12**. Candidate count: **241**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2311,4 +2311,16 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms11802/MediaObjects/41467_2016_BFncomms11802_MOESM1513_ESM.pdf), Figure 1, compares spectra before/after fatigue. Its broken-axis stress panel shows early and late segments, not a continuous per-cycle record. Cycle count does not establish independent-specimen replication; the number of independent specimens is unresolved in the selected evidence.
 - Fit is inferred only for qualified prepared films and guarded strain/optical interfaces. Chemical preparation, fluorescent variants and chemically treated wetting tests are outside this branch. Grip safety, fragments and instrument qualification remain open; no recipe, conversion or validated robotic feasibility is supplied.
 - Reading was selective: main transparency-change Results and Characterization; SI captions and rendered page 1 of 14. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, movies and external data were not reviewed. Main HTML and the first SI download succeeded; local rendering warned about font caches but yielded a readable page.
+- **CC BY 4.0**, with third-party exceptions; no source assets bundled. Available catalog, task and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared mid-infrared polarimeter metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [On-chip mid-infrared photothermoelectric detectors for full-Stokes detection](https://www.nature.com/articles/s41467-022-32309-w) | Nature Communications / 2022 | 10.1038/s41467-022-32309-w | Prepared-device registration, polarization/power reference tracking and linked multi-port electrical/imaging records suggest long-horizon optical metrology | Selected cloud-browser main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Dai et al., 13, 4560; published 5 August 2022. The selected three-port branch characterizes polarization-dependent photovoltages and scans a patterned optical mask. It concerns fully polarized light; total intensity S0 is not directly extracted by the three-port device, and intensity-related reconstruction requires calibration. Measured voltages, reconstructed polarization and simulated thermal/optical fields remain distinct.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-32309-w/MediaObjects/41467_2022_32309_MOESM1_ESM.pdf), Note 2 and Figures 19–21, supports calibration-dependent port response and comparisons between input and retrieved polarization. Main Figure 4 reports four replicated measurements, which do not establish independent-device replication. No accuracy or robotic-success threshold is inferred.
+- Fit is limited to qualified prepared devices, finished masks and guarded optical/electrical/positioning interfaces. Fabrication, nanomaterial handling, cryogenic work and laser commissioning are excluded. Invisible-beam exposure, motion and fragile-device handling require separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
+- Reading was selective: main experimental Results, Methods and availability; SI identity/contents, selected Note 2 text and Figures 19–21 captions, with rendered pages 23–25 of 32 inspected. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, peer review and Source Data/raw data were not reviewed. First main-browser access and SI download succeeded; initial main-response persistence failed locally, while later gated selected DOM receipts were saved. Local rendering warned about font caches but produced readable pages.
 - **CC BY 4.0**, with third-party exceptions; no source assets bundled. Available catalog, task and restriction records were checked; the historical inventory gap remains.
