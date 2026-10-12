@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **226**.
+Last screened: **2026-10-12**. Candidate count: **227**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2143,3 +2143,16 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified prepared-specimen optical-profile registration and model comparison. Fabrication, electrical actuation, ion-beam processing, cryogenic commissioning and nanomaterial preparation are excluded. Containment and instrument safety need separate qualification; no operating recipe, task conversion or robotic-feasibility claim is supplied.
 - Reading was selective across main Results/Methods and extracted text from the 10-page SI. Some numerical glyphs were lost during SI extraction; affected values and equations were not used. Figure pixels, rendered equations, main PDF and external reference sources were not reviewed. Readable main HTML carried a cookie-error marker; cloud-browser inspection supplied the SI href, followed by a separately gated first SI download.
 - Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+
+## Additional candidate: prepared nano-spring force metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Silicon nano-kirigami with controlled plastic, elastic and hysteretic deformations](https://www.nature.com/articles/s41467-025-61405-w) | Nature Communications / 2025 | 10.1038/s41467-025-61405-w | Prepared-specimen registration, controlled probe landing and repeated force/displacement records suggest long-horizon mechanical metrology | Selected main HTML and scientific-SI text/figures; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Liang et al., 16, 5512; published 1 July 2025. The mechanical experiments repeatedly load and release silicon web structures, recording force and displacement. AFM comparisons extend the measurements to smaller forces.
+- In the [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-61405-w/MediaObjects/41467_2025_61405_MOESM1_ESM.pdf), Figure S9a shows five measurement series; these do not establish independent-specimen replication. Figure S8 reports simulated stress/strain, and the simple spring approximation is limited to small deformation.
+- Suitability is inferred for qualified prepared specimens and enclosed, interlocked metrology. Fabrication, wet etching, ion-beam processing, electrical actuation and optical-encryption demonstrations are excluded. Fragile-sample containment, probe calibration and instrument safety need separate qualification; no recipe, conversion or validated robotic feasibility is supplied.
+- Reading was selective: main elastic-response passages and fabrication/safety context; SI title page and pages 8–9, including rendered figures. Remaining SI, movies, main PDF, peer review and request-only data/code were not reviewed.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source assets are bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
