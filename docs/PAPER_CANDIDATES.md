@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **233**.
+Last screened: **2026-10-12**. Candidate count: **234**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2229,4 +2229,16 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-51670-6/MediaObjects/41467_2024_51670_MOESM1_ESM.pdf), Notes VIII and X, describes bounded perturbation comparisons and additional attempts. Two predicted mode peaks were not resolved experimentally, and experimental scaling-law verification was unsuccessful. These negative outcomes remain explicit; no arbitrary-perturbation robustness is inferred.
 - Suitability is inferred only for qualified, prepared cavities and guarded acoustic, electrical and positioning interfaces. Resin printing, drilling, fabrication and instrument commissioning are excluded. Exposure, probe-contact and motion safety need separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
 - Reading was selective: main experimental and numerical-context passages, Methods and availability; SI identity and selected text on pages 9 and 11 of 12. Main reader HTML carried a cookie-error marker; the publisher SI href was separately observed in the cloud browser. The first SI page-9 screenshot failed with Cache miss; no pixels, retry or alternate route followed. Main PDF, figures, peer review and request-only raw data were not reviewed; neither source was exhaustively read.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source content is bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared lossy-cavity acoustic metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Lossy phononic metamaterials for valley nonreciprocity](https://www.nature.com/articles/s41467-026-70037-7) | Nature Communications / 2026 | 10.1038/s41467-026-70037-7 | Prepared-specimen registration, source/probe transfers, port-state tracking and spatial pressure comparisons suggest long-horizon acoustic metrology | Selected main HTML and scientific-SI text; cookie-error marker; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Yin et al., 17, 3428; published 5 March 2026, version of record 13 April 2026. Experiments measure pressure responses in lossy cavity-tube structures. The paper's term "valley nonreciprocity" does not establish general acoustic-isolator performance or a broad violation of conventional reciprocity in this screening.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70037-7/MediaObjects/41467_2026_70037_MOESM1_ESM.pdf), Notes 2–4, distinguishes measured two-cavity responses, simulation-based parameter fitting and boundary-specific acoustic measurements. Fitted parameters, normalized fields, theory and measurements remain separate; repeated positions or spectra do not establish independent specimens.
+- Suitability is inferred only for qualified, prepared specimens and guarded acoustic, electrical and positioning interfaces. Fabrication, drilling, resin processing and source construction are excluded. Exposure, probe-contact, port-state and motion safety require separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
+- Reading was selective: main experimental Results, Methods and availability; SI cover/contents and selected text on pages 9–12 of 14. The SI cover says "Lossy phononic metamaterials for valley manipulation"; the official link and authors associate it with this article, but the title difference remains unresolved. Malformed extracted equation symbols were not validated. Main reader HTML carried a cookie-error marker; cloud-browser HTML and the first publisher-linked SI download succeeded. Main PDF, figure pixels, peer review, raw data and code were not reviewed; neither source was exhaustively read. Additional data and code are request-only.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source content is bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
