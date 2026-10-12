@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **241**.
+Last screened: **2026-10-12**. Candidate count: **242**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2324,3 +2324,21 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Fit is limited to qualified prepared devices, finished masks and guarded optical/electrical/positioning interfaces. Fabrication, nanomaterial handling, cryogenic work and laser commissioning are excluded. Invisible-beam exposure, motion and fragile-device handling require separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
 - Reading was selective: main experimental Results, Methods and availability; SI identity/contents, selected Note 2 text and Figures 19–21 captions, with rendered pages 23–25 of 32 inspected. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, peer review and Source Data/raw data were not reviewed. First main-browser access and SI download succeeded; initial main-response persistence failed locally, while later gated selected DOM receipts were saved. Local rendering warned about font caches but produced readable pages.
 - **CC BY 4.0**, with third-party exceptions; no source assets bundled. Available catalog, task and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: nonlinear RF waveguide metrology (2026-10-12)
+
+One additional **CANDIDATE** has selected main-text and scientific-supplement screening. Existing candidates and reviewed-design counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Dynamic switching from coherent perfect absorption to parametric amplification in a nonlinear spoof plasmonic waveguide](https://www.nature.com/articles/s41467-024-47191-x) | Nature Communications / 2024 | 10.1038/s41467-024-47191-x | Prepared-waveguide exchange, instrument synchronization and phase/frequency comparisons suggest a staged RF configuration-and-measurement task | Official main HTML and 14-page scientific SI accessible through cloud Chrome; selected text screened; OA |
+
+### Screening scope and limits
+
+- Exact title, journal, year and DOI were verified on the publisher page. Selected experimental Results and Measurement Methods were screened alongside selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-47191-x/MediaObjects/41467_2024_47191_MOESM1_ESM.pdf) Notes 2–5. The title-matched technical supplement was distinguished from the separate peer-review file
+- Potential suitability is limited to prepared devices and qualified RF metrology. Device identification, cable/connector custody, synchronized instrument settings and comparison records suggest long-horizon structure. This is an inference; fabrication, soldering, increased-power experiments and hardware commissioning are outside the proposed branch
+- Different waveguide lengths are experimental design conditions. Unit-cell counts, phase points and repeated instrument readings do not establish independent specimen replication. Independent-device counts and repeat-trial totals remain unverified
+- Measured gain comparisons remain separate from simulated scattering, calculated dispersion, calculated linewidth trends and length optimization. The effective nonlinear-parameter product is inferred from measurements. Conditional undepleted-pump assumptions, finite phase-setting precision and measured departures from the model remain explicit. In the measured reversed-frequency branch (SI Note 5/Fig. 7), coherent perfect absorption is limited to specific signal powers and phase tuning did not reach perfect transmission
+- Main prose differs about which input arm contains the phase shifter; selected main/SI pump values also differ slightly. Neither is silently reconciled into an operating instruction
+- Review was selective text screening, supplemented by independent inspection of SI page 14 pixels; mathematical extraction fidelity remains incomplete. Main figures, other SI pixels, raw data, code and external references were not reviewed. Neither source was exhaustively read; no new source access failure or retry occurred
+- The page displays CC BY 4.0, subject to component credit lines. Known-identity/hold checks passed; the historical exclusion inventory remains incomplete. This adds a citation only, with no procedures, achievement targets or runnable task
