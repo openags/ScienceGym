@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **232**.
+Last screened: **2026-10-12**. Candidate count: **233**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2218,3 +2218,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified, finished, contained specimens and guarded mechanical-testing interfaces. Chemical synthesis, spinning/coating, drying, irradiation, thermal/flame tests and human-garment experiments are excluded. Fiber shedding, specimen containment, grip and pinch-point safety require separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
 - Reading was selective: main mechanical-property Results, Figure 4 caption, characterization and scope/safety context; SI identity/contents, selected simulation context and Figures 23–26 captions, with rendered pages 19–20 of 24 inspected. SI was not exhaustively reviewed; main figure pixels/PDF, movie, supplemental-file descriptions, peer review, Source Data and request-only data were not reviewed. Local PDF rendering emitted font-cache warnings but produced readable selected pages; no publisher access failure or retry occurred.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source assets are bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared acoustic-cavity metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Observation of monopole topological mode](https://www.nature.com/articles/s41467-024-51670-6) | Nature Communications / 2024 | 10.1038/s41467-024-51670-6 | Prepared-cavity registration, source/probe positioning and repeated spectral and perturbation comparisons suggest long-horizon acoustic metrology | Selected main HTML and scientific-SI text; cookie-error marker; SI screenshot failed; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Cheng et al., 15, 7327; published 26 August 2024. Experiments measure acoustic spectra and spatial pressure responses in a cavity analogue of a topological mode. Signal averaging is distinct from independent-specimen replication; numerical scaling predictions are not experimental measurements.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-51670-6/MediaObjects/41467_2024_51670_MOESM1_ESM.pdf), Notes VIII and X, describes bounded perturbation comparisons and additional attempts. Two predicted mode peaks were not resolved experimentally, and experimental scaling-law verification was unsuccessful. These negative outcomes remain explicit; no arbitrary-perturbation robustness is inferred.
+- Suitability is inferred only for qualified, prepared cavities and guarded acoustic, electrical and positioning interfaces. Resin printing, drilling, fabrication and instrument commissioning are excluded. Exposure, probe-contact and motion safety need separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
+- Reading was selective: main experimental and numerical-context passages, Methods and availability; SI identity and selected text on pages 9 and 11 of 12. Main reader HTML carried a cookie-error marker; the publisher SI href was separately observed in the cloud browser. The first SI page-9 screenshot failed with Cache miss; no pixels, retry or alternate route followed. Main PDF, figures, peer review and request-only raw data were not reviewed; neither source was exhaustively read.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source content is bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
