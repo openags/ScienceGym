@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **225**.
+Last screened: **2026-10-12**. Candidate count: **226**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2131,3 +2131,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Reading was selective across main Results/Methods and the 43-page SI. Figure pixels, rendered equations, remaining SI sections, main PDF, peer review and Source Data were not reviewed. Readable HTML carried a cookie-error marker; no repair or bypass was attempted.
 - Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions; no source content bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
 
+
+## Additional candidate: non-contact membrane-profile metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [The effect of intrinsic crumpling on the mechanics of free-standing graphene](https://www.nature.com/articles/ncomms9789) | Nature Communications / 2015 | 10.1038/ncomms9789 | Prepared-specimen registration, optical profiling and matching measurement records suggest a membrane-metrology workflow | Selected main HTML + scientific-SI text; reader cookie marker; CC BY 4.0 |
+
+- **CANDIDATE only.** Nicholl et al., 6, 8789; published 6 November 2015. Experiments infer effective stiffness from membrane profiles, electrostatic loading and geometric assumptions. This is not a direct bond-stiffness or breaking-strength measurement. Temperature-dependent measurements and room-temperature device comparisons involve different cohorts.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms9789/MediaObjects/41467_2015_BFncomms9789_MOESM913_ESM.pdf), Figures 1, 3, 4 and 6 captions/prose, separates analytical/FEM checks from calibrated AFM comparisons. The AFM method is limited to circular membranes; an unusually wrinkled illustrated specimen is not representative. Molecular-dynamics results have size-dependent limits on quantitative experimental comparison.
+- Suitability is inferred only for qualified prepared-specimen optical-profile registration and model comparison. Fabrication, electrical actuation, ion-beam processing, cryogenic commissioning and nanomaterial preparation are excluded. Containment and instrument safety need separate qualification; no operating recipe, task conversion or robotic-feasibility claim is supplied.
+- Reading was selective across main Results/Methods and extracted text from the 10-page SI. Some numerical glyphs were lost during SI extraction; affected values and equations were not used. Figure pixels, rendered equations, main PDF and external reference sources were not reviewed. Readable main HTML carried a cookie-error marker; cloud-browser inspection supplied the SI href, followed by a separately gated first SI download.
+- Publisher licence: **CC BY 4.0**, with third-party exceptions; no source content bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
