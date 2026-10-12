@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-12**. Candidate count: **236**.
+Last screened: **2026-10-12**. Candidate count: **237**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2266,3 +2266,15 @@ One **CANDIDATE** is added after selected official main-text and scientific-SI s
 - Suitability is inferred only for qualified prepared devices, contained nonbiological samples and guarded acoustic, electrical and optical interfaces. Fabrication, etching, laser cutting, exposed-electronics work, biological samples and instrument commissioning are excluded. Containment, exposure and positioning safety need separate qualification; no recipe, task conversion or validated robotic feasibility is supplied.
 - Reading was selective: main characterization, bead-patterning, imaging and availability passages; SI identity, selected Notes 1–3 and Figures 2–6 captions from the 18-page PDF. Main browser HTML and the first publisher-linked SI download succeeded. Main PDF, figure pixels, movies, supplementary-file descriptions, reporting summary, peer review and raw data/code were not reviewed; neither source was exhaustively read.
 - Publisher licence: **CC BY 4.0**, with third-party exceptions. No source content is bundled. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
+
+## Additional candidate: prepared MOEMS gravity metrology (2026-10-12)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A μGal MOEMS gravimeter designed with free-form anti-springs](https://www.nature.com/articles/s41467-025-57176-z) | Nature Communications / 2025 | 10.1038/s41467-025-57176-z | Prepared-device registration, orientation tracking and synchronized reference/time-series comparisons suggest long-horizon physical metrology | Selected main HTML and scientific-SI text/figures; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Wu et al., 16, 1786; published 20 February 2025. Experiments characterize optical readout, mechanical response and relative-gravity signals against a commercial reference. Raw and linear-drift-removed records remain distinct; repeated samples in a time series do not establish independent-device replication.
+- Selected [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-57176-z/MediaObjects/41467_2025_57176_MOESM1_ESM.pdf), Notes 4 and 8 and Figures 12 and 19, distinguishes simulated optical/thermal fields, measured resistor temperature and separately labeled noise components. Note 8 cites Figure 8c while the adjacent thermal-control figure is labeled 12; this mismatch remains unresolved. Neither temperature stability nor reference correlation establishes absolute-gravity accuracy or deployment readiness.
+- Suitability is inferred only for qualified, packaged devices and guarded optical, electrical and positioning interfaces. Fabrication, etching, bonding, exposed-electronics work and instrument commissioning are excluded. Optical exposure, motion and fragile-device handling need separate qualification; no recipe, conversion or validated robotic feasibility is supplied.
+- Reading was selective: main experimental Results, captions and availability; SI identity/contents and selected passages, with rendered pages 26 and 50 of 62 inspected. Main reader HTML carried a cookie-error marker; first cloud-browser HTML and publisher-linked SI download succeeded. Local rendering produced readable pages with font-cache warnings. Main PDF/figure pixels, reporting summary, peer review, Source Data and code were not reviewed; neither written source was exhaustively read.
+- Publisher licence: **CC BY-NC-ND 4.0**, with third-party exceptions. No source content is bundled or adaptation rights granted. Available catalog, nested README, task-source and restriction records were checked; the historical inventory gap remains.
