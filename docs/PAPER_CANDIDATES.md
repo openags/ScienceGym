@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **255**.
+Last screened: **2026-10-13**. Candidate count: **256**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2494,4 +2494,17 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-50870-4/MediaObjects/41467_2024_50870_MOESM1_ESM.pdf), Discussions 4-5, separates measured device performance from projected shorter-cycle performance. Figure 21 shows an initial mechanical decline and continued thermal-response decline during cycling; the approximately 1,000-cycle evidence is not a service-life validation. Six same-condition tests in main Figure 1 do not establish six independent specimens.
 - Future fit requires prepared composites and qualified guarded mechanical, thermal and contained-fluid interfaces. Specimen lineage, conditioning, infrared emissivity, grip integrity, fatigue and thermal equilibration remain dependencies. Solvent/nanofiller processing, hot fabrication, cryogenic preparation, X-ray work and device commissioning are excluded. No procedure, task conversion or validated robotic feasibility is supplied.
 - Selected main Results/Methods/availability/rights and SI Discussions 4-5 were screened; SI pages 38 and 43 of 53 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, source-data workbook, peer review and external references remain unreviewed. First main access and exact publisher-linked SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
+
+
+## Additional candidate: prepared multimodal optical-sensor metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Multi-modal deformation and temperature sensing for context-sensitive machines](https://www.nature.com/articles/s41467-023-42655-y) | Nature Communications / 2023 | 10.1038/s41467-023-42655-y | Prepared-sensor identities, deformation histories and paired optical/mechanical observations suggest long-horizon multimodal calibration | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Baines et al., 14, 7499; published 18 November 2023. Physical tests distinguish bending, stretch, compression and sequentially combined stimuli. Thermal response is binary; separation from deformation requires steady-state heated absorbance. Five tests of the same specimen establish within-specimen repeatability, not independent-sample replication.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-42655-y/MediaObjects/41467_2023_42655_MOESM1_ESM.pdf), Figures 3, 6, 7 and 9, supports the characterization fixture, cyclic response, failure endpoint and sequential bending/stretch interpretation. The 500-cycle result is not a service-life validation. A [publisher correction](https://www.nature.com/articles/s41467-023-44212-z) fixes visualization of Figure 3a/b insets; correction text checked, figure pixels unreviewed.
+- Future fit requires prepared sensors and qualified guarded mechanical, optical and thermal interfaces. Mount registration, baseline calibration, stimulus order, thermal equilibration and specimen damage remain dependencies. Sensor fabrication, hot-air operation, human-worn studies and manipulator commissioning are excluded. No procedure, task conversion or validated robotic feasibility is supplied.
+- Selected main Results/Methods/availability/rights and SI captions 3, 6, 7 and 9 were screened; SI pages 6 and 9 of 9 were visually inspected. Neither main nor SI was exhaustively reviewed. Other figure pixels, movies, raw data, code and peer review remain unreviewed. First official main, exact publisher-linked SI download and correction access succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
+
 
