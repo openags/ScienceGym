@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **244**.
+Last screened: **2026-10-13**. Candidate count: **245**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2365,3 +2365,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Heater-based “simulated displays” are physical surrogates; calculated film cooling power and SI Figure 15/Table 5 transient models remain separate from measurements. The LED illuminated-condition output comparison uses temperature matching. Model-specific assumptions are not converted into operating defaults.
 - Screening covered selected main Results, Methods and availability, plus selected text from the 23-page SI and rendered pages 6 and 20. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, Source Data, peer review and external references were not reviewed. Main access, SI download and selected local review succeeded without retries.
 - **CC BY 4.0**, with third-party exceptions; citation only, no source assets, procedure, task conversion, performance target or validated robotic feasibility. Known checks passed; historical inventory remains incomplete.
+
+## Additional candidate: prepared tactile-sensor metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A robotic sensory system with high spatiotemporal resolution for texture recognition](https://www.nature.com/articles/s41467-023-42722-4) | Nature Communications / 2023 | 10.1038/s41467-023-42722-4 | Prepared-sensor identities, repeated fixed-fixture measurements and linked controls suggest long-horizon tactile metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Bai et al., 14, 7121; published 14 November 2023. Fixed-fixture experiments measure prepared-texture responses. Recorded capacitance, transformed signals and classifier predictions remain distinct.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-42722-4/MediaObjects/41467_2023_42722_MOESM1_ESM.pdf), Figures 2, 10 and 19, supports cycling, material-stiffness comparisons and a fingerprint-free control. Cycles and signal datasets do not establish independent sensors or textile lots; no generalization or accuracy threshold is inferred.
+- Fit is limited to prepared encapsulated sensors, finished inert textures/textiles and qualified fixed fixtures. Fabrication, chemical handling, circuit commissioning, human-participant/random-finger trials and manual-pull response timing are excluded. Guarding and sensor containment need qualification; no recipe, task conversion or robotic-feasibility claim is supplied.
+- Selective review covered main Results/Methods and availability, SI identity/text and rendered pages 6, 14 and 26 of 29. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, movies, reporting summary, peer review, external code and raw data were not reviewed. First main access and SI download succeeded.
+- **CC BY 4.0**, with third-party exceptions; no source assets bundled. Catalog, task and restriction checks retain the historical inventory gap.
