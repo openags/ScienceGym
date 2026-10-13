@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **250**.
+Last screened: **2026-10-13**. Candidate count: **251**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2437,3 +2437,14 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-28223-w/MediaObjects/41467_2022_28223_MOESM1_ESM.docx), Sections 1-3, supports calibration and fundamental-resonance electrical corroboration; instrument bandwidth prevents higher-mode confirmation. Ten calibration runs and scan points do not establish independent-device replication. The main article cites SI Note 5, but this supplement ends at Section 4; unresolved.
 - Future fit requires prepared packaged devices and qualified enclosed optical/RF services; these interfaces and robotic handling are not established. Fabrication, chemical processing, wire bonding, beam alignment and commissioning are excluded. No procedure, task conversion or validated feasibility is supplied.
 - Selected main Results/Methods/availability/rights and SI text were reviewed; all six rendered SI pages were inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, movies, peer review, raw data and external references were unreviewed; data are on request. First main access and SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known checks retain the historical inventory gap.
+
+## Additional candidate: prepared water-wave reservoir metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Autonomous robotic operation controlled by wave-based neuromorphic hardware](https://www.nature.com/articles/s41467-026-77661-3) | Nature Communications / 2026 | 10.1038/s41467-026-77661-3 | Apparatus-state identities, reference images, acquisition timing and train/test lineage suggest long-horizon physical-computing metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Zohar et al., 17, 10677. Physical water-wave interactions supply camera-derived features to a host-computer SVM. The real-car demonstration uses an off-board reservoir; event-driven vehicle control is virtual-only, and the spin-wave extension is simulated.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77661-3/MediaObjects/41467_2026_77661_MOESM1_ESM.pdf), Sections S1-S3, supports apparatus stabilization and readout comparisons. Randomized training/test iterations do not establish independent-apparatus replication. Reported acquisition cadences differ between Methods and results; SI Figure 2 repeats channel labels inconsistent with its caption. Both remain unresolved. Accelerated video playback is not experiment time.
+- Future fit requires prepared apparatus, qualified wet/electrical interfaces and guarded actuation. Spill control, calibration, reset and mobile-platform containment need qualification. Construction, circuit commissioning and unrestricted vehicle operation are excluded; no procedure, task conversion or validated robotic feasibility is supplied.
+- Selected main Results/Methods/availability/rights and SI text were screened; SI pages 2-4 of 18 were inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, other SI pixels, movies, separate movie-description file, raw data, code and peer review remain unreviewed. Main and first SI retrievals succeeded; readable main responses carried a cookie-error redirect marker. **CC BY 4.0**, with component exceptions; no source assets bundled. Known checks retain the historical inventory gap.
