@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **248**.
+Last screened: **2026-10-13**. Candidate count: **249**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2414,3 +2414,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Fit is limited to prepared specimens and qualified AFM/Raman services with linked calibration and custody records. Fabrication, high-voltage actuation, contact transfer/disassembly, calibration commissioning and beam alignment are excluded. Fragile-specimen handling and instrument interfaces require qualification; no procedure, task conversion or validated robotic feasibility is supplied.
 - Selective review covered main experimental Results/Methods, SI identity and Section 7 text, and SI pages 11 and 14 of 18. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, movies/descriptions, peer review, Source Data and external references remain unreviewed. Main access, SI download and selected local rendering succeeded without source retries.
 - **CC BY-NC-ND 4.0**, with component exceptions; citation only, no source assets or adaptation rights. Catalog, task and restriction checks retain the historical inventory gap.
+
+## Additional candidate: prepared thermocapillary microgear metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Micromotors with asymmetric shape that efficiently convert light into work by thermocapillary effects](https://www.nature.com/articles/ncomms8855) | Nature Communications / 2015 | 10.1038/ncomms8855 | Prepared-specimen identities, interface controls and linked optical-tracking/absorbance records suggest long-horizon metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Maggi et al., 6, 7855; published 29 July 2015. Video-derived angular trajectories characterize prepared microgears at a liquid-air interface. Fitted drag, inferred absorbance, modeled temperature fields and efficiency estimates remain distinct from directly recorded images.
+- Main Figure 3 compares ten gears from one batch; illumination settings and frames do not establish independent-batch replication. Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms8855/MediaObjects/41467_2015_BFncomms8855_MOESM591_ESM.pdf), Figure 3 and the absorption Discussion, links reflection/transmission contrasts to inferred absorbance. Its caption says three gears, while the figure shows two and the Discussion describes two; the discrepancy remains unresolved.
+- The interface liquid is N-methyl-2-pyrrolidone. Future fit requires qualified specimen custody and enclosed solvent/optical service interfaces; those interfaces are not established by this source. Fabrication, release, open-solvent handling and apparatus commissioning are excluded. No procedure, task conversion or robotic-feasibility claim is supplied.
+- Selective review covered main experimental Results/Discussion, optical Methods and rights, plus selected text from the six-page SI and rendered pages 3-4. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, movies, external references and raw data were not reviewed. Main access and first SI download succeeded; local rendering produced readable pages despite font-cache warnings.
+- **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog, task and restriction checks retain the historical inventory gap.
