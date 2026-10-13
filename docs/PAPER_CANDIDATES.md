@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **247**.
+Last screened: **2026-10-13**. Candidate count: **248**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2401,3 +2401,16 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Fit is limited to qualified prepared cavity assemblies and guarded acoustic/optical fixtures. Fabrication, bonding/sealing, laser alignment and apparatus commissioning are excluded. Acoustic exposure, fragile glass and laser enclosure require separate qualification; no procedure, task conversion or validated robotic feasibility is supplied.
 - Selective review covered main experimental Results, Methods and availability, SI identity and Sections 5–6, with rendered pages 9, 13 and 14 of 15 inspected. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, external data/code and peer review were not reviewed. Main access and the first SI download succeeded.
 - **CC BY 4.0**, with third-party exceptions; no source assets bundled. Catalog, task and restriction checks retain the historical inventory gap.
+
+## Additional candidate: prepared microscale sliding-contact metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Electrostatic in-plane structural superlubric actuator](https://www.nature.com/articles/s41467-024-55078-0) | Nature Communications / 2025 | 10.1038/s41467-024-55078-0 | Prepared-contact identities, sliding histories and linked AFM/Raman records suggest long-horizon tribology metrology | Selected main HTML and scientific-SI text/figures; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Huang et al., 16, 493; published 8 January 2025. The selected branch concerns prepared graphite-flake/silica-track contacts. Electrostatic actuation, charge-injection measurements and simulations remain separate.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-55078-0/MediaObjects/41467_2024_55078_MOESM1_ESM.pdf), Section 7 and Figures 5–6, supports calibration, friction-loop analysis and post-sliding inspection. Fifty continuous loops per condition and 11,000 consecutive cycles do not establish independent-device replication.
+- Cantilever signals, lateral/normal calibrations and friction estimates remain distinct. Side-push readings include a substrate-contact background. Tapping-mode amplitude contrast is not quantitative height; local Raman non-detection does not establish universal zero wear. Contact exposure changes specimen state.
+- Fit is limited to prepared specimens and qualified AFM/Raman services with linked calibration and custody records. Fabrication, high-voltage actuation, contact transfer/disassembly, calibration commissioning and beam alignment are excluded. Fragile-specimen handling and instrument interfaces require qualification; no procedure, task conversion or validated robotic feasibility is supplied.
+- Selective review covered main experimental Results/Methods, SI identity and Section 7 text, and SI pages 11 and 14 of 18. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, movies/descriptions, peer review, Source Data and external references remain unreviewed. Main access, SI download and selected local rendering succeeded without source retries.
+- **CC BY-NC-ND 4.0**, with component exceptions; citation only, no source assets or adaptation rights. Catalog, task and restriction checks retain the historical inventory gap.
