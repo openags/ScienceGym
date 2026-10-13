@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **256**.
+Last screened: **2026-10-13**. Candidate count: **257**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2507,4 +2507,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Future fit requires prepared sensors and qualified guarded mechanical, optical and thermal interfaces. Mount registration, baseline calibration, stimulus order, thermal equilibration and specimen damage remain dependencies. Sensor fabrication, hot-air operation, human-worn studies and manipulator commissioning are excluded. No procedure, task conversion or validated robotic feasibility is supplied.
 - Selected main Results/Methods/availability/rights and SI captions 3, 6, 7 and 9 were screened; SI pages 6 and 9 of 9 were visually inspected. Neither main nor SI was exhaustively reviewed. Other figure pixels, movies, raw data, code and peer review remain unreviewed. First official main, exact publisher-linked SI download and correction access succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
 
+
+## Additional candidate: prepared solar-evaporator metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Thermo-adaptive interfacial solar evaporation enhanced by dynamic water gating](https://www.nature.com/articles/s41467-024-50279-z) | Nature Communications / 2024 | 10.1038/s41467-024-50279-z | Prepared-evaporator identities, thermal and mass histories, salt-recovery states and condensate collection suggest long-horizon comparative testing | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Wang et al., 15, 6157; published 22 July 2024. Physical laboratory comparisons and an outdoor collection demonstration support a possible prepared-material task family around evaporation, fouling and recovery histories. Artificial seawater tests are physical experiments, not computational simulations. Time-series points and cycling observations do not establish independent-sample replication; independent specimen counts were not established in the selected material.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-50279-z/MediaObjects/41467_2024_50279_MOESM1_ESM.pdf), Figures 6, 12, 15 and 17, supports the measurement fixture, control comparison, salt-dissolution sequence and salinity/outdoor observations. Headline efficiency is not a validated target: main Methods and SI Note 2 differ in dark-baseline bookkeeping; total losses are stated as 13.0% in the main versus 12.2% in SI Note 3; SI Table 1 distinguishes calorimetry and vaporization-test enthalpies, while its following prose mixes the reported values.
+- Future fit requires prepared evaporators and controls, qualified guarded illumination/thermal interfaces, stable balance registration and traceable reservoir/condensate identities. Botanical-derived coating is treated only as a prepared nonliving material. Material extraction, synthesis and coating fabrication, micro-CT operation and drinking-water certification are outside this candidate scope. No procedure, task conversion, assets or validated robotic feasibility is supplied.
+- Selected main Results/Methods/availability/rights and SI Notes 2-3, Figures 6, 12-13, 15-17 and Table 1 were screened; SI pages 13, 19, 22, 24 and 26 of 29 were visually inspected. Neither source was exhaustively reviewed. Main figure pixels, other SI pixels, movies, raw/source data and peer review remain unreviewed. First official main and exact publisher-linked SI accesses succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
 
