@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **245**.
+Last screened: **2026-10-13**. Candidate count: **246**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2376,4 +2376,16 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-42722-4/MediaObjects/41467_2023_42722_MOESM1_ESM.pdf), Figures 2, 10 and 19, supports cycling, material-stiffness comparisons and a fingerprint-free control. Cycles and signal datasets do not establish independent sensors or textile lots; no generalization or accuracy threshold is inferred.
 - Fit is limited to prepared encapsulated sensors, finished inert textures/textiles and qualified fixed fixtures. Fabrication, chemical handling, circuit commissioning, human-participant/random-finger trials and manual-pull response timing are excluded. Guarding and sensor containment need qualification; no recipe, task conversion or robotic-feasibility claim is supplied.
 - Selective review covered main Results/Methods and availability, SI identity/text and rendered pages 6, 14 and 26 of 29. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, movies, reporting summary, peer review, external code and raw data were not reviewed. First main access and SI download succeeded.
+- **CC BY 4.0**, with third-party exceptions; no source assets bundled. Catalog, task and restriction checks retain the historical inventory gap.
+
+## Additional candidate: prepared Fourier-scatterometry metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Information advantage in sensing revealed by Fano-resonant Fourier scatterometry](https://www.nature.com/articles/s41467-025-66187-9) | Nature Communications / 2025 | 10.1038/s41467-025-66187-9 | Prepared metarings, controls and calibration-linked observations suggest long-horizon metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Feldman et al., 16, 11388. Physical dark-field spectra and Fourier images probe prepared silicon metarings. The information comparison derives its angle-integrated comparator from Fourier images, not independent spectrometer measurements.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66187-9/MediaObjects/41467_2025_66187_MOESM1_ESM.pdf), Notes 1–2, documents the apparatus and camera-noise calibration. Note 3 extends the analysis through calculations. Four metaring pairs support the comparison; independent fabrication batches are not established. On/off-resonance images reuse the same pairs.
+- Fit is limited to finished inert specimens and qualified enclosed optical/positioning interfaces. Fabrication, chemical processing, beam alignment and apparatus commissioning are excluded. Laser enclosure, guarding and specimen handling need qualification; no procedure or task conversion is supplied.
+- Selective review covered main experimental passages and SI identity/text, with SI pages 2 and 4 rendered and inspected. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, external data/code and peer review were not reviewed. Main access and SI download succeeded.
 - **CC BY 4.0**, with third-party exceptions; no source assets bundled. Catalog, task and restriction checks retain the historical inventory gap.
