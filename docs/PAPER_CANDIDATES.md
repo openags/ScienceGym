@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **249**.
+Last screened: **2026-10-13**. Candidate count: **250**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2426,3 +2426,14 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - The interface liquid is N-methyl-2-pyrrolidone. Future fit requires qualified specimen custody and enclosed solvent/optical service interfaces; those interfaces are not established by this source. Fabrication, release, open-solvent handling and apparatus commissioning are excluded. No procedure, task conversion or robotic-feasibility claim is supplied.
 - Selective review covered main experimental Results/Discussion, optical Methods and rights, plus selected text from the six-page SI and rendered pages 3-4. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, movies, external references and raw data were not reviewed. Main access and first SI download succeeded; local rendering produced readable pages despite font-cache warnings.
 - **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog, task and restriction checks retain the historical inventory gap.
+
+## Additional candidate: prepared resonator vibration metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Femtometer-amplitude imaging of coherent super high frequency vibrations in micromechanical resonators](https://www.nature.com/articles/s41467-022-28223-w) | Nature Communications / 2022 | 10.1038/s41467-022-28223-w | Prepared-device identities, calibration and linked optical/electrical records suggest long-horizon metrology | Selected main HTML and scientific-SI DOCX text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Shao et al., 13, 694; published 4 February 2022. Optical measurements include RF-disconnected controls. Measured maps, Fourier-derived dispersion and model predictions remain distinct; detection bandwidth does not establish equivalent spatial imaging fidelity.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-28223-w/MediaObjects/41467_2022_28223_MOESM1_ESM.docx), Sections 1-3, supports calibration and fundamental-resonance electrical corroboration; instrument bandwidth prevents higher-mode confirmation. Ten calibration runs and scan points do not establish independent-device replication. The main article cites SI Note 5, but this supplement ends at Section 4; unresolved.
+- Future fit requires prepared packaged devices and qualified enclosed optical/RF services; these interfaces and robotic handling are not established. Fabrication, chemical processing, wire bonding, beam alignment and commissioning are excluded. No procedure, task conversion or validated feasibility is supplied.
+- Selected main Results/Methods/availability/rights and SI text were reviewed; all six rendered SI pages were inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, movies, peer review, raw data and external references were unreviewed; data are on request. First main access and SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known checks retain the historical inventory gap.
