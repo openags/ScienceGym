@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **252**.
+Last screened: **2026-10-13**. Candidate count: **253**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2460,3 +2460,14 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Future fit is limited to prepared assemblies and qualified contained-fluid, pressure-control and sensor interfaces. Fluid aging, trapped bubbles, valve seating, leak checks and calibration histories remain relevant dependencies. Resin processing, machining, hot casting, pressurized-vessel assembly and commissioning are excluded. No operating procedure, task conversion or validated robotic feasibility is supplied.
 - Selected main Results/Methods/rights and SI text were screened; SI pages 6 and 8 of 9 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, raw data, code, peer review and external references remain unreviewed. First main access and publisher-linked SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
 
+
+## Additional candidate: prepared surface-acoustic-wave chip metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Extended topological valley-locked surface acoustic waves](https://www.nature.com/articles/s41467-022-29019-8) | Nature Communications / 2022 | 10.1038/s41467-022-29019-8 | Prepared-chip identities, transducer references and linked optical/electrical maps suggest long-horizon phononic metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Wang et al., 13, 1324; published 14 March 2022. Laser-vibrometer maps and electrical transmission measurements compare fabricated waveguides, including different interface widths and defect conditions. Measured fields, simulated bands and predicted bandwidths remain distinct; scan points and device variants do not establish independent-device replication.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-29019-8/MediaObjects/41467_2022_29019_MOESM1_ESM.pdf), Note 10, reports transducer-to-transducer insertion loss. The main text's unity-transmittance statement does not establish lossless complete devices. Splitter-port descriptions, main/SI bandwidth percentages and Note 10's three-layer improvement values are inconsistent; unresolved.
+- Future fit requires prepared packaged chips and qualified enclosed optical/RF measurement services. Calibration, contact repeatability, coordinate registration and specimen history need qualification. Microfabrication, electroplating, beam alignment and circuit commissioning are excluded. No operating procedure, task conversion or validated robotic feasibility is supplied.
+- Selected main Results/Methods/availability/rights and SI Notes 6, 8-10 were screened; SI pages 14-15 of 17 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, other SI pixels, raw data, code and peer review remain unreviewed; data are on request. First main access and publisher-linked SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
