@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **253**.
+Last screened: **2026-10-13**. Candidate count: **254**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2471,3 +2471,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-29019-8/MediaObjects/41467_2022_29019_MOESM1_ESM.pdf), Note 10, reports transducer-to-transducer insertion loss. The main text's unity-transmittance statement does not establish lossless complete devices. Splitter-port descriptions, main/SI bandwidth percentages and Note 10's three-layer improvement values are inconsistent; unresolved.
 - Future fit requires prepared packaged chips and qualified enclosed optical/RF measurement services. Calibration, contact repeatability, coordinate registration and specimen history need qualification. Microfabrication, electroplating, beam alignment and circuit commissioning are excluded. No operating procedure, task conversion or validated robotic feasibility is supplied.
 - Selected main Results/Methods/availability/rights and SI Notes 6, 8-10 were screened; SI pages 14-15 of 17 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, other SI pixels, raw data, code and peer review remain unreviewed; data are on request. First main access and publisher-linked SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
+
+## Additional candidate: prepared superlubric-interface metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Robust microscale structural superlubricity between graphite and nanostructured surface](https://www.nature.com/articles/s41467-023-38680-6) | Nature Communications / 2023 | 10.1038/s41467-023-38680-6 | Prepared-interface identities, force-calibration histories and registered friction/topography/Raman observations suggest long-horizon tribological metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Huang et al., 14, 2931; published 22 May 2023. Physical tests compare graphite on flat and nanostructured silicon, with central versus eccentric loading. Low-friction cycling and wear observations are distinct from FEM/MD explanations. Repeated cycles, calibration traces and within-condition tests do not establish independent-specimen replication.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-38680-6/MediaObjects/41467_2023_38680_MOESM1_ESM.pdf), Sections 5-7, supports force calibration, spatial registration and the flat-surface wear comparison. Main-text/Figure 2 coefficient estimates differ, and the AFM naming combines NTEGRA with Cypher; unresolved. The source's no-observable-wear result is bounded by its measurements, not proof of zero wear universally.
+- Future fit requires prepared interfaces and qualified enclosed AFM/Raman services. Fragile-specimen handling, calibration drift, loading-position lineage and destructive endpoint allocation remain unresolved. Microfabrication, chemical processing, probe commissioning, beam alignment and adhesive-assisted flake lifting are excluded. No procedure, task conversion or validated robotic feasibility is supplied.
+- Selected main Results/Methods/availability/rights and SI Sections 5-7 were screened; SI pages 17 and 21 of 37 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, raw data, peer review and external references remain unreviewed. First main access and exact publisher-linked SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
+
