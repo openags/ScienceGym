@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **258**.
+Last screened: **2026-10-13**. Candidate count: **259**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2529,4 +2529,16 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-36939-6/MediaObjects/41467_2023_36939_MOESM1_ESM.pdf), Figures 6, 9 and 13, supports spatial material heterogeneity, the tensile control comparison and linked acoustic/mechanical observations. Central TiO2 detection was limited. Main AE frequency classes extend below the stated Methods filter band, and Figure 13's reinforced-material energy ceiling conflicts with visible peaks; unresolved. AE energy is not independently measured fracture toughness.
 - Future fit requires prepared nonliving coupons and qualified guarded mechanical/acoustic interfaces. Fiber orientation, geometry, hydration history, sensor coupling, specimen lineage and destructive endpoint allocation remain dependencies. Synthesis, chemical processing, nanopowder handling, machining, X-ray operation and unguarded destructive testing are excluded. No operating procedure, task conversion, assets or validated robotic feasibility is supplied.
 - Selected main Results/Discussion/Methods/availability/rights and SI captions were screened; SI pages 7, 10 and 14 of 17 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, other SI pixels, reporting summary, source-data workbook, underlying raw data and external references remain unreviewed. First official main and exact publisher-linked SI accesses succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
+
+
+## Additional candidate: prepared recoverable protein-fiber metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Protein fibers with self-recoverable mechanical properties via dynamic imine chemistry](https://www.nature.com/articles/s41467-023-41084-1) | Nature Communications / 2023 | 10.1038/s41467-023-41084-1 | Prepared-fiber identities, conditioning histories and linked mechanical/humidity observations suggest long-horizon comparative metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Sun et al., 14, 5348; published 2 September 2023. Physical tensile, fatigue/recovery and humidity-actuation tests support a possible prepared-material task family. Main Figure 3d and SI Figure 25 report 30 samples; repeated loading cycles are not independent specimens, and production-batch independence was not established. Proposed molecular recovery mechanisms remain interpretations.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-41084-1/MediaObjects/41467_2023_41084_MOESM1_ESM.pdf), Figures 25, 33 and 42, supports recovery comparisons, storage histories and a limitation of post-stretched-fiber actuation: contraction does not reverse on returning to low humidity. Figure 33 plots eight-month toughness as 48.4 MJ/m3, conflicting with the caption/main-text range of 63-74 MJ/m3; unresolved. The reported 2,000-cycle fatigue/recovery comparison and storage observations do not validate service life.
+- Future fit requires prepared nonliving fibers with chemical-residue clearance and qualified guarded mechanical/humidity interfaces. Fiber diameter, grip registration, conditioning, loading history and destructive endpoint allocation remain dependencies. Protein expression/culture, purification, aldehyde processing, fiber fabrication, tissue/cell studies, strong-acid exposure, cryogenic/high-temperature testing and X-ray operation are excluded. No procedure, task conversion, assets or validated robotic feasibility is supplied.
+- Selected main Results/Discussion/Methods/availability/rights and SI Table 4 and Figures 23-25, 33, 41-42 were screened; SI pages 18, 23 and 29 of 31 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, other SI pixels, reporting summary, movies, source-data workbook and external references remain unreviewed. First official main and exact publisher-linked SI accesses succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
 
