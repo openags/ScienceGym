@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **251**.
+Last screened: **2026-10-13**. Candidate count: **252**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2448,3 +2448,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77661-3/MediaObjects/41467_2026_77661_MOESM1_ESM.pdf), Sections S1-S3, supports apparatus stabilization and readout comparisons. Randomized training/test iterations do not establish independent-apparatus replication. Reported acquisition cadences differ between Methods and results; SI Figure 2 repeats channel labels inconsistent with its caption. Both remain unresolved. Accelerated video playback is not experiment time.
 - Future fit requires prepared apparatus, qualified wet/electrical interfaces and guarded actuation. Spill control, calibration, reset and mobile-platform containment need qualification. Construction, circuit commissioning and unrestricted vehicle operation are excluded; no procedure, task conversion or validated robotic feasibility is supplied.
 - Selected main Results/Methods/availability/rights and SI text were screened; SI pages 2-4 of 18 were inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, other SI pixels, movies, separate movie-description file, raw data, code and peer review remain unreviewed. Main and first SI retrievals succeeded; readable main responses carried a cookie-error redirect marker. **CC BY 4.0**, with component exceptions; no source assets bundled. Known checks retain the historical inventory gap.
+
+## Additional candidate: prepared fluidic-memory network metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [The fluidic memristor as a collective phenomenon in elastohydrodynamic networks](https://www.nature.com/articles/s41467-024-47110-0) | Nature Communications / 2024 | 10.1038/s41467-024-47110-0 | Prepared-network identities, fluid-condition checks, sensor calibration and linked pressure/flow histories suggest long-horizon soft-matter metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Martinez-Calvo et al., 15, 3121; published 10 April 2024. Experiments use sucrose solution and an eight-valve network. Observed pressure-flow hysteresis is distinct from phenomenological and continuum simulations. Fewer observed jumps than valves are attributed to possible grouped switching, rather than independently resolved valve events.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-47110-0/MediaObjects/41467_2024_47110_MOESM1_ESM.pdf), Figure 4, compares a single-valve assembly under two external-resistance conditions. Figure 6 concerns simulations of absolute-pressure dependence, not additional physical validation. Network size and points along a sweep do not establish independent-device replication.
+- Future fit is limited to prepared assemblies and qualified contained-fluid, pressure-control and sensor interfaces. Fluid aging, trapped bubbles, valve seating, leak checks and calibration histories remain relevant dependencies. Resin processing, machining, hot casting, pressurized-vessel assembly and commissioning are excluded. No operating procedure, task conversion or validated robotic feasibility is supplied.
+- Selected main Results/Methods/rights and SI text were screened; SI pages 6 and 8 of 9 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, raw data, code, peer review and external references remain unreviewed. First main access and publisher-linked SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
+
