@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **254**.
+Last screened: **2026-10-13**. Candidate count: **255**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2482,4 +2482,16 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-38680-6/MediaObjects/41467_2023_38680_MOESM1_ESM.pdf), Sections 5-7, supports force calibration, spatial registration and the flat-surface wear comparison. Main-text/Figure 2 coefficient estimates differ, and the AFM naming combines NTEGRA with Cypher; unresolved. The source's no-observable-wear result is bounded by its measurements, not proof of zero wear universally.
 - Future fit requires prepared interfaces and qualified enclosed AFM/Raman services. Fragile-specimen handling, calibration drift, loading-position lineage and destructive endpoint allocation remain unresolved. Microfabrication, chemical processing, probe commissioning, beam alignment and adhesive-assisted flake lifting are excluded. No procedure, task conversion or validated robotic feasibility is supplied.
 - Selected main Results/Methods/availability/rights and SI Sections 5-7 were screened; SI pages 17 and 21 of 37 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, raw data, peer review and external references remain unreviewed. First main access and exact publisher-linked SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
+
+
+## Additional candidate: prepared elastocaloric-composite metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Shearo-caloric effect enhances elastocaloric responses in polymer composites for solid-state cooling](https://www.nature.com/articles/s41467-024-50870-4) | Nature Communications / 2024 | 10.1038/s41467-024-50870-4 | Prepared-composite identities, conditioning histories and linked thermal/mechanical measurements suggest long-horizon cooling-material metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Zhang et al., 15, 6567; published 3 August 2024. Physical tests compare filled and unfilled elastomers and single-/double-unit cooling assemblies. Surface-temperature changes, reservoir cooling and calculated performance metrics are distinct; molecular simulations do not establish experimental replication.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-50870-4/MediaObjects/41467_2024_50870_MOESM1_ESM.pdf), Discussions 4-5, separates measured device performance from projected shorter-cycle performance. Figure 21 shows an initial mechanical decline and continued thermal-response decline during cycling; the approximately 1,000-cycle evidence is not a service-life validation. Six same-condition tests in main Figure 1 do not establish six independent specimens.
+- Future fit requires prepared composites and qualified guarded mechanical, thermal and contained-fluid interfaces. Specimen lineage, conditioning, infrared emissivity, grip integrity, fatigue and thermal equilibration remain dependencies. Solvent/nanofiller processing, hot fabrication, cryogenic preparation, X-ray work and device commissioning are excluded. No procedure, task conversion or validated robotic feasibility is supplied.
+- Selected main Results/Methods/availability/rights and SI Discussions 4-5 were screened; SI pages 38 and 43 of 53 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, source-data workbook, peer review and external references remain unreviewed. First main access and exact publisher-linked SI download succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
 
