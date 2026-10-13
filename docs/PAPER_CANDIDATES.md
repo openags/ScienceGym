@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **243**.
+Last screened: **2026-10-13**. Candidate count: **244**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2353,3 +2353,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Wear analysis separates three measurements on each of three independent samples; sliding cycles are not extra specimens. [Scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69322-2/MediaObjects/41467_2026_69322_MOESM1_ESM.pdf), Figure 21, supports friction/wear comparisons. Figure 23's modeled steel contact is distinct from the main experimental titanium-alloy counterface. Wear-rate normalization is not rederived. The SI movie caption identifies a demonstration machine different from the study tribometer; footage remains unreviewed.
 - Main experimental passages and selected text from the 52-page SI were screened. Main access and SI download succeeded; extraction completed with a nonfatal PDF-index warning. Neither source was exhaustively read; figure pixels, movies and raw data remain unreviewed.
 - **CC BY-NC-ND 4.0**, with third-party exceptions; citation only, no source assets or adaptation rights. Known checks passed; historical inventory remains incomplete.
+
+## Additional candidate: prepared display-cover film metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Transparent radiative cooling cover window for flexible and foldable electronic displays](https://www.nature.com/articles/s41467-024-48840-x) | Nature Communications / 2024 | 10.1038/s41467-024-48840-x | Specimen allocation, bending histories and linked optical/mechanical/thermal records suggest long-horizon metrology | Selected main HTML and scientific-SI text/pixels; CC BY 4.0 |
+
+- **CANDIDATE only.** Lee et al., 15, 4443; published 24 May 2024. Scope is limited to prepared films and preassembled heater/LED/display specimens with fixed, qualified interfaces. Composition controls, moisture-barrier comparisons and linked measurement histories suggest interdisciplinary experimental structure in guarded instruments. Synthesis, particle handling, coating, bonding/curing and instrument commissioning are excluded; suitability is inferred.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-48840-x/MediaObjects/41467_2024_48840_MOESM1_ESM.pdf), Figures 5–11, supports mechanical, bending-history and thermal comparisons. Destructive tensile specimens require separate allocation from repeated film measurements. Main Figures 2/4 and SI Figure 6 report measurement counts, without establishing independent-specimen replication. Bending cycles are not additional specimens.
+- Heater-based “simulated displays” are physical surrogates; calculated film cooling power and SI Figure 15/Table 5 transient models remain separate from measurements. The LED illuminated-condition output comparison uses temperature matching. Model-specific assumptions are not converted into operating defaults.
+- Screening covered selected main Results, Methods and availability, plus selected text from the 23-page SI and rendered pages 6 and 20. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, Source Data, peer review and external references were not reviewed. Main access, SI download and selected local review succeeded without retries.
+- **CC BY 4.0**, with third-party exceptions; citation only, no source assets, procedure, task conversion, performance target or validated robotic feasibility. Known checks passed; historical inventory remains incomplete.
