@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **246**.
+Last screened: **2026-10-13**. Candidate count: **247**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2388,4 +2388,16 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66187-9/MediaObjects/41467_2025_66187_MOESM1_ESM.pdf), Notes 1–2, documents the apparatus and camera-noise calibration. Note 3 extends the analysis through calculations. Four metaring pairs support the comparison; independent fabrication batches are not established. On/off-resonance images reuse the same pairs.
 - Fit is limited to finished inert specimens and qualified enclosed optical/positioning interfaces. Fabrication, chemical processing, beam alignment and apparatus commissioning are excluded. Laser enclosure, guarding and specimen handling need qualification; no procedure or task conversion is supplied.
 - Selective review covered main experimental passages and SI identity/text, with SI pages 2 and 4 rendered and inspected. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, external data/code and peer review were not reviewed. Main access and SI download succeeded.
+- **CC BY 4.0**, with third-party exceptions; no source assets bundled. Catalog, task and restriction checks retain the historical inventory gap.
+
+## Additional candidate: prepared acoustic-cavity metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Realistic prediction and engineering of high-Q modes to implement stable Fano resonances in acoustic devices](https://www.nature.com/articles/s41467-023-42621-8) | Nature Communications / 2023 | 10.1038/s41467-023-42621-8 | Prepared-cavity identities, geometry comparisons and linked acoustic/optical records suggest long-horizon metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Kronowetter et al., 14, 6847; published 27 October 2023. Microphone spectra and optical pressure-field mapping characterize prepared acoustic cavities. LDV-derived pressure fields, Fourier-based mode reconstructions and finite-element predictions remain distinct. Absolute-pressure maps and normalized modal fields are not interchangeable.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-42621-8/MediaObjects/41467_2023_42621_MOESM1_ESM.pdf), Sections 5–6, separates modeled parameter optimization from measurements of selected geometry variants. Ten reported samples span different configurations; spatial scan points and frequency settings do not establish independent replication per geometry. A small main/SI peak-pressure discrepancy remains unresolved.
+- Fit is limited to qualified prepared cavity assemblies and guarded acoustic/optical fixtures. Fabrication, bonding/sealing, laser alignment and apparatus commissioning are excluded. Acoustic exposure, fragile glass and laser enclosure require separate qualification; no procedure, task conversion or validated robotic feasibility is supplied.
+- Selective review covered main experimental Results, Methods and availability, SI identity and Sections 5–6, with rendered pages 9, 13 and 14 of 15 inspected. Neither source was exhaustively read. Main PDF/figure pixels, remaining SI pixels, external data/code and peer review were not reviewed. Main access and the first SI download succeeded.
 - **CC BY 4.0**, with third-party exceptions; no source assets bundled. Catalog, task and restriction checks retain the historical inventory gap.
