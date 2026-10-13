@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **259**.
+Last screened: **2026-10-13**. Candidate count: **260**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2542,3 +2542,14 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Future fit requires prepared nonliving fibers with chemical-residue clearance and qualified guarded mechanical/humidity interfaces. Fiber diameter, grip registration, conditioning, loading history and destructive endpoint allocation remain dependencies. Protein expression/culture, purification, aldehyde processing, fiber fabrication, tissue/cell studies, strong-acid exposure, cryogenic/high-temperature testing and X-ray operation are excluded. No procedure, task conversion, assets or validated robotic feasibility is supplied.
 - Selected main Results/Discussion/Methods/availability/rights and SI Table 4 and Figures 23-25, 33, 41-42 were screened; SI pages 18, 23 and 29 of 31 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, other SI pixels, reporting summary, movies, source-data workbook and external references remain unreviewed. First official main and exact publisher-linked SI accesses succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
 
+
+## Additional candidate: prepared hydrogel-fiber recovery metrology (2026-10-13)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Aqueous spinning of robust, self-healable, and crack-resistant hydrogel microfibers enabled by hydrogen bond nanoconfinement](https://www.nature.com/articles/s41467-023-37036-4) | Nature Communications / 2023 | 10.1038/s41467-023-37036-4 | Prepared-fiber identities, humidity/loading histories and paired mechanical/imaging observations suggest long-horizon recovery metrology | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Shi et al., 14, 1370; published 13 March 2023. Physical tensile, moisture-healing and recovery comparisons support a prepared-material task family. Main Figure 4 reports three independent samples for its specified measurements; SI Figure 18 shows tensile curves from three batches. Repeated loading cycles are not independent specimens. Proposed recovery mechanisms remain interpretations.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-37036-4/MediaObjects/41467_2023_37036_MOESM1_ESM.pdf), Figures 18-19 and 27-29, supports batch comparisons and conditioning-dependent recovery. Main Methods adds 10-minute equilibration before mechanical measurement to the 30-second healing treatment. Fracture energy is explicitly a tentative pure-shear estimate applied to cylindrical fibers; it is not a validated transferable target. Ten recovery cycles do not establish service life.
+- Future fit requires prepared nonliving fibers with chemical-residue clearance and qualified guarded mechanical/humidity interfaces. Diameter, grip registration, hydration/loading history and destructive endpoint allocation remain dependencies. Polymerization, spinning, cutting/notching, acid exposure, UV/thermal processing, X-ray work, animal handling and rescue-device applications are excluded. No procedure, task conversion, assets or validated robotic feasibility is supplied.
+- Selected main Results/Discussion/Methods/availability/rights and scientific-SI text were screened; SI pages 11, 12, 16 and 17 of 26 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, movies, source data and external references remain unreviewed. First official main and exact publisher-linked SI accesses succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
