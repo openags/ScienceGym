@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-14**. Candidate count: **262**.
+Last screened: **2026-10-14**. Candidate count: **263**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2577,3 +2577,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Future fit requires prepared, residue-cleared coupons and qualified guarded mechanical and enclosed optical interfaces. Orientation, geometry, grip registration, specimen lineage, destructive endpoint allocation and temporal resolution remain dependencies. Synthesis, nanopowder/solvent handling, freeze-casting, cutting/notching, sputtering, electron microscopy and hydraulic indentation are excluded. No procedure, task conversion, assets or validated robotic feasibility is supplied.
 - Selected main Results/Discussion/Methods/availability/rights and SI captions 10-24 were screened; SI pages 11, 12, 16 and 22 of 25 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, underlying data and external references remain unreviewed; data are available from the authors on request. First official main and exact publisher-linked SI accesses succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
 
+
+
+## Additional candidate: prepared fracture-acoustic monitoring (2026-10-14)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Aftershock sequences and seismic-like organization of acoustic events produced by a single propagating crack](https://www.nature.com/articles/s41467-018-03559-4) | Nature Communications / 2018 | 10.1038/s41467-018-03559-4 | Prepared-specimen histories and synchronized force, imaging and acoustic observations suggest long-horizon fracture monitoring | Selected main HTML and scientific-SI text/figures; CC BY 4.0 |
+
+- **CANDIDATE only.** Barés et al., 9, 1253; published 28 March 2018. Physical tests on prepared polystyrene artificial-rock blocks connect fracture mechanics, acoustic sensing and statistical seismology. Hours-long observations support a possible future robot task tracking specimen identity, loading history and synchronized signals. Acoustic-event counts are not specimen replicates; independent replication was not established.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-03559-4/MediaObjects/41467_2018_3559_MOESM1_ESM.pdf), Figures 8-11, supports microstructure comparisons, detection limitations and alternative signal-energy definitions. Figure 8's size labels differ between legends and caption, and Figure 9's panel descriptions conflict with plotted labels. Numerical targets are excluded. Statistical similarities do not validate earthquake forecasting.
+- Future fit requires prepared specimens and qualified guarded loading, fragment containment and synchronized sensing. Fabrication, heating, machining, notching and unguarded fracture operations are excluded. No procedure, task conversion, source assets or validated robotic feasibility is supplied.
+- Selected main Results/Discussion/Methods/rights and SI captions were screened; SI pages 8, 9 and 11 of 21 were visually inspected. Neither source was exhaustively reviewed. Main Table 1/PDF/figure pixels, SI derivations, remaining pixels, movie and underlying data remain unreviewed. First official main and scientific-SI accesses succeeded. **CC BY 4.0**, with component exceptions. Known restriction checks retain the historical inventory gap.
