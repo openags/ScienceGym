@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-14**. Candidate count: **263**.
+Last screened: **2026-10-14**. Candidate count: **264**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2589,3 +2589,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-03559-4/MediaObjects/41467_2018_3559_MOESM1_ESM.pdf), Figures 8-11, supports microstructure comparisons, detection limitations and alternative signal-energy definitions. Figure 8's size labels differ between legends and caption, and Figure 9's panel descriptions conflict with plotted labels. Numerical targets are excluded. Statistical similarities do not validate earthquake forecasting.
 - Future fit requires prepared specimens and qualified guarded loading, fragment containment and synchronized sensing. Fabrication, heating, machining, notching and unguarded fracture operations are excluded. No procedure, task conversion, source assets or validated robotic feasibility is supplied.
 - Selected main Results/Discussion/Methods/rights and SI captions were screened; SI pages 8, 9 and 11 of 21 were visually inspected. Neither source was exhaustively reviewed. Main Table 1/PDF/figure pixels, SI derivations, remaining pixels, movie and underlying data remain unreviewed. First official main and scientific-SI accesses succeeded. **CC BY 4.0**, with component exceptions. Known restriction checks retain the historical inventory gap.
+
+
+## Additional candidate: prepared cam-drive comparative metrology (2026-10-14)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Efficient elastocaloric drive system enabled by constant-torque and work-recovery design](https://www.nature.com/articles/s41467-026-73314-7) | Nature Communications / 2026 | 10.1038/s41467-026-73314-7 | Prepared drive configurations and synchronized sensor histories suggest long-horizon comparative mechanical metrology | Selected main HTML and scientific-SI text; figure pixels unverified; CC BY-NC-ND 4.0 |
+
+- **CANDIDATE only.** Žerovnik et al., 17, 6715; published 15 May 2026. Physical comparisons engage one, two or four phase-shifted spring assemblies and record force, displacement and shaft torque. Disc springs serve as mechanical surrogates; an operating cooler is not demonstrated. Mechanical-boundary recovery does not establish electrical efficiency or cooling performance.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73314-7/MediaObjects/41467_2026_73314_MOESM1_ESM.pdf), Figures 5-8 captions and Table 3/Note 1, supports frequency/configuration comparisons, an empty-drive control and supplier-based uncertainty analysis. Independent replication was not established; sampled points and cycles are not independent specimens. Formula layout and figure-dependent numerical claims remain unverified; numerical targets are excluded.
+- Future fit requires prepared apparatus, qualified high-force guarding, electrical enclosure and approved control/sensor interfaces. Configuration identity, synchronization, calibration and loading history remain dependencies. Fabrication, energized reconfiguration, electrical commissioning and exposed moving/load-bearing parts are excluded. No procedure, task conversion, assets or validated robotic feasibility is supplied.
+- Selected main experimental/design/methods/rights text and SI captions/uncertainty text were screened; neither source was exhaustively reviewed. Main PDF/figure pixels, SI pixels, full derivations, movie and underlying data remain unreviewed. Main and scientific-SI text accesses succeeded. One grouped screenshot attempt for SI pages 6, 9 and 19 failed; no retry or alternate route. **CC BY-NC-ND 4.0**, with component exceptions; no source assets bundled. Known restriction checks retain the historical inventory gap.
