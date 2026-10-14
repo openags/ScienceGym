@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-14**. Candidate count: **264**.
+Last screened: **2026-10-14**. Candidate count: **265**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2601,3 +2601,21 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73314-7/MediaObjects/41467_2026_73314_MOESM1_ESM.pdf), Figures 5-8 captions and Table 3/Note 1, supports frequency/configuration comparisons, an empty-drive control and supplier-based uncertainty analysis. Independent replication was not established; sampled points and cycles are not independent specimens. Formula layout and figure-dependent numerical claims remain unverified; numerical targets are excluded.
 - Future fit requires prepared apparatus, qualified high-force guarding, electrical enclosure and approved control/sensor interfaces. Configuration identity, synchronization, calibration and loading history remain dependencies. Fabrication, energized reconfiguration, electrical commissioning and exposed moving/load-bearing parts are excluded. No procedure, task conversion, assets or validated robotic feasibility is supplied.
 - Selected main experimental/design/methods/rights text and SI captions/uncertainty text were screened; neither source was exhaustively reviewed. Main PDF/figure pixels, SI pixels, full derivations, movie and underlying data remain unreviewed. Main and scientific-SI text accesses succeeded. One grouped screenshot attempt for SI pages 6, 9 and 19 failed; no retry or alternate route. **CC BY-NC-ND 4.0**, with component exceptions; no source assets bundled. Known restriction checks retain the historical inventory gap.
+
+
+## Additional candidate title: confined crystal-growth metrology (2026-10-14)
+
+One new **CANDIDATE** is listed below. This is selected-source screening for possible future task design, not a fully read paper, reviewed design, converted task, or runnable experiment.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Crystal growth in confinement](https://www.nature.com/articles/s41467-022-34330-5) | Nature Communications / 2022 | 10.1038/s41467-022-34330-5 | Confined-crystal preparation, thermal or microfluidic control, optical calibration and time-resolved growth imaging suggest a staged sample-handling-and-metrology task | Reader HTML and cloud-browser HTML; selected scientific SI PDF text and pages checked; OA |
+
+### Screening scope and limits
+
+- The official publisher page confirms the title, journal, year and DOI. Selected reading covered the abstract, experimental Results, and Methods on sample preparation, temperature control, supersaturation, calcite experiments and reflection interference contrast microscopy.
+- The publisher-linked scientific [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-34330-5/MediaObjects/41467_2022_34330_MOESM1_ESM.pdf) was lawfully downloaded through the assistant's cloud browser. Selected text and rendered pages 1, 2 and 9 supported calibration, spacer characterization and calcite measurement screening. Calcite imaging resolves collective step motion, not individual molecular steps.
+- The web reader reported a cookie-error URL marker while returning readable article content. The cloud-browser page was readable at the canonical URL. No denied source was retried or accessed by an alternate route.
+- The complete main paper, full SI analysis, movies, code, data and cited precursor methods were not fully reviewed. Chemical handling, microfabrication, thermal stability and microscopic specimen manipulation need separate qualification before conversion.
+- The publisher displays CC BY 4.0. This entry contains a citation and original suitability language; no source PDF, figure, code, dataset or operating procedure is redistributed.
+- Exact identity checks found no match in the fresh catalog, README, nested task material, known prior restrictions or repository issue/PR search. The inherited historical-record gap remains unresolved.
