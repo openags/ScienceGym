@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-13**. Candidate count: **260**.
+Last screened: **2026-10-14**. Candidate count: **261**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2553,3 +2553,15 @@ One additional **CANDIDATE** has selected main-text and scientific-supplement sc
 - Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-37036-4/MediaObjects/41467_2023_37036_MOESM1_ESM.pdf), Figures 18-19 and 27-29, supports batch comparisons and conditioning-dependent recovery. Main Methods adds 10-minute equilibration before mechanical measurement to the 30-second healing treatment. Fracture energy is explicitly a tentative pure-shear estimate applied to cylindrical fibers; it is not a validated transferable target. Ten recovery cycles do not establish service life.
 - Future fit requires prepared nonliving fibers with chemical-residue clearance and qualified guarded mechanical/humidity interfaces. Diameter, grip registration, hydration/loading history and destructive endpoint allocation remain dependencies. Polymerization, spinning, cutting/notching, acid exposure, UV/thermal processing, X-ray work, animal handling and rescue-device applications are excluded. No procedure, task conversion, assets or validated robotic feasibility is supplied.
 - Selected main Results/Discussion/Methods/availability/rights and scientific-SI text were screened; SI pages 11, 12, 16 and 17 of 26 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, remaining SI pixels, movies, source data and external references remain unreviewed. First official main and exact publisher-linked SI accesses succeeded. **CC BY 4.0**, with component exceptions; no source assets bundled. Known catalog/task/restriction checks retain the historical inventory gap.
+
+
+## Additional candidate: prepared flutter-generator comparative metrology (2026-10-14)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Flutter-driven triboelectrification for harvesting wind energy](https://www.nature.com/articles/ncomms5929) | Nature Communications / 2014 | 10.1038/ncomms5929 | Prepared-device identities, flow histories and linked imaging/electrical observations suggest long-horizon comparative metrology | Selected main HTML and scientific-SI text/figures; reuse rights unverified |
+
+- **CANDIDATE only.** Bae et al., 5, 4929; published 23 September 2014. Physical wind-tunnel experiments distinguish contact modes and compare electrical response and prolonged cycling. Repeated contacts and charging cycles are not independent specimens; independent specimen counts were not established. The reported durability observation does not validate service life.
+- Publisher-linked [scientific SI](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms5929/MediaObjects/41467_2014_BFncomms5929_MOESM1110_ESM.pdf), Figures 1 and 4, supports sequential contact imaging and performance/damage observations. Figure 4b's cycle labels conflict with the prose recovery narrative; Table 1 has inconsistent mass-ratio scales and sweep labels. These remain unresolved; dust-recovery claims and numerical regime thresholds are excluded.
+- Future fit requires prepared devices and qualified guarded airflow, imaging and electrically enclosed measurement interfaces. Mount registration, conditioning, flow history, capacitor state and specimen wear remain dependencies. Fabrication, exposed energized parts, circuit commissioning, intentional dust contamination and outdoor/vehicle demonstrations are excluded. No procedure, task conversion, assets or validated robotic feasibility is supplied.
+- Selected main Results/Discussion/Methods/rights and SI captions/Table 1 were screened; SI pages 1, 4, 8 and 9 of 9 were visually inspected. Neither source was exhaustively reviewed. Main PDF/figure pixels, other SI pixels, movies, underlying raw data and external references remain unreviewed. First official main and exact publisher-linked SI accesses succeeded; no reuse license was established and no source assets are bundled. Known catalog/task/restriction checks retain the historical inventory gap.
