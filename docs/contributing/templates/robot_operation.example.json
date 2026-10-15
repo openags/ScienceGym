@@ -61,9 +61,15 @@
   "postconditions": [
     "The same specimen instance occupies the holder and retains its lineage",
     "The gripper is empty and retracted",
-    "The specimen is supported and seating is inspected",
+    "The specimen is supported and seating passes the declared acceptance condition",
     "Clamping and acquisition still require their own operations"
   ],
+  "attempt_outcome_contract": {
+    "success": "Every success postcondition is established by current evidence for this specimen and attempt",
+    "failure": "Retain the observed failure state and block dependent success transitions",
+    "unknown": "Missing or conflicting observations cannot establish success; obtain observations or enter a declared stop/recovery path",
+    "attempt_finished_implies_success": false
+  },
   "completion_evidence": ["Observed seating/identity state linked to the actual specimen and attempt", "Trusted state-transition record if an execution backend is implemented"],
   "failure_and_recovery": [
     {"observation": "Obstruction or incompatible holder", "response": "Keep the specimen supported, retain the failed attempt and return to fixture inspection/reselection"},

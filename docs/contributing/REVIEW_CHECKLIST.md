@@ -22,6 +22,8 @@ Advancement is not automatic. Asset display can improve while task execution rem
 
 Apply the [conversion workflow](PAPER_TO_ROBOT_WORKFLOW.md) before accepting a new or substantively revised paper task as a complete reconstruction of its declared physical scope. Draft work may remain incomplete when explicitly labeled; file counts or JSON parsing cannot establish completeness.
 
+Record these eight gates as PTR-01 through PTR-08 in the [conversion review record](templates/paper_task_review.example.json), or an explicitly mapped equivalent. Follow the [evidence and decision rules](PAPER_TO_ROBOT_WORKFLOW.md#7-record-acceptance-against-evidence): identify exact reviewed content, coverage denominators/exclusions, evidence locators, reviewer/date, blocking findings and affected gates after changes. A completed attempt is not necessarily a successful operation. Template placeholders and this checklist alone do not establish acceptance.
+
 - [ ] Source inventory and coverage dispositions account for preparation, all declared experimental branches, controls/repeats, nonphysical work and closeout
 - [ ] Required final states were traced backwards to resources and producers; initial inventory, causal prerequisites and resource/sample allocations support a valid plan
 - [ ] Dependencies, exclusive/conditional branches, loops/reset and occurrence identities have explicit semantics; no invented source chronology or silently expanded repeat counts
