@@ -1,0 +1,155 @@
+{
+  "schema_version": "sciencegym.directional_cooling.v3",
+  "doi": "10.1038/s41467-018-07293-9",
+  "stations": [
+    {
+      "id": "WS_RECORDS",
+      "role": "Work-order, calibration and archive console with immutable receipts",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_STOCK",
+      "role": "Labeled parts, films, coated-stock inventory and retained carriers",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_FAB",
+      "role": "Explicit stock clamping, machine setup, supervised device cutting, unloading, finishing and dimensional inspection",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_COATING",
+      "role": "Supported disk preparation, masking, robot spray application, intercoat waiting and final cure inspection",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_ASSEMBLY",
+      "role": "Supported assembly bench, film frames, topology mat, dimensional inspection",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_CAL",
+      "role": "Immersion bath, copper block, reference RTD/meter, protected thermocouple DAQ",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_UVVIS",
+      "role": "Cary5000 and DRA2500 compartment, specimen holder, reference ports and scan controls",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_FTIR",
+      "role": "FTIR sphere and variable-angle/polarization fixtures with separate configuration readback",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_OUTDOOR",
+      "role": "Paired supported devices, weather/solar/ambient instruments, protected DAQ and independently controlled four-wire heaters",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_ARCHIVE",
+      "role": "Supported sample storage, separated returns/quarantine and qualified waste collection",
+      "authorship": "task_authored",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "required_feedback": [
+        "object_presence_and_identity",
+        "fixture_or_dock_state",
+        "safe_release_or_isolation",
+        "configuration_readback",
+        "operation_receipt"
+      ]
+    },
+    {
+      "id": "WS_TRANSFER",
+      "role": "Mobile route and dock transfer binding",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_ACTIVE",
+      "role": "Current active station for generic stop/unmount closure; must bind to an actual station",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "authorship": "task_authored"
+    },
+    {
+      "id": "WS_OPTICAL_ACTIVE",
+      "role": "Per-instance binding to actual WS_UVVIS or WS_FTIR; same station through reference/mount/scan/unload",
+      "asset_status": "partial_asset_binding_see_asset_bindings",
+      "authorship": "task_authored"
+    }
+  ],
+  "global_rule": "Physical station actions need qualified public interfaces; device processes do not count as robot hand trajectories"
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sciencegym.directional_cooling.v3.operations",
+  "type": "object",
+  "required": ["schema_version", "doi", "operations"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "sciencegym.directional_cooling.v3"},
+    "doi": {"const": "10.1038/s41467-018-07293-9"},
+    "operations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/operation"}}
+  },
+  "$defs": {
+    "strings": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "operation": {
+      "type": "object",
+      "required": ["id", "title", "location_id", "depends_on", "evidence_ids", "unknown_parameter_ids", "preconditions", "postconditions", "manipulated_objects", "tools_or_interfaces", "reference_steps", "execution_mode", "visibility"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+        "title": {"type": "string", "minLength": 1},
+        "location_id": {"type": "string", "pattern": "^WS_"},
+        "depends_on": {"$ref": "#/$defs/strings"},
+        "evidence_ids": {"$ref": "#/$defs/strings"},
+        "unknown_parameter_ids": {"$ref": "#/$defs/strings"},
+        "preconditions": {"$ref": "#/$defs/strings", "minItems": 1},
+        "postconditions": {"$ref": "#/$defs/strings", "minItems": 1},
+        "manipulated_objects": {"$ref": "#/$defs/strings", "minItems": 1},
+        "tools_or_interfaces": {"$ref": "#/$defs/strings", "minItems": 1},
+        "execution_mode": {"const": "reconstructed_design_not_controller"},
+        "visibility": {"const": "trusted_author_evaluator"},
+        "reference_steps": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/step"}}
+      }
+    },
+    "step": {
+      "type": "object",
+      "required": ["id", "capability", "action", "completion_observation", "basis"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z0-9_]+\\.[0-9]{2}$"},
+        "capability": {"enum": ["perception", "manipulation", "motion", "planning", "analysis", "device_process_or_wait"]},
+        "action": {"type": "string", "minLength": 1},
+        "completion_observation": {"type": "string", "minLength": 1},
+        "basis": {"enum": ["reconstruction_inference", "manufacturer_supplement"]},
+        "inference_id": {"type": "string", "pattern": "^INF_"},
+        "source_id": {"type": "string", "minLength": 1},
+        "source_locator": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {"if": {"properties": {"basis": {"const": "reconstruction_inference"}}}, "then": {"required": ["inference_id"]}},
+        {"if": {"properties": {"basis": {"const": "manufacturer_supplement"}}}, "then": {"required": ["source_id", "source_locator"]}}
+      ]
+    }
+  }
+}

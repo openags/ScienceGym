@@ -1,0 +1,37 @@
+{
+  "schema_version": "sciencegym.directional_cooling.v3",
+  "procedural_success": "All selected, expanded occurrences have valid observations, required state/resource lineage, and verified closeout. An ended attempt is insufficient.",
+  "scientific_metrics": [
+    "emitter minus simultaneous ambient temperature",
+    "paired white/black difference with session and uncertainty",
+    "heater V*I divided by measured emitter area during valid last-120-second plateau interval",
+    "GTI minus DNI only when sun-normal, synchronized and compatible",
+    "spectra with accessory/reference and specimen provenance",
+    "seven-sensor post-equilibrium averages by actual condition"
+  ],
+  "forbidden_success_shortcuts": [
+    "match a literature temperature",
+    "claim a completed macro",
+    "select an evidence category",
+    "count a render as manipulation",
+    "count a test fixture as a real episode"
+  ],
+  "raw_record_contract": {
+    "required": [
+      "record_id",
+      "occurrence_id",
+      "attempt_id",
+      "specimen_id",
+      "assembly_revision",
+      "calibration_ids",
+      "instrument_configuration_id",
+      "timestamp_interval",
+      "units",
+      "raw_file_sha256",
+      "quality_flags",
+      "processing_parent_ids"
+    ],
+    "files_must_exist": true
+  },
+  "implementation_scope": "Static package and symbolic planning validation only; no real acquisition adapter or observation verifier"
+}

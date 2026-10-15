@@ -20,6 +20,14 @@ Paper conversion also requires [reconstructing omitted physical work](docs/contr
 
 The [conversion workflow](docs/contributing/PAPER_TO_ROBOT_WORKFLOW.md) specifies source/coverage review, goal-based causal planning, resource allocation, robot perception/motion/manipulation decomposition, episode and asset bindings, evaluation, and publication. It defines the required roles of JSON/Markdown files under `tasks/<family>/`, with [package](docs/contributing/templates/paper_task_package.example.json) and [operation](docs/contributing/templates/robot_operation.example.json) examples. Source packages remain authoritative; viewer JSON/JS/SVG/Markdown are derived author/evaluator projections, and new schemas require explicit adapters. The [paper-conversion review gates](docs/contributing/REVIEW_CHECKLIST.md#mandatory-paper-conversion-review) do not imply an automatic converter or an implemented robot runtime.
 
+## First reconstruction pilot
+
+The [directional-cooling reconstruction pilot](docs/pilots/DIRECTIONAL_COOLING.md)
+applies this workflow to one existing paper: explicit manipulation steps and
+occurrence planning, manufacturer-backed equipment research, revised metric
+assets and recorded open acceptance gates. It is a review revision of the same
+DOI, not an additional paper or a validated robot experiment.
+
 ## Paper discovery candidates
 
 Browse the [paper candidate list](docs/PAPER_CANDIDATES.md) for titles screened for possible robot-laboratory task conversion. These are discovery candidates, not fully reviewed or converted tasks, and are excluded from the reviewed-design counts above.
