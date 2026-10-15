@@ -2,6 +2,8 @@
 
 The output is an auditable description of a paper's physical experimental program. A protocol summary is only an input to that work. Start from source evidence and end with explicit robot actions, object histories and completion conditions.
 
+Follow the [Paper-to-Robot Task Conversion Workflow](PAPER_TO_ROBOT_WORKFLOW.md) for the required stages, backward/causal planning method, operation granularity, saved artifact roles and processing into viewer/evaluator inputs. Start new packages from the [package manifest](templates/paper_task_package.example.json) and [operation example](templates/robot_operation.example.json), replacing all example/null fields and documenting schema mappings. These are authoring examples, not an installed converter or runtime API.
+
 ## Establish source identity and permission
 
 Claim a DOI-backed issue before extensive conversion. Record the title, authors, formal journal title, DOI, publisher URL, publication/version date and any correction, retraction or updated supplement found during inspection. Check whether a related preprint or existing family already covers the same work; link it and explain the incremental contribution.
@@ -64,6 +66,8 @@ The cooling reference is `tasks/directional_cooling_operations_v2/`. Its files p
 - `tests/`, `STATUS.json`, `VERIFICATION.json`: checks and scoped status receipts
 
 For a new family, propose `tasks/<descriptive_family>_operations_v2/` in its issue and adapt this structure. The suffix is a naming example, not a schema compatibility guarantee. Remove irrelevant inherited content, replace every source identifier and describe the chosen schema/version in the README. Existing microscopy uses different names, including `agentgoal.json`, `initialstate.json` and `operation_sequences.json`; diSPIM uses uppercase filenames. Preserve existing contracts when extending them rather than renaming everything to imitate this guide.
+
+Save a `task_package.json` role map for new conversions, or map an existing equivalent manifest explicitly to the [required artifact roles](PAPER_TO_ROBOT_WORKFLOW.md#4-save-the-conversion-as-a-versioned-task-package). The authored package is authoritative; the explorer's JSON/JS, route diagrams and Markdown maps are derived author/evaluator projections. Add a source-schema adapter and equality tests before registering a new family; a folder of JSON is not automatically a supported viewer or execution environment. Keep concrete episode occurrences and input allocations separate from reusable operation definitions.
 
 ## Worked contribution using cooling film assembly
 

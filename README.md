@@ -16,6 +16,10 @@ New equipment and substantive equipment revisions must follow the [Equipment Rec
 
 Paper conversion also requires [reconstructing omitted physical work](docs/contributing/PAPER_TASK_GUIDE.md#reconstruct-omitted-physical-work) into a complete robot operation chain. Inferred handling and geometry need explicit evidence/constraint bases and assumptions; a gap label or closed service does not substitute for the missing work.
 
+## Paper-to-robot conversion workflow
+
+The [conversion workflow](docs/contributing/PAPER_TO_ROBOT_WORKFLOW.md) specifies source/coverage review, goal-based causal planning, resource allocation, robot perception/motion/manipulation decomposition, episode and asset bindings, evaluation, and publication. It defines the required roles of JSON/Markdown files under `tasks/<family>/`, with [package](docs/contributing/templates/paper_task_package.example.json) and [operation](docs/contributing/templates/robot_operation.example.json) examples. Source packages remain authoritative; viewer JSON/JS/SVG/Markdown are derived author/evaluator projections, and new schemas require explicit adapters. The [paper-conversion review gates](docs/contributing/REVIEW_CHECKLIST.md#mandatory-paper-conversion-review) do not imply an automatic converter or an implemented robot runtime.
+
 ## Paper discovery candidates
 
 Browse the [paper candidate list](docs/PAPER_CANDIDATES.md) for titles screened for possible robot-laboratory task conversion. These are discovery candidates, not fully reviewed or converted tasks, and are excluded from the reviewed-design counts above.
