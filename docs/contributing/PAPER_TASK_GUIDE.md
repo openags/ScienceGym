@@ -38,6 +38,18 @@ For every hands-on step, specify:
 
 Use a gap ledger with an ID, missing/conflicting information, source search performed, affected branches/operations, consequence, proposed resolution and owner if agreed. Distinguish a draft limitation from an execution gate. Unknowns can remain explicit in a reviewed design; operations requiring them cannot claim execution readiness. An unrelated branch can proceed if its dependency closure is complete.
 
+## Reconstruct omitted physical work
+
+The deliverable is a complete robot experiment task chain, including preparation, equipment setup, transfers, measurements, controls, repetition, recovery and closeout. Source omissions require reconstruction work as well as a gap entry. Use experiment principles, the identified equipment's manuals, geometry and physical constraints to infer the missing handling steps. Make one coherent default plan, preserving branches and alternatives where required. Do not stop at an unexplained "prepare", "install", "measure" or "service complete" operation.
+
+Classify each step and important parameter as **source-reported**, **reconstruction inference**, or **unresolved input**. For each inference, record its stable ID, source/constraint basis, rationale, selected assumption, confidence, alternatives, affected operations/assets and a way to check or revise it. An inferred robot procedure is an authored implementation of the experiment, not a claim about the historical human trajectory. Keep numerical settings, chemical recipes, operating limits and scientific results source-bound or explicitly unresolved; procedural completeness does not establish qualified execution.
+
+For example, "mount the specimen and measure" should expand into identifying the specimen and compatible fixture, retrieving and transporting it, opening access, locating/orienting it, fixing and connecting it, inspecting seating/alignment, configuring the instrument, starting/monitoring acquisition, retaining the correct records, releasing/unloading and restoring the station. Specify what the robot sees, moves, touches and decides at each step. Preserve sample identity through every transition. Trace the whole branch from actual starting resources to final disposition and retain repeats and recovery routes.
+
+Separate robot work from a device's legitimate automatic process and waiting. If preparation or fabrication includes hands-on work, reconstruct those actions and required tools instead of hiding them inside a closed service. A scoped draft can identify work still missing, but must not count that work as a reconstructed complete chain. Unknown parameters can remain inputs to explicit actions; missing actions themselves require further reconstruction.
+
+Build an equipment/material/tool inventory from this chain and map each operation to physical parts, states and observations. For commercial equipment, follow the [Equipment Reconstruction and Acceptance Standard](EQUIPMENT_MODELING_STANDARD.md): search real product resources, identify the model/configuration and derive the required geometry from the robot's access and manipulation needs.
+
 ## Use an existing package without assuming a universal schema
 
 The cooling reference is `tasks/directional_cooling_operations_v2/`. Its files provide a practical model:

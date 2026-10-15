@@ -5,6 +5,7 @@ Help turn full papers into inspectable robot task families, or build the assets 
 ## Start with one bounded contribution
 
 1. Read the [project vision](docs/PROJECT_VISION.md), repository README and one relevant task's TASK_DESIGN.md. For a safe mechanical example, use [directional cooling](tasks/directional_cooling_operations_v2/TASK_DESIGN.md).
+   Equipment contributors must also read the [equipment reconstruction standard](docs/contributing/EQUIPMENT_MODELING_STANDARD.md), search the actual product's resources before modeling, and plan the required reference comparisons and robot interactions.
 2. Search open and closed issues, pull requests and `tasks/` for the DOI, title and device name. A preprint, journal version and correction usually belong to one source family, not three independent tasks.
 3. Open or join an issue. State the DOI or asset ID, exact deliverable, affected branches, access status, likely gaps and what another contributor can do in parallel. Use the paper or asset issue template. Claim ownership by agreement in that issue; an assignment or comment does not grant repository permissions.
 4. Choose the smallest reviewable unit: a source audit, one preparation branch with coverage dispositions, an asset with affordances, a task binding, or evaluator tests. Identify interfaces before collaborators edit overlapping files.
@@ -13,7 +14,7 @@ Help turn full papers into inspectable robot task families, or build the assets 
 ## Contribution tracks
 
 - **Task only:** evidence, complete coverage inventory, robot operations, dependencies, controls, lineage and explicit unknowns. List unbuilt assets; do not wait for CAD
-- **Assets only:** licensed or original geometry plus scale, states, interaction metadata, screenshots and limitations. Identify the task need or reusable interface it serves
+- **Assets only:** licensed or original geometry plus scale, states, interaction metadata, screenshots and limitations. Equipment must follow the real product or documented custom apparatus, with identity/resource research, reference comparison and operation coverage under the equipment standard
 - **Task binding:** map stable task IDs to concrete asset instances, stations, controls and observations; demonstrate representative interactions at the claimed level
 - **Evaluator and tests:** add trusted completion contracts and positive/negative tests, keeping agent and evaluator visibility separate
 - **Documentation and review:** improve onboarding, audit source claims, test instructions or record reproducible defects
@@ -53,4 +54,10 @@ This checks JSON syntax, English hygiene, verifier regressions, explorer semanti
 
 Use the [readiness rubric and PR checklist](docs/contributing/REVIEW_CHECKLIST.md). Reviewers should request changes for generic “prepare sample” steps with hidden manipulation; omitted controls or destructive allocation; invented source procedures; unknowns converted into defaults; evaluator answers exposed to the actor; unlicensed source/CAD/texture redistribution; or attractive assets with no task-relevant affordances.
 
+The [mandatory equipment review](docs/contributing/REVIEW_CHECKLIST.md#mandatory-equipment-review) applies to new equipment and substantive revisions. Missing product/resource evidence, generic replacement geometry, wrong scale, absent operating parts or missing reference/model comparisons block acceptance as faithful equipment. A static release pass does not clear that review. Reviewers must inspect the real references and model evidence and record decisions against the exact revision; the current verifier does not automate visual fidelity assessment.
+
+When the paper omits hands-on detail, authors must [reconstruct the missing operation chain](docs/contributing/PAPER_TASK_GUIDE.md#reconstruct-omitted-physical-work), documenting assumptions, reasoning and alternatives separately from source-reported facts. Unknown parameters and execution qualification remain explicit; they do not justify hiding required manual work in an unnamed service.
+
 A draft with visible execution gaps can be accepted as a design contribution. A missing source dependency that prevents defensible extraction blocks a stronger source-complete claim. A missing grasp or calibration input blocks affected execution, not unrelated evidence review. Every acceptance should name its scope and readiness level rather than calling the task simply “done.”
+
+Draft acceptance does not grant equipment fidelity or functional readiness. Historical scenes and frozen receipts retain their original scope; a redesigned asset needs a new version and a new equipment review rather than a rewritten historical approval.

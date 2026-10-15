@@ -2,6 +2,8 @@
 
 An asset should make a task-relevant object or interaction inspectable. A beautiful mesh without a usable loading surface, control, support or state contract is insufficient for a robot-task binding. Geometry, appearance and functionality have different readiness levels and should be reviewed separately.
 
+New equipment and substantive equipment revisions must follow the [Equipment Reconstruction and Acceptance Standard](EQUIPMENT_MODELING_STANDARD.md). Commercial instruments require product identity, a documented search of real resources, a recognizable reconstruction and reference/model comparison. A generic enclosure with a device label does not meet that standard. Custom apparatus needs source-supported structure and explicit reconstruction inferences.
+
 ## Choose a concrete need
 
 Start from an existing `asset_needs.json`, asset requirement file or operation. Claim the asset or interface in an issue and name its intended operations. Current requirements are not installed assets. Some historical manifests point to unbundled scenes, meshes or videos; verify that a referenced file exists before promising it as an input.
@@ -17,18 +19,21 @@ Choose one interaction, such as loading a holder or replacing a cover, and show 
 
 ## Proposed asset package contract
 
-There is no universal asset loader, metadata schema or asset validator in the current release. The following layout and fields are a proposed review contract. Agree on location and format in the issue before adding large binaries. A possible new layout is `assets/<asset_id>/` with:
+There is no universal asset loader, metadata schema or asset validator in the current release. The following layout and field names are a proposed interchange contract. The equipment standard's evidence and manual acceptance requirements are mandatory regardless of the chosen schema; provide a field mapping when using another format. Agree on location and format in the issue before adding large binaries. A possible new layout is `assets/<asset_id>/` with:
 
 - `README.md`: purpose, task/operation links, inspection instructions, readiness and unresolved limits
 - `asset_metadata.json`: identity/version, units/frames, provenance, dimensions, parts, states, affordances and collision declarations
 - `geometry/`: original editable source and agreed exchange exports, with generation/export instructions where applicable
 - `materials/`: permitted texture/material resources and appearance-state variants, if needed
 - `evidence/`: screenshots of geometry, controls, collision proxies and representative task placement
+- `equipment_modeling_review.json`: equipment identity, resource searches, dimensions/inferences, matched reference/model views, operation coverage, exact reviewed files and separate reviewer decisions
 - `LICENSES/` or an attribution record: per-file origin, license, required notices and changes
 
-Copy [asset_metadata.example.json](templates/asset_metadata.example.json) as a starting record. It deliberately contains nulls and no geometry, so it is not submission-complete or execution-ready. Its field names and coordinate convention are proposals, not requirements enforced by the repository verifier.
+Copy [asset_metadata.example.json](templates/asset_metadata.example.json) and the [equipment review example](templates/equipment_modeling_review.example.json) as starting records. They deliberately contain nulls and no geometry or completed reviews, so they are not submission-complete or execution-ready. Their field names and coordinate convention are proposals, not requirements enforced by the repository verifier. Syntax/hash checks do not clear the required manual equipment review.
 
 An assets-only contribution need not implement a simulator. It must identify which geometry and interactions exist, which are metadata proposals and which remain unimplemented. A binding contribution additionally maps task IDs to concrete scene instances and validates that those names resolve.
+
+The absence of a simulator does not waive product fidelity, physical scale, part structure or operation-to-part mapping. Keep draft proxies explicitly labeled and outside accepted faithful-equipment coverage until reviewed. Historical packages retain their frozen scope; audit and review them in a new version rather than silently upgrading their readiness.
 
 ## Identity and physical conventions
 
@@ -54,6 +59,8 @@ Use original geometry or assets with verified permission for the intended redist
 
 If creating a new mesh from measured or reported dimensions, describe it as an original authored approximation, cite its references and state unmodeled details. Do not label it manufacturer-certified or dimensionally exact without evidence. Check textures, fonts and embedded resources as well as mesh files. The project license applies only where contributors have the rights to grant it; preserve third-party notices and resolve uncertain rights before publication.
 
+These provenance rules require active resource research. Search official CAD portals, manuals, dimension drawings and multiple product views before selecting a reconstruction method. When CAD cannot be reused or found, reconstruct original geometry from the available evidence and document estimates. An approximation label alone does not excuse a known mismatch in recognizable appearance or a task-relevant part.
+
 ## Worked asset handoff for cooling film assembly
 
 The current cooling `asset_needs.json` requests an assembly bench, film frames, a topology mat and dimensional inspection at `WS_ASSEMBLY`; it marks them `not_built`. A bounded original contribution could supply a supported spacer-ring holder and two distinguishable film instances for `FILM` and inspection. This is a proposed asset, not a claim that a holder already exists.
@@ -67,3 +74,5 @@ The task author reviews identity and version rules; the asset author reviews sca
 Include an overview at correct scale, close-ups of each interaction point, labeled local axes/pivots, a collision-proxy view if supplied, and representative state variants. Show at least one placement in its intended task context. Record the viewer/tool version and reproducible opening or generation steps; do not claim software is installed for every contributor.
 
 A reviewer should be able to locate each file, confirm rights, compare dimensions, identify controls and support regions, understand state changes and find unresolved gates. Include a manifest or hashes for exported binaries and state what was actually inspected. Do not copy a historical render receipt to certify new geometry. Functional acceptance additionally needs positive and negative interaction tests in a named implementation; static display acceptance does not.
+
+For equipment, use the [mandatory acceptance gates](REVIEW_CHECKLIST.md#mandatory-equipment-review) and record actual reference comparison. Missing identity/search evidence, generic replacement shapes, incompatible scale or absent operating parts require changes before a fidelity acceptance. A render receipt, an operation ID or a passed static test cannot substitute for that review.

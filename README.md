@@ -10,6 +10,12 @@ The unit of design is a **paper-level task family**. Its branches, dependencies,
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
+## Equipment reconstruction requirements
+
+New equipment and substantive equipment revisions must follow the [Equipment Reconstruction and Acceptance Standard](docs/contributing/EQUIPMENT_MODELING_STANDARD.md): identify the real commercial product or custom apparatus, search product/manual/dimension/CAD resources, reconstruct recognizable appearance and task-relevant structure, and supply reference/model comparisons with operation coverage. The [mandatory manual review gates](docs/contributing/REVIEW_CHECKLIST.md#mandatory-equipment-review) distinguish product fidelity from static checks and functional execution. Existing illustrative assets are not automatically certified under this standard.
+
+Paper conversion also requires [reconstructing omitted physical work](docs/contributing/PAPER_TASK_GUIDE.md#reconstruct-omitted-physical-work) into a complete robot operation chain. Inferred handling and geometry need explicit evidence/constraint bases and assumptions; a gap label or closed service does not substitute for the missing work.
+
 ## Paper discovery candidates
 
 Browse the [paper candidate list](docs/PAPER_CANDIDATES.md) for titles screened for possible robot-laboratory task conversion. These are discovery candidates, not fully reviewed or converted tasks, and are excluded from the reviewed-design counts above.
