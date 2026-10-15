@@ -1,6 +1,6 @@
 # Readiness Rubric and Pull Request Checklist
 
-Report each applicable gate separately with scope, revision, evidence, reviewer and remaining blockers. The readiness names below are review labels, not implemented runtime enums or automatic CI gates. The equipment requirements in this checklist are mandatory manual acceptance gates for new equipment and substantive revisions.
+Report each applicable gate separately with scope, revision, evidence, reviewer and remaining blockers. The readiness names below are review labels, not implemented runtime enums or automatic CI gates. The paper-conversion and equipment requirements in this checklist are mandatory manual acceptance gates for new conversions/assets and substantive revisions.
 
 ## Readiness rubric
 
@@ -17,6 +17,21 @@ Report each applicable gate separately with scope, revision, evidence, reviewer 
 - **Scientific replication supported:** domain-specific materials, calibration, measurement and uncertainty evidence supports this separate scientific claim
 
 Advancement is not automatic. Asset display can improve while task execution remains blocked. Count source records, families, branches, assets, storyboards and validated runs separately.
+
+## Mandatory paper-conversion review
+
+Apply the [conversion workflow](PAPER_TO_ROBOT_WORKFLOW.md) before accepting a new or substantively revised paper task as a complete reconstruction of its declared physical scope. Draft work may remain incomplete when explicitly labeled; file counts or JSON parsing cannot establish completeness.
+
+- [ ] Source inventory and coverage dispositions account for preparation, all declared experimental branches, controls/repeats, nonphysical work and closeout
+- [ ] Required final states were traced backwards to resources and producers; initial inventory, causal prerequisites and resource/sample allocations support a valid plan
+- [ ] Dependencies, exclusive/conditional branches, loops/reset and occurrence identities have explicit semantics; no invented source chronology or silently expanded repeat counts
+- [ ] Operations expose perception, motion, manipulation and decisions, with objects/tools/stations, preconditions, observable effects, failure/recovery and source/inference/input classifications
+- [ ] Branch walkthroughs retain specimen/component identity, actual transports, calibration/configuration validity and safe final disposition; closed services and mock events do not hide required hands-on work
+- [ ] A package manifest maps the required artifact roles to actual files/pointers, schemas, versions and visibility; source packages and derived exports remain distinguishable
+- [ ] Actor inputs exclude evaluator plans, hidden states, future records and literature outcomes; operation templates, instantiated episodes and campaign completion are distinct
+- [ ] Viewer integration has an explicit adapter and source-equality tests where claimed; meaningful positive/negative checks and actual readiness decisions are recorded
+
+Keep the planning/completeness gate open for missing action chains, states without producers, unexplained object creation/movement, unsupported specimen reuse, unbounded or silently skipped work, missing artifact roles or actor/evaluator leakage. A symbolic walkthrough supports design review only; it does not prove physical execution.
 
 ## Mandatory equipment review
 
@@ -40,6 +55,7 @@ Request changes for a known task-critical mismatch, missing resource/identity ev
 - [ ] Source access, inspected scope and redistribution rights are recorded
 - [ ] Source facts, authored choices, conflicts and unknowns remain distinct
 - [ ] Whole-paper dispositions include preparation, controls and nonmanual work
+- [ ] Paper conversions satisfy the mandatory planning, artifact-role and processing review gates
 - [ ] Hands-on steps identify actor, object, tool, station, interface and evidence
 - [ ] Omitted source handling is reconstructed into an explicit chain; inferences include basis, assumptions, alternatives and validation needs
 - [ ] Branches, repeats, destructive allocation and sample histories are consistent

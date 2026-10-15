@@ -1,0 +1,80 @@
+{
+  "record_kind": "authored_inert_placement_example",
+  "template_notice": "Illustrates authoring fields only. Example entities, frames and predicates require actual definitions and bindings. No paper claim, qualified motion or executable controller is supplied.",
+  "id": "PLACE_SPECIMEN_EXAMPLE",
+  "parent_stage": "FIXTURE_LOADING_EXAMPLE",
+  "visibility": "trusted_author_evaluator_reference_only",
+  "actor": "robot",
+  "capabilities": ["perception", "motion", "manipulation", "planning"],
+  "occurrence_context": {
+    "branch_id": null,
+    "condition_id": null,
+    "specimen_instance_id": null,
+    "iteration_id": null,
+    "attempt_id": null
+  },
+  "resources": {
+    "manipulated_object_role": "example_specimen",
+    "tool_role": "example_gripper",
+    "fixture_role": "example_holder",
+    "source_station_role": "example_loading_station",
+    "target_station_role": "example_loading_station",
+    "part_and_frame_bindings": []
+  },
+  "preconditions": [
+    "The identified specimen is held in the verified grasp",
+    "The compatible holder is empty, open and available",
+    "Holder pose, tool limits, contact surfaces and access path are supplied",
+    "The required station and fixture resources are reserved"
+  ],
+  "dependency_requirements": [
+    {"producer_operation_id": null, "required_state": "identified_specimen_held"},
+    {"producer_operation_id": null, "required_state": "compatible_holder_open_and_empty"}
+  ],
+  "substeps": [
+    {"id": "INSPECT", "capability": "perception", "action": "Locate holder seating surfaces and inspect for obstruction", "completion_observation": "Holder identity, open state and accessible seating region confirmed"},
+    {"id": "APPROACH", "capability": "motion", "action": "Approach the supplied loading frame while supporting the held specimen", "completion_observation": "Tool/specimen pose reaches the pre-insertion region with required clearance"},
+    {"id": "ALIGN", "capability": "manipulation", "action": "Align the specimen with the holder's locating features using observed pose", "completion_observation": "Alignment meets the declared input condition"},
+    {"id": "SEAT", "capability": "manipulation", "action": "Place the specimen onto the supplied support/locating surfaces", "completion_observation": "Supported seated state confirmed before release"},
+    {"id": "RELEASE", "capability": "manipulation", "action": "Release the grasp after support is established and retract", "completion_observation": "Gripper clear and empty; specimen remains supported"},
+    {"id": "VERIFY", "capability": "perception", "action": "Inspect specimen identity, seating and orientation", "completion_observation": "Seating accepted or a retained failed-attempt state is reported"}
+  ],
+  "device_process_and_wait": "No device process is implied by placing the specimen",
+  "observation_conditioned_decisions": [
+    {"when": "Holder identity, compatibility or access inspection fails", "choose": "Stop this placement and return to supported fixture inspection/reselection"},
+    {"when": "Alignment cannot be confirmed", "choose": "Retain the grasp and request a new observed alignment or a declared recovery"},
+    {"when": "Support and seating are confirmed", "choose": "Release and inspect; otherwise do not advance to clamping or acquisition"}
+  ],
+  "parameters": [
+    {"name": "loading_frame", "value": null, "component_units": {"translation": "m", "rotation": "rad"}, "basis": "unresolved_input", "input_id": "EXAMPLE_GEOMETRY_INPUT"},
+    {"name": "alignment_and_contact_limits", "value": null, "unit": null, "basis": "unresolved_input", "input_id": "EXAMPLE_HANDLING_INPUT"}
+  ],
+  "provenance": {
+    "step_basis": "reconstruction_inference",
+    "source_locators": [],
+    "inference_id": "EXAMPLE_INFERENCE_01",
+    "basis_and_rationale": "A specimen must be located and supported before a grasp can be released into a holder",
+    "selected_assumption": "A compatible open holder with locating/support surfaces is provided",
+    "alternatives": ["Place a retained specimen carrier using a separately defined carrier/holder interface"],
+    "confidence_and_validation": "Illustrative design logic only; actual geometry and the supported placement need review and testing"
+  },
+  "postconditions": [
+    "The same specimen instance occupies the holder and retains its lineage",
+    "The gripper is empty and retracted",
+    "The specimen is supported and seating is inspected",
+    "Clamping and acquisition still require their own operations"
+  ],
+  "completion_evidence": ["Observed seating/identity state linked to the actual specimen and attempt", "Trusted state-transition record if an execution backend is implemented"],
+  "failure_and_recovery": [
+    {"observation": "Obstruction or incompatible holder", "response": "Keep the specimen supported, retain the failed attempt and return to fixture inspection/reselection"},
+    {"observation": "Alignment or support cannot be confirmed", "response": "Do not release; retain the current state and use a separately defined supported recovery before any bounded retry"},
+    {"observation": "Post-release seating fails inspection", "response": "Block clamping/acquisition and enter a declared recovery or abort path"}
+  ],
+  "implementation": {
+    "level": "design_example_only",
+    "asset_and_skill_bindings": [],
+    "unresolved_inputs": ["EXAMPLE_GEOMETRY_INPUT", "EXAMPLE_HANDLING_INPUT"],
+    "collision_reachability_or_controller_tested": false,
+    "physical_execution_enabled": false
+  }
+}

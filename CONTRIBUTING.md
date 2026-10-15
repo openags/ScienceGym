@@ -4,7 +4,7 @@ Help turn full papers into inspectable robot task families, or build the assets 
 
 ## Start with one bounded contribution
 
-1. Read the [project vision](docs/PROJECT_VISION.md), repository README and one relevant task's TASK_DESIGN.md. For a safe mechanical example, use [directional cooling](tasks/directional_cooling_operations_v2/TASK_DESIGN.md).
+1. Read the [project vision](docs/PROJECT_VISION.md), repository README and one relevant task's TASK_DESIGN.md. Paper converters must follow the [conversion workflow](docs/contributing/PAPER_TO_ROBOT_WORKFLOW.md), including causal planning, physical decomposition, the saved package role map and visibility/adapter processing. For a safe mechanical example, use [directional cooling](tasks/directional_cooling_operations_v2/TASK_DESIGN.md).
    Equipment contributors must also read the [equipment reconstruction standard](docs/contributing/EQUIPMENT_MODELING_STANDARD.md), search the actual product's resources before modeling, and plan the required reference comparisons and robot interactions.
 2. Search open and closed issues, pull requests and `tasks/` for the DOI, title and device name. A preprint, journal version and correction usually belong to one source family, not three independent tasks.
 3. Open or join an issue. State the DOI or asset ID, exact deliverable, affected branches, access status, likely gaps and what another contributor can do in parallel. Use the paper or asset issue template. Claim ownership by agreement in that issue; an assignment or comment does not grant repository permissions.
@@ -53,6 +53,8 @@ This checks JSON syntax, English hygiene, verifier regressions, explorer semanti
 ## Acceptance and reviewer decisions
 
 Use the [readiness rubric and PR checklist](docs/contributing/REVIEW_CHECKLIST.md). Reviewers should request changes for generic “prepare sample” steps with hidden manipulation; omitted controls or destructive allocation; invented source procedures; unknowns converted into defaults; evaluator answers exposed to the actor; unlicensed source/CAD/texture redistribution; or attractive assets with no task-relevant affordances.
+
+The [mandatory paper-conversion review](docs/contributing/REVIEW_CHECKLIST.md#mandatory-paper-conversion-review) requires a complete declared-scope planning walkthrough and an artifact-role map: goals and initial resources must support explicit robot operations, dependencies, conditions, sample histories and recovery. Save authoritative source JSON/Markdown separately from derived viewer records and filtered actor inputs. A new schema requires an explicit adapter and validation before claiming viewer/runtime support.
 
 The [mandatory equipment review](docs/contributing/REVIEW_CHECKLIST.md#mandatory-equipment-review) applies to new equipment and substantive revisions. Missing product/resource evidence, generic replacement geometry, wrong scale, absent operating parts or missing reference/model comparisons block acceptance as faithful equipment. A static release pass does not clear that review. Reviewers must inspect the real references and model evidence and record decisions against the exact revision; the current verifier does not automate visual fidelity assessment.
 
