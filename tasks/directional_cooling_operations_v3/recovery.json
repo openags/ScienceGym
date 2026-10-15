@@ -1,0 +1,59 @@
+{
+  "schema_version": "sciencegym.directional_cooling.v3",
+  "rules": [
+    {
+      "trigger": "failed grasp or uncertain support",
+      "preserve": [
+        "last_observed_pose",
+        "support",
+        "attempt_id"
+      ],
+      "action": "Stop dependent motion, observe support, secure a compatible carrier, then retry with a new bounded attempt"
+    },
+    {
+      "trigger": "film tear or wrong layer count",
+      "preserve": [
+        "retired_film_ids",
+        "assembly_revision"
+      ],
+      "action": "Support assembly, remove affected cover, install two identified layers, increment revision and repeat assembly inspection"
+    },
+    {
+      "trigger": "probe detached or channel changed",
+      "preserve": [
+        "raw_trace",
+        "probe_identity",
+        "calibration_id"
+      ],
+      "action": "Mark affected data invalid, reattach and check electrical/contact configuration; requalify calibration if probe/channel conditions invalidate it"
+    },
+    {
+      "trigger": "device/reference/accessory changed",
+      "preserve": [
+        "last_reference_id",
+        "configuration_id",
+        "raw_spectra"
+      ],
+      "action": "Mount and inspect the new accessory; acquire a valid new reference before sample measurement"
+    },
+    {
+      "trigger": "heater output unknown or sensor feedback lost",
+      "preserve": [
+        "commands",
+        "readbacks",
+        "partial_trace"
+      ],
+      "action": "Request output off, verify actual readback; remain blocked while output state is unknown"
+    },
+    {
+      "trigger": "weather or shade not eligible",
+      "preserve": [
+        "session_id",
+        "timestamps",
+        "weather_stream"
+      ],
+      "action": "Stop or pause the affected acquisition, retain partial intervals and schedule a new eligible session without inventing data"
+    }
+  ],
+  "retry_limit": "episode-supplied finite integer; not an infinite retry-until-success rule"
+}

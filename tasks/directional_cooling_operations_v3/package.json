@@ -1,0 +1,175 @@
+{
+  "record_kind": "paper_task_package",
+  "authoring_contract": "sciencegym.paper_to_robot.v1",
+  "family_id": "directional_cooling",
+  "package_version": 3,
+  "paper_identity": {
+    "title": "Passive directional sub-ambient daytime radiative cooling",
+    "doi": "10.1038/s41467-018-07293-9"
+  },
+  "scope": {
+    "unit": "paper_level_task_family",
+    "declared_physical_program": [
+      "BUILD_PAIR",
+      "CALIBRATE",
+      "OPT_HEMISPHERICAL",
+      "OPT_ANGULAR",
+      "ENVIRONMENT",
+      "TRACKED_STAGNATION",
+      "PID_POWER",
+      "FIXED_LDPE",
+      "MAP_CLEAR_DAY",
+      "MAP_CLEAR_NIGHT",
+      "MAP_HAZY_NOON"
+    ],
+    "whole_paper_execution_validated": false,
+    "excluded_or_incomplete_work": [
+      "Low-level controllers",
+      "Full commercial equipment geometry",
+      "Qualified site-specific operating inputs",
+      "Physical and scientific validation"
+    ]
+  },
+  "planning": {
+    "method": "goal_states_to_causal_dependencies_to_robot_operations",
+    "reference_route_is_unique_required_policy": false,
+    "operation_definitions_are_execution_occurrences": false,
+    "repeat_and_allocation_inputs": "episode_input_contract.json",
+    "initial_and_final_state_walkthrough": "reference_plan.json"
+  },
+  "artifact_roles": [
+    {
+      "role": "narrative",
+      "path": "TASK_DESIGN.md",
+      "schema": "markdown",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "source_inventory",
+      "path": "source_inventory.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "coverage",
+      "path": "coverage_matrix.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "resources",
+      "path": "resources.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "initial_state",
+      "path": "initial_state.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "operations",
+      "path": "operations.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "dependencies",
+      "path": "dependencies.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "branches_and_loops",
+      "path": "branches.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "reconstruction_inferences",
+      "path": "reconstruction_inferences.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "lineage",
+      "path": "lineage_contract.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "controls_and_repeats",
+      "path": "control_packages.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "recovery",
+      "path": "recovery.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "episode_inputs",
+      "path": "episode_input_contract.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "asset_bindings",
+      "path": "asset_bindings.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "actor_projection",
+      "path": "agent_visible.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "actor_filtered_inputs_only"
+    },
+    {
+      "role": "evaluator",
+      "path": "evaluator_reference.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "unknown_inputs",
+      "path": "unknown_parameters.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    },
+    {
+      "role": "verification",
+      "path": "VERIFICATION.json",
+      "schema": "sciencegym.directional_cooling.v3",
+      "visibility": "trusted_author_evaluator"
+    }
+  ],
+  "conversion_review": {
+    "record_path": "review.json",
+    "required_gate_ids": [
+      "PTR-01",
+      "PTR-02",
+      "PTR-03",
+      "PTR-04",
+      "PTR-05",
+      "PTR-06",
+      "PTR-07",
+      "PTR-08"
+    ],
+    "status": "partial_not_gold_standard"
+  },
+  "viewer_projection": {
+    "registered_family_key": null,
+    "adapter_path": null,
+    "actor_safe": false,
+    "reason": "Pilot remains a standalone review revision; no explorer family added"
+  },
+  "freeze": {
+    "physical_execution_validated": false,
+    "actual_published_commit": null,
+    "hash_manifest": "MANIFEST.sha256"
+  }
+}

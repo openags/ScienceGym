@@ -1,0 +1,374 @@
+{
+  "schema_version": "sciencegym.directional_cooling.v3",
+  "edges": [
+    {
+      "from": "PLAN",
+      "to": "STOCK"
+    },
+    {
+      "from": "STOCK",
+      "to": "FAB_LOAD"
+    },
+    {
+      "from": "TRACK_DESIGN",
+      "to": "FAB_LOAD"
+    },
+    {
+      "from": "FAB_LOAD",
+      "to": "FAB_RUN"
+    },
+    {
+      "from": "FAB_RUN",
+      "to": "FAB_UNLOAD"
+    },
+    {
+      "from": "MACHINE_PARTS",
+      "to": "COAT_LOAD"
+    },
+    {
+      "from": "COAT_LOAD",
+      "to": "COAT_RUN"
+    },
+    {
+      "from": "MACHINE_PARTS",
+      "to": "LAYOUT"
+    },
+    {
+      "from": "FAB_UNLOAD",
+      "to": "LAYOUT"
+    },
+    {
+      "from": "COAT_UNLOAD",
+      "to": "LAYOUT"
+    },
+    {
+      "from": "LAYOUT",
+      "to": "BASE"
+    },
+    {
+      "from": "BASE",
+      "to": "EMITTER"
+    },
+    {
+      "from": "LAYOUT",
+      "to": "FILM"
+    },
+    {
+      "from": "EMITTER",
+      "to": "SHIELD"
+    },
+    {
+      "from": "FILM",
+      "to": "SHIELD"
+    },
+    {
+      "from": "SHIELD",
+      "to": "REFLECTOR"
+    },
+    {
+      "from": "REFLECTOR",
+      "to": "ASSEMBLY_QC"
+    },
+    {
+      "from": "PLAN",
+      "to": "CAL_MOUNT"
+    },
+    {
+      "from": "CAL_MOUNT",
+      "to": "CAL_ACQUIRE"
+    },
+    {
+      "from": "CAL_ACQUIRE",
+      "to": "CAL_FIT"
+    },
+    {
+      "from": "CAL_UNLOAD",
+      "to": "TC_ATTACH"
+    },
+    {
+      "from": "ASSEMBLY_QC",
+      "to": "TC_ATTACH"
+    },
+    {
+      "from": "PLAN",
+      "to": "OPT_REFERENCE"
+    },
+    {
+      "from": "OPT_REFERENCE",
+      "to": "OPT_MOUNT"
+    },
+    {
+      "from": "WITNESS_CUT",
+      "to": "OPT_MOUNT"
+    },
+    {
+      "from": "OPT_MOUNT",
+      "to": "OPT_SCAN"
+    },
+    {
+      "from": "WITNESS_CUT",
+      "to": "ANGLE_MOUNT"
+    },
+    {
+      "from": "ANGLE_REFERENCE",
+      "to": "ANGLE_SCAN"
+    },
+    {
+      "from": "PLAN",
+      "to": "OPT_SUMMARY"
+    },
+    {
+      "from": "TC_ATTACH",
+      "to": "SITE_SETUP"
+    },
+    {
+      "from": "PLAN",
+      "to": "ENV_SETUP"
+    },
+    {
+      "from": "ENV_SETUP",
+      "to": "SYNC"
+    },
+    {
+      "from": "SITE_SETUP",
+      "to": "LID_BASELINE"
+    },
+    {
+      "from": "SYNC",
+      "to": "LID_BASELINE"
+    },
+    {
+      "from": "LID_BASELINE",
+      "to": "LID_REMOVE"
+    },
+    {
+      "from": "SITE_SETUP",
+      "to": "TRACK_ADJUST"
+    },
+    {
+      "from": "LID_REMOVE",
+      "to": "STAG_LOG"
+    },
+    {
+      "from": "TC_ATTACH",
+      "to": "HEATER_ATTACH"
+    },
+    {
+      "from": "HEATER_ATTACH",
+      "to": "POWER_CHECK"
+    },
+    {
+      "from": "SYNC",
+      "to": "POWER_CHECK"
+    },
+    {
+      "from": "POWER_CHECK",
+      "to": "PID_CONFIG"
+    },
+    {
+      "from": "PID_CONFIG",
+      "to": "POWER_BASELINE"
+    },
+    {
+      "from": "LID_REMOVE",
+      "to": "POWER_BASELINE"
+    },
+    {
+      "from": "POWER_BASELINE",
+      "to": "PID_STEP"
+    },
+    {
+      "from": "PID_STEP",
+      "to": "STEP_SUMMARY"
+    },
+    {
+      "from": "PID_CONFIG",
+      "to": "HEATER_OFF"
+    },
+    {
+      "from": "ASSEMBLY_QC",
+      "to": "FIXED_SWAP"
+    },
+    {
+      "from": "FIXED_QC",
+      "to": "BAND_CHECK"
+    },
+    {
+      "from": "SITE_SETUP",
+      "to": "BAND_CHECK"
+    },
+    {
+      "from": "CAL_UNLOAD",
+      "to": "MAP_ATTACH"
+    },
+    {
+      "from": "TC_ATTACH",
+      "to": "MAP_ATTACH"
+    },
+    {
+      "from": "MAP_ATTACH",
+      "to": "MAP_CONDITION"
+    },
+    {
+      "from": "SYNC",
+      "to": "MAP_CONDITION"
+    },
+    {
+      "from": "MAP_CONDITION",
+      "to": "MAP_LOG"
+    },
+    {
+      "from": "MAP_LOG",
+      "to": "MAP_SUMMARY"
+    },
+    {
+      "from": "PLAN",
+      "to": "COMPARE"
+    },
+    {
+      "from": "STOP_SAFE",
+      "to": "UNMOUNT"
+    },
+    {
+      "from": "UNMOUNT",
+      "to": "ARCHIVE"
+    },
+    {
+      "from": "ARCHIVE",
+      "to": "RESET"
+    },
+    {
+      "from": "RESET",
+      "to": "REPORT"
+    },
+    {
+      "from": "CAL_FIT",
+      "to": "CAL_UNLOAD"
+    },
+    {
+      "from": "PLAN",
+      "to": "OPT_UNLOAD"
+    },
+    {
+      "from": "SYNC",
+      "to": "ENV_LOG"
+    },
+    {
+      "from": "COAT_RUN",
+      "to": "COAT_UNLOAD"
+    },
+    {
+      "from": "FIXED_SWAP",
+      "to": "FIXED_QC"
+    },
+    {
+      "from": "WITNESS_PREP",
+      "to": "WITNESS_CUT"
+    },
+    {
+      "from": "ANGLE_MOUNT",
+      "to": "ANGLE_REFERENCE"
+    },
+    {
+      "from": "STOP_SAFE",
+      "to": "HEATER_REMOVE"
+    },
+    {
+      "from": "STOCK",
+      "to": "MACHINE_PARTS"
+    },
+    {
+      "from": "PLAN",
+      "to": "TRACK_DESIGN"
+    },
+    {
+      "from": "STOCK",
+      "to": "WITNESS_PREP"
+    },
+    {
+      "from": "COAT_UNLOAD",
+      "to": "WITNESS_PREP"
+    },
+    {
+      "from": "FILM",
+      "to": "WITNESS_PREP"
+    },
+    {
+      "from": "STOP_SAFE",
+      "to": "RESTORE_TRACKED"
+    }
+  ],
+  "semantics": "Reusable operation-definition prerequisites. Concrete occurrences also require scoped state guards and explicit transport; branch lists are not self-contained executable schedules.",
+  "state_contract": "state_contract.json",
+  "occurrence_compiler": "planner.py",
+  "loops": [
+    {
+      "id": "coats",
+      "axis": "specimen,coat_index",
+      "cardinality": 3,
+      "basis": "E_BUILD",
+      "ordering": "one coat, inspect, supplied intercoat wait; final supplied cure"
+    },
+    {
+      "id": "optical",
+      "axis": "material,instrument,technical_repeat",
+      "materials": [
+        "white",
+        "black",
+        "aluminum",
+        "nanoporous_PE",
+        "LDPE"
+      ],
+      "instruments": [
+        "UVVIS",
+        "FTIR"
+      ],
+      "repeats": "episode.optical_repeats"
+    },
+    {
+      "id": "angular",
+      "axis": "paint,angle_deg,polarization,technical_repeat",
+      "paints": [
+        "white",
+        "black"
+      ],
+      "angles_deg": [
+        12,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80
+      ],
+      "polarizations": [
+        "s",
+        "p"
+      ],
+      "repeats": "episode.optical_repeats"
+    },
+    {
+      "id": "pid",
+      "axis": "target_index,device",
+      "targets": "episode.pid_targets_K_relative_ambient",
+      "devices": [
+        "white",
+        "black"
+      ],
+      "duration_s": 300,
+      "summary_last_s": 120
+    },
+    {
+      "id": "tracking",
+      "axis": "observed_sun_position_or_supplied_schedule",
+      "count": null,
+      "note": "No invented adjustment count from source plot"
+    },
+    {
+      "id": "map",
+      "axis": "clear_day,clear_night,hazy_noon",
+      "duration_s": 3600,
+      "sensors": 7
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "sciencegym.directional_cooling.v3",
+  "object_fields": [
+    "id",
+    "location",
+    "supported",
+    "configuration",
+    "assembly_revision",
+    "qc_revision",
+    "film_layers",
+    "heater_output",
+    "probe_calibration"
+  ],
+  "invariants": [
+    "No unsupported transfer",
+    "No transfer of an energized heater",
+    "Outdoor acquisition requires current assembly inspection",
+    "Cover always contains two distinct accepted layers",
+    "Optical reference binds accessory/configuration and specimen class",
+    "Map has seven distinct sensor identities with declared surface relations",
+    "No source outcome can establish an observed success"
+  ],
+  "invalidation": {
+    "change_film_or_reflector": "increment assembly_revision; clear qc_revision",
+    "attach_heater_or_map_probe": "increment assembly_revision; clear qc_revision",
+    "change_probe_or_channel": "clear affected probe_calibration until requalified",
+    "change_optical_accessory": "clear optical reference"
+  },
+  "implementation": "planner.py implements a limited symbolic state/plan checker, not a physics runtime"
+}
