@@ -1,41 +1,51 @@
 {
   "schema_version": "sciencegym.directional_cooling.v3",
   "status": "static_and_symbolic_checks_passed_with_open_acceptance_gates",
-  "date_utc": "2026-10-15T11:44:40.982966+00:00",
+  "date_utc": "2026-10-16T19:53:44.666961+00:00",
   "counts": {
     "package_roles": 18,
-    "operations": 63,
-    "reference_steps": 248,
+    "operations": 64,
+    "reference_steps": 352,
     "branches": 11,
-    "planned_occurrences": 364,
-    "asset_parts": 634,
-    "export_roots": 10,
+    "planned_occurrences": 365,
+    "asset_parts": 724,
+    "export_roots": 11,
     "physical_successes": 0,
-    "equipment_fidelity_accepted": false
+    "equipment_fidelity_accepted": false,
+    "manipulation_steps": 200,
+    "interaction_interfaces": 33,
+    "interfaces_with_partial_geometry": 20,
+    "interfaces_without_geometry": 13
   },
   "checks": [
     {
       "command": "python3 tasks/directional_cooling_operations_v3/validate.py",
       "result": "passed",
-      "scope": "schema, references, DAG, branch/loop coverage, symbolic replay, part mesh parity, nominal dimensions and GLB buffer/index integrity"
+      "scope": "operation schema; exact source/interface/part links; angular configuration, manual iteration and symbolic plan checks; native cavity receipt; nominal dimensions; all-part mesh parity and GLB buffer/index integrity"
     },
     {
       "command": "python3 -m unittest discover -s tasks/directional_cooling_operations_v3/tests -v",
-      "result": "38 tests passed",
-      "scope": "positive symbolic walkthrough plus rejection tests and solar geometry; no physical observations"
+      "result": "58 tests passed",
+      "scope": "symbolic walkthrough, contract rejection tests, source-terminal compatibility, sensor/part mismatch, actor boundary and solar geometry; no physical observations"
     },
     {
       "command": "python3 -B scripts/verify_release.py",
       "result": "11/11 static groups passed",
       "scope": "existing frozen release regression; does not certify the new pilot or physical execution"
+    },
+    {
+      "command": "blender --background --python-exit-code 1 --python assets/cooling_scene_assets_v2/inspect_interaction_geometry.py",
+      "result": "52 terminal openings/slots and one USB shell passed",
+      "scope": "authored mesh rays only, tied to exact native scene hash"
     }
   ],
   "geometry_checks": {
-    "authored_parts": 634,
-    "exported_mesh_parts": 634,
-    "roots": 10,
+    "authored_parts": 724,
+    "exported_mesh_parts": 724,
+    "roots": 11,
     "nominal_dimension_comparison_tolerance_m": 1e-05,
-    "manufacturing_tolerance_qualified": false
+    "manufacturing_tolerance_qualified": false,
+    "authored_cavity_checks": "../../assets/cooling_scene_assets_v2/geometry/interaction_checks.json"
   },
   "physical_execution_validated": false,
   "equipment_fidelity_accepted": false,
@@ -44,5 +54,12 @@
   "reports": [
     "verification/pilot-tests.txt",
     "verification/release-regression.txt"
+  ],
+  "reconstruction_revision": "2026-10-17.manipulation.1",
+  "limitations": [
+    "33 interaction interfaces: 20 with partial named geometry and 13 without geometry; none interaction-qualified",
+    "Fine-wire transition hardware, cover support, optical accessory fit and remaining station fixtures require qualification",
+    "Seven thermal-map contacts are inferred; insulation recesses are described but not cut into the full asset mesh",
+    "Existing explorer remains on the frozen v2; the new dossier is a separate source-linked review artifact"
   ]
 }

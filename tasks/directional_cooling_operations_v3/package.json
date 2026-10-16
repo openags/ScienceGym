@@ -24,11 +24,13 @@
     ],
     "whole_paper_execution_validated": false,
     "excluded_or_incomplete_work": [
-      "Low-level controllers",
-      "Full commercial equipment geometry",
+      "Missing manipulation fixtures and commercial interaction geometry",
       "Qualified site-specific operating inputs",
-      "Physical and scientific validation"
-    ]
+      "Controller execution and scientific result replication are separately unvalidated"
+    ],
+    "core_deliverable": "Full paper-derived experimental task chain with explicit manipulation and scientific conditions",
+    "context_steps": "Perception, planning, instrument processes, waits and data handling retain causal conditions; they are not credited as physical hand actions",
+    "scientific_result_agreement_required_for_manipulation_design": false
   },
   "planning": {
     "method": "goal_states_to_causal_dependencies_to_robot_operations",
@@ -159,7 +161,15 @@
       "PTR-07",
       "PTR-08"
     ],
-    "status": "partial_not_gold_standard"
+    "status": "changes_required"
+  },
+  "supporting_artifacts": {
+    "manipulation_dossier": "MANIPULATION_REVIEW.md",
+    "interaction_contracts": "interaction_contracts.json",
+    "source_to_manipulation": "manipulation_coverage.json",
+    "terminal_contract": "daq_terminal_contract.json",
+    "sensor_installation": "sensor_installation.json",
+    "authored_cavity_checks": "../../assets/cooling_scene_assets_v2/geometry/interaction_checks.json"
   },
   "viewer_projection": {
     "registered_family_key": null,
@@ -171,5 +181,6 @@
     "physical_execution_validated": false,
     "actual_published_commit": null,
     "hash_manifest": "MANIFEST.sha256"
-  }
+  },
+  "reconstruction_revision": "2026-10-17.manipulation.1"
 }

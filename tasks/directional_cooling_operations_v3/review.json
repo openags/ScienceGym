@@ -1,83 +1,113 @@
 {
   "reviewer": "Codex author self-review; not independent approval",
-  "date": "2026-10-15",
+  "date": "2026-10-17",
   "gates": [
     {
       "id": "PTR-01",
-      "status": "design_reviewed",
+      "status": "pass",
       "evidence": [
         "source_inventory.json",
         "coverage_matrix.json"
       ],
-      "remaining": "Raw author data unavailable; no quantitative replication claim"
+      "remaining": "Inspected source corpus and declared physical scope are traceable. Reused source reviews are pinned by byte hashes. Unavailable historical raw data limits result replication, not the task-chain scope."
     },
     {
       "id": "PTR-02",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "operations.json",
         "resources.json",
-        "dependencies.json"
+        "dependencies.json",
+        "interaction_contracts.json",
+        "manipulation_coverage.json",
+        "MANIPULATION_REVIEW.md"
       ],
-      "remaining": "Qualified fixture/tool choices and commercial interface geometry remain incomplete"
+      "remaining": "Calibration block production, underside access and conditional accessory handling are explicit. Concrete fixture/tool selection and fine-grained component resource allocation remain incomplete."
     },
     {
       "id": "PTR-03",
-      "status": "design_reviewed",
+      "status": "pass",
       "evidence": [
         "branches.json",
         "planner.py"
       ],
-      "remaining": "Historical repeats and PID targets are not reported; test work order must not become experiment default"
+      "remaining": "Fixture walkthrough retains all 11 branches, explicit loops and configuration-bound angular references; invented fixture repeats remain distinct from historical repetitions."
     },
     {
       "id": "PTR-04",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "operations.json",
-        "reconstruction_inferences.json"
+        "reconstruction_inferences.json",
+        "interaction_contracts.json",
+        "manipulation_coverage.json",
+        "MANIPULATION_REVIEW.md"
       ],
-      "remaining": "Reference actions are a reconstructed manipulation design, not low-level robot trajectories"
+      "remaining": "Every manipulation step has a contact/tool/support/observation/recovery contract. Remaining interface-specific fixture and geometry decisions are enumerated; design does not require pre-existing joint trajectories."
     },
     {
       "id": "PTR-05",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "state_contract.json",
         "recovery.json",
         "planner.py"
       ],
-      "remaining": "Only selected symbolic invariants implemented; no contact simulation or physical recovery validation"
+      "remaining": "Symbolic replay rejects omitted steps, stale references and invalid assembly revisions. Support, retention and contact predicates still need scene/instance qualification."
     },
     {
       "id": "PTR-06",
-      "status": "design_reviewed",
+      "status": "pass",
       "evidence": [
         "package.json",
-        "validate.py"
+        "validate.py",
+        "interaction_contracts.json",
+        "manipulation_coverage.json",
+        "MANIPULATION_REVIEW.md"
       ],
-      "remaining": "Interchange contract is scoped to this pilot revision"
+      "remaining": "18 artifact roles plus explicit supporting manipulation artifacts resolve; exact step/interface/part links have schema and semantic checks."
     },
     {
       "id": "PTR-07",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "agent_visible.json",
         "evaluator_reference.json",
         "tests/test_pilot.py"
       ],
-      "remaining": "Allowlist projection tested; real observation evaluator not implemented"
+      "remaining": "Actor projection excludes reference manipulation artifacts. Observation evaluation and bounded alternative/recovery execution remain unimplemented."
     },
     {
       "id": "PTR-08",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "VERIFICATION.json",
-        "../../assets/cooling_scene_assets_v2/equipment_research.json"
+        "../../assets/cooling_scene_assets_v2/equipment_research.json",
+        "interaction_contracts.json",
+        "manipulation_coverage.json",
+        "MANIPULATION_REVIEW.md"
       ],
-      "remaining": "Standalone review package; existing explorer stays on frozen v2. Equipment fidelity and whole-paper execution not accepted"
+      "remaining": "Rebuilt source-topology terminals, LDPE thickness and seven inferred map contacts are reviewable. Missing fixture/equipment geometry and frozen explorer integration remain open."
     }
   ],
   "accepted_as_gold_standard": false,
-  "scale_to_1000_authorized_by_this_review": false
+  "scale_to_1000_authorized_by_this_review": false,
+  "reconstruction_revision": "2026-10-17.manipulation.1",
+  "base_commit": "f7137685961e3828ad32bf7d399cefa8824b1d62",
+  "supersedes": "review_history/2026-10-15/review.json",
+  "scope": "Manipulation reconstruction and static interface consistency; no robot execution or scientific-result replication claim",
+  "accepted_as_manipulation_template": false,
+  "reviewed_inputs_sha256": {
+    "operations.json": "e296501cc9e642b9dd512bf6b946661196a1f5ab88ea089167c5f942cbe45baa",
+    "operations.schema.json": "51e645c02640c5cc117b05df71ea727a61b82eb26f35d9a7e2b322d400f4b333",
+    "interaction_contracts.json": "6adc3edfcdfabeda506ed7e215cfeeb39b2ae7f90c5dbfd696b520620b13420f",
+    "asset_bindings.json": "0320cfa65d735bbbd22e31a6b2c9758b2dc5d28089e3706a8da4f183a617d276",
+    "daq_terminal_contract.json": "b735f0c653a752e38d12f4fa6e6834ae620123c71f6bf95e16c089b9ee06925f",
+    "sensor_installation.json": "88fa7ac81a12224a3f81096daa91d3a22738723824ca91878091cfa78deb0622",
+    "manipulation_coverage.json": "869c872bc9eda8bc2b63f554756dfb42d83f47601d5788d045312ed24ea80a24",
+    "source_inventory.json": "1ace1f99d0d2928607c631f0fe3a211050069a3879d26b07404b20614cc3555a",
+    "episode_input_contract.json": "8918a6b549f20ccd7019a38c15b9b2219e13febeb40281d8972ef7092f6013f2",
+    "package.json": "598c4a9ba71b3d8ef0e77ed30661842201e87eaa2069d2341c5b739a998a883e",
+    "../../assets/cooling_scene_assets_v2/parts.json": "9f0b587eb60200c61c802241dafb0288eb397010be63bc522c0060be4644686d"
+  }
 }
