@@ -129,3 +129,45 @@ The eight conversion gates are recorded individually in `review.json`. They
 remain partial where commercial geometry, action interfaces or physical checks
 are missing. Passing static tests does not turn this pilot into a whole-paper
 robot experiment or authorize treating the remaining papers as validated.
+
+## Manipulation-focused revision, October 17
+
+The intended product is the complete experiment task chain with its physical
+manipulation work expanded. Scientific purpose, condition selection, perception,
+waits and instrument processing remain in that chain. Numerical agreement with
+the paper is not a prerequisite for accepting a manipulation task design; actual
+scientific results require separately acquired observations.
+
+Every manual step now names its target role, contact region, tool, support
+transition, constraints, completion evidence and recovery. These are authored
+interface specifications, not measured grasp poses. `interaction_contracts.json`
+enumerates concrete geometry variants and missing parts, and
+`manipulation_coverage.json` joins source obligations, all eleven branch routes,
+operations and step definitions. The generated `MANIPULATION_REVIEW.md` is the
+complete readable dossier. Parameter cards must bind actual instance identities
+and qualify force, clearance, material/fixture and observation conditions.
+
+The calibration block has an explicit drilling/finishing/inspection producer.
+The bath is loaded and filled with displacement and drain closure checked.
+Fine-wire compatibility is not assumed: Omega's 36 AWG probe leads fall outside
+the USB-TC terminal's 16-30 AWG specification. A selected K-compatible transition
+and independently retained extension must be qualified and included in the
+calibration path. The numbered terminal map includes the reversed spatial pin
+ordering on channels 4-7; geometric pitch remains inferred.
+
+Angular incidence and polarization are set before the reference. The sample and
+reference are exchanged through retained supports; scan only reads back the
+accepted configuration. Changing either setting requires a fresh reference.
+Opening the apparatus for probe/heater work explicitly retains the reflector,
+aperture plate, shield and two-film cover before accessing the emitter. Changed
+assemblies need a new inspection. SI Figure5's two near-axis insulation points
+are treated as internal/layer-interface locations, with explicitly inferred
+probe recesses and their additional thermal-path effects. Four further points
+bind PE walls, shield and upper aperture plate. Display contact markers do not
+qualify these recesses, attachments or physical access.
+
+Source trace and design consistency, geometry fidelity, robot execution and
+scientific reproduction have separate acceptance meanings. The remaining
+fixture/tool and device-interface gaps keep this revision unaccepted as the
+reusable manipulation template. A missing controller alone is not a reason to
+hide a reconstructed physical operation behind a closed service.

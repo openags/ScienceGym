@@ -25,7 +25,9 @@ The [conversion workflow](docs/contributing/PAPER_TO_ROBOT_WORKFLOW.md) specifie
 The [directional-cooling reconstruction pilot](docs/pilots/DIRECTIONAL_COOLING.md)
 applies this workflow to one existing paper: explicit manipulation steps and
 occurrence planning, manufacturer-backed equipment research, revised metric
-assets and recorded open acceptance gates. It is a review revision of the same
+assets and recorded open acceptance gates. The [manipulation dossier](tasks/directional_cooling_operations_v3/MANIPULATION_REVIEW.md)
+connects the complete experimental sequence to explicit contact, tool, support,
+observation and recovery requirements. It is a review revision of the same
 DOI, not an additional paper or a validated robot experiment.
 
 ## Paper discovery candidates

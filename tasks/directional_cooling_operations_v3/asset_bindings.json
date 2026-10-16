@@ -1,469 +1,1448 @@
 {
   "schema_version": "sciencegym.directional_cooling.v3",
   "asset_package": "../../assets/cooling_scene_assets_v2",
+  "interfaces": "interaction_contracts.json",
+  "selector_rule": "Only exact part IDs and explicitly enumerated variant roots; exploded display root is excluded",
   "bindings": [
     {
       "operation_id": "PLAN",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "STOCK",
+      "interface_ids": [
+        "stock"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "stock"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "MOVE",
+      "interface_ids": [
+        "carrier"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "carrier"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "FAB_LOAD",
+      "interface_ids": [
+        "cutting",
+        "machine_ui"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "cutting",
+        "machine_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "FAB_RUN",
+      "interface_ids": [
+        "machine_ui"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "machine_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "FAB_UNLOAD",
+      "interface_ids": [
+        "cutting"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "cutting"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "COAT_LOAD",
+      "interface_ids": [
+        "coating"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "coating"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "COAT_RUN",
+      "interface_ids": [
+        "coating"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "coating"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "LAYOUT",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "base"
+      ],
+      "part_selection": [
+        "COOLER_BLACK__acrylic_base",
+        "COOLER_BLACK__foam_1",
+        "COOLER_BLACK__foam_2",
+        "COOLER_FIXED_BAND__acrylic_base",
+        "COOLER_FIXED_BAND__foam_1",
+        "COOLER_FIXED_BAND__foam_2",
+        "COOLER_THERMAL_MAP__acrylic_base",
+        "COOLER_THERMAL_MAP__foam_1",
+        "COOLER_THERMAL_MAP__foam_2",
+        "COOLER_WHITE__acrylic_base",
+        "COOLER_WHITE__foam_1",
+        "COOLER_WHITE__foam_2"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "BASE",
-      "part_selection": [
-        "foam_1",
-        "foam_2",
-        "PE_support"
+      "interface_ids": [
+        "base"
       ],
-      "binding_status": "named_visual_parts_only",
+      "part_selection": [
+        "COOLER_BLACK__acrylic_base",
+        "COOLER_BLACK__foam_1",
+        "COOLER_BLACK__foam_2",
+        "COOLER_FIXED_BAND__acrylic_base",
+        "COOLER_FIXED_BAND__foam_1",
+        "COOLER_FIXED_BAND__foam_2",
+        "COOLER_THERMAL_MAP__acrylic_base",
+        "COOLER_THERMAL_MAP__foam_1",
+        "COOLER_THERMAL_MAP__foam_2",
+        "COOLER_WHITE__acrylic_base",
+        "COOLER_WHITE__foam_1",
+        "COOLER_WHITE__foam_2"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "EMITTER",
-      "part_selection": [
-        "emitter_copper"
+      "interface_ids": [
+        "emitter"
       ],
-      "binding_status": "named_visual_parts_only",
+      "part_selection": [
+        "COOLER_BLACK__PE_support",
+        "COOLER_BLACK__emitter_copper",
+        "COOLER_FIXED_BAND__PE_support",
+        "COOLER_FIXED_BAND__emitter_copper",
+        "COOLER_THERMAL_MAP__PE_support",
+        "COOLER_THERMAL_MAP__emitter_copper",
+        "COOLER_WHITE__PE_support",
+        "COOLER_WHITE__emitter_copper"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "FILM",
-      "part_selection": [
-        "cover_lower",
-        "film_spacer",
-        "cover_upper"
+      "interface_ids": [
+        "film"
       ],
-      "binding_status": "named_visual_parts_only",
+      "part_selection": [
+        "COOLER_BLACK__cover_lower",
+        "COOLER_BLACK__cover_upper",
+        "COOLER_BLACK__film_spacer",
+        "COOLER_FIXED_BAND__cover_lower",
+        "COOLER_FIXED_BAND__cover_upper",
+        "COOLER_FIXED_BAND__film_spacer",
+        "COOLER_THERMAL_MAP__cover_lower",
+        "COOLER_THERMAL_MAP__cover_upper",
+        "COOLER_THERMAL_MAP__film_spacer",
+        "COOLER_WHITE__cover_lower",
+        "COOLER_WHITE__cover_upper",
+        "COOLER_WHITE__film_spacer"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "SHIELD",
-      "part_selection": [
-        "radiation_shield",
-        "aperture_plate"
+      "interface_ids": [
+        "film",
+        "shield"
       ],
-      "binding_status": "named_visual_parts_only",
+      "part_selection": [
+        "COOLER_BLACK__aperture_plate",
+        "COOLER_BLACK__cover_lower",
+        "COOLER_BLACK__cover_upper",
+        "COOLER_BLACK__film_spacer",
+        "COOLER_BLACK__mylar_base",
+        "COOLER_BLACK__radiation_shield",
+        "COOLER_FIXED_BAND__aperture_plate",
+        "COOLER_FIXED_BAND__cover_lower",
+        "COOLER_FIXED_BAND__cover_upper",
+        "COOLER_FIXED_BAND__film_spacer",
+        "COOLER_FIXED_BAND__mylar_base",
+        "COOLER_FIXED_BAND__radiation_shield",
+        "COOLER_THERMAL_MAP__aperture_plate",
+        "COOLER_THERMAL_MAP__cover_lower",
+        "COOLER_THERMAL_MAP__cover_upper",
+        "COOLER_THERMAL_MAP__film_spacer",
+        "COOLER_THERMAL_MAP__mylar_base",
+        "COOLER_THERMAL_MAP__radiation_shield",
+        "COOLER_WHITE__aperture_plate",
+        "COOLER_WHITE__cover_lower",
+        "COOLER_WHITE__cover_upper",
+        "COOLER_WHITE__film_spacer",
+        "COOLER_WHITE__mylar_base",
+        "COOLER_WHITE__radiation_shield"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "REFLECTOR",
-      "part_selection": [
-        "solar_reflector",
-        "reflector_carriage"
+      "interface_ids": [
+        "reflector"
       ],
-      "binding_status": "named_visual_parts_only",
+      "part_selection": [
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "ASSEMBLY_QC",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "CAL_MOUNT",
-      "part_selection": [
-        "THERMO_A25_AC150_HYPOTHESIS__calibration_copper_block",
-        "MCC_USB_TC__case"
+      "interface_ids": [
+        "acquisition_ui",
+        "bath_fill",
+        "bath_lid",
+        "cal_block",
+        "daq_terminals",
+        "rtd_meter"
       ],
-      "binding_status": "named_visual_parts_only",
+      "part_selection": [
+        "MCC_USB_TC__pin_03",
+        "MCC_USB_TC__pin_03_screw",
+        "MCC_USB_TC__pin_03_wire_entry",
+        "MCC_USB_TC__pin_04",
+        "MCC_USB_TC__pin_04_screw",
+        "MCC_USB_TC__pin_04_wire_entry",
+        "MCC_USB_TC__pin_07",
+        "MCC_USB_TC__pin_07_screw",
+        "MCC_USB_TC__pin_07_wire_entry",
+        "MCC_USB_TC__pin_08",
+        "MCC_USB_TC__pin_08_screw",
+        "MCC_USB_TC__pin_08_wire_entry",
+        "MCC_USB_TC__pin_13",
+        "MCC_USB_TC__pin_13_screw",
+        "MCC_USB_TC__pin_13_wire_entry",
+        "MCC_USB_TC__pin_14",
+        "MCC_USB_TC__pin_14_screw",
+        "MCC_USB_TC__pin_14_wire_entry",
+        "MCC_USB_TC__pin_17",
+        "MCC_USB_TC__pin_17_screw",
+        "MCC_USB_TC__pin_17_wire_entry",
+        "MCC_USB_TC__pin_18",
+        "MCC_USB_TC__pin_18_screw",
+        "MCC_USB_TC__pin_18_wire_entry",
+        "MCC_USB_TC__pin_29",
+        "MCC_USB_TC__pin_29_screw",
+        "MCC_USB_TC__pin_29_wire_entry",
+        "MCC_USB_TC__pin_30",
+        "MCC_USB_TC__pin_30_screw",
+        "MCC_USB_TC__pin_30_wire_entry",
+        "MCC_USB_TC__pin_33",
+        "MCC_USB_TC__pin_33_screw",
+        "MCC_USB_TC__pin_33_wire_entry",
+        "MCC_USB_TC__pin_34",
+        "MCC_USB_TC__pin_34_screw",
+        "MCC_USB_TC__pin_34_wire_entry",
+        "MCC_USB_TC__pin_39",
+        "MCC_USB_TC__pin_39_screw",
+        "MCC_USB_TC__pin_39_wire_entry",
+        "MCC_USB_TC__pin_40",
+        "MCC_USB_TC__pin_40_screw",
+        "MCC_USB_TC__pin_40_wire_entry",
+        "MCC_USB_TC__pin_43",
+        "MCC_USB_TC__pin_43_screw",
+        "MCC_USB_TC__pin_43_wire_entry",
+        "MCC_USB_TC__pin_44",
+        "MCC_USB_TC__pin_44_screw",
+        "MCC_USB_TC__pin_44_wire_entry",
+        "THERMO_A25_AC150_HYPOTHESIS__calibration_copper_block",
+        "THERMO_A25_AC150_HYPOTHESIS__immersion_RTD",
+        "THERMO_A25_AC150_HYPOTHESIS__lid_handle",
+        "THERMO_A25_AC150_HYPOTHESIS__removable_lid"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui",
+        "rtd_meter"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "CAL_ACQUIRE",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "bath_ui"
+      ],
+      "part_selection": [
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key.001",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key.002",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key.003",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key.004"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "CAL_FIT",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "TC_ATTACH",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "carrier",
+        "emitter",
+        "film",
+        "probe_attachment",
+        "reflector",
+        "shield"
+      ],
+      "part_selection": [
+        "COOLER_BLACK__PE_support",
+        "COOLER_BLACK__aperture_plate",
+        "COOLER_BLACK__cover_lower",
+        "COOLER_BLACK__cover_upper",
+        "COOLER_BLACK__emitter_copper",
+        "COOLER_BLACK__film_spacer",
+        "COOLER_BLACK__mylar_base",
+        "COOLER_BLACK__radiation_shield",
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__PE_support",
+        "COOLER_FIXED_BAND__aperture_plate",
+        "COOLER_FIXED_BAND__cover_lower",
+        "COOLER_FIXED_BAND__cover_upper",
+        "COOLER_FIXED_BAND__emitter_copper",
+        "COOLER_FIXED_BAND__film_spacer",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_FIXED_BAND__mylar_base",
+        "COOLER_FIXED_BAND__radiation_shield",
+        "COOLER_THERMAL_MAP__PE_support",
+        "COOLER_THERMAL_MAP__aperture_plate",
+        "COOLER_THERMAL_MAP__cover_lower",
+        "COOLER_THERMAL_MAP__cover_upper",
+        "COOLER_THERMAL_MAP__emitter_copper",
+        "COOLER_THERMAL_MAP__film_spacer",
+        "COOLER_THERMAL_MAP__mylar_base",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_1",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_2",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_3",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_4",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_5",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_6",
+        "COOLER_THERMAL_MAP__probe_contact_TC_W",
+        "COOLER_THERMAL_MAP__radiation_shield",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__PE_support",
+        "COOLER_WHITE__aperture_plate",
+        "COOLER_WHITE__cover_lower",
+        "COOLER_WHITE__cover_upper",
+        "COOLER_WHITE__emitter_copper",
+        "COOLER_WHITE__film_spacer",
+        "COOLER_WHITE__mylar_base",
+        "COOLER_WHITE__radiation_shield",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "carrier"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "OPT_REFERENCE",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "acquisition_ui",
+        "ftir_connections",
+        "optical_access",
+        "optical_accessory",
+        "optical_reference"
+      ],
+      "part_selection": [
+        "AGILENT_CARY_5000__DRA2500_body",
+        "AGILENT_CARY_5000__DRA2500_port_plug",
+        "AGILENT_CARY_5000__sample_floor",
+        "AGILENT_CARY_5000__sample_front_door",
+        "AGILENT_CARY_5000__sample_lid",
+        "THERMO_NICOLET_6700__IntegratIR_base",
+        "THERMO_NICOLET_6700__IntegratIR_detector_cable",
+        "THERMO_NICOLET_6700__IntegratIR_detector_connector",
+        "THERMO_NICOLET_6700__IntegratIR_gold_reference",
+        "THERMO_NICOLET_6700__IntegratIR_purge_port",
+        "THERMO_NICOLET_6700__IntegratIR_reference_cap",
+        "THERMO_NICOLET_6700__IntegratIR_selector",
+        "THERMO_NICOLET_6700__sample_bay_lid",
+        "THERMO_NICOLET_6700__sample_compartment_floor"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "OPT_MOUNT",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "optical_access",
+        "optical_reference",
+        "optical_sample"
+      ],
+      "part_selection": [
+        "AGILENT_CARY_5000__DRA2500_port_plug",
+        "AGILENT_CARY_5000__DRA2500_sample_port",
+        "AGILENT_CARY_5000__sample_front_door",
+        "AGILENT_CARY_5000__sample_lid",
+        "THERMO_NICOLET_6700__IntegratIR_18mm_sample_port",
+        "THERMO_NICOLET_6700__IntegratIR_gold_reference",
+        "THERMO_NICOLET_6700__IntegratIR_reference_cap",
+        "THERMO_NICOLET_6700__IntegratIR_selector",
+        "THERMO_NICOLET_6700__sample_bay_lid"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "OPT_SCAN",
+      "interface_ids": [
+        "acquisition_ui"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "ANGLE_MOUNT",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "acquisition_ui",
+        "angle_controls",
+        "optical_access",
+        "optical_accessory",
+        "optical_sample"
+      ],
+      "part_selection": [
+        "AGILENT_CARY_5000__DRA2500_body",
+        "AGILENT_CARY_5000__DRA2500_sample_port",
+        "AGILENT_CARY_5000__sample_floor",
+        "AGILENT_CARY_5000__sample_front_door",
+        "AGILENT_CARY_5000__sample_lid",
+        "THERMO_NICOLET_6700__IntegratIR_18mm_sample_port",
+        "THERMO_NICOLET_6700__IntegratIR_base",
+        "THERMO_NICOLET_6700__sample_bay_lid",
+        "THERMO_NICOLET_6700__sample_compartment_floor"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui",
+        "angle_controls"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "ANGLE_SCAN",
+      "interface_ids": [
+        "acquisition_ui"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "OPT_SUMMARY",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "SITE_SETUP",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "base",
+        "heater_wiring",
+        "reflector"
+      ],
+      "part_selection": [
+        "COOLER_BLACK__acrylic_base",
+        "COOLER_BLACK__foam_1",
+        "COOLER_BLACK__foam_2",
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__acrylic_base",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_FIXED_BAND__foam_1",
+        "COOLER_FIXED_BAND__foam_2",
+        "COOLER_THERMAL_MAP__acrylic_base",
+        "COOLER_THERMAL_MAP__foam_1",
+        "COOLER_THERMAL_MAP__foam_2",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__acrylic_base",
+        "COOLER_WHITE__foam_1",
+        "COOLER_WHITE__foam_2",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector",
+        "KEITHLEY_2425__force",
+        "KEITHLEY_2425__force.001",
+        "KEITHLEY_2425__sense",
+        "KEITHLEY_2425__sense.001"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "ENV_SETUP",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "daq_box",
+        "solar_mount",
+        "weather_mount"
+      ],
+      "part_selection": [
+        "EKO_STR_32G__azimuth_mount",
+        "EKO_STR_32G__elevation_flange_-0.145",
+        "EKO_STR_32G__elevation_flange_0.145",
+        "EKO_STR_32G__selected_mount_plate",
+        "MCC_USB_TC__USB_B",
+        "MCC_USB_TC__case"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "weather_mount"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "SYNC",
+      "interface_ids": [
+        "acquisition_ui"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "LID_BASELINE",
+      "interface_ids": [
+        "acquisition_ui",
+        "metal_lids"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui",
+        "metal_lids"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "LID_REMOVE",
+      "interface_ids": [
+        "metal_lids"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "metal_lids"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "TRACK_ADJUST",
-      "part_selection": [
-        "solar_reflector",
-        "reflector_carriage"
+      "interface_ids": [
+        "reflector"
       ],
-      "binding_status": "named_visual_parts_only",
+      "part_selection": [
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "STAG_LOG",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "HEATER_ATTACH",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "carrier",
+        "emitter",
+        "film",
+        "heater",
+        "heater_wiring",
+        "reflector",
+        "shield"
+      ],
+      "part_selection": [
+        "COOLER_BLACK__PE_support",
+        "COOLER_BLACK__aperture_plate",
+        "COOLER_BLACK__cover_lower",
+        "COOLER_BLACK__cover_upper",
+        "COOLER_BLACK__emitter_copper",
+        "COOLER_BLACK__film_spacer",
+        "COOLER_BLACK__mylar_base",
+        "COOLER_BLACK__radiation_shield",
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__PE_support",
+        "COOLER_FIXED_BAND__aperture_plate",
+        "COOLER_FIXED_BAND__cover_lower",
+        "COOLER_FIXED_BAND__cover_upper",
+        "COOLER_FIXED_BAND__emitter_copper",
+        "COOLER_FIXED_BAND__film_spacer",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_FIXED_BAND__mylar_base",
+        "COOLER_FIXED_BAND__radiation_shield",
+        "COOLER_THERMAL_MAP__PE_support",
+        "COOLER_THERMAL_MAP__aperture_plate",
+        "COOLER_THERMAL_MAP__cover_lower",
+        "COOLER_THERMAL_MAP__cover_upper",
+        "COOLER_THERMAL_MAP__emitter_copper",
+        "COOLER_THERMAL_MAP__film_spacer",
+        "COOLER_THERMAL_MAP__mylar_base",
+        "COOLER_THERMAL_MAP__radiation_shield",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__PE_support",
+        "COOLER_WHITE__aperture_plate",
+        "COOLER_WHITE__cover_lower",
+        "COOLER_WHITE__cover_upper",
+        "COOLER_WHITE__emitter_copper",
+        "COOLER_WHITE__film_spacer",
+        "COOLER_WHITE__mylar_base",
+        "COOLER_WHITE__radiation_shield",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector",
+        "KEITHLEY_2425__force",
+        "KEITHLEY_2425__force.001",
+        "KEITHLEY_2425__sense",
+        "KEITHLEY_2425__sense.001"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "carrier",
+        "heater"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "POWER_CHECK",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "PID_CONFIG",
-      "part_selection": [
-        "KEITHLEY_2425__output_button"
+      "interface_ids": [
+        "smu_ui"
       ],
-      "binding_status": "named_visual_parts_only",
+      "part_selection": [
+        "KEITHLEY_2425__output_button",
+        "KEITHLEY_2425__power"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "POWER_BASELINE",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "PID_STEP",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "smu_ui"
+      ],
+      "part_selection": [
+        "KEITHLEY_2425__output_button",
+        "KEITHLEY_2425__power"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "STEP_SUMMARY",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "HEATER_OFF",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "smu_ui"
+      ],
+      "part_selection": [
+        "KEITHLEY_2425__output_button",
+        "KEITHLEY_2425__power"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "FIXED_SWAP",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "carrier",
+        "cutting",
+        "film",
+        "reflector",
+        "shield"
+      ],
+      "part_selection": [
+        "COOLER_BLACK__aperture_plate",
+        "COOLER_BLACK__cover_lower",
+        "COOLER_BLACK__cover_upper",
+        "COOLER_BLACK__film_spacer",
+        "COOLER_BLACK__mylar_base",
+        "COOLER_BLACK__radiation_shield",
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__aperture_plate",
+        "COOLER_FIXED_BAND__cover_lower",
+        "COOLER_FIXED_BAND__cover_upper",
+        "COOLER_FIXED_BAND__film_spacer",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_FIXED_BAND__mylar_base",
+        "COOLER_FIXED_BAND__radiation_shield",
+        "COOLER_THERMAL_MAP__aperture_plate",
+        "COOLER_THERMAL_MAP__cover_lower",
+        "COOLER_THERMAL_MAP__cover_upper",
+        "COOLER_THERMAL_MAP__film_spacer",
+        "COOLER_THERMAL_MAP__mylar_base",
+        "COOLER_THERMAL_MAP__radiation_shield",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__aperture_plate",
+        "COOLER_WHITE__cover_lower",
+        "COOLER_WHITE__cover_upper",
+        "COOLER_WHITE__film_spacer",
+        "COOLER_WHITE__mylar_base",
+        "COOLER_WHITE__radiation_shield",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "carrier",
+        "cutting"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "BAND_CHECK",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "MAP_ATTACH",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "carrier",
+        "cutting",
+        "daq_terminals",
+        "film",
+        "probe_attachment",
+        "reflector",
+        "shield"
+      ],
+      "part_selection": [
+        "COOLER_BLACK__aperture_plate",
+        "COOLER_BLACK__cover_lower",
+        "COOLER_BLACK__cover_upper",
+        "COOLER_BLACK__film_spacer",
+        "COOLER_BLACK__mylar_base",
+        "COOLER_BLACK__radiation_shield",
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__aperture_plate",
+        "COOLER_FIXED_BAND__cover_lower",
+        "COOLER_FIXED_BAND__cover_upper",
+        "COOLER_FIXED_BAND__film_spacer",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_FIXED_BAND__mylar_base",
+        "COOLER_FIXED_BAND__radiation_shield",
+        "COOLER_THERMAL_MAP__aperture_plate",
+        "COOLER_THERMAL_MAP__cover_lower",
+        "COOLER_THERMAL_MAP__cover_upper",
+        "COOLER_THERMAL_MAP__film_spacer",
+        "COOLER_THERMAL_MAP__mylar_base",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_1",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_2",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_3",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_4",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_5",
+        "COOLER_THERMAL_MAP__probe_contact_TC_MAP_6",
+        "COOLER_THERMAL_MAP__probe_contact_TC_W",
+        "COOLER_THERMAL_MAP__radiation_shield",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__aperture_plate",
+        "COOLER_WHITE__cover_lower",
+        "COOLER_WHITE__cover_upper",
+        "COOLER_WHITE__film_spacer",
+        "COOLER_WHITE__mylar_base",
+        "COOLER_WHITE__radiation_shield",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector",
+        "MCC_USB_TC__pin_03",
+        "MCC_USB_TC__pin_03_screw",
+        "MCC_USB_TC__pin_03_wire_entry",
+        "MCC_USB_TC__pin_04",
+        "MCC_USB_TC__pin_04_screw",
+        "MCC_USB_TC__pin_04_wire_entry",
+        "MCC_USB_TC__pin_07",
+        "MCC_USB_TC__pin_07_screw",
+        "MCC_USB_TC__pin_07_wire_entry",
+        "MCC_USB_TC__pin_08",
+        "MCC_USB_TC__pin_08_screw",
+        "MCC_USB_TC__pin_08_wire_entry",
+        "MCC_USB_TC__pin_13",
+        "MCC_USB_TC__pin_13_screw",
+        "MCC_USB_TC__pin_13_wire_entry",
+        "MCC_USB_TC__pin_14",
+        "MCC_USB_TC__pin_14_screw",
+        "MCC_USB_TC__pin_14_wire_entry",
+        "MCC_USB_TC__pin_17",
+        "MCC_USB_TC__pin_17_screw",
+        "MCC_USB_TC__pin_17_wire_entry",
+        "MCC_USB_TC__pin_18",
+        "MCC_USB_TC__pin_18_screw",
+        "MCC_USB_TC__pin_18_wire_entry",
+        "MCC_USB_TC__pin_29",
+        "MCC_USB_TC__pin_29_screw",
+        "MCC_USB_TC__pin_29_wire_entry",
+        "MCC_USB_TC__pin_30",
+        "MCC_USB_TC__pin_30_screw",
+        "MCC_USB_TC__pin_30_wire_entry",
+        "MCC_USB_TC__pin_33",
+        "MCC_USB_TC__pin_33_screw",
+        "MCC_USB_TC__pin_33_wire_entry",
+        "MCC_USB_TC__pin_34",
+        "MCC_USB_TC__pin_34_screw",
+        "MCC_USB_TC__pin_34_wire_entry",
+        "MCC_USB_TC__pin_39",
+        "MCC_USB_TC__pin_39_screw",
+        "MCC_USB_TC__pin_39_wire_entry",
+        "MCC_USB_TC__pin_40",
+        "MCC_USB_TC__pin_40_screw",
+        "MCC_USB_TC__pin_40_wire_entry",
+        "MCC_USB_TC__pin_43",
+        "MCC_USB_TC__pin_43_screw",
+        "MCC_USB_TC__pin_43_wire_entry",
+        "MCC_USB_TC__pin_44",
+        "MCC_USB_TC__pin_44_screw",
+        "MCC_USB_TC__pin_44_wire_entry"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "carrier",
+        "cutting"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "MAP_CONDITION",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "MAP_LOG",
+      "interface_ids": [
+        "acquisition_ui"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "MAP_SUMMARY",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "COMPARE",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "STOP_SAFE",
+      "interface_ids": [
+        "acquisition_ui"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "UNMOUNT",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "carrier",
+        "heater_wiring"
+      ],
+      "part_selection": [
+        "KEITHLEY_2425__force",
+        "KEITHLEY_2425__force.001",
+        "KEITHLEY_2425__sense",
+        "KEITHLEY_2425__sense.001"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "carrier"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "ARCHIVE",
+      "interface_ids": [
+        "storage"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "storage"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "RESET",
+      "interface_ids": [
+        "storage"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "storage"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "REPORT",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "CAL_UNLOAD",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "bath_lid",
+        "bath_ui",
+        "cal_block",
+        "daq_terminals",
+        "rtd_meter"
+      ],
+      "part_selection": [
+        "MCC_USB_TC__pin_03",
+        "MCC_USB_TC__pin_03_screw",
+        "MCC_USB_TC__pin_03_wire_entry",
+        "MCC_USB_TC__pin_04",
+        "MCC_USB_TC__pin_04_screw",
+        "MCC_USB_TC__pin_04_wire_entry",
+        "MCC_USB_TC__pin_07",
+        "MCC_USB_TC__pin_07_screw",
+        "MCC_USB_TC__pin_07_wire_entry",
+        "MCC_USB_TC__pin_08",
+        "MCC_USB_TC__pin_08_screw",
+        "MCC_USB_TC__pin_08_wire_entry",
+        "MCC_USB_TC__pin_13",
+        "MCC_USB_TC__pin_13_screw",
+        "MCC_USB_TC__pin_13_wire_entry",
+        "MCC_USB_TC__pin_14",
+        "MCC_USB_TC__pin_14_screw",
+        "MCC_USB_TC__pin_14_wire_entry",
+        "MCC_USB_TC__pin_17",
+        "MCC_USB_TC__pin_17_screw",
+        "MCC_USB_TC__pin_17_wire_entry",
+        "MCC_USB_TC__pin_18",
+        "MCC_USB_TC__pin_18_screw",
+        "MCC_USB_TC__pin_18_wire_entry",
+        "MCC_USB_TC__pin_29",
+        "MCC_USB_TC__pin_29_screw",
+        "MCC_USB_TC__pin_29_wire_entry",
+        "MCC_USB_TC__pin_30",
+        "MCC_USB_TC__pin_30_screw",
+        "MCC_USB_TC__pin_30_wire_entry",
+        "MCC_USB_TC__pin_33",
+        "MCC_USB_TC__pin_33_screw",
+        "MCC_USB_TC__pin_33_wire_entry",
+        "MCC_USB_TC__pin_34",
+        "MCC_USB_TC__pin_34_screw",
+        "MCC_USB_TC__pin_34_wire_entry",
+        "MCC_USB_TC__pin_39",
+        "MCC_USB_TC__pin_39_screw",
+        "MCC_USB_TC__pin_39_wire_entry",
+        "MCC_USB_TC__pin_40",
+        "MCC_USB_TC__pin_40_screw",
+        "MCC_USB_TC__pin_40_wire_entry",
+        "MCC_USB_TC__pin_43",
+        "MCC_USB_TC__pin_43_screw",
+        "MCC_USB_TC__pin_43_wire_entry",
+        "MCC_USB_TC__pin_44",
+        "MCC_USB_TC__pin_44_screw",
+        "MCC_USB_TC__pin_44_wire_entry",
+        "THERMO_A25_AC150_HYPOTHESIS__calibration_copper_block",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key.001",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key.002",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key.003",
+        "THERMO_A25_AC150_HYPOTHESIS__controller_key.004",
+        "THERMO_A25_AC150_HYPOTHESIS__immersion_RTD",
+        "THERMO_A25_AC150_HYPOTHESIS__lid_handle",
+        "THERMO_A25_AC150_HYPOTHESIS__removable_lid"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "rtd_meter"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "OPT_UNLOAD",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "acquisition_ui",
+        "optical_access",
+        "optical_reference",
+        "optical_sample"
+      ],
+      "part_selection": [
+        "AGILENT_CARY_5000__DRA2500_port_plug",
+        "AGILENT_CARY_5000__DRA2500_sample_port",
+        "AGILENT_CARY_5000__sample_front_door",
+        "AGILENT_CARY_5000__sample_lid",
+        "THERMO_NICOLET_6700__IntegratIR_18mm_sample_port",
+        "THERMO_NICOLET_6700__IntegratIR_gold_reference",
+        "THERMO_NICOLET_6700__IntegratIR_reference_cap",
+        "THERMO_NICOLET_6700__IntegratIR_selector",
+        "THERMO_NICOLET_6700__sample_bay_lid"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "ENV_LOG",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "COAT_UNLOAD",
+      "interface_ids": [
+        "coating"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "coating"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "FIXED_QC",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
+      "robot_controller_implemented": false,
+      "collision_and_reachability_validated": false
+    },
+    {
+      "operation_id": "CAL_BLOCK_PREP",
+      "interface_ids": [
+        "cutting",
+        "machine_ui"
+      ],
+      "part_selection": [],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "cutting",
+        "machine_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "WITNESS_CUT",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "cutting",
+        "optical_sample"
+      ],
+      "part_selection": [
+        "AGILENT_CARY_5000__DRA2500_sample_port",
+        "THERMO_NICOLET_6700__IntegratIR_18mm_sample_port"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "cutting"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "ANGLE_REFERENCE",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "acquisition_ui",
+        "optical_access",
+        "optical_reference",
+        "optical_sample"
+      ],
+      "part_selection": [
+        "AGILENT_CARY_5000__DRA2500_port_plug",
+        "AGILENT_CARY_5000__DRA2500_sample_port",
+        "AGILENT_CARY_5000__sample_front_door",
+        "AGILENT_CARY_5000__sample_lid",
+        "THERMO_NICOLET_6700__IntegratIR_18mm_sample_port",
+        "THERMO_NICOLET_6700__IntegratIR_gold_reference",
+        "THERMO_NICOLET_6700__IntegratIR_reference_cap",
+        "THERMO_NICOLET_6700__IntegratIR_selector",
+        "THERMO_NICOLET_6700__sample_bay_lid"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "acquisition_ui"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "HEATER_REMOVE",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "carrier",
+        "emitter",
+        "film",
+        "heater",
+        "heater_wiring",
+        "reflector",
+        "shield"
+      ],
+      "part_selection": [
+        "COOLER_BLACK__PE_support",
+        "COOLER_BLACK__aperture_plate",
+        "COOLER_BLACK__cover_lower",
+        "COOLER_BLACK__cover_upper",
+        "COOLER_BLACK__emitter_copper",
+        "COOLER_BLACK__film_spacer",
+        "COOLER_BLACK__mylar_base",
+        "COOLER_BLACK__radiation_shield",
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__PE_support",
+        "COOLER_FIXED_BAND__aperture_plate",
+        "COOLER_FIXED_BAND__cover_lower",
+        "COOLER_FIXED_BAND__cover_upper",
+        "COOLER_FIXED_BAND__emitter_copper",
+        "COOLER_FIXED_BAND__film_spacer",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_FIXED_BAND__mylar_base",
+        "COOLER_FIXED_BAND__radiation_shield",
+        "COOLER_THERMAL_MAP__PE_support",
+        "COOLER_THERMAL_MAP__aperture_plate",
+        "COOLER_THERMAL_MAP__cover_lower",
+        "COOLER_THERMAL_MAP__cover_upper",
+        "COOLER_THERMAL_MAP__emitter_copper",
+        "COOLER_THERMAL_MAP__film_spacer",
+        "COOLER_THERMAL_MAP__mylar_base",
+        "COOLER_THERMAL_MAP__radiation_shield",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__PE_support",
+        "COOLER_WHITE__aperture_plate",
+        "COOLER_WHITE__cover_lower",
+        "COOLER_WHITE__cover_upper",
+        "COOLER_WHITE__emitter_copper",
+        "COOLER_WHITE__film_spacer",
+        "COOLER_WHITE__mylar_base",
+        "COOLER_WHITE__radiation_shield",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector",
+        "KEITHLEY_2425__force",
+        "KEITHLEY_2425__force.001",
+        "KEITHLEY_2425__sense",
+        "KEITHLEY_2425__sense.001"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "carrier",
+        "heater"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "MACHINE_PARTS",
+      "interface_ids": [
+        "cutting"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "cutting"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "TRACK_DESIGN",
+      "interface_ids": [],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "nonmanual_context",
+      "unmodeled_interface_ids": [],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "WITNESS_PREP",
+      "interface_ids": [
+        "stock"
+      ],
       "part_selection": [],
-      "binding_status": "unimplemented",
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "stock"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     },
     {
       "operation_id": "RESTORE_TRACKED",
-      "part_selection": [],
-      "binding_status": "unimplemented",
+      "interface_ids": [
+        "carrier",
+        "film",
+        "reflector",
+        "shield"
+      ],
+      "part_selection": [
+        "COOLER_BLACK__aperture_plate",
+        "COOLER_BLACK__cover_lower",
+        "COOLER_BLACK__cover_upper",
+        "COOLER_BLACK__film_spacer",
+        "COOLER_BLACK__mylar_base",
+        "COOLER_BLACK__radiation_shield",
+        "COOLER_BLACK__reflector_carriage",
+        "COOLER_BLACK__reflector_track",
+        "COOLER_BLACK__solar_reflector",
+        "COOLER_FIXED_BAND__aperture_plate",
+        "COOLER_FIXED_BAND__cover_lower",
+        "COOLER_FIXED_BAND__cover_upper",
+        "COOLER_FIXED_BAND__film_spacer",
+        "COOLER_FIXED_BAND__fixed_reflector_band",
+        "COOLER_FIXED_BAND__mylar_base",
+        "COOLER_FIXED_BAND__radiation_shield",
+        "COOLER_THERMAL_MAP__aperture_plate",
+        "COOLER_THERMAL_MAP__cover_lower",
+        "COOLER_THERMAL_MAP__cover_upper",
+        "COOLER_THERMAL_MAP__film_spacer",
+        "COOLER_THERMAL_MAP__mylar_base",
+        "COOLER_THERMAL_MAP__radiation_shield",
+        "COOLER_THERMAL_MAP__reflector_carriage",
+        "COOLER_THERMAL_MAP__reflector_track",
+        "COOLER_THERMAL_MAP__solar_reflector",
+        "COOLER_WHITE__aperture_plate",
+        "COOLER_WHITE__cover_lower",
+        "COOLER_WHITE__cover_upper",
+        "COOLER_WHITE__film_spacer",
+        "COOLER_WHITE__mylar_base",
+        "COOLER_WHITE__radiation_shield",
+        "COOLER_WHITE__reflector_carriage",
+        "COOLER_WHITE__reflector_track",
+        "COOLER_WHITE__solar_reflector"
+      ],
+      "binding_status": "partial_review_links",
+      "unmodeled_interface_ids": [
+        "carrier"
+      ],
       "robot_controller_implemented": false,
       "collision_and_reachability_validated": false
     }

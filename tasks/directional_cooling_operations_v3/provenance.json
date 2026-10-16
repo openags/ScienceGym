@@ -16,7 +16,7 @@
   ],
   "journal": "Nature Communications",
   "publication_date": "2018-11-27",
-  "review_date": "2026-10-15",
+  "review_date": "2026-10-17",
   "source_ids": {
     "MAIN": "https://www.nature.com/articles/s41467-018-07293-9",
     "SI": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-07293-9/MediaObjects/41467_2018_7293_MOESM1_ESM.pdf",
@@ -26,6 +26,7 @@
     "SMU_USER": "https://download.tek.com/manual/2400S-900-01_K-Sep2011_User.pdf",
     "SMU_CAD": "https://download.tek.com/document/Keithley%202400%20Standard%20Series%20SMU.zip",
     "USB_TC_MANUAL": "https://files.digilent.com/manuals/USB-TC.pdf",
+    "TC_DATASHEET": "https://assets.omega.com/pdf/test-and-measurement-equipment/temperature/sensors/thermocouple-probes/5TC.pdf",
     "BATH_MANUAL": "https://documents.thermofisher.com/TFS-Assets/LED/manuals/D00167~.pdf",
     "UVVIS_BROCHURE": "https://www.agilent.com/cs/library/brochures/5990-7786EN_Cary-4000-5000-6000i-UV-Vis-NIR_Brochure.pdf",
     "FTIR_MANUAL": "https://knowledge1.thermofisher.com/@api/deki/files/4426/269-155800_-_Nicolet_FT-IR_User_Guide.pdf?revision=1",
@@ -131,6 +132,18 @@
       "source_id": "USB_TC_MANUAL",
       "locator": "p7 and p17",
       "facts": "K thermocouples require configuration away from Type J default; 30 minute warm-up; actual channel terminal map",
+      "basis": "manufacturer_manual_text"
+    },
+    "E_BATH_FILL": {
+      "source_id": "BATH_MANUAL",
+      "locator": "printed p3-15, Filling Requirements",
+      "facts": "Closed drain, retained plumbing, inspect residue and include immersed-object displacement before filling",
+      "basis": "manufacturer_manual_text"
+    },
+    "E_TC_WIRE": {
+      "source_id": "TC_DATASHEET",
+      "locator": "p1 ordering table, 5TC-TT-(*)-36-(**)",
+      "facts": "36 AWG PFA insulated stripped-lead K-type probe; USB-TC p17 instead specifies 16-30 AWG terminal wires; transition is a reconstruction requirement",
       "basis": "manufacturer_manual_text"
     }
   },
