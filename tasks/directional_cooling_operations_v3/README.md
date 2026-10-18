@@ -46,3 +46,26 @@ per-interface gaps and `review.json` rather than treating step counts as accepta
 The previous published review is retained in `review_history/2026-10-15/`.
 Step IDs are scoped to the reconstruction revision and content hashes; earlier
 observations must never be attached to a replaced step definition.
+
+The selected simulation scenario is now concrete:
+[14 input cards](selected_reconstruction.json) contain 109 values with separate
+source and inference provenance. [The loader](episode_inputs.py) rejects missing
+values, unsupported qualification claims, channel aliasing and resized commercial
+parts. [The solar path](selected_solar_path.json) contains 241 commands derived
+from the selected site/date and a one-second geometric shadow check. These inputs
+are design selections, not historical measurements or successful robot actions.
+
+```bash
+python selected_reconstruction.py
+python -m pip install pvlib==0.16.1
+python selected_solar_path.py
+python episode_inputs.py
+```
+
+Physical controllers and bounded contact evidence now live in
+[simulation/cooling_v1](../../simulation/cooling_v1/README.md), with model-specific
+[Keithley 2000](../../assets/keithley_2000_v1/README.md),
+[Omega RTD](../../assets/omega_pm_rtd_v1/README.md), and
+[Omega heater](../../assets/omega_khr_2_2_p_v1/README.md) assets. The earlier
+no-runtime description applies to the symbolic planner itself. Complete branch
+acceptance still requires every actual manipulation occurrence and its evidence.

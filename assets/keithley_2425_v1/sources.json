@@ -1,0 +1,84 @@
+{
+  "schema_version": "sciencegym.asset_sources.v1",
+  "model": "Keithley 2425",
+  "source_type": "manufacturer_documentation_reconstruction",
+  "vendor_cad": false,
+  "sources": [
+    {
+      "id": "keithley2425-spec",
+      "url": "https://download.tek.com/document/2425RevC_DocSpec.pdf",
+      "sha256": "b0aae405607feaa032401ad123892e288be691428abf2778e186102d995b02d1",
+      "locator": "General specifications",
+      "supports": [
+        "2425 model identity",
+        "89 x 213 x 370 mm rack envelope",
+        "104 x 238 x 370 mm bench envelope",
+        "forced-air variable-speed cooling"
+      ],
+      "redistributed": false
+    },
+    {
+      "id": "keithley2425-service",
+      "url": "https://download.tek.com/manual/2425-902-01B_Oct2004_Service1.pdf",
+      "sha256": "f5b8f66225c33dd8f306d1e2332f3ac928186f7a9c0451e11fda37bd7f72c002",
+      "locator": "Figure 1-1; p1-6; Table 6-4",
+      "supports": [
+        "2425 front-panel layout and model legend",
+        "125 V differential and 250 V common-mode legends",
+        "red and black measurement jacks plus blue and white guard jacks",
+        "3.15 A mains fuse"
+      ],
+      "redistributed": false
+    },
+    {
+      "id": "keithley2400-user",
+      "url": "https://download.tek.com/manual/2400S-900-01_K-Sep2011_User.pdf",
+      "sha256": "4df96f3b6fcbae944aa009ee6d1277fee5d00bf28cdf9bed02c1280618b34e74",
+      "locator": "Figure 1-1, Figure 1-2, pp1-6 through 1-9",
+      "supports": [
+        "family control identities",
+        "four front force/sense connectors",
+        "six rear measurement/guard connectors",
+        "GPIB, RS232, output enable, trigger link, mains inlet"
+      ],
+      "redistributed": false
+    }
+  ],
+  "cad_search": {
+    "date": "2026-10-19",
+    "queries": [
+      "site.tek.com 2425 3D",
+      "site.tek.com 2425 dimensions front panel manual"
+    ],
+    "outcome": "An exact 2425 CAD download was not located in these searches. No neighboring model CAD is substituted."
+  },
+  "evidence_interpretation": "The series manual explicitly uses a generic 2400 illustration for these similar models. Model-specific 2425 service documentation supplies its front legend and 125 V markings. Geometry is an original reconstruction, not a renamed vendor mesh.",
+  "dimensions": {
+    "rack_HWD_m": [
+      0.089,
+      0.213,
+      0.37
+    ],
+    "bench_HWD_m": [
+      0.104,
+      0.238,
+      0.37
+    ]
+  },
+  "selected_inferences": [
+    "Pixel-derived positions and depth geometry",
+    "4 mm banana bore, 12 mm insertion corridor, unmeasured mating tolerances",
+    "Housing wall thickness, edge radii, material and roughness",
+    "1 mm button travel; spring and actuation forces not measured",
+    "Rear connector cavities and retention geometry simplified"
+  ],
+  "limits": [
+    "Internal electronics, fan and ventilation topology are not reconstructed",
+    "Handle is modeled in one retained bench pose",
+    "No electrical behavior or complete physical terminal insertion qualified by the static mesh",
+    "Surface and connector dimensions require metrology before hardware use"
+  ],
+  "geometry_license": "Original repository-authored geometry; manufacturer images are linked and are not embedded",
+  "font_license": "DejaVu Sans, license in LICENSES/DejaVu-copyright.txt",
+  "qualified_full_equipment_fidelity": false
+}

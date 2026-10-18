@@ -1,0 +1,413 @@
+<mujoco model="ScienceGym cooling contact workcell">
+  <compiler angle="radian" meshdir="" autolimits="true" />
+  <option integrator="implicitfast" timestep=".001" iterations="100" cone="elliptic" impratio="5" noslip_iterations="0" />
+  <default>
+    <default class="panda">
+      <material specular="0.5" shininess="0.25" />
+      <joint armature="0.1" damping="1" axis="0 0 1" range="-2.8973 2.8973" />
+      <general dyntype="none" biastype="affine" ctrlrange="-2.8973 2.8973" forcerange="-87 87" />
+      <default class="finger">
+        <joint axis="0 1 0" type="slide" range="0 0.04" />
+      </default>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2" />
+      </default>
+      <default class="collision">
+        <geom type="mesh" group="3" />
+        <default class="fingertip_pad_collision_1">
+          <geom type="box" size="0.0085 0.004 0.0085" pos="0 0.0055 0.0445" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_2">
+          <geom type="box" size="0.003 0.002 0.003" pos="0.0055 0.002 0.05" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_3">
+          <geom type="box" size="0.003 0.002 0.003" pos="-0.0055 0.002 0.05" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_4">
+          <geom type="box" size="0.003 0.002 0.0035" pos="0.0055 0.002 0.0395" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_5">
+          <geom type="box" size="0.003 0.002 0.0035" pos="-0.0055 0.002 0.0395" friction="1.4 .01 .006" condim="6" />
+        </default>
+      </default>
+    </default>
+    <geom solref=".004 1" solimp=".95 .99 .0005" condim="4" />
+  </default>
+  <asset>
+    <material class="panda" name="white" rgba="1 1 1 1" />
+    <material class="panda" name="off_white" rgba="0.901961 0.921569 0.929412 1" />
+    <material class="panda" name="black" rgba="0.25 0.25 0.25 1" />
+    <material class="panda" name="green" rgba="0 1 0 1" />
+    <material class="panda" name="light_blue" rgba="0.039216 0.541176 0.780392 1" />
+    <mesh name="link0_c" file="robot/link0.stl" />
+    <mesh name="link1_c" file="robot/link1.stl" />
+    <mesh name="link2_c" file="robot/link2.stl" />
+    <mesh name="link3_c" file="robot/link3.stl" />
+    <mesh name="link4_c" file="robot/link4.stl" />
+    <mesh name="link5_c0" file="robot/link5_collision_0.obj" />
+    <mesh name="link5_c1" file="robot/link5_collision_1.obj" />
+    <mesh name="link5_c2" file="robot/link5_collision_2.obj" />
+    <mesh name="link6_c" file="robot/link6.stl" />
+    <mesh name="link7_c" file="robot/link7.stl" />
+    <mesh name="hand_c" file="robot/hand.stl" />
+    <mesh file="robot/link0_0.obj" />
+    <mesh file="robot/link0_1.obj" />
+    <mesh file="robot/link0_2.obj" />
+    <mesh file="robot/link0_3.obj" />
+    <mesh file="robot/link0_4.obj" />
+    <mesh file="robot/link0_5.obj" />
+    <mesh file="robot/link0_7.obj" />
+    <mesh file="robot/link0_8.obj" />
+    <mesh file="robot/link0_9.obj" />
+    <mesh file="robot/link0_10.obj" />
+    <mesh file="robot/link0_11.obj" />
+    <mesh file="robot/link1.obj" />
+    <mesh file="robot/link2.obj" />
+    <mesh file="robot/link3_0.obj" />
+    <mesh file="robot/link3_1.obj" />
+    <mesh file="robot/link3_2.obj" />
+    <mesh file="robot/link3_3.obj" />
+    <mesh file="robot/link4_0.obj" />
+    <mesh file="robot/link4_1.obj" />
+    <mesh file="robot/link4_2.obj" />
+    <mesh file="robot/link4_3.obj" />
+    <mesh file="robot/link5_0.obj" />
+    <mesh file="robot/link5_1.obj" />
+    <mesh file="robot/link5_2.obj" />
+    <mesh file="robot/link6_0.obj" />
+    <mesh file="robot/link6_1.obj" />
+    <mesh file="robot/link6_2.obj" />
+    <mesh file="robot/link6_3.obj" />
+    <mesh file="robot/link6_4.obj" />
+    <mesh file="robot/link6_5.obj" />
+    <mesh file="robot/link6_6.obj" />
+    <mesh file="robot/link6_7.obj" />
+    <mesh file="robot/link6_8.obj" />
+    <mesh file="robot/link6_9.obj" />
+    <mesh file="robot/link6_10.obj" />
+    <mesh file="robot/link6_11.obj" />
+    <mesh file="robot/link6_12.obj" />
+    <mesh file="robot/link6_13.obj" />
+    <mesh file="robot/link6_14.obj" />
+    <mesh file="robot/link6_15.obj" />
+    <mesh file="robot/link6_16.obj" />
+    <mesh file="robot/link7_0.obj" />
+    <mesh file="robot/link7_1.obj" />
+    <mesh file="robot/link7_2.obj" />
+    <mesh file="robot/link7_3.obj" />
+    <mesh file="robot/link7_4.obj" />
+    <mesh file="robot/link7_5.obj" />
+    <mesh file="robot/link7_6.obj" />
+    <mesh file="robot/link7_7.obj" />
+    <mesh file="robot/hand_0.obj" />
+    <mesh file="robot/hand_1.obj" />
+    <mesh file="robot/hand_2.obj" />
+    <mesh file="robot/hand_3.obj" />
+    <mesh file="robot/hand_4.obj" />
+    <mesh file="robot/finger_0.obj" />
+    <mesh file="robot/finger_1.obj" />
+    <texture name="floor_tex" type="2d" builtin="checker" rgb1=".17 .21 .26" rgb2=".2 .24 .29" width="512" height="512" />
+    <material name="floor_mat" texture="floor_tex" texrepeat="5 5" reflectance=".05" />
+    <mesh name="omega_pm_rtd_0000" file="omega_pm_rtd/0000.obj" />
+    <mesh name="omega_pm_rtd_0001" file="omega_pm_rtd/0001.obj" />
+    <mesh name="omega_pm_rtd_0002" file="omega_pm_rtd/0002.obj" />
+    <mesh name="omega_pm_rtd_0003" file="omega_pm_rtd/0003.obj" />
+    <mesh name="omega_pm_rtd_0005" file="omega_pm_rtd/0005.obj" />
+    <mesh name="omega_pm_rtd_0010" file="omega_pm_rtd/0010.obj" />
+    <mesh name="omega_pm_rtd_0011" file="omega_pm_rtd/0011.obj" />
+    <mesh name="rtd_hex_collision" vertex="0.0146647 0 0.0912 0.00733235 0.0127000027 0.0912 -0.00733235 0.0127000027 0.0912 -0.0146647 1.79590779e-18 0.0912 -0.00733235 -0.0127000027 0.0912 0.00733235 -0.0127000027 0.0912 0.0146647 0 0.0972 0.00733235 0.0127000027 0.0972 -0.00733235 0.0127000027 0.0972 -0.0146647 1.79590779e-18 0.0972 -0.00733235 -0.0127000027 0.0972 0.00733235 -0.0127000027 0.0972" />
+  </asset>
+  <worldbody>
+    <light name="top" pos="0 -1 3" mode="trackcom" diffuse=".8 .8 .8" directional="true" dir="0 .2 -1" />
+    <body name="link0" childclass="panda" pos="0 0 .74">
+      <inertial mass="0.629769" pos="-0.041018 -0.00014 0.049974" fullinertia="0.00315 0.00388 0.004285 8.2904e-7 0.00015 8.2299e-6" />
+      <geom mesh="link0_0" material="off_white" class="visual" />
+      <geom mesh="link0_1" material="black" class="visual" />
+      <geom mesh="link0_2" material="off_white" class="visual" />
+      <geom mesh="link0_3" material="black" class="visual" />
+      <geom mesh="link0_4" material="off_white" class="visual" />
+      <geom mesh="link0_5" material="black" class="visual" />
+      <geom mesh="link0_7" material="white" class="visual" />
+      <geom mesh="link0_8" material="white" class="visual" />
+      <geom mesh="link0_9" material="black" class="visual" />
+      <geom mesh="link0_10" material="off_white" class="visual" />
+      <geom mesh="link0_11" material="white" class="visual" />
+      <geom mesh="link0_c" class="collision" />
+      <body name="link1" pos="0 0 0.333">
+        <inertial mass="4.970684" pos="0.003875 0.002081 -0.04762" fullinertia="0.70337 0.70661 0.0091170 -0.00013900 0.0067720 0.019169" />
+        <joint name="joint1" />
+        <geom material="white" mesh="link1" class="visual" />
+        <geom mesh="link1_c" class="collision" />
+        <body name="link2" quat="1 -1 0 0">
+          <inertial mass="0.646926" pos="-0.003141 -0.02872 0.003495" fullinertia="0.0079620 2.8110e-2 2.5995e-2 -3.925e-3 1.0254e-2 7.04e-4" />
+          <joint name="joint2" range="-1.7628 1.7628" />
+          <geom material="white" mesh="link2" class="visual" />
+          <geom mesh="link2_c" class="collision" />
+          <body name="link3" pos="0 -0.316 0" quat="1 1 0 0">
+            <joint name="joint3" />
+            <inertial mass="3.228604" pos="2.7518e-2 3.9252e-2 -6.6502e-2" fullinertia="3.7242e-2 3.6155e-2 1.083e-2 -4.761e-3 -1.1396e-2 -1.2805e-2" />
+            <geom mesh="link3_0" material="white" class="visual" />
+            <geom mesh="link3_1" material="white" class="visual" />
+            <geom mesh="link3_2" material="white" class="visual" />
+            <geom mesh="link3_3" material="black" class="visual" />
+            <geom mesh="link3_c" class="collision" />
+            <body name="link4" pos="0.0825 0 0" quat="1 1 0 0">
+              <inertial mass="3.587895" pos="-5.317e-2 1.04419e-1 2.7454e-2" fullinertia="2.5853e-2 1.9552e-2 2.8323e-2 7.796e-3 -1.332e-3 8.641e-3" />
+              <joint name="joint4" range="-3.0718 -0.0698" />
+              <geom mesh="link4_0" material="white" class="visual" />
+              <geom mesh="link4_1" material="white" class="visual" />
+              <geom mesh="link4_2" material="black" class="visual" />
+              <geom mesh="link4_3" material="white" class="visual" />
+              <geom mesh="link4_c" class="collision" />
+              <body name="link5" pos="-0.0825 0.384 0" quat="1 -1 0 0">
+                <inertial mass="1.225946" pos="-1.1953e-2 4.1065e-2 -3.8437e-2" fullinertia="3.5549e-2 2.9474e-2 8.627e-3 -2.117e-3 -4.037e-3 2.29e-4" />
+                <joint name="joint5" />
+                <geom mesh="link5_0" material="black" class="visual" />
+                <geom mesh="link5_1" material="white" class="visual" />
+                <geom mesh="link5_2" material="white" class="visual" />
+                <geom mesh="link5_c0" class="collision" />
+                <geom mesh="link5_c1" class="collision" />
+                <geom mesh="link5_c2" class="collision" />
+                <body name="link6" quat="1 1 0 0">
+                  <inertial mass="1.666555" pos="6.0149e-2 -1.4117e-2 -1.0517e-2" fullinertia="1.964e-3 4.354e-3 5.433e-3 1.09e-4 -1.158e-3 3.41e-4" />
+                  <joint name="joint6" range="-0.0175 3.7525" />
+                  <geom mesh="link6_0" material="off_white" class="visual" />
+                  <geom mesh="link6_1" material="white" class="visual" />
+                  <geom mesh="link6_2" material="black" class="visual" />
+                  <geom mesh="link6_3" material="white" class="visual" />
+                  <geom mesh="link6_4" material="white" class="visual" />
+                  <geom mesh="link6_5" material="white" class="visual" />
+                  <geom mesh="link6_6" material="white" class="visual" />
+                  <geom mesh="link6_7" material="light_blue" class="visual" />
+                  <geom mesh="link6_8" material="light_blue" class="visual" />
+                  <geom mesh="link6_9" material="black" class="visual" />
+                  <geom mesh="link6_10" material="black" class="visual" />
+                  <geom mesh="link6_11" material="white" class="visual" />
+                  <geom mesh="link6_12" material="green" class="visual" />
+                  <geom mesh="link6_13" material="white" class="visual" />
+                  <geom mesh="link6_14" material="black" class="visual" />
+                  <geom mesh="link6_15" material="black" class="visual" />
+                  <geom mesh="link6_16" material="white" class="visual" />
+                  <geom mesh="link6_c" class="collision" />
+                  <body name="link7" pos="0.088 0 0" quat="1 1 0 0">
+                    <inertial mass="7.35522e-01" pos="1.0517e-2 -4.252e-3 6.1597e-2" fullinertia="1.2516e-2 1.0027e-2 4.815e-3 -4.28e-4 -1.196e-3 -7.41e-4" />
+                    <joint name="joint7" />
+                    <geom mesh="link7_0" material="white" class="visual" />
+                    <geom mesh="link7_1" material="black" class="visual" />
+                    <geom mesh="link7_2" material="black" class="visual" />
+                    <geom mesh="link7_3" material="black" class="visual" />
+                    <geom mesh="link7_4" material="black" class="visual" />
+                    <geom mesh="link7_5" material="black" class="visual" />
+                    <geom mesh="link7_6" material="black" class="visual" />
+                    <geom mesh="link7_7" material="white" class="visual" />
+                    <geom mesh="link7_c" class="collision" />
+                    <body name="hand" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834">
+                      <inertial mass="0.73" pos="-0.01 0 0.03" diaginertia="0.001 0.0025 0.0017" />
+                      <geom mesh="hand_0" material="off_white" class="visual" />
+                      <geom mesh="hand_1" material="black" class="visual" />
+                      <geom mesh="hand_2" material="black" class="visual" />
+                      <geom mesh="hand_3" material="white" class="visual" />
+                      <geom mesh="hand_4" material="off_white" class="visual" />
+                      <geom mesh="hand_c" class="collision" />
+                      <body name="left_finger" pos="0 0 0.0584">
+                        <inertial mass="0.015" pos="0 0 0" diaginertia="2.375e-6 2.375e-6 7.5e-7" />
+                        <joint name="finger_joint1" class="finger" />
+                        <geom mesh="finger_0" material="off_white" class="visual" />
+                        <geom mesh="finger_1" material="black" class="visual" />
+                        <geom mesh="finger_0" class="collision" />
+                        <geom class="fingertip_pad_collision_1" />
+                        <geom class="fingertip_pad_collision_2" />
+                        <geom class="fingertip_pad_collision_3" />
+                        <geom class="fingertip_pad_collision_4" />
+                        <geom class="fingertip_pad_collision_5" />
+                      </body>
+                      <body name="right_finger" pos="0 0 0.0584" quat="0 0 0 1">
+                        <inertial mass="0.015" pos="0 0 0" diaginertia="2.375e-6 2.375e-6 7.5e-7" />
+                        <joint name="finger_joint2" class="finger" />
+                        <geom mesh="finger_0" material="off_white" class="visual" />
+                        <geom mesh="finger_1" material="black" class="visual" />
+                        <geom mesh="finger_0" class="collision" />
+                        <geom class="fingertip_pad_collision_1" />
+                        <geom class="fingertip_pad_collision_2" />
+                        <geom class="fingertip_pad_collision_3" />
+                        <geom class="fingertip_pad_collision_4" />
+                        <geom class="fingertip_pad_collision_5" />
+                      </body>
+                      <site name="tcp" pos="0 0 .1034" size=".003" rgba="0 .5 1 1" />
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <geom name="floor" type="plane" size="5 5 .1" material="floor_mat" />
+    <geom name="bench" type="box" size="0.68 0.67 0.04" pos="0.45 0 0.7" rgba="0.72 0.75 0.78 1" friction="1 .005 .0001" />
+    <geom name="leg_-0.14_-0.57" type="box" size="0.035 0.035 0.37" pos="-0.14 -0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_-0.14_0.57" type="box" size="0.035 0.035 0.37" pos="-0.14 0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_1.04_-0.57" type="box" size="0.035 0.035 0.37" pos="1.04 -0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_1.04_0.57" type="box" size="0.035 0.035 0.37" pos="1.04 0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <light pos="1 1 3" diffuse=".5 .5 .5" />
+    <body name="rtd" pos="0.36 -0.26 0.765">
+      <freejoint name="rtd_free" />
+      <body name="rtd_source_geometry" euler="0 -1.57079632679 0">
+        <geom name="omega_pm_rtd_cable_transition" type="mesh" mesh="omega_pm_rtd_0000" pos="0.106700003 0 0" rgba="0.478431373 0.509803922 0.541176471 1" mass="0" contype="0" conaffinity="0" group="2" />
+        <geom name="omega_pm_rtd_closed_tip" type="mesh" mesh="omega_pm_rtd_0001" pos="9.99999975e-05 0 0" rgba="0.478431373 0.509803922 0.541176471 1" mass="0" contype="0" conaffinity="0" group="2" />
+        <geom name="omega_pm_rtd_hex_grip" type="mesh" mesh="omega_pm_rtd_0002" pos="0.0942000002 0 0" rgba="0.580392157 0.6 0.619607843 1" mass="0" contype="0" conaffinity="0" group="2" />
+        <geom name="omega_pm_rtd_immersion_sheath" type="mesh" mesh="omega_pm_rtd_0003" pos="0.0381000005 0 0" rgba="0.478431373 0.509803922 0.541176471 1" mass="0" contype="0" conaffinity="0" group="2" />
+        <geom name="omega_pm_rtd_strain_relief" type="mesh" mesh="omega_pm_rtd_0005" pos="0.119199999 0 0" rgba="0.0156862745 0.0156862745 0.0196078431 1" mass="0" contype="0" conaffinity="0" group="2" />
+        <geom name="omega_pm_rtd_thread_core" type="mesh" mesh="omega_pm_rtd_0010" pos="0.0837000012 0 0" rgba="0.580392157 0.6 0.619607843 1" mass="0" contype="0" conaffinity="0" group="2" />
+        <geom name="omega_pm_rtd_thread_crest_visual" type="mesh" mesh="omega_pm_rtd_0011" pos="0.0837046392 -1.42082572e-05 -1.27046369e-05" rgba="0.580392157 0.6 0.619607843 1" mass="0" contype="0" conaffinity="0" group="2" />
+      </body>
+      <geom name="rtd_sheath" type="cylinder" size="0.003175 0.0381" pos="0 0 0.0381" rgba="0 0 0 0" friction="1 .005 .0001" mass=".012" />
+      <geom name="rtd_thread_envelope" type="cylinder" size="0.0106 0.0075" pos="0 0 0.0837" rgba="0 0 0 0" friction="1 .005 .0001" mass=".025" />
+      <geom name="rtd_hex" type="mesh" mesh="rtd_hex_collision" mass=".016" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="rtd_transition" type="cylinder" size="0.0048 0.0095" pos="0 0 0.1067" rgba="0 0 0 0" friction="1 .005 .0001" mass=".009" />
+      <site name="rtd_grasp" pos="0 0 .0942" size=".001" />
+      <flexcomp name="rtd_cable" type="direct" dim="1" point="0 0 0.1222 0.0175473234 -0.00179523713 0.124279015 0.0349114594 -0.00688784857 0.123643192 0.0521168329 -0.0148381844 0.120571463 0.0691878689 -0.0252065947 0.115342764 0.0861489925 -0.0375534297 0.108236027 0.103024629 -0.0514390393 0.0995301852 0.119839202 -0.0664237737 0.0895041726 0.136617138 -0.0820679829 0.0784369225 0.153382862 -0.0979320171 0.0666073682 0.170160798 -0.113576226 0.0542944433 0.186975371 -0.128560961 0.0417770812 0.203851008 -0.14244657 0.0293342153 0.220812131 -0.154793405 0.0172447792 0.237883167 -0.165161816 0.00578770609 0.255088541 -0.173112151 -0.00475807043 0.272452677 -0.178204763 -0.0141136169 0.29 -0.18 -0.022 0.322196955 -0.174043775 -0.0215924112 0.350132304 -0.156963468 -0.0211848224 0.370108506 -0.131019839 -0.0207772337 0.379481502 -0.0996468013 -0.0203696449 0.377010676 -0.0669969073 -0.0199620561 0.363023068 -0.0373917157 -0.0195544673 0.339370085 -0.0147497861 -0.0191468785 0.30918245 -0.00206801722 -0.0187392898 0.276455816 -0.00102497501 -0.018331701 0.245521897 -0.0117587171 -0.0179241122 0.220475125 -0.0328485195 -0.0175165234 0.204630704 -0.061502924 -0.0171089346 0.200085812 -0.0939292174 -0.0167013459 0.207442012 -0.125835437 -0.0162937571 0.225725634 -0.152998459 -0.0158861683 0.252516647 -0.171822969 -0.0154785795 0.284268977 -0.179817345 -0.0150709907 0.31677987 -0.175923446 -0.014663402 0.345746163 -0.160656672 -0.0142558132 0.367333863 -0.136037741 -0.0138482244 0.37868561 -0.105325229 -0.0134406356 0.378298879 -0.0725842605 -0.0130330468 0.366224859 -0.0421484494 -0.0126254581 0.344061674 -0.0180462965 -0.0122178693 0.314742855 -0.00346797625 -0.0118102805 0.282149058 -0.000343083325 -0.0114026917 0.250594416 -0.00908523032 -0.0109951029 0.224255519 -0.0285373018 -0.0105875142 0.206618599 -0.0561246105 -0.0101799254 0.200018088 -0.0881956848 -0.0097723366 0.205327634 -0.120505579 -0.00936474782 0.221844461 -0.148777738 -0.00895715904 0.247382394 -0.169270043 -0.00854957027 0.278561217 -0.17927012 -0.00814198149 0.311254084 -0.177454353 -0.00773439271 0.341133749 -0.16406308 -0.00732680393 0.364245321 -0.140868775 -0.00691921515 0.377529741 -0.110941451 -0.00651162637 0.379228676 -0.0782423044 -0.00610403759 0.369117253 -0.0470994131 -0.00569644881 0.348533825 -0.0216348677 -0.00528886003 0.320202828 -0.00521916964 -0.00488127125 0.287874167 -2.51099786e-05 -0.00447368247 0.255826883 -0.00674017737 -0.00406609369 0.228302772 -0.0244755617 -0.00365850491 0.20894494 -0.0508837976 -0.00325091613 0.200315602 -0.082469476 -0.00284332735 0.203556941 -0.115051899 -0.00243573857 0.218239933 -0.144318438 -0.00202814979 0.242421127 -0.166395359 -0.00162056101 0.272899887 -0.178360546 -0.00121297223 0.305642028 -0.178630282 -0.000805383448 0.336313781 -0.167168864 -0.000397794668 0.360855417 -0.145493332 9.79411182e-06 0.376018589 -0.116472671 0.000417382892 0.379796293 -0.0839480728 0.000824971672 0.371688508 -0.0522245107 0.00123256045 0.352768387 -0.0255009336 0.00164014923 0.325540207 -0.00731448928 0.00204773801 0.293607905 -7.23456262e-05 0.00245532679 0.261198059 -0.00473307689 0.00286291557 0.232600454 -0.0206797861 0.00327050435 0.211600285 -0.0458017577 0.00367809313 0.200977146 -0.0767738336 0.00408568191 0.202137123 -0.109496532 0.00449327069 0.214926679 -0.139638659 0.00490085947 0.237652982 -0.163210585 0.00530844825 0.267307966 -0.177092317 0.00571603703 0.299966481 -0.17944646 0.00612362581 0.331305826 -0.16996142 0.00653121459 0.357177909 -0.149892641 0.00693880337 0.374158286 -0.121896439 0.00734639215 0.379999425 -0.0896784061 0.00775398093 0.37392819 -0.0575029394 0.00816156971 0.356748172 -0.029628802 0.00856915849 0.330733328 -0.00974543026 0.00897674727 0.299326998 -0.000484598538 0.00938433605 0.266686142 -0.00307207571 0.00979192483 0.237131121 -0.0171653818 0.0101995136 0.214573854 -0.040899119 0.0106071024 0.202000035 -0.0711318764 0.0110146912 0.20107394 -0.103862029 0.0114222799 0.211918149 -0.134757396 0.0118298687 0.233097315 -0.159728649 0.0122374575 0.261808153 -0.175470578 0.0126450463 0.29425048 -0.179899574 0.0130526351 0.32613021 -0.172429412 0.0134602238 0.353227726 -0.154048846 0.0138678126 0.371956384 -0.127190739 0.0142754014 0.37983725 -0.0954100447 0.0146829902 0.375827206 -0.062913274 0.015090579 0.360457025 -0.0340017176 0.0154981677 0.335761113 -0.0125021253 0.0159057565 0.305008234 -0.00126019537 0.0163133453 0.272268856 -0.00176391586 0.0167209341 0.241876383 -0.0139466141 0.0171285229 0.217853579 -0.0361957812 0.0175361116 0.203380116 -0.0655665051 0.0179437004 0.200371709 -0.09817126 0.0183512892 0.209226554 -0.129694462 0.018758878" element="0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 58 58 59 59 60 60 61 61 62 62 63 63 64 64 65 65 66 66 67 67 68 68 69 69 70 70 71 71 72 72 73 73 74 74 75 75 76 76 77 77 78 78 79 79 80 80 81 81 82 82 83 83 84 84 85 85 86 86 87 87 88 88 89 89 90 90 91 91 92 92 93 93 94 94 95 95 96 96 97 97 98 98 99 99 100 100 101 101 102 102 103 103 104 104 105 105 106 106 107 107 108 108 109 109 110 110 111 111 112 112 113 113 114 114 115 115 116 116 117" mass="0.05975158430680414" radius=".002" rgba=".025 .03 .035 1">
+        <pin id="0" />
+        <edge equality="true" damping=".001" solref=".002 1" solimp=".9999 .9999 .00001" />
+        <contact selfcollide="auto" condim="3" friction=".3 .001 .0001" solref=".0021 1" solimp=".99 .999 .0001" />
+      </flexcomp>
+    </body>
+    <body name="rtd_stand" pos="0.36 -0.26 0.74">
+      <geom name="rtd_stand_rim_0" type="box" size="0.00725 0.00072469343 0.004" pos="0.01075 0 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 0" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_1" type="box" size="0.00725 0.00072469343 0.004" pos="0.0106580323 0.00140315657 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 0.130899694" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_2" type="box" size="0.00725 0.00072469343 0.004" pos="0.0103837026 0.00278230473 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 0.261799388" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_3" type="box" size="0.00725 0.00072469343 0.004" pos="0.00993170497 0.0041138469 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 0.392699082" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_4" type="box" size="0.00725 0.00072469343 0.004" pos="0.00930977309 0.005375 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 0.523598776" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_5" type="box" size="0.00725 0.00072469343 0.004" pos="0.00852854841 0.00654418536 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 0.654498469" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_6" type="box" size="0.00725 0.00072469343 0.004" pos="0.0076013979 0.0076013979 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 0.785398163" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_7" type="box" size="0.00725 0.00072469343 0.004" pos="0.00654418536 0.00852854841 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 0.916297857" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_8" type="box" size="0.00725 0.00072469343 0.004" pos="0.005375 0.00930977309 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 1.04719755" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_9" type="box" size="0.00725 0.00072469343 0.004" pos="0.0041138469 0.00993170497 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 1.17809725" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_10" type="box" size="0.00725 0.00072469343 0.004" pos="0.00278230473 0.0103837026 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 1.30899694" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_11" type="box" size="0.00725 0.00072469343 0.004" pos="0.00140315657 0.0106580323 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 1.43989663" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_12" type="box" size="0.00725 0.00072469343 0.004" pos="6.58247655e-19 0.01075 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 1.57079633" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_13" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00140315657 0.0106580323 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 1.70169602" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_14" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00278230473 0.0103837026 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 1.83259571" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_15" type="box" size="0.00725 0.00072469343 0.004" pos="-0.0041138469 0.00993170497 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 1.96349541" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_16" type="box" size="0.00725 0.00072469343 0.004" pos="-0.005375 0.00930977309 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 2.0943951" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_17" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00654418536 0.00852854841 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 2.2252948" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_18" type="box" size="0.00725 0.00072469343 0.004" pos="-0.0076013979 0.0076013979 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 2.35619449" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_19" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00852854841 0.00654418536 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 2.48709418" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_20" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00930977309 0.005375 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 2.61799388" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_21" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00993170497 0.0041138469 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 2.74889357" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_22" type="box" size="0.00725 0.00072469343 0.004" pos="-0.0103837026 0.00278230473 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 2.87979327" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_23" type="box" size="0.00725 0.00072469343 0.004" pos="-0.0106580323 0.00140315657 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 3.01069296" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_24" type="box" size="0.00725 0.00072469343 0.004" pos="-0.01075 1.31649531e-18 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 3.14159265" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_25" type="box" size="0.00725 0.00072469343 0.004" pos="-0.0106580323 -0.00140315657 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 3.27249235" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_26" type="box" size="0.00725 0.00072469343 0.004" pos="-0.0103837026 -0.00278230473 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 3.40339204" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_27" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00993170497 -0.0041138469 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 3.53429174" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_28" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00930977309 -0.005375 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 3.66519143" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_29" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00852854841 -0.00654418536 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 3.79609112" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_30" type="box" size="0.00725 0.00072469343 0.004" pos="-0.0076013979 -0.0076013979 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 3.92699082" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_31" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00654418536 -0.00852854841 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 4.05789051" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_32" type="box" size="0.00725 0.00072469343 0.004" pos="-0.005375 -0.00930977309 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 4.1887902" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_33" type="box" size="0.00725 0.00072469343 0.004" pos="-0.0041138469 -0.00993170497 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 4.3196899" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_34" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00278230473 -0.0103837026 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 4.45058959" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_35" type="box" size="0.00725 0.00072469343 0.004" pos="-0.00140315657 -0.0106580323 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 4.58148929" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_36" type="box" size="0.00725 0.00072469343 0.004" pos="-1.97474296e-18 -0.01075 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 4.71238898" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_37" type="box" size="0.00725 0.00072469343 0.004" pos="0.00140315657 -0.0106580323 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 4.84328867" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_38" type="box" size="0.00725 0.00072469343 0.004" pos="0.00278230473 -0.0103837026 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 4.97418837" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_39" type="box" size="0.00725 0.00072469343 0.004" pos="0.0041138469 -0.00993170497 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 5.10508806" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_40" type="box" size="0.00725 0.00072469343 0.004" pos="0.005375 -0.00930977309 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 5.23598776" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_41" type="box" size="0.00725 0.00072469343 0.004" pos="0.00654418536 -0.00852854841 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 5.36688745" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_42" type="box" size="0.00725 0.00072469343 0.004" pos="0.0076013979 -0.0076013979 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 5.49778714" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_43" type="box" size="0.00725 0.00072469343 0.004" pos="0.00852854841 -0.00654418536 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 5.62868684" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_44" type="box" size="0.00725 0.00072469343 0.004" pos="0.00930977309 -0.005375 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 5.75958653" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_45" type="box" size="0.00725 0.00072469343 0.004" pos="0.00993170497 -0.0041138469 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 5.89048623" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_46" type="box" size="0.00725 0.00072469343 0.004" pos="0.0103837026 -0.00278230473 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 6.02138592" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_rim_47" type="box" size="0.00725 0.00072469343 0.004" pos="0.0106580323 -0.00140315657 0.0972" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" euler="0 0 6.15228561" mass="0.0020833333333333333" />
+      <geom name="rtd_stand_post_0" type="cylinder" size="0.003 0.0466" pos="0.014 0 0.0466" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" />
+      <geom name="rtd_stand_post_1" type="cylinder" size="0.003 0.0466" pos="-0.007 0.0121243557 0.0466" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" />
+      <geom name="rtd_stand_post_2" type="cylinder" size="0.003 0.0466" pos="-0.007 -0.0121243557 0.0466" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" />
+      <geom name="rtd_stand_foot" type="cylinder" size="0.024 0.003" pos="0 0 0.003" rgba="0.1 0.4 0.5 1" friction="1 .005 .0001" />
+    </body>
+    <body name="calibration_block" pos="0.52 0.13 0.78">
+      <geom name="copper_x-1" type="box" size="0.017 0.04 0.04" pos="-0.023 0 0.04" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" />
+      <geom name="copper_y-1" type="box" size="0.006 0.017 0.04" pos="0 -0.023 0.04" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" />
+      <geom name="copper_x1" type="box" size="0.017 0.04 0.04" pos="0.023 0 0.04" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" />
+      <geom name="copper_y1" type="box" size="0.006 0.017 0.04" pos="0 0.023 0.04" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" />
+      <geom name="copper_bore_0" type="box" size="0.00135 0.000313472042 0.039" pos="0.00465 0 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 0" mass="0.0010416666666666667" />
+      <geom name="copper_bore_1" type="box" size="0.00135 0.000313472042 0.039" pos="0.00461021861 0.000606946794 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 0.130899694" mass="0.0010416666666666667" />
+      <geom name="copper_bore_2" type="box" size="0.00135 0.000313472042 0.039" pos="0.00449155509 0.00120350856 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 0.261799388" mass="0.0010416666666666667" />
+      <geom name="copper_bore_3" type="box" size="0.00135 0.000313472042 0.039" pos="0.00429603983 0.00177947796 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 0.392699082" mass="0.0010416666666666667" />
+      <geom name="copper_bore_4" type="box" size="0.00135 0.000313472042 0.039" pos="0.00402701813 0.002325 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 0.523598776" mass="0.0010416666666666667" />
+      <geom name="copper_bore_5" type="box" size="0.00135 0.000313472042 0.039" pos="0.00368909303 0.00283074064 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 0.654498469" mass="0.0010416666666666667" />
+      <geom name="copper_bore_6" type="box" size="0.00135 0.000313472042 0.039" pos="0.00328804653 0.00328804653 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 0.785398163" mass="0.0010416666666666667" />
+      <geom name="copper_bore_7" type="box" size="0.00135 0.000313472042 0.039" pos="0.00283074064 0.00368909303 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 0.916297857" mass="0.0010416666666666667" />
+      <geom name="copper_bore_8" type="box" size="0.00135 0.000313472042 0.039" pos="0.002325 0.00402701813 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 1.04719755" mass="0.0010416666666666667" />
+      <geom name="copper_bore_9" type="box" size="0.00135 0.000313472042 0.039" pos="0.00177947796 0.00429603983 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 1.17809725" mass="0.0010416666666666667" />
+      <geom name="copper_bore_10" type="box" size="0.00135 0.000313472042 0.039" pos="0.00120350856 0.00449155509 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 1.30899694" mass="0.0010416666666666667" />
+      <geom name="copper_bore_11" type="box" size="0.00135 0.000313472042 0.039" pos="0.000606946794 0.00461021861 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 1.43989663" mass="0.0010416666666666667" />
+      <geom name="copper_bore_12" type="box" size="0.00135 0.000313472042 0.039" pos="2.84730381e-19 0.00465 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 1.57079633" mass="0.0010416666666666667" />
+      <geom name="copper_bore_13" type="box" size="0.00135 0.000313472042 0.039" pos="-0.000606946794 0.00461021861 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 1.70169602" mass="0.0010416666666666667" />
+      <geom name="copper_bore_14" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00120350856 0.00449155509 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 1.83259571" mass="0.0010416666666666667" />
+      <geom name="copper_bore_15" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00177947796 0.00429603983 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 1.96349541" mass="0.0010416666666666667" />
+      <geom name="copper_bore_16" type="box" size="0.00135 0.000313472042 0.039" pos="-0.002325 0.00402701813 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 2.0943951" mass="0.0010416666666666667" />
+      <geom name="copper_bore_17" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00283074064 0.00368909303 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 2.2252948" mass="0.0010416666666666667" />
+      <geom name="copper_bore_18" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00328804653 0.00328804653 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 2.35619449" mass="0.0010416666666666667" />
+      <geom name="copper_bore_19" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00368909303 0.00283074064 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 2.48709418" mass="0.0010416666666666667" />
+      <geom name="copper_bore_20" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00402701813 0.002325 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 2.61799388" mass="0.0010416666666666667" />
+      <geom name="copper_bore_21" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00429603983 0.00177947796 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 2.74889357" mass="0.0010416666666666667" />
+      <geom name="copper_bore_22" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00449155509 0.00120350856 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 2.87979327" mass="0.0010416666666666667" />
+      <geom name="copper_bore_23" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00461021861 0.000606946794 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 3.01069296" mass="0.0010416666666666667" />
+      <geom name="copper_bore_24" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00465 5.69460762e-19 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 3.14159265" mass="0.0010416666666666667" />
+      <geom name="copper_bore_25" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00461021861 -0.000606946794 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 3.27249235" mass="0.0010416666666666667" />
+      <geom name="copper_bore_26" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00449155509 -0.00120350856 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 3.40339204" mass="0.0010416666666666667" />
+      <geom name="copper_bore_27" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00429603983 -0.00177947796 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 3.53429174" mass="0.0010416666666666667" />
+      <geom name="copper_bore_28" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00402701813 -0.002325 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 3.66519143" mass="0.0010416666666666667" />
+      <geom name="copper_bore_29" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00368909303 -0.00283074064 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 3.79609112" mass="0.0010416666666666667" />
+      <geom name="copper_bore_30" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00328804653 -0.00328804653 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 3.92699082" mass="0.0010416666666666667" />
+      <geom name="copper_bore_31" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00283074064 -0.00368909303 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 4.05789051" mass="0.0010416666666666667" />
+      <geom name="copper_bore_32" type="box" size="0.00135 0.000313472042 0.039" pos="-0.002325 -0.00402701813 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 4.1887902" mass="0.0010416666666666667" />
+      <geom name="copper_bore_33" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00177947796 -0.00429603983 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 4.3196899" mass="0.0010416666666666667" />
+      <geom name="copper_bore_34" type="box" size="0.00135 0.000313472042 0.039" pos="-0.00120350856 -0.00449155509 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 4.45058959" mass="0.0010416666666666667" />
+      <geom name="copper_bore_35" type="box" size="0.00135 0.000313472042 0.039" pos="-0.000606946794 -0.00461021861 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 4.58148929" mass="0.0010416666666666667" />
+      <geom name="copper_bore_36" type="box" size="0.00135 0.000313472042 0.039" pos="-8.54191142e-19 -0.00465 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 4.71238898" mass="0.0010416666666666667" />
+      <geom name="copper_bore_37" type="box" size="0.00135 0.000313472042 0.039" pos="0.000606946794 -0.00461021861 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 4.84328867" mass="0.0010416666666666667" />
+      <geom name="copper_bore_38" type="box" size="0.00135 0.000313472042 0.039" pos="0.00120350856 -0.00449155509 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 4.97418837" mass="0.0010416666666666667" />
+      <geom name="copper_bore_39" type="box" size="0.00135 0.000313472042 0.039" pos="0.00177947796 -0.00429603983 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 5.10508806" mass="0.0010416666666666667" />
+      <geom name="copper_bore_40" type="box" size="0.00135 0.000313472042 0.039" pos="0.002325 -0.00402701813 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 5.23598776" mass="0.0010416666666666667" />
+      <geom name="copper_bore_41" type="box" size="0.00135 0.000313472042 0.039" pos="0.00283074064 -0.00368909303 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 5.36688745" mass="0.0010416666666666667" />
+      <geom name="copper_bore_42" type="box" size="0.00135 0.000313472042 0.039" pos="0.00328804653 -0.00328804653 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 5.49778714" mass="0.0010416666666666667" />
+      <geom name="copper_bore_43" type="box" size="0.00135 0.000313472042 0.039" pos="0.00368909303 -0.00283074064 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 5.62868684" mass="0.0010416666666666667" />
+      <geom name="copper_bore_44" type="box" size="0.00135 0.000313472042 0.039" pos="0.00402701813 -0.002325 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 5.75958653" mass="0.0010416666666666667" />
+      <geom name="copper_bore_45" type="box" size="0.00135 0.000313472042 0.039" pos="0.00429603983 -0.00177947796 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 5.89048623" mass="0.0010416666666666667" />
+      <geom name="copper_bore_46" type="box" size="0.00135 0.000313472042 0.039" pos="0.00449155509 -0.00120350856 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 6.02138592" mass="0.0010416666666666667" />
+      <geom name="copper_bore_47" type="box" size="0.00135 0.000313472042 0.039" pos="0.00461021861 -0.000606946794 0.041" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" euler="0 0 6.15228561" mass="0.0010416666666666667" />
+      <geom name="bore_floor" type="box" size="0.006 0.006 0.001" pos="0 0 0.001" rgba="0.65 0.34 0.16 1" friction="1 .005 .0001" />
+    </body>
+    <body name="block_pedestal" pos="0.52 0.13 0.74">
+      <geom name="block_pedestal_top" type="box" size="0.045 0.045 0.02" pos="0 0 0.02" rgba="0.16 0.23 0.3 1" friction="1 .005 .0001" />
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="split">
+      <joint joint="finger_joint1" coef="0.5" />
+      <joint joint="finger_joint2" coef="0.5" />
+    </fixed>
+  </tendon>
+  <equality>
+    <joint joint1="finger_joint1" joint2="finger_joint2" solimp="0.95 0.99 0.001" solref="0.005 1" />
+  </equality>
+  <actuator>
+    <general class="panda" name="actuator1" joint="joint1" gainprm="4500" biasprm="0 -4500 -450" />
+    <general class="panda" name="actuator2" joint="joint2" gainprm="4500" biasprm="0 -4500 -450" ctrlrange="-1.7628 1.7628" />
+    <general class="panda" name="actuator3" joint="joint3" gainprm="3500" biasprm="0 -3500 -350" />
+    <general class="panda" name="actuator4" joint="joint4" gainprm="3500" biasprm="0 -3500 -350" ctrlrange="-3.0718 -0.0698" />
+    <general class="panda" name="actuator5" joint="joint5" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" />
+    <general class="panda" name="actuator6" joint="joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" ctrlrange="-0.0175 3.7525" />
+    <general class="panda" name="actuator7" joint="joint7" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" />
+    <general class="panda" name="actuator8" tendon="split" forcerange="-40 40" ctrlrange="-40 40" gainprm="1 0 0" biasprm="0 0 0" />
+  </actuator>
+  <contact>
+    <exclude body1="link0" body2="link1" />
+  </contact>
+  <visual>
+    <global offwidth="1280" offheight="800" />
+  </visual>
+</mujoco>
