@@ -6,7 +6,7 @@ ScienceGym studies how to translate a paper's reported experimental program into
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Release contents: 41 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (44 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
+**Release contents: 41 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (44 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. The cooling pilot also provides bounded contact-driven robot simulations; complete paper-level execution remains unfinished.
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
@@ -29,6 +29,17 @@ assets and recorded open acceptance gates. The [manipulation dossier](tasks/dire
 connects the complete experimental sequence to explicit contact, tool, support,
 observation and recovery requirements. It is a review revision of the same
 DOI, not an additional paper or a validated robot experiment.
+
+The [interactive manipulation workbench](simulation/cooling_v1/sample.html)
+contains full recorded videos, event seeking, independent verification links,
+searchable action definitions and four manufacturer-informed device models.
+Run `python simulation/cooling_v1/serve.py` from the repository root, then open
+`http://localhost:8768/simulation/cooling_v1/sample.html`.
+The [workbench documentation](simulation/cooling_v1/README.md) distinguishes
+each accepted physical record from the unfinished complete chain: **0/11
+whole-paper branches accepted**.
+
+[![Recorded cabled-plug manipulation with a reconstructed Keithley 2425; one bounded sequence](simulation/cooling_v1/runs/connector/playback/released.png)](simulation/cooling_v1/runs/connector/playback/chapter_01.mp4?raw=true)
 
 ## Paper discovery candidates
 

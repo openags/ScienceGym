@@ -51,3 +51,19 @@ angular reference ordering, apparatus disassembly/reassembly and thermal-map
 probe placement. Source-based terminal geometry now uses exact numbered pin IDs;
 the fixed-band variant has two nominal 50 micrometre LDPE layers. Remaining
 interface gaps are itemized, and the earlier review remains preserved.
+
+The October 19 contact workbench adds robot records for
+six rigid layers, a prebonded two-film cover, a full-length cabled RTD, physical
+multimeter button actuation, 241 installed-reflector adjustments and a cabled
+source-meter plug. The [visual workbench](../../simulation/cooling_v1/sample.html)
+shows the full recordings and links their evidence. Its
+[reproduction instructions](../../simulation/cooling_v1/README.md) include the
+local server and lossless trace archives. Keithley 2000/2425, Omega P-M RTD and
+KHR-2/2-P assets have separate source, part, interface and geometry records.
+
+The cover record is rejected by the added triangle/solid audit: its earlier
+force/position checks missed film penetration into the PE tube. The other
+records establish bounded physical capabilities. The complete seven-layer
+candidate, frame and film preparation, paired apparatus, station handoffs and
+remaining instrument work still require acceptance. No complete branch or new
+paper is counted from these records.

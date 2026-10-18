@@ -8,7 +8,7 @@ Keithley 2425 plug interface. Each record has its own declared scope;
 acceptance of these records does not discharge the complete 200-step definition
 set or their 1,317 scheduled manipulation occurrences.
 
-Open [sample.html](sample.html) for verified videos, event seeking, searchable
+Open [sample.html](sample.html) for recorded videos, acceptance status, event seeking, searchable
 paper steps and the four commercial assets. Serve the repository root with
 `python simulation/cooling_v1/serve.py`, then visit
 `http://localhost:8768/simulation/cooling_v1/sample.html`.
@@ -16,14 +16,20 @@ paper steps and the four commercial assets. Serve the repository root with
 Videos replay recorded robot/object states. Separate workcell records do not
 establish continuity between their respective scenes.
 
-| Verified physical record | Simulation duration | Independent evidence |
+| Physical record | Simulation duration | Independent evidence |
 | --- | ---: | --- |
 | Six rigid layers, assembly and reverse return | 378.198 s | [Three seeds and fault checks](CONTINUOUS_VERIFICATION.json) |
-| Two prebonded flexible cover sheets, placement and recovery | 72.866 s | [Cover verification](COVER_VERIFICATION.json) |
+| Two prebonded flexible cover sheets, placement and recovery — rejected after geometric audit | 72.866 s | [Updated cover verification](COVER_VERIFICATION.json), [film/solid intersections](runs/cover/film_geometry_verification.json) |
 | Omega P-M RTD, 3.6576 m attached lead, insertion and recovery | 62.920 s | [Nominal trace verification](runs/rtd/verification.json), [perturbed initial arm state](runs/rtd_tests/seed_1/verification.json) |
 | Installed reflector carriage, 241 release/slide/lock cycles | 1690.010 s | [495 trace checks](runs/reflector/verification.json), [mechanism faults and load tests](REFLECTOR_VERIFICATION.json) |
 | Selected cabled source-meter plug, insertion and return | 61.321 s | [Contact verification](runs/connector/verification.json), [blocked bore](runs/connector_tests/blocked_bore/verification.json), [missing spring](runs/connector_tests/missing_spring/verification.json) |
 | Keithley 2000 physical four-wire resistance button | 16.384 s | [Button verification](DMM_VERIFICATION.json) |
+
+The cover's earlier force/position checks missed film triangles crossing the PE
+tube wall. An independent triangle/box audit now rejects that record; the
+original execution and [earlier receipt](verification_history/cover_before_geometric_audit.json)
+remain available. The replacement model must pass this geometry check as well
+as load, strain and manipulation checks before the cover can be accepted again.
 
 Reflector playback contains every recorded adjustment in eight continuous
 chapters. Its clock and event links use global simulation time. The local
