@@ -4,12 +4,12 @@
 The physical workbench now includes a continuous six-layer assembly and return,
 a deformable two-film cover, a full-length cabled commercial RTD, and a
 model-specific Keithley 2000 button, installed reflector carriage and a cabled
-Keithley 2425 plug interface. Each record has its own declared scope;
+Keithley 2425 plug interface, plus an A25 lid and AC150 key cycle. Each record has its own declared scope;
 acceptance of these records does not discharge the complete 200-step definition
 set or their 1,317 scheduled manipulation occurrences.
 
 Open [sample.html](sample.html) for recorded videos, acceptance status, event seeking, searchable
-paper steps and the six commercial assets. Serve the repository root with
+paper steps and the seven commercial assets. Serve the repository root with
 `python simulation/cooling_v1/serve.py`, then visit
 `http://localhost:8768/simulation/cooling_v1/sample.html`.
 [index.html](index.html) retains the original four fixture demonstrations.
@@ -24,6 +24,7 @@ establish continuity between their respective scenes.
 | Installed reflector carriage, 241 release/slide/lock cycles | 1690.010 s | [495 trace checks](runs/reflector/verification.json), [mechanism faults and load tests](REFLECTOR_VERIFICATION.json) |
 | Selected cabled source-meter plug, insertion and return | 61.321 s | [Contact verification](runs/connector/verification.json), [blocked bore](runs/connector_tests/blocked_bore/verification.json), [missing spring](runs/connector_tests/missing_spring/verification.json) |
 | Keithley 2000 physical four-wire resistance button | 16.384 s | [Button verification](DMM_VERIFICATION.json) |
+| A25 lid removal, parking, three AC150 keys and lid replacement | 103.422 s | [Two arm states and physical fault cases](BATH_VERIFICATION.json), [mechanical scope](BATH_MANIPULATION.md) |
 
 The cover's earlier force/position checks missed film triangles crossing the PE
 tube wall. An independent triangle/box audit now rejects that record; the
@@ -61,7 +62,7 @@ retained as an inconclusive fault attempt, not an accepted bore-rejection test.
 Neither accepted RTD record includes bath placement or four-wire connections.
 
 [asset_inspector.html](asset_inspector.html) exposes the Keithley 2000, Omega
-P-M RTD, Omega KHR-2/2-P, Keithley 2425, MCC USB-TC and selected A25/AC150 meshes, dimensions,
+P-M RTD, Omega KHR-2/2-P, Keithley 2425, MCC USB-TC, selected A25/AC150 and bare Nicolet 6700 meshes, dimensions,
 interfaces and source records. The USB-TC has 52 separately numbered terminal
 passages and slotted screw heads. Its static clearance checks do not establish
 wire retention, screw operation or thermocouple calibration.
@@ -73,8 +74,10 @@ Its 19 static geometry checks include the lid removal path and open underside.
 The separate [USB-TC mechanism jig](TERMINAL_MECHANISM.md) has eight accepted
 positive/refinement/counterexample cases. This checks an ideal passive thread,
 a free 24 AWG conductor and a recorded 1 N pull. It does not qualify the robot
-wiring cycle or the complete thermocouple path. Robot wire and bath workcells
-remain under development.
+wiring cycle or the complete thermocouple path. Robot wiring and bath load
+handling remain under development. The separate accepted bath record covers
+lid handling and key actuation; its [scope](BATH_MANIPULATION.md) excludes fluids,
+block/probe loading and thermal calibration.
 These are manufacturer-informed reconstructions, with inferred details labeled
 per part. They are not vendor CAD or measured hardware qualifications.
 
