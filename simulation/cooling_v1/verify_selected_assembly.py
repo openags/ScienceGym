@@ -30,6 +30,11 @@ def verify(directory):
           samples=len(time),maximum_interval_s=float(np.max(np.diff(time))))
     check('episode_reaches_reported_end',abs(time[-1]-result['simulated_seconds'])<.005001)
     model=load(directory/'workcell.xml')
+    numerics=result.get('numerics') or {}
+    check('no_numerical_warning_or_solver_exhaustion',bool(numerics)
+          and not any(numerics.get('warnings',[1])) and numerics.get('solver_limit_steps',1)==0
+          and numerics.get('maximum_solver_iterations',model.opt.iterations)<model.opt.iterations,
+          observed=numerics,solver_iteration_limit=model.opt.iterations)
     # Observations jump between saved checkpoints; no previous checkpoint's
     # constraint solution is a valid warm start for the next one.
     model.opt.disableflags |= int(mujoco.mjtDisableBit.mjDSBL_WARMSTART)

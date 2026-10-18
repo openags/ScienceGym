@@ -23,14 +23,22 @@ class IntegratedRobot(ContinuousRobot):
         super().__init__(path,**kwargs)
 
     def advance(self,duration):
+        sample_steps=max(1,round(.005/self.model.opt.timestep))
         for _ in range(max(1,int(duration/self.model.opt.timestep))):
             self.data.ctrl[:7]=self.joint_target+self.data.qfrc_bias[:7]/self.kp
             requested=-self.clamp_force if self.clamp_force is not None else (
                 2000*(self.grip_target-np.mean(self.data.qpos[7:9]))-40*np.mean(self.data.qvel[7:9]))
             self.data.ctrl[7]=np.clip(requested,-40,40)
             mujoco.mj_step(self.model,self.data);self.physics_steps+=1
+            iterations=int(np.max(self.data.solver_niter))
+            self.maximum_solver_iterations=max(getattr(self,'maximum_solver_iterations',0),iterations)
+            if iterations>=self.model.opt.iterations:
+                self.solver_limit_steps=getattr(self,'solver_limit_steps',0)+1
+                raise ExecutionFailure('Constraint solver reached its iteration limit')
+            if any(w.number for w in self.data.warning):
+                raise ExecutionFailure('MuJoCo numerical warning: '+str([int(w.number) for w in self.data.warning]))
             if not np.all(np.isfinite(self.data.qpos)):raise ExecutionFailure('nonfinite physics')
-            if self.physics_steps%10==0:
+            if self.physics_steps%sample_steps==0:
                 self.audit_contacts()
                 self.trace.append((float(self.data.time),self.data.qpos.copy(),self.data.qvel.copy(),self.data.ctrl.copy()))
                 self.sleep_trace.append(self.data.tree_asleep.copy())

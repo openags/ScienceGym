@@ -23,8 +23,8 @@ def build(path):
     if geometry['shield_shims_m']!=.0069 or geometry['PE_height_m']!=.057 or geometry['aperture_m']!=.001:
         raise ValueError('This bound workcell requires the declared 57 mm tube, 6.9 mm shims and 1 mm aperture')
     targets=original(path);tree=ET.parse(path);root=tree.getroot()
-    root.find('option').attrib.update(timestep='.0005',noslip_iterations='0',impratio='10',
-                                    integrator='discrete',solver='CG',iterations='800',tolerance='1e-8')
+    root.find('option').attrib.update(timestep='.001',noslip_iterations='0',impratio='10',
+                                    integrator='discrete',solver='CG',iterations='3200',tolerance='1e-8')
     root.find('option/flag').set('sleep','disable')
     # The original 6 mm-thick inner tip left only 0.5 mm beside the cover.
     # Select a 2 mm-thick stem and tip. The long aligned stem face provides
@@ -56,7 +56,7 @@ def build(path):
     # explicitly selected numerical/material parameter, not a vendor value.
     for flex in cover.findall('flexcomp'):
         flex.find('elasticity').set('damping','.002')
-        flex.find('contact').attrib.update(priority='1',solimp='.95 .95 .0001')
+        flex.find('contact').attrib.update(priority='1',solimp='.999 .999 .0001')
     for prop in props:prop['damping_s']=.002
     cover.find("geom[@name='bonded_mass']").set('mass',str(sum(p['mass_on_parent_kg'] for p in props)))
     targets['cover']['film_properties']=props
@@ -87,12 +87,12 @@ def build(path):
     ET.indent(root);tree.write(path,encoding='unicode')
     return targets,dict(ring_collision_discretization=rings,membrane_sectors=16,
         membrane_model='Saint Venant-Kirchhoff',selected_young_Pa=1e8,selected_poisson=.35,selected_damping_s=.002,
-        solver='CG',integrator='discrete',solver_iterations=800,
+        solver='CG',integrator='discrete',solver_iterations=3200,
         film_support_collision_method='exact cuboid mesh with convex-element narrow phase',
-        film_support_cuboids=cuboids,film_contact_priority=1,film_contact_solimp=[.95,.95,.0001],
+        film_support_cuboids=cuboids,film_contact_priority=1,film_contact_solimp=[.999,.999,.0001],
         source_visual_meshes_changed=False,noslip_iterations=0,impratio=10,sleep_enabled=False,
         selected_tip_thickness_m=grasp['edge_jaw_thickness_m'],selected_stem_thickness_m=grasp['edge_jaw_thickness_m'],shield_grasp_height_from_center_m=grasp['shield_grip_local_m'][2],shield_clamp_force_N=forces['shield_grip_N'],
         cover_clamp_force_N=forces['cover_grip_N'],
         shield_fixture_pin_radius_m=geometry['shield_alignment_pin_radius_m'],shield_fixture_nominal_radial_clearance_m=geometry['shield_alignment_radial_clearance_m'],
         reason='Implicit elastic membrane replaces a constrained-edge trial with a 44% transient strain. Exact cuboid meshes preserve tube geometry while using convex-element collision detection. Film/solid intersections beyond 0.1 mm are rejected independently.',
-        timestep_s=.0005,maximum_ring_envelope_error_m=max(r['maximum_outward_envelope_error_m'] for r in rings))
+        timestep_s=.001,maximum_ring_envelope_error_m=max(r['maximum_outward_envelope_error_m'] for r in rings))
