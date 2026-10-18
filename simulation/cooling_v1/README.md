@@ -1,14 +1,38 @@
 # Cooling manipulation: contact execution workbench
 
-**The whole-paper simulation is unfinished.** This directory adds real MuJoCo
-contact execution for four isolated fixtures. It does not supply a continuous
-implementation of the 200 manipulation definitions or all 11 paper branches.
-The full-campaign gate rejects that claim explicitly.
+**The whole-paper simulation is unfinished: 0 of 11 complete branches accepted.**
+The physical workbench now includes a continuous six-layer assembly and return,
+a deformable two-film cover, a full-length cabled commercial RTD, and a
+model-specific Keithley 2000 button. Each record has its own declared scope;
+acceptance of these records does not discharge the complete 200-step definition
+set or their 1,317 scheduled manipulation occurrences.
 
-Open [index.html](index.html) for recorded physics, event seeking, regression
-results and the complete source-step coverage table. Videos come from integrated
-robot/object states. They are not keyframed robot animations. Each workcell resets
-independently; combining its video with another does not establish continuity.
+Open [sample.html](sample.html) for verified videos, event seeking, searchable
+paper steps and the three commercial assets. Serve the repository root with
+`python -m http.server 8768`, then visit
+`http://localhost:8768/simulation/cooling_v1/sample.html`.
+[index.html](index.html) retains the original four fixture demonstrations.
+Videos replay recorded robot/object states. Separate workcell records do not
+establish continuity between their respective scenes.
+
+| Verified physical record | Simulation duration | Independent evidence |
+| --- | ---: | --- |
+| Six rigid layers, assembly and reverse return | 378.198 s | [Three seeds and fault checks](CONTINUOUS_VERIFICATION.json) |
+| Two prebonded flexible cover sheets, placement and recovery | 72.866 s | [Cover verification](COVER_VERIFICATION.json) |
+| Omega P-M RTD, 3.6576 m attached lead, insertion and recovery | 62.920 s | [Nominal trace verification](runs/rtd/verification.json), [perturbed initial arm state](runs/rtd_tests/seed_1/verification.json) |
+| Keithley 2000 physical four-wire resistance button | 16.384 s | [Button verification](DMM_VERIFICATION.json) |
+
+The RTD trace uses a stiff edge-length string approximation. Every saved edge
+stays within 0.21% of its rest length in both accepted runs; bending and torsion
+are omitted. The elastic-rod model remains a separate engineering comparison.
+The failed small-bore trial first hit an unrelated cable/hand collision and is
+retained as an inconclusive fault attempt, not an accepted bore-rejection test.
+Neither accepted RTD record includes bath placement or four-wire connections.
+
+[asset_inspector.html](asset_inspector.html) exposes the Keithley 2000, Omega
+P-M RTD and Omega KHR-2/2-P meshes, dimensions, interfaces and source records.
+These are manufacturer-informed reconstructions, with inferred details labeled
+per part. They are not vendor CAD or measured hardware qualifications.
 
 The Panda is pinned to an upstream MuJoCo Menagerie commit, with its source
 license and file hashes in [robot_source.json](robot_source.json). The arm uses
@@ -52,14 +76,28 @@ The resulting workcell XML uses portable logical asset paths. `load_model.py`
 resolves them into hash-verified MuJoCo virtual files. The HTML/video viewer can
 be opened offline without Python.
 
-Each run preserves a result record, exact input hashes and a 50 Hz state/control
-trace. Rendered runs additionally preserve a video and its 10 Hz replay states.
+Each run preserves a result record, exact input hashes and a state/control trace
+at its declared sampling cadence. New cabled RTD runs also archive their source
+files, so later controller changes do not invalidate an earlier source snapshot.
 `evaluate.py` checks final goals independently of the command executor's success
 messages. Fault tests exercise an open gripper, missing support, blocked button,
 wrong bore, obstructed door and untouched initial state. Initial-joint perturbation
 seeds are controller tests, not independent scientific experiments or material
 robustness measurements. Arm contact checks are sampled, not a proof that every
 possible collision is excluded.
+
+To reproduce the accepted cabled RTD model, run:
+
+```bash
+python simulation/cooling_v1/run_rtd.py --flex-cable --out runs/rtd_debug/reproduction
+python simulation/cooling_v1/verify_rtd.py simulation/cooling_v1/runs/rtd_debug/reproduction
+python simulation/cooling_v1/render_device_trace.py simulation/cooling_v1/runs/rtd_debug/reproduction
+```
+
+Large traces can be packaged with `trace_store.py RUN_DIRECTORY` into SHA-256
+checked binary shards. `trace_store.py RUN_DIRECTORY --restore` reconstructs
+the exact original NPZ after a checkout. Packaging never drops frames or changes
+recorded precision. Verifiers using `load_trace` read either representation.
 
 ## Whole-paper acceptance
 

@@ -27,7 +27,7 @@ def cable_points():
     return np.vstack([route,coil((low+high)/2)[1:]])
 
 
-def build(path):
+def build(path,bore_diameter=.0066):
     w=World();w.root.find('option').attrib.update(timestep='.001',impratio='5',noslip_iterations='0',iterations='100')
     # Keep sleep disabled for the elasticity-plugin cable: this engine build
     # raised mj_wakeIsland on the initial forward pass with sleep enabled.
@@ -61,7 +61,7 @@ def build(path):
         w.cylinder(stand,'rtd_stand_post_'+str(i),.003,.0466,[.014*np.cos(a),.014*np.sin(a),.0466],[.1,.4,.5,1])
     w.cylinder(stand,'rtd_stand_foot',.024,.003,[0,0,.003],[.1,.4,.5,1])
     block=w.body('calibration_block',[.52,.13,TOP+.04],False)
-    hole=.0033;half=.04;height=.08
+    hole=bore_diameter/2;half=.04;height=.08
     # Four rectangular wall pieces surround a thin circular bore insert.
     # The source does not specify block size or clearance; both are explicit
     # fixture selections. No convex mesh fills the insertion corridor.

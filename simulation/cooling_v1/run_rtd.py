@@ -4,6 +4,7 @@ os.environ.setdefault('MUJOCO_GL','egl')
 import argparse
 import hashlib
 import json
+import shutil
 from datetime import datetime,timezone
 import numpy as np
 import mujoco
@@ -12,6 +13,19 @@ from hardware_control import HardwareRobot
 from rtd_world import build,PARK,TARGET
 from control import ExecutionFailure
 from support_observation import support_load
+from control import DOWN
+from scipy.spatial.transform import Rotation
+
+
+class RTDRobot(HardwareRobot):
+    def contacts(self,body):
+        records=[]
+        for i,c in enumerate(self.data.contact):
+            names=[self.model.body(int(self.model.geom_bodyid[g])).name if g>=0 else 'rtd_cable' for g in c.geom]
+            if body not in names:continue
+            f=np.zeros(6);mujoco.mj_contactForce(self.model,self.data,i,f)
+            records.append(dict(other=names[1-names.index(body)],force_n=float(f[0]),distance_m=float(c.dist)))
+        return records
 
 
 def put(robot,target,support):
@@ -40,20 +54,33 @@ def put(robot,target,support):
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--render',action='store_true');parser.add_argument('--out',default='runs/rtd_debug');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--render',action='store_true');parser.add_argument('--out',default='runs/rtd_debug');parser.add_argument('--flex-cable',action='store_true')
+    parser.add_argument('--seed',type=int,default=0);parser.add_argument('--bore-diameter',type=float,default=.0066);args=parser.parse_args()
+    if args.flex_cable and args.out=='runs/rtd_debug':args.out='runs/rtd_debug/flex'
     out=HERE/args.out;out.mkdir(parents=True,exist_ok=True);stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
-    old=[out/n for n in ['workcell.xml','result.json','physics_trace.npz','execution.mp4','final.png'] if (out/n).exists()]
+    old=[out/n for n in ['workcell.xml','result.json','physics_trace.npz','execution.mp4','final.png','source_snapshot'] if (out/n).exists()]
     if old:
         history=out/'history'/stamp;history.mkdir(parents=True)
         for p in old:p.replace(history/p.name)
     sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
     sources=['run_rtd.py','rtd_world.py','hardware_control.py','device_assets.py','continuous_control.py','control.py','world.py','contact_safety.py','support_observation.py','geometry/omega_pm_rtd/catalog.json']
+    if args.flex_cable:sources.append('rtd_flex_world.py')
     pins={n:sha(HERE/n) for n in sources};robot=None;passed=False;failure=None;configuration=None
+    for name in sources:
+        target=out/'source_snapshot'/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(HERE/name,target)
     try:
-        configuration=build(out/'workcell.xml');pins['workcell.xml']=sha(out/'workcell.xml')
-        robot=HardwareRobot(out/'workcell.xml',record=args.render,video_path=out/'execution.mp4' if args.render else None);robot.source_path=out/'workcell.xml'
-        for target,support in [(TARGET,'calibration_block'),(PARK,'rtd_stand')]:
-            robot.grasp('rtd',.0254,8.,lift=.14);put(robot,target,support)
+        builder=build
+        if args.flex_cable:
+            from rtd_flex_world import build as builder
+        configuration=builder(out/'workcell.xml',bore_diameter=args.bore_diameter);pins['workcell.xml']=sha(out/'workcell.xml')
+        robot=RTDRobot(out/'workcell.xml',record=args.render,seed=args.seed,video_path=out/'execution.mp4' if args.render else None);robot.source_path=out/'workcell.xml'
+        # The cable leaves the initial stand toward +X, then lies toward -Y
+        # after insertion. Close the jaws across the clear sides of the hex,
+        # rather than trapping that lead between a finger and the fitting.
+        # These are selected station approach frames, not object pose edits.
+        for target,support,yaw in [(TARGET,'calibration_block',0.),(PARK,'rtd_stand',np.pi/2)]:
+            robot.grasp('rtd',.0254,8.,rotation=Rotation.from_euler('z',yaw).as_matrix()@DOWN,lift=.14)
+            put(robot,target,support)
         passed=True
     except BaseException as error:failure=type(error).__name__+': '+str(error);print(failure,flush=True)
     finally:
@@ -63,7 +90,7 @@ def main():
                 import imageio.v2 as imageio
                 imageio.imwrite(out/'final.png',robot.frames[-1])
         if any(sha(HERE/n)!=pins[n] for n in sources):passed=False;failure='Source changed during execution'
-        result=dict(status='passed' if passed else 'failed',failure=failure,configuration=configuration,input_sha256=pins,
+        result=dict(status='passed' if passed else 'failed',failure=failure,configuration=configuration,input_sha256=pins,source_archive='source_snapshot',seed=args.seed,
                     simulated_seconds=float(robot.data.time) if robot else 0,observations=robot.timeline if robot else [],
                     whole_paper_validated=False,scope='Manufacturer-sized RTD with attached cable inserted into a selected copper bore and retrieved; no bath, four-wire circuit or calibrated temperature data',
                     artifacts_sha256={n:sha(out/n) for n in ['physics_trace.npz','execution.mp4','final.png'] if (out/n).exists()})
