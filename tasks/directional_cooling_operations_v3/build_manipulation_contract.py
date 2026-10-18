@@ -190,6 +190,10 @@ def build():
 
 def update_revision_metadata():
     inputs=read('episode_input_contract')
+    inputs['implemented_loader']=True
+    inputs['loader']='episode_inputs.load'
+    inputs['selected_simulation_profile']='selected_reconstruction.json'
+    inputs['loader_scope']='Explicit inferred simulation choices with per-field provenance; no hardware qualification or physical-success receipts'
     inputs['cards']=[c for c in inputs['cards'] if c['id']!='manipulation_card']
     inputs['cards'].append(dict(id='manipulation_card',defaults=None,required_fields=[
         'object_instance_map','interface_to_instance_map','tool_and_fixture_ids',

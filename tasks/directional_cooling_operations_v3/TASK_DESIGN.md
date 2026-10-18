@@ -1,14 +1,16 @@
 # From this paper to robot experimental work
 
-## Scientific obligations and starting state
+## Manipulation scope and starting state
 
 The paper demonstrates solar-white and solar-black cooling devices using a
 small reflector to block direct sunlight while retaining a view of the sky.
-Reconstructing that experiment requires fabrication, coating and assembly,
+The robot task reconstructs the physical handling needed for fabrication, coating and assembly,
 thermocouple calibration, optical characterization, outdoor environmental
 measurement, paired stagnation and cooling-power measurements, a fixed-band/LDPE
 variant, and thermal maps in three conditions. All eleven physical families are
-retained. Energy-balance models, COMSOL results and application concepts are
+retained as manipulation contexts. Instrument-internal processes and scientific
+outputs are environment context; reproducing the reported cooling performance
+is not the robot task's success criterion. Energy-balance models, COMSOL results and application concepts are
 classified separately in `coverage_matrix.json` and `nonmanual_scope.json`.
 
 Start with identified stock, instruments, tools and supported carriers. A disk,
@@ -33,12 +35,18 @@ dimensions and durations remain separate. The source's 100 mm schematic height
 and approximately 150 mm textual height are not silently reconciled: the current
 geometry chooses the textual emitter-to-reflector datum and retains the conflict.
 Tool settings, tolerances, coating cure, PID gains and targets, robot kinematics,
-weather eligibility and exact sample allocation remain qualified episode inputs.
+weather eligibility and exact sample allocation are explicit episode inputs.
+`selected_reconstruction.json` supplies 109 concrete selections across all 14
+cards, including a rationale and source/inference distinction for every field.
+`episode_inputs.py` checks and loads these simulation inputs. An inferred value
+does not have to remain null merely because the paper omitted it. A selected
+value is still distinct from a measured property or a successful execution.
 
 Inferring an action is different from inventing a historical number. For example,
 the reconstruction includes applying each of three paint coats and waiting for
 intercoat and final cure conditions, but does not claim an unreported drying time.
-An executable deployment must qualify those inputs before the affected operation.
+The selected simulation uses an explicit virtual process timing; it does not
+claim that this was the historical drying time or a qualified hardware recipe.
 
 ## Planning method
 
@@ -92,11 +100,14 @@ inspection and calibration. Optical references bind the installed accessory and
 configuration. Raw measurements must later bind actual files, timestamps, units,
 instrument settings, calibrations, sample revisions and processing parents.
 
-`solar_geometry.py` computes reflector-plane intersections from supplied qualified
+`solar_geometry.py` computes reflector-plane intersections from supplied
 solar azimuth/elevation samples and checks finite-aperture shading against a sampled
 solar disk. It catches insufficient reflector margin at low sun angles. It does not
-generate an ephemeris or certify coverage between sample timestamps. The displayed
-track is still an illustrative curve, rather than an unqualified site/date design.
+generate an ephemeris. `selected_solar_path.py` supplies NREL SPA positions for the
+explicitly selected Cambridge summer scenario, generates 241 one-minute track
+commands, and checks the held positions and fixed-band envelope at one-second
+intervals. This replaces an illustrative curve with a numerical design input;
+mount occlusion, physical carriage motion and wind remain separate checks.
 
 The symbolic replay checks selected invariants only. It does not observe the
 world or infer that a grasp worked from a command. Planned events have empty
