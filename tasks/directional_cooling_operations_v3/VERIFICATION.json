@@ -1,7 +1,7 @@
 {
   "schema_version": "sciencegym.directional_cooling.v3",
   "status": "static_and_symbolic_checks_passed_with_open_acceptance_gates",
-  "date_utc": "2026-10-16T19:53:44.666961+00:00",
+  "date_utc": "2026-10-18T18:35:26.547823+00:00",
   "counts": {
     "package_roles": 18,
     "operations": 64,
@@ -19,24 +19,36 @@
   },
   "checks": [
     {
-      "command": "python3 tasks/directional_cooling_operations_v3/validate.py",
+      "command": "validate.py",
       "result": "passed",
-      "scope": "operation schema; exact source/interface/part links; angular configuration, manual iteration and symbolic plan checks; native cavity receipt; nominal dimensions; all-part mesh parity and GLB buffer/index integrity"
+      "scope": "Static package, symbolic plan, authored geometry and reviewed-input pins"
     },
     {
-      "command": "python3 -m unittest discover -s tasks/directional_cooling_operations_v3/tests -v",
-      "result": "58 tests passed",
-      "scope": "symbolic walkthrough, contract rejection tests, source-terminal compatibility, sensor/part mismatch, actor boundary and solar geometry; no physical observations"
+      "command": "episode_inputs.load",
+      "result": "passed",
+      "scope": "Selected values, provenance and solar-input consistency"
     },
     {
-      "command": "python3 -B scripts/verify_release.py",
-      "result": "11/11 static groups passed",
-      "scope": "existing frozen release regression; does not certify the new pilot or physical execution"
+      "command": [
+        "/tmp/sciencegym-sim-venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/tasks/directional_cooling_operations_v3/tests",
+        "-v"
+      ],
+      "result": "passed",
+      "log": "verification/pilot-tests.txt"
     },
     {
-      "command": "blender --background --python-exit-code 1 --python assets/cooling_scene_assets_v2/inspect_interaction_geometry.py",
-      "result": "52 terminal openings/slots and one USB shell passed",
-      "scope": "authored mesh rays only, tied to exact native scene hash"
+      "command": [
+        "/tmp/sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/scripts/verify_release.py"
+      ],
+      "result": "passed",
+      "log": "verification/release-regression.txt"
     }
   ],
   "geometry_checks": {
@@ -55,11 +67,16 @@
     "verification/pilot-tests.txt",
     "verification/release-regression.txt"
   ],
-  "reconstruction_revision": "2026-10-17.manipulation.1",
+  "reconstruction_revision": "2026-10-19.selected-inputs.1",
   "limitations": [
-    "33 interaction interfaces: 20 with partial named geometry and 13 without geometry; none interaction-qualified",
-    "Fine-wire transition hardware, cover support, optical accessory fit and remaining station fixtures require qualification",
-    "Seven thermal-map contacts are inferred; insulation recesses are described but not cut into the full asset mesh",
-    "Existing explorer remains on the frozen v2; the new dossier is a separate source-linked review artifact"
-  ]
+    "This report validates the authored package and selected inputs, not complete physical branches",
+    "Legacy interface geometry counts remain distinct from newer bounded commercial-device reconstructions",
+    "Full object lineage, station handoffs and all manipulation occurrence observations remain incomplete"
+  ],
+  "selected_inputs": {
+    "cards": 14,
+    "fields": 109,
+    "solar_commands": 241,
+    "hardware_qualified": false
+  }
 }

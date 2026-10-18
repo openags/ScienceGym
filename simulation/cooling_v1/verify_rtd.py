@@ -21,7 +21,7 @@ def verify(directory):
     check('input_pins',not changed,changed=changed)
     changed=[name for name,digest in report['artifacts_sha256'].items() if sha(directory/name)!=digest]
     check('artifact_pins',not changed,changed=changed)
-    model=load(directory/'workcell.xml');data=mujoco.MjData(model)
+    model=load(directory/'workcell.xml');model.opt.disableflags |= int(mujoco.mjtDisableBit.mjDSBL_WARMSTART);data=mujoco.MjData(model)
     with np.load(directory/'physics_trace.npz') as compressed:
         trace={key:compressed[key] for key in compressed.files}
     times=trace['time']
@@ -68,6 +68,18 @@ def verify(directory):
             strain=float(np.max(np.abs(data.flexedge_length/edge-1)))
             if strain>maximum:maximum=strain;worst_time=float(times[index])
         check('inextensible_cable_approximation',maximum<.01,max_edge_strain=maximum,worst_time_s=worst_time)
+    else:
+        cable=[i for i in range(model.ngeom) if (model.geom(i).name or '').startswith('rtd_lead_G')]
+        length=float(2*model.geom_size[cable,1].sum())
+        check('full_elastic_rod_length',len(cable)==report['configuration']['cable_segments'] and abs(length-3.6576)<1e-5,
+              rest_length_m=length,segments=len(cable))
+        check('elasticity_plugin_present',model.nplugin==1)
+        # This rigid-link rod has fixed segment lengths. Verify its serial
+        # topology and attachment to the probe instead of applying a flex
+        # strain formula to a model with no flex vertices.
+        bodies=[int(model.geom_bodyid[i]) for i in cable]
+        check('rod_attached_serial_chain',bool(bodies) and model.body_parentid[bodies[0]]==model.body('rtd').id and
+              all(model.body_parentid[b]==a for a,b in zip(bodies,bodies[1:])))
     check('limited_gripper_commands',np.max(np.abs(trace['ctrl'][:,7]))<=40.000001)
     result=dict(passed=all(c['passed'] for c in checks),checks=checks,
         scope='Two continuous cabled RTD transfers. No bath immersion, four-wire connection, calibrated temperature or full-paper credit.',

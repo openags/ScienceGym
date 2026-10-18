@@ -38,6 +38,13 @@ def state_sha(robot):
     return digest.hexdigest()
 
 
+def record_boundary(robot):
+    """Preserve the exact state whose digest is placed in a step receipt."""
+    row=(float(robot.data.time),robot.data.qpos.copy(),robot.data.qvel.copy(),robot.data.ctrl.copy())
+    if robot.trace and abs(robot.trace[-1][0]-row[0])<1e-10:robot.trace[-1]=row
+    else:robot.trace.append(row)
+
+
 def supported(context,name,where='assembled'):
     p=context.targets[name];support=p['support'] if where=='assembled' else name+'_stand'
     if name=='cover':return context.robot.check_cover(np.array(p[where]),support)
@@ -57,11 +64,13 @@ def execute(context,occurrence,step_id):
     if len(set(ids))!=len(ids):raise ExecutionFailure('Distinct part roles alias the same physical body')
     for required in specification['required']:supported(context,required)
     supported(context,name,'park')
+    record_boundary(robot)
     start_time=float(robot.data.time);start_step=robot.physics_steps;start_event=len(robot.timeline);before=state_sha(robot)
     if specification['method']=='cover_transfer':robot.grip_cover();robot.put_cover(np.array(context.targets[name]['assembled']))
     else:robot.transfer(name,context.targets[name]['assembled'],context.targets[name]['support'])
     for required in specification['required']+[name]:supported(context,required)
     if robot.physics_steps<=start_step:raise ExecutionFailure('Binding produced no physical execution')
+    record_boundary(robot)
     receipt=dict(schema_version='sciencegym.physical_step.v1',status='executed_in_bound_scene',
                  occurrence_id=occurrence['id'],step_id=step_id,branch_id=occurrence['branch_id'],session_id=occurrence['session_id'],
                  scene_instance_id=context.instance_id,payload_id=context.payload_id,station_id=context.station_id,

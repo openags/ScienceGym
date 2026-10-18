@@ -17,6 +17,7 @@ from run_integrated import execute
 from initial_contacts import inspect
 from cover_world import SIDE
 from control import ExecutionFailure
+from membrane import sheet
 
 
 class ProgressRobot(IntegratedRobot):
@@ -48,8 +49,13 @@ class ProgressRobot(IntegratedRobot):
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--noslip',type=int,default=0);parser.add_argument('--upward-hand',action='store_true');parser.add_argument('--impratio',type=float,default=10);args=parser.parse_args()
-    out=HERE/'runs/integrated_debug'/(f'noslip_{args.noslip}'+('_upward' if args.upward_hand else '')+('_imp'+str(args.impratio) if args.impratio!=10 else ''))
+    parser=argparse.ArgumentParser();parser.add_argument('--noslip',type=int,default=0);parser.add_argument('--upward-hand',action='store_true');parser.add_argument('--impratio',type=float,default=10)
+    parser.add_argument('--membrane-sectors',type=int,default=16)
+    parser.add_argument('--edge-timeconst',type=float,default=.001)
+    parser.add_argument('--edge-damping',type=float,default=0)
+    parser.add_argument('--no-sleep',action='store_true')
+    args=parser.parse_args()
+    out=HERE/'runs/integrated_debug'/(f'noslip_{args.noslip}'+('_upward' if args.upward_hand else '')+('_imp'+str(args.impratio) if args.impratio!=10 else '')+f'_mesh{args.membrane_sectors}_tc{args.edge_timeconst}_ed{args.edge_damping}'+('_awake' if args.no_sleep else ''))
     out.mkdir(parents=True,exist_ok=True)
     sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
     source_names=['benchmark_integrated.py','run_integrated.py','integrated_world.py','integrated_control.py','continuous_control.py','continuous_world.py','cover_control.py','evaluate_cover.py','evaluate_continuous.py','membrane.py','contact_safety.py','support_observation.py']
@@ -57,7 +63,20 @@ def main():
     try:
         targets=build(out/'workcell.xml');xml=ET.parse(out/'workcell.xml')
         xml.getroot().find('option').set('noslip_iterations',str(args.noslip))
-        xml.getroot().find('option').set('impratio',str(args.impratio));xml.write(out/'workcell.xml',encoding='unicode')
+        xml.getroot().find('option').set('impratio',str(args.impratio))
+        if args.no_sleep:xml.getroot().find('option/flag').set('sleep','disable')
+        cover=xml.getroot().find(".//body[@name='cover']")
+        for child in list(cover):
+            if child.tag=='flexcomp' or '_bonded_annulus_' in child.get('name',''):
+                cover.remove(child)
+        props=[sheet(cover,'cover_lower',-.003208,sectors=args.membrane_sectors),
+               sheet(cover,'cover_upper',.003208,sectors=args.membrane_sectors)]
+        cover.find("geom[@name='bonded_mass']").set('mass',str(sum(p['mass_on_parent_kg'] for p in props)))
+        for edge in cover.findall('flexcomp/edge'):
+            edge.set('solref',f'{args.edge_timeconst} 1')
+            edge.set('damping',str(args.edge_damping))
+        targets['cover']['film_properties']=props
+        xml.write(out/'workcell.xml',encoding='unicode')
         pins['workcell.xml']=sha(out/'workcell.xml')
         initial=inspect(out/'workcell.xml',{n:n+'_stand' for n in targets})
         robot=ProgressRobot(out/'workcell.xml',upward=args.upward_hand)
@@ -68,7 +87,7 @@ def main():
             robot.close();np.savez_compressed(out/'physics_trace.npz',time=[s[0] for s in robot.trace],qpos=[s[1] for s in robot.trace],qvel=[s[2] for s in robot.trace],ctrl=[s[3] for s in robot.trace],tree_asleep=robot.sleep_trace)
         if any(sha(HERE/n)!=pins[n] for n in source_names):passed=False;failure='Source changed during benchmark'
         result=dict(status='passed' if passed else 'failed',failure=failure,evaluation=assessment,targets=targets,
-                    solver_selection=dict(noslip_iterations=args.noslip,impratio=args.impratio,upward_hand=args.upward_hand),input_sha256=pins,
+                    solver_selection=dict(noslip_iterations=args.noslip,impratio=args.impratio,upward_hand=args.upward_hand,membrane_sectors=args.membrane_sectors,edge_timeconst_s=args.edge_timeconst,edge_damping_N_s_m=args.edge_damping,sleep_enabled=not args.no_sleep),input_sha256=pins,
                     simulated_seconds=float(robot.data.time) if robot else 0,observations=robot.timeline if robot else [],
                     whole_paper_validated=False,canonical_evidence=False,
                     artifacts_sha256={n:sha(out/n) for n in ['physics_trace.npz'] if (out/n).exists()})

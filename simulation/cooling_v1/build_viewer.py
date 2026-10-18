@@ -6,7 +6,7 @@ from world import HERE
 
 def main():
     cases=[]
-    for scene,title in [('assembly','分层装配与按压'),('probe','探头插入与取回'),('lid','盖板安装与移除'),('door','受支撑的舱门开闭')]:
+    for scene,title in [('assembly','Layer assembly and button press'),('probe','Probe insertion and return'),('lid','Lid placement and removal'),('door','Supported door opening and closing')]:
         p=HERE/'runs'/scene/'result.json'
         if p.exists():
             r=json.loads(p.read_text());cases.append(dict(id=scene,title=title,result=r,video=f'runs/{scene}/execution.mp4',poster=f'runs/{scene}/final.png'))

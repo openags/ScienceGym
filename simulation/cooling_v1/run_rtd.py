@@ -74,11 +74,13 @@ def main():
             from rtd_flex_world import build as builder
         configuration=builder(out/'workcell.xml',bore_diameter=args.bore_diameter);pins['workcell.xml']=sha(out/'workcell.xml')
         robot=RTDRobot(out/'workcell.xml',record=args.render,seed=args.seed,video_path=out/'execution.mp4' if args.render else None);robot.source_path=out/'workcell.xml'
-        # The cable leaves the initial stand toward +X, then lies toward -Y
-        # after insertion. Close the jaws across the clear sides of the hex,
-        # rather than trapping that lead between a finger and the fitting.
-        # These are selected station approach frames, not object pose edits.
-        for target,support,yaw in [(TARGET,'calibration_block',0.),(PARK,'rtd_stand',np.pi/2)]:
+        # The length-constrained string folds toward -Y during insertion;
+        # the elastic rod retains its +X exit direction. The observed cable
+        # routing determines the selected clear-side approach for each model.
+        retrieval_yaw=np.pi/2 if args.flex_cable else 0.
+        configuration['retrieval_grasp_yaw_rad']=retrieval_yaw
+        configuration['retrieval_frame_basis']='Selected station frame for the observed cable route; not a source-reported robot trajectory'
+        for target,support,yaw in [(TARGET,'calibration_block',0.),(PARK,'rtd_stand',retrieval_yaw)]:
             robot.grasp('rtd',.0254,8.,rotation=Rotation.from_euler('z',yaw).as_matrix()@DOWN,lift=.14)
             put(robot,target,support)
         passed=True

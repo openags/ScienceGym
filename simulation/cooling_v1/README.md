@@ -8,8 +8,8 @@ acceptance of these records does not discharge the complete 200-step definition
 set or their 1,317 scheduled manipulation occurrences.
 
 Open [sample.html](sample.html) for verified videos, event seeking, searchable
-paper steps and the three commercial assets. Serve the repository root with
-`python -m http.server 8768`, then visit
+paper steps and the four commercial assets. Serve the repository root with
+`python simulation/cooling_v1/serve.py`, then visit
 `http://localhost:8768/simulation/cooling_v1/sample.html`.
 [index.html](index.html) retains the original four fixture demonstrations.
 Videos replay recorded robot/object states. Separate workcell records do not
@@ -20,7 +20,16 @@ establish continuity between their respective scenes.
 | Six rigid layers, assembly and reverse return | 378.198 s | [Three seeds and fault checks](CONTINUOUS_VERIFICATION.json) |
 | Two prebonded flexible cover sheets, placement and recovery | 72.866 s | [Cover verification](COVER_VERIFICATION.json) |
 | Omega P-M RTD, 3.6576 m attached lead, insertion and recovery | 62.920 s | [Nominal trace verification](runs/rtd/verification.json), [perturbed initial arm state](runs/rtd_tests/seed_1/verification.json) |
+| Installed reflector carriage, 241 release/slide/lock cycles | 1690.010 s | [495 trace checks](runs/reflector/verification.json), [mechanism faults and load tests](REFLECTOR_VERIFICATION.json) |
 | Keithley 2000 physical four-wire resistance button | 16.384 s | [Button verification](DMM_VERIFICATION.json) |
+
+Reflector playback contains every recorded adjustment in eight continuous
+chapters. Its clock and event links use global simulation time. The local
+server implements byte ranges so a browser can seek across the complete
+record. Solar-time waits are external process intervals; the 28-minute robot
+episode does not establish four-hour mechanical stability. A separate test
+checks 60 seconds of retention after a 1 N shear load and slip under a 5 N
+overload. The track and disk start mounted.
 
 The RTD trace uses a stiff edge-length string approximation. Every saved edge
 stays within 0.21% of its rest length in both accepted runs; bending and torsion
@@ -30,7 +39,7 @@ retained as an inconclusive fault attempt, not an accepted bore-rejection test.
 Neither accepted RTD record includes bath placement or four-wire connections.
 
 [asset_inspector.html](asset_inspector.html) exposes the Keithley 2000, Omega
-P-M RTD and Omega KHR-2/2-P meshes, dimensions, interfaces and source records.
+P-M RTD, Omega KHR-2/2-P and Keithley 2425 meshes, dimensions, interfaces and source records.
 These are manufacturer-informed reconstructions, with inferred details labeled
 per part. They are not vendor CAD or measured hardware qualifications.
 
