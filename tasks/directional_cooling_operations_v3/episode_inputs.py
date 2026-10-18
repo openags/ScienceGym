@@ -45,6 +45,13 @@ def validate(profile):
     geometry=values['fabrication_card']['actual_dimensions']
     require(geometry['RTD_bore_mm']>6.35,'Commercial RTD cannot fit the selected bore')
     require(abs(geometry['heater_diameter_mm']-50.8)<1e-8,'Commercial heater was silently resized')
+    bath=values['calibration_card']['bath_fluid_and_fill_range']
+    require(bath.get('fill_reference')=='selected reservoir floor','Bath fill depth needs a physical datum')
+    depth=bath['selected_reservoir_depth_m'];below=bath['manufacturer_below_rim_m'];water=bath['fill_depth_m']
+    require(len(below)==2 and below==[.022,.057] and depth==.200,'Selected A25/AC150 dimensions differ from the declared manual revision')
+    require(len(water)==2 and all(abs(a-b)<1e-9 for a,b in zip(water,[depth-below[1],depth-below[0]])),
+            'Bath fill range contradicts the manufacturer below-rim limits')
+    require(water[0]<=bath['selected_nominal_depth_m']<=water[1],'Nominal bath level lies outside the selected operating range')
     require(values['manipulation_card']['bounded_recovery_policy']['max_retries']>=0,'Negative retry limit')
     return values
 

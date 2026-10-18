@@ -26,3 +26,10 @@ class SelectedInputs(unittest.TestCase):
             if mutation=='channels':p['cards']['calibration_card']['probe_to_channel_map']['value']['TC_B']=0
             else:p['cards']['fabrication_card']['actual_dimensions']['value'][{'bore':'RTD_bore_mm','heater':'heater_diameter_mm'}[mutation]]=6 if mutation=='bore' else 50
             with self.subTest(mutation=mutation),self.assertRaises(episode_inputs.InputError):episode_inputs.validate(p)
+    def test_bath_underfill_and_ambiguous_datum_rejected(self):
+        for mutation in ['old_underfill','wrong_datum','nominal_outside_range']:
+            p=copy.deepcopy(self.profile);bath=p['cards']['calibration_card']['bath_fluid_and_fill_range']['value']
+            if mutation=='old_underfill':bath['fill_depth_m']=[.10,.13]
+            elif mutation=='wrong_datum':bath['fill_reference']='reservoir rim'
+            else:bath['selected_nominal_depth_m']=.19
+            with self.subTest(mutation=mutation),self.assertRaises(episode_inputs.InputError):episode_inputs.validate(p)
