@@ -9,7 +9,7 @@ acceptance of these records does not discharge the complete 200-step definition
 set or their 1,317 scheduled manipulation occurrences.
 
 Open [sample.html](sample.html) for recorded videos, acceptance status, event seeking, searchable
-paper steps and the five commercial assets. Serve the repository root with
+paper steps and the six commercial assets. Serve the repository root with
 `python simulation/cooling_v1/serve.py`, then visit
 `http://localhost:8768/simulation/cooling_v1/sample.html`.
 [index.html](index.html) retains the original four fixture demonstrations.
@@ -61,10 +61,20 @@ retained as an inconclusive fault attempt, not an accepted bore-rejection test.
 Neither accepted RTD record includes bath placement or four-wire connections.
 
 [asset_inspector.html](asset_inspector.html) exposes the Keithley 2000, Omega
-P-M RTD, Omega KHR-2/2-P, Keithley 2425 and MCC USB-TC meshes, dimensions,
+P-M RTD, Omega KHR-2/2-P, Keithley 2425, MCC USB-TC and selected A25/AC150 meshes, dimensions,
 interfaces and source records. The USB-TC has 52 separately numbered terminal
 passages and slotted screw heads. Its static clearance checks do not establish
 wire retention, screw operation or thermocouple calibration.
+The A25 model has a removable folded lid, open reservoir, drain and AC150
+controls. AC150 is explicitly selected because the paper does not identify its
+controller. Source dimension conflicts and inferred local features are retained.
+Its 19 static geometry checks include the lid removal path and open underside.
+
+The separate [USB-TC mechanism jig](TERMINAL_MECHANISM.md) has eight accepted
+positive/refinement/counterexample cases. This checks an ideal passive thread,
+a free 24 AWG conductor and a recorded 1 N pull. It does not qualify the robot
+wiring cycle or the complete thermocouple path. Robot wire and bath workcells
+remain under development.
 These are manufacturer-informed reconstructions, with inferred details labeled
 per part. They are not vendor CAD or measured hardware qualifications.
 

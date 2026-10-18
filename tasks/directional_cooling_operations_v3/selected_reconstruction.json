@@ -723,14 +723,22 @@
         "value": {
           "fluid": "water",
           "fill_depth_m": [
-            0.1,
-            0.13
+            0.143,
+            0.178
           ],
+          "fill_reference": "selected reservoir floor",
+          "selected_reservoir_depth_m": 0.2,
+          "manufacturer_below_rim_m": [
+            0.022,
+            0.057
+          ],
+          "selected_nominal_depth_m": 0.165,
+          "manufacturer_source": "https://documents.thermofisher.com/TFS-Assets/LED/manuals/D00167~.pdf; printed 2-1 and 2-2",
           "block_support": "retained bath basket",
           "electrical_terminals_above_fluid_m_min": 0.03
         },
         "origin": "inferred_selection",
-        "rationale": "Water is reported; selected support and fill envelope keep wire terminations out of the bath.",
+        "rationale": "Water is reported. For selected A25/AC150, the manual specifies 22\u201357 mm below the rim; subtract from its 200 mm working depth. The product page lists 204 mm instead: retain that source conflict in the A25 asset. Basket geometry and 30 mm dry-terminal clearance are selected assumptions.",
         "source_locator": null,
         "status": "selected_for_simulation",
         "hardware_qualified": false
