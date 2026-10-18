@@ -90,6 +90,9 @@ def main():
         (out/'step_receipts.json').write_text(json.dumps(receipts,indent=2)+'\n')
         result=dict(status='passed' if passed else 'failed',failure=failure,configuration=configuration,targets=targets,evaluation=assessment,
             observations=robot.timeline if robot else [],simulated_seconds=float(robot.data.time) if robot else 0,seed=args.seed,
+            numerics=dict(maximum_solver_iterations=getattr(robot,'maximum_solver_iterations',0),
+                solver_limit_steps=getattr(robot,'solver_limit_steps',0),
+                warnings=[int(w.number) for w in robot.data.warning],physics_steps=robot.physics_steps) if robot else None,
             input_sha256=pins,source_archive=archive,engine_version=mujoco.__version__,whole_paper_validated=False,
             executed_bound_steps=len(receipts),qualified_campaign_occurrences=0,
             scope='Seven layers assembled and returned using physical contacts. Six paper-step receipts, with preconstructed frame and prebonded films. Manufacturing, paired apparatus, sensors and reflector remain separate obligations.',

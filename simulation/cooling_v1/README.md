@@ -9,7 +9,7 @@ acceptance of these records does not discharge the complete 200-step definition
 set or their 1,317 scheduled manipulation occurrences.
 
 Open [sample.html](sample.html) for recorded videos, acceptance status, event seeking, searchable
-paper steps and the four commercial assets. Serve the repository root with
+paper steps and the five commercial assets. Serve the repository root with
 `python simulation/cooling_v1/serve.py`, then visit
 `http://localhost:8768/simulation/cooling_v1/sample.html`.
 [index.html](index.html) retains the original four fixture demonstrations.
@@ -39,6 +39,11 @@ Its [continuum support checks](continuum_membrane_tests.json) include 16/50 µm
 films, time-step and mesh refinement, and missing-sheet counterexamples. These
 static checks do not accept the full robot episode. Historical source versions
 needed to reproduce earlier receipts are retained by their SHA-256 identities.
+The selected 1 ms model also requires each solver step to converge before its
+3,200-iteration limit. All seven static cases pass without exhausting their
+limits; half-step, denser mesh and doubled solver-cap comparisons retain the
+same 0.3 mm position and 0.02 N support-load tolerances. An exhausted solver
+step or numerical warning now stops the robot executor and rejects its record.
 
 Reflector playback contains every recorded adjustment in eight continuous
 chapters. Its clock and event links use global simulation time. The local
@@ -56,7 +61,10 @@ retained as an inconclusive fault attempt, not an accepted bore-rejection test.
 Neither accepted RTD record includes bath placement or four-wire connections.
 
 [asset_inspector.html](asset_inspector.html) exposes the Keithley 2000, Omega
-P-M RTD, Omega KHR-2/2-P and Keithley 2425 meshes, dimensions, interfaces and source records.
+P-M RTD, Omega KHR-2/2-P, Keithley 2425 and MCC USB-TC meshes, dimensions,
+interfaces and source records. The USB-TC has 52 separately numbered terminal
+passages and slotted screw heads. Its static clearance checks do not establish
+wire retention, screw operation or thermocouple calibration.
 These are manufacturer-informed reconstructions, with inferred details labeled
 per part. They are not vendor CAD or measured hardware qualifications.
 
