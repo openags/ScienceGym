@@ -7,6 +7,7 @@ import numpy as np
 from load_model import load
 from evaluate_cover import evaluate
 from world import HERE
+from trace_store import load_trace
 
 
 def main():
@@ -18,8 +19,9 @@ def main():
             source=path/file if file=='workcell.xml' else HERE/file
             if sha(source)!=pin:errors.append('input mismatch: '+file)
         for file,pin in receipt['artifacts_sha256'].items():
+            if file=='physics_trace.npz':continue
             if sha(path/file)!=pin:errors.append('artifact mismatch: '+file)
-        trace=np.load(path/'physics_trace.npz');model=load(path/'workcell.xml')
+        trace=load_trace(path,receipt['artifacts_sha256']['physics_trace.npz']);model=load(path/'workcell.xml')
         robot=SimpleNamespace(model=model,trace=list(zip(trace['time'],trace['qpos'],trace['qvel'],trace['ctrl'])))
         assessment=evaluate(robot,receipt['checkpoints'])
         lifts=[x for x in receipt['observations'] if x['label']=='cover_lifted']

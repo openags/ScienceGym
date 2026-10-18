@@ -18,7 +18,7 @@ def sha(path):
     return digest.hexdigest()
 
 
-def pack(directory,chunk_bytes=48*1024*1024):
+def pack(directory,chunk_bytes=32*1024*1024):
     directory=Path(directory);source=directory/'physics_trace.npz'
     if chunk_bytes<=0:raise ValueError('Positive chunk size required')
     expected=json.loads((directory/'result.json').read_text())['artifacts_sha256']['physics_trace.npz']
