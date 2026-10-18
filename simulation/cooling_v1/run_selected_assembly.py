@@ -65,6 +65,7 @@ def main():
         history=out/'history'/stamp;history.mkdir(parents=True)
         for p in old:p.replace(history/p.name)
     names=['run_selected_assembly.py','selected_assembly_world.py','selected_assembly_control.py','step_runtime.py','run_integrated.py','integrated_world.py','integrated_control.py','continuous_world.py','continuous_control.py','cover_control.py','cover_world.py','membrane.py','precision_ik.py','evaluate_cover.py','evaluate_continuous.py','initial_contacts.py','support_observation.py','contact_safety.py','source_parts.py','world.py','control.py','load_model.py','robot_source.json','geometry/catalog.json']
+    names+=['film_geometry.py','film_contact.py']
     names+=['../../tasks/directional_cooling_operations_v3/'+n for n in ['operations.json','reference_plan.json','selected_reconstruction.json']]
     sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();pins={n:sha(HERE/n) for n in names}
     # Keep the archive inside this run even for task paths containing '..'.
@@ -80,6 +81,10 @@ def main():
     except BaseException as error:failure=type(error).__name__+': '+str(error);print(failure,flush=True)
     finally:
         if robot:
+            # Keep the exact terminal state, including a rejected contact.
+            # Contact auditing happens before ordinary trace sampling.
+            if not robot.trace or robot.data.time>robot.trace[-1][0]+1e-10:
+                robot.trace.append((float(robot.data.time),robot.data.qpos.copy(),robot.data.qvel.copy(),robot.data.ctrl.copy()))
             robot.close();np.savez_compressed(out/'physics_trace.npz',time=[s[0] for s in robot.trace],qpos=[s[1] for s in robot.trace],qvel=[s[2] for s in robot.trace],ctrl=[s[3] for s in robot.trace])
         if any(sha(HERE/n)!=pins[n] for n in names):passed=False;failure='Source changed during execution'
         (out/'step_receipts.json').write_text(json.dumps(receipts,indent=2)+'\n')

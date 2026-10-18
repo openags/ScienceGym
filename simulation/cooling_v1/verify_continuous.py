@@ -6,6 +6,7 @@ import numpy as np
 from load_model import load
 from evaluate_continuous import evaluate
 from world import HERE
+from recorded_source import recorded_source
 
 
 def main():
@@ -15,7 +16,7 @@ def main():
         path=HERE/'runs'/name;receipt=json.loads((path/'result.json').read_text())
         errors=[]
         for file,pin in receipt['input_sha256'].items():
-            source=path/file if file=='workcell.xml' else HERE/file
+            source=path/file if file=='workcell.xml' else recorded_source(file,pin)
             if sha(source)!=pin:errors.append('input mismatch: '+file)
         for file,pin in receipt['artifacts_sha256'].items():
             if sha(path/file)!=pin:errors.append('artifact mismatch: '+file)
@@ -31,12 +32,12 @@ def main():
     for name in ['continuous_geometry_checks.json','continuous_fault_tests.json']:
         report=json.loads((HERE/name).read_text());valid=report['passed']
         if 'input_sha256' in report:
-            valid &= all(sha(HERE/n)==pin for n,pin in report['input_sha256'].items())
+            valid &= all(sha(recorded_source(n,pin))==pin for n,pin in report['input_sha256'].items())
         if 'input_xml_sha256' in report:valid &= sha(HERE/'runs/continuous/workcell.xml')==report['input_xml_sha256']
         checks.append(dict(case=name,passed=valid,receipt_sha256=sha(HERE/name)))
     result=dict(passed=all(x['passed'] for x in checks),checks=checks,whole_paper_validated=False,
                 scope='Three initial arm perturbations of the same six rigid-layer assembly and return, seven geometry checks and four physical counterexamples; no film, sensor, reflector or complete paper qualification',
-                verifier_sha256=sha(HERE/'verify_continuous.py'))
+                verifier_sha256=sha(HERE/'verify_continuous.py'),source_resolver_sha256=sha(HERE/'recorded_source.py'))
     (HERE/'CONTINUOUS_VERIFICATION.json').write_text(json.dumps(result,indent=2)+'\n')
     return result['passed']
 
