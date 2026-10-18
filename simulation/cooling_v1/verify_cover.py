@@ -9,6 +9,7 @@ from evaluate_cover import evaluate
 from world import HERE
 from trace_store import load_trace
 from audit_film_trace import audit
+from recorded_source import recorded_source
 
 
 def main():
@@ -17,7 +18,7 @@ def main():
     for name in ['cover','cover_tests/seed_1','cover_tests/seed_2']:
         path=HERE/'runs'/name;receipt=json.loads((path/'result.json').read_text());errors=[]
         for file,pin in receipt['input_sha256'].items():
-            source=path/file if file=='workcell.xml' else HERE/file
+            source=path/file if file=='workcell.xml' else recorded_source(file,pin)
             if sha(source)!=pin:errors.append('input mismatch: '+file)
         for file,pin in receipt['artifacts_sha256'].items():
             if file=='physics_trace.npz':continue
@@ -45,7 +46,8 @@ def main():
     # model used by the handling runs rather than a later substituted membrane.
     inputs=report.get('input_sha256',{})
     checks.append(dict(case='membrane_tests',passed=report['passed'] and bool(inputs) and all(sha(HERE/p)==s for p,s in inputs.items()),receipt_sha256=sha(HERE/'membrane_tests.json')))
-    result=dict(passed=all(x['passed'] for x in checks),checks=checks,verifier_sha256=sha(Path(__file__)),whole_paper_validated=False,
+    result=dict(passed=all(x['passed'] for x in checks),checks=checks,verifier_sha256=sha(Path(__file__)),
+                source_resolver_sha256=sha(HERE/'recorded_source.py'),whole_paper_validated=False,
                 scope='Two-layer membrane cover transfer and retrieval in a separate fixture, three arm initializations, support counterexamples and triangle/solid intersection checks. Earlier force-only acceptance is superseded.')
     (HERE/'COVER_VERIFICATION.json').write_text(json.dumps(result,indent=2)+'\n')
     return result['passed']

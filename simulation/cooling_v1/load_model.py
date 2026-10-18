@@ -13,7 +13,13 @@ def load(path):
     geometry={p['file']:p['file_sha256'] for p in json.loads((HERE/'geometry/catalog.json').read_text())['parts']}
     assets={}
     for mesh in root.findall('asset/mesh'):
-        logical=mesh.get('file');prefix,filename=logical.split('/',1)
+        logical=mesh.get('file')
+        # Inline vertices are covered by the workcell XML hash; there is no
+        # external file to resolve. They are used for exact convex cuboids.
+        if logical is None:
+            if mesh.get('vertex') is None:raise ValueError('Mesh has neither file nor inline vertices')
+            continue
+        prefix,filename=logical.split('/',1)
         if Path(filename).name!=filename:raise ValueError('Nonlocal asset name')
         if prefix=='robot':file=CACHE/'assets'/filename;expected=source['assets/'+filename]
         elif prefix=='equipment':file=HERE/'geometry'/filename;expected=geometry[filename]

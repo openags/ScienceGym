@@ -9,6 +9,7 @@ from load_model import load
 from support_observation import support_load,designated_surfaces
 from evaluate_cover import measure
 from trace_store import load_trace,sha
+from audit_film_trace import audit
 
 
 def verify(directory):
@@ -88,6 +89,9 @@ def verify(directory):
         strain=float(np.max(abs(data.flexedge_length/model.flexedge_length0-1)))
         if strain>maximum:maximum=strain;worst_time=float(time[i])
     check('membrane_strain_throughout',maximum<.01,maximum_edge_strain=maximum,worst_time_s=worst_time)
+    geometry=audit(directory)
+    check('film_does_not_cross_tube_solids',geometry['passed'],failed_samples=geometry['failed_samples'],
+          report_sha256=sha(directory/'film_geometry_verification.json'),tolerance_m=geometry['tolerance_m'])
     lifts=[e for e in result['observations'] if e['label']=='edge_lift_observed']
     cover_lifts=[e for e in result['observations'] if e['label']=='cover_lifted']
     check('rigid_transfer_count',len(lifts)==13,observed=len(lifts))

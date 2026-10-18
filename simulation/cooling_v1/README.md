@@ -31,6 +31,15 @@ original execution and [earlier receipt](verification_history/cover_before_geome
 remain available. The replacement model must pass this geometry check as well
 as load, strain and manipulation checks before the cover can be accepted again.
 
+The integrated candidate uses exact eight-corner meshes for the same tube-wall
+cuboids. This exercises the general convex-element collision path: a regression
+demonstrates a triangle/box crossing missed by the primitive path in
+[MuJoCo 3.16.0](https://github.com/google-deepmind/mujoco/blob/3.16.0/src/engine/engine_collision_flex.c).
+Its [continuum support checks](continuum_membrane_tests.json) include 16/50 µm
+films, time-step and mesh refinement, and missing-sheet counterexamples. These
+static checks do not accept the full robot episode. Historical source versions
+needed to reproduce earlier receipts are retained by their SHA-256 identities.
+
 Reflector playback contains every recorded adjustment in eight continuous
 chapters. Its clock and event links use global simulation time. The local
 server implements byte ranges so a browser can seek across the complete

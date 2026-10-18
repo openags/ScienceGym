@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 import numpy as np
 from integrated_world import build as original
 from membrane import sheet
+from film_contact import exact_cuboid_contacts
 from world import vec,HERE
 
 
@@ -49,11 +50,13 @@ def build(path):
     cover=root.find(".//body[@name='cover']")
     for child in list(cover):
         if child.tag=='flexcomp' or '_bonded_annulus_' in child.get('name',''):cover.remove(child)
-    props=[sheet(cover,'cover_lower',-.003208,sectors=8,elastic=True),sheet(cover,'cover_upper',.003208,sectors=8,elastic=True)]
+    props=[sheet(cover,'cover_lower',-.003208,sectors=16,elastic=True),sheet(cover,'cover_upper',.003208,sectors=16,elastic=True)]
     # Implicit continuum elasticity avoids the observed isolated 44% edge
     # excursion of the constrained-edge approximation. The damping is an
     # explicitly selected numerical/material parameter, not a vendor value.
-    for flex in cover.findall('flexcomp'):flex.find('elasticity').set('damping','.002')
+    for flex in cover.findall('flexcomp'):
+        flex.find('elasticity').set('damping','.002')
+        flex.find('contact').attrib.update(priority='1',solimp='.95 .95 .0001')
     for prop in props:prop['damping_s']=.002
     cover.find("geom[@name='bonded_mass']").set('mass',str(sum(p['mass_on_parent_kg'] for p in props)))
     targets['cover']['film_properties']=props
@@ -80,12 +83,16 @@ def build(path):
             rings.append(dict(name=name,segments=24,total_mass_kg=total_mass,
                               minimum_bore_radius_m=float(radii[0]-sizes[0,0]),
                               maximum_outward_envelope_error_m=float(envelope)))
+    cuboids=exact_cuboid_contacts(root)
     ET.indent(root);tree.write(path,encoding='unicode')
-    return targets,dict(ring_collision_discretization=rings,membrane_sectors=8,
+    return targets,dict(ring_collision_discretization=rings,membrane_sectors=16,
         membrane_model='Saint Venant-Kirchhoff',selected_young_Pa=1e8,selected_poisson=.35,selected_damping_s=.002,
         solver='CG',integrator='discrete',solver_iterations=800,
+        film_support_collision_method='exact cuboid mesh with convex-element narrow phase',
+        film_support_cuboids=cuboids,film_contact_priority=1,film_contact_solimp=[.95,.95,.0001],
         source_visual_meshes_changed=False,noslip_iterations=0,impratio=10,sleep_enabled=False,
         selected_tip_thickness_m=grasp['edge_jaw_thickness_m'],selected_stem_thickness_m=grasp['edge_jaw_thickness_m'],shield_grasp_height_from_center_m=grasp['shield_grip_local_m'][2],shield_clamp_force_N=forces['shield_grip_N'],
+        cover_clamp_force_N=forces['cover_grip_N'],
         shield_fixture_pin_radius_m=geometry['shield_alignment_pin_radius_m'],shield_fixture_nominal_radial_clearance_m=geometry['shield_alignment_radial_clearance_m'],
-        reason='Avoid an observed flex-contact wake impulse and reduce redundant ring contact manifolds; support and collision acceptance thresholds are unchanged',
+        reason='Implicit elastic membrane replaces a constrained-edge trial with a 44% transient strain. Exact cuboid meshes preserve tube geometry while using convex-element collision detection. Film/solid intersections beyond 0.1 mm are rejected independently.',
         timestep_s=.0005,maximum_ring_envelope_error_m=max(r['maximum_outward_envelope_error_m'] for r in rings))

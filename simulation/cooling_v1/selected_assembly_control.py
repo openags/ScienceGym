@@ -6,17 +6,28 @@ from world import HERE
 from integrated_control import IntegratedRobot
 from evaluate_cover import measure
 from control import ExecutionFailure
+from film_geometry import FilmSolidAudit
 
 class SelectedAssemblyRobot(IntegratedRobot):
     def __init__(self,*args,**kwargs):
         profile=json.loads((HERE.parents[1]/'tasks/directional_cooling_operations_v3/selected_reconstruction.json').read_text())
         self.shield_clamp_force=float(profile['cards']['manipulation_card']['force_torque_clearance_limits']['value']['shield_grip_N'])
+        self.cover_clamp_force=float(profile['cards']['manipulation_card']['force_torque_clearance_limits']['value']['cover_grip_N'])
         self.next_progress_time=20.
         super().__init__(*args,**kwargs)
+        self.film_geometry=FilmSolidAudit(self.model,
+            [self.model.geom(g).name for g in range(self.model.ngeom)
+             if (self.model.geom(g).name or '').startswith('pe_tube_wall_')])
 
     def advance(self,duration):
         if getattr(self,'active_object',None)=='shield' and self.clamp_force==24.:
             self.clamp_force=self.shield_clamp_force
+        if getattr(self,'active_object',None)=='cover' and self.grip_target==0 and self.clamp_force is None:
+            # Position closure supplied only about 6 N at the 6.4 mm ring.
+            # The cantilevered ring rotated in the grasp, making repeated
+            # object-frame correction pitch the palm into the base plate.
+            # Apply the declared clamp load to the rigid bonded annulus.
+            self.clamp_force=self.cover_clamp_force
         result=super().advance(duration)
         if self.data.time>=self.next_progress_time:
             print('PHYSICS',round(self.data.time,2),'s; active object',self.active_object,flush=True)
@@ -29,6 +40,11 @@ class SelectedAssemblyRobot(IntegratedRobot):
 
     def audit_contacts(self):
         super().audit_contacts()
+        if hasattr(self,'film_geometry'):
+            geometry=self.film_geometry.observe(self.data)
+            if not geometry['passed']:
+                first=geometry['intersecting_pairs'][0]
+                raise ExecutionFailure('Film penetrates support beyond 0.1 mm numerical allowance: '+str(first))
         loads={}
         payloads={'foam_lower','foam_upper','emitter','pe_tube','cover','shield','aperture'}
         for i,c in enumerate(self.data.contact):

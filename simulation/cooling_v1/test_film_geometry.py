@@ -1,7 +1,10 @@
 """Counterexamples to vertex-only cloth penetration checks."""
 import unittest
 import numpy as np
-from film_geometry import triangle_box_overlap
+import mujoco
+import xml.etree.ElementTree as ET
+from film_geometry import triangle_box_overlap, FilmSolidAudit
+from film_contact import exact_cuboid_contacts
 
 
 class TriangleBoxTests(unittest.TestCase):
@@ -26,6 +29,40 @@ class TriangleBoxTests(unittest.TestCase):
         center = np.array([4, 5, 6])
         world = tri @ rotation.T + center
         self.assertTrue(triangle_box_overlap((world-center) @ rotation, [.5, .5, .5])[0])
+
+    def test_multiple_flexes_use_element_data_addresses(self):
+        xml='''<mujoco><worldbody>
+        <geom name="solid" type="box" size=".5 .5 .5"/>
+        <flexcomp name="first" type="direct" dim="2" radius=".001"
+          point="2 2 2 3 2 2 2 3 2" element="0 1 2"><edge equality="true"/></flexcomp>
+        <flexcomp name="second" type="direct" dim="2" radius=".001"
+          point="2 2 2 3 2 2 2 3 2 0 0 0" element="0 1 3 1 2 3 2 0 3"><edge equality="true"/></flexcomp>
+        </worldbody></mujoco>'''
+        model=mujoco.MjModel.from_xml_string(xml)
+        data=mujoco.MjData(model)
+        mujoco.mj_forward(model,data)
+        audit=FilmSolidAudit(model,['solid'])
+        self.assertEqual(audit.triangles[1].tolist(),[[3,4,6],[4,5,6],[5,3,6]])
+        result=audit.observe(data)
+        self.assertFalse(result['passed'])
+        self.assertEqual({p['film'] for p in result['intersecting_pairs']},{'second'})
+
+    def test_convex_mesh_detects_crossing_missed_by_box_narrow_phase(self):
+        root=ET.fromstring('''<mujoco><worldbody>
+          <geom name="support_0" type="box" size=".5 .5 .5"/>
+          <flexcomp name="film" type="direct" dim="2" radius=".001"
+             point="-2 -2 .4 2 -2 .4 0 2 .4" element="0 1 2"><edge equality="true"/></flexcomp>
+          </worldbody></mujoco>''')
+        native=mujoco.MjModel.from_xml_string(ET.tostring(root,encoding='unicode'))
+        data=mujoco.MjData(native);mujoco.mj_forward(native,data)
+        self.assertFalse(FilmSolidAudit(native,['support_0']).observe(data)['passed'])
+        self.assertEqual(data.ncon,0)
+        exact_cuboid_contacts(root,'support_')
+        mesh=mujoco.MjModel.from_xml_string(ET.tostring(root,encoding='unicode'))
+        data=mujoco.MjData(mesh);mujoco.mj_forward(mesh,data)
+        self.assertFalse(FilmSolidAudit(mesh,['support_0']).observe(data)['passed'])
+        self.assertGreater(data.ncon,0)
+        np.testing.assert_allclose(FilmSolidAudit(mesh,['support_0']).sizes,[[.4999]*3],atol=1e-8)
 
 
 if __name__ == '__main__':
