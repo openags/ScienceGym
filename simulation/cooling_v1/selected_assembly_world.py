@@ -22,7 +22,8 @@ def build(path):
     if geometry['shield_shims_m']!=.0069 or geometry['PE_height_m']!=.057 or geometry['aperture_m']!=.001:
         raise ValueError('This bound workcell requires the declared 57 mm tube, 6.9 mm shims and 1 mm aperture')
     targets=original(path);tree=ET.parse(path);root=tree.getroot()
-    root.find('option').attrib.update(timestep='.0005',noslip_iterations='0',impratio='1000')
+    root.find('option').attrib.update(timestep='.0005',noslip_iterations='0',impratio='10',
+                                    integrator='discrete',solver='CG',iterations='800',tolerance='1e-8')
     root.find('option/flag').set('sleep','disable')
     # The original 6 mm-thick inner tip left only 0.5 mm beside the cover.
     # Select a 2 mm-thick stem and tip. The long aligned stem face provides
@@ -48,7 +49,12 @@ def build(path):
     cover=root.find(".//body[@name='cover']")
     for child in list(cover):
         if child.tag=='flexcomp' or '_bonded_annulus_' in child.get('name',''):cover.remove(child)
-    props=[sheet(cover,'cover_lower',-.003208,sectors=8),sheet(cover,'cover_upper',.003208,sectors=8)]
+    props=[sheet(cover,'cover_lower',-.003208,sectors=8,elastic=True),sheet(cover,'cover_upper',.003208,sectors=8,elastic=True)]
+    # Implicit continuum elasticity avoids the observed isolated 44% edge
+    # excursion of the constrained-edge approximation. The damping is an
+    # explicitly selected numerical/material parameter, not a vendor value.
+    for flex in cover.findall('flexcomp'):flex.find('elasticity').set('damping','.002')
+    for prop in props:prop['damping_s']=.002
     cover.find("geom[@name='bonded_mass']").set('mass',str(sum(p['mass_on_parent_kg'] for p in props)))
     targets['cover']['film_properties']=props
     rings=[]
@@ -76,7 +82,9 @@ def build(path):
                               maximum_outward_envelope_error_m=float(envelope)))
     ET.indent(root);tree.write(path,encoding='unicode')
     return targets,dict(ring_collision_discretization=rings,membrane_sectors=8,
-        source_visual_meshes_changed=False,noslip_iterations=0,impratio=1000,sleep_enabled=False,
+        membrane_model='Saint Venant-Kirchhoff',selected_young_Pa=1e8,selected_poisson=.35,selected_damping_s=.002,
+        solver='CG',integrator='discrete',solver_iterations=800,
+        source_visual_meshes_changed=False,noslip_iterations=0,impratio=10,sleep_enabled=False,
         selected_tip_thickness_m=grasp['edge_jaw_thickness_m'],selected_stem_thickness_m=grasp['edge_jaw_thickness_m'],shield_grasp_height_from_center_m=grasp['shield_grip_local_m'][2],shield_clamp_force_N=forces['shield_grip_N'],
         shield_fixture_pin_radius_m=geometry['shield_alignment_pin_radius_m'],shield_fixture_nominal_radial_clearance_m=geometry['shield_alignment_radial_clearance_m'],
         reason='Avoid an observed flex-contact wake impulse and reduce redundant ring contact manifolds; support and collision acceptance thresholds are unchanged',

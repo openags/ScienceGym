@@ -3,7 +3,8 @@
 **The whole-paper simulation is unfinished: 0 of 11 complete branches accepted.**
 The physical workbench now includes a continuous six-layer assembly and return,
 a deformable two-film cover, a full-length cabled commercial RTD, and a
-model-specific Keithley 2000 button. Each record has its own declared scope;
+model-specific Keithley 2000 button, installed reflector carriage and a cabled
+Keithley 2425 plug interface. Each record has its own declared scope;
 acceptance of these records does not discharge the complete 200-step definition
 set or their 1,317 scheduled manipulation occurrences.
 
@@ -21,6 +22,7 @@ establish continuity between their respective scenes.
 | Two prebonded flexible cover sheets, placement and recovery | 72.866 s | [Cover verification](COVER_VERIFICATION.json) |
 | Omega P-M RTD, 3.6576 m attached lead, insertion and recovery | 62.920 s | [Nominal trace verification](runs/rtd/verification.json), [perturbed initial arm state](runs/rtd_tests/seed_1/verification.json) |
 | Installed reflector carriage, 241 release/slide/lock cycles | 1690.010 s | [495 trace checks](runs/reflector/verification.json), [mechanism faults and load tests](REFLECTOR_VERIFICATION.json) |
+| Selected cabled source-meter plug, insertion and return | 61.321 s | [Contact verification](runs/connector/verification.json), [blocked bore](runs/connector_tests/blocked_bore/verification.json), [missing spring](runs/connector_tests/missing_spring/verification.json) |
 | Keithley 2000 physical four-wire resistance button | 16.384 s | [Button verification](DMM_VERIFICATION.json) |
 
 Reflector playback contains every recorded adjustment in eight continuous
@@ -82,8 +84,8 @@ directory specified by `SCIENCEGYM_ROBOT_CACHE`. It verifies cached files agains
 the recorded hashes. Export reconstructs the ignored OBJ cache from the existing
 original GLB, preserving root-relative metre coordinates and source part IDs.
 The resulting workcell XML uses portable logical asset paths. `load_model.py`
-resolves them into hash-verified MuJoCo virtual files. The HTML/video viewer can
-be opened offline without Python.
+resolves them into hash-verified MuJoCo virtual files. The HTML/video viewer runs without external web services through the included
+local HTTP server.
 
 Each run preserves a result record, exact input hashes and a state/control trace
 at its declared sampling cadence. New cabled RTD runs also archive their source
@@ -103,10 +105,20 @@ python simulation/cooling_v1/verify_rtd.py simulation/cooling_v1/runs/rtd_debug/
 python simulation/cooling_v1/render_device_trace.py simulation/cooling_v1/runs/rtd_debug/reproduction
 ```
 
+Cover and connector traces are stored as lossless shards; their viewer links
+open the archive manifests. Restore them only when a tool requires a single NPZ.
+
 Large traces can be packaged with `trace_store.py RUN_DIRECTORY` into SHA-256
 checked binary shards. `trace_store.py RUN_DIRECTORY --restore` reconstructs
 the exact original NPZ after a checkout. Packaging never drops frames or changes
 recorded precision. Verifiers using `load_trace` read either representation.
+
+The connector record uses a selected four-leaf passive contact model and a
+0.6 m lead with no bending/torsion. The pin reaches 9.864 mm insertion depth
+and remains supported after the robot opens its hand. A 5 N socket-load guard
+stops a blocked bore before adjacent-socket contact. Removing the passive
+springs causes misalignment and excessive load during release, and is rejected.
+These observations establish neither electrical continuity nor a heater circuit.
 
 ## Whole-paper acceptance
 
