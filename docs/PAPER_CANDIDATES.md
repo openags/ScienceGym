@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-14**. Candidate count: **265**.
+Last screened: **2026-10-20**. Candidate count: **266**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2619,3 +2619,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The complete main paper, full SI analysis, movies, code, data and cited precursor methods were not fully reviewed. Chemical handling, microfabrication, thermal stability and microscopic specimen manipulation need separate qualification before conversion.
 - The publisher displays CC BY 4.0. This entry contains a citation and original suitability language; no source PDF, figure, code, dataset or operating procedure is redistributed.
 - Exact identity checks found no match in the fresh catalog, README, nested task material, known prior restrictions or repository issue/PR search. The inherited historical-record gap remains unresolved.
+
+## Additional candidate: optical freeze-history metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Dual-responsive coloration of Janus droplets via total internal reflection and interference applied as single-use freezing indicators](https://www.nature.com/articles/s41467-026-70055-5) | Nature Communications / 2026 | 10.1038/s41467-026-70055-5 | Prepared droplet samples, tracked thermal histories, microscopy and reflectance comparisons suggest a multi-instrument sample-handling-and-measurement task | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Selected Results and characterization text support optical comparison of prepared specimens across thermal histories. This screening does not establish pharmaceutical integrity, independent replication, robotic feasibility or a converted task.
+- The publisher-linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70055-5/MediaObjects/41467_2026_70055_MOESM1_ESM.pdf) was read as extracted text, including captions on repeated switching and storage. Figures were not visually verified; full source review, movies and underlying data remain outstanding.
+- Future scope is prepared, contained specimens and qualified thermal/optical equipment. Chemical fabrication and medical validation are excluded. No operating procedure or source assets are supplied.
+- Bibliographic identity verified on 2026-10-20. Publisher HTML was readable despite a cookie-error URL marker. The page displays CC BY-NC-ND 4.0; this entry provides metadata and original screening commentary, not redistributed source content.
