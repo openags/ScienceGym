@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **270**.
+Last screened: **2026-10-20**. Candidate count: **271**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2675,3 +2675,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72343-6/MediaObjects/41467_2026_72343_MOESM1_ESM.pdf) yielded 43 pages of extracted text. Selected characterization and mechanical-measurement sections were screened. Figure pixels, movies, full analysis and raw data remain unreviewed.
 - Future scope is prepared specimens, tracked orientation and conditioning, guarded mechanical tests and enclosed spectroscopy. Chemical fabrication, hot pressing, cutting, puncture tests, cryogenics and application certification are excluded. No procedure, source assets or robotic feasibility claim is supplied.
 - Metadata checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: multiphase evaporator metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ultrahigh efficiency solar evaporation through orchestrated multiphase flow](https://www.nature.com/articles/s41467-026-72908-5) | Nature Communications / 2026 | 10.1038/s41467-026-72908-5 | Prepared-device comparisons, illumination calibration, time-resolved weighing and thermal imaging suggest a coordinated physical-measurement task | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Tang et al., volume 17, article 6121, published 7 May 2026; version of record dated 13 July 2026. Selected indoor-measurement Methods distinguish projected-area normalization from total surface area and apparent efficiency including ambient heat from solar-only efficiency. This is not full review or task conversion.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72908-5/MediaObjects/41467_2026_72908_MOESM1_ESM.pdf) yielded 127 pages of extracted text. Selected measurement and durability sections were screened; illuminated and dark observation intervals remain distinct. Figure pixels, movies, complete analysis and raw data remain unreviewed.
+- Future scope is prepared specimens, benign water/salt solutions and qualified enclosed optical/thermal metrology. Chemical fabrication, cryogenic processing, mercury porosimetry, environmental-water handling and potability certification are excluded. No operating procedure, source assets or robotic feasibility claim is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. Only citation metadata and original screening commentary are added.
