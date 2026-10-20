@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **273**.
+Last screened: **2026-10-20**. Candidate count: **274**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2710,3 +2710,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [67-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72723-y/MediaObjects/41467_2026_72723_MOESM1_ESM.pdf) was accessible as extracted text. Selected characterization and sorption/desorption measurement passages were screened; figure pixels, raw data and the complete supplement were not reviewed.
 - Future scope is limited to prepared samples and comparative measurements. Fabrication chemistry, freezing/drying, mercury porosimetry and potability claims are excluded. No executable procedure, asset, robot-feasibility claim or converted task is supplied.
 - Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; this entry contains citation metadata and original screening commentary only.
+
+
+## Additional candidate: cellulosic aerogel measurement comparisons (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Topological isomerization unlocks exceptional elasticity and strength of cellulosic triboelectric aerogels](https://www.nature.com/articles/s41467-026-71965-0) | Nature Communications / 2026 | 10.1038/s41467-026-71965-0 | Prepared-specimen exchange, guarded cyclic loading, mass tracking and optical comparison suggest a coordinated materials-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Luo et al., volume 17, article 5185, published 14 April 2026; version of record dated 11 June 2026. Selected mechanical Results and measurement Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71965-0/MediaObjects/41467_2026_71965_MOESM1_ESM.pdf) yielded 52 pages of extracted text. Selected moisture, cyclic-compression and thermal-comparison captions were screened. Figure pixels, movies, full analysis and raw data remain unreviewed.
+- Future scope is prepared specimens and guarded comparative measurements. Fabrication chemistry, vapor deposition, cryogenics, extreme-temperature tests, falling-mass impacts, mercury porosimetry and exposed electrical work are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
