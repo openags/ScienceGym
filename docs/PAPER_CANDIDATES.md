@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **278**.
+Last screened: **2026-10-20**. Candidate count: **279**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2769,3 +2769,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **Verification:** publisher confirms the title, journal, 2019 publication and DOI. Selected main-text durability results and characterization/washing Methods were read; [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-019-08846-2/MediaObjects/41467_2019_8846_MOESM1_ESM.pdf) is a readable 60-page PDF, with selected mechanical-characterization notes 4–6 read. Remaining supplement sections, movies and underlying data were not exhaustively reviewed; data are available on request.
 - **Scope:** future suitability assessment is limited to prepared-specimen characterization. High-temperature manufacture, pressurized processing, battery charging and human-wear demonstrations are excluded; no operating parameters or experimental instructions are reproduced.
 - **Access checked:** 2026-10-20; publisher labels the article open access under CC BY 4.0. Assets, viewer and repository license are unchanged.
+
+## Additional candidate: chiral-standard measurement comparisons (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Chiral discrimination of amino acids in meteorite and desert soil extracts via single-molecule nanogap conductance](https://www.nature.com/articles/s41467-026-77947-6) | Nature Communications / 2026 | 10.1038/s41467-026-77947-6 | Prepared-standard and blank tracking, chip loading, repeated electrical measurements and cross-device comparisons suggest a coordinated analytical-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10274, published 5 October 2026. Selected Results and single-molecule measurement Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77947-6/MediaObjects/41467_2026_77947_MOESM1_ESM.pdf) yielded 27 pages of extracted text. Selected signal-measurement, device-reuse and positioning-stability passages were screened. Figure pixels, supplementary spreadsheets, raw data and code remain unreviewed. The supplement's cover title includes an additional initial word, “Electrical”; the publisher article title above is authoritative.
+- Future scope is prepared amino-acid standards and blanks in qualified instruments. Device fabrication, environmental extraction, corrosive processing and life-detection claims are excluded. Targeted classifications are not comprehensive composition measurements. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
