@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **272**.
+Last screened: **2026-10-20**. Candidate count: **273**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2699,3 +2699,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66792-8/MediaObjects/41467_2025_66792_MOESM1_ESM.pdf) yielded 16 pages of extracted text. Selected captions and analysis distinguish working/reference optical channels and pressure-dependent response. Figure pixels, movies, code and raw data remain unreviewed.
 - Future scope is prepared, electrically enclosed devices with qualified guarded loading, capacitance measurement and optical recording. Fabrication, exposed high-voltage circuits, rotating-generator assembly, human testing and application certification are excluded. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
 - Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY 4.0; this entry contains citation metadata and original screening commentary only.
+
+## Additional candidate: atmospheric water-harvesting sorbent characterization (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Hygroscopic wood sponge with dual phase change function for enhanced all-weather atmospheric water harvesting](https://www.nature.com/articles/s41467-026-72723-y) | Nature Communications / 2026 | 10.1038/s41467-026-72723-y | Prepared, contained sorbent samples could support a future sequence of humidity-history tracking, sample transfer, weighing, and optical/thermal comparison. | Selected publisher HTML and supplementary PDF text accessible; open access. |
+
+- **CANDIDATE only.** Official title, journal, year and DOI were verified. Selected main-text results on water sorption and light/dark desorption were screened, not a complete full-text review. Sorbent uptake and collected water are distinct outcomes.
+- The linked [67-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72723-y/MediaObjects/41467_2026_72723_MOESM1_ESM.pdf) was accessible as extracted text. Selected characterization and sorption/desorption measurement passages were screened; figure pixels, raw data and the complete supplement were not reviewed.
+- Future scope is limited to prepared samples and comparative measurements. Fabrication chemistry, freezing/drying, mercury porosimetry and potability claims are excluded. No executable procedure, asset, robot-feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; this entry contains citation metadata and original screening commentary only.
