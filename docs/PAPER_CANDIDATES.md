@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **269**.
+Last screened: **2026-10-20**. Candidate count: **270**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2663,3 +2663,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77972-5/MediaObjects/41467_2026_77972_MOESM1_ESM.pdf) yielded 42 pages of extracted text. Selected sections distinguish absorption from transmission loss and compare specimen incidence directions and densities. Figure pixels, complete analysis and raw source data remain unreviewed.
 - Future scope is prepared, contained specimens, qualified enclosed acoustic instruments and guarded mechanical measurements. Chemical fabrication, freezing/drying, combustion and application certification are excluded. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
 - Metadata checked on 2026-10-20. The publisher landing page was readable with a cookie-error URL marker and displays CC BY-NC-ND 4.0. This entry adds citation metadata and original screening commentary only.
+
+
+## Additional candidate: oriented nanocellulose laminate metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Superstrong and supertough biomimetic nanocellulose composites with gradient bouligand architecture](https://www.nature.com/articles/s41467-026-72343-6) | Nature Communications / 2026 | 10.1038/s41467-026-72343-6 | Prepared-laminate orientation tracking, tensile/cyclic comparisons and spectroscopy suggest staged sample handling across measurement instruments | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Wang et al., volume 17, article 5621, published 23 April 2026; version of record dated 29 June 2026. Selected mechanical Results distinguish loading direction from layer architecture and measured tests from simulations. This is not full review or task conversion.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72343-6/MediaObjects/41467_2026_72343_MOESM1_ESM.pdf) yielded 43 pages of extracted text. Selected characterization and mechanical-measurement sections were screened. Figure pixels, movies, full analysis and raw data remain unreviewed.
+- Future scope is prepared specimens, tracked orientation and conditioning, guarded mechanical tests and enclosed spectroscopy. Chemical fabrication, hot pressing, cutting, puncture tests, cryogenics and application certification are excluded. No procedure, source assets or robotic feasibility claim is supplied.
+- Metadata checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
