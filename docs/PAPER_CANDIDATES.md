@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **276**.
+Last screened: **2026-10-20**. Candidate count: **277**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2746,3 +2746,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76816-6/MediaObjects/41467_2026_76816_MOESM1_ESM.pdf) yielded 26 pages of extracted text. Selected swelling, loading-unloading and fatigue-assessment captions were screened. Figure pixels, movies, raw data and full analysis remain unreviewed.
 - Future scope is prepared nonliving specimens and guarded measurements. Synthesis, specimen cutting, cryogenics, inflated devices, animal-tissue experiments and clinical claims are excluded. Spectral water-state ratios are comparative, not absolute populations. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: acoustic metamaterial field measurements (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Observation of vortex-string chiral modes in metamaterials](https://www.nature.com/articles/s41467-024-46641-w) | Nature Communications / 2024 | 10.1038/s41467-024-46641-w | Prepared-fixture positioning, repeated acoustic source/probe placement and spatial pressure comparisons suggest a coordinated physics-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Official metadata identifies volume 15, article 2332, published 14 March 2024. Selected experimental Results and Methods were screened, not the complete paper. This is a laboratory analogue, not an astrophysical detection.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-46641-w/MediaObjects/41467_2024_46641_MOESM1_ESM.pdf) yielded 13 pages of extracted text. Selected additional-experimental-results passages on pressure, phase and attenuation were screened. Corrected field comparisons are distinct from raw measurements; figure pixels, code, raw data and full analysis remain unreviewed.
+- Future scope requires prepared samples and a qualified enclosed acoustic apparatus. Resin fabrication, exposed loud sound and electrical assembly are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY 4.0; only citation metadata and original screening commentary are added.
