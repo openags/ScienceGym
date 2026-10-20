@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **274**.
+Last screened: **2026-10-20**. Candidate count: **275**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2722,3 +2722,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71965-0/MediaObjects/41467_2026_71965_MOESM1_ESM.pdf) yielded 52 pages of extracted text. Selected moisture, cyclic-compression and thermal-comparison captions were screened. Figure pixels, movies, full analysis and raw data remain unreviewed.
 - Future scope is prepared specimens and guarded comparative measurements. Fabrication chemistry, vapor deposition, cryogenics, extreme-temperature tests, falling-mass impacts, mercury porosimetry and exposed electrical work are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: diffractive optical detector calibration (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Deep diffractive optical neural networks for detecting skyrmionic topologies of light and their live training](https://www.nature.com/articles/s41467-026-77376-5) | Nature Communications / 2026 | 10.1038/s41467-026-77376-5 | Prepared optical-component positioning, polarization-resolved camera measurements and repeated calibration comparisons suggest a coordinated optical-metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Official title, journal, year and DOI were checked on 2026-10-20. Publisher metadata identifies volume 17, article 10490, published and version of record dated 7 October 2026. Selected experimental-classification Results and training Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77376-5/MediaObjects/41467_2026_77376_MOESM1_ESM.pdf) yielded seven pages of extracted text. Selected experimental-setup and polarization-measurement passages were screened. Figure pixels, code, raw data and full analysis remain unreviewed.
+- Future scope requires a qualified enclosed optical apparatus and prepared components. Physical calibration and camera comparisons remain distinct from software-only training. Exposed laser alignment, optical fabrication and communication-system certification are excluded. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
