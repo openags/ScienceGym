@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **277**.
+Last screened: **2026-10-20**. Candidate count: **278**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2758,3 +2758,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-46641-w/MediaObjects/41467_2024_46641_MOESM1_ESM.pdf) yielded 13 pages of extracted text. Selected additional-experimental-results passages on pressure, phase and attenuation were screened. Corrected field comparisons are distinct from raw measurements; figure pixels, code, raw data and full analysis remain unreviewed.
 - Future scope requires prepared samples and a qualified enclosed acoustic apparatus. Resin fabrication, exposed loud sound and electrical assembly are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Metadata checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: energy-textile durability characterization (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Continuous and scalable manufacture of amphibious energy yarns and textiles](https://www.nature.com/articles/s41467-019-08846-2) | Nature Communications / 2019 | 10.1038/s41467-019-08846-2 | Prepared textile specimens offer a possible long-horizon sequence of mounting, repeated mechanical characterization, washing/drying checkpoints and electrical-output comparisons. | Open-access main text and linked Supplementary Information accessible; selected results, Methods and supplementary notes read, not an exhaustive review. |
+
+- **Status:** literature candidate only; no workflow conversion, executable task or safety approval.
+- **Verification:** publisher confirms the title, journal, 2019 publication and DOI. Selected main-text durability results and characterization/washing Methods were read; [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-019-08846-2/MediaObjects/41467_2019_8846_MOESM1_ESM.pdf) is a readable 60-page PDF, with selected mechanical-characterization notes 4–6 read. Remaining supplement sections, movies and underlying data were not exhaustively reviewed; data are available on request.
+- **Scope:** future suitability assessment is limited to prepared-specimen characterization. High-temperature manufacture, pressurized processing, battery charging and human-wear demonstrations are excluded; no operating parameters or experimental instructions are reproduced.
+- **Access checked:** 2026-10-20; publisher labels the article open access under CC BY 4.0. Assets, viewer and repository license are unchanged.
