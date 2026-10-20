@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **268**.
+Last screened: **2026-10-20**. Candidate count: **269**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2652,3 +2652,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74146-1/MediaObjects/41467_2026_74146_MOESM1_ESM.pdf) yielded 34 pages of extracted text. Selected captions distinguish hydration-matched controls, cyclic tests and directional thermal measurements. Figure pixels, complete analysis and source data remain unreviewed.
 - Future scope is prepared specimens with tracked orientation and hydration, qualified guarded mechanical tests and enclosed optical/thermal instruments. Chemical fabrication, hot rolling, cryogenic preparation and device qualification are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Metadata checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; this entry adds citation metadata and original screening commentary, not source content or assets.
+
+## Additional candidate: acoustic aerogel metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strong acoustic meta-aerogels enabled by nanoconfined directional freezing and in-situ polymerization](https://www.nature.com/articles/s41467-026-77972-5) | Nature Communications / 2026 | 10.1038/s41467-026-77972-5 | Prepared-specimen orientation tracking, sound absorption/transmission comparisons and mechanical tests suggest staged sample handling across instruments | Selected publisher main-PDF and scientific-SI text accessible; Article in Press |
+
+- **CANDIDATE only.** Publisher metadata confirms Wang et al., published 22 September 2026. The accessible 12-page main PDF is an accepted Article in Press, not yet the final Version of Record. Selected mechanical and acoustic Results distinguish measurements from simulations; this is not a full source review.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77972-5/MediaObjects/41467_2026_77972_MOESM1_ESM.pdf) yielded 42 pages of extracted text. Selected sections distinguish absorption from transmission loss and compare specimen incidence directions and densities. Figure pixels, complete analysis and raw source data remain unreviewed.
+- Future scope is prepared, contained specimens, qualified enclosed acoustic instruments and guarded mechanical measurements. Chemical fabrication, freezing/drying, combustion and application certification are excluded. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. The publisher landing page was readable with a cookie-error URL marker and displays CC BY-NC-ND 4.0. This entry adds citation metadata and original screening commentary only.
