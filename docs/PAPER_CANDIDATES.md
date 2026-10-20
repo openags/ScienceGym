@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **271**.
+Last screened: **2026-10-20**. Candidate count: **272**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2687,3 +2687,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72908-5/MediaObjects/41467_2026_72908_MOESM1_ESM.pdf) yielded 127 pages of extracted text. Selected measurement and durability sections were screened; illuminated and dark observation intervals remain distinct. Figure pixels, movies, complete analysis and raw data remain unreviewed.
 - Future scope is prepared specimens, benign water/salt solutions and qualified enclosed optical/thermal metrology. Chemical fabrication, cryogenic processing, mercury porosimetry, environmental-water handling and potability certification are excluded. No operating procedure, source assets or robotic feasibility claim is supplied.
 - Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. Only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: optical tactile sensor metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A bioinspired self-powered optical tactile sensing system with ultrahigh sensitivity and ultralow detection limit](https://www.nature.com/articles/s41467-025-66792-8) | Nature Communications / 2025 | 10.1038/s41467-025-66792-8 | Preassembled-device calibration, repeated loading and paired electrical/optical observations suggest coordinated physical metrology | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Hou et al., volume 16, article 11668, published 26 November 2025; version of record dated 30 December 2025. Selected characterization and response Results were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66792-8/MediaObjects/41467_2025_66792_MOESM1_ESM.pdf) yielded 16 pages of extracted text. Selected captions and analysis distinguish working/reference optical channels and pressure-dependent response. Figure pixels, movies, code and raw data remain unreviewed.
+- Future scope is prepared, electrically enclosed devices with qualified guarded loading, capacitance measurement and optical recording. Fabrication, exposed high-voltage circuits, rotating-generator assembly, human testing and application certification are excluded. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY 4.0; this entry contains citation metadata and original screening commentary only.
