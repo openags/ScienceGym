@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **292**.
+Last screened: **2026-10-21**. Candidate count: **293**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2913,3 +2913,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [10-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75077-7/MediaObjects/41467_2026_75077_MOESM1_ESM.pdf) was accessible. Section I and Figure 1 text were read. Simulation volume-fraction corrections are not experimental calibrations; torque-derived effective viscosity is not a direct laminar viscosity measurement.
 - Future scope is prepared nonbiological samples in qualified enclosed instruments. Fluid preparation and exposed rotating machinery are excluded. Figure pixels, remaining analyses, external datasets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: paired contact-resistance and mechanical measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strong yet highly conductive liquid metal composite film constructed via friction induced in-situ synthesis](https://www.nature.com/articles/s41467-026-74665-x) | Nature Communications / 2026 | 10.1038/s41467-026-74665-x | Prepared-specimen tracking, reference comparisons and paired electrical/mechanical records suggest a long-horizon materials measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7683, published 18 June 2026 and version of record dated 3 August 2026. Selected characterization Results and hardness, conductivity and sliding-test Methods were screened, not the complete paper.
+- The linked [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74665-x/MediaObjects/41467_2026_74665_MOESM1_ESM.pdf) was accessible. Selected Figures 6–11 and 19–22 captions and Note 1 text were read. Film conductivity inferred from contact resistance must remain distinct from directly measured substrate conductivity; repeated measurements do not automatically establish independent preparations.
+- Future scope is prepared nonbiological specimens in qualified enclosed instruments. Powder handling, sintering, film fabrication and exposed powered machinery are excluded. Figure pixels, remaining supplementary material, source spreadsheets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
