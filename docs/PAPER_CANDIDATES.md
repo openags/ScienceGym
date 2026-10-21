@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **280**.
+Last screened: **2026-10-21**. Candidate count: **281**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2790,4 +2790,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Publisher metadata confirms volume 17, article 7149, published 3 June 2026, with version of record dated 24 July 2026. Selected experimental Results, sample-handling, microscopy and acquisition Methods were screened, not the complete paper.
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74008-w/MediaObjects/41467_2026_74008_MOESM1_ESM.pdf) yielded 21 pages of extracted text. Selected coverage-estimation and diffusion-statistics notes were read; coverage estimates depend on comparable probe adsorption. Figure pixels, raw data, code and remaining supplementary analyses remain unreviewed. Acquisition-duration descriptions differ between main Methods and Supplementary Note 2 and require reconciliation before conversion.
 - Future scope is prepared dispersions in qualified enclosed microscopy. Nanoparticle synthesis, dry-powder handling, solvent-based gel trapping and exposed-laser work are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: wave-driven interfacial sensing comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Multi-interface electrical double layers dynamics as a unified platform for power generation and environmental intelligence](https://www.nature.com/articles/s41467-026-77636-4) | Nature Communications / 2026 | 10.1038/s41467-026-77636-4 | Prepared-device exchange, electrode-position tracking, repeated wave excitation and synchronized electrical measurements suggest a long-horizon configuration-and-comparison task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10641, published 9 September 2026, with version of record dated 9 October 2026. Selected control-device descriptions, characterization and spatial-recognition Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77636-4/MediaObjects/41467_2026_77636_MOESM1_ESM.pdf) yielded 101 pages of extracted text. Selected localization-comparison captions and Notes 3–4 on spatial contrast and cooperative gain were read. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and raw data remain unreviewed.
+- Future scope is prepared devices in a qualified enclosed water-tank and electrical-measurement system. Fabrication, coating damage, cathodic protection and mercury-containing reference electrodes are excluded. Laboratory wave classifications do not establish field performance. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
