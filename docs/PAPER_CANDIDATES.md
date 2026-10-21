@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **282**.
+Last screened: **2026-10-21**. Candidate count: **283**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2812,4 +2812,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Publisher metadata confirms volume 17, article 5422, published 20 April 2026, with version of record dated 19 June 2026. Selected anti-/deicing Results and evaluation Methods were screened, not the complete paper. The official title's “insu” is retained; the supplement cover instead reads “in”.
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72087-3/MediaObjects/41467_2026_72087_MOESM1_ESM.pdf) yielded 82 pages of extracted text. Selected characterization passages and the cyclic-stability note accompanying Supplementary Fig. 44 were read. Cycle-count descriptions differ between the main Results and that note and require reconciliation before conversion. Figure pixels, remaining supplementary analyses, movies and source spreadsheets remain unreviewed.
 - Future scope is prepared-film characterization in qualified enclosed optical and environmental instruments. Synthesis, laser fabrication, chemical stress tests, combustion and energized infrastructure are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: yeast confinement and time-lapse comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [3D confinement physically regulates cell cycle progression in budding yeast](https://www.nature.com/articles/s41467-026-78414-y) | Nature Communications / 2026 | 10.1038/s41467-026-78414-y | Sample-identity tracking, mechanical characterization and repeated optical observations across matched conditions suggest a long-horizon biophysics measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10653, published and version of record dated 16 October 2026. Selected confinement Results and rheology, optical-measurement and imaging Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-78414-y/MediaObjects/41467_2026_78414_MOESM1_ESM.pdf) yielded 25 pages of extracted text. Selected captions for supplementary figures 1–6, covering material characterization, sampling robustness and comparison controls, were read. Figure pixels, remaining supplementary analyses, source spreadsheets and external molecular datasets remain unreviewed.
+- Future scope is prepared samples of laboratory budding yeast in qualified enclosed measurement systems. Strain engineering, extraction chemistry and molecular profiling are excluded. Individual tracked events and technical repeats must remain distinct from independent biological replicates. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
