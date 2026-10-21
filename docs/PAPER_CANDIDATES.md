@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **284**.
+Last screened: **2026-10-21**. Candidate count: **286**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2835,3 +2835,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-43675-4/MediaObjects/41467_2023_43675_MOESM1_ESM.pdf) yielded 33 pages of extracted text. Selected setup/target captions and Note 5 were read. Apparent tank/scan-area unit inconsistencies in the extracted text require reconciliation before conversion. Figure pixels, remaining supplementary analyses and underlying data remain unreviewed.
 - Future scope is prepared inert targets in a qualified water-tank measurement system. Metal fabrication, human or animal exposure, clinical applications and field rescue are excluded. Simulated beam-transmission extensions are distinct from the demonstrated imaging experiments. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidates: cyclic surface adhesion measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Thickness-invariant, durable and strongly adherent icephobic coatings via dynamic polyborosiloxane crosslinking](https://www.nature.com/articles/s41467-026-77081-3) | Nature Communications / 2026 | 10.1038/s41467-026-77081-3 | Prepared-coupon tracking, repeated ice-release measurements, weighing and surface inspection suggest a long-horizon materials comparison task | Selected publisher HTML and supplementary PDF text accessible; OA |
+| [Switchable adhesion of phase-transition eutectogels with integrated machine learning-enhanced intelligent adhesion sensing](https://www.nature.com/articles/s41467-026-74275-7) | Nature Communications / 2026 | 10.1038/s41467-026-74275-7 | Prepared adhesive-sample conditioning, substrate comparisons and synchronized mechanical/electrical records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **Both entries are CANDIDATES only**, not converted tasks. Main HTML was readable despite cookie-error URL markers. Access checked on 2026-10-21; only citation metadata and original screening commentary are added.
+- **Icephobic coatings:** publisher metadata confirms volume 17, article 10093, published 24 August 2026 and version of record 23 September 2026. Selected durability Results and characterization Methods were screened. The [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77081-3/MediaObjects/41467_2026_77081_MOESM1_ESM.pdf) was accessible; selected figure 11–17 text on controls, cycle histories, mass and surface inspection was read. Independent specimens must remain distinct from repeat measurements. License: CC BY-NC-ND 4.0.
+- **Eutectogel adhesion:** publisher metadata confirms volume 17, article 7434, published 11 June 2026 and version of record 28 July 2026. Selected adhesion/robot-demonstration Results and characterization/adhesion Methods were screened. The [69-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74275-7/MediaObjects/41467_2026_74275_MOESM1_ESM.pdf) was accessible; selected Note 5 and figure 48–50 text on electrical sensing was read. The reported climbing demonstration uses human-coordinated control; it is not autonomous task execution. License: CC BY 4.0.
+- Neither paper nor supplement was read completely. Figure pixels, movies, source datasets and external code remain unreviewed. Future scope is prepared nonbiological specimens in qualified laboratory fixtures; synthesis, solvent/chemical exposure, elevated climbing and deployment are excluded. No operating procedure, assets or robotic feasibility claim is supplied.
