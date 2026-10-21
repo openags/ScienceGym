@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **290**.
+Last screened: **2026-10-21**. Candidate count: **291**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2890,4 +2890,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Publisher metadata confirms volume 17, article 4264, published 20 March 2026 and version of record dated 12 May 2026. Selected water-repellency/durability Results and characterization, contact-angle and abrasion Methods were screened, not the complete paper.
 - The linked [36-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70857-7/MediaObjects/41467_2026_70857_MOESM1_ESM.pdf) was accessible. Selected Figures 11–16 captions and Table 1 text were read. The laundering-score scales differ between main text and SI; their mapping remains unresolved. Repeated locations on a specimen are not automatically independent preparations.
 - Future scope is prepared nonbiological textile specimens in qualified enclosed testing fixtures. Coating synthesis, solvent handling, high-speed impacts, thermal/cryogenic exposure and biological assays are excluded. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and external code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: coordinated hydrogel-sensor measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Root-inspired hierarchical hydrogel-electrode interface enables ultrasensitive sensing](https://www.nature.com/articles/s41467-026-75620-6) | Nature Communications / 2026 | 10.1038/s41467-026-75620-6 | Prepared-sensor tracking, reference comparisons and coordinated mechanical/electrical records suggest a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 8870, published 21 July 2026 and version of record dated 24 August 2026. Selected sensing Results and characterization, adhesion, pressure-sensing and acoustic-test Methods were screened, not the complete paper.
+- The linked [29-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75620-6/MediaObjects/41467_2026_75620_MOESM1_ESM.pdf) was accessible. Selected Figures 10–15 captions and Note 2 text were read. Detectable acoustic responses do not establish faithful waveform reconstruction at the reported acquisition bandwidth.
+- Future scope is prepared nonbiological sensors in qualified measurement fixtures. Hydrogel synthesis, electrochemical fabrication, solvent demolding and human-subject testing are excluded. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
