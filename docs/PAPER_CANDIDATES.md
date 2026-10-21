@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **286**.
+Last screened: **2026-10-21**. Candidate count: **287**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2847,3 +2847,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **Icephobic coatings:** publisher metadata confirms volume 17, article 10093, published 24 August 2026 and version of record 23 September 2026. Selected durability Results and characterization Methods were screened. The [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77081-3/MediaObjects/41467_2026_77081_MOESM1_ESM.pdf) was accessible; selected figure 11–17 text on controls, cycle histories, mass and surface inspection was read. Independent specimens must remain distinct from repeat measurements. License: CC BY-NC-ND 4.0.
 - **Eutectogel adhesion:** publisher metadata confirms volume 17, article 7434, published 11 June 2026 and version of record 28 July 2026. Selected adhesion/robot-demonstration Results and characterization/adhesion Methods were screened. The [69-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74275-7/MediaObjects/41467_2026_74275_MOESM1_ESM.pdf) was accessible; selected Note 5 and figure 48–50 text on electrical sensing was read. The reported climbing demonstration uses human-coordinated control; it is not autonomous task execution. License: CC BY 4.0.
 - Neither paper nor supplement was read completely. Figure pixels, movies, source datasets and external code remain unreviewed. Future scope is prepared nonbiological specimens in qualified laboratory fixtures; synthesis, solvent/chemical exposure, elevated climbing and deployment are excluded. No operating procedure, assets or robotic feasibility claim is supplied.
+
+## Additional candidate: polarization-switched optical transport (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Freeform optical flow based on meta-conveyors for compact, programmable in situ nanomanipulation](https://www.nature.com/articles/s41467-026-73024-0) | Nature Communications / 2026 | 10.1038/s41467-026-73024-0 | Prepared-sample positioning, polarization-state comparisons, reference measurements and particle-trajectory records suggest a long-horizon optical measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 4212, published and version of record dated 9 May 2026. Selected experimental nanomanipulation Results and experimental-setup Methods were screened, not the complete paper.
+- The linked [25-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73024-0/MediaObjects/41467_2026_73024_MOESM1_ESM.pdf) was accessible. Selected Note 10 and figure S9 text on polarization-conversion measurements and reference comparisons were read. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and external code remain unreviewed.
+- Future scope is prepared nonbiological specimens in qualified enclosed optical systems. Nanofabrication, chemical preparation and clinical use are excluded. Encoded trajectories and proposed integration pathways must not be mistaken for autonomous planning or demonstrated clinical deployment. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
