@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **287**.
+Last screened: **2026-10-21**. Candidate count: **288**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2857,4 +2857,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Publisher metadata confirms volume 17, article 4212, published and version of record dated 9 May 2026. Selected experimental nanomanipulation Results and experimental-setup Methods were screened, not the complete paper.
 - The linked [25-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73024-0/MediaObjects/41467_2026_73024_MOESM1_ESM.pdf) was accessible. Selected Note 10 and figure S9 text on polarization-conversion measurements and reference comparisons were read. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and external code remain unreviewed.
 - Future scope is prepared nonbiological specimens in qualified enclosed optical systems. Nanofabrication, chemical preparation and clinical use are excluded. Encoded trajectories and proposed integration pathways must not be mistaken for autonomous planning or demonstrated clinical deployment. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: paired acoustic scattering measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Experimental observation of non-Hermitian phase transitions using laser-induced thermoacoustics](https://www.nature.com/articles/s41467-026-69986-w) | Nature Communications / 2026 | 10.1038/s41467-026-69986-w | Prepared waveguide-component positioning, reference comparisons and paired microphone records suggest a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 3236, published 26 February 2026 and version of record dated 8 April 2026. Selected experimental-demonstration Results and loss-measurement Methods were screened, not the complete paper.
+- The linked [31-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69986-w/MediaObjects/41467_2026_69986_MOESM1_ESM.pdf) was accessible. Selected Notes 1 and 14 text was read. The total field is reconstructed from separately measured source contributions; this is not evidence of simultaneous physical operation. The main/SI square-waveguide dimension discrepancy remains unresolved.
+- Future scope is prepared nonbiological components and qualified enclosed measurement systems. Film fabrication, exposed laser operation and thermal exposure are excluded. Figure pixels, remaining supplementary analyses, movies, raw data and code remain unreviewed; data and code are described as available on request, not acquired here. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
