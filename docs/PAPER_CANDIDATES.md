@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **289**.
+Last screened: **2026-10-21**. Candidate count: **290**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2880,3 +2880,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [18-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73957-6/MediaObjects/41467_2026_73957_MOESM1_ESM.pdf) was accessible. Selected Notes 1 and 5 text was read. Instrumental and physical signal delays require explicit treatment; material self-regulation is not autonomous robot control.
 - Future scope is prepared nonbiological specimens in qualified enclosed measurement fixtures. Film deposition, chemical preparation, vacuum-system construction and thermal-exposure operations are excluded. Figure pixels, remaining supplementary analyses, movies, source datasets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: textile durability and wettability comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [One-step fabrication of superhydrophobic fabrics with stable mechanical performance in harsh conditions](https://www.nature.com/articles/s41467-026-70857-7) | Nature Communications / 2026 | 10.1038/s41467-026-70857-7 | Prepared-textile tracking, repeated mechanical testing, wettability comparisons and surface inspection suggest a long-horizon materials measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 4264, published 20 March 2026 and version of record dated 12 May 2026. Selected water-repellency/durability Results and characterization, contact-angle and abrasion Methods were screened, not the complete paper.
+- The linked [36-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70857-7/MediaObjects/41467_2026_70857_MOESM1_ESM.pdf) was accessible. Selected Figures 11–16 captions and Table 1 text were read. The laundering-score scales differ between main text and SI; their mapping remains unresolved. Repeated locations on a specimen are not automatically independent preparations.
+- Future scope is prepared nonbiological textile specimens in qualified enclosed testing fixtures. Coating synthesis, solvent handling, high-speed impacts, thermal/cryogenic exposure and biological assays are excluded. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and external code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
