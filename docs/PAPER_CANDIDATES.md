@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **281**.
+Last screened: **2026-10-21**. Candidate count: **282**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2801,4 +2801,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Publisher metadata confirms volume 17, article 10641, published 9 September 2026, with version of record dated 9 October 2026. Selected control-device descriptions, characterization and spatial-recognition Methods were screened, not the complete paper.
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77636-4/MediaObjects/41467_2026_77636_MOESM1_ESM.pdf) yielded 101 pages of extracted text. Selected localization-comparison captions and Notes 3–4 on spatial contrast and cooperative gain were read. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and raw data remain unreviewed.
 - Future scope is prepared devices in a qualified enclosed water-tank and electrical-measurement system. Fabrication, coating damage, cathodic protection and mercury-containing reference electrodes are excluded. Laboratory wave classifications do not establish field performance. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: angle-dependent film deicing comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Janus structure breaks the solar incidence angular constraint insu photothermal anti-icing](https://www.nature.com/articles/s41467-026-72087-3) | Nature Communications / 2026 | 10.1038/s41467-026-72087-3 | Prepared-film exchange, orientation tracking, thermal stabilization and repeated optical/thermal measurements suggest a long-horizon comparison task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 5422, published 20 April 2026, with version of record dated 19 June 2026. Selected anti-/deicing Results and evaluation Methods were screened, not the complete paper. The official title's “insu” is retained; the supplement cover instead reads “in”.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72087-3/MediaObjects/41467_2026_72087_MOESM1_ESM.pdf) yielded 82 pages of extracted text. Selected characterization passages and the cyclic-stability note accompanying Supplementary Fig. 44 were read. Cycle-count descriptions differ between the main Results and that note and require reconciliation before conversion. Figure pixels, remaining supplementary analyses, movies and source spreadsheets remain unreviewed.
+- Future scope is prepared-film characterization in qualified enclosed optical and environmental instruments. Synthesis, laser fabrication, chemical stress tests, combustion and energized infrastructure are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
