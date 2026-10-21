@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **283**.
+Last screened: **2026-10-21**. Candidate count: **284**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2824,3 +2824,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-78414-y/MediaObjects/41467_2026_78414_MOESM1_ESM.pdf) yielded 25 pages of extracted text. Selected captions for supplementary figures 1–6, covering material characterization, sampling robustness and comparison controls, were read. Figure pixels, remaining supplementary analyses, source spreadsheets and external molecular datasets remain unreviewed.
 - Future scope is prepared samples of laboratory budding yeast in qualified enclosed measurement systems. Strain engineering, extraction chemistry and molecular profiling are excluded. Individual tracked events and technical repeats must remain distinct from independent biological replicates. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: barrier-through ultrasonic imaging comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ultrasonic barrier-through imaging by Fabry-Perot resonance-tailoring panel](https://www.nature.com/articles/s41467-023-43675-4) | Nature Communications / 2023 | 10.1038/s41467-023-43675-4 | Prepared-panel and inert-target placement, gap-position tracking, coordinated scanning and reference comparisons suggest a long-horizon acoustic measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 14, article 7818, published and version of record dated 28 November 2023. Selected imaging Results and experimental-imaging Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-43675-4/MediaObjects/41467_2023_43675_MOESM1_ESM.pdf) yielded 33 pages of extracted text. Selected setup/target captions and Note 5 were read. Apparent tank/scan-area unit inconsistencies in the extracted text require reconciliation before conversion. Figure pixels, remaining supplementary analyses and underlying data remain unreviewed.
+- Future scope is prepared inert targets in a qualified water-tank measurement system. Metal fabrication, human or animal exposure, clinical applications and field rescue are excluded. Simulated beam-transmission extensions are distinct from the demonstrated imaging experiments. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
