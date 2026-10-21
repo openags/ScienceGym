@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **288**.
+Last screened: **2026-10-21**. Candidate count: **289**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2869,3 +2869,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [31-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69986-w/MediaObjects/41467_2026_69986_MOESM1_ESM.pdf) was accessible. Selected Notes 1 and 14 text was read. The total field is reconstructed from separately measured source contributions; this is not evidence of simultaneous physical operation. The main/SI square-waveguide dimension discrepancy remains unresolved.
 - Future scope is prepared nonbiological components and qualified enclosed measurement systems. Film fabrication, exposed laser operation and thermal exposure are excluded. Figure pixels, remaining supplementary analyses, movies, raw data and code remain unreviewed; data and code are described as available on request, not acquired here. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: synchronized wear-monitoring measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [An intelligent feedback loop for sustaining self-lubrication and wear resistance](https://www.nature.com/articles/s41467-026-73957-6) | Nature Communications / 2026 | 10.1038/s41467-026-73957-6 | Prepared-specimen tracking, counterpart comparisons, synchronized instrument records and post-test surface inspection suggest a long-horizon materials measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7071, published 2 June 2026 and version of record dated 23 July 2026. Selected real-time-monitoring Results and friction/wear-test Methods were screened, not the complete paper.
+- The linked [18-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73957-6/MediaObjects/41467_2026_73957_MOESM1_ESM.pdf) was accessible. Selected Notes 1 and 5 text was read. Instrumental and physical signal delays require explicit treatment; material self-regulation is not autonomous robot control.
+- Future scope is prepared nonbiological specimens in qualified enclosed measurement fixtures. Film deposition, chemical preparation, vacuum-system construction and thermal-exposure operations are excluded. Figure pixels, remaining supplementary analyses, movies, source datasets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
