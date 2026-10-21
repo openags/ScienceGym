@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-20**. Candidate count: **279**.
+Last screened: **2026-10-21**. Candidate count: **280**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2780,3 +2780,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77947-6/MediaObjects/41467_2026_77947_MOESM1_ESM.pdf) yielded 27 pages of extracted text. Selected signal-measurement, device-reuse and positioning-stability passages were screened. Figure pixels, supplementary spreadsheets, raw data and code remain unreviewed. The supplement's cover title includes an additional initial word, “Electrical”; the publisher article title above is authoritative.
 - Future scope is prepared amino-acid standards and blanks in qualified instruments. Device fabrication, environmental extraction, corrosive processing and life-detection claims are excluded. Targeted classifications are not comprehensive composition measurements. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: interfacial diffusion time-series measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Diffusional aging at water/oil interfaces laden with charged nanoparticles studied by single-molecule tracking](https://www.nature.com/articles/s41467-026-74008-w) | Nature Communications / 2026 | 10.1038/s41467-026-74008-w | Prepared-sample tracking, controlled liquid exchange, stabilization checkpoints and repeated microscopy across locations and days suggest a long-horizon interfacial-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7149, published 3 June 2026, with version of record dated 24 July 2026. Selected experimental Results, sample-handling, microscopy and acquisition Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74008-w/MediaObjects/41467_2026_74008_MOESM1_ESM.pdf) yielded 21 pages of extracted text. Selected coverage-estimation and diffusion-statistics notes were read; coverage estimates depend on comparable probe adsorption. Figure pixels, raw data, code and remaining supplementary analyses remain unreviewed. Acquisition-duration descriptions differ between main Methods and Supplementary Note 2 and require reconciliation before conversion.
+- Future scope is prepared dispersions in qualified enclosed microscopy. Nanoparticle synthesis, dry-powder handling, solvent-based gel trapping and exposed-laser work are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
