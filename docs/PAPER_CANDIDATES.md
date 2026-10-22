@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **300**.
+Last screened: **2026-10-22**. Candidate count: **301**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3001,4 +3001,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Publisher metadata confirms volume 17, article 6886, published 26 May 2026; version of record 22 July 2026. Selected electromechanical Results and Characterization Methods were screened, not the complete paper.
 - The [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73073-5/MediaObjects/41467_2026_73073_MOESM1_ESM.pdf) was text-accessible; response-time Note 3 and selected sensing/recovery captions (Figures 21–23) were read. Figure pixels, remaining analyses, movies, source data and peer-review material remain unreviewed.
 - Future scope is prepared nonbiological devices in qualified enclosed measurement services. Preserve specimen identities, loading histories and channel-specific response definitions; repeated readings are not independent specimens. Fabrication, exposed high-voltage operation, human-subject and clinical applications are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: membrane separation and sampling histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Orthogonal assembly of hetero-porous structures by reversible adaptation for efficient isomeric separation](https://www.nature.com/articles/s41467-026-75619-z) | Nature Communications / 2026 | 10.1038/s41467-026-75619-z | Prepared-membrane tracking, timed sample comparisons and coordinated analytical records suggest a long-horizon measurement task | Selected publisher HTML and scientific supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 8677, published 15 July 2026; version of record 20 August 2026. Selected separation Results and filtration/adsorption Methods were screened, not the complete paper.
+- The [13-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75619-z/MediaObjects/41467_2026_75619_MOESM1_ESM.pdf) was text-accessible; selected separation, filtrate-characterization and kinetic-analysis captions (Figures 8–10) were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared nonbiological specimens in qualified enclosed measurement services. Preserve membrane, feed and collection-time identities; single-feed selectivity and mixed-feed separation are distinct comparisons. Synthesis, solvent processing and apparatus operation are not specified. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
