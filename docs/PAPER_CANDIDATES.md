@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **306**.
+Last screened: **2026-10-22**. Candidate count: **307**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3068,3 +3068,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [53-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73601-3/MediaObjects/41467_2026_73601_MOESM1_ESM.pdf) was text-accessible; selected mechanical-test text in Note S1 and comparison captions (Figures S15–S17) were read. Figure pixels, remaining analyses, movie and peer-review material remain unreviewed. Underlying data are available on request and were not acquired.
 - Future scope is prepared nonliving coupons in qualified enclosed test services. Preserve specimen, species, grain-direction and destructive-test histories; measurements must not be assumed to represent independent specimens. Preparation, biological challenges, combustion, vehicle demonstrations, mercury porosimetry and radiation operation are excluded. No procedure, assets, structural-safety guarantee or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: prepared-composite radiative cooling comparison (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Collaborative passive cooling of impact-hardening interfaces enabled by nacre-mimetic design](https://www.nature.com/articles/s41467-026-74755-w) | Nature Communications / 2026 | 10.1038/s41467-026-74755-w | Tracking prepared coupons through reference-calibrated spectroscopy, paired temperature measurements and repeated environmental observations suggests a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7823, published 22 June 2026, version of record 5 August 2026. Selected passive-cooling Results and Characterization text were screened, not the complete paper.
+- The [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74755-w/MediaObjects/41467_2026_74755_MOESM1_ESM.pdf) was text-accessible. Discussions 1 and 4 and selected cooling/durability captions were read; figure pixels, remaining analyses, reporting summary and raw source data were not reviewed. Table 2 and the main text report different emittance values; conditions need reconciliation before any quantitative target is defined.
+- Future scope is prepared nonliving coupons, matched controls and qualified enclosed optical/thermal services, preserving specimen orientation and exposure history. Exclude synthesis, nanopowder processing, combustion, projectile/impact testing and battery-abuse demonstrations. No protocol, assets, runnable experiment or converted task is supplied.
+- Access checked 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. CC BY 4.0 is stated; this entry contains only metadata and original screening commentary.
