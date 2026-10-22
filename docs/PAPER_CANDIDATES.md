@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-21**. Candidate count: **293**.
+Last screened: **2026-10-22**. Candidate count: **294**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2924,3 +2924,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The linked [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74665-x/MediaObjects/41467_2026_74665_MOESM1_ESM.pdf) was accessible. Selected Figures 6–11 and 19–22 captions and Note 1 text were read. Film conductivity inferred from contact resistance must remain distinct from directly measured substrate conductivity; repeated measurements do not automatically establish independent preparations.
 - Future scope is prepared nonbiological specimens in qualified enclosed instruments. Powder handling, sintering, film fabrication and exposed powered machinery are excluded. Figure pixels, remaining supplementary material, source spreadsheets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: membrane characterization and specimen-history tracking (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Time-Temperature Superposition Principle Serving as a Design Tool for Tailored MOF-Crystal Glass Composite Membranes](https://www.nature.com/articles/s41467-026-74833-z) | Nature Communications / 2026 | 10.1038/s41467-026-74833-z | Prepared-specimen tracking, reference comparisons and coordinated structural/mechanical measurements suggest a long-horizon characterization task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7965, published 25 June 2026 and version of record dated 7 August 2026. Selected characterization Results and Methods were screened, not the complete paper.
+- The linked [54-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74833-z/MediaObjects/41467_2026_74833_MOESM1_ESM.pdf) was accessible. Selected Figures 4–10, 14–21 and 28 captions were read. Single-scan mechanical measurements and two-cycle calorimetry require distinct specimen-history records; neither establishes independent preparation replicates.
+- Future scope is prepared nonbiological specimens in qualified enclosed characterization instruments. Chemical synthesis, powder handling, thermal fabrication, pressurized-gas testing, cryogenics and radioactive-source measurements are excluded. Figure pixels, remaining supplementary analyses and source spreadsheets remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
