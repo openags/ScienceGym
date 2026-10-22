@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **310**.
+Last screened: **2026-10-22**. Candidate count: **311**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3113,3 +3113,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [43-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76742-7/MediaObjects/41467_2026_76742_MOESM1_ESM.pdf) was text-accessible. General measurement information and selected cycling, polarization and environmental-comparison captions (Figures 11, 18–26) were screened. Figure pixels, movies, their separate descriptions, reporting summary, peer review and raw data remain unreviewed.
 - Future scope is prepared nonliving fibers in qualified enclosed optical/mechanical services, retaining orientation, deformation and conditioning histories. Synthesis, solvent/acid treatment, exposed laser operation and human testing are excluded. The printed strain definition in the main Figure 2 caption needs clarification before quantitative targets are adopted. No protocol, assets or converted task is supplied.
 - Access checked on 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only bibliographic metadata and original screening commentary are added.
+
+## Additional candidate: prepared-metal wetting and exposure histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Confined shear-induced structure discretization enables re-entrant super-repellent metals](https://www.nature.com/articles/s41467-026-77150-7) | Nature Communications / 2026 | 10.1038/s41467-026-77150-7 | Prepared-coupon tracking, directional wetting comparisons and repeated measurements after ambient storage suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 10248, published 27 August 2026; version of record 28 September 2026. Selected liquid-repellency Results, air-exposure and characterization Methods were screened, not the complete paper.
+- The [69-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77150-7/MediaObjects/41467_2026_77150_MOESM1_ESM.pdf) was text-accessible. Selected directional-wetting and exposure captions (Figures 26–28 and 41) were screened; figure pixels, remaining analyses, source-data archive and peer review remain unreviewed.
+- Future scope is independently prepared nonliving coupons and water-only observations, retaining orientation, preparation provenance and storage history. Measurement repeats must remain distinct from independently prepared specimens. Machining, laser/ion-beam processing, silanization, corrosive chemistry, solvent tests and thermal/pressure challenges are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
