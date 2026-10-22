@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **305**.
+Last screened: **2026-10-22**. Candidate count: **306**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3057,3 +3057,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [64-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76291-z/MediaObjects/41467_2026_76291_MOESM1_ESM.pdf) was text-accessible; the stability-test section and selected comparison captions (Figures 15, 18–19) were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
 - Future scope is prepared membranes with water/salt comparisons in qualified enclosed measurement services. Preserve specimen, feed/permeate and conditioning histories; main and supplementary conditioning descriptions differ and require reconciliation before conversion. Synthesis, biological assays and ion-beam operation are excluded. No procedure, assets, water-safety guarantee or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: wood-composite directional testing (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [In-situ ceramic nanoparticle assembly within wood microstructure for strong, tough, and resilient ceramic wood](https://www.nature.com/articles/s41467-026-73601-3) | Nature Communications / 2026 | 10.1038/s41467-026-73601-3 | Prepared-coupon tracking, directional comparisons and sequential mechanical measurements suggest a long-horizon materials-testing task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7440, published 11 June 2026; version of record 28 July 2026. Selected mechanical-performance Results and characterization Methods were screened, not the complete paper.
+- The [53-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73601-3/MediaObjects/41467_2026_73601_MOESM1_ESM.pdf) was text-accessible; selected mechanical-test text in Note S1 and comparison captions (Figures S15–S17) were read. Figure pixels, remaining analyses, movie and peer-review material remain unreviewed. Underlying data are available on request and were not acquired.
+- Future scope is prepared nonliving coupons in qualified enclosed test services. Preserve specimen, species, grain-direction and destructive-test histories; measurements must not be assumed to represent independent specimens. Preparation, biological challenges, combustion, vehicle demonstrations, mercury porosimetry and radiation operation are excluded. No procedure, assets, structural-safety guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
