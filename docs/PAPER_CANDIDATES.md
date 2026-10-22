@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **309**.
+Last screened: **2026-10-22**. Candidate count: **310**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3102,3 +3102,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [five-page Supplementary information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-06608-0/MediaObjects/41467_2018_6608_MOESM1_ESM.pdf) was text-accessible. Selected captions for Figures 2 and 4, Note 1 and Tables 1–2 were screened; figure pixels were not inspected. Supplementary movies and their separate description file were not retrieved or watched.
 - Future scope is limited to water/air characterization of independently prepared, stabilized specimens, preserving sample identity and measurement history. Graphene growth, chemical etching, solvent handling, plasma modification and nonaqueous surface-energy measurements are excluded. No procedure conversion, execution validation, assets or runnable task is claimed.
 - Access checked on 2026-10-22. Publisher states CC BY 4.0; this entry contains bibliographic metadata and original screening commentary only. The HTML remained readable after a cookie-error redirect.
+
+## Additional candidate: chiroptical fiber measurement histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Circularly polarized luminescence optical waveguides in stretchable photonic crystal fibers for advanced human motion monitoring](https://www.nature.com/articles/s41467-026-76742-7) | Nature Communications / 2026 | 10.1038/s41467-026-76742-7 | Tracking prepared fibers across mechanical histories, polarization comparisons and repeated spectral measurements suggests a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 9749, published 13 August 2026; version of record 14 September 2026. Selected optical-waveguide Results and characterization Methods were screened, not the complete paper.
+- The [43-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76742-7/MediaObjects/41467_2026_76742_MOESM1_ESM.pdf) was text-accessible. General measurement information and selected cycling, polarization and environmental-comparison captions (Figures 11, 18–26) were screened. Figure pixels, movies, their separate descriptions, reporting summary, peer review and raw data remain unreviewed.
+- Future scope is prepared nonliving fibers in qualified enclosed optical/mechanical services, retaining orientation, deformation and conditioning histories. Synthesis, solvent/acid treatment, exposed laser operation and human testing are excluded. The printed strain definition in the main Figure 2 caption needs clarification before quantitative targets are adopted. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only bibliographic metadata and original screening commentary are added.
