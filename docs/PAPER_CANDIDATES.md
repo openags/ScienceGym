@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **296**.
+Last screened: **2026-10-22**. Candidate count: **297**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2958,3 +2958,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Representative curves must remain distinct from triplicate-derived parameter summaries; fitted network parameters are effective descriptions, not direct structural measurements. External archived data and peer-review material remain unread.
 - Future scope is prepared nonbiological specimens in qualified enclosed instruments. Molding, cryogenic handling and exposed mechanical loading are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: water-retention measurements and environmental histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Spontaneous formation of picoliter water bridges](https://www.nature.com/articles/s41467-026-77515-y) | Nature Communications / 2026 | 10.1038/s41467-026-77515-y | Specimen tracking, humidity-history comparisons and coordinated optical/mass records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10689, published 10 September 2026; version of record 12 October 2026. Selected water-bridge Results and sample, imaging and environmental-chamber Methods were screened, not the complete paper.
+- The [14-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77515-y/MediaObjects/41467_2026_77515_MOESM1_ESM.pdf) was text-accessible; selected Figures 1–2 and 7–8 captions were read. The [one-page movie descriptions](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77515-y/MediaObjects/41467_2026_77515_MOESM2_ESM.pdf) were read, not the movies. Figure pixels, remaining analyses, source spreadsheets and author-request raw data remain unreviewed.
+- Future scope is prepared nonbiological specimens, environmental records, optical observation and weighing. Synchrotron operation, solvent washing and probe fabrication are excluded. Optical observations cannot substitute for the paper's nanoscale X-ray evidence; repeat observations must retain specimen identities. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
