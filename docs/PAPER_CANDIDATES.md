@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **301**.
+Last screened: **2026-10-22**. Candidate count: **302**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3013,3 +3013,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [13-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75619-z/MediaObjects/41467_2026_75619_MOESM1_ESM.pdf) was text-accessible; selected separation, filtrate-characterization and kinetic-analysis captions (Figures 8–10) were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
 - Future scope is prepared nonbiological specimens in qualified enclosed measurement services. Preserve membrane, feed and collection-time identities; single-feed selectivity and mixed-feed separation are distinct comparisons. Synthesis, solvent processing and apparatus operation are not specified. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: chiral optics and hydration histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Unidirectional cellulose nanocrystal hydrogel for bio-based invertible chiral optics and sensors](https://www.nature.com/articles/s41467-026-73859-7) | Nature Communications / 2026 | 10.1038/s41467-026-73859-7 | Prepared-sample tracking, polarization comparisons and coordinated hydration/loading histories suggest a long-horizon optical measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7141, published 3 June 2026; version of record 24 July 2026. Selected optical-response Results and characterization Methods were screened, not the complete paper.
+- The [34-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73859-7/MediaObjects/41467_2026_73859_MOESM1_ESM.pdf) was text-accessible; selected hydration, cycling and spatial-comparison captions (Figures 6, 11 and 16) were read. Figure pixels, remaining analyses, movies, source spreadsheets and simulation code remain unreviewed.
+- Future scope is prepared nonbiological specimens in qualified enclosed measurement services. Preserve specimen, polarization-channel, hydration and loading identities; repeated measurements are not independent specimens. Main and supplementary hydration descriptions use different sample labels, which require resolution before conversion. Synthesis, photopolymerization and X-ray operation are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
