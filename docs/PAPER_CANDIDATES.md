@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **304**.
+Last screened: **2026-10-22**. Candidate count: **305**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3046,3 +3046,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [53-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75847-3/MediaObjects/41467_2026_75847_MOESM1_ESM.pdf) was text-accessible; selected thermal-comparison captions (Figures 18–20) and Tables 3–4 were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
 - Future scope is prepared membranes with water/NaCl comparisons in qualified enclosed measurement services. Preserve specimen, wetting and measurement histories. Main and supplementary salt-durability labels differ and require resolution before conversion. Synthesis, VOC/heavy-metal challenges and exposed irradiation are excluded. No procedure, assets, water-safety guarantee or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: nanofiltration sampling and stability histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Dissociating water clusters via polyhydroxy quaternized interface for enhanced water permeation in nanochannels](https://www.nature.com/articles/s41467-026-76291-z) | Nature Communications / 2026 | 10.1038/s41467-026-76291-z | Prepared-membrane tracking, timed sampling and matched mass/conductivity records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 9435, published 5 August 2026; version of record 3 September 2026. Selected filtration-performance Results and nanofiltration-evaluation Methods were screened, not the complete paper.
+- The [64-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76291-z/MediaObjects/41467_2026_76291_MOESM1_ESM.pdf) was text-accessible; the stability-test section and selected comparison captions (Figures 15, 18–19) were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared membranes with water/salt comparisons in qualified enclosed measurement services. Preserve specimen, feed/permeate and conditioning histories; main and supplementary conditioning descriptions differ and require reconciliation before conversion. Synthesis, biological assays and ion-beam operation are excluded. No procedure, assets, water-safety guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
