@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **303**.
+Last screened: **2026-10-22**. Candidate count: **304**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3034,4 +3034,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Publisher metadata confirms volume 17, article 6215, published 8 May 2026; version of record 15 July 2026. Selected label-imaging/stability Results and image-comparison Methods were screened, not the complete paper.
 - The [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73060-w/MediaObjects/41467_2026_73060_MOESM1_ESM.pdf) was text-accessible; selected ageing, label-image and similarity captions (Figures 6 and 13–17) were read. Figure pixels, remaining analyses, source spreadsheets and computational software remain unreviewed.
 - Future scope is prepared nonbiological labels in qualified enclosed imaging services. Preserve label identity, imaging conditions and elapsed-time records; computational image augmentation is not an independent specimen. Synthesis, pressure generation, chemical challenges and exposed laser operation are excluded. No procedure, assets, authentication guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: membrane evaporation and measurement histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Confined water-selective highways in a densified photothermal membrane enable ultrafast purification of complex wastewater](https://www.nature.com/articles/s41467-026-75847-3) | Nature Communications / 2026 | 10.1038/s41467-026-75847-3 | Prepared-membrane tracking, water/salt comparisons and coordinated thermal/mass records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 8835, published 20 July 2026; version of record 24 August 2026. Selected evaporation Results and SDIE Methods were screened, not the complete paper.
+- The [53-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75847-3/MediaObjects/41467_2026_75847_MOESM1_ESM.pdf) was text-accessible; selected thermal-comparison captions (Figures 18–20) and Tables 3–4 were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared membranes with water/NaCl comparisons in qualified enclosed measurement services. Preserve specimen, wetting and measurement histories. Main and supplementary salt-durability labels differ and require resolution before conversion. Synthesis, VOC/heavy-metal challenges and exposed irradiation are excluded. No procedure, assets, water-safety guarantee or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
