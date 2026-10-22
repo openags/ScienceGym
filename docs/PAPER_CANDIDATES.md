@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **307**.
+Last screened: **2026-10-22**. Candidate count: **308**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3080,3 +3080,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74755-w/MediaObjects/41467_2026_74755_MOESM1_ESM.pdf) was text-accessible. Discussions 1 and 4 and selected cooling/durability captions were read; figure pixels, remaining analyses, reporting summary and raw source data were not reviewed. Table 2 and the main text report different emittance values; conditions need reconciliation before any quantitative target is defined.
 - Future scope is prepared nonliving coupons, matched controls and qualified enclosed optical/thermal services, preserving specimen orientation and exposure history. Exclude synthesis, nanopowder processing, combustion, projectile/impact testing and battery-abuse demonstrations. No protocol, assets, runnable experiment or converted task is supplied.
 - Access checked 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. CC BY 4.0 is stated; this entry contains only metadata and original screening commentary.
+
+## Additional candidate: fiber-circuit measurement histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Shrinkage-transfer-assisted printing of microcircuits on fibers](https://www.nature.com/articles/s41467-026-69640-5) | Nature Communications / 2026 | 10.1038/s41467-026-69640-5 | Tracking prepared fibers through dimensional imaging, bending comparisons and synchronized resistance measurements suggests a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 2864, published 17 February 2026; version of record 26 March 2026. Selected device-durability Results and electrical/mechanical characterization Methods were screened, not the complete paper.
+- The [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69640-5/MediaObjects/41467_2026_69640_MOESM1_ESM.pdf) was text-accessible; selected dimensional, interface and environmental-comparison captions (Figures 19–22) were read. Figure pixels, remaining analyses, movies, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared nonliving fibers in qualified enclosed measurement services. Preserve specimen, conditioning and bending histories; time-aligned instrument readings are not independent specimens. Fabrication, solvent spraying, plasma processing and high-voltage luminescence are excluded. No procedure, assets, safety guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML remained readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
