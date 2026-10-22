@@ -10,6 +10,11 @@ from trace_store import load_trace,sha
 
 
 def render(directory,kind,fps=12):
+    if kind=='nicolet':
+        # Register the separately versioned optical asset namespace.
+        import optical_assets
+    elif kind=='cary':
+        import cary_assets
     directory=Path(directory);result=json.loads((directory/'result.json').read_text());verification=json.loads((directory/'verification.json').read_text())
     if result['status']!='passed' or not verification['passed'] or verification['result_sha256']!=sha(directory/'result.json'):
         raise ValueError('Exact complete episode must pass independent verification first')
@@ -27,6 +32,16 @@ def render(directory,kind,fps=12):
         detail.distance=.18;detail.azimuth=65;detail.elevation=-35
         title='USB-TC: insert, tighten, pull-check, loosen and withdraw'
         scope='One 24 AWG extension end; complete circuit and fine-wire transition remain separate'
+    elif kind=='nicolet':
+        overview.lookat[:]=[.45,.0,1.0];overview.distance=1.9;overview.azimuth=135;overview.elevation=-28
+        detail.distance=.58;detail.azimuth=105;detail.elevation=-24
+        title='Nicolet 6700: open, release, regrasp and close the cover'
+        scope='Selected passive mechanics; accessory installation and sample handling remain separate'
+    elif kind=='cary':
+        overview.lookat[:]=[.35,.24,1.01];overview.distance=2.15;overview.azimuth=135;overview.elevation=-28
+        detail.distance=.32;detail.azimuth=135;detail.elevation=-30
+        title='Cary 5000: slide open, release, regrasp and close'
+        scope='Passive main lid; extension, accessory and specimen workflows remain separate'
     else:raise ValueError(kind)
     output=directory/'playback';output.mkdir(exist_ok=True)
     if any(output.glob('chapter_*.mp4')):raise ValueError('Existing presentation must be preserved')
@@ -54,7 +69,7 @@ def render(directory,kind,fps=12):
                 opened=next(e['time_s'] for e in events if e['label']=='bath_lid_supported')
                 last_key=max(e['time_s'] for e in events if e['label']=='bath_key_released')
                 if opened<=at<last_key:site='bath_pusher_tcp'
-            else:
+            elif kind=='terminal':
                 if event['label'] in {'wire_retained_by_fixture','driver_seated','terminal_tightened','terminal_opened'}:site='driver_tcp'
             detail.lookat[:]=data.site(site).xpos;renderer.update_scene(data,detail)
             frame.paste(Image.fromarray(renderer.render().copy()).resize((448,288)),(656,480));draw=ImageDraw.Draw(frame)
@@ -79,4 +94,4 @@ def render(directory,kind,fps=12):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('directory');p.add_argument('--kind',choices=['bath','terminal'],required=True);p.add_argument('--fps',type=int,default=12);a=p.parse_args();render(a.directory,a.kind,a.fps)
+    p=argparse.ArgumentParser();p.add_argument('directory');p.add_argument('--kind',choices=['bath','terminal','nicolet','cary'],required=True);p.add_argument('--fps',type=int,default=12);a=p.parse_args();render(a.directory,a.kind,a.fps)

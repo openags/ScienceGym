@@ -35,6 +35,7 @@ python simulation/cooling_v1/test_terminal_suite.py
 python simulation/cooling_v1/verify_terminal_mechanism.py
 ```
 
-The robot workcell is being developed separately in `terminal_world.py` and
-`run_terminal.py`. Its failures remain in ignored development directories.
-A mechanism-jig pass cannot supply a full robot or thermocouple-path receipt.
+The separate [robot cycle](TERMINAL_ROBOT_MANIPULATION.md) now has its own
+148.949-second execution and independent evidence. Earlier failures remain
+in ignored development directories. Its acceptance does not come from the
+mechanism jig and does not accept the complete thermocouple path.

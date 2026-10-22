@@ -32,12 +32,14 @@ def add_inertial_boxes(body,boxes):
         fullinertia=vec([tensor[0,0],tensor[1,1],tensor[2,2],tensor[0,1],tensor[0,2],tensor[1,2]]))
 
 
-def build(path,pin=3,clamp=True,bit=True):
-    w=World();w.root.find('option').attrib.update(timestep='.0001',solver='Newton',iterations='200',tolerance='1e-10',
+def build(path,pin=3,clamp=True,bit=True,timestep=.0001):
+    w=World();w.root.find('option').attrib.update(timestep=str(timestep),solver='Newton',iterations='200',tolerance='1e-10',
         noslip_iterations='3',noslip_tolerance='1e-12',impratio='1')
     ET.SubElement(w.root,'size',memory='256M')
     w.root.find("actuator/general[@name='actuator8']").attrib.update(gainprm='1 0 0',biasprm='0 0 0',ctrlrange='-40 40')
-    hand=w.root.find(".//body[@name='hand']");hand.find("site[@name='tcp']").set('pos','0 0 .1484')
+    # Source finger datum 58.4 mm + needle pad centre 87 mm. Centre the
+    # cylinder on the pad rather than grasping near its lower edge.
+    hand=w.root.find(".//body[@name='hand']");hand.find("site[@name='tcp']").set('pos','0 0 .1454')
     ET.SubElement(hand,'site',name='driver_tcp',pos='-.035 0 .1984',size='.001',rgba='.8 .2 .1 1')
     for side in ['left_finger','right_finger']:
         body=w.root.find(f".//body[@name='{side}']")
@@ -103,25 +105,31 @@ def build(path,pin=3,clamp=True,bit=True):
     for index,s in enumerate([-.009,.012]):
         pos=axis*s;pos[2]=(PARK[2]-TOP-.00065)/2
         w.box(stand,'wire_stand_support_'+str(index),[.004,.001,pos[2]],pos,[.12,.35,.42,1])
-    clip_center=inserted+axis*.015
-    clip=w.body('wire_retaining_fixture',[*clip_center[:2],TOP],False)
-    height=clip_center[2]-TOP
-    w.box(clip,'wire_clip_base',[.004,.003,(height-.00065)/2],[0,0,(height-.00065)/2],[.12,.35,.42,1])
-    for side in [-1,1]:
-        leaf=ET.SubElement(clip,'body',name='wire_clip_leaf_'+str(side),pos=vec([side*.00095,0,height]))
-        ET.SubElement(leaf,'joint',name='wire_clip_open_'+str(side),type='slide',axis=vec([side,0,0]),range='0 .0015',stiffness='2000',damping='.1',springref='0',armature='0',
-            solreflimit='.0005 1',solimplimit='.9999 .9999 .00001')
-        ET.SubElement(leaf,'geom',name='wire_clip_contact_'+str(side),type='capsule',fromto='0 -.001 0 0 .001 0',size='.00035',mass='.0005',rgba='.4 .43 .46 1',
-            friction='.5 .00001 .000001',solref='.0005 1',solimp='.9999 .9999 .00001',condim='3')
+    clip_centers=[inserted+axis*s for s in [.015,.0215]]
+    # Two passive support points prevent the attached tail rotating the end
+    # upward after the terminal opens. Each point remains separately sprung.
+    for index,clip_center in enumerate(clip_centers):
+        clip=w.body('wire_retaining_fixture_'+str(index),[*clip_center[:2],TOP],False)
+        height=clip_center[2]-TOP
+        w.box(clip,'wire_clip_base_'+str(index),[.004,.0015,(height-.00065)/2],[0,0,(height-.00065)/2],[.12,.35,.42,1])
+        for side in [-1,1]:
+            suffix=str(index)+'_'+str(side)
+            leaf=ET.SubElement(clip,'body',name='wire_clip_leaf_'+suffix,pos=vec([side*.00095,0,height]))
+            ET.SubElement(leaf,'joint',name='wire_clip_open_'+suffix,type='slide',axis=vec([side,0,0]),range='0 .0015',stiffness='2000',damping='.1',springref='0',armature='0',
+                      solreflimit='.0005 1',solimplimit='.9999 .9999 .00001')
+            ET.SubElement(leaf,'geom',name='wire_clip_contact_'+suffix,type='capsule',fromto='0 -.001 0 0 .001 0',size='.00035',mass='.0005',rgba='.4 .43 .46 1',
+                friction='.5 .00001 .000001',solref='.0005 1',solimp='.9999 .9999 .00001',condim='3')
     # Text legends are zero-thickness visual surfaces. Explicit shell inertia
     # permits their import; all such visual geoms have zero physical mass.
     for mesh in w.assets.findall('mesh'):
         if mesh.get('file','').startswith('mcc_usb_tc/'):mesh.set('inertia','shell')
     w.save(path)
-    return dict(terminal=configuration,entry_m=entry.tolist(),screw_center_m=(CENTER+configuration['screw_center_m']).tolist(),
-        wire_park_m=PARK.tolist(),wire_inserted_grasp_m=inserted.tolist(),wire_grip_N=1.,bare_length_m=.006,
-        extension_length_m=length+.042,clip_center_m=clip_center.tolist(),selected_clip_stiffness_N_m=2000,
-        selected_insulation_jaw_contact_time_constant_s=.002,
+    return dict(terminal=configuration,timestep_s=timestep,entry_m=entry.tolist(),screw_center_m=(CENTER+configuration['screw_center_m']).tolist(),
+        wire_park_m=PARK.tolist(),wire_inserted_grasp_m=inserted.tolist(),wire_grip_N=4.,wire_pull_grip_N=4.,bare_length_m=.006,
+        wire_pull_force_N=1.,wire_pull_hold_s=.3,wire_pull_travel_limit_m=.002,wire_pull_stop_N=1.5,
+        extension_length_m=length+.042,clip_center_m=clip_centers[0].tolist(),clip_centers_m=[p.tolist() for p in clip_centers],selected_clip_stiffness_N_m=2000,
+        selected_insulation_jaw_contact_time_constant_s=.002,needle_pad_center_tcp_m=.1454,
+        grasp_radial_limit_m=.003,grasp_axial_limit_m=.0025,grasp_axis_angle_limit_rad=.1,
         initial_wire_state='supported in remote staging stand',driver_initial_state='installed offset power tool',
         selected_active_pin=pin,unselected_terminals='geometric open interfaces, fixed at initial open state',
         inferences=['24 AWG extension geometry and 0.6 m length','rigid 42 mm terminal-end segment and zero-bending string tail',

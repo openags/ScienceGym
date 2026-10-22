@@ -15,11 +15,13 @@ from terminal_world import build
 from hardware_control import HardwareRobot
 from control import ExecutionFailure,DOWN
 from trace_store import sha
+from precision_ik import solve as precise_ik
 
 WIRE_ROTATION=Rotation.from_euler('z',np.pi/2).as_matrix()@DOWN
 
 
 class TerminalRobot(HardwareRobot):
+    ik=precise_ik
     def __init__(self,path,configuration,**kwargs):
         self.configuration=configuration;self.prefix=configuration['terminal']['prefix']
         self.driver_speed=0.;self.driver_mode=None;self.driver_complete=False
@@ -29,6 +31,8 @@ class TerminalRobot(HardwareRobot):
         super().__init__(path,**kwargs)
 
     def advance(self,duration):
+        audit_stride=max(1,round(.001/self.model.opt.timestep))
+        trace_stride=max(1,round(.005/self.model.opt.timestep))
         for _ in range(max(1,round(duration/self.model.opt.timestep))):
             self.data.ctrl[:7]=self.joint_target+self.data.qfrc_bias[:7]/self.kp
             requested=-self.clamp_force if self.clamp_force is not None else 2000*(self.grip_target-np.mean(self.data.qpos[7:9]))-40*np.mean(self.data.qvel[7:9])
@@ -41,8 +45,8 @@ class TerminalRobot(HardwareRobot):
             if not np.isfinite(self.data.qpos).all():raise ExecutionFailure('Nonfinite state')
             self.maximum_edge_strain=max(self.maximum_edge_strain,float(np.max(abs(self.data.flexedge_length/self.model.flexedge_length0-1))))
             if self.maximum_edge_strain>.01:raise ExecutionFailure('Extension exceeded selected 1% edge-strain bound')
-            if self.physics_steps%10==0:self.audit_contacts()
-            if self.physics_steps%50==0:self.save_state()
+            if self.physics_steps%audit_stride==0:self.audit_contacts()
+            if self.physics_steps%trace_stride==0:self.save_state()
             if self.driver_mode and self.driver_complete:
                 self.save_state();return
         if self.data.time>=self.next_progress:
@@ -109,32 +113,52 @@ class TerminalRobot(HardwareRobot):
             if reached:self.driver_speed=0.;self.driver_complete=True
 
     def held(self):
-        # Contacts on the cylindrical insulation can switch active features
-        # for one 100 us integration step. A single zero-force instant is not
-        # a loss of grasp: require sustained bilateral loading over 50 ms,
-        # reject a gap longer than 3 ms, and retain the measured object pose.
+        # Contact features on round insulation can switch between samples.
+        # Check bilateral impulse over 50 ms, bounded gaps and the actual
+        # wire position inside the needle pads, instead of a duty threshold
+        # that can accept a wire on the pad edge or reject stable loading.
         samples=np.array([r for r in self.grip_samples if r[0]>=self.data.time-.050001])
         bilateral=np.all(samples[:,1:]>.02,axis=1) if len(samples) else np.array([],bool)
         gap=longest=0
         for present in bilateral:
             gap=0 if present else gap+1;longest=max(longest,gap)
+        body=self.data.body('wire').xmat.reshape(3,3);hand=self.data.body('hand').xmat.reshape(3,3)
+        delta=self.data.site_xpos[self.site]-self.position('wire');axis=body@np.array(self.configuration['terminal']['insertion_axis'])
+        axial=float(np.dot(delta,axis));radial=float(np.linalg.norm(delta-axial*axis));angle=float(np.arccos(np.clip(abs(np.dot(axis,hand[:,0])),-1,1)))
         observation=dict(time_s=float(self.data.time),samples=len(samples),bilateral_fraction=float(bilateral.mean()) if len(samples) else 0.,
-            mean_normal_N=samples[:,1:].mean(axis=0).tolist() if len(samples) else [0.,0.],longest_gap_s=longest*.001)
+            mean_normal_N=samples[:,1:].mean(axis=0).tolist() if len(samples) else [0.,0.],longest_gap_s=longest*.001,
+            grasp_axial_offset_m=axial,grasp_radial_offset_m=radial,wire_pad_axis_angle_rad=angle)
         self.grip_observations.append(observation)
-        if len(samples)<45 or observation['bilateral_fraction']<.85 or longest>3 or min(observation['mean_normal_N'])<.2:
+        if (len(samples)<45 or longest>3 or min(observation['mean_normal_N'])<.2
+            or abs(axial)>self.configuration['grasp_axial_limit_m'] or radial>self.configuration['grasp_radial_limit_m']
+            or angle>self.configuration['grasp_axis_angle_limit_rad']):
             raise ExecutionFailure('Wire sustained bilateral grip lost: '+str(observation))
-        body=self.data.body('wire').xmat.reshape(3,3)
         return body.T@(self.data.site_xpos[self.site]-self.position('wire')),body.T@self.data.site_xmat[self.site].reshape(3,3)
 
     def position_wire(self,target,duration=.4):
-        offset,rotation=self.held();self.move(np.asarray(target)+offset,rotation,duration)
+        self.held()
+        # A grasp defines one rigid tool-to-part transform. Re-estimating it
+        # after every waypoint accumulates tracking error as a new offset,
+        # progressively walking the wire toward the edge of the needle pad.
+        offset,rotation=self.wire_grasp_transform
+        self.move(np.asarray(target)+offset,rotation,duration)
 
     def grasp_wire(self,lift):
         self.site=self.model.site('tcp').id;self.active_object='wire';self.finger(.003)
         p=self.grasp_site('wire');rotation=self.data.body('wire').xmat.reshape(3,3)@WIRE_ROTATION
         self.move(p+[0,0,.10],rotation,1.5);self.move(p,rotation,1.5)
-        for _ in range(3):self.move(self.grasp_site('wire'),rotation,.2)
-        self.finger(0);self.clamp_force=self.configuration['wire_grip_N'];self.advance(.2);self.held()
+        for _ in range(3):
+            rotation=self.data.body('wire').xmat.reshape(3,3)@WIRE_ROTATION
+            self.move(self.grasp_site('wire'),rotation,.2)
+        # Close gently around the observed wire axis. A position closure
+        # rolled the released round lead beyond the unchanged 0.1 rad
+        # alignment bound in the half-step run's final regrasp.
+        for force in np.linspace(.2,1.,20):self.clamp_force=float(force);self.advance(.02)
+        rotation=self.data.body('wire').xmat.reshape(3,3)@WIRE_ROTATION
+        self.move(self.grasp_site('wire'),rotation,.4)
+        for force in np.linspace(1.,self.configuration['wire_grip_N'],20):self.clamp_force=float(force);self.advance(.02)
+        self.advance(.2)
+        self.wire_grasp_transform=self.held()
         if lift:self.move(self.data.site_xpos[self.site]+[0,0,lift],rotation,1.5)
         self.checkpoint('wire_grasped',lift_m=lift,observation=self.observe())
 
@@ -156,6 +180,12 @@ class TerminalRobot(HardwareRobot):
             if observation['driver_axial_N']>.08:seat=target-self.position(self.prefix+'_screw');break
         if seat is None:raise ExecutionFailure('Driver did not seat in the physical slot')
         self.checkpoint('driver_seated',operation='tighten' if tighten else 'loosen',observation=observation)
+        if not tighten:
+            # The slot sidewalls transmit torque without loading its floor.
+            # Relieve the selected 20 um axial preload before backing out;
+            # otherwise the rising screw head drives the bit above 1 N.
+            self.move(self.data.site_xpos[self.site]+[0,0,.00002],DOWN,.4);self.advance(.2)
+            seat=self.data.site_xpos[self.site].copy()-self.position(self.prefix+'_screw')
         self.driver_mode='tighten' if tighten else 'loosen';self.driver_complete=False;self.driver_speed=-2. if tighten else 2.
         start=float(self.data.time)
         while not self.driver_complete and self.data.time-start<30:
@@ -168,6 +198,31 @@ class TerminalRobot(HardwareRobot):
         self.move(self.data.site_xpos[self.site]+[0,0,.10],DOWN,1.5);self.advance(1.)
         observation=self.observe();self.checkpoint('driver_retracted',operation='tighten' if tighten else 'loosen',observation=observation)
         if tighten and observation['clamp_normal_N']<1.:raise ExecutionFailure('Clamp preload lost after driver withdrawal')
+
+    def pull_check(self):
+        # The transport grip is deliberately light. Regrip the insulated
+        # extension at the declared pull-test load, then regulate the actual
+        # axial reaction rather than infer tension from TCP displacement.
+        self.clamp_force=self.configuration['wire_pull_grip_N'];self.advance(.2)
+        axis=np.array(self.configuration['terminal']['insertion_axis']);before=self.position('wire')
+        start=self.data.site_xpos[self.site].copy();rotation=self.data.site_xmat[self.site].reshape(3,3).copy()
+        distance=0.;stable=0.;records=[]
+        for _ in range(1000):
+            observation=self.observe();force=abs(observation['finger_axial_N'])
+            speed=float(np.clip(.01*(1.1-force),-.0002,.001));distance=max(0.,distance+speed*.01)
+            if distance>.002:raise ExecutionFailure('Pull test exhausted selected 2 mm travel bound')
+            self.joint_target=self.ik(start-axis*distance,rotation);self.advance(.01)
+            observation=self.observe();force=abs(observation['finger_axial_N'])
+            displacement=float(np.linalg.norm(self.position('wire')-before))
+            records.append(dict(time_s=float(self.data.time),force_N=force,displacement_m=displacement,command_travel_m=distance))
+            if displacement>.0002:raise ExecutionFailure('Wire slipped during physical pull check')
+            if force>1.5:raise ExecutionFailure('Pull test exceeded selected 1.5 N stop bound')
+            stable=stable+.01 if force>=1. else 0.
+            if stable>=.30:break
+        else:raise ExecutionFailure('Physical pull did not sustain 1 N for 0.3 s')
+        self.checkpoint('wire_pull_checked',observation=self.observe(),displacement_m=displacement,force_observations=records,
+            sustained_seconds=stable,minimum_force_N=min(r['force_N'] for r in records[-30:]))
+        self.move(start,rotation,.5);self.finger(.003);self.move(self.data.site_xpos[self.site]+[0,0,.10],rotation,1.5)
 
 
 def execute(robot,limit):
@@ -185,15 +240,7 @@ def execute(robot,limit):
     if limit=='insertion':return
     robot.drive(True)
     robot.grasp_wire(0)
-    before=robot.position('wire');start=robot.data.site_xpos[robot.site].copy();rotation=robot.data.site_xmat[robot.site].reshape(3,3).copy();pulled=False
-    for distance in np.linspace(.00001,.001,100):
-        robot.move(start-axis*distance,rotation,.04);observation=robot.observe()
-        displacement=float(np.linalg.norm(robot.position('wire')-before))
-        if displacement>.0002:raise ExecutionFailure('Wire slipped during physical pull check')
-        if abs(observation['finger_axial_N'])>=1.:pulled=True;break
-    if not pulled:raise ExecutionFailure('Physical pull did not reach selected 1 N check')
-    robot.advance(.3);robot.checkpoint('wire_pull_checked',observation=robot.observe(),displacement_m=float(np.linalg.norm(robot.position('wire')-before)))
-    robot.move(start,rotation,.5);robot.finger(.003);robot.move(robot.data.site_xpos[robot.site]+[0,0,.10],rotation,1.5)
+    robot.pull_check()
     if limit=='retention':return
     robot.drive(False);robot.grasp_wire(0)
     for distance in np.linspace(.0005,.040,80):robot.position_wire(target-axis*distance,.06)
@@ -207,27 +254,28 @@ def execute(robot,limit):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--out',default='runs/terminal_debug/robot');p.add_argument('--pin',type=int,default=3)
-    p.add_argument('--limit',choices=['grasp','insertion','retention']);p.add_argument('--no-clamp',action='store_true');p.add_argument('--no-bit',action='store_true');a=p.parse_args()
+    p.add_argument('--limit',choices=['grasp','insertion','retention']);p.add_argument('--no-clamp',action='store_true');p.add_argument('--no-bit',action='store_true')
+    p.add_argument('--seed',type=int,default=0);p.add_argument('--timestep',type=float,choices=[.0001,.00005],default=.0001);a=p.parse_args()
     out=HERE/a.out;out.mkdir(parents=True,exist_ok=True);old=[x for x in out.iterdir() if x.name!='history']
     if old:
         history=out/'history'/datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');history.mkdir(parents=True)
         for x in old:x.replace(history/x.name)
     names=['run_terminal.py','terminal_world.py','terminal_mechanism.py','hardware_control.py','continuous_control.py','control.py','world.py',
-        'contact_safety.py','device_assets.py','extended_device_assets.py','geometry/mcc_usb_tc/catalog.json','robot_source.json',
+        'contact_safety.py','precision_ik.py','device_assets.py','extended_device_assets.py','geometry/mcc_usb_tc/catalog.json','robot_source.json',
         '../../assets/mcc_usb_tc_v1/interfaces.json','../../assets/mcc_usb_tc_v1/geometry_checks.json']
     pins={n:sha(HERE/n) for n in names};archive={n:'source_snapshot/'+n.replace('../','parent/') for n in names}
     for n in names:
         dest=out/archive[n];dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(HERE/n,dest)
     robot=None;configuration=None;failure=None;passed=False
     try:
-        configuration=build(out/'workcell.xml',pin=a.pin,clamp=not a.no_clamp,bit=not a.no_bit);pins['workcell.xml']=sha(out/'workcell.xml')
-        robot=TerminalRobot(out/'workcell.xml',configuration);execute(robot,a.limit);passed=True
+        configuration=build(out/'workcell.xml',pin=a.pin,clamp=not a.no_clamp,bit=not a.no_bit,timestep=a.timestep);pins['workcell.xml']=sha(out/'workcell.xml')
+        robot=TerminalRobot(out/'workcell.xml',configuration,seed=a.seed);execute(robot,a.limit);passed=True
     except BaseException as error:failure=type(error).__name__+': '+str(error);print(failure,flush=True)
     finally:
         if robot:
             robot.save_state();robot.close();np.savez_compressed(out/'physics_trace.npz',time=[r[0] for r in robot.trace],qpos=[r[1] for r in robot.trace],qvel=[r[2] for r in robot.trace],ctrl=[r[3] for r in robot.trace])
         if any(sha(HERE/n)!=pins[n] for n in names):passed=False;failure='Source changed during execution'
-        result=dict(status=('development_pass' if a.limit else 'passed') if passed else 'failed',failure=failure,configuration=configuration,
+        result=dict(status=('development_pass' if a.limit else 'passed') if passed else 'failed',failure=failure,configuration=configuration,seed=a.seed,
             input_sha256=pins,source_archive=archive,engine_version=mujoco.__version__,observations=robot.timeline if robot else [],
             simulated_seconds=float(robot.data.time) if robot else 0,development_limit=a.limit,
             grip_observations=robot.grip_observations if robot else [],

@@ -19,6 +19,10 @@
     "floor_z_m": 0.05,
     "datum_inferred": true
   },
+  "selected_cover_clearances_m": {
+    "skirt_to_case": 0.0005,
+    "front_lip_to_bay_liner": 0.001
+  },
   "interfaces": [
     {
       "id": "scan_0",
@@ -86,7 +90,7 @@
     },
     {
       "id": "sample_cover",
-      "kind": "selected_hinge",
+      "kind": "hinge",
       "axis": [
         1,
         0,
@@ -94,40 +98,288 @@
       ],
       "pivot_m": [
         -0.011,
-        -0.03,
+        -0.026,
         0.25
       ],
       "selected_open_angle_rad": -1.5707963267948966,
       "parts": [
         "sample_bay_lid",
-        "sample_bay_front",
-        "sample_bay_lid_skirt_-0.128",
-        "sample_bay_lid_skirt_0.10600000000000001",
+        "sample_cover_front_lip",
+        "sample_bay_lid_skirt_-0.1275",
+        "sample_bay_lid_skirt_0.10550000000000001",
         "lid_handle_post_-0.049",
         "lid_handle_post_0.027",
         "lid_handle_bar",
         "lid_hinge_-0.095",
-        "lid_hinge_0.07300000000000001"
+        "lid_hinge_0.07300000000000001",
+        "sample_access_sliding_window",
+        "sample_access_slider_grip",
+        "sample_cover_rear_rib_0",
+        "sample_cover_rear_rib_1",
+        "sample_cover_rear_rib_2",
+        "sample_cover_rear_rib_3",
+        "sample_cover_rear_rib_4",
+        "sample_cover_rear_rib_5",
+        "sample_cover_rear_rib_6"
       ],
       "grasp_center_m": [
         -0.011,
         -0.306,
-        0.215
+        0.247
       ],
-      "inferred": true,
+      "source": "USER_MANUAL p. 92",
+      "dimensions_inferred": true,
+      "qualified": false
+    },
+    {
+      "id": "sample_access_slider",
+      "kind": "slide",
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "travel_m": 0.104,
+      "parts": [
+        "sample_access_sliding_window",
+        "sample_access_slider_grip"
+      ],
+      "grasp_center_m": [
+        -0.011,
+        -0.247,
+        0.253
+      ],
+      "source": "USER_MANUAL pp. 33-34, 51, 91",
+      "dimensions_inferred": true,
+      "qualified": false
+    },
+    {
+      "id": "detector_motors",
+      "kind": "female_detector_connector",
+      "center_m": [
+        0.034,
+        -0.038,
+        0.18
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "contacts": 15,
+      "contact_centers_m": [
+        [
+          0.024305000000000004,
+          -0.037000000000000005,
+          0.18142
+        ],
+        [
+          0.027075000000000002,
+          -0.037000000000000005,
+          0.18142
+        ],
+        [
+          0.029845000000000003,
+          -0.037000000000000005,
+          0.18142
+        ],
+        [
+          0.032615000000000005,
+          -0.037000000000000005,
+          0.18142
+        ],
+        [
+          0.035385,
+          -0.037000000000000005,
+          0.18142
+        ],
+        [
+          0.038155,
+          -0.037000000000000005,
+          0.18142
+        ],
+        [
+          0.040925,
+          -0.037000000000000005,
+          0.18142
+        ],
+        [
+          0.043695,
+          -0.037000000000000005,
+          0.18142
+        ],
+        [
+          0.025690000000000004,
+          -0.037000000000000005,
+          0.17858
+        ],
+        [
+          0.028460000000000003,
+          -0.037000000000000005,
+          0.17858
+        ],
+        [
+          0.03123,
+          -0.037000000000000005,
+          0.17858
+        ],
+        [
+          0.034,
+          -0.037000000000000005,
+          0.17858
+        ],
+        [
+          0.036770000000000004,
+          -0.037000000000000005,
+          0.17858
+        ],
+        [
+          0.039540000000000006,
+          -0.037000000000000005,
+          0.17858
+        ],
+        [
+          0.04231,
+          -0.037000000000000005,
+          0.17858
+        ]
+      ],
+      "source": "USER_MANUAL pp. 92-95",
+      "dimensions_inferred": true,
+      "qualified": false
+    },
+    {
+      "id": "auxiliary",
+      "kind": "female_auxiliary_connector",
+      "center_m": [
+        0.034,
+        -0.038,
+        0.145
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "contacts": 15,
+      "contact_centers_m": [
+        [
+          0.024305000000000004,
+          -0.037000000000000005,
+          0.14642
+        ],
+        [
+          0.027075000000000002,
+          -0.037000000000000005,
+          0.14642
+        ],
+        [
+          0.029845000000000003,
+          -0.037000000000000005,
+          0.14642
+        ],
+        [
+          0.032615000000000005,
+          -0.037000000000000005,
+          0.14642
+        ],
+        [
+          0.035385,
+          -0.037000000000000005,
+          0.14642
+        ],
+        [
+          0.038155,
+          -0.037000000000000005,
+          0.14642
+        ],
+        [
+          0.040925,
+          -0.037000000000000005,
+          0.14642
+        ],
+        [
+          0.043695,
+          -0.037000000000000005,
+          0.14642
+        ],
+        [
+          0.025690000000000004,
+          -0.037000000000000005,
+          0.14357999999999999
+        ],
+        [
+          0.028460000000000003,
+          -0.037000000000000005,
+          0.14357999999999999
+        ],
+        [
+          0.03123,
+          -0.037000000000000005,
+          0.14357999999999999
+        ],
+        [
+          0.034,
+          -0.037000000000000005,
+          0.14357999999999999
+        ],
+        [
+          0.036770000000000004,
+          -0.037000000000000005,
+          0.14357999999999999
+        ],
+        [
+          0.039540000000000006,
+          -0.037000000000000005,
+          0.14357999999999999
+        ],
+        [
+          0.04231,
+          -0.037000000000000005,
+          0.14357999999999999
+        ]
+      ],
+      "source": "USER_MANUAL pp. 92-95",
+      "dimensions_inferred": true,
+      "qualified": false
+    },
+    {
+      "id": "sample_bay_purge",
+      "kind": "purge_outlet",
+      "center_m": [
+        0.034,
+        -0.043,
+        0.11
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "source": "USER_MANUAL p. 92",
+      "dimensions_inferred": true,
       "qualified": false
     }
   ],
   "cover_parts": [
     "sample_bay_lid",
-    "sample_bay_front",
-    "sample_bay_lid_skirt_-0.128",
-    "sample_bay_lid_skirt_0.10600000000000001",
+    "sample_cover_front_lip",
+    "sample_bay_lid_skirt_-0.1275",
+    "sample_bay_lid_skirt_0.10550000000000001",
     "lid_handle_post_-0.049",
     "lid_handle_post_0.027",
     "lid_handle_bar",
     "lid_hinge_-0.095",
-    "lid_hinge_0.07300000000000001"
+    "lid_hinge_0.07300000000000001",
+    "sample_access_sliding_window",
+    "sample_access_slider_grip",
+    "sample_cover_rear_rib_0",
+    "sample_cover_rear_rib_1",
+    "sample_cover_rear_rib_2",
+    "sample_cover_rear_rib_3",
+    "sample_cover_rear_rib_4",
+    "sample_cover_rear_rib_5",
+    "sample_cover_rear_rib_6"
   ],
   "contact_qualified": false,
   "manufacturer_CAD": false,
@@ -137,7 +389,8 @@
     "Internal optical/electronic function"
   ],
   "reconstruction_notes": [
-    "Source envelope and clear sample-bay dimensions; local housing, ports and cover details are selected inferences.",
-    "Source photos contain different Smart accessories. Their exterior is not used as the bare spectrometer bay."
+    "Source envelope and nominal sample-bay dimensions; local housing and interface dimensions are inferred.",
+    "Manual p. 92 establishes hinged cover, its sliding sample door and the fixed front wall. These are distinct from installed Smart accessories.",
+    "The Detector/Motors and Auxiliary connectors belong on the interior rear wall; no detector interface is invented on the exterior rear panel."
   ]
 }

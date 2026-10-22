@@ -1,15 +1,16 @@
 # Cooling manipulation: contact execution workbench
 
 **The whole-paper simulation is unfinished: 0 of 11 complete branches accepted.**
-The physical workbench now includes a continuous six-layer assembly and return,
-a deformable two-film cover, a full-length cabled commercial RTD, and a
+The physical workbench now includes a continuous seven-layer assembly and return
+with two deformable sheets, a full-length cabled commercial RTD, and a
 model-specific Keithley 2000 button, installed reflector carriage and a cabled
-Keithley 2425 plug interface, plus an A25 lid and AC150 key cycle. Each record has its own declared scope;
+Keithley 2425 plug interface, an A25 lid and AC150 key cycle, a Nicolet cover
+cycle, a Cary sliding-lid cycle and a USB-TC robot wire cycle. Each record has its own declared scope;
 acceptance of these records does not discharge the complete 200-step definition
 set or their 1,317 scheduled manipulation occurrences.
 
 Open [sample.html](sample.html) for recorded videos, acceptance status, event seeking, searchable
-paper steps and the seven commercial assets. Serve the repository root with
+paper steps and the ten commercial assets. Serve the repository root with
 `python simulation/cooling_v1/serve.py`, then visit
 `http://localhost:8768/simulation/cooling_v1/sample.html`.
 [index.html](index.html) retains the original four fixture demonstrations.
@@ -19,18 +20,23 @@ establish continuity between their respective scenes.
 | Physical record | Simulation duration | Independent evidence |
 | --- | ---: | --- |
 | Six rigid layers, assembly and reverse return | 378.198 s | [Three seeds and fault checks](CONTINUOUS_VERIFICATION.json) |
+| Seven layers including two flexible sheets, assembly and reverse return | 456.150 s | [Two initial states, 192 checks each](SELECTED_ASSEMBLY_VERIFICATION.json), [mechanical scope](SEVEN_LAYER_MANIPULATION.md) |
 | Two prebonded flexible cover sheets, placement and recovery — rejected after geometric audit | 72.866 s | [Updated cover verification](COVER_VERIFICATION.json), [film/solid intersections](runs/cover/film_geometry_verification.json) |
 | Omega P-M RTD, 3.6576 m attached lead, insertion and recovery | 62.920 s | [Nominal trace verification](runs/rtd/verification.json), [perturbed initial arm state](runs/rtd_tests/seed_1/verification.json) |
 | Installed reflector carriage, 241 release/slide/lock cycles | 1690.010 s | [495 trace checks](runs/reflector/verification.json), [mechanism faults and load tests](REFLECTOR_VERIFICATION.json) |
 | Selected cabled source-meter plug, insertion and return | 61.321 s | [Contact verification](runs/connector/verification.json), [blocked bore](runs/connector_tests/blocked_bore/verification.json), [missing spring](runs/connector_tests/missing_spring/verification.json) |
 | Keithley 2000 physical four-wire resistance button | 16.384 s | [Button verification](DMM_VERIFICATION.json) |
 | A25 lid removal, parking, three AC150 keys and lid replacement | 103.422 s | [Two arm states and physical fault cases](BATH_VERIFICATION.json), [mechanical scope](BATH_MANIPULATION.md) |
+| Nicolet 6700 hinged cover, opening and initial-state return | 54.080 s | [Two arm states, two physical faults and half-step refinement](NICOLET_VERIFICATION.json), [mechanical scope](NICOLET_MANIPULATION.md) |
+| Cary 5000 main sliding lid, opening and initial-state return | 164.014 s | [Two arm states, physical faults and half-step refinement](CARY_VERIFICATION.json), [mechanical scope](CARY_MANIPULATION.md) |
+| USB-TC wire insertion, screw tightening, 1 N pull, loosening and return | 148.949 s | [43 independent checks](runs/terminal/verification.json), [missing bit](runs/terminal_tests/missing_bit/verification.json), [missing clamp](runs/terminal_tests/missing_clamp/verification.json) |
 
 The cover's earlier force/position checks missed film triangles crossing the PE
 tube wall. An independent triangle/box audit now rejects that record; the
 original execution and [earlier receipt](verification_history/cover_before_geometric_audit.json)
-remain available. The replacement model must pass this geometry check as well
-as load, strain and manipulation checks before the cover can be accepted again.
+remain available. The replacement seven-layer episodes pass this geometry check together with
+load, strain and manipulation checks. Acceptance applies to those exact new
+records; the historical isolated-cover attempt remains rejected.
 
 The integrated candidate uses exact eight-corner meshes for the same tube-wall
 cuboids. This exercises the general convex-element collision path: a regression
@@ -62,20 +68,38 @@ retained as an inconclusive fault attempt, not an accepted bore-rejection test.
 Neither accepted RTD record includes bath placement or four-wire connections.
 
 [asset_inspector.html](asset_inspector.html) exposes the Keithley 2000, Omega
-P-M RTD, Omega KHR-2/2-P, Keithley 2425, MCC USB-TC, selected A25/AC150 and bare Nicolet 6700 meshes, dimensions,
+P-M RTD, Omega KHR-2/2-P, Keithley 2425, MCC USB-TC, selected A25/AC150,
+bare Nicolet 6700, legacy PIKE IntegratIR DLaTGS, Cary 5000 and legacy internal
+DRA 2500 meshes, dimensions,
 interfaces and source records. The USB-TC has 52 separately numbered terminal
 passages and slotted screw heads. Its static clearance checks do not establish
-wire retention, screw operation or thermocouple calibration.
+wire retention, screw operation or thermocouple calibration. The separate
+robot wire record exercises one selected terminal and one 24 AWG extension
+end; its 0.6 m lead and passive screw mechanism are physically simulated.
 The A25 model has a removable folded lid, open reservoir, drain and AC150
 controls. AC150 is explicitly selected because the paper does not identify its
 controller. Source dimension conflicts and inferred local features are retained.
 Its 19 static geometry checks include the lid removal path and open underside.
+The Nicolet distinguishes its hinged cover, sliding window and fixed front
+wall. Its cover cycle has separate dynamic evidence. The PIKE asset follows
+the 2012 DLaTGS manual, including the source 76.2 mm sphere and 18 mm upper
+sample port. Detector connector contact count and pinout remain unresolved;
+the source-informed open connector housing supplies no mating credit.
+The Cary assets preserve the source 1020 × 710 × 380 mm housing, legacy
+154 × 170 × 212 mm extension interior, 110 mm integrating sphere and 16 mm
+reflectance port. The DRA's source mass is 5 kg, above the selected Panda's
+3 kg payload; the asset requires a rated handler or physical support assist.
+Static checks preserve this constraint and provide no module-installation credit.
 
 The separate [USB-TC mechanism jig](TERMINAL_MECHANISM.md) has eight accepted
 positive/refinement/counterexample cases. This checks an ideal passive thread,
-a free 24 AWG conductor and a recorded 1 N pull. It does not qualify the robot
-wiring cycle or the complete thermocouple path. Robot wiring and bath load
-handling remain under development. The separate accepted bath record covers
+a free 24 AWG conductor and a recorded 1 N pull. The robot record separately
+checks insertion, passive staging-clip retention, contact-driven screw
+operation, a sustained 1 N pull and complete reverse recovery. A second arm
+state passes; the full-cycle half-step run fails the final regrasp alignment
+bound and is being repaired. The
+complete thermocouple path and bath load handling remain under development.
+The separate accepted bath record covers
 lid handling and key actuation; its [scope](BATH_MANIPULATION.md) excludes fluids,
 block/probe loading and thermal calibration.
 These are manufacturer-informed reconstructions, with inferred details labeled

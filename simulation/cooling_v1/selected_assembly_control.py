@@ -61,6 +61,18 @@ class SelectedAssemblyRobot(IntegratedRobot):
         print(label,round(self.data.time,3),flush=True)
         return super().checkpoint(label,**values)
 
+    def check_supported(self,body,target,support,tolerance=.003):
+        result=super().check_supported(body,target,support,tolerance)
+        if body=='aperture' and support=='shield':
+            with self.observed():
+                film_load=0.
+                for i,c in enumerate(self.data.contact):
+                    names=[self.contact_body(c,j) for j in range(2)]
+                    if 'aperture' not in names or min(c.geom)>=0:continue
+                    f=np.zeros(6);mujoco.mj_contactForce(self.model,self.data,i,f);film_load+=max(0.,float(f[0]))
+                if film_load>.001:raise ExecutionFailure('Aperture loads the cover film: '+str(film_load)+' N')
+        return result
+
     def put_cover(self,target):
         target=np.asarray(target)
         support='pe_tube' if np.linalg.norm(target[:2]-[.48,.12])<.01 else 'cover_stand'

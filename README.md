@@ -32,7 +32,7 @@ DOI, not an additional paper or a validated robot experiment.
 
 The [interactive manipulation workbench](simulation/cooling_v1/sample.html)
 contains full recorded videos, event seeking, independent verification links,
-searchable action definitions and four manufacturer-informed device models.
+searchable action definitions and ten manufacturer-informed device models.
 Run `python simulation/cooling_v1/serve.py` from the repository root, then open
 `http://localhost:8768/simulation/cooling_v1/sample.html`.
 The [workbench documentation](simulation/cooling_v1/README.md) distinguishes

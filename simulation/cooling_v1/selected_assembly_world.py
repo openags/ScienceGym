@@ -20,12 +20,21 @@ def build(path):
     geometry=profile['geometry_card']['selected_geometry_and_unresolved_conflict_record']['value']
     grasp=profile['manipulation_card']['contact_regions_and_approach_frames']['value']
     forces=profile['manipulation_card']['force_torque_clearance_limits']['value']
-    if geometry['shield_shims_m']!=.0069 or geometry['PE_height_m']!=.057 or geometry['aperture_m']!=.001:
-        raise ValueError('This bound workcell requires the declared 57 mm tube, 6.9 mm shims and 1 mm aperture')
+    if geometry['shield_shims_m']!=.009 or geometry['PE_height_m']!=.057 or geometry['aperture_m']!=.001:
+        raise ValueError('This bound workcell requires the declared 57 mm tube, 9 mm shims and 1 mm aperture')
     targets=original(path);tree=ET.parse(path);root=tree.getroot()
     root.find('option').attrib.update(timestep='.001',noslip_iterations='0',impratio='10',
                                     integrator='discrete',solver='CG',iterations='3200',tolerance='1e-8')
     root.find('option/flag').set('sleep','disable')
+    # The loaded upper sheet bows upward locally. The earlier 6.9 mm
+    # inferred shims let it carry 0.103 N of the aperture's 0.429 N weight.
+    # Raise our visible fixture, preserving the source-sized shield/plate.
+    shim_delta=geometry['shield_shims_m']-.0069
+    for geom in root.findall('.//geom'):
+        if geom.get('name','').startswith('shield_height_shim_'):
+            pos=np.fromstring(geom.get('pos'),sep=' ');pos[2]+=shim_delta/2
+            geom.set('pos',vec(pos));geom.set('size',vec([.002,geometry['shield_shims_m']/2]))
+    for name in ['shield','aperture']:targets[name]['assembled'][2]+=shim_delta
     # The original 6 mm-thick inner tip left only 0.5 mm beside the cover.
     # Select a 2 mm-thick stem and tip. The long aligned stem face provides
     # a stable moment arm on the 424 g cantilevered shield. Merely moving
@@ -83,6 +92,22 @@ def build(path):
             rings.append(dict(name=name,segments=24,total_mass_kg=total_mass,
                               minimum_bore_radius_m=float(radii[0]-sizes[0,0]),
                               maximum_outward_envelope_error_m=float(envelope)))
+    # Explicit jaw/plate impedance prevents regularized grasp creep on the
+    # 1 mm plate. Friction, clamp force and source geometry stay unchanged.
+    contact=root.find('contact')
+    if contact is None:contact=ET.SubElement(root,'contact')
+    plate_geoms=[g.get('name') for g in root.findall(".//body[@name='aperture']/geom") if g.get('type')=='box' and g.get('contype')!='0']
+    for name in plate_geoms:
+        for side in ['left_finger','right_finger']:
+            for part in ['edge_tip','edge_stem']:
+                ET.SubElement(contact,'pair',geom1=name,geom2=side+'_'+part,condim='6',friction='1.4 1.4 .01 .006 .006',solref='.004 1',solimp='.99 .99 .0001')
+    # The 0.5 mm emitter is picked above the foam to avoid carrying both.
+    # Its short edge overlap also needs explicit impedance: the default
+    # regularized contact creeps off the pad during the reverse transfer.
+    # Geometry, 12 N clamp command and friction coefficients are unchanged.
+    for side in ['left_finger','right_finger']:
+        for part in ['edge_tip','edge_stem']:
+            ET.SubElement(contact,'pair',geom1='emitter_solid',geom2=side+'_'+part,condim='6',friction='1.4 1.4 .01 .006 .006',solref='.004 1',solimp='.99 .99 .0001')
     cuboids=exact_cuboid_contacts(root)
     ET.indent(root);tree.write(path,encoding='unicode')
     return targets,dict(ring_collision_discretization=rings,membrane_sectors=16,
@@ -93,6 +118,9 @@ def build(path):
         source_visual_meshes_changed=False,noslip_iterations=0,impratio=10,sleep_enabled=False,
         selected_tip_thickness_m=grasp['edge_jaw_thickness_m'],selected_stem_thickness_m=grasp['edge_jaw_thickness_m'],shield_grasp_height_from_center_m=grasp['shield_grip_local_m'][2],shield_clamp_force_N=forces['shield_grip_N'],
         cover_clamp_force_N=forces['cover_grip_N'],
+        shield_shim_height_m=geometry['shield_shims_m'],aperture_jaw_pair_count=len(plate_geoms)*4,
+        aperture_jaw_solimp=[.99,.99,.0001],
+        emitter_jaw_pair_count=4,emitter_jaw_solimp=[.99,.99,.0001],
         shield_fixture_pin_radius_m=geometry['shield_alignment_pin_radius_m'],shield_fixture_nominal_radial_clearance_m=geometry['shield_alignment_radial_clearance_m'],
         reason='Implicit elastic membrane replaces a constrained-edge trial with a 44% transient strain. Exact cuboid meshes preserve tube geometry while using convex-element collision detection. Film/solid intersections beyond 0.1 mm are rejected independently.',
         timestep_s=.001,maximum_ring_envelope_error_m=max(r['maximum_outward_envelope_error_m'] for r in rings))

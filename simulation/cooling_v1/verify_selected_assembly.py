@@ -42,6 +42,20 @@ def verify(directory):
     check('actuators_only_on_robot',model.nu==8 and all(model.jnt_bodyid[j]<model.body('foam_lower').id for j in model.actuator_trnid[:7,0]))
     check('no_attachment_weld',not any(t==mujoco.mjtEq.mjEQ_WELD for t in model.eq_type))
     check('both_deformable_sheets',model.nflex==2)
+    for name,count in [('aperture',96),('emitter',4)]:
+        # MuJoCo canonicalizes pair order during compilation. Geometry 1
+        # is therefore not necessarily the payload named first in the XML.
+        payload=model.body(name).id
+        fingers={model.body(side).id for side in ['left_finger','right_finger']}
+        pair_ids=[]
+        for i,(a,b) in enumerate(zip(model.pair_geom1,model.pair_geom2)):
+            ba,bb=int(model.geom_bodyid[a]),int(model.geom_bodyid[b])
+            if (ba==payload and bb in fingers) or (bb==payload and ba in fingers):pair_ids.append(i)
+        check('declared_jaw_contacts_'+name,len(pair_ids)==count
+              and np.allclose(model.pair_solimp[pair_ids,:3],[.99,.99,.0001])
+              and np.allclose(model.pair_friction[pair_ids],[1.4,1.4,.01,.006,.006])
+              and np.allclose(model.pair_solref[pair_ids],[.004,1.])
+              and np.all(model.pair_dim[pair_ids]==6),pair_count=len(pair_ids))
     check('gripper_force_limit',np.max(abs(trace['ctrl'][:,7]))<=40.000001)
     receipts=json.loads((directory/'step_receipts.json').read_text())
     expected=['BASE.03','EMITTER.02','EMITTER.03','SHIELD.02','SHIELD.03','SHIELD.04']
@@ -82,6 +96,14 @@ def verify(directory):
             check('rigid_support_'+name,error<.003 and tilt<.035 and speed<.03 and three_shims
                   and load_observation['vertical_force_n']>.8*load_observation['body_weight_n'],
                   time_s=at,support=support,error_m=error,tilt_rad=tilt,speed=speed,load=load_observation)
+            if name=='aperture' and support=='shield':
+                film_load=0.
+                for i,c in enumerate(data.contact):
+                    if min(c.geom)>=0:continue
+                    g=max(c.geom)
+                    if g<0 or model.geom_bodyid[g]!=model.body('aperture').id:continue
+                    f=np.zeros(6);mujoco.mj_contactForce(model,data,i,f);film_load+=max(0.,float(f[0]))
+                check('aperture_does_not_load_membrane',film_load<=.001,time_s=at,normal_load_N=film_load)
     # Sampled motion is checked for each physical body, and membrane lengths
     # for every saved state. This explicitly does not prove unsampled extrema.
     for name in result['targets']:

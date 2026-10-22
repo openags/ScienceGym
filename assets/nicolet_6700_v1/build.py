@@ -18,7 +18,7 @@ def mat(name,color,metal=0,rough=.45):
 CASE=mat('warm_instrument_white',(.72,.72,.67));BASE=mat('dark_gray_base',(.13,.17,.19));DARK=mat('dark_purge_bay',(.025,.035,.038));BLUE=mat('blue_panel_print',(.06,.19,.38));RED=mat('red_brand',(.65,.018,.018));STEEL=mat('brushed_steel',(.5,.54,.56),.85,.3);INK=mat('dark_legends',(.025,.03,.04));GREEN=mat('unpowered_status_lenses',(.08,.28,.18))
 def finish(o,name,material,role):
  o.name=name;o.parent=root;o.data.materials.append(material);o['part_id']=name;o['role']=role
- o['geometry_basis']='selected unmeasured interface' if role in ['selected_access_cover','lid_handle','cover_hinge','service_port','accessory_socket'] else 'manufacturer-photo reconstruction; local dimensions inferred'
+ o['geometry_basis']='manufacturer manual pp. 51, 91-93; local dimensions inferred' if role in ['access_cover','sample_slider','lid_handle','cover_hinge','bay_connector','purge_connector'] else ('selected unmeasured interface' if role in ['service_port','accessory_socket'] else 'manufacturer-photo reconstruction; local dimensions inferred')
  parts.append(o);return o
 def bevel(o,width):
  if width:
@@ -48,12 +48,13 @@ right=profile('right_source_housing',CX+.119,W/2,yz)
 rear=profile('rear_optics_housing',CX-.119,CX+.119,[(-.026,.050),(-.026,.248),(.020,.252),(D/2,.252),(D/2,.050)])
 for i in range(28):
  x=-.328+i*.656/27
- box('rear_cover_rib_'+str(i),(.0035,.276,.002),(x,.176,.253),CASE,'cover_rib',.0008)
+ intervals=[(.038,.084),(.152,.314)] if -.325<x<-.175 else [(.038,.314)]
+ for j,(lo,hi) in enumerate(intervals):box('rear_cover_rib_'+str(i)+'_'+str(j),(.0035,hi-lo,.002),(x,(lo+hi)/2,.253),CASE,'cover_rib',.0008)
 for x in [-.322,.322]:
  for y in [-.278,.278]:cylinder('case_fastener_'+str(x)+'_'+str(y),.0032,.001,(x,y,.051),STEEL)
 bay=box('sample_compartment_floor',(.210,.260,.004),(CX,(BAY_FRONT+BAY_BACK)/2,FLOOR-.002),DARK,'accessory_mount')
 for x in [CX-.107,CX+.107]:
- wall=box('sample_compartment_wall_'+str(x),(.004,.260,.200),(x,-.160,.150),DARK,'sample_bay_wall')
+ wall=box('sample_compartment_wall_'+str(x),(.004,.259,.200),(x,-.1595,.150),DARK,'sample_bay_wall')
  # Optical windows are recessed holes through the bay liner, distinct from
  # any accessory's sample port; optical response is not simulated here.
  cut(wall,(.010,.036,.036),(x,-.150,.150))
@@ -70,10 +71,10 @@ for i,y in enumerate([-.215,-.100]):
  cylinder('detector_cap_'+str(i),.028,.007,(-.250,y,.2195),BASE,'service_cap')
  box('detector_cap_grip_'+str(i),(.037,.008,.006),(-.250,y,.226),BASE,'service_cap',.002)
 cylinder('detector_selector',.009,.012,(-.250,-.1575,.221),BASE,'service_control')
-box('status_panel',(.145,.064,.001),(-.250,.018,.251),CASE,'control_panel',.003)
+box('status_panel',(.145,.064,.001),(-.250,.118,.2525),CASE,'control_panel',.003)
 for i,text in enumerate(['POWER','SCAN','LASER']):
- x=-.294+i*.043;cylinder('status_lens_'+str(i),.004,.001,(x,.032,.252),GREEN,'status_lens');label('status_text_'+str(i),text,(x,.013,.252),.004,top=True)
-label('model','Nicolet 6700 FT-IR',(-.250,-.002,.252),.007,BLUE,top=True)
+ x=-.294+i*.043;cylinder('status_lens_'+str(i),.004,.001,(x,.132,.2535),GREEN,'status_lens');label('status_text_'+str(i),text,(x,.113,.2531),.004,top=True)
+label('model','Nicolet 6700 FT-IR',(-.250,.098,.2531),.007,BLUE,top=True)
 panel_angle=math.atan(.037/.080);panel_z=.215+.035*.037/.080+.0015
 panel=box('scan_panel',(.198,.060,.002),(.231,-.025,panel_z),CASE,'control_panel',.001);panel.rotation_euler.x=panel_angle
 def on_panel(x,y,height=0):return (x,-.025+y*math.cos(panel_angle)-height*math.sin(panel_angle),panel_z+y*math.sin(panel_angle)+height*math.cos(panel_angle))
@@ -85,29 +86,72 @@ cylinder('front_source_access_ring',.027,.004,(.145,-D/2-.001,.120),STEEL,'servi
 cylinder('front_source_access_cap',.023,.005,(.145,-D/2-.003,.120),BASE,'service_cap','Y')
 box('front_brand_plate',(.093,.001,.034),(.277,-D/2-.001,.122),CASE,'identification_legend',.001)
 label('brand','Thermo',(.277,-D/2-.002,.129),.014,RED);label('brand_sub','S C I E N T I F I C',(.277,-D/2-.002,.113),.0037)
-# The selected removable hinged cover is explicitly inferred; no accessory
-# body is used to fill the bay. Its motion remains unqualified at this stage.
+# The manual's p. 92 open-cover illustration distinguishes the fixed front
+# wall, hinged top cover and its small sliding sample-access window.
+# Selected 0.5 mm lateral running clearance prevents coplanar skirt/case
+# contact. Hinge axis is at the rear edge of this inferred cover. The
+# selected 100 mm opening and 104 mm window travel fit inside its frame.
 cover=[]
-cover.append(box('sample_bay_lid',(.238,.268,.004),(CX,-.160,.252),BASE,'selected_access_cover',.001))
-cover.append(box('sample_bay_front',(.238,.004,.194),(CX,-.292,.151),BASE,'selected_access_cover',.001))
-for x in [CX-.117,CX+.117]:cover.append(box('sample_bay_lid_skirt_'+str(x),(.004,.264,.012),(x,-.160,.244),BASE,'selected_access_cover',.001))
-for x in [CX-.038,CX+.038]:cover.append(box('lid_handle_post_'+str(x),(.008,.018,.008),(x,-.296,.215),BASE,'lid_handle',.002))
-cover.append(cylinder('lid_handle_bar',.004,.076,(CX,-.306,.215),BASE,'lid_handle','X'))
-for x in [CX-.084,CX+.084]:cover.append(cylinder('lid_hinge_'+str(x),.004,.025,(x,BAY_BACK,.250),STEEL,'cover_hinge','X'))
-interfaces.append(dict(id='sample_cover',kind='selected_hinge',axis=[1,0,0],pivot_m=[CX,BAY_BACK,.250],selected_open_angle_rad=-math.pi/2,parts=[o.name for o in cover],grasp_center_m=[CX,-.306,.215],inferred=True,qualified=False))
+lid=box('sample_bay_lid',(.237,.268,.002),(CX,-.160,.251),BASE,'access_cover',.0005)
+cut(lid,(.150,.100,.012),(CX,-.208,.252));cover.append(lid)
+box('sample_bay_front',(.238,.004,.184),(CX,-.292,.146),BASE,'sample_bay_wall',.001)
+cover.append(box('sample_cover_front_lip',(.237,.004,.012),(CX,-.292,.244),BASE,'access_cover',.0005))
+box('sample_front_service_panel',(.130,.002,.145),(CX,-.295,.137),BASE,'service_panel',.003)
+cylinder('sample_front_panel_latch',.009,.006,(CX,-.301,.085),BASE,'service_control','Y')
+for x in [CX-.1165,CX+.1165]:cover.append(box('sample_bay_lid_skirt_'+str(x),(.004,.264,.012),(x,-.160,.244),BASE,'access_cover',.001))
+for x in [CX-.038,CX+.038]:cover.append(box('lid_handle_post_'+str(x),(.008,.018,.008),(x,-.296,.247),BASE,'lid_handle',.002))
+cover.append(cylinder('lid_handle_bar',.004,.076,(CX,-.306,.247),BASE,'lid_handle','X'))
+for x in [CX-.084,CX+.084]:cover.append(cylinder('lid_hinge_'+str(x),.004,.025,(x,BAY_BACK+.004,.250),STEEL,'cover_hinge','X'))
+slider=[box('sample_access_sliding_window',(.158,.108,.002),(CX,-.208,.248),DARK,'sample_slider',.001),
+        box('sample_access_slider_grip',(.095,.006,.003),(CX,-.247,.251),BASE,'sample_slider',.001)]
+cover.extend(slider)
+for i in range(7):cover.append(box('sample_cover_rear_rib_'+str(i),(.147,.003,.0025),(CX,-.116+i*.012,.25275),BASE,'access_cover',.0005))
+interfaces.append(dict(id='sample_cover',kind='hinge',axis=[1,0,0],pivot_m=[CX,BAY_BACK+.004,.250],selected_open_angle_rad=-math.pi/2,parts=[o.name for o in cover],grasp_center_m=[CX,-.306,.247],source='USER_MANUAL p. 92',dimensions_inferred=True,qualified=False))
+interfaces.append(dict(id='sample_access_slider',kind='slide',axis=[0,1,0],travel_m=.104,parts=[o.name for o in slider],grasp_center_m=[CX,-.247,.253],source='USER_MANUAL pp. 33-34, 51, 91',dimensions_inferred=True,qualified=False))
+# Two distinct DA-15-style connectors and the purge outlet belong inside
+# the bay, on its rear wall. The manual identifies 15 contacts in two rows.
+def bay_connector(name,z):
+ x=CX+.045;y=-.033
+ flange=box(name+'_flange',(.043,.002,.018),(x,y,z),STEEL,'bay_connector',.001)
+ outer=[(-.017,.0065),(.017,.0065),(.0145,-.0065),(-.0145,-.0065)]
+ inner=[(-.0157,.0053),(.0157,.0053),(.0133,-.0053),(-.0133,-.0053)]
+ vertices=[(x+a,yy,z+b) for yy in [y-.005,y-.001] for poly in [outer,inner] for a,b in poly]
+ faces=[]
+ for i in range(4):
+  j=(i+1)%4;faces.extend([(i,j,4+j,4+i),(8+i,12+i,12+j,8+j),(i,8+i,8+j,j),(4+i,4+j,12+j,12+i)])
+ mesh=bpy.data.meshes.new(name+'_keyed_shell');mesh.from_pydata(vertices,[],faces);mesh.update();shell=bpy.data.objects.new(name+'_keyed_shell',mesh);scene.collection.objects.link(shell);finish(shell,shell.name,STEEL,'bay_connector')
+ insulator=box(name+'_insulator',(.029,.003,.009),(x,y-.0025,z),DARK,'bay_connector',.001)
+ centers=[]
+ for row,count in enumerate([8,7]):
+  for i in range(count):
+   center=(x+(i-(count-1)/2)*.00277,y-.004,z+(.00142 if row==0 else -.00142));centers.append(list(center))
+   bpy.ops.mesh.primitive_cylinder_add(vertices=16,radius=.0006,depth=.010,location=center,rotation=(math.pi/2,0,0));c=bpy.context.object;m=insulator.modifiers.new('female_contact_bore','BOOLEAN');m.operation='DIFFERENCE';m.object=c;bpy.context.view_layer.objects.active=insulator;bpy.ops.object.modifier_apply(modifier=m.name);bpy.data.objects.remove(c,do_unlink=True)
+   cylinder(name+'_socket_back_'+str(row)+'_'+str(i),.0005,.0003,(center[0],y-.0003,center[2]),DARK,'bay_connector','Y',16)
+ for side in [-1,1]:
+  boss=cylinder(name+'_jackpost_'+str(side),.003,.004,(x+side*.0195,y-.003,z),STEEL,'bay_connector','Y',24)
+  bpy.ops.mesh.primitive_cylinder_add(vertices=16,radius=.0012,depth=.012,location=(x+side*.0195,y-.003,z),rotation=(math.pi/2,0,0));c=bpy.context.object;m=boss.modifiers.new('jackpost_bore','BOOLEAN');m.operation='DIFFERENCE';m.object=c;bpy.context.view_layer.objects.active=boss;bpy.ops.object.modifier_apply(modifier=m.name);bpy.data.objects.remove(c,do_unlink=True)
+ return dict(id=name,kind='female_detector_connector' if name=='detector_motors' else 'female_auxiliary_connector',center_m=[x,y-.005,z],axis=[0,1,0],contacts=15,contact_centers_m=centers,source='USER_MANUAL pp. 92-95',dimensions_inferred=True,qualified=False)
+interfaces.extend([bay_connector('detector_motors',.180),bay_connector('auxiliary',.145)])
+purge=cylinder('sample_bay_purge_outlet',.004,.010,(CX+.045,-.038,.110),STEEL,'purge_connector','Y')
+bpy.ops.mesh.primitive_cylinder_add(vertices=24,radius=.002,depth=.020,location=(CX+.045,-.038,.110),rotation=(math.pi/2,0,0));c=bpy.context.object;m=purge.modifiers.new('purge_bore','BOOLEAN');m.operation='DIFFERENCE';m.object=c;bpy.context.view_layer.objects.active=purge;bpy.ops.object.modifier_apply(modifier=m.name);bpy.data.objects.remove(c,do_unlink=True)
+interfaces.append(dict(id='sample_bay_purge',kind='purge_outlet',center_m=[CX+.045,-.043,.110],axis=[0,1,0],source='USER_MANUAL p. 92',dimensions_inferred=True,qualified=False))
 # Rear connections are approximate service envelopes; they do not qualify a
 # model-specific electrical insertion interface.
-for name,x,w,h,z in [('power',.255,.027,.022,.095),('usb',.193,.012,.012,.095),('external_detector',-.230,.031,.016,.110)]:
+for name,x,w,h,z in [('power',.255,.027,.022,.095),('usb',.193,.012,.012,.095)]:
  box('rear_'+name+'_recess',(w+.006,.002,h+.006),(x,D/2+.001,z),DARK,'service_port');box('rear_'+name+'_socket',(w,.003,h),(x,D/2+.0015,z),BASE,'service_port')
+for name,y in [('external_beam',.010),('external_source',.135)]:
+ bpy.ops.mesh.primitive_cylinder_add(vertices=64,radius=.028,depth=.018,location=(W/2-.004,y,.150),rotation=(0,math.pi/2,0));c=bpy.context.object;m=right.modifiers.new('beam_port_recess','BOOLEAN');m.operation='DIFFERENCE';m.object=c;bpy.context.view_layer.objects.active=right;bpy.ops.object.modifier_apply(modifier=m.name);bpy.data.objects.remove(c,do_unlink=True)
+ cylinder(name+'_window',.026,.001,(W/2-.012,y,.150),DARK,'optical_window','X')
 for side in [-1,1]:
  shell=left if side<0 else right
  for i in range(20):
   y=.035+i*.012;cut(shell,(.012,.004,.028),(side*(W/2-.003),y,.095));box('side_vent_back_'+str(side)+'_'+str(i),(.0005,.004,.028),(side*(W/2-.009),y,.095),DARK,'vent_interior')
 cfg=dict(model='Thermo Scientific Nicolet 6700',units='m',axes='+Z up; -Y instrument front',source_envelope_m=[W,D,H],source_mass_kg=69.,
  sample_bay=dict(center_xy_m=[CX,-.160],width_m=.210,depth_m=.260,height_m=.200,floor_z_m=FLOOR,datum_inferred=True),
+ selected_cover_clearances_m=dict(skirt_to_case=.0005,front_lip_to_bay_liner=.001),
  interfaces=interfaces,cover_parts=[o.name for o in cover],contact_qualified=False,manufacturer_CAD=False,
  exclusions=['Installed Smart accessories','IntegratIR sphere and its own reference/sample ports','Internal optical/electronic function'],
- reconstruction_notes=['Source envelope and clear sample-bay dimensions; local housing, ports and cover details are selected inferences.','Source photos contain different Smart accessories. Their exterior is not used as the bare spectrometer bay.'])
+ reconstruction_notes=['Source envelope and nominal sample-bay dimensions; local housing and interface dimensions are inferred.','Manual p. 92 establishes hinged cover, its sliding sample door and the fixed front wall. These are distinct from installed Smart accessories.','The Detector/Motors and Auxiliary connectors belong on the interior rear wall; no detector interface is invented on the exterior rear panel.'])
 bpy.context.view_layer.update();(HERE/'interfaces.json').write_text(json.dumps(cfg,indent=2)+'\n');(HERE/'parts.json').write_text(json.dumps([dict(id=o.name,role=o['role'],dimensions_m=list(o.dimensions),geometry_basis=o['geometry_basis']) for o in parts],indent=2)+'\n')
 scene.render.engine='CYCLES';scene.cycles.samples=48;scene.cycles.use_denoising=True;scene.view_layers[0].cycles.use_denoising=True
 scene.render.resolution_x=1500;scene.render.resolution_y=1100;scene.render.resolution_percentage=100;scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.15,.18,.23,1);scene.world.node_tree.nodes['Background'].inputs[1].default_value=.5;scene.view_settings.view_transform='Filmic';scene.view_settings.exposure=-2
