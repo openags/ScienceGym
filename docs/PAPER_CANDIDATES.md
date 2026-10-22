@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **302**.
+Last screened: **2026-10-22**. Candidate count: **303**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3024,3 +3024,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [34-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73859-7/MediaObjects/41467_2026_73859_MOESM1_ESM.pdf) was text-accessible; selected hydration, cycling and spatial-comparison captions (Figures 6, 11 and 16) were read. Figure pixels, remaining analyses, movies, source spreadsheets and simulation code remain unreviewed.
 - Future scope is prepared nonbiological specimens in qualified enclosed measurement services. Preserve specimen, polarization-channel, hydration and loading identities; repeated measurements are not independent specimens. Main and supplementary hydration descriptions use different sample labels, which require resolution before conversion. Synthesis, photopolymerization and X-ray operation are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: optical-label imaging and ageing histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Piezochromic hydrogels for physically unclonable optical anti-counterfeiting with machine-learning assisted automatic identification](https://www.nature.com/articles/s41467-026-73060-w) | Nature Communications / 2026 | 10.1038/s41467-026-73060-w | Prepared-label tracking, repeated microscopy and ageing comparisons suggest a long-horizon imaging-and-recordkeeping task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 6215, published 8 May 2026; version of record 15 July 2026. Selected label-imaging/stability Results and image-comparison Methods were screened, not the complete paper.
+- The [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73060-w/MediaObjects/41467_2026_73060_MOESM1_ESM.pdf) was text-accessible; selected ageing, label-image and similarity captions (Figures 6 and 13–17) were read. Figure pixels, remaining analyses, source spreadsheets and computational software remain unreviewed.
+- Future scope is prepared nonbiological labels in qualified enclosed imaging services. Preserve label identity, imaging conditions and elapsed-time records; computational image augmentation is not an independent specimen. Synthesis, pressure generation, chemical challenges and exposed laser operation are excluded. No procedure, assets, authentication guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
