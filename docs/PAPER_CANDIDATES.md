@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **297**.
+Last screened: **2026-10-22**. Candidate count: **298**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2969,3 +2969,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [14-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77515-y/MediaObjects/41467_2026_77515_MOESM1_ESM.pdf) was text-accessible; selected Figures 1–2 and 7–8 captions were read. The [one-page movie descriptions](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77515-y/MediaObjects/41467_2026_77515_MOESM2_ESM.pdf) were read, not the movies. Figure pixels, remaining analyses, source spreadsheets and author-request raw data remain unreviewed.
 - Future scope is prepared nonbiological specimens, environmental records, optical observation and weighing. Synchrotron operation, solvent washing and probe fabrication are excluded. Optical observations cannot substitute for the paper's nanoscale X-ray evidence; repeat observations must retain specimen identities. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: hydrogel-film measurement histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Live-shaping of hydrogel thin films with light](https://www.nature.com/articles/s41467-026-71438-4) | Nature Communications / 2026 | 10.1038/s41467-026-71438-4 | Prepared-film tracking, repeated characterization and storage-history comparisons suggest a long-horizon instrument-coordination task | Selected publisher HTML and scientific supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 3613, published/version of record 21 April 2026. Selected film-response Results and spectroscopy/morphing Methods were screened, not the complete paper.
+- The [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71438-4/MediaObjects/41467_2026_71438_MOESM1_ESM.pdf) was text-accessible; selected mechanical-property, thickness, coating and relaxation sections were read. Figure pixels, movies, source data and remaining analyses are unreviewed. The separate additional-file-description download failed and was not retried; no movie-dependent claim supports this screening.
+- Future scope is prepared nonbiological films in qualified enclosed measurement services. Synthesis, fabrication, exposed irradiation and biological applications are excluded. Preserve coating and specimen histories; absolute AFM modulus estimates depend on probe calibration. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
