@@ -1,6 +1,6 @@
 # ScienceGym Project Vision and Collaboration
 
-3 October 2026
+Originally 3 October 2026; humanoid execution target updated 23 October 2026.
 
 ScienceGym aims to turn the reported experimental programs of scientific papers into source-grounded tasks for embodied research agents. The central question is whether a robot can preserve experimental intent across preparation, fabrication, transport, instrument use, controls, repeated measurements and recovery. A successful agent must maintain both the physical state of the laboratory and the evidential integrity of its work.
 
@@ -27,6 +27,50 @@ A paper-level task family describes the represented program. An episode covers a
 Every operation must identify an actor, manipulated object, tool, station, interaction interface, preconditions, postconditions and observable completion evidence. The robot retrieves and prepares resources, loads and unloads fixtures, mounts and connects devices, reads controls, transports supported objects and restores stations. Device processing and waiting remain distinct from robot manipulation.
 
 Closed-service abstractions can make an early design inspectable, but their boundary must be visible. If fabrication hides manual work inside a service, the package remains incomplete against the ultimate all-hands-on goal until that work is decomposed or the release explicitly limits its scope. A qualified automatic device process is different from an unnamed human doing the difficult step.
+
+## Humanoid execution target
+
+The project owner's 23 October 2026 direction selects a complete Unitree
+humanoid with its own arms and Unitree dexterous hands as the final executor.
+Every required hands-on operation must be performed by that embodiment, with
+explicit single-hand, two-hand, tool-use and supported-transfer actions.
+Manipulation remains the evaluation focus. Standing, reaching and moving
+between stations provide physically consistent conditions for that work;
+scientific-result replication is a separate claim.
+
+The current hand selection is a left/right Dex5-S Pro pair. On 23 October 2026,
+the [official Dex5-S page](https://www.unitree.com/Dex5-S/) lists 22 actuated
+joints per hand, tactile sensing for the Pro variant, 1 kg continuous load and
+2 kg peak load per hand. These are manufacturer specifications, not validated
+task capabilities. The hand's continuous limits and actual grasp geometry
+must govern handling; a stronger arm does not raise the hand's load rating.
+
+H2 EDU is the initial body integration candidate. The
+[official H2 page](https://www.unitree.com/H2/) lists seven joints per arm and
+multiple hand options for EDU, but does not establish a verified H2 EDU/Dex5-S
+Pro combination. Exact wrist mounting, electrical/control interfaces, licensed
+left/right models, inertias, joint limits and actuator limits remain to be
+verified before freezing a robot configuration. No substitute hand may be
+silently relabeled as Dex5-S. Product pages alone do not supply a qualified
+simulation model or prove compatibility.
+
+Ordinary laboratory tools and fixtures remain available. The humanoid must
+actually retrieve, hold, operate and return hand-held tools, or operate
+documented fixture mechanisms. A preattached Panda screwdriver, an invisible
+grasp constraint or an externally animated gripper does not satisfy this
+requirement. Heavy objects need a physically supported handling method within
+the selected body's and hands' limits, with all setup actions represented.
+
+Execution evidence must include whole-body state, foot/support contacts,
+hand joints and contacts, grasp/load bounds, object continuity, handoffs and
+release. A visually complete humanoid with a frozen or externally moved base
+is insufficient for whole-body acceptance. Bench-supported component tests
+can retain their narrower status while standing/balance remains unqualified.
+
+The existing Panda records retain their original source snapshots and scoped
+physical findings as historical component evidence. Their grasp controllers,
+reachability, fixtures and acceptance receipts must be requalified on the
+selected humanoid. The humanoid accepted-episode count is currently zero.
 
 ## Source scope and evidence discipline
 
@@ -83,7 +127,11 @@ Characterize horizon using dependency depth, device transitions, persistent obje
 
 The fixed baseline at revision `3a200acfb22dfe6db3ec9864800bc26acb8e1fca` contains 563 files and 16 reviewed paper-level task-design drafts. Nine families appear in the logical explorer, and two selected routes have authored embodied storyboards. There are zero validated whole-paper robot runs. These counts describe different artifacts and must never be combined into a completed-task total. New documentation will change the file count. [5]
 
-The current setting is CPU-only and physical simulation is paused. Continue source-grounded task conversion, asset specifications, inspectable scenes and evaluator design in parallel. Static or visual acceptance does not require new physics work. Displayed robot poses do not prove contact mechanics, reachability, valid control or experimental physics.
+The CPU-only, paused-physics setting described in the 3 October baseline is
+historical. The cooling workbench now contains bounded Panda simulation
+records. Current implementation work is migrating to the humanoid target
+above; no humanoid execution is accepted yet. Displayed robot poses do not
+prove contact mechanics, reachability, valid control or experimental physics.
 
 Near-term work should deepen representative families while broadening eligible source coverage. Resolve important gaps, make preparation explicit, improve asset affordances, test bookkeeping and quantify reviewer corrections. Then implement selected end-to-end episodes with trusted state transitions, meaningful interfaces and independently tested evaluators. Expand to campaigns when branch accounting, shared resources and specimen histories function together.
 

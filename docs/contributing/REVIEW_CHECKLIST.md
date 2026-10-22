@@ -35,6 +35,19 @@ Record these eight gates as PTR-01 through PTR-08 in the [conversion review reco
 
 Keep the planning/completeness gate open for missing action chains, states without producers, unexplained object creation/movement, unsupported specimen reuse, unbounded or silently skipped work, missing artifact roles or actor/evaluator leakage. A symbolic walkthrough supports design review only; it does not prove physical execution.
 
+## Mandatory humanoid execution review
+
+Apply the [current embodiment requirements](../PROJECT_VISION.md#humanoid-execution-target)
+before crediting any new episode toward the final humanoid sample. Historical
+Panda tests retain their original scope and confer no humanoid execution credit.
+
+- [ ] Exact Unitree body and left/right Unitree hand variants, source revisions, licenses, mounting and control interfaces are pinned and qualified
+- [ ] Actual hand joints, contact geometry, masses, limits and tactile/observation assumptions are recorded; the humanoid is the physical actor
+- [ ] Each step binds the acting/supporting hands, grasp, tool, fixture and observable support transfer; two-hand coordination and tool pickup/return are explicit
+- [ ] Whole-body reach, self/environment collisions, standing support, load distribution and stability are checked throughout the recorded operation
+- [ ] Continuous object and tool identities survive releases, handoffs, failures and station transfers without pose resets or hidden human work
+- [ ] Independent physical verification, perturbation/fault cases and full-episode playback cover the declared humanoid scope; no arm-only receipt is counted as whole-body acceptance
+
 ## Mandatory equipment review
 
 Apply these checks to every new or substantively revised equipment item, including assets-only PRs. Complete the [equipment review record](templates/equipment_modeling_review.example.json), or map equivalent evidence to every required category. A draft with missing evidence can be submitted for discussion; it cannot be accepted as faithful equipment or counted in accepted fidelity/interaction coverage. Historical static acceptance does not grant this new label.

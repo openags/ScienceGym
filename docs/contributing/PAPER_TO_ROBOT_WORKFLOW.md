@@ -15,6 +15,29 @@ Do not require a physics simulator or successful scientific replication merely
 to document a missing manipulation step; reconstruct that work with explicit
 provenance and keep its actual implementation/validation status visible.
 
+## Required execution embodiment
+
+New executable bindings target the [Unitree humanoid and dexterous-hand
+configuration](../PROJECT_VISION.md#humanoid-execution-target). Task goals and
+source evidence remain independent of robot-specific trajectories. Preserve
+historical Panda bindings and receipts as versioned component evidence;
+changing the robot requires new execution qualification.
+
+Each instantiated manipulation must specify the acting hand(s), supporting
+hand or fixture, hand preshape/contact regions, grasp and load limits, approach
+and withdrawal, tool acquisition/use/return, transfer of support, completion
+observations and bounded recovery. Two-hand work must describe each hand's
+role and the observable condition for releasing either hand. The operation
+must also bind the humanoid's stance, reach and body-clearance constraints.
+Map these requirements explicitly into the package's schema and runtime;
+this prose does not itself implement a hand controller or schema adapter.
+
+Use the actual robot and hand geometry, dynamics and control limits. Do not
+convert a parallel-jaw trajectory by attaching a humanoid mesh or replace
+hand-object contact with pose writes. Preserve the same physical objects
+across tool changes and workstations. Classify posture, sensing and travel as
+support for manipulation rather than inflating the manipulation step count.
+
 ## 1. Conversion stages and reviewable outputs
 
 | Stage | Author work | Saved output | Exit check |

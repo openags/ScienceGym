@@ -2,6 +2,14 @@
 
 **Long-horizon robot research tasks derived from scientific papers.**
 
+**Execution target, updated 23 October 2026:** a complete Unitree humanoid
+using its own two arms and Unitree dexterous hands performs every required
+hands-on operation. The current hand selection is Dex5-S Pro from the latest
+officially listed Dex5-S family; body/hand mounting and simulation integration
+remain unqualified. See the [embodiment requirements](docs/PROJECT_VISION.md#humanoid-execution-target).
+Existing Panda recordings are historical component tests and do not establish
+humanoid execution. No humanoid episode has yet been validated.
+
 ScienceGym studies how to translate a paper's reported experimental program into tasks for an embodied research agent: preparing materials, moving samples between instruments, assembling apparatus, running controls and repeated measurements, preserving records, recovering from failures, and leaving the laboratory in a defined final state.
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.

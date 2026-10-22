@@ -39,6 +39,13 @@ gates; this is an initial review revision, not an accepted gold-standard release
 
 ## Current focus
 
+As of 23 October 2026 the final executor is a Unitree humanoid with its own
+arms and Unitree Dex5-S Pro hands, following the
+[embodiment requirements](../PROJECT_VISION.md#humanoid-execution-target).
+Existing Panda recordings are historical component tests. The humanoid
+body/hand integration and every migrated manipulation remain unqualified;
+none of the existing receipts counts as a humanoid episode.
+
 The pilot is being polished as one complete paper-derived manipulation task chain.
 The [manipulation dossier](../../tasks/directional_cooling_operations_v3/MANIPULATION_REVIEW.md)
 shows all 200 manual steps alongside the experimental conditions and checks that
@@ -63,7 +70,9 @@ KHR-2/2-P assets have separate source, part, interface and geometry records.
 
 The cover record is rejected by the added triangle/solid audit: its earlier
 force/position checks missed film penetration into the PE tube. The other
-records establish bounded physical capabilities. The complete seven-layer
-candidate, frame and film preparation, paired apparatus, station handoffs and
-remaining instrument work still require acceptance. No complete branch or new
-paper is counted from these records.
+records establish bounded physical capabilities. Subsequently, two complete
+seven-layer Panda assembly/recovery recordings passed 192 independent checks
+each. Frame and film preparation, paired apparatus, station handoffs and
+remaining instrument work are still incomplete. Humanoid execution requires
+fresh qualification of all operations. No complete branch or new paper is
+counted from these records.

@@ -1,5 +1,14 @@
 # Cooling manipulation: contact execution workbench
 
+**Execution target changed on 23 October 2026:** the final sample requires a
+Unitree humanoid with its own arms and Dex5-S Pro hands. Body/hand integration
+is still pending; see the [current requirements](../../docs/PROJECT_VISION.md#humanoid-execution-target).
+All recordings below use Panda and remain historical component evidence.
+Their scoped physical acceptance supplies no humanoid execution credit.
+No humanoid episode has been implemented or accepted here yet. Further
+Panda-specific development runs were stopped following the target change;
+interrupted development attempts are not successful executions.
+
 **The whole-paper simulation is unfinished: 0 of 11 complete branches accepted.**
 The physical workbench now includes a continuous seven-layer assembly and return
 with two deformable sheets, a full-length cabled commercial RTD, and a
