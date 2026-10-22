@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **295**.
+Last screened: **2026-10-22**. Candidate count: **296**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2946,3 +2946,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The publisher supplementary section lists a transparent peer-review file, not a separate scientific Supplementary Information document. That review file, source spreadsheets, external Figshare data and figure pixels remain unread. Estimated deposition throughput must remain distinct from complete production-cycle throughput; measurements at several positions do not establish independent fabrication replicates.
 - Future scope is prepared nonbiological specimens in qualified enclosed characterization instruments. Deposition, machining, specimen cutting, coating application and exposed powered machinery are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: polymer specimen tracking and mechanical comparisons (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [The effects of intracrystalline chain diffusion on the non-linear mechanics of semicrystalline polymers](https://www.nature.com/articles/s41467-026-78014-w) | Nature Communications / 2026 | 10.1038/s41467-026-78014-w | Prepared-specimen tracking, reference comparisons and coordinated displacement/force records suggest a long-horizon materials measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10235, published and version of record dated 26 September 2026. Selected mechanical Results and Samples/Mechanical testing Methods were screened, not the complete paper.
+- The linked [3-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-78014-w/MediaObjects/41467_2026_78014_MOESM1_ESM.pdf) was text-accessible. Figure 1–3 captions describing the fixture and comparative measurements were read. Figure pixels were not verified; optional rendering returned cache misses and was not retried. This is not complete supplement review.
+- Representative curves must remain distinct from triplicate-derived parameter summaries; fitted network parameters are effective descriptions, not direct structural measurements. External archived data and peer-review material remain unread.
+- Future scope is prepared nonbiological specimens in qualified enclosed instruments. Molding, cryogenic handling and exposed mechanical loading are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
