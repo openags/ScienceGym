@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **308**.
+Last screened: **2026-10-22**. Candidate count: **309**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3091,3 +3091,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69640-5/MediaObjects/41467_2026_69640_MOESM1_ESM.pdf) was text-accessible; selected dimensional, interface and environmental-comparison captions (Figures 19–22) were read. Figure pixels, remaining analyses, movies, source spreadsheets and peer-review material remain unreviewed.
 - Future scope is prepared nonliving fibers in qualified enclosed measurement services. Preserve specimen, conditioning and bending histories; time-aligned instrument readings are not independent specimens. Fabrication, solvent spraying, plasma processing and high-voltage luminescence are excluded. No procedure, assets, safety guarantee or converted task is supplied.
 - Access checked on 2026-10-22. Main HTML remained readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared graphene wetting measurements (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Contact angle measurement of free-standing square-millimeter single-layer graphene](https://www.nature.com/articles/s41467-018-06608-0) | Nature Communications / 2018 | 10.1038/s41467-018-06608-0 | Prepared-sample positioning, water/air wetting observations, repeated image acquisition and reference comparisons could support a long-horizon measurement task. Fragility, interface deformation and exposure history require explicit checkpoints. | Open-access publisher HTML and supplementary PDF text accessible. |
+
+- **CANDIDATE only.** Official metadata confirms volume 9, article 4185, published 10 October 2018. Selected Results, optical-microscopy/contact-angle Methods and source metadata were screened, not a complete paper review.
+- The [five-page Supplementary information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-06608-0/MediaObjects/41467_2018_6608_MOESM1_ESM.pdf) was text-accessible. Selected captions for Figures 2 and 4, Note 1 and Tables 1–2 were screened; figure pixels were not inspected. Supplementary movies and their separate description file were not retrieved or watched.
+- Future scope is limited to water/air characterization of independently prepared, stabilized specimens, preserving sample identity and measurement history. Graphene growth, chemical etching, solvent handling, plasma modification and nonaqueous surface-energy measurements are excluded. No procedure conversion, execution validation, assets or runnable task is claimed.
+- Access checked on 2026-10-22. Publisher states CC BY 4.0; this entry contains bibliographic metadata and original screening commentary only. The HTML remained readable after a cookie-error redirect.
