@@ -63,6 +63,25 @@ Apply these checks to every new or substantively revised equipment item, includi
 
 Request changes for a known task-critical mismatch, missing resource/identity evidence, distorted scale, absent operating parts or missing reference comparison. An "illustrative", "original" or "unqualified" disclaimer does not clear these findings. Record unresolved views/inferences without inventing evidence or approvals. Visual fidelity can pass while functional execution remains blocked, but neither a static check nor a review of documentation alone establishes visual fidelity.
 
+## Laboratory scene review before pilot manipulation development
+
+For the directional-cooling pilot, the owner explicitly requires acceptance of
+all assets and laboratory scenes before new manipulation-sequence development.
+Apply [section 7 of the equipment standard](EQUIPMENT_MODELING_STANDARD.md#7-whole-laboratory-asset-and-layout-acceptance).
+
+- [ ] LAB-01: All required equipment, accessories, materials, tools, intermediate states and physical instance counts are reconciled against the paper scope
+- [ ] LAB-02: Each asset has reviewed identity, source comparison, dimensions, parts, rights and marked reconstruction assumptions
+- [ ] LAB-03: Indoor, fabrication/coating, calibration, optical, storage and outdoor requirements have explicit spatial dispositions and modeled supporting facilities
+- [ ] LAB-04: The dimensioned plan agrees with physical-scale scene geometry, support capacities, doors, equipment states and service access
+- [ ] LAB-05: Pinned full-body/hand and carried-load envelopes cover transit, turns, bilateral work and station approaches, with measured worst-case clearance and collisions
+- [ ] LAB-06: Hazard controls, electrical/wet separation, cables/hoses, access/egress, emergency provisions and relevant manufacturer/site requirements have reviewed evidence
+- [ ] LAB-07: Interactive scene views, asset comparisons, spatial reports and unresolved findings refer to exact reviewed content
+- [ ] LAB-08: The owner has accepted the completed asset/scene revision; the decision, scope and date are recorded before manipulation development resumes
+
+Missing geometry or unverified safety-critical spacing remains an open gate.
+A body-only movement test, room screenshot or generated checklist does not
+constitute acceptance of the laboratory.
+
 ## Pull request checklist
 
 - [ ] Linked issue identifies contribution track, owner and exact scope
@@ -77,6 +96,7 @@ Request changes for a known task-critical mismatch, missing resource/identity ev
 - [ ] Actor-visible inputs exclude evaluator answers and future observations
 - [ ] Asset scale, frames, states, affordances and provenance are documented where applicable
 - [ ] Equipment contributions satisfy every mandatory equipment review gate, with an evidence record and explicit decisions
+- [ ] Pilot scene contributions satisfy the laboratory review gates before new manipulation development resumes
 - [ ] Commands, results, screenshots and revision-specific receipts support only the claims made
 - [ ] Gaps, unavailable checks, changed IDs and compatibility effects are stated
 - [ ] No secrets, local-only paths, unauthorized source material or unsupported execution claims are included

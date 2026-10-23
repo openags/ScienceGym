@@ -38,6 +38,13 @@ Manipulation remains the evaluation focus. Standing, reaching and moving
 between stations provide physically consistent conditions for that work;
 scientific-result replication is a separate claim.
 
+For the first-paper pilot, the owner requires asset and laboratory scene
+acceptance before new manipulation-sequence development. Complete the
+equipment, materials, tools and supporting facilities; present the laboratory
+layout and full-humanoid spatial/safe-use evidence; record the owner's review
+of that revision. Existing paper operations inform required asset interfaces
+and access states during this phase. Follow the [laboratory review gates](contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development).
+
 The current hand selection is a left/right Dex5-S Pro pair. On 23 October 2026,
 the [official Dex5-S page](https://www.unitree.com/Dex5-S/) lists 22 actuated
 joints per hand, tactile sensing for the Pro variant, 1 kg continuous load and

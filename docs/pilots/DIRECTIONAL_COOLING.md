@@ -39,6 +39,22 @@ gates; this is an initial review revision, not an accepted gold-standard release
 
 ## Current focus
 
+The owner's latest instruction establishes **asset and laboratory scene
+acceptance first**. Current work is inventory reconciliation, manufacturer-
+grounded asset reconstruction, indoor/outdoor scene layout, safe-use review
+and sufficient space for the complete humanoid. New manipulation-sequence
+development resumes only after the owner accepts the concrete asset/scene
+revision. Existing operation definitions remain requirements for identifying
+assets and interfaces; geometric access checks may proceed during scene work.
+
+Use the [laboratory acceptance gates](../contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development),
+[initial asset inventory](../../assets/cooling_lab_v1/inventory.json) and
+[phase record](../../assets/cooling_lab_v1/acceptance_contract.json).
+The inventory captures 43 existing resource rows plus explicitly authored
+infrastructure/robot requirements; grouped rows still need decomposition and
+instance allocation. Ten detailed device models do not represent the complete
+asset inventory. No whole laboratory scene or owner acceptance is recorded.
+
 As of 23 October 2026 the final executor is a Unitree humanoid with its own
 arms and Unitree Dex5-S Pro hands, following the
 [embodiment requirements](../PROJECT_VISION.md#humanoid-execution-target).

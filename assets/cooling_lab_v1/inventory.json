@@ -1,0 +1,1180 @@
+{
+  "schema_version": 1,
+  "status": "initial_requirement_inventory_not_asset_or_scene_acceptance",
+  "date": "2026-10-23",
+  "paper_doi": "10.1038/s41467-018-07293-9",
+  "source_inventory": {
+    "path": "tasks/directional_cooling_operations_v3/resources.json",
+    "sha256": "96e63d6da1764c0883d447c3b175a015471b162de19b0e8fcbc58096c7a7041c"
+  },
+  "source_resource_row_count": 43,
+  "source_allocation_statement": "Minimum reconstruction: white and black assemblies, identified optical specimens, eight calibrated K probes (two emitters plus six map sensors), two independent 2425 channels/devices for simultaneous heating, one USB-TC can accommodate eight channels; actual instrument quantities and session reuse are supplied inputs.",
+  "required_records": 60,
+  "counts_are": "Requirement rows, not unique physical assets or instances. Compound rows, copies and lifecycle states must still be allocated.",
+  "candidate_links_are": "Discovery pointers to current files, not a new review of their appearance or safety. Historic whole-scene candidates require exact subpart bindings.",
+  "owner_asset_scene_acceptance": null,
+  "whole_lab_scene_exists": false,
+  "inventory_completeness_accepted": false,
+  "items": [
+    {
+      "id": "equipment:COOLER",
+      "category": "equipment",
+      "label": "Custom paired directional cooler",
+      "source_pointer": "/equipment/0",
+      "source_value": {
+        "id": "COOLER",
+        "identity": "Custom paired directional cooler",
+        "paper_locator": "SI Figure 1 / Note 2",
+        "used_by_branch": "BUILD_PAIR",
+        "geometry_status": "custom_source_reconstruction",
+        "scene_roots": [
+          "COOLER_WHITE",
+          "COOLER_BLACK"
+        ],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "SI"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb",
+          "sha256": "cca184bc1fcbb3cfbd1c646ee403506a4d91a0fbd87eb86407454f6e569cd3f5"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Existing whole-scene custom cooler candidate; review white/black variants, separated parts and all required preparations. Scene subsets are not yet bound here.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:SMU",
+      "category": "equipment",
+      "label": "Keithley 2425",
+      "source_pointer": "/equipment/1",
+      "source_value": {
+        "id": "SMU",
+        "identity": "Keithley 2425",
+        "paper_locator": "Main Methods: cooling power",
+        "used_by_branch": "PID_POWER",
+        "geometry_status": "manual_reconstruction",
+        "scene_roots": [
+          "KEITHLEY_2425"
+        ],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "SMU_SPEC",
+          "SMU_SERVICE",
+          "SMU_USER",
+          "SMU_CAD"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/keithley_2425_v1/geometry/keithley_2425.glb",
+          "sha256": "8eee30e1ae9d061cd04e07bf0c01a5890d3d181600f24f7518ec55c3477dc5bd"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:DAQ",
+      "category": "equipment",
+      "label": "Measurement Computing USB-TC",
+      "source_pointer": "/equipment/2",
+      "source_value": {
+        "id": "DAQ",
+        "identity": "Measurement Computing USB-TC",
+        "paper_locator": "Main Methods: temperature",
+        "used_by_branch": "CALIBRATE",
+        "geometry_status": "manual_reconstruction",
+        "scene_roots": [
+          "MCC_USB_TC"
+        ],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "USB_TC_MANUAL"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/mcc_usb_tc_v1/geometry/mcc_usb_tc.glb",
+          "sha256": "e834e045782ff9b877ec8a046736754c254e07893876575c5ba5a641dac986aa"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:BATH",
+      "category": "equipment",
+      "label": "Thermo Scientific ARCTIC A25",
+      "source_pointer": "/equipment/3",
+      "source_value": {
+        "id": "BATH",
+        "identity": "Thermo Scientific ARCTIC A25",
+        "paper_locator": "Main Methods: temperature",
+        "used_by_branch": "CALIBRATE",
+        "geometry_status": "body_dimensions_with_AC150_head_hypothesis",
+        "scene_roots": [
+          "THERMO_A25_AC150_HYPOTHESIS"
+        ],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "BATH_MANUAL"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/thermo_a25_ac150_v1/geometry/thermo_a25_ac150.glb",
+          "sha256": "72f346f52b2995071df4a750301d89419ea01097c37ef788dd1e35d652592069"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "A25 is paper-reported; AC150 is an authored controller choice with an unresolved historical variant.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:DMM",
+      "category": "equipment",
+      "label": "Keithley 2000",
+      "source_pointer": "/equipment/4",
+      "source_value": {
+        "id": "DMM",
+        "identity": "Keithley 2000",
+        "paper_locator": "Main Methods: temperature",
+        "used_by_branch": "CALIBRATE",
+        "geometry_status": "unbuilt",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "DMM_MANUAL"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/keithley_2000_v1/geometry/keithley_2000.glb",
+          "sha256": "524da79c2781b04f2527e1610b75367f75ea53b7b1e787f34a9d97848f18180c"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:TC",
+      "category": "equipment",
+      "label": "Omega 5TC-TT-K-36-36",
+      "source_pointer": "/equipment/5",
+      "source_value": {
+        "id": "TC",
+        "identity": "Omega 5TC-TT-K-36-36",
+        "paper_locator": "Main Methods: temperature",
+        "used_by_branch": "CALIBRATE",
+        "geometry_status": "inferred_map_contact_geometry",
+        "scene_roots": [
+          "COOLER_THERMAL_MAP"
+        ],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "TC_DATASHEET"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb",
+          "sha256": "cca184bc1fcbb3cfbd1c646ee403506a4d91a0fbd87eb86407454f6e569cd3f5"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Existing whole-scene inferred contact geometry; no faithful standalone full-length thermocouple asset accepted.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:REF_RTD",
+      "category": "equipment",
+      "label": "Omega P-M-A-1/4-3-1/2-PS-12",
+      "source_pointer": "/equipment/6",
+      "source_value": {
+        "id": "REF_RTD",
+        "identity": "Omega P-M-A-1/4-3-1/2-PS-12",
+        "paper_locator": "Main Methods: temperature",
+        "used_by_branch": "CALIBRATE",
+        "geometry_status": "probe_envelope_only",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": []
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/omega_pm_rtd_v1/geometry/omega_pm_rtd.glb",
+          "sha256": "86a0fd65117729b6fe0874eb2045f5a0a2bc96831914cffcb3a658c999a0c788"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:AMB_RTD",
+      "category": "equipment",
+      "label": "Omega P-L-A-1/4-6-1/4-T-6",
+      "source_pointer": "/equipment/7",
+      "source_value": {
+        "id": "AMB_RTD",
+        "identity": "Omega P-L-A-1/4-6-1/4-T-6",
+        "paper_locator": "SI Note 4",
+        "used_by_branch": "ENVIRONMENT",
+        "geometry_status": "unbuilt",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": []
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:HEATER",
+      "category": "equipment",
+      "label": "Omega KHR-2/2-P",
+      "source_pointer": "/equipment/8",
+      "source_value": {
+        "id": "HEATER",
+        "identity": "Omega KHR-2/2-P",
+        "paper_locator": "Main Methods: cooling power",
+        "used_by_branch": "PID_POWER",
+        "geometry_status": "unbuilt_pending_fit",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "HEATER_CATALOG"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/omega_khr_2_2_p_v1/geometry/omega_khr_2_2_p.glb",
+          "sha256": "60db6fe25d7cfc059b3ad4e44cb2310fedfbb862ffa6e28f0c8dcb2cdfc8fb94"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:UVVIS",
+      "category": "equipment",
+      "label": "Agilent Cary 5000 with DRA-2500",
+      "source_pointer": "/equipment/9",
+      "source_value": {
+        "id": "UVVIS",
+        "identity": "Agilent Cary 5000 with DRA-2500",
+        "paper_locator": "Main Methods: optical properties",
+        "used_by_branch": "OPT_HEMISPHERICAL",
+        "geometry_status": "manual_photo_reconstruction_with_inferred_accessory_details",
+        "scene_roots": [
+          "AGILENT_CARY_5000"
+        ],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "UVVIS_BROCHURE",
+          "CARY_DIMENSIONS"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/cary_5000_v1/geometry/cary_5000.glb",
+          "sha256": "3e70b2058364e21a68910b96a1886c9eabb9ff83d39a1f8cb6e46b4e83713ef4"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Main instrument only in this row; DRA accessory is a separate required row.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:FTIR",
+      "category": "equipment",
+      "label": "Thermo Nicolet 6700 with PIKE Mid-IR IntegratIR",
+      "source_pointer": "/equipment/10",
+      "source_value": {
+        "id": "FTIR",
+        "identity": "Thermo Nicolet 6700 with PIKE Mid-IR IntegratIR",
+        "paper_locator": "Main Methods: optical properties",
+        "used_by_branch": "OPT_HEMISPHERICAL",
+        "geometry_status": "photo_reconstruction_with_inferred_envelope_and_DTGS_variant",
+        "scene_roots": [
+          "THERMO_NICOLET_6700"
+        ],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "FTIR_MANUAL",
+          "FTIR_BROCHURE",
+          "PIKE_DTGS_MANUAL"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/nicolet_6700_v1/geometry/nicolet_6700.glb",
+          "sha256": "5aab42afdb741d8cf4135f3575e6219f8a076cf809508ef53f29c0e82b1a2505"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Main instrument only in this row; IntegratIR accessory is a separate required row. Recheck sliding sample-access opening.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:ANGLE_12",
+      "category": "equipment",
+      "label": "Harrick Scientific 12 degree specular reflection accessory",
+      "source_pointer": "/equipment/11",
+      "source_value": {
+        "id": "ANGLE_12",
+        "identity": "Harrick Scientific 12 degree specular reflection accessory",
+        "paper_locator": "SI Note 3",
+        "used_by_branch": "OPT_ANGULAR",
+        "geometry_status": "exact_accessory_variant_unresolved",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": []
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:ANGLE_VAR",
+      "category": "equipment",
+      "label": "Spectra-Tech variable-angle accessory",
+      "source_pointer": "/equipment/12",
+      "source_value": {
+        "id": "ANGLE_VAR",
+        "identity": "Spectra-Tech variable-angle accessory",
+        "paper_locator": "SI Note 3",
+        "used_by_branch": "OPT_ANGULAR",
+        "geometry_status": "exact_accessory_variant_unresolved",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": []
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:SOLAR_TRACKER",
+      "category": "equipment",
+      "label": "EKO STR-32G",
+      "source_pointer": "/equipment/13",
+      "source_value": {
+        "id": "SOLAR_TRACKER",
+        "identity": "EKO STR-32G",
+        "paper_locator": "Main Methods: solar measurement",
+        "used_by_branch": "ENVIRONMENT",
+        "geometry_status": "manual_reconstruction_mount_inferred",
+        "scene_roots": [
+          "EKO_STR_32G"
+        ],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": [
+          "TRACKER_MANUAL"
+        ]
+      },
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb",
+          "sha256": "cca184bc1fcbb3cfbd1c646ee403506a4d91a0fbd87eb86407454f6e569cd3f5"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Existing whole-scene candidate; no reviewed MS-56/MS-402 sensor pair or outdoor installation supplied by this link.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:DNI",
+      "category": "equipment",
+      "label": "EKO MS-56 pyrheliometer",
+      "source_pointer": "/equipment/14",
+      "source_value": {
+        "id": "DNI",
+        "identity": "EKO MS-56 pyrheliometer",
+        "paper_locator": "Main Methods: solar measurement",
+        "used_by_branch": "ENVIRONMENT",
+        "geometry_status": "unbuilt",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": []
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:GTI",
+      "category": "equipment",
+      "label": "EKO MS-402 pyranometer",
+      "source_pointer": "/equipment/15",
+      "source_value": {
+        "id": "GTI",
+        "identity": "EKO MS-402 pyranometer",
+        "paper_locator": "Main Methods: solar measurement",
+        "used_by_branch": "ENVIRONMENT",
+        "geometry_status": "unbuilt",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": []
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:WEATHER",
+      "category": "equipment",
+      "label": "Onset HOBO U30",
+      "source_pointer": "/equipment/16",
+      "source_value": {
+        "id": "WEATHER",
+        "identity": "Onset HOBO U30",
+        "paper_locator": "SI Note 7",
+        "used_by_branch": "ENVIRONMENT",
+        "geometry_status": "variant_unresolved",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": []
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "equipment:WATERJET",
+      "category": "equipment",
+      "label": "Water-jet cutter; manufacturer not specified",
+      "source_pointer": "/equipment/17",
+      "source_value": {
+        "id": "WATERJET",
+        "identity": "Water-jet cutter; manufacturer not specified",
+        "paper_locator": "Main Methods: solar-reflector tracking",
+        "used_by_branch": "BUILD_PAIR",
+        "geometry_status": "qualified_machine_input_required",
+        "scene_roots": [],
+        "exact_serial_and_configuration_known": false,
+        "physics_validated": false,
+        "researched_source_ids": []
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Paper omits manufacturer. A selected real machine, enclosure, services and footprint must be researched and documented.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "tools:caliper",
+      "category": "tools",
+      "label": "dimensions and layer inspection",
+      "source_pointer": "/tools/0",
+      "source_value": {
+        "id": "caliper",
+        "purpose": "dimensions and layer inspection",
+        "identity_basis": "selected_reconstruction",
+        "execution_requires_qualified_selection": true
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "tools:film_jig",
+      "category": "tools",
+      "label": "support fragile film edges and establish gap",
+      "source_pointer": "/tools/1",
+      "source_value": {
+        "id": "film_jig",
+        "purpose": "support fragile film edges and establish gap",
+        "identity_basis": "selected_reconstruction",
+        "execution_requires_qualified_selection": true
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "tools:supported_carrier",
+      "category": "tools",
+      "label": "transport without touching optical surfaces",
+      "source_pointer": "/tools/2",
+      "source_value": {
+        "id": "supported_carrier",
+        "purpose": "transport without touching optical surfaces",
+        "identity_basis": "selected_reconstruction",
+        "execution_requires_qualified_selection": true
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "tools:cutting_fixture",
+      "category": "tools",
+      "label": "retain copper, PE, foam and acrylic blanks",
+      "source_pointer": "/tools/3",
+      "source_value": {
+        "id": "cutting_fixture",
+        "purpose": "retain copper, PE, foam and acrylic blanks",
+        "identity_basis": "selected_reconstruction",
+        "execution_requires_qualified_selection": true
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "tools:fastener_driver",
+      "category": "tools",
+      "label": "frame and accessory fasteners",
+      "source_pointer": "/tools/4",
+      "source_value": {
+        "id": "fastener_driver",
+        "purpose": "frame and accessory fasteners",
+        "identity_basis": "selected_reconstruction",
+        "execution_requires_qualified_selection": true
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "tools:wire_stripper_and_driver",
+      "category": "tools",
+      "label": "retain, terminate and inspect sensor wiring",
+      "source_pointer": "/tools/5",
+      "source_value": {
+        "id": "wire_stripper_and_driver",
+        "purpose": "retain, terminate and inspect sensor wiring",
+        "identity_basis": "selected_reconstruction",
+        "execution_requires_qualified_selection": true
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "tools:coating_station",
+      "category": "tools",
+      "label": "support, mask, coat and cure disks",
+      "source_pointer": "/tools/6",
+      "source_value": {
+        "id": "coating_station",
+        "purpose": "support, mask, coat and cure disks",
+        "identity_basis": "selected_reconstruction",
+        "execution_requires_qualified_selection": true
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "tools:storage_supports",
+      "category": "tools",
+      "label": "retain distinct accepted and rejected samples",
+      "source_pointer": "/tools/7",
+      "source_value": {
+        "id": "storage_supports",
+        "purpose": "retain distinct accepted and rejected samples",
+        "identity_basis": "selected_reconstruction",
+        "execution_requires_qualified_selection": true
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_01",
+      "category": "consumables",
+      "label": "copper sheet",
+      "source_pointer": "/consumables/0",
+      "source_value": "copper sheet",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_02",
+      "category": "consumables",
+      "label": "aluminum sheet/tube",
+      "source_pointer": "/consumables/1",
+      "source_value": "aluminum sheet/tube",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_03",
+      "category": "consumables",
+      "label": "solid PE tube",
+      "source_pointer": "/consumables/2",
+      "source_value": "solid PE tube",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_04",
+      "category": "consumables",
+      "label": "FOAMULAR 150",
+      "source_pointer": "/consumables/3",
+      "source_value": "FOAMULAR 150",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_05",
+      "category": "consumables",
+      "label": "Targray nanoporous PE separator",
+      "source_pointer": "/consumables/4",
+      "source_value": "Targray nanoporous PE separator",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_06",
+      "category": "consumables",
+      "label": "LDPE bag film",
+      "source_pointer": "/consumables/5",
+      "source_value": "LDPE bag film",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_07",
+      "category": "consumables",
+      "label": "white and black Krylon ColorMaster",
+      "source_pointer": "/consumables/6",
+      "source_value": "white and black Krylon ColorMaster",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_08",
+      "category": "consumables",
+      "label": "silver paste",
+      "source_pointer": "/consumables/7",
+      "source_value": "silver paste",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_09",
+      "category": "consumables",
+      "label": "aluminized Mylar",
+      "source_pointer": "/consumables/8",
+      "source_value": "aluminized Mylar",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_10",
+      "category": "consumables",
+      "label": "acrylic",
+      "source_pointer": "/consumables/9",
+      "source_value": "acrylic",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_11",
+      "category": "consumables",
+      "label": "sensor leads",
+      "source_pointer": "/consumables/10",
+      "source_value": "sensor leads",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_12",
+      "category": "consumables",
+      "label": "fasteners",
+      "source_pointer": "/consumables/11",
+      "source_value": "fasteners",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "consumables:consumable_13",
+      "category": "consumables",
+      "label": "masking and cleaning supplies",
+      "source_pointer": "/consumables/12",
+      "source_value": "masking and cleaning supplies",
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "additional_reconstructed_materials:calibration_block_stock",
+      "category": "additional_reconstructed_materials",
+      "label": "Fabricate probe holes explicitly through CAL_BLOCK_PREP",
+      "source_pointer": "/additional_reconstructed_materials/0",
+      "source_value": {
+        "id": "calibration_block_stock",
+        "purpose": "Fabricate probe holes explicitly through CAL_BLOCK_PREP",
+        "source_basis": "E_CAL; dimensions and tooling inferred"
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "additional_reconstructed_materials:fine_wire_transition",
+      "category": "additional_reconstructed_materials",
+      "label": "Join 36 AWG K probes to qualified DAQ-compatible conductors with strain relief",
+      "source_pointer": "/additional_reconstructed_materials/1",
+      "source_value": {
+        "id": "fine_wire_transition",
+        "purpose": "Join 36 AWG K probes to qualified DAQ-compatible conductors with strain relief",
+        "source_basis": "E_TC_WIRE and E_DAQ_MANUAL; selected hardware remains a reconstruction input"
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "additional_reconstructed_materials:bath_water_and_fill_vessel",
+      "category": "additional_reconstructed_materials",
+      "label": "Fill stationary bath with block displacement accounted for",
+      "source_pointer": "/additional_reconstructed_materials/2",
+      "source_value": {
+        "id": "bath_water_and_fill_vessel",
+        "purpose": "Fill stationary bath with block displacement accounted for",
+        "source_basis": "E_CAL and E_BATH_FILL"
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "additional_reconstructed_materials:reversible_emitter_jig",
+      "category": "additional_reconstructed_materials",
+      "label": "Retain thin emitter during underside probe/heater work",
+      "source_pointer": "/additional_reconstructed_materials/3",
+      "source_value": {
+        "id": "reversible_emitter_jig",
+        "purpose": "Retain thin emitter during underside probe/heater work",
+        "source_basis": "Reconstructed manipulation fixture; dimensions/load qualification required"
+      },
+      "candidate_artifacts": [],
+      "discovery_status": "no_candidate_linked_in_initial_inventory",
+      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "decomposition_status": "required_before_completeness_claim",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "accessory:DRA_2500",
+      "category": "accessory",
+      "label": "Agilent legacy internal DRA-2500",
+      "parent_resource_pointer": "/equipment/9",
+      "requirement_basis": "Accessory split from a compound paper equipment row",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cary_internal_dra_2500_v1/geometry/cary_internal_dra_2500.glb",
+          "sha256": "955ffa6be18896ea35632ada800739202638133f7044cdf2f110f8e2dc203b96"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Selected historical accessory reconstruction; exact paper configuration needs explicit reviewer disposition.",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "accessory:INTEGRATIR",
+      "category": "accessory",
+      "label": "PIKE Mid-IR IntegratIR; selected DTGS variant",
+      "parent_resource_pointer": "/equipment/10",
+      "requirement_basis": "Accessory split from a compound paper equipment row",
+      "candidate_artifacts": [
+        {
+          "path": "assets/pike_integratir_dtgs_v1/geometry/pike_integratir_dtgs.glb",
+          "sha256": "a9a29955237c709b47dce9087e3dd7f41e92f92fd175bf8bd0a7132743593867"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Selected historical accessory reconstruction; exact paper configuration needs explicit reviewer disposition.",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "robot:H2",
+      "category": "robot",
+      "label": "Unitree H2 official body; EDU integration candidate",
+      "parent_resource_pointer": null,
+      "requirement_basis": "Owner-selected humanoid embodiment",
+      "candidate_artifacts": [
+        {
+          "path": "assets/unitree_h2_v1/geometry/h2_settled.glb",
+          "sha256": "9b12a56105925b1ed797fa858ef26a35cc4d42d7238eac07cf0824c6202e05d9"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Variant and mounting require review; H2 preview has original rigid wrist meshes, not the selected articulated hands.",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "robot:DEX5_S_PRO_LEFT",
+      "category": "robot",
+      "label": "Unitree Dex5-S Pro left hand",
+      "parent_resource_pointer": null,
+      "requirement_basis": "Owner-selected humanoid embodiment",
+      "candidate_artifacts": [],
+      "discovery_status": "target_model_not_obtained",
+      "candidate_scope_note": "Variant and mounting require review; H2 preview has original rigid wrist meshes, not the selected articulated hands.",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "robot:DEX5_S_PRO_RIGHT",
+      "category": "robot",
+      "label": "Unitree Dex5-S Pro right hand",
+      "parent_resource_pointer": null,
+      "requirement_basis": "Owner-selected humanoid embodiment",
+      "candidate_artifacts": [],
+      "discovery_status": "target_model_not_obtained",
+      "candidate_scope_note": "Variant and mounting require review; H2 preview has original rigid wrist meshes, not the selected articulated hands.",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:ROOM",
+      "category": "authored_facility_requirement",
+      "label": "Indoor room shell, floor, doors, thresholds, service and egress routes",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:BENCHES",
+      "category": "authored_facility_requirement",
+      "label": "Assembly, dry instrument and wet calibration benches with rated support and access",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:STORAGE",
+      "category": "authored_facility_requirement",
+      "label": "Identified raw stock, consumables, tools, specimens and rejected-material storage",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:CARRIERS",
+      "category": "authored_facility_requirement",
+      "label": "Supported transport, carts, staging positions and heavy-accessory handling aids",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:FABRICATION",
+      "category": "authored_facility_requirement",
+      "label": "Selected guarded fabrication machines and associated services",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:COATING",
+      "category": "authored_facility_requirement",
+      "label": "Coating/curing station, appropriate containment and extraction",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:UTILITIES",
+      "category": "authored_facility_requirement",
+      "label": "Electrical distribution, grounded outlets, isolation, cable management and controls",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:WET_SERVICES",
+      "category": "authored_facility_requirement",
+      "label": "Bath fill/drain provisions, hose routing and spill control",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:SAFETY",
+      "category": "authored_facility_requirement",
+      "label": "Risk-based emergency access, controls, protective provisions and safety equipment",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:OUTDOOR",
+      "category": "authored_facility_requirement",
+      "label": "Paired outdoor apparatus supports, weather/solar instruments, access and edge protection where relevant",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:WASTE",
+      "category": "authored_facility_requirement",
+      "label": "Material-compatible waste and contaminated consumable storage",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    },
+    {
+      "id": "facility:ROBOT_SERVICE",
+      "category": "authored_facility_requirement",
+      "label": "Robot staging, service and battery/charging provisions under manufacturer requirements",
+      "requirement_basis": "Authored robot-laboratory design requirement; not a claim of the original paper laboratory layout",
+      "candidate_artifacts": [],
+      "discovery_status": "design_and_model_selection_pending",
+      "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
+      "instance_allocation": null,
+      "asset_acceptance": "not_reviewed",
+      "scene_placement": null
+    }
+  ]
+}

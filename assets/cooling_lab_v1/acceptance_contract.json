@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-23",
+  "paper_doi": "10.1038/s41467-018-07293-9",
+  "current_phase": "asset_and_laboratory_scene_development",
+  "sequencing_basis": "Explicit owner instruction: accept all 3D assets and laboratory layout/scenes before developing manipulation steps.",
+  "new_manipulation_development_allowed": false,
+  "allowed_current_work": [
+    "Reconcile all paper resource/asset requirements",
+    "Research exact device and robot resources",
+    "Construct and compare physical-scale assets",
+    "Design indoor/outdoor laboratory scenes",
+    "Evaluate static access, opening sweeps and full-body spatial envelopes",
+    "Prepare safety/design evidence and owner review package"
+  ],
+  "deferred_work": [
+    "New manipulation step/controller development",
+    "New grasping, assembly or full-task execution episodes"
+  ],
+  "existing_task_definitions_role": "Input requirements for assets, interfaces and necessary equipment states during scene development.",
+  "coordinate_convention": {
+    "length": "m",
+    "mass": "kg",
+    "time": "s",
+    "angle": "rad",
+    "handedness": "right",
+    "up_axis": "+Z",
+    "status": "target convention; import transforms must be recorded"
+  },
+  "room": {
+    "mode": "authored_virtual_robot_laboratory_unless_owner_supplies_a_real_site",
+    "dimensions_m": null,
+    "site_jurisdiction": null,
+    "historical_layout_claim": false
+  },
+  "clearance_policy": {
+    "universal_minimum_width_m": null,
+    "decision_rule": "Derive usable space from whole robot/hand/load sweeps, device openings, uncertainty, manufacturer requirements and any applicable site constraints.",
+    "required_envelopes": [
+      "standing",
+      "transit",
+      "turning",
+      "carrying",
+      "bilateral_work",
+      "station_approach_and_departure",
+      "equipment_open_and_service_states",
+      "fault_and_protective_space"
+    ],
+    "current_exact_hand_geometry_available": false,
+    "final_spatial_acceptance": false
+  },
+  "gates": [
+    {
+      "id": "LAB-01",
+      "requirement": "Complete resource decomposition and instance allocation",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "LAB-02",
+      "requirement": "Asset source, identity, scale, structure, appearance and rights review",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "LAB-03",
+      "requirement": "Process zones and supporting infrastructure",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "LAB-04",
+      "requirement": "Dimensioned layout, equipment states and service/support requirements",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "LAB-05",
+      "requirement": "Whole humanoid, hand and carried-load spatial envelope checks",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "LAB-06",
+      "requirement": "Risk register, controls, manufacturer requirements and site applicability",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "LAB-07",
+      "requirement": "Exact-revision interactive scene and comparison evidence",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "LAB-08",
+      "requirement": "Owner acceptance of assets and laboratory scenes",
+      "status": "open",
+      "evidence": []
+    }
+  ],
+  "review_requirements": [
+    "Reconciled inventory",
+    "Per-asset reference/model comparisons",
+    "Dimensioned floor plan",
+    "Interactive full scene",
+    "Station and open-state close-ups",
+    "Spatial measurement/collision report",
+    "Risk and applicability register",
+    "Exact model/scene hashes",
+    "Recorded owner review decision"
+  ],
+  "owner_acceptance": {
+    "decision": "pending",
+    "reviewer": null,
+    "date": null,
+    "reviewed_revision": null,
+    "reviewed_artifact_sha256": {},
+    "evidence": null
+  },
+  "scope": "Asset/scene design acceptance. Does not grant manipulation execution, dynamic robot safety or physical site certification.",
+  "implementation": "Workflow contract for this pilot; no runtime launcher interlock is implemented by this JSON.",
+  "policy_paths": [
+    "docs/contributing/EQUIPMENT_MODELING_STANDARD.md",
+    "docs/contributing/REVIEW_CHECKLIST.md"
+  ]
+}

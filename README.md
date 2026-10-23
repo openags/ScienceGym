@@ -32,6 +32,13 @@ The [conversion workflow](docs/contributing/PAPER_TO_ROBOT_WORKFLOW.md) specifie
 
 ## First reconstruction pilot
 
+**Current milestone: assets and laboratory scenes first.** The owner must
+review and accept the complete asset inventory and laboratory layout before
+new manipulation-sequence development. The scene must provide evidence for
+full-humanoid transit, turning, carrying and bilateral working space, equipment
+access and safe use. See the [scene review gates](docs/contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development)
+and [pilot status](docs/pilots/DIRECTIONAL_COOLING.md#current-focus).
+
 The [Unitree humanoid workbench](simulation/humanoid_v1/index.html) shows the
 official H2 meshes, a continuous 20-second physics recording and five body
 foundation test cases. Both feet support the floating body through contact;
