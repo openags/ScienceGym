@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-23**. Candidate count: **316**.
+Last screened: **2026-10-23**. Candidate count: **317**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3179,3 +3179,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76548-7/MediaObjects/41467_2026_76548_MOESM1_ESM.pdf) was text-accessible. Notes 1–3 were screened. Specimens, observation sites, cycles and detected clusters must remain distinct; selection exclusions and common imaging regions require explicit records. Figure pixels, remaining analyses, reporting summary, supplementary/source-data archives and peer review remain unreviewed.
 - Future scope is prepared nonliving mineral specimens in qualified enclosed microscopy services, retaining specimen identity, scan direction and observation history. Cutting, cleavage, heating, cryogen handling, vacuum-system operation and water-vapor dosing are excluded from the proposed robot-facing scope. No protocol, assets or converted task is supplied.
 - Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: scattering-scene measurement comparisons (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Creation of a computational space with model-free metasurface neural network](https://www.nature.com/articles/s41467-026-74554-3) | Nature Communications / 2026 | 10.1038/s41467-026-74554-3 | Tracking prepared scattering scenes, probe positions and repeated reference measurements suggests a long-horizon apparatus-and-metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 7807, published 20 June 2026 and version of record 5 August 2026. Selected experimental-focusing Results and Methods were screened, not the complete paper. The numerical pattern-recognition branch is distinct from the physical focusing experiments.
+- The [13-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74554-3/MediaObjects/41467_2026_74554_MOESM1_ESM.pdf) was text-accessible. Notes 3–7 were screened for experimental context and limits. Scene identity, probe geometry, configuration history and measurement timing require separate records; repeated optimization steps do not establish independent apparatus preparations. The SI title begins “Creating” rather than “Creation”. Figure pixels, remaining analyses, external datasets, code and peer review remain unreviewed.
+- Future scope is prepared nonliving scatterers and reference scenes in qualified enclosed measurement services. Human-subject localization, tracking people, RF source operation, circuit fabrication and live electrical handling are excluded from the proposed robot-facing scope. No operating protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
