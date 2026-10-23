@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-23**. Candidate count: **318**.
+Last screened: **2026-10-23**. Candidate count: **319**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3200,4 +3200,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Metadata confirms volume 17, article 7175, published 4 June 2026 and version of record 24 July 2026. Selected capillary-flow and micro-compression Results, Fig. 6 captions and characterization Methods were screened, not the complete paper. These physical measurements are distinct from numerical fabrication-limit analyses.
 - The [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73975-4/MediaObjects/41467_2026_73975_MOESM1_ESM.pdf) was text-accessible. Note S15 and captions for S14–S15 were screened. Contact asymmetry and irreversible deformation make specimen orientation and loading history important provenance fields; consecutive observations are not independent specimens. Figure pixels, movies, remaining supplementary analyses and peer review remain unreviewed. This is selected-source screening, not a full-text or supplement audit.
 - Future scope is prepared nonliving lattices and qualified characterization services. Lithography, laser exposure, resist processing, coating, vacuum-system operation and live electrical handling are excluded from the proposed robot-facing scope. No operating protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared-material rheology (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Viscoelasticity-guided covalent assembly of atomically precise nanoclusters via nitrene-mediated two-photon lithography](https://www.nature.com/articles/s41467-026-76504-5) | Nature Communications / 2026 | 10.1038/s41467-026-76504-5 | Prepared-specimen tracking, reference checks and repeated mechanical comparisons suggest a long-horizon materials-metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 9843, published 17 August 2026 and version of record 16 September 2026. Selected rheology Results and rheological-testing Methods were screened, not the complete paper. Physical measurements are distinct from molecular-dynamics calculations and fabrication claims.
+- The [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76504-5/MediaObjects/41467_2026_76504_MOESM1_ESM.pdf) was text-accessible. Captions for Figs. 3–4 and 24–25 were screened. The Fig. 4 caption uses shear-rate terminology whereas the main text describes frequency sweeps; that distinction requires clarification before conversion. Three indentation locations are not three independent specimen preparations. Figure pixels, remaining analyses, videos, supplementary data, source-data spreadsheet, reporting summary and peer review remain unreviewed.
+- Future scope is prepared nonliving specimens and qualified mechanical-characterization services. Sample identity, conditioning history, instrument references and measurement repeats would need explicit records. Nanocluster synthesis, reactive-linker chemistry, lithography, laser exposure, solvent processing, heating and live electrical work are excluded from the proposed robot-facing scope. No operating protocol, assets or converted task is supplied.
 - Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
