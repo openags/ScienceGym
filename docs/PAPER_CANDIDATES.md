@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-23**. Candidate count: **313**.
+Last screened: **2026-10-23**. Candidate count: **314**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3145,4 +3145,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Metadata confirms volume 17, article 6376, published 13 May 2026; version of record 16 July 2026. Selected bending-fatigue Results and mechanical/fatigue-testing Methods were screened, not the complete paper.
 - The [18-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72857-z/MediaObjects/41467_2026_72857_MOESM1_ESM.pdf) was text-accessible. Selected baseline, fixture and before/after-comparison captions (Figures 2, 7 and 10) were screened; figure pixels, remaining analyses, videos, their separate descriptions, source data and peer review remain unreviewed.
 - Future scope is independently prepared nonliving specimens in qualified enclosed mechanical-testing services, retaining treatment provenance, specimen identity and loading history. Cycles are not independent specimens, and run-outs are not measured failure times. Laser shock processing, heating, machining, chemical polishing and ion-beam preparation are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared liquid-crystal optical observation histories (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Self-charged polar nematic monopoles and hybrid topological states: intertwining and domain integration](https://www.nature.com/articles/s41467-026-73557-4) | Nature Communications / 2026 | 10.1038/s41467-026-73557-4 | Prepared-sample tracking and repeated polarization-resolved imaging suggest a long-horizon optical measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 6843, published 26 May 2026; version of record 22 July 2026. Selected Results and optical-characterization Methods were screened, not the complete paper.
+- The [23-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73557-4/MediaObjects/41467_2026_73557_MOESM1_ESM.pdf) was text-accessible. The contents and selected captions for Figures 1–3 were screened: time-lapse observations, analyzer-dependent comparisons and reconstructed orientations. Figure pixels, remaining analyses, supplementary movies, external data and peer review remain unreviewed.
+- Future scope is independently prepared nonliving samples in qualified optical services, retaining sample identity, observation times and imaging configuration. Material synthesis, solvent processing, photolithography, heating and laser manipulation are excluded. No protocol, assets or converted task is supplied. Numerical code is not publicly available according to the article; no code access or reproducibility claim is made.
 - Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
