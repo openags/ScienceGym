@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-23**. Candidate count: **314**.
+Last screened: **2026-10-23**. Candidate count: **315**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3157,3 +3157,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [23-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73557-4/MediaObjects/41467_2026_73557_MOESM1_ESM.pdf) was text-accessible. The contents and selected captions for Figures 1–3 were screened: time-lapse observations, analyzer-dependent comparisons and reconstructed orientations. Figure pixels, remaining analyses, supplementary movies, external data and peer review remain unreviewed.
 - Future scope is independently prepared nonliving samples in qualified optical services, retaining sample identity, observation times and imaging configuration. Material synthesis, solvent processing, photolithography, heating and laser manipulation are excluded. No protocol, assets or converted task is supplied. Numerical code is not publicly available according to the article; no code access or reproducibility claim is made.
 - Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared-nanoscroll microscopy comparisons (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strain-engineered fabrication of high-density aligned graphene-based nanoscrolls via UV-tunable adhesive tapes](https://www.nature.com/articles/s41467-026-78264-8) | Nature Communications / 2026 | 10.1038/s41467-026-78264-8 | Prepared-specimen tracking, registered microscopy and reference comparisons suggest a long-horizon metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 10647, published and version of record 21 October 2026. Selected characterization Results and Methods were screened, not the complete paper.
+- The [31-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-78264-8/MediaObjects/41467_2026_78264_MOESM1_ESM.pdf) was text-accessible. Selected captions for Figures 5, 6, 8, 9 and 14 were screened. Multiple magnifications or positions do not establish independent specimens; the released-tape strain map is explicitly not a residual-strain measurement. The SI retains a different title from the publisher article. Figure pixels, remaining analyses, movies, reporting summary, source-data archive and peer review remain unreviewed.
+- Future scope is independently prepared nonliving specimens in qualified microscopy services, retaining sample identity, preparation provenance and registered observation positions. Synthesis, UV exposure, solvent processing, heating, intercalation, electrical breakdown and ion-beam preparation are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY 4.0; only citation metadata and original screening commentary are added.
