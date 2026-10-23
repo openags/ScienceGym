@@ -8,10 +8,11 @@ import math
 import numpy as np
 from geometry_tools import Geometry, HERE, ROOT, imported_scene, sha, write_json, transform
 from room_architecture import build_room
+from room_details import LaboratoryGeometry
 
-TEAL=[58,111,113]; STEEL=[151,165,170]; WHITE=[225,232,228]
+TEAL=[89,107,112]; STEEL=[151,165,170]; WHITE=[225,232,228]
 DARK=[46,62,67]; WOOD=[164,143,106]; GRAY=[188,198,195]
-g=Geometry(); placements=[]; obstacles=[]; surfaces=[]; states=[]; components=[]
+g=LaboratoryGeometry(); placements=[]; obstacles=[]; surfaces=[]; states=[]; components=[]
 
 
 def component(key,prefixes,resources,support=None,check_separation=False):
@@ -48,12 +49,26 @@ def bench(key,x,y,width=2.4,depth=1.2,height=.85):
         # centre stays open for an approach. Drawer travel is not qualified.
         for side in [-1,1] if width > 2 else [-1]:
             cx=x+side*(width/2-.37);cy=y+.02;cw=.48;cd=depth-.24
-            box(key+'_cabinet_'+str(side),[cw,cd,height-.17],[cx,cy,(height-.17)/2+.10],[195,205,200],'cabinet')
+            for sx in [-1,1]:
+                box(key+'_cabinet_'+str(side)+'_side_'+str(sx),[.018,cd,height-.17],[cx+sx*(cw/2-.009),cy,(height-.17)/2+.10],[208,213,210],'cabinet')
+            box(key+'_cabinet_'+str(side)+'_back',[cw-.036,.018,height-.17],[cx,cy+cd/2-.009,(height-.17)/2+.10],[208,213,210],'cabinet')
+            for z in [.109,height-.079]:
+                box(key+'_cabinet_'+str(side)+'_deck_'+str(z),[cw-.036,cd-.018,.018],[cx,cy-.009,z],[208,213,210],'cabinet')
+            box(key+'_cabinet_'+str(side)+'_recess',[cw-.036,.006,height-.20],[cx,cy-cd/2+.02,(height-.20)/2+.12],[34,42,43],'cabinet')
             box(key+'_plinth_'+str(side),[cw-.06,cd-.06,.10],[cx,cy,.05],DARK,'cabinet')
             for i,(bottom,top) in enumerate([(.12,.37),(.38,.60),(.61,height-.075)]):
                 if top<=bottom:continue
-                box(key+'_drawer_'+str(side)+'_'+str(i),[cw-.018,.018,top-bottom],[cx,cy-cd/2-.012,(bottom+top)/2],[163,181,178],'cabinet')
+                box(key+'_drawer_'+str(side)+'_'+str(i),[cw-.018,.018,top-bottom],[cx,cy-cd/2-.012,(bottom+top)/2],[208,213,210],'cabinet')
                 g.tube(key+'_handle_'+str(side)+'_'+str(i),[[cx-.12,cy-cd/2-.025,top-.05],[cx-.12,cy-cd/2-.05,top-.05],[cx+.12,cy-cd/2-.05,top-.05],[cx+.12,cy-cd/2-.025,top-.05]],.007,[77,95,98])
+                for dx in [-.12,.12]:
+                    g.cylinder(key+'_handle_rosette_'+str(side)+'_'+str(i)+'_'+str(dx),.012,.004,[cx+dx,cy-cd/2-.024,top-.05],[167,174,177],axis=(0,1,0),metal=.85)
+                g.screw(key+'_drawer_screw_'+str(side)+'_'+str(i),[cx+cw/2-.035,cy-cd/2-.022,top-.04],.0025)
+
+    box(key+'_upper_back_rail',[width-.14,.04,.07],[x,y+depth/2-.1,height-.09],TEAL)
+    for xx in [x-width/2+.1,x+width/2-.1]:
+        for yy in [y-depth/2+.1,y+depth/2-.1]:
+            g.cylinder(key+'_leveling_bolt_'+str(xx)+'_'+str(yy),.012,.045,[xx,yy,.0475],[157,163,166],metal=.9)
+            g.screw(key+'_frame_screw_'+str(xx)+'_'+str(yy),[xx,yy-.031,height-.12],.0045)
     surfaces.append(dict(id=key,xy_bounds_m=[x-width/2,y-depth/2,x+width/2,y+depth/2],top_m=height,
                          load_rating_kg=None,basis='Authored furniture; load capacity requires structural review'))
     obstacle(key,[[x-width/2,y-depth/2,0],[x+width/2,y+depth/2,height]],'bench_conservative_occupied_volume')
@@ -225,7 +240,7 @@ def build():
       dict(id='outdoor',label='开放测量区 · 12 × 8 m',bounds_m=[0,12,12,20],color='#d4e3d5')]
     manifest=dict(schema_version=1,status='scene_draft_for_review_not_accepted',units='m',axes='+Z up; +X right; +Y plan up',
       coordinate_basis='Authored room layout; not the historical laboratory. Real assets imported without scale changes.',
-      architecture=architecture,room_design=room,room_builder_sha256=sha(HERE/'room_architecture.py'),assets=placements,authored_components=components,zones=zones,obstacles=obstacles,support_surfaces=surfaces,
+      architecture=architecture,room_design=room,room_builder_sha256=sha(HERE/'room_architecture.py'),room_details_sha256=sha(HERE/'room_details.py'),assets=placements,authored_components=components,zones=zones,obstacles=obstacles,support_surfaces=surfaces,
       reference_comparisons={
         'eko_ms56':dict(dimensions_label='轴向 217 mm；筒体 Ø55 mm；腰部 Ø38 mm',model_scope='模型包围盒包含雨帽与接头，不能拿总包围盒代替筒体直径；轮廓转折和小零件含推断。',sources=[dict(label='厂家手册 · PDF 第 21 页尺寸图',url='https://dex.cz/uploads/2017/04/ms-56_manual.pdf#page=21')]),
         'eko_ms402':dict(dimensions_label='遮阳罩 Ø160 mm；总高 108 mm；支脚 16 mm',model_scope='采用无通风 MS-402；罩壳、双玻璃穹顶和调平脚分件，局部曲面含推断。',sources=[dict(label='厂家手册 · PDF 第 24 页尺寸图',url='https://dex.cz/uploads/2017/05/Pyranometer_Manual_MS.pdf#page=24')]),

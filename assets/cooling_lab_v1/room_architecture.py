@@ -26,7 +26,7 @@ def build_room(g, box, obstacle):
     # Fine-grain seamless resin surface; generated from a fixed random seed.
     rng = np.random.default_rng(2018)
     grain = rng.normal(0, 1.7, (512, 512, 1))
-    pixels = np.clip(np.array([180, 190, 188]) + grain, 0, 255).astype('uint8')
+    pixels = np.clip(np.array([150, 160, 157]) + grain, 0, 255).astype('uint8')
     floor_texture = Image.fromarray(pixels)
     for name, size, pos in [('indoor_floor', [12, 10, .12], [6, 5, -.06]),
                             ('annex_floor', [6, 10, .12], [-3, 5, -.06]),
@@ -35,7 +35,7 @@ def build_room(g, box, obstacle):
         if name in ['indoor_floor','annex_floor']:size=[size[0]+.2,size[1]+.2,size[2]]
         mesh = g.box(name, size, pos, [188, 198, 194], 'floor')
         mesh.visual = trimesh.visual.TextureVisuals(uv=mesh.vertices[:, :2] / 1.5,
-            material=PBRMaterial(baseColorTexture=floor_texture, roughnessFactor=.83, metallicFactor=0))
+            material=PBRMaterial(baseColorTexture=floor_texture, roughnessFactor=.58, metallicFactor=0))
 
     # Each opening is expressed along the wall's horizontal local coordinate.
     def wall(name, a, b, openings=()):
@@ -70,6 +70,10 @@ def build_room(g, box, obstacle):
                 window_part('horizontal_'+str(j), hi-lo, .15, .05, (lo+hi)/2, z, FRAME)
             for j, along in enumerate([lo+.025, (lo+hi)/2, hi-.025]):
                 window_part('mullion_'+str(j), .05, .15, head-sill, along, (sill+head)/2, FRAME)
+            for j,along in enumerate([lo+.057,hi-.057]):
+                window_part('gasket_vertical_'+str(j),.012,.155,head-sill-.09,along,(sill+head)/2,[55,63,64])
+            for j,z in enumerate([sill+.057,head-.057]):
+                window_part('gasket_horizontal_'+str(j),hi-lo-.09,.155,.012,(lo+hi)/2,z,[55,63,64])
             window_part('glass', hi-lo-.07, .012, head-sill-.07, (lo+hi)/2, (sill+head)/2, [187, 217, 225], 55)
             window_part('sill', hi-lo+.03, .19, .025, (lo+hi)/2, sill, [197, 204, 202])
             window_part('blind_housing', hi-lo, .18, .07, (lo+hi)/2, head-.035, [208, 214, 209])
@@ -110,28 +114,57 @@ def build_room(g, box, obstacle):
             glass = g.box('door_'+name+'_'+str(side)+'_glass',dims(.012,.64,.8),mapped(side*1.025,-.66,1.45),[165,201,208],'door_glass',alpha=65)
             obstacle('door_'+name+'_'+str(side)+'_glass',glass.bounds.tolist(),'door_glass')
             for z in [.27,1.1,1.95]:
-                door_part(str(side)+'_hinge_'+str(z),dims(.055,.035,.10),mapped(side*1.032,-.225,z),TRIM)
+                hinge=g.cylinder('door_'+name+'_'+str(side)+'_hinge_'+str(z),.012,.10,mapped(side*1.032,-.225,z),[168,176,179],metal=.85)
+                obstacle('door_'+name+'_'+str(side)+'_hinge_'+str(z),hinge.bounds.tolist(),'door_open')
+                door_part(str(side)+'_hinge_plate_'+str(z),dims(.004,.065,.09),mapped(side*1.05,-.25,z),FRAME)
             # Handles project away from the opening, preserving registered clearance.
             door_part(str(side)+'_handle',dims(.035,.18,.025),mapped(side*1.073,-.99,1.0),[179,185,183])
+            normal=(side,0,0) if axis=='x' else (0,side,0)
+            for j,depth in enumerate([-.925,-1.055]):
+                for suffix,r,length,along in [('rosette',.022,.006,1.052),('stem',.009,.040,1.075)]:
+                    handle=g.cylinder('door_'+name+'_'+str(side)+'_handle_'+str(j)+'_'+suffix,r,length,mapped(side*along,depth,1.0),[174,181,184],axis=normal,metal=.85)
+                    obstacle('door_'+name+'_'+str(side)+'_handle_'+str(j)+'_'+suffix,handle.bounds.tolist(),'door_open')
             door_part(str(side)+'_kickplate',dims(.004,.88,.23),mapped(side*1.05,-.66,.17),FRAME)
 
-    # Suspended sealed panel ceiling with an actual underside, border and grid.
-    # Grid is expressed at 1.2 m modules and 0.6 m short-side panel divisions.
-    for name, xmin,xmax,ymin,ymax in [('main',0,12,0,10),('fab',-6,0,0,5),('coat',-6,0,5,10)]:
-        solid('ceiling_'+name+'_slab',[xmax-xmin+.16,ymax-ymin+.16,.07],[(xmin+xmax)/2,(ymin+ymax)/2,3.365],[234,235,226],'ceiling')
-        for i,x in enumerate(np.arange(xmin+.6,xmax,.6)):
-            solid('ceiling_'+name+'_grid_x_'+str(i),[.012,ymax-ymin,.012],[x,(ymin+ymax)/2,3.324],[199,207,202],'ceiling')
-        for i,y in enumerate(np.arange(ymin+1.2,ymax,1.2)):
-            solid('ceiling_'+name+'_grid_y_'+str(i),[xmax-xmin,.012,.012],[(xmin+xmax)/2,y,3.324],[199,207,202],'ceiling')
-        for i,(x,y) in enumerate([(xmin+(xmax-xmin)*a,ymin+(ymax-ymin)*b) for a in [.25,.75] for b in [.2,.5,.8]]):
-            solid('light_'+name+'_'+str(i)+'_frame',[1.22,.62,.035],[x,y,3.305],FRAME,'ceiling_fixture')
-            mesh=solid('light_'+name+'_'+str(i)+'_diffuser',[1.16,.56,.012],[x,y,3.282],[248,249,238],'ceiling_fixture')
-            mesh.visual.material.emissiveFactor=[.75,.77,.68]
-        for i,y in enumerate([ymin+.75,ymax-.75]):
-            x=(xmin+xmax)/2
-            solid('ceiling_'+name+'_vent_'+str(i),[.60,.60,.04],[x,y,3.30],[157,169,168],'ceiling_fixture')
-            for j in range(7):
-                solid('ceiling_'+name+'_vent_'+str(i)+'_slat_'+str(j),[.53,.025,.018],[x,y-.24+j*.08,3.272],[215,220,213],'ceiling_fixture')
+    # Actual 600 x 1200 mm infill cells: fixtures replace infill panels and
+    # share their edges with the suspension grid. Cut border panels close gaps.
+    light_positions=[];ceiling_panels=0
+    for name,xmin,xmax,ymin,ymax in [('main',0,12,0,10),('fab',-6,0,0,5),('coat',-6,0,5,10)]:
+        solid('ceiling_'+name+'_plenum',[xmax-xmin+.16,ymax-ymin+.16,.025],[(xmin+xmax)/2,(ymin+ymax)/2,3.3875],[106,114,111],'ceiling')
+        xc=np.append(np.arange(xmin,xmax-.001,.6),xmax);yc=np.append(np.arange(ymin,ymax-.001,1.2),ymax)
+        lights={(4,1),(15,1),(4,4),(15,4),(4,6),(15,6)} if name=='main' else {(2,1),(7,2)}
+        vents={(9,0),(9,7)} if name=='main' else {(4,0),(4,3)}
+        for i,(x0,x1) in enumerate(zip(xc[:-1],xc[1:])):
+            for j,(y0,y1) in enumerate(zip(yc[:-1],yc[1:])):
+                x=(x0+x1)/2;y=(y0+y1)/2;w=x1-x0;d=y1-y0;prefix='ceiling_'+name+'_'+str(i)+'_'+str(j)
+                if (i,j) in lights:
+                    light='light_'+name+'_'+str(i)+'_'+str(j)
+                    # A frame around an open aperture, rather than a box with
+                    # a coplanar luminous face (which causes z-fighting).
+                    for side in [-1,1]:
+                        solid(light+'_frame_x_'+str(side),[.022,d-.004,.030],[x+side*(w/2-.013),y,3.325],FRAME,'ceiling_fixture')
+                        solid(light+'_frame_y_'+str(side),[w-.048,.022,.030],[x,y+side*(d/2-.013),3.325],FRAME,'ceiling_fixture')
+                    solid(light+'_housing',[w-.008,d-.008,.010],[x,y,3.351],[119,129,127],'ceiling_fixture')
+                    mesh=solid('light_'+name+'_'+str(i)+'_'+str(j)+'_diffuser',[w-.05,d-.05,.008],[x,y,3.314],[246,246,235],'ceiling_fixture')
+                    mesh.visual.material.emissiveFactor=[.85,.83,.77]
+                    light_positions.append([round(x,3),round(y,3),3.20])
+                elif (i,j) in vents:
+                    solid(prefix+'_vent_frame',[w-.004,d-.004,.035],[x,y,3.325],FRAME,'ceiling_fixture')
+                    solid(prefix+'_vent_recess',[w-.045,d-.045,.004],[x,y,3.305],[47,54,54],'ceiling_fixture')
+                    for k,yy in enumerate(np.arange(y0+.055,y1-.03,.07)):
+                        solid(prefix+'_vent_louver_'+str(k),[w-.07,.022,.016],[x,yy,3.30],[197,204,202],'ceiling_fixture')
+                else:
+                    shade=int((i*7+j*3)%5)-2
+                    solid(prefix+'_tile',[w-.006,d-.006,.018],[x,y,3.339],[227+shade,230+shade,223+shade],'ceiling')
+                    ceiling_panels+=1
+        for i,x in enumerate(xc):
+            solid('ceiling_'+name+'_grid_x_'+str(i),[.014,ymax-ymin,.012],[x,(ymin+ymax)/2,3.324],[198,205,201],'ceiling')
+        for j,y in enumerate(yc):
+            solid('ceiling_'+name+'_grid_y_'+str(j),[xmax-xmin,.014,.012],[(xmin+xmax)/2,y,3.324],[198,205,201],'ceiling')
+        for x in [xmin+.012,xmax-.012]:
+            solid('ceiling_'+name+'_perimeter_x_'+str(x),[.024,ymax-ymin,.035],[x,(ymin+ymax)/2,3.315],FRAME,'ceiling')
+        for y in [ymin+.012,ymax-.012]:
+            solid('ceiling_'+name+'_perimeter_y_'+str(y),[xmax-xmin,.024,.035],[(xmin+xmax)/2,y,3.315],FRAME,'ceiling')
 
     # Wall-mounted capped service raceways; no fabricated live connections.
     for name,x0,x1,y in [('north_left',.25,4.6,10.0),('north_right',7.4,11.8,10.0),('fabrication',-5.8,-.25,4.9),('coating',-5.8,-.25,9.99)]:
@@ -151,7 +184,8 @@ def build_room(g, box, obstacle):
         draw.text((image.width/2,96),text,font=font,fill=(228,237,226),anchor='mm')
         label.visual.material.baseColorTexture=image
 
-    return dict(ceiling_underside_m=3.33,lowest_ceiling_fixture_m=3.263,
+    return dict(ceiling_underside_m=3.33,lowest_ceiling_fixture_m=3.292,
+        light_positions_m=light_positions,ceiling_infill_panels=ceiling_panels,ceiling_module_m=[.6,1.2],
         nominal_door_clear_height_m=2.2,window_openings=sum(len(s[3]) for s in segments),
         design_status='Original architectural candidate; not historical reconstruction or engineered services',
         walk_camera_eye_height_m=1.65)

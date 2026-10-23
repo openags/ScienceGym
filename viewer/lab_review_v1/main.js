@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {batchStaticMeshes} from './render_batches.js';
 
 const $=id=>document.getElementById(id),root='../../',folder=root+'assets/cooling_lab_v1/';
 const fetchedHashes=new Map();
@@ -11,6 +13,8 @@ const camera=new THREE.PerspectiveCamera(42,1,.02,200);camera.up.set(0,0,1);
 const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+const pmrem=new THREE.PMREMGenerator(renderer),reflectionRoom=new RoomEnvironment();
+scene.environment=pmrem.fromScene(reflectionRoom,.04).texture;scene.environmentIntensity=.32;scene.environmentRotation.x=Math.PI/2;reflectionRoom.dispose();pmrem.dispose();
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
 $('viewport').prepend(renderer.domElement);
 renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','实验室三维视图，室内模式可用方向键移动视点');
@@ -23,17 +27,20 @@ const keyLight=new THREE.DirectionalLight(0xfff8e8,1.8);keyLight.position.set(10
 Object.assign(keyLight.shadow.camera,{left:-20,right:20,top:20,bottom:-20,near:.5,far:65});keyLight.shadow.mapSize.set(2048,2048);keyLight.shadow.normalBias=.008;keyLight.shadow.bias=-.0001;scene.add(keyLight,keyLight.target);
 const fillLight=new THREE.DirectionalLight(0xe5f1ff,.22);fillLight.position.set(-10,9,13);scene.add(fillLight);
 const roomLights=new THREE.Group();scene.add(roomLights);
-for(const [x,y] of [[3,2],[9,2],[3,5],[9,5],[3,8],[9,8],[-3,2.5],[-3,7.5]]){
- const lamp=new THREE.PointLight(0xfff6e9,1.3,14,2);lamp.position.set(x,y,3.13);roomLights.add(lamp);
-}
-for(const [x,y] of [[4,3],[8,8]]){
- const lamp=new THREE.SpotLight(0xfffaf0,30,18,1.25,.75,2);lamp.position.set(x,y,3.16);lamp.target.position.set(x,y,0);lamp.castShadow=true;
- lamp.shadow.mapSize.set(1024,1024);lamp.shadow.bias=-.0003;lamp.shadow.normalBias=.006;lamp.shadow.camera.near=.1;
- roomLights.add(lamp,lamp.target);
+function installRoomLights(){
+ const positions=manifest.room_design.light_positions_m;
+ for(const [i,p] of positions.entries()){
+  const lamp=new THREE.SpotLight(0xfff7ec,p[0]<0?23:30,17,1.24,.78,2);
+  lamp.position.set(...p);lamp.target.position.set(p[0],p[1],0);
+  lamp.castShadow=[0,3,4,6,8].includes(i);lamp.shadow.mapSize.set(p[0]<0?512:1024,p[0]<0?512:1024);
+  lamp.shadow.bias=-.0002;lamp.shadow.normalBias=.003;lamp.shadow.camera.near=.12;
+  roomLights.add(lamp,lamp.target);
+ }
+ document.documentElement.dataset.roomLightCount=positions.length;
 }
 const overlays=new THREE.Group(),labels=new THREE.Group(),measurements=new THREE.Group();scene.add(overlays,labels,measurements);
 let architecture,manifest,inventory,risks,report,bodyReport,selected=null,measureMode=false,measurePoints=[],pointerStart;
-const groups=new Map(),states=new Map(),assetList=[];
+const groups=new Map(),states=new Map(),assetList=[],renderBatches=[];
 const loader=new GLTFLoader();
 const loadPinned=async(path,expected)=>{const r=await fetch(root+path+'?revision='+expected);if(!r.ok)throw Error(path+' HTTP '+r.status);const buffer=await r.arrayBuffer();if(await digest(buffer)!==expected)throw Error(path+' 的模型哈希与当前场景不一致');return loader.parseAsync(buffer,new URL(root+path,location.href).href)};
 const textSprite=(text,color='#164a42',scale=1)=>{
@@ -52,7 +59,7 @@ const setView=(pos,target,inside=false)=>{
  $('scene-caption').textContent=inside?'室内视点 · 拖动环顾 · 方向键 / WASD 移动 · 滚轮调视野':'剖切 / 资产视图 · 拖动旋转 · 滚轮缩放 · 点击设备查看来源';
  recordCamera();requestRender();
 };
-const views={all:[[19,-13,22],[3.1,9.5,0]],indoor:[[7.4,.7,1.65],[4.8,8.7,1.25],true],rear:[[6.9,9.3,1.65],[5.5,1.8,1.3],true],outdoor:[[16,7,12],[6,16,.4]],optics:[[7,6.9,1.65],[9.3,8.8,1.25],true],wet:[[5.4,4.1,1.65],[1.8,5.9,1.1],true],annex:[[-.9,1,1.65],[-4.4,3.5,1.35],true],coating:[[-1,5.8,1.65],[-4.4,8.5,1.4],true],top:[[3,9.5,32],[3,9.5,0]]};
+const views={all:[[19,-13,22],[3.1,9.5,0]],indoor:[[7.4,.7,1.65],[4.8,8.7,1.25],true],details:[[4.5,1.4,1.65],[2.65,3,.75],true],rear:[[6.9,9.3,1.65],[5.5,1.8,1.3],true],outdoor:[[16,7,12],[6,16,.4]],optics:[[7,6.9,1.65],[9.3,8.8,1.25],true],wet:[[5.4,4.1,1.65],[1.8,5.9,1.1],true],annex:[[-.9,1,1.65],[-4.4,3.5,1.35],true],coating:[[-1,5.8,1.65],[-4.4,8.5,1.4],true],top:[[3,9.5,32],[3,9.5,0]]};
 setView(...views.indoor);document.documentElement.dataset.view='indoor';
 const resize=()=>{const w=$('viewport').clientWidth,h=$('viewport').clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();requestRender()};new ResizeObserver(resize).observe($('viewport'));resize();
 function resetStates(){for(const state of states.values())for(const item of state.parts){item.node.position.copy(item.position);item.node.quaternion.copy(item.quaternion)}renderer.shadowMap.needsUpdate=true;requestRender()}
@@ -153,17 +160,32 @@ try{
  if(report.scene_sha256!==fetchedHashes.get(folder+'scene.json')||inventory.scene_artifact.sha256!==report.scene_sha256)throw Error('场景版本与几何检查 / 清单记录不一致，请重新生成检查');
  if(manifest.envelope.body_evidence.sha256!==fetchedHashes.get(folder+'body_envelope.json'))throw Error('H2 空间测量记录与场景版本不一致');
  $('body-envelope').textContent='已有 H2 记录中：收臂姿态外接半径 '+bodyReport.standing.radial_extent_m.toFixed(3)+' m；'+bodyReport.samples+' 个姿态样本最大 '+bodyReport.maximum_sampled.radial_extent_m.toFixed(3)+' m。当前用 0.65 m 半径另加 0.10 m 设计余量检查通道。此结果不包含 Dex5-S Pro、携物和行走。';
+ installRoomLights();
  assetList.push(...manifest.assets);$('asset-count').textContent=assetList.length;
  const present=inventory.items.filter(i=>i.scene_instances?.length||i.authored_scene_components?.length).length;$('inventory-coverage').textContent='部分几何 '+present+'/'+inventory.items.length+' 项；其余 '+(inventory.items.length-present)+' 项尚缺';
  // GLTFLoader sanitizes names containing dots; preserve the original identifiers
  // used by the independently checked state manifest.
- const prepare=model=>model.scene.traverse(node=>{const association=model.parser.associations.get(node);const original=association?.nodes===undefined?null:model.parser.json.nodes[association.nodes]?.name;if(original)node.name=original;if(node.isMesh){node.castShadow=true;node.receiveShadow=true}});
+ let repairedNormals=0;
+ const prepare=model=>model.scene.traverse(node=>{const association=model.parser.associations.get(node);const original=association?.nodes===undefined?null:model.parser.json.nodes[association.nodes]?.name;if(original)node.name=original;if(node.isMesh){
+   // Trimesh exports can omit NORMAL. GLTFLoader's flat shading masks that
+   // omission visually, but a normal-bias shadow coordinate can become invalid.
+   // Expand only absent-normal meshes; face positions and source bytes stay intact.
+   if(!node.geometry.attributes.normal){if(node.geometry.index)node.geometry=node.geometry.toNonIndexed();node.geometry.computeVertexNormals();repairedNormals++}
+   for(const m of (Array.isArray(node.material)?node.material:[node.material])){
+    for(const map of [m.map,m.normalMap,m.roughnessMap,m.metalnessMap])if(map)map.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+   }
+   node.castShadow=true;node.receiveShadow=true
+  }});
  const built=await loadPinned(manifest.architecture.path,manifest.architecture.sha256);prepare(built);architecture=built.scene;
  const architectureParts=new Map(manifest.architecture.part_records.map(p=>[p.id,p]));
  architecture.traverse(node=>{if(!node.isMesh)return;const part=architectureParts.get(node.name);node.userData.cutaway=part&&(['wall_upper','window','ceiling','ceiling_fixture','identification_label'].includes(part.role)||node.name.startsWith('door_'));if(node.material?.transparent)node.castShadow=false});
+ renderBatches.push({id:'architecture',...batchStaticMeshes(architecture)});
  scene.add(architecture);visibility();
- for(let i=0;i<assetList.length;i+=3){await Promise.all(assetList.slice(i,i+3).map(async a=>{const model=await loadPinned(a.geometry,a.geometry_sha256);prepare(model);const group=model.scene;group.position.set(...a.position_m);group.traverse(o=>{if(o.isMesh)o.userData.assetId=a.id});groups.set(a.id,group);scene.add(group);const option=document.createElement('option');option.value=a.id;option.textContent=a.label;$('asset-select').append(option)}));$('loading').textContent='载入模型 '+Math.min(i+3,assetList.length)+' / '+assetList.length}
+ for(let i=0;i<assetList.length;i+=3){await Promise.all(assetList.slice(i,i+3).map(async a=>{const model=await loadPinned(a.geometry,a.geometry_sha256);prepare(model);const group=model.scene;const protectedParts=new Set(manifest.inspection_states.filter(s=>s.asset===a.id).flatMap(s=>s.parts));renderBatches.push({id:a.id,...batchStaticMeshes(group,protectedParts)});group.position.set(...a.position_m);group.traverse(o=>{if(o.isMesh)o.userData.assetId=a.id});groups.set(a.id,group);scene.add(group);const option=document.createElement('option');option.value=a.id;option.textContent=a.label;$('asset-select').append(option)}));$('loading').textContent='载入模型 '+Math.min(i+3,assetList.length)+' / '+assetList.length}
  for(const config of manifest.inspection_states){const group=groups.get(config.asset),asset=assetList.find(a=>a.id===config.asset);const parts=[];group.traverse(node=>{if(config.parts.includes(node.name))parts.push({node,position:node.position.clone(),quaternion:node.quaternion.clone()})});if(parts.length!==config.parts.length)throw Error(config.id+' 的开闭部件未完整匹配');const p=config.pivot_m||[0,0,0];const n=asset.normalization_matrix;states.set(config.id,{config,parts,pivot:new THREE.Vector3(p[0]+n[0][3],p[1]+n[1][3],p[2]+n[2][3])})}
+ document.documentElement.dataset.normalRepairs=repairedNormals;
+ document.documentElement.dataset.renderBatches=JSON.stringify(renderBatches);
+ document.documentElement.dataset.geometryPreserved=String(renderBatches.every(b=>b.sourceGeometryPreserved));
  buildOverlays();visibility();renderInventory();
  for(const c of report.routes){const tr=document.createElement('tr');for(const text of [c.label,c.declared_width_m.toFixed(1)+' m',c.provisional_transit_clear&&c.declared_corridor_clear?'几何通过':'存在冲突']){const td=document.createElement('td');td.textContent=text;tr.append(td)}$('route-table').append(tr)}
  for(const risk of risks.items){const d=document.createElement('div');d.className='risk-card';const h=document.createElement('h3');h.textContent=risk.title;const status=document.createElement('strong');status.textContent=risk.status_label;const current=document.createElement('p');current.textContent=risk.current_design;const missing=document.createElement('p');missing.textContent='待完成：'+risk.remaining;d.append(h,status,current,missing);$('risks').append(d)}

@@ -59,8 +59,8 @@ unqualified extraction/control designs. These are not load-rated commercial
 furniture or certified engineering services. No owner acceptance is recorded.
 
 The room shell now includes six actual glazed wall openings, framed double-door
-portals with wall headers, a continuous 3.33 m ceiling underside with panel grid,
-recessed lights and diffuser grilles, wall raceways with capped service plates,
+portals with wall headers, 600 × 1200 mm ceiling infill panels at a 3.33 m
+underside, recessed lights and diffuser grilles replacing selected grid cells, wall raceways with capped service plates,
 and bench cabinet pedestals. Floor texture and signs are original generated
 assets. These are authored design details; the lights and grilles do not
 constitute an illumination or ventilation design. Door geometry and overhead
@@ -70,6 +70,26 @@ are checked against a 2.10 m standing-height probe; the lowest door header is
 look, use arrows/WASD to move the observation point, or choose a room preset.
 Viewpoint collision guards only prevent browsing through registered obstacles;
 they are not a robot navigation controller or whole-body motion validation.
+
+Furniture now has 1.5 mm edge breaks (2 mm at worktops), separate cabinet
+carcass panels and drawer gaps, handle rosettes, screw heads, leveling bolts
+and rubber feet. Windows have glazing beads; door handles have standoffs and
+hinge barrels. These details preserve the declared outer furniture dimensions.
+The authored sRGB palette is converted to linear glTF colour factors. Seeded
+normal and metallic/roughness maps distinguish resin, paint, rubber and brushed
+metal appearances; they are visual design choices, not measured material or
+chemical-resistance data. See the [appearance review](../../assets/cooling_lab_v1/appearance_review.json)
+for provenance, manufacturer-photo spot checks and remaining discrepancies.
+
+The renderer recovers missing normals without changing triangle positions.
+This fixes absent received shadows on imported geometry. Approximate indoor
+reflection lighting and fixture-positioned preview lamps improve surface
+readability; they are not a photometric reproduction. Renderer-only batching
+reduces 4,007 mesh draws to 276 while checking unchanged triangle counts and
+bounds (tolerance 1e-5 m). Independently movable covers retain their original
+node identifiers. The [pixel regression](../../viewer/lab_review_v1/RENDER_VERIFICATION.json)
+compares shadow reception on/off under unchanged lighting and confirms the
+original view is restored. These images and checks do not establish fidelity.
 
 The main indoor area is 12 × 10 m; fabrication and coating annexes are each
 6 × 5 m; an open ground-level measurement area is 12 × 8 m. This is a proposed
@@ -112,6 +132,7 @@ python assets/cooling_lab_v1/validate_review.py
 python simulation/cooling_v1/serve.py --port 8769
 # In a second terminal, substitute the installed Chromium path:
 python viewer/lab_review_v1/check_browser.py --browser /path/to/chromium
+python viewer/lab_review_v1/check_rendering.py --browser /path/to/chromium
 ```
 
 The validator deliberately lowers a header into the standing envelope, blocks

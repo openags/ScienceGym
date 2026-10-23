@@ -51,7 +51,11 @@ requirements inventory. The 84 layout checks and 401 recorded H2 body-pose
 measurements are bounded geometric evidence, not full-body operation or safety
 qualification. The default 1.65 m interior viewpoint supports drag-to-look and
 arrow-key/WASD movement; cutaway and plan views remain available for layout
-inspection. Viewpoint navigation is not robot motion. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
+inspection. Viewpoint navigation is not robot motion. A detail view now exposes chamfered
+worktops, separate drawer fronts, handle mounts and leveling feet. Authored
+finishes use separate colour, normal and roughness/metalness channels; missing
+mesh normals are recovered for visible receiver shadows. Static render batching
+preserves the source triangles, dimensions and movable inspection parts. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
 `http://localhost:8769/viewer/lab_review_v1/index.html`.
 
 [![Authored laboratory layout for asset and space review](viewer/lab_review_v1/evidence/overview.png)](viewer/lab_review_v1/index.html)

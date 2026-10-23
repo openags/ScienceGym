@@ -94,12 +94,12 @@ def review():
     contract['current_scene']={'path':'assets/cooling_lab_v1/scene.json','sha256':sha(HERE/'scene.json'),'status':'draft_not_accepted'}
     evidence={
         'LAB-01':['assets/cooling_lab_v1/inventory.json'],
-        'LAB-02':['assets/cooling_lab_v1/outdoor_assets.json','assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/resource_followup.json'],
+        'LAB-02':['assets/cooling_lab_v1/outdoor_assets.json','assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/resource_followup.json','assets/cooling_lab_v1/appearance_review.json'],
         'LAB-03':['assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/risk_register.json'],
         'LAB-04':['assets/cooling_lab_v1/floorplan.svg','assets/cooling_lab_v1/layout_checks.json'],
         'LAB-05':['assets/cooling_lab_v1/layout_checks.json','assets/cooling_lab_v1/body_envelope.json'],
         'LAB-06':['assets/cooling_lab_v1/risk_register.json'],
-        'LAB-07':['viewer/lab_review_v1/index.html','assets/cooling_lab_v1/scene.json'],
+        'LAB-07':['viewer/lab_review_v1/index.html','viewer/lab_review_v1/main.js','viewer/lab_review_v1/render_batches.js','assets/cooling_lab_v1/scene.json'],
         'LAB-08':[]}
     for gate in contract['gates']:
         gate['evidence']=[dict(path=p,sha256=sha(ROOT/p),scope='Partial evidence; gate remains open') for p in evidence[gate['id']]]

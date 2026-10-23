@@ -28,6 +28,7 @@ def validate():
         for candidate in row['candidate_artifacts']:
             check('candidate_'+row['id']+'_'+candidate['path'],sha(ROOT/candidate['path'])==candidate['sha256'])
     check('inventory_count',len(inventory['items'])==inventory['required_records']==60)
+    check('room_details_pinned',scene['room_details_sha256']==sha(HERE/'room_details.py'))
     check('room_builder_pinned',scene['room_builder_sha256']==sha(HERE/'room_architecture.py'))
     check('current_scene_pinned',contract['current_scene']['sha256']==sha(HERE/'scene.json'))
     check('no_inferred_owner_acceptance',contract['owner_acceptance']['decision']=='pending' and all(g['status']=='open' for g in contract['gates']))

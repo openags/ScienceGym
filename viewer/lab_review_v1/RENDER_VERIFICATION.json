@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "batch_geometry_preserved",
+      "passed": true,
+      "before_meshes": 4007,
+      "after_meshes": 276
+    },
+    {
+      "name": "absent_normals_recovered",
+      "passed": true,
+      "mesh_count": 4007
+    },
+    {
+      "name": "all_scene_meshes_have_finite_normals",
+      "passed": true,
+      "total": 276,
+      "missing": 0,
+      "nonfinite": 0
+    },
+    {
+      "name": "receiver_shadows_visible_on_floor_and_supports",
+      "passed": true,
+      "changed_pixels": 240902,
+      "threshold_per_channel": 12
+    },
+    {
+      "name": "rendering_restored_after_probe",
+      "passed": true
+    },
+    {
+      "name": "no_rendering_errors",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "captures": [
+    {
+      "path": "viewer/lab_review_v1/evidence/receiver_shadows_on.png",
+      "sha256": "f092d7fa8cc40550ed91f962074de3992d1cb3138ff269ad1092ef36f92f2d87"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/receiver_shadows_off.png",
+      "sha256": "94d3b84128f2c1d851361d2a4b2327bb77d3000e1ff52f9304d9f64176fdbf2d"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/receiver_shadows_restored.png",
+      "sha256": "f092d7fa8cc40550ed91f962074de3992d1cb3138ff269ad1092ef36f92f2d87"
+    }
+  ],
+  "browser": "131.0.6778.204",
+  "source_files": [
+    {
+      "path": "viewer/lab_review_v1/main.js",
+      "sha256": "23e6e5cc98522b8ee7030982d226c123e366672700004bbac526b3caa38d19ad"
+    },
+    {
+      "path": "viewer/lab_review_v1/check_rendering.py",
+      "sha256": "8c3d1bbd18a6e0d03edddcca5b19da650990402e45f901d9e9690d1a59cb1e04"
+    },
+    {
+      "path": "viewer/lab_review_v1/render_batches.js",
+      "sha256": "5313956a12f6ba350a9dda2ccd1a0694cdb42dc9b5e9920b145508e82e02620a"
+    },
+    {
+      "path": "assets/cooling_lab_v1/scene.json",
+      "sha256": "9a7aa9f4f182eccd9c82dd061f5209c1ce11c174197e313cb47bda2b5e45f211"
+    },
+    {
+      "path": "assets/cooling_lab_v1/room_details.py",
+      "sha256": "e3e0194ca03073304997a4bafab1dd8e6cb2015cbeb80d24cb3a80a2127e33ec"
+    }
+  ],
+  "test_hook_sha256": "f6b28a63f2057b12ca82928b02eda4b2f36d9b1938284b0cfd83aac207c47fa5",
+  "scope": "On/off receiver-shadow pixel comparison in the real renderer; not photometric, product-fidelity or safety acceptance"
+}

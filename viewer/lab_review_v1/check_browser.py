@@ -22,6 +22,7 @@ def run(url,browser):
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(url);page.wait_for_function('document.documentElement.dataset.sceneLoaded === "true"',timeout=60000)
         check('all_models_loaded',page.locator('html').get_attribute('data-asset-count')=='19')
+        check('render_batch_geometry_preserved',page.locator('html').get_attribute('data-geometry-preserved')=='true')
         check('sixty_requirement_rows',page.locator('#inventory tr').count()==60)
         check('routes_rendered',page.locator('#route-table tr').count()==7)
         def capture(name):
@@ -37,7 +38,7 @@ def run(url,browser):
         for _ in range(60):page.keyboard.press('ArrowRight')
         check('room_viewpoint_stops_at_obstacle',page.locator('html').get_attribute('data-camera-blocked')=='true')
         check('room_viewpoint_height',page.locator('html').get_attribute('data-camera-position').endswith(',1.650'))
-        for view in ['indoor','rear','outdoor','optics','wet','annex','coating','all','top']:
+        for view in ['indoor','details','rear','outdoor','optics','wet','annex','coating','all','top']:
             page.locator('button[data-view="'+view+'"]').click();page.wait_for_timeout(250)
             check('view_'+view,page.locator('html').get_attribute('data-view')==view)
             capture(view)
@@ -79,7 +80,7 @@ def run(url,browser):
         bad.goto(url);bad.wait_for_function('document.getElementById("error").textContent.includes("版本")',timeout=10000)
         check('stale_scene_rejected',bad.locator('html').get_attribute('data-scene-loaded') is None and bad.locator('#layout-status').inner_text()=='未通过版本核对')
         version=b.version;b.close()
-    files=[HERE/'index.html',HERE/'main.js',HERE/'style.css',HERE/'check_browser.py']+[ROOT/'assets/cooling_lab_v1'/n for n in ['scene.json','inventory.json','layout_checks.json','risk_register.json','floorplan.svg','body_envelope.json']]
+    files=[HERE/'index.html',HERE/'main.js',HERE/'style.css',HERE/'check_browser.py',HERE/'render_batches.js']+[ROOT/'assets/cooling_lab_v1'/n for n in ['scene.json','inventory.json','layout_checks.json','risk_register.json','floorplan.svg','body_envelope.json']]
     report=dict(passed=True,checks=checks,captures=captures,source_files=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in files],browser=version,
         software_renderer='Chromium SwiftShader',scope='Interactive UI and visible geometry states only; images do not establish product fidelity or safety')
     (HERE/'VISUAL_VERIFICATION.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
