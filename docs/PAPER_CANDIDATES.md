@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-22**. Candidate count: **311**.
+Last screened: **2026-10-23**. Candidate count: **312**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3124,3 +3124,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [69-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77150-7/MediaObjects/41467_2026_77150_MOESM1_ESM.pdf) was text-accessible. Selected directional-wetting and exposure captions (Figures 26–28 and 41) were screened; figure pixels, remaining analyses, source-data archive and peer review remain unreviewed.
 - Future scope is independently prepared nonliving coupons and water-only observations, retaining orientation, preparation provenance and storage history. Measurement repeats must remain distinct from independently prepared specimens. Machining, laser/ion-beam processing, silanization, corrosive chemistry, solvent tests and thermal/pressure challenges are excluded. No protocol, assets or converted task is supplied.
 - Access checked on 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared-hydrogel mechanical comparisons (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A self-powered hydrogel electronic skin with decoupled multimodal sensing for closed-loop human-machine interactions](https://www.nature.com/articles/s41467-026-69450-9) | Nature Communications / 2026 | 10.1038/s41467-026-69450-9 | Prepared-specimen tracking, paired mechanical comparisons and repeated deformation measurements suggest a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 2675, published 12 February 2026; version of record 23 March 2026. Selected mechanical-test and pure-shear Methods were screened, not the complete paper.
+- The [55-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69450-9/MediaObjects/41467_2026_69450_MOESM1_ESM.pdf) was text-accessible. Selected mechanical-comparison and cycling captions (Figures 3, 6 and 23–25) were screened; figure pixels, remaining analyses, reporting summary, source data and peer review remain unreviewed.
+- Future scope is independently prepared nonliving specimens in qualified mechanical-testing services, preserving specimen identity, paired controls and loading history. Fabrication chemistry, laser processing, electrolyte preparation, human testing and physiological interpretation are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
