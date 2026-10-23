@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-23**. Candidate count: **312**.
+Last screened: **2026-10-23**. Candidate count: **313**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3134,4 +3134,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Metadata confirms volume 17, article 2675, published 12 February 2026; version of record 23 March 2026. Selected mechanical-test and pure-shear Methods were screened, not the complete paper.
 - The [55-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69450-9/MediaObjects/41467_2026_69450_MOESM1_ESM.pdf) was text-accessible. Selected mechanical-comparison and cycling captions (Figures 3, 6 and 23–25) were screened; figure pixels, remaining analyses, reporting summary, source data and peer review remain unreviewed.
 - Future scope is independently prepared nonliving specimens in qualified mechanical-testing services, preserving specimen identity, paired controls and loading history. Fabrication chemistry, laser processing, electrolyte preparation, human testing and physiological interpretation are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared-alloy fatigue measurement histories (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Bending-fatigue-resistant hierarchical NiTi shape memory alloy](https://www.nature.com/articles/s41467-026-72857-z) | Nature Communications / 2026 | 10.1038/s41467-026-72857-z | Prepared-specimen tracking, cyclic mechanical comparisons and synchronized thermal observations suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 6376, published 13 May 2026; version of record 16 July 2026. Selected bending-fatigue Results and mechanical/fatigue-testing Methods were screened, not the complete paper.
+- The [18-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72857-z/MediaObjects/41467_2026_72857_MOESM1_ESM.pdf) was text-accessible. Selected baseline, fixture and before/after-comparison captions (Figures 2, 7 and 10) were screened; figure pixels, remaining analyses, videos, their separate descriptions, source data and peer review remain unreviewed.
+- Future scope is independently prepared nonliving specimens in qualified enclosed mechanical-testing services, retaining treatment provenance, specimen identity and loading history. Cycles are not independent specimens, and run-outs are not measured failure times. Laser shock processing, heating, machining, chemical polishing and ion-beam preparation are excluded. No protocol, assets or converted task is supplied.
 - Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
