@@ -7,6 +7,7 @@ import json
 import math
 import numpy as np
 from geometry_tools import Geometry, HERE, ROOT, imported_scene, sha, write_json, transform
+from room_architecture import build_room
 
 TEAL=[58,111,113]; STEEL=[151,165,170]; WHITE=[225,232,228]
 DARK=[46,62,67]; WOOD=[164,143,106]; GRAY=[188,198,195]
@@ -42,6 +43,17 @@ def bench(key,x,y,width=2.4,depth=1.2,height=.85):
             g.cylinder(key+'_foot_'+str(xx)+'_'+str(yy),.045,.025,[xx,yy,.0125],DARK)
     box(key+'_back_stretcher',[width-.14,.05,.09],[x,y+depth/2-.10,.25],TEAL)
     for xx in [x-width/2+.1,x+width/2-.1]:box(key+'_side_stretcher_'+str(xx),[.05,depth-.20,.09],[xx,y,.25],TEAL)
+    if y < 10 and key != 'bath_stand':
+        # Cabinet pedestals remain inside the existing bench footprint; the
+        # centre stays open for an approach. Drawer travel is not qualified.
+        for side in [-1,1] if width > 2 else [-1]:
+            cx=x+side*(width/2-.37);cy=y+.02;cw=.48;cd=depth-.24
+            box(key+'_cabinet_'+str(side),[cw,cd,height-.17],[cx,cy,(height-.17)/2+.10],[195,205,200],'cabinet')
+            box(key+'_plinth_'+str(side),[cw-.06,cd-.06,.10],[cx,cy,.05],DARK,'cabinet')
+            for i,(bottom,top) in enumerate([(.12,.37),(.38,.60),(.61,height-.075)]):
+                if top<=bottom:continue
+                box(key+'_drawer_'+str(side)+'_'+str(i),[cw-.018,.018,top-bottom],[cx,cy-cd/2-.012,(bottom+top)/2],[163,181,178],'cabinet')
+                g.tube(key+'_handle_'+str(side)+'_'+str(i),[[cx-.12,cy-cd/2-.025,top-.05],[cx-.12,cy-cd/2-.05,top-.05],[cx+.12,cy-cd/2-.05,top-.05],[cx+.12,cy-cd/2-.025,top-.05]],.007,[77,95,98])
     surfaces.append(dict(id=key,xy_bounds_m=[x-width/2,y-depth/2,x+width/2,y+depth/2],top_m=height,
                          load_rating_kg=None,basis='Authored furniture; load capacity requires structural review'))
     obstacle(key,[[x-width/2,y-depth/2,0],[x+width/2,y+depth/2,height]],'bench_conservative_occupied_volume')
@@ -57,36 +69,7 @@ def shelf(key,x,y,width=1.5,depth=.55):
 
 
 def walls():
-    # Indoor 12 x 10 m; separate 6 x 5 m fabrication and coating rooms.
-    box('indoor_floor',[12,10,.12],[6,5,-.06],[221,228,224],'floor')
-    box('annex_floor',[6,10,.12],[-3,5,-.06],[202,214,209],'floor')
-    box('outdoor_floor',[12,8,.12],[6,16,-.06],[188,199,193],'floor')
-    box('outdoor_access_path',[3,2,.12],[6,11,-.06],[193,211,204],'floor')
-    # All wall segments recorded in collision geometry even when cut away in UI.
-    segments=[('south_west',[-.10,-.10],[5,-.10]),('south_east',[7,-.10],[12.10,-.10]),
-              ('north_west',[0,10.10],[5,10.10]),('north_east',[7,10.10],[12.1,10.10]),
-              ('east',[12.1,0],[12.1,10.1]),('annex_west',[-6.1,0],[-6.1,10.1]),
-              ('annex_south',[-6.1,-.1],[0,-.1]),('annex_north',[-6.1,10.1],[0,10.1]),
-              ('annex_split',[-6.1,5],[0,5]),
-              ('partition_low',[0,0],[0,1.5]),('partition_mid',[0,3.5],[0,6.5]),('partition_high',[0,8.5],[0,10.1])]
-    for name,a,b in segments:
-        dx,dy=abs(b[0]-a[0]),abs(b[1]-a[1]);w=max(.16,dx);d=max(.16,dy);x=(a[0]+b[0])/2;y=(a[1]+b[1])/2
-        box('wall_'+name+'_lower',[w,d,.70],[x,y,.35],WHITE,'wall_lower')
-        box('wall_'+name+'_upper',[w,d,2.70],[x,y,2.05],WHITE,'wall_upper')
-        obstacle('wall_'+name,[[x-w/2,y-d/2,0],[x+w/2,y+d/2,3.4]],'wall')
-    # Door leaves shown folded open against jambs. Opening width is 2.0 m.
-    for name,x,y,axis in [('entry',6,0,'x'),('yard',6,10.1,'x'),('fabrication',0,2.5,'y'),('coating',0,7.5,'y')]:
-        if axis=='x':
-            for dx in [-1,1]:
-                box('door_'+name+'_'+str(dx),[.045,.92,2.2],[x+dx*1.025,y-.46,1.1],TEAL,'door_open',True)
-            box('door_'+name+'_lintel',[2,.16,.12],[x,y,2.26],TEAL,'wall_upper')
-        else:
-            for dy in [-1,1]:box('door_'+name+'_'+str(dy),[.92,.045,2.2],[x-.46,y+dy*1.025,1.1],TEAL,'door_open',True)
-            box('door_'+name+'_lintel',[.16,2,.12],[x,y,2.26],TEAL,'wall_upper')
-    for x in [1.2,3.6,8.4,10.8]:
-        box('service_tray_'+str(x),[.08,8.8,.07],[x,5,2.85],STEEL,'overhead_service')
-    for y in [2,5,8]:
-        for x in [2.5,9.5]:box('light_'+str(x)+'_'+str(y),[1.3,.16,.05],[x,y,3.12],[250,248,227],'ceiling_fixture')
+    return build_room(g, box, obstacle)
 
 
 def asset(key,label,path,position,*,prefix=None,z_up=False,station='',resource='',note='',source_path=None,origin_xy=None):
@@ -124,9 +107,18 @@ def furniture():
     for key,size,pos in [('base',[1.6,.85,.06],[-4.5,8,.87]),('back',[1.6,.04,1.1],[-4.5,8.42,1.45]),
         ('left',[.04,.85,1.1],[-5.28,8,1.45]),('right',[.04,.85,1.1],[-3.72,8,1.45]),
         ('roof',[1.6,.85,.04],[-4.5,8,2.02])]:box('coating_enclosure_'+key,size,pos,GRAY,'authored_extraction_enclosure')
-    g.cylinder('coating_exhaust_duct',.13,1.1,[-4.5,8.2,2.59],STEEL,role='exhaust_design')
+    # Support the enclosure down to the floor; connect the design duct to a
+    # ceiling collar. Neither the stand nor the duct has an engineered rating.
+    for x in [-5.20,-3.80]:
+        for y in [7.66,8.34]:
+            box('coating_enclosure_stand_'+str(x)+'_'+str(y),[.06,.06,.80],[x,y,.43],TEAL,'authored_extraction_enclosure')
+            g.cylinder('coating_enclosure_foot_'+str(x)+'_'+str(y),.045,.03,[x,y,.015],DARK)
+        box('coating_enclosure_side_rail_'+str(x),[.06,.74,.06],[x,8,.81],TEAL)
+    box('coating_enclosure_back_rail',[1.46,.06,.07],[-4.5,8.34,.25],TEAL)
+    g.cylinder('coating_exhaust_duct',.13,1.31,[-4.5,8.2,2.675],STEEL,role='exhaust_design')
+    box('coating_exhaust_ceiling_collar',[.34,.34,.025],[-4.5,8.2,3.3175],GRAY,'ceiling_fixture')
     for i in range(13):box('exhaust_baffle_'+str(i),[1.45,.02,.018],[-4.5,8.385,1.0+i*.065],DARK,'exhaust_design')
-    obstacle('coating_enclosure',[[-5.3,7.55,.84],[-3.7,8.45,3.15]],'unqualified_extraction_design')
+    obstacle('coating_enclosure',[[-5.3,7.55,0],[-3.7,8.45,3.33]],'unqualified_extraction_design')
     # Spill tray surrounds bath stand; no live wiring is routed through it.
     for key,size,pos in [('base',[.92,1.02,.015],[2.9,5.8,.008]),('front',[.92,.025,.06],[2.9,5.3,.03]),
         ('rear',[.92,.025,.06],[2.9,6.3,.03]),('left',[.025,1.02,.06],[2.45,5.8,.03]),('right',[.025,1.02,.06],[3.35,5.8,.03])]:
@@ -155,7 +147,7 @@ def furniture():
     # The stack is checked as one supported group, not three floating plates.
     component('stock_plate_stack',['stock_sheet_'],['consumables:consumable_01','consumables:consumable_02'],'raw_stock_shelf_0',True)
     component('pe_stock',['pe_tube_stock_'],['consumables:consumable_03'],'raw_stock_shelf_1',True)
-    component('room_shell',['indoor_floor','annex_floor','wall_','door_','outdoor_access_path'],['facility:ROOM'])
+    component('room_shell',['indoor_floor','annex_floor','wall_','door_','window_','ceiling_','outdoor_access_path'],['facility:ROOM'])
     component('bench_frames',[s['id']+'_' for s in surfaces if '_shelf_' not in s['id']],['facility:BENCHES'])
     component('storage',['raw_stock_','specimens_','fabrication_storage_','coating_storage_'],['facility:STORAGE','tools:storage_supports'])
     component('extraction_enclosure',['coating_enclosure_','coating_exhaust_','exhaust_baffle_'],['facility:COATING','tools:coating_station'])
@@ -212,7 +204,7 @@ def devices():
 
 
 def build():
-    walls();furniture();devices()
+    room=walls();furniture();devices()
     architecture=g.export('laboratory_structure')
     corridors=[dict(id='main',label='室内主通道',points_m=[[6,-1.2],[6,10.8]],width_m=2.0),
       dict(id='yard',label='室外连接通道',points_m=[[6,10.8],[6,19.2]],width_m=2.0),
@@ -233,7 +225,7 @@ def build():
       dict(id='outdoor',label='开放测量区 · 12 × 8 m',bounds_m=[0,12,12,20],color='#d4e3d5')]
     manifest=dict(schema_version=1,status='scene_draft_for_review_not_accepted',units='m',axes='+Z up; +X right; +Y plan up',
       coordinate_basis='Authored room layout; not the historical laboratory. Real assets imported without scale changes.',
-      architecture=architecture,assets=placements,authored_components=components,zones=zones,obstacles=obstacles,support_surfaces=surfaces,
+      architecture=architecture,room_design=room,room_builder_sha256=sha(HERE/'room_architecture.py'),assets=placements,authored_components=components,zones=zones,obstacles=obstacles,support_surfaces=surfaces,
       reference_comparisons={
         'eko_ms56':dict(dimensions_label='轴向 217 mm；筒体 Ø55 mm；腰部 Ø38 mm',model_scope='模型包围盒包含雨帽与接头，不能拿总包围盒代替筒体直径；轮廓转折和小零件含推断。',sources=[dict(label='厂家手册 · PDF 第 21 页尺寸图',url='https://dex.cz/uploads/2017/04/ms-56_manual.pdf#page=21')]),
         'eko_ms402':dict(dimensions_label='遮阳罩 Ø160 mm；总高 108 mm；支脚 16 mm',model_scope='采用无通风 MS-402；罩壳、双玻璃穹顶和调平脚分件，局部曲面含推断。',sources=[dict(label='厂家手册 · PDF 第 24 页尺寸图',url='https://dex.cz/uploads/2017/05/Pyranometer_Manual_MS.pdf#page=24')]),

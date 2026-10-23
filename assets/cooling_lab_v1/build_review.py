@@ -20,7 +20,9 @@ def floorplan(scene):
         rectangle(z['bounds_m'],z['color'],'#b3c7b9')
         x1,y1,x2,y2=z['bounds_m'];elements.append(f'<text x="{X((x1+x2)/2)}" y="{Y(y2)+15}" text-anchor="middle" class="label">{html.escape(z["label"])}</text>')
     for o in scene['obstacles']:
-        a,b=o['bounds_m'];rectangle([a[0],a[1],b[0],b[1]],'#536e68' if o['role']=='wall' else '#a6b8ae','#758f80')
+        a,b=o['bounds_m']
+        if a[2]>=scene['envelope']['transit_height_m']:continue
+        rectangle([a[0],a[1],b[0],b[1]],'#536e68' if o['role'].startswith('wall') else '#a6b8ae','#758f80')
     for c in scene['corridors']:
         coords=' '.join(f'{X(x)},{Y(y)}' for x,y in c['points_m'])
         elements.append(f'<polyline points="{coords}" fill="none" stroke="#459c79" stroke-width="{c["width_m"]*scale}" opacity=".20"/>')

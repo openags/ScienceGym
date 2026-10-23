@@ -41,14 +41,17 @@ and [pilot status](docs/pilots/DIRECTIONAL_COOLING.md#current-focus).
 
 The [laboratory and asset review page](viewer/lab_review_v1/index.html) now
 contains a physical-scale scene with four zones, 19 device/body instances,
-separately identified authored fixtures and facilities, a dimensioned floor
+an enclosed laboratory with windows, open double doors, a panel ceiling,
+lighting and cabinet benches, separately identified authored fixtures, a dimensioned floor
 plan, source links, surface-to-surface measurement and four device opening
 states. Three new outdoor-instrument reconstructions use manufacturer manuals
 and dimension drawings. All assets and the whole scene remain **unaccepted**;
 missing hands, equipment and infrastructure stay visible in the 60-row
-requirements inventory. The 77 layout checks and 401 recorded H2 body-pose
+requirements inventory. The 84 layout checks and 401 recorded H2 body-pose
 measurements are bounded geometric evidence, not full-body operation or safety
-qualification. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
+qualification. The default 1.65 m interior viewpoint supports drag-to-look and
+arrow-key/WASD movement; cutaway and plan views remain available for layout
+inspection. Viewpoint navigation is not robot motion. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
 `http://localhost:8769/viewer/lab_review_v1/index.html`.
 
 [![Authored laboratory layout for asset and space review](viewer/lab_review_v1/evidence/overview.png)](viewer/lab_review_v1/index.html)

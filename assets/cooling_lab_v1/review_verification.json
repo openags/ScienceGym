@@ -250,6 +250,10 @@
       "passed": true
     },
     {
+      "name": "room_builder_pinned",
+      "passed": true
+    },
+    {
       "name": "current_scene_pinned",
       "passed": true
     },
@@ -354,6 +358,10 @@
       "passed": true
     },
     {
+      "name": "reject_low_header",
+      "passed": true
+    },
+    {
       "name": "reject_blocked_route",
       "passed": true
     },
@@ -371,6 +379,17 @@
     }
   ],
   "negative_cases": [
+    {
+      "fault": "low_header",
+      "expected_failure": "headroom_main",
+      "observed_failures": [
+        "headroom_main",
+        "corridor_main",
+        "headroom_fab_access",
+        "corridor_fab_access",
+        "space_turn_main"
+      ]
+    },
     {
       "fault": "blocked_route",
       "expected_failure": "corridor_main",
@@ -403,8 +422,8 @@
       ]
     }
   ],
-  "scene_sha256": "0997212e2afcd54e525533e0895e8804062a9c3f1ad0d0d5f7c83d772dfd20f0",
-  "validator_sha256": "cc7e91679d6011e7499e05b21845921c6eb1de09b4abaf2bc3690c9b55346abc",
-  "layout_checker_sha256": "2d6a71ec7ed0723b1f4eed3c90fac67f54c9acf7f800a296143c25aa03e09c4d",
+  "scene_sha256": "e6b232512f68a9ba52cb795c0cd9b0d51984fd0124589a539ff9f6ba9f09545e",
+  "validator_sha256": "4ebd034aa4f9a16cfde9e7b4b0886cb922419472956486c15c848e2f367b56b6",
+  "layout_checker_sha256": "4f2f84303f3d40d4e26f974f389bde18ad0f7a1eeac70621d9d982ea8d371076",
   "scope": "Source identity and meaningful negative layout cases; no asset, full-body or safe-use acceptance"
 }

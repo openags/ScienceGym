@@ -19,7 +19,11 @@ def bounds_overlap(a,b,tolerance=1e-5):
 def inspect(scene_path=None,output_path=None,quiet=False):
     p=scene_path or HERE/'scene.json';scene=json.loads(p.read_text());checks=[]
     def check(name,passed,**data):checks.append(dict(name=name,passed=bool(passed),**data))
-    obstacles=scene['obstacles'];footprints=[(o,box(o['bounds_m'][0][0],o['bounds_m'][0][1],o['bounds_m'][1][0],o['bounds_m'][1][1])) for o in obstacles]
+    obstacles=scene['obstacles'];transit_height=scene['envelope']['transit_height_m']
+    # Only solids intersecting the declared standing-height volume obstruct
+    # the planar sweep. All overhead solids remain in 3D opening checks.
+    floor_obstacles=[o for o in obstacles if o['bounds_m'][0][2] < transit_height and o['bounds_m'][1][2] > 0]
+    footprints=[(o,box(o['bounds_m'][0][0],o['bounds_m'][0][1],o['bounds_m'][1][0],o['bounds_m'][1][1])) for o in floor_obstacles]
     routes=[]
     for c in scene['corridors']:
         line=LineString(c['points_m']); corridor=line.buffer(c['width_m']/2,cap_style='flat',join_style='mitre')
@@ -28,6 +32,9 @@ def inspect(scene_path=None,output_path=None,quiet=False):
         sufficient=nearest[0]+1e-6>=scene['envelope']['transit_radius_m']+scene['envelope']['margin_m']
         row=dict(id=c['id'],label=c['label'],declared_width_m=c['width_m'],minimum_centerline_distance_m=nearest[0],nearest_obstacle=nearest[1],
                  corridor_obstructions=hits,provisional_transit_clear=sufficient,declared_corridor_clear=not hits)
+        overhead=[o for o in obstacles if o['bounds_m'][0][2] > 0 and corridor.intersection(box(o['bounds_m'][0][0],o['bounds_m'][0][1],o['bounds_m'][1][0],o['bounds_m'][1][1])).area>1e-6]
+        height=min((o['bounds_m'][0][2] for o in overhead),default=None)
+        check('headroom_'+c['id'],height is None or height>=transit_height,minimum_overhead_m=height,required_height_m=transit_height,scope='Static authored envelope only')
         routes.append(row);check('corridor_'+c['id'],sufficient and not hits,**row)
     for space in scene['spaces']:
         x,y=space['center_m']

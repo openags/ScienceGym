@@ -28,6 +28,7 @@ def validate():
         for candidate in row['candidate_artifacts']:
             check('candidate_'+row['id']+'_'+candidate['path'],sha(ROOT/candidate['path'])==candidate['sha256'])
     check('inventory_count',len(inventory['items'])==inventory['required_records']==60)
+    check('room_builder_pinned',scene['room_builder_sha256']==sha(HERE/'room_architecture.py'))
     check('current_scene_pinned',contract['current_scene']['sha256']==sha(HERE/'scene.json'))
     check('no_inferred_owner_acceptance',contract['owner_acceptance']['decision']=='pending' and all(g['status']=='open' for g in contract['gates']))
     check('no_new_manipulation_authority',not contract['new_manipulation_development_allowed'] and not scene['manipulation_development_allowed'])
@@ -43,9 +44,10 @@ def validate():
     original=inspect(quiet=True);check('base_layout',original['passed'])
     faults=[]
     # Separate independent faults exercise spatial predicates, not just schema.
-    for name,expected in [('blocked_route','corridor_main'),('small_support','support_cary'),('overlapping_fixture','assets_and_authored_fixtures_separated'),('opening_obstruction','external_opening_cary_lid')]:
+    for name,expected in [('low_header','headroom_main'),('blocked_route','corridor_main'),('small_support','support_cary'),('overlapping_fixture','assets_and_authored_fixtures_separated'),('opening_obstruction','external_opening_cary_lid')]:
         bad=copy.deepcopy(scene)
-        if name=='blocked_route':bad['obstacles'].append(dict(id='injected_crate',role='test',bounds_m=[[5.8,5,.0],[6.2,5.4,1.9]]))
+        if name=='low_header':bad['obstacles'].append(dict(id='injected_low_header',role='test',bounds_m=[[5,4,2.0],[7,4.1,2.15]]))
+        elif name=='blocked_route':bad['obstacles'].append(dict(id='injected_crate',role='test',bounds_m=[[5.8,5,.0],[6.2,5.4,1.9]]))
         elif name=='small_support':next(s for s in bad['support_surfaces'] if s['id']=='cary_bench')['xy_bounds_m']=[2.2,8.6,2.3,8.7]
         elif name=='overlapping_fixture':
             next(a for a in bad['assets'] if a['id']=='heater')['position_m']=[9.7,2.7,.9]

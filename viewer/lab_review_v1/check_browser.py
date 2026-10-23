@@ -27,12 +27,22 @@ def run(url,browser):
         def capture(name):
             data=page.locator('#viewport').screenshot();path=dest/(name+'.png');path.write_bytes(data)
             captures.append(dict(path=str(path.relative_to(ROOT)),sha256=sha(path)));return data
+        check('default_is_inside_complete_room',page.locator('html').get_attribute('data-camera-mode')=='room' and page.locator('#show-walls').is_checked() and page.locator('html').get_attribute('data-room-shell-visible')=='true')
+        check('default_annotations_off',not page.locator('#show-space').is_checked() and not page.locator('#show-labels').is_checked())
         capture('overview')
-        for view in ['indoor','outdoor','optics','wet','annex','top']:
+        camera_before=page.locator('html').get_attribute('data-camera-position')
+        page.locator('#walk-controls [data-move="forward"]').click()
+        check('room_viewpoint_can_move',page.locator('html').get_attribute('data-camera-position')!=camera_before)
+        canvas=page.locator('#viewport canvas');canvas.focus()
+        for _ in range(60):page.keyboard.press('ArrowRight')
+        check('room_viewpoint_stops_at_obstacle',page.locator('html').get_attribute('data-camera-blocked')=='true')
+        check('room_viewpoint_height',page.locator('html').get_attribute('data-camera-position').endswith(',1.650'))
+        for view in ['indoor','rear','outdoor','optics','wet','annex','coating','all','top']:
             page.locator('button[data-view="'+view+'"]').click();page.wait_for_timeout(250)
             check('view_'+view,page.locator('html').get_attribute('data-view')==view)
-            if view in ['indoor','outdoor','top']:capture(view)
-        page.locator('#show-walls').check();capture('full_walls');page.locator('#show-walls').uncheck()
+            capture(view)
+            check('shell_mode_'+view,page.locator('#show-walls').is_checked()==(view not in ['all','top']))
+        page.locator('button[data-view=indoor]').click();capture('full_walls');page.locator('#show-walls').uncheck()
         for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath']:
             page.locator('#asset-select').select_option(identity);page.locator('#isolate').check();page.wait_for_timeout(200)
             check('inspect_'+identity,page.locator('html').get_attribute('data-selected-asset')==identity)

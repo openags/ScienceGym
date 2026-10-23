@@ -1,9 +1,16 @@
 {
   "passed": true,
   "scope": "Conservative static layout and sampled external opening checks only",
-  "scene_sha256": "0997212e2afcd54e525533e0895e8804062a9c3f1ad0d0d5f7c83d772dfd20f0",
-  "checker_sha256": "2d6a71ec7ed0723b1f4eed3c90fac67f54c9acf7f800a296143c25aa03e09c4d",
+  "scene_sha256": "e6b232512f68a9ba52cb795c0cd9b0d51984fd0124589a539ff9f6ba9f09545e",
+  "checker_sha256": "4f2f84303f3d40d4e26f974f389bde18ad0f7a1eeac70621d9d982ea8d371076",
   "checks": [
+    {
+      "name": "headroom_main",
+      "passed": true,
+      "minimum_overhead_m": 2.1999999999999997,
+      "required_height_m": 2.1,
+      "scope": "Static authored envelope only"
+    },
     {
       "name": "corridor_main",
       "passed": true,
@@ -11,10 +18,17 @@
       "label": "室内主通道",
       "declared_width_m": 2.0,
       "minimum_centerline_distance_m": 1.0,
-      "nearest_obstacle": "wall_north_west",
+      "nearest_obstacle": "wall_north_east_0_0_0",
       "corridor_obstructions": [],
       "provisional_transit_clear": true,
       "declared_corridor_clear": true
+    },
+    {
+      "name": "headroom_yard",
+      "passed": true,
+      "minimum_overhead_m": null,
+      "required_height_m": 2.1,
+      "scope": "Static authored envelope only"
     },
     {
       "name": "corridor_yard",
@@ -22,11 +36,18 @@
       "id": "yard",
       "label": "室外连接通道",
       "declared_width_m": 2.0,
-      "minimum_centerline_distance_m": 1.1766052864066188,
-      "nearest_obstacle": "wall_north_west",
+      "minimum_centerline_distance_m": 1.1713667231059628,
+      "nearest_obstacle": "wall_north_east_base_0",
       "corridor_obstructions": [],
       "provisional_transit_clear": true,
       "declared_corridor_clear": true
+    },
+    {
+      "name": "headroom_cross_south",
+      "passed": true,
+      "minimum_overhead_m": 3.263,
+      "required_height_m": 2.1,
+      "scope": "Static authored envelope only"
     },
     {
       "name": "corridor_cross_south",
@@ -41,6 +62,13 @@
       "declared_corridor_clear": true
     },
     {
+      "name": "headroom_cross_optics",
+      "passed": true,
+      "minimum_overhead_m": 3.2760000000000002,
+      "required_height_m": 2.1,
+      "scope": "Static authored envelope only"
+    },
+    {
       "name": "corridor_cross_optics",
       "passed": true,
       "id": "cross_optics",
@@ -51,6 +79,13 @@
       "corridor_obstructions": [],
       "provisional_transit_clear": true,
       "declared_corridor_clear": true
+    },
+    {
+      "name": "headroom_fab_access",
+      "passed": true,
+      "minimum_overhead_m": 2.1999999999999997,
+      "required_height_m": 2.1,
+      "scope": "Static authored envelope only"
     },
     {
       "name": "corridor_fab_access",
@@ -65,6 +100,13 @@
       "declared_corridor_clear": true
     },
     {
+      "name": "headroom_coat_access",
+      "passed": true,
+      "minimum_overhead_m": 2.1999999999999997,
+      "required_height_m": 2.1,
+      "scope": "Static authored envelope only"
+    },
+    {
       "name": "corridor_coat_access",
       "passed": true,
       "id": "coat_access",
@@ -75,6 +117,13 @@
       "corridor_obstructions": [],
       "provisional_transit_clear": true,
       "declared_corridor_clear": true
+    },
+    {
+      "name": "headroom_outdoor_cross",
+      "passed": true,
+      "minimum_overhead_m": null,
+      "required_height_m": 2.1,
+      "scope": "Static authored envelope only"
     },
     {
       "name": "corridor_outdoor_cross",
@@ -800,7 +849,7 @@
       "label": "室内主通道",
       "declared_width_m": 2.0,
       "minimum_centerline_distance_m": 1.0,
-      "nearest_obstacle": "wall_north_west",
+      "nearest_obstacle": "wall_north_east_0_0_0",
       "corridor_obstructions": [],
       "provisional_transit_clear": true,
       "declared_corridor_clear": true
@@ -809,8 +858,8 @@
       "id": "yard",
       "label": "室外连接通道",
       "declared_width_m": 2.0,
-      "minimum_centerline_distance_m": 1.1766052864066188,
-      "nearest_obstacle": "wall_north_west",
+      "minimum_centerline_distance_m": 1.1713667231059628,
+      "nearest_obstacle": "wall_north_east_base_0",
       "corridor_obstructions": [],
       "provisional_transit_clear": true,
       "declared_corridor_clear": true

@@ -4,16 +4,16 @@
 <link rel="stylesheet" href="style.css">
 <script type="importmap">{"imports":{"three":"../../simulation/cooling_v1/vendor/three.module.js","three/addons/":"../../simulation/cooling_v1/vendor/addons/"}}</script></head>
 <body>
-<header><div><small>SCIENCEGYM / LABORATORY REVIEW</small><h1>先把实验室搭对。</h1><p>首篇论文 · 辐射冷却实验室与 3D 资产验收</p></div><div class="phase"><span class="dot"></span>当前阶段：资产与场景搭建<br><small>操作任务开发等待场景验收</small></div></header>
+<header><div><small>SCIENCEGYM / LABORATORY REVIEW</small><h1>走进实验室。</h1><p>首篇论文 · 辐射冷却实验室与 3D 资产验收</p></div><div class="phase"><span class="dot"></span>当前阶段：资产与场景搭建<br><small>操作任务开发等待场景验收</small></div></header>
 <main>
 <div class="notice"><strong>设计稿，等待验收。</strong>房间与家具为新设计，设备保持原始物理比例。空间预留尚未通过精确灵巧手和动态运动验证；缺失资产列在下方清单。</div>
 <div class="summary"><div><b id="asset-count">—</b><span>已放置模型实例</span><small id="inventory-coverage"></small></div><div><b>4</b><span>实验空间分区</span></div><div><b id="layout-status">加载中</b><span>几何布局检查</span></div><div><b>待验收</b><span>资产与全场景</span></div></div>
 <div class="workspace">
 <section class="viewport-panel">
-<div class="toolbar" id="views"><button data-view="all" class="active">全景</button><button data-view="indoor">室内</button><button data-view="outdoor">室外</button><button data-view="optics">光学区</button><button data-view="wet">校准区</button><button data-view="annex">加工与涂覆</button><button data-view="top">俯视</button></div>
-<div id="viewport" aria-label="可旋转的三维实验室"><div id="loading" role="status">读取原比例场景…</div><div id="scene-caption">拖动旋转 · 滚轮缩放 · 点击设备查看来源</div><div id="measurement" aria-live="polite"></div></div>
-<div class="options"><label><input id="show-walls" type="checkbox">完整墙体</label><label><input id="show-space" type="checkbox" checked>通道与作业区</label><label><input id="show-labels" type="checkbox" checked>空间标签</label><label><input id="isolate" type="checkbox">仅看选中资产</label><button id="measure">两点测距</button><button id="clear-measure">清除测距</button></div>
-<p class="hint">绿色通道、蓝色转身区及橙色作业区均为设计预留。选择设备可看原尺度细节与来源；测距结果以米显示。</p>
+<div class="toolbar" id="views"><button data-view="indoor" class="active">进入室内</button><button data-view="rear">室内反向</button><button data-view="optics">光学区</button><button data-view="wet">校准区</button><button data-view="annex">加工间</button><button data-view="coating">涂覆间</button><button data-view="outdoor">室外</button><button data-view="all">剖切总览</button><button data-view="top">俯视平面</button></div>
+<div id="viewport" aria-label="可旋转的三维实验室"><div id="loading" role="status">读取原比例场景…</div><div id="scene-caption">拖动旋转 · 滚轮缩放 · 点击设备查看来源</div><div id="measurement" aria-live="polite"></div><div id="walk-controls" aria-label="移动观察视点"><button data-move="forward" aria-label="视点前进">↑</button><div><button data-move="left" aria-label="视点左移">←</button><button data-move="back" aria-label="视点后退">↓</button><button data-move="right" aria-label="视点右移">→</button></div></div></div>
+<div class="options"><label><input id="show-walls" type="checkbox" checked>墙体与吊顶</label><label><input id="show-space" type="checkbox">通道与作业区</label><label><input id="show-labels" type="checkbox">空间标签</label><label><input id="isolate" type="checkbox">仅看选中资产</label><button id="measure">两点测距</button><button id="clear-measure">清除测距</button></div>
+<p class="hint">室内视点高 1.65 m，可环顾和移动；这是场景浏览。切到剖切总览后可叠加通道、转身及作业预留，选择设备可单独检查模型与来源。</p>
 </section>
 <aside class="inspector"><small>ASSET INSPECTOR</small><h2>资产与几何状态</h2><label for="asset-select">选择资产</label><select id="asset-select"><option value="">选择场景中的模型…</option></select><div id="asset-detail"><p>点击场景设备，或从列表中选择。每个模型保留来源、比例和待确认内容。</p></div><div id="state-control" hidden><label for="state-slider" id="state-label"></label><input type="range" id="state-slider" min="0" max="100" value="0"><p class="hint">仅检查开闭几何与空间占用。不是机器人操作录像。</p></div><hr><h3>场景资料</h3><a href="../../assets/cooling_lab_v1/floorplan.svg" target="_blank">尺寸平面图 ↗</a><a href="../../assets/cooling_lab_v1/layout_checks.json" target="_blank">几何检查原始记录 ↗</a><a href="../../assets/cooling_lab_v1/scene.json" target="_blank">布局与模型来源 ↗</a><a href="../../assets/cooling_lab_v1/resource_followup.json" target="_blank">缺失资产资料追查 ↗</a><a href="../../assets/cooling_lab_v1/acceptance_contract.json" target="_blank">验收条件 ↗</a></aside>
 </div>

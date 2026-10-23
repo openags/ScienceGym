@@ -58,6 +58,19 @@ geometry supplies benches, shelves, fixtures, carriers, spill containment and
 unqualified extraction/control designs. These are not load-rated commercial
 furniture or certified engineering services. No owner acceptance is recorded.
 
+The room shell now includes six actual glazed wall openings, framed double-door
+portals with wall headers, a continuous 3.33 m ceiling underside with panel grid,
+recessed lights and diffuser grilles, wall raceways with capped service plates,
+and bench cabinet pedestals. Floor texture and signs are original generated
+assets. These are authored design details; the lights and grilles do not
+constitute an illumination or ventilation design. Door geometry and overhead
+solids stay in the checks when the viewer uses a visual cutaway. Static routes
+are checked against a 2.10 m standing-height probe; the lowest door header is
+2.20 m. The interface opens inside the room at a 1.65 m eye height. Drag to
+look, use arrows/WASD to move the observation point, or choose a room preset.
+Viewpoint collision guards only prevent browsing through registered obstacles;
+they are not a robot navigation controller or whole-body motion validation.
+
 The main indoor area is 12 × 10 m; fabrication and coating annexes are each
 6 × 5 m; an open ground-level measurement area is 12 × 8 m. This is a proposed
 robot laboratory, not the paper's original rooftop/room reconstruction.
@@ -77,7 +90,7 @@ earlier assets retain their original physical dimensions and source hashes.
 All device models still require individual product-fidelity review.
 
 The [layout report](../../assets/cooling_lab_v1/layout_checks.json) checks
-corridors, working/turning areas, supports, asset/fixture separation and sampled
+corridors, overhead clearance, working/turning areas, supports, asset/fixture separation and sampled
 external opening sweeps. Cary, Nicolet, A25 and U30 opening states can be
 inspected in the browser; they are geometric state changes, not robot actions.
 Internal instrument contacts are not checked by these opening sweeps.
@@ -101,8 +114,9 @@ python simulation/cooling_v1/serve.py --port 8769
 python viewer/lab_review_v1/check_browser.py --browser /path/to/chromium
 ```
 
-The validator deliberately blocks a route, shrinks an instrument support,
-overlaps a device with a carrier, and obstructs a cover sweep; all four faults
+The validator deliberately lowers a header into the standing envelope, blocks
+a route, shrinks an instrument support, overlaps a device with a carrier, and
+obstructs a cover sweep; all five faults
 must be rejected. Browser checks exercise visible open-state changes, views,
 measurement, inventory filters, revision-bound comment export, mobile layout
 and stale-scene rejection. GLB bytes are SHA-256 checked before display.
