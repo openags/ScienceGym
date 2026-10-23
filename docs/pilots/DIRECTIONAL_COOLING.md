@@ -48,12 +48,65 @@ revision. Existing operation definitions remain requirements for identifying
 assets and interfaces; geometric access checks may proceed during scene work.
 
 Use the [laboratory acceptance gates](../contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development),
-[initial asset inventory](../../assets/cooling_lab_v1/inventory.json) and
+[asset inventory](../../assets/cooling_lab_v1/inventory.json) and
 [phase record](../../assets/cooling_lab_v1/acceptance_contract.json).
 The inventory captures 43 existing resource rows plus explicitly authored
 infrastructure/robot requirements; grouped rows still need decomposition and
-instance allocation. Ten detailed device models do not represent the complete
-asset inventory. No whole laboratory scene or owner acceptance is recorded.
+instance allocation. A new [interactive laboratory review](../../viewer/lab_review_v1/index.html)
+now places 19 device/body instances in an authored four-zone scene. Original
+geometry supplies benches, shelves, fixtures, carriers, spill containment and
+unqualified extraction/control designs. These are not load-rated commercial
+furniture or certified engineering services. No owner acceptance is recorded.
+
+The main indoor area is 12 × 10 m; fabrication and coating annexes are each
+6 × 5 m; an open ground-level measurement area is 12 × 8 m. This is a proposed
+robot laboratory, not the paper's original rooftop/room reconstruction.
+Main circulation is 2 m wide; other declared routes are at least 1.6 m,
+with 2.4 m diameter turning reservations. These are design values. An audit
+of 401 samples of the existing H2 unloaded-body recording found a maximum
+radial extent of 0.642905 m about the free-base XY position. Layout checks use
+a 0.65 m probe plus 0.10 m authored margin; exact Dex5-S Pro geometry, loads,
+walking, stopping and other joint configurations remain unqualified.
+
+The EKO MS-56, unventilated MS-402 and HOBO U30 now have separate source-based
+candidate geometry. Their [source and dimension ledger](../../assets/cooling_lab_v1/outdoor_assets.json)
+records the inspected manufacturer drawings, hashes, inferred local dimensions
+and unresolved historical variants. The UI links directly to the relevant
+drawing pages. Manufacturer photographs/PDFs are not redistributed. Imported
+earlier assets retain their original physical dimensions and source hashes.
+All device models still require individual product-fidelity review.
+
+The [layout report](../../assets/cooling_lab_v1/layout_checks.json) checks
+corridors, working/turning areas, supports, asset/fixture separation and sampled
+external opening sweeps. Cary, Nicolet, A25 and U30 opening states can be
+inspected in the browser; they are geometric state changes, not robot actions.
+Internal instrument contacts are not checked by these opening sweeps.
+The [risk register](../../assets/cooling_lab_v1/risk_register.json) retains
+load, utility, ventilation, service, outdoor and site-application gaps.
+Missing exact hands, angular accessories, sensors/wiring, fabrication machinery,
+tools, consumables, waste and robot service provisions prevent full acceptance.
+
+To reproduce this review from the repository root, use a Python environment
+with `assets/cooling_lab_v1/requirements.txt` installed and a Chromium executable:
+
+```sh
+python assets/cooling_lab_v1/check_body_envelope.py
+python assets/cooling_lab_v1/build_outdoor.py
+python assets/cooling_lab_v1/build_lab.py
+python assets/cooling_lab_v1/check_layout.py
+python assets/cooling_lab_v1/build_review.py
+python assets/cooling_lab_v1/validate_review.py
+python simulation/cooling_v1/serve.py --port 8769
+# In a second terminal, substitute the installed Chromium path:
+python viewer/lab_review_v1/check_browser.py --browser /path/to/chromium
+```
+
+The validator deliberately blocks a route, shrinks an instrument support,
+overlaps a device with a carrier, and obstructs a cover sweep; all four faults
+must be rejected. Browser checks exercise visible open-state changes, views,
+measurement, inventory filters, revision-bound comment export, mobile layout
+and stale-scene rejection. GLB bytes are SHA-256 checked before display.
+These software checks do not close any of the eight laboratory acceptance gates.
 
 As of 23 October 2026 the final executor is a Unitree humanoid with its own
 arms and Unitree Dex5-S Pro hands, following the

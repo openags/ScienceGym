@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ScienceGym · 实验室与资产验收</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"../../simulation/cooling_v1/vendor/three.module.js","three/addons/":"../../simulation/cooling_v1/vendor/addons/"}}</script></head>
+<body>
+<header><div><small>SCIENCEGYM / LABORATORY REVIEW</small><h1>先把实验室搭对。</h1><p>首篇论文 · 辐射冷却实验室与 3D 资产验收</p></div><div class="phase"><span class="dot"></span>当前阶段：资产与场景搭建<br><small>操作任务开发等待场景验收</small></div></header>
+<main>
+<div class="notice"><strong>设计稿，等待验收。</strong>房间与家具为新设计，设备保持原始物理比例。空间预留尚未通过精确灵巧手和动态运动验证；缺失资产列在下方清单。</div>
+<div class="summary"><div><b id="asset-count">—</b><span>已放置模型实例</span><small id="inventory-coverage"></small></div><div><b>4</b><span>实验空间分区</span></div><div><b id="layout-status">加载中</b><span>几何布局检查</span></div><div><b>待验收</b><span>资产与全场景</span></div></div>
+<div class="workspace">
+<section class="viewport-panel">
+<div class="toolbar" id="views"><button data-view="all" class="active">全景</button><button data-view="indoor">室内</button><button data-view="outdoor">室外</button><button data-view="optics">光学区</button><button data-view="wet">校准区</button><button data-view="annex">加工与涂覆</button><button data-view="top">俯视</button></div>
+<div id="viewport" aria-label="可旋转的三维实验室"><div id="loading" role="status">读取原比例场景…</div><div id="scene-caption">拖动旋转 · 滚轮缩放 · 点击设备查看来源</div><div id="measurement" aria-live="polite"></div></div>
+<div class="options"><label><input id="show-walls" type="checkbox">完整墙体</label><label><input id="show-space" type="checkbox" checked>通道与作业区</label><label><input id="show-labels" type="checkbox" checked>空间标签</label><label><input id="isolate" type="checkbox">仅看选中资产</label><button id="measure">两点测距</button><button id="clear-measure">清除测距</button></div>
+<p class="hint">绿色通道、蓝色转身区及橙色作业区均为设计预留。选择设备可看原尺度细节与来源；测距结果以米显示。</p>
+</section>
+<aside class="inspector"><small>ASSET INSPECTOR</small><h2>资产与几何状态</h2><label for="asset-select">选择资产</label><select id="asset-select"><option value="">选择场景中的模型…</option></select><div id="asset-detail"><p>点击场景设备，或从列表中选择。每个模型保留来源、比例和待确认内容。</p></div><div id="state-control" hidden><label for="state-slider" id="state-label"></label><input type="range" id="state-slider" min="0" max="100" value="0"><p class="hint">仅检查开闭几何与空间占用。不是机器人操作录像。</p></div><hr><h3>场景资料</h3><a href="../../assets/cooling_lab_v1/floorplan.svg" target="_blank">尺寸平面图 ↗</a><a href="../../assets/cooling_lab_v1/layout_checks.json" target="_blank">几何检查原始记录 ↗</a><a href="../../assets/cooling_lab_v1/scene.json" target="_blank">布局与模型来源 ↗</a><a href="../../assets/cooling_lab_v1/resource_followup.json" target="_blank">缺失资产资料追查 ↗</a><a href="../../assets/cooling_lab_v1/acceptance_contract.json" target="_blank">验收条件 ↗</a></aside>
+</div>
+<section class="panel"><div class="section-head"><div><small>LAYOUT EVIDENCE</small><h2>通道和工作空间</h2></div><a href="../../assets/cooling_lab_v1/floorplan.svg" target="_blank">打开完整平面图 ↗</a></div><div class="plan-grid"><img id="floorplan" src="../../assets/cooling_lab_v1/floorplan.svg" alt="带尺寸、通道和工位标识的实验室平面图"><div><p>主实验区 12 × 10 m；加工间和涂覆间各 6 × 5 m；室外测量区 12 × 8 m。以上均为本次设计尺寸。</p><div class="table-scroll"><table><thead><tr><th>路径</th><th>预留宽度</th><th>检查</th></tr></thead><tbody id="route-table"></tbody></table></div><p id="body-envelope"></p><a href="../../assets/cooling_lab_v1/body_envelope.json" target="_blank">H2 本体空间测量依据 ↗</a><p class="hint">检查使用墙体、家具占用范围和已有本体姿态的几何包络。完整的身体／灵巧手姿态、动态平衡和安全距离仍待验证。</p></div></div></section>
+<section class="panel"><div class="section-head"><div><small>COMPLETE INVENTORY</small><h2>全部需求与当前资产</h2></div><div class="filters"><input id="search" type="search" placeholder="搜索型号、材料、工具…" aria-label="搜索资产"><select id="filter" aria-label="筛选资产"><option value="all">全部需求</option><option value="placed">已放入场景</option><option value="missing">尚未放入场景</option></select></div></div><p class="hint">清单行是需求条目，部分仍需拆分成具体零件和数量。“已放置”仅说明场景中有模型。</p><div class="table-scroll"><table><thead><tr><th>需求</th><th>类别</th><th>场景状态</th><th>验收</th></tr></thead><tbody id="inventory"></tbody></table></div><p id="inventory-count"></p></section>
+<section class="panel"><small>SAFETY & PROVENANCE</small><h2>安全设计与待解决事项</h2><div id="risks" class="risk-grid"></div><p class="hint">风险记录说明设计依据和缺口。尚无全场景安全合格或现实场地合规结论。</p></section>
+<section class="panel"><h2>验收意见</h2><p>检查完场景后，可把问题写在这里并下载。记录保存在当前浏览器；页面不会自动作出验收决定。</p><textarea id="review-notes" rows="4" placeholder="例如：光学台后方维护空间不足；某个模型与厂家图片不符…"></textarea><button id="export-notes">下载验收意见</button><span id="notes-status" role="status"></span></section>
+<div id="error" role="alert"></div>
+<footer>依据 Bhatia et al., Nature Communications 9, 5001 (2018) · <a href="../../simulation/humanoid_v1/index.html">H2 本体记录</a> · <a href="../../simulation/cooling_v1/sample.html">历史局部操作与论文定义</a></footer>
+</main><script type="module" src="main.js"></script></body></html>

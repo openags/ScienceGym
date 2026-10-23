@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "scope": "Scene-design risks and evidence gaps; not hardware safety certification",
+  "items": [
+    {
+      "id": "SPACE",
+      "title": "人形机器人与携物空间",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "按已有 H2 本体记录扩大几何检查半径至 0.65 m，另加 0.10 m 设计余量；通道至少 1.6 m。",
+      "remaining": "精确 Dex5-S Pro 模型、全关节姿态扫描、携物与行走包络、制动和跌倒影响范围。"
+    },
+    {
+      "id": "LOAD",
+      "title": "重型仪器与支撑",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "Cary 与 Nicolet 采用独立台架，实际模型按原比例放置。",
+      "remaining": "91 kg Cary、69 kg Nicolet 及附件的台架承载、稳定性、固定和楼板载荷评估。"
+    },
+    {
+      "id": "WET",
+      "title": "湿式校准与电气",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "A25 采用低台与独立接液盘；电测仪器在相邻干台，未虚构已接通管线。",
+      "remaining": "真实排液路径、接液盘容量、溢流、线缆布置及设备手册要求的间距。"
+    },
+    {
+      "id": "CHEMICAL",
+      "title": "加工与涂覆隔离",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "设置独立加工间、涂覆间与有开口和排气管的抽排设施设计。",
+      "remaining": "实际设备选型、涂料与清洗材料 SDS、防火/防爆适用性、抽排风量和废物设施。"
+    },
+    {
+      "id": "EGRESS",
+      "title": "门、通道与应急",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "主入口和室外入口有明确通道，门扇打开后占用范围已建模，设置应急控制位置。",
+      "remaining": "真实门系统、应急设备选型与位置、线路、安全功能和所在地要求审查。"
+    },
+    {
+      "id": "OUTDOOR",
+      "title": "室外测量条件",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "放置白色和黑色装置、跟踪器及新建辐射传感器候选模型。",
+      "remaining": "日照遮挡与天空视角、天气传感器套件、桅杆固定、防水供电和布线；当前开放地面不是论文屋顶复刻。"
+    },
+    {
+      "id": "FIDELITY",
+      "title": "来源与设备真实性",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "每个导入模型都有来源文件、哈希和单位变换；新资产有厂家图纸位置及推断记录。",
+      "remaining": "全部资产逐项与实物资料对照，补齐未建工具、附件、材料和机器人双手。"
+    },
+    {
+      "id": "SERVICE",
+      "title": "维护与设备开闭",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "Cary 顶盖、Nicolet 上盖、A25 盖板和 U30 外盖可作几何状态检查。",
+      "remaining": "完整安装手册维护距离；Nicolet 内部滑窗、全部线缆弯曲半径与机械连接复核。"
+    },
+    {
+      "id": "SITE",
+      "title": "场地条件与合规",
+      "status": "open",
+      "status_label": "待审查",
+      "current_design": "当前场景是明确标注的新设计虚拟实验室，所有安全结论均保持未验收。",
+      "remaining": "实际场地地点和适用要求、工程人员对结构/电气/通风/消防的专项审查。"
+    }
+  ],
+  "references": [
+    {
+      "url": "https://www.iso.org/standard/51528.html",
+      "scope": "ISO 12100 official abstract inspected; full standard not reviewed"
+    },
+    {
+      "url": "https://ehs-library.stanford.edu/manual/laboratory-standard-design-guidelines/laboratory-design-considerations",
+      "scope": "Site-specific laboratory design reference, not a universal legal minimum"
+    },
+    {
+      "path": "assets/cary_5000_v1/sources.json"
+    },
+    {
+      "path": "assets/nicolet_6700_v1/sources.json"
+    },
+    {
+      "path": "assets/thermo_a25_ac150_v1/sources.json"
+    },
+    {
+      "path": "assets/cooling_lab_v1/resource_followup.json"
+    }
+  ],
+  "safety_accepted": false,
+  "site_jurisdiction": null
+}

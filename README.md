@@ -39,6 +39,20 @@ full-humanoid transit, turning, carrying and bilateral working space, equipment
 access and safe use. See the [scene review gates](docs/contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development)
 and [pilot status](docs/pilots/DIRECTIONAL_COOLING.md#current-focus).
 
+The [laboratory and asset review page](viewer/lab_review_v1/index.html) now
+contains a physical-scale scene with four zones, 19 device/body instances,
+separately identified authored fixtures and facilities, a dimensioned floor
+plan, source links, surface-to-surface measurement and four device opening
+states. Three new outdoor-instrument reconstructions use manufacturer manuals
+and dimension drawings. All assets and the whole scene remain **unaccepted**;
+missing hands, equipment and infrastructure stay visible in the 60-row
+requirements inventory. The 77 layout checks and 401 recorded H2 body-pose
+measurements are bounded geometric evidence, not full-body operation or safety
+qualification. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
+`http://localhost:8769/viewer/lab_review_v1/index.html`.
+
+[![Authored laboratory layout for asset and space review](viewer/lab_review_v1/evidence/overview.png)](viewer/lab_review_v1/index.html)
+
 The [Unitree humanoid workbench](simulation/humanoid_v1/index.html) shows the
 official H2 meshes, a continuous 20-second physics recording and five body
 foundation test cases. Both feet support the floating body through contact;

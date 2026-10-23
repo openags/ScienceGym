@@ -29,9 +29,31 @@
   },
   "room": {
     "mode": "authored_virtual_robot_laboratory_unless_owner_supplies_a_real_site",
-    "dimensions_m": null,
+    "dimensions_m": {
+      "main": [
+        12,
+        10,
+        3.4
+      ],
+      "fabrication": [
+        6,
+        5,
+        3.4
+      ],
+      "coating": [
+        6,
+        5,
+        3.4
+      ],
+      "outdoor": [
+        12,
+        8,
+        null
+      ]
+    },
     "site_jurisdiction": null,
-    "historical_layout_claim": false
+    "historical_layout_claim": false,
+    "dimensions_basis": "Authored design proposal, subject to equipment and spatial review"
   },
   "clearance_policy": {
     "universal_minimum_width_m": null,
@@ -54,43 +76,115 @@
       "id": "LAB-01",
       "requirement": "Complete resource decomposition and instance allocation",
       "status": "open",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/inventory.json",
+          "sha256": "5341edfba08d73b8b549a266366ac563f52ad2ea1522a046e54e1959896ebfef",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
     },
     {
       "id": "LAB-02",
       "requirement": "Asset source, identity, scale, structure, appearance and rights review",
       "status": "open",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/outdoor_assets.json",
+          "sha256": "77218f86ba5d1e5978f5038058cccfded8580e4f0be09c9c25708cd3b61f2765",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/scene.json",
+          "sha256": "0997212e2afcd54e525533e0895e8804062a9c3f1ad0d0d5f7c83d772dfd20f0",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/resource_followup.json",
+          "sha256": "91e222b41a6046fc68cfec93fb0459eac4d85d58cc830873196fec110d74aa2e",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
     },
     {
       "id": "LAB-03",
       "requirement": "Process zones and supporting infrastructure",
       "status": "open",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/scene.json",
+          "sha256": "0997212e2afcd54e525533e0895e8804062a9c3f1ad0d0d5f7c83d772dfd20f0",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/risk_register.json",
+          "sha256": "8cabcf0b4b9ceca8c98a03d4b80f2307a0eadb5e6039f6af7c297b303d851288",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
     },
     {
       "id": "LAB-04",
       "requirement": "Dimensioned layout, equipment states and service/support requirements",
       "status": "open",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/floorplan.svg",
+          "sha256": "5a300265dd16731bbfe6adc99e456f1d95c9328d16bc5a2f7fbbcebf0803dfaa",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/layout_checks.json",
+          "sha256": "f1ed10ffc1025c057797ff4e7243cbb2f04c4a34b8951f90466aa7fa4086d50e",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
     },
     {
       "id": "LAB-05",
       "requirement": "Whole humanoid, hand and carried-load spatial envelope checks",
       "status": "open",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/layout_checks.json",
+          "sha256": "f1ed10ffc1025c057797ff4e7243cbb2f04c4a34b8951f90466aa7fa4086d50e",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/body_envelope.json",
+          "sha256": "e68ba389eb2ce384cadf7aa78c7427cf27363328a12319cbbcf16ab3074742ce",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
     },
     {
       "id": "LAB-06",
       "requirement": "Risk register, controls, manufacturer requirements and site applicability",
       "status": "open",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/risk_register.json",
+          "sha256": "8cabcf0b4b9ceca8c98a03d4b80f2307a0eadb5e6039f6af7c297b303d851288",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
     },
     {
       "id": "LAB-07",
       "requirement": "Exact-revision interactive scene and comparison evidence",
       "status": "open",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "viewer/lab_review_v1/index.html",
+          "sha256": "584c1ce5254d2855cbf5c3daeda16529aee705d980849618a3767bb7cf038a74",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/scene.json",
+          "sha256": "0997212e2afcd54e525533e0895e8804062a9c3f1ad0d0d5f7c83d772dfd20f0",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
     },
     {
       "id": "LAB-08",
@@ -123,5 +217,10 @@
   "policy_paths": [
     "docs/contributing/EQUIPMENT_MODELING_STANDARD.md",
     "docs/contributing/REVIEW_CHECKLIST.md"
-  ]
+  ],
+  "current_scene": {
+    "path": "assets/cooling_lab_v1/scene.json",
+    "sha256": "0997212e2afcd54e525533e0895e8804062a9c3f1ad0d0d5f7c83d772dfd20f0",
+    "status": "draft_not_accepted"
+  }
 }

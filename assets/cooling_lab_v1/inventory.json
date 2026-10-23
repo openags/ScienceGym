@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "initial_requirement_inventory_not_asset_or_scene_acceptance",
+  "status": "scene_draft_inventory_pending_completeness_review",
   "date": "2026-10-23",
   "paper_doi": "10.1038/s41467-018-07293-9",
   "source_inventory": {
@@ -13,7 +13,7 @@
   "counts_are": "Requirement rows, not unique physical assets or instances. Compound rows, copies and lifecycle states must still be allocated.",
   "candidate_links_are": "Discovery pointers to current files, not a new review of their appearance or safety. Historic whole-scene candidates require exact subpart bindings.",
   "owner_asset_scene_acceptance": null,
-  "whole_lab_scene_exists": false,
+  "whole_lab_scene_exists": true,
   "inventory_completeness_accepted": false,
   "items": [
     {
@@ -44,11 +44,35 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Existing whole-scene custom cooler candidate; review white/black variants, separated parts and all required preparations. Scene subsets are not yet bound here.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 3,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "cooler_white",
+          "station": "outdoor_white",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_white.glb",
+          "sha256": "de1fd1508fae66c35359bbfa35a6930a067c11bffbec6b2f6d3f4469a3067abc"
+        },
+        {
+          "id": "cooler_black",
+          "station": "outdoor_black",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_black.glb",
+          "sha256": "0608c513add424d91d3456667b46bed0cc7222917a377d9d783ca5384ded374a"
+        },
+        {
+          "id": "cooler_fixed",
+          "station": "assembly_black",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_fixed.glb",
+          "sha256": "e3777ba6fe148341e4627d71628172385f4b997db42c17508fc00f477125a68a"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:SMU",
@@ -80,11 +104,29 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 2,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "smu_white",
+          "station": "electrical_bench",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_smu_white.glb",
+          "sha256": "b33d30205f798ee7e0edd8589a8912f8e1848f3223e3c9d8463d315349d2c2ca"
+        },
+        {
+          "id": "smu_black",
+          "station": "electrical_bench",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_smu_black.glb",
+          "sha256": "b33d30205f798ee7e0edd8589a8912f8e1848f3223e3c9d8463d315349d2c2ca"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:DAQ",
@@ -113,11 +155,23 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "daq",
+          "station": "electrical_bench",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_daq.glb",
+          "sha256": "9079b06e57567c901bb48d8c9b7c95e2f0ad9fdb881609b7abfdb1939780fe21"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:BATH",
@@ -146,11 +200,23 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "A25 is paper-reported; AC150 is an authored controller choice with an unresolved historical variant.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "bath",
+          "station": "bath_stand",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_bath.glb",
+          "sha256": "c0ccfa5068ec1844538792f029980be03e2c25c94125c7e81d81c8ef56a415db"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:DMM",
@@ -177,11 +243,23 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "dmm",
+          "station": "calibration_dry",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_dmm.glb",
+          "sha256": "a8056a09338ad228809a4050d5624e3de8c8a220a4adc5f268755419e3d4777a"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:TC",
@@ -214,7 +292,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:REF_RTD",
@@ -239,11 +319,23 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "rtd",
+          "station": "calibration_dry",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_rtd.glb",
+          "sha256": "a32383180b91120dea090fc62687fd90033bd78f3055debda282122e5d7fdadf"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:AMB_RTD",
@@ -267,7 +359,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:HEATER",
@@ -294,11 +388,23 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "heater",
+          "station": "assembly_black",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_heater.glb",
+          "sha256": "8c7dd4b5bfc9a7d6400ed7cc971791a6b2aabeb02fecd1dd5d3c56b08c230671"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:UVVIS",
@@ -328,11 +434,23 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Main instrument only in this row; DRA accessory is a separate required row.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "cary",
+          "station": "cary_bench",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_cary.glb",
+          "sha256": "1921232b3e83d54d57fd2d340c59458da2b30d049fe98869e488a290df8008db"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:FTIR",
@@ -363,11 +481,23 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Main instrument only in this row; IntegratIR accessory is a separate required row. Recheck sliding sample-access opening.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "nicolet",
+          "station": "ftir_bench",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_nicolet.glb",
+          "sha256": "a2ba2cd17236194b6948bf6a838cf319adffb9ec8eafee7e37226833d1215585"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:ANGLE_12",
@@ -391,7 +521,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:ANGLE_VAR",
@@ -415,7 +547,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:SOLAR_TRACKER",
@@ -444,11 +578,23 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Existing whole-scene candidate; no reviewed MS-56/MS-402 sensor pair or outdoor installation supplied by this link.",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "tracker",
+          "station": "tracker_support",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_tracker.glb",
+          "sha256": "2f5335441b38a66904a34f0a17860e7fbf21f1039802128e91313403787922b6"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:DNI",
@@ -466,13 +612,30 @@
         "physics_validated": false,
         "researched_source_ids": []
       },
-      "candidate_artifacts": [],
-      "discovery_status": "no_candidate_linked_in_initial_inventory",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/geometry/eko_ms56.glb",
+          "sha256": "533c858a1fcf87e9ba0a424f19e576cc558f27775ca227a3ddd9a2e67389830b"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "eko_ms56",
+          "station": "tracker_support",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_eko_ms56.glb",
+          "sha256": "514fd8e37057146217621485d8bdbfbaab1569b3347ffcfd87a1f82714e80e64"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:GTI",
@@ -490,13 +653,30 @@
         "physics_validated": false,
         "researched_source_ids": []
       },
-      "candidate_artifacts": [],
-      "discovery_status": "no_candidate_linked_in_initial_inventory",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/geometry/eko_ms402.glb",
+          "sha256": "5166da9dc1479abe4f3d7fe39a54c851836fa60659a205d7ba7445d39728312e"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "eko_ms402",
+          "station": "weather_service",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_eko_ms402.glb",
+          "sha256": "300cf6d106e1e12552a6dead39b653e195e7f12f4bf7db8e407bd50b14bedc5f"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:WEATHER",
@@ -514,13 +694,30 @@
         "physics_validated": false,
         "researched_source_ids": []
       },
-      "candidate_artifacts": [],
-      "discovery_status": "no_candidate_linked_in_initial_inventory",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/geometry/hobo_u30.glb",
+          "sha256": "6be62efae9b4b4f23e7096556ec789188d817f798d41c9e817b861c7bf8e0ec3"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
-      "instance_allocation": null,
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "hobo_u30",
+          "station": "weather_service",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_hobo_u30.glb",
+          "sha256": "10a538ebade5042f768d73a346952775beeba702ec9d534f4c715c522aadf23f"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "equipment:WATERJET",
@@ -544,7 +741,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "tools:caliper",
@@ -563,7 +762,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "tools:film_jig",
@@ -582,7 +783,21 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "film_jig",
+          "parts": [
+            "film_jig_base",
+            "film_jig_jaw_-0.11",
+            "film_jig_screw_-0.11",
+            "film_jig_jaw_0.11",
+            "film_jig_screw_0.11"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "tools:supported_carrier",
@@ -601,7 +816,40 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "carrier_0",
+          "parts": [
+            "carrier_0_floor",
+            "carrier_0_side_-0.24",
+            "carrier_0_handle_-0.24_0",
+            "carrier_0_handle_-0.24_1",
+            "carrier_0_handle_-0.24_2",
+            "carrier_0_side_0.24",
+            "carrier_0_handle_0.24_0",
+            "carrier_0_handle_0.24_1",
+            "carrier_0_handle_0.24_2"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        },
+        {
+          "id": "carrier_1",
+          "parts": [
+            "carrier_1_floor",
+            "carrier_1_side_-0.24",
+            "carrier_1_handle_-0.24_0",
+            "carrier_1_handle_-0.24_1",
+            "carrier_1_handle_-0.24_2",
+            "carrier_1_side_0.24",
+            "carrier_1_handle_0.24_0",
+            "carrier_1_handle_0.24_1",
+            "carrier_1_handle_0.24_2"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "tools:cutting_fixture",
@@ -620,7 +868,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "tools:fastener_driver",
@@ -639,7 +889,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "tools:wire_stripper_and_driver",
@@ -658,7 +910,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "tools:coating_station",
@@ -677,7 +931,35 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "extraction_enclosure",
+          "parts": [
+            "coating_enclosure_base",
+            "coating_enclosure_back",
+            "coating_enclosure_left",
+            "coating_enclosure_right",
+            "coating_enclosure_roof",
+            "coating_exhaust_duct",
+            "exhaust_baffle_0",
+            "exhaust_baffle_1",
+            "exhaust_baffle_2",
+            "exhaust_baffle_3",
+            "exhaust_baffle_4",
+            "exhaust_baffle_5",
+            "exhaust_baffle_6",
+            "exhaust_baffle_7",
+            "exhaust_baffle_8",
+            "exhaust_baffle_9",
+            "exhaust_baffle_10",
+            "exhaust_baffle_11",
+            "exhaust_baffle_12"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "tools:storage_supports",
@@ -696,7 +978,52 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "storage",
+          "parts": [
+            "raw_stock_upright_-0.75_-0.275",
+            "raw_stock_upright_-0.75_0.275",
+            "raw_stock_upright_0.75_-0.275",
+            "raw_stock_upright_0.75_0.275",
+            "raw_stock_shelf_0",
+            "raw_stock_shelf_1",
+            "raw_stock_shelf_2",
+            "raw_stock_shelf_3",
+            "raw_stock_shelf_4",
+            "specimens_upright_-0.75_-0.275",
+            "specimens_upright_-0.75_0.275",
+            "specimens_upright_0.75_-0.275",
+            "specimens_upright_0.75_0.275",
+            "specimens_shelf_0",
+            "specimens_shelf_1",
+            "specimens_shelf_2",
+            "specimens_shelf_3",
+            "specimens_shelf_4",
+            "fabrication_storage_upright_-0.7_-0.275",
+            "fabrication_storage_upright_-0.7_0.275",
+            "fabrication_storage_upright_0.7_-0.275",
+            "fabrication_storage_upright_0.7_0.275",
+            "fabrication_storage_shelf_0",
+            "fabrication_storage_shelf_1",
+            "fabrication_storage_shelf_2",
+            "fabrication_storage_shelf_3",
+            "fabrication_storage_shelf_4",
+            "coating_storage_upright_-0.7_-0.275",
+            "coating_storage_upright_-0.7_0.275",
+            "coating_storage_upright_0.7_-0.275",
+            "coating_storage_upright_0.7_0.275",
+            "coating_storage_shelf_0",
+            "coating_storage_shelf_1",
+            "coating_storage_shelf_2",
+            "coating_storage_shelf_3",
+            "coating_storage_shelf_4"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "consumables:consumable_01",
@@ -710,7 +1037,18 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "stock_plate_stack",
+          "parts": [
+            "stock_sheet_0",
+            "stock_sheet_1"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "consumables:consumable_02",
@@ -724,7 +1062,18 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "stock_plate_stack",
+          "parts": [
+            "stock_sheet_0",
+            "stock_sheet_1"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "consumables:consumable_03",
@@ -738,7 +1087,19 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "pe_stock",
+          "parts": [
+            "pe_tube_stock_0",
+            "pe_tube_stock_1",
+            "pe_tube_stock_2"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "consumables:consumable_04",
@@ -752,7 +1113,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_05",
@@ -766,7 +1129,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_06",
@@ -780,7 +1145,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_07",
@@ -794,7 +1161,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_08",
@@ -808,7 +1177,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_09",
@@ -822,7 +1193,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_10",
@@ -836,7 +1209,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_11",
@@ -850,7 +1225,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_12",
@@ -864,7 +1241,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_13",
@@ -878,7 +1257,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "additional_reconstructed_materials:calibration_block_stock",
@@ -896,7 +1277,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "additional_reconstructed_materials:fine_wire_transition",
@@ -914,7 +1297,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "additional_reconstructed_materials:bath_water_and_fill_vessel",
@@ -932,7 +1317,9 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "additional_reconstructed_materials:reversible_emitter_jig",
@@ -950,7 +1337,21 @@
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "emitter_jig",
+          "parts": [
+            "emitter_jig_base",
+            "emitter_jig_jaw_-0.11",
+            "emitter_jig_screw_-0.11",
+            "emitter_jig_jaw_0.11",
+            "emitter_jig_screw_0.11"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "accessory:DRA_2500",
@@ -965,10 +1366,22 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Selected historical accessory reconstruction; exact paper configuration needs explicit reviewer disposition.",
-      "instance_allocation": null,
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "dra",
+          "station": "cary_bench",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_dra.glb",
+          "sha256": "3745089bdc7cec4732bf8b1e80e81b523d0fd783206b5323e2bc1ff6fb8a5437"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "accessory:INTEGRATIR",
@@ -983,10 +1396,22 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Selected historical accessory reconstruction; exact paper configuration needs explicit reviewer disposition.",
-      "instance_allocation": null,
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "pike",
+          "station": "ftir_bench",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_pike.glb",
+          "sha256": "8604a5bd0fd9cd242aedca25b72b5456d229dc8c8e6a078964457de259bbf133"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "robot:H2",
@@ -1001,10 +1426,22 @@
         }
       ],
       "discovery_status": "candidate_linked_for_review",
-      "candidate_scope_note": "Variant and mounting require review; H2 preview has original rigid wrist meshes, not the selected articulated hands.",
-      "instance_allocation": null,
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
+      "instance_allocation": {
+        "modeled_instances": 1,
+        "required_instance_count_accepted": false
+      },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
+        {
+          "id": "h2",
+          "station": "circulation",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_h2.glb",
+          "sha256": "b9f09072d9f7233835b54daf322f35d46ad31a8baadfafdcec4b88a62a15fd73"
+        }
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "robot:DEX5_S_PRO_LEFT",
@@ -1017,7 +1454,9 @@
       "candidate_scope_note": "Variant and mounting require review; H2 preview has original rigid wrist meshes, not the selected articulated hands.",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "robot:DEX5_S_PRO_RIGHT",
@@ -1030,7 +1469,9 @@
       "candidate_scope_note": "Variant and mounting require review; H2 preview has original rigid wrist meshes, not the selected articulated hands.",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "facility:ROOM",
@@ -1042,7 +1483,55 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "room_shell",
+          "parts": [
+            "indoor_floor",
+            "annex_floor",
+            "outdoor_access_path",
+            "wall_south_west_lower",
+            "wall_south_west_upper",
+            "wall_south_east_lower",
+            "wall_south_east_upper",
+            "wall_north_west_lower",
+            "wall_north_west_upper",
+            "wall_north_east_lower",
+            "wall_north_east_upper",
+            "wall_east_lower",
+            "wall_east_upper",
+            "wall_annex_west_lower",
+            "wall_annex_west_upper",
+            "wall_annex_south_lower",
+            "wall_annex_south_upper",
+            "wall_annex_north_lower",
+            "wall_annex_north_upper",
+            "wall_annex_split_lower",
+            "wall_annex_split_upper",
+            "wall_partition_low_lower",
+            "wall_partition_low_upper",
+            "wall_partition_mid_lower",
+            "wall_partition_mid_upper",
+            "wall_partition_high_lower",
+            "wall_partition_high_upper",
+            "door_entry_-1",
+            "door_entry_1",
+            "door_entry_lintel",
+            "door_yard_-1",
+            "door_yard_1",
+            "door_yard_lintel",
+            "door_fabrication_-1",
+            "door_fabrication_1",
+            "door_fabrication_lintel",
+            "door_coating_-1",
+            "door_coating_1",
+            "door_coating_lintel"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:BENCHES",
@@ -1054,7 +1543,172 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "bench_frames",
+          "parts": [
+            "cary_bench_worktop",
+            "cary_bench_leg_1.3_8.2",
+            "cary_bench_foot_1.3_8.2",
+            "cary_bench_leg_1.3_9.2",
+            "cary_bench_foot_1.3_9.2",
+            "cary_bench_leg_3.6999999999999997_8.2",
+            "cary_bench_foot_3.6999999999999997_8.2",
+            "cary_bench_leg_3.6999999999999997_9.2",
+            "cary_bench_foot_3.6999999999999997_9.2",
+            "cary_bench_back_stretcher",
+            "cary_bench_side_stretcher_1.3",
+            "cary_bench_side_stretcher_3.6999999999999997",
+            "ftir_bench_worktop",
+            "ftir_bench_leg_8.299999999999999_8.2",
+            "ftir_bench_foot_8.299999999999999_8.2",
+            "ftir_bench_leg_8.299999999999999_9.2",
+            "ftir_bench_foot_8.299999999999999_9.2",
+            "ftir_bench_leg_10.700000000000001_8.2",
+            "ftir_bench_foot_10.700000000000001_8.2",
+            "ftir_bench_leg_10.700000000000001_9.2",
+            "ftir_bench_foot_10.700000000000001_9.2",
+            "ftir_bench_back_stretcher",
+            "ftir_bench_side_stretcher_8.299999999999999",
+            "ftir_bench_side_stretcher_10.700000000000001",
+            "assembly_white_worktop",
+            "assembly_white_leg_1.8_2.5",
+            "assembly_white_foot_1.8_2.5",
+            "assembly_white_leg_1.8_3.5",
+            "assembly_white_foot_1.8_3.5",
+            "assembly_white_leg_3.9999999999999996_2.5",
+            "assembly_white_foot_3.9999999999999996_2.5",
+            "assembly_white_leg_3.9999999999999996_3.5",
+            "assembly_white_foot_3.9999999999999996_3.5",
+            "assembly_white_back_stretcher",
+            "assembly_white_side_stretcher_1.8",
+            "assembly_white_side_stretcher_3.9999999999999996",
+            "assembly_black_worktop",
+            "assembly_black_leg_8.4_2.5",
+            "assembly_black_foot_8.4_2.5",
+            "assembly_black_leg_8.4_3.5",
+            "assembly_black_foot_8.4_3.5",
+            "assembly_black_leg_10.6_2.5",
+            "assembly_black_foot_10.6_2.5",
+            "assembly_black_leg_10.6_3.5",
+            "assembly_black_foot_10.6_3.5",
+            "assembly_black_back_stretcher",
+            "assembly_black_side_stretcher_8.4",
+            "assembly_black_side_stretcher_10.6",
+            "calibration_dry_worktop",
+            "calibration_dry_leg_0.4_5.449999999999999",
+            "calibration_dry_foot_0.4_5.449999999999999",
+            "calibration_dry_leg_0.4_6.15",
+            "calibration_dry_foot_0.4_6.15",
+            "calibration_dry_leg_1.8_5.449999999999999",
+            "calibration_dry_foot_1.8_5.449999999999999",
+            "calibration_dry_leg_1.8_6.15",
+            "calibration_dry_foot_1.8_6.15",
+            "calibration_dry_back_stretcher",
+            "calibration_dry_side_stretcher_0.4",
+            "calibration_dry_side_stretcher_1.8",
+            "bath_stand_worktop",
+            "bath_stand_leg_2.6_5.47",
+            "bath_stand_foot_2.6_5.47",
+            "bath_stand_leg_2.6_6.170000000000001",
+            "bath_stand_foot_2.6_6.170000000000001",
+            "bath_stand_leg_3.1999999999999997_5.47",
+            "bath_stand_foot_3.1999999999999997_5.47",
+            "bath_stand_leg_3.1999999999999997_6.170000000000001",
+            "bath_stand_foot_3.1999999999999997_6.170000000000001",
+            "bath_stand_back_stretcher",
+            "bath_stand_side_stretcher_2.6",
+            "bath_stand_side_stretcher_3.1999999999999997",
+            "electrical_bench_worktop",
+            "electrical_bench_leg_9.0_5.3999999999999995",
+            "electrical_bench_foot_9.0_5.3999999999999995",
+            "electrical_bench_leg_9.0_6.2",
+            "electrical_bench_foot_9.0_6.2",
+            "electrical_bench_leg_11.2_5.3999999999999995",
+            "electrical_bench_foot_11.2_5.3999999999999995",
+            "electrical_bench_leg_11.2_6.2",
+            "electrical_bench_foot_11.2_6.2",
+            "electrical_bench_back_stretcher",
+            "electrical_bench_side_stretcher_9.0",
+            "electrical_bench_side_stretcher_11.2",
+            "fabrication_fixture_worktop",
+            "fabrication_fixture_leg_-5.25_0.9499999999999998",
+            "fabrication_fixture_foot_-5.25_0.9499999999999998",
+            "fabrication_fixture_leg_-5.25_1.8499999999999999",
+            "fabrication_fixture_foot_-5.25_1.8499999999999999",
+            "fabrication_fixture_leg_-3.35_0.9499999999999998",
+            "fabrication_fixture_foot_-3.35_0.9499999999999998",
+            "fabrication_fixture_leg_-3.35_1.8499999999999999",
+            "fabrication_fixture_foot_-3.35_1.8499999999999999",
+            "fabrication_fixture_back_stretcher",
+            "fabrication_fixture_side_stretcher_-5.25",
+            "fabrication_fixture_side_stretcher_-3.35",
+            "coating_prep_worktop",
+            "coating_prep_leg_-5.25_5.95",
+            "coating_prep_foot_-5.25_5.95",
+            "coating_prep_leg_-5.25_6.8500000000000005",
+            "coating_prep_foot_-5.25_6.8500000000000005",
+            "coating_prep_leg_-3.35_5.95",
+            "coating_prep_foot_-3.35_5.95",
+            "coating_prep_leg_-3.35_6.8500000000000005",
+            "coating_prep_foot_-3.35_6.8500000000000005",
+            "coating_prep_back_stretcher",
+            "coating_prep_side_stretcher_-5.25",
+            "coating_prep_side_stretcher_-3.35",
+            "outdoor_white_worktop",
+            "outdoor_white_leg_2.0_15.4",
+            "outdoor_white_foot_2.0_15.4",
+            "outdoor_white_leg_2.0_16.2",
+            "outdoor_white_foot_2.0_16.2",
+            "outdoor_white_leg_3.0_15.4",
+            "outdoor_white_foot_3.0_15.4",
+            "outdoor_white_leg_3.0_16.2",
+            "outdoor_white_foot_3.0_16.2",
+            "outdoor_white_back_stretcher",
+            "outdoor_white_side_stretcher_2.0",
+            "outdoor_white_side_stretcher_3.0",
+            "outdoor_black_worktop",
+            "outdoor_black_leg_9.0_15.4",
+            "outdoor_black_foot_9.0_15.4",
+            "outdoor_black_leg_9.0_16.2",
+            "outdoor_black_foot_9.0_16.2",
+            "outdoor_black_leg_10.0_15.4",
+            "outdoor_black_foot_10.0_15.4",
+            "outdoor_black_leg_10.0_16.2",
+            "outdoor_black_foot_10.0_16.2",
+            "outdoor_black_back_stretcher",
+            "outdoor_black_side_stretcher_9.0",
+            "outdoor_black_side_stretcher_10.0",
+            "weather_service_worktop",
+            "weather_service_leg_8.95_18.300000000000004",
+            "weather_service_foot_8.95_18.300000000000004",
+            "weather_service_leg_8.95_18.9",
+            "weather_service_foot_8.95_18.9",
+            "weather_service_leg_10.05_18.300000000000004",
+            "weather_service_foot_10.05_18.300000000000004",
+            "weather_service_leg_10.05_18.9",
+            "weather_service_foot_10.05_18.9",
+            "weather_service_back_stretcher",
+            "weather_service_side_stretcher_8.95",
+            "weather_service_side_stretcher_10.05",
+            "tracker_support_worktop",
+            "tracker_support_leg_1.9500000000000002_18.300000000000004",
+            "tracker_support_foot_1.9500000000000002_18.300000000000004",
+            "tracker_support_leg_1.9500000000000002_18.9",
+            "tracker_support_foot_1.9500000000000002_18.9",
+            "tracker_support_leg_3.05_18.300000000000004",
+            "tracker_support_foot_3.05_18.300000000000004",
+            "tracker_support_leg_3.05_18.9",
+            "tracker_support_foot_3.05_18.9",
+            "tracker_support_back_stretcher",
+            "tracker_support_side_stretcher_1.9500000000000002",
+            "tracker_support_side_stretcher_3.05"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:STORAGE",
@@ -1066,7 +1720,52 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "storage",
+          "parts": [
+            "raw_stock_upright_-0.75_-0.275",
+            "raw_stock_upright_-0.75_0.275",
+            "raw_stock_upright_0.75_-0.275",
+            "raw_stock_upright_0.75_0.275",
+            "raw_stock_shelf_0",
+            "raw_stock_shelf_1",
+            "raw_stock_shelf_2",
+            "raw_stock_shelf_3",
+            "raw_stock_shelf_4",
+            "specimens_upright_-0.75_-0.275",
+            "specimens_upright_-0.75_0.275",
+            "specimens_upright_0.75_-0.275",
+            "specimens_upright_0.75_0.275",
+            "specimens_shelf_0",
+            "specimens_shelf_1",
+            "specimens_shelf_2",
+            "specimens_shelf_3",
+            "specimens_shelf_4",
+            "fabrication_storage_upright_-0.7_-0.275",
+            "fabrication_storage_upright_-0.7_0.275",
+            "fabrication_storage_upright_0.7_-0.275",
+            "fabrication_storage_upright_0.7_0.275",
+            "fabrication_storage_shelf_0",
+            "fabrication_storage_shelf_1",
+            "fabrication_storage_shelf_2",
+            "fabrication_storage_shelf_3",
+            "fabrication_storage_shelf_4",
+            "coating_storage_upright_-0.7_-0.275",
+            "coating_storage_upright_-0.7_0.275",
+            "coating_storage_upright_0.7_-0.275",
+            "coating_storage_upright_0.7_0.275",
+            "coating_storage_shelf_0",
+            "coating_storage_shelf_1",
+            "coating_storage_shelf_2",
+            "coating_storage_shelf_3",
+            "coating_storage_shelf_4"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:CARRIERS",
@@ -1078,7 +1777,40 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "carrier_0",
+          "parts": [
+            "carrier_0_floor",
+            "carrier_0_side_-0.24",
+            "carrier_0_handle_-0.24_0",
+            "carrier_0_handle_-0.24_1",
+            "carrier_0_handle_-0.24_2",
+            "carrier_0_side_0.24",
+            "carrier_0_handle_0.24_0",
+            "carrier_0_handle_0.24_1",
+            "carrier_0_handle_0.24_2"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        },
+        {
+          "id": "carrier_1",
+          "parts": [
+            "carrier_1_floor",
+            "carrier_1_side_-0.24",
+            "carrier_1_handle_-0.24_0",
+            "carrier_1_handle_-0.24_1",
+            "carrier_1_handle_-0.24_2",
+            "carrier_1_side_0.24",
+            "carrier_1_handle_0.24_0",
+            "carrier_1_handle_0.24_1",
+            "carrier_1_handle_0.24_2"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:FABRICATION",
@@ -1090,7 +1822,9 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "facility:COATING",
@@ -1102,7 +1836,35 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "extraction_enclosure",
+          "parts": [
+            "coating_enclosure_base",
+            "coating_enclosure_back",
+            "coating_enclosure_left",
+            "coating_enclosure_right",
+            "coating_enclosure_roof",
+            "coating_exhaust_duct",
+            "exhaust_baffle_0",
+            "exhaust_baffle_1",
+            "exhaust_baffle_2",
+            "exhaust_baffle_3",
+            "exhaust_baffle_4",
+            "exhaust_baffle_5",
+            "exhaust_baffle_6",
+            "exhaust_baffle_7",
+            "exhaust_baffle_8",
+            "exhaust_baffle_9",
+            "exhaust_baffle_10",
+            "exhaust_baffle_11",
+            "exhaust_baffle_12"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:UTILITIES",
@@ -1114,7 +1876,26 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "overhead_services",
+          "parts": [
+            "service_tray_1.2",
+            "service_tray_3.6",
+            "service_tray_8.4",
+            "service_tray_10.8",
+            "light_2.5_2",
+            "light_9.5_2",
+            "light_2.5_5",
+            "light_9.5_5",
+            "light_2.5_8",
+            "light_9.5_8"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:WET_SERVICES",
@@ -1126,7 +1907,21 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "spill_tray",
+          "parts": [
+            "bath_spill_base",
+            "bath_spill_front",
+            "bath_spill_rear",
+            "bath_spill_left",
+            "bath_spill_right"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:SAFETY",
@@ -1138,7 +1933,20 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "emergency_positions",
+          "parts": [
+            "emergency_post_4.2",
+            "emergency_stop_4.2",
+            "emergency_post_7.8",
+            "emergency_stop_7.8"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:OUTDOOR",
@@ -1150,7 +1958,65 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "partially_authored_pending_completeness_review",
+      "scene_instances": [],
+      "authored_scene_components": [
+        {
+          "id": "outdoor_supports",
+          "parts": [
+            "outdoor_floor",
+            "outdoor_white_worktop",
+            "outdoor_white_leg_2.0_15.4",
+            "outdoor_white_foot_2.0_15.4",
+            "outdoor_white_leg_2.0_16.2",
+            "outdoor_white_foot_2.0_16.2",
+            "outdoor_white_leg_3.0_15.4",
+            "outdoor_white_foot_3.0_15.4",
+            "outdoor_white_leg_3.0_16.2",
+            "outdoor_white_foot_3.0_16.2",
+            "outdoor_white_back_stretcher",
+            "outdoor_white_side_stretcher_2.0",
+            "outdoor_white_side_stretcher_3.0",
+            "outdoor_black_worktop",
+            "outdoor_black_leg_9.0_15.4",
+            "outdoor_black_foot_9.0_15.4",
+            "outdoor_black_leg_9.0_16.2",
+            "outdoor_black_foot_9.0_16.2",
+            "outdoor_black_leg_10.0_15.4",
+            "outdoor_black_foot_10.0_15.4",
+            "outdoor_black_leg_10.0_16.2",
+            "outdoor_black_foot_10.0_16.2",
+            "outdoor_black_back_stretcher",
+            "outdoor_black_side_stretcher_9.0",
+            "outdoor_black_side_stretcher_10.0",
+            "weather_service_worktop",
+            "weather_service_leg_8.95_18.300000000000004",
+            "weather_service_foot_8.95_18.300000000000004",
+            "weather_service_leg_8.95_18.9",
+            "weather_service_foot_8.95_18.9",
+            "weather_service_leg_10.05_18.300000000000004",
+            "weather_service_foot_10.05_18.300000000000004",
+            "weather_service_leg_10.05_18.9",
+            "weather_service_foot_10.05_18.9",
+            "weather_service_back_stretcher",
+            "weather_service_side_stretcher_8.95",
+            "weather_service_side_stretcher_10.05",
+            "tracker_support_worktop",
+            "tracker_support_leg_1.9500000000000002_18.300000000000004",
+            "tracker_support_foot_1.9500000000000002_18.300000000000004",
+            "tracker_support_leg_1.9500000000000002_18.9",
+            "tracker_support_foot_1.9500000000000002_18.9",
+            "tracker_support_leg_3.05_18.300000000000004",
+            "tracker_support_foot_3.05_18.300000000000004",
+            "tracker_support_leg_3.05_18.9",
+            "tracker_support_foot_3.05_18.9",
+            "tracker_support_back_stretcher",
+            "tracker_support_side_stretcher_1.9500000000000002",
+            "tracker_support_side_stretcher_3.05"
+          ],
+          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+        }
+      ]
     },
     {
       "id": "facility:WASTE",
@@ -1162,7 +2028,9 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     },
     {
       "id": "facility:ROBOT_SERVICE",
@@ -1174,7 +2042,13 @@
       "decomposition_status": "select_and_split_actual_assets_after_requirement_review",
       "instance_allocation": null,
       "asset_acceptance": "not_reviewed",
-      "scene_placement": null
+      "scene_placement": "not_placed",
+      "scene_instances": [],
+      "authored_scene_components": []
     }
-  ]
+  ],
+  "scene_artifact": {
+    "path": "assets/cooling_lab_v1/scene.json",
+    "sha256": "0997212e2afcd54e525533e0895e8804062a9c3f1ad0d0d5f7c83d772dfd20f0"
+  }
 }

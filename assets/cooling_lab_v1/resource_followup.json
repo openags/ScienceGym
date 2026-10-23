@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-23",
+  "scope": "Additional source discovery during laboratory construction; unresolved identities remain unresolved",
+  "records": [
+    {
+      "resource": "robot:DEX5_S_PRO_LEFT / robot:DEX5_S_PRO_RIGHT",
+      "queries": ["site:github.com/unitreerobotics Dex5-S", "Dex5-S URDF CAD STEP model"],
+      "sources": [
+        {"url": "https://www.unitree.com/Dex5-S/", "inspected": "Official product specifications; does not provide the joint model used by this scene"},
+        {"url": "https://github.com/unitreerobotics", "inspected": "Official organization page and its published URDF-family index; Dex5-1 is listed, not an exact Dex5-S Pro download"},
+        {"url": "https://huggingface.co/datasets/unitreerobotics/unitree_model/tree/323e350", "inspected": "Root directory listing only: B2, G1, Go2, Go2W, H1-2, H1, H2. Not a recursive proof of absence."}
+      ],
+      "result": "No exact left/right Dex5-S Pro articulated asset obtained in this search. Earlier pinned repository path audit remains in simulation/humanoid_v1/hand_resource_audit.json.",
+      "needed": ["Exact meshes and reuse terms", "22 joint axes and limits per hand", "Inertias and actuator properties", "H2 wrist mounting transform and collision geometry"],
+      "substitution_allowed": false
+    },
+    {
+      "resource": "equipment:ANGLE_12",
+      "source": "https://harricksci.com/content/Data_Sheet_Variable_Angle_Reflection_Accessory.pdf",
+      "inspected": "Both pages extracted text; no dimension drawing obtained",
+      "finding": "Manufacturer documentation explicitly lists a 12-degree horizontal reflection stage VR1-HRS and a separate 12-degree absolute-reflectance stage VR1-VWA-12. Therefore the paper's angle is not evidence that a current 12.5-degree product should be substituted.",
+      "unresolved": "The paper does not identify which exact legacy stage/base/spectrometer adapter was installed. The two candidates have different optical paths and sample handling. Overall and mounting dimensions remain missing.",
+      "geometry_status": "not_built"
+    },
+    {
+      "resource": "equipment:TC",
+      "source": "https://assets.omega.com/pdf/test-and-measurement-equipment/temperature/sensors/thermocouple-probes/5TC.pdf",
+      "inspected": "Manufacturer table and ordering-note text",
+      "finding": "36 AWG is listed as 0.13 mm conductor diameter; the ordering note maps the length suffix 36 to 1 m (40 inches). Do not infer exact lead length simply by reading the suffix as inches.",
+      "unresolved": "Historical supplied length, stripped junction geometry, insulation envelope and rest routing need an explicit selected reconstruction and source comparison.",
+      "geometry_status": "not_built"
+    }
+  ],
+  "manufacturer_files_redistributed": false,
+  "asset_acceptance": false
+}
