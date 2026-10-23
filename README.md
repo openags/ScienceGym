@@ -8,7 +8,9 @@ hands-on operation. The current hand selection is Dex5-S Pro from the latest
 officially listed Dex5-S family; body/hand mounting and simulation integration
 remain unqualified. See the [embodiment requirements](docs/PROJECT_VISION.md#humanoid-execution-target).
 Existing Panda recordings are historical component tests and do not establish
-humanoid execution. No humanoid episode has yet been validated.
+humanoid manipulation. The official H2 body now has a verified standing and
+unloaded bilateral wrist-motion recording; no humanoid manipulation episode
+has yet been validated.
 
 ScienceGym studies how to translate a paper's reported experimental program into tasks for an embodied research agent: preparing materials, moving samples between instruments, assembling apparatus, running controls and repeated measurements, preserving records, recovering from failures, and leaving the laboratory in a defined final state.
 
@@ -29,6 +31,17 @@ Paper conversion also requires [reconstructing omitted physical work](docs/contr
 The [conversion workflow](docs/contributing/PAPER_TO_ROBOT_WORKFLOW.md) specifies source/coverage review, goal-based causal planning, resource allocation, robot perception/motion/manipulation decomposition, episode and asset bindings, evaluation, and publication. It defines the required roles of JSON/Markdown files under `tasks/<family>/`, with [package](docs/contributing/templates/paper_task_package.example.json) and [operation](docs/contributing/templates/robot_operation.example.json) examples. Source packages remain authoritative; viewer JSON/JS/SVG/Markdown are derived author/evaluator projections, and new schemas require explicit adapters. The [paper-conversion review gates](docs/contributing/REVIEW_CHECKLIST.md#mandatory-paper-conversion-review) do not imply an automatic converter or an implemented robot runtime.
 
 ## First reconstruction pilot
+
+The [Unitree humanoid workbench](simulation/humanoid_v1/index.html) shows the
+official H2 meshes, a continuous 20-second physics recording and five body
+foundation test cases. Both feet support the floating body through contact;
+recorded motor commands independently reproduce the complete trajectory.
+Dex5-S Pro integration is blocked on the exact left/right articulated models,
+inertias, limits and wrist interface. Original rigid H2 wrist meshes do not
+represent the selected hands. See the [implementation and reproduction
+instructions](simulation/cooling_v1/README.md#unitree-h2-body-foundation).
+Run `python simulation/cooling_v1/serve.py --port 8769`, then open
+`http://localhost:8769/simulation/humanoid_v1/index.html`.
 
 The [directional-cooling reconstruction pilot](docs/pilots/DIRECTIONAL_COOLING.md)
 applies this workflow to one existing paper: explicit manipulation steps and

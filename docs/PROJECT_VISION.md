@@ -70,7 +70,18 @@ can retain their narrower status while standing/balance remains unqualified.
 The existing Panda records retain their original source snapshots and scoped
 physical findings as historical component evidence. Their grasp controllers,
 reachability, fixtures and acceptance receipts must be requalified on the
-selected humanoid. The humanoid accepted-episode count is currently zero.
+selected humanoid. The humanoid accepted manipulation-episode count is
+currently zero.
+
+The [H2 body foundation](../simulation/humanoid_v1/index.html) now records
+standing, unloaded bilateral wrist reach, holding and return. Five cases cover
+nominal operation, an initial-joint perturbation, a halved physics timestep,
+disabled motors and absent ground. The latter two must fail physical support.
+An independent verifier reintegrates every recorded motor command from the
+initial state and recomputes contacts and support. This establishes only the
+declared body-control scope, using privileged simulator state. It does not
+establish articulated hands, grasping, walking, sensor-based perception,
+hardware operation or any paper manipulation step.
 
 ## Source scope and evidence discipline
 
@@ -130,7 +141,7 @@ The fixed baseline at revision `3a200acfb22dfe6db3ec9864800bc26acb8e1fca` contai
 The CPU-only, paused-physics setting described in the 3 October baseline is
 historical. The cooling workbench now contains bounded Panda simulation
 records. Current implementation work is migrating to the humanoid target
-above; no humanoid execution is accepted yet. Displayed robot poses do not
+above; no humanoid manipulation is accepted yet. Displayed robot poses do not
 prove contact mechanics, reachability, valid control or experimental physics.
 
 Near-term work should deepen representative families while broadening eligible source coverage. Resolve important gaps, make preparation explicit, improve asset affordances, test bookkeeping and quantify reviewer corrections. Then implement selected end-to-end episodes with trusted state transitions, meaningful interfaces and independently tested evaluators. Expand to campaigns when branch accounting, shared resources and specimen histories function together.

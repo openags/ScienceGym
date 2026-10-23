@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ScienceGym · 宇树人形实验任务</title>
+<style>
+:root{font:16px/1.65 system-ui,sans-serif;color:#173139;background:#eef2f0}*{box-sizing:border-box}body{margin:0}header{background:#102c35;color:#f3f7f6;padding:28px max(24px,5vw)}header small{color:#8ed6c5;letter-spacing:.12em}h1{font-size:clamp(27px,4vw,40px);margin:6px 0}header p{max-width:1000px;color:#cadbdc}main{max-width:1560px;margin:auto;padding:24px 4vw}a{color:#167164}header a{color:#93ddcc}.notice{padding:16px 20px;background:#fff1d6;border-left:4px solid #b78022;margin-bottom:22px}.stats,.grid{display:grid;gap:18px}.stats{grid-template-columns:repeat(4,1fr);margin-bottom:22px}.stat,.panel{background:white;border:1px solid #ccd8d3;border-radius:9px;padding:18px}.stat strong{display:block;font-size:28px}.stat span,.muted{color:#5e7377}.grid{grid-template-columns:1.4fr 1fr}.panel{min-width:0}h2{font-size:22px;margin:0 0 12px}video{width:100%;background:#112731;border-radius:6px}#model{height:500px;position:relative;border:1px solid #d3ddd8;border-radius:6px;overflow:hidden}#model canvas{display:block;width:100%;height:100%}ul{padding-left:22px}.links{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0}button{font:inherit;padding:7px 12px;background:#eaf3ef;border:1px solid #b4cec3;border-radius:5px;cursor:pointer}#error{color:#a32727;white-space:pre-wrap}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:9px;border-bottom:1px solid #d5ded9}th{color:#536d70}code{font-size:13px;overflow-wrap:anywhere}#events{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.scope{font-size:14px;color:#597076}@media(max-width:850px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}#model{height:400px}main{padding:18px}header{padding:22px}table{font-size:14px}}
+</style>
+<script type="importmap">{"imports":{"three":"../cooling_v1/vendor/three.module.js","three/addons/":"../cooling_v1/vendor/addons/"}}</script>
+<header><small>SCIENCEGYM / HUMANOID MANIPULATION</small><h1>宇树人形机器人实验样板</h1><p>目标：宇树完整人形本体，用自身双臂与 Dex5-S Pro 双灵巧手完成论文中的操作任务链。</p><a href="../cooling_v1/sample.html">论文任务定义、设备资产与历史 Panda 记录</a></header>
+<main>
+<div id="error" role="alert"></div>
+<div class="notice"><strong>当前交付范围：H2 本体站立与双腕空载运动。</strong> Dex5-S Pro 的真实关节模型尚未取得，双手抓取和七层装配迁移尚未完成。本页通过状态仅适用于本体基础验证。</div>
+<section class="stats"><div class="stat"><strong>H2</strong><span>宇树官方本体模型</span></div><div class="stat"><strong>31</strong><span>本体驱动关节，不含灵巧手</span></div><div class="stat"><strong id="suite-status">加载中</strong><span>本体基础验证</span></div><div class="stat"><strong>0 / 11</strong><span>完整论文分支通过</span></div></section>
+<div class="grid">
+<section class="panel"><h2>连续物理录像</h2><video id="video" controls preload="metadata" poster="runs/nominal/playback/reach.png" src="runs/nominal/playback/episode.mp4"></video><div id="events"></div><p class="scope">浮动基座、双脚地面接触和关节电机驱动。录像覆盖站立、双腕前伸、保持与收回；没有灵巧手抓取动作。</p><div class="links"><a href="runs/nominal/result.json">运行记录</a><a href="runs/nominal/verification.json">独立物理检查</a><a href="FOUNDATION_VERIFICATION.json">测试汇总</a><a href="runs/nominal/playback/episode.mp4" download>下载完整视频</a></div></section>
+<section class="panel"><h2>官方 H2 模型检查</h2><div id="model" aria-label="可旋转的 H2 本体模型"></div><p class="scope">拖动旋转，滚轮缩放。展示的是记录中的稳定站姿；末端原有刚性网格不代表已安装 Dex5-S Pro。</p><button id="reset-view">重置视角</button><div class="links"><a href="../../assets/unitree_h2_v1/SOURCE.json">模型来源与差异</a><a href="../../assets/unitree_h2_v1/preview_receipt.json">几何导出记录</a></div></section>
+</div>
+<section class="panel" style="margin-top:22px"><h2>验证结果</h2><table><thead><tr><th>测试</th><th>结果</th><th>范围</th></tr></thead><tbody id="checks"></tbody></table><p class="scope">初始状态扰动、时间步细化与物理失效测试分别记录。本体基础通过不会给论文操作步骤增加验收计数。</p></section>
+<section class="panel" style="margin-top:22px"><h2>灵巧手接入缺口</h2><p>官网已确认 Dex5-S Pro 的型号与公开规格。当前检查的官方模型和 SDK 仓库中，尚未取得这一型号的左右手关节模型。</p><ul id="missing"></ul><div class="links"><a href="hand_resource_audit.json">官方资源核查记录</a><a href="https://www.unitree.com/Dex5-S/">宇树 Dex5-S 官方资料</a><a href="../../docs/PROJECT_VISION.md#humanoid-execution-target">执行主体与验收规范</a></div></section>
+</main>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const $=id=>document.getElementById(id),read=async url=>{const r=await fetch(url);if(!r.ok)throw Error(url+' HTTP '+r.status);return r.json()};
+const scene=new THREE.Scene();scene.background=new THREE.Color('#e8efeb');
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));$('model').append(renderer.domElement);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+const camera=new THREE.PerspectiveCamera(37,1,.01,30);camera.up.set(0,0,1);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
+const reset=()=>{camera.position.set(2.5,-3.1,1.8);controls.target.set(.04,0,1.0);controls.update()};reset();$('reset-view').onclick=reset;
+scene.add(new THREE.HemisphereLight(0xffffff,0x596d65,2.1));const light=new THREE.DirectionalLight(0xffffff,2.7);light.position.set(3,-4,5);scene.add(light);
+const grid=new THREE.GridHelper(3,15,0x8ca69c,0xc2d0c8);grid.rotation.x=Math.PI/2;scene.add(grid);
+const resize=()=>{const w=$('model').clientWidth,h=$('model').clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()};new ResizeObserver(resize).observe($('model'));resize();
+new GLTFLoader().load('../../assets/unitree_h2_v1/geometry/h2_settled.glb',g=>{scene.add(g.scene);document.documentElement.dataset.modelLoaded='true'},undefined,e=>{$('error').textContent='H2 模型加载失败：'+e.message});
+renderer.setAnimationLoop(()=>{controls.update();renderer.render(scene,camera)});
+try{
+ const [summary,result,resources]=await Promise.all([read('FOUNDATION_VERIFICATION.json'),read('runs/nominal/result.json'),read('hand_resource_audit.json')]);
+ $('suite-status').textContent=summary.passed?'通过（仅本体）':'未通过';
+ const labels={nominal:'正常运行',seed_1:'初始姿态扰动',half_step:'时间步减半',motors_off:'关闭电机',no_floor:'移除地面'};
+ for(const c of summary.cases){const tr=document.createElement('tr');for(const text of [labels[c.case]||c.case,c.passed?'检查通过':'检查未通过',c.case==='motors_off'||c.case==='no_floor'?'预期物理失效被检出':'站立、双腕前伸与收回']){const td=document.createElement('td');td.textContent=text;tr.append(td)}$('checks').append(tr)}
+ const events={initial_state:'初始状态',stance_settled:'站立稳定',bilateral_reach_held:'双腕前伸',wrists_returned:'收回',foundation_finished:'结束'};
+ for(const e of result.observations){const b=document.createElement('button');b.textContent=(events[e.label]||e.label)+' '+e.time_s.toFixed(1)+'s';b.onclick=()=>{$('video').currentTime=e.time_s;$('video').focus()};$('events').append(b)}
+ const missing=['左右手真实连杆几何与关节坐标系','各连杆惯量、关节限位及速度／力矩范围','指面碰撞结构、执行器与耦合关系','H2 腕部安装变换及末端质量归属','控制轴序、Pro 触觉传感器定义与标定'];
+ for(const text of missing){const li=document.createElement('li');li.textContent=text;$('missing').append(li)}
+ document.documentElement.dataset.dataLoaded='true';document.documentElement.dataset.handStatus=resources.status;
+}catch(e){$('error').textContent=e.message}
+</script></html>

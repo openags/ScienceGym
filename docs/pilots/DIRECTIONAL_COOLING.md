@@ -43,8 +43,11 @@ As of 23 October 2026 the final executor is a Unitree humanoid with its own
 arms and Unitree Dex5-S Pro hands, following the
 [embodiment requirements](../PROJECT_VISION.md#humanoid-execution-target).
 Existing Panda recordings are historical component tests. The humanoid
-body/hand integration and every migrated manipulation remain unqualified;
-none of the existing receipts counts as a humanoid episode.
+body now has a [standing and unloaded bilateral wrist-motion foundation](../../simulation/humanoid_v1/index.html).
+Its official H2 meshes, physical trace, torque replay, five test cases and
+continuous video are retained in `simulation/humanoid_v1`. Exact Dex5-S Pro
+hand integration and every migrated manipulation remain unqualified; none
+of the historical Panda receipts counts as a humanoid manipulation episode.
 
 The pilot is being polished as one complete paper-derived manipulation task chain.
 The [manipulation dossier](../../tasks/directional_cooling_operations_v3/MANIPULATION_REVIEW.md)

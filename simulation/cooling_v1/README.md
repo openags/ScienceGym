@@ -1,13 +1,89 @@
 # Cooling manipulation: contact execution workbench
 
 **Execution target changed on 23 October 2026:** the final sample requires a
-Unitree humanoid with its own arms and Dex5-S Pro hands. Body/hand integration
-is still pending; see the [current requirements](../../docs/PROJECT_VISION.md#humanoid-execution-target).
-All recordings below use Panda and remain historical component evidence.
+Unitree humanoid with its own arms and Dex5-S Pro hands. H2 body integration
+has a separate foundation test; exact hand integration is still pending.
+See the [current requirements](../../docs/PROJECT_VISION.md#humanoid-execution-target).
+The recordings in `cooling_v1` use Panda and remain historical component evidence.
 Their scoped physical acceptance supplies no humanoid execution credit.
-No humanoid episode has been implemented or accepted here yet. Further
+No humanoid manipulation episode has been implemented or accepted yet. Further
 Panda-specific development runs were stopped following the target change;
 interrupted development attempts are not successful executions.
+
+## Unitree H2 body foundation
+
+The [humanoid page](../humanoid_v1/index.html) is the current robot entry point.
+It presents the official H2 geometry and a 20-second standing, bilateral
+unloaded wrist reach, hold and return recording. Dex5-S Pro hands are not yet
+integrated; the original rigid wrist-end meshes are explicitly not those hands.
+The [resource audit](../humanoid_v1/hand_resource_audit.json) lists the checked
+official repositories and missing model/mounting data. It does not claim that
+private or unindexed manufacturer resources do not exist.
+
+The [source manifest](../../assets/unitree_h2_v1/SOURCE.json) pins original
+Unitree commits and all 37 bundled source/license files. Thirty-two source
+visual meshes are preserved. The official MJCF omits a pelvis inertial;
+the runtime uses the explicit pelvis inertia from the pinned official URDF.
+The resulting model mass is 75.587457 kg. The source files remain unchanged,
+and this mass is not scaled to a marketing estimate. Original third-party
+files retain their BSD-3-Clause notices, rather than the repository's license.
+
+The floating-base controller drives only the 31 source joint motors. It
+solves constrained inverse dynamics using privileged simulator state, with
+ground reaction wrenches as optimization variables used to calculate motor
+torques. It applies no artificial support force, root actuator, weld, mocap or
+gravity compensation. This is a control foundation, not a learned visual
+policy or real-robot demonstration. Hand articulation, sensor processing,
+walking, grasping and paper-step execution remain unimplemented.
+
+The [five-case evidence](../humanoid_v1/FOUNDATION_VERIFICATION.json) covers
+the nominal 1 ms simulation, an initial-joint perturbation of ±0.0001 rad,
+a 0.5 ms simulation, disabled motors and removed ground. The last two pass
+only when missing physical support is detected and completion is withheld.
+The verifier replays every saved torque command continuously from the initial
+state, without the original controller or intermediate pose resets; position
+and velocity match the recorded traces exactly on the recorded environment.
+It separately recomputes feet contacts, joint/torque bounds, support margins,
+drift, upright posture and wrist reach/return. Nominal reach errors are
+1.27/1.26 mm; return errors are 1.13/1.13 mm. These do not establish loaded
+hand accuracy or robustness to larger disturbances.
+
+From the repository root, use Python 3.12 and a virtual environment:
+
+```bash
+python -m pip install -r simulation/humanoid_v1/requirements.txt
+OPENBLAS_NUM_THREADS=1 MUJOCO_GL=egl python simulation/humanoid_v1/test_foundation_suite.py
+python simulation/cooling_v1/serve.py --port 8769
+```
+
+Then open `http://localhost:8769/simulation/humanoid_v1/index.html`. The first
+command after installation independently verifies the retained recordings.
+Add `--execute` to generate five fresh runs; existing runs are archived under
+the ignored `runs/debug/` directory. After fresh runs, render the nominal one:
+
+```bash
+MUJOCO_GL=egl python simulation/humanoid_v1/render_foundation.py simulation/humanoid_v1/runs/nominal
+```
+
+Rendering requires an EGL-capable environment, H.264 encoding and DejaVu Sans
+at `/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf`. It exports 401 frames at
+20 fps including both initial and terminal states, the MP4 and a source-mesh
+GLB in the recorded settled posture. Playback lasts 20.05 seconds because the
+terminal state is retained for one frame. Rendering refuses to overwrite an
+existing movie. Browser checks additionally need Playwright and Chromium:
+
+```bash
+python -m pip install playwright==1.64.0
+python simulation/humanoid_v1/check_visuals.py --chromium /path/to/chromium
+```
+
+The [visual receipt](../humanoid_v1/VISUAL_VERIFICATION.json) checks movie
+decoding, endpoint frames, source hashes, actual WebGL loading, video playback,
+event seeking, browser errors and mobile layout. It grants no manipulation
+credit. Every body-foundation result keeps `manipulation_accepted: false` and
+`whole_paper_validated: false`.
+
+## Historical Panda component evidence
 
 **The whole-paper simulation is unfinished: 0 of 11 complete branches accepted.**
 The physical workbench now includes a continuous seven-layer assembly and return
