@@ -144,11 +144,11 @@ function selectAsset(id,focus=true){
 }
 function renderInventory(){
  const query=$('search').value.toLowerCase(),filter=$('filter').value;let count=0;$('inventory').replaceChildren();
- for(const item of inventory.items){const placed=assetList.filter(a=>(a.resource_ids||[a.resource_id]).includes(item.id)),authored=item.authored_scene_components||[],hasGeometry=placed.length||authored.length;if(query&&!JSON.stringify(item).toLowerCase().includes(query))continue;if(filter==='placed'&&!hasGeometry||filter==='missing'&&hasGeometry)continue;
+ for(const item of inventory.items){const placed=assetList.filter(a=>(a.resource_ids||[a.resource_id]).includes(item.id)),authored=item.authored_scene_components||[],hasGeometry=placed.length||authored.length,historical=item.requirement_role==='superseded_embodiment_reference';if(query&&!JSON.stringify(item).toLowerCase().includes(query))continue;if(filter==='historical'&&!historical||filter!=='all'&&filter!=='historical'&&historical||filter==='placed'&&!hasGeometry||filter==='missing'&&hasGeometry)continue;
   const tr=document.createElement('tr');const first=document.createElement('td');
   if(placed.length){const b=document.createElement('button');b.textContent=item.label;b.onclick=()=>{selectAsset(placed[0].id);$('viewport').scrollIntoView({behavior:'smooth',block:'center'})};first.append(b)}else first.textContent=item.label;
   tr.append(first);const categories={equipment:'论文设备',tools:'工具与夹具',consumables:'材料与耗材',additional_reconstructed_materials:'补充材料/夹具',accessory:'独立附件',robot:'机器人',authored_facility_requirement:'实验室设施'};
-  for(const text of [categories[item.category]||item.category,placed.length?'已放置 '+placed.length+' 个实例':authored.length?'已建部分设计几何（'+authored.length+' 组），待完整性审查':'尚未放入场景','待验收']){const td=document.createElement('td');td.textContent=text;tr.append(td)}$('inventory').append(tr);count++;
+  for(const text of [categories[item.category]||item.category,historical?'历史选型 · 已被 G1 / Inspire 替代':placed.length?'已放置 '+placed.length+' 个实例':authored.length?'已建部分设计几何（'+authored.length+' 组），待完整性审查':'尚未放入场景',historical?'不参与当前验收':'待验收']){const td=document.createElement('td');td.textContent=text;tr.append(td)}$('inventory').append(tr);count++;
  }
  $('inventory-count').textContent='显示 '+count+' / '+inventory.items.length+' 个需求条目';
 }
@@ -205,7 +205,7 @@ try{
  for(const p of readiness.source_artifacts){const url=root+p.path;if(fetchedHashes.has(url)&&fetchedHashes.get(url)!==p.sha256)throw Error('进度记录与场景版本不一致')}
  const policy=await read(folder+'pilot_contract.json');if(fetchedHashes.get(folder+'pilot_contract.json')!==manifest.pilot_contract.sha256||JSON.stringify(policy)!==JSON.stringify(readiness.policy))throw Error('执行约束版本不一致');
  $('pilot-policy').textContent='本体限定宇树，手型按公开资源选择；当前选型：'+policy.robot.body_candidate+' + '+policy.robot.hands.join(' / ')+'。传感器闭环，仅增加相机和普通工具。资产场景验收后再开发操作序列。场景已使用 G1 和官方 Inspire FTP 双手；仅静态资产集成，操作与动态平衡尚待验证。';
- const rc=readiness.counts;$('pilot-counts').textContent=rc.manual_definitions+' 个操作定义已对应到 '+rc.interfaces+' 类接口与资源需求。'+rc.requirement_groups+' 类资源拆出 '+rc.decomposed_component_requirements+' 个待核对组件需求，数量尚未分配完毕。完整人形机器人分支通过 '+rc.qualified_humanoid_branches+' / '+rc.branches+'。';
+ const rc=readiness.counts;$('pilot-counts').textContent=rc.manual_definitions+' 个操作定义已对应到 '+rc.interfaces+' 类接口与资源需求。当前 '+rc.active_requirement_groups+' 类资源拆出 '+rc.active_component_requirements+' 个待核对组件需求，数量尚未分配完毕。另保留 '+rc.historical_requirement_groups+' 类历史选型供查阅。完整人形机器人分支通过 '+rc.qualified_humanoid_branches+' / '+rc.branches+'。';
  for(const item of readiness.hard_dependencies){const d=document.createElement('div');d.className='risk-card';const h=document.createElement('h3');h.textContent=item.label;const p=document.createElement('p');p.textContent=item.detail;d.append(h,p);$('pilot-dependencies').append(d)}
  for(const branch of readiness.branches){const tr=document.createElement('tr');for(const label of [branch.id+' · '+branch.title,branch.manual_step_ids.length+' 项（含共享步骤）','待执行验证']){const td=document.createElement('td');td.textContent=label;tr.append(td)}$('branch-progress').append(tr)}
  $('legacy-conflicts').textContent='以下旧接口仍需按普通工具约束重新绑定：'+readiness.legacy_interface_review.map(x=>x.interface_id).join('、')+'。历史 Panda 配置及读取真值的身体测试不计入本次传感器闭环验收。';
@@ -214,7 +214,7 @@ try{
  $('body-envelope').textContent='G1 官方模型：'+bodyReport.samples+' 个限定通行姿态样本，双手按官方关节链计算全角度半径。当前静态检查半径 '+manifest.envelope.transit_radius_m.toFixed(2)+' m，另加 0.10 m 通道余量。工位检查见下表；相机、实际携物、行走和制动仍待验证。';
  installRoomLights();
  assetList.push(...manifest.assets);$('asset-count').textContent=assetList.length;
- const present=inventory.items.filter(i=>i.scene_instances?.length||i.authored_scene_components?.length).length;$('inventory-coverage').textContent='部分几何 '+present+'/'+inventory.items.length+' 项；其余 '+(inventory.items.length-present)+' 项尚缺';
+ const active=inventory.items.filter(i=>i.requirement_role!=='superseded_embodiment_reference'),present=active.filter(i=>i.scene_instances?.length||i.authored_scene_components?.length).length;$('inventory-coverage').textContent='部分几何 '+present+'/'+active.length+' 项；'+(active.length-present)+' 项尚无几何；历史选型 '+(inventory.items.length-active.length)+' 项';
  // GLTFLoader sanitizes names containing dots; preserve the original identifiers
  // used by the independently checked state manifest.
  let repairedNormals=0;

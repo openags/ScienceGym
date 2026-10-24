@@ -149,9 +149,12 @@ def build():
     branch_rows=[dict(id=b['id'],title=b['title'],manual_step_ids=[s['step_id'] for s in step_rows if s['operation_id'] in b['operation_ids']],
                      status='requirements_only_no_humanoid_execution',qualified_trials=0) for b in branches]
     source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
+    active=[r for r in requirements if r['disposition']!='historical_embodiment_reference']
     out=dict(schema_version=1,status='asset_phase_incomplete',visibility='author_and_reviewer_only_not_actor_input',
       source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in source_paths],
       policy=c,counts=dict(requirement_groups=len(requirements),decomposed_component_requirements=sum(len(r['components']) for r in requirements),
+       active_requirement_groups=len(active),historical_requirement_groups=len(requirements)-len(active),active_component_requirements=sum(len(r['components']) for r in active),
+       active_groups_without_geometry=sum(not r['scene_instances'] and not r['authored_components'] for r in active),
        manual_definitions=len(step_rows),interfaces=len(interfaces),branches=len(branch_rows),scene_instances=len(scene['assets']),
        groups_with_partial_geometry=sum(bool(r['scene_instances'] or r['authored_components']) for r in requirements),
        components_with_staged_unit_bindings=len(seen),

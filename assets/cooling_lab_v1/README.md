@@ -85,6 +85,10 @@ remain unplaced historical inventory references.
 The official integrated candidate can be inspected at
 `viewer/robot_resource_review_v1/index.html`. The 66 inventory rows include
 three superseded robot/hand references; these are not additional required robots.
+The active scope is 63 resource groups / 136 component needs. The viewer keeps
+three historical choices in a separate filter and excludes them from current
+missing-asset counts. Of 63 active groups, 54 have partial geometry and nine
+have none; this is not a completeness percentage.
 
 ## Added ordinary supplies and collar revision
 

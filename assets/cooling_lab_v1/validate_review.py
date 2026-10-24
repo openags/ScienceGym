@@ -93,6 +93,10 @@ def validate():
     _,penetration=replay_pose(fixture['pose'])
     check('reject_observed_arm_through_torso_pose',fixture['pose']['position_error_m']<.01 and not fixture['pose']['external_overlaps'] and penetration>=fixture['expected_self_penetration_minimum_m'])
     readiness=json.loads((HERE/'readiness.json').read_text())
+    active=[r for r in readiness['requirements'] if r['disposition']!='historical_embodiment_reference']
+    rc=readiness['counts']
+    check('active_requirements_exclude_three_historical_models',rc['active_requirement_groups']==len(active)==63 and rc['historical_requirement_groups']==len(readiness['requirements'])-len(active)==3)
+    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==136 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==9)
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
     check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==15)
