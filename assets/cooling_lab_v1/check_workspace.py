@@ -1,0 +1,118 @@
+"""Static G1 station access screening, not motion planning or task success.
+
+Solve position-only palm-reference IK under source joint limits. Then reject
+poses intersecting conservative room/furniture and other-device boxes. The
+target instrument's internal geometry, grasp orientation, balance and routes
+to the pose are deliberately not claimed by this screen.
+"""
+import json
+from pathlib import Path
+import sys
+import numpy as np
+import mujoco
+from scipy.optimize import least_squares
+import trimesh
+from geometry_tools import HERE,ROOT,sha,write_json
+
+sys.path.insert(0,str(ROOT/'assets/unitree_g1_inspire_v1'))
+from kinematics import Robot
+
+
+def overlap(a,b,tolerance=.002):
+    return bool(np.all(np.minimum(a[1],b[1])-np.maximum(a[0],b[0])>tolerance))
+
+
+def build():
+    scene=json.loads((HERE/'scene.json').read_text());robot=Robot()
+    model_path=ROOT/'assets/unitree_g1_inspire_v1/simulation/robot.xml'
+    model=mujoco.MjModel.from_xml_path(str(model_path));data=mujoco.MjData(model)
+    assets={a['id']:a for a in scene['assets']};surfaces={s['id']:s for s in scene['support_surfaces']}
+    targets=[]
+    for key in ['cary','nicolet','bath','dmm','rtd','smu_white','smu_black','daq','cooler_white','cooler_black','cooler_fixed','tracker','hobo_u30','waterjet','caliper','driver','tray_white','tray_black']:
+        a=assets[key];bounds=np.array(a['normalized_bounds_m'])+a['position_m'];center=bounds.mean(axis=0)
+        surface=surfaces.get(a['station']);front=surface['xy_bounds_m'][1] if surface else bounds[0,1]
+        target=[float(center[0]),float(bounds[0,1]-.05),1.05 if key=='waterjet' else float(min(bounds[1,2]+.04,bounds[0,2]+.18))]
+        targets.append(dict(id=key+'_front',asset=key,station=a['station'],point_m=target,front_y_m=front,
+          basis='Authored front-envelope access point; not a measured button or grasp frame',source=None))
+    for key,filename in [('cary','assets/cary_5000_v1/interfaces.json'),('nicolet','assets/nicolet_6700_v1/interfaces.json'),('bath','assets/thermo_a25_ac150_v1/interfaces.json')]:
+        source=json.loads((ROOT/filename).read_text());a=assets[key];norm=np.array(a['normalization_matrix'])
+        for entry in source.get('interfaces',[]):
+            point=entry.get('center_m') or entry.get('grasp_center_m')
+            if point is None:continue
+            axis=np.array(entry.get('axis',[0,1,0]),dtype=float)
+            # A stated mechanical hinge axis is not a surface approach normal.
+            if entry.get('kind') in ['hinge','slide']:axis=np.array([0,1,0])
+            point=trimesh.transform_points([point],norm)[0]+a['position_m']-.04*axis
+            bounds=surfaces[a['station']]['xy_bounds_m']
+            approach='rear' if axis[1]<-.5 else 'front'
+            targets.append(dict(id=key+'_'+entry['id'],asset=key,station=a['station'],point_m=point.tolist(),
+              front_y_m=bounds[3] if approach=='rear' else bounds[1],approach=approach,
+              basis='Reconstructed interface plus authored 40 mm approach offset; palm position only',
+              source=dict(path=filename,sha256=sha(ROOT/filename),interface_id=entry['id'],dimensions_inferred=True)))
+    arm_names={side:[side+'_'+name+'_joint' for name in ['shoulder_pitch','shoulder_roll','shoulder_yaw','elbow','wrist_roll','wrist_pitch','wrist_yaw']] for side in ['left','right']}
+    obstacles=[(o['id'],np.array(o['bounds_m'])) for o in scene['obstacles']]
+    asset_boxes={k:np.array(a['normalized_bounds_m'])+a['position_m'] for k,a in assets.items() if k!='g1'}
+    results=[]
+    rest={side+'_'+joint:angle for side in ['left','right'] for joint,angle in [('shoulder_pitch_joint',.1),('shoulder_roll_joint',.2 if side=='left' else -.2),('elbow_joint',1.3)]}
+    for target in targets:
+        goal=np.array(target['point_m']);best=None;attempts=0
+        reverse=target.get('approach')=='rear';yaw=-np.pi/2 if reverse else np.pi/2
+        for stand_off in [.18,.24,.34,.44]:
+            for side in ['left','right']:
+                base=np.array([goal[0],target['front_y_m']+(stand_off if reverse else -stand_off),model.qpos0[2]])
+                ids=[model.joint(n).id for n in arm_names[side]];qi=model.jnt_qposadr[ids];vi=model.jnt_dofadr[ids]
+                low=model.jnt_range[ids,0];high=model.jnt_range[ids,1];site=model.site(side+'_palm_review').id
+                def set_pose(q):
+                    data.qpos[:]=model.qpos0;data.qpos[:3]=base;data.qpos[3:7]=[np.cos(yaw/2),0,0,np.sin(yaw/2)]
+                    for name,value in rest.items():data.qpos[model.joint(name).qposadr[0]]=value
+                    data.qpos[qi]=q
+                    mujoco.mj_kinematics(model,data);mujoco.mj_comPos(model,data)
+                def residual(q):set_pose(q);return data.site_xpos[site]-goal
+                def jac(q):
+                    set_pose(q);jp=np.zeros((3,model.nv));jr=jp.copy();mujoco.mj_jacSite(model,data,jp,jr,site);return jp[:,vi]
+                for initial in [np.zeros(7),np.array([-.5,.2 if side=='left' else -.2,0,.5,0,0,0]),np.array([-.3,0,0,.4,1.3 if side=='left' else -1.3,0,0])]:
+                    attempts+=1
+                    fit=least_squares(residual,np.clip(initial,low+1e-6,high-1e-6),jac=jac,bounds=(low,high),max_nfev=100,gtol=1e-8)
+                    error=float(np.linalg.norm(residual(fit.x)));collisions=[];self_contacts=[]
+                    if error<.01:
+                        mujoco.mj_forward(model,data)
+                        pair_depths={}
+                        for contact in data.contact:
+                            bodies=[int(model.geom_bodyid[g]) for g in contact.geom]
+                            if contact.dist<-.0005 and all(bodies):
+                                pair=tuple(sorted(model.body(b).name for b in bodies))
+                                pair_depths[pair]=max(pair_depths.get(pair,0),float(-contact.dist))
+                        self_contacts=[dict(links=list(pair),penetration_m=depth) for pair,depth in sorted(pair_depths.items())]
+                        for name,corners in robot.corners.items():
+                            body=data.body(name);points=corners@body.xmat.reshape(3,3).T+body.xpos
+                            bounds=np.array([points.min(axis=0),points.max(axis=0)])
+                            for identity,other in obstacles:
+                                if identity==target['station'] and target['asset']=='waterjet':continue # Target-device internals are outside this screen for every instrument.
+                                if overlap(bounds,other):collisions.append((name,identity))
+                            for identity,other in asset_boxes.items():
+                                if identity!=target['asset'] and overlap(bounds,other):collisions.append((name,identity))
+                    row=dict(hand=side,base_position_m=base.tolist(),base_yaw_rad=float(yaw),joint_coordinates={**rest,**dict(zip(arm_names[side],fit.x.tolist()))},
+                      position_error_m=error,external_overlaps=[list(p) for p in sorted(set(collisions))],
+                      self_contacts_checked=error<.01,self_penetrations_over_0_5mm=self_contacts,
+                      position_candidate=error<.01 and not collisions and not self_contacts)
+                    score=(not row['position_candidate'],error>=.01,len(collisions)+len(self_contacts),error)
+                    if best is None or score<best[0]:best=(score,row)
+                    if row['position_candidate']:break
+                if best[1]['position_candidate']:break
+            if best[1]['position_candidate']:break
+        results.append(dict(**target,attempts=attempts,result=best[1],status='position_candidate_only' if best[1]['position_candidate'] else 'needs_layout_or_access_revision'))
+    failures=[r['id'] for r in results if not r['result']['position_candidate']]
+    report=dict(schema_version=1,status='static_access_screening_not_task_validation',scene_sha256=sha(HERE/'scene.json'),
+      source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [model_path,ROOT/'assets/unitree_g1_inspire_v1/kinematics.py',Path(__file__)]],
+      counts=dict(targets=len(results),position_candidates=len(results)-len(failures),needs_revision=len(failures)),targets=results,
+      unresolved_target_ids=failures,full_workspace_qualified=False,
+      limitations=['Each target is tested separately; simultaneous two-hand coordination and carrying are not tested',
+       'Position-only IK is necessary but not sufficient: palm orientation, finger contact, balance, loads, entry trajectory and instrument internals are not checked',
+       'Conservative per-link visual mesh boxes screen room/furniture and other instruments; target-instrument internals are excluded and require a later contact review',
+       'Robot self-contact is screened with the provisional MJCF at a 0.5 mm penetration threshold, including source convex hull approximations; no exact surface or continuous contact qualification',
+       'Candidate base placements are test coordinates, not a walked path or accepted standing controller',
+       'Failure after finite starts is an unresolved access issue, not a proof that no feasible whole-body posture exists'])
+    write_json(HERE/'workspace_checks.json',report);print(json.dumps(report['counts']))
+
+
+if __name__=='__main__':build()

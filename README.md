@@ -9,8 +9,9 @@ asset-integration candidate is **G1 29DoF rev 1.0 + Inspire FTP**; its official
 integrated URDF and all 93 referenced meshes are available for inspection.
 See the [resource selection](docs/pilots/HUMANOID_RESOURCE_SELECTION.md) and
 [new model preview](viewer/robot_resource_review_v1/index.html).
-The laboratory still displays the previous H2 and separate Dex5-S candidates;
-its spatial evidence does not qualify G1. Historical Panda and privileged-state
+The laboratory now displays the complete source-derived G1/Inspire model.
+Its new articulated inspection, floating-base MJCF and static access checks
+are described in the [integration record](assets/unitree_g1_inspire_v1/README.md). Historical Panda and privileged-state
 H2 recordings do not establish sensor-only humanoid manipulation. No humanoid
 manipulation branch has yet been validated.
 
@@ -42,16 +43,17 @@ access and safe use. See the [scene review gates](docs/contributing/REVIEW_CHECK
 and [pilot status](docs/pilots/DIRECTIONAL_COOLING.md#current-focus).
 
 The [laboratory and asset review page](viewer/lab_review_v1/index.html) now
-contains a physical-scale scene with four zones, 37 placed asset instances,
+contains a physical-scale scene with four zones, 35 placed asset instances,
 an enclosed laboratory with windows, open double doors, a panel ceiling,
 lighting and cabinet benches, separately identified authored facilities, a dimensioned floor
-plan, source links, surface-to-surface measurement and four device opening
+plan, source links, surface-to-surface measurement and articulated inspection
 states. Three new outdoor-instrument reconstructions use manufacturer manuals
 and dimension drawings. All assets and the whole scene remain **unaccepted**;
-missing equipment, new robot installation and infrastructure stay visible in the 66-row
-resource inventory (including three previous robot/hand references). The 126 layout checks and 401 recorded H2 body-pose
-measurements are bounded geometric evidence, not full-body operation or safety
-qualification. The default 1.65 m interior viewpoint supports drag-to-look and
+missing equipment, camera installation and infrastructure stay visible in the 66-row
+resource inventory (including three superseded robot/hand references). The G1
+layout checks, 129 restricted source-kinematic poses and 47 station access
+points provide bounded geometric evidence. Per-point static postures and
+unresolved conflicts are visible in the review; they do not qualify operation or safety. The default 1.65 m interior viewpoint supports drag-to-look and
 arrow-key/WASD movement; cutaway and plan views remain available for layout
 inspection. Viewpoint navigation is not robot motion. A detail view now exposes chamfered
 worktops, separate drawer fronts, handle mounts and leveling feet. Authored

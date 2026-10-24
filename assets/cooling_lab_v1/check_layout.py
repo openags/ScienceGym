@@ -85,10 +85,12 @@ def inspect(scene_path=None,output_path=None,quiet=False):
         sweep_bounds=[];hits=set()
         for fraction in np.linspace(0,1,101):
             if state['kind']=='joint_tree':
-                k=state['kinematics'];world={'palm':np.eye(4)}
+                k=state['kinematics'];world={k.get('root_link','palm'):np.asarray(k.get('root_matrix',np.eye(4)))}
                 for j in k['joints']:
-                    t=np.eye(4);t[:3,3]=j['origin_m']
-                    world[j['id']]=world[j['parent']]@t@trimesh.transformations.rotation_matrix(fraction*j['inspection_angle_rad'],j['axis'])
+                    t=np.asarray(j['origin_matrix']) if 'origin_matrix' in j else np.eye(4)
+                    if 'origin_matrix' not in j:t[:3,3]=j['origin_m']
+                    world[j['id']]=world[j['parent']]@t
+                    if fraction*j['inspection_angle_rad']:world[j['id']]=world[j['id']]@trimesh.transformations.rotation_matrix(fraction*j['inspection_angle_rad'],j['axis'])
                 parts=[]
                 for name,pv in part_vertices.items():
                     link=k['part_links'][name];delta=norm@world[link]@np.linalg.inv(k['bind_world'][link])@np.linalg.inv(norm)
@@ -96,6 +98,7 @@ def inspect(scene_path=None,output_path=None,quiet=False):
                 v=np.concatenate(parts)
             elif state['kind']=='slide':v=vertices+fraction*state['maximum']*np.array(state['axis'])
             else:v=trimesh.transform_points(vertices,trimesh.transformations.rotation_matrix(fraction*state['maximum'],state['axis'],point=pivot))
+            if not np.isfinite(v).all():raise ValueError('Nonfinite inspection geometry: '+state['id'])
             bounds=np.array([v.min(axis=0),v.max(axis=0)])+offset;sweep_bounds.append(bounds)
             for obstacle in obstacles:
                 if obstacle['id']==a['station']:continue
@@ -112,7 +115,7 @@ def inspect(scene_path=None,output_path=None,quiet=False):
       scene_sha256=sha(p),checker_sha256=sha(__file__),checks=checks,routes=routes,opening_states=state_reports,
       full_humanoid_clearance_accepted=False,asset_fidelity_accepted=False,safe_use_certified=False,owner_acceptance=None,
       limitations=['Planar occupied boxes are conservative; opening sweeps sample 101 states and omit internal device contacts',
-                  'Hand bound uses authored kinematics and assumed mounting allowance at existing unloaded poses; real mount, cameras and carried loads are excluded',
+                  'Hand bound uses the official G1/FTP chain at restricted static transit poses; cameras, loads and dynamic motion are excluded',
                   'No dynamic walking, stopping, falling, balance, structural, ventilation or regulatory validation'])
     write_json(output_path or HERE/'layout_checks.json',report)
     if not quiet:print(json.dumps(dict(passed=report['passed'],checks=len(checks),failed=[c for c in checks if not c['passed']]),ensure_ascii=False,indent=2))

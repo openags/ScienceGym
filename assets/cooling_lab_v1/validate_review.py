@@ -4,6 +4,7 @@ import json
 import tempfile
 from pathlib import Path
 import numpy as np
+import mujoco
 import trimesh
 from geometry_tools import HERE,ROOT,sha,write_json
 from check_layout import inspect
@@ -50,6 +51,32 @@ def validate():
     validate_policy(policy,scene)
     check('selected_embodiment_resources_present',set(policy['robot']['resource_ids'])<={r['id'] for r in inventory['items']})
     check('pilot_policy_pinned',scene['pilot_contract']['sha256']==sha(HERE/'pilot_contract.json'))
+    integration=json.loads((ROOT/'assets/unitree_g1_inspire_v1/integration.json').read_text())
+    workspace=json.loads((HERE/'workspace_checks.json').read_text())
+    for record in [integration,workspace]:
+        for evidence in record['source_artifacts']:check('integration_source_'+evidence['path'],sha(ROOT/evidence['path'])==evidence['sha256'])
+    check('source_model_asset_checks',all(c['passed'] for c in integration['checks']) and integration['model']['nu']==41 and integration['model']['equality_constraints']==12)
+    check('workspace_current_scene',workspace['scene_sha256']==sha(HERE/'scene.json'))
+    candidates=sum(r['result']['position_candidate'] for r in workspace['targets'])
+    check('workspace_counts',workspace['counts']==dict(targets=len(workspace['targets']),position_candidates=candidates,needs_revision=len(workspace['targets'])-candidates))
+    check('workspace_candidate_predicate',all(r['result']['position_candidate']==(r['result']['position_error_m']<.01 and not r['result']['external_overlaps'] and r['result']['self_contacts_checked'] and not r['result']['self_penetrations_over_0_5mm']) for r in workspace['targets']))
+    check('static_integration_not_execution_credit',not integration['full_physics_qualified'] and not workspace['full_workspace_qualified'])
+    model=mujoco.MjModel.from_xml_path(str(ROOT/integration['model']['path']))
+    def replay_pose(row):
+        data=mujoco.MjData(model);data.qpos[:3]=row['base_position_m'];yaw=row['base_yaw_rad']
+        data.qpos[3:7]=[np.cos(yaw/2),0,0,np.sin(yaw/2)]
+        for name,value in row['joint_coordinates'].items():data.qpos[model.joint(name).qposadr[0]]=value
+        mujoco.mj_forward(model,data)
+        penetration=max((-c.dist for c in data.contact if all(model.geom_bodyid[g]!=0 for g in c.geom)),default=0)
+        return data,float(penetration)
+    for target in workspace['targets']:
+        if target['result']['position_candidate']:
+            row=target['result'];data,penetration=replay_pose(row)
+            error=np.linalg.norm(data.site(row['hand']+'_palm_review').xpos-target['point_m'])
+            check('replay_static_candidate_'+target['id'],error<.01 and abs(error-row['position_error_m'])<1e-8 and penetration<=.0005)
+    fixture=json.loads((HERE/'workspace_self_contact_fixture.json').read_text())
+    _,penetration=replay_pose(fixture['pose'])
+    check('reject_observed_arm_through_torso_pose',fixture['pose']['position_error_m']<.01 and not fixture['pose']['external_overlaps'] and penetration>=fixture['expected_self_penetration_minimum_m'])
     readiness=json.loads((HERE/'readiness.json').read_text())
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     check('all_manual_requirements_mapped',len(readiness['manual_step_requirements'])==200)
@@ -83,11 +110,11 @@ def validate():
     for identity,expected in [('eko_ms402',[.16,.16,.108]),('hobo_u30',[.1805,.118,.189])]:
         actual=trimesh.load(HERE/'geometry'/f'{identity}.glb',force='scene').extents
         check('drawing_dimensions_'+identity,np.allclose(actual,expected,atol=.0001))
-    body=json.loads((HERE/'body_envelope.json').read_text())
-    hand=json.loads((HERE/'hand_envelope.json').read_text())
-    check('hand_checker_identity',hand['checker_sha256']==sha(HERE/'check_hand_envelope.py'))
+    body=json.loads((ROOT/scene['envelope']['body_evidence']['path']).read_text())
+    hand=json.loads((ROOT/scene['envelope']['hand_evidence']['path']).read_text())
+    check('hand_checker_identity',hand['checker_sha256']==sha(ROOT/'assets/unitree_g1_inspire_v1/check_space.py'))
     for source in hand['source_artifacts']:check('hand_envelope_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
-    check('body_evidence_hash',scene['envelope']['body_evidence']['sha256']==sha(HERE/'body_envelope.json'))
+    check('body_evidence_hash',scene['envelope']['body_evidence']['sha256']==sha(ROOT/scene['envelope']['body_evidence']['path']))
     check('body_provisional_radius_covers_sampled_record',body['maximum_sampled']['radial_extent_m']<=scene['envelope']['transit_radius_m'])
     for p in body['source_artifacts']:check('body_source_'+p['path'],sha(ROOT/p['path'])==p['sha256'])
     original=inspect(quiet=True);check('base_layout',original['passed'])
@@ -95,12 +122,12 @@ def validate():
     # Separate independent faults exercise spatial predicates, not just schema.
     for name,expected in [('low_header','headroom_main'),('blocked_route','corridor_main'),('small_support','support_cary'),('overlapping_fixture','assets_and_authored_fixtures_separated'),('underestimated_hand_envelope','selected_hand_radius'),('opening_obstruction','external_opening_cary_lid')]:
         bad=copy.deepcopy(scene)
-        if name=='low_header':bad['obstacles'].append(dict(id='injected_low_header',role='test',bounds_m=[[5,4,2.0],[7,4.1,2.15]]))
+        if name=='low_header':bad['obstacles'].append(dict(id='injected_low_header',role='test',bounds_m=[[5,4,1.2],[7,4.1,1.35]]))
         elif name=='blocked_route':bad['obstacles'].append(dict(id='injected_crate',role='test',bounds_m=[[5.8,5,.0],[6.2,5.4,1.9]]))
         elif name=='small_support':next(s for s in bad['support_surfaces'] if s['id']=='cary_bench')['xy_bounds_m']=[2.2,8.6,2.3,8.7]
         elif name=='overlapping_fixture':
             next(a for a in bad['assets'] if a['id']=='heater')['position_m']=[9.7,2.7,.9]
-        elif name=='underestimated_hand_envelope':bad['envelope']['transit_radius_m']=.65
+        elif name=='underestimated_hand_envelope':bad['envelope']['transit_radius_m']=.5
         else:
             sweep=next(s for s in original['opening_states'] if s['id']=='cary_lid')['sweep_bounds_m'];center=(np.array(sweep[0])+sweep[1])/2
             bad['obstacles'].append(dict(id='injected_cover_obstacle',role='test',bounds_m=[(center-.01).tolist(),(center+.01).tolist()]))
@@ -111,6 +138,7 @@ def validate():
         faults.append(dict(fault=name,expected_failure=expected,observed_failures=failed))
     record=dict(passed=True,checks=checks,negative_cases=faults,scene_sha256=sha(HERE/'scene.json'),
         validator_sha256=sha(__file__),layout_checker_sha256=sha(HERE/'check_layout.py'),
+        workspace_sha256=sha(HERE/'workspace_checks.json'),self_contact_fixture_sha256=sha(HERE/'workspace_self_contact_fixture.json'),
         scope='Source identity and meaningful negative layout cases; no asset, full-body or safe-use acceptance')
     write_json(HERE/'review_verification.json',record)
     print(json.dumps(dict(passed=True,checks=len(checks),negative_cases=len(faults)),indent=2))

@@ -60,7 +60,7 @@ Use the [laboratory acceptance gates](../contributing/REVIEW_CHECKLIST.md#labora
 The inventory captures 43 existing resource rows plus explicitly authored
 infrastructure/robot requirements; grouped rows still need decomposition and
 instance allocation. A new [interactive laboratory review](../../viewer/lab_review_v1/index.html)
-now places 37 asset instances in an authored four-zone scene. Original
+now places 35 asset instances in an authored four-zone scene. Original
 geometry supplies benches, shelves, fixtures, carriers, spill containment and
 unqualified extraction/control designs. These are not load-rated commercial
 furniture or certified engineering services. No owner acceptance is recorded.
@@ -72,7 +72,7 @@ and bench cabinet pedestals. Floor texture and signs are original generated
 assets. These are authored design details; the lights and grilles do not
 constitute an illumination or ventilation design. Door geometry and overhead
 solids stay in the checks when the viewer uses a visual cutaway. Static routes
-are checked against a 2.10 m standing-height probe; the lowest door header is
+are checked against a 1.43 m source-derived G1 height probe; the lowest door header is
 2.20 m. The interface opens inside the room at a 1.65 m eye height. Drag to
 look, use arrows/WASD to move the observation point, or choose a room preset.
 Viewpoint collision guards only prevent browsing through registered obstacles;
@@ -92,8 +92,9 @@ The renderer recovers missing normals without changing triangle positions.
 This fixes absent received shadows on imported geometry. Approximate indoor
 reflection lighting and fixture-positioned preview lamps improve surface
 readability; they are not a photometric reproduction. Renderer-only batching
-reduces 4,007 mesh draws to 276 while checking unchanged triangle counts and
-bounds (tolerance 1e-5 m). Independently movable covers retain their original
+preserves triangle counts and bounds (tolerance 1e-5 m); the current measured
+mesh counts are retained in the render verification rather than fixed here.
+Independently movable covers retain their original
 node identifiers. The [pixel regression](../../viewer/lab_review_v1/RENDER_VERIFICATION.json)
 compares shadow reception on/off under unchanged lighting and confirms the
 original view is restored. These images and checks do not establish fidelity.
@@ -102,11 +103,13 @@ The main indoor area is 12 × 10 m; fabrication and coating annexes are each
 6 × 5 m; an open ground-level measurement area is 12 × 8 m. This is a proposed
 robot laboratory, not the paper's original rooftop/room reconstruction.
 Main circulation is 2 m wide; other declared routes are at least 1.6 m,
-with 2.4 m diameter turning reservations. These are design values. An audit
-of 401 samples of the existing H2 unloaded-body recording found a maximum
-radial extent of 0.642905 m about the free-base XY position. Layout checks use
-a 0.65 m probe plus 0.10 m authored margin; exact Dex5-S Pro geometry, loads,
-walking, stopping and other joint configurations remain unqualified.
+with 2.4 m diameter turning reservations. The current G1-specific geometric
+screen uses 129 restricted source-kinematic poses, a 0.60 m body/hand radius
+plus 0.10 m margin and 1.43 m height allowance. Source wrist transforms replace
+the previous guessed adapter. Separately, 47 palm-position access points retain
+joint coordinates and external conflicts for inspection in the browser.
+These checks exclude walking, balance, grasp orientation, simultaneous two-hand
+work, target-device internals and dynamically carried loads.
 
 The EKO MS-56, unventilated MS-402 and HOBO U30 now have separate source-based
 candidate geometry. Their [source and dimension ledger](../../assets/cooling_lab_v1/outdoor_assets.json)
@@ -123,19 +126,14 @@ inspected in the browser; they are geometric state changes, not robot actions.
 Internal instrument contacts are not checked by these opening sweeps.
 The [risk register](../../assets/cooling_lab_v1/risk_register.json) retains
 load, utility, ventilation, service, outdoor and site-application gaps.
-Missing exact hands, angular accessories, sensors/wiring, fabrication machinery,
+Unqualified hand contact/dynamics, missing angular accessories, sensors/wiring, fabrication services,
 tools, consumables, waste and robot service provisions prevent full acceptance.
 
 To reproduce this review from the repository root, use a Python environment
 with `assets/cooling_lab_v1/requirements.txt` installed and a Chromium executable:
 
 ```sh
-python assets/cooling_lab_v1/check_body_envelope.py
-python assets/cooling_lab_v1/build_outdoor.py
-python assets/cooling_lab_v1/build_lab.py
-python assets/cooling_lab_v1/check_layout.py
-python assets/cooling_lab_v1/build_review.py
-python assets/cooling_lab_v1/validate_review.py
+python assets/cooling_lab_v1/rebuild_review.py
 python simulation/cooling_v1/serve.py --port 8769
 # In a second terminal, substitute the installed Chromium path:
 python viewer/lab_review_v1/check_browser.py --browser /path/to/chromium
@@ -144,7 +142,7 @@ python viewer/lab_review_v1/check_rendering.py --browser /path/to/chromium
 
 The validator deliberately lowers a header into the standing envelope, blocks
 a route, shrinks an instrument support, overlaps a device with a carrier, and
-obstructs a cover sweep; all five faults
+obstructs a cover sweep, and undersizes the selected hand envelope; all six faults
 must be rejected. Browser checks exercise visible open-state changes, views,
 measurement, inventory filters, revision-bound comment export, mobile layout
 and stale-scene rejection. GLB bytes are SHA-256 checked before display.

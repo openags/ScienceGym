@@ -59,7 +59,7 @@ of that revision. Existing paper operations inform required asset interfaces
 and access states during this phase. Follow the [laboratory review gates](contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development).
 
 The previous H2 EDU and Dex5-S Pro reconstructions remain separately identified
-historical candidates in the laboratory review. Their geometry, guessed joints,
+historical, unplaced candidates in the laboratory inventory. Their geometry, guessed joints,
 spatial envelopes and body tests do not qualify G1/Inspire. No source model may
 be silently relabeled as another hand or variant. The FTP model's mimic joints
 must be respected; independent command count differs from movable-joint count.

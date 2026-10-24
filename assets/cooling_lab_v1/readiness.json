@@ -5,19 +5,19 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/pilot_contract.json",
-      "sha256": "4730cee0edc0231ef8d0d41ad76d12349f1a99ae23210072ac0d1f1f2f412f0b"
+      "sha256": "b3dc0d72da50c884aea51a98691ab06e107d2b26637cb897e1b9adb0e931c9cb"
     },
     {
       "path": "assets/unitree_g1_inspire_v1/selection.json",
-      "sha256": "326b92a473b6d4e43276f85c1ae010cd0cdc8706fc2f4bad016ede370fb066a1"
+      "sha256": "5b14cf1828619b9a22d2334e44eafeeaa5461962ee108b699b075cdd3411e2ce"
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "9d8fb392b8c75b0578ede967a3d63595ff6277b42c03759286d0ef090a51b16d"
+      "sha256": "6e67594aca097b0dda60ec0cee0b88d7360a57cf6a5c74a2486f6e35010b0eb0"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "e39eabd3fd9c159d411cb34fac1dcd2c482b01a72e7ab1d802ebcfa003eccdba"
+      "sha256": "5b4620a1f54c507bec132334a9960316c36b81b511f96ede5b0789f1c927021e"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -33,12 +33,12 @@
     },
     {
       "path": "assets/cooling_lab_v1/build_readiness.py",
-      "sha256": "73d9b6316b84607a001eb6f3ceab178dc08099b4ef24f8bff622e1a52d474c02"
+      "sha256": "f69d00ad6ed97bf5a1dbb07814144cc44f8f12a8164f8e2497e7c20b1b818971"
     }
   ],
   "policy": {
     "schema_version": "sciencegym.humanoid_pilot_contract.v1",
-    "revision": "2026-10-24.unitree_open_hand_selection.2",
+    "revision": "2026-10-24.g1_scene_integration.3",
     "paper_doi": "10.1038/s41467-018-07293-9",
     "authority": "Owner implementation choices and subsequent instruction: retain Unitree body; choose publicly supported hands without a manufacturer/model lock",
     "phase": "asset_and_scene_development",
@@ -63,10 +63,10 @@
         "robot:INSPIRE_FTP_LEFT",
         "robot:INSPIRE_FTP_RIGHT"
       ],
-      "selection_status": "selected_for_asset_integration_not_scene_or_runtime_qualified",
+      "selection_status": "source_geometry_integrated_static_scene_review",
       "current_scene_reference": {
-        "body": "Unitree H2 EDU",
-        "hands": "Dex5-S Pro reconstructions displayed separately",
+        "body": "Unitree G1 29DoF rev 1.0",
+        "hands": "Official integrated Inspire FTP left/right",
         "qualification_transfer_allowed": false
       }
     },
@@ -161,7 +161,7 @@
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 37,
+    "scene_instances": 35,
     "groups_with_partial_geometry": 41,
     "qualified_humanoid_branches": 0
   },
@@ -1379,9 +1379,7 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [
-        "h2"
-      ],
+      "scene_instances": [],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1400,9 +1398,7 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [
-        "dex5s_left"
-      ],
+      "scene_instances": [],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1421,9 +1417,7 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [
-        "dex5s_right"
-      ],
+      "scene_instances": [],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1905,7 +1899,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "g1"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": 1,
       "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
@@ -1924,7 +1920,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "g1"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": 1,
       "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
@@ -1943,7 +1941,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "g1"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": 1,
       "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
@@ -7669,7 +7669,7 @@
     {
       "id": "HAND",
       "label": "G1 与 Inspire FTP 集成",
-      "detail": "官方左右手、腕部安装、惯性与联动参数已下载；新组合尚未进入实验室场景，动力学、接触和控制映射待核验。旧 H2 / Dex5-S 不提供新组合的验证结论"
+      "detail": "官方左右手、腕部安装、惯性与联动参数已下载；已进入实验室；重力与浮动基座模型已编译，手掌碰撞分块和真实驱动、接触参数仍待物理验收"
     },
     {
       "id": "TOOLS",
@@ -7684,7 +7684,7 @@
     {
       "id": "SPACE",
       "label": "完整携物空间",
-      "detail": "已有 H2 空间记录不能用于新选 G1；需重新检查双手工位可达性、携物、行走与制动"
+      "detail": "已有 G1 限定静态通道检查与逐点工位筛查；未解决点位、双手协同、携物、行走与制动仍需验证"
     },
     {
       "id": "OBSERVATION",

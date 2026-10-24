@@ -4,14 +4,14 @@ Current phase: asset and scene development. No owner acceptance, whole-body
 clearance, sensor-only manipulation or complete paper campaign is claimed.
 
 Serve the repository root and open `/viewer/lab_review_v1/index.html`.
-The existing local server uses port 8769. New candidate assets include separately
-displayed Dex5-S Pro visual/kinematic reconstructions, three ordinary tool
-types and a selected OMAX ProtoMAX waterjet. Geometry inspection sliders are
-not physics-controlled robot actions.
+The existing local server uses port 8769. The scene contains the complete
+official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
+selected OMAX ProtoMAX waterjet. Geometry sliders and the 47 per-point static
+access postures are inspection tools, not physics-controlled robot actions.
 
 The three camera candidates now use pinned manufacturer D455/D405 meshes with
 their upstream license. They are separately displayed on the assembly bench;
-H2 mounts, cables, calibration and sensor output are still absent.
+G1 mounts, cables, calibration and sensor output are still absent.
 Eight Omega 5TC probes are staged separately, with catalogue-sized conductors
 and inferred stored cable shape. They have no flexible or electrical model.
 
@@ -48,25 +48,29 @@ It makes no source downloads and cannot silently switch robot models.
 - `ordinary_tools_sources.json`: inspected catalog facts and authored assumptions.
 - `waterjet_sources.json`, `stock_sources.json`: selected fabrication-machine
   evidence, source conflicts, paper-derived sheet thickness and stock inferences.
-- `hand_envelope.json`: static sensitivity bound for the authored hand chain at
-  previously recorded body poses, including an explicitly assumed adapter margin.
-  It does not qualify actual mounting, camera geometry, loads or movement.
+- `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
+  at 129 restricted static poses, with exact official wrist transforms.
+- `workspace_checks.json`: 47 separately tested palm-position targets; records
+  candidate joint coordinates, position errors, external obstacle conflicts and
+  self-penetrations under the provisional collision model.
+  Orientation, grasping, target-device internals, balance and paths are excluded.
+- `hand_envelope.json`: historical H2/Dex5 sensitivity record, unused for G1.
 - `acceptance_contract.json`: eight open review gates and their exact-revision
   evidence. Comments in the browser are not acceptance receipts.
 
 Manufacturer images/documents are linked and hashed where locally inspected,
-not redistributed. Instrument and hand reconstructions are original; added
-camera geometry comes from the licensed manufacturer ROS meshes. The hand
-package explicitly has no dynamics or verified H2 mounting model. Review view
-names follow the asset axes and do not imply a calibrated photographic match.
+not redistributed. Instrument reconstructions are original; the selected G1,
+hands and cameras use licensed official source meshes. The G1 integration
+retains source inertials and wrist transforms but has provisional contact and
+actuator parameters. Review view names follow asset axes, not calibrated photographs.
 
 The active implementation plan is
 `docs/pilots/DIRECTIONAL_COOLING_IMPLEMENTATION.md`. Existing Panda task inputs
 and privileged-state body tests are historical references only.
 
 The latest selection is G1 29DoF + Inspire FTP, under the owner's Unitree-body /
-open-hand instruction. The lab's H2 and Dex5-S assets remain previous-candidate
-references until the new combination's installation and spatial audit are ready.
+open-hand instruction. The lab now places that complete source-derived combination; H2 and Dex5-S
+remain unplaced historical inventory references.
 The official integrated candidate can be inspected at
 `viewer/robot_resource_review_v1/index.html`. The 66 inventory rows include
 three superseded robot/hand references; these are not additional required robots.

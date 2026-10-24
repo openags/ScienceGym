@@ -24,7 +24,7 @@ def run(browser, url):
         page.wait_for_function('document.documentElement.dataset.ready',timeout=90000)
         assert page.locator('html').get_attribute('data-ready')=='true',page.locator('#error').inner_text()
         assert '93 个网格' in page.locator('#robot-counts').inner_text()
-        assert '尚未安装到实验室' in page.locator('.notice').inner_text()
+        assert '已进入实验室场景' in page.locator('.notice').inner_text()
         for view in ['full','left','right','back']:
             page.locator(f'button[data-view="{view}"]').click()
             assert page.locator('html').get_attribute('data-view')==view

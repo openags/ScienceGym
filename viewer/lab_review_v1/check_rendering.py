@@ -28,9 +28,10 @@ def run(browser,url):
     with sync_playwright() as p:
         b=p.chromium.launch(executable_path=browser,args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
         page=b.new_page(viewport={'width':1600,'height':1100},device_scale_factor=1)
+        page.set_default_timeout(60000)
         errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
         page.route('**/lab_review_v1/main.js',lambda route:route.fulfill(status=200,content_type='application/javascript',body=source+hook))
-        page.goto(url);page.wait_for_function('document.documentElement.dataset.sceneLoaded === "true"',timeout=90000)
+        page.goto(url,wait_until='domcontentloaded');page.wait_for_function('document.documentElement.dataset.sceneLoaded === "true"',timeout=120000)
         batches=json.loads(page.locator('html').get_attribute('data-render-batches'))
         check('batch_geometry_preserved',all(b['sourceGeometryPreserved'] and b['boundsErrorM']<1e-5 for b in batches),before_meshes=sum(b['beforeMeshes'] for b in batches),after_meshes=sum(b['afterMeshes'] for b in batches))
         count=int(page.locator('html').get_attribute('data-normal-repairs'))

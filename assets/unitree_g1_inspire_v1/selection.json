@@ -2,7 +2,7 @@
   "schema_version": 1,
   "decision_date": "2026-10-24",
   "authority": "Owner retains Unitree body and authorizes selecting publicly supported hands from any manufacturer",
-  "status": "selected_for_asset_integration_not_scene_or_runtime_qualified",
+  "status": "source_geometry_integrated_static_scene_review_not_runtime_qualified",
   "body_manufacturer": "Unitree",
   "body_candidate": "Unitree G1 29DoF rev 1.0",
   "hands": [
@@ -34,15 +34,21 @@
   ],
   "fallback": "Unitree G1 29DoF + Dex3-1; official URDF/MJCF and Isaac Lab integration, different three-finger grasp geometry.",
   "remaining": [
-    "Simulator mapping of mimic joints, limits, inertials, collisions and actuator dynamics",
-    "Variant-specific USD licensing and reference parameter audit before reuse",
-    "Full-body gravity/contact/balance and payload validation",
-    "New body reach, two-hand working volume, carried-object clearance and camera mounts",
-    "Asset and scene owner acceptance before new manipulation sequences"
+    "Qualify contact geometry across poses, actuator dynamics and payloads; current source-derived MJCF only passes asset checks",
+    "Variant-specific USD licensing and reference parameter audit before any USD reuse",
+    "Full-body gravity/contact/balance validation with an actual controller",
+    "Resolve remaining station access checks, simultaneous two-hand work, carried-object clearance, camera mounts and cables",
+    "Complete missing lab resources and obtain asset/scene owner acceptance before new manipulation sequences"
   ],
   "historical_scene": {
     "body": "Unitree H2 EDU",
     "hands": "Dex5-S Pro reconstructions displayed separately",
     "qualification_transfer_allowed": false
-  }
+  },
+  "integration_evidence": [
+    "assets/unitree_g1_inspire_v1/integration.json",
+    "assets/unitree_g1_inspire_v1/collision.json",
+    "assets/unitree_g1_inspire_v1/space.json",
+    "assets/cooling_lab_v1/workspace_checks.json"
+  ]
 }

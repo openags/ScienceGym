@@ -22,12 +22,12 @@ def run(url,browser):
         page.set_default_timeout(60000)
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(url,wait_until='domcontentloaded');page.wait_for_function('document.documentElement.dataset.sceneLoaded === "true"',timeout=120000)
-        check('all_models_loaded',page.locator('html').get_attribute('data-asset-count')=='37')
+        check('all_models_loaded',page.locator('html').get_attribute('data-asset-count')=='35')
         check('render_batch_geometry_preserved',page.locator('html').get_attribute('data-geometry-preserved')=='true')
         inventory_count=page.locator('#inventory tr').count()
         check('paper_facility_camera_and_selected_robot_requirements',inventory_count==66)
         check('routes_rendered',page.locator('#route-table tr').count()==7)
-        check('open_hand_selection_visible','Inspire FTP' in page.locator('#pilot-policy').inner_text() and '旧候选' in page.locator('#pilot-policy').inner_text())
+        check('open_hand_selection_visible','Inspire FTP' in page.locator('#pilot-policy').inner_text() and '场景已使用 G1' in page.locator('#pilot-policy').inner_text())
         check('new_robot_resource_preview_link',page.locator('a[href="../robot_resource_review_v1/index.html"]').count()==1)
         check('sensor_only_policy_visible','传感器闭环' in page.locator('#pilot-policy').inner_text())
         check('branch_readiness_not_execution_credit',page.locator('#branch-progress tr').count()==11 and '通过 0 / 11' in page.locator('#pilot-counts').inner_text())
@@ -50,7 +50,7 @@ def run(url,browser):
             capture(view)
             check('shell_mode_'+view,page.locator('#show-walls').is_checked()==(view not in ['all','top']))
         page.locator('button[data-view=indoor]').click();capture('full_walls');page.locator('#show-walls').uncheck()
-        for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','dex5s_left','dex5s_right','caliper','driver','tray_white','waterjet','camera_head','camera_wrist_left','camera_wrist_right','tc_01']:
+        for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','g1','caliper','driver','tray_white','waterjet','camera_head','camera_wrist_left','camera_wrist_right','tc_01']:
             page.locator('#asset-select').select_option(identity);page.locator('#isolate').check();page.wait_for_timeout(200)
             check('inspect_'+identity,page.locator('html').get_attribute('data-selected-asset')==identity)
             closed=capture(identity+'_closed')
@@ -58,23 +58,23 @@ def run(url,browser):
                 check('probe_not_connected','尚未装接' in page.locator('#asset-detail').inner_text())
                 page.locator('#asset-views [data-direction="top"]').click();capture('tc_01_top')
             if identity.startswith('camera_'):
-                check('camera_not_installed_'+identity,'尚未装到 H2' in page.locator('#asset-detail').inner_text())
+                check('camera_not_installed_'+identity,'尚未装到 G1' in page.locator('#asset-detail').inner_text())
                 for direction in ['front','back','side']:
                     page.locator('#asset-views [data-direction="'+direction+'"]').click();capture(identity+'_'+direction)
-            if identity in ['dex5s_left','dex5s_right']:
-                check('hand_hypothesis_visible_'+identity,'假设' in page.locator('#asset-detail').inner_text())
+            if identity in ['g1']:
+                check('hand_hypothesis_visible_'+identity,'官方' in page.locator('#asset-detail').inner_text())
                 for direction in ['front','back','side']:
                     page.locator('#asset-views [data-direction="'+direction+'"]').click()
                     check(identity+'_view_'+direction,page.locator('html').get_attribute('data-asset-view')==direction)
                     capture(identity+'_'+direction)
                 page.locator('#asset-views [data-direction="front"]').click();closed=capture(identity+'_front_rest')
-            if identity in ['hobo_u30','cary','nicolet','bath','dex5s_left','dex5s_right','caliper','waterjet']:
+            if identity in ['hobo_u30','cary','nicolet','bath','g1','caliper','waterjet']:
                 page.locator('#state-slider').fill('100');page.locator('#state-slider').dispatch_event('input');page.wait_for_timeout(200)
                 opened=capture(identity+'_open')
                 diff=ImageChops.difference(Image.open(io.BytesIO(closed)).convert('RGB'),Image.open(io.BytesIO(opened)).convert('RGB'))
                 count=sum(1 for pixel in diff.getdata() if max(pixel)>20)
                 check('visible_open_state_'+identity,count>100,changed_pixels=count)
-                if identity.startswith('dex5s'):
+                if identity=='g1':
                     page.locator('#state-slider').fill('0');page.locator('#state-slider').dispatch_event('input');page.wait_for_timeout(150)
                     restored=capture(identity+'_restored')
                     diff=ImageChops.difference(Image.open(io.BytesIO(closed)).convert('RGB'),Image.open(io.BytesIO(restored)).convert('RGB'))
@@ -84,11 +84,14 @@ def run(url,browser):
         for x in [.50,.55]:page.mouse.click(box['x']+box['width']*x,box['y']+box['height']*.50)
         check('surface_measurement',page.locator('html').get_attribute('data-measurement-complete')=='true',value=page.locator('#measurement').inner_text())
         page.locator('#clear-measure').click();check('clear_measurement',not page.locator('#measurement').is_visible())
-        page.locator('#search').fill('DEX5');check('hand_candidates_remain_unaccepted',page.locator('#inventory tr').count()==2 and '已放置' in page.locator('#inventory').inner_text() and '待验收' in page.locator('#inventory').inner_text())
+        page.locator('#search').fill('DEX5');check('hand_candidates_remain_unaccepted',page.locator('#inventory tr').count()==2 and '尚未放入场景' in page.locator('#inventory').inner_text() and '待验收' in page.locator('#inventory').inner_text())
         page.locator('#search').fill('');page.locator('#filter').select_option('placed');placed=page.locator('#inventory tr').count()
         page.locator('#filter').select_option('missing');missing=page.locator('#inventory tr').count()
         check('inventory_filter_partition',placed+missing==inventory_count,with_geometry=placed,without_geometry=missing)
         page.locator('#filter').select_option('all')
+        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==47)
+        page.locator('button[data-target="cary_front"]').click();check('static_workspace_pose_selected',page.locator('html').get_attribute('data-workspace-pose')=='cary_front');capture('g1_cary_access')
+        page.locator('#workspace-reset').click();check('static_workspace_pose_reset',page.locator('html').get_attribute('data-workspace-pose') is None)
         page.locator('#review-notes').fill('QA temporary comment; not acceptance')
         with page.expect_download() as event:page.locator('#export-notes').click()
         download=event.value;record=json.loads(Path(download.path()).read_text())
@@ -107,7 +110,7 @@ def run(url,browser):
         bad.goto(url);bad.wait_for_function('document.getElementById("error").textContent.includes("版本")',timeout=10000)
         check('stale_scene_rejected',bad.locator('html').get_attribute('data-scene-loaded') is None and bad.locator('#layout-status').inner_text()=='未通过版本核对')
         version=b.version;b.close()
-    files=[HERE/'index.html',HERE/'main.js',HERE/'style.css',HERE/'check_browser.py',HERE/'render_batches.js']+[ROOT/'assets/cooling_lab_v1'/n for n in ['scene.json','inventory.json','layout_checks.json','risk_register.json','floorplan.svg','body_envelope.json','hand_envelope.json','pilot_contract.json','readiness.json']]
+    files=[HERE/'index.html',HERE/'main.js',HERE/'style.css',HERE/'check_browser.py',HERE/'render_batches.js']+[ROOT/'assets/cooling_lab_v1'/n for n in ['scene.json','inventory.json','layout_checks.json','risk_register.json','floorplan.svg','workspace_checks.json','pilot_contract.json','readiness.json']]
     report=dict(passed=True,checks=checks,captures=captures,source_files=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in files],browser=version,
         software_renderer='Chromium SwiftShader',scope='Interactive UI and visible geometry states only; images do not establish product fidelity or safety')
     (HERE/'VISUAL_VERIFICATION.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

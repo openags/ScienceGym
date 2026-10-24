@@ -39,7 +39,8 @@ function installRoomLights(){
  document.documentElement.dataset.roomLightCount=positions.length;
 }
 const overlays=new THREE.Group(),labels=new THREE.Group(),measurements=new THREE.Group();scene.add(overlays,labels,measurements);
-let architecture,manifest,inventory,risks,report,bodyReport,readiness,selected=null,measureMode=false,measurePoints=[],pointerStart;
+let architecture,manifest,inventory,risks,report,bodyReport,readiness,workspace,selected=null,measureMode=false,measurePoints=[],pointerStart;
+let robotRest=[];const accessMarker=new THREE.Group();scene.add(accessMarker);
 const groups=new Map(),states=new Map(),assetList=[],renderBatches=[];
 const loader=new GLTFLoader();
 const loadPinned=async(path,expected)=>{const r=await fetch(root+path+'?revision='+expected);if(!r.ok)throw Error(path+' HTTP '+r.status);const buffer=await r.arrayBuffer();if(await digest(buffer)!==expected)throw Error(path+' 的模型哈希与当前场景不一致');return loader.parseAsync(buffer,new URL(root+path,location.href).href)};
@@ -62,12 +63,39 @@ const setView=(pos,target,inside=false)=>{
 const views={all:[[19,-13,22],[3.1,9.5,0]],indoor:[[7.4,.7,1.65],[4.8,8.7,1.25],true],details:[[4.5,1.4,1.65],[2.65,3,.75],true],rear:[[6.9,9.3,1.65],[5.5,1.8,1.3],true],outdoor:[[16,7,12],[6,16,.4]],optics:[[7,6.9,1.65],[9.3,8.8,1.25],true],wet:[[5.4,4.1,1.65],[1.8,5.9,1.1],true],annex:[[-.9,1,1.65],[-4.4,3.5,1.35],true],coating:[[-1,5.8,1.65],[-4.4,8.5,1.4],true],top:[[3,9.5,32],[3,9.5,0]]};
 setView(...views.indoor);document.documentElement.dataset.view='indoor';
 const resize=()=>{const w=$('viewport').clientWidth,h=$('viewport').clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();requestRender()};new ResizeObserver(resize).observe($('viewport'));resize();
-function resetStates(){for(const state of states.values())for(const item of state.parts){item.node.position.copy(item.position);item.node.quaternion.copy(item.quaternion)}renderer.shadowMap.needsUpdate=true;requestRender()}
+function resetStates(){for(const state of states.values())for(const item of state.parts){item.node.position.copy(item.position);item.node.quaternion.copy(item.quaternion)}
+ for(const item of robotRest){item.node.position.copy(item.position);item.node.quaternion.copy(item.quaternion)}
+ const robot=groups.get('g1');if(robot){robot.position.set(...assetList.find(a=>a.id==='g1').position_m);robot.rotation.set(0,0,0)}
+ accessMarker.clear();delete document.documentElement.dataset.workspacePose;
+ if($('workspace-pose-status'))$('workspace-pose-status').textContent='选择检查点可查看静态姿态。';
+ renderer.shadowMap.needsUpdate=true;requestRender()}
+function inspectWorkspace(target){
+ resetStates();const result=target.result,group=groups.get('g1'),asset=assetList.find(a=>a.id==='g1');
+ const k=states.get('g1_hands_inspection').config.kinematics;
+ const world=new Map([[k.root_link,new THREE.Matrix4().fromArray(k.root_matrix.flat()).transpose()]]);
+ const q={...result.joint_coordinates};
+ for(const j of k.joints){if(j.mimic)q[j.name]=Number(j.mimic.offset||0)+Number(j.mimic.multiplier||1)*(q[j.mimic.joint]||0);
+  const t=new THREE.Matrix4().fromArray(j.origin_matrix.flat()).transpose();
+  if(q[j.name])t.multiply(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...j.axis),q[j.name]));
+  world.set(j.id,world.get(j.parent).clone().multiply(t));
+ }
+ const n=new THREE.Matrix4().fromArray(asset.normalization_matrix.flat()).transpose(),ni=n.clone().invert();
+ for(const item of robotRest){const link=k.part_links[item.node.name];if(!link)continue;
+  const bind=new THREE.Matrix4().fromArray(k.bind_world[link].flat()).transpose();
+  item.node.updateMatrix();item.node.applyMatrix4(n.clone().multiply(world.get(link)).multiply(bind.invert()).multiply(ni));
+ }
+ group.position.set(result.base_position_m[0],result.base_position_m[1],result.base_position_m[2]-k.root_matrix[2][3]);group.rotation.z=result.base_yaw_rad;
+ const marker=new THREE.Mesh(new THREE.SphereGeometry(.018),new THREE.MeshBasicMaterial({color:result.position_candidate?'#dc891f':'#c53c37',depthTest:false}));marker.position.set(...target.point_m);accessMarker.add(marker);
+ $('isolate').checked=false;$('show-walls').checked=false;visibility();const p=result.base_position_m;
+ setView([p[0]+1.8,p[1]-2.1,2.0],[target.point_m[0],target.point_m[1],.8]);
+ $('workspace-pose-status').textContent=target.id+' · 静态位置检查，误差 '+(result.position_error_m*1000).toFixed(1)+' mm；'+result.external_overlaps.length+' 处外部包围盒冲突；自碰撞 '+(result.self_contacts_checked?result.self_penetrations_over_0_5mm.length+' 对超过 0.5 mm':'尚未检查（位置未到达）')+'。手掌方向、目标设备内部碰撞、平衡与进入路径尚未验证。';
+ document.documentElement.dataset.workspacePose=target.id;$('viewport').scrollIntoView({block:'center'});renderer.shadowMap.needsUpdate=true;requestRender();
+}
 function applyState(id,fraction){
  resetStates();const state=states.get(id);if(!state)return;
  if(state.config.kind==='joint_tree'){
-  const k=state.config.kinematics,world=new Map([['palm',new THREE.Matrix4()]]),n=new THREE.Matrix4().fromArray(state.normalization.flat()).transpose(),ni=n.clone().invert();
-  for(const j of k.joints){const translation=new THREE.Matrix4().makeTranslation(...j.origin_m),rotation=new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...j.axis),fraction*j.inspection_angle_rad);world.set(j.id,world.get(j.parent).clone().multiply(translation).multiply(rotation))}
+  const k=state.config.kinematics,world=new Map([[k.root_link||'palm',k.root_matrix?new THREE.Matrix4().fromArray(k.root_matrix.flat()).transpose():new THREE.Matrix4()]]),n=new THREE.Matrix4().fromArray(state.normalization.flat()).transpose(),ni=n.clone().invert();
+  for(const j of k.joints){const translation=j.origin_matrix?new THREE.Matrix4().fromArray(j.origin_matrix.flat()).transpose():new THREE.Matrix4().makeTranslation(...j.origin_m),rotation=new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...j.axis),fraction*j.inspection_angle_rad);world.set(j.id,world.get(j.parent).clone().multiply(translation).multiply(rotation))}
   for(const item of state.parts){const link=k.part_links[item.node.name],bind=new THREE.Matrix4().fromArray(k.bind_world[link].flat()).transpose();const delta=n.clone().multiply(world.get(link)).multiply(bind.invert()).multiply(ni);item.node.updateMatrix();item.node.applyMatrix4(delta)}
   document.documentElement.dataset.openState=id+':'+fraction;renderer.shadowMap.needsUpdate=true;requestRender();return;
  }
@@ -110,7 +138,7 @@ function selectAsset(id,focus=true){
 }
 function renderInventory(){
  const query=$('search').value.toLowerCase(),filter=$('filter').value;let count=0;$('inventory').replaceChildren();
- for(const item of inventory.items){const placed=assetList.filter(a=>a.resource_id===item.id),authored=item.authored_scene_components||[],hasGeometry=placed.length||authored.length;if(query&&!JSON.stringify(item).toLowerCase().includes(query))continue;if(filter==='placed'&&!hasGeometry||filter==='missing'&&hasGeometry)continue;
+ for(const item of inventory.items){const placed=assetList.filter(a=>(a.resource_ids||[a.resource_id]).includes(item.id)),authored=item.authored_scene_components||[],hasGeometry=placed.length||authored.length;if(query&&!JSON.stringify(item).toLowerCase().includes(query))continue;if(filter==='placed'&&!hasGeometry||filter==='missing'&&hasGeometry)continue;
   const tr=document.createElement('tr');const first=document.createElement('td');
   if(placed.length){const b=document.createElement('button');b.textContent=item.label;b.onclick=()=>{selectAsset(placed[0].id);$('viewport').scrollIntoView({behavior:'smooth',block:'center'})};first.append(b)}else first.textContent=item.label;
   tr.append(first);const categories={equipment:'论文设备',tools:'工具与夹具',consumables:'材料与耗材',additional_reconstructed_materials:'补充材料/夹具',accessory:'独立附件',robot:'机器人',authored_facility_requirement:'实验室设施'};
@@ -161,23 +189,23 @@ $('clear-measure').onclick=()=>{measurements.clear();measurePoints=[];measureMod
 $('views').onclick=e=>{const key=e.target.dataset.view;if(!key)return;$('isolate').checked=false;$('show-walls').checked=!['all','top'].includes(key);resetStates();$('state-slider').value=0;visibility();setView(...views[key]);for(const b of $('views').children)b.classList.toggle('active',b.dataset.view===key);document.documentElement.dataset.view=key};
 for(const id of ['show-walls','show-space','show-labels','isolate'])$(id).onchange=visibility;
 $('asset-select').onchange=()=>selectAsset($('asset-select').value);$('search').oninput=renderInventory;$('filter').onchange=renderInventory;
-$('asset-views').onclick=e=>{const direction=e.target.dataset.direction;if(!direction||!selected)return;const b=new THREE.Box3().setFromObject(groups.get(selected)),c=b.getCenter(new THREE.Vector3()),d=Math.max(...b.getSize(new THREE.Vector3()).toArray())*1.8;const v={front:[0,-d,0],back:[0,d,0],side:[d,0,0],top:[0,-.001,d]}[direction];$('isolate').checked=true;visibility();setView(c.clone().add(new THREE.Vector3(...v)).toArray(),c.toArray());document.documentElement.dataset.assetView=direction};
+$('asset-views').onclick=e=>{const direction=e.target.dataset.direction;if(!direction||!selected)return;const b=new THREE.Box3().setFromObject(groups.get(selected)),c=b.getCenter(new THREE.Vector3()),d=Math.max(...b.getSize(new THREE.Vector3()).toArray())*1.8;const v=(selected==='g1'?{front:[d,0,0],back:[-d,0,0],side:[0,-d,0],top:[.001,0,d]}:{front:[0,-d,0],back:[0,d,0],side:[d,0,0],top:[0,-.001,d]})[direction];$('isolate').checked=true;visibility();setView(c.clone().add(new THREE.Vector3(...v)).toArray(),c.toArray());document.documentElement.dataset.assetView=direction};
 const storageKey='sciencegym-lab-review-notes-v1';try{$('review-notes').value=localStorage.getItem(storageKey)||''}catch{}
 $('review-notes').oninput=()=>{try{localStorage.setItem(storageKey,$('review-notes').value);$('notes-status').textContent='已保存到此浏览器'}catch{$('notes-status').textContent='浏览器存储不可用，可下载保存'}};
 $('export-notes').onclick=()=>{const record={scene_revision:report?.scene_sha256,created_at:new Date().toISOString(),notes:$('review-notes').value,kind:'review_comments_not_acceptance'};const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='sciencegym-lab-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 try{
- [manifest,inventory,risks,report,bodyReport,readiness]=await Promise.all([read(folder+'scene.json'),read(folder+'inventory.json'),read(folder+'risk_register.json'),read(folder+'layout_checks.json'),read(folder+'body_envelope.json'),read(folder+'readiness.json')]);
+ [manifest,inventory,risks,report,bodyReport,readiness]=await Promise.all([read(folder+'scene.json'),read(folder+'inventory.json'),read(folder+'risk_register.json'),read(folder+'layout_checks.json'),read(root+'assets/unitree_g1_inspire_v1/space.json'),read(folder+'readiness.json')]);
  if(report.scene_sha256!==fetchedHashes.get(folder+'scene.json')||inventory.scene_artifact.sha256!==report.scene_sha256)throw Error('场景版本与几何检查 / 清单记录不一致，请重新生成检查');
  for(const p of readiness.source_artifacts){const url=root+p.path;if(fetchedHashes.has(url)&&fetchedHashes.get(url)!==p.sha256)throw Error('进度记录与场景版本不一致')}
  const policy=await read(folder+'pilot_contract.json');if(fetchedHashes.get(folder+'pilot_contract.json')!==manifest.pilot_contract.sha256||JSON.stringify(policy)!==JSON.stringify(readiness.policy))throw Error('执行约束版本不一致');
- $('pilot-policy').textContent='本体限定宇树，手型按公开资源选择；当前选型：'+policy.robot.body_candidate+' + '+policy.robot.hands.join(' / ')+'。传感器闭环，仅增加相机和普通工具。资产场景验收后再开发操作序列。下方 H2 / Dex5-S 为旧候选参照，尚未替换为 G1。';
+ $('pilot-policy').textContent='本体限定宇树，手型按公开资源选择；当前选型：'+policy.robot.body_candidate+' + '+policy.robot.hands.join(' / ')+'。传感器闭环，仅增加相机和普通工具。资产场景验收后再开发操作序列。场景已使用 G1 和官方 Inspire FTP 双手；仅静态资产集成，操作与动态平衡尚待验证。';
  const rc=readiness.counts;$('pilot-counts').textContent=rc.manual_definitions+' 个操作定义已对应到 '+rc.interfaces+' 类接口与资源需求。'+rc.requirement_groups+' 类资源拆出 '+rc.decomposed_component_requirements+' 个待核对组件需求，数量尚未分配完毕。完整人形机器人分支通过 '+rc.qualified_humanoid_branches+' / '+rc.branches+'。';
  for(const item of readiness.hard_dependencies){const d=document.createElement('div');d.className='risk-card';const h=document.createElement('h3');h.textContent=item.label;const p=document.createElement('p');p.textContent=item.detail;d.append(h,p);$('pilot-dependencies').append(d)}
  for(const branch of readiness.branches){const tr=document.createElement('tr');for(const label of [branch.id+' · '+branch.title,branch.manual_step_ids.length+' 项（含共享步骤）','待执行验证']){const td=document.createElement('td');td.textContent=label;tr.append(td)}$('branch-progress').append(tr)}
  $('legacy-conflicts').textContent='以下旧接口仍需按普通工具约束重新绑定：'+readiness.legacy_interface_review.map(x=>x.interface_id).join('、')+'。历史 Panda 配置及读取真值的身体测试不计入本次传感器闭环验收。';
- if(manifest.envelope.body_evidence.sha256!==fetchedHashes.get(folder+'body_envelope.json'))throw Error('H2 空间测量记录与场景版本不一致');
+ if(manifest.envelope.body_evidence.sha256!==fetchedHashes.get(root+'assets/unitree_g1_inspire_v1/space.json'))throw Error('G1 空间测量记录与场景版本不一致');
  const handBound=await read(root+manifest.envelope.hand_evidence.path);if(fetchedHashes.get(root+manifest.envelope.hand_evidence.path)!==manifest.envelope.hand_evidence.sha256)throw Error('重建手空间记录版本不一致');
- $('body-envelope').textContent='已有 H2 记录中：'+bodyReport.samples+' 个姿态样本最大本体半径 '+bodyReport.maximum_sampled.radial_extent_m.toFixed(3)+' m。计入重建手关节链的保守范围和暂定 30 mm 腕部余量后，当前检查半径为 '+manifest.envelope.transit_radius_m.toFixed(2)+' m，另加 0.10 m 通道余量。这份 H2 记录不能作为 G1 的空间依据；G1 的工位可达性、实际安装、相机、携物和行走需重新验证。';
+ $('body-envelope').textContent='G1 官方模型：'+bodyReport.samples+' 个限定通行姿态样本，双手按官方关节链计算全角度半径。当前静态检查半径 '+manifest.envelope.transit_radius_m.toFixed(2)+' m，另加 0.10 m 通道余量。工位检查见下表；相机、实际携物、行走和制动仍待验证。';
  installRoomLights();
  assetList.push(...manifest.assets);$('asset-count').textContent=assetList.length;
  const present=inventory.items.filter(i=>i.scene_instances?.length||i.authored_scene_components?.length).length;$('inventory-coverage').textContent='部分几何 '+present+'/'+inventory.items.length+' 项；其余 '+(inventory.items.length-present)+' 项尚缺';
@@ -199,8 +227,13 @@ try{
  architecture.traverse(node=>{if(!node.isMesh)return;const part=architectureParts.get(node.name);node.userData.cutaway=part&&(['wall_upper','window','ceiling','ceiling_fixture','identification_label'].includes(part.role)||node.name.startsWith('door_'));if(node.material?.transparent)node.castShadow=false});
  renderBatches.push({id:'architecture',...batchStaticMeshes(architecture)});
  scene.add(architecture);visibility();
- for(let i=0;i<assetList.length;i+=3){await Promise.all(assetList.slice(i,i+3).map(async a=>{const model=await loadPinned(a.geometry,a.geometry_sha256);prepare(model);const group=model.scene;const protectedParts=new Set(manifest.inspection_states.filter(s=>s.asset===a.id).flatMap(s=>s.parts));renderBatches.push({id:a.id,...batchStaticMeshes(group,protectedParts)});group.position.set(...a.position_m);group.traverse(o=>{if(o.isMesh)o.userData.assetId=a.id});groups.set(a.id,group);scene.add(group);const option=document.createElement('option');option.value=a.id;option.textContent=a.label;$('asset-select').append(option)}));$('loading').textContent='载入模型 '+Math.min(i+3,assetList.length)+' / '+assetList.length}
+ for(let i=0;i<assetList.length;i+=3){await Promise.all(assetList.slice(i,i+3).map(async a=>{const model=await loadPinned(a.geometry,a.geometry_sha256);prepare(model);const group=model.scene;const protectedParts=new Set(a.id==='g1'?a.part_names:manifest.inspection_states.filter(s=>s.asset===a.id).flatMap(s=>s.parts));renderBatches.push({id:a.id,...batchStaticMeshes(group,protectedParts)});group.position.set(...a.position_m);group.traverse(o=>{if(o.isMesh)o.userData.assetId=a.id});groups.set(a.id,group);scene.add(group);const option=document.createElement('option');option.value=a.id;option.textContent=a.label;$('asset-select').append(option)}));$('loading').textContent='载入模型 '+Math.min(i+3,assetList.length)+' / '+assetList.length}
  for(const config of manifest.inspection_states){const group=groups.get(config.asset),asset=assetList.find(a=>a.id===config.asset);const parts=[];group.traverse(node=>{if(config.parts.includes(node.name))parts.push({node,position:node.position.clone(),quaternion:node.quaternion.clone()})});if(parts.length!==config.parts.length)throw Error(config.id+' 的开闭部件未完整匹配');const p=config.pivot_m||[0,0,0];const n=asset.normalization_matrix;states.set(config.id,{config,parts,normalization:n,pivot:new THREE.Vector3(p[0]+n[0][3],p[1]+n[1][3],p[2]+n[2][3])})}
+ groups.get('g1').traverse(node=>{if(node.isMesh)robotRest.push({node,position:node.position.clone(),quaternion:node.quaternion.clone()})});
+ workspace=await read(folder+'workspace_checks.json');if(workspace.scene_sha256!==report.scene_sha256)throw Error('工位检查与场景版本不一致');
+ $('workspace-counts').textContent=workspace.counts.targets+' 个检查点：'+workspace.counts.position_candidates+' 个位置候选，'+workspace.counts.needs_revision+' 个需要调整或进一步求解。位置候选尚未通过操作验收。';
+ for(const target of workspace.targets){const tr=document.createElement('tr');for(const text of [target.id,target.result.position_candidate?'位置候选':'待解决',(target.result.position_error_m*1000).toFixed(1)+' mm',target.result.external_overlaps.length+' 处',target.result.self_contacts_checked?target.result.self_penetrations_over_0_5mm.length+' 对':'未检查']){const td=document.createElement('td');td.textContent=text;tr.append(td)}const td=document.createElement('td'),button=document.createElement('button');button.textContent='查看静态姿态';button.dataset.target=target.id;button.onclick=()=>inspectWorkspace(target);td.append(button);tr.append(td);$('workspace-targets').append(tr)}
+ $('workspace-reset').onclick=resetStates;
  document.documentElement.dataset.normalRepairs=repairedNormals;
  document.documentElement.dataset.renderBatches=JSON.stringify(renderBatches);
  document.documentElement.dataset.geometryPreserved=String(renderBatches.every(b=>b.sourceGeometryPreserved));

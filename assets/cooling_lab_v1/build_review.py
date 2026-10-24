@@ -34,7 +34,7 @@ def floorplan(scene):
         else:
             w,d=s['size_m'];rectangle([x-w/2,y-d/2,x+w/2,y+d/2],'#daa644','#bd9139',.22)
     for a in scene['assets']:
-        if a['id']=='h2':continue
+        if a['id']=='g1':continue
         lo,hi=a['normalized_bounds_m'];p=a['position_m'];rectangle([lo[0]+p[0],lo[1]+p[1],hi[0]+p[0],hi[1]+p[1]],'#245e62','#fff')
     labels=[('Cary 5000',2.5,8.4),('Nicolet 6700',9.5,8.4),('A25 / RTD',2.5,5.8),('2425 ×2 / DAQ',9.9,5.8),
       ('装配 / 夹具',2.5,3),('构型 / 加热片',9.5,3),('白色装置',2.5,15.8),('黑色装置',9.5,15.8),('STR-32G / MS-56',2.5,18.1),('U30 / MS-402',9.5,18.1),
@@ -51,7 +51,7 @@ def floorplan(scene):
 def review():
     scene=json.loads((HERE/'scene.json').read_text());floorplan(scene)
     risk_rows=[
-      ('SPACE','人形机器人与携物空间',f"按已有本体姿态与重建手关节链保守范围，将检查半径设为 {scene['envelope']['transit_radius_m']:.2f} m，另加 0.10 m 设计余量；腕部安装额外假设 30 mm。",'真实腕部安装、相机外形、完整身体姿态、携物与行走包络、制动和跌倒影响范围。'),
+      ('SPACE','人形机器人与携物空间',f"按 G1 官方模型的限定通行姿态采样和官方手部关节链范围，将检查半径设为 {scene['envelope']['transit_radius_m']:.2f} m，另加 0.10 m 设计余量；腕部安装沿用官方变换；该检查不覆盖行走与全部姿态。",'真实腕部安装、相机外形、完整身体姿态、携物与行走包络、制动和跌倒影响范围。'),
       ('LOAD','重型仪器与支撑','Cary 与 Nicolet 采用独立台架，实际模型按原比例放置。','91 kg Cary、69 kg Nicolet 及附件的台架承载、稳定性、固定和楼板载荷评估。'),
       ('WET','湿式校准与电气','A25 采用低台与独立接液盘；电测仪器在相邻干台，未虚构已接通管线。','真实排液路径、接液盘容量、溢流、线缆布置及设备手册要求的间距。'),
       ('CHEMICAL','加工与涂覆隔离','独立加工间已放入选定 ProtoMAX 几何，涂覆间有抽排设施设计。','水刀工艺、夹持、安全联锁、供水排液与磨料服务尚未实现；涂料与清洗材料 SDS、抽排和废物设施仍待审查。'),
@@ -67,11 +67,13 @@ def review():
       dict(path='assets/cary_5000_v1/sources.json'),dict(path='assets/nicolet_6700_v1/sources.json'),dict(path='assets/thermo_a25_ac150_v1/sources.json'),dict(path='assets/cooling_lab_v1/resource_followup.json')],
       safety_accepted=False,site_jurisdiction=None))
     inventory=json.loads((HERE/'inventory.json').read_text());by_resource={}
-    for a in scene['assets']:by_resource.setdefault(a['resource_id'],[]).append(a)
+    for a in scene['assets']:
+        for resource in a.get('resource_ids',[a['resource_id']]):by_resource.setdefault(resource,[]).append(a)
     for row in inventory['items']:
         linked=by_resource.get(row['id'],[])
         row['authored_scene_components']=[dict(id=c['id'],parts=c['parts'],basis=c['basis']) for c in scene['authored_components'] if row['id'] in c['resource_ids']]
         row['scene_instances']=[dict(id=a['id'],station=a['station'],geometry=a['geometry'],sha256=a['geometry_sha256']) for a in linked]
+        row['instance_allocation']={'modeled_instances':len(linked),'required_instance_count_accepted':False}
         if linked:
             row['scene_placement']='modeled_candidate_pending_review'
             row['instance_allocation']={'modeled_instances':len(linked),'required_instance_count_accepted':False}
@@ -84,6 +86,7 @@ def review():
             row['scene_placement']='partially_authored_pending_completeness_review'
         else:
             row['scene_placement']='not_placed'
+            if row.get('requirement_role')=='superseded_embodiment_reference':row['candidate_scope_note']='Historical candidate retained for provenance; no current laboratory instance or execution authority.'
     inventory.update(status='scene_draft_inventory_pending_completeness_review',whole_lab_scene_exists=True,
                      scene_artifact=dict(path='assets/cooling_lab_v1/scene.json',sha256=sha(HERE/'scene.json')),
                      inventory_completeness_accepted=False,owner_asset_scene_acceptance=None)
@@ -97,13 +100,13 @@ def review():
         'LAB-02':['assets/cooling_lab_v1/outdoor_assets.json','assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/resource_followup.json','assets/cooling_lab_v1/appearance_review.json','assets/unitree_dex5s_reconstruction_v1/model.json','assets/cooling_lab_v1/ordinary_tools.json','assets/cooling_lab_v1/waterjet.json','assets/cooling_lab_v1/stock_sources.json'],
         'LAB-03':['assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/risk_register.json'],
         'LAB-04':['assets/cooling_lab_v1/floorplan.svg','assets/cooling_lab_v1/layout_checks.json'],
-        'LAB-05':['assets/cooling_lab_v1/layout_checks.json','assets/cooling_lab_v1/body_envelope.json','assets/cooling_lab_v1/hand_envelope.json'],
+        'LAB-05':['assets/cooling_lab_v1/layout_checks.json','assets/unitree_g1_inspire_v1/space.json','assets/cooling_lab_v1/workspace_checks.json'],
         'LAB-06':['assets/cooling_lab_v1/risk_register.json'],
         'LAB-07':['viewer/lab_review_v1/index.html','viewer/lab_review_v1/main.js','viewer/lab_review_v1/render_batches.js','assets/cooling_lab_v1/scene.json'],
         'LAB-08':[]}
     evidence['LAB-02']+=['assets/realsense_cameras_v1/model.json','assets/realsense_cameras_v1/VERIFICATION.json']
     evidence['LAB-02']+=['assets/omega_5tc_v1/model.json','assets/omega_5tc_v1/VERIFICATION.json']
-    evidence['LAB-02']+=['assets/unitree_g1_inspire_v1/SOURCE.json','assets/unitree_g1_inspire_v1/VERIFICATION.json','assets/unitree_g1_inspire_v1/selection.json']
+    evidence['LAB-02']+=['assets/unitree_g1_inspire_v1/SOURCE.json','assets/unitree_g1_inspire_v1/VERIFICATION.json','assets/unitree_g1_inspire_v1/selection.json','assets/unitree_g1_inspire_v1/integration.json','assets/unitree_g1_inspire_v1/collision.json']
     # Readiness is derived from the newly reconciled inventory, before pinning.
     from build_readiness import build as build_readiness
     build_readiness()

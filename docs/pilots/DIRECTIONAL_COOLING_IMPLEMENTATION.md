@@ -14,11 +14,11 @@ agreement and physical-hardware experiments are outside this demo's acceptance.
 The machine-readable [pilot contract](../../assets/cooling_lab_v1/pilot_contract.json)
 records the latest owner decisions: the body remains Unitree, while publicly
 supported hands from other manufacturers are allowed. Select G1 29DoF rev 1.0
-with Inspire FTP left/right for the next asset integration, based on the
+with Inspire FTP left/right for the current asset integration, based on the
 [official resource audit](HUMANOID_RESOURCE_SELECTION.md). The actor must use
 robot sensors; adaptations remain limited to added cameras and ordinary tools.
-Robot-specific fixtures and added fiducials are excluded. The existing H2 /
-Dex5-S scene is a previous candidate, not a qualification of the new combination.
+Robot-specific fixtures and added fiducials are excluded. The previous H2 /
+Dex5-S assets and body evidence remain historical references.
 Model acquisition and static inspection do not authorize new manipulation work.
 
 ## Delivery order and acceptance
@@ -57,12 +57,11 @@ guarantee of general reliability.
   resource requirements. Compound resources are decomposed, with unallocated
   quantities left visibly unknown. This is an author/reviewer artifact, not an
   actor instruction bundle or execution credit.
-- Source-based left/right Dex5-S Pro visual reconstructions provide distinct
-  shell/pad parts and 22-joint inspection hypotheses per hand. They are separately
-  displayed on a bench, not mounted to H2. Official dimensions constrain their
-  outer envelope; local shapes, pivots and preview angles remain estimates.
-  Unknown inertias, limits, tactile calibration and wrist interfaces block
-  physical qualification. No Dex5-1 geometry is relabeled.
+- The complete official G1/Inspire source model is now placed in the laboratory.
+  The gravity-enabled floating-root MJCF retains source inertials, limits and
+  wrist transforms, with 41 independent actuators and 12 mimic constraints.
+  Palm collision components remove the initial zero-pose convex-hull artifact;
+  finite short-run dynamics and source-frame checks are asset evidence only.
 - The scene's bespoke film/emitter jigs and carriers were removed. Ordinary
   Mitutoyo 530-104, Wiha 26100 and Buerkle 4208-0022 candidates are source-linked.
   A small tray does not resolve heavy transport or delicate-film retention;
@@ -77,15 +76,16 @@ guarantee of general reliability.
 - Raw copper and track aluminum thicknesses were corrected to 0.5 and 1.5 mm
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
-- A conservative hand-chain bound is evaluated at the existing body recording's
-  wrist poses. With an explicitly assumed 30 mm mounting allowance, it gives a
-  0.69 m body/hand radius plus the authored 0.10 m route margin. The fabrication
-  approach was moved to clear the selected machine. This does not cover actual
-  mounting, camera geometry, carried objects, walking or dynamic balance.
+- New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. No guessed
+  wrist adapter is used. The 47-point station screen records each position-only
+  IK result and external obstacle conflicts. Selected equipment/tools moved
+  closer to bench fronts without changing source geometry dimensions.
+  Two-hand coordination, loads, cameras, walking and balance remain unqualified.
 - Three added-camera requirements are separately inventoried. A D455 and two
   D405 candidates retain official ROS mesh geometry at a pinned revision, with
   the upstream license and checked unit/shape preservation. All three are
-  separately displayed on the bench. H2 mounts, cabling and calibration remain
+  separately displayed on the bench. G1 mounts, cabling and calibration remain
   open, and no observation stream has been implemented. Wrist selection remains
   RGB-only despite the D405's other capabilities.
 - Eight individually staged Omega 5TC-TT-K-36-36 probes use the catalogue's
@@ -103,7 +103,7 @@ original scope. New task/controller bindings require their own revision and
 evidence after scene acceptance.
 
 The current scene is **not ready for whole-laboratory acceptance**. Remaining
-items include the hand's qualified physical description and mounting, ordinary
+items include the hand's qualified contact/dynamic description, camera mounting, ordinary
 tool solutions for film/underside handling, complete resource quantities,
 qualified fabrication services and tooling, exact angular optical accessories, wiring and consumables,
 full carried-load space checks, and evidence for installation/support/services.
@@ -122,7 +122,9 @@ Unitree configuration references. The asset inspector at
 `viewer/robot_resource_review_v1/index.html` shows the source geometry without
 rescaling. It is a static zero-pose preview, not a standing/balance demonstration.
 The new selection is bound to all 200 manual-step requirements; execution
-bindings remain null. Before moving it into the lab, audit the simulator's
-mimic and actuator mapping, bench reach, hand work volumes, camera mounts and
-carried-object clearance. Do not reuse the H2 spatial certificate or mix FTP
-and DFQ joint names. The owner scene gate remains open.
+bindings remain null. The [integration record](../../assets/unitree_g1_inspire_v1/README.md)
+records completed source mapping, collision repair and bounded static checks.
+The lab viewer can display each tested posture. Remaining access conflicts,
+contact qualification, camera installation and carried-object clearance stay
+open. Do not reuse the H2 spatial certificate or mix FTP and DFQ joint names.
+The owner scene gate remains open.

@@ -110,7 +110,7 @@ def asset(key,label,path,position,*,prefix=None,z_up=False,station='',resource='
 def furniture():
     for key,x,y,w,d,h in [('cary_bench',2.5,8.7,2.6,1.2,.85),('ftir_bench',9.5,8.7,2.6,1.2,.85),
         ('assembly_white',2.9,3.0,2.4,1.2,.90),('assembly_black',9.5,3.0,2.4,1.2,.90),
-        ('calibration_dry',1.1,5.8,1.6,.9,.85),('bath_stand',2.9,5.82,.8,.9,.45),
+        ('calibration_dry',1.1,5.8,1.6,.9,.85),('bath_stand',2.9,5.75,.8,.7,.45),
         ('electrical_bench',10.1,5.8,2.4,1.0,.85),
         ('fabrication_fixture',-4.3,.65,2.1,1.1,.90),('coating_prep',-4.3,6.4,2.1,1.1,.90),
         ('outdoor_white',2.5,15.8,1.2,1.0,.90),('outdoor_black',9.5,15.8,1.2,1.0,.90),
@@ -135,9 +135,9 @@ def furniture():
     for i in range(13):box('exhaust_baffle_'+str(i),[1.45,.02,.018],[-4.5,8.385,1.0+i*.065],DARK,'exhaust_design')
     obstacle('coating_enclosure',[[-5.3,7.55,0],[-3.7,8.45,3.33]],'unqualified_extraction_design')
     # Spill tray surrounds bath stand; no live wiring is routed through it.
-    for key,size,pos in [('base',[.92,1.02,.015],[2.9,5.8,.008]),('front',[.92,.025,.06],[2.9,5.3,.03]),
-        ('rear',[.92,.025,.06],[2.9,6.3,.03]),('left',[.025,1.02,.06],[2.45,5.8,.03]),('right',[.025,1.02,.06],[3.35,5.8,.03])]:
-        pos[1]+=.02;box('bath_spill_'+key,size,pos,[92,126,145],'spill_tray')
+    for key,size,pos in [('base',[.92,.84,.015],[2.9,5.75,.008]),('front',[.92,.025,.06],[2.9,5.33,.03]),
+        ('rear',[.92,.025,.06],[2.9,6.17,.03]),('left',[.025,.84,.06],[2.45,5.75,.03]),('right',[.025,.84,.06],[3.35,5.75,.03])]:
+        box('bath_spill_'+key,size,pos,[92,126,145],'spill_tray')
     for x,y in [(4.2,.65),(7.8,9.2)]:
         box('emergency_post_'+str(x),[.10,.10,1.1],[x,y,.55],GRAY,'emergency_design',True)
         g.cylinder('emergency_stop_'+str(x),.035,.025,[x,y-.065,1.05],[182,39,41],axis=(0,1,0),role='emergency_design')
@@ -167,16 +167,16 @@ def furniture():
 def devices():
     base='assets/'
     configs=[
-      ('cary','Agilent Cary 5000 + 分离式扩展舱','cary_5000_v1','cary_5000',[2.35,8.70,.85],'cary_bench','equipment:UVVIS'),
+      ('cary','Agilent Cary 5000 + 分离式扩展舱','cary_5000_v1','cary_5000',[2.35,8.50,.85],'cary_bench','equipment:UVVIS'),
       ('dra','Cary DRA-2500 积分球附件','cary_internal_dra_2500_v1','cary_internal_dra_2500',[3.35,8.50,.85],'cary_bench','accessory:DRA_2500'),
-      ('nicolet','Thermo Nicolet 6700','nicolet_6700_v1','nicolet_6700',[9.20,8.70,.85],'ftir_bench','equipment:FTIR'),
+      ('nicolet','Thermo Nicolet 6700','nicolet_6700_v1','nicolet_6700',[9.20,8.47,.85],'ftir_bench','equipment:FTIR'),
       ('pike','PIKE IntegratIR DTGS（选定重构）','pike_integratir_dtgs_v1','pike_integratir_dtgs',[10.22,8.55,.85],'ftir_bench','accessory:INTEGRATIR'),
-      ('bath','ARCTIC A25 + AC150（选定重构）','thermo_a25_ac150_v1','thermo_a25_ac150',[2.9,5.82,.45],'bath_stand','equipment:BATH'),
+      ('bath','ARCTIC A25 + AC150（选定重构）','thermo_a25_ac150_v1','thermo_a25_ac150',[2.9,5.68,.45],'bath_stand','equipment:BATH'),
       ('dmm','Keithley 2000','keithley_2000_v1','keithley_2000',[.8,5.8,.85],'calibration_dry','equipment:DMM'),
       ('rtd','Omega P-M 参考 RTD','omega_pm_rtd_v1','omega_pm_rtd',[1.35,5.7,.85],'calibration_dry','equipment:REF_RTD'),
-      ('smu_white','Keithley 2425 · 白色装置通道','keithley_2425_v1','keithley_2425',[9.4,5.8,.85],'electrical_bench','equipment:SMU'),
-      ('smu_black','Keithley 2425 · 黑色装置通道','keithley_2425_v1','keithley_2425',[10.0,5.8,.85],'electrical_bench','equipment:SMU'),
-      ('daq','Measurement Computing USB-TC','mcc_usb_tc_v1','mcc_usb_tc',[10.7,5.8,.85],'electrical_bench','equipment:DAQ'),
+      ('smu_white','Keithley 2425 · 白色装置通道','keithley_2425_v1','keithley_2425',[9.4,5.55,.85],'electrical_bench','equipment:SMU'),
+      ('smu_black','Keithley 2425 · 黑色装置通道','keithley_2425_v1','keithley_2425',[10.0,5.55,.85],'electrical_bench','equipment:SMU'),
+      ('daq','Measurement Computing USB-TC','mcc_usb_tc_v1','mcc_usb_tc',[10.7,5.41,.85],'electrical_bench','equipment:DAQ'),
       ('heater','Omega KHR-2/2-P','omega_khr_2_2_p_v1','omega_khr_2_2_p',[9.0,2.7,.90],'assembly_black','equipment:HEATER')]
     for key,label,folder,stem,position,station,resource in configs:
         asset(key,label,base+folder+'/geometry/'+stem+'.glb',position,station=station,resource=resource,source_path=base+folder+'/sources.json')
@@ -189,7 +189,7 @@ def devices():
     for key,label,prefix,position,station in [
         ('cooler_white','白色辐射冷却装置','COOLER_WHITE__',[2.5,15.8,.9],'outdoor_white'),
         ('cooler_black','黑色辐射冷却装置','COOLER_BLACK__',[9.5,15.8,.9],'outdoor_black'),
-        ('cooler_fixed','固定遮阳带构型','COOLER_FIXED_BAND__',[10.2,3.2,.90],'assembly_black'),
+        ('cooler_fixed','固定遮阳带构型','COOLER_FIXED_BAND__',[10.2,2.64,.90],'assembly_black'),
         ('tracker','EKO STR-32G 跟踪器（待复核）','EKO_STR_32G__',[2.5,18.6,.9],'tracker_support')]:
         asset(key,label,'assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',position,prefix=prefix,
               station=station,resource='equipment:SOLAR_TRACKER' if key=='tracker' else 'equipment:COOLER',
@@ -200,20 +200,15 @@ def devices():
         ('hobo_u30','HOBO U30 记录器外壳与内部布局',[9.2,18.6,.9],'weather_service','equipment:WEATHER')]:
         asset(key,label,'assets/cooling_lab_v1/geometry/'+key+'.glb',position,z_up=True,station=station,resource=resource,
               note='本轮按厂家图纸重构；传感器布线、安装支架和历史选件尚未定型。',source_path='assets/cooling_lab_v1/outdoor_assets.json')
-    asset('h2','宇树 H2 本体 · 原始刚性腕端','assets/unitree_h2_v1/geometry/h2_settled.glb',[6,3,0],z_up=True,
-          station='circulation',resource='robot:H2',source_path='assets/unitree_h2_v1/SOURCE.json',note='原始刚性手形网格不是 Dex5-S Pro；姿态仅供空间参照。',
-          origin_xy=json.loads((HERE/'body_envelope.json').read_text())['standing']['free_base_position_m'][:2])
-    hand_model=json.loads((ROOT/'assets/unitree_dex5s_reconstruction_v1/model.json').read_text())
-    for side,x in [('left',2.4),('right',2.65)]:
-        h=next(h for h in hand_model['hands'] if h['id']==side)
-        a=asset('dex5s_'+side,'Dex5-S Pro '+('左手' if side=='left' else '右手')+' · 有据重建草稿',h['path'],[x,3.0,.9],
-          z_up=True,station='assembly_white',resource='robot:DEX5_S_PRO_'+side.upper(),
-          source_path='assets/unitree_dex5s_reconstruction_v1/sources.json',
-          note='单独陈列供几何审查，尚未安装到 H2。22 自由度假设链；轴位与预览角度非厂家测量，不能用于物理操作验收。')
-        k=json.loads((ROOT/h['kinematics']).read_text())
-        states.append(dict(id='dex5s_'+side+'_inspection',asset=a['id'],kind='joint_tree',parts=a['part_names'],
-            kinematics=k,kinematics_source=dict(path=h['kinematics'],sha256=sha(ROOT/h['kinematics'])),
-            label='22 自由度几何预览（关节假设）',basis=k['scope']))
+    robot_folder=ROOT/'assets/unitree_g1_inspire_v1'
+    a=asset('g1','宇树 G1 + Inspire FTP 双手 · 官方完整模型','assets/unitree_g1_inspire_v1/geometry/g1_inspire_ftp_zero.glb',[6,3,0],z_up=True,
+        station='circulation',resource='robot:G1_29DOF',source_path='assets/unitree_g1_inspire_v1/SOURCE.json',origin_xy=[0,0],
+        note='按官方腕部关系安装左右五指手；零关节角静态姿态。手指滑块遵循官方联动，仅作几何检查；站立、负载和操作尚未合格。')
+    a['resource_ids']=['robot:G1_29DOF','robot:INSPIRE_FTP_LEFT','robot:INSPIRE_FTP_RIGHT']
+    k=json.loads((robot_folder/'kinematics.json').read_text())
+    states.append(dict(id='g1_hands_inspection',asset='g1',kind='joint_tree',parts=[n for n in a['part_names'] if any('_'+finger+'_' in n for finger in ['thumb','index','middle','ring','little'])],kinematics=k,
+        kinematics_source=dict(path='assets/unitree_g1_inspire_v1/kinematics.json',sha256=sha(robot_folder/'kinematics.json')),
+        label='双手联动几何检查（6 独立坐标 / 手）',basis=k['scope']))
     cameras=json.loads((ROOT/'assets/realsense_cameras_v1/model.json').read_text())
     for key,kind,label,x,resource in [
       ('camera_head','d455','RealSense D455 · 头部 RGB-D 候选',2.30,'robot:HEAD_RGBD'),
@@ -222,11 +217,11 @@ def devices():
         record=next(i for i in cameras['items'] if i['id']==kind)
         asset(key,label,record['geometry']['path'],[x,2.66,.9],z_up=True,station='assembly_white',resource=resource,
           source_path='assets/realsense_cameras_v1/sources.json',
-          note='官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 H2；安装件、线缆、内外参和观察流仍未完成。')
+          note='官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；安装件、线缆、内外参和观察流仍未完成。')
     ordinary=json.loads((HERE/'ordinary_tools.json').read_text())
     for key,kind,label,pos,station,resource in [
-      ('caliper','mitutoyo_530_104','Mitutoyo 530-104 游标卡尺',[3.25,3.32,.9],'assembly_white','tools:caliper'),
-      ('driver','wiha_26100','Wiha 26100 普通精密螺丝刀',[2.95,3.32,.9],'assembly_white','tools:fastener_driver'),
+      ('caliper','mitutoyo_530_104','Mitutoyo 530-104 游标卡尺',[3.25,2.50,.9],'assembly_white','tools:caliper'),
+      ('driver','wiha_26100','Wiha 26100 普通精密螺丝刀',[2.95,2.50,.9],'assembly_white','tools:fastener_driver'),
       ('tray_white','buerkle_4208_0022','Bürkle 4208-0022 普通托盘 · A',[3.4,2.8,.9],'assembly_white','tools:supported_carrier'),
       ('tray_black','buerkle_4208_0022','Bürkle 4208-0022 普通托盘 · B',[9.7,2.7,.9],'assembly_black','tools:supported_carrier')]:
         record=next(i for i in ordinary['items'] if i['id']==kind)
@@ -256,7 +251,7 @@ def devices():
 
 def build():
     room=walls();furniture();devices()
-    hand_envelope=json.loads((HERE/'hand_envelope.json').read_text())
+    hand_envelope=json.loads((ROOT/'assets/unitree_g1_inspire_v1/space.json').read_text())
     architecture=g.export('laboratory_structure')
     corridors=[dict(id='main',label='室内主通道',points_m=[[6,-1.2],[6,10.8]],width_m=2.0),
       dict(id='yard',label='室外连接通道',points_m=[[6,10.8],[6,19.2]],width_m=2.0),
@@ -285,15 +280,15 @@ def build():
         'eko_ms402':dict(dimensions_label='遮阳罩 Ø160 mm；总高 108 mm；支脚 16 mm',model_scope='采用无通风 MS-402；罩壳、双玻璃穹顶和调平脚分件，局部曲面含推断。',sources=[dict(label='厂家手册 · PDF 第 24 页尺寸图',url='https://dex.cz/uploads/2017/05/Pyranometer_Manual_MS.pdf#page=24')]),
         'hobo_u30':dict(dimensions_label='规格表 181 × 118 × 189 mm；图纸 180.6 × 118.1 × 188.7 mm',model_scope='按规格表重构，标注文字为原创排版；锁扣、壳体局部与历史通讯选件仍待核实。',sources=[dict(label='厂家手册 · PDF 第 72 页尺寸图',url='https://www.onsetcomp.com/sites/default/files/resources-documents/12269-M%20U30%20Station%20RC%20Manual.pdf#page=72')])},
       corridors=corridors,spaces=spaces,inspection_states=states,
-      envelope=dict(transit_radius_m=hand_envelope['selected_body_hand_radius_m'],transit_height_m=2.10,turn_radius_m=1.20,margin_m=.10,
-        basis='Existing unloaded body poses plus triangle-inequality radius of the authored hand chain and an assumed 30 mm wrist adapter. Additional 0.10 m planar margin. Actual mount, cameras, carried loads and dynamic movement are NOT qualified.',
-        body_evidence=dict(path='assets/cooling_lab_v1/body_envelope.json',sha256=sha(HERE/'body_envelope.json')),
-        hand_evidence=dict(path='assets/cooling_lab_v1/hand_envelope.json',sha256=sha(HERE/'hand_envelope.json')),
+      envelope=dict(transit_radius_m=hand_envelope['selected_body_hand_radius_m'],transit_height_m=hand_envelope['transit_height_m'],turn_radius_m=1.20,margin_m=.10,
+        basis='G1 source geometry at 129 restricted static transit poses, with an all-angle triangle-inequality hand bound relative to source wrists. Additional 0.10 m planar margin. Cameras, loads, walking and balance remain unqualified.',
+        body_evidence=dict(path='assets/unitree_g1_inspire_v1/space.json',sha256=sha(ROOT/'assets/unitree_g1_inspire_v1/space.json')),
+        hand_evidence=dict(path='assets/unitree_g1_inspire_v1/space.json',sha256=sha(ROOT/'assets/unitree_g1_inspire_v1/space.json')),
         exact_hand_qualified=False,walking_or_balance_validated=False),
       dimensions_basis='All room, furniture, clearance and route dimensions are authored design values. Equipment source dimensions remain unchanged.',
       pilot_contract=dict(path='assets/cooling_lab_v1/pilot_contract.json',sha256=sha(HERE/'pilot_contract.json')),
-      required_missing_assets=['Qualified Dex5-S Pro kinematics/dynamics and H2 wrist interface (visual hypotheses now present)','Exact 12-degree Harrick and variable-angle Spectra-Tech accessories',
-        'H2 mounting, cable routing and calibration for the three staged camera candidates',
+      required_missing_assets=['Qualified G1/Inspire collision, actuator, load and tactile model (source integration present)','Exact 12-degree Harrick and variable-angle Spectra-Tech accessories',
+        'G1 mounting, cable routing and calibration for the three staged camera candidates',
         'Ambient RTD and radiation shield','Thermocouple dynamic/termination models, strain relief and sensor/DAQ cables','Qualified waterjet setup, guarding/interlocks/services and remaining fabrication tools',
         'Weather sensor suite, mast, power and data routes','Remaining ordinary tools, coating/cleaning supplies and waste hardware','Validated equipment mounts, supports and engineering services'],
       blocked_claims=['Whole asset inventory complete','Whole-body dynamic reach or manipulation','Robot/human safety separation','Outdoor solar/weather exposure fidelity','Bench/floor structural adequacy','Site regulatory compliance'],
