@@ -5,15 +5,15 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/pilot_contract.json",
-      "sha256": "59ab72304060acdd602916fc5f7965f51ef363b0389e67b5ef1a4399d2fa7c55"
+      "sha256": "ad5a8084c3f37f7debcb4949fe6e0ede0476fec47a4f3a5c401c9952a152d548"
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "0ab430a3531c434680391f9e0255943ac39fc06161fbdf873457e17ef8b71a06"
+      "sha256": "25199f59f6ff082dd150f4764ea2368b8863c9e8b069ec41bc7ca0413aa7b581"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "5705fa046660a063ceda09f1684aa9e0a676e992c7929682d630d2decdddb1e3"
+      "sha256": "eceb4049266c5bd4689bf4e8d57e73ca89a6369035449df8fde31d2d89dae456"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -29,7 +29,7 @@
     },
     {
       "path": "assets/cooling_lab_v1/build_readiness.py",
-      "sha256": "6b6dc9dc7d04ba4988475606f05f5d4ad56a264eb4a58f3cfaaf04510890c1bf"
+      "sha256": "a82f7fd1695fdac859f5508679f4d4330e5fb99f3c6f28ed7eb2c9dcc94cb156"
     }
   ],
   "policy": {
@@ -59,7 +59,7 @@
         "left wrist RGB",
         "right wrist RGB"
       ],
-      "camera_configuration_status": "proposed_not_installed_or_calibrated",
+      "camera_configuration_status": "selected_staged_geometry_not_installed_or_calibrated",
       "allowed_channels": [
         "camera RGB",
         "camera depth",
@@ -139,12 +139,12 @@
   },
   "counts": {
     "requirement_groups": 63,
-    "decomposed_component_requirements": 127,
+    "decomposed_component_requirements": 136,
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 26,
-    "groups_with_partial_geometry": 37,
+    "scene_instances": 37,
+    "groups_with_partial_geometry": 41,
     "qualified_humanoid_branches": 0
   },
   "requirements": [
@@ -297,7 +297,16 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "tc_01",
+        "tc_02",
+        "tc_03",
+        "tc_04",
+        "tc_05",
+        "tc_06",
+        "tc_07",
+        "tc_08"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": 8,
       "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
@@ -1756,12 +1765,32 @@
       "components": [
         {
           "id": "robot:HEAD_RGBD:component_1",
-          "label": "Added head RGB-D camera",
+          "label": "selected D455 camera",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:HEAD_RGBD:component_2",
+          "label": "head mounting hardware",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:HEAD_RGBD:component_3",
+          "label": "USB power/data and strain relief",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:HEAD_RGBD:component_4",
+          "label": "optical and mounting calibration",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "camera_head"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": 1,
       "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
@@ -1775,12 +1804,32 @@
       "components": [
         {
           "id": "robot:WRIST_RGB_LEFT:component_1",
-          "label": "Added left wrist RGB camera",
+          "label": "selected left D405 camera",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:WRIST_RGB_LEFT:component_2",
+          "label": "left wrist mounting hardware",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:WRIST_RGB_LEFT:component_3",
+          "label": "USB power/data and strain relief",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:WRIST_RGB_LEFT:component_4",
+          "label": "optical and mounting calibration",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "camera_wrist_left"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": 1,
       "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
@@ -1794,12 +1843,32 @@
       "components": [
         {
           "id": "robot:WRIST_RGB_RIGHT:component_1",
-          "label": "Added right wrist RGB camera",
+          "label": "selected right D405 camera",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:WRIST_RGB_RIGHT:component_2",
+          "label": "right wrist mounting hardware",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:WRIST_RGB_RIGHT:component_3",
+          "label": "USB power/data and strain relief",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        },
+        {
+          "id": "robot:WRIST_RGB_RIGHT:component_4",
+          "label": "optical and mounting calibration",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "camera_wrist_right"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": 1,
       "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
@@ -2749,8 +2818,7 @@
         "equipment:TC"
       ],
       "missing_scene_resources": [
-        "additional_reconstructed_materials:calibration_block_stock",
-        "equipment:TC"
+        "additional_reconstructed_materials:calibration_block_stock"
       ],
       "embodiment_requirements": [
         "robot:H2",
@@ -2800,8 +2868,7 @@
         "equipment:TC"
       ],
       "missing_scene_resources": [
-        "additional_reconstructed_materials:calibration_block_stock",
-        "equipment:TC"
+        "additional_reconstructed_materials:calibration_block_stock"
       ],
       "embodiment_requirements": [
         "robot:H2",
@@ -2852,7 +2919,6 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
@@ -2880,7 +2946,6 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
@@ -2908,7 +2973,6 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
@@ -2936,7 +3000,6 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
@@ -3161,7 +3224,6 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
@@ -3188,7 +3250,6 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
@@ -3215,7 +3276,6 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
@@ -3242,7 +3302,6 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
@@ -5158,7 +5217,6 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
@@ -5185,7 +5243,6 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
@@ -5212,7 +5269,6 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
@@ -5240,7 +5296,6 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
@@ -5540,8 +5595,7 @@
         "equipment:TC"
       ],
       "missing_scene_resources": [
-        "additional_reconstructed_materials:calibration_block_stock",
-        "equipment:TC"
+        "additional_reconstructed_materials:calibration_block_stock"
       ],
       "embodiment_requirements": [
         "robot:H2",
@@ -5567,7 +5621,6 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "missing_scene_resources": [
-        "equipment:TC",
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
@@ -5619,8 +5672,7 @@
         "equipment:TC"
       ],
       "missing_scene_resources": [
-        "additional_reconstructed_materials:calibration_block_stock",
-        "equipment:TC"
+        "additional_reconstructed_materials:calibration_block_stock"
       ],
       "embodiment_requirements": [
         "robot:H2",
@@ -7562,7 +7614,7 @@
     {
       "id": "OBSERVATION",
       "label": "传感器闭环",
-      "detail": "首版必须传感器闭环；当前相机方案未安装，历史本体记录读取了真值"
+      "detail": "三台相机已有官方几何，单独陈列；H2 安装件、线缆与标定仍缺，尚无观察流。历史本体记录读取了真值"
     },
     {
       "id": "OWNER",

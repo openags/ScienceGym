@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "inspected_date": "2026-10-24",
+  "status": "source_geometry_acquired_installation_open",
+  "repository": "https://github.com/realsenseai/realsense-ros",
+  "commit": "7a87097c499e3b0b69518d54a8e7a9ac1924e87c",
+  "license": "Apache-2.0; unmodified vendor inputs and license retained in vendor/",
+  "vendor_files": [
+    {
+      "path": "vendor/d455.stl",
+      "sha256": "47e8321db7cb42291810c69329ab10b601108d651dfcac28bfc12469fa142fa6",
+      "url": "https://raw.githubusercontent.com/realsenseai/realsense-ros/7a87097c499e3b0b69518d54a8e7a9ac1924e87c/realsense2_description/meshes/d455.stl"
+    },
+    {
+      "path": "vendor/d405.stl",
+      "sha256": "a248f41149d12b28311829feecbe7a80cf1481fd05e0f5df2c4c7ecd556edd48",
+      "url": "https://raw.githubusercontent.com/realsenseai/realsense-ros/7a87097c499e3b0b69518d54a8e7a9ac1924e87c/realsense2_description/meshes/d405.stl"
+    },
+    {
+      "path": "vendor/d455.xacro",
+      "sha256": "c921a2bed11f59dfb16d81dcc3358257eee5bd0c3a0f3a1081a4109a9f9b76e4",
+      "url": "https://raw.githubusercontent.com/realsenseai/realsense-ros/7a87097c499e3b0b69518d54a8e7a9ac1924e87c/realsense2_description/urdf/_d455.urdf.xacro"
+    },
+    {
+      "path": "vendor/d405.xacro",
+      "sha256": "81118e87388c06e4cf1b3dc8b114096de21c1b235bd283dafad84d2bd97aebb1",
+      "url": "https://raw.githubusercontent.com/realsenseai/realsense-ros/7a87097c499e3b0b69518d54a8e7a9ac1924e87c/realsense2_description/urdf/_d405.urdf.xacro"
+    },
+    {
+      "path": "vendor/LICENSE",
+      "sha256": "7092398b52290edddcb41c6e2297f4c6343eb315ea6c83edfdbeea2a73adfbdb",
+      "url": "https://raw.githubusercontent.com/realsenseai/realsense-ros/7a87097c499e3b0b69518d54a8e7a9ac1924e87c/LICENSE"
+    }
+  ],
+  "sources": [
+    {
+      "id": "OFFICIAL_ROS",
+      "url": "https://github.com/realsenseai/realsense-ros/tree/7a87097c499e3b0b69518d54a8e7a9ac1924e87c/realsense2_description",
+      "review": "Manufacturer mesh files and nominal frame descriptions; data downloaded from commit-pinned raw URLs."
+    },
+    {
+      "id": "D400_DATASHEET_2025_10",
+      "url": "https://realsenseai.com/wp-content/uploads/2025/09/Intel-RealSense-D400-Series-Datasheet-October-2025.pdf",
+      "sha256": "d0156b43a82da64e809c6ae45a5b5d41f34d8697363534ed81f2e4407f38eaa4",
+      "locator": "337029-017; PDF/printed page 69 dimensions/mass; page 144 D455 drawing; page 146 D405 drawing; both drawings visually inspected."
+    },
+    {
+      "id": "D405_PRODUCT",
+      "url": "https://www.realsenseai.com/products/d405-series/",
+      "review": "Peripheral dimensions, RGB from left imager, mounting threads, close-range intended use; general performance is not simulated accuracy."
+    },
+    {
+      "id": "D455_PRODUCT",
+      "url": "https://www.realsenseai.com/product-family/450-series/",
+      "review": "D455 selected within D450 family; page contains some D430 copy, so dimensions are taken from model-specific datasheet instead."
+    },
+    {
+      "id": "D455_PHOTO",
+      "url": "https://www.realsenseai.com/wp-content/uploads/2024/04/depth_camera_d455_article_740px.jpg",
+      "sha256": "6e0e90273581b35f8f0131b19346c31e7cdff4cf4054af2e702b4146371b6001",
+      "review": "Inspected front/three-quarter appearance; not redistributed."
+    },
+    {
+      "id": "D405_PHOTO",
+      "url": "https://www.realsenseai.com/wp-content/uploads/2022/04/D405v2-scaled.png",
+      "sha256": "c107d23f6e9d5c5f931ae1e36ddc5fd299eff1baaa18b343c5933a827f7fed7d",
+      "review": "Inspected front/side appearance; not redistributed."
+    },
+    {
+      "id": "CAD_ARCHIVE",
+      "url": "https://dev.realsenseai.com/download/41950",
+      "sha256": "31d176bd773f0e25c76c0af2d68c0575fdb550bceb60ffe9da72f92f2a53ca73",
+      "review": "Downloaded official SolidWorks archive; only SLDPRT entries. Not converted or redistributed; official ROS STL inputs used instead."
+    },
+    {
+      "id": "D455_BRIEF_2020",
+      "url": "https://www.mouser.com/pdfDocs/D455ProductBriefv90.pdf",
+      "review": "Manufacturer 2020 product brief hosted by distributor; indexed text lists rear points M3 x 0.5, conflicting with 2025 drawing. Not used to select mounting hardware."
+    }
+  ],
+  "source_facts": {
+    "d455": {
+      "enclosure_width_height_depth_mm": [
+        124,
+        29,
+        26
+      ],
+      "nominal_mass_g": 116,
+      "mass_tolerance_percent": 10,
+      "stereo_baseline_mm": 95
+    },
+    "d405": {
+      "enclosure_width_height_depth_mm": [
+        42,
+        42,
+        23
+      ],
+      "nominal_mass_g": 58,
+      "mass_tolerance_percent": 10,
+      "stereo_baseline_mm": 18
+    }
+  },
+  "conflicts": [
+    {
+      "id": "D405_MASS",
+      "observations": [
+        "October 2025 datasheet nominal mass 58 g, +/- 10 percent",
+        "Current D405 product page rounds to 60 g"
+      ],
+      "disposition": "No qualified inertial model derived from the difference."
+    },
+    {
+      "id": "D455_REAR_THREADS",
+      "observations": [
+        "October 2025 D455 drawing labels rear holes M4, max insertion 4 mm",
+        "Earlier product brief labels rear mounting points M3 x 0.5"
+      ],
+      "disposition": "No rear thread or mount selected; needs revision-specific verification."
+    }
+  ],
+  "authored_choices": [
+    "One D455 proposed for head RGB-D; two D405 units proposed for wrist RGB only. All three are separately staged for review.",
+    "Original STL triangles retained; SI units and +Z-up orientation only. Author material assignments approximate photographed shell/front/recess colours.",
+    "No manufacturer mesh repair; D455 open-edge geometry is explicitly not treated as a closed collision body.",
+    "Independent shallow front-glass and lens-ring appearance overlays supplement incomplete source CAD appearance. Optical baselines follow drawings; local rings/panel dimensions and 65 micrometre relief are inferred. All original manufacturer triangles remain separately preserved."
+  ],
+  "unresolved": [
+    "H2 mounting geometry and screw engagement",
+    "Cable, connector strain relief and full-arm swept volume",
+    "Intrinsics, extrinsics, distortion and observation timing",
+    "Optical/noise model for dark, reflective and transparent laboratory surfaces",
+    "Closed collision and inertial models for dynamic use"
+  ]
+}

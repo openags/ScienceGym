@@ -46,6 +46,9 @@ INTERFACES={
 # Split compound descriptions. Quantities without an evidenced allocation stay
 # null: a type list is not a sufficient bill of materials for the campaign.
 DECOMPOSE={
+ 'robot:HEAD_RGBD':['selected D455 camera','head mounting hardware','USB power/data and strain relief','optical and mounting calibration'],
+ 'robot:WRIST_RGB_LEFT':['selected left D405 camera','left wrist mounting hardware','USB power/data and strain relief','optical and mounting calibration'],
+ 'robot:WRIST_RGB_RIGHT':['selected right D405 camera','right wrist mounting hardware','USB power/data and strain relief','optical and mounting calibration'],
  'equipment:WATERJET':['cutting table and slats','stage and nozzle','guard and interlocks','pump and pressure circuit','abrasive hopper and feed','abrasive stock','water supply and filtration','drain and spent-abrasive collection','controller and laptop'],
  'equipment:COOLER':['white tracked assembly','black tracked assembly','fixed-band configuration and reusable parts'],
  'equipment:WEATHER':['U30 logger','temperature/humidity sensor','wind sensor','mast and brackets','power and data connections'],
@@ -136,7 +139,7 @@ def build():
        dict(id='TOOLS',label='普通工具操作方法',detail='旧薄膜和翻面专用夹具已移除；普通工具方法尚需证明可行'),
        dict(id='RESOURCES',label='全部资源与设备',detail='尚缺其余加工机具、光学附件、接线和消耗品；已建水刀仍缺配套服务，数量分配尚未完成'),
        dict(id='SPACE',label='完整携物空间',detail='本体静态通道检查不覆盖准确双手、携物、行走与制动'),
-       dict(id='OBSERVATION',label='传感器闭环',detail='首版必须传感器闭环；当前相机方案未安装，历史本体记录读取了真值'),
+       dict(id='OBSERVATION',label='传感器闭环',detail='三台相机已有官方几何，单独陈列；H2 安装件、线缆与标定仍缺，尚无观察流。历史本体记录读取了真值'),
        dict(id='OWNER',label='场景验收',detail='资产场景尚未具备完整验收条件，没有自动推断你的批准')],
       limitations=['Mapping records design requirements, not implemented controller bindings',
        'Component splitting is an explicit working decomposition, not accepted quantity allocation or complete instance coverage',

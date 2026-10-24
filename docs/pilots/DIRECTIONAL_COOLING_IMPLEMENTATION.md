@@ -79,8 +79,16 @@ guarantee of general reliability.
   0.69 m body/hand radius plus the authored 0.10 m route margin. The fabrication
   approach was moved to clear the selected machine. This does not cover actual
   mounting, camera geometry, carried objects, walking or dynamic balance.
-- Three added-camera requirements are separately inventoried. A design proposal
-  cannot count as installed camera geometry or a calibrated observation stream.
+- Three added-camera requirements are separately inventoried. A D455 and two
+  D405 candidates retain official ROS mesh geometry at a pinned revision, with
+  the upstream license and checked unit/shape preservation. All three are
+  separately displayed on the bench. H2 mounts, cabling and calibration remain
+  open, and no observation stream has been implemented. Wrist selection remains
+  RGB-only despite the D405's other capabilities.
+- Eight individually staged Omega 5TC-TT-K-36-36 probes use the catalogue's
+  0.13 mm conductor diameter and nominal 1 m length. Coiled rest shape, jacket
+  envelope, stripped ends and weld details are inferred. No cable mechanics,
+  DAQ connection, strain-relief or temperature observation credit is claimed.
 
 ## Historical compatibility and remaining work
 

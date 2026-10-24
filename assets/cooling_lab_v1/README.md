@@ -9,6 +9,12 @@ displayed Dex5-S Pro visual/kinematic reconstructions, three ordinary tool
 types and a selected OMAX ProtoMAX waterjet. Geometry inspection sliders are
 not physics-controlled robot actions.
 
+The three camera candidates now use pinned manufacturer D455/D405 meshes with
+their upstream license. They are separately displayed on the assembly bench;
+H2 mounts, cables, calibration and sensor output are still absent.
+Eight Omega 5TC probes are staged separately, with catalogue-sized conductors
+and inferred stored cable shape. They have no flexible or electrical model.
+
 ## Rebuild
 
 Use the pinned geometry dependencies in `requirements.txt`; the existing
@@ -49,7 +55,8 @@ It makes no source downloads and cannot silently switch robot models.
   evidence. Comments in the browser are not acceptance receipts.
 
 Manufacturer images/documents are linked and hashed where locally inspected,
-not redistributed. The generated meshes are original reconstructions. The hand
+not redistributed. Instrument and hand reconstructions are original; added
+camera geometry comes from the licensed manufacturer ROS meshes. The hand
 package explicitly has no dynamics or verified H2 mounting model. Review view
 names follow the asset axes and do not imply a calibrated photographic match.
 

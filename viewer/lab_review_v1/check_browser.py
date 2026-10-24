@@ -21,7 +21,7 @@ def run(url,browser):
         page=b.new_page(viewport={'width':1600,'height':1100},device_scale_factor=1)
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(url);page.wait_for_function('document.documentElement.dataset.sceneLoaded === "true"',timeout=60000)
-        check('all_models_loaded',page.locator('html').get_attribute('data-asset-count')=='26')
+        check('all_models_loaded',page.locator('html').get_attribute('data-asset-count')=='37')
         check('render_batch_geometry_preserved',page.locator('html').get_attribute('data-geometry-preserved')=='true')
         check('paper_facility_and_added_camera_requirements',page.locator('#inventory tr').count()==63)
         check('routes_rendered',page.locator('#route-table tr').count()==7)
@@ -46,10 +46,17 @@ def run(url,browser):
             capture(view)
             check('shell_mode_'+view,page.locator('#show-walls').is_checked()==(view not in ['all','top']))
         page.locator('button[data-view=indoor]').click();capture('full_walls');page.locator('#show-walls').uncheck()
-        for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','dex5s_left','dex5s_right','caliper','driver','tray_white','waterjet']:
+        for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','dex5s_left','dex5s_right','caliper','driver','tray_white','waterjet','camera_head','camera_wrist_left','camera_wrist_right','tc_01']:
             page.locator('#asset-select').select_option(identity);page.locator('#isolate').check();page.wait_for_timeout(200)
             check('inspect_'+identity,page.locator('html').get_attribute('data-selected-asset')==identity)
             closed=capture(identity+'_closed')
+            if identity=='tc_01':
+                check('probe_not_connected','尚未装接' in page.locator('#asset-detail').inner_text())
+                page.locator('#asset-views [data-direction="top"]').click();capture('tc_01_top')
+            if identity.startswith('camera_'):
+                check('camera_not_installed_'+identity,'尚未装到 H2' in page.locator('#asset-detail').inner_text())
+                for direction in ['front','back','side']:
+                    page.locator('#asset-views [data-direction="'+direction+'"]').click();capture(identity+'_'+direction)
             if identity in ['dex5s_left','dex5s_right']:
                 check('hand_hypothesis_visible_'+identity,'假设' in page.locator('#asset-detail').inner_text())
                 for direction in ['front','back','side']:

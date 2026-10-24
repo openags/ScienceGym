@@ -15,6 +15,8 @@ def main():
     a=parser.parse_args()
     for script in ['assets/unitree_dex5s_reconstruction_v1/build.py',
       'assets/unitree_dex5s_reconstruction_v1/validate.py',
+      'assets/realsense_cameras_v1/build.py','assets/realsense_cameras_v1/validate.py',
+      'assets/omega_5tc_v1/build.py','assets/omega_5tc_v1/validate.py',
       'assets/cooling_lab_v1/check_hand_envelope.py',
       'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_waterjet.py','assets/cooling_lab_v1/build_lab.py',
       'assets/cooling_lab_v1/check_layout.py','assets/cooling_lab_v1/build_review.py',

@@ -180,6 +180,12 @@ def devices():
       ('heater','Omega KHR-2/2-P','omega_khr_2_2_p_v1','omega_khr_2_2_p',[9.0,2.7,.90],'assembly_black','equipment:HEATER')]
     for key,label,folder,stem,position,station,resource in configs:
         asset(key,label,base+folder+'/geometry/'+stem+'.glb',position,station=station,resource=resource,source_path=base+folder+'/sources.json')
+    tc=json.loads((ROOT/'assets/omega_5tc_v1/model.json').read_text())
+    for i in range(8):
+        asset('tc_'+str(i+1).zfill(2),'Omega 5TC-TT-K-36-36 · 探头 '+str(i+1),tc['geometry']['path'],
+          [8.55+(i%4)*.20,3.1+(i//4)*.23,.9],z_up=True,station='assembly_black',resource='equipment:TC',
+          source_path='assets/omega_5tc_v1/sources.json',
+          note='目录标称 1 m、36 AWG / 0.13 mm 导体。卷线姿态、护套和局部端头尺寸为推断；尚未装接，无柔性线缆、电路或温度测量实现。')
     for key,label,prefix,position,station in [
         ('cooler_white','白色辐射冷却装置','COOLER_WHITE__',[2.5,15.8,.9],'outdoor_white'),
         ('cooler_black','黑色辐射冷却装置','COOLER_BLACK__',[9.5,15.8,.9],'outdoor_black'),
@@ -208,6 +214,15 @@ def devices():
         states.append(dict(id='dex5s_'+side+'_inspection',asset=a['id'],kind='joint_tree',parts=a['part_names'],
             kinematics=k,kinematics_source=dict(path=h['kinematics'],sha256=sha(ROOT/h['kinematics'])),
             label='22 自由度几何预览（关节假设）',basis=k['scope']))
+    cameras=json.loads((ROOT/'assets/realsense_cameras_v1/model.json').read_text())
+    for key,kind,label,x,resource in [
+      ('camera_head','d455','RealSense D455 · 头部 RGB-D 候选',2.30,'robot:HEAD_RGBD'),
+      ('camera_wrist_left','d405','RealSense D405 · 左腕 RGB 候选',2.50,'robot:WRIST_RGB_LEFT'),
+      ('camera_wrist_right','d405','RealSense D405 · 右腕 RGB 候选',2.62,'robot:WRIST_RGB_RIGHT')]:
+        record=next(i for i in cameras['items'] if i['id']==kind)
+        asset(key,label,record['geometry']['path'],[x,2.66,.9],z_up=True,station='assembly_white',resource=resource,
+          source_path='assets/realsense_cameras_v1/sources.json',
+          note='官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 H2；安装件、线缆、内外参和观察流仍未完成。')
     ordinary=json.loads((HERE/'ordinary_tools.json').read_text())
     for key,kind,label,pos,station,resource in [
       ('caliper','mitutoyo_530_104','Mitutoyo 530-104 游标卡尺',[3.25,3.32,.9],'assembly_white','tools:caliper'),
@@ -278,10 +293,19 @@ def build():
       dimensions_basis='All room, furniture, clearance and route dimensions are authored design values. Equipment source dimensions remain unchanged.',
       pilot_contract=dict(path='assets/cooling_lab_v1/pilot_contract.json',sha256=sha(HERE/'pilot_contract.json')),
       required_missing_assets=['Qualified Dex5-S Pro kinematics/dynamics and H2 wrist interface (visual hypotheses now present)','Exact 12-degree Harrick and variable-angle Spectra-Tech accessories',
-        'Ambient RTD and radiation shield','Full thermocouples, termination hardware, sensor/DAQ cables','Qualified waterjet setup, guarding/interlocks/services and remaining fabrication tools',
+        'H2 mounting, cable routing and calibration for the three staged camera candidates',
+        'Ambient RTD and radiation shield','Thermocouple dynamic/termination models, strain relief and sensor/DAQ cables','Qualified waterjet setup, guarding/interlocks/services and remaining fabrication tools',
         'Weather sensor suite, mast, power and data routes','Remaining ordinary tools, coating/cleaning supplies and waste hardware','Validated equipment mounts, supports and engineering services'],
       blocked_claims=['Whole asset inventory complete','Whole-body dynamic reach or manipulation','Robot/human safety separation','Outdoor solar/weather exposure fidelity','Bench/floor structural adequacy','Site regulatory compliance'],
       owner_acceptance=None,manipulation_development_allowed=False,builder_sha256=sha(__file__),geometry_tools_sha256=sha(HERE/'geometry_tools.py'))
+    for key,model,page,dimensions in [('camera_head','D455',144,'124 × 29 × 26 mm（宽 × 高 × 深）'),
+      ('camera_wrist_left','D405',146,'42 × 42 × 23 mm（宽 × 高 × 深）'),('camera_wrist_right','D405',146,'42 × 42 × 23 mm（宽 × 高 × 深）')]:
+        photo='2024/04/depth_camera_d455_article_740px.jpg' if model=='D455' else '2022/04/D405v2-scaled.png'
+        manifest['reference_comparisons'][key]=dict(dimensions_label=dimensions,
+          model_scope='保留厂家机械网格，镜片和光学外观另加独立推断层。D455 源网格非闭合；两种模型均不作为已合格的碰撞、惯性或标定模型。',
+          sources=[dict(label=model+' 厂家外观照片',url='https://www.realsenseai.com/wp-content/uploads/'+photo),
+                   dict(label='厂家尺寸图 · PDF 第 '+str(page)+' 页',url='https://realsenseai.com/wp-content/uploads/2025/09/Intel-RealSense-D400-Series-Datasheet-October-2025.pdf#page='+str(page)),
+                   dict(label='官方 ROS 模型 · 已固定版本',url='https://github.com/realsenseai/realsense-ros/tree/7a87097c499e3b0b69518d54a8e7a9ac1924e87c/realsense2_description')])
     for a in placements:
         if a['id'] in manifest['reference_comparisons']:continue
         record=json.loads((ROOT/a['sources']).read_text())

@@ -101,6 +101,8 @@ def review():
         'LAB-06':['assets/cooling_lab_v1/risk_register.json'],
         'LAB-07':['viewer/lab_review_v1/index.html','viewer/lab_review_v1/main.js','viewer/lab_review_v1/render_batches.js','assets/cooling_lab_v1/scene.json'],
         'LAB-08':[]}
+    evidence['LAB-02']+=['assets/realsense_cameras_v1/model.json','assets/realsense_cameras_v1/VERIFICATION.json']
+    evidence['LAB-02']+=['assets/omega_5tc_v1/model.json','assets/omega_5tc_v1/VERIFICATION.json']
     # Readiness is derived from the newly reconciled inventory, before pinning.
     from build_readiness import build as build_readiness
     build_readiness()

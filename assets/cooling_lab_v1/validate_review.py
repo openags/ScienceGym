@@ -29,6 +29,19 @@ def validate():
             check('candidate_'+row['id']+'_'+candidate['path'],sha(ROOT/candidate['path'])==candidate['sha256'])
     check('inventory_count',len(inventory['items'])==inventory['required_records']==63)
     check('added_sensor_requirements_explicit',{'robot:HEAD_RGBD','robot:WRIST_RGB_LEFT','robot:WRIST_RGB_RIGHT'}<={r['id'] for r in inventory['items']})
+    camera_folder=ROOT/'assets/realsense_cameras_v1'
+    camera_record=json.loads((camera_folder/'model.json').read_text())
+    camera_check=json.loads((camera_folder/'VERIFICATION.json').read_text())
+    check('camera_verification_current',camera_check['passed'] and camera_check['model_sha256']==sha(camera_folder/'model.json') and camera_check['validator_sha256']==sha(camera_folder/'validate.py'))
+    check('camera_sources_current',camera_record['source_ledger_sha256']==sha(camera_folder/'sources.json') and camera_record['builder_sha256']==sha(camera_folder/'build.py'))
+    for role in camera_record['selected_roles']:
+        placed=[a for a in scene['assets'] if a['resource_id']==role['resource_id']]
+        check('camera_staged_'+role['resource_id'],len(placed)==1 and placed[0]['station']=='assembly_white')
+    tc_folder=ROOT/'assets/omega_5tc_v1'
+    tc=json.loads((tc_folder/'model.json').read_text());tc_check=json.loads((tc_folder/'VERIFICATION.json').read_text())
+    check('tc_verification_current',tc_check['passed'] and tc_check['model_sha256']==sha(tc_folder/'model.json') and tc_check['validator_sha256']==sha(tc_folder/'validate.py'))
+    check('tc_inputs_current',tc['source_ledger_sha256']==sha(tc_folder/'sources.json') and tc['builder_sha256']==sha(tc_folder/'build.py'))
+    check('eight_loose_probe_instances',len([a for a in scene['assets'] if a['resource_id']=='equipment:TC'])==8 and tc['assembly_state']=='loose_stored_probe_not_attached_or_connected')
     check('room_details_pinned',scene['room_details_sha256']==sha(HERE/'room_details.py'))
     check('room_builder_pinned',scene['room_builder_sha256']==sha(HERE/'room_architecture.py'))
     check('current_scene_pinned',contract['current_scene']['sha256']==sha(HERE/'scene.json'))
