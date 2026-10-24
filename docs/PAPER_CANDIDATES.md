@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-23**. Candidate count: **319**.
+Last screened: **2026-10-24**. Candidate count: **320**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3212,3 +3212,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76504-5/MediaObjects/41467_2026_76504_MOESM1_ESM.pdf) was text-accessible. Captions for Figs. 3–4 and 24–25 were screened. The Fig. 4 caption uses shear-rate terminology whereas the main text describes frequency sweeps; that distinction requires clarification before conversion. Three indentation locations are not three independent specimen preparations. Figure pixels, remaining analyses, videos, supplementary data, source-data spreadsheet, reporting summary and peer review remain unreviewed.
 - Future scope is prepared nonliving specimens and qualified mechanical-characterization services. Sample identity, conditioning history, instrument references and measurement repeats would need explicit records. Nanocluster synthesis, reactive-linker chemistry, lithography, laser exposure, solvent processing, heating and live electrical work are excluded from the proposed robot-facing scope. No operating protocol, assets or converted task is supplied.
 - Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared hydrogel aging measurements (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Multi-layered marble for hydrogel encapsulation](https://www.nature.com/articles/s41467-026-70955-6) | Nature Communications / 2026 | 10.1038/s41467-026-70955-6 | Prepared, nonliving specimens could support a long-horizon sequence of sample tracking, scheduled weighing, imaging and mechanical comparison. | Open-access publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** Nature Communications **17, 4375 (2026)**; published **23 March 2026**, version of record **15 May 2026**. Selected anti-dehydration/mechanics results, Figure 3–4 captions and mechanical-measurement methods were screened. This is experimental work, not a converted robot task.
+- The [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70955-6/MediaObjects/41467_2026_70955_MOESM1_ESM.pdf) was text-accessible; selected captions S4–S6 and S15 were screened. S4–S5 identify representative images from three independent experiments; images themselves were not inspected. Remaining material, reporting summary and source-data workbook were not fully reviewed; no complete reproducibility audit is claimed.
+- Proposed scope starts with qualified, prepared specimens and guarded measurement equipment. Fabrication chemistry, loose-particle handling, solvent washing, ultraviolet/high-temperature exposure, cell culture and microreactor demonstrations are excluded. Specimen identity and repeat structure would need explicit records before any conversion.
+- Access checked on 2026-10-24. HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; citation metadata and original screening commentary only, no adapted figures, protocols or assets.
