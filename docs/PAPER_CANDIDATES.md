@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **332**.
+Last screened: **2026-10-24**. Candidate count: **333**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3355,3 +3355,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [26-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-61903-x/MediaObjects/41467_2025_61903_MOESM1_ESM.pdf) was text-accessible. Selected Figures 10–11 captions were screened. A figure-image retrieval returned a cache miss; no visual verification is claimed. Remaining sections, movies, source data and peer review were not fully reviewed.
 - Future scope starts with qualified, prepared devices and a commercial nonliving phantom. Fabrication, chemical processing, human measurements and clinical interpretation are excluded. Electrical guarding, acoustic exposure limits, fixture compatibility and reconstruction validation require review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-24**; publisher license **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared optical-reference imaging (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [From stars to molecules: AI guided device-agnostic super-resolution imaging](https://www.nature.com/articles/s41467-026-75584-7) | Nature Communications / 2026 | 10.1038/s41467-026-75584-7 | A qualified optical bench could support coordinated reference-pattern selection, repeated camera acquisition, paired-record tracking and reconstruction comparisons across emitter densities. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 8705 (2026), published **16 July 2026**, version of record **20 August 2026**. Selected experimental-imaging Results were screened. The physical reference experiment is distinct from simulations and reused astronomy/localization datasets; its constrained emitter grid is not a complete biological specimen model.
+- The official [4-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75584-7/MediaObjects/41467_2026_75584_MOESM1_ESM.pdf) was text-accessible. Selected Experiment section and Supplementary Figure 1 caption were screened. Figure images, remaining sections, reporting summary, code, datasets and peer review were not fully reviewed.
+- Future scope starts with a qualified, prepared optical bench. Optical construction, source servicing, biological sample preparation and clinical interpretation are excluded. Light-source guarding, instrument interfaces and acquisition/reference matching require review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-24**; publisher license **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
