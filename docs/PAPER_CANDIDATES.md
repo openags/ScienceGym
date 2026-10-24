@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-14**. Candidate count: **265**.
+Last screened: **2026-10-24**. Candidate count: **330**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -2619,3 +2619,717 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The complete main paper, full SI analysis, movies, code, data and cited precursor methods were not fully reviewed. Chemical handling, microfabrication, thermal stability and microscopic specimen manipulation need separate qualification before conversion.
 - The publisher displays CC BY 4.0. This entry contains a citation and original suitability language; no source PDF, figure, code, dataset or operating procedure is redistributed.
 - Exact identity checks found no match in the fresh catalog, README, nested task material, known prior restrictions or repository issue/PR search. The inherited historical-record gap remains unresolved.
+
+## Additional candidate: optical freeze-history metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Dual-responsive coloration of Janus droplets via total internal reflection and interference applied as single-use freezing indicators](https://www.nature.com/articles/s41467-026-70055-5) | Nature Communications / 2026 | 10.1038/s41467-026-70055-5 | Prepared droplet samples, tracked thermal histories, microscopy and reflectance comparisons suggest a multi-instrument sample-handling-and-measurement task | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Selected Results and characterization text support optical comparison of prepared specimens across thermal histories. This screening does not establish pharmaceutical integrity, independent replication, robotic feasibility or a converted task.
+- The publisher-linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70055-5/MediaObjects/41467_2026_70055_MOESM1_ESM.pdf) was read as extracted text, including captions on repeated switching and storage. Figures were not visually verified; full source review, movies and underlying data remain outstanding.
+- Future scope is prepared, contained specimens and qualified thermal/optical equipment. Chemical fabrication and medical validation are excluded. No operating procedure or source assets are supplied.
+- Bibliographic identity verified on 2026-10-20. Publisher HTML was readable despite a cookie-error URL marker. The page displays CC BY-NC-ND 4.0; this entry provides metadata and original screening commentary, not redistributed source content.
+
+## Additional candidate: prepared-surface icing metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [An energy-free strategy to elevate anti-icing performance of superhydrophobic materials through interfacial airflow manipulation](https://www.nature.com/articles/s41467-024-45078-5) | Nature Communications / 2024 | 10.1038/s41467-024-45078-5 | Prepared-surface comparisons, tracked cooling histories, droplet imaging and wettability measurements suggest staged sample handling and instrument coordination | Selected publisher HTML and scientific-SI text accessible; CC BY 4.0 |
+
+- **CANDIDATE only.** Publisher metadata confirms Jiang et al., volume 15, article 777, published 26 January 2024. Selected Results and Methods distinguish physical surface tests from computational explanations; screening establishes neither robotic feasibility nor aircraft qualification.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-45078-5/MediaObjects/41467_2024_45078_MOESM1_ESM.pdf) yielded 78 pages of extracted text; selected directional-adhesion and comparison text was read. Full review, figure pixels, movies and underlying data remain outstanding.
+- Future scope is prepared specimens and qualified enclosed optical/thermal measurement equipment. Chemical fabrication, exposed high-speed airflow and flight testing are excluded. No procedure, assets or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable with a cookie-error URL marker. Only citation metadata and original screening commentary are added.
+
+## Additional candidate: anisotropic hydrogel metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Layer-by-layer shear densification for multiscale hierarchical alignment in bulk hydrogels](https://www.nature.com/articles/s41467-026-74146-1) | Nature Communications / 2026 | 10.1038/s41467-026-74146-1 | Prepared-specimen orientation tracking, repeated mechanical tests, polarized imaging and thermal comparisons suggest a multi-instrument materials-measurement task | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Wang et al., volume 17, article 7432, published 11 June 2026; version of record dated 28 July 2026. Selected Results and Methods cover mechanical characterization, polarized microscopy and thermal measurements, not a full source review.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74146-1/MediaObjects/41467_2026_74146_MOESM1_ESM.pdf) yielded 34 pages of extracted text. Selected captions distinguish hydration-matched controls, cyclic tests and directional thermal measurements. Figure pixels, complete analysis and source data remain unreviewed.
+- Future scope is prepared specimens with tracked orientation and hydration, qualified guarded mechanical tests and enclosed optical/thermal instruments. Chemical fabrication, hot rolling, cryogenic preparation and device qualification are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; this entry adds citation metadata and original screening commentary, not source content or assets.
+
+## Additional candidate: acoustic aerogel metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strong acoustic meta-aerogels enabled by nanoconfined directional freezing and in-situ polymerization](https://www.nature.com/articles/s41467-026-77972-5) | Nature Communications / 2026 | 10.1038/s41467-026-77972-5 | Prepared-specimen orientation tracking, sound absorption/transmission comparisons and mechanical tests suggest staged sample handling across instruments | Selected publisher main-PDF and scientific-SI text accessible; Article in Press |
+
+- **CANDIDATE only.** Publisher metadata confirms Wang et al., published 22 September 2026. The accessible 12-page main PDF is an accepted Article in Press, not yet the final Version of Record. Selected mechanical and acoustic Results distinguish measurements from simulations; this is not a full source review.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77972-5/MediaObjects/41467_2026_77972_MOESM1_ESM.pdf) yielded 42 pages of extracted text. Selected sections distinguish absorption from transmission loss and compare specimen incidence directions and densities. Figure pixels, complete analysis and raw source data remain unreviewed.
+- Future scope is prepared, contained specimens, qualified enclosed acoustic instruments and guarded mechanical measurements. Chemical fabrication, freezing/drying, combustion and application certification are excluded. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. The publisher landing page was readable with a cookie-error URL marker and displays CC BY-NC-ND 4.0. This entry adds citation metadata and original screening commentary only.
+
+
+## Additional candidate: oriented nanocellulose laminate metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Superstrong and supertough biomimetic nanocellulose composites with gradient bouligand architecture](https://www.nature.com/articles/s41467-026-72343-6) | Nature Communications / 2026 | 10.1038/s41467-026-72343-6 | Prepared-laminate orientation tracking, tensile/cyclic comparisons and spectroscopy suggest staged sample handling across measurement instruments | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Wang et al., volume 17, article 5621, published 23 April 2026; version of record dated 29 June 2026. Selected mechanical Results distinguish loading direction from layer architecture and measured tests from simulations. This is not full review or task conversion.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72343-6/MediaObjects/41467_2026_72343_MOESM1_ESM.pdf) yielded 43 pages of extracted text. Selected characterization and mechanical-measurement sections were screened. Figure pixels, movies, full analysis and raw data remain unreviewed.
+- Future scope is prepared specimens, tracked orientation and conditioning, guarded mechanical tests and enclosed spectroscopy. Chemical fabrication, hot pressing, cutting, puncture tests, cryogenics and application certification are excluded. No procedure, source assets or robotic feasibility claim is supplied.
+- Metadata checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: multiphase evaporator metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ultrahigh efficiency solar evaporation through orchestrated multiphase flow](https://www.nature.com/articles/s41467-026-72908-5) | Nature Communications / 2026 | 10.1038/s41467-026-72908-5 | Prepared-device comparisons, illumination calibration, time-resolved weighing and thermal imaging suggest a coordinated physical-measurement task | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Tang et al., volume 17, article 6121, published 7 May 2026; version of record dated 13 July 2026. Selected indoor-measurement Methods distinguish projected-area normalization from total surface area and apparent efficiency including ambient heat from solar-only efficiency. This is not full review or task conversion.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72908-5/MediaObjects/41467_2026_72908_MOESM1_ESM.pdf) yielded 127 pages of extracted text. Selected measurement and durability sections were screened; illuminated and dark observation intervals remain distinct. Figure pixels, movies, complete analysis and raw data remain unreviewed.
+- Future scope is prepared specimens, benign water/salt solutions and qualified enclosed optical/thermal metrology. Chemical fabrication, cryogenic processing, mercury porosimetry, environmental-water handling and potability certification are excluded. No operating procedure, source assets or robotic feasibility claim is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. Only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: optical tactile sensor metrology (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A bioinspired self-powered optical tactile sensing system with ultrahigh sensitivity and ultralow detection limit](https://www.nature.com/articles/s41467-025-66792-8) | Nature Communications / 2025 | 10.1038/s41467-025-66792-8 | Preassembled-device calibration, repeated loading and paired electrical/optical observations suggest coordinated physical metrology | Selected publisher HTML and scientific-SI text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Hou et al., volume 16, article 11668, published 26 November 2025; version of record dated 30 December 2025. Selected characterization and response Results were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66792-8/MediaObjects/41467_2025_66792_MOESM1_ESM.pdf) yielded 16 pages of extracted text. Selected captions and analysis distinguish working/reference optical channels and pressure-dependent response. Figure pixels, movies, code and raw data remain unreviewed.
+- Future scope is prepared, electrically enclosed devices with qualified guarded loading, capacitance measurement and optical recording. Fabrication, exposed high-voltage circuits, rotating-generator assembly, human testing and application certification are excluded. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY 4.0; this entry contains citation metadata and original screening commentary only.
+
+## Additional candidate: atmospheric water-harvesting sorbent characterization (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Hygroscopic wood sponge with dual phase change function for enhanced all-weather atmospheric water harvesting](https://www.nature.com/articles/s41467-026-72723-y) | Nature Communications / 2026 | 10.1038/s41467-026-72723-y | Prepared, contained sorbent samples could support a future sequence of humidity-history tracking, sample transfer, weighing, and optical/thermal comparison. | Selected publisher HTML and supplementary PDF text accessible; open access. |
+
+- **CANDIDATE only.** Official title, journal, year and DOI were verified. Selected main-text results on water sorption and light/dark desorption were screened, not a complete full-text review. Sorbent uptake and collected water are distinct outcomes.
+- The linked [67-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72723-y/MediaObjects/41467_2026_72723_MOESM1_ESM.pdf) was accessible as extracted text. Selected characterization and sorption/desorption measurement passages were screened; figure pixels, raw data and the complete supplement were not reviewed.
+- Future scope is limited to prepared samples and comparative measurements. Fabrication chemistry, freezing/drying, mercury porosimetry and potability claims are excluded. No executable procedure, asset, robot-feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; this entry contains citation metadata and original screening commentary only.
+
+
+## Additional candidate: cellulosic aerogel measurement comparisons (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Topological isomerization unlocks exceptional elasticity and strength of cellulosic triboelectric aerogels](https://www.nature.com/articles/s41467-026-71965-0) | Nature Communications / 2026 | 10.1038/s41467-026-71965-0 | Prepared-specimen exchange, guarded cyclic loading, mass tracking and optical comparison suggest a coordinated materials-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms Luo et al., volume 17, article 5185, published 14 April 2026; version of record dated 11 June 2026. Selected mechanical Results and measurement Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71965-0/MediaObjects/41467_2026_71965_MOESM1_ESM.pdf) yielded 52 pages of extracted text. Selected moisture, cyclic-compression and thermal-comparison captions were screened. Figure pixels, movies, full analysis and raw data remain unreviewed.
+- Future scope is prepared specimens and guarded comparative measurements. Fabrication chemistry, vapor deposition, cryogenics, extreme-temperature tests, falling-mass impacts, mercury porosimetry and exposed electrical work are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: diffractive optical detector calibration (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Deep diffractive optical neural networks for detecting skyrmionic topologies of light and their live training](https://www.nature.com/articles/s41467-026-77376-5) | Nature Communications / 2026 | 10.1038/s41467-026-77376-5 | Prepared optical-component positioning, polarization-resolved camera measurements and repeated calibration comparisons suggest a coordinated optical-metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Official title, journal, year and DOI were checked on 2026-10-20. Publisher metadata identifies volume 17, article 10490, published and version of record dated 7 October 2026. Selected experimental-classification Results and training Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77376-5/MediaObjects/41467_2026_77376_MOESM1_ESM.pdf) yielded seven pages of extracted text. Selected experimental-setup and polarization-measurement passages were screened. Figure pixels, code, raw data and full analysis remain unreviewed.
+- Future scope requires a qualified enclosed optical apparatus and prepared components. Physical calibration and camera comparisons remain distinct from software-only training. Exposed laser alignment, optical fabrication and communication-system certification are excluded. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: hydrogel mechanical measurement comparisons (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Slow-water strategy for fracture-resistant hydrogels](https://www.nature.com/articles/s41467-026-76816-6) | Nature Communications / 2026 | 10.1038/s41467-026-76816-6 | Prepared-specimen tracking, guarded cyclic loading, optical crack observation and comparative spectroscopy suggest a coordinated materials-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Official metadata identifies volume 17, article 10161, published 25 August 2026; version of record dated 24 September 2026. Selected mechanical Results and characterization Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76816-6/MediaObjects/41467_2026_76816_MOESM1_ESM.pdf) yielded 26 pages of extracted text. Selected swelling, loading-unloading and fatigue-assessment captions were screened. Figure pixels, movies, raw data and full analysis remain unreviewed.
+- Future scope is prepared nonliving specimens and guarded measurements. Synthesis, specimen cutting, cryogenics, inflated devices, animal-tissue experiments and clinical claims are excluded. Spectral water-state ratios are comparative, not absolute populations. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML remained readable despite a cookie-error URL marker. The publisher displays CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: acoustic metamaterial field measurements (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Observation of vortex-string chiral modes in metamaterials](https://www.nature.com/articles/s41467-024-46641-w) | Nature Communications / 2024 | 10.1038/s41467-024-46641-w | Prepared-fixture positioning, repeated acoustic source/probe placement and spatial pressure comparisons suggest a coordinated physics-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Official metadata identifies volume 15, article 2332, published 14 March 2024. Selected experimental Results and Methods were screened, not the complete paper. This is a laboratory analogue, not an astrophysical detection.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-46641-w/MediaObjects/41467_2024_46641_MOESM1_ESM.pdf) yielded 13 pages of extracted text. Selected additional-experimental-results passages on pressure, phase and attenuation were screened. Corrected field comparisons are distinct from raw measurements; figure pixels, code, raw data and full analysis remain unreviewed.
+- Future scope requires prepared samples and a qualified enclosed acoustic apparatus. Resin fabrication, exposed loud sound and electrical assembly are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Metadata checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. The publisher displays CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: energy-textile durability characterization (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Continuous and scalable manufacture of amphibious energy yarns and textiles](https://www.nature.com/articles/s41467-019-08846-2) | Nature Communications / 2019 | 10.1038/s41467-019-08846-2 | Prepared textile specimens offer a possible long-horizon sequence of mounting, repeated mechanical characterization, washing/drying checkpoints and electrical-output comparisons. | Open-access main text and linked Supplementary Information accessible; selected results, Methods and supplementary notes read, not an exhaustive review. |
+
+- **Status:** literature candidate only; no workflow conversion, executable task or safety approval.
+- **Verification:** publisher confirms the title, journal, 2019 publication and DOI. Selected main-text durability results and characterization/washing Methods were read; [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-019-08846-2/MediaObjects/41467_2019_8846_MOESM1_ESM.pdf) is a readable 60-page PDF, with selected mechanical-characterization notes 4–6 read. Remaining supplement sections, movies and underlying data were not exhaustively reviewed; data are available on request.
+- **Scope:** future suitability assessment is limited to prepared-specimen characterization. High-temperature manufacture, pressurized processing, battery charging and human-wear demonstrations are excluded; no operating parameters or experimental instructions are reproduced.
+- **Access checked:** 2026-10-20; publisher labels the article open access under CC BY 4.0. Assets, viewer and repository license are unchanged.
+
+## Additional candidate: chiral-standard measurement comparisons (2026-10-20)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Chiral discrimination of amino acids in meteorite and desert soil extracts via single-molecule nanogap conductance](https://www.nature.com/articles/s41467-026-77947-6) | Nature Communications / 2026 | 10.1038/s41467-026-77947-6 | Prepared-standard and blank tracking, chip loading, repeated electrical measurements and cross-device comparisons suggest a coordinated analytical-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10274, published 5 October 2026. Selected Results and single-molecule measurement Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77947-6/MediaObjects/41467_2026_77947_MOESM1_ESM.pdf) yielded 27 pages of extracted text. Selected signal-measurement, device-reuse and positioning-stability passages were screened. Figure pixels, supplementary spreadsheets, raw data and code remain unreviewed. The supplement's cover title includes an additional initial word, “Electrical”; the publisher article title above is authoritative.
+- Future scope is prepared amino-acid standards and blanks in qualified instruments. Device fabrication, environmental extraction, corrosive processing and life-detection claims are excluded. Targeted classifications are not comprehensive composition measurements. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-20. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: interfacial diffusion time-series measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Diffusional aging at water/oil interfaces laden with charged nanoparticles studied by single-molecule tracking](https://www.nature.com/articles/s41467-026-74008-w) | Nature Communications / 2026 | 10.1038/s41467-026-74008-w | Prepared-sample tracking, controlled liquid exchange, stabilization checkpoints and repeated microscopy across locations and days suggest a long-horizon interfacial-measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7149, published 3 June 2026, with version of record dated 24 July 2026. Selected experimental Results, sample-handling, microscopy and acquisition Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74008-w/MediaObjects/41467_2026_74008_MOESM1_ESM.pdf) yielded 21 pages of extracted text. Selected coverage-estimation and diffusion-statistics notes were read; coverage estimates depend on comparable probe adsorption. Figure pixels, raw data, code and remaining supplementary analyses remain unreviewed. Acquisition-duration descriptions differ between main Methods and Supplementary Note 2 and require reconciliation before conversion.
+- Future scope is prepared dispersions in qualified enclosed microscopy. Nanoparticle synthesis, dry-powder handling, solvent-based gel trapping and exposed-laser work are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: wave-driven interfacial sensing comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Multi-interface electrical double layers dynamics as a unified platform for power generation and environmental intelligence](https://www.nature.com/articles/s41467-026-77636-4) | Nature Communications / 2026 | 10.1038/s41467-026-77636-4 | Prepared-device exchange, electrode-position tracking, repeated wave excitation and synchronized electrical measurements suggest a long-horizon configuration-and-comparison task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10641, published 9 September 2026, with version of record dated 9 October 2026. Selected control-device descriptions, characterization and spatial-recognition Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77636-4/MediaObjects/41467_2026_77636_MOESM1_ESM.pdf) yielded 101 pages of extracted text. Selected localization-comparison captions and Notes 3–4 on spatial contrast and cooperative gain were read. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and raw data remain unreviewed.
+- Future scope is prepared devices in a qualified enclosed water-tank and electrical-measurement system. Fabrication, coating damage, cathodic protection and mercury-containing reference electrodes are excluded. Laboratory wave classifications do not establish field performance. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: angle-dependent film deicing comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Janus structure breaks the solar incidence angular constraint insu photothermal anti-icing](https://www.nature.com/articles/s41467-026-72087-3) | Nature Communications / 2026 | 10.1038/s41467-026-72087-3 | Prepared-film exchange, orientation tracking, thermal stabilization and repeated optical/thermal measurements suggest a long-horizon comparison task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 5422, published 20 April 2026, with version of record dated 19 June 2026. Selected anti-/deicing Results and evaluation Methods were screened, not the complete paper. The official title's “insu” is retained; the supplement cover instead reads “in”.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72087-3/MediaObjects/41467_2026_72087_MOESM1_ESM.pdf) yielded 82 pages of extracted text. Selected characterization passages and the cyclic-stability note accompanying Supplementary Fig. 44 were read. Cycle-count descriptions differ between the main Results and that note and require reconciliation before conversion. Figure pixels, remaining supplementary analyses, movies and source spreadsheets remain unreviewed.
+- Future scope is prepared-film characterization in qualified enclosed optical and environmental instruments. Synthesis, laser fabrication, chemical stress tests, combustion and energized infrastructure are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: yeast confinement and time-lapse comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [3D confinement physically regulates cell cycle progression in budding yeast](https://www.nature.com/articles/s41467-026-78414-y) | Nature Communications / 2026 | 10.1038/s41467-026-78414-y | Sample-identity tracking, mechanical characterization and repeated optical observations across matched conditions suggest a long-horizon biophysics measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10653, published and version of record dated 16 October 2026. Selected confinement Results and rheology, optical-measurement and imaging Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-78414-y/MediaObjects/41467_2026_78414_MOESM1_ESM.pdf) yielded 25 pages of extracted text. Selected captions for supplementary figures 1–6, covering material characterization, sampling robustness and comparison controls, were read. Figure pixels, remaining supplementary analyses, source spreadsheets and external molecular datasets remain unreviewed.
+- Future scope is prepared samples of laboratory budding yeast in qualified enclosed measurement systems. Strain engineering, extraction chemistry and molecular profiling are excluded. Individual tracked events and technical repeats must remain distinct from independent biological replicates. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: barrier-through ultrasonic imaging comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ultrasonic barrier-through imaging by Fabry-Perot resonance-tailoring panel](https://www.nature.com/articles/s41467-023-43675-4) | Nature Communications / 2023 | 10.1038/s41467-023-43675-4 | Prepared-panel and inert-target placement, gap-position tracking, coordinated scanning and reference comparisons suggest a long-horizon acoustic measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 14, article 7818, published and version of record dated 28 November 2023. Selected imaging Results and experimental-imaging Methods were screened, not the complete paper.
+- The linked [Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-43675-4/MediaObjects/41467_2023_43675_MOESM1_ESM.pdf) yielded 33 pages of extracted text. Selected setup/target captions and Note 5 were read. Apparent tank/scan-area unit inconsistencies in the extracted text require reconciliation before conversion. Figure pixels, remaining supplementary analyses and underlying data remain unreviewed.
+- Future scope is prepared inert targets in a qualified water-tank measurement system. Metal fabrication, human or animal exposure, clinical applications and field rescue are excluded. Simulated beam-transmission extensions are distinct from the demonstrated imaging experiments. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidates: cyclic surface adhesion measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Thickness-invariant, durable and strongly adherent icephobic coatings via dynamic polyborosiloxane crosslinking](https://www.nature.com/articles/s41467-026-77081-3) | Nature Communications / 2026 | 10.1038/s41467-026-77081-3 | Prepared-coupon tracking, repeated ice-release measurements, weighing and surface inspection suggest a long-horizon materials comparison task | Selected publisher HTML and supplementary PDF text accessible; OA |
+| [Switchable adhesion of phase-transition eutectogels with integrated machine learning-enhanced intelligent adhesion sensing](https://www.nature.com/articles/s41467-026-74275-7) | Nature Communications / 2026 | 10.1038/s41467-026-74275-7 | Prepared adhesive-sample conditioning, substrate comparisons and synchronized mechanical/electrical records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **Both entries are CANDIDATES only**, not converted tasks. Main HTML was readable despite cookie-error URL markers. Access checked on 2026-10-21; only citation metadata and original screening commentary are added.
+- **Icephobic coatings:** publisher metadata confirms volume 17, article 10093, published 24 August 2026 and version of record 23 September 2026. Selected durability Results and characterization Methods were screened. The [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77081-3/MediaObjects/41467_2026_77081_MOESM1_ESM.pdf) was accessible; selected figure 11–17 text on controls, cycle histories, mass and surface inspection was read. Independent specimens must remain distinct from repeat measurements. License: CC BY-NC-ND 4.0.
+- **Eutectogel adhesion:** publisher metadata confirms volume 17, article 7434, published 11 June 2026 and version of record 28 July 2026. Selected adhesion/robot-demonstration Results and characterization/adhesion Methods were screened. The [69-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74275-7/MediaObjects/41467_2026_74275_MOESM1_ESM.pdf) was accessible; selected Note 5 and figure 48–50 text on electrical sensing was read. The reported climbing demonstration uses human-coordinated control; it is not autonomous task execution. License: CC BY 4.0.
+- Neither paper nor supplement was read completely. Figure pixels, movies, source datasets and external code remain unreviewed. Future scope is prepared nonbiological specimens in qualified laboratory fixtures; synthesis, solvent/chemical exposure, elevated climbing and deployment are excluded. No operating procedure, assets or robotic feasibility claim is supplied.
+
+## Additional candidate: polarization-switched optical transport (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Freeform optical flow based on meta-conveyors for compact, programmable in situ nanomanipulation](https://www.nature.com/articles/s41467-026-73024-0) | Nature Communications / 2026 | 10.1038/s41467-026-73024-0 | Prepared-sample positioning, polarization-state comparisons, reference measurements and particle-trajectory records suggest a long-horizon optical measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 4212, published and version of record dated 9 May 2026. Selected experimental nanomanipulation Results and experimental-setup Methods were screened, not the complete paper.
+- The linked [25-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73024-0/MediaObjects/41467_2026_73024_MOESM1_ESM.pdf) was accessible. Selected Note 10 and figure S9 text on polarization-conversion measurements and reference comparisons were read. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and external code remain unreviewed.
+- Future scope is prepared nonbiological specimens in qualified enclosed optical systems. Nanofabrication, chemical preparation and clinical use are excluded. Encoded trajectories and proposed integration pathways must not be mistaken for autonomous planning or demonstrated clinical deployment. No operating procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: paired acoustic scattering measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Experimental observation of non-Hermitian phase transitions using laser-induced thermoacoustics](https://www.nature.com/articles/s41467-026-69986-w) | Nature Communications / 2026 | 10.1038/s41467-026-69986-w | Prepared waveguide-component positioning, reference comparisons and paired microphone records suggest a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 3236, published 26 February 2026 and version of record dated 8 April 2026. Selected experimental-demonstration Results and loss-measurement Methods were screened, not the complete paper.
+- The linked [31-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69986-w/MediaObjects/41467_2026_69986_MOESM1_ESM.pdf) was accessible. Selected Notes 1 and 14 text was read. The total field is reconstructed from separately measured source contributions; this is not evidence of simultaneous physical operation. The main/SI square-waveguide dimension discrepancy remains unresolved.
+- Future scope is prepared nonbiological components and qualified enclosed measurement systems. Film fabrication, exposed laser operation and thermal exposure are excluded. Figure pixels, remaining supplementary analyses, movies, raw data and code remain unreviewed; data and code are described as available on request, not acquired here. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: synchronized wear-monitoring measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [An intelligent feedback loop for sustaining self-lubrication and wear resistance](https://www.nature.com/articles/s41467-026-73957-6) | Nature Communications / 2026 | 10.1038/s41467-026-73957-6 | Prepared-specimen tracking, counterpart comparisons, synchronized instrument records and post-test surface inspection suggest a long-horizon materials measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7071, published 2 June 2026 and version of record dated 23 July 2026. Selected real-time-monitoring Results and friction/wear-test Methods were screened, not the complete paper.
+- The linked [18-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73957-6/MediaObjects/41467_2026_73957_MOESM1_ESM.pdf) was accessible. Selected Notes 1 and 5 text was read. Instrumental and physical signal delays require explicit treatment; material self-regulation is not autonomous robot control.
+- Future scope is prepared nonbiological specimens in qualified enclosed measurement fixtures. Film deposition, chemical preparation, vacuum-system construction and thermal-exposure operations are excluded. Figure pixels, remaining supplementary analyses, movies, source datasets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: textile durability and wettability comparisons (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [One-step fabrication of superhydrophobic fabrics with stable mechanical performance in harsh conditions](https://www.nature.com/articles/s41467-026-70857-7) | Nature Communications / 2026 | 10.1038/s41467-026-70857-7 | Prepared-textile tracking, repeated mechanical testing, wettability comparisons and surface inspection suggest a long-horizon materials measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 4264, published 20 March 2026 and version of record dated 12 May 2026. Selected water-repellency/durability Results and characterization, contact-angle and abrasion Methods were screened, not the complete paper.
+- The linked [36-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70857-7/MediaObjects/41467_2026_70857_MOESM1_ESM.pdf) was accessible. Selected Figures 11–16 captions and Table 1 text were read. The laundering-score scales differ between main text and SI; their mapping remains unresolved. Repeated locations on a specimen are not automatically independent preparations.
+- Future scope is prepared nonbiological textile specimens in qualified enclosed testing fixtures. Coating synthesis, solvent handling, high-speed impacts, thermal/cryogenic exposure and biological assays are excluded. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and external code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: coordinated hydrogel-sensor measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Root-inspired hierarchical hydrogel-electrode interface enables ultrasensitive sensing](https://www.nature.com/articles/s41467-026-75620-6) | Nature Communications / 2026 | 10.1038/s41467-026-75620-6 | Prepared-sensor tracking, reference comparisons and coordinated mechanical/electrical records suggest a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 8870, published 21 July 2026 and version of record dated 24 August 2026. Selected sensing Results and characterization, adhesion, pressure-sensing and acoustic-test Methods were screened, not the complete paper.
+- The linked [29-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75620-6/MediaObjects/41467_2026_75620_MOESM1_ESM.pdf) was accessible. Selected Figures 10–15 captions and Note 2 text were read. Detectable acoustic responses do not establish faithful waveform reconstruction at the reported acquisition bandwidth.
+- Future scope is prepared nonbiological sensors in qualified measurement fixtures. Hydrogel synthesis, electrochemical fabrication, solvent demolding and human-subject testing are excluded. Figure pixels, remaining supplementary analyses, movies, source spreadsheets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: coordinated emulsion imaging and torque measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Non-reciprocal coalescence-breakup dynamics in flowing concentrated emulsions](https://www.nature.com/articles/s41467-026-75077-7) | Nature Communications / 2026 | 10.1038/s41467-026-75077-7 | Sample-history tracking, reference comparisons and paired imaging/torque records suggest a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 8339, published 6 July 2026 and version of record dated 14 August 2026. Selected experimental Results and Experiments Methods were screened, not the complete paper.
+- The linked [10-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75077-7/MediaObjects/41467_2026_75077_MOESM1_ESM.pdf) was accessible. Section I and Figure 1 text were read. Simulation volume-fraction corrections are not experimental calibrations; torque-derived effective viscosity is not a direct laminar viscosity measurement.
+- Future scope is prepared nonbiological samples in qualified enclosed instruments. Fluid preparation and exposed rotating machinery are excluded. Figure pixels, remaining analyses, external datasets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: paired contact-resistance and mechanical measurements (2026-10-21)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strong yet highly conductive liquid metal composite film constructed via friction induced in-situ synthesis](https://www.nature.com/articles/s41467-026-74665-x) | Nature Communications / 2026 | 10.1038/s41467-026-74665-x | Prepared-specimen tracking, reference comparisons and paired electrical/mechanical records suggest a long-horizon materials measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7683, published 18 June 2026 and version of record dated 3 August 2026. Selected characterization Results and hardness, conductivity and sliding-test Methods were screened, not the complete paper.
+- The linked [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74665-x/MediaObjects/41467_2026_74665_MOESM1_ESM.pdf) was accessible. Selected Figures 6–11 and 19–22 captions and Note 1 text were read. Film conductivity inferred from contact resistance must remain distinct from directly measured substrate conductivity; repeated measurements do not automatically establish independent preparations.
+- Future scope is prepared nonbiological specimens in qualified enclosed instruments. Powder handling, sintering, film fabrication and exposed powered machinery are excluded. Figure pixels, remaining supplementary material, source spreadsheets and code remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-21. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: membrane characterization and specimen-history tracking (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Time-Temperature Superposition Principle Serving as a Design Tool for Tailored MOF-Crystal Glass Composite Membranes](https://www.nature.com/articles/s41467-026-74833-z) | Nature Communications / 2026 | 10.1038/s41467-026-74833-z | Prepared-specimen tracking, reference comparisons and coordinated structural/mechanical measurements suggest a long-horizon characterization task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7965, published 25 June 2026 and version of record dated 7 August 2026. Selected characterization Results and Methods were screened, not the complete paper.
+- The linked [54-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74833-z/MediaObjects/41467_2026_74833_MOESM1_ESM.pdf) was accessible. Selected Figures 4–10, 14–21 and 28 captions were read. Single-scan mechanical measurements and two-cycle calorimetry require distinct specimen-history records; neither establishes independent preparation replicates.
+- Future scope is prepared nonbiological specimens in qualified enclosed characterization instruments. Chemical synthesis, powder handling, thermal fabrication, pressurized-gas testing, cryogenics and radioactive-source measurements are excluded. Figure pixels, remaining supplementary analyses and source spreadsheets remain unreviewed. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: laminate characterization and sample-location tracking (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A ring-jig additive friction stir deposition method for efficient additive manufacturing of metal laminates](https://www.nature.com/articles/s41467-026-75350-9) | Nature Communications / 2026 | 10.1038/s41467-026-75350-9 | Prepared-specimen tracking, reference comparisons and coordinated surface/mechanical measurements suggest a long-horizon characterization task | Selected publisher HTML and Methods accessible; OA; no separate scientific SI listed |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 6960, published and version of record dated 30 July 2026. Selected mechanical-properties Results and evaluation, fractography and build-rate Methods were screened, not the complete paper.
+- The publisher supplementary section lists a transparent peer-review file, not a separate scientific Supplementary Information document. That review file, source spreadsheets, external Figshare data and figure pixels remain unread. Estimated deposition throughput must remain distinct from complete production-cycle throughput; measurements at several positions do not establish independent fabrication replicates.
+- Future scope is prepared nonbiological specimens in qualified enclosed characterization instruments. Deposition, machining, specimen cutting, coating application and exposed powered machinery are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: polymer specimen tracking and mechanical comparisons (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [The effects of intracrystalline chain diffusion on the non-linear mechanics of semicrystalline polymers](https://www.nature.com/articles/s41467-026-78014-w) | Nature Communications / 2026 | 10.1038/s41467-026-78014-w | Prepared-specimen tracking, reference comparisons and coordinated displacement/force records suggest a long-horizon materials measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10235, published and version of record dated 26 September 2026. Selected mechanical Results and Samples/Mechanical testing Methods were screened, not the complete paper.
+- The linked [3-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-78014-w/MediaObjects/41467_2026_78014_MOESM1_ESM.pdf) was text-accessible. Figure 1–3 captions describing the fixture and comparative measurements were read. Figure pixels were not verified; optional rendering returned cache misses and was not retried. This is not complete supplement review.
+- Representative curves must remain distinct from triplicate-derived parameter summaries; fitted network parameters are effective descriptions, not direct structural measurements. External archived data and peer-review material remain unread.
+- Future scope is prepared nonbiological specimens in qualified enclosed instruments. Molding, cryogenic handling and exposed mechanical loading are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: water-retention measurements and environmental histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Spontaneous formation of picoliter water bridges](https://www.nature.com/articles/s41467-026-77515-y) | Nature Communications / 2026 | 10.1038/s41467-026-77515-y | Specimen tracking, humidity-history comparisons and coordinated optical/mass records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 10689, published 10 September 2026; version of record 12 October 2026. Selected water-bridge Results and sample, imaging and environmental-chamber Methods were screened, not the complete paper.
+- The [14-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77515-y/MediaObjects/41467_2026_77515_MOESM1_ESM.pdf) was text-accessible; selected Figures 1–2 and 7–8 captions were read. The [one-page movie descriptions](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77515-y/MediaObjects/41467_2026_77515_MOESM2_ESM.pdf) were read, not the movies. Figure pixels, remaining analyses, source spreadsheets and author-request raw data remain unreviewed.
+- Future scope is prepared nonbiological specimens, environmental records, optical observation and weighing. Synchrotron operation, solvent washing and probe fabrication are excluded. Optical observations cannot substitute for the paper's nanoscale X-ray evidence; repeat observations must retain specimen identities. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: hydrogel-film measurement histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Live-shaping of hydrogel thin films with light](https://www.nature.com/articles/s41467-026-71438-4) | Nature Communications / 2026 | 10.1038/s41467-026-71438-4 | Prepared-film tracking, repeated characterization and storage-history comparisons suggest a long-horizon instrument-coordination task | Selected publisher HTML and scientific supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 3613, published/version of record 21 April 2026. Selected film-response Results and spectroscopy/morphing Methods were screened, not the complete paper.
+- The [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71438-4/MediaObjects/41467_2026_71438_MOESM1_ESM.pdf) was text-accessible; selected mechanical-property, thickness, coating and relaxation sections were read. Figure pixels, movies, source data and remaining analyses are unreviewed. The separate additional-file-description download failed and was not retried; no movie-dependent claim supports this screening.
+- Future scope is prepared nonbiological films in qualified enclosed measurement services. Synthesis, fabrication, exposed irradiation and biological applications are excluded. Preserve coating and specimen histories; absolute AFM modulus estimates depend on probe calibration. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: antenna calibration and deformation histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Multidirectional strain-insensitive stretchable RF electronics](https://www.nature.com/articles/s41467-026-74900-5) | Nature Communications / 2026 | 10.1038/s41467-026-74900-5 | Prepared-device tracking, reference calibration and repeated direction-dependent measurements suggest a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 8041, published 27 June 2026; version of record 10 August 2026. Selected introductory Results and mechanical-electromagnetic characterization Methods were screened, not the complete paper.
+- The [59-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74900-5/MediaObjects/41467_2026_74900_MOESM1_ESM.pdf) was text-accessible; selected cyclic-comparison and measurement-fixture captions (S30, S45–46) were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared nonbiological devices in qualified enclosed measurement services. Retain calibration reference planes, specimen identities and deformation histories; repeated readings do not establish independent specimens. Fabrication, exposed RF power transmission and human-subject demonstrations are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: pressure-sensor calibration and loading histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strain-localized luminescent e-skin for high-resolution pressure mapping and visual force feedback](https://www.nature.com/articles/s41467-026-73073-5) | Nature Communications / 2026 | 10.1038/s41467-026-73073-5 | Prepared-device tracking, loading-history comparisons and synchronized electrical/optical records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 6886, published 26 May 2026; version of record 22 July 2026. Selected electromechanical Results and Characterization Methods were screened, not the complete paper.
+- The [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73073-5/MediaObjects/41467_2026_73073_MOESM1_ESM.pdf) was text-accessible; response-time Note 3 and selected sensing/recovery captions (Figures 21–23) were read. Figure pixels, remaining analyses, movies, source data and peer-review material remain unreviewed.
+- Future scope is prepared nonbiological devices in qualified enclosed measurement services. Preserve specimen identities, loading histories and channel-specific response definitions; repeated readings are not independent specimens. Fabrication, exposed high-voltage operation, human-subject and clinical applications are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: membrane separation and sampling histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Orthogonal assembly of hetero-porous structures by reversible adaptation for efficient isomeric separation](https://www.nature.com/articles/s41467-026-75619-z) | Nature Communications / 2026 | 10.1038/s41467-026-75619-z | Prepared-membrane tracking, timed sample comparisons and coordinated analytical records suggest a long-horizon measurement task | Selected publisher HTML and scientific supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 8677, published 15 July 2026; version of record 20 August 2026. Selected separation Results and filtration/adsorption Methods were screened, not the complete paper.
+- The [13-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75619-z/MediaObjects/41467_2026_75619_MOESM1_ESM.pdf) was text-accessible; selected separation, filtrate-characterization and kinetic-analysis captions (Figures 8–10) were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared nonbiological specimens in qualified enclosed measurement services. Preserve membrane, feed and collection-time identities; single-feed selectivity and mixed-feed separation are distinct comparisons. Synthesis, solvent processing and apparatus operation are not specified. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: chiral optics and hydration histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Unidirectional cellulose nanocrystal hydrogel for bio-based invertible chiral optics and sensors](https://www.nature.com/articles/s41467-026-73859-7) | Nature Communications / 2026 | 10.1038/s41467-026-73859-7 | Prepared-sample tracking, polarization comparisons and coordinated hydration/loading histories suggest a long-horizon optical measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7141, published 3 June 2026; version of record 24 July 2026. Selected optical-response Results and characterization Methods were screened, not the complete paper.
+- The [34-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73859-7/MediaObjects/41467_2026_73859_MOESM1_ESM.pdf) was text-accessible; selected hydration, cycling and spatial-comparison captions (Figures 6, 11 and 16) were read. Figure pixels, remaining analyses, movies, source spreadsheets and simulation code remain unreviewed.
+- Future scope is prepared nonbiological specimens in qualified enclosed measurement services. Preserve specimen, polarization-channel, hydration and loading identities; repeated measurements are not independent specimens. Main and supplementary hydration descriptions use different sample labels, which require resolution before conversion. Synthesis, photopolymerization and X-ray operation are excluded. No procedure, assets, robotic feasibility claim or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: optical-label imaging and ageing histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Piezochromic hydrogels for physically unclonable optical anti-counterfeiting with machine-learning assisted automatic identification](https://www.nature.com/articles/s41467-026-73060-w) | Nature Communications / 2026 | 10.1038/s41467-026-73060-w | Prepared-label tracking, repeated microscopy and ageing comparisons suggest a long-horizon imaging-and-recordkeeping task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 6215, published 8 May 2026; version of record 15 July 2026. Selected label-imaging/stability Results and image-comparison Methods were screened, not the complete paper.
+- The [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73060-w/MediaObjects/41467_2026_73060_MOESM1_ESM.pdf) was text-accessible; selected ageing, label-image and similarity captions (Figures 6 and 13–17) were read. Figure pixels, remaining analyses, source spreadsheets and computational software remain unreviewed.
+- Future scope is prepared nonbiological labels in qualified enclosed imaging services. Preserve label identity, imaging conditions and elapsed-time records; computational image augmentation is not an independent specimen. Synthesis, pressure generation, chemical challenges and exposed laser operation are excluded. No procedure, assets, authentication guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: membrane evaporation and measurement histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Confined water-selective highways in a densified photothermal membrane enable ultrafast purification of complex wastewater](https://www.nature.com/articles/s41467-026-75847-3) | Nature Communications / 2026 | 10.1038/s41467-026-75847-3 | Prepared-membrane tracking, water/salt comparisons and coordinated thermal/mass records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 8835, published 20 July 2026; version of record 24 August 2026. Selected evaporation Results and SDIE Methods were screened, not the complete paper.
+- The [53-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75847-3/MediaObjects/41467_2026_75847_MOESM1_ESM.pdf) was text-accessible; selected thermal-comparison captions (Figures 18–20) and Tables 3–4 were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared membranes with water/NaCl comparisons in qualified enclosed measurement services. Preserve specimen, wetting and measurement histories. Main and supplementary salt-durability labels differ and require resolution before conversion. Synthesis, VOC/heavy-metal challenges and exposed irradiation are excluded. No procedure, assets, water-safety guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: nanofiltration sampling and stability histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Dissociating water clusters via polyhydroxy quaternized interface for enhanced water permeation in nanochannels](https://www.nature.com/articles/s41467-026-76291-z) | Nature Communications / 2026 | 10.1038/s41467-026-76291-z | Prepared-membrane tracking, timed sampling and matched mass/conductivity records suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 9435, published 5 August 2026; version of record 3 September 2026. Selected filtration-performance Results and nanofiltration-evaluation Methods were screened, not the complete paper.
+- The [64-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76291-z/MediaObjects/41467_2026_76291_MOESM1_ESM.pdf) was text-accessible; the stability-test section and selected comparison captions (Figures 15, 18–19) were read. Figure pixels, remaining analyses, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared membranes with water/salt comparisons in qualified enclosed measurement services. Preserve specimen, feed/permeate and conditioning histories; main and supplementary conditioning descriptions differ and require reconciliation before conversion. Synthesis, biological assays and ion-beam operation are excluded. No procedure, assets, water-safety guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: wood-composite directional testing (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [In-situ ceramic nanoparticle assembly within wood microstructure for strong, tough, and resilient ceramic wood](https://www.nature.com/articles/s41467-026-73601-3) | Nature Communications / 2026 | 10.1038/s41467-026-73601-3 | Prepared-coupon tracking, directional comparisons and sequential mechanical measurements suggest a long-horizon materials-testing task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7440, published 11 June 2026; version of record 28 July 2026. Selected mechanical-performance Results and characterization Methods were screened, not the complete paper.
+- The [53-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73601-3/MediaObjects/41467_2026_73601_MOESM1_ESM.pdf) was text-accessible; selected mechanical-test text in Note S1 and comparison captions (Figures S15–S17) were read. Figure pixels, remaining analyses, movie and peer-review material remain unreviewed. Underlying data are available on request and were not acquired.
+- Future scope is prepared nonliving coupons in qualified enclosed test services. Preserve specimen, species, grain-direction and destructive-test histories; measurements must not be assumed to represent independent specimens. Preparation, biological challenges, combustion, vehicle demonstrations, mercury porosimetry and radiation operation are excluded. No procedure, assets, structural-safety guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML was readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+
+## Additional candidate: prepared-composite radiative cooling comparison (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Collaborative passive cooling of impact-hardening interfaces enabled by nacre-mimetic design](https://www.nature.com/articles/s41467-026-74755-w) | Nature Communications / 2026 | 10.1038/s41467-026-74755-w | Tracking prepared coupons through reference-calibrated spectroscopy, paired temperature measurements and repeated environmental observations suggests a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 7823, published 22 June 2026, version of record 5 August 2026. Selected passive-cooling Results and Characterization text were screened, not the complete paper.
+- The [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74755-w/MediaObjects/41467_2026_74755_MOESM1_ESM.pdf) was text-accessible. Discussions 1 and 4 and selected cooling/durability captions were read; figure pixels, remaining analyses, reporting summary and raw source data were not reviewed. Table 2 and the main text report different emittance values; conditions need reconciliation before any quantitative target is defined.
+- Future scope is prepared nonliving coupons, matched controls and qualified enclosed optical/thermal services, preserving specimen orientation and exposure history. Exclude synthesis, nanopowder processing, combustion, projectile/impact testing and battery-abuse demonstrations. No protocol, assets, runnable experiment or converted task is supplied.
+- Access checked 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. CC BY 4.0 is stated; this entry contains only metadata and original screening commentary.
+
+## Additional candidate: fiber-circuit measurement histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Shrinkage-transfer-assisted printing of microcircuits on fibers](https://www.nature.com/articles/s41467-026-69640-5) | Nature Communications / 2026 | 10.1038/s41467-026-69640-5 | Tracking prepared fibers through dimensional imaging, bending comparisons and synchronized resistance measurements suggests a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Publisher metadata confirms volume 17, article 2864, published 17 February 2026; version of record 26 March 2026. Selected device-durability Results and electrical/mechanical characterization Methods were screened, not the complete paper.
+- The [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69640-5/MediaObjects/41467_2026_69640_MOESM1_ESM.pdf) was text-accessible; selected dimensional, interface and environmental-comparison captions (Figures 19–22) were read. Figure pixels, remaining analyses, movies, source spreadsheets and peer-review material remain unreviewed.
+- Future scope is prepared nonliving fibers in qualified enclosed measurement services. Preserve specimen, conditioning and bending histories; time-aligned instrument readings are not independent specimens. Fabrication, solvent spraying, plasma processing and high-voltage luminescence are excluded. No procedure, assets, safety guarantee or converted task is supplied.
+- Access checked on 2026-10-22. Main HTML remained readable despite a cookie-error URL marker. Publisher license: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared graphene wetting measurements (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Contact angle measurement of free-standing square-millimeter single-layer graphene](https://www.nature.com/articles/s41467-018-06608-0) | Nature Communications / 2018 | 10.1038/s41467-018-06608-0 | Prepared-sample positioning, water/air wetting observations, repeated image acquisition and reference comparisons could support a long-horizon measurement task. Fragility, interface deformation and exposure history require explicit checkpoints. | Open-access publisher HTML and supplementary PDF text accessible. |
+
+- **CANDIDATE only.** Official metadata confirms volume 9, article 4185, published 10 October 2018. Selected Results, optical-microscopy/contact-angle Methods and source metadata were screened, not a complete paper review.
+- The [five-page Supplementary information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-06608-0/MediaObjects/41467_2018_6608_MOESM1_ESM.pdf) was text-accessible. Selected captions for Figures 2 and 4, Note 1 and Tables 1–2 were screened; figure pixels were not inspected. Supplementary movies and their separate description file were not retrieved or watched.
+- Future scope is limited to water/air characterization of independently prepared, stabilized specimens, preserving sample identity and measurement history. Graphene growth, chemical etching, solvent handling, plasma modification and nonaqueous surface-energy measurements are excluded. No procedure conversion, execution validation, assets or runnable task is claimed.
+- Access checked on 2026-10-22. Publisher states CC BY 4.0; this entry contains bibliographic metadata and original screening commentary only. The HTML remained readable after a cookie-error redirect.
+
+## Additional candidate: chiroptical fiber measurement histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Circularly polarized luminescence optical waveguides in stretchable photonic crystal fibers for advanced human motion monitoring](https://www.nature.com/articles/s41467-026-76742-7) | Nature Communications / 2026 | 10.1038/s41467-026-76742-7 | Tracking prepared fibers across mechanical histories, polarization comparisons and repeated spectral measurements suggests a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 9749, published 13 August 2026; version of record 14 September 2026. Selected optical-waveguide Results and characterization Methods were screened, not the complete paper.
+- The [43-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76742-7/MediaObjects/41467_2026_76742_MOESM1_ESM.pdf) was text-accessible. General measurement information and selected cycling, polarization and environmental-comparison captions (Figures 11, 18–26) were screened. Figure pixels, movies, their separate descriptions, reporting summary, peer review and raw data remain unreviewed.
+- Future scope is prepared nonliving fibers in qualified enclosed optical/mechanical services, retaining orientation, deformation and conditioning histories. Synthesis, solvent/acid treatment, exposed laser operation and human testing are excluded. The printed strain definition in the main Figure 2 caption needs clarification before quantitative targets are adopted. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only bibliographic metadata and original screening commentary are added.
+
+## Additional candidate: prepared-metal wetting and exposure histories (2026-10-22)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Confined shear-induced structure discretization enables re-entrant super-repellent metals](https://www.nature.com/articles/s41467-026-77150-7) | Nature Communications / 2026 | 10.1038/s41467-026-77150-7 | Prepared-coupon tracking, directional wetting comparisons and repeated measurements after ambient storage suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 10248, published 27 August 2026; version of record 28 September 2026. Selected liquid-repellency Results, air-exposure and characterization Methods were screened, not the complete paper.
+- The [69-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77150-7/MediaObjects/41467_2026_77150_MOESM1_ESM.pdf) was text-accessible. Selected directional-wetting and exposure captions (Figures 26–28 and 41) were screened; figure pixels, remaining analyses, source-data archive and peer review remain unreviewed.
+- Future scope is independently prepared nonliving coupons and water-only observations, retaining orientation, preparation provenance and storage history. Measurement repeats must remain distinct from independently prepared specimens. Machining, laser/ion-beam processing, silanization, corrosive chemistry, solvent tests and thermal/pressure challenges are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-22. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared-hydrogel mechanical comparisons (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A self-powered hydrogel electronic skin with decoupled multimodal sensing for closed-loop human-machine interactions](https://www.nature.com/articles/s41467-026-69450-9) | Nature Communications / 2026 | 10.1038/s41467-026-69450-9 | Prepared-specimen tracking, paired mechanical comparisons and repeated deformation measurements suggest a long-horizon instrument-coordination task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 2675, published 12 February 2026; version of record 23 March 2026. Selected mechanical-test and pure-shear Methods were screened, not the complete paper.
+- The [55-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69450-9/MediaObjects/41467_2026_69450_MOESM1_ESM.pdf) was text-accessible. Selected mechanical-comparison and cycling captions (Figures 3, 6 and 23–25) were screened; figure pixels, remaining analyses, reporting summary, source data and peer review remain unreviewed.
+- Future scope is independently prepared nonliving specimens in qualified mechanical-testing services, preserving specimen identity, paired controls and loading history. Fabrication chemistry, laser processing, electrolyte preparation, human testing and physiological interpretation are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared-alloy fatigue measurement histories (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Bending-fatigue-resistant hierarchical NiTi shape memory alloy](https://www.nature.com/articles/s41467-026-72857-z) | Nature Communications / 2026 | 10.1038/s41467-026-72857-z | Prepared-specimen tracking, cyclic mechanical comparisons and synchronized thermal observations suggest a long-horizon measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 6376, published 13 May 2026; version of record 16 July 2026. Selected bending-fatigue Results and mechanical/fatigue-testing Methods were screened, not the complete paper.
+- The [18-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72857-z/MediaObjects/41467_2026_72857_MOESM1_ESM.pdf) was text-accessible. Selected baseline, fixture and before/after-comparison captions (Figures 2, 7 and 10) were screened; figure pixels, remaining analyses, videos, their separate descriptions, source data and peer review remain unreviewed.
+- Future scope is independently prepared nonliving specimens in qualified enclosed mechanical-testing services, retaining treatment provenance, specimen identity and loading history. Cycles are not independent specimens, and run-outs are not measured failure times. Laser shock processing, heating, machining, chemical polishing and ion-beam preparation are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared liquid-crystal optical observation histories (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Self-charged polar nematic monopoles and hybrid topological states: intertwining and domain integration](https://www.nature.com/articles/s41467-026-73557-4) | Nature Communications / 2026 | 10.1038/s41467-026-73557-4 | Prepared-sample tracking and repeated polarization-resolved imaging suggest a long-horizon optical measurement task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 6843, published 26 May 2026; version of record 22 July 2026. Selected Results and optical-characterization Methods were screened, not the complete paper.
+- The [23-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73557-4/MediaObjects/41467_2026_73557_MOESM1_ESM.pdf) was text-accessible. The contents and selected captions for Figures 1–3 were screened: time-lapse observations, analyzer-dependent comparisons and reconstructed orientations. Figure pixels, remaining analyses, supplementary movies, external data and peer review remain unreviewed.
+- Future scope is independently prepared nonliving samples in qualified optical services, retaining sample identity, observation times and imaging configuration. Material synthesis, solvent processing, photolithography, heating and laser manipulation are excluded. No protocol, assets or converted task is supplied. Numerical code is not publicly available according to the article; no code access or reproducibility claim is made.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared-nanoscroll microscopy comparisons (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strain-engineered fabrication of high-density aligned graphene-based nanoscrolls via UV-tunable adhesive tapes](https://www.nature.com/articles/s41467-026-78264-8) | Nature Communications / 2026 | 10.1038/s41467-026-78264-8 | Prepared-specimen tracking, registered microscopy and reference comparisons suggest a long-horizon metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 10647, published and version of record 21 October 2026. Selected characterization Results and Methods were screened, not the complete paper.
+- The [31-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-78264-8/MediaObjects/41467_2026_78264_MOESM1_ESM.pdf) was text-accessible. Selected captions for Figures 5, 6, 8, 9 and 14 were screened. Multiple magnifications or positions do not establish independent specimens; the released-tape strain map is explicitly not a residual-strain measurement. The SI retains a different title from the publisher article. Figure pixels, remaining analyses, movies, reporting summary, source-data archive and peer review remain unreviewed.
+- Future scope is independently prepared nonliving specimens in qualified microscopy services, retaining sample identity, preparation provenance and registered observation positions. Synthesis, UV exposure, solvent processing, heating, intercalation, electrical breakdown and ion-beam preparation are excluded. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: mineral-surface microscopy histories (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ice nucleation on microcline (001) in the absence of active sites](https://www.nature.com/articles/s41467-026-76548-7) | Nature Communications / 2026 | 10.1038/s41467-026-76548-7 | Prepared-mineral tracking, repeated registered imaging and reference-surface comparisons suggest a long-horizon microscopy task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 8652, published and version of record 25 August 2026. Selected Results and AFM-measurement Methods were screened, not the complete paper.
+- The [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76548-7/MediaObjects/41467_2026_76548_MOESM1_ESM.pdf) was text-accessible. Notes 1–3 were screened. Specimens, observation sites, cycles and detected clusters must remain distinct; selection exclusions and common imaging regions require explicit records. Figure pixels, remaining analyses, reporting summary, supplementary/source-data archives and peer review remain unreviewed.
+- Future scope is prepared nonliving mineral specimens in qualified enclosed microscopy services, retaining specimen identity, scan direction and observation history. Cutting, cleavage, heating, cryogen handling, vacuum-system operation and water-vapor dosing are excluded from the proposed robot-facing scope. No protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: scattering-scene measurement comparisons (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Creation of a computational space with model-free metasurface neural network](https://www.nature.com/articles/s41467-026-74554-3) | Nature Communications / 2026 | 10.1038/s41467-026-74554-3 | Tracking prepared scattering scenes, probe positions and repeated reference measurements suggests a long-horizon apparatus-and-metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 7807, published 20 June 2026 and version of record 5 August 2026. Selected experimental-focusing Results and Methods were screened, not the complete paper. The numerical pattern-recognition branch is distinct from the physical focusing experiments.
+- The [13-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74554-3/MediaObjects/41467_2026_74554_MOESM1_ESM.pdf) was text-accessible. Notes 3–7 were screened for experimental context and limits. Scene identity, probe geometry, configuration history and measurement timing require separate records; repeated optimization steps do not establish independent apparatus preparations. The SI title begins “Creating” rather than “Creation”. Figure pixels, remaining analyses, external datasets, code and peer review remain unreviewed.
+- Future scope is prepared nonliving scatterers and reference scenes in qualified enclosed measurement services. Human-subject localization, tracking people, RF source operation, circuit fabrication and live electrical handling are excluded from the proposed robot-facing scope. No operating protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared microstructure characterization (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Single-exposure holographic lithography of ultra-high aspect-ratio microstructures](https://www.nature.com/articles/s41467-026-73975-4) | Nature Communications / 2026 | 10.1038/s41467-026-73975-4 | Coordinating prepared-specimen identification, alignment, time-resolved observations and mechanical comparison suggests a long-horizon materials-metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 7175, published 4 June 2026 and version of record 24 July 2026. Selected capillary-flow and micro-compression Results, Fig. 6 captions and characterization Methods were screened, not the complete paper. These physical measurements are distinct from numerical fabrication-limit analyses.
+- The [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73975-4/MediaObjects/41467_2026_73975_MOESM1_ESM.pdf) was text-accessible. Note S15 and captions for S14–S15 were screened. Contact asymmetry and irreversible deformation make specimen orientation and loading history important provenance fields; consecutive observations are not independent specimens. Figure pixels, movies, remaining supplementary analyses and peer review remain unreviewed. This is selected-source screening, not a full-text or supplement audit.
+- Future scope is prepared nonliving lattices and qualified characterization services. Lithography, laser exposure, resist processing, coating, vacuum-system operation and live electrical handling are excluded from the proposed robot-facing scope. No operating protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared-material rheology (2026-10-23)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Viscoelasticity-guided covalent assembly of atomically precise nanoclusters via nitrene-mediated two-photon lithography](https://www.nature.com/articles/s41467-026-76504-5) | Nature Communications / 2026 | 10.1038/s41467-026-76504-5 | Prepared-specimen tracking, reference checks and repeated mechanical comparisons suggest a long-horizon materials-metrology task | Selected publisher HTML and supplementary PDF text accessible; OA |
+
+- **CANDIDATE only.** Metadata confirms volume 17, article 9843, published 17 August 2026 and version of record 16 September 2026. Selected rheology Results and rheological-testing Methods were screened, not the complete paper. Physical measurements are distinct from molecular-dynamics calculations and fabrication claims.
+- The [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76504-5/MediaObjects/41467_2026_76504_MOESM1_ESM.pdf) was text-accessible. Captions for Figs. 3–4 and 24–25 were screened. The Fig. 4 caption uses shear-rate terminology whereas the main text describes frequency sweeps; that distinction requires clarification before conversion. Three indentation locations are not three independent specimen preparations. Figure pixels, remaining analyses, videos, supplementary data, source-data spreadsheet, reporting summary and peer review remain unreviewed.
+- Future scope is prepared nonliving specimens and qualified mechanical-characterization services. Sample identity, conditioning history, instrument references and measurement repeats would need explicit records. Nanocluster synthesis, reactive-linker chemistry, lithography, laser exposure, solvent processing, heating and live electrical work are excluded from the proposed robot-facing scope. No operating protocol, assets or converted task is supplied.
+- Access checked on 2026-10-23. Publisher HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; only citation metadata and original screening commentary are added.
+
+## Additional candidate: prepared hydrogel aging measurements (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Multi-layered marble for hydrogel encapsulation](https://www.nature.com/articles/s41467-026-70955-6) | Nature Communications / 2026 | 10.1038/s41467-026-70955-6 | Prepared, nonliving specimens could support a long-horizon sequence of sample tracking, scheduled weighing, imaging and mechanical comparison. | Open-access publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** Nature Communications **17, 4375 (2026)**; published **23 March 2026**, version of record **15 May 2026**. Selected anti-dehydration/mechanics results, Figure 3–4 captions and mechanical-measurement methods were screened. This is experimental work, not a converted robot task.
+- The [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70955-6/MediaObjects/41467_2026_70955_MOESM1_ESM.pdf) was text-accessible; selected captions S4–S6 and S15 were screened. S4–S5 identify representative images from three independent experiments; images themselves were not inspected. Remaining material, reporting summary and source-data workbook were not fully reviewed; no complete reproducibility audit is claimed.
+- Proposed scope starts with qualified, prepared specimens and guarded measurement equipment. Fabrication chemistry, loose-particle handling, solvent washing, ultraviolet/high-temperature exposure, cell culture and microreactor demonstrations are excluded. Specimen identity and repeat structure would need explicit records before any conversion.
+- Access checked on 2026-10-24. HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; citation metadata and original screening commentary only, no adapted figures, protocols or assets.
+
+## Additional candidate: prepared-composite recovery tracking (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A universal strategy towards self-healing materials via dynamic interfacial liquid metal coordination](https://www.nature.com/articles/s41467-026-69609-4) | Nature Communications / 2026 | 10.1038/s41467-026-69609-4 | Prepared composite coupons offer a possible long-horizon sequence of specimen registration, scheduled recovery observation, microscopy and comparative mechanical measurements. | Publisher HTML and supplementary PDF text accessible; selected sections screened; OA |
+
+- **CANDIDATE only.** Bibliography verified as *Nature Communications* **17**, 2815 (2026), published **16 February 2026**, version of record **26 March 2026**. Selected Results, Figure 2 caption and Methods/instrument descriptions were screened, not a complete paper reading.
+- The official [43-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69609-4/MediaObjects/41467_2026_69609_MOESM1_ESM.pdf) was accessible as extracted text. Selected mechanical/self-healing methods and Figures S4–S7 captions were screened; remaining sections, figure images and source-data spreadsheet were not fully reviewed.
+- Future scope is limited to qualified, already prepared nonliving specimens and guarded measurement fixtures. Metal processing, polymer synthesis, solvents, specimen cutting, electrochemistry, thermal-shock campaigns and powered-computer demonstrations are outside this candidate's proposed scope. No procedure, asset or converted task is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**; this entry supplies bibliographic metadata and original screening commentary, not redistributed or adapted article content.
+
+## Additional candidate: prepared smartphone-sensor calibration (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Quantitative, high-sensitivity measurement of liquid analytes using a smartphone compass](https://www.nature.com/articles/s41467-024-47073-2) | Nature Communications / 2024 | 10.1038/s41467-024-47073-2 | Prepared-actuator positioning, benign aqueous-standard exchange, settling checks, repeated magnetometer readout and baseline recovery offer a potential long-horizon calibration task linking sample identity, fixture geometry and measurement history. | Open-access publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** Bibliography verified as *Nature Communications* **15**, 2801 (2024), published **30 March 2024**. Selected platform-design, characterization, calibration and noise results, associated captions, discussion limitations and main Methods were screened; no complete paper reading or task conversion is claimed.
+- The official [35-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-47073-2/MediaObjects/41467_2024_47073_MOESM1_ESM.pdf) was accessible as extracted text. Selected platform notes and system-characterization text/captions for Figures S6–S8 were screened. These distinguish the development fixture from the proposed compact attachment and document background-field checks and slow baseline recovery. Remaining sections, figure images, movie, source-data workbook and peer-review file were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving sensor strips, a secured fixture and benign aqueous standards. Monomer synthesis, particle processing, curing, magnetization, biological samples and diagnostic use are excluded. Magnetic interference from robotic equipment, phone-specific positioning, carryover and recovery criteria require validation before conversion. No experimental procedure, asset or converted task is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY 4.0**. HTML was readable despite a cookie-error URL marker. This entry supplies bibliographic metadata and original screening commentary only.
+
+## Additional candidate: prepared-hydrogel swelling metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ionic weaving network enables mechanically robust smart hydrogels with anti-swelling and anti-freezing capabilities](https://www.nature.com/articles/s41467-026-76165-4) | Nature Communications / 2026 | 10.1038/s41467-026-76165-4 | Qualified prepared specimens could support extended sample tracking, scheduled weighing, dimensional imaging and mechanical comparison across water-exposure histories. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** Bibliography verified as *Nature Communications* **17**, 9191 (2026), published **29 July 2026**, version of record **28 August 2026**. Selected mechanical/swelling results, Figure 3 caption and swelling-test Methods were screened; no full-paper reading or task conversion is claimed.
+- The official [32-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76165-4/MediaObjects/41467_2026_76165_MOESM1_ESM.pdf) was text-accessible. Selected captions S18–S21 were screened for thickness comparisons, dimensional stability, leaching and post-immersion mechanics. Figure images were not reliably inspected; remaining material and source-data workbook were not fully reviewed.
+- Future scope requires qualified, already prepared nonliving specimens and guarded metrology. Synthesis, cutting, solvent actuation, cryogenics, puncture/impact tests and human/cell demonstrations are excluded. Specimen qualification, leachate handling and measurement repeatability need review before conversion. No procedure or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Bibliographic metadata and original screening commentary only.
+
+## Additional candidate: prepared-sensor stability metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Eco-sustainable magnetoresistive sensors towards disposable magnetoelectronics](https://www.nature.com/articles/s41467-026-71077-9) | Nature Communications / 2026 | 10.1038/s41467-026-71077-9 | Prepared sensors could support batch registration, scheduled storage checks and repeated electrical comparisons, linking specimen history to instrument records. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 3034 (2026), published **27 March 2026**, version of record **30 March 2026**. Selected device-stability results, Figure 5 caption and electrical/magnetoresistance Methods were screened; not a converted task.
+- The official [40-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71077-9/MediaObjects/41467_2026_71077_MOESM1_ESM.pdf) was text-accessible. Table 4 and selected Figures S3–S5 captions/text were screened for batch reproducibility and storage effects. Main Methods specify 90% relative humidity whereas S5 specifies 95%; this discrepancy remains unresolved. Figure images, remaining sections, movies, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving sensors and guarded metrology fixtures. Particle processing, thermal oxidation, solvent work, recycling, biological testing, wearables and medical applications are excluded. Magnetic interference, fixture qualification and storage definitions require review before conversion. No procedure or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY 4.0**. HTML was readable despite its cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared-sorbent aging metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Long-term stability of moisture-capturing hydrogels by preventing metal-mediated degradation](https://www.nature.com/articles/s41467-026-71987-8) | Nature Communications / 2026 | 10.1038/s41467-026-71987-8 | Qualified prepared specimens could support scheduled weighing, dimensional checks, guarded mechanical comparisons and interruption-aware acquisition records across extended aging campaigns. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 3783 (2026), published/version of record **7 May 2026**. Selected intrinsic-stability results, Figure 2 caption, stability-measurement Methods and cyclic-test Methods were screened; no conversion is claimed.
+- The official [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71987-8/MediaObjects/41467_2026_71987_MOESM1_ESM.pdf) was text-accessible. Selected Note S1 swelling text and Note S8/Figures S11–S13 captions were screened. Destructive mechanical cohorts differ from the repeatedly logged cyclic specimen. Acquisition interruptions are documented; desorbed water was not collected. Figure images, remaining sections, source data and peer review were not fully reviewed.
+- Future scope requires qualified, prepared nonliving specimens and guarded metrology. Synthesis, corrosion/degradation chemistry, powder handling, heated processing and drinking-water production or safety claims are excluded. Specimen custody, waste handling and interruption recovery need validation before conversion. No procedure or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. This entry provides citation metadata and original screening commentary, not redistributed or adapted article content.
+
+## Additional candidate: prepared-panel optical durability metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A high-strength radiative cooling biocomposite via hierarchical crystalline nanostructuring](https://www.nature.com/articles/s41467-026-72439-z) | Nature Communications / 2026 | 10.1038/s41467-026-72439-z | Prepared panels could support specimen registration, scheduled exposure checks and repeated optical comparisons, linking handling histories to instrument records. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 5827 (2026), published **28 April 2026**, version of record **3 July 2026**. Selected optical and durability Characterizations were screened; no conversion is claimed.
+- The official [63-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72439-z/MediaObjects/41467_2026_72439_MOESM1_ESM.pdf) was text-accessible. Selected Note 2 and Figures 19, 21–22 and 36 captions were screened. Outdoor measurements must remain distinct from building-energy simulations. Figure images, remaining sections, movie, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving panels and guarded optical metrology. Chemical processing, nanoparticle handling, coating deposition, accelerated UV exposure and biological degradation are excluded. Exposure records, contamination control and calibration require review before conversion. No procedure or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared dual-sensor cross-interference metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Flexible, large-area, recyclable, decoupled dual sensing of temperature and pressure enabled by mechanically-electrically hybrid networks](https://www.nature.com/articles/s41467-026-71572-z) | Nature Communications / 2026 | 10.1038/s41467-026-71572-z | Prepared sensor arrays could support specimen registration, paired thermal/mechanical comparisons, repeated electrical readout and tracking of cross-interference across units and batches. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 5043 (2026), published **13 April 2026**, version of record **8 June 2026**. Selected sensing Results, Figure 3 caption and mechanical/electrical measurement Methods were screened. The body describes 100 cycles while the Figure 3 caption states 1000; this discrepancy remains unresolved.
+- The official [39-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71572-z/MediaObjects/41467_2026_71572_MOESM1_ESM.pdf) was text-accessible. Selected Figures S23 and S27–S31 captions were screened. Its title uses “Large-scale” rather than the article’s “large-area”; the citation follows the article. Unit, batch and repeated-measurement identities must remain distinct. Figure images, remaining sections, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving sensors and guarded metrology fixtures. Particle processing, chemical synthesis, solvent recycling, battery testing and human-subject demonstrations are excluded. Calibration, containment and cycle-count reconciliation require review before conversion. No procedure, conversion or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared multilayer-interconnect fatigue metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Three-dimensional printing of multilayer stretchable electronics with inclined interconnect accesses](https://www.nature.com/articles/s41467-026-73989-y) | Nature Communications / 2026 | 10.1038/s41467-026-73989-y | Prepared specimens could support identification, fixture registration, deformation-history tracking and synchronized electrical/optical comparisons across interconnect designs. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 8921 (2026), published **2 June 2026**, version of record **25 August 2026**. Selected mechanical/electrical Results and Methods were screened. Printed three-layer and punched bilayer electrical-test specimens must not be treated as architecture-matched controls.
+- The official [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73989-y/MediaObjects/41467_2026_73989_MOESM1_ESM.pdf) was text-accessible. Selected Figures 18–21 captions were screened for specimen configurations and deformation-dependent resistance. Screenshot requests for PDF pages 22, 23 and 25 returned cache-miss errors; figure pixels remain unverified. Remaining sections, videos, source data, reporting summary and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving specimens and guarded metrology fixtures. Printing, chemical processing, exposed liquid-metal handling, wireless-power demonstrations and human testing are excluded. Calibration, containment, specimen matching and stopping criteria require review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared flexible-circuit bending metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Machine learning-assisted design of carbon nanotube edge computing circuits for monolithic epidermal systems](https://www.nature.com/articles/s41467-026-74053-5) | Nature Communications / 2026 | 10.1038/s41467-026-74053-5 | Prepared devices could support specimen registration, deformation-history tracking and repeated electrical comparisons, maintaining links between device identities and measurement records. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 7358 (2026), published **10 June 2026**, version of record **27 July 2026**. Selected bending Results and electrical-characterization Methods were screened. Device populations, repeated measurements and simulated circuit outputs must remain distinct.
+- The official [40-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74053-5/MediaObjects/41467_2026_74053_MOESM1_ESM.pdf) was text-accessible. Selected Figures 9–10 and 15–16 captions were screened. The supplement uses an earlier title; the citation follows the article. Figure images, remaining sections, video, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving devices and guarded metrology fixtures. Nanotube processing, chemical synthesis, microfabrication, exposed liquid-metal handling and human testing are excluded. Calibration, specimen matching and stopping criteria require review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared lignin-cellulose moisture-aging metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Composites of covalently linked lignin and cellulose from one feedstock](https://www.nature.com/articles/s41467-026-77206-8) | Nature Communications / 2026 | 10.1038/s41467-026-77206-8 | Prepared coupons could support tracked humidity exposure, repeated weighing, wetting observations and mechanical comparisons, linking specimen histories across instruments. | OA main and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 9145 (2026), published/version of record **27 August 2026**. Selected durability Results and mechanical, wettability and humidity-aging Methods were screened. Repeated mass observations and subsequent destructive tensile measurements require distinct records; nominal chamber humidity is not measured specimen moisture.
+- The official [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77206-8/MediaObjects/41467_2026_77206_MOESM1_ESM.pdf) was text-accessible. Selected Figures S11 and S13 captions were screened. Figure images, remaining sections, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving coupons. Chemical synthesis, fractionation, hot pressing, composting and biodegradation claims are excluded. Calibration, sample allocation and safe fixtures need review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-24**; publisher license **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
