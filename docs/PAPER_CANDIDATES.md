@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **330**.
+Last screened: **2026-10-24**. Candidate count: **331**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3333,3 +3333,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77206-8/MediaObjects/41467_2026_77206_MOESM1_ESM.pdf) was text-accessible. Selected Figures S11 and S13 captions were screened. Figure images, remaining sections, source data and peer review were not fully reviewed.
 - Future scope starts with qualified, prepared nonliving coupons. Chemical synthesis, fractionation, hot pressing, composting and biodegradation claims are excluded. Calibration, sample allocation and safe fixtures need review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-24**; publisher license **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared multimodal Hall-sensor metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Stretchable multimodal deformation sensor with self-mode recognition by a single Hall sensor](https://www.nature.com/articles/s41467-026-75632-2) | Nature Communications / 2026 | 10.1038/s41467-026-75632-2 | Prepared sensors could support specimen registration, fixture changes, deformation calibration and repeated measurements, linking mechanical histories with magnetic readouts. | OA main and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 8690 (2026), published **15 July 2026**, version of record **20 August 2026**. Selected sensor-characterization Results and calibration Methods were screened. Mode classification is not equivalent to quantitative separation of combined deformations; data are available on request rather than as an openly verified dataset.
+- The official [47-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75632-2/MediaObjects/41467_2026_75632_MOESM1_ESM.pdf) was text-accessible. Selected Note 6 and Figures S17–S19 captions were screened. Timing estimates are sampling-limited, and note-to-figure references need reconciliation before conversion. Figure images, remaining sections, movies and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving sensors and guarded fixtures. Particle processing, magnetization, device fabrication, human testing, electrical muscle stimulation and powered robot demonstrations are excluded. Calibration, specimen matching and stopping criteria require review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-24**; publisher license **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
