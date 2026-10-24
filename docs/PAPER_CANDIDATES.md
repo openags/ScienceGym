@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **320**.
+Last screened: **2026-10-24**. Candidate count: **321**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3223,3 +3223,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70955-6/MediaObjects/41467_2026_70955_MOESM1_ESM.pdf) was text-accessible; selected captions S4–S6 and S15 were screened. S4–S5 identify representative images from three independent experiments; images themselves were not inspected. Remaining material, reporting summary and source-data workbook were not fully reviewed; no complete reproducibility audit is claimed.
 - Proposed scope starts with qualified, prepared specimens and guarded measurement equipment. Fabrication chemistry, loose-particle handling, solvent washing, ultraviolet/high-temperature exposure, cell culture and microreactor demonstrations are excluded. Specimen identity and repeat structure would need explicit records before any conversion.
 - Access checked on 2026-10-24. HTML remained readable despite its cookie-error URL marker. License: CC BY-NC-ND 4.0; citation metadata and original screening commentary only, no adapted figures, protocols or assets.
+
+## Additional candidate: prepared-composite recovery tracking (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A universal strategy towards self-healing materials via dynamic interfacial liquid metal coordination](https://www.nature.com/articles/s41467-026-69609-4) | Nature Communications / 2026 | 10.1038/s41467-026-69609-4 | Prepared composite coupons offer a possible long-horizon sequence of specimen registration, scheduled recovery observation, microscopy and comparative mechanical measurements. | Publisher HTML and supplementary PDF text accessible; selected sections screened; OA |
+
+- **CANDIDATE only.** Bibliography verified as *Nature Communications* **17**, 2815 (2026), published **16 February 2026**, version of record **26 March 2026**. Selected Results, Figure 2 caption and Methods/instrument descriptions were screened, not a complete paper reading.
+- The official [43-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69609-4/MediaObjects/41467_2026_69609_MOESM1_ESM.pdf) was accessible as extracted text. Selected mechanical/self-healing methods and Figures S4–S7 captions were screened; remaining sections, figure images and source-data spreadsheet were not fully reviewed.
+- Future scope is limited to qualified, already prepared nonliving specimens and guarded measurement fixtures. Metal processing, polymer synthesis, solvents, specimen cutting, electrochemistry, thermal-shock campaigns and powered-computer demonstrations are outside this candidate's proposed scope. No procedure, asset or converted task is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**; this entry supplies bibliographic metadata and original screening commentary, not redistributed or adapted article content.
