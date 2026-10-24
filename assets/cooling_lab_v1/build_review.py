@@ -103,6 +103,7 @@ def review():
         'LAB-08':[]}
     evidence['LAB-02']+=['assets/realsense_cameras_v1/model.json','assets/realsense_cameras_v1/VERIFICATION.json']
     evidence['LAB-02']+=['assets/omega_5tc_v1/model.json','assets/omega_5tc_v1/VERIFICATION.json']
+    evidence['LAB-02']+=['assets/unitree_g1_inspire_v1/SOURCE.json','assets/unitree_g1_inspire_v1/VERIFICATION.json','assets/unitree_g1_inspire_v1/selection.json']
     # Readiness is derived from the newly reconciled inventory, before pinning.
     from build_readiness import build as build_readiness
     build_readiness()

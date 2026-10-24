@@ -2,15 +2,17 @@
 
 **Long-horizon robot research tasks derived from scientific papers.**
 
-**Execution target, updated 23 October 2026:** a complete Unitree humanoid
-using its own two arms and Unitree dexterous hands performs every required
-hands-on operation. The current hand selection is Dex5-S Pro from the latest
-officially listed Dex5-S family; body/hand mounting and simulation integration
-remain unqualified. See the [embodiment requirements](docs/PROJECT_VISION.md#humanoid-execution-target).
-Existing Panda recordings are historical component tests and do not establish
-humanoid manipulation. The official H2 body now has a verified standing and
-unloaded bilateral wrist-motion recording; no humanoid manipulation episode
-has yet been validated.
+**Execution target, updated 24 October 2026:** a complete Unitree humanoid
+uses its own arms and articulated hands for all required manipulation. The
+owner permits publicly supported hands from other manufacturers. The selected
+asset-integration candidate is **G1 29DoF rev 1.0 + Inspire FTP**; its official
+integrated URDF and all 93 referenced meshes are available for inspection.
+See the [resource selection](docs/pilots/HUMANOID_RESOURCE_SELECTION.md) and
+[new model preview](viewer/robot_resource_review_v1/index.html).
+The laboratory still displays the previous H2 and separate Dex5-S candidates;
+its spatial evidence does not qualify G1. Historical Panda and privileged-state
+H2 recordings do not establish sensor-only humanoid manipulation. No humanoid
+manipulation branch has yet been validated.
 
 ScienceGym studies how to translate a paper's reported experimental program into tasks for an embodied research agent: preparing materials, moving samples between instruments, assembling apparatus, running controls and repeated measurements, preserving records, recovering from failures, and leaving the laboratory in a defined final state.
 
@@ -40,14 +42,14 @@ access and safe use. See the [scene review gates](docs/contributing/REVIEW_CHECK
 and [pilot status](docs/pilots/DIRECTIONAL_COOLING.md#current-focus).
 
 The [laboratory and asset review page](viewer/lab_review_v1/index.html) now
-contains a physical-scale scene with four zones, 19 device/body instances,
+contains a physical-scale scene with four zones, 37 placed asset instances,
 an enclosed laboratory with windows, open double doors, a panel ceiling,
-lighting and cabinet benches, separately identified authored fixtures, a dimensioned floor
+lighting and cabinet benches, separately identified authored facilities, a dimensioned floor
 plan, source links, surface-to-surface measurement and four device opening
 states. Three new outdoor-instrument reconstructions use manufacturer manuals
 and dimension drawings. All assets and the whole scene remain **unaccepted**;
-missing hands, equipment and infrastructure stay visible in the 60-row
-requirements inventory. The 84 layout checks and 401 recorded H2 body-pose
+missing equipment, new robot installation and infrastructure stay visible in the 66-row
+resource inventory (including three previous robot/hand references). The 126 layout checks and 401 recorded H2 body-pose
 measurements are bounded geometric evidence, not full-body operation or safety
 qualification. The default 1.65 m interior viewpoint supports drag-to-look and
 arrow-key/WASD movement; cutaway and plan views remain available for layout
@@ -64,9 +66,9 @@ The [Unitree humanoid workbench](simulation/humanoid_v1/index.html) shows the
 official H2 meshes, a continuous 20-second physics recording and five body
 foundation test cases. Both feet support the floating body through contact;
 recorded motor commands independently reproduce the complete trajectory.
-Dex5-S Pro integration is blocked on the exact left/right articulated models,
-inertias, limits and wrist interface. Original rigid H2 wrist meshes do not
-represent the selected hands. See the [implementation and reproduction
+This historical H2 record reads privileged state. The former Dex5-S integration
+is superseded by the G1/Inspire asset selection; original H2 wrist meshes and
+previous body evidence do not represent or qualify the new hands. See the [implementation and reproduction
 instructions](simulation/cooling_v1/README.md#unitree-h2-body-foundation).
 Run `python simulation/cooling_v1/serve.py --port 8769`, then open
 `http://localhost:8769/simulation/humanoid_v1/index.html`.

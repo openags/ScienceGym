@@ -21,8 +21,17 @@ class PilotPolicyTests(unittest.TestCase):
     def test_green_checks_cannot_authorize_manipulation(self):
         self.policy['new_manipulation_development_allowed']=True
         with self.assertRaisesRegex(ValueError,'acceptance'):validate_policy(self.policy,self.scene)
-    def test_substitute_hand_rejected(self):
+    def test_owner_authorized_hand_selection_allowed(self):
         self.policy['robot']['alternate_hand_substitution_allowed']=True
-        with self.assertRaisesRegex(ValueError,'substitution'):validate_policy(self.policy,self.scene)
+        validate_policy(self.policy,self.scene)
+    def test_non_unitree_body_rejected(self):
+        self.policy['robot']['body_manufacturer']='Other'
+        with self.assertRaisesRegex(ValueError,'Unitree'):validate_policy(self.policy,self.scene)
+    def test_different_hand_cannot_reuse_provenance(self):
+        self.policy['robot']['hands']=['Inspire DFQ left','Inspire DFQ right']
+        with self.assertRaisesRegex(ValueError,'provenance'):validate_policy(self.policy,self.scene)
+    def test_silent_model_relabeling_rejected(self):
+        self.policy['robot']['silent_model_relabeling_allowed']=True
+        with self.assertRaisesRegex(ValueError,'relabeling'):validate_policy(self.policy,self.scene)
 
 if __name__=='__main__':unittest.main()

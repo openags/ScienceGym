@@ -13,7 +13,8 @@ def run(script,*args):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--browser');parser.add_argument('--url',default='http://127.0.0.1:8769/viewer/lab_review_v1/index.html')
     a=parser.parse_args()
-    for script in ['assets/unitree_dex5s_reconstruction_v1/build.py',
+    for script in ['assets/unitree_g1_inspire_v1/audit.py',
+      'assets/unitree_dex5s_reconstruction_v1/build.py',
       'assets/unitree_dex5s_reconstruction_v1/validate.py',
       'assets/realsense_cameras_v1/build.py','assets/realsense_cameras_v1/validate.py',
       'assets/omega_5tc_v1/build.py','assets/omega_5tc_v1/validate.py',

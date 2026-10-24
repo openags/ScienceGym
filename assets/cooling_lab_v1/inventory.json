@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "scene_draft_inventory_pending_completeness_review",
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "paper_doi": "10.1038/s41467-018-07293-9",
   "source_inventory": {
     "path": "tasks/directional_cooling_operations_v3/resources.json",
@@ -9,8 +9,8 @@
   },
   "source_resource_row_count": 43,
   "source_allocation_statement": "Minimum reconstruction: white and black assemblies, identified optical specimens, eight calibrated K probes (two emitters plus six map sensors), two independent 2425 channels/devices for simultaneous heating, one USB-TC can accommodate eight channels; actual instrument quantities and session reuse are supplied inputs.",
-  "required_records": 63,
-  "counts_are": "Requirement rows, not unique physical assets or instances. Compound rows, copies and lifecycle states must still be allocated.",
+  "required_records": 66,
+  "counts_are": "Resource rows, including three superseded embodiment references; not unique physical assets or accepted quantities.",
   "candidate_links_are": "Discovery pointers to current files, not a new review of their appearance or safety. Historic whole-scene candidates require exact subpart bindings.",
   "owner_asset_scene_acceptance": null,
   "whole_lab_scene_exists": true,
@@ -1513,7 +1513,7 @@
     {
       "id": "robot:H2",
       "category": "robot",
-      "label": "Unitree H2 official body; EDU integration candidate",
+      "label": "Unitree H2 official body; EDU integration candidate (previous candidate; reference only)",
       "parent_resource_pointer": null,
       "requirement_basis": "Owner-selected humanoid embodiment",
       "candidate_artifacts": [
@@ -1538,12 +1538,13 @@
           "sha256": "b9f09072d9f7233835b54daf322f35d46ad31a8baadfafdcec4b88a62a15fd73"
         }
       ],
-      "authored_scene_components": []
+      "authored_scene_components": [],
+      "requirement_role": "superseded_embodiment_reference"
     },
     {
       "id": "robot:DEX5_S_PRO_LEFT",
       "category": "robot",
-      "label": "Unitree Dex5-S Pro left hand",
+      "label": "Unitree Dex5-S Pro left hand (previous candidate; reference only)",
       "parent_resource_pointer": null,
       "requirement_basis": "Owner-selected humanoid embodiment",
       "candidate_artifacts": [
@@ -1568,12 +1569,13 @@
           "sha256": "0c1b1cf3cbaeeefe4a6bf81bc2aa1ed3dc3c9ef59fe68dc7f85bb50f27fb88ad"
         }
       ],
-      "authored_scene_components": []
+      "authored_scene_components": [],
+      "requirement_role": "superseded_embodiment_reference"
     },
     {
       "id": "robot:DEX5_S_PRO_RIGHT",
       "category": "robot",
-      "label": "Unitree Dex5-S Pro right hand",
+      "label": "Unitree Dex5-S Pro right hand (previous candidate; reference only)",
       "parent_resource_pointer": null,
       "requirement_basis": "Owner-selected humanoid embodiment",
       "candidate_artifacts": [
@@ -1598,7 +1600,8 @@
           "sha256": "0b9370ad6436c54ee85c7a7300e8be655cb8b21a5d14421e1dcbb927ef78eeb0"
         }
       ],
-      "authored_scene_components": []
+      "authored_scene_components": [],
+      "requirement_role": "superseded_embodiment_reference"
     },
     {
       "id": "facility:ROOM",
@@ -3996,11 +3999,104 @@
       ],
       "authored_scene_components": [],
       "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted."
+    },
+    {
+      "id": "robot:G1_29DOF",
+      "category": "robot",
+      "label": "Unitree G1 29DoF rev 1.0",
+      "source_pointer": null,
+      "source_value": null,
+      "requirement_role": "selected_embodiment",
+      "discovery_status": "official_bundle_downloaded_pending_scene_integration",
+      "candidate_artifacts": [
+        {
+          "path": "assets/unitree_g1_inspire_v1/SOURCE.json",
+          "sha256": "404102fad92fa5ff622dd1b0b8859028ecec5381888c53c59f28f5bbd59780d3"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/VERIFICATION.json",
+          "sha256": "ce8da099682266eb7bcf8f47b779f891c45ab6db49a126a4ea5b9c0998fdf19d"
+        }
+      ],
+      "candidate_scope_note": "One integrated G1/FTP model supplies body and both hand roles. Separate resource rows are not separate full robots. URDF source and geometry audited; laboratory installation and runtime remain unqualified.",
+      "scene_instances": [],
+      "authored_scene_components": [],
+      "scene_placement": "not_placed",
+      "appearance_accepted": false,
+      "completeness_accepted": false,
+      "requirement_basis": "Latest owner instruction: Unitree body, publicly supported hand selection; see pilot_contract.json#/robot and assets/unitree_g1_inspire_v1/selection.json",
+      "asset_acceptance": "not_reviewed",
+      "instance_allocation": {
+        "modeled_instances": 0,
+        "required_instance_count_accepted": false
+      }
+    },
+    {
+      "id": "robot:INSPIRE_FTP_LEFT",
+      "category": "robot",
+      "label": "Inspire FTP left",
+      "source_pointer": null,
+      "source_value": null,
+      "requirement_role": "selected_embodiment",
+      "discovery_status": "official_bundle_downloaded_pending_scene_integration",
+      "candidate_artifacts": [
+        {
+          "path": "assets/unitree_g1_inspire_v1/SOURCE.json",
+          "sha256": "404102fad92fa5ff622dd1b0b8859028ecec5381888c53c59f28f5bbd59780d3"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/VERIFICATION.json",
+          "sha256": "ce8da099682266eb7bcf8f47b779f891c45ab6db49a126a4ea5b9c0998fdf19d"
+        }
+      ],
+      "candidate_scope_note": "One integrated G1/FTP model supplies body and both hand roles. Separate resource rows are not separate full robots. URDF source and geometry audited; laboratory installation and runtime remain unqualified.",
+      "scene_instances": [],
+      "authored_scene_components": [],
+      "scene_placement": "not_placed",
+      "appearance_accepted": false,
+      "completeness_accepted": false,
+      "requirement_basis": "Latest owner instruction: Unitree body, publicly supported hand selection; see pilot_contract.json#/robot and assets/unitree_g1_inspire_v1/selection.json",
+      "asset_acceptance": "not_reviewed",
+      "instance_allocation": {
+        "modeled_instances": 0,
+        "required_instance_count_accepted": false
+      }
+    },
+    {
+      "id": "robot:INSPIRE_FTP_RIGHT",
+      "category": "robot",
+      "label": "Inspire FTP right",
+      "source_pointer": null,
+      "source_value": null,
+      "requirement_role": "selected_embodiment",
+      "discovery_status": "official_bundle_downloaded_pending_scene_integration",
+      "candidate_artifacts": [
+        {
+          "path": "assets/unitree_g1_inspire_v1/SOURCE.json",
+          "sha256": "404102fad92fa5ff622dd1b0b8859028ecec5381888c53c59f28f5bbd59780d3"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/VERIFICATION.json",
+          "sha256": "ce8da099682266eb7bcf8f47b779f891c45ab6db49a126a4ea5b9c0998fdf19d"
+        }
+      ],
+      "candidate_scope_note": "One integrated G1/FTP model supplies body and both hand roles. Separate resource rows are not separate full robots. URDF source and geometry audited; laboratory installation and runtime remain unqualified.",
+      "scene_instances": [],
+      "authored_scene_components": [],
+      "scene_placement": "not_placed",
+      "appearance_accepted": false,
+      "completeness_accepted": false,
+      "requirement_basis": "Latest owner instruction: Unitree body, publicly supported hand selection; see pilot_contract.json#/robot and assets/unitree_g1_inspire_v1/selection.json",
+      "asset_acceptance": "not_reviewed",
+      "instance_allocation": {
+        "modeled_instances": 0,
+        "required_instance_count_accepted": false
+      }
     }
   ],
   "scene_artifact": {
     "path": "assets/cooling_lab_v1/scene.json",
-    "sha256": "25199f59f6ff082dd150f4764ea2368b8863c9e8b069ec41bc7ca0413aa7b581"
+    "sha256": "9d8fb392b8c75b0578ede967a3d63595ff6277b42c03759286d0ef090a51b16d"
   },
   "added_sensor_requirement_rows": 3
 }

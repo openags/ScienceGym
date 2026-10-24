@@ -63,3 +63,10 @@ names follow the asset axes and do not imply a calibrated photographic match.
 The active implementation plan is
 `docs/pilots/DIRECTIONAL_COOLING_IMPLEMENTATION.md`. Existing Panda task inputs
 and privileged-state body tests are historical references only.
+
+The latest selection is G1 29DoF + Inspire FTP, under the owner's Unitree-body /
+open-hand instruction. The lab's H2 and Dex5-S assets remain previous-candidate
+references until the new combination's installation and spatial audit are ready.
+The official integrated candidate can be inspected at
+`viewer/robot_resource_review_v1/index.html`. The 66 inventory rows include
+three superseded robot/hand references; these are not additional required robots.

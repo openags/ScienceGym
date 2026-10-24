@@ -30,17 +30,21 @@ Closed-service abstractions can make an early design inspectable, but their boun
 
 ## Humanoid execution target
 
-The owner's 24 October 2026 implementation choices additionally require a
-sensor-only actor and permit only added cameras and ordinary laboratory tools;
-no added fiducials or robot-specific fixtures. Evidence-based reconstruction
-of the same Dex5-S Pro model is allowed, with explicit uncertainty and unresolved
-critical physical parameters blocking qualification. See the active
-[implementation plan](pilots/DIRECTIONAL_COOLING_IMPLEMENTATION.md) and its
-machine-readable pilot contract. Historical Panda inputs and privileged-state
-body tests do not satisfy these newer choices.
+The owner's latest 24 October 2026 direction retains a **Unitree humanoid
+body**, while authorizing selection of publicly supported hands from any
+manufacturer. Body and hand models are implementation choices, not permanent
+benchmark constraints. The current asset-integration candidate is **G1 29DoF
+rev 1.0 + Inspire FTP left/right**, with an official integrated source bundle.
+See the [resource selection](pilots/HUMANOID_RESOURCE_SELECTION.md),
+[implementation plan](pilots/DIRECTIONAL_COOLING_IMPLEMENTATION.md) and active
+machine-readable pilot contract. The earlier Dex5-S-only restriction is superseded.
 
-The project owner's 23 October 2026 direction selects a complete Unitree
-humanoid with its own arms and Unitree dexterous hands as the final executor.
+The actor must still use robot sensors; only added cameras and ordinary
+laboratory tools are permitted, without added fiducials or robot-specific
+fixtures. Unverified parameters must be labeled, and critical missing physical
+parameters block qualification. Historical Panda inputs and privileged-state
+body tests do not satisfy these choices.
+
 Every required hands-on operation must be performed by that embodiment, with
 explicit single-hand, two-hand, tool-use and supported-transfer actions.
 Manipulation remains the evaluation focus. Standing, reaching and moving
@@ -54,21 +58,15 @@ layout and full-humanoid spatial/safe-use evidence; record the owner's review
 of that revision. Existing paper operations inform required asset interfaces
 and access states during this phase. Follow the [laboratory review gates](contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development).
 
-The current hand selection is a left/right Dex5-S Pro pair. On 23 October 2026,
-the [official Dex5-S page](https://www.unitree.com/Dex5-S/) lists 22 actuated
-joints per hand, tactile sensing for the Pro variant, 1 kg continuous load and
-2 kg peak load per hand. These are manufacturer specifications, not validated
-task capabilities. The hand's continuous limits and actual grasp geometry
-must govern handling; a stronger arm does not raise the hand's load rating.
-
-H2 EDU is the initial body integration candidate. The
-[official H2 page](https://www.unitree.com/H2/) lists seven joints per arm and
-multiple hand options for EDU, but does not establish a verified H2 EDU/Dex5-S
-Pro combination. Exact wrist mounting, electrical/control interfaces, licensed
-left/right models, inertias, joint limits and actuator limits remain to be
-verified before freezing a robot configuration. No substitute hand may be
-silently relabeled as Dex5-S. Product pages alone do not supply a qualified
-simulation model or prove compatibility.
+The previous H2 EDU and Dex5-S Pro reconstructions remain separately identified
+historical candidates in the laboratory review. Their geometry, guessed joints,
+spatial envelopes and body tests do not qualify G1/Inspire. No source model may
+be silently relabeled as another hand or variant. The FTP model's mimic joints
+must be respected; independent command count differs from movable-joint count.
+Official example gains are simulation configuration, not measured actuator
+ratings. Fixed-base or gravity-disabled examples do not establish whole-body
+operation. Exact variant mapping, contact/dynamics, payload, camera installation
+and laboratory reach/clearance remain required before qualification.
 
 Ordinary laboratory tools and fixtures remain available. The humanoid must
 actually retrieve, hold, operate and return hand-held tools, or operate

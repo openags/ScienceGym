@@ -170,14 +170,14 @@ try{
  if(report.scene_sha256!==fetchedHashes.get(folder+'scene.json')||inventory.scene_artifact.sha256!==report.scene_sha256)throw Error('场景版本与几何检查 / 清单记录不一致，请重新生成检查');
  for(const p of readiness.source_artifacts){const url=root+p.path;if(fetchedHashes.has(url)&&fetchedHashes.get(url)!==p.sha256)throw Error('进度记录与场景版本不一致')}
  const policy=await read(folder+'pilot_contract.json');if(fetchedHashes.get(folder+'pilot_contract.json')!==manifest.pilot_contract.sha256||JSON.stringify(policy)!==JSON.stringify(readiness.policy))throw Error('执行约束版本不一致');
- $('pilot-policy').textContent='已确定：宇树人形机器人 + Dex5-S Pro；传感器闭环；仅增加相机和普通工具；不用专用定位标记或机器人专用夹具。资产场景验收后再开发操作序列。';
+ $('pilot-policy').textContent='本体限定宇树，手型按公开资源选择；当前选型：'+policy.robot.body_candidate+' + '+policy.robot.hands.join(' / ')+'。传感器闭环，仅增加相机和普通工具。资产场景验收后再开发操作序列。下方 H2 / Dex5-S 为旧候选参照，尚未替换为 G1。';
  const rc=readiness.counts;$('pilot-counts').textContent=rc.manual_definitions+' 个操作定义已对应到 '+rc.interfaces+' 类接口与资源需求。'+rc.requirement_groups+' 类资源拆出 '+rc.decomposed_component_requirements+' 个待核对组件需求，数量尚未分配完毕。完整人形机器人分支通过 '+rc.qualified_humanoid_branches+' / '+rc.branches+'。';
  for(const item of readiness.hard_dependencies){const d=document.createElement('div');d.className='risk-card';const h=document.createElement('h3');h.textContent=item.label;const p=document.createElement('p');p.textContent=item.detail;d.append(h,p);$('pilot-dependencies').append(d)}
  for(const branch of readiness.branches){const tr=document.createElement('tr');for(const label of [branch.id+' · '+branch.title,branch.manual_step_ids.length+' 项（含共享步骤）','待执行验证']){const td=document.createElement('td');td.textContent=label;tr.append(td)}$('branch-progress').append(tr)}
  $('legacy-conflicts').textContent='以下旧接口仍需按普通工具约束重新绑定：'+readiness.legacy_interface_review.map(x=>x.interface_id).join('、')+'。历史 Panda 配置及读取真值的身体测试不计入本次传感器闭环验收。';
  if(manifest.envelope.body_evidence.sha256!==fetchedHashes.get(folder+'body_envelope.json'))throw Error('H2 空间测量记录与场景版本不一致');
  const handBound=await read(root+manifest.envelope.hand_evidence.path);if(fetchedHashes.get(root+manifest.envelope.hand_evidence.path)!==manifest.envelope.hand_evidence.sha256)throw Error('重建手空间记录版本不一致');
- $('body-envelope').textContent='已有 H2 记录中：'+bodyReport.samples+' 个姿态样本最大本体半径 '+bodyReport.maximum_sampled.radial_extent_m.toFixed(3)+' m。计入重建手关节链的保守范围和暂定 30 mm 腕部余量后，当前检查半径为 '+manifest.envelope.transit_radius_m.toFixed(2)+' m，另加 0.10 m 通道余量。实际安装、相机、携物和行走仍未验证。';
+ $('body-envelope').textContent='已有 H2 记录中：'+bodyReport.samples+' 个姿态样本最大本体半径 '+bodyReport.maximum_sampled.radial_extent_m.toFixed(3)+' m。计入重建手关节链的保守范围和暂定 30 mm 腕部余量后，当前检查半径为 '+manifest.envelope.transit_radius_m.toFixed(2)+' m，另加 0.10 m 通道余量。这份 H2 记录不能作为 G1 的空间依据；G1 的工位可达性、实际安装、相机、携物和行走需重新验证。';
  installRoomLights();
  assetList.push(...manifest.assets);$('asset-count').textContent=assetList.length;
  const present=inventory.items.filter(i=>i.scene_instances?.length||i.authored_scene_components?.length).length;$('inventory-coverage').textContent='部分几何 '+present+'/'+inventory.items.length+' 项；其余 '+(inventory.items.length-present)+' 项尚缺';

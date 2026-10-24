@@ -39,6 +39,13 @@ gates; this is an initial review revision, not an accepted gold-standard release
 
 ## Current focus
 
+The current robot candidate is **Unitree G1 29DoF + Inspire FTP**. The owner
+retains a Unitree body while allowing publicly supported hands from other
+manufacturers. The [official resource selection](HUMANOID_RESOURCE_SELECTION.md)
+and [complete model inspector](../../viewer/robot_resource_review_v1/index.html)
+replace the earlier Dex5-S-only direction. Existing H2 scene geometry and body
+evidence remain explicitly historical until the new installation is reviewed.
+
 The owner's latest instruction establishes **asset and laboratory scene
 acceptance first**. Current work is inventory reconciliation, manufacturer-
 grounded asset reconstruction, indoor/outdoor scene layout, safe-use review
@@ -53,7 +60,7 @@ Use the [laboratory acceptance gates](../contributing/REVIEW_CHECKLIST.md#labora
 The inventory captures 43 existing resource rows plus explicitly authored
 infrastructure/robot requirements; grouped rows still need decomposition and
 instance allocation. A new [interactive laboratory review](../../viewer/lab_review_v1/index.html)
-now places 19 device/body instances in an authored four-zone scene. Original
+now places 37 asset instances in an authored four-zone scene. Original
 geometry supplies benches, shelves, fixtures, carriers, spill containment and
 unqualified extraction/control designs. These are not load-rated commercial
 furniture or certified engineering services. No owner acceptance is recorded.

@@ -1,6 +1,6 @@
 # First-paper humanoid demo implementation
 
-Owner choices fixed on 24 October 2026. This is the active execution plan for
+Owner choices updated on 24 October 2026, including the later open hand selection. This is the active execution plan for
 the Bhatia directional-cooling pilot, not a completion receipt.
 
 ## Completion target
@@ -12,11 +12,14 @@ facts, explicit reconstruction inferences and object lineage. Scientific-result
 agreement and physical-hardware experiments are outside this demo's acceptance.
 
 The machine-readable [pilot contract](../../assets/cooling_lab_v1/pilot_contract.json)
-records three owner decisions: same-model evidence-based Dex5-S Pro
-reconstruction is allowed; the actor must use robot sensors; adaptations are
-limited to added cameras and ordinary laboratory tools. Robot-specific fixtures
-and added fiducials are excluded. Exact H2 EDU / hand installation remains an
-unresolved engineering dependency, not a proven compatible product combination.
+records the latest owner decisions: the body remains Unitree, while publicly
+supported hands from other manufacturers are allowed. Select G1 29DoF rev 1.0
+with Inspire FTP left/right for the next asset integration, based on the
+[official resource audit](HUMANOID_RESOURCE_SELECTION.md). The actor must use
+robot sensors; adaptations remain limited to added cameras and ordinary tools.
+Robot-specific fixtures and added fiducials are excluded. The existing H2 /
+Dex5-S scene is a previous candidate, not a qualification of the new combination.
+Model acquisition and static inspection do not authorize new manipulation work.
 
 ## Delivery order and acceptance
 
@@ -110,3 +113,16 @@ Build and verification instructions are in the
 [laboratory package](../../assets/cooling_lab_v1/README.md). Runtime observation
 isolation, controllers and new manipulation sequences are intentionally deferred
 under the owner's asset-first order; static policy tests are not runtime isolation.
+
+## Current embodiment resource integration
+
+The official G1/Inspire FTP bundle is pinned in `assets/unitree_g1_inspire_v1/`:
+URDF, all 93 referenced meshes, repository licenses, and versioned NVIDIA /
+Unitree configuration references. The asset inspector at
+`viewer/robot_resource_review_v1/index.html` shows the source geometry without
+rescaling. It is a static zero-pose preview, not a standing/balance demonstration.
+The new selection is bound to all 200 manual-step requirements; execution
+bindings remain null. Before moving it into the lab, audit the simulator's
+mimic and actuator mapping, bench reach, hand work volumes, camera mounts and
+carried-object clearance. Do not reuse the H2 spatial certificate or mix FTP
+and DFQ joint names. The owner scene gate remains open.

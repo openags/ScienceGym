@@ -27,7 +27,7 @@ def validate():
             check('source_row_'+row['id'],value==row['source_value'])
         for candidate in row['candidate_artifacts']:
             check('candidate_'+row['id']+'_'+candidate['path'],sha(ROOT/candidate['path'])==candidate['sha256'])
-    check('inventory_count',len(inventory['items'])==inventory['required_records']==63)
+    check('inventory_count',len(inventory['items'])==inventory['required_records']==66)
     check('added_sensor_requirements_explicit',{'robot:HEAD_RGBD','robot:WRIST_RGB_LEFT','robot:WRIST_RGB_RIGHT'}<={r['id'] for r in inventory['items']})
     camera_folder=ROOT/'assets/realsense_cameras_v1'
     camera_record=json.loads((camera_folder/'model.json').read_text())
@@ -48,10 +48,12 @@ def validate():
     policy=json.loads((HERE/'pilot_contract.json').read_text())
     from build_readiness import validate_policy
     validate_policy(policy,scene)
+    check('selected_embodiment_resources_present',set(policy['robot']['resource_ids'])<={r['id'] for r in inventory['items']})
     check('pilot_policy_pinned',scene['pilot_contract']['sha256']==sha(HERE/'pilot_contract.json'))
     readiness=json.loads((HERE/'readiness.json').read_text())
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     check('all_manual_requirements_mapped',len(readiness['manual_step_requirements'])==200)
+    check('manual_requirements_follow_current_embodiment',all(set(policy['robot']['resource_ids'])<=set(s['embodiment_requirements']) and 'robot:H2' not in s['embodiment_requirements'] for s in readiness['manual_step_requirements']))
     check('ordinary_tools_only',not any(c['id'] in ['film_jig','emitter_jig','carrier_0','carrier_1'] for c in scene['authored_components']))
     for state in scene['inspection_states']:
         if state['kind']=='joint_tree':

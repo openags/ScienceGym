@@ -84,7 +84,15 @@ def validate_policy(c,scene):
     if any(p['role'] in ['custom_fixture','custom_carrier','fiducial'] for p in scene['architecture']['part_records']):raise ValueError('disallowed fixture remains in scene')
     if c['new_manipulation_development_allowed'] or scene['manipulation_development_allowed']:raise ValueError('scene acceptance has not been received')
     if c['owner_scene_acceptance'] is not None:raise ValueError('no owner acceptance receipt for this revision')
-    if c['robot']['alternate_hand_substitution_allowed']:raise ValueError('alternate hand substitution')
+    robot=c['robot']
+    if robot['body_manufacturer']!='Unitree':raise ValueError('owner requires a Unitree body')
+    if robot['silent_model_relabeling_allowed']:raise ValueError('silent model relabeling is not allowed')
+    record=(ROOT/robot['selection_record']).resolve()
+    if not record.is_relative_to(ROOT) or not record.is_file():raise ValueError('missing selection provenance')
+    selected=json.loads(record.read_text())
+    if any(robot[k]!=selected[k] for k in ['body_manufacturer','body_candidate','hands','resource_ids']):raise ValueError('model identity differs from selection provenance')
+    source=selected['source_bundle']
+    if sha(ROOT/source['path'])!=source['sha256']:raise ValueError('selection provenance source mismatch')
 
 def build():
     c=json.loads((HERE/'pilot_contract.json').read_text());scene=json.loads((HERE/'scene.json').read_text())
@@ -95,7 +103,7 @@ def build():
     ops=json.loads((TASK/'operations.json').read_text())['operations']
     branches=json.loads((TASK/'branches.json').read_text())['branches']
     requirements=[]
-    selected_minimum={'robot:H2':1,'robot:DEX5_S_PRO_LEFT':1,'robot:DEX5_S_PRO_RIGHT':1,
+    selected_minimum={**{r:1 for r in c['robot']['resource_ids']},
       'robot:HEAD_RGBD':1,'robot:WRIST_RGB_LEFT':1,'robot:WRIST_RGB_RIGHT':1,
       'equipment:COOLER':2,'equipment:SMU':2,'equipment:TC':8}
     for r in inv['items']:
@@ -107,7 +115,7 @@ def build():
           selected_minimum_quantity=selected_minimum.get(r['id']),
           quantity_basis='Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities' if r['id'] in selected_minimum else 'Not yet allocated',
           instance_count_accepted=False,completeness_accepted=False,
-          disposition='ordinary_tool_method_required' if r['id'] in ['tools:film_jig','additional_reconstructed_materials:reversible_emitter_jig'] else 'review_required'))
+          disposition='historical_embodiment_reference' if r.get('requirement_role')=='superseded_embodiment_reference' else 'ordinary_tool_method_required' if r['id'] in ['tools:film_jig','additional_reconstructed_materials:reversible_emitter_jig'] else 'review_required'))
     step_rows=[]
     for op in ops:
         for step in op['reference_steps']:
@@ -117,7 +125,7 @@ def build():
             step_rows.append(dict(step_id=step['id'],operation_id=op['id'],interface_id=iface,action=step['action'],
                 resource_requirements=resources,
                 missing_scene_resources=[r for r in resources if not items[r].get('scene_instances') and not items[r].get('authored_scene_components')],
-                embodiment_requirements=['robot:H2','robot:DEX5_S_PRO_LEFT','robot:DEX5_S_PRO_RIGHT','robot:HEAD_RGBD','robot:WRIST_RGB_LEFT','robot:WRIST_RGB_RIGHT'],
+                embodiment_requirements=c['robot']['resource_ids']+['robot:HEAD_RGBD','robot:WRIST_RGB_LEFT','robot:WRIST_RGB_RIGHT'],
                 humanoid_execution_binding=None,sensor_completion_binding=None,qualified=False))
     relevant_legacy=[]
     for i in interfaces:
@@ -127,7 +135,7 @@ def build():
               disposition='Inspect against ordinary-tool-only contract; old text remains historical, not current runtime authority'))
     branch_rows=[dict(id=b['id'],title=b['title'],manual_step_ids=[s['step_id'] for s in step_rows if s['operation_id'] in b['operation_ids']],
                      status='requirements_only_no_humanoid_execution',qualified_trials=0) for b in branches]
-    source_paths=[HERE/'pilot_contract.json',HERE/'scene.json',HERE/'inventory.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
+    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
     out=dict(schema_version=1,status='asset_phase_incomplete',visibility='author_and_reviewer_only_not_actor_input',
       source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in source_paths],
       policy=c,counts=dict(requirement_groups=len(requirements),decomposed_component_requirements=sum(len(r['components']) for r in requirements),
@@ -135,11 +143,11 @@ def build():
        groups_with_partial_geometry=sum(bool(r['scene_instances'] or r['authored_components']) for r in requirements),
        qualified_humanoid_branches=0),requirements=requirements,manual_step_requirements=step_rows,branches=branch_rows,
       legacy_interface_review=relevant_legacy,
-      hard_dependencies=[dict(id='HAND',label='手的动力学与安装',detail='视觉草稿已有；关节限位、力矩、惯性、触觉与 H2 安装仍未合格'),
+      hard_dependencies=[dict(id='HAND',label='G1 与 Inspire FTP 集成',detail='官方左右手、腕部安装、惯性与联动参数已下载；新组合尚未进入实验室场景，动力学、接触和控制映射待核验。旧 H2 / Dex5-S 不提供新组合的验证结论'),
        dict(id='TOOLS',label='普通工具操作方法',detail='旧薄膜和翻面专用夹具已移除；普通工具方法尚需证明可行'),
        dict(id='RESOURCES',label='全部资源与设备',detail='尚缺其余加工机具、光学附件、接线和消耗品；已建水刀仍缺配套服务，数量分配尚未完成'),
-       dict(id='SPACE',label='完整携物空间',detail='本体静态通道检查不覆盖准确双手、携物、行走与制动'),
-       dict(id='OBSERVATION',label='传感器闭环',detail='三台相机已有官方几何，单独陈列；H2 安装件、线缆与标定仍缺，尚无观察流。历史本体记录读取了真值'),
+       dict(id='SPACE',label='完整携物空间',detail='已有 H2 空间记录不能用于新选 G1；需重新检查双手工位可达性、携物、行走与制动'),
+       dict(id='OBSERVATION',label='传感器闭环',detail='三台相机已有官方几何，单独陈列；所选本体的安装件、线缆与标定仍缺，尚无观察流。历史本体记录读取了真值'),
        dict(id='OWNER',label='场景验收',detail='资产场景尚未具备完整验收条件，没有自动推断你的批准')],
       limitations=['Mapping records design requirements, not implemented controller bindings',
        'Component splitting is an explicit working decomposition, not accepted quantity allocation or complete instance coverage',

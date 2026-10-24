@@ -5,15 +5,19 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/pilot_contract.json",
-      "sha256": "ad5a8084c3f37f7debcb4949fe6e0ede0476fec47a4f3a5c401c9952a152d548"
+      "sha256": "4730cee0edc0231ef8d0d41ad76d12349f1a99ae23210072ac0d1f1f2f412f0b"
+    },
+    {
+      "path": "assets/unitree_g1_inspire_v1/selection.json",
+      "sha256": "326b92a473b6d4e43276f85c1ae010cd0cdc8706fc2f4bad016ede370fb066a1"
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "25199f59f6ff082dd150f4764ea2368b8863c9e8b069ec41bc7ca0413aa7b581"
+      "sha256": "9d8fb392b8c75b0578ede967a3d63595ff6277b42c03759286d0ef090a51b16d"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "eceb4049266c5bd4689bf4e8d57e73ca89a6369035449df8fde31d2d89dae456"
+      "sha256": "e39eabd3fd9c159d411cb34fac1dcd2c482b01a72e7ab1d802ebcfa003eccdba"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -29,28 +33,42 @@
     },
     {
       "path": "assets/cooling_lab_v1/build_readiness.py",
-      "sha256": "a82f7fd1695fdac859f5508679f4d4330e5fb99f3c6f28ed7eb2c9dcc94cb156"
+      "sha256": "73d9b6316b84607a001eb6f3ceab178dc08099b4ef24f8bff622e1a52d474c02"
     }
   ],
   "policy": {
     "schema_version": "sciencegym.humanoid_pilot_contract.v1",
-    "revision": "2026-10-24.sensor_only_ordinary_tools.1",
+    "revision": "2026-10-24.unitree_open_hand_selection.2",
     "paper_doi": "10.1038/s41467-018-07293-9",
-    "authority": "Owner accepted implementation plan and three explicit planning answers on 2026-10-24",
+    "authority": "Owner implementation choices and subsequent instruction: retain Unitree body; choose publicly supported hands without a manufacturer/model lock",
     "phase": "asset_and_scene_development",
     "owner_scene_acceptance": null,
     "new_manipulation_development_allowed": false,
     "robot": {
-      "body_candidate": "Unitree H2 EDU",
+      "body_candidate": "Unitree G1 29DoF rev 1.0",
       "hands": [
-        "Unitree Dex5-S Pro left",
-        "Unitree Dex5-S Pro right"
+        "Inspire FTP left",
+        "Inspire FTP right"
       ],
       "same_model_evidence_based_reconstruction_allowed": true,
       "unverified_dimensions_and_parameters_must_be_labeled": true,
       "critical_missing_parameters_block_qualification": true,
       "body_hand_compatibility_qualified": false,
-      "alternate_hand_substitution_allowed": false
+      "alternate_hand_substitution_allowed": true,
+      "body_manufacturer": "Unitree",
+      "silent_model_relabeling_allowed": false,
+      "selection_record": "assets/unitree_g1_inspire_v1/selection.json",
+      "resource_ids": [
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT"
+      ],
+      "selection_status": "selected_for_asset_integration_not_scene_or_runtime_qualified",
+      "current_scene_reference": {
+        "body": "Unitree H2 EDU",
+        "hands": "Dex5-S Pro reconstructions displayed separately",
+        "qualification_transfer_allowed": false
+      }
     },
     "observations": {
       "actor_mode": "robot_sensors_only",
@@ -138,8 +156,8 @@
     }
   },
   "counts": {
-    "requirement_groups": 63,
-    "decomposed_component_requirements": 136,
+    "requirement_groups": 66,
+    "decomposed_component_requirements": 139,
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
@@ -1352,11 +1370,11 @@
     },
     {
       "resource_id": "robot:H2",
-      "label": "Unitree H2 official body; EDU integration candidate",
+      "label": "Unitree H2 official body; EDU integration candidate (previous candidate; reference only)",
       "components": [
         {
           "id": "robot:H2:component_1",
-          "label": "Unitree H2 official body; EDU integration candidate",
+          "label": "Unitree H2 official body; EDU integration candidate (previous candidate; reference only)",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         }
@@ -1365,19 +1383,19 @@
         "h2"
       ],
       "authored_components": [],
-      "selected_minimum_quantity": 1,
-      "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
+      "selected_minimum_quantity": null,
+      "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,
       "completeness_accepted": false,
-      "disposition": "review_required"
+      "disposition": "historical_embodiment_reference"
     },
     {
       "resource_id": "robot:DEX5_S_PRO_LEFT",
-      "label": "Unitree Dex5-S Pro left hand",
+      "label": "Unitree Dex5-S Pro left hand (previous candidate; reference only)",
       "components": [
         {
           "id": "robot:DEX5_S_PRO_LEFT:component_1",
-          "label": "Unitree Dex5-S Pro left hand",
+          "label": "Unitree Dex5-S Pro left hand (previous candidate; reference only)",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         }
@@ -1386,19 +1404,19 @@
         "dex5s_left"
       ],
       "authored_components": [],
-      "selected_minimum_quantity": 1,
-      "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
+      "selected_minimum_quantity": null,
+      "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,
       "completeness_accepted": false,
-      "disposition": "review_required"
+      "disposition": "historical_embodiment_reference"
     },
     {
       "resource_id": "robot:DEX5_S_PRO_RIGHT",
-      "label": "Unitree Dex5-S Pro right hand",
+      "label": "Unitree Dex5-S Pro right hand (previous candidate; reference only)",
       "components": [
         {
           "id": "robot:DEX5_S_PRO_RIGHT:component_1",
-          "label": "Unitree Dex5-S Pro right hand",
+          "label": "Unitree Dex5-S Pro right hand (previous candidate; reference only)",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         }
@@ -1407,11 +1425,11 @@
         "dex5s_right"
       ],
       "authored_components": [],
-      "selected_minimum_quantity": 1,
-      "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
+      "selected_minimum_quantity": null,
+      "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,
       "completeness_accepted": false,
-      "disposition": "review_required"
+      "disposition": "historical_embodiment_reference"
     },
     {
       "resource_id": "facility:ROOM",
@@ -1875,6 +1893,63 @@
       "instance_count_accepted": false,
       "completeness_accepted": false,
       "disposition": "review_required"
+    },
+    {
+      "resource_id": "robot:G1_29DOF",
+      "label": "Unitree G1 29DoF rev 1.0",
+      "components": [
+        {
+          "id": "robot:G1_29DOF:component_1",
+          "label": "Unitree G1 29DoF rev 1.0",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        }
+      ],
+      "scene_instances": [],
+      "authored_components": [],
+      "selected_minimum_quantity": 1,
+      "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
+      "instance_count_accepted": false,
+      "completeness_accepted": false,
+      "disposition": "review_required"
+    },
+    {
+      "resource_id": "robot:INSPIRE_FTP_LEFT",
+      "label": "Inspire FTP left",
+      "components": [
+        {
+          "id": "robot:INSPIRE_FTP_LEFT:component_1",
+          "label": "Inspire FTP left",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        }
+      ],
+      "scene_instances": [],
+      "authored_components": [],
+      "selected_minimum_quantity": 1,
+      "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
+      "instance_count_accepted": false,
+      "completeness_accepted": false,
+      "disposition": "review_required"
+    },
+    {
+      "resource_id": "robot:INSPIRE_FTP_RIGHT",
+      "label": "Inspire FTP right",
+      "components": [
+        {
+          "id": "robot:INSPIRE_FTP_RIGHT:component_1",
+          "label": "Inspire FTP right",
+          "required_quantity": null,
+          "quantity_status": "not_allocated"
+        }
+      ],
+      "scene_instances": [],
+      "authored_components": [],
+      "selected_minimum_quantity": 1,
+      "quantity_basis": "Owner-selected embodiment / existing minimum paired-apparatus allocation; not historical quantities",
+      "instance_count_accepted": false,
+      "completeness_accepted": false,
+      "disposition": "review_required"
     }
   ],
   "manual_step_requirements": [
@@ -1910,9 +1985,9 @@
         "consumables:consumable_13"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -1953,9 +2028,9 @@
         "consumables:consumable_13"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -1977,9 +2052,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2001,9 +2076,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2028,9 +2103,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2052,9 +2127,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2076,9 +2151,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2103,9 +2178,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2130,9 +2205,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2157,9 +2232,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2186,9 +2261,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2215,9 +2290,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2244,9 +2319,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2273,9 +2348,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2302,9 +2377,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2330,9 +2405,9 @@
         "consumables:consumable_12"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2358,9 +2433,9 @@
         "consumables:consumable_12"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2386,9 +2461,9 @@
         "consumables:consumable_12"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2414,9 +2489,9 @@
         "consumables:consumable_12"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2440,9 +2515,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2466,9 +2541,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2494,9 +2569,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2522,9 +2597,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2550,9 +2625,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2578,9 +2653,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2603,9 +2678,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2631,9 +2706,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2656,9 +2731,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2681,9 +2756,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2704,9 +2779,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2727,9 +2802,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2750,9 +2825,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2771,9 +2846,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2796,9 +2871,9 @@
         "additional_reconstructed_materials:bath_water_and_fill_vessel"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2821,9 +2896,9 @@
         "additional_reconstructed_materials:calibration_block_stock"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2846,9 +2921,9 @@
         "additional_reconstructed_materials:bath_water_and_fill_vessel"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2871,9 +2946,9 @@
         "additional_reconstructed_materials:calibration_block_stock"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2896,9 +2971,9 @@
         "consumables:consumable_11"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2923,9 +2998,9 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2950,9 +3025,9 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -2977,9 +3052,9 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3004,9 +3079,9 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3029,9 +3104,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3050,9 +3125,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3074,9 +3149,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3097,9 +3172,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3122,9 +3197,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3150,9 +3225,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3176,9 +3251,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3202,9 +3277,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3228,9 +3303,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3254,9 +3329,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3280,9 +3355,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3306,9 +3381,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3332,9 +3407,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3358,9 +3433,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3386,9 +3461,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3411,9 +3486,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3434,9 +3509,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3459,9 +3534,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3481,9 +3556,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3509,9 +3584,9 @@
         "equipment:ANGLE_VAR"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3535,9 +3610,9 @@
         "consumables:consumable_11"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3558,9 +3633,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3581,9 +3656,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3603,9 +3678,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3628,9 +3703,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3650,9 +3725,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3673,9 +3748,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3698,9 +3773,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3723,9 +3798,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3748,9 +3823,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3770,9 +3845,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3795,9 +3870,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3820,9 +3895,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3845,9 +3920,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3867,9 +3942,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3895,9 +3970,9 @@
         "equipment:ANGLE_VAR"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3923,9 +3998,9 @@
         "equipment:ANGLE_VAR"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3948,9 +4023,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3973,9 +4048,9 @@
         "equipment:ANGLE_VAR"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -3998,9 +4073,9 @@
         "equipment:ANGLE_VAR"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4023,9 +4098,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4051,9 +4126,9 @@
         "consumables:consumable_12"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4074,9 +4149,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4101,9 +4176,9 @@
         "tools:wire_stripper_and_driver"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4125,9 +4200,9 @@
         "equipment:AMB_RTD"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4148,9 +4223,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4173,9 +4248,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4198,9 +4273,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4223,9 +4298,9 @@
         "consumables:consumable_11"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4248,9 +4323,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4271,9 +4346,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4296,9 +4371,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4319,9 +4394,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4342,9 +4417,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4365,9 +4440,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4388,9 +4463,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4412,9 +4487,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4435,9 +4510,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4460,9 +4535,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4488,9 +4563,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4514,9 +4589,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4538,9 +4613,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4562,9 +4637,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4589,9 +4664,9 @@
         "tools:wire_stripper_and_driver"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4616,9 +4691,9 @@
         "tools:wire_stripper_and_driver"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4642,9 +4717,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4670,9 +4745,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4695,9 +4770,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4718,9 +4793,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4739,9 +4814,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4760,9 +4835,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4781,9 +4856,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4805,9 +4880,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4828,9 +4903,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4853,9 +4928,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4881,9 +4956,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4909,9 +4984,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4936,9 +5011,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4964,9 +5039,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -4992,9 +5067,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5020,9 +5095,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5045,9 +5120,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5068,9 +5143,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5092,9 +5167,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5115,9 +5190,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5140,9 +5215,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5168,9 +5243,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5195,9 +5270,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5221,9 +5296,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5247,9 +5322,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5273,9 +5348,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5300,9 +5375,9 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5328,9 +5403,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5353,9 +5428,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5376,9 +5451,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5401,9 +5476,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5426,9 +5501,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5453,9 +5528,9 @@
         "tools:wire_stripper_and_driver"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5477,9 +5552,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5502,9 +5577,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5527,9 +5602,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5552,9 +5627,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5573,9 +5648,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5598,9 +5673,9 @@
         "additional_reconstructed_materials:calibration_block_stock"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5625,9 +5700,9 @@
         "additional_reconstructed_materials:fine_wire_transition"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5650,9 +5725,9 @@
         "consumables:consumable_11"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5675,9 +5750,9 @@
         "additional_reconstructed_materials:calibration_block_stock"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5696,9 +5771,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5721,9 +5796,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5743,9 +5818,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5768,9 +5843,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5793,9 +5868,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5816,9 +5891,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5838,9 +5913,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5867,9 +5942,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5896,9 +5971,9 @@
         "facility:WASTE"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5923,9 +5998,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5950,9 +6025,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -5974,9 +6049,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6001,9 +6076,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6028,9 +6103,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6055,9 +6130,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6082,9 +6157,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6107,9 +6182,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6132,9 +6207,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6155,9 +6230,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6177,9 +6252,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6202,9 +6277,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6224,9 +6299,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6247,9 +6322,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6272,9 +6347,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6294,9 +6369,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6318,9 +6393,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6341,9 +6416,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6366,9 +6441,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6394,9 +6469,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6420,9 +6495,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6447,9 +6522,9 @@
         "tools:wire_stripper_and_driver"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6471,9 +6546,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6495,9 +6570,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6521,9 +6596,9 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6549,9 +6624,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6574,9 +6649,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6597,9 +6672,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6624,9 +6699,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6651,9 +6726,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6678,9 +6753,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6705,9 +6780,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6732,9 +6807,9 @@
         "facility:FABRICATION"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6775,9 +6850,9 @@
         "consumables:consumable_13"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6799,9 +6874,9 @@
         "facility:CARRIERS"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6822,9 +6897,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6847,9 +6922,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6875,9 +6950,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6903,9 +6978,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6931,9 +7006,9 @@
         "tools:film_jig"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6956,9 +7031,9 @@
         "consumables:consumable_09"
       ],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -6979,9 +7054,9 @@
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
-        "robot:H2",
-        "robot:DEX5_S_PRO_LEFT",
-        "robot:DEX5_S_PRO_RIGHT",
+        "robot:G1_29DOF",
+        "robot:INSPIRE_FTP_LEFT",
+        "robot:INSPIRE_FTP_RIGHT",
         "robot:HEAD_RGBD",
         "robot:WRIST_RGB_LEFT",
         "robot:WRIST_RGB_RIGHT"
@@ -7593,8 +7668,8 @@
   "hard_dependencies": [
     {
       "id": "HAND",
-      "label": "手的动力学与安装",
-      "detail": "视觉草稿已有；关节限位、力矩、惯性、触觉与 H2 安装仍未合格"
+      "label": "G1 与 Inspire FTP 集成",
+      "detail": "官方左右手、腕部安装、惯性与联动参数已下载；新组合尚未进入实验室场景，动力学、接触和控制映射待核验。旧 H2 / Dex5-S 不提供新组合的验证结论"
     },
     {
       "id": "TOOLS",
@@ -7609,12 +7684,12 @@
     {
       "id": "SPACE",
       "label": "完整携物空间",
-      "detail": "本体静态通道检查不覆盖准确双手、携物、行走与制动"
+      "detail": "已有 H2 空间记录不能用于新选 G1；需重新检查双手工位可达性、携物、行走与制动"
     },
     {
       "id": "OBSERVATION",
       "label": "传感器闭环",
-      "detail": "三台相机已有官方几何，单独陈列；H2 安装件、线缆与标定仍缺，尚无观察流。历史本体记录读取了真值"
+      "detail": "三台相机已有官方几何，单独陈列；所选本体的安装件、线缆与标定仍缺，尚无观察流。历史本体记录读取了真值"
     },
     {
       "id": "OWNER",
