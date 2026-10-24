@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **323**.
+Last screened: **2026-10-24**. Candidate count: **324**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3256,3 +3256,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [32-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76165-4/MediaObjects/41467_2026_76165_MOESM1_ESM.pdf) was text-accessible. Selected captions S18–S21 were screened for thickness comparisons, dimensional stability, leaching and post-immersion mechanics. Figure images were not reliably inspected; remaining material and source-data workbook were not fully reviewed.
 - Future scope requires qualified, already prepared nonliving specimens and guarded metrology. Synthesis, cutting, solvent actuation, cryogenics, puncture/impact tests and human/cell demonstrations are excluded. Specimen qualification, leachate handling and measurement repeatability need review before conversion. No procedure or asset is supplied.
 - Access checked **2026-10-24**. Publisher license: **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Bibliographic metadata and original screening commentary only.
+
+## Additional candidate: prepared-sensor stability metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Eco-sustainable magnetoresistive sensors towards disposable magnetoelectronics](https://www.nature.com/articles/s41467-026-71077-9) | Nature Communications / 2026 | 10.1038/s41467-026-71077-9 | Prepared sensors could support batch registration, scheduled storage checks and repeated electrical comparisons, linking specimen history to instrument records. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 3034 (2026), published **27 March 2026**, version of record **30 March 2026**. Selected device-stability results, Figure 5 caption and electrical/magnetoresistance Methods were screened; not a converted task.
+- The official [40-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71077-9/MediaObjects/41467_2026_71077_MOESM1_ESM.pdf) was text-accessible. Table 4 and selected Figures S3–S5 captions/text were screened for batch reproducibility and storage effects. Main Methods specify 90% relative humidity whereas S5 specifies 95%; this discrepancy remains unresolved. Figure images, remaining sections, movies, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving sensors and guarded metrology fixtures. Particle processing, thermal oxidation, solvent work, recycling, biological testing, wearables and medical applications are excluded. Magnetic interference, fixture qualification and storage definitions require review before conversion. No procedure or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY 4.0**. HTML was readable despite its cookie-error URL marker. Citation metadata and original screening commentary only.
