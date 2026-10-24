@@ -9,11 +9,13 @@ official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
 selected OMAX ProtoMAX waterjet. Geometry sliders and the 61 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
-The native G1 D435i now supplies nominal head RGB and ideal geometric depth
+The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
-candidate. Official Unitree STEP brackets and the clamp were converted without
-rescaling. Exact triangle checks guided an above-wrist rotation that clears other links
-at sampled finger poses. Clamp contact remains unresolved, so
+candidate. The original Unitree STEP collar is undersized for this G1 wrist.
+The current derivative retains the official camera arms and replaces both
+collar halves, without rescaling the robot or cameras. Exact triangle checks
+find rigid clearance at sampled finger configurations and all 61 station
+postures. Compliant lining, preload, retention and cables remain unresolved, so
 these attachments are hidden by default and do not count as an installation.
 The viewer can display them for fit review, and records separate attachment
 conflicts at each station pose. D455 remains an optional bench reference.

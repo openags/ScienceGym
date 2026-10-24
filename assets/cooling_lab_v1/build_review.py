@@ -57,7 +57,7 @@ def review():
       ('CHEMICAL','加工与涂覆隔离','独立加工间已放入选定 ProtoMAX 几何，涂覆间有抽排设施设计。','水刀工艺、夹持、安全联锁、供水排液与磨料服务尚未实现；涂料与清洗材料 SDS、抽排和废物设施仍待审查。'),
       ('EGRESS','门、通道与应急','主入口和室外入口有明确通道，门扇打开后占用范围已建模，设置应急控制位置。','真实门系统、应急设备选型与位置、线路、安全功能和所在地要求审查。'),
       ('OUTDOOR','室外测量条件','放置白色和黑色装置、跟踪器及新建辐射传感器候选模型。','日照遮挡与天空视角、天气传感器套件、桅杆固定、防水供电和布线；当前开放地面不是论文屋顶复刻。'),
-      ('FIDELITY','来源与设备真实性','每个导入模型都有来源文件、哈希和单位变换；新资产有厂家图纸位置及推断记录。','全部资产逐项与实物资料对照，补齐未建工具、附件、材料和机器人双手。'),
+      ('FIDELITY','来源与设备真实性','每个导入模型都有来源文件、哈希和单位变换；新资产有厂家图纸位置及推断记录；G1 与 Inspire FTP 双手已采用官方几何。','全部资产逐项与实物资料对照，补齐未建工具、附件和材料，验证手部接触、驱动和载荷参数。'),
       ('SERVICE','维护与设备开闭','Cary 顶盖、Nicolet 上盖、A25 盖板和 U30 外盖可作几何状态检查。','完整安装手册维护距离；Nicolet 内部滑窗、全部线缆弯曲半径与机械连接复核。'),
       ('SITE','场地条件与合规','当前场景是明确标注的新设计虚拟实验室，所有安全结论均保持未验收。','实际场地地点和适用要求、工程人员对结构/电气/通风/消防的专项审查。')]
     items=[dict(id=k,title=title,status='open',status_label='待审查',current_design=current,remaining=remaining) for k,title,current,remaining in risk_rows]
@@ -95,6 +95,12 @@ def review():
     contract['room']['dimensions_m']={'main':[12,10,3.4],'fabrication':[6,5,3.4],'coating':[6,5,3.4],'outdoor':[12,8,None]}
     contract['room']['dimensions_basis']='Authored design proposal, subject to equipment and spatial review'
     contract['current_scene']={'path':'assets/cooling_lab_v1/scene.json','sha256':sha(HERE/'scene.json'),'status':'draft_not_accepted'}
+    policy=json.loads((HERE/'pilot_contract.json').read_text())
+    selected_resources=set(policy['robot']['resource_ids'])
+    embodied_resources=set(next(a for a in scene['assets'] if a['id']=='g1')['resource_ids'])
+    contract['clearance_policy']['current_exact_hand_geometry_available']=selected_resources<=embodied_resources
+    contract['clearance_policy']['current_hand_geometry_scope']='Selected official G1 / Inspire FTP source geometry is present; contact, actuator, payload and full-body motion qualification remain open.'
+    contract['clearance_policy']['hand_geometry_evidence']=[dict(path=p,sha256=sha(ROOT/p)) for p in ['assets/unitree_g1_inspire_v1/selection.json','assets/unitree_g1_inspire_v1/SOURCE.json','assets/unitree_g1_inspire_v1/VERIFICATION.json']]
     evidence={
         'LAB-01':['assets/cooling_lab_v1/inventory.json','assets/cooling_lab_v1/readiness.json','assets/cooling_lab_v1/pilot_contract.json'],
         'LAB-02':['assets/cooling_lab_v1/outdoor_assets.json','assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/resource_followup.json','assets/cooling_lab_v1/appearance_review.json','assets/unitree_dex5s_reconstruction_v1/model.json','assets/cooling_lab_v1/ordinary_tools.json','assets/cooling_lab_v1/waterjet.json','assets/cooling_lab_v1/stock_sources.json'],

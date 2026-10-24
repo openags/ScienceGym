@@ -4,6 +4,8 @@
   "records": [
     {
       "resource": "robot:DEX5_S_PRO_LEFT / robot:DEX5_S_PRO_RIGHT",
+      "disposition": "superseded_embodiment_reference",
+      "current_selection": "Official G1 29DoF / Inspire FTP geometry is integrated. This historical search does not block the owner's approved alternate hand selection.",
       "queries": [
         "site:github.com/unitreerobotics Dex5-S",
         "Dex5-S URDF CAD STEP model"
@@ -29,7 +31,8 @@
         "Inertias and actuator properties",
         "H2 wrist mounting transform and collision geometry"
       ],
-      "substitution_allowed": false
+      "same_model_relabeling_allowed": false,
+      "alternate_hand_selection_allowed_under_current_policy": true
     },
     {
       "resource": "equipment:ANGLE_12",
@@ -68,7 +71,34 @@
       "inspected": "Thermo Fisher manufacturer manual landing page, description and environment",
       "finding": "The Thermo-hosted VeeMax manual explicitly identifies PIKE Technologies. Its availability is not evidence that VeeMax is the paper's Spectra-Tech accessory. Do not silently replace the reported manufacturer.",
       "unresolved": "Exact Spectra-Tech legacy series, handed optical path, outside/mounting dimensions and supplied sample masks.",
-      "geometry_status": "not_built"
+      "geometry_status": "not_built",
+      "additional_source": {
+        "url": "https://www.artisantg.com/info/Thermo_Spectra_Tech_0004_006_Datasheet_202431313634.pdf",
+        "publisher": "Thermo Scientific manufacturer catalogue, mirrored by Artisan Technology Group",
+        "inspected": "PDF extracted text, zero-based page 15 / printed page 43; product photograph not yet inspected",
+        "document_sha256": null,
+        "download_status": "Text accessible through web extraction; local PDF download returned HTTP 403 and screenshot fetch timed out. No local document hash or image review claimed."
+      },
+      "additional_finding": "The 500-series specular accessory spans 20–85 degrees and includes 6 and 13 mm masks. Model 500 / 0014-010 and 502 / 0014-012 use right-to-left light paths; Model 501 / 0014-011 is left-to-right and lists Nicolet Impact. That listing does not establish the paper's Nicolet 6700 configuration, mounting adapter or dimensions."
+    },
+    {
+      "resource": "consumables:consumable_08",
+      "candidate": "PELCO 16032 colloidal silver paste, 25 g",
+      "selection_status": "source_candidate_only_not_selected_as_paper_product",
+      "sources": [
+        {
+          "url": "https://www.tedpella.com/SEMmisc_html/SEMpaint.aspx",
+          "inspected": "Manufacturer product text: nonflowing 16032 paste is distinct from liquid silver products 16031 and 16034."
+        },
+        {
+          "url": "https://www.tedpella.com/technote_html/16032%20TN.pdf",
+          "inspected": "Single-page manufacturer technical note V3, dated 2009-10-22; extracted text."
+        }
+      ],
+      "finding": "16032 is a room-temperature-curing candidate with 60% ±1% silver. The note distinguishes rapid surface hardening from full properties after 16–20 hours at room temperature. These are candidate material facts, not a selected paper procedure or measured simulation properties.",
+      "unresolved": "Paper brand/formulation, substrate and thermocouple compatibility, packaging dimensions and reference views, applicable SDS review, dispensing tools, quantity and waste handling. Heated cure ranges differ between the current product page and legacy note; no heated cure is selected.",
+      "geometry_status": "not_built",
+      "manufacturer_files_redistributed": false
     }
   ],
   "manufacturer_files_redistributed": false,
