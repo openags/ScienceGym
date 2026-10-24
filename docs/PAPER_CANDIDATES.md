@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **327**.
+Last screened: **2026-10-24**. Candidate count: **328**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3299,4 +3299,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **17**, 5043 (2026), published **13 April 2026**, version of record **8 June 2026**. Selected sensing Results, Figure 3 caption and mechanical/electrical measurement Methods were screened. The body describes 100 cycles while the Figure 3 caption states 1000; this discrepancy remains unresolved.
 - The official [39-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71572-z/MediaObjects/41467_2026_71572_MOESM1_ESM.pdf) was text-accessible. Selected Figures S23 and S27–S31 captions were screened. Its title uses “Large-scale” rather than the article’s “large-area”; the citation follows the article. Unit, batch and repeated-measurement identities must remain distinct. Figure images, remaining sections, source data and peer review were not fully reviewed.
 - Future scope starts with qualified, prepared nonliving sensors and guarded metrology fixtures. Particle processing, chemical synthesis, solvent recycling, battery testing and human-subject demonstrations are excluded. Calibration, containment and cycle-count reconciliation require review before conversion. No procedure, conversion or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared multilayer-interconnect fatigue metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Three-dimensional printing of multilayer stretchable electronics with inclined interconnect accesses](https://www.nature.com/articles/s41467-026-73989-y) | Nature Communications / 2026 | 10.1038/s41467-026-73989-y | Prepared specimens could support identification, fixture registration, deformation-history tracking and synchronized electrical/optical comparisons across interconnect designs. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 8921 (2026), published **2 June 2026**, version of record **25 August 2026**. Selected mechanical/electrical Results and Methods were screened. Printed three-layer and punched bilayer electrical-test specimens must not be treated as architecture-matched controls.
+- The official [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73989-y/MediaObjects/41467_2026_73989_MOESM1_ESM.pdf) was text-accessible. Selected Figures 18–21 captions were screened for specimen configurations and deformation-dependent resistance. Screenshot requests for PDF pages 22, 23 and 25 returned cache-miss errors; figure pixels remain unverified. Remaining sections, videos, source data, reporting summary and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving specimens and guarded metrology fixtures. Printing, chemical processing, exposed liquid-metal handling, wireless-power demonstrations and human testing are excluded. Calibration, containment, specimen matching and stopping criteria require review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
