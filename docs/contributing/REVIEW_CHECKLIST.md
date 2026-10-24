@@ -41,7 +41,7 @@ Apply the [current embodiment requirements](../PROJECT_VISION.md#humanoid-execut
 before crediting any new episode toward the final humanoid sample. Historical
 Panda tests retain their original scope and confer no humanoid execution credit.
 
-- [ ] Exact Unitree body and left/right Unitree hand variants, source revisions, licenses, mounting and control interfaces are pinned and qualified
+- [ ] Exact Unitree body and selected left/right hand variants, source revisions, licenses, mounting and control interfaces are pinned and qualified; publicly supported hands from other manufacturers are allowed under the owner's current selection policy
 - [ ] Actual hand joints, contact geometry, masses, limits and tactile/observation assumptions are recorded; the humanoid is the physical actor
 - [ ] Each step binds the acting/supporting hands, grasp, tool, fixture and observable support transfer; two-hand coordination and tool pickup/return are explicit
 - [ ] Whole-body reach, self/environment collisions, standing support, load distribution and stability are checked throughout the recorded operation
