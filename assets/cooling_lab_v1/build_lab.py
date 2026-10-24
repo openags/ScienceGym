@@ -112,7 +112,7 @@ def furniture():
         ('assembly_white',2.9,3.0,2.4,1.2,.90),('assembly_black',9.5,3.0,2.4,1.2,.90),
         ('calibration_dry',1.1,5.8,1.6,.9,.85),('bath_stand',2.9,5.82,.8,.9,.45),
         ('electrical_bench',10.1,5.8,2.4,1.0,.85),
-        ('fabrication_fixture',-4.3,1.4,2.1,1.1,.90),('coating_prep',-4.3,6.4,2.1,1.1,.90),
+        ('fabrication_fixture',-4.3,.65,2.1,1.1,.90),('coating_prep',-4.3,6.4,2.1,1.1,.90),
         ('outdoor_white',2.5,15.8,1.2,1.0,.90),('outdoor_black',9.5,15.8,1.2,1.0,.90),
         ('weather_service',9.5,18.6,1.3,.8,.9),('tracker_support',2.5,18.6,1.3,.8,.9)]:bench(key,x,y,w,d,h)
     shelf('raw_stock',1.3,.45);shelf('specimens',10.7,.45)
@@ -142,25 +142,16 @@ def furniture():
         box('emergency_post_'+str(x),[.10,.10,1.1],[x,y,.55],GRAY,'emergency_design',True)
         g.cylinder('emergency_stop_'+str(x),.035,.025,[x,y-.065,1.05],[182,39,41],axis=(0,1,0),role='emergency_design')
     # Original stock and fixtures, with selected dimensions explicitly authored.
-    for i,(color,z) in enumerate([([181,105,67],.200),(STEEL,.205)]):
-        box('stock_sheet_'+str(i),[.40,.25,.005],[1.05,.45,z],color,'raw_stock')
+    for i,(color,z,thickness) in enumerate([([181,105,67],.19775,.0005),(STEEL,.19875,.0015)]):
+        box('stock_sheet_'+str(i),[.30,.25,thickness],[1.05,.45,z],color,'raw_stock')
+    box('foam_stock_sheet',[.30,.25,.025],[1.05,.45,.6800],[202,145,162],'raw_stock')
+    box('acrylic_stock_sheet',[.30,.25,.003],[1.05,.45,.6940],[178,201,205],'raw_stock')
     for i in range(3):g.ring('pe_tube_stock_'+str(i),.038,.051,.057,[1.6+i*.12,.45,.696],[221,221,201],role='raw_stock')
-    for key,x,y in [('film_jig',2.4,3.0),('emitter_jig',9.1,3.0)]:
-        box(key+'_base',[.28,.24,.012],[x,y,.906],GRAY,'custom_fixture')
-        for dx in [-.11,.11]:
-            box(key+'_jaw_'+str(dx),[.025,.18,.035],[x+dx,y,.9295],TEAL,'custom_fixture')
-            g.cylinder(key+'_screw_'+str(dx),.004,.050,[x+dx,y,.947],STEEL,role='custom_fixture')
-    # Carriers have separate tray, lips and loop handles; safe load unknown.
-    for i,(x,y,z) in enumerate([(3.4,3.1,.906),(9.7,2.7,.906)]):
-        box('carrier_'+str(i)+'_floor',[.50,.45,.012],[x,y,z],TEAL,'custom_carrier')
-        for dx in [-.24,.24]:
-            box('carrier_'+str(i)+'_side_'+str(dx),[.012,.45,.04],[x+dx,y,z+.02],TEAL,'custom_carrier')
-            g.tube('carrier_'+str(i)+'_handle_'+str(dx),[[x+dx,y-.10,z+.04],[x+dx,y-.10,z+.10],[x+dx,y+.10,z+.10],[x+dx,y+.10,z+.04]],.008,DARK)
-    component('film_jig',['film_jig_'],['tools:film_jig'],'assembly_white',True)
-    component('emitter_jig',['emitter_jig_'],['additional_reconstructed_materials:reversible_emitter_jig'],'assembly_black',True)
-    for i,station in enumerate(['assembly_white','assembly_black']):component('carrier_'+str(i),['carrier_'+str(i)+'_'],['tools:supported_carrier','facility:CARRIERS'],station,True)
+    # Owner's 2026-10-24 constraint excludes robot-specific jigs and carriers.
+    # Historical geometry remains in Git; ordinary tools are imported separately.
     # The stack is checked as one supported group, not three floating plates.
     component('stock_plate_stack',['stock_sheet_'],['consumables:consumable_01','consumables:consumable_02'],'raw_stock_shelf_0',True)
+    component('foam_acrylic_stock_stack',['foam_stock_','acrylic_stock_'],['consumables:consumable_04','consumables:consumable_10'],'raw_stock_shelf_1',True)
     component('pe_stock',['pe_tube_stock_'],['consumables:consumable_03'],'raw_stock_shelf_1',True)
     component('room_shell',['indoor_floor','annex_floor','wall_','door_','window_','ceiling_','outdoor_access_path'],['facility:ROOM'])
     component('bench_frames',[s['id']+'_' for s in surfaces if '_shelf_' not in s['id']],['facility:BENCHES'])
@@ -206,6 +197,36 @@ def devices():
     asset('h2','宇树 H2 本体 · 原始刚性腕端','assets/unitree_h2_v1/geometry/h2_settled.glb',[6,3,0],z_up=True,
           station='circulation',resource='robot:H2',source_path='assets/unitree_h2_v1/SOURCE.json',note='原始刚性手形网格不是 Dex5-S Pro；姿态仅供空间参照。',
           origin_xy=json.loads((HERE/'body_envelope.json').read_text())['standing']['free_base_position_m'][:2])
+    hand_model=json.loads((ROOT/'assets/unitree_dex5s_reconstruction_v1/model.json').read_text())
+    for side,x in [('left',2.4),('right',2.65)]:
+        h=next(h for h in hand_model['hands'] if h['id']==side)
+        a=asset('dex5s_'+side,'Dex5-S Pro '+('左手' if side=='left' else '右手')+' · 有据重建草稿',h['path'],[x,3.0,.9],
+          z_up=True,station='assembly_white',resource='robot:DEX5_S_PRO_'+side.upper(),
+          source_path='assets/unitree_dex5s_reconstruction_v1/sources.json',
+          note='单独陈列供几何审查，尚未安装到 H2。22 自由度假设链；轴位与预览角度非厂家测量，不能用于物理操作验收。')
+        k=json.loads((ROOT/h['kinematics']).read_text())
+        states.append(dict(id='dex5s_'+side+'_inspection',asset=a['id'],kind='joint_tree',parts=a['part_names'],
+            kinematics=k,kinematics_source=dict(path=h['kinematics'],sha256=sha(ROOT/h['kinematics'])),
+            label='22 自由度几何预览（关节假设）',basis=k['scope']))
+    ordinary=json.loads((HERE/'ordinary_tools.json').read_text())
+    for key,kind,label,pos,station,resource in [
+      ('caliper','mitutoyo_530_104','Mitutoyo 530-104 游标卡尺',[3.25,3.32,.9],'assembly_white','tools:caliper'),
+      ('driver','wiha_26100','Wiha 26100 普通精密螺丝刀',[2.95,3.32,.9],'assembly_white','tools:fastener_driver'),
+      ('tray_white','buerkle_4208_0022','Bürkle 4208-0022 普通托盘 · A',[3.4,2.8,.9],'assembly_white','tools:supported_carrier'),
+      ('tray_black','buerkle_4208_0022','Bürkle 4208-0022 普通托盘 · B',[9.7,2.7,.9],'assembly_black','tools:supported_carrier')]:
+        record=next(i for i in ordinary['items'] if i['id']==kind)
+        a=asset(key,label,record['geometry']['path'],pos,z_up=True,station=station,resource=resource,
+          source_path='assets/cooling_lab_v1/ordinary_tools_sources.json',
+          note='普通目录工具的选定重构；局部结构含推断，尚未证明抓持、测量或所有任务的兼容性。')
+        if key=='caliper':states.append(dict(id='caliper_slide',asset=key,kind='slide',parts=record['geometry']['moving_parts'],axis=[1,0,0],maximum=.130,label='卡尺张开 · 20–150 mm',basis='Manufacturer measuring range; selected 20 mm initial gap; geometric inspection only'))
+    waterjet=json.loads((HERE/'waterjet.json').read_text())
+    a=asset('waterjet','OMAX ProtoMAX · 选定水刀设备',waterjet['geometry']['path'],[-2.8,3.8,0],z_up=True,
+      station='fabrication_waterjet',resource='equipment:WATERJET',source_path='assets/cooling_lab_v1/waterjet_sources.json',
+      note='论文未报告水刀型号；这是本 demo 的选定设备。厂家尺寸约束与结构图重构，工艺、配套服务、夹持和安全联锁尚未实现。')
+    bounds=np.array(a['normalized_bounds_m'])+np.array(a['position_m'])
+    obstacle('fabrication_waterjet',bounds.tolist(),'selected_machine_occupied_volume')
+    surfaces.append(dict(id='fabrication_waterjet',xy_bounds_m=[bounds[0,0],bounds[0,1],bounds[1,0],bounds[1,1]],top_m=0,load_rating_kg=None,basis='Floor support; 340 kg operating-load suitability not qualified'))
+    states.append(dict(id='waterjet_lid',asset='waterjet',label='ProtoMAX 透明罩打开（几何假设）',**waterjet['inspection']))
     # Opening states are geometry inspection transforms, never robot actions.
     nico=json.loads((ROOT/'assets/nicolet_6700_v1/interfaces.json').read_text())
     hinge=next(i for i in nico['interfaces'] if i['id']=='sample_cover')
@@ -220,16 +241,19 @@ def devices():
 
 def build():
     room=walls();furniture();devices()
+    hand_envelope=json.loads((HERE/'hand_envelope.json').read_text())
     architecture=g.export('laboratory_structure')
     corridors=[dict(id='main',label='室内主通道',points_m=[[6,-1.2],[6,10.8]],width_m=2.0),
       dict(id='yard',label='室外连接通道',points_m=[[6,10.8],[6,19.2]],width_m=2.0),
       dict(id='cross_south',label='装配前方横向通道',points_m=[[2.9,1.6],[6,1.6],[9.5,1.6]],width_m=1.6),
       dict(id='cross_optics',label='光学工位前方通道',points_m=[[2.5,7.25],[6,7.25],[9.5,7.25]],width_m=1.6),
-      dict(id='fab_access',label='加工间通道',points_m=[[6,4.5],[.90,4.5],[.90,2.5],[-2.2,2.5]],width_m=1.6),
+      dict(id='fab_access',label='加工间通道',points_m=[[6,4.5],[.90,4.5],[.90,2.5],[-2.2,2.4]],width_m=1.6),
       dict(id='coat_access',label='涂覆间通道',points_m=[[6,7.25],[4,7.25],[.90,7.3],[-2.2,7.5]],width_m=1.6),
       dict(id='outdoor_cross',label='室外装置前方通道',points_m=[[2.5,14.2],[6,14.2],[9.5,14.2]],width_m=1.6)]
     spaces=[dict(id='turn_main',kind='turn',center_m=[6,5],radius_m=1.2,label='主通道转身预留'),
       dict(id='turn_yard',kind='turn',center_m=[6,15.8],radius_m=1.2,label='室外转身预留')]
+    spaces.append(dict(id='work_waterjet',kind='work',center_m=[-2.8,2.3],size_m=[2.2,1.6],label='水刀前方静态作业预留'))
+    spaces.append(dict(id='service_waterjet',kind='service',center_m=[-2.8,4.62],size_m=[1.1,.40],label='水刀后方服务空间设计'))
     for key,x,y in [('assembly_white',2.9,1.6),('assembly_black',9.5,1.6),('cary_bench',2.5,7.3),('ftir_bench',9.5,7.3),
       ('wet_calibration',2.4,4.5),('electrical_bench',10.1,4.5),('outdoor_white',2.5,14.2),('outdoor_black',9.5,14.2)]:
         spaces.append(dict(id='work_'+key,kind='work',center_m=[x,y],size_m=[2.2,1.6],label=key+' 双臂作业预留'))
@@ -246,14 +270,16 @@ def build():
         'eko_ms402':dict(dimensions_label='遮阳罩 Ø160 mm；总高 108 mm；支脚 16 mm',model_scope='采用无通风 MS-402；罩壳、双玻璃穹顶和调平脚分件，局部曲面含推断。',sources=[dict(label='厂家手册 · PDF 第 24 页尺寸图',url='https://dex.cz/uploads/2017/05/Pyranometer_Manual_MS.pdf#page=24')]),
         'hobo_u30':dict(dimensions_label='规格表 181 × 118 × 189 mm；图纸 180.6 × 118.1 × 188.7 mm',model_scope='按规格表重构，标注文字为原创排版；锁扣、壳体局部与历史通讯选件仍待核实。',sources=[dict(label='厂家手册 · PDF 第 72 页尺寸图',url='https://www.onsetcomp.com/sites/default/files/resources-documents/12269-M%20U30%20Station%20RC%20Manual.pdf#page=72')])},
       corridors=corridors,spaces=spaces,inspection_states=states,
-      envelope=dict(transit_radius_m=.65,transit_height_m=2.10,turn_radius_m=1.20,margin_m=.10,
-        basis='0.65 m radius contains sampled source-mesh H2 body poses in the existing unloaded record (maximum 0.64291 m); plus an authored 0.10 m planar margin. Exact hands, walking and carried-load sweeps are NOT covered.',
+      envelope=dict(transit_radius_m=hand_envelope['selected_body_hand_radius_m'],transit_height_m=2.10,turn_radius_m=1.20,margin_m=.10,
+        basis='Existing unloaded body poses plus triangle-inequality radius of the authored hand chain and an assumed 30 mm wrist adapter. Additional 0.10 m planar margin. Actual mount, cameras, carried loads and dynamic movement are NOT qualified.',
         body_evidence=dict(path='assets/cooling_lab_v1/body_envelope.json',sha256=sha(HERE/'body_envelope.json')),
+        hand_evidence=dict(path='assets/cooling_lab_v1/hand_envelope.json',sha256=sha(HERE/'hand_envelope.json')),
         exact_hand_qualified=False,walking_or_balance_validated=False),
       dimensions_basis='All room, furniture, clearance and route dimensions are authored design values. Equipment source dimensions remain unchanged.',
-      required_missing_assets=['Dex5-S Pro left/right articulated models and wrist interface','Exact 12-degree Harrick and variable-angle Spectra-Tech accessories',
-        'Ambient RTD and radiation shield','Full thermocouples, termination hardware, sensor/DAQ cables','Selected guarded waterjet and other fabrication tools',
-        'Weather sensor suite, mast, power and data routes','Commercial hand tools, coating/cleaning supplies and waste hardware','Validated equipment mounts, supports and engineering services'],
+      pilot_contract=dict(path='assets/cooling_lab_v1/pilot_contract.json',sha256=sha(HERE/'pilot_contract.json')),
+      required_missing_assets=['Qualified Dex5-S Pro kinematics/dynamics and H2 wrist interface (visual hypotheses now present)','Exact 12-degree Harrick and variable-angle Spectra-Tech accessories',
+        'Ambient RTD and radiation shield','Full thermocouples, termination hardware, sensor/DAQ cables','Qualified waterjet setup, guarding/interlocks/services and remaining fabrication tools',
+        'Weather sensor suite, mast, power and data routes','Remaining ordinary tools, coating/cleaning supplies and waste hardware','Validated equipment mounts, supports and engineering services'],
       blocked_claims=['Whole asset inventory complete','Whole-body dynamic reach or manipulation','Robot/human safety separation','Outdoor solar/weather exposure fidelity','Bench/floor structural adequacy','Site regulatory compliance'],
       owner_acceptance=None,manipulation_development_allowed=False,builder_sha256=sha(__file__),geometry_tools_sha256=sha(HERE/'geometry_tools.py'))
     for a in placements:

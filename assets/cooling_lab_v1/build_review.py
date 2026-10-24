@@ -38,7 +38,7 @@ def floorplan(scene):
         lo,hi=a['normalized_bounds_m'];p=a['position_m'];rectangle([lo[0]+p[0],lo[1]+p[1],hi[0]+p[0],hi[1]+p[1]],'#245e62','#fff')
     labels=[('Cary 5000',2.5,8.4),('Nicolet 6700',9.5,8.4),('A25 / RTD',2.5,5.8),('2425 ×2 / DAQ',9.9,5.8),
       ('装配 / 夹具',2.5,3),('构型 / 加热片',9.5,3),('白色装置',2.5,15.8),('黑色装置',9.5,15.8),('STR-32G / MS-56',2.5,18.1),('U30 / MS-402',9.5,18.1),
-      ('加工设备待选型',-3,2.6),('涂覆 / 抽排设计',-3,7.5)]
+      ('ProtoMAX（选定设备）',-2.8,3.8),('涂覆 / 抽排设计',-3,7.5)]
     for text,x,y in labels:elements.append(f'<text x="{X(x)}" y="{Y(y)-12}" text-anchor="middle" class="small">{html.escape(text)}</text>')
     for a,b,label in [((0,-1.6),(12,-1.6),'12.0'),((-6,-1.6),(0,-1.6),'6.0'),((-7.2,0),(-7.2,10),'10.0'),((13.1,12),(13.1,20),'8.0'),((0,21),(12,21),'12.0')]:
         elements.append(f'<path d="M{X(a[0])} {Y(a[1])} L{X(b[0])} {Y(b[1])}" stroke="#557567" fill="none"/>')
@@ -51,10 +51,10 @@ def floorplan(scene):
 def review():
     scene=json.loads((HERE/'scene.json').read_text());floorplan(scene)
     risk_rows=[
-      ('SPACE','人形机器人与携物空间','按已有 H2 本体记录扩大几何检查半径至 0.65 m，另加 0.10 m 设计余量；通道至少 1.6 m。','精确 Dex5-S Pro 模型、全关节姿态扫描、携物与行走包络、制动和跌倒影响范围。'),
+      ('SPACE','人形机器人与携物空间',f"按已有本体姿态与重建手关节链保守范围，将检查半径设为 {scene['envelope']['transit_radius_m']:.2f} m，另加 0.10 m 设计余量；腕部安装额外假设 30 mm。",'真实腕部安装、相机外形、完整身体姿态、携物与行走包络、制动和跌倒影响范围。'),
       ('LOAD','重型仪器与支撑','Cary 与 Nicolet 采用独立台架，实际模型按原比例放置。','91 kg Cary、69 kg Nicolet 及附件的台架承载、稳定性、固定和楼板载荷评估。'),
       ('WET','湿式校准与电气','A25 采用低台与独立接液盘；电测仪器在相邻干台，未虚构已接通管线。','真实排液路径、接液盘容量、溢流、线缆布置及设备手册要求的间距。'),
-      ('CHEMICAL','加工与涂覆隔离','设置独立加工间、涂覆间与有开口和排气管的抽排设施设计。','实际设备选型、涂料与清洗材料 SDS、防火/防爆适用性、抽排风量和废物设施。'),
+      ('CHEMICAL','加工与涂覆隔离','独立加工间已放入选定 ProtoMAX 几何，涂覆间有抽排设施设计。','水刀工艺、夹持、安全联锁、供水排液与磨料服务尚未实现；涂料与清洗材料 SDS、抽排和废物设施仍待审查。'),
       ('EGRESS','门、通道与应急','主入口和室外入口有明确通道，门扇打开后占用范围已建模，设置应急控制位置。','真实门系统、应急设备选型与位置、线路、安全功能和所在地要求审查。'),
       ('OUTDOOR','室外测量条件','放置白色和黑色装置、跟踪器及新建辐射传感器候选模型。','日照遮挡与天空视角、天气传感器套件、桅杆固定、防水供电和布线；当前开放地面不是论文屋顶复刻。'),
       ('FIDELITY','来源与设备真实性','每个导入模型都有来源文件、哈希和单位变换；新资产有厂家图纸位置及推断记录。','全部资产逐项与实物资料对照，补齐未建工具、附件、材料和机器人双手。'),
@@ -93,14 +93,18 @@ def review():
     contract['room']['dimensions_basis']='Authored design proposal, subject to equipment and spatial review'
     contract['current_scene']={'path':'assets/cooling_lab_v1/scene.json','sha256':sha(HERE/'scene.json'),'status':'draft_not_accepted'}
     evidence={
-        'LAB-01':['assets/cooling_lab_v1/inventory.json'],
-        'LAB-02':['assets/cooling_lab_v1/outdoor_assets.json','assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/resource_followup.json','assets/cooling_lab_v1/appearance_review.json'],
+        'LAB-01':['assets/cooling_lab_v1/inventory.json','assets/cooling_lab_v1/readiness.json','assets/cooling_lab_v1/pilot_contract.json'],
+        'LAB-02':['assets/cooling_lab_v1/outdoor_assets.json','assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/resource_followup.json','assets/cooling_lab_v1/appearance_review.json','assets/unitree_dex5s_reconstruction_v1/model.json','assets/cooling_lab_v1/ordinary_tools.json','assets/cooling_lab_v1/waterjet.json','assets/cooling_lab_v1/stock_sources.json'],
         'LAB-03':['assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/risk_register.json'],
         'LAB-04':['assets/cooling_lab_v1/floorplan.svg','assets/cooling_lab_v1/layout_checks.json'],
-        'LAB-05':['assets/cooling_lab_v1/layout_checks.json','assets/cooling_lab_v1/body_envelope.json'],
+        'LAB-05':['assets/cooling_lab_v1/layout_checks.json','assets/cooling_lab_v1/body_envelope.json','assets/cooling_lab_v1/hand_envelope.json'],
         'LAB-06':['assets/cooling_lab_v1/risk_register.json'],
         'LAB-07':['viewer/lab_review_v1/index.html','viewer/lab_review_v1/main.js','viewer/lab_review_v1/render_batches.js','assets/cooling_lab_v1/scene.json'],
         'LAB-08':[]}
+    # Readiness is derived from the newly reconciled inventory, before pinning.
+    from build_readiness import build as build_readiness
+    build_readiness()
+    contract['pilot_constraints']={'path':'assets/cooling_lab_v1/pilot_contract.json','sha256':sha(HERE/'pilot_contract.json')}
     for gate in contract['gates']:
         gate['evidence']=[dict(path=p,sha256=sha(ROOT/p),scope='Partial evidence; gate remains open') for p in evidence[gate['id']]]
     write_json(HERE/'acceptance_contract.json',contract)

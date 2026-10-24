@@ -20,6 +20,9 @@ def inspect(scene_path=None,output_path=None,quiet=False):
     p=scene_path or HERE/'scene.json';scene=json.loads(p.read_text());checks=[]
     def check(name,passed,**data):checks.append(dict(name=name,passed=bool(passed),**data))
     obstacles=scene['obstacles'];transit_height=scene['envelope']['transit_height_m']
+    hand=json.loads((ROOT/scene['envelope']['hand_evidence']['path']).read_text())
+    check('selected_hand_radius',scene['envelope']['transit_radius_m']>=hand['selected_body_hand_radius_m'])
+    check('hand_envelope_identity',sha(ROOT/scene['envelope']['hand_evidence']['path'])==scene['envelope']['hand_evidence']['sha256'])
     # Only solids intersecting the declared standing-height volume obstruct
     # the planar sweep. All overhead solids remain in 3D opening checks.
     floor_obstacles=[o for o in obstacles if o['bounds_m'][0][2] < transit_height and o['bounds_m'][1][2] > 0]
@@ -71,17 +74,27 @@ def inspect(scene_path=None,output_path=None,quiet=False):
     state_reports=[]
     for state in scene['inspection_states']:
         a=next(a for a in scene['assets'] if a['id']==state['asset']);s=loaded[a['id']]
-        vertices=[]
+        vertices=[];part_vertices={}
         for node in s.graph.nodes_geometry:
             if node in state['parts']:
-                matrix,mesh=s.graph[node];vertices.append(trimesh.transform_points(s.geometry[mesh].vertices,matrix))
+                matrix,mesh=s.graph[node];v=trimesh.transform_points(s.geometry[mesh].vertices,matrix);vertices.append(v);part_vertices[node]=v
         check('state_parts_'+state['id'],len(vertices)==len(state['parts']),matched=len(vertices),required=len(state['parts']))
         if not vertices:continue
         vertices=np.concatenate(vertices);offset=np.array(a['position_m']);norm=np.array(a['normalization_matrix'])
         pivot=np.array(state.get('pivot_m',[0,0,0]))+norm[:3,3]
         sweep_bounds=[];hits=set()
         for fraction in np.linspace(0,1,101):
-            if state['kind']=='slide':v=vertices+fraction*state['maximum']*np.array(state['axis'])
+            if state['kind']=='joint_tree':
+                k=state['kinematics'];world={'palm':np.eye(4)}
+                for j in k['joints']:
+                    t=np.eye(4);t[:3,3]=j['origin_m']
+                    world[j['id']]=world[j['parent']]@t@trimesh.transformations.rotation_matrix(fraction*j['inspection_angle_rad'],j['axis'])
+                parts=[]
+                for name,pv in part_vertices.items():
+                    link=k['part_links'][name];delta=norm@world[link]@np.linalg.inv(k['bind_world'][link])@np.linalg.inv(norm)
+                    parts.append(trimesh.transform_points(pv,delta))
+                v=np.concatenate(parts)
+            elif state['kind']=='slide':v=vertices+fraction*state['maximum']*np.array(state['axis'])
             else:v=trimesh.transform_points(vertices,trimesh.transformations.rotation_matrix(fraction*state['maximum'],state['axis'],point=pivot))
             bounds=np.array([v.min(axis=0),v.max(axis=0)])+offset;sweep_bounds.append(bounds)
             for obstacle in obstacles:
@@ -99,7 +112,7 @@ def inspect(scene_path=None,output_path=None,quiet=False):
       scene_sha256=sha(p),checker_sha256=sha(__file__),checks=checks,routes=routes,opening_states=state_reports,
       full_humanoid_clearance_accepted=False,asset_fidelity_accepted=False,safe_use_certified=False,owner_acceptance=None,
       limitations=['Planar occupied boxes are conservative; opening sweeps sample 101 states and omit internal device contacts',
-                  'Provisional robot/carried-load radius is authored; exact hands and full-body posture sweeps remain unavailable',
+                  'Hand bound uses authored kinematics and assumed mounting allowance at existing unloaded poses; real mount, cameras and carried loads are excluded',
                   'No dynamic walking, stopping, falling, balance, structural, ventilation or regulatory validation'])
     write_json(output_path or HERE/'layout_checks.json',report)
     if not quiet:print(json.dumps(dict(passed=report['passed'],checks=len(checks),failed=[c for c in checks if not c['passed']]),ensure_ascii=False,indent=2))

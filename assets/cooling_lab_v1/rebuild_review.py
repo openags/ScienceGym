@@ -1,0 +1,28 @@
+"""Rebuild the exact asset review in dependency order; never grant acceptance."""
+import argparse
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+ROOT=Path(__file__).resolve().parents[2]
+
+def run(script,*args):
+    subprocess.run([sys.executable,script,*args],cwd=ROOT,env={**os.environ,'OPENBLAS_NUM_THREADS':'1'},check=True)
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--browser');parser.add_argument('--url',default='http://127.0.0.1:8769/viewer/lab_review_v1/index.html')
+    a=parser.parse_args()
+    for script in ['assets/unitree_dex5s_reconstruction_v1/build.py',
+      'assets/unitree_dex5s_reconstruction_v1/validate.py',
+      'assets/cooling_lab_v1/check_hand_envelope.py',
+      'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_waterjet.py','assets/cooling_lab_v1/build_lab.py',
+      'assets/cooling_lab_v1/check_layout.py','assets/cooling_lab_v1/build_review.py',
+      'assets/cooling_lab_v1/validate_review.py','assets/cooling_lab_v1/test_pilot_contract.py']:
+        run(script)
+    if a.browser:
+        for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py']:
+            run(script,'--browser',a.browser,'--url',a.url)
+    print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
+
+if __name__=='__main__':main()

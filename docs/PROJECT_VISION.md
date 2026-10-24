@@ -30,6 +30,15 @@ Closed-service abstractions can make an early design inspectable, but their boun
 
 ## Humanoid execution target
 
+The owner's 24 October 2026 implementation choices additionally require a
+sensor-only actor and permit only added cameras and ordinary laboratory tools;
+no added fiducials or robot-specific fixtures. Evidence-based reconstruction
+of the same Dex5-S Pro model is allowed, with explicit uncertainty and unresolved
+critical physical parameters blocking qualification. See the active
+[implementation plan](pilots/DIRECTIONAL_COOLING_IMPLEMENTATION.md) and its
+machine-readable pilot contract. Historical Panda inputs and privileged-state
+body tests do not satisfy these newer choices.
+
 The project owner's 23 October 2026 direction selects a complete Unitree
 humanoid with its own arms and Unitree dexterous hands as the final executor.
 Every required hands-on operation must be performed by that embodiment, with

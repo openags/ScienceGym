@@ -27,10 +27,40 @@ def validate():
             check('source_row_'+row['id'],value==row['source_value'])
         for candidate in row['candidate_artifacts']:
             check('candidate_'+row['id']+'_'+candidate['path'],sha(ROOT/candidate['path'])==candidate['sha256'])
-    check('inventory_count',len(inventory['items'])==inventory['required_records']==60)
+    check('inventory_count',len(inventory['items'])==inventory['required_records']==63)
+    check('added_sensor_requirements_explicit',{'robot:HEAD_RGBD','robot:WRIST_RGB_LEFT','robot:WRIST_RGB_RIGHT'}<={r['id'] for r in inventory['items']})
     check('room_details_pinned',scene['room_details_sha256']==sha(HERE/'room_details.py'))
     check('room_builder_pinned',scene['room_builder_sha256']==sha(HERE/'room_architecture.py'))
     check('current_scene_pinned',contract['current_scene']['sha256']==sha(HERE/'scene.json'))
+    policy=json.loads((HERE/'pilot_contract.json').read_text())
+    from build_readiness import validate_policy
+    validate_policy(policy,scene)
+    check('pilot_policy_pinned',scene['pilot_contract']['sha256']==sha(HERE/'pilot_contract.json'))
+    readiness=json.loads((HERE/'readiness.json').read_text())
+    for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
+    check('all_manual_requirements_mapped',len(readiness['manual_step_requirements'])==200)
+    check('ordinary_tools_only',not any(c['id'] in ['film_jig','emitter_jig','carrier_0','carrier_1'] for c in scene['authored_components']))
+    for state in scene['inspection_states']:
+        if state['kind']=='joint_tree':
+            check('kinematic_source_'+state['id'],sha(ROOT/state['kinematics_source']['path'])==state['kinematics_source']['sha256'])
+            check('kinematic_content_'+state['id'],json.loads((ROOT/state['kinematics_source']['path']).read_text())==state['kinematics'])
+    for filename,builder,ledger in [('ordinary_tools.json','build_ordinary_tools.py','ordinary_tools_sources.json'),('waterjet.json','build_waterjet.py','waterjet_sources.json')]:
+        model=json.loads((HERE/filename).read_text())
+        check('builder_identity_'+filename,model['builder_sha256']==sha(HERE/builder))
+        check('source_ledger_identity_'+filename,model['source_ledger_sha256']==sha(HERE/ledger))
+        records=model.get('items',[model])
+        for entry in records:
+            geo=entry['geometry'];check('catalog_model_identity_'+entry['id'],sha(ROOT/geo['path'])==geo['sha256'])
+    waterjet=json.loads((HERE/'waterjet.json').read_text())
+    check('waterjet_selection_not_historical_claim',not waterjet['paper_model_identified'] and not waterjet['process_qualified'] and not waterjet['safety_interlocks_implemented'])
+    actual=trimesh.load(ROOT/waterjet['geometry']['path'],force='scene').extents
+    check('waterjet_selected_envelope',np.allclose(actual,[1.004,1.054,1.435],atol=.002))
+    stock=json.loads((HERE/'stock_sources.json').read_text())
+    check('stock_source_identity',sha(ROOT/stock['source_artifact']['path'])==stock['source_artifact']['sha256'])
+    structure_parts={p['id']:p for p in scene['architecture']['part_records']}
+    for part,thickness in [('stock_sheet_0',.0005),('stock_sheet_1',.0015),('foam_stock_sheet',.025)]:
+        bounds=np.asarray(structure_parts[part]['bounds_m'])
+        check('source_stock_thickness_'+part,abs(bounds[1,2]-bounds[0,2]-thickness)<1e-7)
     check('no_inferred_owner_acceptance',contract['owner_acceptance']['decision']=='pending' and all(g['status']=='open' for g in contract['gates']))
     check('no_new_manipulation_authority',not contract['new_manipulation_development_allowed'] and not scene['manipulation_development_allowed'])
     for gate in contract['gates']:
@@ -39,19 +69,23 @@ def validate():
         actual=trimesh.load(HERE/'geometry'/f'{identity}.glb',force='scene').extents
         check('drawing_dimensions_'+identity,np.allclose(actual,expected,atol=.0001))
     body=json.loads((HERE/'body_envelope.json').read_text())
+    hand=json.loads((HERE/'hand_envelope.json').read_text())
+    check('hand_checker_identity',hand['checker_sha256']==sha(HERE/'check_hand_envelope.py'))
+    for source in hand['source_artifacts']:check('hand_envelope_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     check('body_evidence_hash',scene['envelope']['body_evidence']['sha256']==sha(HERE/'body_envelope.json'))
     check('body_provisional_radius_covers_sampled_record',body['maximum_sampled']['radial_extent_m']<=scene['envelope']['transit_radius_m'])
     for p in body['source_artifacts']:check('body_source_'+p['path'],sha(ROOT/p['path'])==p['sha256'])
     original=inspect(quiet=True);check('base_layout',original['passed'])
     faults=[]
     # Separate independent faults exercise spatial predicates, not just schema.
-    for name,expected in [('low_header','headroom_main'),('blocked_route','corridor_main'),('small_support','support_cary'),('overlapping_fixture','assets_and_authored_fixtures_separated'),('opening_obstruction','external_opening_cary_lid')]:
+    for name,expected in [('low_header','headroom_main'),('blocked_route','corridor_main'),('small_support','support_cary'),('overlapping_fixture','assets_and_authored_fixtures_separated'),('underestimated_hand_envelope','selected_hand_radius'),('opening_obstruction','external_opening_cary_lid')]:
         bad=copy.deepcopy(scene)
         if name=='low_header':bad['obstacles'].append(dict(id='injected_low_header',role='test',bounds_m=[[5,4,2.0],[7,4.1,2.15]]))
         elif name=='blocked_route':bad['obstacles'].append(dict(id='injected_crate',role='test',bounds_m=[[5.8,5,.0],[6.2,5.4,1.9]]))
         elif name=='small_support':next(s for s in bad['support_surfaces'] if s['id']=='cary_bench')['xy_bounds_m']=[2.2,8.6,2.3,8.7]
         elif name=='overlapping_fixture':
             next(a for a in bad['assets'] if a['id']=='heater')['position_m']=[9.7,2.7,.9]
+        elif name=='underestimated_hand_envelope':bad['envelope']['transit_radius_m']=.65
         else:
             sweep=next(s for s in original['opening_states'] if s['id']=='cary_lid')['sweep_bounds_m'];center=(np.array(sweep[0])+sweep[1])/2
             bad['obstacles'].append(dict(id='injected_cover_obstacle',role='test',bounds_m=[(center-.01).tolist(),(center+.01).tolist()]))

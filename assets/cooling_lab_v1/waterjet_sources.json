@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-24",
+  "identity": "OMAX ProtoMAX standard system",
+  "selection": "Authored equipment selection for the virtual laboratory; paper manufacturer is unspecified",
+  "paper_equipment_identity_claim": false,
+  "sources": [
+    {
+      "id": "PROTOMAX_BROCHURE",
+      "url": "https://xnet.hypertherm.com/Xnet/library/library.jsp?file=HYP272892",
+      "locator": "MKT167 Revision 0, March 2023, product photograph page 1 and specifications page 2",
+      "sha256": "16eafd2d6b4edd28503631ab74bc5298ec88e0341c90cd584d241ecdc635f628",
+      "inspected": true
+    },
+    {
+      "id": "PROTOMAX_MANUAL",
+      "url": "https://knowledgebase.omax.com/protomax/content/401434/401434-operation-guide.htm",
+      "locator": "401434D-EN; Important Safety Information, Major Components, Table Assembly, Lid and Side Panels",
+      "sha256": "a0ad10845b18e81af534811340983e3b500defdb58bafa9ef8b1b8abe863749b",
+      "inspected": true
+    },
+    {
+      "id": "PROTOMAX_TABLE_DIAGRAM",
+      "url": "https://knowledgebase.omax.com/protomax/content/resources/images/401434/comp-tableassy-01.png",
+      "locator": "Exploded table assembly: gantry, slats, catcher, cabinet, pump and filtration",
+      "inspected": true
+    },
+    {
+      "id": "PROTOMAX_LID_DIAGRAM",
+      "url": "https://knowledgebase.omax.com/protomax/content/resources/images/401434/comp-lidpanelsartboard1.png",
+      "locator": "Lid and side panels",
+      "inspected": true
+    }
+  ],
+  "rights": "Reference material retained outside repository; original mesh reconstruction only",
+  "source_conflicts": [
+    {
+      "topic": "Open-lid height",
+      "values": [
+        "FAQ: 69 in",
+        "technical brochure: 73 in / 1854 mm"
+      ],
+      "selection": "Use brochure specification; actual inspection hinge still unmeasured"
+    }
+  ],
+  "dimension_ledger": {
+    "footprint_m": [
+      1.054,
+      1.004
+    ],
+    "closed_height_m": 1.435,
+    "open_height_m": 1.854,
+    "empty_mass_kg": 250,
+    "operating_mass_kg": 340,
+    "table_m": [
+      0.368,
+      0.393
+    ],
+    "xy_cutting_travel_m": [
+      0.304,
+      0.304
+    ]
+  },
+  "authored_inferences": [
+    "Cabinet, gantry, hopper, laptop and internal pump local placement from illustrations",
+    "Cover pivot and 85 degree inspection sweep; manufacturer sweep still needs reconciliation",
+    "Material colours and reflectance, caster construction and hose routes"
+  ],
+  "installation_requirements": [
+    "Manufacturer installation and utility requirements remain to be bound to scene services",
+    "Closed covers and enabled guards required for operation; no safety functions implemented by this visual model",
+    "No hand entry or stock repositioning while the machine operates",
+    "Supported stock, tool clearance, water/abrasive handling and drain provisions require explicit resource allocation"
+  ],
+  "task_fit": {
+    "track_input": "tasks/directional_cooling_operations_v3/selected_solar_path.json",
+    "interpretation": "Selected centerline spans approximately 161 mm; this alone does not prove stock, clamping or entire part-process compatibility",
+    "qualified": false
+  },
+  "cad_search": {
+    "inspected": [
+      "Manufacturer product specifications",
+      "Manufacturer operation and component diagrams"
+    ],
+    "obtained_reusable_cad": false
+  }
+}

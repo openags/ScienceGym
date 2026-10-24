@@ -39,7 +39,7 @@ function installRoomLights(){
  document.documentElement.dataset.roomLightCount=positions.length;
 }
 const overlays=new THREE.Group(),labels=new THREE.Group(),measurements=new THREE.Group();scene.add(overlays,labels,measurements);
-let architecture,manifest,inventory,risks,report,bodyReport,selected=null,measureMode=false,measurePoints=[],pointerStart;
+let architecture,manifest,inventory,risks,report,bodyReport,readiness,selected=null,measureMode=false,measurePoints=[],pointerStart;
 const groups=new Map(),states=new Map(),assetList=[],renderBatches=[];
 const loader=new GLTFLoader();
 const loadPinned=async(path,expected)=>{const r=await fetch(root+path+'?revision='+expected);if(!r.ok)throw Error(path+' HTTP '+r.status);const buffer=await r.arrayBuffer();if(await digest(buffer)!==expected)throw Error(path+' 的模型哈希与当前场景不一致');return loader.parseAsync(buffer,new URL(root+path,location.href).href)};
@@ -65,6 +65,12 @@ const resize=()=>{const w=$('viewport').clientWidth,h=$('viewport').clientHeight
 function resetStates(){for(const state of states.values())for(const item of state.parts){item.node.position.copy(item.position);item.node.quaternion.copy(item.quaternion)}renderer.shadowMap.needsUpdate=true;requestRender()}
 function applyState(id,fraction){
  resetStates();const state=states.get(id);if(!state)return;
+ if(state.config.kind==='joint_tree'){
+  const k=state.config.kinematics,world=new Map([['palm',new THREE.Matrix4()]]),n=new THREE.Matrix4().fromArray(state.normalization.flat()).transpose(),ni=n.clone().invert();
+  for(const j of k.joints){const translation=new THREE.Matrix4().makeTranslation(...j.origin_m),rotation=new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...j.axis),fraction*j.inspection_angle_rad);world.set(j.id,world.get(j.parent).clone().multiply(translation).multiply(rotation))}
+  for(const item of state.parts){const link=k.part_links[item.node.name],bind=new THREE.Matrix4().fromArray(k.bind_world[link].flat()).transpose();const delta=n.clone().multiply(world.get(link)).multiply(bind.invert()).multiply(ni);item.node.updateMatrix();item.node.applyMatrix4(delta)}
+  document.documentElement.dataset.openState=id+':'+fraction;renderer.shadowMap.needsUpdate=true;requestRender();return;
+ }
  const axis=new THREE.Vector3(...state.config.axis),angle=state.config.maximum*fraction,q=new THREE.Quaternion().setFromAxisAngle(axis,angle);
  for(const item of state.parts){
   if(state.config.kind==='slide')item.node.position.addScaledVector(axis,angle);
@@ -89,9 +95,12 @@ function detailRow(label,value){const d=document.createElement('div');d.classNam
 function selectAsset(id,focus=true){
  selected=id;const asset=assetList.find(a=>a.id===id);if(!asset)return;
  $('asset-select').value=id;$('asset-detail').replaceChildren();const h=document.createElement('h3');h.textContent=asset.label;$('asset-detail').append(h);
+ $('asset-views').hidden=false;
  detailRow('当前状态',asset.status);const size=asset.normalized_bounds_m[1].map((v,i)=>v-asset.normalized_bounds_m[0][i]);
  detailRow('模型包围尺寸（含已建附件）',size.map(v=>(v*1000).toFixed(1)+' mm').join(' × '));detailRow('物理比例 / 部件', '1 : 1 · '+asset.part_count+' 个部件');detailRow('工位',asset.station);
  if(asset.note)detailRow('待确认内容',asset.note);
+ const requirements=readiness?.manual_step_requirements.filter(s=>s.resource_requirements.includes(asset.resource_id))||[];
+ detailRow('论文操作关联',requirements.length?requirements.length+' 个操作定义涉及此资源；均待人形机器人验证':'机器人或设施支持项；不计作已完成的论文操作');
  const a=document.createElement('a');a.href=root+(asset.sources||asset.source_artifact.path);a.target='_blank';a.textContent='查看模型来源与重构依据 ↗';$('asset-detail').append(a);
  if(manifest.reference_comparisons?.[id]){const ref=manifest.reference_comparisons[id];if(ref.dimensions_label)detailRow('厂家标注尺寸',ref.dimensions_label);detailRow('比对边界',ref.model_scope);for(const source of ref.sources){const link=document.createElement('a');link.href=source.url;link.target='_blank';link.rel='noopener';link.textContent=source.label+' ↗';if(source.scope)link.title=source.scope;$('asset-detail').append(link)}}
  resetStates();const state=[...states.values()].find(s=>s.config.asset===id);$('state-control').hidden=!state;$('state-slider').value=0;
@@ -152,14 +161,23 @@ $('clear-measure').onclick=()=>{measurements.clear();measurePoints=[];measureMod
 $('views').onclick=e=>{const key=e.target.dataset.view;if(!key)return;$('isolate').checked=false;$('show-walls').checked=!['all','top'].includes(key);resetStates();$('state-slider').value=0;visibility();setView(...views[key]);for(const b of $('views').children)b.classList.toggle('active',b.dataset.view===key);document.documentElement.dataset.view=key};
 for(const id of ['show-walls','show-space','show-labels','isolate'])$(id).onchange=visibility;
 $('asset-select').onchange=()=>selectAsset($('asset-select').value);$('search').oninput=renderInventory;$('filter').onchange=renderInventory;
+$('asset-views').onclick=e=>{const direction=e.target.dataset.direction;if(!direction||!selected)return;const b=new THREE.Box3().setFromObject(groups.get(selected)),c=b.getCenter(new THREE.Vector3()),d=Math.max(...b.getSize(new THREE.Vector3()).toArray())*1.8;const v={front:[0,-d,0],back:[0,d,0],side:[d,0,0],top:[0,-.001,d]}[direction];$('isolate').checked=true;visibility();setView(c.clone().add(new THREE.Vector3(...v)).toArray(),c.toArray());document.documentElement.dataset.assetView=direction};
 const storageKey='sciencegym-lab-review-notes-v1';try{$('review-notes').value=localStorage.getItem(storageKey)||''}catch{}
 $('review-notes').oninput=()=>{try{localStorage.setItem(storageKey,$('review-notes').value);$('notes-status').textContent='已保存到此浏览器'}catch{$('notes-status').textContent='浏览器存储不可用，可下载保存'}};
 $('export-notes').onclick=()=>{const record={scene_revision:report?.scene_sha256,created_at:new Date().toISOString(),notes:$('review-notes').value,kind:'review_comments_not_acceptance'};const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='sciencegym-lab-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 try{
- [manifest,inventory,risks,report,bodyReport]=await Promise.all([read(folder+'scene.json'),read(folder+'inventory.json'),read(folder+'risk_register.json'),read(folder+'layout_checks.json'),read(folder+'body_envelope.json')]);
+ [manifest,inventory,risks,report,bodyReport,readiness]=await Promise.all([read(folder+'scene.json'),read(folder+'inventory.json'),read(folder+'risk_register.json'),read(folder+'layout_checks.json'),read(folder+'body_envelope.json'),read(folder+'readiness.json')]);
  if(report.scene_sha256!==fetchedHashes.get(folder+'scene.json')||inventory.scene_artifact.sha256!==report.scene_sha256)throw Error('场景版本与几何检查 / 清单记录不一致，请重新生成检查');
+ for(const p of readiness.source_artifacts){const url=root+p.path;if(fetchedHashes.has(url)&&fetchedHashes.get(url)!==p.sha256)throw Error('进度记录与场景版本不一致')}
+ const policy=await read(folder+'pilot_contract.json');if(fetchedHashes.get(folder+'pilot_contract.json')!==manifest.pilot_contract.sha256||JSON.stringify(policy)!==JSON.stringify(readiness.policy))throw Error('执行约束版本不一致');
+ $('pilot-policy').textContent='已确定：宇树人形机器人 + Dex5-S Pro；传感器闭环；仅增加相机和普通工具；不用专用定位标记或机器人专用夹具。资产场景验收后再开发操作序列。';
+ const rc=readiness.counts;$('pilot-counts').textContent=rc.manual_definitions+' 个操作定义已对应到 '+rc.interfaces+' 类接口与资源需求。'+rc.requirement_groups+' 类资源拆出 '+rc.decomposed_component_requirements+' 个待核对组件需求，数量尚未分配完毕。完整人形机器人分支通过 '+rc.qualified_humanoid_branches+' / '+rc.branches+'。';
+ for(const item of readiness.hard_dependencies){const d=document.createElement('div');d.className='risk-card';const h=document.createElement('h3');h.textContent=item.label;const p=document.createElement('p');p.textContent=item.detail;d.append(h,p);$('pilot-dependencies').append(d)}
+ for(const branch of readiness.branches){const tr=document.createElement('tr');for(const label of [branch.id+' · '+branch.title,branch.manual_step_ids.length+' 项（含共享步骤）','待执行验证']){const td=document.createElement('td');td.textContent=label;tr.append(td)}$('branch-progress').append(tr)}
+ $('legacy-conflicts').textContent='以下旧接口仍需按普通工具约束重新绑定：'+readiness.legacy_interface_review.map(x=>x.interface_id).join('、')+'。历史 Panda 配置及读取真值的身体测试不计入本次传感器闭环验收。';
  if(manifest.envelope.body_evidence.sha256!==fetchedHashes.get(folder+'body_envelope.json'))throw Error('H2 空间测量记录与场景版本不一致');
- $('body-envelope').textContent='已有 H2 记录中：收臂姿态外接半径 '+bodyReport.standing.radial_extent_m.toFixed(3)+' m；'+bodyReport.samples+' 个姿态样本最大 '+bodyReport.maximum_sampled.radial_extent_m.toFixed(3)+' m。当前用 0.65 m 半径另加 0.10 m 设计余量检查通道。此结果不包含 Dex5-S Pro、携物和行走。';
+ const handBound=await read(root+manifest.envelope.hand_evidence.path);if(fetchedHashes.get(root+manifest.envelope.hand_evidence.path)!==manifest.envelope.hand_evidence.sha256)throw Error('重建手空间记录版本不一致');
+ $('body-envelope').textContent='已有 H2 记录中：'+bodyReport.samples+' 个姿态样本最大本体半径 '+bodyReport.maximum_sampled.radial_extent_m.toFixed(3)+' m。计入重建手关节链的保守范围和暂定 30 mm 腕部余量后，当前检查半径为 '+manifest.envelope.transit_radius_m.toFixed(2)+' m，另加 0.10 m 通道余量。实际安装、相机、携物和行走仍未验证。';
  installRoomLights();
  assetList.push(...manifest.assets);$('asset-count').textContent=assetList.length;
  const present=inventory.items.filter(i=>i.scene_instances?.length||i.authored_scene_components?.length).length;$('inventory-coverage').textContent='部分几何 '+present+'/'+inventory.items.length+' 项；其余 '+(inventory.items.length-present)+' 项尚缺';
@@ -182,7 +200,7 @@ try{
  renderBatches.push({id:'architecture',...batchStaticMeshes(architecture)});
  scene.add(architecture);visibility();
  for(let i=0;i<assetList.length;i+=3){await Promise.all(assetList.slice(i,i+3).map(async a=>{const model=await loadPinned(a.geometry,a.geometry_sha256);prepare(model);const group=model.scene;const protectedParts=new Set(manifest.inspection_states.filter(s=>s.asset===a.id).flatMap(s=>s.parts));renderBatches.push({id:a.id,...batchStaticMeshes(group,protectedParts)});group.position.set(...a.position_m);group.traverse(o=>{if(o.isMesh)o.userData.assetId=a.id});groups.set(a.id,group);scene.add(group);const option=document.createElement('option');option.value=a.id;option.textContent=a.label;$('asset-select').append(option)}));$('loading').textContent='载入模型 '+Math.min(i+3,assetList.length)+' / '+assetList.length}
- for(const config of manifest.inspection_states){const group=groups.get(config.asset),asset=assetList.find(a=>a.id===config.asset);const parts=[];group.traverse(node=>{if(config.parts.includes(node.name))parts.push({node,position:node.position.clone(),quaternion:node.quaternion.clone()})});if(parts.length!==config.parts.length)throw Error(config.id+' 的开闭部件未完整匹配');const p=config.pivot_m||[0,0,0];const n=asset.normalization_matrix;states.set(config.id,{config,parts,pivot:new THREE.Vector3(p[0]+n[0][3],p[1]+n[1][3],p[2]+n[2][3])})}
+ for(const config of manifest.inspection_states){const group=groups.get(config.asset),asset=assetList.find(a=>a.id===config.asset);const parts=[];group.traverse(node=>{if(config.parts.includes(node.name))parts.push({node,position:node.position.clone(),quaternion:node.quaternion.clone()})});if(parts.length!==config.parts.length)throw Error(config.id+' 的开闭部件未完整匹配');const p=config.pivot_m||[0,0,0];const n=asset.normalization_matrix;states.set(config.id,{config,parts,normalization:n,pivot:new THREE.Vector3(p[0]+n[0][3],p[1]+n[1][3],p[2]+n[2][3])})}
  document.documentElement.dataset.normalRepairs=repairedNormals;
  document.documentElement.dataset.renderBatches=JSON.stringify(renderBatches);
  document.documentElement.dataset.geometryPreserved=String(renderBatches.every(b=>b.sourceGeometryPreserved));
