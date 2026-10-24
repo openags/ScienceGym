@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **328**.
+Last screened: **2026-10-24**. Candidate count: **329**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3310,4 +3310,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **17**, 8921 (2026), published **2 June 2026**, version of record **25 August 2026**. Selected mechanical/electrical Results and Methods were screened. Printed three-layer and punched bilayer electrical-test specimens must not be treated as architecture-matched controls.
 - The official [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73989-y/MediaObjects/41467_2026_73989_MOESM1_ESM.pdf) was text-accessible. Selected Figures 18–21 captions were screened for specimen configurations and deformation-dependent resistance. Screenshot requests for PDF pages 22, 23 and 25 returned cache-miss errors; figure pixels remain unverified. Remaining sections, videos, source data, reporting summary and peer review were not fully reviewed.
 - Future scope starts with qualified, prepared nonliving specimens and guarded metrology fixtures. Printing, chemical processing, exposed liquid-metal handling, wireless-power demonstrations and human testing are excluded. Calibration, containment, specimen matching and stopping criteria require review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared flexible-circuit bending metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Machine learning-assisted design of carbon nanotube edge computing circuits for monolithic epidermal systems](https://www.nature.com/articles/s41467-026-74053-5) | Nature Communications / 2026 | 10.1038/s41467-026-74053-5 | Prepared devices could support specimen registration, deformation-history tracking and repeated electrical comparisons, maintaining links between device identities and measurement records. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 7358 (2026), published **10 June 2026**, version of record **27 July 2026**. Selected bending Results and electrical-characterization Methods were screened. Device populations, repeated measurements and simulated circuit outputs must remain distinct.
+- The official [40-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74053-5/MediaObjects/41467_2026_74053_MOESM1_ESM.pdf) was text-accessible. Selected Figures 9–10 and 15–16 captions were screened. The supplement uses an earlier title; the citation follows the article. Figure images, remaining sections, video, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving devices and guarded metrology fixtures. Nanotube processing, chemical synthesis, microfabrication, exposed liquid-metal handling and human testing are excluded. Calibration, specimen matching and stopping criteria require review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
