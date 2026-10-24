@@ -77,10 +77,10 @@ guarantee of general reliability.
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
-  radius plus 0.10 m route margin, with a 1.43 m height allowance. No guessed
-  wrist adapter is used. The 47-point station screen records each position-only
-  IK result and external obstacle conflicts. All 47 now have static
-  position candidates with proposed-camera clearance screening after shoulder alignment and unused-arm retraction. The
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 61-point station screen records
+  each position-only IK result and external obstacle conflicts, including 14
+  new supply approaches. Shoulder alignment, unused-arm retraction and
+  proposed-camera clearance are screened. The
   Cary mounting datum remains distinct from its authored 80 mm upper palm
   approach; finger contact and insertion remain open. Selected equipment/tools moved
   closer to bench fronts without changing source geometry dimensions.
@@ -91,11 +91,14 @@ guarantee of general reliability.
   are now tessellated with their source roles verified against embedded CAD
   names. A finite clocking search moves the G1/FTP placement above each wrist,
   removing the observed pitch-housing conflict at sampled finger poses. Clamp
-  contact still needs verification; it remains an unaccepted candidate, visible
-  on demand. Station IK also screens candidate attachment collisions with other links
-  and external obstacles; a separate FCL replay checks every recorded pose.
-  Parent-wrist clamp contact stays explicitly unresolved and is not installation
-  or transit qualification.
+  interference is resolved with a separately labeled G1 collar derivative that
+  retains the source camera arm. A 31.2 mm bore, matched bolt ears and explicit
+  M3 screws, washers and nuts replace the incompatible source collar. Positive
+  radial clearance, camera screw depth and discrete unfastened removal paths
+  are checked; liner preload, cables and dynamic loads remain open. The
+  original source mount is preserved and must still fail its regression cases.
+  Station IK rejects attachment intersections with every robot link, including
+  its parent wrist. No accepted installation or transit qualification follows.
 - The browser renders head RGB / ideal axial depth and both candidate wrist RGB
   views from the current source kinematics. Camera frames are checked against
   MuJoCo. Cutaway, isolation and review labels cannot remove scene occluders
@@ -106,6 +109,17 @@ guarantee of general reliability.
   0.13 mm conductor diameter and nominal 1 m length. Coiled rest shape, jacket
   envelope, stripped ends and weld details are inferred. No cable mechanics,
   DAQ connection, strain-relief or temperature observation credit is claimed.
+
+- Thirteen additional ordinary-supply types now have source ledgers, real
+  openings and separate parts. They add a fine-wire stripping tool, ordinary
+  tweezers, slotted driver, fill vessel, vented ambient RTD, eight K-connector
+  pairs, thin raw films, masking stock, unmachined copper, a catalog cart and a
+  separate wipes can. Local dimensions and material assumptions are explicit.
+  The scene has 49 instances; compound requirements and full campaign quantities
+  remain incomplete. Fifteen component requirements now bind to named staged
+  units, including individual sheets and eight connector pairs. Shared tools
+  remain the same physical instances. Staged assets are not executed preparation
+  operations.
 
 ## Historical compatibility and remaining work
 

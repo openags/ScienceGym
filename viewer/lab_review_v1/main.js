@@ -90,7 +90,7 @@ function inspectWorkspace(target){
  const marker=new THREE.Mesh(new THREE.SphereGeometry(.018),new THREE.MeshBasicMaterial({color:result.position_candidate?'#dc891f':'#c53c37',depthTest:false}));marker.position.set(...target.point_m);accessMarker.add(marker);
  $('isolate').checked=false;$('show-walls').checked=false;visibility();const p=result.base_position_m;
  setView([p[0]+1.8,p[1]-2.1,2.0],[target.point_m[0],target.point_m[1],.8]);
- $('workspace-pose-status').textContent=target.id+' · 静态位置检查，误差 '+(result.position_error_m*1000).toFixed(1)+' mm；'+result.external_overlaps.length+' 处外部包围盒冲突；自碰撞 '+(result.self_contacts_checked?result.self_penetrations_over_0_5mm.length+' 对超过 0.5 mm':'尚未检查（位置未到达）')+'；候选相机与其他机器人部件相交 '+result.candidate_rig_other_link_intersections.length+' 对，抱环配合仍未确认。手掌方向、目标设备内部碰撞、平衡与进入路径尚未验证。';
+ $('workspace-pose-status').textContent=target.id+' · 静态位置检查，误差 '+(result.position_error_m*1000).toFixed(1)+' mm；'+result.external_overlaps.length+' 处外部包围盒冲突；自碰撞 '+(result.self_contacts_checked?result.self_penetrations_over_0_5mm.length+' 对超过 0.5 mm':'尚未检查（位置未到达）')+'；候选相机与其他机器人部件相交 '+result.candidate_rig_other_link_intersections.length+' 对，适配抱环刚性间隙已检查，衬垫预紧仍待确认。手掌方向、目标设备内部碰撞、平衡与进入路径尚未验证。';
  document.documentElement.dataset.workspacePose=target.id;$('viewport').scrollIntoView({block:'center'});renderer.shadowMap.needsUpdate=true;requestRender();
 }
 function applyState(id,fraction){
@@ -130,8 +130,11 @@ function selectAsset(id,focus=true){
  detailRow('当前状态',asset.status);const size=asset.normalized_bounds_m[1].map((v,i)=>v-asset.normalized_bounds_m[0][i]);
  detailRow('模型包围尺寸（含已建附件）',size.map(v=>(v*1000).toFixed(1)+' mm').join(' × '));detailRow('物理比例 / 部件', '1 : 1 · '+asset.part_count+' 个部件');detailRow('工位',asset.station);
  if(asset.note)detailRow('待确认内容',asset.note);
- const requirements=readiness?.manual_step_requirements.filter(s=>s.resource_requirements.includes(asset.resource_id))||[];
+ const resourceIds=asset.resource_ids||[asset.resource_id];
+ const requirements=readiness?.manual_step_requirements.filter(s=>s.resource_requirements.some(r=>resourceIds.includes(r)))||[];
  detailRow('论文操作关联',requirements.length?requirements.length+' 个操作定义涉及此资源；均待人形机器人验证':'机器人或设施支持项；不计作已完成的论文操作');
+ const units={tool:'件',vessel:'个',probe:'支',sheet:'张',roll:'卷',blank:'块',cart:'辆',tray:'个',connector_pair:'对'};
+ for(const requirement of readiness?.requirements||[])for(const component of requirement.components){const staged=component.staged_candidates;if(!staged)continue;const count=staged.members.filter(m=>m.asset_id===id).length;if(count)detailRow('逐件候选 · '+component.label,count+' '+(units[staged.unit]||staged.unit)+'；按用途绑定，可共享，不代表完整实验用量或已完成操作')}
  const a=document.createElement('a');a.href=root+(asset.sources||asset.source_artifact.path);a.target='_blank';a.textContent='查看模型来源与重构依据 ↗';$('asset-detail').append(a);
  if(manifest.reference_comparisons?.[id]){const ref=manifest.reference_comparisons[id];if(ref.dimensions_label)detailRow('厂家标注尺寸',ref.dimensions_label);detailRow('比对边界',ref.model_scope);for(const source of ref.sources){const link=document.createElement('a');link.href=source.url;link.target='_blank';link.rel='noopener';link.textContent=source.label+' ↗';if(source.scope)link.title=source.scope;$('asset-detail').append(link)}}
  resetStates();const state=[...states.values()].find(s=>s.config.asset===id);$('state-control').hidden=!state;$('state-slider').value=0;
@@ -237,7 +240,7 @@ try{
  const fit=await read(root+'assets/g1_sensor_rig_v1/fit_checks.json');if(fit.rig_sha256!==manifest.sensor_rig.sha256||!fit.checks_passed||fit.active_installation)throw Error('相机装配检查缺失或状态不一致');
  sensors=new SensorReview({renderer,scene,robot:groups.get('g1'),normalization:assetList.find(a=>a.id==='g1').normalization_matrix,rig:sensorRig,hiddenGroups:[overlays,labels,measurements,accessMarker],canvas:$('sensor-canvas'),status:$('sensor-status')});await sensors.load(loadPinned,prepare);
  const kin=states.get('g1_hands_inspection').config.kinematics;sensors.update(new Map(Object.entries(kin.bind_world).map(([n,t])=>[n,new THREE.Matrix4().fromArray(t.flat()).transpose()])));
- $('sensor-fit').textContent='上置支架候选已避开采样姿态的其他关节；抱环配合仍未通过：'+fit.counts.surface_checks_with_intersections+' / '+fit.counts.surface_checks+' 项静态表面检查与被夹持腕部存在接触／相交；'+fit.counts.workspace_poses_with_attachment_overlaps+' / '+fit.counts.workspace_poses+' 个工位姿态存在相机／支架外部包围盒冲突；'+fit.counts.workspace_poses_with_other_link_intersections+' 个姿态与其他机器人部件表面相交。下方 47 点已检查本体、双手及候选相机；抱环夹紧配合单独保留为未通过。';
+ $('sensor-fit').textContent='G1 适配抱环保留官方相机臂，重新设计配合孔与螺栓耳座；原版保留为失败对照。刚性径向间隙 '+Math.min(...fit.collar_clearances.map(c=>c.rigid_bore_radial_clearance_m*1000)).toFixed(2)+' mm；'+fit.counts.surface_checks_with_intersections+' / '+fit.counts.surface_checks+' 项静态检查有机器人表面相交；'+fit.counts.workspace_poses_with_attachment_overlaps+' / '+fit.counts.workspace_poses+' 个工位存在外部冲突；'+fit.counts.workspace_poses_with_other_link_intersections+' 个姿态与其他机器人部件相交。相机螺钉伸入 3 mm（厂家上限 4 mm）。衬垫预紧、线缆与动态负载仍待完成。';
  $('show-sensor-rig').onchange=e=>{sensors.group.visible=e.target.checked;renderer.shadowMap.needsUpdate=true;requestRender()};
  $('sensor-mount-views').onclick=e=>{const side=e.target.dataset.wrist;if(!side)return;selectAsset('g1',false);$('show-sensor-rig').checked=true;sensors.group.visible=true;$('isolate').checked=true;visibility();groups.get('g1').updateWorldMatrix(true,false);const t=groups.get('g1').matrixWorld.clone().multiply(sensors.normalization).multiply(sensors.world.get(side+'_wrist_yaw_link')),p=new THREE.Vector3().setFromMatrixPosition(t),sign=side==='left'?1:-1;setView([p.x+.38,p.y+sign*.48,p.z+.28],[p.x+.07,p.y+sign*.055,p.z+.075]);document.documentElement.dataset.mountView=side;renderer.shadowMap.needsUpdate=true;requestRender()};
  $('sensor-buttons').onclick=e=>{const id=e.target.dataset.sensor;if(!id)return;try{sensors.capture(id);requestRender()}catch(error){$('sensor-status').textContent='生成失败：'+error.message;throw error}};

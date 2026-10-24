@@ -8,6 +8,7 @@ import mujoco
 import trimesh
 from geometry_tools import HERE,ROOT,sha,write_json
 from check_layout import inspect
+from access_geometry import access_obstacles
 
 
 def validate():
@@ -40,6 +41,9 @@ def validate():
     check('sensor_rig_pinned',sha(rig_path)==scene['sensor_rig']['sha256']==fit['rig_sha256'])
     check('conflicting_mount_not_accepted',fit['checks_passed'] and not fit['active_installation'] and not fit['mechanical_compatibility_qualified'] and not rig['sensor_runtime_qualified'])
     for rec in rig['source_artifacts']+fit['source_artifacts']:check('rig_source_'+rec['path'],sha(ROOT/rec['path'])==rec['sha256'])
+    supplies=json.loads((HERE/'supplies.json').read_text());supply_checks=json.loads((HERE/'supply_checks.json').read_text())
+    check('supply_verification_current',supply_checks['checks_passed'] and supply_checks['supplies_sha256']==sha(HERE/'supplies.json') and supply_checks['validator_sha256']==sha(HERE/'check_supplies.py'))
+    for ref in supplies['source_artifacts']:check('supply_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
     for role in camera_record['selected_roles']:
         placed=[a for a in scene['assets'] if role['resource_id'] in a.get('resource_ids',[a['resource_id']])]
         check('camera_staged_'+role['resource_id'],len(placed)==1 and placed[0]['station']==('circulation' if role['model']=='native_g1_d435i' else 'assembly_white'))
@@ -62,9 +66,15 @@ def validate():
         for evidence in record['source_artifacts']:check('integration_source_'+evidence['path'],sha(ROOT/evidence['path'])==evidence['sha256'])
     check('source_model_asset_checks',all(c['passed'] for c in integration['checks']) and integration['model']['nu']==41 and integration['model']['equality_constraints']==12)
     check('workspace_current_scene',workspace['scene_sha256']==sha(HERE/'scene.json'))
+    access=dict(access_obstacles(scene))
+    rack_boxes=[b for name,b in access.items() if name.startswith('raw_stock_')]
+    check('rack_open_interior_not_filled',len(rack_boxes)==9 and not any(np.all(np.array([1.3,.45,1.30])>b[0]) and np.all(np.array([1.3,.45,1.30])<b[1]) for b in rack_boxes))
+    check('rack_shelf_board_remains_solid',any(np.all(np.array([1.3,.45,1.10])>b[0]) and np.all(np.array([1.3,.45,1.10])<b[1]) for b in rack_boxes))
+    check('rack_existing_stock_retained',{'stock_plate_stack','foam_acrylic_stock_stack','pe_stock'}<=set(access))
+    check('floor_device_boxes_keep_identity',{'utility_cart','oily_waste_can','waterjet'}<=set(access))
     candidates=sum(r['result']['position_candidate'] for r in workspace['targets'])
     check('workspace_counts',workspace['counts']==dict(targets=len(workspace['targets']),position_candidates=candidates,needs_revision=len(workspace['targets'])-candidates))
-    check('workspace_candidate_predicate',all(r['result']['position_candidate']==(r['result']['position_error_m']<.01 and not r['result']['external_overlaps'] and r['result']['self_contacts_checked'] and not r['result']['self_penetrations_over_0_5mm'] and r['result']['candidate_rig_checked'] and not r['result']['candidate_rig_other_link_intersections']) for r in workspace['targets']))
+    check('workspace_candidate_predicate',all(r['result']['position_candidate']==(r['result']['position_error_m']<.01 and not r['result']['external_overlaps'] and r['result']['self_contacts_checked'] and not r['result']['self_penetrations_over_0_5mm'] and r['result']['candidate_rig_checked'] and not r['result']['candidate_rig_other_link_intersections'] and not r['result']['candidate_rig_parent_contacts_unqualified']) for r in workspace['targets']))
     check('static_integration_not_execution_credit',not integration['full_physics_qualified'] and not workspace['full_workspace_qualified'])
     model=mujoco.MjModel.from_xml_path(str(ROOT/integration['model']['path']))
     def replay_pose(row):
@@ -84,6 +94,13 @@ def validate():
     check('reject_observed_arm_through_torso_pose',fixture['pose']['position_error_m']<.01 and not fixture['pose']['external_overlaps'] and penetration>=fixture['expected_self_penetration_minimum_m'])
     readiness=json.loads((HERE/'readiness.json').read_text())
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
+    staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
+    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==15)
+    check('staged_quantities_not_campaign_claims',all(c['required_quantity'] is None and not c['staged_candidates']['campaign_sufficiency_accepted'] and c['staged_candidates']['quantity']==len(c['staged_candidates']['members']) for c in staged))
+    for c in staged:
+        for unit_index,member in enumerate(c['staged_candidates']['members']):
+            a=next(a for a in scene['assets'] if a['id']==member['asset_id'])
+            check('staged_member_'+c['id']+'_'+str(unit_index)+'_'+a['id'],member['geometry_sha256']==a['geometry_sha256'] and bool(member['parts']) and set(member['parts'])<=set(a['part_names']))
     check('all_manual_requirements_mapped',len(readiness['manual_step_requirements'])==200)
     check('manual_requirements_follow_current_embodiment',all(set(policy['robot']['resource_ids'])<=set(s['embodiment_requirements']) and 'robot:H2' not in s['embodiment_requirements'] for s in readiness['manual_step_requirements']))
     check('ordinary_tools_only',not any(c['id'] in ['film_jig','emitter_jig','carrier_0','carrier_1'] for c in scene['authored_components']))

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "installation_on_hold_clamp_fit_unqualified",
+  "status": "adapted_collar_geometry_clear_liner_and_cable_pending",
   "checks": [
     {
       "name": "source_assets/g1_sensor_rig_v1/SOURCE.json",
@@ -12,6 +12,10 @@
     },
     {
       "name": "source_assets/g1_sensor_rig_v1/convert_mounts.py",
+      "passed": true
+    },
+    {
+      "name": "source_assets/g1_sensor_rig_v1/adapter.json",
       "passed": true
     },
     {
@@ -97,7 +101,7 @@
       "passed": true
     },
     {
-      "name": "observed_wrist_mount_conflicts_retained",
+      "name": "adapted_collar_has_no_robot_surface_intersections",
       "passed": true
     },
     {
@@ -106,6 +110,40 @@
     },
     {
       "name": "reject_observed_side_mount_collision",
+      "passed": true
+    },
+    {
+      "name": "reject_original_undersized_collar",
+      "passed": true
+    },
+    {
+      "name": "positive_collar_radial_clearance_left",
+      "passed": true,
+      "radial_clearance_m": 0.000705834917056343
+    },
+    {
+      "name": "positive_collar_radial_clearance_right",
+      "passed": true,
+      "radial_clearance_m": 0.000705807384715422
+    },
+    {
+      "name": "unfastened_collar_removal_paths",
+      "passed": true
+    },
+    {
+      "name": "camera_fastener_left_camera_screw_0",
+      "passed": true
+    },
+    {
+      "name": "camera_fastener_left_camera_screw_1",
+      "passed": true
+    },
+    {
+      "name": "camera_fastener_right_camera_screw_0",
+      "passed": true
+    },
+    {
+      "name": "camera_fastener_right_camera_screw_1",
       "passed": true
     },
     {
@@ -119,16 +157,20 @@
     {
       "name": "station_candidate_attachments_clear_of_other_links",
       "passed": true
+    },
+    {
+      "name": "station_candidate_rigid_collars_clear_of_parent_wrist",
+      "passed": true
     }
   ],
   "checks_passed": true,
-  "method": "FCL exact tessellated source triangle intersection at three finger configurations and 47 arm postures; external conservative boxes at all recorded access poses",
+  "method": "FCL exact tessellated source triangle intersection at three finger configurations and 61 arm postures; external conservative boxes at all recorded access poses",
   "fcl_version": "0.7.0.11",
-  "rig_sha256": "b6f9c0831f4335361f67c1ac234f8ed9f90efc6863a715aa48baed11d4f2951f",
+  "rig_sha256": "7fa6a1e824a9632390098fae7fba168b2a003a04aa00c1f614cb24fec721898c",
   "source_artifacts": [
     {
       "path": "assets/g1_sensor_rig_v1/check_fit.py",
-      "sha256": "52805295f947757f36c6c286c42ef6026daa4d3e3d99ce699037930ee8298e71"
+      "sha256": "ca81ac6d644758e23158880c65aaafe259cccaf90a2859f7c92a6b8b0243b57f"
     },
     {
       "path": "assets/g1_sensor_rig_v1/failed_mount_fixture.json",
@@ -140,11 +182,15 @@
     },
     {
       "path": "assets/cooling_lab_v1/workspace_checks.json",
-      "sha256": "c683843e7d1e19b5912b6f436b0cd0eb94e0d61450261dbaaaa1f34cf5de72b8"
+      "sha256": "583b08edb6e7326db32fe9923dc4d988b6f059f39dcaf0f9831896d5d814b67c"
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "ea447fd2d1e92650d2f81244fdb9f2b19117bc775d41d3da5e17a65cf5ddfd76"
+      "sha256": "89a1a01ba1778be1d3769a0cd520c649a751793a2c9f11dcb051ffa18d79e23f"
+    },
+    {
+      "path": "assets/cooling_lab_v1/access_geometry.py",
+      "sha256": "d57fe86a986accf014ea234b6b194971ddd439487017190b05657dc0b308257d"
     },
     {
       "path": "assets/unitree_g1_inspire_v1/simulation/robot.xml",
@@ -155,20 +201,16 @@
     {
       "finger_inspection_fraction": 0,
       "attachment": "left_bracket",
-      "surface_intersections": [
-        "left_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 0,
       "attachment": "left_clamp",
-      "surface_intersections": [
-        "left_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 0,
@@ -180,20 +222,16 @@
     {
       "finger_inspection_fraction": 0,
       "attachment": "right_bracket",
-      "surface_intersections": [
-        "right_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 0,
       "attachment": "right_clamp",
-      "surface_intersections": [
-        "right_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 0,
@@ -205,20 +243,16 @@
     {
       "finger_inspection_fraction": 0.5,
       "attachment": "left_bracket",
-      "surface_intersections": [
-        "left_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 0.5,
       "attachment": "left_clamp",
-      "surface_intersections": [
-        "left_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 0.5,
@@ -230,20 +264,16 @@
     {
       "finger_inspection_fraction": 0.5,
       "attachment": "right_bracket",
-      "surface_intersections": [
-        "right_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 0.5,
       "attachment": "right_clamp",
-      "surface_intersections": [
-        "right_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 0.5,
@@ -255,20 +285,16 @@
     {
       "finger_inspection_fraction": 1,
       "attachment": "left_bracket",
-      "surface_intersections": [
-        "left_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 1,
       "attachment": "left_clamp",
-      "surface_intersections": [
-        "left_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 1,
@@ -280,20 +306,16 @@
     {
       "finger_inspection_fraction": 1,
       "attachment": "right_bracket",
-      "surface_intersections": [
-        "right_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 1,
       "attachment": "right_clamp",
-      "surface_intersections": [
-        "right_wrist_yaw_link_visual_0"
-      ],
+      "surface_intersections": [],
       "other_link_intersections": [],
-      "candidate_clear": false
+      "candidate_clear": true
     },
     {
       "finger_inspection_fraction": 1,
@@ -301,6 +323,68 @@
       "surface_intersections": [],
       "other_link_intersections": [],
       "candidate_clear": true
+    }
+  ],
+  "collar_clearances": [
+    {
+      "side": "left",
+      "source_wrist_radial_bound_m": 0.030494165082943656,
+      "rigid_bore_radial_clearance_m": 0.000705834917056343,
+      "liner_preload_qualified": false
+    },
+    {
+      "side": "right",
+      "source_wrist_radial_bound_m": 0.030494192615284577,
+      "rigid_bore_radial_clearance_m": 0.000705807384715422,
+      "liner_preload_qualified": false
+    }
+  ],
+  "unfastened_collar_paths": [
+    {
+      "part": "left_bracket",
+      "sample_count": 33,
+      "translation_step_m": 0.0025,
+      "collisions": []
+    },
+    {
+      "part": "left_clamp",
+      "sample_count": 33,
+      "translation_step_m": 0.0025,
+      "collisions": []
+    },
+    {
+      "part": "right_bracket",
+      "sample_count": 33,
+      "translation_step_m": 0.0025,
+      "collisions": []
+    },
+    {
+      "part": "right_clamp",
+      "sample_count": 33,
+      "translation_step_m": 0.0025,
+      "collisions": []
+    }
+  ],
+  "camera_screw_engagement": [
+    {
+      "id": "left_camera_screw_0",
+      "engagement_m": 0.0030000000000000096,
+      "maximum_insertion_m": 0.004
+    },
+    {
+      "id": "left_camera_screw_1",
+      "engagement_m": 0.0030000000000000096,
+      "maximum_insertion_m": 0.004
+    },
+    {
+      "id": "right_camera_screw_0",
+      "engagement_m": 0.0030000000000000096,
+      "maximum_insertion_m": 0.004
+    },
+    {
+      "id": "right_camera_screw_1",
+      "engagement_m": 0.0030000000000000096,
+      "maximum_insertion_m": 0.004
     }
   ],
   "workspace_attachment_screen": [
@@ -308,297 +392,442 @@
       "target": "cary_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "dmm_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "rtd_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "smu_white_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "smu_black_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "daq_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cooler_white_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cooler_black_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cooler_fixed_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "tracker_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "hobo_u30_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "waterjet_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "caliper_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "driver_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "tray_white_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "tray_black_front",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "wire_stripper_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "terminal_driver_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "tweezers_white_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "tweezers_black_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "fill_jug_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "ambient_rtd_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "tc_transition_kit_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "nano_pe_stock_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "ldpe_stock_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "mylar_stock_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "masking_tape_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "calibration_block_stock_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "utility_cart_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
+    },
+    {
+      "target": "oily_waste_can_access",
+      "external_box_overlaps": [],
+      "other_robot_link_intersections": [],
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cary_sample_lid",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cary_front_panel",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cary_extension_base",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cary_extension_cover",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cary_lockdown",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "cary_power",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_scan_0",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_scan_1",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_scan_2",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_scan_3",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_sample_cover",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_sample_access_slider",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_detector_motors",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_auxiliary",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "nicolet_sample_bay_purge",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_bath_lid_grip",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_front_drain",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_AC150_up",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_AC150_down",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_AC150_left",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_AC150_right",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_AC150_enter",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_AC150_escape",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_AC150_standby",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_high_temperature_cutout",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_circulation_outlet",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_circulation_return",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_controller_power",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     },
     {
       "target": "bath_bath_power",
       "external_box_overlaps": [],
       "other_robot_link_intersections": [],
-      "parent_wrist_clamp_contact_unqualified": true
+      "parent_wrist_intersections": [],
+      "parent_wrist_liner_preload_unqualified": true
     }
   ],
   "counts": {
     "surface_checks": 18,
-    "surface_checks_with_intersections": 12,
-    "workspace_poses": 47,
+    "surface_checks_with_intersections": 0,
+    "workspace_poses": 61,
     "workspace_poses_with_attachment_overlaps": 0,
     "workspace_poses_with_other_link_intersections": 0
   },
   "mechanical_compatibility_qualified": false,
   "active_installation": false,
   "blocks": [
-    "Above-wrist clocking removes the observed pitch-link conflict at sampled finger poses; clamp surfaces still intersect the parent wrist and need a verified fit/preload model. No accepted installation.",
-    "Fasteners, cable/connector clearance, strain relief and dynamic swept volumes are not modeled."
+    "Authored split collars remove rigid wrist interference. Positive clearance reserves a compliant liner; its preload and retention are not qualified.",
+    "Fastener envelopes and camera insertion depth are checked. Cable/connector clearance, strain relief, fastener insertion and dynamic swept volumes remain open."
   ],
   "limitations": [
     "Surface intersection includes intended clamp contact and touching; no penetration-depth or preload qualification is inferred.",

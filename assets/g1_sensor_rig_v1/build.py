@@ -23,6 +23,8 @@ def matrix(rotation=None,position=None):
 def build():
     robot=Robot();source=json.loads((HERE/'SOURCE.json').read_text())
     source_geometry=json.loads((HERE/'mount_geometry.json').read_text())
+    adapter=json.loads((HERE/'adapter.json').read_text())
+    for rec in adapter['source_artifacts']:assert sha(ROOT/rec['path'])==rec['sha256']
     assert source_geometry['source_sha256']==sha(HERE/'SOURCE.json')
     meshes={}
     for item in source_geometry['items']:
@@ -62,8 +64,32 @@ def build():
         for suffix,key2,t in [('bracket',key,mount),('clamp','left_wrist_D405_camera_mount',mount@clamp)]:
             mesh=meshes[key2].copy();mesh.visual=trimesh.visual.TextureVisuals(material=PBRMaterial(name='printed_polymer_inferred',baseColorFactor=[.045,.05,.055,1],roughnessFactor=.72))
             filename='geometry/'+side+'_'+suffix+'.glb';sc=trimesh.Scene();sc.add_geometry(mesh,node_name=side+'_'+suffix);(HERE/filename).write_bytes(sc.export(file_type='glb'))
-            attachments.append(dict(id=side+'_'+suffix,parent_link=parent,geometry_path=str((HERE/filename).relative_to(ROOT)),geometry_sha256=sha(HERE/filename),parent_from_geometry=t.tolist(),source_role=source['mount_roles'][key2],source_step=next(i['source_path'] for i in source_geometry['items'] if i['id']==key2)))
-            world=robot.bind[parent]@t;assembly.add_geometry(mesh,node_name=side+'_'+suffix,transform=world)
+            # Keep the unmodified source GLBs for the rejected historical
+            # assembly. Both new collar halves share the bracket STEP frame.
+            item2=next(v for v in adapter['items'] if v['id']==side+'_'+suffix)
+            mesh=trimesh.load(ROOT/item2['geometry']['path'],force='mesh')
+            assert sha(ROOT/item2['geometry']['path'])==item2['geometry']['sha256']
+            mesh.visual=trimesh.visual.TextureVisuals(material=PBRMaterial(name='authored_pa12',baseColorFactor=[.065,.07,.075,1],roughnessFactor=.72))
+            sc=trimesh.Scene();sc.add_geometry(mesh,node_name=side+'_'+suffix)
+            hardware=[]
+            def add_hardware(name,kind,rotation,position):
+                rec=adapter['hardware'][kind];assert sha(ROOT/rec['path'])==rec['sha256']
+                hm=trimesh.load(ROOT/rec['path'],force='mesh')
+                hm.visual=trimesh.visual.TextureVisuals(material=PBRMaterial(name='stainless_hardware',baseColorFactor=[.42,.45,.49,1],metallicFactor=.9,roughnessFactor=.3))
+                local=matrix(rotation,position);sc.add_geometry(hm,node_name=name,transform=local)
+                hardware.append(dict(id=name,kind=kind,step_from_hardware=local.tolist(),mass_kg=rec['mass_kg']))
+            if suffix=='bracket':
+                for j,point in enumerate(trimesh.transform_points([[-.01,.023,0],[.01,.023,0]],camera)):
+                    add_hardware(side+'_camera_screw_'+str(j),'m3x6',trimesh.geometry.align_vectors([0,0,1],normal)[:3,:3],point-normal*.003)
+            else:
+                axis=trimesh.geometry.align_vectors([0,0,1],[0,1,0])[:3,:3]
+                for j,xbolt in enumerate([-.04,.04]):
+                    for kind,ypos in [('m3x20',-.0075),('washer_m3',-.0075),('washer_m3',.007),('nut_m3',.0075)]:
+                        add_hardware(side+'_'+str(j)+'_'+kind+'_'+str(ypos),kind,axis,[xbolt,ypos,center[2]])
+            filename='geometry/adapted_'+side+'_'+suffix+'.glb';(HERE/filename).write_bytes(sc.export(file_type='glb'))
+            attachments.append(dict(id=side+'_'+suffix,parent_link=parent,geometry_path=str((HERE/filename).relative_to(ROOT)),geometry_sha256=sha(HERE/filename),parent_from_geometry=mount.tolist(),source_role='authored_G1_collar_derivative',source_step=item2['source']['path'],hardware=hardware))
+            for node in sc.graph.nodes_geometry:
+                local,geom=sc.graph[node];assembly.add_geometry(sc.geometry[geom],node_name=node,transform=robot.bind[parent]@mount@local)
         t=mount@camera
         attachments.append(dict(id=side+'_d405',parent_link=parent,geometry_path=str(camera_path.relative_to(ROOT)),geometry_sha256=sha(camera_path),parent_from_geometry=t.tolist(),source_role='manufacturer_camera',source_step=None))
         for node in camera_scene.graph.nodes_geometry:
@@ -84,14 +110,14 @@ def build():
         p=o['profile'];p['fx_px']=p['width']/(2*np.tan(np.radians(p['horizontal_fov_deg'])/2));p['fy_px']=p['height']/(2*np.tan(np.radians(p['vertical_fov_deg'])/2));p['cx_px']=p['width']/2;p['cy_px']=p['height']/2
         p['basis']='Nominal manufacturer HD FOV; ideal pinhole preview, no measured intrinsics or distortion'
     path=HERE/'geometry/assembly_zero.glb';path.write_bytes(assembly.export(file_type='glb'))
-    evidence=[HERE/'SOURCE.json',HERE/'mount_geometry.json',HERE/'convert_mounts.py',Path(__file__),ROOT/'assets/realsense_cameras_v1/model.json',ROOT/'assets/unitree_g1_inspire_v1/kinematics.json']
-    report=dict(schema_version=1,status='source_constrained_candidate_clamp_fit_unqualified',source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in evidence],attachments=attachments,optics=optics,camera_mount_fits=camera_fits,geometry=dict(path=str(path.relative_to(ROOT)),sha256=sha(path)),
+    evidence=[HERE/'SOURCE.json',HERE/'mount_geometry.json',HERE/'convert_mounts.py',HERE/'adapter.json',Path(__file__),ROOT/'assets/realsense_cameras_v1/model.json',ROOT/'assets/unitree_g1_inspire_v1/kinematics.json']
+    report=dict(schema_version=1,status='adapted_collar_candidate_pending_liner_and_cable_qualification',source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in evidence],attachments=attachments,optics=optics,camera_mount_fits=camera_fits,geometry=dict(path=str(path.relative_to(ROOT)),sha256=sha(path)),
       mechanical_compatibility_qualified=False,sensor_runtime_qualified=False,owner_acceptance=None,
-      assumptions=['Wrist ring center at +36.5 mm in source wrist_yaw_link, clocked +90 degrees left / -90 degrees right, is an authored fit candidate; source parts are not rescaled.',
+      assumptions=['Wrist ring center at +36.5 mm in source wrist_yaw_link, clocked +90 degrees left / -90 degrees right. New 31.2 mm bore collar retains the source camera arm; original parts are archived and no robot or camera geometry is rescaled.',
       'The official D405 wrist installation reference uses Dex3 M4010; its applicability to Inspire FTP is independently screened, not assumed.',
       'The native camera housing is already part of the official G1 head mesh; no duplicate D435 housing is added.',
       'D455 remains an optional staged reference; the head review now uses the native G1 D435i.',
-      'Print material, stiffness, clamp preload, M3 fasteners, cable retention and dynamic strain are not yet qualified.',
+      'Standard M3 screw/nut/washer envelopes and stack lengths are modeled. Liner preload, stiffness, cable retention and dynamic strain remain unqualified.',
       'Nominal camera matrices render inspection views only; noise, distortion, exposure, synchronization, rolling shutter and actor process isolation are absent.'])
     (HERE/'rig.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(dict(attachments=len(attachments),optical_views=len(optics),qualified=False)))

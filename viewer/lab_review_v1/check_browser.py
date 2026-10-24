@@ -22,7 +22,10 @@ def run(url,browser):
         page.set_default_timeout(60000)
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(url,wait_until='domcontentloaded');page.wait_for_function('document.documentElement.dataset.sceneLoaded === "true"',timeout=120000)
-        check('all_models_loaded',page.locator('html').get_attribute('data-asset-count')=='35')
+        expected=json.loads((ROOT/'assets/cooling_lab_v1/scene.json').read_text())
+        check('all_models_loaded',int(page.locator('html').get_attribute('data-asset-count'))==len(expected['assets']))
+        actual_ids=page.locator('#asset-select option').evaluate_all('options=>options.map(o=>o.value).filter(Boolean)')
+        check('all_asset_identities_loaded',set(actual_ids)=={a['id'] for a in expected['assets']})
         check('render_batch_geometry_preserved',page.locator('html').get_attribute('data-geometry-preserved')=='true')
         inventory_count=page.locator('#inventory tr').count()
         check('paper_facility_camera_and_selected_robot_requirements',inventory_count==66)
@@ -50,7 +53,8 @@ def run(url,browser):
             capture(view)
             check('shell_mode_'+view,page.locator('#show-walls').is_checked()==(view not in ['all','top']))
         page.locator('button[data-view=indoor]').click();capture('full_walls');page.locator('#show-walls').uncheck()
-        for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','g1','caliper','driver','tray_white','waterjet','camera_head','camera_wrist_left','camera_wrist_right','tc_01']:
+        for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','g1','caliper','driver','tray_white','waterjet','camera_head','camera_wrist_left','camera_wrist_right','tc_01',
+            'wire_stripper','terminal_driver','tweezers_white','fill_jug','ambient_rtd','tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can']:
             page.locator('#asset-select').select_option(identity);page.locator('#isolate').check();page.wait_for_timeout(200)
             check('inspect_'+identity,page.locator('html').get_attribute('data-selected-asset')==identity)
             closed=capture(identity+'_closed')
@@ -58,7 +62,7 @@ def run(url,browser):
                 check('probe_not_connected','尚未装接' in page.locator('#asset-detail').inner_text())
                 page.locator('#asset-views [data-direction="top"]').click();capture('tc_01_top')
             if identity.startswith('camera_'):
-                check('camera_not_installed_'+identity,'尚未装到 G1' in page.locator('#asset-detail').inner_text())
+                check('camera_installation_not_qualified_'+identity,'衬垫预紧' in page.locator('#asset-detail').inner_text())
                 for direction in ['front','back','side']:
                     page.locator('#asset-views [data-direction="'+direction+'"]').click();capture(identity+'_'+direction)
             if identity in ['g1']:
@@ -68,7 +72,11 @@ def run(url,browser):
                     check(identity+'_view_'+direction,page.locator('html').get_attribute('data-asset-view')==direction)
                     capture(identity+'_'+direction)
                 page.locator('#asset-views [data-direction="front"]').click();closed=capture(identity+'_front_rest')
-            if identity in ['hobo_u30','cary','nicolet','bath','g1','caliper','waterjet']:
+            if identity in ['wire_stripper','terminal_driver','tweezers_white','fill_jug','ambient_rtd','tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock']:
+                check('supply_inferences_visible_'+identity,'推断' in page.locator('#asset-detail').inner_text())
+                check('supply_units_bound_'+identity,'逐件候选' in page.locator('#asset-detail').inner_text())
+                page.locator('#asset-views [data-direction="top"]').click();capture(identity+'_top')
+            if identity in ['hobo_u30','cary','nicolet','bath','g1','caliper','waterjet','oily_waste_can']:
                 page.locator('#state-slider').fill('100');page.locator('#state-slider').dispatch_event('input');page.wait_for_timeout(200)
                 opened=capture(identity+'_open')
                 diff=ImageChops.difference(Image.open(io.BytesIO(closed)).convert('RGB'),Image.open(io.BytesIO(opened)).convert('RGB'))
@@ -89,7 +97,8 @@ def run(url,browser):
         page.locator('#filter').select_option('missing');missing=page.locator('#inventory tr').count()
         check('inventory_filter_partition',placed+missing==inventory_count,with_geometry=placed,without_geometry=missing)
         page.locator('#filter').select_option('all')
-        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==47)
+        expected_workspace=json.loads((ROOT/'assets/cooling_lab_v1/workspace_checks.json').read_text())
+        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==61)
         page.locator('button[data-target="cary_front"]').click();check('static_workspace_pose_selected',page.locator('html').get_attribute('data-workspace-pose')=='cary_front');capture('g1_cary_access')
         page.locator('#workspace-reset').click();check('static_workspace_pose_reset',page.locator('html').get_attribute('data-workspace-pose') is None)
         page.locator('#review-notes').fill('QA temporary comment; not acceptance')

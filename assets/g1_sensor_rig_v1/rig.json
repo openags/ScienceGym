@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "source_constrained_candidate_clamp_fit_unqualified",
+  "status": "adapted_collar_candidate_pending_liner_and_cable_qualification",
   "source_artifacts": [
     {
       "path": "assets/g1_sensor_rig_v1/SOURCE.json",
@@ -15,8 +15,12 @@
       "sha256": "c1fb9c1bbbe25a91a1267fed4daed17b7569c8a336c9b24e3075bee513a8fbda"
     },
     {
+      "path": "assets/g1_sensor_rig_v1/adapter.json",
+      "sha256": "04a6a845c820fe49edc65f4d893e37170837668bbfc585742e5b8377bd0bf38f"
+    },
+    {
       "path": "assets/g1_sensor_rig_v1/build.py",
-      "sha256": "1f419ebc9facd3d7d68143e7d3ac0e8cc055da40fea01905edaaa19332d5e004"
+      "sha256": "b4e73c69d7dc2c971a02d25ca94988a1ab6a85e972cb8b5289588659a9b4ff13"
     },
     {
       "path": "assets/realsense_cameras_v1/model.json",
@@ -31,8 +35,8 @@
     {
       "id": "left_bracket",
       "parent_link": "left_wrist_yaw_link",
-      "geometry_path": "assets/g1_sensor_rig_v1/geometry/left_bracket.glb",
-      "geometry_sha256": "f0471a9b194e2360e913ea2b50c5969eed5caf8656902d4ea9e54ecbb9013a41",
+      "geometry_path": "assets/g1_sensor_rig_v1/geometry/adapted_left_bracket.glb",
+      "geometry_sha256": "44ac3177d50c11b800f93492cadb206fff386b750ffe2d994a8fe41234234595",
       "parent_from_geometry": [
         [
           0.0,
@@ -59,32 +63,96 @@
           1.0
         ]
       ],
-      "source_role": "left_camera_bracket",
-      "source_step": "vendor/unitree_xr/right_wrist_D405_camera_mount.STEP"
+      "source_role": "authored_G1_collar_derivative",
+      "source_step": "assets/g1_sensor_rig_v1/vendor/unitree_xr/right_wrist_D405_camera_mount.STEP",
+      "hardware": [
+        {
+          "id": "left_camera_screw_0",
+          "kind": "m3x6",
+          "step_from_hardware": [
+            [
+              -0.8516507396391462,
+              0.4226182617407001,
+              0.3099755192194449,
+              0.0016067190756665567
+            ],
+            [
+              0.27475563467853154,
+              0.8636568450812315,
+              -0.4226182617407001,
+              0.09329107981580646
+            ],
+            [
+              -0.44631867413821324,
+              -0.2747556346785316,
+              -0.8516507396391462,
+              0.0075855756201991045
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0008531994219682568
+        },
+        {
+          "id": "left_camera_screw_1",
+          "kind": "m3x6",
+          "step_from_hardware": [
+            [
+              -0.8516507396391462,
+              0.4226182617407001,
+              0.3099755192194449,
+              0.004497598244718587
+            ],
+            [
+              0.27475563467853154,
+              0.8636568450812315,
+              -0.4226182617407001,
+              0.11141723555653946
+            ],
+            [
+              -0.44631867413821324,
+              -0.2747556346785316,
+              -0.8516507396391462,
+              -0.00035704961914294906
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0008531994219682568
+        }
+      ]
     },
     {
       "id": "left_clamp",
       "parent_link": "left_wrist_yaw_link",
-      "geometry_path": "assets/g1_sensor_rig_v1/geometry/left_clamp.glb",
-      "geometry_sha256": "915f2ce4267f5d68c8316f237910e01062c270c86fff7f889641a64e99047534",
+      "geometry_path": "assets/g1_sensor_rig_v1/geometry/adapted_left_clamp.glb",
+      "geometry_sha256": "e67c5c2f42af365126edcfcef84ffbd762f7b1f9eaf4a4867ec8d520dcfd7037",
       "parent_from_geometry": [
         [
           0.0,
-          1.0,
-          -6.123233995736766e-17,
-          -0.08150023853648482
+          0.0,
+          -1.0,
+          0.016499999999999997
         ],
         [
           -1.0,
-          3.749399456654644e-33,
           6.123233995736766e-17,
-          -4.4243003025381455e-34
+          0.0,
+          0.0
         ],
         [
           6.123233995736766e-17,
-          6.123233995736766e-17,
           1.0,
-          -7.225430721116514e-18
+          0.0,
+          0.0
         ],
         [
           0.0,
@@ -93,8 +161,258 @@
           1.0
         ]
       ],
-      "source_role": "clamp_half_ring",
-      "source_step": "vendor/unitree_xr/left_wrist_D405_camera_mount.STEP"
+      "source_role": "authored_G1_collar_derivative",
+      "source_step": "assets/g1_sensor_rig_v1/vendor/unitree_xr/right_wrist_D405_camera_mount.STEP",
+      "hardware": [
+        {
+          "id": "left_0_m3x20_-0.0075",
+          "kind": "m3x20",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0016448807706728845
+        },
+        {
+          "id": "left_0_washer_m3_-0.0075",
+          "kind": "washer_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.00012176813125314041
+        },
+        {
+          "id": "left_0_washer_m3_0.007",
+          "kind": "washer_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.007
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.00012176813125314041
+        },
+        {
+          "id": "left_0_nut_m3_0.0075",
+          "kind": "nut_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0003672707518829228
+        },
+        {
+          "id": "left_1_m3x20_-0.0075",
+          "kind": "m3x20",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0016448807706728845
+        },
+        {
+          "id": "left_1_washer_m3_-0.0075",
+          "kind": "washer_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.00012176813125314041
+        },
+        {
+          "id": "left_1_washer_m3_0.007",
+          "kind": "washer_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.007
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.00012176813125314041
+        },
+        {
+          "id": "left_1_nut_m3_0.0075",
+          "kind": "nut_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0003672707518829228
+        }
+      ]
     },
     {
       "id": "left_d405",
@@ -133,8 +451,8 @@
     {
       "id": "right_bracket",
       "parent_link": "right_wrist_yaw_link",
-      "geometry_path": "assets/g1_sensor_rig_v1/geometry/right_bracket.glb",
-      "geometry_sha256": "ddeaa48c70e3f4bad8e204324a84f2a204d8311b3edd0f2481922fb5e16ee1a8",
+      "geometry_path": "assets/g1_sensor_rig_v1/geometry/adapted_right_bracket.glb",
+      "geometry_sha256": "db81c399f14fad17d324510f27df2c4b50c8016b04f42e2f3fd6aa98afa82107",
       "parent_from_geometry": [
         [
           0.0,
@@ -161,32 +479,96 @@
           1.0
         ]
       ],
-      "source_role": "right_camera_bracket",
-      "source_step": "vendor/unitree_xr/wrist_ring_mount.STEP"
+      "source_role": "authored_G1_collar_derivative",
+      "source_step": "assets/g1_sensor_rig_v1/vendor/unitree_xr/wrist_ring_mount.STEP",
+      "hardware": [
+        {
+          "id": "right_camera_screw_0",
+          "kind": "m3x6",
+          "step_from_hardware": [
+            [
+              0.8516507396391462,
+              0.4226182617407001,
+              0.3099755192194449,
+              0.004497598244718587
+            ],
+            [
+              -0.27475563467853154,
+              0.8636568450812315,
+              -0.4226182617407001,
+              0.11141723555653946
+            ],
+            [
+              -0.44631867413821324,
+              0.2747556346785316,
+              0.8516507396391462,
+              0.00035704961914294906
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0008531994219682568
+        },
+        {
+          "id": "right_camera_screw_1",
+          "kind": "m3x6",
+          "step_from_hardware": [
+            [
+              0.8516507396391462,
+              0.4226182617407001,
+              0.3099755192194449,
+              0.0016067190756665567
+            ],
+            [
+              -0.27475563467853154,
+              0.8636568450812315,
+              -0.4226182617407001,
+              0.09329107981580646
+            ],
+            [
+              -0.44631867413821324,
+              0.2747556346785316,
+              0.8516507396391462,
+              -0.0075855756201991045
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0008531994219682568
+        }
+      ]
     },
     {
       "id": "right_clamp",
       "parent_link": "right_wrist_yaw_link",
-      "geometry_path": "assets/g1_sensor_rig_v1/geometry/right_clamp.glb",
-      "geometry_sha256": "aad67c558099fc50317fac916a272188d3bc65e7bc5ee35daafcb6ab429b45c2",
+      "geometry_path": "assets/g1_sensor_rig_v1/geometry/adapted_right_clamp.glb",
+      "geometry_sha256": "4e199b72975e85b68fd3ff31413c6c688542e9b2a9df05381dc6c8f3be34997e",
       "parent_from_geometry": [
         [
           0.0,
-          -1.0,
-          6.123233995736766e-17,
-          0.1545002385364848
+          0.0,
+          1.0,
+          0.016499999999999997
         ],
         [
           1.0,
-          -3.749399456654644e-33,
           -6.123233995736766e-17,
-          4.4243003025381455e-34
+          0.0,
+          0.0
         ],
         [
           6.123233995736766e-17,
-          6.123233995736766e-17,
           1.0,
-          -7.225430721116514e-18
+          0.0,
+          0.0
         ],
         [
           0.0,
@@ -195,8 +577,258 @@
           1.0
         ]
       ],
-      "source_role": "clamp_half_ring",
-      "source_step": "vendor/unitree_xr/left_wrist_D405_camera_mount.STEP"
+      "source_role": "authored_G1_collar_derivative",
+      "source_step": "assets/g1_sensor_rig_v1/vendor/unitree_xr/wrist_ring_mount.STEP",
+      "hardware": [
+        {
+          "id": "right_0_m3x20_-0.0075",
+          "kind": "m3x20",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0016448807706728845
+        },
+        {
+          "id": "right_0_washer_m3_-0.0075",
+          "kind": "washer_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.00012176813125314041
+        },
+        {
+          "id": "right_0_washer_m3_0.007",
+          "kind": "washer_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.007
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.00012176813125314041
+        },
+        {
+          "id": "right_0_nut_m3_0.0075",
+          "kind": "nut_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0003672707518829228
+        },
+        {
+          "id": "right_1_m3x20_-0.0075",
+          "kind": "m3x20",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0016448807706728845
+        },
+        {
+          "id": "right_1_washer_m3_-0.0075",
+          "kind": "washer_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.00012176813125314041
+        },
+        {
+          "id": "right_1_washer_m3_0.007",
+          "kind": "washer_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.007
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.00012176813125314041
+        },
+        {
+          "id": "right_1_nut_m3_0.0075",
+          "kind": "nut_m3",
+          "step_from_hardware": [
+            [
+              0.0,
+              -1.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0075
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.02
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "mass_kg": 0.0003672707518829228
+        }
+      ]
     },
     {
       "id": "right_d405",
@@ -545,17 +1177,17 @@
   ],
   "geometry": {
     "path": "assets/g1_sensor_rig_v1/geometry/assembly_zero.glb",
-    "sha256": "3067fa71cdc0249eb27ab513348635c49ba5aa3f3b545977082ec6e1ce74ebce"
+    "sha256": "d10a4d9225256c160fe902e72e8f79d02a72a60f64317914f64abc486c61e33f"
   },
   "mechanical_compatibility_qualified": false,
   "sensor_runtime_qualified": false,
   "owner_acceptance": null,
   "assumptions": [
-    "Wrist ring center at +36.5 mm in source wrist_yaw_link, clocked +90 degrees left / -90 degrees right, is an authored fit candidate; source parts are not rescaled.",
+    "Wrist ring center at +36.5 mm in source wrist_yaw_link, clocked +90 degrees left / -90 degrees right. New 31.2 mm bore collar retains the source camera arm; original parts are archived and no robot or camera geometry is rescaled.",
     "The official D405 wrist installation reference uses Dex3 M4010; its applicability to Inspire FTP is independently screened, not assumed.",
     "The native camera housing is already part of the official G1 head mesh; no duplicate D435 housing is added.",
     "D455 remains an optional staged reference; the head review now uses the native G1 D435i.",
-    "Print material, stiffness, clamp preload, M3 fasteners, cable retention and dynamic strain are not yet qualified.",
+    "Standard M3 screw/nut/washer envelopes and stack lengths are modeled. Liner preload, stiffness, cable retention and dynamic strain remain unqualified.",
     "Nominal camera matrices render inspection views only; noise, distortion, exposure, synchronization, rolling shutter and actor process isolation are absent."
   ]
 }

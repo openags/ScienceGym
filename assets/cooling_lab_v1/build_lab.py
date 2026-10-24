@@ -93,7 +93,7 @@ def asset(key,label,path,position,*,prefix=None,z_up=False,station='',resource='
     normalization[:3,3]=[-(bounds[0,0]+bounds[1,0])/2,-(bounds[0,1]+bounds[1,1])/2,-bounds[0,2]]
     if origin_xy is not None:normalization[:2,3]=-np.asarray(origin_xy)
     scene.apply_transform(normalization)
-    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb'))
+    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if '/supply_' in path else None))
     # Original authoring coordinates are Z-up before this normalization.
     part_names=list(scene.graph.nodes_geometry)
     entry=dict(id=key,label=label,resource_id=resource,station=station,
@@ -217,7 +217,7 @@ def devices():
         record=next(i for i in cameras['items'] if i['id']==kind)
         asset(key,label,record['geometry']['path'],[x,2.66,.9],z_up=True,station='assembly_white',resource=resource,
           source_path='assets/realsense_cameras_v1/sources.json',
-          note='官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；腕部官方支架已调整为上置候选，抱环夹紧配合仍待确认；线缆、标定与闭环观察流仍未完成。D455 为备选，头部使用原生 D435i。')
+          note='官方 ROS 原尺寸相机网格。另有保留官方相机臂的 G1 适配抱环与标准紧固件，刚性间隙已检查；衬垫预紧、线缆与观察流仍待完成。D455 为备选，头部使用原生 D435i。')
     ordinary=json.loads((HERE/'ordinary_tools.json').read_text())
     for key,kind,label,pos,station,resource in [
       ('caliper','mitutoyo_530_104','Mitutoyo 530-104 游标卡尺',[3.25,2.50,.9],'assembly_white','tools:caliper'),
@@ -229,6 +229,31 @@ def devices():
           source_path='assets/cooling_lab_v1/ordinary_tools_sources.json',
           note='普通目录工具的选定重构；局部结构含推断，尚未证明抓持、测量或所有任务的兼容性。')
         if key=='caliper':states.append(dict(id='caliper_slide',asset=key,kind='slide',parts=record['geometry']['moving_parts'],axis=[1,0,0],maximum=.130,label='卡尺张开 · 20–150 mm',basis='Manufacturer measuring range; selected 20 mm initial gap; geometric inspection only'))
+    supplies=json.loads((HERE/'supplies.json').read_text())
+    for key,kind,pos,station in [
+      ('wire_stripper','jonard_st450',[9.05,6.10,.85],'electrical_bench'),
+      ('terminal_driver','wiha_26015',[9.22,6.10,.85],'electrical_bench'),
+      ('tweezers_white','idealtek_aa_sa_t6',[2.00,3.35,.9],'assembly_white'),
+      ('tweezers_black','idealtek_aa_sa_t6',[9.10,3.50,.9],'assembly_black'),
+      ('fill_jug','buerkle_7102_2000',[1.74,6.08,.85],'calibration_dry'),
+      ('ambient_rtd','omega_ambient_rtd',[9.58,18.78,.9],'weather_service'),
+      ('tc_transition_kit','omega_smpw_cc_kit',[10.65,6.10,.85],'electrical_bench'),
+      ('nano_pe_stock','nano_pe_stock',[.80,.53,1.1175],'raw_stock_shelf_2'),
+      ('ldpe_stock','ldpe_stock',[1.30,.53,1.1175],'raw_stock_shelf_2'),
+      ('mylar_stock','mylar_stock',[1.80,.53,1.1175],'raw_stock_shelf_2'),
+      ('masking_tape','masking_tape',[-4.3,6.80,.90],'coating_prep'),
+      ('calibration_block_stock','calibration_copper_stock',[-4.8,1.10,.90],'fabrication_fixture'),
+      ('utility_cart','rubbermaid_1997206',[3.80,.45,0],'cart_parking'),
+      ('oily_waste_can','justrite_09100',[-3.20,9.30,0],'coating_waste_parking')]:
+        record=next(i for i in supplies['items'] if i['id']==kind)
+        a=asset(key,record['label'],record['geometry']['path'],pos,z_up=True,station=station,resource=record['resources'][0],source_path='assets/cooling_lab_v1/supply_sources.json',
+          note='厂家参数约束或明确标注设计值的重构；详情见来源对照。当前为待用陈列，数量、操作接触和完整方法仍待验收。')
+        a['resource_ids']=record['resources'];a['source_record']=kind
+        if key in ['utility_cart','oily_waste_can']:
+            bounds=np.array(a['normalized_bounds_m'])+pos
+            obstacle(station,bounds.tolist(),'ordinary_movable_floor_asset')
+            surfaces.append(dict(id=station,xy_bounds_m=[bounds[0,0],bounds[0,1],bounds[1,0],bounds[1,1]],top_m=0,load_rating_kg=None,basis='Selected floor parking position, not a transport route'))
+        if key=='oily_waste_can':states.append(dict(id='waste_lid',asset=key,kind='hinge',parts=['lid'],axis=[1,0,0],pivot_m=[0,.145,.388],maximum=-np.pi/3,label='收集桶盖打开 · 60°',basis='Manufacturer maximum opening; inferred hinge. Pedal coupling and self-closing are not simulated'))
     waterjet=json.loads((HERE/'waterjet.json').read_text())
     a=asset('waterjet','OMAX ProtoMAX · 选定水刀设备',waterjet['geometry']['path'],[-2.8,3.8,0],z_up=True,
       station='fabrication_waterjet',resource='equipment:WATERJET',source_path='assets/cooling_lab_v1/waterjet_sources.json',
@@ -289,7 +314,7 @@ def build():
       pilot_contract=dict(path='assets/cooling_lab_v1/pilot_contract.json',sha256=sha(HERE/'pilot_contract.json')),
       required_missing_assets=['Qualified G1/Inspire collision, actuator, load and tactile model (source integration present)','Exact 12-degree Harrick and variable-angle Spectra-Tech accessories',
         'G1 mounting, cable routing and calibration for the three staged camera candidates',
-        'Ambient RTD and radiation shield','Thermocouple dynamic/termination models, strain relief and sensor/DAQ cables','Qualified waterjet setup, guarding/interlocks/services and remaining fabrication tools',
+        'Ambient RTD radiation shield and mount (vented source-identified probe is staged)','Thermocouple extension leads, dynamic/termination models and strain relief (8 connector pairs are staged)','Qualified waterjet setup, guarding/interlocks/services and remaining fabrication tools',
         'Weather sensor suite, mast, power and data routes','Remaining ordinary tools, coating/cleaning supplies and waste hardware','Validated equipment mounts, supports and engineering services'],
       blocked_claims=['Whole asset inventory complete','Whole-body dynamic reach or manipulation','Robot/human safety separation','Outdoor solar/weather exposure fidelity','Bench/floor structural adequacy','Site regulatory compliance'],
       owner_acceptance=None,manipulation_development_allowed=False,builder_sha256=sha(__file__),geometry_tools_sha256=sha(HERE/'geometry_tools.py'))
@@ -304,6 +329,10 @@ def build():
     for a in placements:
         if a['id'] in manifest['reference_comparisons']:continue
         record=json.loads((ROOT/a['sources']).read_text())
+        if a.get('source_record'):
+            item=next(i for i in record['items'] if i['id']==a['source_record'])
+            manifest['reference_comparisons'][a['id']]=dict(model_scope='已知参数与推断分开记录。推断：'+'；'.join(item['inferred'])+'。限制：'+'；'.join(item['limits']),sources=[dict(url=s['url'],label='厂家／论文依据',scope=s['locator']) for s in item['sources']])
+            continue
         sources=record.get('sources') or record.get('source_documents') or record.get('source_records') or []
         if not sources and record.get('equipment'):
             resource=a['resource_id'].split(':')[-1]

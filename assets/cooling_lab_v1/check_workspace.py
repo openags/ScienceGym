@@ -13,6 +13,7 @@ import mujoco
 from scipy.optimize import least_squares
 import trimesh
 from geometry_tools import HERE,ROOT,sha,write_json
+from access_geometry import access_obstacles
 
 sys.path.insert(0,str(ROOT/'assets/unitree_g1_inspire_v1'))
 from kinematics import Robot
@@ -47,6 +48,23 @@ def build():
         target=[float(center[0]),float(bounds[0,1]-.05),1.05 if key=='waterjet' else float(min(bounds[1,2]+.04,bounds[0,2]+.18))]
         targets.append(dict(id=key+'_front',asset=key,station=a['station'],point_m=target,front_y_m=front,
           basis='Authored front-envelope access point; not a measured button or grasp frame',source=None))
+    for key in ['wire_stripper','terminal_driver','tweezers_white','tweezers_black','fill_jug','ambient_rtd',
+                'tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can']:
+        a=assets[key];bounds=np.array(a['normalized_bounds_m'])+a['position_m'];surface=surfaces[a['station']]
+        reverse=key!='oily_waste_can';point=[float(bounds[:,0].mean()),float(bounds[1,1]+.04 if reverse else bounds[0,1]-.04),float(bounds[1,2]+.04)]
+        basis='Authored upper-edge palm approach from the accessible aisle; not a grasp frame'
+        if key in ['nano_pe_stock','ldpe_stock','mylar_stock']:
+            point[2]=float(bounds[1,2]+.10)
+            basis='Authored 100 mm upper palm approach above film stock, reserving hand clearance from the shelf; requires an ordinary handling tool and separately qualified film contact'
+        if key=='utility_cart':
+            point=(trimesh.transform_points([[.67348,0,.8964]],a['normalization_matrix'])[0]+a['position_m']+[0,0,.04]).tolist()
+            basis='Authored 40 mm upper approach to the reconstructed cart handle centre; grip orientation and pushing are unqualified'
+        if key=='oily_waste_can':
+            point=[float(bounds[:,0].mean()),float(bounds[:,1].mean()),float(bounds[1,2]+.30)]
+            basis='Authored release approach 300 mm above the closed-lid envelope; requires later lid opening and controlled disposal. Not rim grasp, pedal actuation or a verified drop'
+        targets.append(dict(id=key+'_access',asset=key,station=a['station'],point_m=point,
+            front_y_m=surface['xy_bounds_m'][3 if reverse else 1],approach='rear' if reverse else 'front',
+            basis=basis,source=dict(path='assets/cooling_lab_v1/supplies.json',sha256=sha(HERE/'supplies.json'),source_record=a['source_record'],dimensions_inferred=True)))
     for key,filename in [('cary','assets/cary_5000_v1/interfaces.json'),('nicolet','assets/nicolet_6700_v1/interfaces.json'),('bath','assets/thermo_a25_ac150_v1/interfaces.json')]:
         source=json.loads((ROOT/filename).read_text());a=assets[key];norm=np.array(a['normalization_matrix'])
         for entry in source.get('interfaces',[]):
@@ -73,7 +91,7 @@ def build():
               basis=offset_basis+'; palm position only',
               source=dict(path=filename,sha256=sha(ROOT/filename),interface_id=entry['id'],dimensions_inferred=True)))
     arm_names={side:[side+'_'+name+'_joint' for name in ['shoulder_pitch','shoulder_roll','shoulder_yaw','elbow','wrist_roll','wrist_pitch','wrist_yaw']] for side in ['left','right']}
-    obstacles=[(o['id'],np.array(o['bounds_m'])) for o in scene['obstacles']]
+    obstacles=access_obstacles(scene)
     asset_boxes={k:np.array(a['normalized_bounds_m'])+a['position_m'] for k,a in assets.items() if k!='g1'}
     results=[]
     rest={side+'_'+joint:angle for side in ['left','right'] for joint,angle in [('shoulder_pitch_joint',.1),('shoulder_roll_joint',.2 if side=='left' else -.2),('elbow_joint',1.6)]}
@@ -113,7 +131,7 @@ def build():
                             body=data.body(name);points=corners@body.xmat.reshape(3,3).T+body.xpos
                             bounds=np.array([points.min(axis=0),points.max(axis=0)])
                             for identity,other in obstacles:
-                                if identity==target['station'] and target['asset']=='waterjet':continue # Target-device internals are outside this screen for every instrument.
+                                if identity==target['asset']:continue # Target-device internals are outside this screen for every instrument.
                                 if overlap(bounds,other):collisions.append((name,identity))
                             for identity,other in asset_boxes.items():
                                 if identity!=target['asset'] and overlap(bounds,other):collisions.append((name,identity))
@@ -124,7 +142,7 @@ def build():
                                 t=body_matrix(a['parent_link'])@a['parent_from_geometry'];rig_manager.set_transform(a['id'],t)
                                 points=trimesh.transform_points(rig_corners[a['id']],t);bounds=np.array([points.min(axis=0),points.max(axis=0)])
                                 for identity,other in obstacles+list(asset_boxes.items()):
-                                    if identity==target['asset'] or (identity==target['station'] and target['asset']=='waterjet'):continue
+                                    if identity==target['asset']:continue
                                     if overlap(bounds,other):collisions.append((a['id'],identity))
                             _,pairs=rig_manager.in_collision_other(robot_manager,return_names=True)
                             for pair in sorted(pairs):
@@ -135,23 +153,25 @@ def build():
                       position_error_m=error,external_overlaps=[list(p) for p in sorted(set(collisions))],
                       self_contacts_checked=error<.01,self_penetrations_over_0_5mm=self_contacts,
                       candidate_rig_checked=rig_checked,candidate_rig_other_link_intersections=rig_contacts,candidate_rig_parent_contacts_unqualified=clamp_contacts,
-                      position_candidate=error<.01 and not collisions and not self_contacts and rig_checked and not rig_contacts)
-                    score=(not row['position_candidate'],error>=.01,len(collisions)+len(self_contacts)+len(rig_contacts),error)
+                      position_candidate=error<.01 and not collisions and not self_contacts and rig_checked and not rig_contacts and not clamp_contacts)
+                    score=(not row['position_candidate'],error>=.01,len(collisions)+len(self_contacts)+len(rig_contacts)+len(clamp_contacts),error)
                     if best is None or score<best[0]:best=(score,row)
                     if row['position_candidate']:break
                 if best[1]['position_candidate']:break
             if best[1]['position_candidate']:break
         results.append(dict(**target,attempts=attempts,result=best[1],status='position_candidate_only' if best[1]['position_candidate'] else 'needs_layout_or_access_revision'))
+        print(json.dumps(dict(target=target['id'],status=results[-1]['status'],attempts=attempts)),flush=True)
     failures=[r['id'] for r in results if not r['result']['position_candidate']]
     report=dict(schema_version=1,status='static_access_screening_not_task_validation',scene_sha256=sha(HERE/'scene.json'),
-      source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [model_path,ROOT/'assets/unitree_g1_inspire_v1/kinematics.py',rig_path,Path(__file__)]],
+      source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [model_path,ROOT/'assets/unitree_g1_inspire_v1/kinematics.py',rig_path,Path(__file__),HERE/'access_geometry.py']],
       counts=dict(targets=len(results),position_candidates=len(results)-len(failures),needs_revision=len(failures)),targets=results,
       unresolved_target_ids=failures,full_workspace_qualified=False,
       limitations=['Each target is tested separately; simultaneous two-hand coordination and carrying are not tested',
        'Position-only IK is necessary but not sufficient: palm orientation, finger contact, balance, loads, entry trajectory and instrument internals are not checked',
        'Conservative per-link visual mesh boxes screen room/furniture and other instruments; target-instrument internals are excluded and require a later contact review',
+       'Open storage racks use separate shelf/upright boxes with staged stock retained; route screening still reserves the full rack envelope',
        'Robot self-contact is screened with the provisional MJCF at a 0.5 mm penetration threshold, including source convex hull approximations; no exact surface or continuous contact qualification',
-       'Candidate camera attachments are screened against robot triangle surfaces and external boxes. Parent-wrist clamp contact remains recorded but unqualified; no full-containment, preload or cable model is inferred',
+       'Adapted camera collars and fasteners are screened against every robot link, including the parent wrist, and external boxes. Rigid parent-wrist intersections reject candidates; compliant-liner preload and cable models remain open',
        'Candidate base placements are test coordinates, not a walked path or accepted standing controller',
        'Failure after finite starts is an unresolved access issue, not a proof that no feasible whole-body posture exists'])
     write_json(HERE/'workspace_checks.json',report);print(json.dumps(report['counts']))

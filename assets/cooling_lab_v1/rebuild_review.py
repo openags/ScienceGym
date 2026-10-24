@@ -18,10 +18,10 @@ def main():
       'assets/unitree_dex5s_reconstruction_v1/build.py',
       'assets/unitree_dex5s_reconstruction_v1/validate.py',
       'assets/realsense_cameras_v1/build.py','assets/realsense_cameras_v1/validate.py',
-      'assets/g1_sensor_rig_v1/convert_mounts.py','assets/g1_sensor_rig_v1/build.py','assets/g1_sensor_rig_v1/check_clocking.py',
+      'assets/g1_sensor_rig_v1/convert_mounts.py','assets/g1_sensor_rig_v1/build_adapters.py','assets/g1_sensor_rig_v1/build.py','assets/g1_sensor_rig_v1/check_clocking.py',
       'assets/omega_5tc_v1/build.py','assets/omega_5tc_v1/validate.py',
       'assets/cooling_lab_v1/check_hand_envelope.py',
-      'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_waterjet.py','assets/cooling_lab_v1/build_lab.py',
+      'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_supplies.py','assets/cooling_lab_v1/check_supplies.py','assets/cooling_lab_v1/build_waterjet.py','assets/cooling_lab_v1/build_lab.py',
       'assets/cooling_lab_v1/check_layout.py','assets/cooling_lab_v1/check_workspace.py','assets/g1_sensor_rig_v1/check_fit.py','assets/cooling_lab_v1/build_review.py',
       'assets/cooling_lab_v1/validate_review.py','assets/cooling_lab_v1/test_pilot_contract.py']:
         run(script)

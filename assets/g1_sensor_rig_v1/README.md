@@ -1,10 +1,11 @@
 # G1 sensor placement review
 
-The native G1 D435i has nominal RGB and depth inspection views. The two D405
-wrist cameras have a source-constrained mounting candidate that **remains on hold
-for clamp-fit review**. Neither calibrated sensor streams nor accepted wrist
-installation is claimed. The laboratory viewer hides these attachments by
-default and offers an explicit candidate overlay and four inspection views.
+The native G1 D435i has nominal RGB and depth inspection views. The D405
+candidate now uses a separately identified G1 collar derivative with standard
+fasteners. The original undersized source collar remains available as a failed
+baseline. Rigid geometry clearance is checked; compliant lining, retention,
+cables and dynamic loads remain open. No accepted wrist installation or actor
+sensor stream is claimed. The viewer hides the candidate by default.
 
 ## Provenance and reconstruction
 
@@ -27,30 +28,42 @@ between independently tessellated faces; collapsed triangles are removed.
 source hashes, cylindrical axes and planar faces. This is a derivative mesh,
 not a claim of unchanged source triangulation.
 
-`build.py` aligns the clamp axis and source half-ring, places the ring center at
-an authored +36.5 mm in each `wrist_yaw_link`, then rotates it +90 degrees left / -90 degrees right to clear the pitch housing,
-and uses the two 20 mm-pitch M3
-camera bores plus the backplate plane to align the manufacturer's D405 mesh.
-No commercial geometry is rescaled. Rotational clocking and camera roll are
-explicit assembly choices, not manufacturer-calibrated extrinsics. Source
-photos and STEP inputs remain available for inspection.
+`build_adapters.py` retains the official bracket's camera arm above CAD
+Y = 31 mm and replaces its collar with matched halves. The original 30 mm
+bracket bore and inward fastening tabs intersect the G1 wrist. The new bore
+radius is 31.2 mm, outer radius 38.5 mm, width 10 mm, split gap 1 mm and new
+M3 clearance axes are at CAD X = ±40 mm. These are authored dimensions, not an
+official Unitree or Inspire part. Printable STEP and SI STL files, source hashes,
+full-density PA12 mass estimates and the hardware bill are in `adapter.json`.
+No robot, hand or camera geometry is scaled or reshaped.
 
-`check_fit.py` checks exact source triangle intersections at three finger
-configurations. The above-wrist
-placement avoids other links at these three poses; bracket/clamp intersections
-with the parent wrist remain unresolved. Even intended clamp contact requires
-mechanical review. `check_clocking.py` retains all 144 zero-pose trials per side,
-including failed orientations. `failed_mount_fixture.json` preserves the
-original side-mounted collision with the moving wrist housing as a regression
-case. This finite search does not cover full arm motions. FCL
-triangle contact depths are deliberately not interpreted as physical overlap
-depths. Candidate attachment surfaces are additionally checked against other robot
-links at all 47 recorded station postures; conservative boxes screen room and
-furniture conflicts. Parent-wrist clamp contact remains unresolved throughout. Station IK now also screens the candidate attachments against other links
-and external obstacles. Parent-wrist clamp contact is retained as an open
-fit question; the candidate is still excluded from accepted installation and
-transit qualification. Full containment, insertion trajectories, fasteners,
-material/preload, cables, strain relief and loads are not qualified.
+`build.py` places the ring at wrist X = +36.5 mm, clocked +90 degrees left /
+−90 degrees right. The source backplate and two 20 mm-pitch camera bores retain
+the camera transform. Each wrist has two M3×6 camera screws and two M3×20 collar
+screws with four washers and two nuts. Camera insertion is independently checked
+at 3 mm against the manufacturer's 4 mm maximum. Hex sockets, nut bores and
+washers are geometry; threads use major envelopes, not a helical contact model.
+`hardware_sources.json` records the nominal dimensions and material assumptions.
+
+`check_fit.py` checks the attached models against source robot triangle meshes
+at three finger configurations and all 61 station postures. The adapted rigid
+parts have no robot surface intersections in these checks. Clipping the wrist
+triangles to the 10 mm collar band gives a 30.4942 mm maximum radial envelope;
+the rigid bore therefore reserves at least 0.7058 mm radial space. This is a
+bound on the source mesh, not a production tolerance or clamp-force guarantee.
+The clearance is reserved for a compliant lining whose preload and retention
+are still unqualified. Station IK rejects rigid parent-wrist intersections as
+well as intersections with other links; there is no parent-link exemption in
+the position-candidate acceptance predicate.
+
+The two unfastened halves have 33-point radial removal-path checks per wrist.
+These discrete checks exclude fastener insertion and do not establish a
+continuous assembly trajectory. `check_clocking.py` and
+`failed_mount_fixture.json` retain the original geometry and failed side-mount
+case. The original undersized collar is also required to fail at the revised
+orientation. FCL triangle contact depths are not used as penetration distances.
+Full containment, compliant contact, optical calibration, cable routing,
+fastener preload, dynamic loads and complete motion qualification remain open.
 
 ## Optical inspection
 

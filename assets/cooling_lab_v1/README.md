@@ -6,7 +6,7 @@ clearance, sensor-only manipulation or complete paper campaign is claimed.
 Serve the repository root and open `/viewer/lab_review_v1/index.html`.
 The existing local server uses port 8769. The scene contains the complete
 official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
-selected OMAX ProtoMAX waterjet. Geometry sliders and the 47 per-point static
+selected OMAX ProtoMAX waterjet. Geometry sliders and the 61 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
 The native G1 D435i now supplies nominal head RGB and ideal geometric depth
@@ -59,7 +59,7 @@ It makes no source downloads and cannot silently switch robot models.
   evidence, source conflicts, paper-derived sheet thickness and stock inferences.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 47 separately tested palm-position targets, all with static position candidates, including proposed camera-clearance screening; records
+- `workspace_checks.json`: 61 separately tested palm-position targets, including 14 newly staged supply approaches and proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
@@ -85,3 +85,39 @@ remain unplaced historical inventory references.
 The official integrated candidate can be inspected at
 `viewer/robot_resource_review_v1/index.html`. The 66 inventory rows include
 three superseded robot/hand references; these are not additional required robots.
+
+## Added ordinary supplies and collar revision
+
+The scene now contains 49 placed instances. `supplies.json` binds thirteen
+additional reconstruction types: ST-450, AA.SA.T.6 tweezers, Wiha 26015,
+Bürkle 7102-2000, the source-identified ambient RTD, eight separate K-connector
+pairs in an ordinary tray, three film-stock types, masking tape, unmachined
+copper stock, a Rubbermaid 1997206 cart and a Justrite 09100 wipes can.
+`supply_sources.json` separates manufacturer facts, paper facts, selected
+quantities, local inferences and unresolved functionality. `supply_checks.json`
+checks the actual meshes: catalogue envelopes, open cup and cart cavities,
+vented probe, six-foot lead, connector containment, stock thickness and grounded
+wheels. These checks do not promote staged stock to a completed manual step.
+The waste-can lid has a 60-degree geometry inspection state; pedal coupling and
+self-closing are not simulated. The cart's carried route and tipping model remain
+open. These supplies cover only part of the compound resource requirements.
+
+The D405 rig has a new explicitly authored G1 collar, retained official camera
+arms and standard fastener meshes. Original source parts remain as failure
+fixtures. Positive rigid clearance and camera screw insertion are checked;
+lining, preload, cable routing and dynamic loads remain open. See
+`assets/g1_sensor_rig_v1/README.md` for scope and reproducible CAD construction.
+
+The access screen uses separate rack shelves and uprights, retains stock obstacles,
+and excludes only the target device interior under its stated review scope.
+Route checks still reserve each entire rack footprint. Film stock is staged on
+the middle shelf; tape and copper are near the accessible bench edge. The wipes
+can target is a selected release approach above its rim, not a low rim grasp or
+a demonstrated pedal/lid/disposal sequence.
+
+`staged_supply_bindings.json` binds fifteen component needs to actual scene
+instances and named parts. Film sheets and connector pairs are counted
+individually; the same two tweezers are explicitly shared across handling roles.
+`readiness.json` pins these geometry identities and exposes staged quantities
+separately from still-unallocated campaign requirements. The inspector shows
+these counts and all resource associations for multi-purpose assets.

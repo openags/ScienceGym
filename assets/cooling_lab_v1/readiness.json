@@ -5,7 +5,7 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/pilot_contract.json",
-      "sha256": "1b1998724c7d4449182507acbf9323ab38b22ef1e25054f2868b925dbb3dc9a8"
+      "sha256": "c83af14d3e86a7a49cb78fec9778e094a3c957ed06b9a78e773e2a18c573bdf7"
     },
     {
       "path": "assets/unitree_g1_inspire_v1/selection.json",
@@ -13,11 +13,15 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "ea447fd2d1e92650d2f81244fdb9f2b19117bc775d41d3da5e17a65cf5ddfd76"
+      "sha256": "89a1a01ba1778be1d3769a0cd520c649a751793a2c9f11dcb051ffa18d79e23f"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "cb7139095b428231d7b22f8bd2df6b8a1785821f0b0ca834b58fe712c1993304"
+      "sha256": "e65b54ea085310382be3d21f20df4f368cbbdc5d0c46e0289518717c90838048"
+    },
+    {
+      "path": "assets/cooling_lab_v1/staged_supply_bindings.json",
+      "sha256": "36e577b239c6d87a4f06591286aedd344e5893ed767fa86ae351ea9146c8235d"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -33,12 +37,12 @@
     },
     {
       "path": "assets/cooling_lab_v1/build_readiness.py",
-      "sha256": "373b9820caee5acf29bedcc6d4c7a009cb96951e7020c42597cd22aefd4f3b02"
+      "sha256": "90859cf054e640442ba4201abc4eaa5128a2dfa1d2eb0ad931fb99325a5e7700"
     }
   ],
   "policy": {
     "schema_version": "sciencegym.humanoid_pilot_contract.v1",
-    "revision": "2026-10-24.sensor_review.4",
+    "revision": "2026-10-24.assets_and_adapter.5",
     "paper_doi": "10.1038/s41467-018-07293-9",
     "authority": "Owner implementation choices and subsequent instruction: retain Unitree body; choose publicly supported hands without a manufacturer/model lock",
     "phase": "asset_and_scene_development",
@@ -76,7 +80,7 @@
         "left wrist RGB",
         "right wrist RGB"
       ],
-      "camera_configuration_status": "native_head_nominal_preview_above_wrist_candidate_clamp_fit_unqualified",
+      "camera_configuration_status": "native_head_nominal_preview_adapted_collar_clearance_screened_liner_and_cables_pending",
       "allowed_channels": [
         "camera RGB",
         "camera depth",
@@ -162,8 +166,9 @@
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 35,
-    "groups_with_partial_geometry": 41,
+    "scene_instances": 49,
+    "groups_with_partial_geometry": 54,
+    "components_with_staged_unit_bindings": 15,
     "qualified_humanoid_branches": 0
   },
   "requirements": [
@@ -295,7 +300,135 @@
           "id": "equipment:TC:component_1",
           "label": "identified K probes",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 8,
+            "unit": "probe",
+            "members": [
+              {
+                "asset_id": "tc_01",
+                "parts": [
+                  "welded_junction",
+                  "stripped_terminal_1",
+                  "terminal_insulation_1",
+                  "junction_conductor_1",
+                  "stripped_terminal_0",
+                  "terminal_insulation_0",
+                  "junction_conductor_0",
+                  "pfa_outer_jacket"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_01.glb",
+                "geometry_sha256": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997"
+              },
+              {
+                "asset_id": "tc_02",
+                "parts": [
+                  "welded_junction",
+                  "stripped_terminal_1",
+                  "terminal_insulation_1",
+                  "junction_conductor_1",
+                  "stripped_terminal_0",
+                  "terminal_insulation_0",
+                  "junction_conductor_0",
+                  "pfa_outer_jacket"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_02.glb",
+                "geometry_sha256": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997"
+              },
+              {
+                "asset_id": "tc_03",
+                "parts": [
+                  "welded_junction",
+                  "stripped_terminal_1",
+                  "terminal_insulation_1",
+                  "junction_conductor_1",
+                  "stripped_terminal_0",
+                  "terminal_insulation_0",
+                  "junction_conductor_0",
+                  "pfa_outer_jacket"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_03.glb",
+                "geometry_sha256": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997"
+              },
+              {
+                "asset_id": "tc_04",
+                "parts": [
+                  "welded_junction",
+                  "stripped_terminal_1",
+                  "terminal_insulation_1",
+                  "junction_conductor_1",
+                  "stripped_terminal_0",
+                  "terminal_insulation_0",
+                  "junction_conductor_0",
+                  "pfa_outer_jacket"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_04.glb",
+                "geometry_sha256": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997"
+              },
+              {
+                "asset_id": "tc_05",
+                "parts": [
+                  "welded_junction",
+                  "stripped_terminal_1",
+                  "terminal_insulation_1",
+                  "junction_conductor_1",
+                  "stripped_terminal_0",
+                  "terminal_insulation_0",
+                  "junction_conductor_0",
+                  "pfa_outer_jacket"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_05.glb",
+                "geometry_sha256": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997"
+              },
+              {
+                "asset_id": "tc_06",
+                "parts": [
+                  "welded_junction",
+                  "stripped_terminal_1",
+                  "terminal_insulation_1",
+                  "junction_conductor_1",
+                  "stripped_terminal_0",
+                  "terminal_insulation_0",
+                  "junction_conductor_0",
+                  "pfa_outer_jacket"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_06.glb",
+                "geometry_sha256": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997"
+              },
+              {
+                "asset_id": "tc_07",
+                "parts": [
+                  "welded_junction",
+                  "stripped_terminal_1",
+                  "terminal_insulation_1",
+                  "junction_conductor_1",
+                  "stripped_terminal_0",
+                  "terminal_insulation_0",
+                  "junction_conductor_0",
+                  "pfa_outer_jacket"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_07.glb",
+                "geometry_sha256": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997"
+              },
+              {
+                "asset_id": "tc_08",
+                "parts": [
+                  "welded_junction",
+                  "stripped_terminal_1",
+                  "terminal_insulation_1",
+                  "junction_conductor_1",
+                  "stripped_terminal_0",
+                  "terminal_insulation_0",
+                  "junction_conductor_0",
+                  "pfa_outer_jacket"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_08.glb",
+                "geometry_sha256": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "equipment:TC:component_2",
@@ -362,7 +495,37 @@
           "id": "equipment:AMB_RTD:component_1",
           "label": "ambient probe",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "probe",
+            "members": [
+              {
+                "asset_id": "ambient_rtd",
+                "parts": [
+                  "stripped_3",
+                  "lead_3",
+                  "stripped_2",
+                  "lead_2",
+                  "stripped_1",
+                  "lead_1",
+                  "stripped_0",
+                  "lead_0",
+                  "pfa_cable_nominal_6ft",
+                  "cable_transition",
+                  "inferred_hex",
+                  "npt_visual_crest",
+                  "npt_core",
+                  "ceramic_sensor_core",
+                  "vented_air_sheath"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ambient_rtd.glb",
+                "geometry_sha256": "6c6c338bb5cefcffb3f7c112bf5062eb42001bc394276cf2717fab3e327c5d8f"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "equipment:AMB_RTD:component_2",
@@ -383,7 +546,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "ambient_rtd"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -698,7 +863,35 @@
           "id": "tools:film_jig:component_1",
           "label": "ordinary film-edge handling tool selection",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 2,
+            "unit": "tool",
+            "members": [
+              {
+                "asset_id": "tweezers_white",
+                "parts": [
+                  "joined_heel",
+                  "ptfe_spring_arm_1",
+                  "ptfe_spring_arm_-1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tweezers_white.glb",
+                "geometry_sha256": "f4c5c1c15b0db648879acf56037e13d38309f8b9ce0ce84e1e18278aa225752b"
+              },
+              {
+                "asset_id": "tweezers_black",
+                "parts": [
+                  "joined_heel",
+                  "ptfe_spring_arm_1",
+                  "ptfe_spring_arm_-1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tweezers_black.glb",
+                "geometry_sha256": "f4c5c1c15b0db648879acf56037e13d38309f8b9ce0ce84e1e18278aa225752b"
+              }
+            ],
+            "scope": "Shared ordinary tweezers also listed for underside handling; two actual tools total. Film retention and puncture risks remain unresolved.",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "tools:film_jig:component_2",
@@ -707,7 +900,10 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "tweezers_white",
+        "tweezers_black"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -728,7 +924,8 @@
       ],
       "scene_instances": [
         "tray_white",
-        "tray_black"
+        "tray_black",
+        "tc_transition_kit"
       ],
       "authored_components": [],
       "selected_minimum_quantity": null,
@@ -780,7 +977,8 @@
         }
       ],
       "scene_instances": [
-        "driver"
+        "driver",
+        "terminal_driver"
       ],
       "authored_components": [],
       "selected_minimum_quantity": null,
@@ -797,13 +995,62 @@
           "id": "tools:wire_stripper_and_driver:component_1",
           "label": "fine-wire compatible stripping tool",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "tool",
+            "members": [
+              {
+                "asset_id": "wire_stripper",
+                "parts": [
+                  "rail_screw_0.091_0.011",
+                  "rail_screw_0.091_-0.011",
+                  "rail_screw_0.007_0.011",
+                  "rail_screw_0.007_-0.011",
+                  "range_text",
+                  "model_text",
+                  "steel_blade",
+                  "length_slide",
+                  "adjustable_strip_stop",
+                  "heel",
+                  "blade_end",
+                  "metal_rail_1",
+                  "yellow_spring_handle_1",
+                  "metal_rail_-1",
+                  "yellow_spring_handle_-1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_wire_stripper.glb",
+                "geometry_sha256": "75c1af3bf0dfd6008e30a2dcc57bbe4e89badd955c1e838d3e96587f53749bd8"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "tools:wire_stripper_and_driver:component_2",
           "label": "terminal slotted driver",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "tool",
+            "members": [
+              {
+                "asset_id": "terminal_driver",
+                "parts": [
+                  "rotating_cap",
+                  "slotted_blade_1_5x0_25",
+                  "round_shaft",
+                  "handle"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_terminal_driver.glb",
+                "geometry_sha256": "70cdbb2557f48ab056b0ba7b881ee6ef8033e0fa6c7f579c0af46cd59f507c0c"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "tools:wire_stripper_and_driver:component_3",
@@ -818,7 +1065,10 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "wire_stripper",
+        "terminal_driver"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -984,10 +1234,52 @@
           "id": "consumables:consumable_05:component_1",
           "label": "Targray nanoporous PE separator",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 4,
+            "unit": "sheet",
+            "members": [
+              {
+                "asset_id": "nano_pe_stock",
+                "parts": [
+                  "raw_film_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
+                "geometry_sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+              },
+              {
+                "asset_id": "nano_pe_stock",
+                "parts": [
+                  "raw_film_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
+                "geometry_sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+              },
+              {
+                "asset_id": "nano_pe_stock",
+                "parts": [
+                  "raw_film_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
+                "geometry_sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+              },
+              {
+                "asset_id": "nano_pe_stock",
+                "parts": [
+                  "raw_film_4"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
+                "geometry_sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+              }
+            ],
+            "scope": "Individual unprocessed sheets at stated/source-inferred thickness. Cutting losses, rejects and campaign consumption have not been allocated.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "nano_pe_stock"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1003,10 +1295,36 @@
           "id": "consumables:consumable_06:component_1",
           "label": "LDPE bag film",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 2,
+            "unit": "sheet",
+            "members": [
+              {
+                "asset_id": "ldpe_stock",
+                "parts": [
+                  "raw_film_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
+                "geometry_sha256": "1c6a41c27b8d342983a1d579bee3e2c5169101fa94e5d3779c5d1010b6ff5262"
+              },
+              {
+                "asset_id": "ldpe_stock",
+                "parts": [
+                  "raw_film_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
+                "geometry_sha256": "1c6a41c27b8d342983a1d579bee3e2c5169101fa94e5d3779c5d1010b6ff5262"
+              }
+            ],
+            "scope": "Individual unprocessed sheets at stated/source-inferred thickness. Cutting losses, rejects and campaign consumption have not been allocated.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "ldpe_stock"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1066,10 +1384,44 @@
           "id": "consumables:consumable_09:component_1",
           "label": "aluminized Mylar",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 3,
+            "unit": "sheet",
+            "members": [
+              {
+                "asset_id": "mylar_stock",
+                "parts": [
+                  "raw_film_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_mylar_stock.glb",
+                "geometry_sha256": "982afe7fd589db04bcf6f1c7f8b602dc7bdd15f503b07617f6d77435fca87915"
+              },
+              {
+                "asset_id": "mylar_stock",
+                "parts": [
+                  "raw_film_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_mylar_stock.glb",
+                "geometry_sha256": "982afe7fd589db04bcf6f1c7f8b602dc7bdd15f503b07617f6d77435fca87915"
+              },
+              {
+                "asset_id": "mylar_stock",
+                "parts": [
+                  "raw_film_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_mylar_stock.glb",
+                "geometry_sha256": "982afe7fd589db04bcf6f1c7f8b602dc7bdd15f503b07617f6d77435fca87915"
+              }
+            ],
+            "scope": "Individual unprocessed sheets at stated/source-inferred thickness. Cutting losses, rejects and campaign consumption have not been allocated.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "mylar_stock"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1174,7 +1526,34 @@
           "id": "consumables:consumable_13:component_1",
           "label": "masking tape",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "roll",
+            "members": [
+              {
+                "asset_id": "masking_tape",
+                "parts": [
+                  "winding_edge_10",
+                  "winding_edge_9",
+                  "winding_edge_8",
+                  "winding_edge_7",
+                  "winding_edge_6",
+                  "winding_edge_5",
+                  "winding_edge_4",
+                  "winding_edge_3",
+                  "winding_edge_2",
+                  "winding_edge_1",
+                  "wound_blue_tape",
+                  "paper_core"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_masking_tape.glb",
+                "geometry_sha256": "2430730ca25ed69304b17ade0eca6bf36c49c708d83b1bfd452c667b88b50006"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "consumables:consumable_13:component_2",
@@ -1195,7 +1574,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "masking_tape"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1211,7 +1592,23 @@
           "id": "additional_reconstructed_materials:calibration_block_stock:component_1",
           "label": "copper block raw stock",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "blank",
+            "members": [
+              {
+                "asset_id": "calibration_block_stock",
+                "parts": [
+                  "unmachined_copper_block"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_calibration_block_stock.glb",
+                "geometry_sha256": "9c44971cf1bc5bb8ddcde2c2ae8901ecff8757d1e2d08a9b14152abf8ae3d7bb"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "additional_reconstructed_materials:calibration_block_stock:component_2",
@@ -1226,7 +1623,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "calibration_block_stock"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1246,9 +1645,281 @@
         },
         {
           "id": "additional_reconstructed_materials:fine_wire_transition:component_2",
-          "label": "terminal blocks",
+          "label": "K-type connector pairs or transition terminals",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 8,
+            "unit": "connector_pair",
+            "members": [
+              {
+                "asset_id": "tc_transition_kit",
+                "parts": [
+                  "channel_1_F_type_K_text",
+                  "channel_1_F_captive_screw_0.03211_0.0065",
+                  "channel_1_F_captive_screw_0.03211_-0.0065",
+                  "channel_1_F_captive_screw_0.0224_0.0065",
+                  "channel_1_F_captive_screw_0.0224_-0.0065",
+                  "channel_1_F_top_wire_clamp",
+                  "channel_1_F_cable_clamp_end",
+                  "channel_1_F_cap_bridge_0.0065",
+                  "channel_1_F_clamp_bridge_0.0065",
+                  "channel_1_F_cap_bridge_-0.0065",
+                  "channel_1_F_clamp_bridge_-0.0065",
+                  "channel_1_F_connector_body",
+                  "channel_1_M_type_K_text",
+                  "channel_1_M_flat_pin_0.004",
+                  "channel_1_M_flat_pin_-0.004",
+                  "channel_1_M_captive_screw_0.027569999999999997_0.0065",
+                  "channel_1_M_captive_screw_0.027569999999999997_-0.0065",
+                  "channel_1_M_captive_screw_0.0176_0.0065",
+                  "channel_1_M_captive_screw_0.0176_-0.0065",
+                  "channel_1_M_top_wire_clamp",
+                  "channel_1_M_cable_clamp_end",
+                  "channel_1_M_cap_bridge_0.0065",
+                  "channel_1_M_clamp_bridge_0.0065",
+                  "channel_1_M_cap_bridge_-0.0065",
+                  "channel_1_M_clamp_bridge_-0.0065",
+                  "channel_1_M_connector_body"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb",
+                "geometry_sha256": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334"
+              },
+              {
+                "asset_id": "tc_transition_kit",
+                "parts": [
+                  "channel_2_F_type_K_text",
+                  "channel_2_F_captive_screw_0.03211_0.0065",
+                  "channel_2_F_captive_screw_0.03211_-0.0065",
+                  "channel_2_F_captive_screw_0.0224_0.0065",
+                  "channel_2_F_captive_screw_0.0224_-0.0065",
+                  "channel_2_F_top_wire_clamp",
+                  "channel_2_F_cable_clamp_end",
+                  "channel_2_F_cap_bridge_0.0065",
+                  "channel_2_F_clamp_bridge_0.0065",
+                  "channel_2_F_cap_bridge_-0.0065",
+                  "channel_2_F_clamp_bridge_-0.0065",
+                  "channel_2_F_connector_body",
+                  "channel_2_M_type_K_text",
+                  "channel_2_M_flat_pin_0.004",
+                  "channel_2_M_flat_pin_-0.004",
+                  "channel_2_M_captive_screw_0.027569999999999997_0.0065",
+                  "channel_2_M_captive_screw_0.027569999999999997_-0.0065",
+                  "channel_2_M_captive_screw_0.0176_0.0065",
+                  "channel_2_M_captive_screw_0.0176_-0.0065",
+                  "channel_2_M_top_wire_clamp",
+                  "channel_2_M_cable_clamp_end",
+                  "channel_2_M_cap_bridge_0.0065",
+                  "channel_2_M_clamp_bridge_0.0065",
+                  "channel_2_M_cap_bridge_-0.0065",
+                  "channel_2_M_clamp_bridge_-0.0065",
+                  "channel_2_M_connector_body"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb",
+                "geometry_sha256": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334"
+              },
+              {
+                "asset_id": "tc_transition_kit",
+                "parts": [
+                  "channel_3_F_type_K_text",
+                  "channel_3_F_captive_screw_0.03211_0.0065",
+                  "channel_3_F_captive_screw_0.03211_-0.0065",
+                  "channel_3_F_captive_screw_0.0224_0.0065",
+                  "channel_3_F_captive_screw_0.0224_-0.0065",
+                  "channel_3_F_top_wire_clamp",
+                  "channel_3_F_cable_clamp_end",
+                  "channel_3_F_cap_bridge_0.0065",
+                  "channel_3_F_clamp_bridge_0.0065",
+                  "channel_3_F_cap_bridge_-0.0065",
+                  "channel_3_F_clamp_bridge_-0.0065",
+                  "channel_3_F_connector_body",
+                  "channel_3_M_type_K_text",
+                  "channel_3_M_flat_pin_0.004",
+                  "channel_3_M_flat_pin_-0.004",
+                  "channel_3_M_captive_screw_0.027569999999999997_0.0065",
+                  "channel_3_M_captive_screw_0.027569999999999997_-0.0065",
+                  "channel_3_M_captive_screw_0.0176_0.0065",
+                  "channel_3_M_captive_screw_0.0176_-0.0065",
+                  "channel_3_M_top_wire_clamp",
+                  "channel_3_M_cable_clamp_end",
+                  "channel_3_M_cap_bridge_0.0065",
+                  "channel_3_M_clamp_bridge_0.0065",
+                  "channel_3_M_cap_bridge_-0.0065",
+                  "channel_3_M_clamp_bridge_-0.0065",
+                  "channel_3_M_connector_body"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb",
+                "geometry_sha256": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334"
+              },
+              {
+                "asset_id": "tc_transition_kit",
+                "parts": [
+                  "channel_4_F_type_K_text",
+                  "channel_4_F_captive_screw_0.03211_0.0065",
+                  "channel_4_F_captive_screw_0.03211_-0.0065",
+                  "channel_4_F_captive_screw_0.0224_0.0065",
+                  "channel_4_F_captive_screw_0.0224_-0.0065",
+                  "channel_4_F_top_wire_clamp",
+                  "channel_4_F_cable_clamp_end",
+                  "channel_4_F_cap_bridge_0.0065",
+                  "channel_4_F_clamp_bridge_0.0065",
+                  "channel_4_F_cap_bridge_-0.0065",
+                  "channel_4_F_clamp_bridge_-0.0065",
+                  "channel_4_F_connector_body",
+                  "channel_4_M_type_K_text",
+                  "channel_4_M_flat_pin_0.004",
+                  "channel_4_M_flat_pin_-0.004",
+                  "channel_4_M_captive_screw_0.027569999999999997_0.0065",
+                  "channel_4_M_captive_screw_0.027569999999999997_-0.0065",
+                  "channel_4_M_captive_screw_0.0176_0.0065",
+                  "channel_4_M_captive_screw_0.0176_-0.0065",
+                  "channel_4_M_top_wire_clamp",
+                  "channel_4_M_cable_clamp_end",
+                  "channel_4_M_cap_bridge_0.0065",
+                  "channel_4_M_clamp_bridge_0.0065",
+                  "channel_4_M_cap_bridge_-0.0065",
+                  "channel_4_M_clamp_bridge_-0.0065",
+                  "channel_4_M_connector_body"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb",
+                "geometry_sha256": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334"
+              },
+              {
+                "asset_id": "tc_transition_kit",
+                "parts": [
+                  "channel_5_F_type_K_text",
+                  "channel_5_F_captive_screw_0.03211_0.0065",
+                  "channel_5_F_captive_screw_0.03211_-0.0065",
+                  "channel_5_F_captive_screw_0.0224_0.0065",
+                  "channel_5_F_captive_screw_0.0224_-0.0065",
+                  "channel_5_F_top_wire_clamp",
+                  "channel_5_F_cable_clamp_end",
+                  "channel_5_F_cap_bridge_0.0065",
+                  "channel_5_F_clamp_bridge_0.0065",
+                  "channel_5_F_cap_bridge_-0.0065",
+                  "channel_5_F_clamp_bridge_-0.0065",
+                  "channel_5_F_connector_body",
+                  "channel_5_M_type_K_text",
+                  "channel_5_M_flat_pin_0.004",
+                  "channel_5_M_flat_pin_-0.004",
+                  "channel_5_M_captive_screw_0.027569999999999997_0.0065",
+                  "channel_5_M_captive_screw_0.027569999999999997_-0.0065",
+                  "channel_5_M_captive_screw_0.0176_0.0065",
+                  "channel_5_M_captive_screw_0.0176_-0.0065",
+                  "channel_5_M_top_wire_clamp",
+                  "channel_5_M_cable_clamp_end",
+                  "channel_5_M_cap_bridge_0.0065",
+                  "channel_5_M_clamp_bridge_0.0065",
+                  "channel_5_M_cap_bridge_-0.0065",
+                  "channel_5_M_clamp_bridge_-0.0065",
+                  "channel_5_M_connector_body"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb",
+                "geometry_sha256": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334"
+              },
+              {
+                "asset_id": "tc_transition_kit",
+                "parts": [
+                  "channel_6_F_type_K_text",
+                  "channel_6_F_captive_screw_0.03211_0.0065",
+                  "channel_6_F_captive_screw_0.03211_-0.0065",
+                  "channel_6_F_captive_screw_0.0224_0.0065",
+                  "channel_6_F_captive_screw_0.0224_-0.0065",
+                  "channel_6_F_top_wire_clamp",
+                  "channel_6_F_cable_clamp_end",
+                  "channel_6_F_cap_bridge_0.0065",
+                  "channel_6_F_clamp_bridge_0.0065",
+                  "channel_6_F_cap_bridge_-0.0065",
+                  "channel_6_F_clamp_bridge_-0.0065",
+                  "channel_6_F_connector_body",
+                  "channel_6_M_type_K_text",
+                  "channel_6_M_flat_pin_0.004",
+                  "channel_6_M_flat_pin_-0.004",
+                  "channel_6_M_captive_screw_0.027569999999999997_0.0065",
+                  "channel_6_M_captive_screw_0.027569999999999997_-0.0065",
+                  "channel_6_M_captive_screw_0.0176_0.0065",
+                  "channel_6_M_captive_screw_0.0176_-0.0065",
+                  "channel_6_M_top_wire_clamp",
+                  "channel_6_M_cable_clamp_end",
+                  "channel_6_M_cap_bridge_0.0065",
+                  "channel_6_M_clamp_bridge_0.0065",
+                  "channel_6_M_cap_bridge_-0.0065",
+                  "channel_6_M_clamp_bridge_-0.0065",
+                  "channel_6_M_connector_body"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb",
+                "geometry_sha256": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334"
+              },
+              {
+                "asset_id": "tc_transition_kit",
+                "parts": [
+                  "channel_7_F_type_K_text",
+                  "channel_7_F_captive_screw_0.03211_0.0065",
+                  "channel_7_F_captive_screw_0.03211_-0.0065",
+                  "channel_7_F_captive_screw_0.0224_0.0065",
+                  "channel_7_F_captive_screw_0.0224_-0.0065",
+                  "channel_7_F_top_wire_clamp",
+                  "channel_7_F_cable_clamp_end",
+                  "channel_7_F_cap_bridge_0.0065",
+                  "channel_7_F_clamp_bridge_0.0065",
+                  "channel_7_F_cap_bridge_-0.0065",
+                  "channel_7_F_clamp_bridge_-0.0065",
+                  "channel_7_F_connector_body",
+                  "channel_7_M_type_K_text",
+                  "channel_7_M_flat_pin_0.004",
+                  "channel_7_M_flat_pin_-0.004",
+                  "channel_7_M_captive_screw_0.027569999999999997_0.0065",
+                  "channel_7_M_captive_screw_0.027569999999999997_-0.0065",
+                  "channel_7_M_captive_screw_0.0176_0.0065",
+                  "channel_7_M_captive_screw_0.0176_-0.0065",
+                  "channel_7_M_top_wire_clamp",
+                  "channel_7_M_cable_clamp_end",
+                  "channel_7_M_cap_bridge_0.0065",
+                  "channel_7_M_clamp_bridge_0.0065",
+                  "channel_7_M_cap_bridge_-0.0065",
+                  "channel_7_M_clamp_bridge_-0.0065",
+                  "channel_7_M_connector_body"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb",
+                "geometry_sha256": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334"
+              },
+              {
+                "asset_id": "tc_transition_kit",
+                "parts": [
+                  "channel_8_F_type_K_text",
+                  "channel_8_F_captive_screw_0.03211_0.0065",
+                  "channel_8_F_captive_screw_0.03211_-0.0065",
+                  "channel_8_F_captive_screw_0.0224_0.0065",
+                  "channel_8_F_captive_screw_0.0224_-0.0065",
+                  "channel_8_F_top_wire_clamp",
+                  "channel_8_F_cable_clamp_end",
+                  "channel_8_F_cap_bridge_0.0065",
+                  "channel_8_F_clamp_bridge_0.0065",
+                  "channel_8_F_cap_bridge_-0.0065",
+                  "channel_8_F_clamp_bridge_-0.0065",
+                  "channel_8_F_connector_body",
+                  "channel_8_M_type_K_text",
+                  "channel_8_M_flat_pin_0.004",
+                  "channel_8_M_flat_pin_-0.004",
+                  "channel_8_M_captive_screw_0.027569999999999997_0.0065",
+                  "channel_8_M_captive_screw_0.027569999999999997_-0.0065",
+                  "channel_8_M_captive_screw_0.0176_0.0065",
+                  "channel_8_M_captive_screw_0.0176_-0.0065",
+                  "channel_8_M_top_wire_clamp",
+                  "channel_8_M_cable_clamp_end",
+                  "channel_8_M_cap_bridge_0.0065",
+                  "channel_8_M_clamp_bridge_0.0065",
+                  "channel_8_M_cap_bridge_-0.0065",
+                  "channel_8_M_clamp_bridge_-0.0065",
+                  "channel_8_M_connector_body"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb",
+                "geometry_sha256": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334"
+              }
+            ],
+            "scope": "Eight male/female pairs are present and disconnected; no extension wire, DAQ termination or electrical test is implied.",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "additional_reconstructed_materials:fine_wire_transition:component_3",
@@ -1257,7 +1928,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "tc_transition_kit"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1279,7 +1952,44 @@
           "id": "additional_reconstructed_materials:bath_water_and_fill_vessel:component_2",
           "label": "ordinary fill vessel",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "vessel",
+            "members": [
+              {
+                "asset_id": "fill_jug",
+                "parts": [
+                  "embossed_2000",
+                  "embossed_1900",
+                  "embossed_1800",
+                  "embossed_1700",
+                  "embossed_1600",
+                  "embossed_1500",
+                  "embossed_1400",
+                  "embossed_1300",
+                  "embossed_1200",
+                  "embossed_1100",
+                  "embossed_1000",
+                  "embossed_900",
+                  "embossed_800",
+                  "embossed_700",
+                  "embossed_600",
+                  "embossed_500",
+                  "embossed_400",
+                  "embossed_300",
+                  "embossed_200",
+                  "embossed_100",
+                  "closed_handle",
+                  "open_pp_vessel"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_fill_jug.glb",
+                "geometry_sha256": "e05ab6fa392d9880f492402bb2a98ac358a67f46daae54c1b3161b9a92210ab6"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "additional_reconstructed_materials:bath_water_and_fill_vessel:component_3",
@@ -1294,7 +2004,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "fill_jug"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1316,10 +2028,41 @@
           "id": "additional_reconstructed_materials:reversible_emitter_jig:component_2",
           "label": "ordinary handling tool",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 2,
+            "unit": "tool",
+            "members": [
+              {
+                "asset_id": "tweezers_white",
+                "parts": [
+                  "joined_heel",
+                  "ptfe_spring_arm_1",
+                  "ptfe_spring_arm_-1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tweezers_white.glb",
+                "geometry_sha256": "f4c5c1c15b0db648879acf56037e13d38309f8b9ce0ce84e1e18278aa225752b"
+              },
+              {
+                "asset_id": "tweezers_black",
+                "parts": [
+                  "joined_heel",
+                  "ptfe_spring_arm_1",
+                  "ptfe_spring_arm_-1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tweezers_black.glb",
+                "geometry_sha256": "f4c5c1c15b0db648879acf56037e13d38309f8b9ce0ce84e1e18278aa225752b"
+              }
+            ],
+            "scope": "Same two tweezers as film handling, not two additional tools. No fixture or verified turnover method is supplied.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "tweezers_white",
+        "tweezers_black"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1497,13 +2240,129 @@
           "id": "facility:CARRIERS:component_1",
           "label": "ordinary specimen trays",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 2,
+            "unit": "tray",
+            "members": [
+              {
+                "asset_id": "tray_white",
+                "parts": [
+                  "formed_tray"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tray_white.glb",
+                "geometry_sha256": "7c0c3fe34f75745985e2911ef9d2d78f299335b83cbc42a172df3531932ae398"
+              },
+              {
+                "asset_id": "tray_black",
+                "parts": [
+                  "formed_tray"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_tray_black.glb",
+                "geometry_sha256": "7c0c3fe34f75745985e2911ef9d2d78f299335b83cbc42a172df3531932ae398"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "facility:CARRIERS:component_2",
           "label": "ordinary heavy-equipment cart",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "cart",
+            "members": [
+              {
+                "asset_id": "utility_cart",
+                "parts": [
+                  "cart_model_text",
+                  "handle_storage_well_0.145",
+                  "handle_storage_well_0",
+                  "handle_storage_well_-0.145",
+                  "work_surface_hinge",
+                  "folding_work_surface",
+                  "handle_crossbar",
+                  "handle_arm_0.204",
+                  "handle_pivot_button_0.204",
+                  "handle_pivot_0.204",
+                  "handle_arm_-0.204",
+                  "handle_pivot_button_-0.204",
+                  "handle_pivot_-0.204",
+                  "caster_brake_0.4_0.17",
+                  "caster_mount_0.4_0.17",
+                  "caster_swivel_0.4_0.17",
+                  "caster_plate_0.4_0.17",
+                  "wheel_axle_0.4_0.17",
+                  "caster_fork_0.4_0.17_1",
+                  "wheel_hub_0.4_0.17_1",
+                  "caster_fork_0.4_0.17_-1",
+                  "wheel_hub_0.4_0.17_-1",
+                  "rubber_wheel_0.4_0.17",
+                  "caster_brake_0.4_-0.17",
+                  "caster_mount_0.4_-0.17",
+                  "caster_swivel_0.4_-0.17",
+                  "caster_plate_0.4_-0.17",
+                  "wheel_axle_0.4_-0.17",
+                  "caster_fork_0.4_-0.17_1",
+                  "wheel_hub_0.4_-0.17_1",
+                  "caster_fork_0.4_-0.17_-1",
+                  "wheel_hub_0.4_-0.17_-1",
+                  "rubber_wheel_0.4_-0.17",
+                  "caster_mount_-0.4_0.17",
+                  "caster_swivel_-0.4_0.17",
+                  "caster_plate_-0.4_0.17",
+                  "wheel_axle_-0.4_0.17",
+                  "caster_fork_-0.4_0.17_1",
+                  "wheel_hub_-0.4_0.17_1",
+                  "caster_fork_-0.4_0.17_-1",
+                  "wheel_hub_-0.4_0.17_-1",
+                  "rubber_wheel_-0.4_0.17",
+                  "caster_mount_-0.4_-0.17",
+                  "caster_swivel_-0.4_-0.17",
+                  "caster_plate_-0.4_-0.17",
+                  "wheel_axle_-0.4_-0.17",
+                  "caster_fork_-0.4_-0.17_1",
+                  "wheel_hub_-0.4_-0.17_1",
+                  "caster_fork_-0.4_-0.17_-1",
+                  "wheel_hub_-0.4_-0.17_-1",
+                  "rubber_wheel_-0.4_-0.17",
+                  "leg_rib_0.43_0.195_0.73",
+                  "leg_rib_0.43_0.195_0.62",
+                  "leg_rib_0.43_0.195_0.51",
+                  "leg_rib_0.43_0.195_0.4",
+                  "leg_rib_0.43_0.195_0.29",
+                  "perforated_leg_0.43_0.195",
+                  "leg_rib_0.43_-0.195_0.73",
+                  "leg_rib_0.43_-0.195_0.62",
+                  "leg_rib_0.43_-0.195_0.51",
+                  "leg_rib_0.43_-0.195_0.4",
+                  "leg_rib_0.43_-0.195_0.29",
+                  "perforated_leg_0.43_-0.195",
+                  "leg_rib_-0.43_0.195_0.73",
+                  "leg_rib_-0.43_0.195_0.62",
+                  "leg_rib_-0.43_0.195_0.51",
+                  "leg_rib_-0.43_0.195_0.4",
+                  "leg_rib_-0.43_0.195_0.29",
+                  "perforated_leg_-0.43_0.195",
+                  "leg_rib_-0.43_-0.195_0.73",
+                  "leg_rib_-0.43_-0.195_0.62",
+                  "leg_rib_-0.43_-0.195_0.51",
+                  "leg_rib_-0.43_-0.195_0.4",
+                  "leg_rib_-0.43_-0.195_0.29",
+                  "perforated_leg_-0.43_-0.195",
+                  "upper_shelf",
+                  "lower_shelf"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_utility_cart.glb",
+                "geometry_sha256": "c866740d5d525c374c8dc2acb7859154f3ea1171602a6da194ee56a6db26f40f"
+              }
+            ],
+            "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "facility:CARRIERS:component_3",
@@ -1512,7 +2371,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "utility_cart"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1733,7 +2594,9 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "oily_waste_can"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1976,14 +2839,10 @@
         "consumables:consumable_13"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
         "consumables:consumable_07",
         "consumables:consumable_08",
-        "consumables:consumable_09",
         "consumables:consumable_11",
-        "consumables:consumable_12",
-        "consumables:consumable_13"
+        "consumables:consumable_12"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -2019,14 +2878,10 @@
         "consumables:consumable_13"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
         "consumables:consumable_07",
         "consumables:consumable_08",
-        "consumables:consumable_09",
         "consumables:consumable_11",
-        "consumables:consumable_12",
-        "consumables:consumable_13"
+        "consumables:consumable_12"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -2049,9 +2904,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2073,9 +2926,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2257,9 +3108,7 @@
         "facility:WASTE"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_13",
-        "facility:WASTE"
+        "consumables:consumable_07"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -2286,9 +3135,7 @@
         "facility:WASTE"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_13",
-        "facility:WASTE"
+        "consumables:consumable_07"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -2315,9 +3162,7 @@
         "facility:WASTE"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_13",
-        "facility:WASTE"
+        "consumables:consumable_07"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -2344,9 +3189,7 @@
         "facility:WASTE"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_13",
-        "facility:WASTE"
+        "consumables:consumable_07"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -2373,9 +3216,7 @@
         "facility:WASTE"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_13",
-        "facility:WASTE"
+        "consumables:consumable_07"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -2512,9 +3353,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2538,9 +3377,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2564,11 +3401,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2592,11 +3425,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2620,11 +3449,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2648,11 +3473,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2675,9 +3496,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2701,11 +3520,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2728,9 +3543,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2753,9 +3566,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2868,9 +3679,7 @@
         "additional_reconstructed_materials:bath_water_and_fill_vessel",
         "facility:WET_SERVICES"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:bath_water_and_fill_vessel"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2893,9 +3702,7 @@
         "equipment:REF_RTD",
         "equipment:TC"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:calibration_block_stock"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2918,9 +3725,7 @@
         "additional_reconstructed_materials:bath_water_and_fill_vessel",
         "facility:WET_SERVICES"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:bath_water_and_fill_vessel"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2943,9 +3748,7 @@
         "equipment:REF_RTD",
         "equipment:TC"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:calibration_block_stock"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -2994,10 +3797,7 @@
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
-      "missing_scene_resources": [
-        "tools:wire_stripper_and_driver",
-        "additional_reconstructed_materials:fine_wire_transition"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3021,10 +3821,7 @@
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
-      "missing_scene_resources": [
-        "tools:wire_stripper_and_driver",
-        "additional_reconstructed_materials:fine_wire_transition"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3048,10 +3845,7 @@
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
-      "missing_scene_resources": [
-        "tools:wire_stripper_and_driver",
-        "additional_reconstructed_materials:fine_wire_transition"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3075,10 +3869,7 @@
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
-      "missing_scene_resources": [
-        "tools:wire_stripper_and_driver",
-        "additional_reconstructed_materials:fine_wire_transition"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3146,9 +3937,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3194,9 +3983,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3220,11 +4007,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3248,9 +4031,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3274,9 +4055,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3300,8 +4079,7 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_08",
-        "additional_reconstructed_materials:reversible_emitter_jig"
+        "consumables:consumable_08"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -3326,8 +4104,7 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_08",
-        "additional_reconstructed_materials:reversible_emitter_jig"
+        "consumables:consumable_08"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -3352,8 +4129,7 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_08",
-        "additional_reconstructed_materials:reversible_emitter_jig"
+        "consumables:consumable_08"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -3378,8 +4154,7 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_08",
-        "additional_reconstructed_materials:reversible_emitter_jig"
+        "consumables:consumable_08"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -3404,9 +4179,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3430,9 +4203,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3456,11 +4227,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3483,9 +4250,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4173,8 +4938,7 @@
         "tools:wire_stripper_and_driver"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_11",
-        "tools:wire_stripper_and_driver"
+        "consumables:consumable_11"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -4197,9 +4961,7 @@
         "equipment:AMB_RTD",
         "facility:OUTDOOR"
       ],
-      "missing_scene_resources": [
-        "equipment:AMB_RTD"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4484,9 +5246,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4532,9 +5292,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4558,11 +5316,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4586,9 +5340,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4610,9 +5362,7 @@
         "equipment:HEATER",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4634,9 +5384,7 @@
         "equipment:HEATER",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4661,8 +5409,7 @@
         "tools:wire_stripper_and_driver"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_11",
-        "tools:wire_stripper_and_driver"
+        "consumables:consumable_11"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -4688,8 +5435,7 @@
         "tools:wire_stripper_and_driver"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_11",
-        "tools:wire_stripper_and_driver"
+        "consumables:consumable_11"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -4714,9 +5460,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4740,11 +5484,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4767,9 +5507,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4877,9 +5615,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4925,9 +5661,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4951,11 +5685,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4979,11 +5709,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5034,11 +5760,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5062,11 +5784,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5090,11 +5808,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5117,9 +5831,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5164,9 +5876,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5212,9 +5922,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5238,11 +5946,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5293,8 +5997,7 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_08",
-        "additional_reconstructed_materials:reversible_emitter_jig"
+        "consumables:consumable_08"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -5319,8 +6022,7 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_08",
-        "additional_reconstructed_materials:reversible_emitter_jig"
+        "consumables:consumable_08"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -5345,8 +6047,7 @@
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_08",
-        "additional_reconstructed_materials:reversible_emitter_jig"
+        "consumables:consumable_08"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -5371,10 +6072,7 @@
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
-      "missing_scene_resources": [
-        "tools:wire_stripper_and_driver",
-        "additional_reconstructed_materials:fine_wire_transition"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5398,11 +6096,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5425,9 +6119,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5525,8 +6217,7 @@
         "tools:wire_stripper_and_driver"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_11",
-        "tools:wire_stripper_and_driver"
+        "consumables:consumable_11"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -5549,9 +6240,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5574,9 +6263,7 @@
         "facility:WASTE",
         "tools:storage_supports"
       ],
-      "missing_scene_resources": [
-        "facility:WASTE"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5599,9 +6286,7 @@
         "facility:WASTE",
         "tools:storage_supports"
       ],
-      "missing_scene_resources": [
-        "facility:WASTE"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5624,9 +6309,7 @@
         "facility:WASTE",
         "tools:storage_supports"
       ],
-      "missing_scene_resources": [
-        "facility:WASTE"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5670,9 +6353,7 @@
         "equipment:REF_RTD",
         "equipment:TC"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:calibration_block_stock"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5696,10 +6377,7 @@
         "tools:wire_stripper_and_driver",
         "additional_reconstructed_materials:fine_wire_transition"
       ],
-      "missing_scene_resources": [
-        "tools:wire_stripper_and_driver",
-        "additional_reconstructed_materials:fine_wire_transition"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5747,9 +6425,7 @@
         "equipment:REF_RTD",
         "equipment:TC"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:calibration_block_stock"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5938,9 +6614,7 @@
         "facility:WASTE"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_13",
-        "facility:WASTE"
+        "consumables:consumable_07"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -5967,9 +6641,7 @@
         "facility:WASTE"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_13",
-        "facility:WASTE"
+        "consumables:consumable_07"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -6390,9 +7062,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6438,9 +7108,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6464,11 +7132,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6492,9 +7156,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6519,8 +7181,7 @@
         "tools:wire_stripper_and_driver"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_11",
-        "tools:wire_stripper_and_driver"
+        "consumables:consumable_11"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -6543,9 +7204,7 @@
         "equipment:HEATER",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6567,9 +7226,7 @@
         "equipment:HEATER",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6593,9 +7250,7 @@
         "consumables:consumable_03",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "additional_reconstructed_materials:reversible_emitter_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6619,11 +7274,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6646,9 +7297,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6841,14 +7490,10 @@
         "consumables:consumable_13"
       ],
       "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
         "consumables:consumable_07",
         "consumables:consumable_08",
-        "consumables:consumable_09",
         "consumables:consumable_11",
-        "consumables:consumable_12",
-        "consumables:consumable_13"
+        "consumables:consumable_12"
       ],
       "embodiment_requirements": [
         "robot:G1_29DOF",
@@ -6871,9 +7516,7 @@
         "tools:supported_carrier",
         "facility:CARRIERS"
       ],
-      "missing_scene_resources": [
-        "facility:CARRIERS"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6919,9 +7562,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6945,11 +7586,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6973,11 +7610,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -7001,11 +7634,7 @@
         "consumables:consumable_06",
         "tools:film_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_05",
-        "consumables:consumable_06",
-        "tools:film_jig"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -7028,9 +7657,7 @@
         "consumables:consumable_09",
         "consumables:consumable_02"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_09"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -7680,17 +8307,17 @@
     {
       "id": "RESOURCES",
       "label": "全部资源与设备",
-      "detail": "尚缺其余加工机具、光学附件、接线和消耗品；已建水刀仍缺配套服务，数量分配尚未完成"
+      "detail": "已补剥线器、普通镊子、量杯、环境 RTD、转接头及部分原料；尚缺加工配套、光学附件、完整布线和消耗品，数量分配尚未完成"
     },
     {
       "id": "SPACE",
       "label": "完整携物空间",
-      "detail": "已有 G1 限定静态通道检查与逐点工位筛查；未解决点位、双手协同、携物、行走与制动仍需验证"
+      "detail": "已有 G1 限定静态通道检查与逐点工位筛查；双手协同、携物、行走与制动仍需验证"
     },
     {
       "id": "OBSERVATION",
       "label": "传感器闭环",
-      "detail": "原生 D435i 已有名义光学视角；D405 官方支架已转为上置候选，已避开原腕俯仰部件冲突，但抱环配合仍待确认。线缆、标定和独立观察流仍缺"
+      "detail": "原生 D435i 已有名义光学视角；D405 官方支架已转为上置候选，已避开原腕俯仰部件冲突，适配抱环与标准紧固件已排除刚性干涉；衬垫预紧、线缆和独立观察流仍缺"
     },
     {
       "id": "OWNER",

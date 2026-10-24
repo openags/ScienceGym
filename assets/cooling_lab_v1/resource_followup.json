@@ -1,17 +1,34 @@
 {
-  "date": "2026-10-23",
-  "scope": "Additional source discovery during laboratory construction; unresolved identities remain unresolved",
+  "date": "2026-10-25",
+  "scope": "Source discovery and current asset disposition; unresolved historical identities remain explicit",
   "records": [
     {
       "resource": "robot:DEX5_S_PRO_LEFT / robot:DEX5_S_PRO_RIGHT",
-      "queries": ["site:github.com/unitreerobotics Dex5-S", "Dex5-S URDF CAD STEP model"],
+      "queries": [
+        "site:github.com/unitreerobotics Dex5-S",
+        "Dex5-S URDF CAD STEP model"
+      ],
       "sources": [
-        {"url": "https://www.unitree.com/Dex5-S/", "inspected": "Official product specifications; does not provide the joint model used by this scene"},
-        {"url": "https://github.com/unitreerobotics", "inspected": "Official organization page and its published URDF-family index; Dex5-1 is listed, not an exact Dex5-S Pro download"},
-        {"url": "https://huggingface.co/datasets/unitreerobotics/unitree_model/tree/323e350", "inspected": "Root directory listing only: B2, G1, Go2, Go2W, H1-2, H1, H2. Not a recursive proof of absence."}
+        {
+          "url": "https://www.unitree.com/Dex5-S/",
+          "inspected": "Official product specifications; does not provide the joint model used by this scene"
+        },
+        {
+          "url": "https://github.com/unitreerobotics",
+          "inspected": "Official organization page and its published URDF-family index; Dex5-1 is listed, not an exact Dex5-S Pro download"
+        },
+        {
+          "url": "https://huggingface.co/datasets/unitreerobotics/unitree_model/tree/323e350",
+          "inspected": "Root directory listing only: B2, G1, Go2, Go2W, H1-2, H1, H2. Not a recursive proof of absence."
+        }
       ],
       "result": "No exact left/right Dex5-S Pro articulated asset obtained in this search. Earlier pinned repository path audit remains in simulation/humanoid_v1/hand_resource_audit.json.",
-      "needed": ["Exact meshes and reuse terms", "22 joint axes and limits per hand", "Inertias and actuator properties", "H2 wrist mounting transform and collision geometry"],
+      "needed": [
+        "Exact meshes and reuse terms",
+        "22 joint axes and limits per hand",
+        "Inertias and actuator properties",
+        "H2 wrist mounting transform and collision geometry"
+      ],
       "substitution_allowed": false
     },
     {
@@ -20,14 +37,37 @@
       "inspected": "Both pages extracted text; no dimension drawing obtained",
       "finding": "Manufacturer documentation explicitly lists a 12-degree horizontal reflection stage VR1-HRS and a separate 12-degree absolute-reflectance stage VR1-VWA-12. Therefore the paper's angle is not evidence that a current 12.5-degree product should be substituted.",
       "unresolved": "The paper does not identify which exact legacy stage/base/spectrometer adapter was installed. The two candidates have different optical paths and sample handling. Overall and mounting dimensions remain missing.",
-      "geometry_status": "not_built"
+      "geometry_status": "not_built",
+      "additional_source": "https://harricksci.com/horizontal-12-stage-for-variable-angle-reflection-accessory/",
+      "additional_finding": "The current manufacturer page identifies VR1-HRS and supplied 3, 6 and 13 mm aperture masks. These dimensions do not establish the outer stage, legacy optical base or spectrometer mating dimensions."
     },
     {
       "resource": "equipment:TC",
       "source": "https://assets.omega.com/pdf/test-and-measurement-equipment/temperature/sensors/thermocouple-probes/5TC.pdf",
       "inspected": "Manufacturer table and ordering-note text",
       "finding": "36 AWG is listed as 0.13 mm conductor diameter; the ordering note maps the length suffix 36 to 1 m (40 inches). Do not infer exact lead length simply by reading the suffix as inches.",
-      "unresolved": "Historical supplied length, stripped junction geometry, insulation envelope and rest routing need an explicit selected reconstruction and source comparison.",
+      "unresolved": "Flexible cable mechanics, extension conductor pairs, actual terminations, strain relief and sensor stream remain open.",
+      "geometry_status": "eight_loose_probes_and_eight_unconnected_K_connector_pairs_staged",
+      "geometry_evidence": [
+        "assets/omega_5tc_v1/model.json",
+        "assets/cooling_lab_v1/supplies.json"
+      ]
+    },
+    {
+      "resource": "ordinary_supplies_and_camera_mount",
+      "sources": [
+        "assets/cooling_lab_v1/supply_sources.json",
+        "assets/g1_sensor_rig_v1/hardware_sources.json"
+      ],
+      "finding": "Thirteen additional supply types and a G1-specific collar derivative have generated geometry and independent dimension checks. The official original collar remains a rejected fixture.",
+      "unresolved": "Geometry availability does not resolve compound resource completeness, contact parameters, wiring, compliant lining or full campaign quantity allocation."
+    },
+    {
+      "resource": "equipment:ANGLE_VAR",
+      "source": "https://knowledge1.thermofisher.com/Molecular_Spectroscopy/Fourier_Transform_FT_Infrared_IR_and_Near_Infrared_NIR/FT-IR_and_FT-NIR_Operator_Manuals/350-013401_-_VeeMax_Variable_Angle_Specular_Reflectance_Accessory_Installation_and_User%27s_Guide",
+      "inspected": "Thermo Fisher manufacturer manual landing page, description and environment",
+      "finding": "The Thermo-hosted VeeMax manual explicitly identifies PIKE Technologies. Its availability is not evidence that VeeMax is the paper's Spectra-Tech accessory. Do not silently replace the reported manufacturer.",
+      "unresolved": "Exact Spectra-Tech legacy series, handed optical path, outside/mounting dimensions and supplied sample masks.",
       "geometry_status": "not_built"
     }
   ],
