@@ -29,10 +29,41 @@ Review of this pilot does not certify the other 43 families. Dataset totals must
 ## Reviewable implementation
 
 The [v3 task package](../../tasks/directional_cooling_operations_v3/README.md)
-contains 63 operation definitions, 248 observable reference steps, all 11 physical
-branch definitions, source/inference records and a fixture-dependent 364-occurrence
+contains 64 operation definitions, 352 observable reference steps, all 11 physical
+branch definitions, source/inference records and a fixture-dependent 365-occurrence
 symbolic walkthrough. The [v2 asset revision](../../assets/cooling_scene_assets_v2/README.md)
 contains editable metric geometry, a GLB export, named parts and inspection renders.
 The [conversion review](../../tasks/directional_cooling_operations_v3/review.json)
 and [visual review](../../assets/cooling_scene_assets_v2/VISUAL_REVIEW.md) retain open
 gates; this is an initial review revision, not an accepted gold-standard release.
+
+## Current focus
+
+The pilot is being polished as one complete paper-derived manipulation task chain.
+The [manipulation dossier](../../tasks/directional_cooling_operations_v3/MANIPULATION_REVIEW.md)
+shows all 200 manual steps alongside the experimental conditions and checks that
+connect them. Each manual step identifies its object/interface, tool, retained
+support, observable completion and recovery. Scientific-result agreement and
+robot execution are separate validation questions.
+
+The October 17 pass corrects calibration preparation and terminal compatibility,
+angular reference ordering, apparatus disassembly/reassembly and thermal-map
+probe placement. Source-based terminal geometry now uses exact numbered pin IDs;
+the fixed-band variant has two nominal 50 micrometre LDPE layers. Remaining
+interface gaps are itemized, and the earlier review remains preserved.
+
+The October 19 contact workbench adds robot records for
+six rigid layers, a prebonded two-film cover, a full-length cabled RTD, physical
+multimeter button actuation, 241 installed-reflector adjustments and a cabled
+source-meter plug. The [visual workbench](../../simulation/cooling_v1/sample.html)
+shows the full recordings and links their evidence. Its
+[reproduction instructions](../../simulation/cooling_v1/README.md) include the
+local server and lossless trace archives. Keithley 2000/2425, Omega P-M RTD and
+KHR-2/2-P assets have separate source, part, interface and geometry records.
+
+The cover record is rejected by the added triangle/solid audit: its earlier
+force/position checks missed film penetration into the PE tube. The other
+records establish bounded physical capabilities. The complete seven-layer
+candidate, frame and film preparation, paired apparatus, station handoffs and
+remaining instrument work still require acceptance. No complete branch or new
+paper is counted from these records.

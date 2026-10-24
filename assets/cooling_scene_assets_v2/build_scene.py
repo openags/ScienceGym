@@ -12,6 +12,8 @@ from pathlib import Path
 from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+from interaction_geometry import PIN_SIGNALS, SENSOR_LAYOUT
 for sub in ['geometry', 'evidence']:
     (ROOT / sub).mkdir(parents=True, exist_ok=True)
 bpy.ops.object.select_all(action='SELECT')
@@ -68,6 +70,8 @@ PE = material('solid_polyethylene', (.83, .84, .78), 0, .42)
 FILM = material('PE_film_visual_approximation', (.82, .86, .88), 0, .22)
 FILM.node_tree.nodes['Principled BSDF'].inputs['Transmission'].default_value = .98
 FILM.node_tree.nodes['Principled BSDF'].inputs['IOR'].default_value = 1.5
+LDPE = material('white_LDPE_bag_visual_approximation', (.87,.87,.84), 0, .38)
+LDPE.node_tree.nodes['Principled BSDF'].inputs['Transmission'].default_value = .60
 COPPER = material('copper', (.65, .26, .1), .9, .3)
 ORANGE = material('frame_insert_orange', (.8, .27, .025), 0, .5)
 DARK = material('graphite_plastic', (.025, .032, .038), .1, .42)
@@ -178,7 +182,7 @@ def extrusion(name, x, y, z, length, vertical=False):
             for sz in [-1,1]:box(name+'_flange_%s_%s'%(sx,sz),(.007,length,.007),(x+sx*.0065,y,z+sz*.0065),AL)
 
 
-def cooling(name, xyz, black=False, exploded=False, fixed=False):
+def cooling(name, xyz, black=False, exploded=False, fixed=False, mapping=False):
     root(name,xyz)
     # Base/frame endpoints are inferred from the SI photograph; 305 mm inner span is measured text.
     for x in [-.1625,.1625]:
@@ -205,9 +209,11 @@ def cooling(name, xyz, black=False, exploded=False, fixed=False):
     ring('PE_support',.038,.051,.057,(0,0,z+.0285),PE,'removable_support')
     ring('PE_support_mylar',.051,.05103,.057,(0,0,z+.0285),FOIL,'radiation_cover')
     fz=z+.057+3*dz
-    cylinder('cover_lower',.0635,.000016,(0,0,fz),FILM,'removable_film')
+    film_thickness=.000050 if fixed else .000016
+    film_material=LDPE if fixed else FILM
+    cylinder('cover_lower',.0635,film_thickness,(0,0,fz),film_material,'removable_film')
     ring('film_spacer',.0535,.0635,.0064,(0,0,fz+.0032+dz),BRUSH,'removable_spacer')
-    cylinder('cover_upper',.0635,.000016,(0,0,fz+.0064+2*dz),FILM,'removable_film')
+    cylinder('cover_upper',.0635,film_thickness,(0,0,fz+.0064+2*dz),film_material,'removable_film')
     sz=z+.0064+5*dz
     ring('radiation_shield',.07,.076,.057,(0,0,sz+.0285),AL,'removable_shield')
     ring('aperture_plate',.025,.076,.001,(0,0,sz+.0575),AL,'removable_aperture')
@@ -222,11 +228,17 @@ def cooling(name, xyz, black=False, exploded=False, fixed=False):
         cylinder('solar_reflector',.03,.001,(0,.055,rz+.005),AL,'removable_reflector')
     # Four independent sides of the lead terminal support plus retained, non-floating wires.
     box('terminal_mount',(.115,.02,.005),(0,-.105,.034),DARK)
-    for i in range(7):
+    sensor_layout=SENSOR_LAYOUT if mapping else SENSOR_LAYOUT[:1]
+    for i,(probe,target,point,region,basis) in enumerate(sensor_layout):
         x=-.048+i*.016
         box('TC_terminal_%d'%i,(.01,.012,.008),(x,-.105,.04),YELLOW,'terminal')
         for dx in [-.002,.002]:cylinder('TC_screw',.0012,.001,(x+dx,-.105,.0445),BRUSH)
-        wire('sensor_lead_%d'%i,[(x,-.105,.043),(x,-.075,.039),(.015,-.035,z+.006+i*.002),(0,-.025,z+.024+i*.004)],YELLOW,.00035)
+        endpoint=(point[0],point[1],z+point[2]+(2*dz if i==0 else 0))
+        contact=cylinder('probe_contact_'+probe,.0008,.0003,endpoint,COPPER,'sensor_contact_hypothesis')
+        contact['target_part']=name+'__'+target
+        contact['basis']=basis
+        contact['region']=region
+        wire('sensor_lead_%d'%i,[(x,-.105,.043),(x,-.075,.039),(point[0],-.035,endpoint[2]),endpoint],YELLOW,.00035)
     return current
 
 
@@ -276,15 +288,45 @@ def usb_tc(xyz):
     box('case',(.12852,.08839,.03556),(0,0,.01778),DARK,bevel=.003)
     box('top_label',(.09,.039,.0002),(0,0,.0357),CASE,bevel=0)
     label('identity','USB-TC',(-.035,-.006,.0359),.009,DARK,False)
-    for y in [-.041,.041]:
-        for row in range(2):
-            yy=y+(.007 if y<0 else -.007)*row
-            for i in range(13):
-                x=-.0564+i*.0094
-                box('terminal_%s_%d_%d'%(y,row,i),(.0045,.005,.007),(x,yy,.034),GREEN,'screw_terminal',bevel=.0002)
-                cylinder('terminal_screw',.0013,.0007,(x,yy,.038),BRUSH)
-    box('USB_B',(.012,.009,.012),(.052,0,.020),BRUSH,'electrical_port')
-    for x in [-.046,.046]:cylinder('CJC_'+str(x),.002,.003,(x,0,.038),DARK,'CJC_sensor')
+    # Figure2 topology: each 26-pin bank is interrupted by a CJC after ten
+    # terminals. Pitch and offsets are inferred from enclosure proportions.
+    for bank,y in enumerate([-.035,.035]):
+        for i in range(26):
+            pin=bank*26+i+1
+            x=-.055+i*.0039+(.009 if i>=10 else 0)
+            o=box('pin_%02d'%pin,(.0036,.006,.008),(x,y,.035),GREEN,'screw_terminal',bevel=.0002)
+            o['signal']=PIN_SIGNALS[pin];o['pin_number']=pin
+            # Inferred cavity dimensions, but actual open geometry rather than
+            # a painted dot standing in for a conductor-entry interface.
+            bpy.ops.mesh.primitive_cylinder_add(vertices=24,radius=.0011,depth=.008,location=(xyz[0]+x,xyz[1]+y,xyz[2]+.034),rotation=(math.pi/2,0,0))
+            cutter=bpy.context.object
+            mod=o.modifiers.new('wire_entry_cavity','BOOLEAN');mod.operation='DIFFERENCE';mod.object=cutter
+            bpy.context.view_layer.objects.active=o;bpy.ops.object.modifier_apply(modifier=mod.name)
+            bpy.data.objects.remove(cutter,do_unlink=True)
+            screw=cylinder('pin_%02d_screw'%pin,.0011,.0007,(x,y,.0394),BRUSH,'terminal_screw')
+            bpy.ops.mesh.primitive_cube_add(size=1,location=(xyz[0]+x,xyz[1]+y,xyz[2]+.0398))
+            cutter=bpy.context.object;cutter.dimensions=(.0025,.00045,.00065)
+            bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
+            mod=screw.modifiers.new('driver_slot','BOOLEAN');mod.operation='DIFFERENCE';mod.object=cutter
+            bpy.context.view_layer.objects.active=screw;bpy.ops.object.modifier_apply(modifier=mod.name)
+            bpy.data.objects.remove(cutter,do_unlink=True)
+            entry=ring('pin_%02d_wire_entry'%pin,.0011,.0013,.0002,(x,y+(-.0031 if y<0 else .0031),.034),DARK,'wire_entry')
+            entry.rotation_euler.x=math.pi/2
+            label('pin_%02d_label'%pin,str(pin),(x-.001,y+(.005 if y<0 else -.007),.039),.0022,WHITE,False)
+        cylinder('CJC_'+str(bank),.002,.003,(-.01345,y,.038),DARK,'CJC_sensor')
+    # Chamfered Type-B shell, inferred envelope. Native opening supports review
+    # of insertion direction; it is not a dimensionally qualified connector.
+    outer=[(-.005,.014),(.005,.014),(.005,.021),(.0025,.024),(-.0025,.024),(-.005,.021)]
+    inner=[(-.0042,.0148),(.0042,.0148),(.0042,.0207),(.0021,.0232),(-.0021,.0232),(-.0042,.0207)]
+    verts=[(xx,y,z) for xx in [.061,.069] for profile in [outer,inner] for y,z in profile]
+    faces=[]
+    for i in range(6):
+        j=(i+1)%6
+        faces += [(i,j,12+j,12+i),(6+i,18+i,18+j,6+j),(12+i,12+j,18+j,18+i),(i,6+i,6+j,j)]
+    mesh=bpy.data.meshes.new('USB_B_shell');mesh.from_pydata(verts,[],faces);mesh.update()
+    obj=bpy.data.objects.new('USB_B_shell',mesh);bpy.context.collection.objects.link(obj)
+    finish(obj,'USB_B',BRUSH,'electrical_port')
+    box('USB_B_insulator',(.001,.007,.006),(.062,0,.0185),DARK,'connector_insert',0)
 
 
 def bath(xyz):
@@ -317,6 +359,7 @@ cooling('COOLER_WHITE',(-.23,0,0))
 cooling('COOLER_BLACK',(.23,0,0),True)
 cooling('COOLER_EXPLODED',(1.15,0,0),exploded=True)
 cooling('COOLER_FIXED_BAND',(1.65,0,0),fixed=True)
+cooling('COOLER_THERMAL_MAP',(2.20,0,0),mapping=True)
 keithley('KEITHLEY_2425',(-.24,.85,0))
 usb_tc((.08,.74,0))
 bath((.53,1.03,0))
@@ -339,6 +382,8 @@ view((.74,-1.15,.85),(0,0,.13),.97)
 bpy.context.view_layer.update()
 parts=[{'id':o.name,'root':o.parent.name if o.parent else None,'role':o.get('role'),
         'local_position_m':list(o.location),'bounds_m':list(o.dimensions),
+        'contact_target':o.get('target_part'), 'contact_region':o.get('region'),
+        'signal':o.get('signal'), 'pin_number':o.get('pin_number'),
         'physics_validated':False} for o in registry if o.parent]
 (ROOT/'parts.json').write_text(json.dumps({'unit':'m','parts':parts},indent=2)+'\n')
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'geometry/cooling_pilot.blend'),compress=True)

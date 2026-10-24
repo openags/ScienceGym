@@ -4,6 +4,17 @@ This is the required authoring and handoff workflow for new paper conversions an
 
 The output is a complete, inspectable account of the physical work needed to perform the declared experimental program. It must expose robot perception, motion, manipulation and planning demands. Published scientific outcomes are reference context, never a substitute for an acquired observation or a success predicate that forces agreement with the paper.
 
+The core deliverable is the paper-derived manipulation task chain. Preserve the
+whole experimental sequence and its scientific conditions while expanding the
+hands-on work: manipulated objects, contact regions, tools, retained support,
+observable completion and recovery. Perception, planning, instrument processing,
+waiting and analysis retain their causal roles without being counted as physical
+manipulation. Acceptance of a task design is separate from qualified equipment
+geometry, robot execution and reproduction of the paper's numerical results.
+Do not require a physics simulator or successful scientific replication merely
+to document a missing manipulation step; reconstruct that work with explicit
+provenance and keep its actual implementation/validation status visible.
+
 ## 1. Conversion stages and reviewable outputs
 
 | Stage | Author work | Saved output | Exit check |
