@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **321**.
+Last screened: **2026-10-24**. Candidate count: **322**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3234,3 +3234,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [43-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69609-4/MediaObjects/41467_2026_69609_MOESM1_ESM.pdf) was accessible as extracted text. Selected mechanical/self-healing methods and Figures S4–S7 captions were screened; remaining sections, figure images and source-data spreadsheet were not fully reviewed.
 - Future scope is limited to qualified, already prepared nonliving specimens and guarded measurement fixtures. Metal processing, polymer synthesis, solvents, specimen cutting, electrochemistry, thermal-shock campaigns and powered-computer demonstrations are outside this candidate's proposed scope. No procedure, asset or converted task is supplied.
 - Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**; this entry supplies bibliographic metadata and original screening commentary, not redistributed or adapted article content.
+
+## Additional candidate: prepared smartphone-sensor calibration (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Quantitative, high-sensitivity measurement of liquid analytes using a smartphone compass](https://www.nature.com/articles/s41467-024-47073-2) | Nature Communications / 2024 | 10.1038/s41467-024-47073-2 | Prepared-actuator positioning, benign aqueous-standard exchange, settling checks, repeated magnetometer readout and baseline recovery offer a potential long-horizon calibration task linking sample identity, fixture geometry and measurement history. | Open-access publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** Bibliography verified as *Nature Communications* **15**, 2801 (2024), published **30 March 2024**. Selected platform-design, characterization, calibration and noise results, associated captions, discussion limitations and main Methods were screened; no complete paper reading or task conversion is claimed.
+- The official [35-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-47073-2/MediaObjects/41467_2024_47073_MOESM1_ESM.pdf) was accessible as extracted text. Selected platform notes and system-characterization text/captions for Figures S6–S8 were screened. These distinguish the development fixture from the proposed compact attachment and document background-field checks and slow baseline recovery. Remaining sections, figure images, movie, source-data workbook and peer-review file were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving sensor strips, a secured fixture and benign aqueous standards. Monomer synthesis, particle processing, curing, magnetization, biological samples and diagnostic use are excluded. Magnetic interference from robotic equipment, phone-specific positioning, carryover and recovery criteria require validation before conversion. No experimental procedure, asset or converted task is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY 4.0**. HTML was readable despite a cookie-error URL marker. This entry supplies bibliographic metadata and original screening commentary only.
