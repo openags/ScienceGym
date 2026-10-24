@@ -1,6 +1,6 @@
 {
   "schema_version": "sciencegym.humanoid_pilot_contract.v1",
-  "revision": "2026-10-24.g1_scene_integration.3",
+  "revision": "2026-10-24.sensor_review.4",
   "paper_doi": "10.1038/s41467-018-07293-9",
   "authority": "Owner implementation choices and subsequent instruction: retain Unitree body; choose publicly supported hands without a manufacturer/model lock",
   "phase": "asset_and_scene_development",
@@ -35,11 +35,10 @@
   "observations": {
     "actor_mode": "robot_sensors_only",
     "proposed_added_cameras": [
-      "head RGB-D",
       "left wrist RGB",
       "right wrist RGB"
     ],
-    "camera_configuration_status": "selected_staged_geometry_not_installed_or_calibrated",
+    "camera_configuration_status": "native_head_nominal_preview_above_wrist_candidate_clamp_fit_unqualified",
     "allowed_channels": [
       "camera RGB",
       "camera depth",
@@ -59,7 +58,9 @@
     ],
     "evaluator_may_read_ground_truth": true,
     "process_isolation_required": true,
-    "runtime_enforcement_implemented": false
+    "runtime_enforcement_implemented": false,
+    "camera_review_record": "assets/g1_sensor_rig_v1/rig.json",
+    "native_camera": "G1 D435i head RGB-D"
   },
   "adaptations": {
     "added_cameras_allowed": true,

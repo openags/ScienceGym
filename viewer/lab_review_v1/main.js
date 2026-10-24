@@ -3,6 +3,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {batchStaticMeshes} from './render_batches.js';
+import {SensorReview} from './sensors.js';
 
 const $=id=>document.getElementById(id),root='../../',folder=root+'assets/cooling_lab_v1/';
 const fetchedHashes=new Map();
@@ -40,7 +41,7 @@ function installRoomLights(){
 }
 const overlays=new THREE.Group(),labels=new THREE.Group(),measurements=new THREE.Group();scene.add(overlays,labels,measurements);
 let architecture,manifest,inventory,risks,report,bodyReport,readiness,workspace,selected=null,measureMode=false,measurePoints=[],pointerStart;
-let robotRest=[];const accessMarker=new THREE.Group();scene.add(accessMarker);
+let sensors=null,sensorRig=null;let robotRest=[];const accessMarker=new THREE.Group();scene.add(accessMarker);
 const groups=new Map(),states=new Map(),assetList=[],renderBatches=[];
 const loader=new GLTFLoader();
 const loadPinned=async(path,expected)=>{const r=await fetch(root+path+'?revision='+expected);if(!r.ok)throw Error(path+' HTTP '+r.status);const buffer=await r.arrayBuffer();if(await digest(buffer)!==expected)throw Error(path+' 的模型哈希与当前场景不一致');return loader.parseAsync(buffer,new URL(root+path,location.href).href)};
@@ -66,6 +67,7 @@ const resize=()=>{const w=$('viewport').clientWidth,h=$('viewport').clientHeight
 function resetStates(){for(const state of states.values())for(const item of state.parts){item.node.position.copy(item.position);item.node.quaternion.copy(item.quaternion)}
  for(const item of robotRest){item.node.position.copy(item.position);item.node.quaternion.copy(item.quaternion)}
  const robot=groups.get('g1');if(robot){robot.position.set(...assetList.find(a=>a.id==='g1').position_m);robot.rotation.set(0,0,0)}
+ if(sensors){const k=states.get('g1_hands_inspection').config.kinematics;sensors.update(new Map(Object.entries(k.bind_world).map(([n,t])=>[n,new THREE.Matrix4().fromArray(t.flat()).transpose()])))}
  accessMarker.clear();delete document.documentElement.dataset.workspacePose;
  if($('workspace-pose-status'))$('workspace-pose-status').textContent='选择检查点可查看静态姿态。';
  renderer.shadowMap.needsUpdate=true;requestRender()}
@@ -84,11 +86,11 @@ function inspectWorkspace(target){
   const bind=new THREE.Matrix4().fromArray(k.bind_world[link].flat()).transpose();
   item.node.updateMatrix();item.node.applyMatrix4(n.clone().multiply(world.get(link)).multiply(bind.invert()).multiply(ni));
  }
- group.position.set(result.base_position_m[0],result.base_position_m[1],result.base_position_m[2]-k.root_matrix[2][3]);group.rotation.z=result.base_yaw_rad;
+ group.position.set(result.base_position_m[0],result.base_position_m[1],result.base_position_m[2]-k.root_matrix[2][3]);group.rotation.z=result.base_yaw_rad;if(sensors)sensors.update(world);
  const marker=new THREE.Mesh(new THREE.SphereGeometry(.018),new THREE.MeshBasicMaterial({color:result.position_candidate?'#dc891f':'#c53c37',depthTest:false}));marker.position.set(...target.point_m);accessMarker.add(marker);
  $('isolate').checked=false;$('show-walls').checked=false;visibility();const p=result.base_position_m;
  setView([p[0]+1.8,p[1]-2.1,2.0],[target.point_m[0],target.point_m[1],.8]);
- $('workspace-pose-status').textContent=target.id+' · 静态位置检查，误差 '+(result.position_error_m*1000).toFixed(1)+' mm；'+result.external_overlaps.length+' 处外部包围盒冲突；自碰撞 '+(result.self_contacts_checked?result.self_penetrations_over_0_5mm.length+' 对超过 0.5 mm':'尚未检查（位置未到达）')+'。手掌方向、目标设备内部碰撞、平衡与进入路径尚未验证。';
+ $('workspace-pose-status').textContent=target.id+' · 静态位置检查，误差 '+(result.position_error_m*1000).toFixed(1)+' mm；'+result.external_overlaps.length+' 处外部包围盒冲突；自碰撞 '+(result.self_contacts_checked?result.self_penetrations_over_0_5mm.length+' 对超过 0.5 mm':'尚未检查（位置未到达）')+'；候选相机与其他机器人部件相交 '+result.candidate_rig_other_link_intersections.length+' 对，抱环配合仍未确认。手掌方向、目标设备内部碰撞、平衡与进入路径尚未验证。';
  document.documentElement.dataset.workspacePose=target.id;$('viewport').scrollIntoView({block:'center'});renderer.shadowMap.needsUpdate=true;requestRender();
 }
 function applyState(id,fraction){
@@ -97,6 +99,7 @@ function applyState(id,fraction){
   const k=state.config.kinematics,world=new Map([[k.root_link||'palm',k.root_matrix?new THREE.Matrix4().fromArray(k.root_matrix.flat()).transpose():new THREE.Matrix4()]]),n=new THREE.Matrix4().fromArray(state.normalization.flat()).transpose(),ni=n.clone().invert();
   for(const j of k.joints){const translation=j.origin_matrix?new THREE.Matrix4().fromArray(j.origin_matrix.flat()).transpose():new THREE.Matrix4().makeTranslation(...j.origin_m),rotation=new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...j.axis),fraction*j.inspection_angle_rad);world.set(j.id,world.get(j.parent).clone().multiply(translation).multiply(rotation))}
   for(const item of state.parts){const link=k.part_links[item.node.name],bind=new THREE.Matrix4().fromArray(k.bind_world[link].flat()).transpose();const delta=n.clone().multiply(world.get(link)).multiply(bind.invert()).multiply(ni);item.node.updateMatrix();item.node.applyMatrix4(delta)}
+  if(sensors&&state.config.asset==='g1')sensors.update(world);
   document.documentElement.dataset.openState=id+':'+fraction;renderer.shadowMap.needsUpdate=true;requestRender();return;
  }
  const axis=new THREE.Vector3(...state.config.axis),angle=state.config.maximum*fraction,q=new THREE.Quaternion().setFromAxisAngle(axis,angle);
@@ -230,6 +233,17 @@ try{
  for(let i=0;i<assetList.length;i+=3){await Promise.all(assetList.slice(i,i+3).map(async a=>{const model=await loadPinned(a.geometry,a.geometry_sha256);prepare(model);const group=model.scene;const protectedParts=new Set(a.id==='g1'?a.part_names:manifest.inspection_states.filter(s=>s.asset===a.id).flatMap(s=>s.parts));renderBatches.push({id:a.id,...batchStaticMeshes(group,protectedParts)});group.position.set(...a.position_m);group.traverse(o=>{if(o.isMesh)o.userData.assetId=a.id});groups.set(a.id,group);scene.add(group);const option=document.createElement('option');option.value=a.id;option.textContent=a.label;$('asset-select').append(option)}));$('loading').textContent='载入模型 '+Math.min(i+3,assetList.length)+' / '+assetList.length}
  for(const config of manifest.inspection_states){const group=groups.get(config.asset),asset=assetList.find(a=>a.id===config.asset);const parts=[];group.traverse(node=>{if(config.parts.includes(node.name))parts.push({node,position:node.position.clone(),quaternion:node.quaternion.clone()})});if(parts.length!==config.parts.length)throw Error(config.id+' 的开闭部件未完整匹配');const p=config.pivot_m||[0,0,0];const n=asset.normalization_matrix;states.set(config.id,{config,parts,normalization:n,pivot:new THREE.Vector3(p[0]+n[0][3],p[1]+n[1][3],p[2]+n[2][3])})}
  groups.get('g1').traverse(node=>{if(node.isMesh)robotRest.push({node,position:node.position.clone(),quaternion:node.quaternion.clone()})});
+ sensorRig=await read(root+manifest.sensor_rig.path);if(fetchedHashes.get(root+manifest.sensor_rig.path)!==manifest.sensor_rig.sha256)throw Error('相机候选版本不一致');
+ const fit=await read(root+'assets/g1_sensor_rig_v1/fit_checks.json');if(fit.rig_sha256!==manifest.sensor_rig.sha256||!fit.checks_passed||fit.active_installation)throw Error('相机装配检查缺失或状态不一致');
+ sensors=new SensorReview({renderer,scene,robot:groups.get('g1'),normalization:assetList.find(a=>a.id==='g1').normalization_matrix,rig:sensorRig,hiddenGroups:[overlays,labels,measurements,accessMarker],canvas:$('sensor-canvas'),status:$('sensor-status')});await sensors.load(loadPinned,prepare);
+ const kin=states.get('g1_hands_inspection').config.kinematics;sensors.update(new Map(Object.entries(kin.bind_world).map(([n,t])=>[n,new THREE.Matrix4().fromArray(t.flat()).transpose()])));
+ $('sensor-fit').textContent='上置支架候选已避开采样姿态的其他关节；抱环配合仍未通过：'+fit.counts.surface_checks_with_intersections+' / '+fit.counts.surface_checks+' 项静态表面检查与被夹持腕部存在接触／相交；'+fit.counts.workspace_poses_with_attachment_overlaps+' / '+fit.counts.workspace_poses+' 个工位姿态存在相机／支架外部包围盒冲突；'+fit.counts.workspace_poses_with_other_link_intersections+' 个姿态与其他机器人部件表面相交。下方 47 点已检查本体、双手及候选相机；抱环夹紧配合单独保留为未通过。';
+ $('show-sensor-rig').onchange=e=>{sensors.group.visible=e.target.checked;renderer.shadowMap.needsUpdate=true;requestRender()};
+ $('sensor-mount-views').onclick=e=>{const side=e.target.dataset.wrist;if(!side)return;selectAsset('g1',false);$('show-sensor-rig').checked=true;sensors.group.visible=true;$('isolate').checked=true;visibility();groups.get('g1').updateWorldMatrix(true,false);const t=groups.get('g1').matrixWorld.clone().multiply(sensors.normalization).multiply(sensors.world.get(side+'_wrist_yaw_link')),p=new THREE.Vector3().setFromMatrixPosition(t),sign=side==='left'?1:-1;setView([p.x+.38,p.y+sign*.48,p.z+.28],[p.x+.07,p.y+sign*.055,p.z+.075]);document.documentElement.dataset.mountView=side;renderer.shadowMap.needsUpdate=true;requestRender()};
+ $('sensor-buttons').onclick=e=>{const id=e.target.dataset.sensor;if(!id)return;try{sensors.capture(id);requestRender()}catch(error){$('sensor-status').textContent='生成失败：'+error.message;throw error}};
+ $('depth-range').onchange=()=>{sensors.depthMaterial.uniforms.displayRange.value=Number($('depth-range').value);if(sensors.selected==='head_depth'){sensors.capture('head_depth');requestRender()}};
+ $('sensor-download').onclick=()=>{if(!sensors.metadata)return;const a=document.createElement('a');a.download='sciencegym-'+sensors.selected+'-preview.png';a.href=$('sensor-canvas').toDataURL('image/png');a.click()};
+ document.documentElement.dataset.sensorReviewLoaded='true';
  workspace=await read(folder+'workspace_checks.json');if(workspace.scene_sha256!==report.scene_sha256)throw Error('工位检查与场景版本不一致');
  $('workspace-counts').textContent=workspace.counts.targets+' 个检查点：'+workspace.counts.position_candidates+' 个位置候选，'+workspace.counts.needs_revision+' 个需要调整或进一步求解。位置候选尚未通过操作验收。';
  for(const target of workspace.targets){const tr=document.createElement('tr');for(const text of [target.id,target.result.position_candidate?'位置候选':'待解决',(target.result.position_error_m*1000).toFixed(1)+' mm',target.result.external_overlaps.length+' 处',target.result.self_contacts_checked?target.result.self_penetrations_over_0_5mm.length+' 对':'未检查']){const td=document.createElement('td');td.textContent=text;tr.append(td)}const td=document.createElement('td'),button=document.createElement('button');button.textContent='查看静态姿态';button.dataset.target=target.id;button.onclick=()=>inspectWorkspace(target);td.append(button);tr.append(td);$('workspace-targets').append(tr)}

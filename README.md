@@ -52,8 +52,11 @@ and dimension drawings. All assets and the whole scene remain **unaccepted**;
 missing equipment, camera installation and infrastructure stay visible in the 66-row
 resource inventory (including three superseded robot/hand references). The G1
 layout checks, 129 restricted source-kinematic poses and 47 station access
-points provide bounded geometric evidence. Per-point static postures and
-unresolved conflicts are visible in the review; they do not qualify operation or safety. The default 1.65 m interior viewpoint supports drag-to-look and
+points provide bounded geometric evidence. All 47 have static position candidates with camera-attachment clearance screening. Native G1 head RGB / ideal
+depth and candidate wrist RGB inspection views now follow the displayed pose.
+Official wrist camera mounts are available for comparison, with observed
+clamp-fit uncertainty recorded as an unaccepted installation. Per-point postures and
+remaining assembly conflicts are visible in the review; they do not qualify operation or safety. The default 1.65 m interior viewpoint supports drag-to-look and
 arrow-key/WASD movement; cutaway and plan views remain available for layout
 inspection. Viewpoint navigation is not robot motion. A detail view now exposes chamfered
 worktops, separate drawer fronts, handle mounts and leveling feet. Authored

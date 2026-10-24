@@ -35,9 +35,14 @@ def validate():
     camera_check=json.loads((camera_folder/'VERIFICATION.json').read_text())
     check('camera_verification_current',camera_check['passed'] and camera_check['model_sha256']==sha(camera_folder/'model.json') and camera_check['validator_sha256']==sha(camera_folder/'validate.py'))
     check('camera_sources_current',camera_record['source_ledger_sha256']==sha(camera_folder/'sources.json') and camera_record['builder_sha256']==sha(camera_folder/'build.py'))
+    rig_path=ROOT/scene['sensor_rig']['path'];rig=json.loads(rig_path.read_text())
+    fit=json.loads((ROOT/'assets/g1_sensor_rig_v1/fit_checks.json').read_text())
+    check('sensor_rig_pinned',sha(rig_path)==scene['sensor_rig']['sha256']==fit['rig_sha256'])
+    check('conflicting_mount_not_accepted',fit['checks_passed'] and not fit['active_installation'] and not fit['mechanical_compatibility_qualified'] and not rig['sensor_runtime_qualified'])
+    for rec in rig['source_artifacts']+fit['source_artifacts']:check('rig_source_'+rec['path'],sha(ROOT/rec['path'])==rec['sha256'])
     for role in camera_record['selected_roles']:
-        placed=[a for a in scene['assets'] if a['resource_id']==role['resource_id']]
-        check('camera_staged_'+role['resource_id'],len(placed)==1 and placed[0]['station']=='assembly_white')
+        placed=[a for a in scene['assets'] if role['resource_id'] in a.get('resource_ids',[a['resource_id']])]
+        check('camera_staged_'+role['resource_id'],len(placed)==1 and placed[0]['station']==('circulation' if role['model']=='native_g1_d435i' else 'assembly_white'))
     tc_folder=ROOT/'assets/omega_5tc_v1'
     tc=json.loads((tc_folder/'model.json').read_text());tc_check=json.loads((tc_folder/'VERIFICATION.json').read_text())
     check('tc_verification_current',tc_check['passed'] and tc_check['model_sha256']==sha(tc_folder/'model.json') and tc_check['validator_sha256']==sha(tc_folder/'validate.py'))
@@ -59,7 +64,7 @@ def validate():
     check('workspace_current_scene',workspace['scene_sha256']==sha(HERE/'scene.json'))
     candidates=sum(r['result']['position_candidate'] for r in workspace['targets'])
     check('workspace_counts',workspace['counts']==dict(targets=len(workspace['targets']),position_candidates=candidates,needs_revision=len(workspace['targets'])-candidates))
-    check('workspace_candidate_predicate',all(r['result']['position_candidate']==(r['result']['position_error_m']<.01 and not r['result']['external_overlaps'] and r['result']['self_contacts_checked'] and not r['result']['self_penetrations_over_0_5mm']) for r in workspace['targets']))
+    check('workspace_candidate_predicate',all(r['result']['position_candidate']==(r['result']['position_error_m']<.01 and not r['result']['external_overlaps'] and r['result']['self_contacts_checked'] and not r['result']['self_penetrations_over_0_5mm'] and r['result']['candidate_rig_checked'] and not r['result']['candidate_rig_other_link_intersections']) for r in workspace['targets']))
     check('static_integration_not_execution_credit',not integration['full_physics_qualified'] and not workspace['full_workspace_qualified'])
     model=mujoco.MjModel.from_xml_path(str(ROOT/integration['model']['path']))
     def replay_pose(row):

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "static_access_screening_not_task_validation",
-  "scene_sha256": "6e67594aca097b0dda60ec0cee0b88d7360a57cf6a5c74a2486f6e35010b0eb0",
+  "scene_sha256": "ea447fd2d1e92650d2f81244fdb9f2b19117bc775d41d3da5e17a65cf5ddfd76",
   "source_artifacts": [
     {
       "path": "assets/unitree_g1_inspire_v1/simulation/robot.xml",
@@ -12,14 +12,18 @@
       "sha256": "c9de27d078689a634fc3277c431e3be75a55eb042cd790c6ef21af2d13b31e5a"
     },
     {
+      "path": "assets/g1_sensor_rig_v1/rig.json",
+      "sha256": "b6f9c0831f4335361f67c1ac234f8ed9f90efc6863a715aa48baed11d4f2951f"
+    },
+    {
       "path": "assets/cooling_lab_v1/check_workspace.py",
-      "sha256": "05acb541bb2aa8935467d70320b9287b990171ba3328d75cd9a37675e0343fb0"
+      "sha256": "ed685263de6a75587208da20d98ea0cc57a952148cccf63c7a323b4c809f34a9"
     }
   ],
   "counts": {
     "targets": 47,
-    "position_candidates": 44,
-    "needs_revision": 3
+    "position_candidates": 47,
+    "needs_revision": 0
   },
   "targets": [
     {
@@ -34,31 +38,51 @@
       "front_y_m": 8.1,
       "basis": "Authored front-envelope access point; not a measured button or grasp frame",
       "source": null,
-      "attempts": 3,
+      "attempts": 14,
       "result": {
         "hand": "left",
         "base_position_m": [
           2.35,
-          7.92,
+          7.76,
           0.792272897479
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": 0.13445087092471555,
-          "left_shoulder_roll_joint": 0.41353777779006634,
-          "left_elbow_joint": -0.3783270423116441,
+          "left_shoulder_pitch_joint": -0.197418415539178,
+          "left_shoulder_roll_joint": 2.9614770864801823e-05,
+          "left_elbow_joint": 0.08454678866536947,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.5464745675344388,
-          "left_wrist_roll_joint": 1.4460161691312092,
-          "left_wrist_pitch_joint": -0.4587171159093872,
-          "left_wrist_yaw_joint": 0.9137934244593522
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.36676151243263067,
+          "left_wrist_roll_joint": -0.2560609238900995,
+          "left_wrist_pitch_joint": -0.5312116143960474,
+          "left_wrist_yaw_joint": -0.2432762519927388
         },
-        "position_error_m": 5.949163186220647e-08,
+        "position_error_m": 1.466969203422453e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -85,21 +109,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": 0.15062687110568584,
-          "left_shoulder_roll_joint": 0.10237523469746376,
-          "left_elbow_joint": -0.20388039973898564,
+          "left_shoulder_pitch_joint": 0.15062687110620906,
+          "left_shoulder_roll_joint": 0.10237523469764666,
+          "left_elbow_joint": -0.20388039973940816,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.5267763834081434,
-          "left_wrist_roll_joint": -0.14579671814184944,
-          "left_wrist_pitch_joint": -0.6973442009447163,
-          "left_wrist_yaw_joint": -0.2622982205828217
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.5267763834072655,
+          "left_wrist_roll_joint": -0.1457967181400698,
+          "left_wrist_pitch_joint": -0.6973442009451499,
+          "left_wrist_yaw_joint": -0.26229822058306906
         },
-        "position_error_m": 1.8556322717346295e-08,
+        "position_error_m": 1.8556189270932023e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -116,11 +160,11 @@
       "front_y_m": 5.4,
       "basis": "Authored front-envelope access point; not a measured button or grasp frame",
       "source": null,
-      "attempts": 24,
+      "attempts": 41,
       "result": {
         "hand": "right",
         "base_position_m": [
-          2.9,
+          2.75,
           5.16,
           0.792272897479
         ],
@@ -128,37 +172,42 @@
         "joint_coordinates": {
           "left_shoulder_pitch_joint": 0.1,
           "left_shoulder_roll_joint": 0.2,
-          "left_elbow_joint": 1.3,
-          "right_shoulder_pitch_joint": -0.12859647069958627,
-          "right_shoulder_roll_joint": 0.17400075959581104,
-          "right_elbow_joint": 0.8976979111860331,
-          "right_shoulder_yaw_joint": 0.4691765975203953,
-          "right_wrist_roll_joint": -0.7340254888376977,
-          "right_wrist_pitch_joint": 0.2964581095451008,
-          "right_wrist_yaw_joint": 0.1673072146569301
+          "left_elbow_joint": 1.6,
+          "right_shoulder_pitch_joint": 0.1065190808930886,
+          "right_shoulder_roll_joint": -0.06691863847802179,
+          "right_elbow_joint": 0.6757991394774269,
+          "right_shoulder_yaw_joint": 0.1662979387913962,
+          "right_wrist_roll_joint": -0.015863628992163623,
+          "right_wrist_pitch_joint": 0.12252101593864745,
+          "right_wrist_yaw_joint": -0.055335032065948156
         },
-        "position_error_m": 7.677644591627165e-11,
+        "position_error_m": 2.289345887204876e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
-        "self_penetrations_over_0_5mm": [
-          {
-            "links": [
-              "right_elbow_link",
-              "torso_link"
-            ],
-            "penetration_m": 0.008326865797051077
-          },
-          {
-            "links": [
-              "right_shoulder_yaw_link",
-              "torso_link"
-            ],
-            "penetration_m": 0.02790045268806658
-          }
+        "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
         ],
-        "position_candidate": false
+        "position_candidate": true
       },
-      "status": "needs_layout_or_access_revision"
+      "status": "position_candidate_only"
     },
     {
       "id": "dmm_front",
@@ -182,21 +231,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.4365165790148018,
-          "left_shoulder_roll_joint": 0.03604828078039246,
-          "left_elbow_joint": 0.260183852817292,
+          "left_shoulder_pitch_joint": -0.43651535884363857,
+          "left_shoulder_roll_joint": 0.03604440326412603,
+          "left_elbow_joint": 0.2601871096245194,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.19901993610766663,
-          "left_wrist_roll_joint": 0.3585181986779489,
-          "left_wrist_pitch_joint": -0.2730225263551219,
-          "left_wrist_yaw_joint": -0.1682501955826725
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.19902139858528028,
+          "left_wrist_roll_joint": 0.35847558144216407,
+          "left_wrist_pitch_joint": -0.27301977622116375,
+          "left_wrist_yaw_joint": -0.16825445765971186
         },
-        "position_error_m": 6.2479101083138346e-09,
+        "position_error_m": 2.2017475431895996e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -223,21 +292,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.45461191637385334,
-          "left_shoulder_roll_joint": 0.11632749930736355,
-          "left_elbow_joint": 0.18592042039299717,
+          "left_shoulder_pitch_joint": -0.45459750374711494,
+          "left_shoulder_roll_joint": 0.11628704176924096,
+          "left_elbow_joint": 0.1859046758130717,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.3530146652896644,
-          "left_wrist_roll_joint": -0.3038297419643535,
-          "left_wrist_pitch_joint": 0.16453810640636887,
-          "left_wrist_yaw_joint": -0.05241887319196543
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.352969924245538,
+          "left_wrist_roll_joint": -0.3038384045128067,
+          "left_wrist_pitch_joint": 0.164573060666246,
+          "left_wrist_yaw_joint": -0.052428638537332366
         },
-        "position_error_m": 3.3563225460199866e-08,
+        "position_error_m": 5.989676951081776e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -264,21 +353,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": 0.14122642304952673,
-          "left_shoulder_roll_joint": 0.09110977091482449,
-          "left_elbow_joint": -0.1421156066611686,
+          "left_shoulder_pitch_joint": 0.14122642304948232,
+          "left_shoulder_roll_joint": 0.09110977091480821,
+          "left_elbow_joint": -0.14211560666114303,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.4235259969652516,
-          "left_wrist_roll_joint": 0.05189239989604704,
-          "left_wrist_pitch_joint": -0.6016851149270389,
-          "left_wrist_yaw_joint": -0.22159723909860696
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.42352599696523374,
+          "left_wrist_roll_joint": 0.051892399895916624,
+          "left_wrist_pitch_joint": -0.6016851149269982,
+          "left_wrist_yaw_joint": -0.22159723909875495
         },
-        "position_error_m": 1.4020070631139845e-08,
+        "position_error_m": 1.4020080820113386e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -305,21 +414,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": 0.14122642305309593,
-          "left_shoulder_roll_joint": 0.0911097709145413,
-          "left_elbow_joint": -0.1421156066627191,
+          "left_shoulder_pitch_joint": 0.14122642304948752,
+          "left_shoulder_roll_joint": 0.09110977091479823,
+          "left_elbow_joint": -0.1421156066611408,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.42352599696646775,
-          "left_wrist_roll_joint": 0.05189239990326814,
-          "left_wrist_pitch_joint": -0.6016851149297476,
-          "left_wrist_yaw_joint": -0.22159723909092865
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.423525996965228,
+          "left_wrist_roll_joint": 0.05189239989591848,
+          "left_wrist_pitch_joint": -0.6016851149270025,
+          "left_wrist_yaw_joint": -0.22159723909876033
         },
-        "position_error_m": 1.4019503293524906e-08,
+        "position_error_m": 1.402007703105281e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -346,21 +475,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.16727248018032137,
-          "left_shoulder_roll_joint": -0.0085638043834062,
-          "left_elbow_joint": 0.23551744655163,
+          "left_shoulder_pitch_joint": -0.16727248042572437,
+          "left_shoulder_roll_joint": -0.008563803284633471,
+          "left_elbow_joint": 0.23551744583333528,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.3556575009185754,
-          "left_wrist_roll_joint": -0.07745250951451163,
-          "left_wrist_pitch_joint": -0.2984680114695958,
-          "left_wrist_yaw_joint": -0.07862623372316178
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.3556575045433969,
+          "left_wrist_roll_joint": -0.07745251007820542,
+          "left_wrist_pitch_joint": -0.29846801078614,
+          "left_wrist_yaw_joint": -0.07862622722520171
         },
-        "position_error_m": 4.246854727609543e-08,
+        "position_error_m": 4.2515805924369725e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -387,21 +536,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.167284504729591,
-          "left_shoulder_roll_joint": 0.10514421320456399,
-          "left_elbow_joint": 0.554619339705409,
+          "left_shoulder_pitch_joint": -1.0668561241121925,
+          "left_shoulder_roll_joint": 0.10744993789596968,
+          "left_elbow_joint": 0.5173128705301397,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": 0.11357635092213934,
-          "left_wrist_roll_joint": 0.8197584024674857,
-          "left_wrist_pitch_joint": -0.03125977207657843,
-          "left_wrist_yaw_joint": -0.9804015613791406
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": 0.08620783034991324,
+          "left_wrist_roll_joint": 0.763707068954962,
+          "left_wrist_pitch_joint": -0.12938174804085392,
+          "left_wrist_yaw_joint": -0.7967232854033345
         },
-        "position_error_m": 6.640191324409935e-09,
+        "position_error_m": 4.246304920680488e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -428,21 +597,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.996815025933246,
-          "left_shoulder_roll_joint": 0.10616165814074092,
-          "left_elbow_joint": 0.5147576922320964,
+          "left_shoulder_pitch_joint": -0.9980878100200521,
+          "left_shoulder_roll_joint": 0.10645147612596402,
+          "left_elbow_joint": 0.5143382915188364,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": 0.04391541614611811,
-          "left_wrist_roll_joint": 0.6706142212992826,
-          "left_wrist_pitch_joint": -0.16367658749786113,
-          "left_wrist_yaw_joint": -0.6180584669616215
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": 0.04480371199271347,
+          "left_wrist_roll_joint": 0.6795409685533458,
+          "left_wrist_pitch_joint": -0.1666159501604542,
+          "left_wrist_yaw_joint": -0.6208919449691691
         },
-        "position_error_m": 3.1394657405176543e-12,
+        "position_error_m": 7.248676969321997e-10,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -459,31 +648,51 @@
       "front_y_m": 2.4,
       "basis": "Authored front-envelope access point; not a measured button or grasp frame",
       "source": null,
-      "attempts": 2,
+      "attempts": 8,
       "result": {
         "hand": "left",
         "base_position_m": [
           10.2,
-          2.2199999999999998,
+          2.16,
           0.792272897479
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": 0.19525281183704654,
-          "left_shoulder_roll_joint": 0.22176594396487045,
-          "left_elbow_joint": -0.6693708163213116,
+          "left_shoulder_pitch_joint": -0.1311439703917367,
+          "left_shoulder_roll_joint": 0.05313731619533567,
+          "left_elbow_joint": -0.1286839722782043,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.5579841466768629,
-          "left_wrist_roll_joint": -0.05056699549780661,
-          "left_wrist_pitch_joint": -0.3334283530516759,
-          "left_wrist_yaw_joint": -0.1713406299915715
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.41135785135929304,
+          "left_wrist_roll_joint": -0.11891841754323304,
+          "left_wrist_pitch_joint": -0.6697758246784957,
+          "left_wrist_yaw_joint": -0.2510297064361823
         },
-        "position_error_m": 1.8413645912939821e-09,
+        "position_error_m": 6.082397004140107e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -510,21 +719,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.9679964162949032,
-          "left_shoulder_roll_joint": 0.267798890977591,
-          "left_elbow_joint": 0.5524367112249663,
+          "left_shoulder_pitch_joint": -0.9178053557993061,
+          "left_shoulder_roll_joint": 0.17682943558333378,
+          "left_elbow_joint": 0.4972254782426592,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.22138864451247534,
-          "left_wrist_roll_joint": -0.22108468147886035,
-          "left_wrist_pitch_joint": -0.02039296771531485,
-          "left_wrist_yaw_joint": -0.5084494012385236
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.11956937010201611,
+          "left_wrist_roll_joint": -0.19258353338995435,
+          "left_wrist_pitch_joint": 0.0302748758435185,
+          "left_wrist_yaw_joint": -0.4743077880074842
         },
-        "position_error_m": 6.298985248654019e-09,
+        "position_error_m": 6.472044703704854e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -551,21 +780,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.9534677698997602,
-          "left_shoulder_roll_joint": -0.14509716411746498,
-          "left_elbow_joint": 0.42073922329591507,
+          "left_shoulder_pitch_joint": -0.953467770378774,
+          "left_shoulder_roll_joint": -0.1450971637642144,
+          "left_elbow_joint": 0.42073922378335604,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.11636910533443609,
-          "left_wrist_roll_joint": -0.03391022276297894,
-          "left_wrist_pitch_joint": 0.2893361574028844,
-          "left_wrist_yaw_joint": 0.3216177852547346
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.11636910571210862,
+          "left_wrist_roll_joint": -0.03391022257589292,
+          "left_wrist_pitch_joint": 0.289336157781086,
+          "left_wrist_yaw_joint": 0.32161778535599667
         },
-        "position_error_m": 3.8189081754108015e-08,
+        "position_error_m": 3.824963212979712e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -592,21 +841,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.13199938944054893,
-          "left_shoulder_roll_joint": 0.0329803554533895,
-          "left_elbow_joint": -0.03055118458296006,
+          "left_shoulder_pitch_joint": -0.13199938181729548,
+          "left_shoulder_roll_joint": 0.03298037997923704,
+          "left_elbow_joint": -0.030551182716893034,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.4716245357958238,
-          "left_wrist_roll_joint": -0.22872667756879048,
-          "left_wrist_pitch_joint": -0.6154694132966627,
-          "left_wrist_yaw_joint": -0.13918866405510436
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.4716245405040901,
+          "left_wrist_roll_joint": -0.2287266978978115,
+          "left_wrist_pitch_joint": -0.6154694136604306,
+          "left_wrist_yaw_joint": -0.13918862677257499
         },
-        "position_error_m": 1.3842660809177903e-09,
+        "position_error_m": 1.2375452547298484e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -633,21 +902,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.6520789586027013,
-          "left_shoulder_roll_joint": -0.09266952518194528,
-          "left_elbow_joint": 0.5052999948830367,
+          "left_shoulder_pitch_joint": -0.652078958569741,
+          "left_shoulder_roll_joint": -0.09266952517188093,
+          "left_elbow_joint": 0.5052999948442275,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.14765414463834375,
-          "left_wrist_roll_joint": 1.2861430113624015,
-          "left_wrist_pitch_joint": 0.031825260889178114,
-          "left_wrist_yaw_joint": -0.12791632256936783
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.14765414464740065,
+          "left_wrist_roll_joint": 1.2861430113606576,
+          "left_wrist_pitch_joint": 0.031825260872301794,
+          "left_wrist_yaw_joint": -0.12791632255752777
         },
-        "position_error_m": 1.8212828213743782e-08,
+        "position_error_m": 1.8217931809372882e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -676,19 +965,39 @@
         "joint_coordinates": {
           "left_shoulder_pitch_joint": 0.1,
           "left_shoulder_roll_joint": 0.2,
-          "left_elbow_joint": 1.3,
-          "right_shoulder_pitch_joint": -0.939482285621414,
-          "right_shoulder_roll_joint": 0.08976101835067486,
-          "right_elbow_joint": 0.7692972731010076,
-          "right_shoulder_yaw_joint": 0.043751974515796925,
-          "right_wrist_roll_joint": -1.2197014806885589,
-          "right_wrist_pitch_joint": 0.10123071047574046,
-          "right_wrist_yaw_joint": 0.3666896226200824
+          "left_elbow_joint": 1.6,
+          "right_shoulder_pitch_joint": -0.935846203859487,
+          "right_shoulder_roll_joint": 0.08493448767400161,
+          "right_elbow_joint": 0.7710277788004978,
+          "right_shoulder_yaw_joint": 0.05458231066807994,
+          "right_wrist_roll_joint": -1.229581191738338,
+          "right_wrist_pitch_joint": 0.09306330270745869,
+          "right_wrist_yaw_joint": 0.3540094575799974
         },
-        "position_error_m": 5.3469362841293747e-08,
+        "position_error_m": 2.2262937586815386e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -715,21 +1024,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.0974815911614626,
-          "left_shoulder_roll_joint": -0.09193947649825429,
-          "left_elbow_joint": 0.7025670350581795,
+          "left_shoulder_pitch_joint": -1.0974815911615814,
+          "left_shoulder_roll_joint": -0.09193947649993184,
+          "left_elbow_joint": 0.7025670350591019,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.1783961630715662,
-          "left_wrist_roll_joint": 0.5393911929777327,
-          "left_wrist_pitch_joint": 0.6321103766613018,
-          "left_wrist_yaw_joint": -0.19097733130792713
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.17839616306614467,
+          "left_wrist_roll_joint": 0.5393911929774977,
+          "left_wrist_pitch_joint": 0.6321103766597546,
+          "left_wrist_yaw_joint": -0.1909773313074431
         },
-        "position_error_m": 5.986263539699824e-08,
+        "position_error_m": 5.986272566477473e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -756,21 +1085,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.0974815911588833,
-          "left_shoulder_roll_joint": -0.09193947647355974,
-          "left_elbow_joint": 0.7025670350463772,
+          "left_shoulder_pitch_joint": -1.0974815911615914,
+          "left_shoulder_roll_joint": -0.09193947649680534,
+          "left_elbow_joint": 0.7025670350595837,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.1783961631327731,
-          "left_wrist_roll_joint": 0.5393911929671859,
-          "left_wrist_pitch_joint": 0.6321103766719738,
-          "left_wrist_yaw_joint": -0.19097733131689068
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.17839616306011835,
+          "left_wrist_roll_joint": 0.5393911929654144,
+          "left_wrist_pitch_joint": 0.6321103766532999,
+          "left_wrist_yaw_joint": -0.19097733131042133
         },
-        "position_error_m": 5.986180337298166e-08,
+        "position_error_m": 5.986300837466648e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -786,7 +1135,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.657000003611902,
+        8.221999999013496,
+        1.22
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/cary_5000_v1/interfaces.json",
         "sha256": "9d3ddd707cfa544b8549fb70e824bdc157f7653dba8a2172d44a444c8573d5c1",
@@ -803,21 +1162,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.5978607255081192,
-          "left_shoulder_roll_joint": 0.06158467275179235,
-          "left_elbow_joint": -0.6200380246711084,
+          "left_shoulder_pitch_joint": -0.5979042363543917,
+          "left_shoulder_roll_joint": 0.06171549377751377,
+          "left_elbow_joint": -0.620100633087803,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.30001904945540747,
-          "left_wrist_roll_joint": -0.3993844894892036,
-          "left_wrist_pitch_joint": 0.18091239066316328,
-          "left_wrist_yaw_joint": 0.048914622966584824
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.30003490250354425,
+          "left_wrist_roll_joint": -0.3990580093480293,
+          "left_wrist_pitch_joint": 0.1810140265611652,
+          "left_wrist_yaw_joint": 0.04891799986314705
         },
-        "position_error_m": 2.4529665875054966e-10,
+        "position_error_m": 5.744942703547125e-11,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -833,7 +1212,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.657000003611902,
+        8.136999999013497,
+        1.045
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/cary_5000_v1/interfaces.json",
         "sha256": "9d3ddd707cfa544b8549fb70e824bdc157f7653dba8a2172d44a444c8573d5c1",
@@ -850,21 +1239,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": 0.07211790050872847,
-          "left_shoulder_roll_joint": 0.07246701381175319,
-          "left_elbow_joint": -0.19489757718425277,
+          "left_shoulder_pitch_joint": 0.07211790060476751,
+          "left_shoulder_roll_joint": 0.07246701362819931,
+          "left_elbow_joint": -0.19489757719034967,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.41788928529849817,
-          "left_wrist_roll_joint": 0.04746796728965055,
-          "left_wrist_pitch_joint": -0.710844210241954,
-          "left_wrist_yaw_joint": -0.24273420626635897
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.41788928516350554,
+          "left_wrist_roll_joint": 0.04746796782273716,
+          "left_wrist_pitch_joint": -0.7108442103239166,
+          "left_wrist_yaw_joint": -0.24273420607688287
         },
-        "position_error_m": 3.3120399839894126e-13,
+        "position_error_m": 3.5726921731747303e-13,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -875,46 +1284,76 @@
       "station": "cary_bench",
       "point_m": [
         1.8019999869226013,
-        8.42699999968405,
-        0.8599999997764826
+        8.466999999684049,
+        0.9399999997764825
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        1.8019999869226013,
+        8.466999999684049,
+        0.8599999997764826
+      ],
+      "approach_offset_m": [
+        0.0,
+        0.0,
+        0.08
+      ],
+      "basis": "Authored 80 mm top approach above the keyhole mounting datum, reserved clearance only; finger contact and insertion remain unvalidated; palm position only",
       "source": {
         "path": "assets/cary_5000_v1/interfaces.json",
         "sha256": "9d3ddd707cfa544b8549fb70e824bdc157f7653dba8a2172d44a444c8573d5c1",
         "interface_id": "extension_base",
         "dimensions_inferred": true
       },
-      "attempts": 24,
+      "attempts": 58,
       "result": {
         "hand": "right",
         "base_position_m": [
-          1.8019999869226013,
-          7.92,
+          1.6519999869226014,
+          7.9399999999999995,
           0.792272897479
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
           "left_shoulder_pitch_joint": 0.1,
           "left_shoulder_roll_joint": 0.2,
-          "left_elbow_joint": 1.3,
-          "right_shoulder_pitch_joint": -1.1573538176992078,
-          "right_shoulder_roll_joint": 0.17153131363285307,
-          "right_elbow_joint": 1.3894290477390194,
-          "right_shoulder_yaw_joint": -0.8674182315273862,
-          "right_wrist_roll_joint": -0.08442427037938574,
-          "right_wrist_pitch_joint": 0.07727087674154748,
-          "right_wrist_yaw_joint": -0.012299526115511246
+          "left_elbow_joint": 1.6,
+          "right_shoulder_pitch_joint": -1.2501325380495474,
+          "right_shoulder_roll_joint": -0.11647813978383216,
+          "right_elbow_joint": 1.3886313812237245,
+          "right_shoulder_yaw_joint": -1.0498186649377843,
+          "right_wrist_roll_joint": -0.5156794654021819,
+          "right_wrist_pitch_joint": 0.0705372943036901,
+          "right_wrist_yaw_joint": 0.018613571474590987
         },
-        "position_error_m": 0.031374132422349384,
+        "position_error_m": 0.004722515498478314,
         "external_overlaps": [],
-        "self_contacts_checked": false,
+        "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
-        "position_candidate": false
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
+        "position_candidate": true
       },
-      "status": "needs_layout_or_access_revision"
+      "status": "position_candidate_only"
     },
     {
       "id": "cary_extension_cover",
@@ -927,7 +1366,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        1.8019999869226013,
+        8.459000000235392,
+        1.0900000095367433
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/cary_5000_v1/interfaces.json",
         "sha256": "9d3ddd707cfa544b8549fb70e824bdc157f7653dba8a2172d44a444c8573d5c1",
@@ -944,21 +1393,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.1667839817438914,
-          "left_shoulder_roll_joint": -0.10757915327037956,
-          "left_elbow_joint": 0.6273548239217482,
+          "left_shoulder_pitch_joint": -1.1667839817454295,
+          "left_shoulder_roll_joint": -0.10757915327356031,
+          "left_elbow_joint": 0.6273548239196731,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": 0.1708375664743676,
-          "left_wrist_roll_joint": 0.007284841379814269,
-          "left_wrist_pitch_joint": 0.39723776682475553,
-          "left_wrist_yaw_joint": -0.04725722910927875
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": 0.17083756648069415,
+          "left_wrist_roll_joint": 0.007284841379373478,
+          "left_wrist_pitch_joint": 0.39723776683047535,
+          "left_wrist_yaw_joint": -0.04725722910783017
         },
-        "position_error_m": 7.536760331647906e-08,
+        "position_error_m": 7.536758134376551e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -974,7 +1443,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.645000003611902,
+        8.186999999013496,
+        1.002
+      ],
+      "approach_offset_m": [
+        0.04,
+        -0.0,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/cary_5000_v1/interfaces.json",
         "sha256": "9d3ddd707cfa544b8549fb70e824bdc157f7653dba8a2172d44a444c8573d5c1",
@@ -991,21 +1470,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.549047245688161,
-          "left_shoulder_roll_joint": -0.11593217611358692,
-          "left_elbow_joint": 0.17497456156725227,
+          "left_shoulder_pitch_joint": -0.549038802610174,
+          "left_shoulder_roll_joint": -0.11601663104359528,
+          "left_elbow_joint": 0.17499182076796346,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.20894490690902573,
-          "left_wrist_roll_joint": -0.6314768344036479,
-          "left_wrist_pitch_joint": 0.12024417538572194,
-          "left_wrist_yaw_joint": 0.2318779623571111
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.2089832561296951,
+          "left_wrist_roll_joint": -0.6304724673974964,
+          "left_wrist_pitch_joint": 0.1203062705563595,
+          "left_wrist_yaw_joint": 0.2318962847228534
         },
-        "position_error_m": 1.1967950943611196e-09,
+        "position_error_m": 1.754004789486687e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1021,7 +1520,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.092000003611902,
+        8.133999999013497,
+        0.919
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/cary_5000_v1/interfaces.json",
         "sha256": "9d3ddd707cfa544b8549fb70e824bdc157f7653dba8a2172d44a444c8573d5c1",
@@ -1038,21 +1547,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.07155467098825569,
-          "left_shoulder_roll_joint": 0.023276286126735324,
-          "left_elbow_joint": 0.14973286127937996,
+          "left_shoulder_pitch_joint": -0.07155467098816305,
+          "left_shoulder_roll_joint": 0.023276286126850506,
+          "left_elbow_joint": 0.14973286127914118,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.3579668242521586,
-          "left_wrist_roll_joint": 0.011933257740541577,
-          "left_wrist_pitch_joint": -0.30973799725056383,
-          "left_wrist_yaw_joint": -0.14319425407585457
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.35796682425230036,
+          "left_wrist_roll_joint": 0.011933257740787842,
+          "left_wrist_pitch_joint": -0.3097379972504336,
+          "left_wrist_yaw_joint": -0.1431942540755756
         },
-        "position_error_m": 1.3006813972759854e-09,
+        "position_error_m": 1.3006991784864935e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1068,7 +1597,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.357,
+        8.455499292023193,
+        1.0888933998913286
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.016791100254417327,
+        0.0363050816311726
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
@@ -1085,21 +1624,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.6935506884551619,
-          "left_shoulder_roll_joint": -0.0016889722055429606,
-          "left_elbow_joint": 1.2907696150233856,
+          "left_shoulder_pitch_joint": -1.6935506885581675,
+          "left_shoulder_roll_joint": -0.0016889721733394105,
+          "left_elbow_joint": 1.29076961522205,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": 0.43742680097456593,
-          "left_wrist_roll_joint": 0.028150263578218794,
-          "left_wrist_pitch_joint": 0.44776553916932205,
-          "left_wrist_yaw_joint": 0.05909860115793454
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": 0.4374268010785807,
+          "left_wrist_roll_joint": 0.028150263600564284,
+          "left_wrist_pitch_joint": 0.4477655391050693,
+          "left_wrist_yaw_joint": 0.05909860121149497
         },
-        "position_error_m": 7.275190612527655e-12,
+        "position_error_m": 3.4736697736516014e-12,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1115,7 +1674,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.405999999999999,
+        8.455499292023193,
+        1.0888933998913286
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.016791100254417327,
+        0.0363050816311726
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
@@ -1132,21 +1701,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.6935506889969543,
-          "left_shoulder_roll_joint": -0.0016889720554073926,
-          "left_elbow_joint": 1.2907696160820499,
+          "left_shoulder_pitch_joint": -1.6935506888199354,
+          "left_shoulder_roll_joint": -0.0016889720969984327,
+          "left_elbow_joint": 1.2907696157339066,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": 0.4374268018418871,
-          "left_wrist_roll_joint": 0.028150263632832025,
-          "left_wrist_pitch_joint": 0.44776553877634345,
-          "left_wrist_yaw_joint": 0.05909860141117486
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": 0.4374268014462996,
+          "left_wrist_roll_joint": 0.028150263626097002,
+          "left_wrist_pitch_joint": 0.4477655389206282,
+          "left_wrist_yaw_joint": 0.059098601337465334
         },
-        "position_error_m": 4.206136204429799e-12,
+        "position_error_m": 1.0759086497941962e-13,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1162,7 +1751,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.455,
+        8.455499292023193,
+        1.0888933998913286
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.016791100254417327,
+        0.0363050816311726
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
@@ -1179,21 +1778,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.6935506886774923,
-          "left_shoulder_roll_joint": -0.0016889721376036543,
-          "left_elbow_joint": 1.2907696154540074,
+          "left_shoulder_pitch_joint": -1.6935506884548384,
+          "left_shoulder_roll_joint": -0.0016889722052932518,
+          "left_elbow_joint": 1.2907696150227956,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": 0.43742680122825567,
-          "left_wrist_roll_joint": 0.028150263617094374,
-          "left_wrist_pitch_joint": 0.44776553902485605,
-          "left_wrist_yaw_joint": 0.059098601271258905
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": 0.4374268009716422,
+          "left_wrist_roll_joint": 0.028150263579186527,
+          "left_wrist_pitch_joint": 0.4477655391699519,
+          "left_wrist_yaw_joint": 0.05909860115706453
         },
-        "position_error_m": 8.076267772404793e-13,
+        "position_error_m": 7.161808884558898e-12,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1209,7 +1828,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.504,
+        8.455499292023193,
+        1.0888933998913286
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.016791100254417327,
+        0.0363050816311726
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
@@ -1226,21 +1855,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.6935506887216036,
-          "left_shoulder_roll_joint": -0.00168897212420379,
-          "left_elbow_joint": 1.2907696155418662,
+          "left_shoulder_pitch_joint": -1.6935506887370821,
+          "left_shoulder_roll_joint": -0.001688972121164782,
+          "left_elbow_joint": 1.290769615570083,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": 0.43742680127294714,
-          "left_wrist_roll_joint": 0.02815026361715943,
-          "left_wrist_pitch_joint": 0.4477655389927424,
-          "left_wrist_yaw_joint": 0.05909860129386379
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": 0.4374268013160758,
+          "left_wrist_roll_joint": 0.02815026362388035,
+          "left_wrist_pitch_joint": 0.44776553898251154,
+          "left_wrist_yaw_joint": 0.059098601301154866
         },
-        "position_error_m": 3.213396657496064e-13,
+        "position_error_m": 1.6519178471465164e-13,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1256,38 +1905,68 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.189,
+        8.165250005210751,
+        1.097
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
         "interface_id": "sample_cover",
         "dimensions_inferred": true
       },
-      "attempts": 2,
+      "attempts": 8,
       "result": {
         "hand": "left",
         "base_position_m": [
           9.189,
-          7.92,
+          7.859999999999999,
           0.792272897479
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": 0.1242006395479112,
-          "left_shoulder_roll_joint": 0.21368505433573265,
-          "left_elbow_joint": -0.7306913453644722,
+          "left_shoulder_pitch_joint": -0.202171964562244,
+          "left_shoulder_roll_joint": 0.051167756371116646,
+          "left_elbow_joint": -0.1314794636096737,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.5647493312455055,
-          "left_wrist_roll_joint": -0.02733137334213992,
-          "left_wrist_pitch_joint": -0.22724400538815517,
-          "left_wrist_yaw_joint": -0.1032164679654155
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.415963097791092,
+          "left_wrist_roll_joint": -0.20439402896337489,
+          "left_wrist_pitch_joint": -0.633497401585579,
+          "left_wrist_yaw_joint": -0.25618003100011666
         },
-        "position_error_m": 5.453319622498181e-09,
+        "position_error_m": 4.411444981931127e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1303,7 +1982,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.189,
+        8.22425000521075,
+        1.103
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
@@ -1320,21 +2009,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.21678175850369943,
-          "left_shoulder_roll_joint": 0.05572272402443045,
-          "left_elbow_joint": -0.15058219423097796,
+          "left_shoulder_pitch_joint": -0.2167772153736731,
+          "left_shoulder_roll_joint": 0.05572321493640675,
+          "left_elbow_joint": -0.15057876802242037,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.40719886494756913,
-          "left_wrist_roll_joint": -0.19079313188934396,
-          "left_wrist_pitch_joint": -0.6170931822194302,
-          "left_wrist_yaw_joint": -0.2525605194236654
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.4072255030320021,
+          "left_wrist_roll_joint": -0.19071722340172886,
+          "left_wrist_pitch_joint": -0.6171190215930213,
+          "left_wrist_yaw_joint": -0.2524578557762193
         },
-        "position_error_m": 1.5133548505639322e-08,
+        "position_error_m": 7.084372073763916e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1350,7 +2059,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.234,
+        8.43325000521075,
+        1.03
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
@@ -1367,21 +2086,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.9289852917394811,
-          "left_shoulder_roll_joint": -0.11129960106330317,
-          "left_elbow_joint": 0.3774233488071592,
+          "left_shoulder_pitch_joint": -0.9289852917304648,
+          "left_shoulder_roll_joint": -0.11129960113465907,
+          "left_elbow_joint": 0.37742334887002515,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.14944880432804286,
-          "left_wrist_roll_joint": 0.5532521694275964,
-          "left_wrist_pitch_joint": 0.5757379076914788,
-          "left_wrist_yaw_joint": -0.15329257388829867
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.14944880444824138,
+          "left_wrist_roll_joint": 0.5532521695582476,
+          "left_wrist_pitch_joint": 0.5757379077334432,
+          "left_wrist_yaw_joint": -0.15329257359546972
         },
-        "position_error_m": 4.248308540139141e-12,
+        "position_error_m": 4.256932016054818e-12,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1397,7 +2136,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.234,
+        8.43325000521075,
+        0.995
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
@@ -1414,21 +2163,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.8697971772968563,
-          "left_shoulder_roll_joint": -0.011549467447945357,
-          "left_elbow_joint": 0.4932473672771556,
+          "left_shoulder_pitch_joint": -0.8697971772996388,
+          "left_shoulder_roll_joint": -0.011549467439460889,
+          "left_elbow_joint": 0.4932473672764753,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.09077466703529724,
-          "left_wrist_roll_joint": -0.8723231155590314,
-          "left_wrist_pitch_joint": 0.34607099089015414,
-          "left_wrist_yaw_joint": 0.2586364680148635
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.09077466704844456,
+          "left_wrist_roll_joint": -0.8723231155584493,
+          "left_wrist_pitch_joint": 0.3460709908928582,
+          "left_wrist_yaw_joint": 0.25863646801869306
         },
-        "position_error_m": 7.66430392736942e-12,
+        "position_error_m": 7.649477530087187e-12,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1444,7 +2213,17 @@
       ],
       "front_y_m": 8.1,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        9.234,
+        8.428250005210751,
+        0.96
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/nicolet_6700_v1/interfaces.json",
         "sha256": "e1200f47276d4942a50a4624e81f941880ac3ad56a1ce82ede14e2bf8c86c105",
@@ -1461,21 +2240,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.8343163442192059,
-          "left_shoulder_roll_joint": -0.06544635458830204,
-          "left_elbow_joint": 0.4964716270003435,
+          "left_shoulder_pitch_joint": -0.8343163442580499,
+          "left_shoulder_roll_joint": -0.06544635461424397,
+          "left_elbow_joint": 0.49647162705098763,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.1353510995938247,
-          "left_wrist_roll_joint": -0.501551041991294,
-          "left_wrist_pitch_joint": 0.4227124595404146,
-          "left_wrist_yaw_joint": 0.2855871916853972
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.1353510995747527,
+          "left_wrist_roll_joint": -0.5015510419817478,
+          "left_wrist_pitch_joint": 0.42271245951915803,
+          "left_wrist_yaw_joint": 0.28558719173011715
         },
-        "position_error_m": 9.852101291652454e-09,
+        "position_error_m": 9.846097161614726e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1491,7 +2290,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.9,
+        5.5830000093700365,
+        1.0095
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1508,21 +2317,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.42748353410918966,
-          "left_shoulder_roll_joint": 0.06916997683810007,
-          "left_elbow_joint": 0.24217720947480328,
+          "left_shoulder_pitch_joint": -0.427485075208075,
+          "left_shoulder_roll_joint": 0.06917419849173483,
+          "left_elbow_joint": 0.24217462373741058,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.20525797692986855,
-          "left_wrist_roll_joint": 0.40328500895277997,
-          "left_wrist_pitch_joint": -0.3786409009024188,
-          "left_wrist_yaw_joint": -0.14366569369872706
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.20525721714409095,
+          "left_wrist_roll_joint": 0.40329247911798377,
+          "left_wrist_pitch_joint": -0.3786398965055902,
+          "left_wrist_yaw_joint": -0.14367073916664228
         },
-        "position_error_m": 4.901333461846967e-08,
+        "position_error_m": 5.078486496423153e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1538,49 +2367,71 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.9,
+        5.423500009370036,
+        0.752
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
         "interface_id": "front_drain",
         "dimensions_inferred": true
       },
-      "attempts": 24,
+      "attempts": 41,
       "result": {
-        "hand": "left",
+        "hand": "right",
         "base_position_m": [
-          2.9,
-          5.0600000000000005,
+          2.75,
+          5.16,
           0.792272897479
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.11546586078313886,
-          "left_shoulder_roll_joint": -0.1274192215956824,
-          "left_elbow_joint": 0.5337700680458856,
-          "right_shoulder_pitch_joint": 0.1,
-          "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.22639427962671288,
-          "left_wrist_roll_joint": 1.2740135640048396,
-          "left_wrist_pitch_joint": -0.0989638269063676,
-          "left_wrist_yaw_joint": -0.11233774178849792
+          "left_shoulder_pitch_joint": 0.1,
+          "left_shoulder_roll_joint": 0.2,
+          "left_elbow_joint": 1.6,
+          "right_shoulder_pitch_joint": 0.41114991788885513,
+          "right_shoulder_roll_joint": -0.15153129199831225,
+          "right_elbow_joint": 0.2899327452619505,
+          "right_shoulder_yaw_joint": 0.005793614342059519,
+          "right_wrist_roll_joint": 0.1298405733923648,
+          "right_wrist_pitch_joint": -0.3619741810036935,
+          "right_wrist_yaw_joint": 0.4536315504435664
         },
-        "position_error_m": 1.7616788503129215e-10,
+        "position_error_m": 7.07441607278845e-11,
         "external_overlaps": [],
         "self_contacts_checked": true,
-        "self_penetrations_over_0_5mm": [
-          {
-            "links": [
-              "left_shoulder_yaw_link",
-              "torso_link"
-            ],
-            "penetration_m": 0.016460497568672246
-          }
+        "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
         ],
-        "position_candidate": false
+        "position_candidate": true
       },
-      "status": "needs_layout_or_access_revision"
+      "status": "position_candidate_only"
     },
     {
       "id": "bath_AC150_up",
@@ -1593,7 +2444,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.900527315914489,
+        5.673000009370036,
+        1.0897801980198019
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1610,21 +2471,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.9739501814199103,
-          "left_shoulder_roll_joint": -0.10738510128728755,
-          "left_elbow_joint": 0.3865774579356615,
+          "left_shoulder_pitch_joint": -0.9739501814197647,
+          "left_shoulder_roll_joint": -0.10738510129470141,
+          "left_elbow_joint": 0.38657745793811543,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.0124435516826542,
-          "left_wrist_roll_joint": -0.6111977527341945,
-          "left_wrist_pitch_joint": 0.2634015430195191,
-          "left_wrist_yaw_joint": 0.29086932023833234
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.012443551699983707,
+          "left_wrist_roll_joint": -0.6111977526174251,
+          "left_wrist_pitch_joint": 0.2634015430202274,
+          "left_wrist_yaw_joint": 0.2908693202374036
         },
-        "position_error_m": 3.5690856692121055e-10,
+        "position_error_m": 3.5690557145338294e-10,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1640,7 +2521,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.900527315914489,
+        5.673000009370036,
+        1.054619801980198
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1657,21 +2548,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.9563259927546668,
-          "left_shoulder_roll_joint": 0.07379292313701442,
-          "left_elbow_joint": 0.8341991840463067,
+          "left_shoulder_pitch_joint": -0.9564090902330973,
+          "left_shoulder_roll_joint": 0.07415326725809014,
+          "left_elbow_joint": 0.8341812578725891,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.2918234757507078,
-          "left_wrist_roll_joint": 0.4450572406609337,
-          "left_wrist_pitch_joint": -0.2700524655044764,
-          "left_wrist_yaw_joint": 0.22980346915232738
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.2922281430711154,
+          "left_wrist_roll_joint": 0.4452069979649885,
+          "left_wrist_pitch_joint": -0.27006707376075584,
+          "left_wrist_yaw_joint": 0.2296913654077443
         },
-        "position_error_m": 9.567152025665644e-09,
+        "position_error_m": 1.8884028816897666e-13,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1687,7 +2598,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.884004750593824,
+        5.673000009370036,
+        1.0722
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1704,21 +2625,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.0956545642250952,
-          "left_shoulder_roll_joint": 0.17273902884277223,
-          "left_elbow_joint": 0.8398205809834771,
+          "left_shoulder_pitch_joint": -1.0970047844816773,
+          "left_shoulder_roll_joint": 0.17998574516444563,
+          "left_elbow_joint": 0.8497739501084418,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": 0.013042495708430793,
-          "left_wrist_roll_joint": 0.7638580195210969,
-          "left_wrist_pitch_joint": -0.4539554017689363,
-          "left_wrist_yaw_joint": -0.4103624200103117
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.007607908489378826,
+          "left_wrist_roll_joint": 0.7191672555955595,
+          "left_wrist_pitch_joint": -0.44903497234028494,
+          "left_wrist_yaw_joint": -0.4062823363850024
         },
-        "position_error_m": 3.323053339217903e-10,
+        "position_error_m": 2.4898231483322097e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1734,7 +2675,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.9163467933491685,
+        5.673000009370036,
+        1.0722
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1751,21 +2702,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.090478909013433,
-          "left_shoulder_roll_joint": 0.177634770608184,
-          "left_elbow_joint": 0.8451988536389641,
+          "left_shoulder_pitch_joint": -1.0970047545389818,
+          "left_shoulder_roll_joint": 0.17998575463320665,
+          "left_elbow_joint": 0.8497739128270163,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.010919988378999611,
-          "left_wrist_roll_joint": 0.7316918113876497,
-          "left_wrist_pitch_joint": -0.4510309817546393,
-          "left_wrist_yaw_joint": -0.38362571317662053
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.00760790643917146,
+          "left_wrist_roll_joint": 0.7191672551445246,
+          "left_wrist_pitch_joint": -0.44903500109843114,
+          "left_wrist_yaw_joint": -0.4062823400944413
         },
-        "position_error_m": 3.4390163213022646e-08,
+        "position_error_m": 7.980980591431546e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1781,7 +2752,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.9001757719714965,
+        5.673000009370036,
+        1.0722
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1798,21 +2779,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -1.0904789083788156,
-          "left_shoulder_roll_joint": 0.17763477070939282,
-          "left_elbow_joint": 0.8451988529336133,
+          "left_shoulder_pitch_joint": -1.1007556692188678,
+          "left_shoulder_roll_joint": 0.17361267342421485,
+          "left_elbow_joint": 0.8523446005132196,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.010919988502425574,
-          "left_wrist_roll_joint": 0.731691810202881,
-          "left_wrist_pitch_joint": -0.45103098181867396,
-          "left_wrist_yaw_joint": -0.3836257134199291
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": 0.018209510924568514,
+          "left_wrist_roll_joint": 0.7580603305342426,
+          "left_wrist_pitch_joint": -0.46302909578072443,
+          "left_wrist_yaw_joint": -0.4148864247451452
         },
-        "position_error_m": 3.4486192198250626e-08,
+        "position_error_m": 1.2701103345307576e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1828,7 +2829,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.929353919239905,
+        5.673000009370036,
+        1.0893980198019801
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1845,21 +2856,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.9737493355593314,
-          "left_shoulder_roll_joint": -0.1241927770500353,
-          "left_elbow_joint": 0.39173438152786116,
+          "left_shoulder_pitch_joint": -0.973749335559307,
+          "left_shoulder_roll_joint": -0.12419277705005176,
+          "left_elbow_joint": 0.3917343815277868,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.02784480343788884,
-          "left_wrist_roll_joint": -0.44135392547697394,
-          "left_wrist_pitch_joint": 0.26848537559934266,
-          "left_wrist_yaw_joint": 0.28878994072522157
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.027844803437913346,
+          "left_wrist_roll_joint": -0.4413539254770239,
+          "left_wrist_pitch_joint": 0.26848537559929586,
+          "left_wrist_yaw_joint": 0.28878994072523445
         },
-        "position_error_m": 1.7333927683831116e-09,
+        "position_error_m": 1.7334159268594893e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1875,7 +2906,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.954665083135392,
+        5.673000009370036,
+        1.0569128712871287
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1892,21 +2933,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.9594159954663654,
-          "left_shoulder_roll_joint": 0.07169814520104369,
-          "left_elbow_joint": 0.8328115405519141,
+          "left_shoulder_pitch_joint": -0.9611479441871229,
+          "left_shoulder_roll_joint": 0.078287533291953,
+          "left_elbow_joint": 0.8329001271168901,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.28930032995668753,
-          "left_wrist_roll_joint": 0.4479184760335923,
-          "left_wrist_pitch_joint": -0.2680085278210013,
-          "left_wrist_yaw_joint": 0.23513283421095296
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.2986230253621002,
+          "left_wrist_roll_joint": 0.44770733236879234,
+          "left_wrist_pitch_joint": -0.2678597453114673,
+          "left_wrist_yaw_joint": 0.2351721032984882
         },
-        "position_error_m": 9.912896222530116e-09,
+        "position_error_m": 4.995685490142686e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1922,7 +2983,17 @@
       ],
       "front_y_m": 5.4,
       "approach": "front",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.850256532066508,
+        5.673200009370036,
+        1.0274851485148515
+      ],
+      "approach_offset_m": [
+        -0.0,
+        -0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1939,21 +3010,41 @@
         ],
         "base_yaw_rad": 1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.8627863986548938,
-          "left_shoulder_roll_joint": -0.03577075609043112,
-          "left_elbow_joint": 0.6598161027529102,
+          "left_shoulder_pitch_joint": -0.8627863969325108,
+          "left_shoulder_roll_joint": -0.035770757349555135,
+          "left_elbow_joint": 0.6598161037489431,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.03528385478801539,
-          "left_wrist_roll_joint": 0.4474907070786771,
-          "left_wrist_pitch_joint": -0.11535753980781933,
-          "left_wrist_yaw_joint": -0.12163803396706376
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.035283855282684795,
+          "left_wrist_roll_joint": 0.44749070829855014,
+          "left_wrist_pitch_joint": -0.11535753926718159,
+          "left_wrist_yaw_joint": -0.12163803418436518
         },
-        "position_error_m": 4.032885156937231e-09,
+        "position_error_m": 5.384283677673865e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -1969,7 +3060,17 @@
       ],
       "front_y_m": 6.1,
       "approach": "rear",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.866,
+        5.899500009370036,
+        1.0
+      ],
+      "approach_offset_m": [
+        -0.0,
+        0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -1988,19 +3089,39 @@
         "joint_coordinates": {
           "left_shoulder_pitch_joint": 0.1,
           "left_shoulder_roll_joint": 0.2,
-          "left_elbow_joint": 1.3,
-          "right_shoulder_pitch_joint": -0.4188159042466057,
-          "right_shoulder_roll_joint": 0.04182377023824564,
-          "right_elbow_joint": 0.1063371714203778,
-          "right_shoulder_yaw_joint": 0.33033418616988025,
-          "right_wrist_roll_joint": 0.3530772251677239,
-          "right_wrist_pitch_joint": -0.003943152292833702,
-          "right_wrist_yaw_joint": -0.14103309753853124
+          "left_elbow_joint": 1.6,
+          "right_shoulder_pitch_joint": -0.41881621972249683,
+          "right_shoulder_roll_joint": 0.041827273628136756,
+          "right_elbow_joint": 0.1063688601250919,
+          "right_shoulder_yaw_joint": 0.33033903726548774,
+          "right_wrist_roll_joint": 0.35310332462238025,
+          "right_wrist_pitch_joint": -0.003997878254437049,
+          "right_wrist_yaw_joint": -0.14102526362597317
         },
-        "position_error_m": 1.0264839853879115e-09,
+        "position_error_m": 1.238522339683862e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -2016,7 +3137,17 @@
       ],
       "front_y_m": 6.1,
       "approach": "rear",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.9339999999999997,
+        5.899500009370036,
+        1.0
+      ],
+      "approach_offset_m": [
+        -0.0,
+        0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -2035,19 +3166,39 @@
         "joint_coordinates": {
           "left_shoulder_pitch_joint": 0.1,
           "left_shoulder_roll_joint": 0.2,
-          "left_elbow_joint": 1.3,
-          "right_shoulder_pitch_joint": -0.41881552016750817,
-          "right_shoulder_roll_joint": 0.04181728662007293,
-          "right_elbow_joint": 0.10628457488672206,
-          "right_shoulder_yaw_joint": 0.3303258354290099,
-          "right_wrist_roll_joint": 0.353086697064062,
-          "right_wrist_pitch_joint": -0.00385782859432813,
-          "right_wrist_yaw_joint": -0.1410444834270561
+          "left_elbow_joint": 1.6,
+          "right_shoulder_pitch_joint": -0.4188162144797293,
+          "right_shoulder_roll_joint": 0.04182735008864895,
+          "right_elbow_joint": 0.10636944538130651,
+          "right_shoulder_yaw_joint": 0.3303391360945659,
+          "right_wrist_roll_joint": 0.35310337650188023,
+          "right_wrist_pitch_joint": -0.0039988561174754906,
+          "right_wrist_yaw_joint": -0.14102512112975607
         },
-        "position_error_m": 5.302015460064022e-09,
+        "position_error_m": 7.960309307016933e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -2063,7 +3214,17 @@
       ],
       "front_y_m": 6.1,
       "approach": "rear",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.952,
+        5.880500009370036,
+        1.095
+      ],
+      "approach_offset_m": [
+        -0.0,
+        0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -2080,21 +3241,41 @@
         ],
         "base_yaw_rad": -1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.7305678880246909,
-          "left_shoulder_roll_joint": 0.07330289917655251,
-          "left_elbow_joint": 0.27775749880830225,
+          "left_shoulder_pitch_joint": -0.7305678426233784,
+          "left_shoulder_roll_joint": 0.0734277903694872,
+          "left_elbow_joint": 0.27723283577199276,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.12543136432110774,
-          "left_wrist_roll_joint": 0.636255465777883,
-          "left_wrist_pitch_joint": -0.23986873496998165,
-          "left_wrist_yaw_joint": -0.12278706481939837
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.12520800162452023,
+          "left_wrist_roll_joint": 0.6418574761177513,
+          "left_wrist_pitch_joint": -0.24005506021756437,
+          "left_wrist_yaw_joint": -0.12225223418466383
         },
-        "position_error_m": 2.6328263142285107e-09,
+        "position_error_m": 1.1345243210654736e-08,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
@@ -2110,7 +3291,17 @@
       ],
       "front_y_m": 6.1,
       "approach": "rear",
-      "basis": "Reconstructed interface plus authored 40 mm approach offset; palm position only",
+      "interface_point_m": [
+        2.984,
+        5.936500009370036,
+        0.871
+      ],
+      "approach_offset_m": [
+        -0.0,
+        0.04,
+        -0.0
+      ],
+      "basis": "Authored 40 mm approach offset; not a contact/grasp frame; palm position only",
       "source": {
         "path": "assets/thermo_a25_ac150_v1/interfaces.json",
         "sha256": "b6b0b5e3721e10b9618bafc0acceea7860d1f3c28e844820a82f26921c148e40",
@@ -2127,37 +3318,54 @@
         ],
         "base_yaw_rad": -1.5707963267948966,
         "joint_coordinates": {
-          "left_shoulder_pitch_joint": -0.23536748645504707,
-          "left_shoulder_roll_joint": 0.06359046837742945,
-          "left_elbow_joint": 0.41393389561384664,
+          "left_shoulder_pitch_joint": -0.23535596471858578,
+          "left_shoulder_roll_joint": 0.06356928321037496,
+          "left_elbow_joint": 0.4139245128963345,
           "right_shoulder_pitch_joint": 0.1,
           "right_shoulder_roll_joint": -0.2,
-          "right_elbow_joint": 1.3,
-          "left_shoulder_yaw_joint": -0.4588956480114317,
-          "left_wrist_roll_joint": -0.31787023468972175,
-          "left_wrist_pitch_joint": -0.2657506993405186,
-          "left_wrist_yaw_joint": -0.055853182030452905
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.45891998355899544,
+          "left_wrist_roll_joint": -0.31786783556192916,
+          "left_wrist_pitch_joint": -0.26575993704925505,
+          "left_wrist_yaw_joint": -0.055763376387257015
         },
-        "position_error_m": 3.5760991134250613e-09,
+        "position_error_m": 9.844342224520965e-09,
         "external_overlaps": [],
         "self_contacts_checked": true,
         "self_penetrations_over_0_5mm": [],
+        "candidate_rig_checked": true,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [
+          [
+            "left_bracket",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "left_clamp",
+            "left_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_bracket",
+            "right_wrist_yaw_link_visual_0"
+          ],
+          [
+            "right_clamp",
+            "right_wrist_yaw_link_visual_0"
+          ]
+        ],
         "position_candidate": true
       },
       "status": "position_candidate_only"
     }
   ],
-  "unresolved_target_ids": [
-    "bath_front",
-    "cary_extension_base",
-    "bath_front_drain"
-  ],
+  "unresolved_target_ids": [],
   "full_workspace_qualified": false,
   "limitations": [
     "Each target is tested separately; simultaneous two-hand coordination and carrying are not tested",
     "Position-only IK is necessary but not sufficient: palm orientation, finger contact, balance, loads, entry trajectory and instrument internals are not checked",
     "Conservative per-link visual mesh boxes screen room/furniture and other instruments; target-instrument internals are excluded and require a later contact review",
     "Robot self-contact is screened with the provisional MJCF at a 0.5 mm penetration threshold, including source convex hull approximations; no exact surface or continuous contact qualification",
+    "Candidate camera attachments are screened against robot triangle surfaces and external boxes. Parent-wrist clamp contact remains recorded but unqualified; no full-containment, preload or cable model is inferred",
     "Candidate base placements are test coordinates, not a walked path or accepted standing controller",
     "Failure after finite starts is an unresolved access issue, not a proof that no feasible whole-body posture exists"
   ]

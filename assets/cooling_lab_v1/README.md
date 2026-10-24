@@ -9,9 +9,18 @@ official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
 selected OMAX ProtoMAX waterjet. Geometry sliders and the 47 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
-The three camera candidates now use pinned manufacturer D455/D405 meshes with
-their upstream license. They are separately displayed on the assembly bench;
-G1 mounts, cables, calibration and sensor output are still absent.
+The native G1 D435i now supplies nominal head RGB and ideal geometric depth
+inspection views; the two D405 wrist views use an unaccepted mounting
+candidate. Official Unitree STEP brackets and the clamp were converted without
+rescaling. Exact triangle checks guided an above-wrist rotation that clears other links
+at sampled finger poses. Clamp contact remains unresolved, so
+these attachments are hidden by default and do not count as an installation.
+The viewer can display them for fit review, and records separate attachment
+conflicts at each station pose. D455 remains an optional bench reference.
+Camera previews retain scene occluders even when the reviewer isolates an asset
+or hides walls. They are ideal pinhole renderings, not calibrated observation
+streams. See `assets/g1_sensor_rig_v1/README.md` for provenance and limits.
+
 Eight Omega 5TC probes are staged separately, with catalogue-sized conductors
 and inferred stored cable shape. They have no flexible or electrical model.
 
@@ -50,10 +59,12 @@ It makes no source downloads and cannot silently switch robot models.
   evidence, source conflicts, paper-derived sheet thickness and stock inferences.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 47 separately tested palm-position targets; records
+- `workspace_checks.json`: 47 separately tested palm-position targets, all with static position candidates, including proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
+  The Cary keyhole datum is preserved separately from an authored 80 mm upper
+  palm approach; neither it nor the other approach offsets is a grasp frame.
 - `hand_envelope.json`: historical H2/Dex5 sensitivity record, unused for G1.
 - `acceptance_contract.json`: eight open review gates and their exact-revision
   evidence. Comments in the browser are not acceptance receipts.

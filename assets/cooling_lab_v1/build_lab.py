@@ -204,20 +204,20 @@ def devices():
     a=asset('g1','宇树 G1 + Inspire FTP 双手 · 官方完整模型','assets/unitree_g1_inspire_v1/geometry/g1_inspire_ftp_zero.glb',[6,3,0],z_up=True,
         station='circulation',resource='robot:G1_29DOF',source_path='assets/unitree_g1_inspire_v1/SOURCE.json',origin_xy=[0,0],
         note='按官方腕部关系安装左右五指手；零关节角静态姿态。手指滑块遵循官方联动，仅作几何检查；站立、负载和操作尚未合格。')
-    a['resource_ids']=['robot:G1_29DOF','robot:INSPIRE_FTP_LEFT','robot:INSPIRE_FTP_RIGHT']
+    a['resource_ids']=['robot:G1_29DOF','robot:INSPIRE_FTP_LEFT','robot:INSPIRE_FTP_RIGHT','robot:HEAD_RGBD']
     k=json.loads((robot_folder/'kinematics.json').read_text())
     states.append(dict(id='g1_hands_inspection',asset='g1',kind='joint_tree',parts=[n for n in a['part_names'] if any('_'+finger+'_' in n for finger in ['thumb','index','middle','ring','little'])],kinematics=k,
         kinematics_source=dict(path='assets/unitree_g1_inspire_v1/kinematics.json',sha256=sha(robot_folder/'kinematics.json')),
         label='双手联动几何检查（6 独立坐标 / 手）',basis=k['scope']))
     cameras=json.loads((ROOT/'assets/realsense_cameras_v1/model.json').read_text())
     for key,kind,label,x,resource in [
-      ('camera_head','d455','RealSense D455 · 头部 RGB-D 候选',2.30,'robot:HEAD_RGBD'),
+      ('camera_head','d455','RealSense D455 · 备选参考',2.30,'reference:D455'),
       ('camera_wrist_left','d405','RealSense D405 · 左腕 RGB 候选',2.50,'robot:WRIST_RGB_LEFT'),
       ('camera_wrist_right','d405','RealSense D405 · 右腕 RGB 候选',2.62,'robot:WRIST_RGB_RIGHT')]:
         record=next(i for i in cameras['items'] if i['id']==kind)
         asset(key,label,record['geometry']['path'],[x,2.66,.9],z_up=True,station='assembly_white',resource=resource,
           source_path='assets/realsense_cameras_v1/sources.json',
-          note='官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；安装件、线缆、内外参和观察流仍未完成。')
+          note='官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；腕部官方支架已调整为上置候选，抱环夹紧配合仍待确认；线缆、标定与闭环观察流仍未完成。D455 为备选，头部使用原生 D435i。')
     ordinary=json.loads((HERE/'ordinary_tools.json').read_text())
     for key,kind,label,pos,station,resource in [
       ('caliper','mitutoyo_530_104','Mitutoyo 530-104 游标卡尺',[3.25,2.50,.9],'assembly_white','tools:caliper'),
@@ -272,7 +272,7 @@ def build():
       dict(id='fabrication',label='隔离加工间 · 6 × 5 m',bounds_m=[-6,0,0,5],color='#e6e0d4'),
       dict(id='coating',label='隔离涂覆间 · 6 × 5 m',bounds_m=[-6,5,0,10],color='#e7ddd4'),
       dict(id='outdoor',label='开放测量区 · 12 × 8 m',bounds_m=[0,12,12,20],color='#d4e3d5')]
-    manifest=dict(schema_version=1,status='scene_draft_for_review_not_accepted',units='m',axes='+Z up; +X right; +Y plan up',
+    manifest=dict(schema_version=1,sensor_rig=dict(path='assets/g1_sensor_rig_v1/rig.json',sha256=sha(ROOT/'assets/g1_sensor_rig_v1/rig.json')),status='scene_draft_for_review_not_accepted',units='m',axes='+Z up; +X right; +Y plan up',
       coordinate_basis='Authored room layout; not the historical laboratory. Real assets imported without scale changes.',
       architecture=architecture,room_design=room,room_builder_sha256=sha(HERE/'room_architecture.py'),room_details_sha256=sha(HERE/'room_details.py'),assets=placements,authored_components=components,zones=zones,obstacles=obstacles,support_surfaces=surfaces,
       reference_comparisons={

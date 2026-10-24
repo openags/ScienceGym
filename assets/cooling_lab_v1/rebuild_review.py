@@ -18,14 +18,15 @@ def main():
       'assets/unitree_dex5s_reconstruction_v1/build.py',
       'assets/unitree_dex5s_reconstruction_v1/validate.py',
       'assets/realsense_cameras_v1/build.py','assets/realsense_cameras_v1/validate.py',
+      'assets/g1_sensor_rig_v1/convert_mounts.py','assets/g1_sensor_rig_v1/build.py','assets/g1_sensor_rig_v1/check_clocking.py',
       'assets/omega_5tc_v1/build.py','assets/omega_5tc_v1/validate.py',
       'assets/cooling_lab_v1/check_hand_envelope.py',
       'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_waterjet.py','assets/cooling_lab_v1/build_lab.py',
-      'assets/cooling_lab_v1/check_layout.py','assets/cooling_lab_v1/check_workspace.py','assets/cooling_lab_v1/build_review.py',
+      'assets/cooling_lab_v1/check_layout.py','assets/cooling_lab_v1/check_workspace.py','assets/g1_sensor_rig_v1/check_fit.py','assets/cooling_lab_v1/build_review.py',
       'assets/cooling_lab_v1/validate_review.py','assets/cooling_lab_v1/test_pilot_contract.py']:
         run(script)
     if a.browser:
-        for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py','viewer/lab_review_v1/check_pose_projection.py']:
+        for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py','viewer/lab_review_v1/check_pose_projection.py','viewer/lab_review_v1/check_sensors.py']:
             run(script,'--browser',a.browser,'--url',a.url)
     print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
 

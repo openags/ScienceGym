@@ -78,12 +78,12 @@ def build():
             dynamics_qualified=False,appearance_accepted=False))
     out=dict(schema_version=1,status='manufacturer_mesh_candidates_not_installed',
         builder_sha256=sha(__file__),source_ledger_sha256=sha(HERE/'sources.json'),items=records,
-        selected_roles=[dict(resource_id='robot:HEAD_RGBD',model='d455',channels=['RGB','depth']),
+        selected_roles=[dict(resource_id='robot:HEAD_RGBD',model='native_g1_d435i',channels=['RGB','depth']),
                         dict(resource_id='robot:WRIST_RGB_LEFT',model='d405',channels=['RGB']),
                         dict(resource_id='robot:WRIST_RGB_RIGHT',model='d405',channels=['RGB'])],
-        selection_basis='Authored camera selection under the owner-approved head RGB-D / wrist RGB plan; not native H2 cameras.',
+        selection_basis='Authored camera selection under the owner-approved head RGB-D / wrist RGB plan; native G1 D435i head camera; D455 is an optional staged reference.',
         limitations=['Three independent USB links, mechanical mounting, strain relief and full-arm cable clearance remain unmodeled.',
-                    'Manufacturer nominal optical frames are not measured H2 extrinsics or calibrated camera intrinsics.',
+                    'Manufacturer nominal optical frames are not measured G1 extrinsics or calibrated camera intrinsics.',
                     'D405 depth capability does not add wrist depth to the selected actor channels.',
                     'D455 source STL has open edges; it remains a visual mesh, not a qualified closed collision or inertial model.'])
     write_json(HERE/'model.json',out)

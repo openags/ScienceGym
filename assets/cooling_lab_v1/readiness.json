@@ -5,7 +5,7 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/pilot_contract.json",
-      "sha256": "b3dc0d72da50c884aea51a98691ab06e107d2b26637cb897e1b9adb0e931c9cb"
+      "sha256": "1b1998724c7d4449182507acbf9323ab38b22ef1e25054f2868b925dbb3dc9a8"
     },
     {
       "path": "assets/unitree_g1_inspire_v1/selection.json",
@@ -13,11 +13,11 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "6e67594aca097b0dda60ec0cee0b88d7360a57cf6a5c74a2486f6e35010b0eb0"
+      "sha256": "ea447fd2d1e92650d2f81244fdb9f2b19117bc775d41d3da5e17a65cf5ddfd76"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "5b4620a1f54c507bec132334a9960316c36b81b511f96ede5b0789f1c927021e"
+      "sha256": "cb7139095b428231d7b22f8bd2df6b8a1785821f0b0ca834b58fe712c1993304"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -33,12 +33,12 @@
     },
     {
       "path": "assets/cooling_lab_v1/build_readiness.py",
-      "sha256": "f69d00ad6ed97bf5a1dbb07814144cc44f8f12a8164f8e2497e7c20b1b818971"
+      "sha256": "373b9820caee5acf29bedcc6d4c7a009cb96951e7020c42597cd22aefd4f3b02"
     }
   ],
   "policy": {
     "schema_version": "sciencegym.humanoid_pilot_contract.v1",
-    "revision": "2026-10-24.g1_scene_integration.3",
+    "revision": "2026-10-24.sensor_review.4",
     "paper_doi": "10.1038/s41467-018-07293-9",
     "authority": "Owner implementation choices and subsequent instruction: retain Unitree body; choose publicly supported hands without a manufacturer/model lock",
     "phase": "asset_and_scene_development",
@@ -73,11 +73,10 @@
     "observations": {
       "actor_mode": "robot_sensors_only",
       "proposed_added_cameras": [
-        "head RGB-D",
         "left wrist RGB",
         "right wrist RGB"
       ],
-      "camera_configuration_status": "selected_staged_geometry_not_installed_or_calibrated",
+      "camera_configuration_status": "native_head_nominal_preview_above_wrist_candidate_clamp_fit_unqualified",
       "allowed_channels": [
         "camera RGB",
         "camera depth",
@@ -97,7 +96,9 @@
       ],
       "evaluator_may_read_ground_truth": true,
       "process_isolation_required": true,
-      "runtime_enforcement_implemented": false
+      "runtime_enforcement_implemented": false,
+      "camera_review_record": "assets/g1_sensor_rig_v1/rig.json",
+      "native_camera": "G1 D435i head RGB-D"
     },
     "adaptations": {
       "added_cameras_allowed": true,
@@ -1773,17 +1774,17 @@
     },
     {
       "resource_id": "robot:HEAD_RGBD",
-      "label": "Added head RGB-D camera",
+      "label": "G1 原生 D435i 头部 RGB-D",
       "components": [
         {
           "id": "robot:HEAD_RGBD:component_1",
-          "label": "selected D455 camera",
+          "label": "native G1 D435i camera",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         },
         {
           "id": "robot:HEAD_RGBD:component_2",
-          "label": "head mounting hardware",
+          "label": "source head optical frame",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         },
@@ -1801,7 +1802,7 @@
         }
       ],
       "scene_instances": [
-        "camera_head"
+        "g1"
       ],
       "authored_components": [],
       "selected_minimum_quantity": 1,
@@ -7689,7 +7690,7 @@
     {
       "id": "OBSERVATION",
       "label": "传感器闭环",
-      "detail": "三台相机已有官方几何，单独陈列；所选本体的安装件、线缆与标定仍缺，尚无观察流。历史本体记录读取了真值"
+      "detail": "原生 D435i 已有名义光学视角；D405 官方支架已转为上置候选，已避开原腕俯仰部件冲突，但抱环配合仍待确认。线缆、标定和独立观察流仍缺"
     },
     {
       "id": "OWNER",

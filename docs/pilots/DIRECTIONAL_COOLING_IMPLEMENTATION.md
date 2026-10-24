@@ -79,15 +79,29 @@ guarantee of general reliability.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
   radius plus 0.10 m route margin, with a 1.43 m height allowance. No guessed
   wrist adapter is used. The 47-point station screen records each position-only
-  IK result and external obstacle conflicts. Selected equipment/tools moved
+  IK result and external obstacle conflicts. All 47 now have static
+  position candidates with proposed-camera clearance screening after shoulder alignment and unused-arm retraction. The
+  Cary mounting datum remains distinct from its authored 80 mm upper palm
+  approach; finger contact and insertion remain open. Selected equipment/tools moved
   closer to bench fronts without changing source geometry dimensions.
   Two-hand coordination, loads, cameras, walking and balance remain unqualified.
-- Three added-camera requirements are separately inventoried. A D455 and two
-  D405 candidates retain official ROS mesh geometry at a pinned revision, with
-  the upstream license and checked unit/shape preservation. All three are
-  separately displayed on the bench. G1 mounts, cabling and calibration remain
-  open, and no observation stream has been implemented. Wrist selection remains
-  RGB-only despite the D405's other capabilities.
+- Three camera requirements remain separately inventoried. The head uses G1's
+  native D435i optical frame. Two D405 units and an optional D455 bench reference
+  retain pinned manufacturer mesh geometry. Official Unitree wrist STEP parts
+  are now tessellated with their source roles verified against embedded CAD
+  names. A finite clocking search moves the G1/FTP placement above each wrist,
+  removing the observed pitch-housing conflict at sampled finger poses. Clamp
+  contact still needs verification; it remains an unaccepted candidate, visible
+  on demand. Station IK also screens candidate attachment collisions with other links
+  and external obstacles; a separate FCL replay checks every recorded pose.
+  Parent-wrist clamp contact stays explicitly unresolved and is not installation
+  or transit qualification.
+- The browser renders head RGB / ideal axial depth and both candidate wrist RGB
+  views from the current source kinematics. Camera frames are checked against
+  MuJoCo. Cutaway, isolation and review labels cannot remove scene occluders
+  from these images. Nominal catalogue FOV, uncalibrated extrinsics and opaque
+  depth treatment remain explicit; no sensor noise, observation timing,
+  controller process isolation or execution credit is claimed.
 - Eight individually staged Omega 5TC-TT-K-36-36 probes use the catalogue's
   0.13 mm conductor diameter and nominal 1 m length. Coiled rest shape, jacket
   envelope, stripped ends and weld details are inferred. No cable mechanics,
@@ -124,7 +138,7 @@ rescaling. It is a static zero-pose preview, not a standing/balance demonstratio
 The new selection is bound to all 200 manual-step requirements; execution
 bindings remain null. The [integration record](../../assets/unitree_g1_inspire_v1/README.md)
 records completed source mapping, collision repair and bounded static checks.
-The lab viewer can display each tested posture. Remaining access conflicts,
-contact qualification, camera installation and carried-object clearance stay
+The lab viewer can display each tested posture. Target-interior access,
+contact qualification, revised camera installation and carried-object clearance stay
 open. Do not reuse the H2 spatial certificate or mix FTP and DFQ joint names.
 The owner scene gate remains open.

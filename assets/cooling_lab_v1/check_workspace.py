@@ -27,6 +27,19 @@ def build():
     model_path=ROOT/'assets/unitree_g1_inspire_v1/simulation/robot.xml'
     model=mujoco.MjModel.from_xml_path(str(model_path));data=mujoco.MjData(model)
     assets={a['id']:a for a in scene['assets']};surfaces={s['id']:s for s in scene['support_surfaces']}
+    rig_path=ROOT/'assets/g1_sensor_rig_v1/rig.json';rig=json.loads(rig_path.read_text())
+    robot_manager=trimesh.collision.CollisionManager();rig_manager=trimesh.collision.CollisionManager();visual_frames={};rig_corners={}
+    for name in robot.preview.graph.nodes_geometry:
+        bind,key=robot.preview.graph[name];parent=name.rsplit('_visual_',1)[0]
+        visual_frames[name]=(parent,np.linalg.inv(robot.bind[parent])@bind)
+        robot_manager.add_object(name,robot.preview.geometry[key],bind)
+    for a in rig['attachments']:
+        assert sha(ROOT/a['geometry_path'])==a['geometry_sha256']
+        mesh=trimesh.load(ROOT/a['geometry_path'],force='scene').to_geometry();rig_manager.add_object(a['id'],mesh)
+        lo,hi=mesh.bounds;rig_corners[a['id']]=np.array([[x,y,z] for x in [lo[0],hi[0]] for y in [lo[1],hi[1]] for z in [lo[2],hi[2]]])
+    rig_by_id={a['id']:a for a in rig['attachments']}
+    def body_matrix(name):
+        body=data.body(name);t=np.eye(4);t[:3,:3]=body.xmat.reshape(3,3);t[:3,3]=body.xpos;return t
     targets=[]
     for key in ['cary','nicolet','bath','dmm','rtd','smu_white','smu_black','daq','cooler_white','cooler_black','cooler_fixed','tracker','hobo_u30','waterjet','caliper','driver','tray_white','tray_black']:
         a=assets[key];bounds=np.array(a['normalized_bounds_m'])+a['position_m'];center=bounds.mean(axis=0)
@@ -42,24 +55,37 @@ def build():
             axis=np.array(entry.get('axis',[0,1,0]),dtype=float)
             # A stated mechanical hinge axis is not a surface approach normal.
             if entry.get('kind') in ['hinge','slide']:axis=np.array([0,1,0])
-            point=trimesh.transform_points([point],norm)[0]+a['position_m']-.04*axis
+            interface_point=trimesh.transform_points([point],norm)[0]+a['position_m']
+            offset=-.04*axis
+            offset_basis='Authored 40 mm approach offset; not a contact/grasp frame'
+            if entry.get('kind')=='keyhole_mount':
+                # A mounting datum on a plate 10 mm above the bench cannot be
+                # used as a palm center. Keep the datum and reserve an upper
+                # approach for fingers; no grasp or insertion is qualified.
+                offset=np.array([0,0,.08])
+                offset_basis='Authored 80 mm top approach above the keyhole mounting datum, reserved clearance only; finger contact and insertion remain unvalidated'
+            point=interface_point+offset
             bounds=surfaces[a['station']]['xy_bounds_m']
             approach='rear' if axis[1]<-.5 else 'front'
             targets.append(dict(id=key+'_'+entry['id'],asset=key,station=a['station'],point_m=point.tolist(),
               front_y_m=bounds[3] if approach=='rear' else bounds[1],approach=approach,
-              basis='Reconstructed interface plus authored 40 mm approach offset; palm position only',
+              interface_point_m=interface_point.tolist(),approach_offset_m=offset.tolist(),
+              basis=offset_basis+'; palm position only',
               source=dict(path=filename,sha256=sha(ROOT/filename),interface_id=entry['id'],dimensions_inferred=True)))
     arm_names={side:[side+'_'+name+'_joint' for name in ['shoulder_pitch','shoulder_roll','shoulder_yaw','elbow','wrist_roll','wrist_pitch','wrist_yaw']] for side in ['left','right']}
     obstacles=[(o['id'],np.array(o['bounds_m'])) for o in scene['obstacles']]
     asset_boxes={k:np.array(a['normalized_bounds_m'])+a['position_m'] for k,a in assets.items() if k!='g1'}
     results=[]
-    rest={side+'_'+joint:angle for side in ['left','right'] for joint,angle in [('shoulder_pitch_joint',.1),('shoulder_roll_joint',.2 if side=='left' else -.2),('elbow_joint',1.3)]}
+    rest={side+'_'+joint:angle for side in ['left','right'] for joint,angle in [('shoulder_pitch_joint',.1),('shoulder_roll_joint',.2 if side=='left' else -.2),('elbow_joint',1.6)]}
     for target in targets:
         goal=np.array(target['point_m']);best=None;attempts=0
         reverse=target.get('approach')=='rear';yaw=-np.pi/2 if reverse else np.pi/2
-        for stand_off in [.18,.24,.34,.44]:
+        # First retain the previous centered stance search, then align either
+        # shoulder laterally. No instrument dimensions or target points change.
+        placements=[(distance,offset) for offset in [0,-.15,.15,-.30,.30] for distance in [.18,.24,.34,.44,.16]]
+        for stand_off,lateral_offset in placements:
             for side in ['left','right']:
-                base=np.array([goal[0],target['front_y_m']+(stand_off if reverse else -stand_off),model.qpos0[2]])
+                base=np.array([goal[0]+lateral_offset,target['front_y_m']+(stand_off if reverse else -stand_off),model.qpos0[2]])
                 ids=[model.joint(n).id for n in arm_names[side]];qi=model.jnt_qposadr[ids];vi=model.jnt_dofadr[ids]
                 low=model.jnt_range[ids,0];high=model.jnt_range[ids,1];site=model.site(side+'_palm_review').id
                 def set_pose(q):
@@ -73,7 +99,7 @@ def build():
                 for initial in [np.zeros(7),np.array([-.5,.2 if side=='left' else -.2,0,.5,0,0,0]),np.array([-.3,0,0,.4,1.3 if side=='left' else -1.3,0,0])]:
                     attempts+=1
                     fit=least_squares(residual,np.clip(initial,low+1e-6,high-1e-6),jac=jac,bounds=(low,high),max_nfev=100,gtol=1e-8)
-                    error=float(np.linalg.norm(residual(fit.x)));collisions=[];self_contacts=[]
+                    error=float(np.linalg.norm(residual(fit.x)));collisions=[];self_contacts=[];rig_contacts=[];clamp_contacts=[];rig_checked=False
                     if error<.01:
                         mujoco.mj_forward(model,data)
                         pair_depths={}
@@ -91,11 +117,26 @@ def build():
                                 if overlap(bounds,other):collisions.append((name,identity))
                             for identity,other in asset_boxes.items():
                                 if identity!=target['asset'] and overlap(bounds,other):collisions.append((name,identity))
+                        if not collisions and not self_contacts:
+                            rig_checked=True
+                            for name,(parent,local) in visual_frames.items():robot_manager.set_transform(name,body_matrix(parent)@local)
+                            for a in rig['attachments']:
+                                t=body_matrix(a['parent_link'])@a['parent_from_geometry'];rig_manager.set_transform(a['id'],t)
+                                points=trimesh.transform_points(rig_corners[a['id']],t);bounds=np.array([points.min(axis=0),points.max(axis=0)])
+                                for identity,other in obstacles+list(asset_boxes.items()):
+                                    if identity==target['asset'] or (identity==target['station'] and target['asset']=='waterjet'):continue
+                                    if overlap(bounds,other):collisions.append((a['id'],identity))
+                            _,pairs=rig_manager.in_collision_other(robot_manager,return_names=True)
+                            for pair in sorted(pairs):
+                                identity=next(p for p in pair if p in rig_by_id);other=next(p for p in pair if p!=identity)
+                                if other==rig_by_id[identity]['parent_link']+'_visual_0':clamp_contacts.append([identity,other])
+                                else:rig_contacts.append([identity,other])
                     row=dict(hand=side,base_position_m=base.tolist(),base_yaw_rad=float(yaw),joint_coordinates={**rest,**dict(zip(arm_names[side],fit.x.tolist()))},
                       position_error_m=error,external_overlaps=[list(p) for p in sorted(set(collisions))],
                       self_contacts_checked=error<.01,self_penetrations_over_0_5mm=self_contacts,
-                      position_candidate=error<.01 and not collisions and not self_contacts)
-                    score=(not row['position_candidate'],error>=.01,len(collisions)+len(self_contacts),error)
+                      candidate_rig_checked=rig_checked,candidate_rig_other_link_intersections=rig_contacts,candidate_rig_parent_contacts_unqualified=clamp_contacts,
+                      position_candidate=error<.01 and not collisions and not self_contacts and rig_checked and not rig_contacts)
+                    score=(not row['position_candidate'],error>=.01,len(collisions)+len(self_contacts)+len(rig_contacts),error)
                     if best is None or score<best[0]:best=(score,row)
                     if row['position_candidate']:break
                 if best[1]['position_candidate']:break
@@ -103,13 +144,14 @@ def build():
         results.append(dict(**target,attempts=attempts,result=best[1],status='position_candidate_only' if best[1]['position_candidate'] else 'needs_layout_or_access_revision'))
     failures=[r['id'] for r in results if not r['result']['position_candidate']]
     report=dict(schema_version=1,status='static_access_screening_not_task_validation',scene_sha256=sha(HERE/'scene.json'),
-      source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [model_path,ROOT/'assets/unitree_g1_inspire_v1/kinematics.py',Path(__file__)]],
+      source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [model_path,ROOT/'assets/unitree_g1_inspire_v1/kinematics.py',rig_path,Path(__file__)]],
       counts=dict(targets=len(results),position_candidates=len(results)-len(failures),needs_revision=len(failures)),targets=results,
       unresolved_target_ids=failures,full_workspace_qualified=False,
       limitations=['Each target is tested separately; simultaneous two-hand coordination and carrying are not tested',
        'Position-only IK is necessary but not sufficient: palm orientation, finger contact, balance, loads, entry trajectory and instrument internals are not checked',
        'Conservative per-link visual mesh boxes screen room/furniture and other instruments; target-instrument internals are excluded and require a later contact review',
        'Robot self-contact is screened with the provisional MJCF at a 0.5 mm penetration threshold, including source convex hull approximations; no exact surface or continuous contact qualification',
+       'Candidate camera attachments are screened against robot triangle surfaces and external boxes. Parent-wrist clamp contact remains recorded but unqualified; no full-containment, preload or cable model is inferred',
        'Candidate base placements are test coordinates, not a walked path or accepted standing controller',
        'Failure after finite starts is an unresolved access issue, not a proof that no feasible whole-body posture exists'])
     write_json(HERE/'workspace_checks.json',report);print(json.dumps(report['counts']))

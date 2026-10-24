@@ -48,7 +48,7 @@ def run(browser,url):
         b.close()
     files=[Path(__file__),HERE/'main.js',ROOT/'assets/cooling_lab_v1/workspace_checks.json',ROOT/'assets/cooling_lab_v1/scene.json',ROOT/'assets/unitree_g1_inspire_v1/simulation/robot.xml']
     report=dict(passed=True,poses=results,reset_matrix_error=float(reset_error),test_hook_sha256=__import__('hashlib').sha256(hook.encode()).hexdigest(),
-      source_files=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in files],scope='Displayed mesh frames match independent MuJoCo kinematics, including an unresolved access point; no motion execution credit')
+      source_files=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in files],scope='Displayed mesh frames match independent MuJoCo kinematics, including the revised low mounting approach; no motion execution credit')
     (HERE/'POSE_VERIFICATION.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(dict(passed=True,poses=len(results),meshes_per_pose=93)))
 
 

@@ -1,5 +1,9 @@
 {
   "schema_version": 1,
+  "sensor_rig": {
+    "path": "assets/g1_sensor_rig_v1/rig.json",
+    "sha256": "b6f9c0831f4335361f67c1ac234f8ed9f90efc6863a715aa48baed11d4f2951f"
+  },
   "status": "scene_draft_for_review_not_accepted",
   "units": "m",
   "axes": "+Z up; +X right; +Y plan up",
@@ -35397,13 +35401,14 @@
       "resource_ids": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
-        "robot:INSPIRE_FTP_RIGHT"
+        "robot:INSPIRE_FTP_RIGHT",
+        "robot:HEAD_RGBD"
       ]
     },
     {
       "id": "camera_head",
-      "label": "RealSense D455 · 头部 RGB-D 候选",
-      "resource_id": "robot:HEAD_RGBD",
+      "label": "RealSense D455 · 备选参考",
+      "resource_id": "reference:D455",
       "station": "assembly_white",
       "geometry": "assets/cooling_lab_v1/geometry/prepared_camera_head.glb",
       "geometry_sha256": "6f0bded3d859e81f70d94bbaefef6078b4176e64f625134068c779b3a4c3a427",
@@ -35483,7 +35488,7 @@
         "shell"
       ],
       "status": "待资产与场景验收",
-      "note": "官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；安装件、线缆、内外参和观察流仍未完成。",
+      "note": "官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；腕部官方支架已调整为上置候选，抱环夹紧配合仍待确认；线缆、标定与闭环观察流仍未完成。D455 为备选，头部使用原生 D435i。",
       "sources": "assets/realsense_cameras_v1/sources.json",
       "review_scope": "Existing source-based reconstruction; import proves neither product fidelity nor hardware qualification"
     },
@@ -35563,7 +35568,7 @@
         "shell"
       ],
       "status": "待资产与场景验收",
-      "note": "官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；安装件、线缆、内外参和观察流仍未完成。",
+      "note": "官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；腕部官方支架已调整为上置候选，抱环夹紧配合仍待确认；线缆、标定与闭环观察流仍未完成。D455 为备选，头部使用原生 D435i。",
       "sources": "assets/realsense_cameras_v1/sources.json",
       "review_scope": "Existing source-based reconstruction; import proves neither product fidelity nor hardware qualification"
     },
@@ -35643,7 +35648,7 @@
         "shell"
       ],
       "status": "待资产与场景验收",
-      "note": "官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；安装件、线缆、内外参和观察流仍未完成。",
+      "note": "官方 ROS 仓库原尺寸网格，材料颜色为估计。单独陈列供审查，尚未装到 G1；腕部官方支架已调整为上置候选，抱环夹紧配合仍待确认；线缆、标定与闭环观察流仍未完成。D455 为备选，头部使用原生 D435i。",
       "sources": "assets/realsense_cameras_v1/sources.json",
       "review_scope": "Existing source-based reconstruction; import proves neither product fidelity nor hardware qualification"
     },
@@ -61428,7 +61433,7 @@
   "dimensions_basis": "All room, furniture, clearance and route dimensions are authored design values. Equipment source dimensions remain unchanged.",
   "pilot_contract": {
     "path": "assets/cooling_lab_v1/pilot_contract.json",
-    "sha256": "b3dc0d72da50c884aea51a98691ab06e107d2b26637cb897e1b9adb0e931c9cb"
+    "sha256": "1b1998724c7d4449182507acbf9323ab38b22ef1e25054f2868b925dbb3dc9a8"
   },
   "required_missing_assets": [
     "Qualified G1/Inspire collision, actuator, load and tactile model (source integration present)",
@@ -61451,6 +61456,6 @@
   ],
   "owner_acceptance": null,
   "manipulation_development_allowed": false,
-  "builder_sha256": "e300b76ca9ab55abdc736df6a74fdc555534cf7cc1505ed99daa8f117a45321a",
+  "builder_sha256": "9d370f391c800dfc596f3cf782c69315b2ba2d535b9d980af5c9ea0d7078c61b",
   "geometry_tools_sha256": "17a42c83a9eed029e57df2f932199e7d691ba74198c8fa666572cd3ae48237a0"
 }
