@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **329**.
+Last screened: **2026-10-24**. Candidate count: **330**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3322,3 +3322,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [40-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74053-5/MediaObjects/41467_2026_74053_MOESM1_ESM.pdf) was text-accessible. Selected Figures 9–10 and 15–16 captions were screened. The supplement uses an earlier title; the citation follows the article. Figure images, remaining sections, video, source data and peer review were not fully reviewed.
 - Future scope starts with qualified, prepared nonliving devices and guarded metrology fixtures. Nanotube processing, chemical synthesis, microfabrication, exposed liquid-metal handling and human testing are excluded. Calibration, specimen matching and stopping criteria require review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared lignin-cellulose moisture-aging metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Composites of covalently linked lignin and cellulose from one feedstock](https://www.nature.com/articles/s41467-026-77206-8) | Nature Communications / 2026 | 10.1038/s41467-026-77206-8 | Prepared coupons could support tracked humidity exposure, repeated weighing, wetting observations and mechanical comparisons, linking specimen histories across instruments. | OA main and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 9145 (2026), published/version of record **27 August 2026**. Selected durability Results and mechanical, wettability and humidity-aging Methods were screened. Repeated mass observations and subsequent destructive tensile measurements require distinct records; nominal chamber humidity is not measured specimen moisture.
+- The official [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-77206-8/MediaObjects/41467_2026_77206_MOESM1_ESM.pdf) was text-accessible. Selected Figures S11 and S13 captions were screened. Figure images, remaining sections, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving coupons. Chemical synthesis, fractionation, hot pressing, composting and biodegradation claims are excluded. Calibration, sample allocation and safe fixtures need review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-24**; publisher license **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
