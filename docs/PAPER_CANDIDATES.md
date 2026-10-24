@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **322**.
+Last screened: **2026-10-24**. Candidate count: **323**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3245,3 +3245,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [35-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-47073-2/MediaObjects/41467_2024_47073_MOESM1_ESM.pdf) was accessible as extracted text. Selected platform notes and system-characterization text/captions for Figures S6–S8 were screened. These distinguish the development fixture from the proposed compact attachment and document background-field checks and slow baseline recovery. Remaining sections, figure images, movie, source-data workbook and peer-review file were not fully reviewed.
 - Future scope starts with qualified, prepared nonliving sensor strips, a secured fixture and benign aqueous standards. Monomer synthesis, particle processing, curing, magnetization, biological samples and diagnostic use are excluded. Magnetic interference from robotic equipment, phone-specific positioning, carryover and recovery criteria require validation before conversion. No experimental procedure, asset or converted task is supplied.
 - Access checked **2026-10-24**. Publisher license: **CC BY 4.0**. HTML was readable despite a cookie-error URL marker. This entry supplies bibliographic metadata and original screening commentary only.
+
+## Additional candidate: prepared-hydrogel swelling metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Ionic weaving network enables mechanically robust smart hydrogels with anti-swelling and anti-freezing capabilities](https://www.nature.com/articles/s41467-026-76165-4) | Nature Communications / 2026 | 10.1038/s41467-026-76165-4 | Qualified prepared specimens could support extended sample tracking, scheduled weighing, dimensional imaging and mechanical comparison across water-exposure histories. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** Bibliography verified as *Nature Communications* **17**, 9191 (2026), published **29 July 2026**, version of record **28 August 2026**. Selected mechanical/swelling results, Figure 3 caption and swelling-test Methods were screened; no full-paper reading or task conversion is claimed.
+- The official [32-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76165-4/MediaObjects/41467_2026_76165_MOESM1_ESM.pdf) was text-accessible. Selected captions S18–S21 were screened for thickness comparisons, dimensional stability, leaching and post-immersion mechanics. Figure images were not reliably inspected; remaining material and source-data workbook were not fully reviewed.
+- Future scope requires qualified, already prepared nonliving specimens and guarded metrology. Synthesis, cutting, solvent actuation, cryogenics, puncture/impact tests and human/cell demonstrations are excluded. Specimen qualification, leachate handling and measurement repeatability need review before conversion. No procedure or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Bibliographic metadata and original screening commentary only.
