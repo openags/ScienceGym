@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **325**.
+Last screened: **2026-10-24**. Candidate count: **326**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3278,3 +3278,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [27-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71987-8/MediaObjects/41467_2026_71987_MOESM1_ESM.pdf) was text-accessible. Selected Note S1 swelling text and Note S8/Figures S11–S13 captions were screened. Destructive mechanical cohorts differ from the repeatedly logged cyclic specimen. Acquisition interruptions are documented; desorbed water was not collected. Figure images, remaining sections, source data and peer review were not fully reviewed.
 - Future scope requires qualified, prepared nonliving specimens and guarded metrology. Synthesis, corrosion/degradation chemistry, powder handling, heated processing and drinking-water production or safety claims are excluded. Specimen custody, waste handling and interruption recovery need validation before conversion. No procedure or asset is supplied.
 - Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. This entry provides citation metadata and original screening commentary, not redistributed or adapted article content.
+
+## Additional candidate: prepared-panel optical durability metrology (2026-10-24)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A high-strength radiative cooling biocomposite via hierarchical crystalline nanostructuring](https://www.nature.com/articles/s41467-026-72439-z) | Nature Communications / 2026 | 10.1038/s41467-026-72439-z | Prepared panels could support specimen registration, scheduled exposure checks and repeated optical comparisons, linking handling histories to instrument records. | OA publisher HTML and supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 5827 (2026), published **28 April 2026**, version of record **3 July 2026**. Selected optical and durability Characterizations were screened; no conversion is claimed.
+- The official [63-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-72439-z/MediaObjects/41467_2026_72439_MOESM1_ESM.pdf) was text-accessible. Selected Note 2 and Figures 19, 21–22 and 36 captions were screened. Outdoor measurements must remain distinct from building-energy simulations. Figure images, remaining sections, movie, source data and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared nonliving panels and guarded optical metrology. Chemical processing, nanoparticle handling, coating deposition, accelerated UV exposure and biological degradation are excluded. Exposure records, contamination control and calibration require review before conversion. No procedure or asset is supplied.
+- Access checked **2026-10-24**. Publisher license: **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
