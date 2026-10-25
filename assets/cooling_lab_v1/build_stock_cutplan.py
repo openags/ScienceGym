@@ -17,8 +17,10 @@ def load_parts(path):
 
 def derive():
     supplies=json.loads((HERE/'supplies.json').read_text());apparatus=json.loads((HERE/'apparatus_stock_reconciliation.json').read_text())
+    frame_stock=json.loads((HERE/'frame_stock.json').read_text())
     stock={i['id']:load_parts(i['geometry']['path']) for i in supplies['items'] if i['id'] in
            ['copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','nano_pe_stock','ldpe_stock','mylar_stock']}
+    stock.update({i['id']:load_parts(i['geometry']['path']) for i in frame_stock['items']})
     built={i['id']:load_parts(i['geometry']['path']) for i in apparatus['items']};sheets=[]
     def sheet(asset,part):
         m=stock[asset][part]
@@ -79,20 +81,42 @@ def derive():
             tube_rows.append(dict(id=color+'_'+kind+'_section',asset_id=asset,part=name,raw_length_m=float(m.extents[2]),
                 finished_length_m=.057,cut_allowance_m=.001,inner_diameter_m=inner,outer_diameter_m=outer,
                 basis='57 mm PE height is inherited from the selected apparatus; the aluminum shield height is source reported',qualified=False))
+    frame_sheets={name:sheet('frame_machining_stock',name) for name in ['frame_plate_3mm','frame_clamp_block_20mm','frame_carriage_plate_4mm']}
+    used={name:0 for name in ['bridge','lower_clamp','upper_clamp','lower_carriage','upper_carriage']}
+    for requirement in frame_stock['machining_requirements']:
+        ref=requirement['output_template'];name=ref['part'];mesh=built[ref['asset_id']][name];target=frame_sheets[requirement['blank']]
+        kind='bridge' if 'frame_bridge' in name else 'lower_clamp' if 'lower_clamp' in name else 'upper_clamp' if 'upper_clamp' in name else 'lower_carriage' if name.endswith('lower') else 'upper_carriage'
+        i=used[kind];used[kind]+=1
+        position={'bridge':[.010+(i%4)*.060,.010+(i//4)*.040], 'lower_clamp':[.010+i*.050,.010],
+                  'upper_clamp':[.010+i*.050,.085], 'lower_carriage':[.250+i*.030,.010], 'upper_carriage':[.010+i*.035,.010]}[kind]
+        thickness=target['thickness_m'];finished=float(mesh.extents[2])
+        add(target,requirement['id'],MultiPoint(mesh.vertices[:,:2]).convex_hull,position,thickness,
+            'Selected blank reserved for the actual machined-part envelope; bores, split, tap and surface-finish processes are not implemented',
+            output_template=ref,output_finished_thickness_m=finished,facing_allowance_m=max(0.,thickness-finished))
+    frame_profile=next(i for i in frame_stock['items'] if i['id']=='frame_profile_stock')
+    for row in frame_profile['tube_cuts']:
+        tube_rows.append(dict(**row,asset_id='frame_profile_stock',part=row['id'],axis_index=0,inner_diameter_m=.014,outer_diameter_m=.020,
+            basis='Selected 250 mm hollow stock; finished length measured from the nominal frame, with separate 1 mm cutting allowance',qualified=False))
+    profiles=[dict(id=u['id'],asset_id='frame_profile_stock',part=u['id'],length_m=.340,output_template=u['output_template'],
+        basis='Selected vendor cut-to-length purchase; no historical SKU confirmation or supplier tolerance acceptance',qualified=False)
+        for u in frame_profile['units'] if u['kind']=='purchased_340mm_profile']
     requirements=[
-        ('consumables:consumable_01',None,'copper_sheet_stock',1),('consumables:consumable_02','aluminum sheet stock','aluminum_sheet_stock',4),
+        ('consumables:consumable_01',None,'copper_sheet_stock',1),('consumables:consumable_02','aluminum sheet stock','aluminum_sheet_stock',7),
+        ('equipment:COOLER','frame extrusion stock','frame_profile_stock',4),('equipment:COOLER','upright tube stock','frame_profile_stock',4),
+        ('consumables:consumable_12','frame fasteners','frame_mount_hardware',84),
         ('consumables:consumable_12','height-adjuster mount fasteners','lift_mount_hardware',24),
         ('consumables:consumable_02','aluminum tube stock','aluminum_tube_stock',2),('consumables:consumable_03',None,'pe_tube_stock',2),
         ('consumables:consumable_04',None,'foam_stock',1),('consumables:consumable_10',None,'acrylic_stock',2),
         ('consumables:consumable_05',None,'nano_pe_stock',8),('consumables:consumable_06',None,'ldpe_stock',6),('consumables:consumable_09',None,'mylar_stock',3)]
     return dict(schema_version=1,status='selected_cut_envelopes_not_manufacturing_or_campaign_acceptance',
-        sheets=sheets,tubes=tube_rows,component_allocations=[dict(resource_id=r,component_label=l,asset_id=a,selected_required_stock_units=q) for r,l,a,q in requirements],
-        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'supplies.json',HERE/'apparatus_stock_reconciliation.json',HERE/'stock_sources.json']],
+        sheets=sheets,tubes=tube_rows,profiles=profiles,component_allocations=[dict(resource_id=r,component_label=l,asset_id=a,selected_required_stock_units=q,
+            additional_asset_ids=['frame_machining_stock'] if l=='aluminum sheet stock' else []) for r,l,a,q in requirements],
+        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'supplies.json',HERE/'apparatus_stock_reconciliation.json',HERE/'stock_sources.json',HERE/'frame_stock.json']],
         limits=['Material identity, tolerances, kerf, ordinary workholding, tools, surface finishing and fabrication remain unqualified',
                 'Convex profiles reserve material; they are not executable tool paths, manipulation steps or fabricated parts',
                 'Optical witness stock is reserved separately, but holder-compatible sample formats and copper witness allocation remain unresolved',
                 'The third PE tube is unallocated reserve. No retry, failed-cut or repeated-validation budget is claimed',
-                '80/20 framing, rods, brackets, fasteners, coatings, adhesive and service consumption still need separate allocation'],
+                'Frame stock quantities are selected, but machining, tool access, tolerances and stock restraint are unqualified; coatings, adhesive and service consumption still need allocation'],
         campaign_complete=False,owner_acceptance=None)
 
 

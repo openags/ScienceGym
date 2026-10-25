@@ -59,7 +59,7 @@ def run(url,browser):
         for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','g1','caliper','driver','tray_white','waterjet','heater','heater_white','cooler_white','cooler_black','cooler_fixed','camera_head','camera_wrist_left','camera_wrist_right','tc_01',
             'wire_stripper','terminal_driver','tweezers_white','fill_jug','ambient_rtd','tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
             'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock','harrick_hrs','spectratech_500',
-            'copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','lab_jack_white','lab_jack_black','lift_mount_hardware']:
+            'copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware']:
             page.locator('#asset-select').select_option(identity);page.locator('#isolate').check();page.wait_for_timeout(200)
             check('inspect_'+identity,page.locator('html').get_attribute('data-selected-asset')==identity)
             closed=capture(identity+'_closed')
@@ -72,6 +72,10 @@ def run(url,browser):
             if identity in ['lab_jack_white','lab_jack_black','lift_mount_hardware']:
                 check('separate_mount_stock_bound_'+identity,'逐件候选' in page.locator('#asset-detail').inner_text())
                 page.locator('#asset-views [data-direction="top"]').click();capture(identity+'_top')
+            if identity in ['frame_profile_stock','frame_machining_stock','frame_mount_hardware']:
+                check('separate_frame_stock_bound_'+identity,'逐件候选' in page.locator('#asset-detail').inner_text() and '推断' in page.locator('#asset-detail').inner_text())
+                for direction in ['front','top']:
+                    page.locator('#asset-views [data-direction="'+direction+'"]').click();capture(identity+'_'+direction)
             if identity in ['harrick_hrs','spectratech_500']:
                 check('optical_inferred_dimensions_visible_'+identity,'推断尺寸（待核实）' in page.locator('#asset-detail').inner_text())
                 check('optical_staged_not_installed_'+identity,'未装入光谱仪' in page.locator('#asset-detail').inner_text())
@@ -129,7 +133,7 @@ def run(url,browser):
         check('inventory_filter_partition',placed+missing+historical==inventory_count and historical==3 and missing==1,with_geometry=placed,without_geometry=missing,historical=historical)
         page.locator('#filter').select_option('all')
         expected_workspace=json.loads((ROOT/'assets/cooling_lab_v1/workspace_checks.json').read_text())
-        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==84)
+        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==87)
         page.locator('button[data-target="cary_front"]').click();check('static_workspace_pose_selected',page.locator('html').get_attribute('data-workspace-pose')=='cary_front');capture('g1_cary_access')
         page.locator('#workspace-reset').click();check('static_workspace_pose_reset',page.locator('html').get_attribute('data-workspace-pose') is None)
         page.locator('#review-notes').fill('QA temporary comment; not acceptance')

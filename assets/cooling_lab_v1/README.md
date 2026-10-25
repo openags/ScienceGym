@@ -10,7 +10,7 @@ cover and extraction controls. It retains failed fit results; it is not an
 accepted operating configuration or robot animation.
 The existing local server uses port 8769. The scene contains the complete
 official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
-selected OMAX ProtoMAX waterjet. Geometry sliders and the 84 per-point static
+selected OMAX ProtoMAX waterjet. Geometry sliders and the 87 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
@@ -18,7 +18,7 @@ inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
 The current derivative retains the official camera arms and replaces both
 collar halves, without rescaling the robot or cameras. Exact triangle checks
-screen rigid clearance at sampled finger configurations and all 84 station
+screen rigid clearance at sampled finger configurations and all 87 station
 postures. Compliant lining, preload, retention and cables remain unresolved, so
 these attachments are hidden by default and do not count as an installation.
 The viewer can display them for fit review, and records separate attachment
@@ -118,7 +118,7 @@ clone must run the rebuild before displaying them; there is no fallback to the
 old placeholder mechanism. The original historical input bundle is unchanged.
 Top screw access needs the thermal stack absent; underside screws need a
 supported state with the bottom accessible. Physical threads, preload, acrylic
-stress, loads, frame/upright/track connections, film/shield retention, tools and
+stress, loads, frame/upright/track mechanics, film/shield retention, tools and
 cables remain open. These are static candidates awaiting asset acceptance.
 
 The first shelf placement was too deep: all three selected stock approaches
@@ -175,7 +175,7 @@ is an exploded inspection, not the jack's travel or a robot operation.
   <chromium-executable>` against the same localhost server for browser evidence.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 84 separately tested palm-position targets, including 33 staged supply approaches, two heater instances and two angular-accessory approaches, with proposed camera-clearance screening; records
+- `workspace_checks.json`: 87 separately tested palm-position targets, including staged supply approaches, two heater instances and two angular-accessory approaches, with proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
@@ -201,14 +201,14 @@ remain unplaced historical inventory references.
 The official integrated candidate can be inspected at
 `viewer/robot_resource_review_v1/index.html`. The 66 inventory rows include
 three superseded robot/hand references; these are not additional required robots.
-The active scope is 63 resource groups / 145 component needs. The viewer keeps
+The active scope is 63 resource groups / 147 component needs. The viewer keeps
 three historical choices in a separate filter and excludes them from current
 missing-asset counts. Of 63 active groups, 62 have partial geometry and one
 have none; this is not a completeness percentage.
 
 ## Added ordinary supplies and collar revision
 
-The scene now contains 71 placed instances. `supplies.json` binds twenty-eight
+The scene now contains 74 placed instances. `supplies.json` binds twenty-eight
 additional reconstruction types: ST-450, AA.SA.T.6 tweezers, Wiha 26015,
 Bürkle 7102-2000, the source-identified ambient RTD, eight separate K-connector
 pairs in an ordinary tray, three film-stock types, masking tape, unmachined
@@ -265,7 +265,8 @@ the middle shelf; tape and copper are near the accessible bench edge. The wipes
 can target is a selected release approach above its rim, not a low rim grasp or
 a demonstrated pedal/lid/disposal sequence.
 
-`staged_supply_bindings.json` binds twenty-four component needs to actual scene
+`readiness.json` combines `staged_supply_bindings.json` with optical-accessory,
+jack and frame stock records to bind forty-two component needs to actual scene
 instances and named parts. Film sheets and connector pairs are counted
 individually; the same two tweezers are explicitly shared across handling roles.
 `readiness.json` pins these geometry identities and exposes staged quantities
@@ -298,9 +299,9 @@ The inspector links this comparison for each new asset. Associations are not
 accepted operation-to-part bindings. Missing reference views and all acceptance
 decisions remain explicit; CAD download listings are not downloaded CAD.
 
-`campaign_allocation.json` accounts for all 145 active component requirements
-and the eleven branches. Seventeen core equipment/probe components and ten stock
-components have explicit selected quantities; the other 118 retain
+`campaign_allocation.json` accounts for all 147 active component requirements
+and the eleven branches. Seventeen core equipment/probe components and thirteen stock
+components have explicit selected quantities; the other 117 retain
 unknown required quantities. These
 counts describe allocation work, not asset completeness. The paired power branch
 now has two separately staged KHR-2/2-P candidates, `heater_white` and `heater`,
@@ -310,14 +311,14 @@ The white and black apparatus keep their identity through the selected tracked,
 fixed and restored configurations. Their completed-state meshes, the separate
 fixed-configuration display and the alternative D455 reference are excluded from
 initial-stock credit. Final optical specimen formats, fixed-conversion connecting
-hardware, remaining frame stock, services and repeat/reset consumption remain open.
+hardware, manufacturing tools, services and repeat/reset consumption remain open.
 `check_allocation.py` rejects duplicate unit counts and display-as-stock claims;
 it also reproduces the previous missing-second-heater deficit. The interactive
 review at `viewer/lab_review_v1/allocation.html` filters by branch, component and
 unallocated demand, and rejects a report whose source hashes have changed.
 
-`stock_cutplan.json` reserves 43 cut envelopes or witness regions on 25 actual
-stock sheets and four hollow-tube sections. It measures the selected apparatus
+`stock_cutplan.json` reserves 63 cut envelopes or witness regions on 28 actual
+stock sheets/blanks, eight hollow-tube sections and four purchased profiles. It measures the selected apparatus
 meshes, keeps 1 mm edge/cut allowances, and separately reserves fresh nano-PE
 for white-apparatus restoration and film stock for optical witnesses. The
 allocation page displays each sheet to scale. These envelopes are not executable
@@ -343,9 +344,9 @@ actual failed mesh remains in `foil_mesh_rejected.json`. The current nine wraps
 have no FCL triangle intersections with their substrates after circumscribed
 tessellation and a recorded sub-micron export allowance. This numerical allowance
 is separate from film thickness and does not model adhesive or compliant contact.
-`stock_cut_checks.json` records dimensional evidence only. Frame profiles, rods,
-brackets, fasteners, coatings, adhesives and repeated-run consumption still need
-allocation before a complete asset review can be accepted.
+`stock_cut_checks.json` records dimensional evidence only. Ordinary machining
+tools, coatings, adhesives and repeated-run consumption still need allocation
+before a complete asset review can be accepted.
 
 The loose heater access points are palm approaches 100 mm above the thin parts,
 not pickup contacts. The former 40 mm approaches produced wrist/bench overlap
@@ -371,6 +372,32 @@ does not establish manufacturer tolerances or physical compatibility. The
 checker uses Manifold solid intersection volumes because FCL reported large
 depths for coincident planar contacts. Tiny screw/thread/seat tessellation
 intersections are separately recorded without force or installation credit.
-Frame stock and ordinary machining/tool allocation are still incomplete;
+Ordinary machining/tool and reset allocation are still incomplete;
 clamp mechanics, adhesion, reflector travel, cover support and cable routing
 remain open before the complete scene can be submitted for owner acceptance.
+
+`frame_stock.json` separates 95 initial-stock units from the completed references:
+four purchased 340 mm profile lengths, four uncut 250 mm upright tubes, three
+aluminum blanks and 84 ordinary fastener/pad units. The eight pads include
+separate inferred release liners, giving 92 hardware meshes. Screw resting
+poses use actual geometry and a uniform-density assumption; long screws lie
+low instead of standing on their heads. This is a static placement hypothesis,
+not a settled physical state or demonstrated pickup.
+
+The three blanks reserve 20 bridge, clamp and reflector-carriage outputs.
+Upper carriage plates require facing the selected 4 mm raw plate to 3.75 mm;
+the cut plan records raw and finished thickness separately. Cut outlines do
+not establish drilling, threads, clamp slots, facing or workholding. The four
+upright tube reservations preserve actual output length plus cutting allowance.
+Hardware units and part bindings are distinct; negative checks reject a missing
+T-nut and a duplicated physical part instead of counting either as sufficient.
+
+The first machining-stock placement overlapped the existing aluminum-tube
+stock. `frame_stock_layout_rejected.json` and its retained world-space GLB
+preserve that observed overlap independently of later scene rebuilds. Moving
+the machining blanks 390 mm left removes it while retaining shelf support.
+`frame_stock_checks.json` checks nominal quantities, exported solid geometry,
+rigid hardware shape preservation, resting envelopes and the failed layout.
+These three stock assets are inspectable individually in the main viewer and
+their reservations appear in the allocation page. They add no assembly,
+campaign-success or asset-acceptance credit.

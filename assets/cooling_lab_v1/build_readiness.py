@@ -50,7 +50,7 @@ DECOMPOSE={
  'robot:WRIST_RGB_LEFT':['selected left D405 camera','left wrist mounting hardware','USB power/data and strain relief','optical and mounting calibration'],
  'robot:WRIST_RGB_RIGHT':['selected right D405 camera','right wrist mounting hardware','USB power/data and strain relief','optical and mounting calibration'],
  'equipment:WATERJET':['cutting table and slats','stage and nozzle','guard and interlocks','pump and pressure circuit','abrasive hopper and feed','abrasive stock','water supply and filtration','drain and spent-abrasive collection','controller and laptop'],
- 'equipment:COOLER':['white tracked assembly','black tracked assembly','fixed-band configuration and reusable parts','height-adjustable support'],
+ 'equipment:COOLER':['white tracked assembly','black tracked assembly','fixed-band configuration and reusable parts','height-adjustable support','frame extrusion stock','upright tube stock'],
  'equipment:WEATHER':['U30 logger','temperature/humidity sensor','wind sensor','mast and brackets','power and data connections'],
  'equipment:TC':['identified K probes','lead pairs','numbered transition terminals','strain relief'],
  'equipment:AMB_RTD':['ambient probe','radiation shield','mount','lead termination'],
@@ -133,6 +133,18 @@ def build():
         members=[dict(asset_id='lab_jack_'+color) for color in ['white','black']],scope='Two purchased source-scale jack candidates; no installed or actuation qualification'))
     staged['bindings'].append(dict(resource_id=mount_stock['resource_id'],component_label=mount_stock['component_label'],unit='fastener_or_washer',
         members=[dict(asset_id=mount_stock['id'],parts=u['parts']) for u in mount_stock['units']],scope='24 separately counted ordinary mounting pieces for the pair; no preload, thread or assembly qualification'))
+    frame_stock=json.loads((HERE/'frame_stock.json').read_text())
+    for item in frame_stock['items']:
+        if item['id']=='frame_machining_stock':
+            binding=next(b for b in staged['bindings'] if b['resource_id']=='consumables:consumable_02' and b['component_label']=='aluminum sheet stock')
+            binding['members'] += [dict(asset_id=item['id'],parts=u['parts']) for u in item['units']]
+        elif item['id']=='frame_profile_stock':
+            for label,ids in item['component_groups'].items():
+                staged['bindings'].append(dict(resource_id=item['resource_id'],component_label=label,unit='individual_length',
+                    members=[dict(asset_id=item['id'],parts=u['parts']) for u in item['units'] if u['id'] in ids],scope=item['scope']))
+        else:
+            staged['bindings'].append(dict(resource_id=item['resource_id'],component_label=item['component_label'],unit='fastener_or_pad_package',
+                members=[dict(asset_id=item['id'],parts=u['parts']) for u in item['units']],scope=item['scope']))
     by_component={(r['resource_id'],c['label']):c for r in requirements for c in r['components']}
     assets={a['id']:a for a in scene['assets']};seen=set()
     for binding in staged['bindings']:
@@ -163,7 +175,7 @@ def build():
               disposition='Inspect against ordinary-tool-only contract; old text remains historical, not current runtime authority'))
     branch_rows=[dict(id=b['id'],title=b['title'],manual_step_ids=[s['step_id'] for s in step_rows if s['operation_id'] in b['operation_ids']],
                      status='requirements_only_no_humanoid_execution',qualified_trials=0) for b in branches]
-    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',HERE/'lift_mount_stock.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
+    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',HERE/'lift_mount_stock.json',HERE/'frame_stock.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
     active=[r for r in requirements if r['disposition']!='historical_embodiment_reference']
     out=dict(schema_version=1,status='asset_phase_incomplete',visibility='author_and_reviewer_only_not_actor_input',
       source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in source_paths],

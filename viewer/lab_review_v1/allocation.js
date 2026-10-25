@@ -1,12 +1,13 @@
 const $=id=>document.getElementById(id),root='../../';let report,stockPlan;
-const stockLabels={copper_sheet_stock:'铜板',aluminum_sheet_stock:'铝板',foam_stock:'泡沫板',acrylic_stock:'亚克力板',mylar_stock:'镀铝 PET',nano_pe_stock:'纳米多孔 PE',ldpe_stock:'LDPE'};
-const unitLabels={instrument_or_probe:'台／支',tool:'件',vessel:'个',probe:'支',sheet:'张',plate:'块',tube:'段',roll:'卷',blank:'块',cart:'辆',tray:'个',connector_pair:'对',kit:'套',lead:'根','T-nut':'个','inspection asset':'件'};
+const stockLabels={copper_sheet_stock:'铜板',aluminum_sheet_stock:'铝板',foam_stock:'泡沫板',acrylic_stock:'亚克力板',mylar_stock:'镀铝 PET',nano_pe_stock:'纳米多孔 PE',ldpe_stock:'LDPE',frame_machining_stock:'框架加工铝坯'};
+const unitLabels={instrument_or_probe:'台／支',tool:'件',vessel:'个',probe:'支',sheet:'张',plate:'块',tube:'段',roll:'卷',blank:'块',cart:'辆',tray:'个',connector_pair:'对',kit:'套',lead:'根','T-nut':'个','inspection asset':'件',individual_length:'根',fastener_or_pad_package:'件／包'};
 const mm=v=>Number((v*1000).toFixed(3));
 function cutLabel(c){
  const color=c.id.includes('white')?'白色装置':c.id.includes('black')?'黑色装置':'';
  if(c.id.includes('witness'))return (c.id.includes('shortwave')?'短波':c.id.includes('infrared')?'红外':'铜质')+'光学试片预留，最终规格待定';
  if(c.id.includes('restore'))return '白色装置恢复用膜 · 第 '+c.id.at(-1)+' 层';
  if(c.id.includes('layer'))return color+'覆盖膜 · 第 '+c.id.at(-1)+' 层';
+ for(const [key,label] of [['frame_bridge','底板连接板'],['frame_lower_clamp','立柱下夹块'],['frame_upper_clamp','立柱上夹块'],['frame_carriage_lower','反射片下夹板'],['frame_carriage_upper','反射片上夹板']])if(c.id.includes(key))return color+' · '+label;
  for(const [key,label] of [['base_foil','底板贴膜'],['foam_wrap','泡沫包覆毛坯'],['support_wrap','支撑管包覆毛坯'],['emitter','铜发射片'],['foam','泡沫层'],['base','底板'],['platform','升降台上平台'],['aperture','开口板'],['reflector','反射片'],['track','反射片轨道'],['fixed_band','固定遮阳带'],['spacer','覆盖膜间隔环']])if(c.id.includes(key))return color+' · '+label;
  return c.id;
 }
@@ -25,7 +26,8 @@ function renderStock(){
   const polygon=svg('polygon',{points:points.map(p=>p.join(',')).join(' '),fill:color,'fill-opacity':.2,stroke:color,'stroke-width':.7,'data-cut-id':c.id});
   if(c.reservation_only||c.wrapped_surface)polygon.setAttribute('stroke-dasharray','3 2');
   polygon.append(svg('title',{},cutLabel(c)));drawing.append(polygon,svg('text',{x:(bounds[0]+bounds[2])/2,y:(bounds[1]+bounds[3])/2+2,'text-anchor':'middle','font-size':8,fill:'#173d35'},i+1));
-  const li=element('li',cutLabel(c)+' · '+Number((bounds[2]-bounds[0]).toFixed(2))+' × '+Number((bounds[3]-bounds[1]).toFixed(2))+' mm');li.dataset.cutId=c.id;$('stock-cuts').append(li);
+  const facing=c.facing_allowance_m>.000001?' · 原厚 '+mm(c.required_thickness_m)+' mm，需铣至 '+mm(c.output_finished_thickness_m)+' mm':'';
+  const li=element('li',cutLabel(c)+' · '+Number((bounds[2]-bounds[0]).toFixed(2))+' × '+Number((bounds[3]-bounds[1]).toFixed(2))+' mm'+facing);li.dataset.cutId=c.id;$('stock-cuts').append(li);
  }
  drawing.dataset.sheet=row.id;
 }
@@ -68,9 +70,10 @@ async function start(){
  for(const p of report.physical_instances.filter(p=>!p.initial_stock_credit))card('allocation-references',p.id+' · '+p.label,p.note);
  for(const gap of report.remaining)card('allocation-remaining',gap.label,gap.detail);
  for(const id of ['allocation-branch','allocation-filter','allocation-search'])$(id).addEventListener(id==='allocation-search'?'input':'change',render);
- $('stock-summary').textContent=stockPlan.sheets.length+' 片原料，'+stockPlan.sheets.reduce((n,s)=>n+s.cuts.length,0)+' 项轮廓／试片预留，以及 '+stockPlan.tubes.length+' 段空心管。每项保留 1 mm 边缘与切割间隔；未完成加工验收。';
+ $('stock-summary').textContent=stockPlan.sheets.length+' 片原料，'+stockPlan.sheets.reduce((n,s)=>n+s.cuts.length,0)+' 项轮廓／试片预留，以及 '+stockPlan.tubes.length+' 段空心管、'+stockPlan.profiles.length+' 根定尺型材。下料保留 1 mm 边缘与切割间隔；加工尚未验收。';
  const sheetNumbers={};for(const s of stockPlan.sheets){sheetNumbers[s.asset_id]=(sheetNumbers[s.asset_id]||0)+1;const o=element('option',stockLabels[s.asset_id]+' · 第 '+sheetNumbers[s.asset_id]+' 片 · 厚 '+mm(s.thickness_m)+' mm');o.value=s.id;$('stock-sheet').append(o)}
- for(const t of stockPlan.tubes)$('stock-tubes').append(element('p',(t.id.startsWith('white')?'白色':'黑色')+'装置 · '+(t.asset_id==='pe_tube_stock'?'PE':'铝')+'管，内径 '+mm(t.inner_diameter_m)+' / 外径 '+mm(t.outer_diameter_m)+' mm：原长 '+mm(t.raw_length_m)+' → 成品 '+mm(t.finished_length_m)+' mm，另留 '+mm(t.cut_allowance_m)+' mm 切割余量。'));
+ for(const t of stockPlan.tubes)$('stock-tubes').append(element('p',(t.id.includes('white')?'白色':'黑色')+'装置 · '+(t.asset_id==='pe_tube_stock'?'PE':t.asset_id==='frame_profile_stock'?'立柱铝':'遮罩铝')+'管，内径 '+mm(t.inner_diameter_m)+' / 外径 '+mm(t.outer_diameter_m)+' mm：原长 '+mm(t.raw_length_m)+' → 成品 '+mm(t.finished_length_m)+' mm，另留 '+mm(t.cut_allowance_m)+' mm 切割余量。'));
+ for(const p of stockPlan.profiles)$('stock-profiles').append(element('p',(p.id.includes('white')?'白色':'黑色')+'装置 · '+(p.id.endsWith('left')?'左':'右')+'侧 20-2020 型材，选定采购长度 '+mm(p.length_m)+' mm；未验收供应公差。'));
  $('stock-sheet').addEventListener('change',renderStock);renderStock();render();document.documentElement.dataset.allocationLoaded='true';
 }
 start().catch(e=>{$('allocation-error').textContent=String(e);document.documentElement.dataset.allocationLoaded='error'});

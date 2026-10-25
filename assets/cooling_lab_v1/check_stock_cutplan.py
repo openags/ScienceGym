@@ -32,6 +32,7 @@ def build():
     for artifact in [plan,apparatus]:
         for s in artifact['source_artifacts']:check('source_'+s['path'],sha(ROOT/s['path'])==s['sha256'])
     by_asset={i['id']:i for i in supplies['items']};stock={a:load_parts(i['geometry']['path']) for a,i in by_asset.items()}
+    frame=json.loads((HERE/'frame_stock.json').read_text());stock.update({i['id']:load_parts(i['geometry']['path']) for i in frame['items']})
     outputs={i['id']:load_parts(i['geometry']['path']) for i in apparatus['items']}
     seen=set()
     for row in plan['sheets']:
@@ -44,7 +45,9 @@ def build():
                 ref=cut['output_template'];m=outputs[ref['asset_id']][ref['part']]
                 measured=MultiPoint(m.vertices[:,:2]).convex_hull;p=Polygon(cut['outline_m'])
                 measured=translate(measured,p.bounds[0]-measured.bounds[0],p.bounds[1]-measured.bounds[1])
-                check('output_shape_'+cut['id'],measured.hausdorff_distance(p)<1e-8 and abs(m.extents[2]-cut['required_thickness_m'])<1e-8)
+                finished=cut.get('output_finished_thickness_m',cut['required_thickness_m'])
+                check('output_shape_'+cut['id'],measured.hausdorff_distance(p)<1e-8 and abs(m.extents[2]-finished)<1e-8)
+                if 'facing_allowance_m' in cut:check('explicit_facing_allowance_'+cut['id'],cut['facing_allowance_m']>=0 and abs(cut['required_thickness_m']-finished-cut['facing_allowance_m'])<2e-7)
             if 'wrapped_surface' in cut:
                 f=cut['wrapped_surface'];bounds=Polygon(cut['outline_m']).bounds
                 check('unrolled_surface_'+cut['id'],bounds[2]-bounds[0]>np.pi*f['diameter_m']+f['lap_m'] and bounds[3]-bounds[1]>=f['height_m'])
@@ -56,9 +59,15 @@ def build():
         sheet_results.append(dict(id=row['id'],cuts=len(row['cuts']),nominal_geometry_clear=True))
     for row in plan['tubes']:
         m=stock[row['asset_id']][row['part']];center=m.bounds.mean(axis=0)
-        check('raw_length_'+row['id'],m.extents[2]>row['finished_length_m']+row['cut_allowance_m'])
-        radial=np.linalg.norm(m.vertices[:,:2]-center[:2],axis=1)
+        axis=row.get('axis_index',2);radial_axes=[i for i in range(3) if i!=axis]
+        check('raw_length_'+row['id'],m.extents[axis]>row['finished_length_m']+row['cut_allowance_m'])
+        radial=np.linalg.norm(m.vertices[:,radial_axes]-center[radial_axes],axis=1)
         check('real_hollow_tube_'+row['id'],abs(radial.min()*2-row['inner_diameter_m'])<1e-7 and abs(radial.max()*2-row['outer_diameter_m'])<1e-7 and not m.contains([center]).any())
+        if 'output_template' in row:
+            ref=row['output_template'];check('measured_finished_tube_'+row['id'],abs(outputs[ref['asset_id']][ref['part']].extents[2]-row['finished_length_m'])<2e-7)
+    for row in plan['profiles']:
+        m=stock[row['asset_id']][row['part']];ref=row['output_template'];target=outputs[ref['asset_id']][ref['part']]
+        check('purchased_profile_has_actual_nominal_section_'+row['id'],abs(m.extents[0]-row['length_m'])<2e-7 and np.allclose(np.sort(m.extents),np.sort(target.extents),atol=2e-7) and abs(m.volume-target.volume)<1e-10)
     for item in apparatus['items']:
         identity=item['id'];new=outputs[identity];prefix={'cooler_white':'COOLER_WHITE__','cooler_black':'COOLER_BLACK__','cooler_fixed':'COOLER_FIXED_BAND__'}[identity]
         original=imported_scene('assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',prefix=prefix)
@@ -99,7 +108,7 @@ def build():
     check('negative_previous_foil_intersects_substrate',collision and max(c.depth for c in contacts)>.000001)
     out=dict(schema_version=1,passed=all(c['passed'] for c in checks),checks=checks,sheets=sheet_results,
         scope='Stock identities, nominal cut envelopes and selected foil geometry; not fabrication, optical, load or campaign qualification',
-        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'stock_cutplan.json',HERE/'supplies.json',HERE/'apparatus_stock_reconciliation.json',HERE/'stock_rejected.json',HERE/'foil_mesh_rejected.json']],
+        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'stock_cutplan.json',HERE/'supplies.json',HERE/'apparatus_stock_reconciliation.json',HERE/'stock_rejected.json',HERE/'foil_mesh_rejected.json',HERE/'frame_stock.json']],
         owner_acceptance=None,manufacturing_qualified=False)
     write_json(HERE/'stock_cut_checks.json',out);print(json.dumps(dict(checks=len(checks),passed=out['passed'],sheets=len(sheet_results))))
 

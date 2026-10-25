@@ -121,6 +121,7 @@ def review():
     evidence['LAB-02']+=['assets/thorlabs_l200_v1/sources.json','assets/thorlabs_l200_v1/model.json','assets/thorlabs_l200_v1/checks.json']
     evidence['LAB-02']+=['assets/cooling_lab_v1/apparatus_mount_sources.json','assets/cooling_lab_v1/lift_mount_stock.json','assets/cooling_lab_v1/apparatus_mount_checks.json']
     evidence['LAB-02']+=['assets/cooling_lab_v1/apparatus_frame_sources.json','assets/cooling_lab_v1/apparatus_frame_checks.json','assets/cooling_lab_v1/frame_sharp_tnut_rejected.json']
+    evidence['LAB-02']+=['assets/cooling_lab_v1/frame_stock.json','assets/cooling_lab_v1/frame_stock_checks.json']
     evidence['LAB-07']+=['viewer/lab_review_v1/ftir.html','viewer/lab_review_v1/ftir.js']
     evidence['LAB-07']+=['viewer/lab_review_v1/allocation.html','viewer/lab_review_v1/allocation.js','viewer/lab_review_v1/allocation.css']
     evidence['LAB-07']+=['viewer/lab_review_v1/sensors.js']

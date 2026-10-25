@@ -65,6 +65,12 @@ def validate():
     frame_checks=json.loads((HERE/'apparatus_frame_checks.json').read_text())
     for ref in frame_checks['source_artifacts']:check('frame_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
     check('three_reference_frames_checked_not_qualified',frame_checks['passed'] and len(frame_checks['items'])==3 and not frame_checks['physical_installation_qualified'] and frame_checks['owner_acceptance'] is None)
+    frame_stock=json.loads((HERE/'frame_stock.json').read_text());frame_stock_checks=json.loads((HERE/'frame_stock_checks.json').read_text())
+    for ref in frame_stock_checks['source_artifacts']:check('frame_stock_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    check('frame_starting_stock_checked_not_accepted',frame_stock_checks['passed'] and frame_stock_checks['stock_units']==95 and not frame_stock_checks['scene_access_qualified'] and frame_stock_checks['owner_acceptance'] is None)
+    for item in frame_stock['items']:
+        a=next(a for a in scene['assets'] if a['id']==item['id'])
+        check('actual_frame_stock_instance_'+item['id'],a['source_artifact']=={'path':item['geometry']['path'],'sha256':item['geometry']['sha256']})
     for item in apparatus['items']:
         a=next(a for a in scene['assets'] if a['id']==item['id'])
         check('reference_contains_actual_jack_'+item['id'],len([n for n in a['part_names'] if 'L200_M__solid_' in n])==86 and a['source_artifact']['sha256']==item['geometry']['sha256'])
@@ -138,10 +144,10 @@ def validate():
     active=[r for r in readiness['requirements'] if r['disposition']!='historical_embodiment_reference']
     rc=readiness['counts']
     check('active_requirements_exclude_three_historical_models',rc['active_requirement_groups']==len(active)==63 and rc['historical_requirement_groups']==len(readiness['requirements'])-len(active)==3)
-    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==145 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==1)
+    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==147 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==1)
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
-    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==39)
+    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==42)
     check('staged_quantities_not_campaign_claims',all(c['required_quantity'] is None and not c['staged_candidates']['campaign_sufficiency_accepted'] and c['staged_candidates']['quantity']==len(c['staged_candidates']['members']) for c in staged))
     for c in staged:
         for unit_index,member in enumerate(c['staged_candidates']['members']):

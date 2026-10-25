@@ -6,11 +6,11 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "32c3d085f764b687e45d0cd285103b10d17f3e52ff747bf816066f33d7cd18b3"
+      "sha256": "73ec681dcbde51293e70dba5a150a86a9278161fd6a2bf2d71fdf05a2166afba"
     },
     {
       "path": "assets/cooling_lab_v1/readiness.json",
-      "sha256": "e9502830245201485fea68b34bd195ced22065c5f1f029508e2a6639ccc568e2"
+      "sha256": "ee0e110efbdad56aa7671b31275aa93dbe581e48d5a985f0aff3e893d90bb1f4"
     },
     {
       "path": "assets/cooling_lab_v1/pilot_contract.json",
@@ -30,11 +30,11 @@
     },
     {
       "path": "assets/cooling_lab_v1/stock_cutplan.json",
-      "sha256": "5a0e54ad161415f472ca10149d3be567548e12b08484b79e701159ce72ab37ce"
+      "sha256": "7ea303b18bc44a5c44cbf5edd7791cdf71f341ff12ba7ab9232830dd5a0d004b"
     },
     {
       "path": "assets/cooling_lab_v1/build_campaign_allocation.py",
-      "sha256": "4ae24481c2f342946292af5d153c6cd00cd65df3d016cca9c5018950efdcbc20"
+      "sha256": "2e5c31af48e3b83e913a2e5db257cf41fd93e6b6c3620077eb1ee86ec111b835"
     }
   ],
   "selected_policy": {
@@ -581,6 +581,60 @@
         -4.56,
         3.96,
         1.1175
+      ]
+    },
+    {
+      "id": "frame_profile_stock",
+      "role": "staged_candidate",
+      "label": "框架型材与立柱原管 · 4 根定尺型材 + 4 根原管",
+      "note": "已放置的候选实例；未验收配置、连接或物理行为",
+      "initial_stock_credit": true,
+      "initial_state_qualified": false,
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+        "sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+      },
+      "station": "fabrication_storage_shelf_2",
+      "position_m": [
+        -4.19,
+        3.94,
+        1.1175
+      ]
+    },
+    {
+      "id": "frame_machining_stock",
+      "role": "staged_candidate",
+      "label": "框架连接件加工原料 · 3 种厚度铝坯",
+      "note": "已放置的候选实例；未验收配置、连接或物理行为",
+      "initial_stock_credit": true,
+      "initial_state_qualified": false,
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/prepared_frame_machining_stock.glb",
+        "sha256": "13f4c06533345a8314120488168f64a4135c22d83749f857d64ccf120a0f2517"
+      },
+      "station": "fabrication_storage_shelf_1",
+      "position_m": [
+        -5.19,
+        3.95,
+        0.6675
+      ]
+    },
+    {
+      "id": "frame_mount_hardware",
+      "role": "staged_candidate",
+      "label": "框架普通紧固件与底脚 · 84 个独立库存单元",
+      "note": "已放置的候选实例；未验收配置、连接或物理行为",
+      "initial_stock_credit": true,
+      "initial_state_qualified": false,
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+        "sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+      },
+      "station": "fabrication_storage_shelf_1",
+      "position_m": [
+        -4.3,
+        3.97,
+        0.6675
       ]
     },
     {
@@ -1688,7 +1742,7 @@
   ],
   "stock_allocation": {
     "path": "assets/cooling_lab_v1/stock_cutplan.json",
-    "sha256": "5a0e54ad161415f472ca10149d3be567548e12b08484b79e701159ce72ab37ce"
+    "sha256": "7ea303b18bc44a5c44cbf5edd7791cdf71f341ff12ba7ab9232830dd5a0d004b"
   },
   "components": [
     {
@@ -1768,6 +1822,124 @@
             "asset_id": "lab_jack_black"
           }
         ]
+      },
+      "quantity_deficit": 0,
+      "branch_ids": [
+        "BUILD_PAIR",
+        "TRACKED_STAGNATION",
+        "PID_POWER",
+        "FIXED_LDPE",
+        "MAP_CLEAR_DAY",
+        "MAP_CLEAR_NIGHT",
+        "MAP_HAZY_NOON"
+      ],
+      "complete": false,
+      "qualification": false
+    },
+    {
+      "id": "equipment:COOLER:component_5",
+      "resource_id": "equipment:COOLER",
+      "label": "frame extrusion stock",
+      "required_quantity": 4,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "individual_length",
+        "quantity": 4,
+        "members": [
+          {
+            "asset_id": "frame_profile_stock",
+            "parts": [
+              "profile_white_left"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+            "geometry_sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+          },
+          {
+            "asset_id": "frame_profile_stock",
+            "parts": [
+              "profile_white_right"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+            "geometry_sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+          },
+          {
+            "asset_id": "frame_profile_stock",
+            "parts": [
+              "profile_black_left"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+            "geometry_sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+          },
+          {
+            "asset_id": "frame_profile_stock",
+            "parts": [
+              "profile_black_right"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+            "geometry_sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+          }
+        ],
+        "scope": "340 mm profile is a selected vendor cut-to-length purchase; 250 mm tubes still require cutting/deburring. Grade, tolerance, storage restraint and dynamic settling are unqualified.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "branch_ids": [
+        "BUILD_PAIR",
+        "TRACKED_STAGNATION",
+        "PID_POWER",
+        "FIXED_LDPE",
+        "MAP_CLEAR_DAY",
+        "MAP_CLEAR_NIGHT",
+        "MAP_HAZY_NOON"
+      ],
+      "complete": false,
+      "qualification": false
+    },
+    {
+      "id": "equipment:COOLER:component_6",
+      "resource_id": "equipment:COOLER",
+      "label": "upright tube stock",
+      "required_quantity": 4,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "individual_length",
+        "quantity": 4,
+        "members": [
+          {
+            "asset_id": "frame_profile_stock",
+            "parts": [
+              "upright_tube_white_left"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+            "geometry_sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+          },
+          {
+            "asset_id": "frame_profile_stock",
+            "parts": [
+              "upright_tube_white_right"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+            "geometry_sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+          },
+          {
+            "asset_id": "frame_profile_stock",
+            "parts": [
+              "upright_tube_black_left"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+            "geometry_sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+          },
+          {
+            "asset_id": "frame_profile_stock",
+            "parts": [
+              "upright_tube_black_right"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb",
+            "geometry_sha256": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da"
+          }
+        ],
+        "scope": "340 mm profile is a selected vendor cut-to-length purchase; 250 mm tubes still require cutting/deburring. Grade, tolerance, storage restraint and dynamic settling are unqualified.",
+        "missing_members": []
       },
       "quantity_deficit": 0,
       "branch_ids": [
@@ -3732,11 +3904,11 @@
       "id": "consumables:consumable_02:component_1",
       "resource_id": "consumables:consumable_02",
       "label": "aluminum sheet stock",
-      "required_quantity": 4,
+      "required_quantity": 7,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "plate",
-        "quantity": 3,
+        "quantity": 7,
         "members": [
           {
             "asset_id": "aluminum_sheet_stock",
@@ -3761,12 +3933,44 @@
             ],
             "geometry_path": "assets/cooling_lab_v1/geometry/prepared_aluminum_sheet_stock.glb",
             "geometry_sha256": "de995fa82d57f6e3ca201fca549fd837ed6b35ee411bd8e0d8a815b26e21cc43"
+          },
+          {
+            "asset_id": "aluminum_sheet_stock",
+            "parts": [
+              "raw_aluminum_5mm"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_aluminum_sheet_stock.glb",
+            "geometry_sha256": "de995fa82d57f6e3ca201fca549fd837ed6b35ee411bd8e0d8a815b26e21cc43"
+          },
+          {
+            "asset_id": "frame_machining_stock",
+            "parts": [
+              "frame_plate_3mm"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_machining_stock.glb",
+            "geometry_sha256": "13f4c06533345a8314120488168f64a4135c22d83749f857d64ccf120a0f2517"
+          },
+          {
+            "asset_id": "frame_machining_stock",
+            "parts": [
+              "frame_clamp_block_20mm"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_machining_stock.glb",
+            "geometry_sha256": "13f4c06533345a8314120488168f64a4135c22d83749f857d64ccf120a0f2517"
+          },
+          {
+            "asset_id": "frame_machining_stock",
+            "parts": [
+              "frame_carriage_plate_4mm"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_machining_stock.glb",
+            "geometry_sha256": "13f4c06533345a8314120488168f64a4135c22d83749f857d64ccf120a0f2517"
           }
         ],
         "scope": "Identified uncut candidate stock. Dimensions are source facts or explicit selections; nominal cut envelopes do not qualify fabrication, tools, material grade or the complete campaign.",
         "missing_members": []
       },
-      "quantity_deficit": 1,
+      "quantity_deficit": 0,
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4846,10 +5050,697 @@
       "id": "consumables:consumable_12:component_1",
       "resource_id": "consumables:consumable_12",
       "label": "frame fasteners",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
-      "staged_candidates": null,
-      "quantity_deficit": null,
+      "required_quantity": 84,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "fastener_or_pad_package",
+        "quantity": 84,
+        "members": [
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_lower_pinch_right"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_lower_pinch_left"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bumper_left_-125",
+              "black_frame_bumper_left_-125_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bumper_left_125",
+              "black_frame_bumper_left_125_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bumper_right_-125",
+              "black_frame_bumper_right_-125_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bumper_right_125",
+              "black_frame_bumper_right_125_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bumper_left_-125",
+              "white_frame_bumper_left_-125_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bumper_left_125",
+              "white_frame_bumper_left_125_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bumper_right_-125",
+              "white_frame_bumper_right_-125_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bumper_right_125",
+              "white_frame_bumper_right_125_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_clamp_left_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_clamp_right_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_clamp_right_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_clamp_left_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_1_washer"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_2_washer"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_1_washer"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_2_washer"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_1_washer"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_2_washer"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_1_washer"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_2_washer"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_clamp_left_screw_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_clamp_right_screw_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_clamp_right_screw_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_clamp_left_screw_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_1_panel_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_2_panel_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_1_panel_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_2_panel_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_1_rail_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_2_rail_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_1_rail_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_2_rail_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_1_panel_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_2_panel_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_1_panel_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_2_panel_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_1_rail_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_2_rail_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_1_rail_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_2_rail_screw"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_clamp_left_tnut_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_clamp_left_tnut_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_clamp_right_tnut_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_clamp_right_tnut_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_clamp_left_tnut_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_clamp_left_tnut_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_clamp_right_tnut_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_clamp_right_tnut_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_1_tnut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_2_tnut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_1_tnut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_2_tnut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_1_tnut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_2_tnut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_1_tnut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_2_tnut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_1_nut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_left_2_nut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_1_nut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_bridge_right_2_nut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_1_nut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_left_2_nut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_1_nut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_bridge_right_2_nut"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_upper_pinch_right"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_upper_pinch_left"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_upper_pinch_left"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_upper_pinch_right"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_lower_pinch_left"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_lower_pinch_right"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_carriage_screw_48"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_carriage_screw_62"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_carriage_screw_48"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_carriage_screw_62"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_track_left_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_track_right_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_track_left_screw_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_track_right_screw_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_track_right_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_track_left_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "black_frame_track_right_screw_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          },
+          {
+            "asset_id": "frame_mount_hardware",
+            "parts": [
+              "white_frame_track_left_screw_0"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb",
+            "geometry_sha256": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533"
+          }
+        ],
+        "scope": "Geometric resting hypotheses with uniform density; 8 pads retain inferred release liners. No dynamic settling, adhesion, pickup, thread or campaign-reset qualification.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -8350,7 +9241,7 @@
     {
       "id": "raw_stock",
       "label": "原料下料与制造条件",
-      "detail": "两台装置的主要板材、管材、保温层与薄膜已有逐件下料范围；80/20 型材、支杆、支架、紧固件、加工工具及表面处理仍未补全。范围能放进原料不等于已加工。"
+      "detail": "两台装置的主要板材、管材、保温层、薄膜和框架已有逐件数量与下料范围；框架加工工具、孔与螺纹工艺、公差、存放约束及表面处理仍未补全。范围能放进原料不等于已加工。"
     },
     {
       "id": "fixed_pair",
@@ -8374,13 +9265,13 @@
     }
   ],
   "counts": {
-    "scene_instances": 71,
+    "scene_instances": 74,
     "reference_only_instances": 4,
-    "component_requirements": 145,
-    "selected_quantity_components": 27,
-    "components_with_staged_bindings": 53,
+    "component_requirements": 147,
+    "selected_quantity_components": 30,
+    "components_with_staged_bindings": 56,
     "quantified_pool_deficit": 0,
-    "unallocated_component_quantities": 118,
+    "unallocated_component_quantities": 117,
     "qualified_branches": 0,
     "branches": 11
   }

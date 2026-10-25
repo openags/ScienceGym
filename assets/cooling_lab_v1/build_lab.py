@@ -100,7 +100,7 @@ def asset(key,label,path,position,*,prefix=None,z_up=False,station='',resource='
     normalization[:3,3]=[-(bounds[0,0]+bounds[1,0])/2,-(bounds[0,1]+bounds[1,1])/2,-bounds[0,2]]
     if origin_xy is not None:normalization[:2,3]=-np.asarray(origin_xy)
     scene.apply_transform(normalization)
-    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_','/apparatus_','/lift_mount_','thorlabs_l200_v1']) else None))
+    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_','/apparatus_','/lift_mount_','/frame_','thorlabs_l200_v1']) else None))
     # Original authoring coordinates are Z-up before this normalization.
     part_names=list(scene.graph.nodes_geometry)
     entry=dict(id=key,label=label,resource_id=resource,station=station,
@@ -210,6 +210,14 @@ def devices():
     asset(hardware['id'],hardware['label'],hardware['geometry']['path'],[-4.56,3.96,1.1175],z_up=True,
         station='fabrication_storage_shelf_2',resource=hardware['resource_id'],source_path='assets/cooling_lab_v1/apparatus_mount_sources.json',
         note='分别计数的 24 件普通紧固件候选；用于两台升降台的上下安装。光杆包络不等于已实现螺纹接触，尚未装配。')
+    frame_stock=json.loads((HERE/'frame_stock.json').read_text())
+    frame_positions={'frame_profile_stock':([-4.19,3.94,1.1175],'fabrication_storage_shelf_2'),
+                     'frame_machining_stock':([-5.19,3.95,.6675],'fabrication_storage_shelf_1'),
+                     'frame_mount_hardware':([-4.3,3.97,.6675],'fabrication_storage_shelf_1')}
+    for item in frame_stock['items']:
+        position,station=frame_positions[item['id']]
+        asset(item['id'],item['label'],item['geometry']['path'],position,z_up=True,station=station,resource=item['resource_id'],
+              source_path='assets/cooling_lab_v1/frame_stock.json',note='框架独立初始库存候选；数量、加工余量和摆放姿态含工程推断。不是已装好的框架；公差、加工、动态静置、存放约束与取用尚未合格。')
     asset('tracker','EKO STR-32G 跟踪器（待复核）','assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',[2.5,18.6,.9],prefix='EKO_STR_32G__',
           station='tracker_support',resource='equipment:SOLAR_TRACKER',note='从历史场景按原始部件 ID 提取；待逐项对照。',source_path='assets/cooling_scene_assets_v2/equipment_research.json')
     for key,label,position,station,resource in [

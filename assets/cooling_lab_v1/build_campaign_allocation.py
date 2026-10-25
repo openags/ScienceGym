@@ -141,6 +141,11 @@ def build_record(scene, readiness):
                                 members=[dict(asset_id=m) for m in pool['staged_unit_ids']])
             elif staged:
                 evidence = {k: staged[k] for k in ['unit', 'quantity', 'members', 'scope']}
+                accounted=set()
+                for member in staged['members']:
+                    identifiers={(member['asset_id'],n) for n in member.get('parts',[])}
+                    assert identifiers and not accounted.intersection(identifiers),'duplicate staged physical part'
+                    accounted.update(identifiers)
                 # Bind stock to the current placed instances and actual named
                 # parts, even when a proposed inventory still lists a removed unit.
                 present=lambda m:m['asset_id'] in assets and set(m.get('parts',[]))<=set(assets[m['asset_id']]['part_names'])
@@ -178,7 +183,7 @@ def build_record(scene, readiness):
                    for c in ['white', 'black']],
         physical_instances=physical, pools=pools, stock_allocation={'path':'assets/cooling_lab_v1/stock_cutplan.json','sha256':sha(HERE/'stock_cutplan.json')},components=rows, branches=branch_rows,
         remaining=[
-            dict(id='raw_stock', label='原料下料与制造条件', detail='两台装置的主要板材、管材、保温层与薄膜已有逐件下料范围；80/20 型材、支杆、支架、紧固件、加工工具及表面处理仍未补全。范围能放进原料不等于已加工。'),
+            dict(id='raw_stock', label='原料下料与制造条件', detail='两台装置的主要板材、管材、保温层、薄膜和框架已有逐件数量与下料范围；框架加工工具、孔与螺纹工艺、公差、存放约束及表面处理仍未补全。范围能放进原料不等于已加工。'),
             dict(id='fixed_pair', label='两套固定构型换装件', detail='已为两条遮阳带和四层 LDPE 预留原料，白色恢复另留两层 nano-PE；完整固定支架、换装连接和重复运行复位库存仍缺。'),
             dict(id='optical_specimens', label='光学试样与标准件', detail='至少需覆盖白／黑发射体、铝反射体、nano-PE 与 LDPE 五类材料；不同夹持口径是否可复用同一试片尚未证明，实际片数和尺寸未分配。'),
             dict(id='services', label='设备配套与连接', detail='记录器并不等于完整气象站；水刀、涂覆、湿区、光学安装、电源／数据和传感器线缆仍须逐项补全。'),

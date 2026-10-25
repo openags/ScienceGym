@@ -27,7 +27,7 @@ try{
  $('frame-status').textContent='实际框架与连接几何 · 静态候选，尚未验收';
  $('frame-measurements').textContent='型材截面：'+checks.section.area_mm2.toFixed(3)+' mm²；厂家名义值 159.1 mm²。截面积接近不等于局部形状、强度或公差合格。';
  $('frame-finding').textContent=checks.checks.length+' 项静态检查通过。名义接触面、槽口、孔和独立连接件有实际几何；接触面与螺纹包络相交另行记录。';
- const remaining=['反射片夹板的锁紧、松开和完整移动范围尚未验证。','夹块弹性、摩擦、螺纹预紧和管壁承压尚未验证。','底脚黏结、压缩、户外耐候与整体承载尚未验证。','框架的独立初始库存、加工与工具数量尚未接入完整分配。','薄膜、罩体、接线端子和线缆安装仍有缺口。'];
+ const remaining=['反射片夹板的锁紧、松开和完整移动范围尚未验证。','夹块弹性、摩擦、螺纹预紧和管壁承压尚未验证。','底脚黏结、压缩、户外耐候与整体承载尚未验证。','框架库存单独核对；加工、工具与重复运行消耗仍未合格。','薄膜、罩体、接线端子和线缆安装仍有缺口。'];
  $('frame-remaining').replaceChildren(...remaining.map(t=>{const li=document.createElement('li');li.textContent=t;return li}));
  update();document.documentElement.dataset.frameLoaded='true';window.scienceGymFrameInspection=()=>({visible:[...parts].filter(([,m])=>m.visible).map(([n])=>n),group:$('frame-group').value,hardware:$('frame-hardware').checked});
 }catch(error){renderer?.dispose();$('lift-viewport').replaceChildren();$('lift-error').textContent=String(error);$('frame-status').textContent='资源未通过版本检查，暂不显示模型。';document.documentElement.dataset.frameLoaded='error'}

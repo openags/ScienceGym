@@ -260,7 +260,7 @@ def apply_frame(scene, prefix):
         remaining=['Reflector carriage is a nominal two-screw friction clamp; retention, adjustment and complete travel are not qualified',
                    'Clamp elasticity, friction, threads, preload and tube crushing need physical validation',
                    'Bumper adhesion/compression/weather exposure and all structural load capacities are unqualified',
-                   'Stock and machining/tool allocation for this frame is not yet integrated into the campaign',
+                   'Stock quantities are reviewed separately; machining, ordinary tool allocation and repeat/reset consumption remain unqualified',
                    'Film/shield and terminal/cable installation remain separate unresolved interfaces'])
 
 

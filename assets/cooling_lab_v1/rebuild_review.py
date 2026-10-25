@@ -22,7 +22,7 @@ def main():
       'assets/g1_sensor_rig_v1/convert_mounts.py','assets/g1_sensor_rig_v1/build_adapters.py','assets/g1_sensor_rig_v1/build.py','assets/g1_sensor_rig_v1/check_clocking.py',
       'assets/omega_5tc_v1/build.py','assets/omega_5tc_v1/validate.py',
       'assets/cooling_lab_v1/check_hand_envelope.py',
-      'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_supplies.py','assets/cooling_lab_v1/check_supplies.py','assets/cooling_lab_v1/build_apparatus_stock.py','assets/cooling_lab_v1/check_apparatus_mounting.py','assets/cooling_lab_v1/check_apparatus_frame.py','assets/cooling_lab_v1/build_stock_cutplan.py','assets/cooling_lab_v1/check_stock_cutplan.py','assets/cooling_lab_v1/build_waterjet.py',
+      'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_supplies.py','assets/cooling_lab_v1/check_supplies.py','assets/cooling_lab_v1/build_apparatus_stock.py','assets/cooling_lab_v1/check_apparatus_mounting.py','assets/cooling_lab_v1/check_apparatus_frame.py','assets/cooling_lab_v1/build_frame_stock.py','assets/cooling_lab_v1/check_frame_stock.py','assets/cooling_lab_v1/build_stock_cutplan.py','assets/cooling_lab_v1/check_stock_cutplan.py','assets/cooling_lab_v1/build_waterjet.py',
       'assets/cooling_lab_v1/build_angular_accessories.py','assets/cooling_lab_v1/check_angular_accessories.py',
       'assets/cooling_lab_v1/build_ftir_mounts.py','assets/cooling_lab_v1/check_ftir_mounts.py','assets/cooling_lab_v1/build_lab.py',
       'assets/cooling_lab_v1/check_layout.py','assets/cooling_lab_v1/check_workspace.py','assets/g1_sensor_rig_v1/check_fit.py','assets/cooling_lab_v1/build_review.py',
