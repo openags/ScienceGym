@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **349**.
+Last screened: **2026-10-25**. Candidate count: **350**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3547,3 +3547,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [32-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-64554-0/MediaObjects/41467_2025_64554_MOESM1_ESM.pdf) text accessible; selected prepared-metasurface and patterned-device characterization sections screened. Figure pixels, remaining sections, external code and request-only raw data were not fully reviewed.
 - Future scope requires qualified optical-safety and instrument review. Fabrication, etching, resist processing and exposure operations are excluded. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML readable despite a cookie-error marker. Citation metadata and original commentary only; no publisher images, text extracts or adapted assets redistributed.
+
+
+## Additional candidate: leaf-sample physical phenotyping (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Intraspecific and intraindividual trait variability decrease with tree richness in a subtropical tree biodiversity experiment](https://www.nature.com/articles/s41467-025-67265-8) | Nature Communications / 2025 | 10.1038/s41467-025-67265-8 | Supplied leaf specimens could support identity-preserving transfer, weighing, scanning and repeated reflectance measurements with calibration custody. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 11009 (2025), published **11 December 2025**. Selected leaf-trait acquisition Methods screened. Direct calibration measurements and model-predicted traits must remain separate; repeated spectra are not independent leaf specimens.
+- Official [44-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-67265-8/MediaObjects/41467_2025_67265_MOESM1_ESM.pdf) text accessible; selected workflow and spectral-quality captions screened. Reporting-summary request returned Internal Error and was not retried. Figure pixels, remaining sections and external data/code were not fully reviewed.
+- This safe physical-phenotyping candidate extends the earlier nonbiological discovery focus. Field collection, chemical digestion, grinding and thermal processing are excluded. Sample provenance, handling suitability and instrument qualification remain prerequisites. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY 4.0**. Citation metadata and original commentary only.
