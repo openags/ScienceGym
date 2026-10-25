@@ -13,6 +13,14 @@ official G1 29DoF + Inspire FTP geometry, ordinary tools including four newly
 staged fastening tools, and a selected OMAX ProtoMAX waterjet. Geometry sliders and the 94 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
+The separate [weather component inspector](../../viewer/lab_review_v1/weather.html)
+shows an RS3 shield kit and S-THB-M002 probe with continuous 2.0 m / 0.5 m leads,
+an inferred inline adapter and a selected RJ12 plug envelope. It retains source
+dimensions, cable/variant conflicts and unknown Onset terminal details. Actual
+solids, local cable bends, nonlocal separation and isolated head/shield clearance
+are checked. Wind sensor, support and complete installed routing remain open;
+these components do not yet receive initial-stock or installation credit.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.

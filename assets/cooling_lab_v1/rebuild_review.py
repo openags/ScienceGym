@@ -23,6 +23,7 @@ def main():
       'assets/omega_5tc_v1/build.py','assets/omega_5tc_v1/validate.py',
       'assets/cooling_lab_v1/check_hand_envelope.py',
       'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_fastener_tools.py','assets/cooling_lab_v1/check_fastener_tools.py','assets/cooling_lab_v1/build_fastener_tool_staging.py','assets/cooling_lab_v1/build_supplies.py','assets/cooling_lab_v1/check_supplies.py',
+      'assets/cooling_lab_v1/build_weather_assets.py','assets/cooling_lab_v1/check_weather_assets.py',
       'assets/cooling_lab_v1/build_apparatus_cover.py','assets/cooling_lab_v1/check_apparatus_cover.py','assets/cooling_lab_v1/build_cover_stock.py',
       'assets/cooling_lab_v1/build_apparatus_stock.py','assets/cooling_lab_v1/check_cover_stock.py','assets/cooling_lab_v1/check_apparatus_mounting.py','assets/cooling_lab_v1/check_apparatus_frame.py','assets/cooling_lab_v1/build_frame_stock.py','assets/cooling_lab_v1/check_frame_stock.py','assets/cooling_lab_v1/build_stock_cutplan.py','assets/cooling_lab_v1/check_stock_cutplan.py','assets/cooling_lab_v1/build_waterjet.py',
       'assets/cooling_lab_v1/inspect_tool_access.py',
@@ -42,6 +43,7 @@ def main():
         run('viewer/lab_review_v1/check_frame.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/frame.html')
         run('viewer/lab_review_v1/check_cover.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/cover.html')
         run('viewer/lab_review_v1/check_fasteners.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/fasteners.html')
+        run('viewer/lab_review_v1/check_weather.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/weather.html')
     print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
 
 if __name__=='__main__':main()
