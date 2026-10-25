@@ -96,10 +96,10 @@ def validate():
     active=[r for r in readiness['requirements'] if r['disposition']!='historical_embodiment_reference']
     rc=readiness['counts']
     check('active_requirements_exclude_three_historical_models',rc['active_requirement_groups']==len(active)==63 and rc['historical_requirement_groups']==len(readiness['requirements'])-len(active)==3)
-    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==136 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==6)
+    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==136 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==5)
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
-    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==20)
+    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==21)
     check('staged_quantities_not_campaign_claims',all(c['required_quantity'] is None and not c['staged_candidates']['campaign_sufficiency_accepted'] and c['staged_candidates']['quantity']==len(c['staged_candidates']['members']) for c in staged))
     for c in staged:
         for unit_index,member in enumerate(c['staged_candidates']['members']):
@@ -146,7 +146,7 @@ def validate():
     original=inspect(quiet=True);check('base_layout',original['passed'])
     faults=[]
     # Separate independent faults exercise spatial predicates, not just schema.
-    for name,expected in [('low_header','headroom_main'),('blocked_route','corridor_main'),('small_support','support_cary'),('overlapping_fixture','assets_and_authored_fixtures_separated'),('underestimated_hand_envelope','selected_hand_radius'),('opening_obstruction','external_opening_cary_lid')]:
+    for name,expected in [('low_header','headroom_main'),('blocked_route','corridor_main'),('small_support','support_cary'),('overlapping_fixture','assets_and_authored_fixtures_separated'),('underestimated_hand_envelope','selected_hand_radius'),('opening_obstruction','external_opening_cary_lid'),('service_drawers_facing_wall','service_drawers_face_accessible_north_aisle')]:
         bad=copy.deepcopy(scene)
         if name=='low_header':bad['obstacles'].append(dict(id='injected_low_header',role='test',bounds_m=[[5,4,1.2],[7,4.1,1.35]]))
         elif name=='blocked_route':bad['obstacles'].append(dict(id='injected_crate',role='test',bounds_m=[[5.8,5,.0],[6.2,5.4,1.9]]))
@@ -154,10 +154,20 @@ def validate():
         elif name=='overlapping_fixture':
             next(a for a in bad['assets'] if a['id']=='heater')['position_m']=[9.7,2.7,.9]
         elif name=='underestimated_hand_envelope':bad['envelope']['transit_radius_m']=.5
-        else:
+        elif name=='opening_obstruction':
             sweep=next(s for s in original['opening_states'] if s['id']=='cary_lid')['sweep_bounds_m'];center=(np.array(sweep[0])+sweep[1])/2
             bad['obstacles'].append(dict(id='injected_cover_obstacle',role='test',bounds_m=[(center-.01).tolist(),(center+.01).tolist()]))
         with tempfile.TemporaryDirectory() as tmp:
+            if name=='service_drawers_facing_wall':
+                # Recreate the observed visual defect in actual meshes, keeping
+                # the occupied bench box and every route unchanged.
+                structure=trimesh.load(ROOT/scene['architecture']['path'],force='scene')
+                t=trimesh.transformations.rotation_matrix(np.pi,[0,0,1],point=[8.35,.43,0])
+                for node in structure.graph.nodes_geometry:
+                    if node.startswith('robot_service_bench_'):
+                        _,key=structure.graph[node];structure.geometry[key].apply_transform(t)
+                model=Path(tmp)/'wrong_orientation.glb';model.write_bytes(structure.export(file_type='glb'))
+                bad['architecture']['path']=str(model);bad['architecture']['sha256']=sha(model)
             p=Path(tmp)/'scene.json';write_json(p,bad);record=inspect(p,Path(tmp)/'result.json',quiet=True)
         failed=[c['name'] for c in record['checks'] if not c['passed']]
         check('reject_'+name,not record['passed'] and expected in failed)

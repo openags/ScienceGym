@@ -13,15 +13,15 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "416369c71714f0a394fa95bed61f415864abdca91955d5ea87c787fb0504b8c1"
+      "sha256": "d27bb410ca68bae1a306af59820ecfb77a1f85f9a1bb4cc17db584f39c6494e9"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "a242ba39e214cfda36ddb1ec7e27bc66c20f2a2ab947a4aacf84c860f77f9c1b"
+      "sha256": "ed997747f32ee6b591adbd592ec9a623a493eb7242dc2cc40c9531da39891c35"
     },
     {
       "path": "assets/cooling_lab_v1/staged_supply_bindings.json",
-      "sha256": "79f3d821cfbab6feec9884795d3af61356c7d0403d6258f8d08a9008390e4f68"
+      "sha256": "d593e244a4a437ee9d1b255e33d10efe1ad9e917ed6c4a0183aeafe2dd6e81ec"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -166,13 +166,13 @@
     "active_requirement_groups": 63,
     "historical_requirement_groups": 3,
     "active_component_requirements": 136,
-    "active_groups_without_geometry": 6,
+    "active_groups_without_geometry": 5,
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 54,
-    "groups_with_partial_geometry": 57,
-    "components_with_staged_unit_bindings": 20,
+    "scene_instances": 56,
+    "groups_with_partial_geometry": 58,
+    "components_with_staged_unit_bindings": 21,
     "qualified_humanoid_branches": 0
   },
   "requirements": [
@@ -3306,7 +3306,77 @@
           "id": "facility:ROBOT_SERVICE:component_2",
           "label": "battery or charging service",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 2,
+            "unit": "inspection asset",
+            "members": [
+              {
+                "asset_id": "g1_spare_battery",
+                "parts": [
+                  "identification_text",
+                  "connector_retainer_15_41",
+                  "connector_retainer_15_17",
+                  "connector_retainer_-15_41",
+                  "connector_retainer_-15_17",
+                  "back_screw_53_73",
+                  "back_screw_53_7",
+                  "back_screw_-53_73",
+                  "back_screw_-53_7",
+                  "keyed_guide_recess_35",
+                  "keyed_guide_recess_-35",
+                  "recessed_charge_socket",
+                  "charge_contact_47",
+                  "charge_contact_39",
+                  "discharge_contact_11",
+                  "discharge_contact_10",
+                  "discharge_contact_9",
+                  "discharge_contact_8",
+                  "discharge_contact_7",
+                  "discharge_contact_6",
+                  "discharge_contact_5",
+                  "discharge_contact_4",
+                  "discharge_contact_3",
+                  "discharge_contact_2",
+                  "discharge_contact_1",
+                  "discharge_contact_0",
+                  "recessed_discharge_socket",
+                  "side_tab_1",
+                  "side_tab_-1",
+                  "recessed_power_switch",
+                  "release_latch_26",
+                  "release_latch_-26",
+                  "front_cap_with_latch_pockets",
+                  "unlit_led_48",
+                  "unlit_led_41",
+                  "unlit_led_34",
+                  "unlit_led_27",
+                  "battery_housing_with_recesses"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_g1_spare_battery.glb",
+                "geometry_sha256": "97304f1ff39b65ab4ab104f03f71acf3792381a5c9be7254e68c99f05199a979"
+              },
+              {
+                "asset_id": "g1_disconnected_charger",
+                "parts": [
+                  "dc_unresolved_terminal_envelope",
+                  "ac_unresolved_terminal_envelope",
+                  "dc_strain_relief",
+                  "dc_loose_cable",
+                  "ac_strain_relief",
+                  "ac_loose_cable",
+                  "identification_text",
+                  "unlit_status_window",
+                  "charger_upper_case",
+                  "charger_lower_case"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_g1_disconnected_charger.glb",
+                "geometry_sha256": "ed963cd6fc3415e94f34dc3eb7ac95da3af898d0f9beed37842bde9cabfd0980"
+              }
+            ],
+            "scope": "One spare battery and one disconnected V1.0-envelope charger; two different assets, not two complete service sets. No installed charge route, autonomous battery replacement or qualified charging location.",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "facility:ROBOT_SERVICE:component_3",
@@ -3315,8 +3385,13 @@
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
-      "authored_components": [],
+      "scene_instances": [
+        "g1_spare_battery",
+        "g1_disconnected_charger"
+      ],
+      "authored_components": [
+        "robot_service_inspection_bench"
+      ],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,

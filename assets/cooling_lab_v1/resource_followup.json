@@ -62,7 +62,7 @@
         "assets/cooling_lab_v1/supply_sources.json",
         "assets/g1_sensor_rig_v1/hardware_sources.json"
       ],
-      "finding": "Thirteen additional supply types and a G1-specific collar derivative have generated geometry and independent dimension checks. The official original collar remains a rejected fixture.",
+      "finding": "Nineteen supply types, including detached G1 service candidates, and a G1 collar derivative have generated geometry. Compound resource completeness remains unaccepted; the official original collar remains a rejected fixture.",
       "unresolved": "Geometry availability does not resolve compound resource completeness, contact parameters, wiring, compliant lining or full campaign quantity allocation."
     },
     {
@@ -93,12 +93,70 @@
         {
           "url": "https://www.tedpella.com/technote_html/16032%20TN.pdf",
           "inspected": "Single-page manufacturer technical note V3, dated 2009-10-22; extracted text."
+        },
+        {
+          "url": "https://www.tedpella.com/SEMmisc_html/16032.jpg",
+          "sha256": "5d42f66d1260e762355d3209c913a4a5bb7d47a4ad33593385543998c7ff7a25",
+          "inspected": "Manufacturer product photograph downloaded and visually inspected: open/closed jar and separate squeeze bottle. Local dimensions not established."
+        },
+        {
+          "url": "https://www.tedpella.com/SDS_html/16032_16032-20_sds.pdf",
+          "sha256": "8c248a11f158ebfa1e2e87573618404bd70209ad5440db936fc73565e9ffb269",
+          "inspected": "Manufacturer SDS revision 04 dated 2023-01-11. Flammable paste; isolation from ignition sources and suitable exhaust are scene requirements, not accepted controls."
         }
       ],
       "finding": "16032 is a room-temperature-curing candidate with 60% ±1% silver. The note distinguishes rapid surface hardening from full properties after 16–20 hours at room temperature. These are candidate material facts, not a selected paper procedure or measured simulation properties.",
-      "unresolved": "Paper brand/formulation, substrate and thermocouple compatibility, packaging dimensions and reference views, applicable SDS review, dispensing tools, quantity and waste handling. Heated cure ranges differ between the current product page and legacy note; no heated cure is selected.",
+      "unresolved": "Paper brand/formulation, measured jar dimensions, thermal/substrate/thermocouple compatibility, dispensing tool, allocation and qualified ventilation/waste handling. The 25 g jar is distinct from the 20 g squeeze bottle. No heated cure selected.",
       "geometry_status": "not_built",
       "manufacturer_files_redistributed": false
+    },
+    {
+      "resource": "facility:ROBOT_SERVICE",
+      "source": "https://marketing.unitree.com/article/en/G1/Battery_Charger.html",
+      "inspected": "Official V1.0 pages 1–4 and 6–9, including dimensional views. Sources remain external; locally inspected page hashes recorded in the asset review.",
+      "finding": "Detached spare battery and V1.0-envelope disconnected charger are staged on an ordinary inspection bench outside the main aisle. The shared service approach must not become storage. Not a qualified charging location.",
+      "geometry_status": "partial_geometry_for_review",
+      "unresolved": "Ordinary service tools, connector revision and fit, battery replacement access, charging location and reviewed service workflow. Manual and current official charger specifications differ."
+    },
+    {
+      "resource": "consumables:consumable_07",
+      "source": "https://www.afi.cc/customer/asfain/PDFS/SW_KrylonCatalog_2020_FINAL.pdf",
+      "inspected": "Search-index text of manufacturer 2020 catalogue, mirrored by AFI. Direct retrieval returned 404; catalogue images not visually reviewed.",
+      "finding": "Catalogue identifies K05150207 flat white and K05160207 flat black, 12 oz. The 2018 paper specifies flat white/black ColorMaster but no SKU. No replacement paint or inferred can dimensions accepted.",
+      "geometry_status": "not_built",
+      "unresolved": "Publication-era SKU/formulation and packaging generation, correct-product SDS, open-cap/back views and measured package dimensions. Official front photographs are now inspected, but 12 oz net contents and image DPI do not establish outside dimensions.",
+      "additional_sources": [
+        {
+          "url": "https://www.sherwin-williams.com/homeowners/products/krylon-colormaster-paint-primer",
+          "sha256": "88c12a1814022c4d4ed329abebcf4aac96113bea7846101243414b371e069219",
+          "inspected": "Manufacturer page downloaded: embedded product records 469711 / 469714 map K05150202 / K05160202 to flat white / flat black, 12 oz. This differs from the 2020 catalogue suffix 207."
+        },
+        {
+          "url": "https://sherwin.scene7.com/is/image/sw/51502-Colormaster-Flat-White?wid=800",
+          "sha256": "52bb01396647ccb0a4b4aca47009d9d6ed9c489888bf9b2f6f06bb1f18a0d487",
+          "inspected": "Manufacturer-hosted front view visually inspected; tapered white cap, cylindrical can and rolled lower seam. Image resolution is not a scale calibration."
+        },
+        {
+          "url": "https://sherwin.scene7.com/is/image/sw/51602-Colormaster-Flat-Black?wid=800",
+          "sha256": "890619051ac72a11f3eb885968c453cc2daadd037c69c1a3fe17917be28d9290",
+          "inspected": "Manufacturer-hosted front view visually inspected; black cap and colour-specific label. No open-cap, rear or dimensioned view obtained."
+        }
+      ],
+      "rejected_source": {
+        "url": "https://static.rshughes.com/wm/p/wm-asis/2e1008d4e6b1d21f06b2f05d8b50c72dc4eb72f5.pdf",
+        "sha256": "8e312df457f3041b91d2f12399b89aaccd5d9a44bc006dbd5a5adee1fabd97b6",
+        "reason": "The retailer labels this as K05150207 SDS, but the downloaded manufacturer's document identifies 3530 Acrylic Crystal Clear, dated 2008-06-15. Rejected for the flat white/black coatings."
+      },
+      "retrieval_log": [
+        {
+          "url": "https://www.sherwin-williams.com/document/SDS/en/724504015024/US/",
+          "outcome": "Inferred UPC endpoint tested; HTTP 404, no SDS obtained"
+        },
+        {
+          "url": "https://www.sherwin-williams.com/document/SDS/en/724504016021/US/",
+          "outcome": "Inferred UPC endpoint tested; HTTP 404, no SDS obtained"
+        }
+      ]
     }
   ],
   "manufacturer_files_redistributed": false,

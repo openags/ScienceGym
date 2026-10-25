@@ -59,6 +59,7 @@ def review():
       ('OUTDOOR','室外测量条件','放置白色和黑色装置、跟踪器及新建辐射传感器候选模型。','日照遮挡与天空视角、天气传感器套件、桅杆固定、防水供电和布线；当前开放地面不是论文屋顶复刻。'),
       ('FIDELITY','来源与设备真实性','每个导入模型都有来源文件、哈希和单位变换；新资产有厂家图纸位置及推断记录；G1 与 Inspire FTP 双手已采用官方几何。','全部资产逐项与实物资料对照，补齐未建工具、附件和材料，验证手部接触、驱动和载荷参数。'),
       ('SERVICE','维护与设备开闭','Cary 顶盖、Nicolet 上盖、A25 盖板和 U30 外盖可作几何状态检查。','完整安装手册维护距离；Nicolet 内部滑窗、全部线缆弯曲半径与机械连接复核。'),
+      ('ROBOT_SERVICE','机器人电池与服务','南侧普通检查台放置一块备用 G1 电池和断开的 V1.0 图册充电器；与湿区、涂覆间分开；服务站位与横向通道共用，不得占道存放。','检查台不代表充电场所已合格。电池更换接近性、接头版本、普通工具、充电位置与监护、散热及材料隔离仍待验证。'),
       ('SITE','场地条件与合规','当前场景是明确标注的新设计虚拟实验室，所有安全结论均保持未验收。','实际场地地点和适用要求、工程人员对结构/电气/通风/消防的专项审查。')]
     items=[dict(id=k,title=title,status='open',status_label='待审查',current_design=current,remaining=remaining) for k,title,current,remaining in risk_rows]
     write_json(HERE/'risk_register.json',dict(schema_version=1,scope='Scene-design risks and evidence gaps; not hardware safety certification',items=items,

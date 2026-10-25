@@ -2,7 +2,7 @@
   "schema_version": 1,
   "reviewed": "2026-10-25",
   "reviewer": "Codex author self-review; no owner acceptance",
-  "scope": "Selected ordinary preparation tools and disconnected meter leads for the cooling pilot, not equipment identities reported by the paper",
+  "scope": "Selected preparation, wiring and detached robot-service assets; author comparison only, not owner acceptance",
   "reuse": {
     "geometry": "Original reconstruction under the repository licence",
     "reference_media": "External references only; no redistribution licence established or manufacturer media copied into the repository",
@@ -28,6 +28,10 @@
         "https://us.rs-online.com/product/pomona-electronics/5908a/70198382/",
         "https://www.arrow.com/en/products/5908a/pomona-electronics.html"
       ]
+    },
+    {
+      "query": "site:unitree.com G1 battery charger CAD model",
+      "outcome": "Official 2024 V1.0 manual images obtained; no exact CAD obtained. Current official charger rating differs, so this reconstruction is bound to the old manual. All source pixels remain external."
     }
   ],
   "items": [
@@ -98,6 +102,40 @@
         "Internal crimp and strain-relief section"
       ],
       "operation_findings": "Each instance has four disconnected leads. Authored coils are not gravity-settled cables. Mating, insertion, heater termination, routed length and electrical circuit remain open."
+    },
+    {
+      "source_record": "unitree_g1_battery_v10",
+      "reference_views": [
+        {
+          "url": "https://doc-cdn.unitree.com/static/2024/9/2/54732cc287bf429887b76f7137313cef_2481x3508.png",
+          "sha256": "4466dc2ce130718971787a65813c811ce9a76e7db86c2160cf83103d30cebb31",
+          "inspected": "Official page 2 orthographic and oblique views"
+        }
+      ],
+      "appearance_findings": "Dimensioned case, end-cap seam, channels, separate recessed latches, unlit windows and recessed interface envelopes reconstructed. Rear charging is on viewer right (model -X looking from +Y), with four connector-retainer envelopes around the discharge socket. Colours, head detail and local geometry are hypotheses.",
+      "unverified_views": [
+        "Measured contact pitch/pinout and guide profile",
+        "Latch stroke, spring and retention detail",
+        "Calibrated colour photographs"
+      ],
+      "operation_findings": "Detached spare for inspection; no cell internals, battery opening, autonomous replacement or electrical behaviour."
+    },
+    {
+      "source_record": "unitree_g1_charger_v10",
+      "reference_views": [
+        {
+          "url": "https://doc-cdn.unitree.com/static/2024/9/2/5a1b99f4410344a49d94601467d17fd4_2481x3508.png",
+          "sha256": "c5afbeff0e503f48b0617699cfbb8f1701851c39c76fecb953dc1fac2b03004c",
+          "inspected": "Official page 1 oblique cover outline; page 3 dimensions separately read"
+        }
+      ],
+      "appearance_findings": "V1.0 brick envelope and opposite-end cables represented. Source silhouette is limited; seam, material, indicator and cable details are inferred. Terminal envelopes remain unresolved.",
+      "unverified_views": [
+        "Matching front/back/side photographs of the V1.0 charger",
+        "Regional AC plug and battery connector measurements",
+        "Hardware revision corresponding to the current 54 V / 5 A specification"
+      ],
+      "operation_findings": "Disconnected asset on an inspection bench. No charging installation, routing, connector mating, thermal model or electrical function."
     }
   ],
   "decisions": {

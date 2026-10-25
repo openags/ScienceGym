@@ -3,31 +3,31 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/preparation_review_inputs.json",
-      "sha256": "9336bca0ef86c4d86bd51fe6fc9fc22a22618d947a49bafd71d3d40be0a0957a"
+      "sha256": "6f74a6bc89cc54871680d6564b9ffac4cb0db527efc37f4c46f8c82bf6a9dfa0"
     },
     {
       "path": "assets/cooling_lab_v1/supply_sources.json",
-      "sha256": "27d1c7107e01054437ca89ada6f0917003b0f3b91c08ab740831b22241a429c2"
+      "sha256": "9ebe9568b6f0d8488d56c4dccc7d2236d4f5faa7561abbb74a9d20e9c710b127"
     },
     {
       "path": "assets/cooling_lab_v1/supplies.json",
-      "sha256": "b07be9106775d3e3757233a855dca65497ede8a0a9217cd490b20c2279fe72a8"
+      "sha256": "380c75e8e8ee6ed10ea56a5cae0deae66c25648afd10dc860381a1ee2c554fea"
     },
     {
       "path": "assets/cooling_lab_v1/supply_checks.json",
-      "sha256": "2377402a79f8b8af630a69bccc6b3345b3b8a5f4c51371befc74be44765d9262"
+      "sha256": "21968822e62614434a961ee7692cb38a2d67d832c23bc83ee13120a887760ee2"
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "416369c71714f0a394fa95bed61f415864abdca91955d5ea87c787fb0504b8c1"
+      "sha256": "d27bb410ca68bae1a306af59820ecfb77a1f85f9a1bb4cc17db584f39c6494e9"
     },
     {
       "path": "assets/cooling_lab_v1/readiness.json",
-      "sha256": "ad72187a16e890fc39dda291189a86b7870f33396ea1b16aab2f5050ec6ca2d0"
+      "sha256": "3eb43b2c0978f1fe6e440253b5d4382c3d7ed6c9d06dad19d5d8f1a3219228c7"
     },
     {
       "path": "viewer/lab_review_v1/VISUAL_VERIFICATION.json",
-      "sha256": "0444635d45d28d459ee8580ea0c6020a8e174fc2b784611abcba1b01f8eac2e1"
+      "sha256": "7ffe6e926ccc4c38cfa3e7e93a86f1ccb9418fea172ab1b7dd7a4a51d22a8036"
     },
     {
       "path": "assets/cooling_lab_v1/build_preparation_review.py",
@@ -36,7 +36,7 @@
   ],
   "reviewed": "2026-10-25",
   "reviewer": "Codex author self-review; no owner acceptance",
-  "scope": "Selected ordinary preparation tools and disconnected meter leads for the cooling pilot, not equipment identities reported by the paper",
+  "scope": "Selected preparation, wiring and detached robot-service assets; author comparison only, not owner acceptance",
   "reuse": {
     "geometry": "Original reconstruction under the repository licence",
     "reference_media": "External references only; no redistribution licence established or manufacturer media copied into the repository",
@@ -62,6 +62,10 @@
         "https://us.rs-online.com/product/pomona-electronics/5908a/70198382/",
         "https://www.arrow.com/en/products/5908a/pomona-electronics.html"
       ]
+    },
+    {
+      "query": "site:unitree.com G1 battery charger CAD model",
+      "outcome": "Official 2024 V1.0 manual images obtained; no exact CAD obtained. Current official charger rating differs, so this reconstruction is bound to the old manual. All source pixels remain external."
     }
   ],
   "decisions": {
@@ -6761,6 +6765,977 @@
           "qualified": false
         }
       ],
+      "owner_acceptance": false,
+      "interaction_qualified": false
+    },
+    {
+      "source_record": "unitree_g1_battery_v10",
+      "reference_views": [
+        {
+          "url": "https://doc-cdn.unitree.com/static/2024/9/2/54732cc287bf429887b76f7137313cef_2481x3508.png",
+          "sha256": "4466dc2ce130718971787a65813c811ce9a76e7db86c2160cf83103d30cebb31",
+          "inspected": "Official page 2 orthographic and oblique views"
+        }
+      ],
+      "appearance_findings": "Dimensioned case, end-cap seam, channels, separate recessed latches, unlit windows and recessed interface envelopes reconstructed. Rear charging is on viewer right (model -X looking from +Y), with four connector-retainer envelopes around the discharge socket. Colours, head detail and local geometry are hypotheses.",
+      "unverified_views": [
+        "Measured contact pitch/pinout and guide profile",
+        "Latch stroke, spring and retention detail",
+        "Calibrated colour photographs"
+      ],
+      "operation_findings": "Detached spare for inspection; no cell internals, battery opening, autonomous replacement or electrical behaviour.",
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/supply_unitree_g1_battery_v10.glb",
+        "sha256": "ddceebd386bee9e4a354af81663326555685b6275195f0ce2d73e0f7ec67a0c8",
+        "parts": 38,
+        "bounds_m": [
+          [
+            -0.064,
+            -0.091,
+            -2.220446049250313e-19
+          ],
+          [
+            0.064,
+            0.09129999999999999,
+            0.0801
+          ]
+        ],
+        "axes": "+Z up; SI metres",
+        "part_records": [
+          {
+            "id": "battery_housing_with_recesses",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.06,
+                -0.060599999999999994,
+                -2.220446049250313e-19
+              ],
+              [
+                0.06,
+                0.091,
+                0.08
+              ]
+            ]
+          },
+          {
+            "id": "unlit_led_27",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0016,
+                -0.0899,
+                0.0254
+              ],
+              [
+                0.0016,
+                -0.08889999999999999,
+                0.0286
+              ]
+            ]
+          },
+          {
+            "id": "unlit_led_34",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0016,
+                -0.0899,
+                0.032400000000000005
+              ],
+              [
+                0.0016,
+                -0.08889999999999999,
+                0.0356
+              ]
+            ]
+          },
+          {
+            "id": "unlit_led_41",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0016,
+                -0.0899,
+                0.039400000000000004
+              ],
+              [
+                0.0016,
+                -0.08889999999999999,
+                0.0426
+              ]
+            ]
+          },
+          {
+            "id": "unlit_led_48",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0016,
+                -0.0899,
+                0.046400000000000004
+              ],
+              [
+                0.0016,
+                -0.08889999999999999,
+                0.0496
+              ]
+            ]
+          },
+          {
+            "id": "front_cap_with_latch_pockets",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.06,
+                -0.091,
+                0.0
+              ],
+              [
+                0.06,
+                -0.061,
+                0.08
+              ]
+            ]
+          },
+          {
+            "id": "release_latch_-26",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.0375,
+                -0.0885,
+                0.025500000000000002
+              ],
+              [
+                -0.0145,
+                -0.0855,
+                0.0525
+              ]
+            ]
+          },
+          {
+            "id": "release_latch_26",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                0.0145,
+                -0.0885,
+                0.025500000000000002
+              ],
+              [
+                0.0375,
+                -0.0855,
+                0.0525
+              ]
+            ]
+          },
+          {
+            "id": "recessed_power_switch",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0086,
+                -0.0887,
+                0.05940000000000001
+              ],
+              [
+                0.0086,
+                -0.08729999999999999,
+                0.0766
+              ]
+            ]
+          },
+          {
+            "id": "side_tab_-1",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.064,
+                -0.088,
+                0.0385
+              ],
+              [
+                -0.059000000000000004,
+                -0.062,
+                0.0415
+              ]
+            ]
+          },
+          {
+            "id": "side_tab_1",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                0.059000000000000004,
+                -0.088,
+                0.0385
+              ],
+              [
+                0.064,
+                -0.062,
+                0.0415
+              ]
+            ]
+          },
+          {
+            "id": "recessed_discharge_socket",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.0185,
+                0.084,
+                0.0235
+              ],
+              [
+                0.0185,
+                0.091,
+                0.0345
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_0",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0145,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                -0.0135,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_1",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.011954545454545456,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                -0.010954545454545455,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_2",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.00940909090909091,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                -0.00840909090909091,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_3",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.006863636363636363,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                -0.005863636363636364,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_4",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.004318181818181818,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                -0.003318181818181818,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_5",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0017727272727272735,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                -0.0007727272727272735,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_6",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.0007727272727272735,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                0.0017727272727272735,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_7",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.0033181818181818165,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                0.0043181818181818165,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_8",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.005863636363636364,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                0.006863636363636363,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_9",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.00840909090909091,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                0.00940909090909091,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_10",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.010954545454545453,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                0.011954545454545454,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "discharge_contact_11",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.0135,
+                0.0858,
+                0.026500000000000003
+              ],
+              [
+                0.0145,
+                0.0868,
+                0.0315
+              ]
+            ]
+          },
+          {
+            "id": "charge_contact_39",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.049,
+                0.08499999999999999,
+                0.038
+              ],
+              [
+                -0.047,
+                0.087,
+                0.04
+              ]
+            ]
+          },
+          {
+            "id": "charge_contact_47",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.049,
+                0.08499999999999999,
+                0.046
+              ],
+              [
+                -0.047,
+                0.087,
+                0.048
+              ]
+            ]
+          },
+          {
+            "id": "recessed_charge_socket",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.052000000000000005,
+                0.084,
+                0.0325
+              ],
+              [
+                -0.044,
+                0.091,
+                0.0535
+              ]
+            ]
+          },
+          {
+            "id": "keyed_guide_recess_-35",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.04,
+                0.08745,
+                0.016
+              ],
+              [
+                -0.03,
+                0.08895,
+                0.042
+              ]
+            ]
+          },
+          {
+            "id": "keyed_guide_recess_35",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                0.03,
+                0.08745,
+                0.016
+              ],
+              [
+                0.04,
+                0.08895,
+                0.042
+              ]
+            ]
+          },
+          {
+            "id": "back_screw_-53_7",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.055,
+                0.0901,
+                0.005
+              ],
+              [
+                -0.051,
+                0.09069999999999999,
+                0.009000000000000001
+              ]
+            ]
+          },
+          {
+            "id": "back_screw_-53_73",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.055,
+                0.0901,
+                0.071
+              ],
+              [
+                -0.051,
+                0.09069999999999999,
+                0.075
+              ]
+            ]
+          },
+          {
+            "id": "back_screw_53_7",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.051,
+                0.0901,
+                0.005
+              ],
+              [
+                0.055,
+                0.09069999999999999,
+                0.009000000000000001
+              ]
+            ]
+          },
+          {
+            "id": "back_screw_53_73",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.051,
+                0.0901,
+                0.071
+              ],
+              [
+                0.055,
+                0.09069999999999999,
+                0.075
+              ]
+            ]
+          },
+          {
+            "id": "connector_retainer_-15_17",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0174,
+                0.0907,
+                0.014600000000000002
+              ],
+              [
+                -0.0126,
+                0.09129999999999999,
+                0.0194
+              ]
+            ]
+          },
+          {
+            "id": "connector_retainer_-15_41",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.0174,
+                0.0907,
+                0.0386
+              ],
+              [
+                -0.0126,
+                0.09129999999999999,
+                0.0434
+              ]
+            ]
+          },
+          {
+            "id": "connector_retainer_15_17",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.0126,
+                0.0907,
+                0.014600000000000002
+              ],
+              [
+                0.0174,
+                0.09129999999999999,
+                0.0194
+              ]
+            ]
+          },
+          {
+            "id": "connector_retainer_15_41",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.0126,
+                0.0907,
+                0.0386
+              ],
+              [
+                0.0174,
+                0.09129999999999999,
+                0.0434
+              ]
+            ]
+          },
+          {
+            "id": "identification_text",
+            "role": "original_identification_text",
+            "bounds_m": [
+              [
+                -0.036,
+                0.015500000000000002,
+                0.0801
+              ],
+              [
+                0.036,
+                0.0345,
+                0.0801
+              ]
+            ]
+          }
+        ],
+        "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+      },
+      "catalogue_facts": {
+        "case_dimensions_m": [
+          0.12,
+          0.182,
+          0.08
+        ],
+        "nominal_capacity_Ah": 9,
+        "source_revision": "G1 Battery and Charger User Manual V1.0, 2024"
+      },
+      "local_inferences": [
+        "Dark grey materials, 3 mm corner radius, seam, channels, paddle dimensions and 4 mm projecting tabs are drawing-derived hypotheses",
+        "Socket depths, 12 discharge contact envelopes and two charge contact envelopes are unmeasured visual interpretations, without pin assignments",
+        "One spare on a dry ordinary inspection bench; disconnected, with unlit indicators; remaining charge is unknown"
+      ],
+      "limitations": [
+        "No exact manufacturer CAD obtained; no internal cells, latch mechanism, measured connector pitch or electrical model",
+        "A detached spare does not establish autonomous replacement of the battery carried by the robot",
+        "No battery disassembly or charging operation is represented; the inspection bench is not a qualified charging installation",
+        "Handling, drop protection, charge supervision, separation from liquids and combustible material require a reviewed service method"
+      ],
+      "instances": [
+        {
+          "asset_id": "g1_spare_battery",
+          "path": "assets/cooling_lab_v1/geometry/prepared_g1_spare_battery.glb",
+          "sha256": "97304f1ff39b65ab4ab104f03f71acf3792381a5c9be7254e68c99f05199a979",
+          "station": "robot_service_bench"
+        }
+      ],
+      "model_views": [
+        {
+          "asset_id": "g1_spare_battery",
+          "view": "closed",
+          "path": "viewer/lab_review_v1/evidence/g1_spare_battery_closed.png",
+          "sha256": "db0120b3068c3bb46ee4bb4d1b6cb49730febae8754303bc9cd530f066e29fda"
+        },
+        {
+          "asset_id": "g1_spare_battery",
+          "view": "front",
+          "path": "viewer/lab_review_v1/evidence/g1_spare_battery_front.png",
+          "sha256": "cba9116f9d1aa809cc4a58dc6dca23bb12f37c9117956c54caf318e16f4bf254"
+        },
+        {
+          "asset_id": "g1_spare_battery",
+          "view": "back",
+          "path": "viewer/lab_review_v1/evidence/g1_spare_battery_back.png",
+          "sha256": "5efcfc555aca60eef1db4095fb6c501f87005e003dbbf114ebe3d546c2bf52b0"
+        },
+        {
+          "asset_id": "g1_spare_battery",
+          "view": "side",
+          "path": "viewer/lab_review_v1/evidence/g1_spare_battery_side.png",
+          "sha256": "4ccd8df93e9ead563382f468674dcc798a1392ffb4aa97625cb71987794bf7d2"
+        },
+        {
+          "asset_id": "g1_spare_battery",
+          "view": "top",
+          "path": "viewer/lab_review_v1/evidence/g1_spare_battery_top.png",
+          "sha256": "698ac191ff0c8704a6eb8a30f8015852442a3d763849156cea961487f3a7ee74"
+        }
+      ],
+      "resource_associated_review_obligations": [],
+      "owner_acceptance": false,
+      "interaction_qualified": false
+    },
+    {
+      "source_record": "unitree_g1_charger_v10",
+      "reference_views": [
+        {
+          "url": "https://doc-cdn.unitree.com/static/2024/9/2/5a1b99f4410344a49d94601467d17fd4_2481x3508.png",
+          "sha256": "c5afbeff0e503f48b0617699cfbb8f1701851c39c76fecb953dc1fac2b03004c",
+          "inspected": "Official page 1 oblique cover outline; page 3 dimensions separately read"
+        }
+      ],
+      "appearance_findings": "V1.0 brick envelope and opposite-end cables represented. Source silhouette is limited; seam, material, indicator and cable details are inferred. Terminal envelopes remain unresolved.",
+      "unverified_views": [
+        "Matching front/back/side photographs of the V1.0 charger",
+        "Regional AC plug and battery connector measurements",
+        "Hardware revision corresponding to the current 54 V / 5 A specification"
+      ],
+      "operation_findings": "Disconnected asset on an inspection bench. No charging installation, routing, connector mating, thermal model or electrical function.",
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/supply_unitree_g1_charger_v10.glb",
+        "sha256": "02b3dd7d9f1b8de6475972de85cd7355f2b7232626cc48ec41de46b4818b5251",
+        "parts": 10,
+        "bounds_m": [
+          [
+            -0.259,
+            -0.1079954663299921,
+            0.0
+          ],
+          [
+            0.259,
+            0.03,
+            0.036199999999999996
+          ]
+        ],
+        "axes": "+Z up; SI metres",
+        "part_records": [
+          {
+            "id": "charger_lower_case",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.077,
+                -0.03,
+                0.0
+              ],
+              [
+                0.077,
+                0.03,
+                0.0178
+              ]
+            ]
+          },
+          {
+            "id": "charger_upper_case",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.077,
+                -0.03,
+                0.018200000000000004
+              ],
+              [
+                0.077,
+                0.03,
+                0.036000000000000004
+              ]
+            ]
+          },
+          {
+            "id": "unlit_status_window",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.053,
+                -0.002,
+                0.0358
+              ],
+              [
+                0.057,
+                0.002,
+                0.036199999999999996
+              ]
+            ]
+          },
+          {
+            "id": "identification_text",
+            "role": "original_identification_text",
+            "bounds_m": [
+              [
+                -0.03,
+                -0.007,
+                0.0361
+              ],
+              [
+                0.03,
+                0.007,
+                0.0361
+              ]
+            ]
+          },
+          {
+            "id": "ac_loose_cable",
+            "role": "cable_rest_shape",
+            "bounds_m": [
+              [
+                -0.23969920910671574,
+                -0.1079954663299921,
+                0.0030004684525968203
+              ],
+              [
+                -0.07430079089328424,
+                0.0013152940742010033,
+                0.020984264581140038
+              ]
+            ]
+          },
+          {
+            "id": "ac_strain_relief",
+            "role": "structure",
+            "bounds_m": [
+              [
+                -0.089,
+                -0.0045,
+                0.013499999999999998
+              ],
+              [
+                -0.07300000000000001,
+                0.0045,
+                0.0225
+              ]
+            ]
+          },
+          {
+            "id": "dc_loose_cable",
+            "role": "cable_rest_shape",
+            "bounds_m": [
+              [
+                0.07430079089328424,
+                -0.1079954663299921,
+                0.0030004684525968203
+              ],
+              [
+                0.23969920910671574,
+                0.0013152940742010033,
+                0.020984264581140038
+              ]
+            ]
+          },
+          {
+            "id": "dc_strain_relief",
+            "role": "structure",
+            "bounds_m": [
+              [
+                0.07300000000000001,
+                -0.0045,
+                0.013499999999999998
+              ],
+              [
+                0.089,
+                0.0045,
+                0.0225
+              ]
+            ]
+          },
+          {
+            "id": "ac_unresolved_terminal_envelope",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                -0.259,
+                -0.006500000000000001,
+                0.012
+              ],
+              [
+                -0.23700000000000002,
+                0.006500000000000001,
+                0.024
+              ]
+            ]
+          },
+          {
+            "id": "dc_unresolved_terminal_envelope",
+            "role": "tool_part",
+            "bounds_m": [
+              [
+                0.23700000000000002,
+                -0.006500000000000001,
+                0.012
+              ],
+              [
+                0.259,
+                0.006500000000000001,
+                0.024
+              ]
+            ]
+          }
+        ],
+        "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+      },
+      "catalogue_facts": {
+        "case_dimensions_m": [
+          0.154,
+          0.06,
+          0.036
+        ],
+        "manual_output_V": 54.6,
+        "manual_output_A": 5.5,
+        "source_revision": "2024 V1.0; not asserted to represent current retail hardware"
+      },
+      "local_inferences": [
+        "Two-part rounded brick, seam, material palette and indicator-window size inferred from the small manual illustration",
+        "Cable diameters, lengths, rest curves and reliefs are authored inspection geometry",
+        "Terminal envelopes are explicitly unresolved: neither a regional mains plug nor a verified battery mating connector is modeled"
+      ],
+      "limitations": [
+        "No exact CAD or calibrated multi-view charger photographs obtained",
+        "Both cables remain disconnected; no electrical circuit, thermal model or charging operation",
+        "The V1.0 envelope must not be applied to modern larger charger photographs without resolving the hardware revision",
+        "Connection geometry, cable routing, ordinary service tools and a qualified charging location remain open"
+      ],
+      "instances": [
+        {
+          "asset_id": "g1_disconnected_charger",
+          "path": "assets/cooling_lab_v1/geometry/prepared_g1_disconnected_charger.glb",
+          "sha256": "ed963cd6fc3415e94f34dc3eb7ac95da3af898d0f9beed37842bde9cabfd0980",
+          "station": "robot_service_bench"
+        }
+      ],
+      "model_views": [
+        {
+          "asset_id": "g1_disconnected_charger",
+          "view": "closed",
+          "path": "viewer/lab_review_v1/evidence/g1_disconnected_charger_closed.png",
+          "sha256": "517ad55a7887af354e56c5631e05c8a096ca20eb8100d8cf9f8a18f47f543f32"
+        },
+        {
+          "asset_id": "g1_disconnected_charger",
+          "view": "front",
+          "path": "viewer/lab_review_v1/evidence/g1_disconnected_charger_front.png",
+          "sha256": "057c29614d0dadcfa0274d64ef098305ea1bd55a0e7149a8225464d2d8c41c01"
+        },
+        {
+          "asset_id": "g1_disconnected_charger",
+          "view": "back",
+          "path": "viewer/lab_review_v1/evidence/g1_disconnected_charger_back.png",
+          "sha256": "64e8a8b726152fe3bf9d23c1cb969fcaa4ee0083ebdfbd0d17b8b7d5e63709ff"
+        },
+        {
+          "asset_id": "g1_disconnected_charger",
+          "view": "side",
+          "path": "viewer/lab_review_v1/evidence/g1_disconnected_charger_side.png",
+          "sha256": "ca7623cc8d31f1edef614d50dd4a1d9b0ff1d41949ba6415357445ae7bc6f79a"
+        },
+        {
+          "asset_id": "g1_disconnected_charger",
+          "view": "top",
+          "path": "viewer/lab_review_v1/evidence/g1_disconnected_charger_top.png",
+          "sha256": "e2828b3c3356b51cf6748589210db8d97004ca326686675b19f953d43ef9429a"
+        }
+      ],
+      "resource_associated_review_obligations": [],
       "owner_acceptance": false,
       "interaction_qualified": false
     }

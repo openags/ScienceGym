@@ -334,6 +334,7 @@ def oily_waste_can():
 
 def build():
     from build_preparation_supplies import models as preparation_models
+    from build_robot_service import models as service_models
     source=json.loads((HERE/'supply_sources.json').read_text());items=[]
     models=[('jonard_st450',stripper,{}),('idealtek_aa_sa_t6',tweezers,{}),('buerkle_7102_2000',jug,{}),('wiha_26015',driver,{}),
         ('omega_ambient_rtd',ambient_rtd,{}),('omega_smpw_cc_kit',connector_kit,{}),
@@ -341,13 +342,14 @@ def build():
         ('mylar_stock',lambda:film_stack('mylar',.000012,3),{}),('masking_tape',tape,{}),('calibration_copper_stock',copper_block,{}),
         ('rubbermaid_1997206',utility_cart,{}),('justrite_09100',oily_waste_can,{})]
     models.extend(preparation_models())
+    models.extend(service_models())
     for key,fn,extra in models:
         result=fn();g=result[0] if isinstance(result,tuple) else result
         if isinstance(result,tuple):extra['cable' if key=='omega_ambient_rtd' else 'contents' if key=='omega_smpw_cc_kit' else 'details']=result[1]
         geometry=export_review(g,'supply_'+key);record=next(v for v in source['items'] if v['id']==key)
         items.append(dict(id=key,label=record['label'],resources=record['resources'],geometry=geometry,source_record=key,
             status='geometry_for_review_not_manipulation_qualified',**extra))
-    write_json(HERE/'supplies.json',dict(schema_version=1,source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'build_preparation_supplies.py',HERE/'supply_sources.json',HERE/'geometry_tools.py',HERE/'ordinary_tools.json']],items=items,
+    write_json(HERE/'supplies.json',dict(schema_version=1,source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'build_preparation_supplies.py',HERE/'build_robot_service.py',HERE/'supply_sources.json',HERE/'geometry_tools.py',HERE/'ordinary_tools.json']],items=items,
         quantity_allocation='Selected staged stock and 8 separate thermocouple connector pairs. Campaign/recovery consumption is not yet accepted.',
         asset_acceptance=False,manipulation_qualified=False))
     print(json.dumps(dict(supply_types=len(items),component_meshes=sum(i['geometry']['parts'] for i in items))))

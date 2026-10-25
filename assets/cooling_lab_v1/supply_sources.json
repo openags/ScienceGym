@@ -6,6 +6,49 @@
   "manufacturer_images_redistributed": false,
   "items": [
     {
+      "id": "unitree_g1_battery_v10",
+      "label": "Unitree G1 · V1.0 图册备用电池",
+      "resources": ["facility:ROBOT_SERVICE"],
+      "sources": [
+        {"url": "https://marketing.unitree.com/article/en/G1/Battery_Charger.html", "locator": "Manufacturer 2024 V1.0 manual: page 2 dimensioned orthographic/oblique views and interfaces; page 3 specifications; pages 7–9 handling provisions inspected"},
+        {"url": "https://doc-cdn.unitree.com/static/2024/9/2/54732cc287bf429887b76f7137313cef_2481x3508.png", "locator": "Official page 2 image inspected locally; no reference pixels redistributed"}
+      ],
+      "facts": {"case_dimensions_m": [0.120, 0.182, 0.080], "nominal_capacity_Ah": 9, "source_revision": "G1 Battery and Charger User Manual V1.0, 2024"},
+      "inferred": [
+        "Dark grey materials, 3 mm corner radius, seam, channels, paddle dimensions and 4 mm projecting tabs are drawing-derived hypotheses",
+        "Socket depths, 12 discharge contact envelopes and two charge contact envelopes are unmeasured visual interpretations, without pin assignments",
+        "One spare on a dry ordinary inspection bench; disconnected, with unlit indicators; remaining charge is unknown"
+      ],
+      "limits": [
+        "No exact manufacturer CAD obtained; no internal cells, latch mechanism, measured connector pitch or electrical model",
+        "A detached spare does not establish autonomous replacement of the battery carried by the robot",
+        "No battery disassembly or charging operation is represented; the inspection bench is not a qualified charging installation",
+        "Handling, drop protection, charge supervision, separation from liquids and combustible material require a reviewed service method"
+      ]
+    },
+    {
+      "id": "unitree_g1_charger_v10",
+      "label": "Unitree G1 · V1.0 图册充电器（断开）",
+      "resources": ["facility:ROBOT_SERVICE"],
+      "sources": [
+        {"url": "https://marketing.unitree.com/article/en/G1/Battery_Charger.html", "locator": "2024 V1.0, page 1 charger outline; page 3 envelope and output; pages 7–9 handling provisions"},
+        {"url": "https://doc-cdn.unitree.com/static/2024/9/2/5a1b99f4410344a49d94601467d17fd4_2481x3508.png", "locator": "Official page 1 cover illustration inspected locally; limited oblique silhouette only"},
+        {"url": "https://www.unitree.com/g1/", "locator": "Current product table lists 54 V / 5 A, distinct from the 2024 battery manual; current charger hardware revision unresolved"}
+      ],
+      "facts": {"case_dimensions_m": [0.154, 0.060, 0.036], "manual_output_V": 54.6, "manual_output_A": 5.5, "source_revision": "2024 V1.0; not asserted to represent current retail hardware"},
+      "inferred": [
+        "Two-part rounded brick, seam, material palette and indicator-window size inferred from the small manual illustration",
+        "Cable diameters, lengths, rest curves and reliefs are authored inspection geometry",
+        "Terminal envelopes are explicitly unresolved: neither a regional mains plug nor a verified battery mating connector is modeled"
+      ],
+      "limits": [
+        "No exact CAD or calibrated multi-view charger photographs obtained",
+        "Both cables remain disconnected; no electrical circuit, thermal model or charging operation",
+        "The V1.0 envelope must not be applied to modern larger charger photographs without resolving the hardware revision",
+        "Connection geometry, cable routing, ordinary service tools and a qualified charging location remain open"
+      ]
+    },
+    {
       "id": "omax_317864",
       "label": "OMAX 317864 · ProtoMAX 普通材料夹持套件",
       "resources": [

@@ -358,6 +358,14 @@
       "passed": true
     },
     {
+      "name": "candidate_facility:ROBOT_SERVICE_assets/cooling_lab_v1/geometry/supply_unitree_g1_battery_v10.glb",
+      "passed": true
+    },
+    {
+      "name": "candidate_facility:ROBOT_SERVICE_assets/cooling_lab_v1/geometry/supply_unitree_g1_charger_v10.glb",
+      "passed": true
+    },
+    {
       "name": "candidate_robot:HEAD_RGBD_assets/unitree_g1_inspire_v1/geometry/g1_inspire_ftp_zero.glb",
       "passed": true
     },
@@ -495,6 +503,10 @@
     },
     {
       "name": "supply_source_assets/cooling_lab_v1/build_preparation_supplies.py",
+      "passed": true
+    },
+    {
+      "name": "supply_source_assets/cooling_lab_v1/build_robot_service.py",
       "passed": true
     },
     {
@@ -783,6 +795,14 @@
     },
     {
       "name": "replay_static_candidate_deburring_tool_access",
+      "passed": true
+    },
+    {
+      "name": "replay_static_candidate_g1_spare_battery_access",
+      "passed": true
+    },
+    {
+      "name": "replay_static_candidate_g1_disconnected_charger_access",
       "passed": true
     },
     {
@@ -1170,6 +1190,14 @@
       "passed": true
     },
     {
+      "name": "staged_member_facility:ROBOT_SERVICE:component_2_0_g1_spare_battery",
+      "passed": true
+    },
+    {
+      "name": "staged_member_facility:ROBOT_SERVICE:component_2_1_g1_disconnected_charger",
+      "passed": true
+    },
+    {
       "name": "all_manual_requirements_mapped",
       "passed": true
     },
@@ -1500,6 +1528,10 @@
     {
       "name": "reject_opening_obstruction",
       "passed": true
+    },
+    {
+      "name": "reject_service_drawers_facing_wall",
+      "passed": true
     }
   ],
   "negative_cases": [
@@ -1551,12 +1583,19 @@
       "observed_failures": [
         "external_opening_cary_lid"
       ]
+    },
+    {
+      "fault": "service_drawers_facing_wall",
+      "expected_failure": "service_drawers_face_accessible_north_aisle",
+      "observed_failures": [
+        "service_drawers_face_accessible_north_aisle"
+      ]
     }
   ],
-  "scene_sha256": "416369c71714f0a394fa95bed61f415864abdca91955d5ea87c787fb0504b8c1",
-  "validator_sha256": "e5a080c9a0ab429ffe354a2842c0f140ae61b40f83cacba6fac66078e7889c92",
-  "layout_checker_sha256": "b2b642b80bfc9a3c2ff057c8e5bf046fa92e5c6f1852f778a8d66d07f879644d",
-  "workspace_sha256": "a7e32503ff7795f7f0b2335d9b3c98d0cc1e95c6bc485972689ccfc9cbf3bd79",
+  "scene_sha256": "d27bb410ca68bae1a306af59820ecfb77a1f85f9a1bb4cc17db584f39c6494e9",
+  "validator_sha256": "cf6165797670cb88c4f3f7461d9aece69e4bab2fcdf6e755a1174264b540ae8b",
+  "layout_checker_sha256": "6b608493fafbdee24aee80cec3fdd919bd8816f7228e8db628e265f0b06cb4c3",
+  "workspace_sha256": "9927ca3c28660cb3345042e7e093cb3f9c9da99c601cc142b221a73b8def3ed7",
   "self_contact_fixture_sha256": "bbaa2c0a52fcddee4e0eb98c1e3aa6e0fd8e9efea81065190501db650ca20d8c",
   "scope": "Source identity and meaningful negative layout cases; no asset, full-body or safe-use acceptance"
 }

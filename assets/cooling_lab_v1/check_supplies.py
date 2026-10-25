@@ -113,6 +113,24 @@ def validate():
         separate.add_object(name,combined)
     overlap,pairs=separate.in_collision_internal(return_names=True)
     check('separately_counted_leads_do_not_intersect',not overlap,intersections=sorted([list(p) for p in pairs]))
+    battery_case=trimesh.util.concatenate([mesh('unitree_g1_battery_v10',n) for n in ['battery_housing_with_recesses','front_cap_with_latch_pockets']])
+    check('g1_battery_drawing_case_dimensions',np.allclose(battery_case.extents,[.120,.182,.080],atol=1e-6),measured_m=battery_case.extents.tolist())
+    front=mesh('unitree_g1_battery_v10','front_cap_with_latch_pockets')
+    check('g1_latch_pockets_are_recessed',not front.contains([[-.026,-.090,.039],[.026,-.090,.039]]).any() and front.contains([[-.026,-.080,.039],[.026,-.080,.039]]).all())
+    back=mesh('unitree_g1_battery_v10','battery_housing_with_recesses')
+    check('g1_back_connectors_have_actual_pockets',not back.contains([[0,.090,.029],[-.048,.090,.043]]).any() and back.contains([[0,.080,.029],[-.048,.080,.043]]).all())
+    charge=mesh('unitree_g1_battery_v10','recessed_charge_socket')
+    check('g1_rear_charge_port_matches_drawing_handedness',charge.bounds[1,0]<-.040,
+          basis='Manual page 2 rear view: charging is on viewer right, corresponding to model -X when viewed from +Y')
+    socket=mesh('unitree_g1_battery_v10','recessed_discharge_socket')
+    check('g1_discharge_socket_has_open_mouth',not socket.contains([[0,.090,.029]]).any() and socket.contains([[0,.0845,.029]]).all())
+    latches=[n for n in scenes['unitree_g1_battery_v10'].graph.nodes_geometry if n.startswith('release_latch_')]
+    check('g1_separate_latches_and_unlit_windows',len(latches)==2 and sum(n.startswith('unlit_led_') for n in scenes['unitree_g1_battery_v10'].graph.nodes_geometry)==4)
+    charger_case=trimesh.util.concatenate([mesh('unitree_g1_charger_v10',n) for n in ['charger_lower_case','charger_upper_case']])
+    check('g1_charger_v10_case_dimensions',np.allclose(charger_case.extents,[.154,.060,.036],atol=1e-6),measured_m=charger_case.extents.tolist())
+    for key in ['unitree_g1_battery_v10','unitree_g1_charger_v10']:
+        detail=next(i['details'] for i in report['items'] if i['id']==key)
+        check(key+'_no_electrical_credit',detail['electrical_qualified'] is False)
     out=dict(schema_version=1,checks_passed=all(c['passed'] for c in checks),checks=checks,supplies_sha256=sha(HERE/'supplies.json'),validator_sha256=sha(__file__),asset_acceptance=False,
         limitations=['Catalogue shape checks do not qualify handling, deformation or electrical functions','Staged quantity is a selected starting allocation, not full campaign coverage','Commercial models contain explicitly recorded local inferences; source CAD was not obtained'])
     write_json(HERE/'supply_checks.json',out);print(json.dumps(dict(checks=len(checks),passed=out['checks_passed'])))

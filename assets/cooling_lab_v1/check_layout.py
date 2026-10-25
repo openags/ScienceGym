@@ -55,6 +55,16 @@ def inspect(scene_path=None,output_path=None,quiet=False):
                   geometry_bounds_m=bounds.tolist(),surface=surface['id'],capacity_validated=False)
     structure=trimesh.load(ROOT/scene['architecture']['path'],force='scene')
     check('architecture_identity',sha(ROOT/scene['architecture']['path'])==scene['architecture']['sha256'])
+    # A south-wall service bench can clear every corridor while presenting its
+    # drawers to the wall. Check the actual drawer fronts against the aisle.
+    service=surface_map['robot_service_bench'];mid_y=(service['xy_bounds_m'][1]+service['xy_bounds_m'][3])/2
+    drawer_fronts=[]
+    for node in structure.graph.nodes_geometry:
+        if node.startswith('robot_service_bench_drawer_') and '_screw_' not in node:
+            matrix,key=structure.graph[node]
+            drawer_fronts.append(trimesh.transform_points(structure.geometry[key].vertices,matrix)[:,1].mean())
+    check('service_drawers_face_accessible_north_aisle',len(drawer_fronts)==3 and min(drawer_fronts)>mid_y,
+          front_y_m=[float(y) for y in drawer_fronts],bench_mid_y_m=mid_y)
     for component in scene.get('authored_components',[]):
         if not component['check_separation']:continue
         vertices=[]

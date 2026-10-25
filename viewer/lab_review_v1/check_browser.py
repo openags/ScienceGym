@@ -29,7 +29,7 @@ def run(url,browser):
         check('render_batch_geometry_preserved',page.locator('html').get_attribute('data-geometry-preserved')=='true')
         inventory_count=page.locator('#inventory tr').count()
         check('paper_facility_camera_and_selected_robot_requirements',inventory_count==66)
-        check('current_inventory_excludes_historical_robot_requirements','57/63' in page.locator('#inventory-coverage').inner_text() and '历史选型 3 项' in page.locator('#inventory-coverage').inner_text())
+        check('current_inventory_excludes_historical_robot_requirements','58/63' in page.locator('#inventory-coverage').inner_text() and '历史选型 3 项' in page.locator('#inventory-coverage').inner_text())
         check('routes_rendered',page.locator('#route-table tr').count()==7)
         check('open_hand_selection_visible','Inspire FTP' in page.locator('#pilot-policy').inner_text() and '场景已使用 G1' in page.locator('#pilot-policy').inner_text())
         check('new_robot_resource_preview_link',page.locator('a[href="../robot_resource_review_v1/index.html"]').count()==1)
@@ -48,7 +48,7 @@ def run(url,browser):
         for _ in range(60):page.keyboard.press('ArrowRight')
         check('room_viewpoint_stops_at_obstacle',page.locator('html').get_attribute('data-camera-blocked')=='true')
         check('room_viewpoint_height',page.locator('html').get_attribute('data-camera-position').endswith(',1.650'))
-        for view in ['indoor','details','rear','outdoor','optics','wet','annex','coating','all','top']:
+        for view in ['indoor','details','service','rear','outdoor','optics','wet','annex','coating','all','top']:
             page.locator('button[data-view="'+view+'"]').click();page.wait_for_timeout(250)
             check('view_'+view,page.locator('html').get_attribute('data-view')==view)
             capture(view)
@@ -56,14 +56,14 @@ def run(url,browser):
         page.locator('button[data-view=indoor]').click();capture('full_walls');page.locator('#show-walls').uncheck()
         for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','g1','caliper','driver','tray_white','waterjet','camera_head','camera_wrist_left','camera_wrist_right','tc_01',
             'wire_stripper','terminal_driver','tweezers_white','fill_jug','ambient_rtd','tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
-            'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool']:
+            'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger']:
             page.locator('#asset-select').select_option(identity);page.locator('#isolate').check();page.wait_for_timeout(200)
             check('inspect_'+identity,page.locator('html').get_attribute('data-selected-asset')==identity)
             closed=capture(identity+'_closed')
             if identity=='tc_01':
                 check('probe_not_connected','尚未装接' in page.locator('#asset-detail').inner_text())
                 page.locator('#asset-views [data-direction="top"]').click();capture('tc_01_top')
-            if identity in ['fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool']:
+            if identity in ['fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger']:
                 check('catalogue_dimensions_visible_'+identity,'厂家标注尺寸' in page.locator('#asset-detail').inner_text())
                 for direction in ['front','back','side']:
                     page.locator('#asset-views [data-direction="'+direction+'"]').click();capture(identity+'_'+direction)
@@ -79,7 +79,7 @@ def run(url,browser):
                     capture(identity+'_'+direction)
                 page.locator('#asset-views [data-direction="front"]').click();closed=capture(identity+'_front_rest')
             if identity in ['wire_stripper','terminal_driver','tweezers_white','fill_jug','ambient_rtd','tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock',
-                            'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool']:
+                            'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger']:
                 check('supply_inferences_visible_'+identity,'推断' in page.locator('#asset-detail').inner_text())
                 check('supply_units_bound_'+identity,'逐件候选' in page.locator('#asset-detail').inner_text())
                 page.locator('#asset-views [data-direction="top"]').click();capture(identity+'_top')
@@ -103,10 +103,10 @@ def run(url,browser):
         page.locator('#search').fill('');page.locator('#filter').select_option('placed');placed=page.locator('#inventory tr').count()
         page.locator('#filter').select_option('missing');missing=page.locator('#inventory tr').count()
         page.locator('#filter').select_option('historical');historical=page.locator('#inventory tr').count()
-        check('inventory_filter_partition',placed+missing+historical==inventory_count and historical==3 and missing==6,with_geometry=placed,without_geometry=missing,historical=historical)
+        check('inventory_filter_partition',placed+missing+historical==inventory_count and historical==3 and missing==5,with_geometry=placed,without_geometry=missing,historical=historical)
         page.locator('#filter').select_option('all')
         expected_workspace=json.loads((ROOT/'assets/cooling_lab_v1/workspace_checks.json').read_text())
-        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==66)
+        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==68)
         page.locator('button[data-target="cary_front"]').click();check('static_workspace_pose_selected',page.locator('html').get_attribute('data-workspace-pose')=='cary_front');capture('g1_cary_access')
         page.locator('#workspace-reset').click();check('static_workspace_pose_reset',page.locator('html').get_attribute('data-workspace-pose') is None)
         page.locator('#review-notes').fill('QA temporary comment; not acceptance')

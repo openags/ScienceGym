@@ -69,6 +69,13 @@ def bench(key,x,y,width=2.4,depth=1.2,height=.85):
         for yy in [y-depth/2+.1,y+depth/2-.1]:
             g.cylinder(key+'_leveling_bolt_'+str(xx)+'_'+str(yy),.012,.045,[xx,yy,.0475],[157,163,166],metal=.9)
             g.screw(key+'_frame_screw_'+str(xx)+'_'+str(yy),[xx,yy-.031,height-.12],.0045)
+    if key=='robot_service_bench':
+        # This bench backs onto the south wall; drawers and handles must face
+        # the north aisle. Rotate the actual parts, not only a review label.
+        t=transform([2*x,2*y,0],np.pi)
+        for p in g.parts:
+            if p['id'].startswith(key+'_'):
+                m=g.scene.geometry[p['id']];m.apply_transform(t);p['bounds_m']=m.bounds.tolist()
     surfaces.append(dict(id=key,xy_bounds_m=[x-width/2,y-depth/2,x+width/2,y+depth/2],top_m=height,
                          load_rating_kg=None,basis='Authored furniture; load capacity requires structural review'))
     obstacle(key,[[x-width/2,y-depth/2,0],[x+width/2,y+depth/2,height]],'bench_conservative_occupied_volume')
@@ -112,6 +119,7 @@ def furniture():
         ('assembly_white',2.9,3.0,2.4,1.2,.90),('assembly_black',9.5,3.0,2.4,1.2,.90),
         ('calibration_dry',1.1,5.8,1.6,.9,.85),('bath_stand',2.9,5.75,.8,.7,.45),
         ('electrical_bench',10.1,5.8,2.4,1.0,.85),
+        ('robot_service_bench',8.35,.43,1.5,.6,.85),
         ('fabrication_fixture',-4.3,.65,2.1,1.1,.90),('coating_prep',-4.3,6.4,2.1,1.1,.90),
         ('outdoor_white',2.5,15.8,1.2,1.0,.90),('outdoor_black',9.5,15.8,1.2,1.0,.90),
         ('weather_service',9.5,18.6,1.3,.8,.9),('tracker_support',2.5,18.6,1.3,.8,.9)]:bench(key,x,y,w,d,h)
@@ -156,6 +164,7 @@ def furniture():
     component('room_shell',['indoor_floor','annex_floor','wall_','door_','window_','ceiling_','outdoor_access_path'],['facility:ROOM'])
     component('bench_frames',[s['id']+'_' for s in surfaces if '_shelf_' not in s['id']],['facility:BENCHES'])
     component('storage',['raw_stock_','specimens_','fabrication_storage_','coating_storage_'],['facility:STORAGE','tools:storage_supports'])
+    component('robot_service_inspection_bench',['robot_service_bench_'],['facility:ROBOT_SERVICE'])
     component('extraction_enclosure',['coating_enclosure_','coating_exhaust_','exhaust_baffle_'],['facility:COATING','tools:coating_station'])
     component('overhead_services',['service_tray_','light_'],['facility:UTILITIES'])
     component('spill_tray',['bath_spill_'],['facility:WET_SERVICES'])
@@ -238,6 +247,8 @@ def devices():
       ('meter_leads_black','pomona_5908a',[10.10,6.12,.85],'electrical_bench'),
       ('workholding_kit','omax_317864',[-4.40,1.05,.90],'fabrication_fixture'),
       ('deburring_tool','noga_rb1000',[-3.95,1.10,.90],'fabrication_fixture'),
+      ('g1_spare_battery','unitree_g1_battery_v10',[7.97,.48,.85],'robot_service_bench'),
+      ('g1_disconnected_charger','unitree_g1_charger_v10',[8.58,.48,.85],'robot_service_bench'),
       ('tweezers_white','idealtek_aa_sa_t6',[2.00,3.35,.9],'assembly_white'),
       ('tweezers_black','idealtek_aa_sa_t6',[9.10,3.50,.9],'assembly_black'),
       ('fill_jug','buerkle_7102_2000',[1.74,6.08,.85],'calibration_dry'),
@@ -294,6 +305,7 @@ def build():
       dict(id='turn_yard',kind='turn',center_m=[6,15.8],radius_m=1.2,label='室外转身预留')]
     spaces.append(dict(id='work_waterjet',kind='work',center_m=[-2.8,2.3],size_m=[2.2,1.6],label='水刀前方静态作业预留'))
     spaces.append(dict(id='service_waterjet',kind='service',center_m=[-2.8,4.62],size_m=[1.1,.40],label='水刀后方服务空间设计'))
+    spaces.append(dict(id='robot_service_staging',kind='work',center_m=[8.35,1.6],size_m=[1.5,1.6],label='机器人服务检查预留；与南侧横向通道共用，禁止占道存放'))
     for key,x,y in [('assembly_white',2.9,1.6),('assembly_black',9.5,1.6),('cary_bench',2.5,7.3),('ftir_bench',9.5,7.3),
       ('wet_calibration',2.4,4.5),('electrical_bench',10.1,4.5),('outdoor_white',2.5,14.2),('outdoor_black',9.5,14.2)]:
         spaces.append(dict(id='work_'+key,kind='work',center_m=[x,y],size_m=[2.2,1.6],label=key+' 双臂作业预留'))
@@ -340,7 +352,9 @@ def build():
                 'omax_317864':'3 根长压臂 203.2 mm；2 根中压臂 152.4 mm；4 根立柱及 4 个 T 形螺母。立柱、孔和螺纹局部尺寸为推断。',
                 'knipex_7803125':'标称长度 125 mm；头宽 13.5 mm；刃口长 9 mm。握柄外形与闭合姿态为重构。',
                 'noga_rb1000':'六角柄对边 12 mm；S10 刀杆 Ø3.2 mm。柄长与刀刃曲线为推断。',
-                'pomona_5908a':'每根线两端出线口间长 1219.2 mm；线缆外径 3.6576 mm；每个直插头另长 68.58 mm。每件资产含 4 根断开的引线。'}
+                'pomona_5908a':'每根线两端出线口间长 1219.2 mm；线缆外径 3.6576 mm；每个直插头另长 68.58 mm。每件资产含 4 根断开的引线。',
+                'unitree_g1_battery_v10':'V1.0 图册壳体 120 × 182 × 80 mm；两侧卡舌伸出量为推断，计入实际包围盒。',
+                'unitree_g1_charger_v10':'V1.0 图册壳体 154 × 60 × 36 mm；线缆和未核实端头不包含在壳体尺寸内。'}
             manifest['reference_comparisons'][a['id']]=dict(dimensions_label=dimensions.get(item['id']),model_scope='已知参数与推断分开记录。推断：'+'；'.join(item['inferred'])+'。限制：'+'；'.join(item['limits']),sources=[dict(url=s['url'],label='厂家／论文依据',scope=s['locator']) for s in item['sources']])
             continue
         sources=record.get('sources') or record.get('source_documents') or record.get('source_records') or []

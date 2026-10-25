@@ -50,7 +50,8 @@ def build():
           basis='Authored front-envelope access point; not a measured button or grasp frame',source=None))
     for key in ['wire_stripper','terminal_driver','tweezers_white','tweezers_black','fill_jug','ambient_rtd',
                 'tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
-                'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool']:
+                'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool',
+                'g1_spare_battery','g1_disconnected_charger']:
         a=assets[key];bounds=np.array(a['normalized_bounds_m'])+a['position_m'];surface=surfaces[a['station']]
         reverse=key!='oily_waste_can';point=[float(bounds[:,0].mean()),float(bounds[1,1]+.04 if reverse else bounds[0,1]-.04),float(bounds[1,2]+.04)]
         basis='Authored upper-edge palm approach from the accessible aisle; not a grasp frame'
