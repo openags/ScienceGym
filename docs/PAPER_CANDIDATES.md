@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **343**.
+Last screened: **2026-10-25**. Candidate count: **344**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3475,3 +3475,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [11-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-58251-1/MediaObjects/41467_2025_58251_MOESM1_ESM.pdf) was text-accessible. Selected upper/lower interferometer calibration sections were screened. Incremental frequency measurement, absolute-frequency estimation and wavelength-dependent calibration records must remain distinct; shared component-parameter assumptions require review. Figure pixels, remaining sections, Reporting Summary, peer review and raw data were not fully reviewed.
 - Future suitability is limited to qualified packaged-device metrology, not chip fabrication or unqualified optical alignment. Laser safety, calibration validity and instrument interfaces require separate review. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+
+## Additional candidate: prepared acoustic-device metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Mode-determined unidirectional phonon transducers for minimal frequency splitter](https://www.nature.com/articles/s41467-025-66680-1) | Nature Communications / 2025 | 10.1038/s41467-025-66680-1 | Prepared devices could support calibration-standard custody, probe repositioning, port-configuration tracking and coordinated electrical measurements. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 11587 (2025), published **23 November 2025**; version of record **29 December 2025**. Selected device-comparison Results and electrical-measurement Methods screened. Reconstructed multiport responses are distinct from simultaneous multiport acquisition; termination conditions and calibration provenance matter.
+- Official [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66680-1/MediaObjects/41467_2025_66680_MOESM1_ESM.pdf) text accessible; selected optimization and isolation sections screened. Baseline and optimized devices, measured responses and numerical predictions remain separate. Figure pixels, remaining sections, peer review and request-only datasets were not fully reviewed.
+- Future suitability requires qualified instrument and contact review. Wafer fabrication, lithography, solvents and ion processing are excluded. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML readable despite a cookie-error marker. Citation metadata and original commentary only.
