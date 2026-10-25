@@ -123,7 +123,7 @@ guarantee of general reliability.
   staged on the optical bench; Nicolet mounts, retention and optical alignment
   remain open. Geometry sliders do not implement a coupled optical mechanism.
   The scene has 61 instances; compound requirements and full campaign quantities
-  remain incomplete. Twenty-four component requirements now bind to named staged
+  remain incomplete. Thirty-one component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools
   remain the same physical instances. Staged assets are not executed preparation
   operations.
@@ -142,6 +142,20 @@ guarantee of general reliability.
   inspection geometry. No spraying, adhesive application or material
   compatibility is qualified. Exact paper SKU/brand, complete SDS coverage,
   ordinary dispensing tools and campaign allocation remain open.
+
+- A separate FTIR installation review now adds the 206 × 252 mm floor candidate
+  and 38 ordinary mounting parts. Thermo site guide 269-158000 supplies the floor
+  dimensions, focus offsets, approximately 90 mm optical height and approximately
+  190 mm cover clearance; thickness, attachment pattern and adapters remain
+  hypotheses. The original source instrument and bench-staged accessories are
+  preserved. A rear adapter relief and relocated screw remove the sampled purge
+  outlet insertion conflict, with the rejected geometry retained as a regression
+  fixture. Both assemblies clear 25 nominal open-bay vertical samples, excluding
+  hands, forces and balance. The Spectra-Tech candidate still exceeds nominal
+  closed-cover clearance by 16 mm and blocks one driver approach. The inferred
+  Harrick front-fold ray is displaced by 60 mm; shifting it into alignment
+  collides with the instrument. Neither candidate is mounting-qualified, and an
+  open-cover inspection does not authorize measurement with the cover open.
 
 ## Historical compatibility and remaining work
 

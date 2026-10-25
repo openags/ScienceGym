@@ -4,6 +4,10 @@ Current phase: asset and scene development. No owner acceptance, whole-body
 clearance, sensor-only manipulation or complete paper campaign is claimed.
 
 Serve the repository root and open `/viewer/lab_review_v1/index.html`.
+The linked `/viewer/lab_review_v1/ftir.html` compares two accessory installation
+candidates against the instrument, with separate floor, mounting hardware,
+cover and extraction controls. It retains failed fit results; it is not an
+accepted operating configuration or robot animation.
 The existing local server uses port 8769. The scene contains the complete
 official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
 selected OMAX ProtoMAX waterjet. Geometry sliders and the 73 per-point static
@@ -70,6 +74,18 @@ It makes no source downloads and cannot silently switch robot models.
   mounting-hardware investigation, without assuming cross-brand compatibility.
   `angular_appearance_review.json` pins 14 browser views and records source matches,
   visible differences and remaining dimensional/mechanical hypotheses.
+- `ftir_mount_sources.json`, `ftir_mounts.json`: manufacturer floor dimensions
+  and optical/cover datums, a separate factory-floor candidate and two ordinary
+  mounting hypotheses with 38 hardware parts. The original staged assets stay
+  unchanged. `ftir_mount_checks.json` retains the Spectra-Tech closed-cover and
+  driver-access failures, and the Harrick ray-offset/alignment collision.
+  Both revised adapters clear 25 nominal open-bay vertical samples. The previous
+  purge-outlet conflict remains in `ftir_mount_rejected_purge.json` and its exact
+  GLB; it must still fail. An audit pass is not an installation pass.
+  `viewer/lab_review_v1/FTIR_MOUNT_VERIFICATION.json` pins 12 actual installation
+  views and independent mesh-transform checks. Rebuild with `build_ftir_mounts.py`
+  then `check_ftir_mounts.py`; run `viewer/lab_review_v1/check_ftir.py --browser
+  <chromium-executable>` against the same localhost server for browser evidence.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
 - `workspace_checks.json`: 73 separately tested palm-position targets, including 24 staged supply approaches and two angular-accessory approaches, with proposed camera-clearance screening; records
