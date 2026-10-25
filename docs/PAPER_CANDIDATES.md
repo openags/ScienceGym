@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **334**.
+Last screened: **2026-10-25**. Candidate count: **335**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3376,4 +3376,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **17**, 7563 (2026), published/version of record **28 July 2026**. Selected transmission-characterization Results and optical-characterization Methods were screened. Normalized spectra alone do not establish absolute throughput; specimen identity and reference measurements must remain linked.
 - The official [20-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75873-1/MediaObjects/41467_2026_75873_MOESM1_ESM.pdf) was text-accessible. Selected Notes 7–8, Figure 7 caption and Table 2 were screened. Measured, calculated and assumed quantities are distinct; loss definitions and consistency of the tabulated expressions need review before conversion. Figure images, remaining sections, datasets, code and peer review were not fully reviewed.
 - Future scope starts with qualified, prepared chips and a guarded optical bench. Nanofabrication, chemical processing, dye handling, gas experiments and cryogenic or single-photon apparatus are excluded. Optical safety, fixture compatibility and instrument interfaces require review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+
+## Additional candidate: prepared acoustoelectric-device metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Observation of giant acoustoelectric currents in graphene on lead magnesium niobate–lead titanate](https://www.nature.com/articles/s41467-026-74813-3) | Nature Communications / 2026 | 10.1038/s41467-026-74813-3 | Prepared devices could support specimen tracking, fixture exchange, coordinated acoustic/electrical measurements and repeated comparisons across device geometries. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 8932 (2026), published **10 July 2026**, version of record **25 August 2026**. Selected SAW-characterization and acoustoelectric-response Results were screened. Acoustic transmission and electrical readout require matched specimen and reference records; measured results and model fits remain distinct.
+- The official [4-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74813-3/MediaObjects/41467_2026_74813_MOESM1_ESM.pdf) was text-accessible. Selected Note 2, Figure 2 caption and Table 1 were screened for comparative time-of-flight metrology. Figure images, remaining sections, raw data and peer review were not fully reviewed; raw data are available on request.
+- Future scope starts with qualified, prepared devices in guarded fixtures and excludes back-gate operation. Lead-containing material processing, fabrication, chemical transfer, poling and high-voltage experiments are excluded. Electrical/acoustic limits, fixture compatibility and calibration require review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
