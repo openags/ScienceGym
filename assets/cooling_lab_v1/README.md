@@ -73,6 +73,19 @@ simultaneous inventory. A separate continuous ground-wire segment connects the
 mast-side groove and rod-clamp wire bore, with its own cut/remainder account.
 Electrical grounding qualification, instruments and their cables remain open.
 
+The ordinary [post-level inspector](../../viewer/lab_review_v1/post_level.html)
+adds a Johnson 175-O candidate with the source's folded orange silhouette,
+three separately modeled acrylic/liquid/gas domains, real viewing and hanging
+holes, backing and strap attachment features. The 139.7 mm height and 88.9 mm
+face widths come from the manufacturer's general post-level explanation, not
+a dimensioned 175-O drawing. Local profiles and the detached flat rubber loop
+remain hypotheses. Signed cavity boundaries preserve actual voids; ordinary
+per-component normal repair would incorrectly turn them into material. The
+checks reject filled bubble chambers and a misplaced mast. Static bubble
+positions, transparent shading and isolated 41 mm mast clearance do not
+establish gravity-dependent readings, calibration, strap retention, inventory
+or robot use. Source photographs are linked, not redistributed.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.

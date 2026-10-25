@@ -29,6 +29,7 @@ def main():
       'assets/cooling_lab_v1/build_wind_kit.py','assets/cooling_lab_v1/check_wind_kit.py',
       'assets/cooling_lab_v1/build_tripod.py','assets/cooling_lab_v1/check_tripod.py',
       'assets/cooling_lab_v1/build_weather_anchoring.py','assets/cooling_lab_v1/check_weather_anchoring.py',
+      'assets/cooling_lab_v1/build_post_level.py','assets/cooling_lab_v1/check_post_level.py',
       'assets/cooling_lab_v1/build_apparatus_cover.py','assets/cooling_lab_v1/check_apparatus_cover.py','assets/cooling_lab_v1/build_cover_stock.py',
       'assets/cooling_lab_v1/build_apparatus_stock.py','assets/cooling_lab_v1/check_cover_stock.py','assets/cooling_lab_v1/check_apparatus_mounting.py','assets/cooling_lab_v1/check_apparatus_frame.py','assets/cooling_lab_v1/build_frame_stock.py','assets/cooling_lab_v1/check_frame_stock.py','assets/cooling_lab_v1/build_stock_cutplan.py','assets/cooling_lab_v1/check_stock_cutplan.py','assets/cooling_lab_v1/build_waterjet.py',
       'assets/cooling_lab_v1/inspect_tool_access.py',
@@ -55,6 +56,7 @@ def main():
         run('viewer/lab_review_v1/check_tripod.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/tripod.html')
         run('viewer/lab_review_v1/check_anchoring.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/anchoring.html')
         run('viewer/lab_review_v1/check_support.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/support.html')
+        run('viewer/lab_review_v1/check_post_level.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/post_level.html')
     print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
 
 if __name__=='__main__':main()
