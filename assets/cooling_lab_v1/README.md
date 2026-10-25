@@ -487,7 +487,7 @@ the new hex drivers do not silently replace its identity.
 
 Run `build_fastener_tools.py`, `check_fastener_tools.py`, then
 `viewer/lab_review_v1/check_fasteners.py --browser <chromium-executable>`.
-The current inspector has 25 captures and rejects stale source bindings.
+The current inspector has 26 captures and rejects stale source bindings.
 Independent solid checks fit six existing fastener geometries and an M5 nut
 in both wrench ends; oversized tools/nuts are rejected. No applied torque,
 whole-apparatus insertion/swing, hand grasp, tool allocation or appearance
@@ -495,12 +495,17 @@ acceptance is claimed. The checks export the exact isolated mating samples
 for interactive inspection. Complete fastening-tool access is still required
 before the laboratory can be submitted for owner acceptance.
 
-`inspect_tool_access.py` places those actual driver solids at the 36 authored
-screw sockets in the exported white reference. Thirty-two installed-state
-poses are nominal candidates; four platform screws are obstructed by the
-overlying thermal components. `tool_access_inspection.json` records exact
-transforms, socket fits and obstructing part/volume pairs. That finding implies
+`inspect_tool_access.py` places those actual driver solids at all 36 / 36 / 34
+authored screw sockets in the exported white / black / fixed references.
+Thirty-two / 32 / 30 installed-state poses are nominal candidates; four platform
+screws per configuration are obstructed by the overlying thermal components.
+`tool_access_inspection.json`, `tool_access_cooler_black.json` and
+`tool_access_cooler_fixed.json` record exact transforms, socket fits and
+obstructing part/volume pairs. Six open-wrench clockings are sampled at each
+of four bridge nuts per configuration; only one per nut is unobstructed.
+Analysis coordinates stay close to the local origin, with an explicit source
+offset, so precision does not depend on the legacy source layout. The finding implies
 a required earlier supported assembly state or separately validated tool option;
 it does not prove an executable assembly order. The test excludes the table,
-hands, insertion sweeps, wrench support and manufacturer-preassembled jack
+hands, insertion sweeps, applied wrench support and manufacturer-preassembled jack
 internals, and confers no robot execution credit.
