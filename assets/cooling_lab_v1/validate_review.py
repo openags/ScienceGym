@@ -57,7 +57,14 @@ def validate():
     for ref in lift['source_artifacts']+lift_checks['source_artifacts']:
         check('lift_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
     check('lift_source_inspection_current',lift_checks['passed'] and not lift_checks['open_meshes'] and len(lift['parts'])==86)
-    check('lift_candidate_not_installed_or_qualified',not lift['accepted'] and not lift['physical_installation_qualified'] and not lift['collision_or_dynamics_qualified'] and not any(a['source_artifact']['path']==lift['geometry']['path'] for a in scene['assets']))
+    check('lift_candidate_not_qualified',not lift['accepted'] and not lift['physical_installation_qualified'] and not lift['collision_or_dynamics_qualified'])
+    check('two_actual_initial_stock_jacks', {a['id'] for a in scene['assets'] if a['source_artifact']['path']==lift['geometry']['path']}=={'lab_jack_white','lab_jack_black'})
+    mounts=json.loads((HERE/'apparatus_mount_checks.json').read_text());apparatus=json.loads((HERE/'apparatus_stock_reconciliation.json').read_text())
+    for ref in mounts['source_artifacts']:check('mounting_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    check('three_reference_mounts_checked_not_qualified',mounts['passed'] and len(mounts['items'])==3 and not mounts['physical_installation_qualified'] and mounts['owner_acceptance'] is None)
+    for item in apparatus['items']:
+        a=next(a for a in scene['assets'] if a['id']==item['id'])
+        check('reference_contains_actual_jack_'+item['id'],len([n for n in a['part_names'] if 'L200_M__solid_' in n])==86 and a['source_artifact']['sha256']==item['geometry']['sha256'])
     for role in camera_record['selected_roles']:
         placed=[a for a in scene['assets'] if role['resource_id'] in a.get('resource_ids',[a['resource_id']])]
         check('camera_staged_'+role['resource_id'],len(placed)==1 and placed[0]['station']==('circulation' if role['model']=='native_g1_d435i' else 'assembly_white'))
@@ -116,14 +123,21 @@ def validate():
         points=source_robot.corners['left_wrist_roll_link']@wrist.xmat.reshape(3,3).T+wrist.xpos
         bounds=np.array([points.min(axis=0),points.max(axis=0)])
         check('reject_low_heater_approach_'+target['asset'],penetration>.006 and overlap(bounds,access[target['station']]))
+    deep_stock=json.loads((HERE/'lift_stock_access_rejected.json').read_text())
+    for source in deep_stock['source_artifacts']:check('deep_stock_failure_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
+    for target in deep_stock['targets']:
+        q=target['result'];data,_=replay_pose(q);link=q['hand']+'_shoulder_yaw_link';body=data.body(link)
+        points=source_robot.corners[link]@body.xmat.reshape(3,3).T+body.xpos
+        bounds=np.array([points.min(axis=0),points.max(axis=0)])
+        check('reject_observed_deep_stock_approach_'+target['asset'],np.linalg.norm(data.site(q['hand']+'_palm_review').xpos-target['point_m'])<.01 and overlap(bounds,access[target['station']]))
     readiness=json.loads((HERE/'readiness.json').read_text())
     active=[r for r in readiness['requirements'] if r['disposition']!='historical_embodiment_reference']
     rc=readiness['counts']
     check('active_requirements_exclude_three_historical_models',rc['active_requirement_groups']==len(active)==63 and rc['historical_requirement_groups']==len(readiness['requirements'])-len(active)==3)
-    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==143 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==1)
+    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==145 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==1)
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
-    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==37)
+    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==39)
     check('staged_quantities_not_campaign_claims',all(c['required_quantity'] is None and not c['staged_candidates']['campaign_sufficiency_accepted'] and c['staged_candidates']['quantity']==len(c['staged_candidates']['members']) for c in staged))
     for c in staged:
         for unit_index,member in enumerate(c['staged_candidates']['members']):
@@ -201,7 +215,7 @@ def validate():
         faults.append(dict(fault=name,expected_failure=expected,observed_failures=failed))
     record=dict(passed=True,checks=checks,negative_cases=faults,scene_sha256=sha(HERE/'scene.json'),
         validator_sha256=sha(__file__),layout_checker_sha256=sha(HERE/'check_layout.py'),
-        source_artifacts=[dict(path='assets/cooling_lab_v1/heater_access_rejected.json',sha256=sha(HERE/'heater_access_rejected.json'))],
+        source_artifacts=[dict(path='assets/cooling_lab_v1/'+name,sha256=sha(HERE/name)) for name in ['heater_access_rejected.json','lift_stock_access_rejected.json']],
         workspace_sha256=sha(HERE/'workspace_checks.json'),self_contact_fixture_sha256=sha(HERE/'workspace_self_contact_fixture.json'),
         scope='Source identity and meaningful negative layout cases; no asset, full-body or safe-use acceptance')
     write_json(HERE/'review_verification.json',record)

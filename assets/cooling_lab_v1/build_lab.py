@@ -100,7 +100,7 @@ def asset(key,label,path,position,*,prefix=None,z_up=False,station='',resource='
     normalization[:3,3]=[-(bounds[0,0]+bounds[1,0])/2,-(bounds[0,1]+bounds[1,1])/2,-bounds[0,2]]
     if origin_xy is not None:normalization[:2,3]=-np.asarray(origin_xy)
     scene.apply_transform(normalization)
-    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_']) else None))
+    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_','/apparatus_','/lift_mount_','thorlabs_l200_v1']) else None))
     # Original authoring coordinates are Z-up before this normalization.
     part_names=list(scene.graph.nodes_geometry)
     entry=dict(id=key,label=label,resource_id=resource,station=station,
@@ -200,7 +200,16 @@ def devices():
         ('cooler_fixed','固定遮阳带构型',[10.2,2.64,.90],'assembly_black')]:
         record=next(r for r in apparatus['items'] if r['id']==key)
         asset(key,label,record['geometry']['path'],position,z_up=True,station=station,resource='equipment:COOLER',
-              note='完成态参考：镀铝 PET 候选薄膜已与原料厚度对应，底板覆盖与搭接为明确推断；其余机构、支撑和材料等效性仍待核对。',source_path='assets/cooling_lab_v1/apparatus_stock_reconciliation.json')
+              note='完成态参考：采用原尺寸 L200/M 升降台、实际安装孔和普通紧固件；平台与反射器共同调整高度。感温线未安装；框架连接、罩体支撑、螺纹受力和材料等效性仍待核对。',source_path='assets/cooling_lab_v1/apparatus_stock_reconciliation.json')
+    jack=json.loads((ROOT/'assets/thorlabs_l200_v1/model.json').read_text())
+    for color,x in [('white',-5.12),('black',-4.87)]:
+        asset('lab_jack_'+color,'Thorlabs L200/M · '+('白色' if color=='white' else '黑色')+'装置用初始库存',
+            jack['geometry']['path'],[x,3.96,1.1175],z_up=True,station='fabrication_storage_shelf_2',resource='equipment:COOLER',
+            source_path='assets/thorlabs_l200_v1/sources.json',note='独立购入的普通升降台候选；不是完整冷却装置。保留 86 个原厂实体，未验收安装、调节或承载。')
+    hardware=json.loads((HERE/'lift_mount_stock.json').read_text())
+    asset(hardware['id'],hardware['label'],hardware['geometry']['path'],[-4.56,3.96,1.1175],z_up=True,
+        station='fabrication_storage_shelf_2',resource=hardware['resource_id'],source_path='assets/cooling_lab_v1/apparatus_mount_sources.json',
+        note='分别计数的 24 件普通紧固件候选；用于两台升降台的上下安装。光杆包络不等于已实现螺纹接触，尚未装配。')
     asset('tracker','EKO STR-32G 跟踪器（待复核）','assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',[2.5,18.6,.9],prefix='EKO_STR_32G__',
           station='tracker_support',resource='equipment:SOLAR_TRACKER',note='从历史场景按原始部件 ID 提取；待逐项对照。',source_path='assets/cooling_scene_assets_v2/equipment_research.json')
     for key,label,position,station,resource in [

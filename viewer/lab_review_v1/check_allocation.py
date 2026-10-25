@@ -18,7 +18,7 @@ def run(url, browser):
         b=p.chromium.launch(executable_path=browser,args=['--no-sandbox','--disable-dev-shm-usage'])
         page=b.new_page(viewport={'width':1440,'height':1000});page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(url);page.wait_for_function('document.documentElement.dataset.allocationLoaded === "true"')
-        check('all_components_visible',page.locator('#allocation-components tr').count()==143)
+        check('all_components_visible',page.locator('#allocation-components tr').count()==145)
         check('all_branches_available',page.locator('#allocation-branch option').count()==12)
         check('four_reference_models_excluded',page.locator('#allocation-references .risk-card').count()==4)
         check('unallocated_quantities_exposed','118 项用量待分配' in page.locator('#allocation-counts').inner_text())
@@ -26,8 +26,8 @@ def run(url, browser):
             path=HERE/'evidence'/('allocation_'+name+'.png');page.screenshot(path=str(path))
             captures.append(dict(path=str(path.relative_to(ROOT)),sha256=sha(path)))
         capture('overview')
-        check('stock_sheets_and_tubes_visible',page.locator('#stock-sheet option').count()==24 and page.locator('#stock-tubes p').count()==4)
-        for identity,count,label in [('acrylic_stock/raw_acrylic_sheet_1',1,'305 × 280'),('mylar_stock/raw_film_1',3,'底板贴膜'),('mylar_stock/raw_film_3',2,'支撑管包覆'),('aluminum_sheet_stock/raw_aluminum_1_5mm',4,'固定遮阳带'),('nano_pe_stock/raw_film_5',1,'恢复用膜'),('ldpe_stock/raw_film_6',1,'红外光学试片预留')]:
+        check('stock_sheets_and_tubes_visible',page.locator('#stock-sheet option').count()==25 and page.locator('#stock-tubes p').count()==4)
+        for identity,count,label in [('acrylic_stock/raw_acrylic_sheet_1',1,'305 × 280'),('mylar_stock/raw_film_1',3,'底板贴膜'),('mylar_stock/raw_film_3',2,'支撑管包覆'),('aluminum_sheet_stock/raw_aluminum_1_5mm',4,'固定遮阳带'),('aluminum_sheet_stock/raw_aluminum_5mm',2,'170 × 170'),('nano_pe_stock/raw_film_5',1,'恢复用膜'),('ldpe_stock/raw_film_6',1,'红外光学试片预留')]:
             page.locator('#stock-sheet').select_option(identity)
             check('stock_profile_'+identity,page.locator('#stock-plan polygon').count()==count and label in page.locator('#stock-cuts').inner_text())
             if identity=='mylar_stock/raw_film_1':
@@ -36,6 +36,9 @@ def run(url, browser):
         page.set_viewport_size({'width':390,'height':844})
         check('mobile_no_overflow',not page.evaluate('document.documentElement.scrollWidth > innerWidth'))
         page.set_viewport_size({'width':1440,'height':1000})
+        page.locator('#allocation-branch').select_option('BUILD_PAIR')
+        text=page.locator('#branch-allocation').inner_text()
+        check('two_initial_jacks_allocated','白色装置升降台 → lab_jack_white' in text and '黑色装置升降台 → lab_jack_black' in text)
         page.locator('#allocation-branch').select_option('PID_POWER')
         text=page.locator('#branch-allocation').inner_text()
         check('paired_heater_allocation','白色发射体 → heater_white' in text and '黑色发射体 → heater' in text)
@@ -46,7 +49,7 @@ def run(url, browser):
         check('same_white_apparatus_reused','apparatus_white' in text and 'apparatus_black' not in text)
         check('seven_map_probes_named','白色发射体 → tc_01' in text and '热分布点 6 → tc_07' in text and 'tc_08' not in text)
         page.locator('#allocation-branch').select_option('all');page.locator('#allocation-filter').select_option('quantified')
-        check('selected_quantities_filter',page.locator('#allocation-components tr').count()==25)
+        check('selected_quantities_filter',page.locator('#allocation-components tr').count()==27)
         page.locator('#allocation-search').fill('heater_white')
         check('search_matches_physical_identity',page.locator('#allocation-components tr').count()==1 and 'equipment:HEATER' in page.locator('#allocation-components').inner_text())
         page.locator('#allocation-search').fill('');page.locator('#allocation-filter').select_option('unallocated')

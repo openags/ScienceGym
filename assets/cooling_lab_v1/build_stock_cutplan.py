@@ -37,6 +37,7 @@ def derive():
             output_template=dict(asset_id=device,part=prefix+name))
     cu=sheet('copper_sheet_stock','raw_copper_sheet');foam=sheet('foam_stock','raw_foam_sheet')
     al1=sheet('aluminum_sheet_stock','raw_aluminum_1mm');al15=sheet('aluminum_sheet_stock','raw_aluminum_1_5mm');al64=sheet('aluminum_sheet_stock','raw_aluminum_6_4mm')
+    al5=sheet('aluminum_sheet_stock','raw_aluminum_5mm')
     for i,color in enumerate(['white','black']):
         device='cooler_'+color
         part(cu,color+'_emitter',device,'emitter_copper',[.01+i*.07,.01])
@@ -45,6 +46,7 @@ def derive():
         part(al1,color+'_aperture',device,'aperture_plate',[.01+i*.18,.01]);part(al1,color+'_reflector',device,'solar_reflector',[.01+i*.08,.20])
         part(al15,color+'_track',device,'reflector_track',[.01,.01+i*.05]);part(al15,color+'_fixed_band','cooler_fixed','fixed_reflector_band',[.01,.11+i*.095])
         part(al64,color+'_spacer',device,'film_spacer',[.01+i*.145,.01])
+        part(al5,color+'_lift_platform',device,'lift_plate',[.01+i*.19,.01])
     add(cu,'unallocated_copper_witness_reserve',box(0,0,.200,.100),[.01,.10],.0005,
         'Reserved uncut region only; white/black optical sample shapes, multiplicity and holder compatibility remain unresolved',reservation_only=True)
     for i,color in enumerate(['white','black']):
@@ -78,7 +80,8 @@ def derive():
                 finished_length_m=.057,cut_allowance_m=.001,inner_diameter_m=inner,outer_diameter_m=outer,
                 basis='57 mm PE height is inherited from the selected apparatus; the aluminum shield height is source reported',qualified=False))
     requirements=[
-        ('consumables:consumable_01',None,'copper_sheet_stock',1),('consumables:consumable_02','aluminum sheet stock','aluminum_sheet_stock',3),
+        ('consumables:consumable_01',None,'copper_sheet_stock',1),('consumables:consumable_02','aluminum sheet stock','aluminum_sheet_stock',4),
+        ('consumables:consumable_12','height-adjuster mount fasteners','lift_mount_hardware',24),
         ('consumables:consumable_02','aluminum tube stock','aluminum_tube_stock',2),('consumables:consumable_03',None,'pe_tube_stock',2),
         ('consumables:consumable_04',None,'foam_stock',1),('consumables:consumable_10',None,'acrylic_stock',2),
         ('consumables:consumable_05',None,'nano_pe_stock',8),('consumables:consumable_06',None,'ldpe_stock',6),('consumables:consumable_09',None,'mylar_stock',3)]

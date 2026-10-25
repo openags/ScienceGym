@@ -1,13 +1,15 @@
-"""Reconcile custom apparatus foil with selected stock without editing history.
+"""Reconcile foil and source-scale central mounting without editing history.
 
 The historical Blender bundle is immutable input. Only the selected foil is
-reconstructed here; remaining frame/cover load paths are still unqualified.
+reconstructed here, followed by the selected real jack and ordinary mounting.
+Remaining frame/cover load paths are still unqualified.
 """
 import json
 from pathlib import Path
 import numpy as np
 import trimesh
 from geometry_tools import HERE,ROOT,sha,write_json,imported_scene
+from build_apparatus_mounting import apply_mount, build_stock
 
 THICKNESS=.000012
 LAP=.003
@@ -38,6 +40,7 @@ def wrap(radius,height,center,position_guard):
 
 
 def build():
+    build_stock()
     source='assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb';items=[]
     for identity,prefix in [('cooler_white','COOLER_WHITE__'),('cooler_black','COOLER_BLACK__'),('cooler_fixed','COOLER_FIXED_BAND__')]:
         g=imported_scene(source,prefix=prefix);changes=[]
@@ -54,14 +57,26 @@ def build():
             new,allowance=wrap(radius,height,center,guard);new.visual=trimesh.visual.TextureVisuals(material=old.visual.material.copy());g.geometry[key]=new
             changes.append(dict(part=prefix+foil,substrate=prefix+substrate,radius_m=radius,height_m=height,thickness_m=THICKNESS,lap_m=LAP,mesh_faceting_and_quantization_allowance_m=allowance,
                                 basis='Paper requires curved-surface coverage; thickness is the selected stock, seam and bending shape are engineering inferences'))
+        mounting=apply_mount(g,prefix)
         path=HERE/'geometry'/('apparatus_'+identity+'.glb');path.write_bytes(g.export(file_type='glb',include_normals=True))
-        items.append(dict(id=identity,geometry=dict(path=str(path.relative_to(ROOT)),sha256=sha(path),parts=len(g.geometry)),changes=changes))
+        items.append(dict(id=identity,geometry=dict(path=str(path.relative_to(ROOT)),sha256=sha(path),parts=len(g.geometry)),changes=changes,mounting=mounting))
+        if identity=='cooler_white':
+            core=trimesh.Scene()
+            for name in mounting['core_inspection_parts']:
+                mesh=g.geometry[name].copy();mesh.apply_translation([-mounting['jack_translation_m'][0],-mounting['jack_translation_m'][1],-mounting['base_bottom_m']])
+                core.add_geometry(mesh,node_name=name,geom_name=name)
+            inspection=HERE/'geometry'/'apparatus_mount_inspection.glb';inspection.write_bytes(core.export(file_type='glb',include_normals=True))
+            items[-1]['mounting_inspection']=dict(path=str(inspection.relative_to(ROOT)),sha256=sha(inspection),parts=len(core.geometry),
+                scope='Actual white candidate core; thermal, reflector and legacy frame parts are hidden to inspect the mounting')
     write_json(HERE/'apparatus_stock_reconciliation.json',dict(schema_version=1,items=items,
-        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [ROOT/source,Path(__file__),HERE/'stock_sources.json',TASK_MATERIALS]],
-        accepted=False,scope='Selected custom-apparatus foil geometry only, not a manufacturer product or assembly qualification',
+        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [ROOT/source,Path(__file__),HERE/'stock_sources.json',TASK_MATERIALS,
+            HERE/'build_apparatus_mounting.py',HERE/'apparatus_mount_sources.json',HERE/'lift_mount_stock.json',ROOT/'assets/thorlabs_l200_v1/model.json',ROOT/'assets/thorlabs_l200_v1/checks.json']],
+        accepted=False,scope='Selected foil and source-scale central mounting in completed-state reference geometry; not assembly qualification or initial stock',
         limitations=['Historical Mylar SKU/thickness is unspecified; selected Goodfellow metallized PET is a candidate, not proven material equivalence',
                      'Foil optics, flexure, seam bonding and attachment tools are unqualified; sub-micron mesh faceting allowance is not a physical adhesive layer',
-                     'Frame fasteners, the height-adjuster contacts and the cover load path retain their previous unresolved reconstruction status']))
+                     'Central mounting has real holes and ordinary fastener envelopes; preload, thread contact and structural load capacity are not qualified',
+                     'Legacy sensor-lead/contact placeholders are removed; sourced probes remain staged and are not installed',
+                     'Frame fasteners, upright/track retention and the cover load path retain unresolved reconstruction status']))
     print(json.dumps(dict(apparatus=len(items),reconciled_foil_parts=sum(len(i['changes']) for i in items))))
 
 

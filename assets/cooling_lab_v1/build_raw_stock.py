@@ -23,7 +23,7 @@ def tubes(kind,inner,outer,count,color):
 def models():
     return [
         ('copper_sheet_stock',lambda:plates([('raw_copper_sheet',[.300,.250,.0005])],[181,105,67],.8),{}),
-        ('aluminum_sheet_stock',lambda:plates([('raw_aluminum_1mm',[.400,.300,.001]),('raw_aluminum_1_5mm',[.400,.300,.0015]),('raw_aluminum_6_4mm',[.300,.160,.0064])],[175,184,192],.8),{}),
+        ('aluminum_sheet_stock',lambda:plates([('raw_aluminum_1mm',[.400,.300,.001]),('raw_aluminum_1_5mm',[.400,.300,.0015]),('raw_aluminum_6_4mm',[.300,.160,.0064]),('raw_aluminum_5mm',[.400,.200,.005])],[175,184,192],.8),{}),
         ('foam_stock',lambda:plates([('raw_foam_sheet',[.300,.250,.025])],[202,145,162]),{}),
         ('acrylic_stock',lambda:plates([('raw_acrylic_sheet_1',[.350,.300,.006]),('raw_acrylic_sheet_2',[.350,.300,.006])],[178,201,205]),{}),
         ('pe_tube_stock',lambda:tubes('pe',.038,.051,3,[221,221,201]),{}),

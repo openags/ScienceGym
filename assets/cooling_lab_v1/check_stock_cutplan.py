@@ -63,9 +63,11 @@ def build():
         identity=item['id'];new=outputs[identity];prefix={'cooler_white':'COOLER_WHITE__','cooler_black':'COOLER_BLACK__','cooler_fixed':'COOLER_FIXED_BAND__'}[identity]
         original=imported_scene('assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',prefix=prefix)
         changed={c['part'] for c in item['changes']}
+        mounting=item['mounting'];changed.update(mounting['rebuilt_parts']+mounting['translated_parts'])
         # GLB stores POSITION as float32; compare the exact serialized values,
         # not the float64 transforms used by the importer (up to 15 nm apart).
-        check('only_selected_foil_changed_'+identity,set(new)==set(original.geometry) and all(np.array_equal(new[n].vertices,original.geometry[n].vertices.astype(np.float32)) and np.array_equal(new[n].faces,original.geometry[n].faces) for n in new if n not in changed))
+        expected=(set(original.geometry)-set(mounting['removed_legacy_parts']))|set(mounting['added_parts'])
+        check('only_declared_foil_and_mounting_changed_'+identity,set(new)==expected and all(np.array_equal(new[n].vertices,original.geometry[n].vertices.astype(np.float32)) and np.array_equal(new[n].faces,original.geometry[n].faces) for n in set(new)&set(original.geometry)-changed))
         base=new[prefix+'acrylic_base'];foil=new[prefix+'mylar_base']
         check('full_base_coverage_'+identity,np.allclose(foil.bounds[:,:2],base.bounds[:,:2],atol=1e-7) and abs(foil.bounds[0,2]-base.bounds[1,2])<1e-8)
         check('base_foil_matches_stock_'+identity,abs(foil.extents[2]-.000012)<1e-8)

@@ -44,22 +44,26 @@
         },
         {
           "path": "assets/cooling_lab_v1/geometry/apparatus_cooler_white.glb",
-          "sha256": "36c5e9f8fb2dfe9aaf468855789b275466fc18ced68ba92b04cb75554923d541"
+          "sha256": "7363dd3d287c523f15ca3c4592cc7f004a791d3150c3e6889db19516cb099337"
         },
         {
           "path": "assets/cooling_lab_v1/geometry/apparatus_cooler_black.glb",
-          "sha256": "57ccd16cfbaf1c397dc93e035e964f7ecb982b63fc23fecee8ba76d77ea499d8"
+          "sha256": "1226a0be1745e2e0a0ffb211cc6a38a81d855f83384fc74d5ea27ecca3971d0e"
         },
         {
           "path": "assets/cooling_lab_v1/geometry/apparatus_cooler_fixed.glb",
-          "sha256": "0f7816f59bd660eddaf04effa59f8e4f94f21c9088152d71b6acf55bd492db64"
+          "sha256": "f7084976831792c2c060466b8a49a516883edf8e3464b1fa8747354aae3fe641"
+        },
+        {
+          "path": "assets/thorlabs_l200_v1/geometry/L200_M.glb",
+          "sha256": "6c891cb3a55f64d21c2ecf990e92212f77d4e4ed3f1f93c0a3347b941b259eb4"
         }
       ],
       "discovery_status": "candidate_linked_for_review",
       "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": {
-        "modeled_instances": 3,
+        "modeled_instances": 5,
         "required_instance_count_accepted": false
       },
       "asset_acceptance": "not_reviewed",
@@ -69,19 +73,31 @@
           "id": "cooler_white",
           "station": "outdoor_white",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_white.glb",
-          "sha256": "322ac817a97fc48f026d11d388b2e999b470bf0b446f2bae784218d5ba4caeaa"
+          "sha256": "5d15a782bede7959e3039185060ed6c5c69e51734f8a4b325ef2558ac9af52e0"
         },
         {
           "id": "cooler_black",
           "station": "outdoor_black",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_black.glb",
-          "sha256": "c1799c6a098440f12303845dd47e4456eb9faacb174d44e7de951656423a9842"
+          "sha256": "316575c5eedb623633f948e0d03b28991734555fb3e116e4ba034a4c7ea6ed86"
         },
         {
           "id": "cooler_fixed",
           "station": "assembly_black",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_fixed.glb",
-          "sha256": "12bb3419d2a557eb9ee4339cc875270d00c83c1fdb2555ca34c8c42fb5d1c21f"
+          "sha256": "718420ba4cb6fa7d618e0f7f167de5a1e711301dde1375e539b385d001d5e4a3"
+        },
+        {
+          "id": "lab_jack_white",
+          "station": "fabrication_storage_shelf_2",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_lab_jack_white.glb",
+          "sha256": "5f7d9dcbce07efb6b7c119f2ddb196e1d8b999aa0d47e2732f62f03963a89f29"
+        },
+        {
+          "id": "lab_jack_black",
+          "station": "fabrication_storage_shelf_2",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_lab_jack_black.glb",
+          "sha256": "5f7d9dcbce07efb6b7c119f2ddb196e1d8b999aa0d47e2732f62f03963a89f29"
         }
       ],
       "authored_scene_components": []
@@ -1326,7 +1342,7 @@
       "candidate_artifacts": [
         {
           "path": "assets/cooling_lab_v1/geometry/supply_aluminum_sheet_stock.glb",
-          "sha256": "93ea0127a045f2177dd6156c3f26b8c4e0c3722f0d77a39ef0bf19ca49759bdb"
+          "sha256": "ba135478f2fa4f059f836d7e507fe4bc3f01b58205933ed5d110c4e910761499"
         },
         {
           "path": "assets/cooling_lab_v1/geometry/supply_aluminum_tube_stock.glb",
@@ -1347,7 +1363,7 @@
           "id": "aluminum_sheet_stock",
           "station": "raw_stock_shelf_2",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_aluminum_sheet_stock.glb",
-          "sha256": "5228e268f72b1d3f46f7b2c5c30e23c07c0dfbeccd3d9e43b338c3e123de67b7"
+          "sha256": "de995fa82d57f6e3ca201fca549fd837ed6b35ee411bd8e0d8a815b26e21cc43"
         },
         {
           "id": "aluminum_tube_stock",
@@ -1661,6 +1677,10 @@
       "source_value": "fasteners",
       "candidate_artifacts": [
         {
+          "path": "assets/cooling_lab_v1/geometry/lift_mount_hardware.glb",
+          "sha256": "edf1ce5c0c139bc699f7eefa81d2c3aa86dd3545a233eb2c3f0449b3ad7aee96"
+        },
+        {
           "path": "assets/cooling_lab_v1/geometry/supply_omax_317864.glb",
           "sha256": "79931ef18ad2cfc9e03f6c4af1902a15ba8b4e7e617ad40e9606a14cf372ceca"
         }
@@ -1669,12 +1689,18 @@
       "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": {
-        "modeled_instances": 1,
+        "modeled_instances": 2,
         "required_instance_count_accepted": false
       },
       "asset_acceptance": "not_reviewed",
       "scene_placement": "modeled_candidate_pending_review",
       "scene_instances": [
+        {
+          "id": "lift_mount_hardware",
+          "station": "fabrication_storage_shelf_2",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_lift_mount_hardware.glb",
+          "sha256": "a9ac45431ffc6b1c41b369aa15c3c21e63d790a59b1fa14795ba16a4ee7e05c8"
+        },
         {
           "id": "workholding_kit",
           "station": "fabrication_fixture",
@@ -4751,7 +4777,7 @@
   ],
   "scene_artifact": {
     "path": "assets/cooling_lab_v1/scene.json",
-    "sha256": "3429e49ab9944914c9aba082f8be83d1a864f8704c6aa3ca37403cf0b8e459c0"
+    "sha256": "3b082ceffee64f3d3af5b28fbee685f78fd3f03ce9db606788be0526d60e4896"
   },
   "added_sensor_requirement_rows": 3
 }

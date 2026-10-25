@@ -13,6 +13,7 @@ TASK = ROOT / 'tasks/directional_cooling_operations_v3'
 # Explicit component-to-instance associations. A model's presence says nothing
 # about calibration, services, contacts or the complete resource group.
 POOLS = {
+    'lab_jacks': ('equipment:COOLER', 'height-adjustable support', ['lab_jack_white', 'lab_jack_black']),
     'smu': ('equipment:SMU', None, ['smu_white', 'smu_black']),
     'heater': ('equipment:HEATER', None, ['heater_white', 'heater']),
     'daq': ('equipment:DAQ', None, ['daq']),
@@ -37,7 +38,7 @@ PAIRED = dict(ENV, daq=['temperature_log'], probes=['white_emitter', 'black_emit
 MAPPING = dict(ENV, daq=['temperature_log'],
               probes=['white_emitter']+['map_'+str(i) for i in range(1, 7)])
 DEMANDS = {
-    'BUILD_PAIR': {},
+    'BUILD_PAIR': dict(lab_jacks=['white_height_adjuster','black_height_adjuster']),
     'CALIBRATE': dict(daq=['calibration_log'], bath=['calibration_bath'],
                       dmm=['reference_readout'], reference_rtd=['reference'],
                       probes=['calibration_probe_'+str(i) for i in range(1, 9)]),

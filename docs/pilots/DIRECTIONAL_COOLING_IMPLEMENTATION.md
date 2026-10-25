@@ -77,7 +77,7 @@ guarantee of general reliability.
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
-  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 81-point station screen records
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 84-point station screen records
   each position-only IK result and external obstacle conflicts, including 24
   supply/service approaches. Shoulder alignment, unused-arm retraction and
   proposed-camera clearance are screened. The
@@ -130,20 +130,20 @@ guarantee of general reliability.
   staged on the optical bench; Nicolet mounts, retention and optical alignment
   remain open. Geometry sliders inspect the selected rigid carrier; they do not
   implement robot manipulation or a calibrated optical instrument.
-  The scene has 68 instances; compound requirements and full campaign quantities
-  remain incomplete. Thirty-seven component requirements now bind to named staged
+  The scene has 71 instances; compound requirements and full campaign quantities
+  remain incomplete. Thirty-nine component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools
   remain the same physical instances. Staged assets are not executed preparation
   operations.
   Clamp installation/force and wire-tool compatibility remain unresolved.
 - The [campaign allocation](../../assets/cooling_lab_v1/campaign_allocation.json)
-  covers all 143 component requirements and eleven branches, with selected
-  quantities for sixteen core components and nine material components; quantities
+  covers all 145 component requirements and eleven branches, with selected
+  quantities for seventeen core components and ten stock components; quantities
   for the remaining 118 are unknown. Two independent heater candidates now match the paired power requirement.
   Completed apparatus meshes and the fixed-configuration display are references,
   not prebuilt starting stock. The selected pair is reused by identity. The
-  [stock cut plan](../../assets/cooling_lab_v1/stock_cutplan.json) reserves 41
-  envelopes on 24 sheets and four tube sections using actual apparatus meshes.
+  [stock cut plan](../../assets/cooling_lab_v1/stock_cutplan.json) reserves 43
+  envelopes on 25 sheets and four tube sections using actual apparatus meshes.
   Copper, aluminum, foam, acrylic and hollow-tube stock are separately inspectable.
   The former undersized acrylic/Mylar and insufficient LDPE remain as rejected
   evidence. Selected 12 μm foil now agrees between stock and custom apparatus;
@@ -172,10 +172,20 @@ guarantee of general reliability.
   actual plate bores/slots and the 16 links are retained at source scale.
   Four raw tessellation seams are corrected by 14 edge subdivisions without
   moving vertices or filling physical holes; their failed meshes are retained.
-  This is a candidate for the unidentified paper support, not a historical model
-  identification, installed assembly or new stock allocation. Base/platform
-  fastening, load paths, screw constraints and tooling remain open. Manufacturer
-  CAD and its derived GLBs stay in the ignored local cache/geometry directories;
+  This is a selected substitute for the unidentified paper support. The three
+  reference configurations now include a nominal mounting with actual base and
+  platform holes, four M3×10 underside screws/large washers and four M3×8
+  ISO 10642 platform screws. Two loose jacks and 24 ordinary mounting pieces
+  are initial stock; a separate 5 mm aluminum plate reserves both platforms.
+  The [mounting checks](../../assets/cooling_lab_v1/apparatus_mount_checks.json)
+  preserve nominal thread-envelope intersections and unresolved load, preload,
+  acrylic stress, tool access, frame and cover connections. Legacy disconnected
+  probe placeholders are removed. The actual core is inspectable in the browser;
+  the upper thermal/reflector group follows the corrected source height.
+  The first stock placement caused shoulder/shelf overlaps. Those poses remain
+  replayed failure fixtures; the three stock groups move 300 mm toward the aisle
+  and are checked again with the same robot and collision screen.
+  Manufacturer CAD and every composite containing it stay in ignored local cache/geometry directories;
   the repository distributes source pins, code and review evidence.
 
 - A separate FTIR installation review now adds the 206 × 252 mm floor candidate

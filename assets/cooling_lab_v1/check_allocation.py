@@ -25,6 +25,10 @@ def inspect():
     check('unallocated_quantities_remain_unknown', all(c['required_quantity'] is None for c in report['components'] if c['quantity_status'] == 'unallocated'))
     check('no_qualification_from_inventory', all(not b['qualified'] and not b['allocation_complete'] for b in report['branches']))
     branches = {b['id']: b for b in report['branches']}
+    jacks=next(a for a in branches['BUILD_PAIR']['allocations'] if a['pool_id']=='lab_jacks')['roles']
+    check('pair_uses_two_distinct_initial_jacks',{r['physical_id'] for r in jacks}=={'lab_jack_white','lab_jack_black'})
+    fasteners=next(c for c in report['components'] if c['label']=='height-adjuster mount fasteners')
+    check('twenty_four_mount_fasteners_allocated',fasteners['required_quantity']==24 and fasteners['staged_candidates']['quantity']==24 and fasteners['quantity_deficit']==0)
     pid = {p['pool_id']: p for p in branches['PID_POWER']['allocations']}
     check('simultaneous_heaters_have_distinct_physical_instances', {r['physical_id'] for r in pid['heater']['roles']} == {'heater', 'heater_white'})
     check('simultaneous_sources_have_distinct_physical_instances', {r['physical_id'] for r in pid['smu']['roles']} == {'smu_white', 'smu_black'})
@@ -50,6 +54,12 @@ def inspect():
     next(a for a in missing_sheet['assets'] if a['id']=='ldpe_stock')['part_names'].remove('raw_film_6')
     absent=next(c for c in build_record(missing_sheet,readiness)['components'] if c['resource_id']=='consumables:consumable_06')
     check('negative_removed_ldpe_sheet_exposes_deficit',absent['quantity_deficit']==1 and absent['staged_candidates']['quantity']==5)
+    missing_jack=copy.deepcopy(scene);missing_jack['assets']=[a for a in missing_jack['assets'] if a['id']!='lab_jack_black']
+    absent=next(p for p in build_record(missing_jack,readiness)['pools'] if p['id']=='lab_jacks')
+    check('negative_missing_black_jack_exposes_deficit',absent['quantity_deficit']==1 and absent['missing_unit_ids']==['lab_jack_black'])
+    missing_fastener=copy.deepcopy(scene);a=next(a for a in missing_fastener['assets'] if a['id']=='lift_mount_hardware');a['part_names'].pop()
+    absent=next(c for c in build_record(missing_fastener,readiness)['components'] if c['label']=='height-adjuster mount fasteners')
+    check('negative_missing_mount_fastener_exposes_deficit',absent['quantity_deficit']==1 and absent['staged_candidates']['quantity']==23)
     original = POOLS['heater']
     for name, units in [('duplicate_unit', ['heater', 'heater']), ('completed_stock', ['cooler_white', 'heater']), ('cross_pool_reuse', ['smu_white', 'heater']), ('wrong_resource_type', ['caliper', 'heater'])]:
         rejected = False
@@ -62,11 +72,11 @@ def inspect():
             POOLS['heater'] = original
         check('negative_'+name+'_rejected', rejected)
     result = dict(schema_version=1, passed=all(c['passed'] for c in checks), checks=checks,
-                  negative_cases=7, scope='Inventory identities and selected quantities only; no task or stock sufficiency acceptance',
+                  negative_cases=9, scope='Inventory identities and selected quantities only; no task or stock sufficiency acceptance',
                   source_artifacts=[dict(path=str(p.relative_to(ROOT)), sha256=sha(p)) for p in
                       [HERE/'campaign_allocation.json', HERE/'check_allocation.py']])
     write_json(HERE/'allocation_checks.json', result)
-    print(json.dumps(dict(passed=result['passed'], checks=len(checks), negative_cases=7)))
+    print(json.dumps(dict(passed=result['passed'], checks=len(checks), negative_cases=9)))
     return result
 
 

@@ -50,7 +50,7 @@ DECOMPOSE={
  'robot:WRIST_RGB_LEFT':['selected left D405 camera','left wrist mounting hardware','USB power/data and strain relief','optical and mounting calibration'],
  'robot:WRIST_RGB_RIGHT':['selected right D405 camera','right wrist mounting hardware','USB power/data and strain relief','optical and mounting calibration'],
  'equipment:WATERJET':['cutting table and slats','stage and nozzle','guard and interlocks','pump and pressure circuit','abrasive hopper and feed','abrasive stock','water supply and filtration','drain and spent-abrasive collection','controller and laptop'],
- 'equipment:COOLER':['white tracked assembly','black tracked assembly','fixed-band configuration and reusable parts'],
+ 'equipment:COOLER':['white tracked assembly','black tracked assembly','fixed-band configuration and reusable parts','height-adjustable support'],
  'equipment:WEATHER':['U30 logger','temperature/humidity sensor','wind sensor','mast and brackets','power and data connections'],
  'equipment:TC':['identified K probes','lead pairs','numbered transition terminals','strain relief'],
  'equipment:AMB_RTD':['ambient probe','radiation shield','mount','lead termination'],
@@ -63,7 +63,7 @@ DECOMPOSE={
  'consumables:consumable_02':['aluminum sheet stock','aluminum tube stock'],
  'consumables:consumable_07':['white coating','black coating'],
  'consumables:consumable_11':['sensor leads','heater force/sense leads','instrument data cables','power leads'],
- 'consumables:consumable_12':['frame fasteners','accessory fasteners','electrical termination fasteners'],
+ 'consumables:consumable_12':['frame fasteners','accessory fasteners','electrical termination fasteners','height-adjuster mount fasteners'],
  'consumables:consumable_13':['masking tape','cleaning supplies','wipes','compatible waste containers'],
  'additional_reconstructed_materials:calibration_block_stock':['copper block raw stock','machined block state','drill tooling'],
  'additional_reconstructed_materials:fine_wire_transition':['compatible conductor pairs','K-type connector pairs or transition terminals','insulation and strain relief'],
@@ -128,6 +128,11 @@ def build():
             staged['bindings'].append(dict(resource_id=a['resource_id'],component_label=optical_labels[a['id']][key],unit=unit,
                 members=[dict(asset_id=a['id'],parts=parts)],scope='Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage'))
     assert staged['asset_acceptance'] is False and staged['campaign_sufficiency_accepted'] is False
+    mount_stock=json.loads((HERE/'lift_mount_stock.json').read_text())
+    staged['bindings'].append(dict(resource_id='equipment:COOLER',component_label='height-adjustable support',unit='catalog_lab_jack',
+        members=[dict(asset_id='lab_jack_'+color) for color in ['white','black']],scope='Two purchased source-scale jack candidates; no installed or actuation qualification'))
+    staged['bindings'].append(dict(resource_id=mount_stock['resource_id'],component_label=mount_stock['component_label'],unit='fastener_or_washer',
+        members=[dict(asset_id=mount_stock['id'],parts=u['parts']) for u in mount_stock['units']],scope='24 separately counted ordinary mounting pieces for the pair; no preload, thread or assembly qualification'))
     by_component={(r['resource_id'],c['label']):c for r in requirements for c in r['components']}
     assets={a['id']:a for a in scene['assets']};seen=set()
     for binding in staged['bindings']:
@@ -158,7 +163,7 @@ def build():
               disposition='Inspect against ordinary-tool-only contract; old text remains historical, not current runtime authority'))
     branch_rows=[dict(id=b['id'],title=b['title'],manual_step_ids=[s['step_id'] for s in step_rows if s['operation_id'] in b['operation_ids']],
                      status='requirements_only_no_humanoid_execution',qualified_trials=0) for b in branches]
-    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
+    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',HERE/'lift_mount_stock.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
     active=[r for r in requirements if r['disposition']!='historical_embodiment_reference']
     out=dict(schema_version=1,status='asset_phase_incomplete',visibility='author_and_reviewer_only_not_actor_input',
       source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in source_paths],
