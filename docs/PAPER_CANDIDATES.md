@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **336**.
+Last screened: **2026-10-25**. Candidate count: **337**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3400,4 +3400,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **16**, 7069 (2025), published/version of record **1 August 2025**. Selected sensing-mechanism and double-stacked recognition Results were screened. Mechanical response and contact-electrification signals must remain distinguishable; reported classification accuracy is not a robot-task acceptance criterion.
 - The official [22-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-62524-0/MediaObjects/41467_2025_62524_MOESM1_ESM.pdf) was text-accessible. Selected Notes 1–2 and Figures 1, 6 and 11 captions were screened. Figure images, remaining sections, reporting summary, code, source data and peer review were not fully reviewed.
 - Future scope starts with qualified, prepared sensors and benign nonbiological aqueous references. Fabrication, chemical etching, nanoparticle processing, toxic-metal solutions and human measurements are excluded. Calibration, contamination control, fixture limits and independent evaluation require review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+
+## Additional candidate: prepared building-material moisture-buffering metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Low-carbon indoor humidity regulation via 3D-printed superhygroscopic building components](https://www.nature.com/articles/s41467-024-54944-1) | Nature Communications / 2025 | 10.1038/s41467-024-54944-1 | Prepared specimens could support identity tracking, chamber-to-balance coordination and repeated moisture-response comparisons while preserving exposure histories. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 425 (2025), published/version of record **10 January 2025**. Selected hygrothermal Results and characterization Methods were screened. Main and supplement reverse the stated humidity-cycle durations; this discrepancy needs resolution before conversion. Simulated building-comfort outcomes are not laboratory observations.
+- The official [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54944-1/MediaObjects/41467_2024_54944_MOESM1_ESM.pdf) was text-accessible. Selected moisture-buffering Methods and Figure 9 caption were screened. The single gyroid prototype used an earlier formulation with adjusted results; it is not an independent replicated test of the final formulation. Figure images, remaining sections, datasets and peer review were not fully reviewed. The additional-file description link returned Internal Error and remains unread; no claim depends on its contents.
+- Future scope starts with qualified, prepared, nonliving specimens. Fabrication, powder handling, alkaline processing and thermal-analysis operations are excluded. Calibration, specimen compatibility and exposure-history reconciliation require review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
