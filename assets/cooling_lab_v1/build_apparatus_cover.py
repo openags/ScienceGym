@@ -12,6 +12,7 @@ import manifold3d
 from geometry_tools import HERE, ROOT, sha, write_json
 from build_apparatus_mounting import display
 from build_stock_cutplan import load_parts
+from build_cover_retention import apply_retention
 
 PARTS = ['lift_plate', 'foam_1', 'foam_2', 'foam_mylar_1', 'foam_mylar_2',
          'emitter_copper', 'emitter_white_coating', 'PE_support', 'PE_support_mylar',
@@ -178,12 +179,15 @@ def candidate(parts, ledger):
 def build():
     legacy=capture_legacy();ledger=json.loads((HERE/'apparatus_cover_sources.json').read_text())
     parts=load_parts(legacy['geometry']['path']);result,details=candidate(parts,ledger)
+    result,retention=apply_retention(result);details['retention']=retention
     geometry=export(result,HERE/'geometry'/'apparatus_cover_candidate.glb')
     # Real planar section faces of the exported solids. Open clipping exposes
     # nearly coincident back surfaces of foil/substrate and misrepresents a
     # solid cross-section. These caps are display geometry only.
-    caps={};cap_details=[];offset=.0005
+    caps={};cap_details=[];uncut=[];offset=.0005
     for name,m in load_parts(geometry['path']).items():
+        if not m.bounds[0,1]<offset<m.bounds[1,1]:
+            uncut.append(name);continue
         s=m.copy();s.merge_vertices(merge_norm=True,merge_tex=True,digits_vertex=8)
         cut=manifold3d.Manifold(manifold3d.Mesh(np.array(s.vertices,dtype=np.float32),np.array(s.faces,dtype=np.uint32))).trim_by_plane([0,1,0],offset).to_mesh()
         vertices=cut.vert_properties[:,:3];faces=cut.tri_verts
@@ -193,12 +197,13 @@ def build():
         cap.visual=m.visual.copy();caps[name]=cap
         cap_details.append(dict(part=name,area_m2=float(cap.area)))
     sections=export(caps,HERE/'geometry'/'apparatus_cover_sections.glb')
-    sections.update(plane_normal=[0,1,0],plane_offset_m=offset,source_geometry=geometry,items=cap_details,
+    sections.update(plane_normal=[0,1,0],plane_offset_m=offset,source_geometry=geometry,items=cap_details,uncut_parts=uncut,
                     scope='Exact planar display sections of exported positive solids; not added physical parts')
     record=dict(schema_version=1,id='cover_candidate',geometry=geometry,sections=sections,
         details=details,integrated_in_lab=False,owner_acceptance=None,
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in
-            [Path(__file__),HERE/'apparatus_cover_sources.json',HERE/'cover_legacy_rejected.json',HERE/'build_apparatus_mounting.py',HERE/'build_stock_cutplan.py',HERE/'requirements.txt']],
+            [Path(__file__),HERE/'apparatus_cover_sources.json',HERE/'cover_legacy_rejected.json',HERE/'build_apparatus_mounting.py',HERE/'build_stock_cutplan.py',HERE/'requirements.txt',
+             HERE/'build_cover_retention.py',HERE/'build_apparatus_frame.py',HERE/'apparatus_frame_sources.json',HERE/'apparatus_mount_sources.json']],
         limits=ledger['remaining'])
     write_json(HERE/'apparatus_cover_candidate.json',record)
     print(json.dumps(dict(parts=len(result),integrated_in_lab=False,assembly_qualified=False)))

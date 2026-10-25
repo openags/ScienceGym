@@ -28,20 +28,25 @@ def run(url,browser):
             path=HERE/'evidence'/('cover_'+name+'.png');path.write_bytes(data)
             captures.append(dict(path=str(path.relative_to(ROOT)),sha256=sha(path)))
             return np.asarray(Image.open(io.BytesIO(data)).convert('RGB'),dtype=np.int16)
-        for version,count in [('candidate',16),('legacy',14)]:
+        for version,count in [('candidate',29),('legacy',14)]:
             page.locator('#cover-version').select_option(version);page.locator('#cover-group').select_option('all')
             check('exact_part_count_'+version,len(snapshot()['visible'])==count and all(m['version']==version for m in snapshot()['visible']))
-            check('section_caps_match_display_'+version,len(snapshot()['sectionCaps'])==(16 if version=='candidate' else 0))
-            for group in ['all','core','cover','lower']:
+            check('section_caps_match_display_'+version,len(snapshot()['sectionCaps'])==(17 if version=='candidate' else 0))
+            for group in ['all','core','cover','lower','retention']:
                 page.locator('#cover-group').select_option(group)
                 check('selection_'+version+'_'+group,bool(snapshot()['visible']) and (group!='lower' or [m['name'] for m in snapshot()['visible']]==['cover_lower']))
                 for view in ['oblique','front']:
                     page.locator('button[data-view="'+view+'"]').click();capture(version+'_'+group+'_'+view)
+                if version=='candidate' and group=='retention':
+                    page.locator('#cover-section').uncheck()
+                    for view in ['top','bottom']:
+                        page.locator('button[data-view="'+view+'"]').click();capture(version+'_'+group+'_'+view)
+                    page.locator('#cover-section').check()
         page.locator('#cover-version').select_option('candidate');page.locator('#cover-group').select_option('all')
         page.locator('button[data-view="oblique"]').click();clipped=capture('candidate_section')
         page.locator('#cover-section').uncheck();full=capture('candidate_unclipped')
         check('clipping_changes_visible_geometry',np.sum(np.max(abs(clipped-full),axis=2)>12)>1000)
-        check('clipping_does_not_remove_parts',len(snapshot()['visible'])==16 and all(not m['clipped'] for m in snapshot()['visible']))
+        check('clipping_does_not_remove_parts',len(snapshot()['visible'])==29 and all(not m['clipped'] for m in snapshot()['visible']))
         check('unclipped_has_no_diagnostic_caps',not snapshot()['sectionCaps'])
         page.locator('#cover-section').check();restored=capture('candidate_section_restored')
         check('clipping_restores_same_pixels',np.max(abs(restored-clipped))<=1)

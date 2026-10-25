@@ -229,14 +229,19 @@ guarantee of general reliability.
   a membrane-supported ring hypothesis with retained legacy failures. Published
   tube/ring diameters, 16 micrometre film and 57 mm shield height are preserved;
   a 51 mm PE support, film drape and 58 micrometre adhesive are explicit choices.
-  All 16 candidate solids have positive closed geometry. The 130 geometric
+  All 29 candidate solids have positive closed geometry. The 205 geometric
   checks include actual film-normal gauge, contact connectivity, solid overlap
-  and section-hole checks; 23 browser checks retain 19 views. Neither membrane
+  and section-hole checks; 25 browser checks retain 25 views. Neither membrane
   equilibrium nor adhesion is qualified. The legacy invalid coating, copper
   winding and floating shield remain available for comparison. Actual section
   faces resolve misleading open-clipping interference without altering the
-  physical meshes. This candidate is not integrated into the laboratory yet;
-  ordinary shield/aperture retention, stock and all configurations remain next.
+  physical meshes. Three ordinary angle-stock connections now use six M3×6
+  screws and three washers; a separate adhesive annulus joins the aperture.
+  The selected platform grows to 180 mm square while retaining the jack bores.
+  Its previous 170 mm size fails the foot-support counterexample. Nominal thread
+  faceting intersections remain explicit, with no preload or physical retention
+  claim. This candidate is not integrated into the laboratory yet; initial
+  adhesive/angle/hardware stock, tools and all configurations remain next.
 
 - A separate FTIR installation review now adds the 206 × 252 mm floor candidate
   and 38 ordinary mounting parts. Thermo site guide 269-158000 supplies the floor

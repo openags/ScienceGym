@@ -3,13 +3,13 @@
   "id": "cover_candidate",
   "geometry": {
     "path": "assets/cooling_lab_v1/geometry/apparatus_cover_candidate.glb",
-    "sha256": "13a16d15ec87f32fdb4b39c94b6ec3a770ef5064daa1faa6b48968b4e70c3522",
-    "parts": 16
+    "sha256": "ce8761c93eef038e255355a57cf265ef7a120de30d5bea8a54283dfc2a5f82c2",
+    "parts": 29
   },
   "sections": {
     "path": "assets/cooling_lab_v1/geometry/apparatus_cover_sections.glb",
-    "sha256": "22d9c6ba426ee3372b1381aae58a971e13b914836da01300a38c7ef4c5928ab2",
-    "parts": 16,
+    "sha256": "f576e50ecf1ebfe8862dd730f172337e639165b5f1e4d2c7b1db36daaf972afd",
+    "parts": 17,
     "plane_normal": [
       0,
       1,
@@ -18,10 +18,14 @@
     "plane_offset_m": 0.0005,
     "source_geometry": {
       "path": "assets/cooling_lab_v1/geometry/apparatus_cover_candidate.glb",
-      "sha256": "13a16d15ec87f32fdb4b39c94b6ec3a770ef5064daa1faa6b48968b4e70c3522",
-      "parts": 16
+      "sha256": "ce8761c93eef038e255355a57cf265ef7a120de30d5bea8a54283dfc2a5f82c2",
+      "parts": 29
     },
     "items": [
+      {
+        "part": "aperture_bond",
+        "area_m2": 6.959882178358967e-07
+      },
       {
         "part": "cover_upper_adhesive",
         "area_m2": 1.1600551569346251e-06
@@ -32,7 +36,7 @@
       },
       {
         "part": "lift_plate",
-        "area_m2": 0.0008499997571110862
+        "area_m2": 0.0009000000156462185
       },
       {
         "part": "foam_1",
@@ -84,8 +88,22 @@
       },
       {
         "part": "aperture_plate",
-        "area_m2": 0.0001019998173713843
+        "area_m2": 0.00010200019735095989
       }
+    ],
+    "uncut_parts": [
+      "shield_base_washer_3",
+      "shield_base_screw_3",
+      "shield_side_screw_3",
+      "shield_angle_3",
+      "shield_base_washer_2",
+      "shield_base_screw_2",
+      "shield_side_screw_2",
+      "shield_angle_2",
+      "shield_base_washer_1",
+      "shield_base_screw_1",
+      "shield_side_screw_1",
+      "shield_angle_1"
     ],
     "scope": "Exact planar display sections of exported positive solids; not added physical parts"
   },
@@ -136,18 +154,121 @@
     "selected_upper_film_top_m": 0.05657400000000001,
     "assembly_qualified": false,
     "membrane_equilibrium_qualified": false,
-    "scope": "Nominal static membrane-supported ring geometry only; adhesive compliance, tensions, edge bending and shield/aperture retention remain unresolved"
+    "scope": "Nominal static membrane-supported ring geometry only; adhesive compliance, tensions, edge bending and shield/aperture retention remain unresolved",
+    "retention": {
+      "added_parts": [
+        "shield_angle_1",
+        "shield_side_screw_1",
+        "shield_base_screw_1",
+        "shield_base_washer_1",
+        "shield_angle_2",
+        "shield_side_screw_2",
+        "shield_base_screw_2",
+        "shield_base_washer_2",
+        "shield_angle_3",
+        "shield_side_screw_3",
+        "shield_base_screw_3",
+        "shield_base_washer_3",
+        "aperture_bond"
+      ],
+      "replaced_parts": [
+        "lift_plate",
+        "radiation_shield",
+        "aperture_plate"
+      ],
+      "connections": [
+        {
+          "index": 1,
+          "angle_deg": 30.0,
+          "base_center_xy_m": [
+            0.07361215932167729,
+            0.042499999999999996
+          ],
+          "side_screw_axis": [
+            -0.8660254037844387,
+            -0.49999999999999994,
+            -0.0
+          ],
+          "side_screw_underhead_m": [
+            0.06719274601612514,
+            0.038793749999999995,
+            0.008
+          ],
+          "side_nominal_thread_insertion_m": 0.0044125,
+          "base_nominal_thread_insertion_m": 0.0036125,
+          "side_bracket_contact": "Flat stock tangent to the cylindrical wall; local bearing, deformation and preload unqualified"
+        },
+        {
+          "index": 2,
+          "angle_deg": 150.0,
+          "base_center_xy_m": [
+            -0.07361215932167729,
+            0.042499999999999996
+          ],
+          "side_screw_axis": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            -0.0
+          ],
+          "side_screw_underhead_m": [
+            -0.06719274601612514,
+            0.038793749999999995,
+            0.008
+          ],
+          "side_nominal_thread_insertion_m": 0.0044125,
+          "base_nominal_thread_insertion_m": 0.0036125,
+          "side_bracket_contact": "Flat stock tangent to the cylindrical wall; local bearing, deformation and preload unqualified"
+        },
+        {
+          "index": 3,
+          "angle_deg": 270.0,
+          "base_center_xy_m": [
+            -1.5614246689128753e-17,
+            -0.085
+          ],
+          "side_screw_axis": [
+            1.8369701987210297e-16,
+            1.0,
+            -0.0
+          ],
+          "side_screw_underhead_m": [
+            -1.425259252932679e-17,
+            -0.0775875,
+            0.008
+          ],
+          "side_nominal_thread_insertion_m": 0.0044125,
+          "base_nominal_thread_insertion_m": 0.0036125,
+          "side_bracket_contact": "Flat stock tangent to the cylindrical wall; local bearing, deformation and preload unqualified"
+        }
+      ],
+      "platform_selected_size_m": [
+        0.18,
+        0.18,
+        0.005
+      ],
+      "angle_section_m": [
+        0.0127,
+        0.0127,
+        0.0015875
+      ],
+      "angle_cut_width_m": 0.01,
+      "base_screw": "M3x6 cap, 9/3.2x0.8 mm large washer",
+      "side_screw": "M3x6 cap",
+      "aperture_bond_gauge_m": 5.8e-05,
+      "physical_retention_qualified": false,
+      "assembly_scope": "Three ordinary angle-stock retainers; source-dimensioned standard hardware envelopes. Drilling/tapping, stock, tools, tolerances, adhesion and preload remain unqualified."
+    }
   },
   "integrated_in_lab": false,
   "owner_acceptance": null,
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/build_apparatus_cover.py",
-      "sha256": "644e5c1ebdd3473cb21113c47e013da69d80a3b6882e4792bc922133ee5d12e2"
+      "sha256": "3ba0f77ae61b3a03d7a86833519289dd629382cc8711aeeb62aeed3c58db3a65"
     },
     {
       "path": "assets/cooling_lab_v1/apparatus_cover_sources.json",
-      "sha256": "b186c5ec85244ba6c81b66711aa57bfbd788b749e5ad9ff99abb5447511f6c43"
+      "sha256": "2ae7214458993dbbd72d6efad19c6b3ac5f4044edd4a170d0fffe7d861d01839"
     },
     {
       "path": "assets/cooling_lab_v1/cover_legacy_rejected.json",
@@ -164,11 +285,27 @@
     {
       "path": "assets/cooling_lab_v1/requirements.txt",
       "sha256": "3d0930cb9079b0a1834ff50cd048dddb395ed56da59039c6c0b4354b69119bc1"
+    },
+    {
+      "path": "assets/cooling_lab_v1/build_cover_retention.py",
+      "sha256": "598b338294e58aff10656a87e20fc0a86e67ee0004522a1d8d88720de7e75634"
+    },
+    {
+      "path": "assets/cooling_lab_v1/build_apparatus_frame.py",
+      "sha256": "4c4430f9dd56cfa938c823aa2ce096e3a1518fd18a7cd2daee9c6bbc1184ec54"
+    },
+    {
+      "path": "assets/cooling_lab_v1/apparatus_frame_sources.json",
+      "sha256": "a03ab4b9134f3b23c39e7e828fd3d62b8f6f622ce4501e04b4cabea74fbfb926"
+    },
+    {
+      "path": "assets/cooling_lab_v1/apparatus_mount_sources.json",
+      "sha256": "d8eac80b41b550514679508af4ab2d32ef7c4af49b040348704de36a5d4e643e"
     }
   ],
   "limits": [
-    "Independent actual-mesh checks and review of the proposed drape and clearances",
-    "Ordinary shield retention and aperture-sheet fastening",
+    "Independent actual-mesh checks of the added ordinary shield/aperture connections",
+    "Driver access, tangent bracket bearing and physical retention",
     "Adhesive initial stock, liner handling, cutting and application tools",
     "Updated stock cut lengths and foil reservations before integration",
     "Full laboratory placement and refreshed source-bound review evidence",

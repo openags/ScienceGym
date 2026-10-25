@@ -79,9 +79,48 @@
     "result": "Redirects to the general battery materials page. No exact historical 16 micrometre separator tensile/adhesion datasheet was recovered.",
     "mechanical_parameters_qualified": false
   },
+  "retention_candidate": {
+    "status": "selected_ordinary_connections_pending_geometry_and_physical_checks",
+    "angle_stock": {
+      "supplier": "Continental Steel, 6063-T52-500-500-0625",
+      "url": "https://continentalsteel.com/viewitems/aluminum-angles/aluminum-architectural-angles-series-6063-t52",
+      "accessed_on": "2026-10-26",
+      "nominal_section_mm": [12.7, 12.7, 1.5875],
+      "facts": "Supplier catalogue lists 6063-T52, sharp inside/outside corners and this inch-to-metric equivalent.",
+      "section_illustration_url": "https://continentalsteel.com/ImgMedium/61.gif",
+      "section_illustration_sha256": "a5aa66511736208878d1c08cfc4a555ec3625c79cc3e8a6a6e4766a02be5ab92",
+      "section_illustration_locally_inspected": true,
+      "redistribution": "Supplier illustration retained locally only; authored geometry uses nominal dimensions.",
+      "selected_cut_width_mm": 10,
+      "selected_angles_deg": [30, 150, 270],
+      "machining": "Cut to width, deburr, drill one 3.4 mm clearance hole in each leg. Hole locations and cut width are authored choices, not supplier finished parts."
+    },
+    "platform": {
+      "selected_size_mm": [180, 180, 5],
+      "previous_size_mm": [170, 170, 5],
+      "reason": "The ordinary 12.7 mm angle feet extend beyond the previous 170 mm square at the south attachment. The enlarged plate keeps them supported and still fits the existing selected raw sheet reservation.",
+      "mounting": "Preserve the four source-derived jack mounting centers/countersinks; add three M3 through-thread envelopes at radius 85 mm."
+    },
+    "hardware": {
+      "per_apparatus": {"M3x6_cap_screws": 6, "M3_large_washers": 3, "angle_cuts": 3},
+      "dimension_sources": ["assets/cooling_lab_v1/apparatus_frame_sources.json", "assets/cooling_lab_v1/apparatus_mount_sources.json"],
+      "side_axis_height_mm": 8,
+      "base_washer_dimensions_mm": [9, 3.2, 0.8],
+      "nominal_side_insertion_mm": 4.4125,
+      "nominal_base_insertion_mm": 3.6125,
+      "threads": "Major-diameter envelopes only; no helical contact, tapping process or preload qualification."
+    },
+    "aperture_attachment": "An additional 58 micrometre selected 9471LE annulus between the 70/76 mm shield rim and aperture sheet; separate ordinary adhesive geometry, not an invisible fixed constraint.",
+    "limits": [
+      "Flat bracket legs are tangent to the cylindrical shield: contact area, local deformation and preload remain unqualified.",
+      "This is an ordinary removable fastener arrangement inferred for the demo, not a confirmed original paper construction.",
+      "Initial raw angle, hardware and adhesive stock, drilling/tapping and driver access still need separate integration.",
+      "The laboratory still contains the previous apparatus until complete integration and refreshed checks."
+    ]
+  },
   "remaining": [
-    "Independent actual-mesh checks and review of the proposed drape and clearances",
-    "Ordinary shield retention and aperture-sheet fastening",
+    "Independent actual-mesh checks of the added ordinary shield/aperture connections",
+    "Driver access, tangent bracket bearing and physical retention",
     "Adhesive initial stock, liner handling, cutting and application tools",
     "Updated stock cut lengths and foil reservations before integration",
     "Full laboratory placement and refreshed source-bound review evidence",

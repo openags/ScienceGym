@@ -43,7 +43,7 @@ def build():
         s=solid(m)
         check('positive_closed_consistent_'+name,s.is_volume and np.isfinite(s.vertices).all())
     caps=load_parts(record['sections']['path'])
-    check('section_has_same_parts',set(caps)==set(p))
+    check('section_matches_intersected_parts',set(caps)=={n for n,m in p.items() if m.bounds[0,1]<.0005<m.bounds[1,1]} and set(record['sections']['uncut_parts'])==set(p)-set(caps))
     for name,m in caps.items():
         check('actual_planar_section_'+name,np.max(abs(m.vertices[:,1]-.0005))<1e-8 and m.area>0)
     for name,x,z,expected in [('PE_support',0,.025,False),('PE_support',.045,.025,True),('film_spacer',.052,.054,False),('film_spacer',.060,.054,True)]:
@@ -60,10 +60,28 @@ def build():
         check('real_annular_dimensions_'+name,abs(2*r.min()-inner)<2e-7 and abs(2*r.max()-outer)<2e-7 and abs(m.extents[2]-height)<2e-7 and not m.contains([m.bounds.mean(axis=0)]).any())
     for name in ['cover_lower_adhesive','cover_upper_adhesive']:
         check('selected_58_micrometre_adhesive_'+name,abs(p[name].extents[2]-.000058)<1e-8)
-    for a,b in [('lift_plate','foam_1'),('foam_1','foam_2'),('foam_2','emitter_copper'),('emitter_copper','emitter_white_coating'),('lift_plate','radiation_shield'),('radiation_shield','aperture_plate')]:
+    for a,b in [('lift_plate','foam_1'),('foam_1','foam_2'),('foam_2','emitter_copper'),('emitter_copper','emitter_white_coating'),('lift_plate','radiation_shield'),('radiation_shield','aperture_bond'),('aperture_bond','aperture_plate')]:
         check('actual_bearing_planes_'+a+'_'+b,abs(p[a].bounds[1,2]-p[b].bounds[0,2])<1e-8)
     check('central_film_emitter_gap',p['cover_lower'].bounds[1,2]-.000016-p['emitter_white_coating'].bounds[1,2]>.00043)
     check('upper_film_aperture_gap',p['aperture_plate'].bounds[0,2]-p['cover_upper'].bounds[1,2]>.00042)
+    check('enlarged_platform_has_selected_size',np.allclose(p['lift_plate'].extents,[.180,.180,.005],atol=2e-7))
+    check('aperture_bond_has_actual_gauge',abs(p['aperture_bond'].extents[2]-.000058)<1e-8)
+    for x in [-.0374904,.0374904]:
+        for y in [-.0124968,.0124968]:
+            check('retained_source_jack_hole_'+str((x,y)),not p['lift_plate'].ray.intersects_any([[x,y,.01]],[[0,0,-1]])[0])
+    unsupported_old=[]
+    for joint in record['details']['retention']['connections']:
+        i=joint['index'];angle=p['shield_angle_'+str(i)];base=p['shield_base_screw_'+str(i)];side=p['shield_side_screw_'+str(i)];ring=p['shield_base_washer_'+str(i)]
+        foot=angle.vertices[angle.vertices[:,2]<.0015875+1e-8]
+        check('angle_foot_inside_platform_'+str(i),np.all(foot[:,:2]>=p['lift_plate'].bounds[0,:2]-1e-8) and np.all(foot[:,:2]<=p['lift_plate'].bounds[1,:2]+1e-8))
+        unsupported_old.append(bool(np.any(foot[:,:2]<old['lift_plate'].bounds[0,:2]) or np.any(foot[:,:2]>old['lift_plate'].bounds[1,:2])))
+        check('washer_rests_on_angle_'+str(i),abs(ring.bounds[0,2]-.0015875)<1e-8)
+        check('base_screw_stays_inside_plate_'+str(i),abs(base.bounds[0,2]+.0036125)<1e-8 and base.bounds[0,2]>p['lift_plate'].bounds[0,2]+.001)
+        outward=-np.array(joint['side_screw_axis']);projected=side.vertices@outward
+        check('side_screw_stays_inside_wall_'+str(i),abs(projected.min()-.0715875)<2e-7 and projected.min()>.071)
+        x,y=joint['base_center_xy_m']
+        check('base_thread_envelope_open_'+str(i),not p['lift_plate'].ray.intersects_any([[x,y,.01]],[[0,0,-1]])[0])
+    check('negative_previous_platform_does_not_support_all_angles',any(unsupported_old))
     # Measure the actual two intersections along an exported lower-face normal,
     # including the sloped transition. Do not infer gauge from a Z envelope.
     m=p['cover_lower'];gauges=[]
@@ -81,8 +99,9 @@ def build():
     for a,b in itertools.combinations(p,2):
         overlap=np.minimum(p[a].bounds[1],p[b].bounds[1])-np.maximum(p[a].bounds[0],p[b].bounds[0])
         if np.any(overlap<=0):continue
-        v=intersection_mm3(p[a],p[b]);check('no_solid_overlap_'+a+'_'+b,v<.001,volume_mm3=v)
-        intersections.append(dict(parts=[a,b],volume_mm3=v))
+        declared_thread=any((n.startswith('shield_base_screw_') and other=='lift_plate') or (n.startswith('shield_side_screw_') and other=='radiation_shield') for n,other in [(a,b),(b,a)])
+        v=intersection_mm3(p[a],p[b]);check('no_solid_overlap_'+a+'_'+b,v<(.05 if declared_thread else .001),volume_mm3=v,nominal_thread_envelope=declared_thread)
+        intersections.append(dict(parts=[a,b],volume_mm3=v,nominal_thread_envelope=declared_thread,physical_mating_qualified=False))
     edges=contacts(p)
     check('ring_has_geometric_path_to_platform',connected(edges,'film_spacer','lift_plate'))
     check('negative_no_invisible_support_without_lower_membrane',not connected(edges,'film_spacer','lift_plate',['cover_lower']))

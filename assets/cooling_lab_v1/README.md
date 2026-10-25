@@ -404,7 +404,7 @@ campaign-success or asset-acceptance credit.
 
 ## Isolated cover candidate
 
-`viewer/lab_review_v1/cover.html` compares an isolated 16-part candidate with
+`viewer/lab_review_v1/cover.html` compares an isolated 29-part candidate with
 the retained 14-part legacy thermal group. It has not replaced the laboratory
 apparatus. The source ledger preserves the published tube/ring diameters,
 film gauge and 57 mm shield height. A 51 mm PE support and a lower membrane
@@ -429,9 +429,20 @@ coincident foil/substrate back surfaces and produced visible stripes; the
 rejected image is retained in `COVER_DEPTH_REJECTED.json`. Ordinary depth tests
 remain enabled. The old invalid model retains its open section view.
 
+Three ordinary angle-stock retainers now connect the shield to the platform
+with six M3×6 screws and three large washers. The selected 12.7 × 12.7 × 1.5875 mm
+6063-T52 section follows the supplier catalogue; 10 mm cuts and holes are
+authored manufacturing choices. The platform grows from 170 to 180 mm square
+to support the feet, preserving its four jack mounting holes. The prior plate
+fails the support counterexample. Actual bores, nominal screw insertion and
+an additional 58 micrometre aperture bond are modeled. Six declared smooth
+thread-envelope pairs have small faceting intersections recorded separately;
+these do not establish helical contact, tapping, preload or retention. Flat
+angle legs bear tangentially on the curved shield; local deformation remains open.
+
 Run `build_apparatus_cover.py`, `check_apparatus_cover.py`, then
 `viewer/lab_review_v1/check_cover.py --browser <chromium-executable>` for this
-separate review. Current evidence contains 130 geometry checks and 23 browser
-checks with 19 captures. Shield/aperture retention, initial adhesive and hardware
-stock, manufacturing tools, all configuration variants and laboratory integration
+separate review. Current evidence contains 205 geometry checks and 25 browser
+checks with 25 captures. Physical shield/aperture retention, initial adhesive,
+angle and hardware stock, manufacturing tools, all configuration variants and laboratory integration
 remain to be completed. No owner or execution gate is closed by this candidate.
