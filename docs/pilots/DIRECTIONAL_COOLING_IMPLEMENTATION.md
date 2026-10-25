@@ -77,8 +77,8 @@ guarantee of general reliability.
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
-  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 61-point station screen records
-  each position-only IK result and external obstacle conflicts, including 14
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 66-point station screen records
+  each position-only IK result and external obstacle conflicts, including 19
   new supply approaches. Shoulder alignment, unused-arm retraction and
   proposed-camera clearance are screened. The
   Cary mounting datum remains distinct from its authored 80 mm upper palm
@@ -110,16 +110,22 @@ guarantee of general reliability.
   envelope, stripped ends and weld details are inferred. No cable mechanics,
   DAQ connection, strain-relief or temperature observation credit is claimed.
 
-- Thirteen additional ordinary-supply types now have source ledgers, real
+- Seventeen additional ordinary-supply types now have source ledgers, real
   openings and separate parts. They add a fine-wire stripping tool, ordinary
   tweezers, slotted driver, fill vessel, vented ambient RTD, eight K-connector
   pairs, thin raw films, masking stock, unmachined copper, a catalog cart and a
-  separate wipes can. Local dimensions and material assumptions are explicit.
-  The scene has 49 instances; compound requirements and full campaign quantities
-  remain incomplete. Fifteen component requirements now bind to named staged
+  separate wipes can. OMAX 317864 clamps, Knipex 78 03 125 cutters, Noga RB1000
+  deburring and eight individual Pomona 5908A leads extend preparation and
+  electrical stock. Local dimensions and material assumptions are explicit.
+  The scene has 54 instances; compound requirements and full campaign quantities
+  remain incomplete. Twenty component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools
   remain the same physical instances. Staged assets are not executed preparation
   operations.
+  Clamp installation/force and wire-tool compatibility remain unresolved.
+  In particular, the cutter's stated 0.2 mm minimum soft wire exceeds the
+  finest thermocouple conductor. The meter leads have full entry-to-entry
+  lengths and open shrouds, but no heater-side adaptor or electrical circuit.
 
 ## Historical compatibility and remaining work
 

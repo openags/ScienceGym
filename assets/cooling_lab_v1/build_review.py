@@ -113,6 +113,7 @@ def review():
     evidence['LAB-02']+=['assets/realsense_cameras_v1/model.json','assets/realsense_cameras_v1/VERIFICATION.json']
     evidence['LAB-02']+=['assets/g1_sensor_rig_v1/SOURCE.json','assets/g1_sensor_rig_v1/rig.json','assets/g1_sensor_rig_v1/fit_checks.json']
     evidence['LAB-02']+=['assets/g1_sensor_rig_v1/adapter.json','assets/g1_sensor_rig_v1/hardware_sources.json','assets/cooling_lab_v1/supplies.json','assets/cooling_lab_v1/supply_sources.json','assets/cooling_lab_v1/supply_checks.json']
+    evidence['LAB-02']+=['assets/cooling_lab_v1/preparation_review_inputs.json']
     evidence['LAB-07']+=['viewer/lab_review_v1/sensors.js']
     evidence['LAB-02']+=['assets/omega_5tc_v1/model.json','assets/omega_5tc_v1/VERIFICATION.json']
     evidence['LAB-02']+=['assets/unitree_g1_inspire_v1/SOURCE.json','assets/unitree_g1_inspire_v1/VERIFICATION.json','assets/unitree_g1_inspire_v1/selection.json','assets/unitree_g1_inspire_v1/integration.json','assets/unitree_g1_inspire_v1/collision.json']

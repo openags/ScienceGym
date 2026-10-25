@@ -233,6 +233,11 @@ def devices():
     for key,kind,pos,station in [
       ('wire_stripper','jonard_st450',[9.05,6.10,.85],'electrical_bench'),
       ('terminal_driver','wiha_26015',[9.22,6.10,.85],'electrical_bench'),
+      ('fine_cutter','knipex_7803125',[11.02,6.10,.85],'electrical_bench'),
+      ('meter_leads_white','pomona_5908a',[9.58,6.12,.85],'electrical_bench'),
+      ('meter_leads_black','pomona_5908a',[10.10,6.12,.85],'electrical_bench'),
+      ('workholding_kit','omax_317864',[-4.40,1.05,.90],'fabrication_fixture'),
+      ('deburring_tool','noga_rb1000',[-3.95,1.10,.90],'fabrication_fixture'),
       ('tweezers_white','idealtek_aa_sa_t6',[2.00,3.35,.9],'assembly_white'),
       ('tweezers_black','idealtek_aa_sa_t6',[9.10,3.50,.9],'assembly_black'),
       ('fill_jug','buerkle_7102_2000',[1.74,6.08,.85],'calibration_dry'),
@@ -331,7 +336,12 @@ def build():
         record=json.loads((ROOT/a['sources']).read_text())
         if a.get('source_record'):
             item=next(i for i in record['items'] if i['id']==a['source_record'])
-            manifest['reference_comparisons'][a['id']]=dict(model_scope='已知参数与推断分开记录。推断：'+'；'.join(item['inferred'])+'。限制：'+'；'.join(item['limits']),sources=[dict(url=s['url'],label='厂家／论文依据',scope=s['locator']) for s in item['sources']])
+            dimensions={
+                'omax_317864':'3 根长压臂 203.2 mm；2 根中压臂 152.4 mm；4 根立柱及 4 个 T 形螺母。立柱、孔和螺纹局部尺寸为推断。',
+                'knipex_7803125':'标称长度 125 mm；头宽 13.5 mm；刃口长 9 mm。握柄外形与闭合姿态为重构。',
+                'noga_rb1000':'六角柄对边 12 mm；S10 刀杆 Ø3.2 mm。柄长与刀刃曲线为推断。',
+                'pomona_5908a':'每根线两端出线口间长 1219.2 mm；线缆外径 3.6576 mm；每个直插头另长 68.58 mm。每件资产含 4 根断开的引线。'}
+            manifest['reference_comparisons'][a['id']]=dict(dimensions_label=dimensions.get(item['id']),model_scope='已知参数与推断分开记录。推断：'+'；'.join(item['inferred'])+'。限制：'+'；'.join(item['limits']),sources=[dict(url=s['url'],label='厂家／论文依据',scope=s['locator']) for s in item['sources']])
             continue
         sources=record.get('sources') or record.get('source_documents') or record.get('source_records') or []
         if not sources and record.get('equipment'):

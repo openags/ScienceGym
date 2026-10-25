@@ -6,7 +6,7 @@ clearance, sensor-only manipulation or complete paper campaign is claimed.
 Serve the repository root and open `/viewer/lab_review_v1/index.html`.
 The existing local server uses port 8769. The scene contains the complete
 official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
-selected OMAX ProtoMAX waterjet. Geometry sliders and the 61 per-point static
+selected OMAX ProtoMAX waterjet. Geometry sliders and the 66 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
@@ -14,7 +14,7 @@ inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
 The current derivative retains the official camera arms and replaces both
 collar halves, without rescaling the robot or cameras. Exact triangle checks
-find rigid clearance at sampled finger configurations and all 61 station
+find rigid clearance at sampled finger configurations and all 66 station
 postures. Compliant lining, preload, retention and cables remain unresolved, so
 these attachments are hidden by default and do not count as an installation.
 The viewer can display them for fit review, and records separate attachment
@@ -61,7 +61,7 @@ It makes no source downloads and cannot silently switch robot models.
   evidence, source conflicts, paper-derived sheet thickness and stock inferences.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 61 separately tested palm-position targets, including 14 newly staged supply approaches and proposed camera-clearance screening; records
+- `workspace_checks.json`: 66 separately tested palm-position targets, including 19 staged supply approaches and proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
@@ -89,16 +89,18 @@ The official integrated candidate can be inspected at
 three superseded robot/hand references; these are not additional required robots.
 The active scope is 63 resource groups / 136 component needs. The viewer keeps
 three historical choices in a separate filter and excludes them from current
-missing-asset counts. Of 63 active groups, 54 have partial geometry and nine
+missing-asset counts. Of 63 active groups, 57 have partial geometry and six
 have none; this is not a completeness percentage.
 
 ## Added ordinary supplies and collar revision
 
-The scene now contains 49 placed instances. `supplies.json` binds thirteen
+The scene now contains 54 placed instances. `supplies.json` binds seventeen
 additional reconstruction types: ST-450, AA.SA.T.6 tweezers, Wiha 26015,
 Bürkle 7102-2000, the source-identified ambient RTD, eight separate K-connector
 pairs in an ordinary tray, three film-stock types, masking tape, unmachined
-copper stock, a Rubbermaid 1997206 cart and a Justrite 09100 wipes can.
+copper stock, a Rubbermaid 1997206 cart, a Justrite 09100 wipes can,
+OMAX 317864 workholding, Knipex 78 03 125 cutters, Noga RB1000/S10 deburring
+and Pomona 5908A meter leads.
 `supply_sources.json` separates manufacturer facts, paper facts, selected
 quantities, local inferences and unresolved functionality. `supply_checks.json`
 checks the actual meshes: catalogue envelopes, open cup and cart cavities,
@@ -121,9 +123,35 @@ the middle shelf; tape and copper are near the accessible bench edge. The wipes
 can target is a selected release approach above its rim, not a low rim grasp or
 a demonstrated pedal/lid/disposal sequence.
 
-`staged_supply_bindings.json` binds fifteen component needs to actual scene
+`staged_supply_bindings.json` binds twenty component needs to actual scene
 instances and named parts. Film sheets and connector pairs are counted
 individually; the same two tweezers are explicitly shared across handling roles.
 `readiness.json` pins these geometry identities and exposes staged quantities
 separately from still-unallocated campaign requirements. The inspector shows
 these counts and all resource associations for multi-purpose assets.
+
+The preparation assets retain separately inspectable parts: five catalogue-length
+clamp arms with actual post bores, four posts, four T-nuts with through-holes,
+two cutter levers, and a replaceable-blade deburring-tool reconstruction.
+The clamp post, bore, thread and rail dimensions remain explicit local hypotheses.
+The deburring holder uses the catalogue's 12 mm hexagon; its unreported length
+and blade curvature are inferred. The cutter's 0.2 mm minimum soft-wire capacity
+does not establish suitability for the finest thermocouple conductor.
+
+Two staged meter-lead assets contain eight separate 48-inch leads in total,
+each measured between its moulded cable entries. Straight plug bodies add
+2.7 inches at each end and include open insulating shrouds, recessed contacts,
+spring leaves, grip guards and strain relief. The separated coiled poses are
+authored inspection geometry. No plug mating, cable settling, bending mechanics,
+electrical circuit or heater-side adaptor is qualified. The four workholding
+T-nuts also satisfy a staged accessory-fastener binding; they are shared
+inventory, not four additional nuts or cooler-frame fasteners.
+
+`preparation_review_inputs.json` records the four model searches, reference
+views actually inspected, failed downloads, rights and unresolved discrepancies.
+After browser verification, `build_preparation_review.py` produces
+`preparation_review.json`, pinning the exact geometry, front/back/side/top and
+oblique model captures, source facts and resource-associated review obligations.
+The inspector links this comparison for each new asset. Associations are not
+accepted operation-to-part bindings. Missing reference views and all acceptance
+decisions remain explicit; CAD download listings are not downloaded CAD.

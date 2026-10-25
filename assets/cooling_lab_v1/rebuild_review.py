@@ -28,6 +28,7 @@ def main():
     if a.browser:
         for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py','viewer/lab_review_v1/check_pose_projection.py','viewer/lab_review_v1/check_sensors.py']:
             run(script,'--browser',a.browser,'--url',a.url)
+        run('assets/cooling_lab_v1/build_preparation_review.py')
     print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
 
 if __name__=='__main__':main()

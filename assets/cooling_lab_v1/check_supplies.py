@@ -75,6 +75,44 @@ def validate():
     check('cart_shelves_open',not mesh('rubbermaid_1997206','lower_shelf').contains([[0,0,.22]]).any() and not mesh('rubbermaid_1997206','upper_shelf').contains([[0,0,.81]]).any())
     check('waste_body_not_solid',not mesh('justrite_09100','steel_body').contains([[0,0,.20]]).any())
     check('waste_height',abs(scenes['justrite_09100'].extents[2]-.403)<1e-6)
+    # Catalogue kit quantities and actual through-bores, independently of the
+    # model's metadata. A painted solid block cannot pass as usable hardware.
+    kit=next(i['details'] for i in report['items'] if i['id']=='omax_317864')
+    check('workholding_kit_thirteen_units',len(kit['units'])==13 and len({u['id'] for u in kit['units']})==13)
+    for i,L in enumerate([.2032]*3+[.1524]*2,1):
+        arm=mesh('omax_317864',f'arm_{i}_bowed_arm_with_post_bore');y=(i-1)*.032
+        check(f'holding_arm_{i}_catalog_length',abs(arm.extents[0]-L)<1e-7)
+        check(f'holding_arm_{i}_actual_post_bore',not arm.contains([[L-.018,y,.006]]).any() and arm.contains([[L-.018,y+.008,.006]]).all())
+    for i in range(1,5):
+        nut=mesh('omax_317864',f'tnut_{i}');y=(i-1)*.032
+        check(f'tnut_{i}_actual_through_hole',not nut.contains([[.359,y,.0025]]).any() and nut.contains([[.367,y,.0025]]).all())
+    check('cutter_catalog_length',abs(scenes['knipex_7803125'].extents[0]-.125)<1e-6)
+    check('cutter_separate_levers',all(n in scenes['knipex_7803125'].graph.nodes_geometry for n in ['lever_-1','lever_1','opening_spring','rivet']))
+    check('deburring_holder_twelve_mm_across_flats',abs(mesh('noga_rb1000','hexagonal_holder').extents[1]-.012)<1e-6)
+    leads=next(i['details']['leads'] for i in report['items'] if i['id']=='pomona_5908a')
+    check('four_leads_two_red_two_black',len(leads)==4 and [x['color'] for x in leads].count('red')==2 and [x['color'] for x in leads].count('black')==2)
+    separate=trimesh.collision.CollisionManager()
+    for lead in leads:
+        name=lead['id'];p=np.array(lead['rest_points_m']);segments=np.linalg.norm(np.diff(p,axis=0),axis=1)
+        check(name+'_entry_to_entry_48_inches',abs(segments.sum()-1.2192)<1e-6 and segments.min()>1e-6,measured_m=float(segments.sum()))
+        # Bind the declared rest curve to the exported cable, so a short cord
+        # carrying a correct length field cannot receive dimensional credit.
+        cable_mesh=mesh('pomona_5908a',name+'_silicone_cable')
+        _,distances,_=trimesh.proximity.closest_point(cable_mesh,p[12:-12:12])
+        check(name+'_exported_tube_follows_declared_curve',np.all((distances>.0036576*.45)&(distances<.0036576*.51)),minimum_radius_m=float(distances.min()),maximum_radius_m=float(distances.max()))
+        for end,origin,tangent in [('A',p[0],p[1]-p[0]),('B',p[-1],p[-2]-p[-1])]:
+            direction=tangent/np.linalg.norm(tangent);T=trimesh.geometry.align_vectors([1,0,0],direction);T[:3,3]=origin-direction*.06858
+            shroud=mesh('pomona_5908a',name+'_'+end+'_insulating_shroud');shroud.apply_transform(np.linalg.inv(T))
+            check(name+'_'+end+'_hollow_guarded_nose',abs(shroud.extents[0]-.023495)<1e-7 and not shroud.contains([[.001,0,0],[.010,.0027,0]]).any() and shroud.contains([[.010,.0035,0]]).all())
+            body=[]
+            for node in scenes['pomona_5908a'].graph.nodes_geometry:
+                if node.startswith(name+'_'+end+'_'):
+                    m=mesh('pomona_5908a',node);m.apply_transform(np.linalg.inv(T));body.append(m)
+            check(name+'_'+end+'_plug_length_2_7_inches',abs(trimesh.util.concatenate(body).extents[0]-.06858)<1e-7)
+        combined=trimesh.util.concatenate([mesh('pomona_5908a',n) for n in scenes['pomona_5908a'].graph.nodes_geometry if n.startswith(name+'_')])
+        separate.add_object(name,combined)
+    overlap,pairs=separate.in_collision_internal(return_names=True)
+    check('separately_counted_leads_do_not_intersect',not overlap,intersections=sorted([list(p) for p in pairs]))
     out=dict(schema_version=1,checks_passed=all(c['passed'] for c in checks),checks=checks,supplies_sha256=sha(HERE/'supplies.json'),validator_sha256=sha(__file__),asset_acceptance=False,
         limitations=['Catalogue shape checks do not qualify handling, deformation or electrical functions','Staged quantity is a selected starting allocation, not full campaign coverage','Commercial models contain explicitly recorded local inferences; source CAD was not obtained'])
     write_json(HERE/'supply_checks.json',out);print(json.dumps(dict(checks=len(checks),passed=out['checks_passed'])))

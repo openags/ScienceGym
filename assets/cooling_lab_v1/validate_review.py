@@ -96,10 +96,10 @@ def validate():
     active=[r for r in readiness['requirements'] if r['disposition']!='historical_embodiment_reference']
     rc=readiness['counts']
     check('active_requirements_exclude_three_historical_models',rc['active_requirement_groups']==len(active)==63 and rc['historical_requirement_groups']==len(readiness['requirements'])-len(active)==3)
-    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==136 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==9)
+    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==136 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==6)
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
-    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==15)
+    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==20)
     check('staged_quantities_not_campaign_claims',all(c['required_quantity'] is None and not c['staged_candidates']['campaign_sufficiency_accepted'] and c['staged_candidates']['quantity']==len(c['staged_candidates']['members']) for c in staged))
     for c in staged:
         for unit_index,member in enumerate(c['staged_candidates']['members']):
