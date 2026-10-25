@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-24**. Candidate count: **333**.
+Last screened: **2026-10-25**. Candidate count: **334**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3366,3 +3366,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [4-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75584-7/MediaObjects/41467_2026_75584_MOESM1_ESM.pdf) was text-accessible. Selected Experiment section and Supplementary Figure 1 caption were screened. Figure images, remaining sections, reporting summary, code, datasets and peer review were not fully reviewed.
 - Future scope starts with a qualified, prepared optical bench. Optical construction, source servicing, biological sample preparation and clinical interpretation are excluded. Light-source guarding, instrument interfaces and acquisition/reference matching require review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-24**; publisher license **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+## Additional candidate: prepared photonic-scaffold transmission metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Photonic scaffolds as ultrahigh-openness on-chip hollow-core waveguides for quantum photonics and optofluidics](https://www.nature.com/articles/s41467-026-75873-1) | Nature Communications / 2026 | 10.1038/s41467-026-75873-1 | Prepared waveguides could support specimen registration, alignment verification, repeated spectral acquisition and comparison of transmission metrics across geometries and lengths. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 7563 (2026), published/version of record **28 July 2026**. Selected transmission-characterization Results and optical-characterization Methods were screened. Normalized spectra alone do not establish absolute throughput; specimen identity and reference measurements must remain linked.
+- The official [20-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75873-1/MediaObjects/41467_2026_75873_MOESM1_ESM.pdf) was text-accessible. Selected Notes 7–8, Figure 7 caption and Table 2 were screened. Measured, calculated and assumed quantities are distinct; loss definitions and consistency of the tabulated expressions need review before conversion. Figure images, remaining sections, datasets, code and peer review were not fully reviewed.
+- Future scope starts with qualified, prepared chips and a guarded optical bench. Nanofabrication, chemical processing, dye handling, gas experiments and cryogenic or single-photon apparatus are excluded. Optical safety, fixture compatibility and instrument interfaces require review before conversion. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
