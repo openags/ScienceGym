@@ -35095,7 +35095,7 @@
       "resource_id": "equipment:ANGLE_VAR",
       "station": "ftir_bench",
       "geometry": "assets/cooling_lab_v1/geometry/prepared_spectratech_500.glb",
-      "geometry_sha256": "0f250cf2ae47452af5f30d06c3ff7941cfa517321f71b12f5db0dd1d3c0143b0",
+      "geometry_sha256": "71378690d720a66835d91980ce73f46f5f81660e4ba61cf09cdf1100a8a695e0",
       "position_m": [
         9.8,
         8.3,
@@ -35116,7 +35116,7 @@
       ],
       "source_artifact": {
         "path": "assets/cooling_lab_v1/geometry/angular_spectratech_500.glb",
-        "sha256": "cad8b3d4a9059731964d496415735f4a8143db3890f4e1b52c47ec126526b184"
+        "sha256": "a097af57447b81e3b5166415984702e72ed29d8708407e281a434889112df13b"
       },
       "source_prefix": null,
       "source_was_z_up": true,
@@ -35152,20 +35152,22 @@
         1
       ],
       "normalization_basis": "Mesh XY bounding-box center; mesh minimum Z",
-      "part_count": 115,
+      "part_count": 114,
       "part_names": [
         "backplate_fastener_0.058",
         "backplate_fastener_-0.073",
         "model_identification",
         "blank_plate",
-        "alignment_mirror_7004_001",
-        "slot_mask_6mm",
         "slot_mask_13mm",
+        "slot_mask_6mm",
+        "rotary_pointer_tip",
+        "rotary_pointer_arm",
         "sample_rotation_knob",
         "sample_rotation_knob_shaft",
-        "sample_rear_bridge",
-        "rotary_pointer_tip",
-        "rotary_pointer",
+        "sample_carrier_stem",
+        "sample_carrier_arm",
+        "m3_carrier_arm",
+        "alignment_mirror_7004_001",
         "sample_lower_stop",
         "sample_leaf_retainer_14.2",
         "sample_guide_14.2",
@@ -35252,9 +35254,6 @@
         "m5_face",
         "m5_back",
         "m5_mount_stem",
-        "m4_face",
-        "m4_back",
-        "m4_mount_stem",
         "m3_face",
         "m3_back",
         "m3_mount_stem",
@@ -58198,12 +58197,12 @@
     "spectratech_500": {
       "dimensions_label": "选定底座 180 × 100 × 8 mm、背板 170 × 6 × 175 mm；均为未实测推断。厂家确认 6 / 13 mm 槽宽与 20–85° 范围。",
       "dimensions_kind": "inferred",
-      "model_scope": "按型号 500 照片、五镜图及右入左出方向重构；原论文精确型号未知。旋转架与角度盘可检查，镜组联动、安装配合、样品保持和光学标定仍未验证。",
+      "model_scope": "按型号 500 照片、右入左出及 M1→M2→M3→M4 样品／参考→M5 光路重构；原论文精确型号未知。M3 与 M4 共同转动为几何重构，有限镜面在部分角度仍接不到光束，原厂传动、安装、夹持和标定未验证。",
       "sources": [
         {
           "url": "https://2-lab.ru/files/catalog/2/31b17b05ef9d490c2b79b425dd947964.pdf",
           "label": "厂家资料 · SPECTRATECH_CATALOGUE",
-          "scope": "Zero-based page 14 / printed 43 rendered and visually inspected. Model 500 photograph, five-mirror diagram, rotary sample assembly, angle scale, side housing, separate 6/13 mm U-slot masks and alignment mirror."
+          "scope": "Zero-based page 14 / printed 43 rendered and re-inspected at higher resolution. The five optical surfaces are M1, M2, M3, M4 / Sample and M5: M4 is the sample or reference surface, not an extra independent mirror. Also inspected the model-500 photograph, scale, side housing, 6/13 mm U-slot masks and alignment mirror."
         },
         {
           "url": "https://knowledge1.thermofisher.com/@api/deki/files/4426/269-155800_-_Nicolet_FT-IR_User_Guide.pdf?revision=1",
@@ -59371,17 +59370,23 @@
       "asset": "spectratech_500",
       "kind": "hinge",
       "parts": [
+        "m3_mount_stem",
+        "m3_back",
+        "m3_face",
         "sample_carrier_open_frame",
         "sample_guide_-14.2",
         "sample_leaf_retainer_-14.2",
         "sample_guide_14.2",
         "sample_leaf_retainer_14.2",
         "sample_lower_stop",
-        "rotary_pointer",
-        "rotary_pointer_tip",
-        "sample_rear_bridge",
+        "alignment_mirror_7004_001",
+        "m3_carrier_arm",
+        "sample_carrier_arm",
+        "sample_carrier_stem",
         "sample_rotation_knob_shaft",
-        "sample_rotation_knob"
+        "sample_rotation_knob",
+        "rotary_pointer_arm",
+        "rotary_pointer_tip"
       ],
       "axis": [
         0,
@@ -59389,13 +59394,13 @@
         0
       ],
       "pivot_m": [
-        0.0,
-        -0.025,
-        0.09
+        -0.015,
+        -0.02,
+        0.165
       ],
       "maximum": -1.1344640137963142,
-      "label": "Spectra-Tech 样品架 · 20–85° 几何检查",
-      "basis": "Catalogue range, authored rotation geometry. Mirror coupling, angular calibration and optical alignment are not simulated"
+      "label": "Spectra-Tech M3 / M4 样品组件 · 20–85° 几何检查",
+      "basis": "Source-topology correction: M4 is the sample, not an extra mirror. Selected shared rigid rotor; finite optical coverage and calibration are unqualified"
     },
     {
       "id": "g1_hands_inspection",
@@ -66612,6 +66617,6 @@
   ],
   "owner_acceptance": null,
   "manipulation_development_allowed": false,
-  "builder_sha256": "b1a440eff204920a9d4e90a8bf208f9c2281d3aea0d27031b9fd4a3163407bd4",
+  "builder_sha256": "2708b0d0da3018cd0858d0061868a03fca845ff2c529d0b09a69fd96943794f9",
   "geometry_tools_sha256": "17a42c83a9eed029e57df2f932199e7d691ba74198c8fa666572cd3ae48237a0"
 }

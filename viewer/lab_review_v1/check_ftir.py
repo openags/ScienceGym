@@ -45,6 +45,19 @@ def run(browser,url):
             for view in ['front','side','top']:
                 page.click('#mount-views [data-view="'+view+'"]');capture(identity,view)
             page.click('#mount-views [data-view="front"]')
+            if identity=='spectratech_500':
+                check('initial_finite_ray_status_visible','命中 M3 与 M4' in page.locator('#mount-optics-status').inner_text())
+                state=cfg['accessory_inspection']
+                for angle in [35,50,65,85]:
+                    page.select_option('#mount-angle',str(angle))
+                    for part in ['m3_face','alignment_mirror_7004_001']:
+                        expected=scene.geometry[part].copy()
+                        expected.apply_transform(trimesh.transformations.rotation_matrix(-np.radians(angle-20),state['axis'],state['pivot_m']))
+                        expected.apply_translation(cfg['accessory_translation_m'])
+                        check(part+'_actual_linked_transform_'+str(angle),np.allclose(bounds('accessory:'+part),expected.bounds,atol=1e-7))
+                    capture(identity,'angle_'+str(angle))
+                check('finite_aperture_failure_not_hidden_by_angle_label','未通过' in page.locator('#mount-optics-status').inner_text())
+                page.select_option('#mount-angle','20')
             for angle in [45,0]:
                 page.locator('#mount-cover').fill(str(angle));page.locator('#mount-cover').dispatch_event('input')
                 original=imported_scene(model['instrument']['path'],z_up=False).geometry['sample_bay_lid'].copy();cover=model['instrument_cover']

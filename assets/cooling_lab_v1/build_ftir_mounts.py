@@ -50,13 +50,16 @@ def build():
     g.box('inferred_rear_registration_block',[.024,.016,.010],[CX+.080,CY+.113,.065],DARK,role='unmeasured_factory_registration')
     factory=export_review(g,'ftir_factory_floor_candidate')
     models=json.loads((HERE/'angular_accessories.json').read_text())
+    optical_checks=json.loads((HERE/'angular_accessory_checks.json').read_text())
+    assert optical_checks['passed'] and optical_checks['model_sha256']==sha(HERE/'angular_accessories.json')
     configs=[]
     for identity in ['harrick_hrs','spectratech_500']:
         model=next(i for i in models['items'] if i['id']==identity)
         is_hrs=identity=='harrick_hrs'
         # HRS remains mechanically centred. Translating its inferred front
         # mirror line onto the instrument ray would run through the rear wall.
-        translation=[CX,CY,.066] if is_hrs else [CX,FOCUS[1]+.025,.083]
+        entry=model['details'].get('nominal_fold_geometry',{}).get('points_m',[[0,0,0]])[0]
+        translation=[CX,CY,.066] if is_hrs else [CX,FOCUS[1]-entry[1],FOCUS[2]-entry[2]]
         mounting=[(x,y) for x in ([-82,82] if is_hrs else [-78,78]) for y in ([-91,91] if is_hrs else [-40,40])]
         adapter=box(200,244,6,(CX*1000,CY*1000,63))
         # Ordinary relief for the visibly separate factory registration block.
@@ -92,12 +95,15 @@ def build():
                 basis='Authored four-hole pattern and 8-32 x 1/2-inch envelopes. Specac documents a DIFFERENT two-screw system; no OEM compatibility inference'))
         hardware=export_review(g,'ftir_mount_'+identity)
         loose=[m['part'] for m in model['details']['masks']]
-        if not is_hrs:loose+=['alignment_mirror_7004_001','blank_plate']
+        if not is_hrs:loose+=['blank_plate']
         configs.append(dict(id=identity,label=model['label'],hardware=hardware,accessory_geometry=model['geometry'],
+            accessory_inspection=model['details']['inspection'],
+            optical_surface_sequence=model['details'].get('optical_surface_sequence'),
+            finite_ray_review=next((r for r in optical_checks['optical_coverage'] if r['asset']==identity),None),
             accessory_translation_m=translation,excluded_loose_parts=loose,fasteners=interfaces,
             plate_dimensions_m=[.200,.244,.006],standoff_height_m=0 if is_hrs else .017,
             sample_point_m=(np.array([0,-.009,.0901] if is_hrs else model['details']['sample_center_m'])+translation).tolist(),
-            accessory_input_ray_yz_m=[translation[1]+(-.054 if is_hrs else -.025),translation[2]+(.084 if is_hrs else .067)],
+            accessory_input_ray_yz_m=[translation[1]+(-.054 if is_hrs else entry[1]),translation[2]+(.084 if is_hrs else entry[2])],
             input_ray_basis='Inferred front-fold mirror centre line, NOT an established HRS input interface' if is_hrs else 'Authored model-500 entry and exit ray, not a manufacturer optical prescription',
             status='unaccepted_mounting_hypothesis',mounting_qualified=False,manipulation_qualified=False))
     interfaces=json.loads((ROOT/'assets/nicolet_6700_v1/interfaces.json').read_text())
@@ -110,7 +116,7 @@ def build():
             authored_dimensions=['plate thickness 6 mm','existing support bosses 4 mm','local chassis floor Z50 mm','all hole/slot/registration-block and adapter dimensions'],
             precision='The 90 and 190 mm dimensions are approximate; checks use nominal values, not a manufacturer tolerance specification'),
         configurations=configs,source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in
-            [Path(__file__),HERE/'geometry_tools.py',HERE/'build_supplies.py',HERE/'ftir_mount_sources.json',HERE/'angular_accessories.json',HERE/'ftir_mount_rejected_purge.json',ROOT/'assets/nicolet_6700_v1/interfaces.json']],
+            [Path(__file__),HERE/'geometry_tools.py',HERE/'build_supplies.py',HERE/'ftir_mount_sources.json',HERE/'angular_accessories.json',HERE/'angular_accessory_checks.json',HERE/'ftir_mount_rejected_purge.json',ROOT/'assets/nicolet_6700_v1/interfaces.json']],
         load_path=['accessory base','adapter plate or four ordinary standoffs','factory-floor candidate','four existing inferred instrument bosses','chassis','bench'],
         limits=['Factory floor registration/retention and its hole pattern are unmeasured',
             'Adapter hardware is an ordinary authored optical mount, not an OEM Harrick/Spectra-Tech part or a robot-specific fixture',

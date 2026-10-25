@@ -39,7 +39,7 @@
       "url": "https://2-lab.ru/files/catalog/2/31b17b05ef9d490c2b79b425dd947964.pdf",
       "sha256": "9c8861630e1624eaa69acfcfaecc8f41b373bde198c07ffa9dbea5c563589efc",
       "publisher": "Thermo Scientific manufacturer catalogue, distributor mirror",
-      "inspected": "Zero-based page 14 / printed 43 rendered and visually inspected. Model 500 photograph, five-mirror diagram, rotary sample assembly, angle scale, side housing, separate 6/13 mm U-slot masks and alignment mirror.",
+      "inspected": "Zero-based page 14 / printed 43 rendered and re-inspected at higher resolution. The five optical surfaces are M1, M2, M3, M4 / Sample and M5: M4 is the sample or reference surface, not an extra independent mirror. Also inspected the model-500 photograph, scale, side housing, 6/13 mm U-slot masks and alignment mirror.",
       "retrieval_note": "The mirror had a hostname/certificate mismatch. TLS verification was bypassed for this single unauthenticated public-document download. Content was inspected; publisher cryptographic authentication is not claimed."
     },
     {
@@ -67,13 +67,13 @@
       "resource": "equipment:ANGLE_VAR",
       "candidate": "Spectra-Tech 500 / 0014-010 right-to-left configuration",
       "basis": "The depicted 500 geometry and right-to-left path match the direction shown in the Nicolet 6700 manual. This is a reconstruction candidate, not proof of historical model or mounting compatibility.",
-      "source_facts": {"incidence_range_degrees": [20,85], "slot_mask_widths_mm": [6,13], "mask_part_numbers": ["3000-231","3000-230"], "alignment_mirror_part_number": "7004-001"},
-      "rejected_shortcuts": ["Selecting 501 solely because its catalogue row lists Nicolet Impact", "Relabeling PIKE VeeMax as Spectra-Tech", "Treating a photograph of model 500 as exact model 501 CAD"],
-      "unresolved": ["Measured envelope and mounting dimensions", "6700 adapter and optical height", "Sample-stage and mirror coupling", "Reference/sample retention", "Exact paper SKU"],
+      "source_facts": {"incidence_range_degrees": [20,85], "slot_mask_widths_mm": [6,13], "mask_part_numbers": ["3000-231","3000-230"], "alignment_mirror_part_number": "7004-001", "optical_surface_sequence": ["M1","M2","M3","M4_sample_or_reference","M5"]},
+      "rejected_shortcuts": ["Selecting 501 solely because its catalogue row lists Nicolet Impact", "Relabeling PIKE VeeMax as Spectra-Tech", "Treating a photograph of model 500 as exact model 501 CAD", "Inventing a fifth independent M4 mirror plus a separate specimen; the rejected GLB remains in angular_topology_rejected.json"],
+      "unresolved": ["Measured envelope and mounting dimensions", "6700 adapter and optical height", "Manufacturer linkage, angle-dependent finite-aperture coverage and focus", "Reference/sample retention", "Exact paper SKU"],
       "paper_identity_confirmed": false,
       "geometry_built": true,
       "geometry_record": "assets/cooling_lab_v1/angular_accessories.json",
-      "dimensional_hypotheses": "Base 180 x 100 x 8 mm; backplate 170 x 6 x 175 mm. Only 6/13 mm mask slot widths and 20-85 degree range are catalogue facts. Housing, sample frame, spring retainers, five mirror placements and mounting holes are inferred. The nominal 20-degree geometric fold uses mirror faces perpendicular to the XZ beam plane and an initially horizontal specimen; rotating its normal changes incidence. The visible sample inspection does not implement coupled mirrors or a manufacturer's focal prescription.",
+      "dimensional_hypotheses": "The 180 x 100 x 8 mm base and 170 x 6 x 175 mm backplate are unchanged hypotheses. Four independent mirrors and a removable M4 reference now replace the rejected six-surface topology. The selected common M3/M4 carrier has a 165 mm pivot height and 15 mm left offset beside the source housing, 26 mm sample lever and a perpendicular pair of optical planes; exact linkage and pivot are not established by the schematic. The local optical plane and inferred port centre move from Y-25 to Y-20 mm to clear the housing while retaining mirror widths and the external envelope. A coherent initial 20-degree center ray is checked, but finite-aperture misses over the range remain explicit. Frame, spring retainers, mounts, forces and optical calibration are unqualified.",
       "owner_accepted": false
     }
   ],

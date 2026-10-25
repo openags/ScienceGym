@@ -55,7 +55,7 @@ DECOMPOSE={
  'equipment:TC':['identified K probes','lead pairs','numbered transition terminals','strain relief'],
  'equipment:AMB_RTD':['ambient probe','radiation shield','mount','lead termination'],
  'equipment:ANGLE_12':['FTIR optical base','horizontal 12-degree sample stage','3/6/13 mm aperture masks','Nicolet mating adapter and fasteners'],
- 'equipment:ANGLE_VAR':['five-mirror optical chassis','rotary sample assembly','6/13 mm slot masks','alignment mirror','Nicolet mating adapter and fasteners'],
+ 'equipment:ANGLE_VAR':['fixed M1 M2 M5 optical chassis','rotary M3 and M4 sample assembly','6/13 mm slot masks','alignment mirror','Nicolet mating adapter and fasteners'],
  'tools:film_jig':['ordinary film-edge handling tool selection','ordinary spacer and support method'],
  'tools:wire_stripper_and_driver':['fine-wire compatible stripping tool','terminal slotted driver','cutting tool','inspection tool'],
  'tools:cutting_fixture':['ordinary machine workholding','cutting tool','deburring tool'],
@@ -121,7 +121,7 @@ def build():
     staged=json.loads((HERE/'staged_supply_bindings.json').read_text())
     angular=json.loads((HERE/'angular_accessories.json').read_text())
     optical_labels={'harrick_hrs':{'optical_base':'FTIR optical base','horizontal_stage':'horizontal 12-degree sample stage','aperture_masks':'3/6/13 mm aperture masks'},
-        'spectratech_500':{'optical_chassis':'five-mirror optical chassis','sample_rotation_assembly':'rotary sample assembly','slot_masks':'6/13 mm slot masks','alignment_mirror':'alignment mirror'}}
+        'spectratech_500':{'optical_chassis':'fixed M1 M2 M5 optical chassis','sample_rotation_assembly':'rotary M3 and M4 sample assembly','slot_masks':'6/13 mm slot masks','alignment_mirror':'alignment mirror'}}
     for a in angular['items']:
         for key,parts in a['details']['parts_by_component'].items():
             unit='mask_set' if key in ['aperture_masks','slot_masks'] else 'mirror' if key=='alignment_mirror' else 'assembly'

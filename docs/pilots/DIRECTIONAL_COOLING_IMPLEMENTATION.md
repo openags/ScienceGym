@@ -118,7 +118,11 @@ guarantee of general reliability.
   deburring and eight individual Pomona 5908A leads extend preparation and
   electrical stock. Local dimensions and material assumptions are explicit.
   Two angular-reflection candidates now include the Harrick HRS stage and its
-  FTIR base, and the Spectra-Tech 500 rotary frame, five mirrors and masks.
+  FTIR base, and the Spectra-Tech 500 rotary frame, four separate mirrors and
+  the M4 sample/reference surface. The earlier extra M4 mirror plus separate
+  specimen is retained as a rejected topology fixture. The selected shared
+  M3/M4 rotor corrects the geometry, but finite-aperture misses remain at other
+  angles; normal directions alone do not qualify optical alignment.
   Source aperture sizes/ranges are distinct from inferred dimensions. They are
   staged on the optical bench; Nicolet mounts, retention and optical alignment
   remain open. Geometry sliders do not implement a coupled optical mechanism.

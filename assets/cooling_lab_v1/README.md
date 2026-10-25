@@ -74,6 +74,12 @@ It makes no source downloads and cannot silently switch robot models.
   mounting-hardware investigation, without assuming cross-brand compatibility.
   `angular_appearance_review.json` pins 14 browser views and records source matches,
   visible differences and remaining dimensional/mechanical hypotheses.
+  The Spectra-Tech schematic labels M4 as the specimen/reference surface. The
+  rejected extra-mirror topology is preserved in `angular_topology_rejected.json`.
+  Its replacement has four independent mirrors and a removable M4 reference in
+  the actual holder. M3 and M4 share an explicitly inferred carrier. The initial
+  20-degree ray reaches both finite faces, while the other four inspected angles
+  miss; correct plane normals alone do not qualify the operating range.
 - `ftir_mount_sources.json`, `ftir_mounts.json`: manufacturer floor dimensions
   and optical/cover datums, a separate factory-floor candidate and two ordinary
   mounting hypotheses with 38 hardware parts. The original staged assets stay
@@ -82,7 +88,7 @@ It makes no source downloads and cannot silently switch robot models.
   Both revised adapters clear 25 nominal open-bay vertical samples. The previous
   purge-outlet conflict remains in `ftir_mount_rejected_purge.json` and its exact
   GLB; it must still fail. An audit pass is not an installation pass.
-  `viewer/lab_review_v1/FTIR_MOUNT_VERIFICATION.json` pins 12 actual installation
+  `viewer/lab_review_v1/FTIR_MOUNT_VERIFICATION.json` pins 16 actual installation
   views and independent mesh-transform checks. Rebuild with `build_ftir_mounts.py`
   then `check_ftir_mounts.py`; run `viewer/lab_review_v1/check_ftir.py --browser
   <chromium-executable>` against the same localhost server for browser evidence.

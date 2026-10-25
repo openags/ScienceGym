@@ -171,104 +171,130 @@ def angle_scale(g, center, radius=.064):
 
 def spectratech():
     g=Geometry()
+    # An inferred local optical-plane placement keeps the unchanged 36 mm
+    # M3 backing inside the open housing throughout the rigid review sweep.
+    beam_y=-.020
     base=box_mm(180,100,8,(0,0,4))
     for x in [-78,78]:
         for y in [-40,40]:base=base.cut(cq.Solid.makeCylinder(3.2,10,cq.Vector(x,y,-1)))
     solid(g,'chassis_base',base,BLACK,.2)
     g.box('chassis_optical_backplate',[.170,.006,.175],[0,.028,.0955],BLACK,metal=.15)
-    # The visible aluminium right-side housing has a real beam port.
     housing=box_mm(22,78,133,(79,-4,74.5))
     housing=housing.cut(box_mm(21,70,125,(76.5,-5,74.5)))
-    housing=housing.cut(cq.Solid.makeCylinder(10,26,cq.Vector(66,-25,67),cq.Vector(1,0,0)))
+    housing=housing.cut(cq.Solid.makeCylinder(10,26,cq.Vector(66,beam_y*1000,67),cq.Vector(1,0,0)))
     solid(g,'source_side_open_housing',housing,STEEL,.75)
     for z in [.030,.115]:
         g.cylinder('housing_fastener_'+str(z),.0017,.004,[.091,0,z],STEEL,axis=(1,0,0),metal=.9)
-    # A geometric 20-degree fold follows the source's five-mirror ordering.
-    # Each actual mirror face is perpendicular to the XZ beam plane; rotating a
-    # front-facing picture within that plane would not change reflection angle.
-    # This selected layout is not a manufacturer's optical prescription.
-    sample_center=np.array([0,-.025,.090])
-    optical_points=[np.array(p) for p in [[.12,-.025,.067],[0,-.025,.067],
-        [.052,-.025,.030],[.030,-.025,.090+.030/np.tan(np.radians(20))],sample_center,
-        [-.030,-.025,.090+.030/np.tan(np.radians(20))],[-.054,-.025,.067],[-.12,-.025,.067]]]
-    mirror_records=[]
-    for number,index in enumerate([1,2,3,5,6],1):
+    # Catalogue p43 explicitly labels M4 / Sample. It is NOT a fifth
+    # independent mirror followed by a separate specimen. The selected M4
+    # reference occupies the sample holder, opposite the linked M3 mirror.
+    # The catalogue places the V assembly above and left of the input fold,
+    # beside the source housing. Local pivot offsets remain inferred. Keeping
+    # the complete carrier left of that housing preserves its roof and mirrors.
+    pivot_x=-.015;pivot_z=.165
+    phi=np.radians(20);pivot=np.array([pivot_x,beam_y,pivot_z])
+    sample_radius=.026
+    m3_radius=sample_radius/np.tan(phi)
+    tangent=np.array([np.cos(phi),0,np.sin(phi)])
+    sample_normal=np.array([np.sin(phi),0,-np.cos(phi)])
+    sample_center=pivot-sample_radius*tangent
+    m3_center=pivot+m3_radius*np.array([np.sin(phi),0,-np.cos(phi)])
+    optical_points=[np.array(p) for p in [[.12,beam_y,.067],[0,beam_y,.067],
+        [m3_center[0],beam_y,.030],m3_center,sample_center,[sample_center[0],beam_y,.067],[-.12,beam_y,.067]]]
+    mirror_records=[];m3_parts=[]
+    for number,index in [(1,1),(2,2),(3,3),(5,5)]:
         name='m'+str(number);center=optical_points[index]
         incoming=center-optical_points[index-1];incoming/=np.linalg.norm(incoming)
         outgoing=optical_points[index+1]-center;outgoing/=np.linalg.norm(outgoing)
         normal=incoming-outgoing;normal/=np.linalg.norm(normal)
-        # Choose the reflecting face toward the incoming ray, with its backing
-        # and support stem behind that face.
         if np.dot(normal,incoming)>0:normal=-normal
-        stem=center-normal*.005
-        g.cylinder(name+'_mount_stem',.002,.049,[stem[0],-.0005,stem[2]],STEEL,axis=(0,1,0),metal=.8)
         start=len(g.parts)
+        stem=center-normal*.005
+        length=.029 if number==3 else .045
+        g.cylinder(name+'_mount_stem',.002,length,[stem[0],beam_y+length/2,stem[2]],STEEL,axis=(0,1,0),metal=.8)
+        plate_start=len(g.parts)
         plate_mirror(g,name,[0,0,0],.032,.014)
-        ids=[p['id'] for p in g.parts[start:]]
+        ids=[p['id'] for p in g.parts[plate_start:]]
         r=np.eye(4);r[:3,:3]=np.column_stack([[0,1,0],-normal,np.cross([0,1,0],-normal)]);r[:3,3]=center
         transform_parts(g,ids,r)
+        if number==3:m3_parts=[p['id'] for p in g.parts[start:]]
         mirror_records.append(dict(part=name+'_face',center_m=center.tolist(),normal=normal.tolist(),incoming=incoming.tolist(),outgoing=outgoing.tolist()))
-    pivot=sample_center.tolist()
-    # An actual sector, rather than a printed square covering the mechanism.
+    # The same rotating carrier owns M3, the M4 specimen/reference and pointer.
+    # Exact linkage, pivot, lever lengths and the optical prescription are
+    # reconstruction hypotheses; a rigid angle sweep does not calibrate optics.
     pts=[(0,-6)]+[(70*np.sin(a),-70*np.cos(a)) for a in np.radians(np.linspace(0,90,91))]+[(6,0)]
-    sector=cq.Workplane('XZ').polyline(pts).close().extrude(3).val().translate((0,16,90))
+    sector=cq.Workplane('XZ').polyline(pts).close().extrude(3).val().translate((pivot_x*1000,16,pivot_z*1000))
     solid(g,'stationary_quadrant_plate',sector,BLACK)
-    angle_scale(g,[0,.0128,.090])
-    g.cylinder('rotary_bearing_housing',.012,.013,[0,.0165,.090],DARK,axis=(0,1,0))
-    g.cylinder('rotary_spindle',.004,.030,[0,.008,.090],STEEL,axis=(0,1,0),metal=.9)
+    angle_scale(g,[pivot_x,.0128,pivot_z])
+    g.cylinder('rotary_bearing_housing',.012,.013,[pivot_x,.0165,pivot_z],DARK,axis=(0,1,0))
+    g.cylinder('rotary_spindle',.004,.030,[pivot_x,.008,pivot_z],STEEL,axis=(0,1,0),metal=.9)
     start=len(g.parts)
-    frame=box_mm(32,3,42,(0,-6,132)).cut(box_mm(16,5,26,(0,-6,132)))
+    basis=np.column_stack([[0,1,0],tangent,sample_normal])
+    frame_matrix=np.eye(4);frame_matrix[:3,:3]=basis;frame_matrix[:3,3]=sample_center
+    local_start=len(g.parts)
+    frame=box_mm(32,42,3,(0,0,-2.7)).cut(box_mm(16,26,5,(0,0,-2.7)))
     solid(g,'sample_carrier_open_frame',frame,DARK)
-    for x in [-14.2,14.2]:
-        g.box('sample_guide_'+str(x),[.004,.014,.044],[x*.001,-.014,.132],DARK)
-        g.box('sample_leaf_retainer_'+str(x),[.003,.0007,.026],[np.sign(x)*.0115,-.0095,.132],STEEL,metal=.85)
-    g.box('sample_lower_stop',[.028,.014,.004],[0,-.014,.112],DARK)
-    sample_parts=[p['id'] for p in g.parts[start:]]
-    frame_transform=trimesh.transformations.rotation_matrix(-np.pi/2,[1,0,0],point=[0,-.006,.132])
-    frame_transform[:3,3]+=np.array([0,-.019,0])
-    transform_parts(g,sample_parts,frame_transform)
-    g.box('rotary_pointer',[.004,.004,.035],[0,-.006,.0925],DARK)
-    g.box('rotary_pointer_tip',[.001,.0005,.008],[0,-.0085,.079],STEEL,metal=.7)
-    g.box('sample_rear_bridge',[.008,.006,.012],[0,-.004,.126],DARK)
-    g.cylinder('sample_rotation_knob_shaft',.003,.049,[0,-.0305,.095],STEEL,axis=(0,1,0),metal=.8)
-    knob(g,'sample_rotation_knob',[0,-.055,.095],.009,.014)
-    moving=[p['id'] for p in g.parts[start:]]
-    # The initial horizontal sample has 20-degree incidence from the two upper
-    # mirrors. The dial's authored zero is offset by 20 degrees. A 65-degree
-    # sample rotation changes incidence to 85; coupled mirrors remain open.
-    shift=np.eye(4);shift[2,3]=-.042
-    transform_parts(g,moving,shift)
-    pointer_parts=['rotary_pointer','rotary_pointer_tip']
-    transform_parts(g,pointer_parts,trimesh.transformations.rotation_matrix(-np.radians(20),[0,1,0],point=pivot))
+    for side in [-1,1]:
+        u=side*.0142
+        g.box('sample_guide_'+str(side*14.2),[.004,.044,.004],[u,0,.0008],DARK)
+        g.box('sample_leaf_retainer_'+str(side*14.2),[.003,.026,.0007],[side*.0115,0,.0008],STEEL,metal=.85)
+    g.box('sample_lower_stop',[.028,.004,.004],[0,-.019,.0008],DARK)
+    # An actual removable alignment reference represents M4 at the initial
+    # inspection pose. Masks/blank remain loose alternatives, not hidden samples.
+    g.box('alignment_mirror_7004_001',[.024,.034,.0012],[0,0,-.0006],[215,221,222],role='m4_removable_alignment_reference',metal=.95)
+    g.scene.geometry['alignment_mirror_7004_001'].visual.material.roughnessFactor=.12
+    transform_parts(g,[p['id'] for p in g.parts[local_start:]],frame_matrix)
+    for name,end in [('m3_carrier_arm',m3_center-np.array(mirror_records[2]['normal'])*.005),('sample_carrier_arm',sample_center-sample_normal*.007)]:
+        a=np.array([pivot_x,.005,pivot_z]);b=np.array([end[0],.005,end[2]])
+        axis=b-a;length=np.linalg.norm(axis)
+        g.cylinder(name,.0028,length,(a+b)/2,DARK,axis=axis/length)
+    # The sample's back connects to the common carrier, outside the beam plane.
+    back=sample_center-sample_normal*.007
+    g.cylinder('sample_carrier_stem',.002,.025,[back[0],-.0075,back[2]],STEEL,axis=(0,1,0),metal=.8)
+    g.cylinder('sample_rotation_knob_shaft',.003,.070,[pivot_x,-.020,pivot_z],STEEL,axis=(0,1,0),metal=.8)
+    knob(g,'sample_rotation_knob',[pivot_x,-.055,pivot_z],.009,.014)
+    r=.066
+    a=pivot+np.array([np.sin(phi)*r,.014,-np.cos(phi)*r])
+    pointer_root=pivot+[0,.014,0];pointer_axis=a-pointer_root
+    g.cylinder('rotary_pointer_arm',.0015,r,(a+pointer_root)/2,DARK,axis=pointer_axis/r)
+    tip=g.box('rotary_pointer_tip',[.001,.0005,.008],[0,0,0],STEEL,metal=.7)
+    matrix=trimesh.transformations.rotation_matrix(phi,[0,-1,0]);matrix[:3,3]=a
+    transform_parts(g,['rotary_pointer_tip'],matrix)
+    moving=m3_parts+[p['id'] for p in g.parts[start:]]
     masks=[]
-    for width,x in [(13,-.057),(6,-.026)]:
-        # U slot open at the front; the semicircular end and width are real cuts.
+    for width,x in [(6,-.051),(13,-.023)]:
         mask=box_mm(24,34,1.4,(x*1000,-17,8.7))
         slot=box_mm(width,28,3,(x*1000,-27,8.7)).fuse(cq.Solid.makeCylinder(width/2,3,cq.Vector(x*1000,-13,7.2)))
         solid(g,'slot_mask_'+str(width)+'mm',mask.cut(slot),BLACK,role='interchangeable_slot_mask')
         masks.append(dict(part='slot_mask_'+str(width)+'mm',width_m=width*.001,center_m=[x,-.020,.0087],normal=[0,0,1]))
-    g.box('alignment_mirror_7004_001',[.024,.034,.0012],[.006,-.017,.0086],[215,221,222],role='alignment_reference_candidate',metal=.95)
-    g.scene.geometry['alignment_mirror_7004_001'].visual.material.roughnessFactor=.12
     g.box('blank_plate',[.024,.034,.0014],[.038,-.017,.0087],BLACK,role='accessory_blank_plate')
     label(g,'model_identification','MODEL 500',.070,.007,[-.042,.0248,.018])
     for x in [-.073,.058]:
         g.cylinder('backplate_fastener_'+str(x),.002,.001,[x,.024,.028],STEEL,axis=(0,1,0),metal=.8)
+    mask_transform=frame_matrix.copy()
+    mask_transform[:3,3]+=basis@np.array([.023,.017,-.0092])
+    reference_record=dict(part='alignment_mirror_7004_001',role='M4 sample position occupied by removable alignment reference',
+        center_m=sample_center.tolist(),normal=sample_normal.tolist(),
+        incoming=((optical_points[4]-optical_points[3])/np.linalg.norm(optical_points[4]-optical_points[3])).tolist(),
+        outgoing=((optical_points[5]-optical_points[4])/np.linalg.norm(optical_points[5]-optical_points[4])).tolist())
     return g,dict(selected_base_dimensions_m=[.180,.100,.008],
         selected_backplate_dimensions_m=[.170,.006,.175],
         dimensional_status='unmeasured_reconstruction_hypothesis_except_documented_mask_widths_and_angle_range',
         masks=masks,incidence_range_degrees=[20,85],initial_incidence_degrees=20,
-        sample_face_normal_initial=[0,0,1],sample_center_m=sample_center.tolist(),
-        mask_fit_hypothesis=dict(part='slot_mask_13mm',translation_m=[.057,-.009,.0835],side_clearance_m=.0002,retainer_gap_m=.00025,
-            scope='Geometry-only seated-mask fit at the initial angle; the scene still stages masks loose. Spring force, insertion and retention are unqualified'),
-        nominal_fold_geometry=dict(incidence_degrees=20,points_m=[p.tolist() for p in optical_points],mirrors=mirror_records,
-            scope='Authored nominal geometric fold only, no manufacturer focal prescription, spectral response or coupled angle sweep'),
+        optical_surface_sequence=['M1','M2','M3','M4_sample_or_reference','M5'],
+        sample_face_normal_initial=sample_normal.tolist(),sample_center_m=sample_center.tolist(),
+        sample_frame_transform_m=frame_matrix.tolist(),
+        mask_fit_hypothesis=dict(part='slot_mask_13mm',transform_m=mask_transform.tolist(),side_clearance_m=.0002,retainer_gap_m=.00025,
+            scope='Alternative geometry-only seated mask, with the displayed alignment reference removed. No double occupation, forces or manipulation credit'),
+        nominal_fold_geometry=dict(incidence_degrees=20,points_m=[p.tolist() for p in optical_points],mirrors=mirror_records,sample_surface=reference_record,
+            scope='M1/M2/M3/M4-reference/M5 initial center ray only. Finite-aperture coverage over the angle range and manufacturer focal prescription are unqualified'),
         optical_direction='source right to detector left',
-        parts_by_component=dict(optical_chassis=[p['id'] for p in g.parts if p['id'] not in moving and p['id'] not in [m['part'] for m in masks]+['alignment_mirror_7004_001']],
-            sample_rotation_assembly=moving,slot_masks=[m['part'] for m in masks],alignment_mirror=['alignment_mirror_7004_001']),
-        interfaces=[dict(id='sample_loading',center_m=sample_center.tolist(),basis='Selected sample plane rotates about Y and changes its normal; frame, side guides and ordinary spring retainers are inferred'),
-            dict(id='rotation_knob',center_m=[0,-.062,.053],basis='Photograph-informed off-axis knob; angle datum and transmission unqualified')],
-        inspection=dict(kind='hinge',parts=moving,axis=[0,1,0],pivot_m=pivot,maximum=-math.radians(65),
-            label='Spectra-Tech 样品架 · 20–85° 几何检查',basis='Catalogue range, authored rotation geometry. Mirror coupling, angular calibration and optical alignment are not simulated'),
+        parts_by_component=dict(optical_chassis=[p['id'] for p in g.parts if p['id'] not in moving and p['id'] not in [m['part'] for m in masks]],
+            sample_rotation_assembly=[p for p in moving if p!='alignment_mirror_7004_001'],slot_masks=[m['part'] for m in masks],alignment_mirror=['alignment_mirror_7004_001']),
+        interfaces=[dict(id='sample_loading',center_m=sample_center.tolist(),normal=sample_normal.tolist(),basis='M4 carrier on the shared M3/M4 rotor; initial reference face is actually present. Pivot and local mechanism dimensions are inferred'),
+            dict(id='rotation_knob',center_m=[pivot_x,-.062,pivot_z],basis='Selected coaxial knob and shaft; manufacturer transmission unverified')],
+        inspection=dict(kind='hinge',parts=moving,axis=[0,1,0],pivot_m=pivot.tolist(),maximum=-math.radians(65),
+            label='Spectra-Tech M3 / M4 样品组件 · 20–85° 几何检查',basis='Source-topology correction: M4 is the sample, not an extra mirror. Selected shared rigid rotor; finite optical coverage and calibration are unqualified'),
         mounting_adapter_supplied=False,optical_alignment_qualified=False,sample_retention_qualified=False)
 
 
@@ -283,7 +309,7 @@ def build():
             paper_variant_identified=False,asset_accepted=False,manipulation_qualified=False,
             status='source_constrained_reconstruction_pending_dimensional_and_mount_review'))
     write_json(HERE/'angular_accessories.json',dict(schema_version=1,items=items,
-        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'angular_accessory_sources.json',HERE/'geometry_tools.py',HERE/'build_supplies.py']],
+        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'angular_accessory_sources.json',HERE/'angular_topology_rejected.json',HERE/'geometry_tools.py',HERE/'build_supplies.py']],
         reference_images_redistributed=False,owner_acceptance=None,
         scope='Bench-staged original reconstruction geometry. No installed/optically calibrated configuration or robot manipulation is qualified.'))
     print(json.dumps(dict(accessory_types=len(items),component_meshes=sum(i['geometry']['parts'] for i in items))))
