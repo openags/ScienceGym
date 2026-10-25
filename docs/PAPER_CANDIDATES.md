@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **337**.
+Last screened: **2026-10-25**. Candidate count: **339**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3413,3 +3413,17 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54944-1/MediaObjects/41467_2024_54944_MOESM1_ESM.pdf) was text-accessible. Selected moisture-buffering Methods and Figure 9 caption were screened. The single gyroid prototype used an earlier formulation with adjusted results; it is not an independent replicated test of the final formulation. Figure images, remaining sections, datasets and peer review were not fully reviewed. The additional-file description link returned Internal Error and remains unread; no claim depends on its contents.
 - Future scope starts with qualified, prepared, nonliving specimens. Fabrication, powder handling, alkaline processing and thermal-analysis operations are excluded. Calibration, specimen compatibility and exposure-history reconciliation require review before conversion. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+
+## Additional candidates: prepared polymer and water-sensor metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Entropy-driven toughening and closed-loop recycling of polymers via divergent metal-pyrazole interactions](https://www.nature.com/articles/s41467-025-65700-4) | Nature Communications / 2025 | 10.1038/s41467-025-65700-4 | Prepared specimens could support identity tracking, fixture exchange, repeated mechanical acquisition and recovery-history comparisons. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+| [Recyclable self-secreting autonomous healing dielectrics for millisecond water quality sensing](https://www.nature.com/articles/s41467-025-59973-y) | Nature Communications / 2025 | 10.1038/s41467-025-59973-y | Prepared sensors and benign reference water could support sample tracking, coordinated droplet/electrical measurements and repeated stability comparisons. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATES only.** Polymer paper: *Nature Communications* **16**, 10673 (2025), published/version of record **27 November 2025**. Selected mechanical Results and Figure 3 caption were screened. Engineering and calculated true stresses remain distinct; consecutive cycles are not independent specimens.
+- Its official [32-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-65700-4/MediaObjects/41467_2025_65700_MOESM1_ESM.pdf) was text-accessible. Mechanical-test Methods specify formulation replicates and distinguish fixed-strain, progressive-strain and post-recovery measurements. Figure images, remaining sections, source data and peer review were not fully reviewed. Future scope starts with qualified, prepared specimens; synthesis, solvents, acid recycling, hot pressing and heavy-load demonstrations are excluded.
+- Water-sensor paper: *Nature Communications* **16**, 5524 (2025), published/version of record **1 July 2025**. Selected water-response Results and device-characterization Methods were screened. Different water-source signals do not establish uniquely selective contaminant identification; reported device response time is not a robot-loop latency.
+- Its official [35-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-59973-y/MediaObjects/41467_2025_59973_MOESM1_ESM.pdf) was text-accessible. Selected Figures 11–12, 31 and 42–43 captions were screened for device structure, stability and geometry-dependent readout. Figure images, remaining sections, movie descriptions, movies and peer review were not reviewed. Future scope uses qualified, prepared sensors and benign nonbiological references; fabrication, fluorinated-chemical handling, intentional pollutant preparation and environmental release are excluded.
+- Both need calibration, fixture and exposure-history qualification before conversion. No operating procedure, converted task or asset is supplied. Access checked **2026-10-25**; both publisher licenses are **CC BY-NC-ND 4.0**. Main HTML remained readable despite cookie-error URL markers. Citation metadata and original screening commentary only.
