@@ -99,6 +99,20 @@ strip clearance, source envelopes and a detached blade gauge are checked;
 clamping force, factory retention, screw capture, worm engagement, whole-tool
 access and robot use remain unqualified. These alternatives add no stock.
 
+The [ordinary nut-driver inspector](../../viewer/lab_review_v1/nut_driver.html)
+adds the selected Wiha 34123 SW7 tool with a real blind hex bore, aligned
+entrance chamfer, solid shaft and distinct hard-core/soft-grip material domains.
+Manufacturer dimensions constrain its 125 mm blade, 238 mm length and 36 mm
+maximum grip diameter. The product page's conflicting 10.35 mm / 0.427 inch
+socket diameters remain explicit: the metric value defines the model and the
+larger inch conversion defines a conservative clearance alternative. The
+original RS3/clamp interface is tested against the entire tool; circumscribed
+envelopes bound every rigid tool angle and 100 mm straight withdrawal. The
+driven screw is excluded from that fixed-obstacle envelope and its actual head
+is checked separately against the hex cavity. These tests do not qualify
+worm movement, hand access, torque, factory bond strength or robot execution.
+Local contours, socket depth and clearance remain inferred. No stock is added.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
