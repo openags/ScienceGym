@@ -77,7 +77,7 @@ guarantee of general reliability.
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
-  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 71-point station screen records
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 73-point station screen records
   each position-only IK result and external obstacle conflicts, including 24
   supply/service approaches. Shoulder alignment, unused-arm retraction and
   proposed-camera clearance are screened. The
@@ -117,7 +117,12 @@ guarantee of general reliability.
   separate wipes can. OMAX 317864 clamps, Knipex 78 03 125 cutters, Noga RB1000
   deburring and eight individual Pomona 5908A leads extend preparation and
   electrical stock. Local dimensions and material assumptions are explicit.
-  The scene has 59 instances; compound requirements and full campaign quantities
+  Two angular-reflection candidates now include the Harrick HRS stage and its
+  FTIR base, and the Spectra-Tech 500 rotary frame, five mirrors and masks.
+  Source aperture sizes/ranges are distinct from inferred dimensions. They are
+  staged on the optical bench; Nicolet mounts, retention and optical alignment
+  remain open. Geometry sliders do not implement a coupled optical mechanism.
+  The scene has 61 instances; compound requirements and full campaign quantities
   remain incomplete. Twenty-four component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools
   remain the same physical instances. Staged assets are not executed preparation

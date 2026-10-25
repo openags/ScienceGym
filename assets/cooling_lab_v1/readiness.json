@@ -13,15 +13,19 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "1101a565adb7168c92ef25b941c74bd32bd6120792d08ef3a04cd742c9cb3a72"
+      "sha256": "51822509ea68524d8f4cba8b739a88a68aec06627bfdd0dc2ac24db1a44130f0"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "40723b5735eaff2b34ee5176006adea8da48cb4f8189ef4429aa0910dd179980"
+      "sha256": "216388aed870d22a92231fa3be812ef4e9f34a63efead94dc17752bb8b4c87cd"
     },
     {
       "path": "assets/cooling_lab_v1/staged_supply_bindings.json",
       "sha256": "67fc0f3f6f307d461e886941cb67ce1cafda314af9f002f926daa9b5ad8b676a"
+    },
+    {
+      "path": "assets/cooling_lab_v1/angular_accessories.json",
+      "sha256": "77c9ccf6301c2a7744b18aa61bbd59a82b5af0b035210edfda33e8213af53132"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -37,7 +41,7 @@
     },
     {
       "path": "assets/cooling_lab_v1/build_readiness.py",
-      "sha256": "f62f3be45357c09149ea756b572d162bb135770addbdc4dd4cda1a34f2aa1c0d"
+      "sha256": "48585432bab4688456c82d7693b07499a0eb5dbeb11fcd0db90ce08b496ed8e5"
     }
   ],
   "policy": {
@@ -162,17 +166,17 @@
   },
   "counts": {
     "requirement_groups": 66,
-    "decomposed_component_requirements": 139,
+    "decomposed_component_requirements": 146,
     "active_requirement_groups": 63,
     "historical_requirement_groups": 3,
-    "active_component_requirements": 136,
-    "active_groups_without_geometry": 3,
+    "active_component_requirements": 143,
+    "active_groups_without_geometry": 1,
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 59,
-    "groups_with_partial_geometry": 60,
-    "components_with_staged_unit_bindings": 24,
+    "scene_instances": 61,
+    "groups_with_partial_geometry": 62,
+    "components_with_staged_unit_bindings": 31,
     "qualified_humanoid_branches": 0
   },
   "requirements": [
@@ -629,12 +633,127 @@
       "components": [
         {
           "id": "equipment:ANGLE_12:component_1",
-          "label": "Harrick Scientific 12 degree specular reflection accessory",
+          "label": "FTIR optical base",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "assembly",
+            "members": [
+              {
+                "asset_id": "harrick_hrs",
+                "parts": [
+                  "optical_base_slotted_plate",
+                  "rear_left_foot",
+                  "rear_left_post",
+                  "rear_left_saddle",
+                  "rear_left_mirror_cell",
+                  "rear_left_concave_face",
+                  "rear_left_retainer_0",
+                  "rear_left_retainer_1",
+                  "rear_left_retainer_2",
+                  "rear_left_adjuster_boss",
+                  "rear_left_adjuster",
+                  "rear_right_foot",
+                  "rear_right_post",
+                  "rear_right_saddle",
+                  "rear_right_mirror_cell",
+                  "rear_right_concave_face",
+                  "rear_right_retainer_0",
+                  "rear_right_retainer_1",
+                  "rear_right_retainer_2",
+                  "rear_right_adjuster_boss",
+                  "rear_right_adjuster",
+                  "fold_left_foot",
+                  "fold_left_pedestal",
+                  "fold_left_back",
+                  "fold_left_face",
+                  "fold_left_adjuster",
+                  "fold_right_foot",
+                  "fold_right_pedestal",
+                  "fold_right_back",
+                  "fold_right_face",
+                  "fold_right_adjuster",
+                  "stage_receiver",
+                  "stage_inferred_socket_-0.023",
+                  "stage_inferred_socket_0.023",
+                  "stage_receiver_lock",
+                  "base_screw_-0.08_-0.05",
+                  "base_screw_-0.08_0.05",
+                  "base_screw_0.08_-0.05",
+                  "base_screw_0.08_0.05"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_harrick_hrs.glb",
+                "geometry_sha256": "61fd448b2f9f1ce3d0b10f5f7e87b6b24df71a10f7e54931701561c0020bfcae"
+              }
+            ],
+            "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "equipment:ANGLE_12:component_2",
+          "label": "horizontal 12-degree sample stage",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "assembly",
+            "members": [
+              {
+                "asset_id": "harrick_hrs",
+                "parts": [
+                  "hrs_bottom",
+                  "hrs_rear",
+                  "hrs_apertured_top",
+                  "hrs_solid_inclined_mirror_back",
+                  "hrs_solid_inclined_mirror_face",
+                  "hrs_side_brace_-22.5",
+                  "hrs_side_brace_22.5",
+                  "hrs_identification"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_harrick_hrs.glb",
+                "geometry_sha256": "61fd448b2f9f1ce3d0b10f5f7e87b6b24df71a10f7e54931701561c0020bfcae"
+              }
+            ],
+            "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "equipment:ANGLE_12:component_3",
+          "label": "3/6/13 mm aperture masks",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "mask_set",
+            "members": [
+              {
+                "asset_id": "harrick_hrs",
+                "parts": [
+                  "hrs_mask_3mm",
+                  "hrs_mask_6mm",
+                  "hrs_mask_13mm"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_harrick_hrs.glb",
+                "geometry_sha256": "61fd448b2f9f1ce3d0b10f5f7e87b6b24df71a10f7e54931701561c0020bfcae"
+              }
+            ],
+            "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "equipment:ANGLE_12:component_4",
+          "label": "Nicolet mating adapter and fasteners",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "harrick_hrs"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -648,12 +767,213 @@
       "components": [
         {
           "id": "equipment:ANGLE_VAR:component_1",
-          "label": "Spectra-Tech variable-angle accessory",
+          "label": "five-mirror optical chassis",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "assembly",
+            "members": [
+              {
+                "asset_id": "spectratech_500",
+                "parts": [
+                  "chassis_base",
+                  "chassis_optical_backplate",
+                  "source_side_open_housing",
+                  "housing_fastener_0.03",
+                  "housing_fastener_0.115",
+                  "m1_mount_stem",
+                  "m1_back",
+                  "m1_face",
+                  "m2_mount_stem",
+                  "m2_back",
+                  "m2_face",
+                  "m3_mount_stem",
+                  "m3_back",
+                  "m3_face",
+                  "m4_mount_stem",
+                  "m4_back",
+                  "m4_face",
+                  "m5_mount_stem",
+                  "m5_back",
+                  "m5_face",
+                  "stationary_quadrant_plate",
+                  "scale_tick_20",
+                  "scale_tick_21",
+                  "scale_tick_22",
+                  "scale_tick_23",
+                  "scale_tick_24",
+                  "scale_tick_25",
+                  "scale_tick_26",
+                  "scale_tick_27",
+                  "scale_tick_28",
+                  "scale_tick_29",
+                  "scale_tick_30",
+                  "scale_tick_31",
+                  "scale_tick_32",
+                  "scale_tick_33",
+                  "scale_tick_34",
+                  "scale_tick_35",
+                  "scale_tick_36",
+                  "scale_tick_37",
+                  "scale_tick_38",
+                  "scale_tick_39",
+                  "scale_tick_40",
+                  "scale_tick_41",
+                  "scale_tick_42",
+                  "scale_tick_43",
+                  "scale_tick_44",
+                  "scale_tick_45",
+                  "scale_tick_46",
+                  "scale_tick_47",
+                  "scale_tick_48",
+                  "scale_tick_49",
+                  "scale_tick_50",
+                  "scale_tick_51",
+                  "scale_tick_52",
+                  "scale_tick_53",
+                  "scale_tick_54",
+                  "scale_tick_55",
+                  "scale_tick_56",
+                  "scale_tick_57",
+                  "scale_tick_58",
+                  "scale_tick_59",
+                  "scale_tick_60",
+                  "scale_tick_61",
+                  "scale_tick_62",
+                  "scale_tick_63",
+                  "scale_tick_64",
+                  "scale_tick_65",
+                  "scale_tick_66",
+                  "scale_tick_67",
+                  "scale_tick_68",
+                  "scale_tick_69",
+                  "scale_tick_70",
+                  "scale_tick_71",
+                  "scale_tick_72",
+                  "scale_tick_73",
+                  "scale_tick_74",
+                  "scale_tick_75",
+                  "scale_tick_76",
+                  "scale_tick_77",
+                  "scale_tick_78",
+                  "scale_tick_79",
+                  "scale_tick_80",
+                  "scale_tick_81",
+                  "scale_tick_82",
+                  "scale_tick_83",
+                  "scale_tick_84",
+                  "scale_tick_85",
+                  "scale_number_20",
+                  "scale_number_30",
+                  "scale_number_40",
+                  "scale_number_50",
+                  "scale_number_60",
+                  "scale_number_70",
+                  "scale_number_80",
+                  "scale_number_85",
+                  "rotary_bearing_housing",
+                  "rotary_spindle",
+                  "blank_plate",
+                  "model_identification",
+                  "backplate_fastener_-0.073",
+                  "backplate_fastener_0.058"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_spectratech_500.glb",
+                "geometry_sha256": "0f250cf2ae47452af5f30d06c3ff7941cfa517321f71b12f5db0dd1d3c0143b0"
+              }
+            ],
+            "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "equipment:ANGLE_VAR:component_2",
+          "label": "rotary sample assembly",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "assembly",
+            "members": [
+              {
+                "asset_id": "spectratech_500",
+                "parts": [
+                  "sample_carrier_open_frame",
+                  "sample_guide_-14.2",
+                  "sample_leaf_retainer_-14.2",
+                  "sample_guide_14.2",
+                  "sample_leaf_retainer_14.2",
+                  "sample_lower_stop",
+                  "rotary_pointer",
+                  "rotary_pointer_tip",
+                  "sample_rear_bridge",
+                  "sample_rotation_knob_shaft",
+                  "sample_rotation_knob"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_spectratech_500.glb",
+                "geometry_sha256": "0f250cf2ae47452af5f30d06c3ff7941cfa517321f71b12f5db0dd1d3c0143b0"
+              }
+            ],
+            "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "equipment:ANGLE_VAR:component_3",
+          "label": "6/13 mm slot masks",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "mask_set",
+            "members": [
+              {
+                "asset_id": "spectratech_500",
+                "parts": [
+                  "slot_mask_13mm",
+                  "slot_mask_6mm"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_spectratech_500.glb",
+                "geometry_sha256": "0f250cf2ae47452af5f30d06c3ff7941cfa517321f71b12f5db0dd1d3c0143b0"
+              }
+            ],
+            "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "equipment:ANGLE_VAR:component_4",
+          "label": "alignment mirror",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "mirror",
+            "members": [
+              {
+                "asset_id": "spectratech_500",
+                "parts": [
+                  "alignment_mirror_7004_001"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_spectratech_500.glb",
+                "geometry_sha256": "0f250cf2ae47452af5f30d06c3ff7941cfa517321f71b12f5db0dd1d3c0143b0"
+              }
+            ],
+            "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "equipment:ANGLE_VAR:component_5",
+          "label": "Nicolet mating adapter and fasteners",
           "required_quantity": null,
           "quantity_status": "not_allocated"
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "spectratech_500"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -5191,10 +5511,7 @@
         "equipment:ANGLE_VAR",
         "tools:fastener_driver"
       ],
-      "missing_scene_resources": [
-        "equipment:ANGLE_12",
-        "equipment:ANGLE_VAR"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5575,10 +5892,7 @@
         "equipment:ANGLE_VAR",
         "tools:fastener_driver"
       ],
-      "missing_scene_resources": [
-        "equipment:ANGLE_12",
-        "equipment:ANGLE_VAR"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5603,10 +5917,7 @@
         "equipment:ANGLE_VAR",
         "tools:fastener_driver"
       ],
-      "missing_scene_resources": [
-        "equipment:ANGLE_12",
-        "equipment:ANGLE_VAR"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5653,10 +5964,7 @@
         "equipment:ANGLE_12",
         "equipment:ANGLE_VAR"
       ],
-      "missing_scene_resources": [
-        "equipment:ANGLE_12",
-        "equipment:ANGLE_VAR"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -5678,10 +5986,7 @@
         "equipment:ANGLE_12",
         "equipment:ANGLE_VAR"
       ],
-      "missing_scene_resources": [
-        "equipment:ANGLE_12",
-        "equipment:ANGLE_VAR"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -9107,7 +9412,7 @@
     {
       "id": "RESOURCES",
       "label": "全部资源与设备",
-      "detail": "已补剥线器、普通镊子、量杯、环境 RTD、转接头及部分原料；尚缺加工配套、光学附件、完整布线和消耗品，数量分配尚未完成"
+      "detail": "已有部分工具、材料及两套光学附件重构；尚缺加工配套、附件安装适配件与标定、完整布线和消耗品，数量分配尚未完成"
     },
     {
       "id": "SPACE",

@@ -54,6 +54,8 @@ DECOMPOSE={
  'equipment:WEATHER':['U30 logger','temperature/humidity sensor','wind sensor','mast and brackets','power and data connections'],
  'equipment:TC':['identified K probes','lead pairs','numbered transition terminals','strain relief'],
  'equipment:AMB_RTD':['ambient probe','radiation shield','mount','lead termination'],
+ 'equipment:ANGLE_12':['FTIR optical base','horizontal 12-degree sample stage','3/6/13 mm aperture masks','Nicolet mating adapter and fasteners'],
+ 'equipment:ANGLE_VAR':['five-mirror optical chassis','rotary sample assembly','6/13 mm slot masks','alignment mirror','Nicolet mating adapter and fasteners'],
  'tools:film_jig':['ordinary film-edge handling tool selection','ordinary spacer and support method'],
  'tools:wire_stripper_and_driver':['fine-wire compatible stripping tool','terminal slotted driver','cutting tool','inspection tool'],
  'tools:cutting_fixture':['ordinary machine workholding','cutting tool','deburring tool'],
@@ -117,6 +119,14 @@ def build():
           instance_count_accepted=False,completeness_accepted=False,
           disposition='historical_embodiment_reference' if r.get('requirement_role')=='superseded_embodiment_reference' else 'ordinary_tool_method_required' if r['id'] in ['tools:film_jig','additional_reconstructed_materials:reversible_emitter_jig'] else 'review_required'))
     staged=json.loads((HERE/'staged_supply_bindings.json').read_text())
+    angular=json.loads((HERE/'angular_accessories.json').read_text())
+    optical_labels={'harrick_hrs':{'optical_base':'FTIR optical base','horizontal_stage':'horizontal 12-degree sample stage','aperture_masks':'3/6/13 mm aperture masks'},
+        'spectratech_500':{'optical_chassis':'five-mirror optical chassis','sample_rotation_assembly':'rotary sample assembly','slot_masks':'6/13 mm slot masks','alignment_mirror':'alignment mirror'}}
+    for a in angular['items']:
+        for key,parts in a['details']['parts_by_component'].items():
+            unit='mask_set' if key in ['aperture_masks','slot_masks'] else 'mirror' if key=='alignment_mirror' else 'assembly'
+            staged['bindings'].append(dict(resource_id=a['resource_id'],component_label=optical_labels[a['id']][key],unit=unit,
+                members=[dict(asset_id=a['id'],parts=parts)],scope='Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage'))
     assert staged['asset_acceptance'] is False and staged['campaign_sufficiency_accepted'] is False
     by_component={(r['resource_id'],c['label']):c for r in requirements for c in r['components']}
     assets={a['id']:a for a in scene['assets']};seen=set()
@@ -148,7 +158,7 @@ def build():
               disposition='Inspect against ordinary-tool-only contract; old text remains historical, not current runtime authority'))
     branch_rows=[dict(id=b['id'],title=b['title'],manual_step_ids=[s['step_id'] for s in step_rows if s['operation_id'] in b['operation_ids']],
                      status='requirements_only_no_humanoid_execution',qualified_trials=0) for b in branches]
-    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
+    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
     active=[r for r in requirements if r['disposition']!='historical_embodiment_reference']
     out=dict(schema_version=1,status='asset_phase_incomplete',visibility='author_and_reviewer_only_not_actor_input',
       source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in source_paths],
@@ -162,7 +172,7 @@ def build():
       legacy_interface_review=relevant_legacy,
       hard_dependencies=[dict(id='HAND',label='G1 与 Inspire FTP 集成',detail='官方左右手、腕部安装、惯性与联动参数已下载；已进入实验室；重力与浮动基座模型已编译，手掌碰撞分块和真实驱动、接触参数仍待物理验收'),
        dict(id='TOOLS',label='普通工具操作方法',detail='旧薄膜和翻面专用夹具已移除；普通工具方法尚需证明可行'),
-       dict(id='RESOURCES',label='全部资源与设备',detail='已补剥线器、普通镊子、量杯、环境 RTD、转接头及部分原料；尚缺加工配套、光学附件、完整布线和消耗品，数量分配尚未完成'),
+       dict(id='RESOURCES',label='全部资源与设备',detail='已有部分工具、材料及两套光学附件重构；尚缺加工配套、附件安装适配件与标定、完整布线和消耗品，数量分配尚未完成'),
        dict(id='SPACE',label='完整携物空间',detail='已有 G1 限定静态通道检查与逐点工位筛查；双手协同、携物、行走与制动仍需验证'),
        dict(id='OBSERVATION',label='传感器闭环',detail='原生 D435i 已有名义光学视角；D405 官方支架已转为上置候选，已避开原腕俯仰部件冲突，适配抱环与标准紧固件已排除刚性干涉；衬垫预紧、线缆和独立观察流仍缺'),
        dict(id='OWNER',label='场景验收',detail='资产场景尚未具备完整验收条件，没有自动推断你的批准')],

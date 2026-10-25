@@ -44,6 +44,13 @@ def validate():
     supplies=json.loads((HERE/'supplies.json').read_text());supply_checks=json.loads((HERE/'supply_checks.json').read_text())
     check('supply_verification_current',supply_checks['checks_passed'] and supply_checks['supplies_sha256']==sha(HERE/'supplies.json') and supply_checks['validator_sha256']==sha(HERE/'check_supplies.py'))
     for ref in supplies['source_artifacts']:check('supply_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    optical=json.loads((HERE/'angular_accessories.json').read_text());optical_checks=json.loads((HERE/'angular_accessory_checks.json').read_text())
+    check('angular_accessory_verification_current',optical_checks['passed'] and optical_checks['model_sha256']==sha(HERE/'angular_accessories.json') and optical_checks['validator_sha256']==sha(HERE/'check_angular_accessories.py'))
+    for ref in optical['source_artifacts']:check('angular_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    for item in optical['items']:
+        a=next(a for a in scene['assets'] if a['id']==item['id'])
+        check('angular_model_'+item['id'],a['source_artifact']=={'path':item['geometry']['path'],'sha256':item['geometry']['sha256']} and sha(ROOT/item['geometry']['path'])==item['geometry']['sha256'])
+    check('angular_adapters_still_unqualified',not optical_checks['installed_compatibility_qualified'] and not optical_checks['optics_qualified'] and optical_checks['owner_acceptance'] is None)
     for role in camera_record['selected_roles']:
         placed=[a for a in scene['assets'] if role['resource_id'] in a.get('resource_ids',[a['resource_id']])]
         check('camera_staged_'+role['resource_id'],len(placed)==1 and placed[0]['station']==('circulation' if role['model']=='native_g1_d435i' else 'assembly_white'))
@@ -96,10 +103,10 @@ def validate():
     active=[r for r in readiness['requirements'] if r['disposition']!='historical_embodiment_reference']
     rc=readiness['counts']
     check('active_requirements_exclude_three_historical_models',rc['active_requirement_groups']==len(active)==63 and rc['historical_requirement_groups']==len(readiness['requirements'])-len(active)==3)
-    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==136 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==3)
+    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==143 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==1)
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
-    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==24)
+    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==31)
     check('staged_quantities_not_campaign_claims',all(c['required_quantity'] is None and not c['staged_candidates']['campaign_sufficiency_accepted'] and c['staged_candidates']['quantity']==len(c['staged_candidates']['members']) for c in staged))
     for c in staged:
         for unit_index,member in enumerate(c['staged_candidates']['members']):

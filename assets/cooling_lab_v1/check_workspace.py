@@ -42,7 +42,7 @@ def build():
     def body_matrix(name):
         body=data.body(name);t=np.eye(4);t[:3,:3]=body.xmat.reshape(3,3);t[:3,3]=body.xpos;return t
     targets=[]
-    for key in ['cary','nicolet','bath','dmm','rtd','smu_white','smu_black','daq','cooler_white','cooler_black','cooler_fixed','tracker','hobo_u30','waterjet','caliper','driver','tray_white','tray_black']:
+    for key in ['cary','nicolet','harrick_hrs','spectratech_500','bath','dmm','rtd','smu_white','smu_black','daq','cooler_white','cooler_black','cooler_fixed','tracker','hobo_u30','waterjet','caliper','driver','tray_white','tray_black']:
         a=assets[key];bounds=np.array(a['normalized_bounds_m'])+a['position_m'];center=bounds.mean(axis=0)
         surface=surfaces.get(a['station']);front=surface['xy_bounds_m'][1] if surface else bounds[0,1]
         target=[float(center[0]),float(bounds[0,1]-.05),1.05 if key=='waterjet' else float(min(bounds[1,2]+.04,bounds[0,2]+.18))]

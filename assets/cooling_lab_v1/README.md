@@ -6,7 +6,7 @@ clearance, sensor-only manipulation or complete paper campaign is claimed.
 Serve the repository root and open `/viewer/lab_review_v1/index.html`.
 The existing local server uses port 8769. The scene contains the complete
 official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
-selected OMAX ProtoMAX waterjet. Geometry sliders and the 71 per-point static
+selected OMAX ProtoMAX waterjet. Geometry sliders and the 73 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
@@ -14,7 +14,7 @@ inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
 The current derivative retains the official camera arms and replaces both
 collar halves, without rescaling the robot or cameras. Exact triangle checks
-find rigid clearance at sampled finger configurations and all 71 station
+find rigid clearance at sampled finger configurations and all 73 station
 postures. Compliant lining, preload, retention and cables remain unresolved, so
 these attachments are hidden by default and do not count as an installation.
 The viewer can display them for fit review, and records separate attachment
@@ -61,10 +61,18 @@ It makes no source downloads and cannot silently switch robot models.
   evidence, source conflicts, paper-derived sheet thickness and stock inferences.
 - `angular_accessory_sources.json`: inspected Harrick stage/base and Spectra-Tech
   catalogue evidence, including the Nicolet 6700 optical direction. These define
-  reconstruction candidates; their geometry and spectrometer fit remain open.
+  the two bench-staged candidates in `angular_accessories.json`. Outer scale,
+  local mechanisms, mirror curvature/positions and mounting remain inferred.
+  `angular_accessory_checks.json` tests real mask openings and 54 sampled rigid
+  inspection states. No installed, optically aligned or robot-operated state is
+  qualified. The HRS stage includes its required base; its sloped mirror is solid.
+  `angular_mount_followup.json` records the separate instrument-floor and ordinary
+  mounting-hardware investigation, without assuming cross-brand compatibility.
+  `angular_appearance_review.json` pins 14 browser views and records source matches,
+  visible differences and remaining dimensional/mechanical hypotheses.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 71 separately tested palm-position targets, including 24 staged supply approaches and proposed camera-clearance screening; records
+- `workspace_checks.json`: 73 separately tested palm-position targets, including 24 staged supply approaches and two angular-accessory approaches, with proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
@@ -90,14 +98,14 @@ remain unplaced historical inventory references.
 The official integrated candidate can be inspected at
 `viewer/robot_resource_review_v1/index.html`. The 66 inventory rows include
 three superseded robot/hand references; these are not additional required robots.
-The active scope is 63 resource groups / 136 component needs. The viewer keeps
+The active scope is 63 resource groups / 143 component needs. The viewer keeps
 three historical choices in a separate filter and excludes them from current
-missing-asset counts. Of 63 active groups, 60 have partial geometry and three
+missing-asset counts. Of 63 active groups, 62 have partial geometry and one
 have none; this is not a completeness percentage.
 
 ## Added ordinary supplies and collar revision
 
-The scene now contains 59 placed instances. `supplies.json` binds twenty-two
+The scene now contains 61 placed instances. `supplies.json` binds twenty-two
 additional reconstruction types: ST-450, AA.SA.T.6 tweezers, Wiha 26015,
 Bürkle 7102-2000, the source-identified ambient RTD, eight separate K-connector
 pairs in an ordinary tray, three film-stock types, masking tape, unmachined

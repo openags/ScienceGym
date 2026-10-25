@@ -46,7 +46,7 @@ washers are geometry; threads use major envelopes, not a helical contact model.
 `hardware_sources.json` records the nominal dimensions and material assumptions.
 
 `check_fit.py` checks the attached models against source robot triangle meshes
-at three finger configurations and all 71 station postures. The adapted rigid
+at three finger configurations and all 73 station postures. The adapted rigid
 parts have no robot surface intersections in these checks. Clipping the wrist
 triangles to the 10 mm collar band gives a 30.4942 mm maximum radial envelope;
 the rigid bore therefore reserves at least 0.7058 mm radial space. This is a

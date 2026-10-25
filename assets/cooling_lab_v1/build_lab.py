@@ -100,7 +100,7 @@ def asset(key,label,path,position,*,prefix=None,z_up=False,station='',resource='
     normalization[:3,3]=[-(bounds[0,0]+bounds[1,0])/2,-(bounds[0,1]+bounds[1,1])/2,-bounds[0,2]]
     if origin_xy is not None:normalization[:2,3]=-np.asarray(origin_xy)
     scene.apply_transform(normalization)
-    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if '/supply_' in path else None))
+    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_']) else None))
     # Original authoring coordinates are Z-up before this normalization.
     part_names=list(scene.graph.nodes_geometry)
     entry=dict(id=key,label=label,resource_id=resource,station=station,
@@ -189,6 +189,12 @@ def devices():
       ('heater','Omega KHR-2/2-P','omega_khr_2_2_p_v1','omega_khr_2_2_p',[9.0,2.7,.90],'assembly_black','equipment:HEATER')]
     for key,label,folder,stem,position,station,resource in configs:
         asset(key,label,base+folder+'/geometry/'+stem+'.glb',position,station=station,resource=resource,source_path=base+folder+'/sources.json')
+    optical=json.loads((HERE/'angular_accessories.json').read_text())
+    for record,pos in zip(optical['items'],[[8.45,8.45,.85],[9.80,8.30,.85]]):
+        a=asset(record['id'],record['label'],record['geometry']['path'],pos,z_up=True,
+            station='ftir_bench',resource=record['resource_id'],source_path='assets/cooling_lab_v1/angular_accessory_sources.json',
+            note='厂家结构图约束的原创重构；外形、安装和局部机构尺寸为推断。当前在台面待用，未装入光谱仪；光路、角度标定及样品夹持未合格。')
+        states.append(dict(id=record['id']+'_inspection',asset=record['id'],**record['details']['inspection']))
     tc=json.loads((ROOT/'assets/omega_5tc_v1/model.json').read_text())
     for i in range(8):
         asset('tc_'+str(i+1).zfill(2),'Omega 5TC-TT-K-36-36 · 探头 '+str(i+1),tc['geometry']['path'],
@@ -334,7 +340,7 @@ def build():
         exact_hand_qualified=False,walking_or_balance_validated=False),
       dimensions_basis='All room, furniture, clearance and route dimensions are authored design values. Equipment source dimensions remain unchanged.',
       pilot_contract=dict(path='assets/cooling_lab_v1/pilot_contract.json',sha256=sha(HERE/'pilot_contract.json')),
-      required_missing_assets=['Qualified G1/Inspire collision, actuator, load and tactile model (source integration present)','Exact 12-degree Harrick and variable-angle Spectra-Tech accessories',
+      required_missing_assets=['Qualified G1/Inspire collision, actuator, load and tactile model (source integration present)','Verified dimensions, Nicolet mounts, sample retention and optical alignment for the two staged angular-accessory reconstructions',
         'G1 mounting, cable routing and calibration for the three staged camera candidates',
         'Ambient RTD radiation shield and mount (vented source-identified probe is staged)','Thermocouple extension leads, dynamic/termination models and strain relief (8 connector pairs are staged)','Qualified waterjet setup, guarding/interlocks/services and remaining fabrication tools',
         'Weather sensor suite, mast, power and data routes','Remaining ordinary tools, coating/cleaning supplies and waste hardware','Validated equipment mounts, supports and engineering services'],
@@ -348,6 +354,16 @@ def build():
           sources=[dict(label=model+' 厂家外观照片',url='https://www.realsenseai.com/wp-content/uploads/'+photo),
                    dict(label='厂家尺寸图 · PDF 第 '+str(page)+' 页',url='https://realsenseai.com/wp-content/uploads/2025/09/Intel-RealSense-D400-Series-Datasheet-October-2025.pdf#page='+str(page)),
                    dict(label='官方 ROS 模型 · 已固定版本',url='https://github.com/realsenseai/realsense-ros/tree/7a87097c499e3b0b69518d54a8e7a9ac1924e87c/realsense2_description')])
+    angular_sources=json.loads((HERE/'angular_accessory_sources.json').read_text())
+    for key,source_ids,dimensions,scope in [
+        ('harrick_hrs',['HARRICK_CURRENT_DATASHEET','HARRICK_HRS_PHOTO','HARRICK_LEGACY_CATALOGUE'],
+         '选定底座 190 × 220 × 10 mm、上样架 60 × 54 × 63 mm；均为未实测推断。厂家确认圆孔掩模直径 3 / 6 / 13 mm。',
+         'HRS 水平架与 FTIR 底座分别重构，样品朝下。斜镜保持实体；照片中的圆形暗区解释为孔径反射。镜面曲率、支架、插接及紧固件为推断；尚无 6700 安装适配件和光学标定。'),
+        ('spectratech_500',['SPECTRATECH_CATALOGUE','NICOLET_OPTICAL_LAYOUT'],
+         '选定底座 180 × 100 × 8 mm、背板 170 × 6 × 175 mm；均为未实测推断。厂家确认 6 / 13 mm 槽宽与 20–85° 范围。',
+         '按型号 500 照片、五镜图及右入左出方向重构；原论文精确型号未知。旋转架与角度盘可检查，镜组联动、安装配合、样品保持和光学标定仍未验证。')]:
+        manifest['reference_comparisons'][key]=dict(dimensions_label=dimensions,dimensions_kind='inferred',model_scope=scope,
+            sources=[dict(url=s['url'],label='厂家资料 · '+s['id'],scope=s['inspected']) for s in angular_sources['sources'] if s['id'] in source_ids])
     for a in placements:
         if a['id'] in manifest['reference_comparisons']:continue
         record=json.loads((ROOT/a['sources']).read_text())
