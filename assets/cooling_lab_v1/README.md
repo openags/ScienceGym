@@ -33,6 +33,16 @@ threads and preload remain inferred or unmodeled. The 3 m / 12.2 m cable-source
 conflict is retained. These candidates have no laboratory stock or installation
 credit and do not qualify flexible cable handling or humanoid operation.
 
+The [tripod inspector](../../viewer/lab_review_v1/tripod.html) shows a 62-part
+M-TPB structural candidate with hollow indexed mast sections, actual hinge and
+anchor bores, flattened tube ends and a separate splice clamp. Manufacturer
+dimensions and inferred local profiles remain distinguishable. The linked
+outdoor proposal checks every rigid part's planar projection and reserves three
+3 m guy runs without obstructing the existing front corridor. The existing
+hard outdoor floor is incompatible with the proposed earth stakes; ground,
+guy/ground kits, attached devices, initial stock and load qualification remain
+open. Neither inspection grants owner acceptance or robot-operation credit.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
