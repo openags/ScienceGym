@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **339**.
+Last screened: **2026-10-25**. Candidate count: **340**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3427,3 +3427,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Water-sensor paper: *Nature Communications* **16**, 5524 (2025), published/version of record **1 July 2025**. Selected water-response Results and device-characterization Methods were screened. Different water-source signals do not establish uniquely selective contaminant identification; reported device response time is not a robot-loop latency.
 - Its official [35-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-59973-y/MediaObjects/41467_2025_59973_MOESM1_ESM.pdf) was text-accessible. Selected Figures 11–12, 31 and 42–43 captions were screened for device structure, stability and geometry-dependent readout. Figure images, remaining sections, movie descriptions, movies and peer review were not reviewed. Future scope uses qualified, prepared sensors and benign nonbiological references; fabrication, fluorinated-chemical handling, intentional pollutant preparation and environmental release are excluded.
 - Both need calibration, fixture and exposure-history qualification before conversion. No operating procedure, converted task or asset is supplied. Access checked **2026-10-25**; both publisher licenses are **CC BY-NC-ND 4.0**. Main HTML remained readable despite cookie-error URL markers. Citation metadata and original screening commentary only.
+
+
+## Additional candidate: polymer-feedstock rheological quality screening (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Defining quality by quantifying degradation in the mechanical recycling of polyethylene](https://www.nature.com/articles/s41467-024-52856-8) | Nature Communications / 2024 | 10.1038/s41467-024-52856-8 | Prepared feedstocks could support batch tracking, instrument coordination and repeated rheological comparisons with preserved processing histories. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **15**, 8733 (2024), published/version of record **9 October 2024**. Selected Results and rheological Methods were screened. Here, “simulated recycling” is a physical rheometer experiment, not a computer-only simulation. Repeated sweeps and extrusion cycles are not interchangeable, and the degradation indicator is not universal product-quality certification.
+- The official [25-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-52856-8/MediaObjects/41467_2024_52856_MOESM1_ESM.pdf) was text-accessible. Selected recycling-comparison and flow-variation sections were screened; chamber heat-distribution effects complicate interpretation. Figure images, remaining sections, source-data workbook and peer-review file were not fully reviewed.
+- Future scope requires qualified feedstocks, specimen lineage and instrument-service review. Extrusion, pelletising, heated processing and gas-system operations remain outside this metadata-only screening. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY 4.0**. Main HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
