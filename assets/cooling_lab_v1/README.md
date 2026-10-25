@@ -86,6 +86,19 @@ positions, transparent shading and isolated 41 mm mast clearance do not
 establish gravity-dependent readings, calibration, strap retention, inventory
 or robot use. Source photographs are linked, not redistributed.
 
+The [hose-clamp inspector](../../viewer/lab_review_v1/hose_clamp.html) compares
+two static shapes of a selected NORMA TORRO 35-50/9 W4 replacement. Source
+dimensions constrain the 9 × 0.65 mm strip, 13 × 11 × 26 mm closure and SW7
+slotted head. Local worm, housing, stamped grooves and band length remain
+inferred. Both shapes retain the selected 164 mm neutral line. Their small
+measured steel-volume discrepancy is recorded without claiming a material law.
+An isolated fit reference preserves the original RS3 body and adds a mast
+segment. The previous generic circular kit band intersects the added bracket
+thickness and remains a negative example. Actual openings, material separation,
+strip clearance, source envelopes and a detached blade gauge are checked;
+clamping force, factory retention, screw capture, worm engagement, whole-tool
+access and robot use remain unqualified. These alternatives add no stock.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
