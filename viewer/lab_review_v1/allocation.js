@@ -36,7 +36,7 @@ const poolLabels={heater:'加热片',smu:'电源／源表',probes:'K 型温度�
 const roleLabels={white_emitter:'白色发射体',black_emitter:'黑色发射体',white_heater_source:'白色加热通道',black_heater_source:'黑色加热通道',temperature_log:'温度记录',calibration_log:'校准记录',calibration_bath:'校准水浴',reference_readout:'参考读数',reference:'参考探头',ambient:'环境温度',solar_tracking:'太阳跟踪',direct_solar:'直射辐射',global_solar:'总辐射',weather_log:'气象记录',shortwave:'短波测量',shortwave_accessory:'短波附件',infrared:'红外测量',infrared_accessory:'红外附件'};
 const branchLabels={BUILD_PAIR:'制作白／黑成对装置',CALIBRATE:'校准温度探头',OPT_HEMISPHERICAL:'半球光学测量',OPT_ANGULAR:'角度光学测量',ENVIRONMENT:'环境监测',TRACKED_STAGNATION:'跟踪构型停滞温度',PID_POWER:'成对加热与冷却功率',FIXED_LDPE:'固定遮阳带与 LDPE 换装',MAP_CLEAR_DAY:'晴朗白天热分布',MAP_CLEAR_NIGHT:'晴朗夜间热分布',MAP_HAZY_NOON:'多云近午热分布'};
 poolLabels.lab_jacks='升降台';roleLabels.white_height_adjuster='白色装置升降台';roleLabels.black_height_adjuster='黑色装置升降台';
-unitLabels.catalog_lab_jack='台';unitLabels.fastener_or_washer='件';unitLabels.lined_adhesive_sheet='张（带离型纸）';
+unitLabels.catalog_lab_jack='台';unitLabels.fastener_or_washer='件';unitLabels.lined_adhesive_sheet='张（带离型纸）';unitLabels.reusable_hand_tool='件（共用）';
 const roleName=role=>roleLabels[role]||(role.startsWith('map_')?'热分布点 '+role.slice(4):role.startsWith('calibration_probe_')?'校准探头 '+role.slice(18):role);
 function element(tag,text){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e}
 function card(target,title,detail){const e=element('div');e.className='risk-card';e.append(element('h3',title),element('p',detail));$(target).append(e)}

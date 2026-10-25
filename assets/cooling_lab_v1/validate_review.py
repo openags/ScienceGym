@@ -47,6 +47,28 @@ def validate():
     supplies=json.loads((HERE/'supplies.json').read_text());supply_checks=json.loads((HERE/'supply_checks.json').read_text())
     check('supply_verification_current',supply_checks['checks_passed'] and supply_checks['supplies_sha256']==sha(HERE/'supplies.json') and supply_checks['validator_sha256']==sha(HERE/'check_supplies.py'))
     for ref in supplies['source_artifacts']:check('supply_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    tool_stock=json.loads((HERE/'fastener_tool_staging.json').read_text());tool_checks=json.loads((HERE/'fastener_tool_checks.json').read_text())
+    check('selected_tools_not_qualified',tool_checks['passed'] and not tool_checks['robot_use_qualified'] and not tool_stock['stock_qualified'] and tool_stock['owner_acceptance'] is None)
+    for ref in tool_stock['source_artifacts']+tool_checks['source_artifacts']:check('staged_tool_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    for item in tool_stock['items']:
+        a=next(a for a in scene['assets'] if a['id']==item['id'])
+        check('actual_staged_tool_'+item['id'],a['source_artifact']=={'path':item['geometry']['path'],'sha256':item['geometry']['sha256']} and a['position_m']==item['position_m'] and len(item['units'])==item['selected_required_units']==1)
+    # Check the emitted geometry against the separately recorded catalog
+    # dimensions, including the previous 2.5 mm versus 2 mm PH00 shaft error.
+    for identity,shaft_name,tip_name in [('driver','shaft','phillips_tip_candidate'),('terminal_driver','round_shaft','slotted_blade_1_5x0_25')]:
+        a=next(a for a in scene['assets'] if a['id']==identity);exported=trimesh.load(ROOT/a['source_artifact']['path'],force='scene')
+        parts={}
+        for name in [shaft_name,tip_name,'handle','rotating_cap']:
+            transform,key=exported.graph[name];mesh=exported.geometry[key].copy();mesh.merge_vertices(digits_vertex=8);mesh.apply_transform(transform);parts[name]=mesh
+            check('precision_driver_closed_'+identity+'_'+name,mesh.is_watertight and mesh.volume>0)
+        joined=trimesh.util.concatenate(list(parts.values()))
+        check('precision_driver_catalog_length_'+identity,abs(joined.extents[0]-.120)<1e-7 and abs(parts['handle'].bounds[0,0]-.040)<1e-7)
+        check('precision_driver_round_shaft_'+identity,np.allclose(parts[shaft_name].extents[1:],[.002,.002],atol=1e-7))
+        vertices=parts['handle'].vertices
+        front=vertices[vertices[:,0]<.050];rear=vertices[vertices[:,0]>.100]
+        check('precision_driver_grip_broadens_to_cap_'+identity,np.ptp(front[:,1])<np.ptp(rear[:,1]))
+        intersection=trimesh.boolean.intersection([parts[shaft_name],parts['handle']],engine='manifold')
+        check('precision_driver_embedded_shaft_cavity_'+identity,intersection.volume<1e-15)
     optical=json.loads((HERE/'angular_accessories.json').read_text());optical_checks=json.loads((HERE/'angular_accessory_checks.json').read_text())
     check('angular_accessory_verification_current',optical_checks['passed'] and optical_checks['model_sha256']==sha(HERE/'angular_accessories.json') and optical_checks['validator_sha256']==sha(HERE/'check_angular_accessories.py'))
     for ref in optical['source_artifacts']:check('angular_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
@@ -167,10 +189,10 @@ def validate():
     active=[r for r in readiness['requirements'] if r['disposition']!='historical_embodiment_reference']
     rc=readiness['counts']
     check('active_requirements_exclude_three_historical_models',rc['active_requirement_groups']==len(active)==64 and rc['historical_requirement_groups']==len(readiness['requirements'])-len(active)==3)
-    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==150 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==1)
+    check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==154 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==1)
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
-    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==45)
+    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==49)
     check('staged_quantities_not_campaign_claims',all(c['required_quantity'] is None and not c['staged_candidates']['campaign_sufficiency_accepted'] and c['staged_candidates']['quantity']==len(c['staged_candidates']['members']) for c in staged))
     for c in staged:
         for unit_index,member in enumerate(c['staged_candidates']['members']):
@@ -187,6 +209,7 @@ def validate():
         model=json.loads((HERE/filename).read_text())
         check('builder_identity_'+filename,model['builder_sha256']==sha(HERE/builder))
         check('source_ledger_identity_'+filename,model['source_ledger_sha256']==sha(HERE/ledger))
+        for ref in model.get('source_artifacts',[]):check('catalog_dependency_'+filename+'_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
         records=model.get('items',[model])
         for entry in records:
             geo=entry['geometry'];check('catalog_model_identity_'+entry['id'],sha(ROOT/geo['path'])==geo['sha256'])

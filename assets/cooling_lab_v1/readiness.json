@@ -13,11 +13,11 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "1549a51e8d5bc8d0948ad5d4ea21f49af2e5608873f59c3fba6ae7228b335f93"
+      "sha256": "849f39ff7c5038c593039ad8913f89d308969e5a0573a432eeb302334ea277b9"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "07b4934dc801565d89a426a142e0c58c2cf08ad6facec0be13f584504548f038"
+      "sha256": "e8f14373edc89543a8d30cf5e649411c6d1afa4e9af559978788d5de264f9700"
     },
     {
       "path": "assets/cooling_lab_v1/staged_supply_bindings.json",
@@ -25,7 +25,7 @@
     },
     {
       "path": "assets/cooling_lab_v1/angular_accessories.json",
-      "sha256": "109a9dbc0f137b3ffd69e443dfcb8d10a8f67266987019cea7dacad6e6d7fd42"
+      "sha256": "00e192d99eba7aeb4d955ba8375a02989d80864d3b02bb909b6f776cbcfe68d4"
     },
     {
       "path": "assets/cooling_lab_v1/lift_mount_stock.json",
@@ -38,6 +38,10 @@
     {
       "path": "assets/cooling_lab_v1/cover_stock.json",
       "sha256": "a8e841f4cc1e28be7146534f28635d24430624af4debc4f6b8bf3a04d115dfe1"
+    },
+    {
+      "path": "assets/cooling_lab_v1/fastener_tool_staging.json",
+      "sha256": "0516274008b4f19cd4e3a61cd24d3af1d6e212c1d9b7a530a7a49ba8402bdf67"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -53,7 +57,7 @@
     },
     {
       "path": "assets/cooling_lab_v1/build_readiness.py",
-      "sha256": "8490afa0db8b1c8ae9d32b3ef4ed6b9bdcc8de204bef1b41a7984427f2313231"
+      "sha256": "8c26b7c544cc5c7f1b78dd78a883b984ce16c7a2c9d1d25a1ccd0aa3b5a92371"
     }
   ],
   "policy": {
@@ -178,17 +182,17 @@
   },
   "counts": {
     "requirement_groups": 67,
-    "decomposed_component_requirements": 153,
+    "decomposed_component_requirements": 157,
     "active_requirement_groups": 64,
     "historical_requirement_groups": 3,
-    "active_component_requirements": 150,
+    "active_component_requirements": 154,
     "active_groups_without_geometry": 1,
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 77,
+    "scene_instances": 81,
     "groups_with_partial_geometry": 63,
-    "components_with_staged_unit_bindings": 45,
+    "components_with_staged_unit_bindings": 49,
     "qualified_humanoid_branches": 0
   },
   "requirements": [
@@ -1826,13 +1830,114 @@
       "components": [
         {
           "id": "tools:fastener_driver:component_1",
-          "label": "frame and accessory fasteners",
+          "label": "remaining accessory fastener tool selection",
           "required_quantity": null,
           "quantity_status": "not_allocated"
+        },
+        {
+          "id": "tools:fastener_driver:component_2",
+          "label": "2 mm straight hex driver",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "reusable_hand_tool",
+            "members": [
+              {
+                "asset_id": "hex_driver_2",
+                "parts": [
+                  "handle",
+                  "shaft",
+                  "rotating_cap",
+                  "size_label"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_hex_driver_2.glb",
+                "geometry_sha256": "421b0cfb7bef80e60f61690082a28acb8c12c3122a82d8d3320d3e158bca03e8"
+              }
+            ],
+            "scope": "One shared reusable tool for sequential assembly of the selected pair; selected reconstruction, not paper procurement or qualified two-hand use.",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "tools:fastener_driver:component_3",
+          "label": "2.5 mm straight hex driver",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "reusable_hand_tool",
+            "members": [
+              {
+                "asset_id": "hex_driver_2_5",
+                "parts": [
+                  "handle",
+                  "shaft",
+                  "rotating_cap",
+                  "size_label"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_hex_driver_2_5.glb",
+                "geometry_sha256": "39aa85b40a241b2c51a3d68b282d1b30cdbe09f37db5f97e7cb84a0b865b3aee"
+              }
+            ],
+            "scope": "One shared reusable tool for sequential assembly of the selected pair; selected reconstruction, not paper procurement or qualified two-hand use.",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "tools:fastener_driver:component_4",
+          "label": "3 mm straight hex driver",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "reusable_hand_tool",
+            "members": [
+              {
+                "asset_id": "hex_driver_3",
+                "parts": [
+                  "handle",
+                  "shaft",
+                  "rotating_cap",
+                  "size_label"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_hex_driver_3.glb",
+                "geometry_sha256": "0f3ba0b8e404ca0831d1f69d75ae138d79fabfdc9b8e8e028a79737ac5beb5e2"
+              }
+            ],
+            "scope": "One shared reusable tool for sequential assembly of the selected pair; selected reconstruction, not paper procurement or qualified two-hand use.",
+            "campaign_sufficiency_accepted": false
+          }
+        },
+        {
+          "id": "tools:fastener_driver:component_5",
+          "label": "8 mm open and box wrench",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "reusable_hand_tool",
+            "members": [
+              {
+                "asset_id": "wrench_8",
+                "parts": [
+                  "forged_wrench"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_wrench_8.glb",
+                "geometry_sha256": "06954f02b089492abcb8cc56432749dc176dd48961a26ad8c6f12e7c04445222"
+              }
+            ],
+            "scope": "One shared reusable tool for sequential assembly of the selected pair; selected reconstruction, not paper procurement or qualified two-hand use.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
       "scene_instances": [
         "driver",
+        "hex_driver_2",
+        "hex_driver_2_5",
+        "hex_driver_3",
+        "wrench_8",
         "terminal_driver"
       ],
       "authored_components": [],
@@ -1894,13 +1999,14 @@
               {
                 "asset_id": "terminal_driver",
                 "parts": [
+                  "size_label",
                   "rotating_cap",
                   "slotted_blade_1_5x0_25",
                   "round_shaft",
                   "handle"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_terminal_driver.glb",
-                "geometry_sha256": "70cdbb2557f48ab056b0ba7b881ee6ef8033e0fa6c7f579c0af46cd59f507c0c"
+                "geometry_sha256": "d6934091861f0d0ad452673651d8f3cb1f8ca551d37d308b726d4e0652f55565"
               }
             ],
             "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",

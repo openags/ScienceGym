@@ -102,7 +102,7 @@ def asset(key,label,path,position,*,prefix=None,z_up=False,station='',resource='
     normalization[:3,3]=[-(bounds[0,0]+bounds[1,0])/2,-(bounds[0,1]+bounds[1,1])/2,-bounds[0,2]]
     if origin_xy is not None:normalization[:2,3]=-np.asarray(origin_xy)
     scene.apply_transform(normalization)
-    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_','/apparatus_','/lift_mount_','/frame_','/cover_','thorlabs_l200_v1']) else None))
+    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_','/apparatus_','/lift_mount_','/frame_','/cover_','/wiha_26','/stahlwille_','thorlabs_l200_v1']) else None))
     # Original authoring coordinates are Z-up before this normalization.
     part_names=list(scene.graph.nodes_geometry)
     entry=dict(id=key,label=label,resource_id=resource,station=station,
@@ -265,6 +265,12 @@ def devices():
           source_path='assets/cooling_lab_v1/ordinary_tools_sources.json',
           note='普通目录工具的选定重构；局部结构含推断，尚未证明抓持、测量或所有任务的兼容性。')
         if key=='caliper':states.append(dict(id='caliper_slide',asset=key,kind='slide',parts=record['geometry']['moving_parts'],axis=[1,0,0],maximum=.130,label='卡尺张开 · 20–150 mm',basis='Manufacturer measuring range; selected 20 mm initial gap; geometric inspection only'))
+    tool_stock=json.loads((HERE/'fastener_tool_staging.json').read_text())
+    for item in tool_stock['items']:
+        a=asset(item['id'],item['label'],item['geometry']['path'],item['position_m'],z_up=True,
+            station=item['station'],resource=item['resource_id'],source_path='assets/cooling_lab_v1/fastener_tool_staging.json',
+            note='按厂家主要尺寸重建的普通紧固工具；握柄或局部轮廓含推断。单件共用库存，未验收抓持、扭矩、工具插入路径或双手配合。')
+        a['source_record']=item['id']
     supplies=json.loads((HERE/'supplies.json').read_text())
     for key,kind,pos,station in [
       ('wire_stripper','jonard_st450',[9.05,6.10,.85],'electrical_bench'),
@@ -391,12 +397,33 @@ def build():
          '按型号 500 照片、右入左出及 M1→M2→M3→M4 样品／参考→M5 光路重构；原论文精确型号未知。M3 与 M4 的 105° 共同转动结构为推断，66 个角度的选定几何射线已检查，原厂传动、光束、安装、夹持和标定未验证。')]:
         manifest['reference_comparisons'][key]=dict(dimensions_label=dimensions,dimensions_kind='inferred',model_scope=scope,
             sources=[dict(url=s['url'],label='厂家资料 · '+s['id'],scope=s['inspected']) for s in angular_sources['sources'] if s['id'] in source_ids])
+    ordinary_sources=json.loads((HERE/'ordinary_tools_sources.json').read_text())
+    for identity,kind,prefix,dimensions in [
+        ('caliper','mitutoyo_530_104','MITUTOYO','总长 229 mm；标称量程 150 mm；刻度分辨率 0.05 mm，未校准。'),
+        ('driver','wiha_26100','WIHA','总长 120 mm；露出刀杆 40 mm；钢杆直径 2 mm。'),
+        ('tray_white','buerkle_4208_0022','BUERKLE','浅型托盘外形 300 × 200 × 50 mm；壁厚与圆角为推断。'),
+        ('tray_black','buerkle_4208_0022','BUERKLE','浅型托盘外形 300 × 200 × 50 mm；壁厚与圆角为推断。')]:
+        fact=ordinary_sources['items'][kind]
+        manifest['reference_comparisons'][identity]=dict(dimensions_label=dimensions,dimensions_kind='catalogue_or_paper',
+            model_scope='普通目录工具选定重构；推断：'+'；'.join(fact['inferences'])+'。尚未验收操作兼容性。',
+            sources=[dict(url=s['url'],label='厂家资料 · '+s['id'],scope=s['locator']) for s in ordinary_sources['sources'] if s['id'].startswith(prefix)])
+    fastener_sources=json.loads((HERE/'fastener_tools_sources.json').read_text())
+    fastener_stock=json.loads((HERE/'fastener_tool_staging.json').read_text())
+    for staged in fastener_stock['items']:
+        fact=fastener_sources['items'][staged['model_id']]
+        dimensions=f"总长 {fact['overall_mm']} mm；名义工具尺寸 {fact['drive_mm']} mm。"
+        if 'blade_mm' in fact:dimensions+=f"露出刀杆 {fact['blade_mm']} mm；握柄直径和局部轮廓为推断。"
+        else:dimensions+='开口厚 4.2 mm；环端厚 7 mm、外径 12.4 mm；局部轮廓为推断。'
+        manifest['reference_comparisons'][staged['id']]=dict(dimensions_label=dimensions,dimensions_kind='catalogue_or_paper',
+            model_scope='厂家目录约束主要尺寸，握柄、工具间隙和未公开齿面为推断。各一件供两台装置顺序共用；未验证抓持、扭矩或动态装配。',
+            sources=[dict(url=s['url'],label='厂家资料 · '+s['id'],scope=s['locator']) for s in fastener_sources['sources'] if s['id'].startswith('WIHA' if staged['model_id'].startswith('wiha') else 'STAHLWILLE')])
     for a in placements:
         if a['id'] in manifest['reference_comparisons']:continue
         record=json.loads((ROOT/a['sources']).read_text())
         if a.get('source_record'):
             item=next(i for i in record['items'] if i['id']==a['source_record'])
             dimensions={
+                'wiha_26015':'总长 120 mm；刀杆 40 mm；目录刀尖 1.5 × 0.25 mm。当前产品照片标 0.23 mm 厚，版本差异待核实；圆杆直径与握柄局部尺寸为推断。',
                 'omax_317864':'3 根长压臂 203.2 mm；2 根中压臂 152.4 mm；4 根立柱及 4 个 T 形螺母。立柱、孔和螺纹局部尺寸为推断。',
                 'knipex_7803125':'标称长度 125 mm；头宽 13.5 mm；刃口长 9 mm。握柄外形与闭合姿态为重构。',
                 'noga_rb1000':'六角柄对边 12 mm；S10 刀杆 Ø3.2 mm。柄长与刀刃曲线为推断。',

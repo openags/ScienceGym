@@ -159,13 +159,8 @@ def jug():
 
 
 def driver():
-    g=Geometry()
-    g.profile('handle',[(0,0),(.0057,0),(.00635,.004),(.0058,.010),(.0042,.020),(.004,.060),(.003,.078),(0,.078)],DARK,axis=(1,0,0),position=(.040,0,.00635))
-    g.cylinder('round_shaft',.001,.034,[.023,0,.00635],STEEL,axis=(1,0,0),metal=.85)
-    tip=trimesh.convex.convex_hull(np.array([[x,y,z] for x,w,h in [(0,.0015,.00025),(.006,.002,.002)] for y in [-w/2,w/2] for z in [.00635-h/2,.00635+h/2]]))
-    g.add('slotted_blade_1_5x0_25',tip,STEEL,metal=.85)
-    g.cylinder('rotating_cap',.00635,.002,[.119,0,.00635],[171,35,40],axis=(1,0,0))
-    return g
+    from build_precision_driver_repair import driver as repaired_driver
+    return repaired_driver('slotted_1_5',linear_factors=False)
 
 
 def ambient_rtd():
@@ -354,7 +349,7 @@ def build():
         geometry=export_review(g,'supply_'+key);record=next(v for v in source['items'] if v['id']==key)
         items.append(dict(id=key,label=record['label'],resources=record['resources'],geometry=geometry,source_record=key,
             status='geometry_for_review_not_manipulation_qualified',**extra))
-    write_json(HERE/'supplies.json',dict(schema_version=1,source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'build_preparation_supplies.py',HERE/'build_robot_service.py',HERE/'build_coating_supplies.py',HERE/'build_raw_stock.py',HERE/'supply_sources.json',HERE/'stock_sources.json',HERE/'geometry_tools.py',HERE/'ordinary_tools.json']],items=items,
+    write_json(HERE/'supplies.json',dict(schema_version=1,source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'build_precision_driver_repair.py',HERE/'build_fastener_tools.py',HERE/'build_apparatus_mounting.py',HERE/'build_preparation_supplies.py',HERE/'build_robot_service.py',HERE/'build_coating_supplies.py',HERE/'build_raw_stock.py',HERE/'supply_sources.json',HERE/'stock_sources.json',HERE/'geometry_tools.py',HERE/'ordinary_tools.json']],items=items,
         quantity_allocation='Selected staged stock and 8 separate thermocouple connector pairs. Campaign/recovery consumption is not yet accepted.',
         asset_acceptance=False,manipulation_qualified=False))
     print(json.dumps(dict(supply_types=len(items),component_meshes=sum(i['geometry']['parts'] for i in items))))

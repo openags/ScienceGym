@@ -57,6 +57,7 @@ DECOMPOSE={
  'equipment:ANGLE_12':['FTIR optical base','horizontal 12-degree sample stage','3/6/13 mm aperture masks','Nicolet mating adapter and fasteners'],
  'equipment:ANGLE_VAR':['fixed M1 M2 M5 optical chassis','rotary M3 and M4 sample assembly','6/13 mm slot masks','alignment mirror','Nicolet mating adapter and fasteners'],
  'tools:film_jig':['ordinary film-edge handling tool selection','ordinary spacer and support method'],
+ 'tools:fastener_driver':['remaining accessory fastener tool selection','2 mm straight hex driver','2.5 mm straight hex driver','3 mm straight hex driver','8 mm open and box wrench'],
  'tools:wire_stripper_and_driver':['fine-wire compatible stripping tool','terminal slotted driver','cutting tool','inspection tool'],
  'tools:cutting_fixture':['ordinary machine workholding','cutting tool','deburring tool'],
  'tools:storage_supports':['accepted sample storage','rejected sample storage','reference standard storage','caps and plugs'],
@@ -150,6 +151,10 @@ def build():
         staged['bindings'].append(dict(resource_id=item['resource_id'],component_label=item['component_label'],
             unit='lined_adhesive_sheet' if item['id']=='cover_adhesive_stock' else 'individual_length' if item['id']=='cover_angle_stock' else 'fastener_or_washer',
             members=[dict(asset_id=item['id'],parts=u['parts']) for u in item['units']],scope=item['scope']))
+    tool_stock=json.loads((HERE/'fastener_tool_staging.json').read_text())
+    for item in tool_stock['items']:
+        staged['bindings'].append(dict(resource_id=item['resource_id'],component_label=item['component_label'],unit=item['unit'],
+            members=[dict(asset_id=item['id'],parts=u['parts']) for u in item['units']],scope=item['scope']))
     by_component={(r['resource_id'],c['label']):c for r in requirements for c in r['components']}
     assets={a['id']:a for a in scene['assets']};seen=set()
     for binding in staged['bindings']:
@@ -180,7 +185,7 @@ def build():
               disposition='Inspect against ordinary-tool-only contract; old text remains historical, not current runtime authority'))
     branch_rows=[dict(id=b['id'],title=b['title'],manual_step_ids=[s['step_id'] for s in step_rows if s['operation_id'] in b['operation_ids']],
                      status='requirements_only_no_humanoid_execution',qualified_trials=0) for b in branches]
-    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',HERE/'lift_mount_stock.json',HERE/'frame_stock.json',HERE/'cover_stock.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
+    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',HERE/'lift_mount_stock.json',HERE/'frame_stock.json',HERE/'cover_stock.json',HERE/'fastener_tool_staging.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
     active=[r for r in requirements if r['disposition']!='historical_embodiment_reference']
     out=dict(schema_version=1,status='asset_phase_incomplete',visibility='author_and_reviewer_only_not_actor_input',
       source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in source_paths],

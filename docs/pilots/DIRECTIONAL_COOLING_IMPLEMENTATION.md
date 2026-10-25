@@ -77,7 +77,7 @@ guarantee of general reliability.
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
-  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 90-point station screen records
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 94-point station screen records
   each position-only IK result and external obstacle conflicts, including 24
   supply/service approaches. Shoulder alignment, unused-arm retraction and
   proposed-camera clearance are screened. The
@@ -130,15 +130,15 @@ guarantee of general reliability.
   staged on the optical bench; Nicolet mounts, retention and optical alignment
   remain open. Geometry sliders inspect the selected rigid carrier; they do not
   implement robot manipulation or a calibrated optical instrument.
-  The scene has 77 instances; compound requirements and full campaign quantities
-  remain incomplete. Forty-five component requirements now bind to named staged
+  The scene has 81 instances; compound requirements and full campaign quantities
+  remain incomplete. Forty-nine component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools
   remain the same physical instances. Staged assets are not executed preparation
   operations.
   Clamp installation/force and wire-tool compatibility remain unresolved.
 - The [campaign allocation](../../assets/cooling_lab_v1/campaign_allocation.json)
-  covers all 150 component requirements and eleven branches, with selected
-  quantities for seventeen core components and sixteen stock components; quantities
+  covers all 154 component requirements and eleven branches, with selected
+  quantities for seventeen core components, sixteen stock components and four shared hand tools; quantities
   for the remaining 117 are unknown. Two independent heater candidates now match the paired power requirement.
   Completed apparatus meshes and the fixed-configuration display are references,
   not prebuilt starting stock. The selected pair is reused by identity. The
@@ -263,6 +263,15 @@ guarantee of general reliability.
   Harrick front-fold ray is displaced by 60 mm; shifting it into alignment
   collides with the instrument. Neither candidate is mounting-qualified, and an
   open-cover inspection does not authorize measurement with the cover open.
+
+- Four ordinary fastening tools are now separate, allocated bench instances:
+  Wiha 2 / 2.5 / 3 mm hex drivers and an 8 mm Stahlwille combination wrench.
+  The existing PH00 and slotted precision drivers retain their identities but
+  now use the inspected 120 mm overall / 40 mm blade catalog dimensions and
+  photo-guided grip orientation. PH00 shaft diameter is corrected to 2 mm.
+  The slotted tool's catalog 0.25 mm tip conflicts with the current photograph's
+  0.23 mm marking; this remains explicit, with no terminal-fit claim. Socket
+  checks and four new palm approaches do not establish grasping or tightening.
 
 ## Historical compatibility and remaining work
 

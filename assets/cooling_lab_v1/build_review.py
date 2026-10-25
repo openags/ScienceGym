@@ -134,6 +134,8 @@ def review():
     evidence['LAB-02']+=['assets/cooling_lab_v1/frame_stock.json','assets/cooling_lab_v1/frame_stock_checks.json']
     evidence['LAB-02']+=['assets/cooling_lab_v1/apparatus_cover_sources.json','assets/cooling_lab_v1/apparatus_cover_candidate.json','assets/cooling_lab_v1/apparatus_cover_checks.json','assets/cooling_lab_v1/cover_stock.json','assets/cooling_lab_v1/cover_stock_checks.json']
     evidence['LAB-07']+=['viewer/lab_review_v1/cover.html','viewer/lab_review_v1/cover.js']
+    evidence['LAB-02']+=['assets/cooling_lab_v1/fastener_tools.json','assets/cooling_lab_v1/fastener_tools_sources.json','assets/cooling_lab_v1/fastener_tool_checks.json','assets/cooling_lab_v1/fastener_tool_staging.json']
+    evidence['LAB-07']+=['viewer/lab_review_v1/fasteners.html','viewer/lab_review_v1/fasteners.js']
     evidence['LAB-07']+=['viewer/lab_review_v1/ftir.html','viewer/lab_review_v1/ftir.js']
     evidence['LAB-07']+=['viewer/lab_review_v1/allocation.html','viewer/lab_review_v1/allocation.js','viewer/lab_review_v1/allocation.css']
     evidence['LAB-07']+=['viewer/lab_review_v1/sensors.js']

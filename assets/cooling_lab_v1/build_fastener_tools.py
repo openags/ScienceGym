@@ -117,9 +117,9 @@ def build():
         items.append(item)
     write_json(HERE/'fastener_tools.json',dict(schema_version=1,status='isolated_catalog_candidates',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'fastener_tools_sources.json',HERE/'geometry_tools.py',HERE/'build_apparatus_mounting.py']],
-        items=items,integrated_in_lab=False,owner_acceptance=None,
+        items=items,standalone_inspection_artifact=True,lab_staging_record='assets/cooling_lab_v1/fastener_tool_staging.json',owner_acceptance=None,
         limits=['Nominal ordinary tools for asset inspection; no fastener torque, assembled access, hand grasp or robot operation qualification']))
-    print(json.dumps(dict(tool_types=len(items),integrated_in_lab=False)))
+    print(json.dumps(dict(tool_types=len(items),standalone_inspection_artifact=True)))
 
 
 if __name__=='__main__':build()

@@ -13,10 +13,10 @@ function fit(){const chosen=groups.get($('tool-select').value),box=new THREE.Box
 function update(){const id=$('tool-select').value;for(const [name,g] of groups){g.visible=name===id;g.traverse(m=>{if(m.isMesh)m.material.clippingPlanes=$('tool-section').checked?[section]:[]})}document.documentElement.dataset.toolSelected=id;$('tool-detail').textContent=descriptions[id]?'独立静态配合：'+descriptions[id]+'。仅验证名义配合，未放入整个装置。':'目录工具候选：'+$('tool-select').selectedOptions[0].textContent+'。尺寸标记为原创标识；局部外形仍需与厂家资料对照验收。';fit()}
 try{
  const accessPaths=['tool_access_inspection.json','tool_access_cooler_black.json','tool_access_cooler_fixed.json'];
- const [record,checks,...accesses]=await Promise.all([json(folder+'fastener_tools.json'),json(folder+'fastener_tool_checks.json'),...accessPaths.map(p=>json(folder+p))]);const access=accesses[0];
- for(const ref of [...record.source_artifacts,...checks.source_artifacts,...accesses.flatMap(a=>a.source_artifacts),...accesses.map(a=>a.apparatus_geometry)])await verify(ref);
+ const [record,checks,stock,...accesses]=await Promise.all([json(folder+'fastener_tools.json'),json(folder+'fastener_tool_checks.json'),json(folder+'fastener_tool_staging.json'),...accessPaths.map(p=>json(folder+p))]);const access=accesses[0];
+ for(const ref of [...record.source_artifacts,...checks.source_artifacts,...stock.source_artifacts,...accesses.flatMap(a=>a.source_artifacts),...accesses.map(a=>a.apparatus_geometry)])await verify(ref);
  if(accesses.some(a=>a.schema_version!==2||a.assembly_qualified||a.robot_use_qualified||a.owner_acceptance!==null))throw Error('装置工具检查范围不一致');
- if(!checks.passed||checks.robot_use_qualified||checks.owner_acceptance!==null||record.integrated_in_lab)throw Error('候选范围不一致');
+ if(!checks.passed||checks.robot_use_qualified||checks.owner_acceptance!==null||!record.standalone_inspection_artifact||record.lab_staging_record!==folder+'fastener_tool_staging.json'||stock.stock_units!==4||stock.stock_qualified||stock.owner_acceptance!==null)throw Error('候选范围不一致');
  const assembly=new THREE.Group();
  for(const item of record.items){const gltf=await new GLTFLoader().parseAsync(await verify(item.geometry),root);groups.set(item.id,gltf.scene);assembly.add(gltf.scene);$('tool-select').add(new Option(item.identity,item.id))}
  const samples=await new GLTFLoader().parseAsync(await verify(checks.inspection_samples),root);samples.scene.updateMatrixWorld(true);

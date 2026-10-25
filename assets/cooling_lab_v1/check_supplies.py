@@ -29,7 +29,8 @@ def validate():
         check('bounded_'+item['id'],np.isfinite(scene.bounds).all() and np.allclose(scene.bounds,g['bounds_m'],atol=1e-6))
         for node in scene.graph.nodes_geometry:
             t,k=scene.graph[node];m=scene.geometry[k]
-            if 'text' not in node and 'lot_card' not in node and 'waste_role' not in node:
+            role=next((r.get('role') for r in g['part_records'] if r['id']==node),None)
+            if role!='original_size_label' and 'text' not in node and 'lot_card' not in node and 'waste_role' not in node:
                 welded=m.copy();welded.merge_vertices(digits_vertex=8)
                 check('closed_'+item['id']+'_'+node,welded.is_watertight)
     def mesh(item,node):

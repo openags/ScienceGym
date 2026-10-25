@@ -53,7 +53,7 @@ def build(target_ids=None, output_path=None):
             basis='Authored palm approach 100 mm above the loose thin heater; reserves hand clearance from the bench. Not a grasp/contact point or a verified pickup'
         targets.append(dict(id=key+'_front',asset=key,station=a['station'],point_m=target,front_y_m=front,
           basis=basis,source=None))
-    for key in ['wire_stripper','terminal_driver','tweezers_white','tweezers_black','fill_jug','ambient_rtd',
+    for key in ['wire_stripper','terminal_driver','tweezers_white','tweezers_black','fill_jug','ambient_rtd','hex_driver_2','hex_driver_2_5','hex_driver_3','wrench_8',
                 'tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
                 'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool',
                 'g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock',
@@ -64,6 +64,9 @@ def build(target_ids=None, output_path=None):
         if key in ['nano_pe_stock','ldpe_stock','mylar_stock','copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware','cover_angle_stock','cover_mount_hardware','cover_adhesive_stock']:
             point[2]=float(bounds[1,2]+.10)
             basis='Authored 100 mm upper palm approach above stock, reserving hand clearance from the shelf; gripping, separation and material contact remain unqualified'
+        if key.startswith('hex_driver_') or key=='wrench_8':
+            point[2]=float(bounds[1,2]+.10)
+            basis='Authored palm approach 100 mm above the staged ordinary hand tool. Grip orientation, finger closure and pickup remain unqualified.'
         if key=='utility_cart':
             point=(trimesh.transform_points([[.67348,0,.8964]],a['normalization_matrix'])[0]+a['position_m']+[0,0,.04]).tolist()
             basis='Authored 40 mm upper approach to the reconstructed cart handle centre; grip orientation and pushing are unqualified'
@@ -71,6 +74,7 @@ def build(target_ids=None, output_path=None):
             point=[float(bounds[:,0].mean()),float(bounds[:,1].mean()),float(bounds[1,2]+.30)]
             basis='Authored release approach 300 mm above the closed-lid envelope; requires later lid opening and controlled disposal. Not rim grasp, pedal actuation or a verified drop'
         source_path=a['sources'] if key in ['lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware','cover_angle_stock','cover_mount_hardware','cover_adhesive_stock'] else 'assets/cooling_lab_v1/supplies.json'
+        if key.startswith('hex_driver_') or key=='wrench_8':source_path='assets/cooling_lab_v1/fastener_tool_staging.json'
         targets.append(dict(id=key+'_access',asset=key,station=a['station'],point_m=point,
             front_y_m=surface['xy_bounds_m'][3 if reverse else 1],approach='rear' if reverse else 'front',
             basis=basis,source=dict(path=source_path,sha256=sha(ROOT/source_path),source_record=a.get('source_record',key),dimensions_inferred=not key.startswith('lab_jack_'))))

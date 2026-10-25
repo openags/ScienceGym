@@ -9,8 +9,8 @@ candidates against the instrument, with separate floor, mounting hardware,
 cover and extraction controls. It retains failed fit results; it is not an
 accepted operating configuration or robot animation.
 The existing local server uses port 8769. The scene contains the complete
-official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
-selected OMAX ProtoMAX waterjet. Geometry sliders and the 90 per-point static
+official G1 29DoF + Inspire FTP geometry, ordinary tools including four newly
+staged fastening tools, and a selected OMAX ProtoMAX waterjet. Geometry sliders and the 94 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
@@ -18,7 +18,7 @@ inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
 The current derivative retains the official camera arms and replaces both
 collar halves, without rescaling the robot or cameras. Exact triangle checks
-screen rigid clearance at sampled finger configurations and all 90 station
+screen rigid clearance at sampled finger configurations and all 94 station
 postures. Compliant lining, preload, retention and cables remain unresolved, so
 these attachments are hidden by default and do not count as an installation.
 The viewer can display them for fit review, and records separate attachment
@@ -175,7 +175,7 @@ is an exploded inspection, not the jack's travel or a robot operation.
   <chromium-executable>` against the same localhost server for browser evidence.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 90 separately tested palm-position targets, including staged supply approaches, two heater instances and two angular-accessory approaches, with proposed camera-clearance screening; records
+- `workspace_checks.json`: 94 separately tested palm-position targets, including staged supply and fastening-tool approaches, two heater instances and two angular-accessory approaches, with proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
@@ -201,14 +201,14 @@ remain unplaced historical inventory references.
 The official integrated candidate can be inspected at
 `viewer/robot_resource_review_v1/index.html`. The 67 inventory rows include
 three superseded robot/hand references; these are not additional required robots.
-The active scope is 64 resource groups / 150 component needs. The viewer keeps
+The active scope is 64 resource groups / 154 component needs. The viewer keeps
 three historical choices in a separate filter and excludes them from current
 missing-asset counts. Of 64 active groups, 63 have partial geometry and one
 have none; this is not a completeness percentage.
 
 ## Added ordinary supplies and collar revision
 
-The scene now contains 77 placed instances. `supplies.json` binds twenty-eight
+The scene now contains 81 placed instances. `supplies.json` binds twenty-eight
 additional reconstruction types: ST-450, AA.SA.T.6 tweezers, Wiha 26015,
 Bürkle 7102-2000, the source-identified ambient RTD, eight separate K-connector
 pairs in an ordinary tray, three film-stock types, masking tape, unmachined
@@ -266,7 +266,7 @@ can target is a selected release approach above its rim, not a low rim grasp or
 a demonstrated pedal/lid/disposal sequence.
 
 `readiness.json` combines `staged_supply_bindings.json` with optical-accessory,
-jack, frame and cover stock records to bind forty-five component needs to actual scene
+jack, frame, cover and fastening-tool stock records to bind forty-nine component needs to actual scene
 instances and named parts. Film sheets and connector pairs are counted
 individually; the same two tweezers are explicitly shared across handling roles.
 `readiness.json` pins these geometry identities and exposes staged quantities
@@ -299,9 +299,9 @@ The inspector links this comparison for each new asset. Associations are not
 accepted operation-to-part bindings. Missing reference views and all acceptance
 decisions remain explicit; CAD download listings are not downloaded CAD.
 
-`campaign_allocation.json` accounts for all 150 active component requirements
-and the eleven branches. Seventeen core equipment/probe components and sixteen stock
-components have explicit selected quantities; the other 117 retain
+`campaign_allocation.json` accounts for all 154 active component requirements
+and the eleven branches. Seventeen core equipment/probe components, sixteen stock
+components and four shared hand tools have explicit selected quantities; the other 117 retain
 unknown required quantities. These
 counts describe allocation work, not asset completeness. The paired power branch
 now has two separately staged KHR-2/2-P candidates, `heater_white` and `heater`,
@@ -472,7 +472,11 @@ Wiha 26320 / 26325 / 26330 straight hex drivers and a Stahlwille OPEN BOX 13 8
 combination wrench. `fastener_tools_sources.json` records inspected manufacturer
 dimensions, photographs, catalog versions and unresolved profile details. These
 are authored ordinary-tool selections; the paper does not specify the SKUs.
-They are not yet placed in the main laboratory or credited to its inventory.
+Each has one physical instance on the white assembly bench, shared across the
+selected pair. `fastener_tool_staging.json` binds exact part identities, source
+geometry, initial positions and selected quantities; replacement stock and
+robot use remain unqualified. Removing one driver exposes a deficit for that
+size instead of substituting another tool.
 
 The three drivers have nominal 2 / 2.5 / 3 mm tips, 50 / 60 / 60 mm exposed blades
 and 145 / 170 / 170 mm overall lengths. Steel shafts, plastic grips and red
@@ -482,15 +486,23 @@ The 115 mm length, 8 mm size and head/ring dimensions are manufacturer values;
 local contours, tip clearances and undisclosed AS-Drive details remain inferred.
 Selected display RGB colors are converted to linear glTF factors, following
 [the glTF material convention](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#_material_pbrmetallicroughness_basecolorfactor).
-The earlier PH00 reconstruction still needs its own contour/color correction;
-the new hex drivers do not silently replace its identity.
+The existing PH00 and 1.5 mm slotted tools are repaired separately from these
+hex tools. The manufacturer-authored 2025 catalog gives both 120 mm overall
+length and 40 mm blades; the PH00 shaft is 2 mm. Narrow forward hex grips widen
+toward the separate red caps. Embedded shafts now occupy actual plastic cavities.
+The slotted catalog tip is 0.25 mm thick while the current product photograph
+labels 0.23 mm; the selected catalog thickness is explicit and no terminal fit
+is claimed. Phillips flute contours and local grip dimensions remain inferred.
+`precision_driver_appearance.json` pins the inspected manufacturer references
+and actual main-viewer comparisons for both repaired tools. The four fastening
+tools retain their separate comparison in `fastener_tools_appearance.json`.
 
-Run `build_fastener_tools.py`, `check_fastener_tools.py`, then
+Run `build_fastener_tools.py`, `check_fastener_tools.py`, `build_fastener_tool_staging.py`, then
 `viewer/lab_review_v1/check_fasteners.py --browser <chromium-executable>`.
 The current inspector has 26 captures and rejects stale source bindings.
 Independent solid checks fit six existing fastener geometries and an M5 nut
 in both wrench ends; oversized tools/nuts are rejected. No applied torque,
-whole-apparatus insertion/swing, hand grasp, tool allocation or appearance
+whole-apparatus insertion/swing, hand grasp, campaign stock sufficiency or appearance
 acceptance is claimed. The checks export the exact isolated mating samples
 for interactive inspection. Complete fastening-tool access is still required
 before the laboratory can be submitted for owner acceptance.

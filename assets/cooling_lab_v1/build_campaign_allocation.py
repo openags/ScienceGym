@@ -126,8 +126,10 @@ def build_record(scene, readiness):
             allocation_complete=False, qualified=False))
     rows = []
     cutplan=json.loads((HERE/'stock_cutplan.json').read_text())
+    tool_stock=json.loads((HERE/'fastener_tool_staging.json').read_text())
+    explicit_quantities=cutplan['component_allocations']+[dict(resource_id=t['resource_id'],component_label=t['component_label'],selected_required_stock_units=t['selected_required_units']) for t in tool_stock['items']]
     stock_allocations={}
-    for allocation in cutplan['component_allocations']:
+    for allocation in explicit_quantities:
         resource=items[allocation['resource_id']]
         component=next(c for c in resource['components'] if c['label']==allocation['component_label']) if allocation['component_label'] else resource['components'][0]
         if not allocation['component_label']:assert len(resource['components'])==1
@@ -168,7 +170,7 @@ def build_record(scene, readiness):
         visibility='author_and_reviewer_only_not_actor_input',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)), sha256=sha(p)) for p in
             [HERE/'scene.json', HERE/'readiness.json', HERE/'pilot_contract.json', TASK/'resources.json',
-             TASK/'branches.json', TASK/'material_cards.json', HERE/'stock_cutplan.json',Path(__file__)]],
+             TASK/'branches.json', TASK/'material_cards.json', HERE/'stock_cutplan.json',HERE/'fastener_tool_staging.json',Path(__file__)]],
         selected_policy=dict(apparatus_count=2, initial_completed_apparatus_count=0,
             configuration_reuse='Reuse the identified white/black pair for tracked and fixed branches; restore the same white apparatus before tracked mapping',
             historical_reuse_known=False, inferred_quantity_selection=True,

@@ -22,7 +22,7 @@ def main():
       'assets/g1_sensor_rig_v1/convert_mounts.py','assets/g1_sensor_rig_v1/build_adapters.py','assets/g1_sensor_rig_v1/build.py','assets/g1_sensor_rig_v1/check_clocking.py',
       'assets/omega_5tc_v1/build.py','assets/omega_5tc_v1/validate.py',
       'assets/cooling_lab_v1/check_hand_envelope.py',
-      'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_fastener_tools.py','assets/cooling_lab_v1/check_fastener_tools.py','assets/cooling_lab_v1/build_supplies.py','assets/cooling_lab_v1/check_supplies.py',
+      'assets/cooling_lab_v1/build_ordinary_tools.py','assets/cooling_lab_v1/build_fastener_tools.py','assets/cooling_lab_v1/check_fastener_tools.py','assets/cooling_lab_v1/build_fastener_tool_staging.py','assets/cooling_lab_v1/build_supplies.py','assets/cooling_lab_v1/check_supplies.py',
       'assets/cooling_lab_v1/build_apparatus_cover.py','assets/cooling_lab_v1/check_apparatus_cover.py','assets/cooling_lab_v1/build_cover_stock.py',
       'assets/cooling_lab_v1/build_apparatus_stock.py','assets/cooling_lab_v1/check_cover_stock.py','assets/cooling_lab_v1/check_apparatus_mounting.py','assets/cooling_lab_v1/check_apparatus_frame.py','assets/cooling_lab_v1/build_frame_stock.py','assets/cooling_lab_v1/check_frame_stock.py','assets/cooling_lab_v1/build_stock_cutplan.py','assets/cooling_lab_v1/check_stock_cutplan.py','assets/cooling_lab_v1/build_waterjet.py',
       'assets/cooling_lab_v1/inspect_tool_access.py',

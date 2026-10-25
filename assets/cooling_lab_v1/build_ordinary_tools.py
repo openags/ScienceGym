@@ -47,15 +47,8 @@ def caliper():
     return out
 
 def driver():
-    g=Geometry()
-    # Catalog overall length 4.70 in; 40 mm blade. Handle local contours inferred.
-    g.profile('handle',[(0,0),(.0058,0),(.00635,.004),(.006,.009),(.0047,.014),(.0040,.060),(.003,.07938),(0,.07938)],DARK,axis=(1,0,0),position=(.040,0,.00635))
-    g.cylinder('shaft',.00125,.036,[.022,0,.00635],STEEL,axis=(1,0,0),metal=.85)
-    for y in [-1,1]:g.box('phillips_blade_y_'+str(y),[.004,.0004,.0016],[.002,y*.0002,.00635],DARK,metal=.8)
-    g.box('phillips_blade_z',[.004,.0016,.0004],[.002,0,.00635],DARK,metal=.8)
-    # Free turning end cap is a separate part; no fictitious motorized drive.
-    g.cylinder('rotating_cap',.00635,.003,[.11788,0,.00635],[175,36,38],axis=(1,0,0))
-    return g.export('wiha_26100')
+    from build_precision_driver_repair import driver as repaired_driver
+    return repaired_driver('ph00').export('wiha_26100')
 
 def rounded_ring(width,depth,r,z):
     points=[]
@@ -82,6 +75,7 @@ def build():
                             appearance_accepted=False,interaction_qualified=False))
     write_json(HERE/'ordinary_tools.json',dict(schema_version=1,status='catalog_reconstructions_pending_review',
       source_ledger_sha256=sha(HERE/'ordinary_tools_sources.json'),builder_sha256=sha(__file__),items=records,
+      source_artifacts=[dict(path=str((HERE/name).relative_to(ROOT)),sha256=sha(HERE/name)) for name in ['build_precision_driver_repair.py','build_fastener_tools.py','build_apparatus_mounting.py','geometry_tools.py']],
       scope='Ordinary tool candidates; one driver is not a complete fastener kit, and a tray does not prove fragile-film or heavy-payload handling'))
     print(json.dumps({'ordinary_tool_types':len(records)}))
 

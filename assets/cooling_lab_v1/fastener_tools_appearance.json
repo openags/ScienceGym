@@ -2,11 +2,11 @@
   "schema_version": 1,
   "reviewed_at": "2026-10-26",
   "reviewer": "Codex asset inspection",
-  "review_scope": "Partial source/model comparison from actual rendered views. This is not an owner acceptance or manufacturer fidelity certification.",
+  "review_scope": "Partial source/model comparison; unchanged tool geometry and the 16 previously reviewed isolated views verified byte-for-byte, with current browser/source/staging records. This is not owner acceptance or manufacturer fidelity certification.",
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/fastener_tools.json",
-      "sha256": "ee235b4670471f39c3f075d768027c7e6d05e83ea18c68388f2e83683d6313bb"
+      "sha256": "aec5b1385c20c5b343f2c7eaf3c9311b5313b7e339d8988fa30788a4acbb1008"
     },
     {
       "path": "assets/cooling_lab_v1/fastener_tools_sources.json",
@@ -14,11 +14,15 @@
     },
     {
       "path": "assets/cooling_lab_v1/fastener_tool_checks.json",
-      "sha256": "a094c08cc24f2dde1d09f61b18644e884d92951ee20423ab3006813795172e3d"
+      "sha256": "483fcdbc9be70ecf4511fc4fcc0bbe648e9767d5c718dd45bbb17378ee619c64"
     },
     {
       "path": "viewer/lab_review_v1/FASTENER_VERIFICATION.json",
-      "sha256": "55b9332c8aff85376e9309bccf450b8993c71687316cb7c6bb8aa68d19950485"
+      "sha256": "c194976fdeb2475dd691e338afea62c4d9ab7db9786d5b3253c5df14a7543630"
+    },
+    {
+      "path": "assets/cooling_lab_v1/fastener_tool_staging.json",
+      "sha256": "0516274008b4f19cd4e3a61cd24d3af1d6e212c1d9b7a530a7a49ba8402bdf67"
     }
   ],
   "items": [
@@ -215,13 +219,13 @@
   },
   "shared_findings": [
     "A preliminary uniform 3.6 mm wrench shaft was heavier than the catalog mass under assumed steel density. The selected 3.0 mm inferred shaft follows the source sketch's shaft/head ratio; current mass comparison is recorded, not forced by rescaling.",
-    "The existing PH00 tool still has a reversed taper and uncorrected color semantics; that older asset requires its own repair.",
+    "The separate PH00 and slotted driver repairs now use source catalog lengths and photo-guided grip orientation. Their geometry is independent of the four hex/wrench candidates; source conflicts and unqualified tip fit remain explicit.",
     "Other authored laboratory materials also use display RGB as glTF factors in some generators; audit their source palettes before applying a shared conversion."
   ],
   "next_work": [
-    "Place and allocate actual tools in the laboratory",
-    "Check tool insertion sweeps, table and hand clearance, and simultaneous driver/wrench use after the three-configuration static inspection",
-    "Repair existing PH00 and inspect the remaining color/contour discrepancies"
+    "Check tool insertion sweeps, table and hand clearance, and simultaneous driver/wrench use after owner scene acceptance",
+    "Retain inferred grip/neck contours and unresolved source dimensions for owner appearance review"
   ],
-  "owner_scene_acceptance": null
+  "owner_scene_acceptance": null,
+  "lab_staging": "One physical instance of each tool on the white assembly bench, shared sequentially by the pair; selected quantity and placement do not prove grasp or torque capability."
 }

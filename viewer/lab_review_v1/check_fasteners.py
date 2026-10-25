@@ -23,6 +23,7 @@ def run(browser,url):
         page.goto(url,wait_until='domcontentloaded');page.wait_for_function('document.documentElement.dataset.toolsLoaded === "true"',timeout=120000)
         check('four_tools_eight_samples',page.locator('#tool-select option').count()==12)
         check('boundaries_visible','未验收' in page.locator('#tool-status').inner_text() and 'AS-Drive' in page.locator('body').inner_text())
+        check('selected_shared_tool_stock_visible','各一件已放入白色装配工位' in page.locator('body').inner_text())
         check('installed_access_obstructions_visible','36' in page.locator('#tool-access-findings').inner_text() and '32' in page.locator('#tool-access-findings').inner_text() and '4 个' in page.locator('#tool-access-findings').inner_text())
         check('three_configurations_and_wrench_limits',page.locator('#tool-configurations tbody tr').count()==3 and page.locator('#tool-configurations tbody tr').nth(2).locator('td').all_text_contents()==['固定遮阳带','34','30','4','4 / 4'] and '抽样六个朝向' in page.locator('body').inner_text())
         capture(page,'access_comparison','#tool-configurations')
@@ -44,7 +45,7 @@ def run(browser,url):
         check('stale_source_rejected',page.locator('#lift-viewport canvas').count()==0 and '不一致' in page.locator('#lift-error').inner_text())
         version=b.version;b.close()
     files=[Path(__file__),HERE/'fasteners.html',HERE/'fasteners.js',HERE/'style.css',HERE/'lift.css',ROOT/'assets/cooling_lab_v1/fastener_tools.json',ROOT/'assets/cooling_lab_v1/fastener_tool_checks.json',ROOT/'assets/cooling_lab_v1/tool_access_inspection.json']
-    files += [ROOT/'assets/cooling_lab_v1'/n for n in ['tool_access_cooler_black.json','tool_access_cooler_fixed.json']]
+    files += [ROOT/'assets/cooling_lab_v1'/n for n in ['tool_access_cooler_black.json','tool_access_cooler_fixed.json','fastener_tool_staging.json']]
     report=dict(passed=True,checks=checks,captures=captures,source_files=[dict(path=str(f.relative_to(ROOT)),sha256=sha(f)) for f in files],browser=version,
         scope='Actual isolated asset inspector and fail-closed source binding; no appearance acceptance or robot operation credit')
     (HERE/'FASTENER_VERIFICATION.json').write_text(json.dumps(report,indent=2)+'\n')
