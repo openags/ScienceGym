@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **341**.
+Last screened: **2026-10-25**. Candidate count: **342**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3450,4 +3450,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **17**, 1543 (2026), published **6 January 2026**; version of record **11 February 2026**. Selected mechanical Results, characterization Methods and statistical reporting were screened. Cyclic measurements are not independent specimens; surface-scratch disappearance does not by itself establish bulk mechanical recovery.
 - The official [23-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-68263-6/MediaObjects/41467_2025_68263_MOESM1_ESM.pdf) was text-accessible. Selected captions for loading/unloading and original, healed and recycled specimen comparisons were screened. Figure images, remaining sections, source-data workbook and peer-review file were not fully reviewed.
 - Future scope starts with qualified, prepared specimens and requires specimen-lineage and fixture review. Synthesis, solvent handling, chemical decrosslinking, hot pressing, extrusion and heavy-load demonstrations are excluded. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+
+## Additional candidate: cross-scale AFM imaging coordination (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Cross-scale high-bandwidth atomic force microscopy with a stick-slip nanopositioner](https://www.nature.com/articles/s41467-025-65579-1) | Nature Communications / 2025 | 10.1038/s41467-025-65579-1 | Prepared calibration standards and inert microchips could support sample identity tracking, region selection, coordinated approach/retraction, repeated imaging and image-stitching provenance. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 10559 (2025), published/version of record **26 November 2025**. Selected imaging Results, experimental setup Methods and position-error evaluation were screened. Real-time tracking errors and delay-corrected scanning errors are distinct; positioning range, single-frame scan area and stitched coverage must not be conflated.
+- The official [30-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-65579-1/MediaObjects/41467_2025_65579_MOESM1_ESM.pdf) was text-accessible. Selected cross-coupling, resolution and sampling-region sections were screened. Sensor-resolution settings and smoothed positioning results have different range/response trade-offs. Figure pixels, videos, full-size data file, remaining sections and peer review were not fully reviewed.
+- Future scope requires qualified instrument and tip–sample interaction review; specimen handling and acquisition records remain separate from custom apparatus fabrication or controller deployment. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
