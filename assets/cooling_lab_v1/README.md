@@ -113,6 +113,22 @@ is checked separately against the hex cavity. These tests do not qualify
 worm movement, hand access, torque, factory bond strength or robot execution.
 Local contours, socket depth and clearance remain inferred. No stock is added.
 
+The [U30 inspector](../../viewer/lab_review_v1/u30.html) adds a source-guided
+five-primary-port NRC candidate with 138 physical domains and five text faces.
+The source enclosure envelope excludes the separate two-plate mounting kit.
+Real hinge bores, releasing clasps, an open-bottom split cable channel, sealed
+battery behind the clear module, continuous battery leads and five keyed RJ12
+mouths replace decorative boxes and solid sockets. The Mini-B interface uses
+the historical GCT USB2066 drawing without claiming Onset OEM identity.
+The checker tests material separation, selected wire bend/separation bounds,
+sampled latch/door poses, the actual selected Cinch 6P6C plug at all five ports,
+and the mounting kit around a 41 mm mast fixture. Filled sockets, closed-clasp
+door movement and lateral mast misalignment supply negative examples.
+Local profiles, battery package, lead lengths and mounting details remain
+inferred. This is neither manufacturer CAD nor an identified paper SKU.
+It adds no inventory; installed sensor cables, tool access, sealing, electrical
+behavior, load capacity and humanoid operation remain unqualified.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
