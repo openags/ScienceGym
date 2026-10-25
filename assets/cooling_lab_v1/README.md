@@ -43,6 +43,22 @@ hard outdoor floor is incompatible with the proposed earth stakes; ground,
 guy/ground kits, attached devices, initial stock and load qualification remain
 open. Neither inspection grants owner acceptance or robot-operation credit.
 
+The separate [anchoring-kit inspector](../../viewer/lab_review_v1/anchoring.html)
+provides 49 loose-kit solids: the guy collar and eye bolts, three turnbuckles,
+three open S hooks, six single-screw wire clamps, six stakes, the ground rod and
+its two clamps, and continuous uncut wire stock. The source supplies 15.24 m guy
+wire, a 1.2192 m rod and two nominal stake diameters. Other local profiles,
+conductor dimensions, stake lengths and 3 m ground-wire stock are labeled
+hypotheses. Flat wire spirals rest on a common plane; they do not qualify cable
+dynamics, cutting, tension, clamp force or electrical grounding.
+
+The tripod page also shows a seven-solid outdoor-ground candidate: authored
+level earth, a flush ordinary walkway and four bench footing pads. Checks use
+the actual exported surfaces to confirm the corridor coverage, pad support
+locations and earth at the proposed anchor sites. The main laboratory still
+uses its previous slab. Soil mechanics, stake retention, installed guys and
+grounding, full station routing and laboratory stock remain unfinished.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
