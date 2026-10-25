@@ -225,6 +225,19 @@ guarantee of general reliability.
   and an omitted T-nut. These quantities do not include failed trials or resets
   and do not convert completed display assemblies into starting stock.
 
+- An [isolated cover review](../../viewer/lab_review_v1/cover.html) now compares
+  a membrane-supported ring hypothesis with retained legacy failures. Published
+  tube/ring diameters, 16 micrometre film and 57 mm shield height are preserved;
+  a 51 mm PE support, film drape and 58 micrometre adhesive are explicit choices.
+  All 16 candidate solids have positive closed geometry. The 130 geometric
+  checks include actual film-normal gauge, contact connectivity, solid overlap
+  and section-hole checks; 23 browser checks retain 19 views. Neither membrane
+  equilibrium nor adhesion is qualified. The legacy invalid coating, copper
+  winding and floating shield remain available for comparison. Actual section
+  faces resolve misleading open-clipping interference without altering the
+  physical meshes. This candidate is not integrated into the laboratory yet;
+  ordinary shield/aperture retention, stock and all configurations remain next.
+
 - A separate FTIR installation review now adds the 206 × 252 mm floor candidate
   and 38 ordinary mounting parts. Thermo site guide 269-158000 supplies the floor
   dimensions, focus offsets, approximately 90 mm optical height and approximately

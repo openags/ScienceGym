@@ -1,0 +1,12 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ScienceGym · 薄膜与遮罩结构候选</title>
+<script type="importmap">{"imports":{"three":"../../simulation/cooling_v1/vendor/three.module.js","three/addons/":"../../simulation/cooling_v1/vendor/addons/"}}</script><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="lift.css"></head><body><main>
+<p><a href="index.html">← 返回实验室</a> · <a href="frame.html">框架连接</a></p><small>COVER GEOMETRY REVIEW</small><h1>检查薄膜、铝环与支撑管如何连接。</h1>
+<p>单独的结构候选，尚未替换实验室模型，也未验收。保留论文尺寸，明确补充未报告的支撑高度和连接推断；本页没有机器人动作。</p>
+<div class="lift-grid panel"><div><div id="lift-viewport" aria-label="可旋转的薄膜和遮罩剖视图"></div><p id="cover-status" class="legend" role="status">正在核对来源…</p></div><aside class="lift-controls">
+<label for="cover-version">比较模型</label><select id="cover-version" disabled><option value="candidate">新的结构候选</option><option value="legacy">保留的旧模型与失败</option></select>
+<label for="cover-group">检查范围</label><select id="cover-group" disabled><option value="all">完整热学组件</option><option value="core">隐藏外遮罩与孔板</option><option value="cover">PE 支撑、薄膜、胶层与铝环</option><option value="lower">单独检查下层薄膜</option></select>
+<label><input type="checkbox" id="cover-section" checked disabled>显示剖面，仅改变显示</label><div id="cover-views"><button data-view="oblique" disabled>整体</button><button data-view="front" disabled>正面</button><button data-view="top" disabled>俯视</button><button data-view="bottom" disabled>底面</button></div><p id="cover-selection"></p><p>截面距中心 0.5 mm。候选显示实际实体的截面；旧模型保留开放剖切以检查失败。</p></aside></div>
+<section class="panel"><h2>支撑关系与推断</h2><p>论文中铝环内径为 107 mm，PE 管外径为 102 mm，两者没有直接承重接触。候选让下层薄膜跨过这段径向间隙，并在铝环底面粘接；铝环通过膜张力将重量传到 PE 管。这个路径仍需膜张力、边缘弯曲和粘接验证。</p>
+<p>PE 管高 51 mm、铝环底面高 50.1 mm 和薄膜下垂形状是本次工程推断。保留 6.4 mm 铝环厚度、57 mm 外罩高度与 16 μm 薄膜名义厚度。选定 58 μm 转移胶作为连接候选，不代表论文的原始胶种。</p><p id="cover-findings"></p></section>
+<section class="panel"><h2>仍需完成</h2><p>外罩限位与孔板固定、胶料备料及普通工具、三种构型的集成和整场重新检查尚未完成。薄膜形状是静态推断；接触连通不代表力学平衡、抗风、搬运稳定或已完成装配。</p><p>旧模型的悬空外罩、薄膜穿透和无效涂层网格均保留。新的铜片修复面方向，涂层保留推断的 60 μm 总厚度；金属化薄膜接缝另列 0.1 μm 数值间隔，不把它称为实际胶层。</p></section>
+<section class="panel"><h2>依据与检查</h2><div class="source-list"><a href="../../assets/cooling_lab_v1/apparatus_cover_sources.json">论文事实、选择及未决问题 ↗</a><a href="../../assets/cooling_lab_v1/apparatus_cover_checks.json">实际导出模型检查 ↗</a><a href="../../assets/cooling_lab_v1/cover_legacy_rejected.json">保留的旧模型失败 ↗</a></div></section><p id="lift-error" role="alert"></p></main><script type="module" src="cover.js"></script></body></html>

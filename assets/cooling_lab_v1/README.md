@@ -401,3 +401,37 @@ rigid hardware shape preservation, resting envelopes and the failed layout.
 These three stock assets are inspectable individually in the main viewer and
 their reservations appear in the allocation page. They add no assembly,
 campaign-success or asset-acceptance credit.
+
+## Isolated cover candidate
+
+`viewer/lab_review_v1/cover.html` compares an isolated 16-part candidate with
+the retained 14-part legacy thermal group. It has not replaced the laboratory
+apparatus. The source ledger preserves the published tube/ring diameters,
+film gauge and 57 mm shield height. A 51 mm PE support and a lower membrane
+draping under the wider ring are explicit reconstruction choices. Selected
+58 micrometre 9471LE annular adhesive layers are not the paper's identified
+adhesive or proof of porous-PE adhesion. Removing the lower membrane or adhesive
+disconnects the ring's geometric contact path; no membrane equilibrium or
+load capacity follows from that connectivity.
+
+The old floating shield, half-gauge film penetrations, invalid coating and
+inconsistent copper winding remain in `cover_legacy_rejected.json` and its
+actual GLB. The candidate repairs copper face directions and replaces the
+coating's collapsed bevels with a closed nominal disk at the existing inferred
+60 micrometre total gauge. Stack-plane corrections remain below 20 nm and are
+recorded separately. The 12 micrometre foil keeps a 3 mm lap and a distinct
+0.1 micrometre numerical seam gap; this is not physical adhesive thickness.
+
+The inspector uses actual planar sections of exported solids, 0.5 mm from the
+centre, to show filled cross-sections while preserving holes and thin layers.
+These display faces are not new physical parts. Open clipping exposed nearly
+coincident foil/substrate back surfaces and produced visible stripes; the
+rejected image is retained in `COVER_DEPTH_REJECTED.json`. Ordinary depth tests
+remain enabled. The old invalid model retains its open section view.
+
+Run `build_apparatus_cover.py`, `check_apparatus_cover.py`, then
+`viewer/lab_review_v1/check_cover.py --browser <chromium-executable>` for this
+separate review. Current evidence contains 130 geometry checks and 23 browser
+checks with 19 captures. Shield/aperture retention, initial adhesive and hardware
+stock, manufacturing tools, all configuration variants and laboratory integration
+remain to be completed. No owner or execution gate is closed by this candidate.
