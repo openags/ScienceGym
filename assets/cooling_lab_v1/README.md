@@ -51,7 +51,50 @@ The rebuild runs source asset generators, the scene generator, static layout
 checks, inventory/readiness reconciliation, source verification and negative
 policy tests in dependency order. Browser checks are optional only for a
 nonvisual rebuild; a changed review release needs renewed visual evidence.
-It makes no source downloads and cannot silently switch robot models.
+The pinned L200/M STEP/PDF are fetched into an ignored local cache when absent;
+existing files are verified without a network request. A changed upstream hash
+fails instead of silently selecting another version. Other source bundles must
+already be present. The rebuild cannot silently switch robot models.
+
+## Central support from manufacturer CAD
+
+The linked `/viewer/lab_review_v1/lift.html` inspects a selected Thorlabs L200/M
+mini metric jack from the official 12298-E0W STEP and revision H drawing. It
+retains all 86 source solids, the 101.6 × 76.2 mm plates, 16 links, actual plate
+bores/edge slots and the hex adjuster. Its source pose is 21.336 mm high, consistent
+with the drawing's rounded 21.3 mm retracted height. The 47.8 mm extended height
+is a drawing fact; no invented extended CAD or jack actuation is supplied.
+
+`assets/thorlabs_l200_v1/sources.json` pins both official files and separates
+manufacturer facts from this candidate choice. The paper's exact jack identity
+is unknown. STEP/PDF and derived GLBs remain in ignored local directories because
+no open redistribution license was established. The fetch/conversion recipe,
+measurements and original review renders are included in the repository.
+For this separate inspection alone, run:
+
+```bash
+python assets/thorlabs_l200_v1/fetch_sources.py
+OPENBLAS_NUM_THREADS=1 python assets/thorlabs_l200_v1/build.py
+OPENBLAS_NUM_THREADS=1 python assets/thorlabs_l200_v1/check.py
+python viewer/lab_review_v1/check_lift.py --browser <chromium-executable>
+```
+
+Four bearing blocks initially had collinear T-junctions in the tessellation.
+Fourteen edge subdivisions close those seams using existing vertices, with no
+moved vertices, filled physical holes or material-volume change. The original
+four failed meshes remain locally reproducible negative fixtures. Hard-edge
+normal splits preserve flat plate surfaces in the renderer; those intentional
+render seams are distinguished from physical openings. All 86 delivered solids
+are closed, and actual ray tests check each plate's 29 bores and six edge slots.
+Bounding-box replacements and a genuine missing-face mesh fail the corresponding
+geometry expectations. Source changes or missing local CAD prevent the browser
+from displaying an unverified model.
+
+This source asset is not yet installed in the paper apparatus or allocated as
+purchased stock. Platform and base fasteners, contact/load paths, screw/link
+constraints, tool access and the pair's complete material allocation remain open.
+It adds no campaign-success or installed-equipment credit. The top-plate slider
+is an exploded inspection, not the jack's travel or a robot operation.
 
 ## Review artifacts
 

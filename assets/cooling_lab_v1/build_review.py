@@ -118,9 +118,11 @@ def review():
     evidence['LAB-02']+=['assets/cooling_lab_v1/apparatus_stock_reconciliation.json','assets/cooling_lab_v1/stock_cutplan.json','assets/cooling_lab_v1/stock_cut_checks.json']
     evidence['LAB-02']+=['assets/cooling_lab_v1/angular_accessory_sources.json','assets/cooling_lab_v1/angular_accessories.json','assets/cooling_lab_v1/angular_accessory_checks.json']
     evidence['LAB-02']+=['assets/cooling_lab_v1/ftir_mount_sources.json','assets/cooling_lab_v1/ftir_mounts.json','assets/cooling_lab_v1/ftir_mount_checks.json']
+    evidence['LAB-02']+=['assets/thorlabs_l200_v1/sources.json','assets/thorlabs_l200_v1/model.json','assets/thorlabs_l200_v1/checks.json']
     evidence['LAB-07']+=['viewer/lab_review_v1/ftir.html','viewer/lab_review_v1/ftir.js']
     evidence['LAB-07']+=['viewer/lab_review_v1/allocation.html','viewer/lab_review_v1/allocation.js','viewer/lab_review_v1/allocation.css']
     evidence['LAB-07']+=['viewer/lab_review_v1/sensors.js']
+    evidence['LAB-07']+=['viewer/lab_review_v1/lift.html','viewer/lab_review_v1/lift.js','viewer/lab_review_v1/lift.css']
     evidence['LAB-02']+=['assets/omega_5tc_v1/model.json','assets/omega_5tc_v1/VERIFICATION.json']
     evidence['LAB-02']+=['assets/unitree_g1_inspire_v1/SOURCE.json','assets/unitree_g1_inspire_v1/VERIFICATION.json','assets/unitree_g1_inspire_v1/selection.json','assets/unitree_g1_inspire_v1/integration.json','assets/unitree_g1_inspire_v1/collision.json']
     # Readiness is derived from the newly reconciled inventory, before pinning.

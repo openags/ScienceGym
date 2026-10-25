@@ -166,6 +166,18 @@ guarantee of general reliability.
   compatibility is qualified. Exact paper SKU/brand, complete SDS coverage,
   ordinary dispensing tools and campaign allocation remain open.
 
+- The selected Thorlabs L200/M central-support candidate now has a pinned
+  official STEP/drawing, a reproducible local download/conversion and a
+  [source-CAD inspector](../../viewer/lab_review_v1/lift.html). All 86 solids,
+  actual plate bores/slots and the 16 links are retained at source scale.
+  Four raw tessellation seams are corrected by 14 edge subdivisions without
+  moving vertices or filling physical holes; their failed meshes are retained.
+  This is a candidate for the unidentified paper support, not a historical model
+  identification, installed assembly or new stock allocation. Base/platform
+  fastening, load paths, screw constraints and tooling remain open. Manufacturer
+  CAD and its derived GLBs stay in the ignored local cache/geometry directories;
+  the repository distributes source pins, code and review evidence.
+
 - A separate FTIR installation review now adds the 206 × 252 mm floor candidate
   and 38 ordinary mounting parts. Thermo site guide 269-158000 supplies the floor
   dimensions, focus offsets, approximately 90 mm optical height and approximately

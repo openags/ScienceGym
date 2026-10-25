@@ -1,0 +1,16 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ScienceGym · 升降台来源与安装基准</title>
+<script type="importmap">{"imports":{"three":"../../simulation/cooling_v1/vendor/three.module.js","three/addons/":"../../simulation/cooling_v1/vendor/addons/"}}</script>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="lift.css"></head><body><main>
+<p><a href="index.html">← 返回实验室</a></p><small>APPARATUS SUPPORT REVIEW</small><h1>从真实升降台开始核对支撑结构。</h1>
+<p>Thorlabs L200/M 候选 · 官方 STEP 的收拢姿态。论文没有给出升降台型号；本次选型和论文原设备身份分别记录。</p>
+<div class="lift-grid panel"><div><div id="lift-viewport" aria-label="可旋转的真实升降台 CAD 检查视图"></div><p class="legend" id="lift-status" role="status">核对来源与几何版本…</p></div>
+<aside class="lift-controls"><h2>检查零件</h2><label for="lift-group">零件组</label><select id="lift-group" disabled><option value="all">全部</option></select><label><input id="lift-isolate" type="checkbox" disabled>只显示选择的零件组</label>
+<label><input id="lift-holes" type="checkbox" disabled>显示上板孔位中心</label><p class="hint">中心点是图纸与 CAD 的核对标记，只在检查页面显示。</p>
+<label for="lift-explode">上板移开检查：<span id="lift-offset">0 mm</span></label><input id="lift-explode" type="range" min="0" max="60" value="0" disabled><p class="hint">此控件移开上板以查看内部，不代表升降行程或拆装操作。</p>
+<div id="lift-views"><button data-view="oblique" disabled>整体</button><button data-view="side" disabled>侧面</button><button data-view="drive" disabled>调节端</button><button data-view="top" disabled>俯视</button><button data-view="bottom" disabled>底面</button></div><p id="lift-selection"></p></aside></div>
+<section class="panel"><h2>实际文件核对</h2><p id="lift-counts"></p><div class="table-scroll"><table><tbody id="lift-metrics"></tbody></table></div><p class="finding" id="lift-finding"></p></section>
+<section class="panel"><h2>装入论文装置之前</h2><p>这台升降台尚未替换实验室参考装置中的旧机构。当前先核对真实孔位、调节端与接触面，再确定底板和上平台的普通紧固件、材料及工具空间。</p><p>下一步安装需要一起检查：底部与覆膜底板接触、上平台固定、热组件高度、独立反射器支撑及初始库存。单独取得厂家 CAD 不构成安装合格或机器人操作成功。</p><ul id="lift-requirements"></ul></section>
+<section class="panel"><h2>来源与复现</h2><p>源文件、官方照片参考与生成的 GLB 在本机缓存，仓库保留下载地址、固定哈希与转换脚本。黑色板件和连杆参考官方照片；材质参数为展示设定。新克隆需要先运行以下命令。</p><pre><code>python assets/thorlabs_l200_v1/fetch_sources.py
+python assets/thorlabs_l200_v1/build.py
+python assets/thorlabs_l200_v1/check.py</code></pre><div class="source-list"><a href="https://www.thorlabs.com/item/L200_M" target="_blank" rel="noreferrer">厂家产品与下载页 ↗</a><a href="https://media.thorlabs.com/globalassets/items/l/l2/l20/l200_m/12298-e0w.pdf?v=0116120219" target="_blank" rel="noreferrer">官方尺寸图 H ↗</a><a href="../../assets/thorlabs_l200_v1/sources.json">来源、版本与推断记录 ↗</a><a href="../../assets/thorlabs_l200_v1/checks.json">包括网格问题的实际检查 ↗</a></div></section>
+<p id="lift-error" role="alert"></p></main><script type="module" src="lift.js"></script></body></html>

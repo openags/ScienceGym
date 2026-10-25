@@ -43,7 +43,7 @@ access and safe use. See the [scene review gates](docs/contributing/REVIEW_CHECK
 and [pilot status](docs/pilots/DIRECTIONAL_COOLING.md#current-focus).
 
 The [laboratory and asset review page](viewer/lab_review_v1/index.html) now
-contains a physical-scale scene with four zones, 35 placed asset instances,
+contains a physical-scale scene with four zones, 68 placed asset instances,
 an enclosed laboratory with windows, open double doors, a panel ceiling,
 lighting and cabinet benches, separately identified authored facilities, a dimensioned floor
 plan, source links, surface-to-surface measurement and articulated inspection
@@ -51,8 +51,8 @@ states. Three new outdoor-instrument reconstructions use manufacturer manuals
 and dimension drawings. All assets and the whole scene remain **unaccepted**;
 missing equipment, camera installation and infrastructure stay visible in the 66-row
 resource inventory (including three superseded robot/hand references). The G1
-layout checks, 129 restricted source-kinematic poses and 47 station access
-points provide bounded geometric evidence. All 47 have static position candidates with camera-attachment clearance screening. Native G1 head RGB / ideal
+layout checks, 129 restricted source-kinematic poses and 81 station access
+points provide bounded geometric evidence. All 81 have static position candidates with camera-attachment clearance screening. Native G1 head RGB / ideal
 depth and candidate wrist RGB inspection views now follow the displayed pose.
 Official wrist camera mounts are available for comparison, with observed
 clamp-fit uncertainty recorded as an unaccepted installation. Per-point postures and
@@ -64,6 +64,12 @@ finishes use separate colour, normal and roughness/metalness channels; missing
 mesh normals are recovered for visible receiver shadows. Static render batching
 preserves the source triangles, dimensions and movable inspection parts. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
 `http://localhost:8769/viewer/lab_review_v1/index.html`.
+
+The linked [central-support CAD review](viewer/lab_review_v1/lift.html) now
+preserves all 86 solids of a selected Thorlabs L200/M jack, with actual holes,
+slots and links. This candidate is not yet installed in the paper apparatus.
+Its pinned manufacturer files and derived meshes are generated locally;
+see the [download and verification instructions](assets/cooling_lab_v1/README.md#central-support-from-manufacturer-cad).
 
 [![Authored laboratory layout for asset and space review](viewer/lab_review_v1/evidence/overview.png)](viewer/lab_review_v1/index.html)
 

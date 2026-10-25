@@ -52,6 +52,12 @@ def validate():
         a=next(a for a in scene['assets'] if a['id']==item['id'])
         check('angular_model_'+item['id'],a['source_artifact']=={'path':item['geometry']['path'],'sha256':item['geometry']['sha256']} and sha(ROOT/item['geometry']['path'])==item['geometry']['sha256'])
     check('angular_adapters_still_unqualified',not optical_checks['installed_compatibility_qualified'] and not optical_checks['optics_qualified'] and optical_checks['owner_acceptance'] is None)
+    lift_folder=ROOT/'assets/thorlabs_l200_v1'
+    lift=json.loads((lift_folder/'model.json').read_text());lift_checks=json.loads((lift_folder/'checks.json').read_text())
+    for ref in lift['source_artifacts']+lift_checks['source_artifacts']:
+        check('lift_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    check('lift_source_inspection_current',lift_checks['passed'] and not lift_checks['open_meshes'] and len(lift['parts'])==86)
+    check('lift_candidate_not_installed_or_qualified',not lift['accepted'] and not lift['physical_installation_qualified'] and not lift['collision_or_dynamics_qualified'] and not any(a['source_artifact']['path']==lift['geometry']['path'] for a in scene['assets']))
     for role in camera_record['selected_roles']:
         placed=[a for a in scene['assets'] if role['resource_id'] in a.get('resource_ids',[a['resource_id']])]
         check('camera_staged_'+role['resource_id'],len(placed)==1 and placed[0]['station']==('circulation' if role['model']=='native_g1_d435i' else 'assembly_white'))

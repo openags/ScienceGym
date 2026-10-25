@@ -13,7 +13,8 @@ def run(script,*args):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--browser');parser.add_argument('--url',default='http://127.0.0.1:8769/viewer/lab_review_v1/index.html')
     a=parser.parse_args()
-    for script in ['assets/unitree_g1_inspire_v1/audit.py',
+    for script in ['assets/thorlabs_l200_v1/fetch_sources.py','assets/thorlabs_l200_v1/build.py','assets/thorlabs_l200_v1/check.py',
+      'assets/unitree_g1_inspire_v1/audit.py',
       'assets/unitree_g1_inspire_v1/build_integration.py','assets/unitree_g1_inspire_v1/check_space.py',
       'assets/unitree_dex5s_reconstruction_v1/build.py',
       'assets/unitree_dex5s_reconstruction_v1/validate.py',
@@ -34,6 +35,7 @@ def main():
         run('assets/cooling_lab_v1/build_angular_review.py')
         run('viewer/lab_review_v1/check_ftir.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/ftir.html')
         run('viewer/lab_review_v1/check_allocation.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/allocation.html')
+        run('viewer/lab_review_v1/check_lift.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/lift.html')
     print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
 
 if __name__=='__main__':main()
