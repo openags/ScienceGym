@@ -34,7 +34,7 @@ def j_stake(diameter,length,bend_radius):
 
 def s_hook():
     # Two tangent 270-degree bends; both mouths are genuinely open.
-    r=8.
+    r=10.
     # Construct an exact planar S with edges whose endpoints/tangents match.
     a=cq.Edge.makeThreePointArc(cq.Vector(-r,0,-r),cq.Vector(0,0,-2*r),cq.Vector(r,0,-r))
     b=cq.Edge.makeThreePointArc(cq.Vector(r,0,-r),cq.Vector(r/np.sqrt(2),0,-r+r/np.sqrt(2)),cq.Vector(0,0,0))
@@ -111,14 +111,14 @@ def grounding_parts(g):
         cq.Edge.makeLine(cq.Vector(r,0,5),cq.Vector(r,35,5))]
     ub=rod_path(edges,3.175)
     solid(g,'ground_mast_u_bolt',ub.translate((180,270,0)),STEEL,metal=.8,role='inferred_source_ground_mast_clamp')
-    saddle=cq.Solid.makeBox(65,4,12,cq.Vector(-32.5,20.6,-1))
-    for x in [-r,r]:saddle=saddle.cut(cq.Solid.makeCylinder(3.4,8,cq.Vector(x,19,5),cq.Vector(0,1,0)))
+    saddle=cq.Solid.makeBox(65,4,12,cq.Vector(-32.5,23.1,-1))
+    for x in [-r,r]:saddle=saddle.cut(cq.Solid.makeCylinder(3.4,10,cq.Vector(x,22,5),cq.Vector(0,1,0)))
     # The wire seat is an actual transverse half-round groove on the mast side.
-    saddle=saddle.cut(cq.Solid.makeCylinder(1.8,16,cq.Vector(0,20.7,-3)))
+    saddle=saddle.cut(cq.Solid.makeCylinder(1.8,16,cq.Vector(0,22.1,-3)))
     solid(g,'ground_mast_saddle',saddle.translate((180,270,0)),ZINC,metal=.8,role='inferred_source_ground_mast_clamp')
     for label,x in [('left',-r),('right',r)]:
         nut=hex_prism(11.1125,5.5).cut(cq.Solid.makeCylinder(3.3,7,cq.Vector(0,0,-.5)))
-        nut=nut.rotate((0,0,0),(1,0,0),-90).translate((180+x,294.8,5))
+        nut=nut.rotate((0,0,0),(1,0,0),-90).translate((180+x,297.3,5))
         solid(g,'ground_mast_nut_'+label,nut,ZINC,metal=.8,role='inferred_ground_clamp_fastener')
 
 
@@ -161,7 +161,7 @@ def build():
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in refs],stored_wires=leads,
         kit_counts=dict(guy_collar=1,eye_bolts=3,collar_nuts=6,turnbuckles=3,s_hooks=3,wire_clamps=6,guy_stakes=3,foot_stakes=3,ground_rod=1,ground_rod_clamp=1,ground_mast_clamp=1,guy_wire_stock=1,ground_wire_stock=1),
         source_facts=dict(guy_wire_stock_length_m=15.24,ground_rod_length_m=1.2192,guy_stake_diameter_m=.0127,foot_stake_diameter_m=.00635),
-        selected_dimensions=dict(guy_stake_length_m=.750,foot_stake_length_m=.400,ground_rod_diameter_m=.0127,guy_wire_outside_diameter_m=.003,ground_wire_outside_diameter_m=.003,ground_wire_stock_length_m=3.),
+        selected_dimensions=dict(guy_stake_length_m=.750,foot_stake_length_m=.400,ground_rod_diameter_m=.0127,guy_wire_outside_diameter_m=.003,ground_wire_outside_diameter_m=.003,ground_wire_stock_length_m=3.,s_hook_bend_radius_m=.010,s_hook_wire_diameter_m=.004),
         inferences=['J-shaped stake heads, all stake lengths and bends, rod diameter and copper finish are hypotheses; source establishes nominal stake diameters and ground-rod length only.',
             'The source manual shows a single-screw clamp over two wire legs, an open turnbuckle body and S hooks; every local profile, fastener size and coating is authored.',
             'Guy wire is supplied as one uncut 15.24 m piece. The displayed coil is a selected continuous rest shape, without flexible dynamics, tension or a load rating.',

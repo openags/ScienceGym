@@ -36,7 +36,8 @@ def main():
       'assets/cooling_lab_v1/build_ftir_mounts.py','assets/cooling_lab_v1/check_ftir_mounts.py','assets/cooling_lab_v1/build_lab.py',
       'assets/cooling_lab_v1/check_layout.py','assets/cooling_lab_v1/check_workspace.py','assets/g1_sensor_rig_v1/check_fit.py','assets/cooling_lab_v1/build_review.py',
       'assets/cooling_lab_v1/validate_review.py','assets/cooling_lab_v1/check_allocation.py','assets/cooling_lab_v1/test_pilot_contract.py',
-      'assets/cooling_lab_v1/build_weather_site_review.py','assets/cooling_lab_v1/build_outdoor_ground.py','assets/cooling_lab_v1/check_outdoor_ground.py']:
+      'assets/cooling_lab_v1/build_weather_site_review.py','assets/cooling_lab_v1/build_outdoor_ground.py','assets/cooling_lab_v1/check_outdoor_ground.py',
+      'assets/cooling_lab_v1/build_weather_support.py','assets/cooling_lab_v1/check_weather_support.py']:
         run(script)
     if a.browser:
         for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py','viewer/lab_review_v1/check_pose_projection.py','viewer/lab_review_v1/check_sensors.py']:
@@ -53,6 +54,7 @@ def main():
         run('viewer/lab_review_v1/check_wind.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/wind.html')
         run('viewer/lab_review_v1/check_tripod.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/tripod.html')
         run('viewer/lab_review_v1/check_anchoring.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/anchoring.html')
+        run('viewer/lab_review_v1/check_support.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/support.html')
     print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
 
 if __name__=='__main__':main()

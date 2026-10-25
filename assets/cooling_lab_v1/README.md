@@ -59,6 +59,20 @@ locations and earth at the proposed anchor sites. The main laboratory still
 uses its previous slab. Soil mechanics, stake retention, installed guys and
 grounding, full station routing and laboratory stock remain unfinished.
 
+The [support installation reference](../../viewer/lab_review_v1/support.html)
+places the actual tripod and kit parts without scaling, with three continuous
+double-ended wire loops and separate clips, turnbuckles, S hooks and stakes.
+The previous inferred S-hook eye was smaller than the 12.7 mm stake; its bend
+radius is now 10 mm and the isolated stake envelope is checked through each
+eye. The 113-part reference uses 10.520 m of guy wire and leaves 4.720 m from
+the 15.24 m stock under a zero-kerf length hypothesis. Local-coordinate export
+and pairwise collision evaluation preserve small features at the site's world
+offset. This state has no load, soil-retention or robot-execution qualification;
+the loose uncut wire and installed cut segments are alternative states, not
+simultaneous inventory. A separate continuous ground-wire segment connects the
+mast-side groove and rod-clamp wire bore, with its own cut/remainder account.
+Electrical grounding qualification, instruments and their cables remain open.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.

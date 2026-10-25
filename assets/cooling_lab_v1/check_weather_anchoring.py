@@ -36,9 +36,13 @@ def build():
         # Both open hook mouths admit a selected 3 mm probe along the gap;
         # this is an isolated clearance check, not assembled chain retention.
         hook=parts['s_hook_'+str(i)]
-        for label,dx,dy in [('lower',-.005657,.002343),('upper',.005657,-.002343)]:
+        for label,dx,dy in [('lower',-.007071,.002929),('upper',.007071,-.002929)]:
             probe=trimesh.creation.cylinder(.0015,.012,sections=32);probe.apply_translation([x+dx,.095+dy,.002])
             check('s_hook_open_mouth_'+str(i)+'_'+label,overlap(hook,probe)<.001)
+        for label,y in [('lower',.105),('upper',.085)]:
+            probe=trimesh.creation.cylinder(.00635,.012,sections=64);probe.apply_translation([x,y,.002])
+            check('source_stake_diameter_fits_isolated_hook_eye_'+str(i)+'_'+label,overlap(hook,probe)<.001,
+                scope='Axial insertion envelope through the eye only. Open-mouth assembly path and loaded linkage are not tested.')
     for i in range(1,7):
         x=(120+(i-1)*28)*.001;body=parts['wire_clamp_'+str(i)+'_body']
         for dx in [-.002,.002]:
@@ -53,6 +57,11 @@ def build():
     clamp=parts['ground_rod_clamp_body']
     for x,r,label in [(.090,.00635,'rod'),(.0818,.0015,'wire')]:
         probe=trimesh.creation.cylinder(r,.016,sections=64);probe.apply_translation([x,.280,.006]);check('ground_clamp_'+label+'_bore',overlap(clamp,probe)<.001)
+    wire=trimesh.creation.cylinder(.0015,.016,sections=64);wire.apply_translation([.180,.2921,.005])
+    check('mast_ground_wire_groove_is_clear',overlap(wire,parts['ground_mast_saddle'])<.001)
+    mast=trimesh.creation.cylinder(.0205,.06,sections=128);mast.apply_translation([.180,.270,.005])
+    check('selected_mast_and_ground_wire_are_separate',overlap(mast,wire)<.001)
+    check('mast_ground_clamp_clears_selected_mast',all(overlap(mast,m)<.001 for n,m in parts.items() if n.startswith('ground_mast_')))
     for lead in record['stored_wires']:
         result=cable_clearance(lead);bend=minimum_discrete_bend_radius(np.array(lead['points_m']))
         check('uncut_stock_length_'+lead['id'],abs(result['actual_length_m']-lead['length_m'])<1e-8,**result)
