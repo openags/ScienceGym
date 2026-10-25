@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **344**.
+Last screened: **2026-10-25**. Candidate count: **345**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3487,3 +3487,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66680-1/MediaObjects/41467_2025_66680_MOESM1_ESM.pdf) text accessible; selected optimization and isolation sections screened. Baseline and optimized devices, measured responses and numerical predictions remain separate. Figure pixels, remaining sections, peer review and request-only datasets were not fully reviewed.
 - Future suitability requires qualified instrument and contact review. Wafer fabrication, lithography, solvents and ion processing are excluded. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML readable despite a cookie-error marker. Citation metadata and original commentary only.
+
+
+## Additional candidate: prepared-device terahertz metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Terahertz photonic heterodyne spectral analysis with (sub-) kHz resolution and 6.5 THz frequency coverage](https://www.nature.com/articles/s41467-025-66457-6) | Nature Communications / 2025 | 10.1038/s41467-025-66457-6 | Prepared devices and inert reference specimens could support calibration custody, configuration tracking, repeated spectral acquisition and reference/sample comparisons. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 10594 (2025), published **25 November 2025**; version of record **26 November 2025**. Selected source-characterization Results and instrument Methods screened. Independent-source analysis and shared-reference spectroscopy are distinct configurations; measured calibration and high-frequency extrapolation must remain separate.
+- Official [4-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66457-6/MediaObjects/41467_2025_66457_MOESM1_ESM.pdf) text accessible; calibration and silicon-wafer comparison sections screened. Calibration uses a different local oscillator; sample/reference noise limitations constrain interpretation. Figure pixels, other experimental branches and raw data were not fully reviewed.
+- Future scope requires qualified instrument and optical-safety review. Gas handling, vacuum operations, high-voltage operation and apparatus construction are excluded. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY 4.0**. Citation metadata and original screening commentary only.
