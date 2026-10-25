@@ -464,3 +464,43 @@ reconstruction, configuration/stock checks and browser evidence. Physical
 shield/aperture retention, ordinary manufacturing and application tools,
 membrane/contact/adhesive behaviour, repeat stock and owner acceptance remain
 open. No execution gate is closed by these static candidates.
+
+## Ordinary fastening tool candidates
+
+The separate [tool inspector](../../viewer/lab_review_v1/fasteners.html) shows
+Wiha 26320 / 26325 / 26330 straight hex drivers and a Stahlwille OPEN BOX 13 8
+combination wrench. `fastener_tools_sources.json` records inspected manufacturer
+dimensions, photographs, catalog versions and unresolved profile details. These
+are authored ordinary-tool selections; the paper does not specify the SKUs.
+They are not yet placed in the main laboratory or credited to its inventory.
+
+The three drivers have nominal 2 / 2.5 / 3 mm tips, 50 / 60 / 60 mm exposed blades
+and 145 / 170 / 170 mm overall lengths. Steel shafts, plastic grips and red
+turning caps are separate closed parts; original size labels are visual surfaces.
+The wrench retains a real open jaw, inclined bihex ring and recessed shaft faces.
+The 115 mm length, 8 mm size and head/ring dimensions are manufacturer values;
+local contours, tip clearances and undisclosed AS-Drive details remain inferred.
+Selected display RGB colors are converted to linear glTF factors, following
+[the glTF material convention](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#_material_pbrmetallicroughness_basecolorfactor).
+The earlier PH00 reconstruction still needs its own contour/color correction;
+the new hex drivers do not silently replace its identity.
+
+Run `build_fastener_tools.py`, `check_fastener_tools.py`, then
+`viewer/lab_review_v1/check_fasteners.py --browser <chromium-executable>`.
+The current inspector has 25 captures and rejects stale source bindings.
+Independent solid checks fit six existing fastener geometries and an M5 nut
+in both wrench ends; oversized tools/nuts are rejected. No applied torque,
+whole-apparatus insertion/swing, hand grasp, tool allocation or appearance
+acceptance is claimed. The checks export the exact isolated mating samples
+for interactive inspection. Complete fastening-tool access is still required
+before the laboratory can be submitted for owner acceptance.
+
+`inspect_tool_access.py` places those actual driver solids at the 36 authored
+screw sockets in the exported white reference. Thirty-two installed-state
+poses are nominal candidates; four platform screws are obstructed by the
+overlying thermal components. `tool_access_inspection.json` records exact
+transforms, socket fits and obstructing part/volume pairs. That finding implies
+a required earlier supported assembly state or separately validated tool option;
+it does not prove an executable assembly order. The test excludes the table,
+hands, insertion sweeps, wrench support and manufacturer-preassembled jack
+internals, and confers no robot execution credit.
