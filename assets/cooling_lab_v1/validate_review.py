@@ -74,6 +74,7 @@ def validate():
         for evidence in record['source_artifacts']:check('integration_source_'+evidence['path'],sha(ROOT/evidence['path'])==evidence['sha256'])
     check('source_model_asset_checks',all(c['passed'] for c in integration['checks']) and integration['model']['nu']==41 and integration['model']['equality_constraints']==12)
     check('workspace_current_scene',workspace['scene_sha256']==sha(HERE/'scene.json'))
+    check('full_workspace_report_not_targeted_diagnostic',workspace['target_selection']['mode']=='all' and workspace['target_selection']['requested_ids'] is None)
     access=dict(access_obstacles(scene))
     rack_boxes=[b for name,b in access.items() if name.startswith('raw_stock_')]
     check('rack_open_interior_not_filled',len(rack_boxes)==9 and not any(np.all(np.array([1.3,.45,1.30])>b[0]) and np.all(np.array([1.3,.45,1.30])<b[1]) for b in rack_boxes))
@@ -100,6 +101,15 @@ def validate():
     fixture=json.loads((HERE/'workspace_self_contact_fixture.json').read_text())
     _,penetration=replay_pose(fixture['pose'])
     check('reject_observed_arm_through_torso_pose',fixture['pose']['position_error_m']<.01 and not fixture['pose']['external_overlaps'] and penetration>=fixture['expected_self_penetration_minimum_m'])
+    low_heaters=json.loads((HERE/'heater_access_rejected.json').read_text())
+    for source in low_heaters['source_artifacts']:check('low_heater_failure_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
+    from check_workspace import Robot,overlap
+    source_robot=Robot()
+    for target in low_heaters['targets']:
+        data,penetration=replay_pose(target['result']);wrist=data.body('left_wrist_roll_link')
+        points=source_robot.corners['left_wrist_roll_link']@wrist.xmat.reshape(3,3).T+wrist.xpos
+        bounds=np.array([points.min(axis=0),points.max(axis=0)])
+        check('reject_low_heater_approach_'+target['asset'],penetration>.006 and overlap(bounds,access[target['station']]))
     readiness=json.loads((HERE/'readiness.json').read_text())
     active=[r for r in readiness['requirements'] if r['disposition']!='historical_embodiment_reference']
     rc=readiness['counts']
@@ -182,6 +192,7 @@ def validate():
         faults.append(dict(fault=name,expected_failure=expected,observed_failures=failed))
     record=dict(passed=True,checks=checks,negative_cases=faults,scene_sha256=sha(HERE/'scene.json'),
         validator_sha256=sha(__file__),layout_checker_sha256=sha(HERE/'check_layout.py'),
+        source_artifacts=[dict(path='assets/cooling_lab_v1/heater_access_rejected.json',sha256=sha(HERE/'heater_access_rejected.json'))],
         workspace_sha256=sha(HERE/'workspace_checks.json'),self_contact_fixture_sha256=sha(HERE/'workspace_self_contact_fixture.json'),
         scope='Source identity and meaningful negative layout cases; no asset, full-body or safe-use acceptance')
     write_json(HERE/'review_verification.json',record)

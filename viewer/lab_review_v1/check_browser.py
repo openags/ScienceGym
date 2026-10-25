@@ -54,12 +54,14 @@ def run(url,browser):
             capture(view)
             check('shell_mode_'+view,page.locator('#show-walls').is_checked()==(view not in ['all','top']))
         page.locator('button[data-view=indoor]').click();capture('full_walls');page.locator('#show-walls').uncheck()
-        for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','g1','caliper','driver','tray_white','waterjet','camera_head','camera_wrist_left','camera_wrist_right','tc_01',
+        for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','g1','caliper','driver','tray_white','waterjet','heater','heater_white','cooler_white','cooler_black','cooler_fixed','camera_head','camera_wrist_left','camera_wrist_right','tc_01',
             'wire_stripper','terminal_driver','tweezers_white','fill_jug','ambient_rtd','tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
             'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock','harrick_hrs','spectratech_500']:
             page.locator('#asset-select').select_option(identity);page.locator('#isolate').check();page.wait_for_timeout(200)
             check('inspect_'+identity,page.locator('html').get_attribute('data-selected-asset')==identity)
             closed=capture(identity+'_closed')
+            if identity.startswith('cooler_'):
+                check('completed_reference_not_stock_'+identity,('不是第三台可用装置' if identity=='cooler_fixed' else '不是已经备好的初始装置') in page.locator('#asset-detail').inner_text())
             if identity in ['harrick_hrs','spectratech_500']:
                 check('optical_inferred_dimensions_visible_'+identity,'推断尺寸（待核实）' in page.locator('#asset-detail').inner_text())
                 check('optical_staged_not_installed_'+identity,'未装入光谱仪' in page.locator('#asset-detail').inner_text())
@@ -117,7 +119,7 @@ def run(url,browser):
         check('inventory_filter_partition',placed+missing+historical==inventory_count and historical==3 and missing==1,with_geometry=placed,without_geometry=missing,historical=historical)
         page.locator('#filter').select_option('all')
         expected_workspace=json.loads((ROOT/'assets/cooling_lab_v1/workspace_checks.json').read_text())
-        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==73)
+        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==75)
         page.locator('button[data-target="cary_front"]').click();check('static_workspace_pose_selected',page.locator('html').get_attribute('data-workspace-pose')=='cary_front');capture('g1_cary_access')
         page.locator('#workspace-reset').click();check('static_workspace_pose_reset',page.locator('html').get_attribute('data-workspace-pose') is None)
         page.locator('#review-notes').fill('QA temporary comment; not acceptance')
@@ -138,7 +140,7 @@ def run(url,browser):
         bad.goto(url);bad.wait_for_function('document.getElementById("error").textContent.includes("版本")',timeout=10000)
         check('stale_scene_rejected',bad.locator('html').get_attribute('data-scene-loaded') is None and bad.locator('#layout-status').inner_text()=='未通过版本核对')
         version=b.version;b.close()
-    files=[HERE/'index.html',HERE/'main.js',HERE/'style.css',HERE/'check_browser.py',HERE/'render_batches.js']+[ROOT/'assets/cooling_lab_v1'/n for n in ['scene.json','inventory.json','layout_checks.json','risk_register.json','floorplan.svg','workspace_checks.json','pilot_contract.json','readiness.json']]
+    files=[HERE/'index.html',HERE/'main.js',HERE/'style.css',HERE/'check_browser.py',HERE/'render_batches.js']+[ROOT/'assets/cooling_lab_v1'/n for n in ['scene.json','inventory.json','layout_checks.json','risk_register.json','floorplan.svg','workspace_checks.json','pilot_contract.json','readiness.json','campaign_allocation.json']]
     report=dict(passed=True,checks=checks,captures=captures,source_files=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in files],browser=version,
         software_renderer='Chromium SwiftShader',scope='Interactive UI and visible geometry states only; images do not establish product fidelity or safety')
     (HERE/'VISUAL_VERIFICATION.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

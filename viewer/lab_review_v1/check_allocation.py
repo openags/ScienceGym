@@ -1,0 +1,60 @@
+"""Exercise branch filtering and stale-evidence rejection in the allocation UI."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+
+HERE=Path(__file__).resolve().parent; ROOT=HERE.parents[1]
+def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def run(url, browser):
+    checks=[]; captures=[]; errors=[]
+    def check(name, passed):
+        checks.append(dict(name=name, passed=bool(passed)))
+        if not passed: raise AssertionError(name)
+    with sync_playwright() as p:
+        b=p.chromium.launch(executable_path=browser,args=['--no-sandbox','--disable-dev-shm-usage'])
+        page=b.new_page(viewport={'width':1440,'height':1000});page.on('pageerror',lambda e:errors.append(str(e)))
+        page.goto(url);page.wait_for_function('document.documentElement.dataset.allocationLoaded === "true"')
+        check('all_components_visible',page.locator('#allocation-components tr').count()==143)
+        check('all_branches_available',page.locator('#allocation-branch option').count()==12)
+        check('four_reference_models_excluded',page.locator('#allocation-references .risk-card').count()==4)
+        check('unallocated_quantities_exposed','127 项用量待分配' in page.locator('#allocation-counts').inner_text())
+        def capture(name):
+            path=HERE/'evidence'/('allocation_'+name+'.png');page.screenshot(path=str(path))
+            captures.append(dict(path=str(path.relative_to(ROOT)),sha256=sha(path)))
+        capture('overview')
+        page.locator('#allocation-branch').select_option('PID_POWER')
+        text=page.locator('#branch-allocation').inner_text()
+        check('paired_heater_allocation','白色发射体 → heater_white' in text and '黑色发射体 → heater' in text)
+        check('paired_smu_allocation','白色加热通道 → smu_white' in text and '黑色加热通道 → smu_black' in text)
+        capture('pid_pair')
+        page.locator('#allocation-branch').select_option('MAP_CLEAR_NIGHT')
+        text=page.locator('#branch-allocation').inner_text()
+        check('same_white_apparatus_reused','apparatus_white' in text and 'apparatus_black' not in text)
+        check('seven_map_probes_named','白色发射体 → tc_01' in text and '热分布点 6 → tc_07' in text and 'tc_08' not in text)
+        page.locator('#allocation-branch').select_option('all');page.locator('#allocation-filter').select_option('quantified')
+        check('selected_quantities_filter',page.locator('#allocation-components tr').count()==16)
+        page.locator('#allocation-search').fill('heater_white')
+        check('search_matches_physical_identity',page.locator('#allocation-components tr').count()==1 and 'equipment:HEATER' in page.locator('#allocation-components').inner_text())
+        page.locator('#allocation-search').fill('');page.locator('#allocation-filter').select_option('unallocated')
+        check('unknown_quantities_not_zero',page.locator('#allocation-components tr').count()==127 and '待分配' in page.locator('#allocation-components').inner_text())
+        check('no_browser_errors',not errors)
+        # A real changed source must prevent a stale report from being rendered.
+        page.route('**/assets/cooling_lab_v1/scene.json',lambda route:route.fulfill(status=200,content_type='application/json',body='{}'))
+        page.reload();page.wait_for_function('document.documentElement.dataset.allocationLoaded === "error"')
+        check('stale_scene_rejected','分配记录已过期' in page.locator('#allocation-error').inner_text())
+        check('stale_rows_not_rendered',page.locator('#allocation-components tr').count()==0)
+        b.close()
+    paths=[HERE/'allocation.html',HERE/'allocation.js',HERE/'style.css',Path(__file__),ROOT/'assets/cooling_lab_v1/campaign_allocation.json']
+    record=dict(passed=all(c['passed'] for c in checks),checks=checks,captures=captures,
+                source_artifacts=[dict(path=str(f.relative_to(ROOT)),sha256=sha(f)) for f in paths])
+    (HERE/'ALLOCATION_VERIFICATION.json').write_text(json.dumps(record,indent=2)+'\n')
+    print(json.dumps(dict(passed=record['passed'],checks=len(checks),captures=len(captures))))
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--browser',required=True);parser.add_argument('--url',default='http://127.0.0.1:8769/viewer/lab_review_v1/allocation.html')
+    a=parser.parse_args();run(a.url,a.browser)

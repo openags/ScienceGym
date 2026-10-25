@@ -43,7 +43,7 @@ function installRoomLights(){
  document.documentElement.dataset.roomLightCount=positions.length;
 }
 const overlays=new THREE.Group(),labels=new THREE.Group(),measurements=new THREE.Group();scene.add(overlays,labels,measurements);
-let architecture,manifest,inventory,risks,report,bodyReport,readiness,workspace,selected=null,measureMode=false,measurePoints=[],pointerStart;
+let architecture,manifest,inventory,risks,report,bodyReport,readiness,allocation,workspace,selected=null,measureMode=false,measurePoints=[],pointerStart;
 let sensors=null,sensorRig=null;let robotRest=[];const accessMarker=new THREE.Group();scene.add(accessMarker);
 const groups=new Map(),states=new Map(),assetList=[],renderBatches=[];
 const loader=new GLTFLoader();
@@ -141,6 +141,7 @@ function selectAsset(id,focus=true){
  detailRow('当前状态',asset.status);const size=asset.normalized_bounds_m[1].map((v,i)=>v-asset.normalized_bounds_m[0][i]);
  detailRow('模型包围尺寸（含已建附件）',size.map(v=>(v*1000).toFixed(1)+' mm').join(' × '));detailRow('物理比例 / 部件', '1 : 1 · '+asset.part_count+' 个部件');detailRow('工位',asset.station);
  if(asset.note)detailRow('待确认内容',asset.note);
+ const stockRole=allocation?.physical_instances.find(p=>p.id===id);if(stockRole)detailRow('库存角色',stockRole.note);
  const resourceIds=asset.resource_ids||[asset.resource_id];
  const requirements=readiness?.manual_step_requirements.filter(s=>s.resource_requirements.some(r=>resourceIds.includes(r)))||[];
  detailRow('论文操作关联',requirements.length?requirements.length+' 个操作定义涉及此资源；均待人形机器人验证':'机器人或设施支持项；不计作已完成的论文操作');
@@ -212,9 +213,10 @@ const storageKey='sciencegym-lab-review-notes-v1';try{$('review-notes').value=lo
 $('review-notes').oninput=()=>{try{localStorage.setItem(storageKey,$('review-notes').value);$('notes-status').textContent='已保存到此浏览器'}catch{$('notes-status').textContent='浏览器存储不可用，可下载保存'}};
 $('export-notes').onclick=()=>{const record={scene_revision:report?.scene_sha256,created_at:new Date().toISOString(),notes:$('review-notes').value,kind:'review_comments_not_acceptance'};const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='sciencegym-lab-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 try{
- [manifest,inventory,risks,report,bodyReport,readiness]=await Promise.all([read(folder+'scene.json'),read(folder+'inventory.json'),read(folder+'risk_register.json'),read(folder+'layout_checks.json'),read(root+'assets/unitree_g1_inspire_v1/space.json'),read(folder+'readiness.json')]);
+ [manifest,inventory,risks,report,bodyReport,readiness,allocation]=await Promise.all([read(folder+'scene.json'),read(folder+'inventory.json'),read(folder+'risk_register.json'),read(folder+'layout_checks.json'),read(root+'assets/unitree_g1_inspire_v1/space.json'),read(folder+'readiness.json'),read(folder+'campaign_allocation.json')]);
  if(report.scene_sha256!==fetchedHashes.get(folder+'scene.json')||inventory.scene_artifact.sha256!==report.scene_sha256)throw Error('场景版本与几何检查 / 清单记录不一致，请重新生成检查');
  for(const p of readiness.source_artifacts){const url=root+p.path;if(fetchedHashes.has(url)&&fetchedHashes.get(url)!==p.sha256)throw Error('进度记录与场景版本不一致')}
+ for(const p of allocation.source_artifacts){const url=root+p.path;if(fetchedHashes.has(url)&&fetchedHashes.get(url)!==p.sha256)throw Error('物品分配与场景版本不一致')}
  const policy=await read(folder+'pilot_contract.json');if(fetchedHashes.get(folder+'pilot_contract.json')!==manifest.pilot_contract.sha256||JSON.stringify(policy)!==JSON.stringify(readiness.policy))throw Error('执行约束版本不一致');
  $('pilot-policy').textContent='本体限定宇树，手型按公开资源选择；当前选型：'+policy.robot.body_candidate+' + '+policy.robot.hands.join(' / ')+'。传感器闭环，仅增加相机和普通工具。资产场景验收后再开发操作序列。场景已使用 G1 和官方 Inspire FTP 双手；仅静态资产集成，操作与动态平衡尚待验证。';
  const rc=readiness.counts;$('pilot-counts').textContent=rc.manual_definitions+' 个操作定义已对应到 '+rc.interfaces+' 类接口与资源需求。当前 '+rc.active_requirement_groups+' 类资源拆出 '+rc.active_component_requirements+' 个待核对组件需求，数量尚未分配完毕。另保留 '+rc.historical_requirement_groups+' 类历史选型供查阅。完整人形机器人分支通过 '+rc.qualified_humanoid_branches+' / '+rc.branches+'。';

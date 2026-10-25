@@ -186,7 +186,8 @@ def devices():
       ('smu_white','Keithley 2425 · 白色装置通道','keithley_2425_v1','keithley_2425',[9.4,5.55,.85],'electrical_bench','equipment:SMU'),
       ('smu_black','Keithley 2425 · 黑色装置通道','keithley_2425_v1','keithley_2425',[10.0,5.55,.85],'electrical_bench','equipment:SMU'),
       ('daq','Measurement Computing USB-TC','mcc_usb_tc_v1','mcc_usb_tc',[10.7,5.41,.85],'electrical_bench','equipment:DAQ'),
-      ('heater','Omega KHR-2/2-P','omega_khr_2_2_p_v1','omega_khr_2_2_p',[9.0,2.7,.90],'assembly_black','equipment:HEATER')]
+      ('heater','Omega KHR-2/2-P · 黑色装置候选','omega_khr_2_2_p_v1','omega_khr_2_2_p',[9.0,2.7,.90],'assembly_black','equipment:HEATER'),
+      ('heater_white','Omega KHR-2/2-P · 白色装置候选','omega_khr_2_2_p_v1','omega_khr_2_2_p',[2.0,2.7,.90],'assembly_white','equipment:HEATER')]
     for key,label,folder,stem,position,station,resource in configs:
         asset(key,label,base+folder+'/geometry/'+stem+'.glb',position,station=station,resource=resource,source_path=base+folder+'/sources.json')
     optical=json.loads((HERE/'angular_accessories.json').read_text())

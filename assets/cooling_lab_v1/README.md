@@ -10,7 +10,7 @@ cover and extraction controls. It retains failed fit results; it is not an
 accepted operating configuration or robot animation.
 The existing local server uses port 8769. The scene contains the complete
 official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
-selected OMAX ProtoMAX waterjet. Geometry sliders and the 73 per-point static
+selected OMAX ProtoMAX waterjet. Geometry sliders and the 75 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
@@ -18,7 +18,7 @@ inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
 The current derivative retains the official camera arms and replaces both
 collar halves, without rescaling the robot or cameras. Exact triangle checks
-find rigid clearance at sampled finger configurations and all 73 station
+find rigid clearance at sampled finger configurations and all 75 station
 postures. Compliant lining, preload, retention and cables remain unresolved, so
 these attachments are hidden by default and do not count as an installation.
 The viewer can display them for fit review, and records separate attachment
@@ -98,7 +98,7 @@ It makes no source downloads and cannot silently switch robot models.
   <chromium-executable>` against the same localhost server for browser evidence.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 73 separately tested palm-position targets, including 24 staged supply approaches and two angular-accessory approaches, with proposed camera-clearance screening; records
+- `workspace_checks.json`: 75 separately tested palm-position targets, including 24 staged supply approaches, two heater instances and two angular-accessory approaches, with proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
@@ -131,7 +131,7 @@ have none; this is not a completeness percentage.
 
 ## Added ordinary supplies and collar revision
 
-The scene now contains 61 placed instances. `supplies.json` binds twenty-two
+The scene now contains 62 placed instances. `supplies.json` binds twenty-two
 additional reconstruction types: ST-450, AA.SA.T.6 tweezers, Wiha 26015,
 Bürkle 7102-2000, the source-identified ambient RTD, eight separate K-connector
 pairs in an ordinary tray, three film-stock types, masking tape, unmachined
@@ -219,3 +219,27 @@ oblique model captures, source facts and resource-associated review obligations.
 The inspector links this comparison for each new asset. Associations are not
 accepted operation-to-part bindings. Missing reference views and all acceptance
 decisions remain explicit; CAD download listings are not downloaded CAD.
+
+`campaign_allocation.json` accounts for all 143 active component requirements
+and the eleven branches. Sixteen core equipment/probe components have explicit
+selected quantities; the other 127 retain unknown required quantities. These
+counts describe allocation work, not asset completeness. The paired power branch
+now has two separately staged KHR-2/2-P candidates, `heater_white` and `heater`,
+and two separate 2425 instances. Compatibility, mounting and wiring remain open.
+
+The white and black apparatus keep their identity through the selected tracked,
+fixed and restored configurations. Their completed-state meshes, the separate
+fixed-configuration display and the alternative D455 reference are excluded from
+initial-stock credit. Optical specimens, two complete fixed conversion sets,
+raw-stock cutting allocation, services and repeat/reset consumption remain open.
+`check_allocation.py` rejects duplicate unit counts and display-as-stock claims;
+it also reproduces the previous missing-second-heater deficit. The interactive
+review at `viewer/lab_review_v1/allocation.html` filters by branch, component and
+unallocated demand, and rejects a report whose source hashes have changed.
+
+The loose heater access points are palm approaches 100 mm above the thin parts,
+not pickup contacts. The former 40 mm approaches produced wrist/bench overlap
+and shoulder/torso penetration. Both failed poses remain in
+`heater_access_rejected.json` and are replayed by the review validator. Targeted
+workspace diagnostics can use `check_workspace.py --targets <ids> --output
+<separate-path>`; they cannot overwrite or substitute for the complete report.

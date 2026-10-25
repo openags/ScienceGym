@@ -5,6 +5,7 @@ poses intersecting conservative room/furniture and other-device boxes. The
 target instrument's internal geometry, grasp orientation, balance and routes
 to the pose are deliberately not claimed by this screen.
 """
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -23,7 +24,7 @@ def overlap(a,b,tolerance=.002):
     return bool(np.all(np.minimum(a[1],b[1])-np.maximum(a[0],b[0])>tolerance))
 
 
-def build():
+def build(target_ids=None, output_path=None):
     scene=json.loads((HERE/'scene.json').read_text());robot=Robot()
     model_path=ROOT/'assets/unitree_g1_inspire_v1/simulation/robot.xml'
     model=mujoco.MjModel.from_xml_path(str(model_path));data=mujoco.MjData(model)
@@ -42,12 +43,16 @@ def build():
     def body_matrix(name):
         body=data.body(name);t=np.eye(4);t[:3,:3]=body.xmat.reshape(3,3);t[:3,3]=body.xpos;return t
     targets=[]
-    for key in ['cary','nicolet','harrick_hrs','spectratech_500','bath','dmm','rtd','smu_white','smu_black','daq','cooler_white','cooler_black','cooler_fixed','tracker','hobo_u30','waterjet','caliper','driver','tray_white','tray_black']:
+    for key in ['cary','nicolet','harrick_hrs','spectratech_500','bath','dmm','rtd','smu_white','smu_black','daq','heater','heater_white','cooler_white','cooler_black','cooler_fixed','tracker','hobo_u30','waterjet','caliper','driver','tray_white','tray_black']:
         a=assets[key];bounds=np.array(a['normalized_bounds_m'])+a['position_m'];center=bounds.mean(axis=0)
         surface=surfaces.get(a['station']);front=surface['xy_bounds_m'][1] if surface else bounds[0,1]
         target=[float(center[0]),float(bounds[0,1]-.05),1.05 if key=='waterjet' else float(min(bounds[1,2]+.04,bounds[0,2]+.18))]
+        basis='Authored front-envelope access point; not a measured button or grasp frame'
+        if key in ['heater','heater_white']:
+            target[2]=float(bounds[1,2]+.10)
+            basis='Authored palm approach 100 mm above the loose thin heater; reserves hand clearance from the bench. Not a grasp/contact point or a verified pickup'
         targets.append(dict(id=key+'_front',asset=key,station=a['station'],point_m=target,front_y_m=front,
-          basis='Authored front-envelope access point; not a measured button or grasp frame',source=None))
+          basis=basis,source=None))
     for key in ['wire_stripper','terminal_driver','tweezers_white','tweezers_black','fill_jug','ambient_rtd',
                 'tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
                 'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool',
@@ -92,6 +97,10 @@ def build():
               interface_point_m=interface_point.tolist(),approach_offset_m=offset.tolist(),
               basis=offset_basis+'; palm position only',
               source=dict(path=filename,sha256=sha(ROOT/filename),interface_id=entry['id'],dimensions_inferred=True)))
+    if target_ids is not None:
+        assert output_path is not None and Path(output_path).resolve()!=(HERE/'workspace_checks.json').resolve(), 'Targeted diagnostics require a separate output path'
+        assert set(target_ids)<={t['id'] for t in targets}, 'Unknown target'
+        targets=[t for t in targets if t['id'] in target_ids]
     arm_names={side:[side+'_'+name+'_joint' for name in ['shoulder_pitch','shoulder_roll','shoulder_yaw','elbow','wrist_roll','wrist_pitch','wrist_yaw']] for side in ['left','right']}
     obstacles=access_obstacles(scene)
     asset_boxes={k:np.array(a['normalized_bounds_m'])+a['position_m'] for k,a in assets.items() if k!='g1'}
@@ -165,6 +174,7 @@ def build():
         print(json.dumps(dict(target=target['id'],status=results[-1]['status'],attempts=attempts)),flush=True)
     failures=[r['id'] for r in results if not r['result']['position_candidate']]
     report=dict(schema_version=1,status='static_access_screening_not_task_validation',scene_sha256=sha(HERE/'scene.json'),
+      target_selection=dict(mode='selected_diagnostic' if target_ids is not None else 'all',requested_ids=target_ids),
       source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [model_path,ROOT/'assets/unitree_g1_inspire_v1/kinematics.py',rig_path,Path(__file__),HERE/'access_geometry.py']],
       counts=dict(targets=len(results),position_candidates=len(results)-len(failures),needs_revision=len(failures)),targets=results,
       unresolved_target_ids=failures,full_workspace_qualified=False,
@@ -176,7 +186,9 @@ def build():
        'Adapted camera collars and fasteners are screened against every robot link, including the parent wrist, and external boxes. Rigid parent-wrist intersections reject candidates; compliant-liner preload and cable models remain open',
        'Candidate base placements are test coordinates, not a walked path or accepted standing controller',
        'Failure after finite starts is an unresolved access issue, not a proof that no feasible whole-body posture exists'])
-    write_json(HERE/'workspace_checks.json',report);print(json.dumps(report['counts']))
+    write_json(Path(output_path) if output_path is not None else HERE/'workspace_checks.json',report);print(json.dumps(report['counts']))
 
 
-if __name__=='__main__':build()
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--targets',nargs='+');parser.add_argument('--output')
+    a=parser.parse_args();build(a.targets,a.output)

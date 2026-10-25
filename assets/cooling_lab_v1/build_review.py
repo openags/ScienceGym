@@ -103,7 +103,7 @@ def review():
     contract['clearance_policy']['current_hand_geometry_scope']='Selected official G1 / Inspire FTP source geometry is present; contact, actuator, payload and full-body motion qualification remain open.'
     contract['clearance_policy']['hand_geometry_evidence']=[dict(path=p,sha256=sha(ROOT/p)) for p in ['assets/unitree_g1_inspire_v1/selection.json','assets/unitree_g1_inspire_v1/SOURCE.json','assets/unitree_g1_inspire_v1/VERIFICATION.json']]
     evidence={
-        'LAB-01':['assets/cooling_lab_v1/inventory.json','assets/cooling_lab_v1/readiness.json','assets/cooling_lab_v1/pilot_contract.json'],
+        'LAB-01':['assets/cooling_lab_v1/inventory.json','assets/cooling_lab_v1/readiness.json','assets/cooling_lab_v1/pilot_contract.json','assets/cooling_lab_v1/campaign_allocation.json'],
         'LAB-02':['assets/cooling_lab_v1/outdoor_assets.json','assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/resource_followup.json','assets/cooling_lab_v1/appearance_review.json','assets/unitree_dex5s_reconstruction_v1/model.json','assets/cooling_lab_v1/ordinary_tools.json','assets/cooling_lab_v1/waterjet.json','assets/cooling_lab_v1/stock_sources.json'],
         'LAB-03':['assets/cooling_lab_v1/scene.json','assets/cooling_lab_v1/risk_register.json'],
         'LAB-04':['assets/cooling_lab_v1/floorplan.svg','assets/cooling_lab_v1/layout_checks.json'],
@@ -124,6 +124,8 @@ def review():
     # Readiness is derived from the newly reconciled inventory, before pinning.
     from build_readiness import build as build_readiness
     build_readiness()
+    from build_campaign_allocation import build as build_allocation
+    build_allocation()
     contract['pilot_constraints']={'path':'assets/cooling_lab_v1/pilot_contract.json','sha256':sha(HERE/'pilot_contract.json')}
     for gate in contract['gates']:
         gate['evidence']=[dict(path=p,sha256=sha(ROOT/p),scope='Partial evidence; gate remains open') for p in evidence[gate['id']]]
