@@ -236,16 +236,17 @@ def connector_kit():
     return g,records
 
 
-def film_stack(kind,thickness,count):
+def film_stack(kind,thickness,count,size=(.16,.16)):
     g=Geometry()
     # Archival interleaves and an ordinary backing sheet protect the as-received
     # stock. No support fixture or completed scientific sample is substituted.
-    g.box('paper_backing',[.18,.18,.0003],[0,0,.00015],[212,207,185],role='ordinary_stock_interleaf')
+    w,h=size
+    g.box('paper_backing',[w+.02,h+.02,.0003],[0,0,.00015],[212,207,185],role='ordinary_stock_interleaf')
     for i in range(count):
         z=.0003+i*(thickness+.0001)
-        g.box('raw_film_'+str(i+1),[.16,.16,thickness],[0,0,z+thickness/2],[205,207,198] if kind!='mylar' else [179,185,191],role='raw_material',metal=.92 if kind=='mylar' else 0)
-        if i<count-1:g.box('paper_interleaf_'+str(i+1),[.17,.17,.0001],[0,0,z+thickness+.00005],[236,230,211],role='ordinary_stock_interleaf')
-    top_label(g,'lot_card',kind.upper()+' STOCK',.14,.012,[0,-.083,.00031],[212,207,185])
+        g.box('raw_film_'+str(i+1),[w,h,thickness],[0,0,z+thickness/2],[205,207,198] if kind!='mylar' else [179,185,191],role='raw_material',metal=.92 if kind=='mylar' else 0)
+        if i<count-1:g.box('paper_interleaf_'+str(i+1),[w+.01,h+.01,.0001],[0,0,z+thickness+.00005],[236,230,211],role='ordinary_stock_interleaf')
+    top_label(g,'lot_card',kind.upper()+' STOCK',.14,.012,[0,-h/2-.003,.00031],[212,207,185])
     return g
 
 
@@ -336,22 +337,24 @@ def build():
     from build_preparation_supplies import models as preparation_models
     from build_robot_service import models as service_models
     from build_coating_supplies import models as coating_models
+    from build_raw_stock import models as raw_models
     source=json.loads((HERE/'supply_sources.json').read_text());items=[]
     models=[('jonard_st450',stripper,{}),('idealtek_aa_sa_t6',tweezers,{}),('buerkle_7102_2000',jug,{}),('wiha_26015',driver,{}),
         ('omega_ambient_rtd',ambient_rtd,{}),('omega_smpw_cc_kit',connector_kit,{}),
-        ('nano_pe_stock',lambda:film_stack('nano PE',.000016,4),{}),('ldpe_stock',lambda:film_stack('LDPE',.00005,2),{}),
-        ('mylar_stock',lambda:film_stack('mylar',.000012,3),{}),('masking_tape',tape,{}),('calibration_copper_stock',copper_block,{}),
+        ('nano_pe_stock',lambda:film_stack('nano PE',.000016,8),{}),('ldpe_stock',lambda:film_stack('LDPE',.00005,6),{}),
+        ('mylar_stock',lambda:film_stack('mylar',.000012,3,(.500,.300)),{}),('masking_tape',tape,{}),('calibration_copper_stock',copper_block,{}),
         ('rubbermaid_1997206',utility_cart,{}),('justrite_09100',oily_waste_can,{})]
     models.extend(preparation_models())
     models.extend(service_models())
     models.extend(coating_models())
+    models.extend(raw_models())
     for key,fn,extra in models:
         result=fn();g=result[0] if isinstance(result,tuple) else result
         if isinstance(result,tuple):extra['cable' if key=='omega_ambient_rtd' else 'contents' if key=='omega_smpw_cc_kit' else 'details']=result[1]
         geometry=export_review(g,'supply_'+key);record=next(v for v in source['items'] if v['id']==key)
         items.append(dict(id=key,label=record['label'],resources=record['resources'],geometry=geometry,source_record=key,
             status='geometry_for_review_not_manipulation_qualified',**extra))
-    write_json(HERE/'supplies.json',dict(schema_version=1,source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'build_preparation_supplies.py',HERE/'build_robot_service.py',HERE/'build_coating_supplies.py',HERE/'supply_sources.json',HERE/'geometry_tools.py',HERE/'ordinary_tools.json']],items=items,
+    write_json(HERE/'supplies.json',dict(schema_version=1,source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'build_preparation_supplies.py',HERE/'build_robot_service.py',HERE/'build_coating_supplies.py',HERE/'build_raw_stock.py',HERE/'supply_sources.json',HERE/'stock_sources.json',HERE/'geometry_tools.py',HERE/'ordinary_tools.json']],items=items,
         quantity_allocation='Selected staged stock and 8 separate thermocouple connector pairs. Campaign/recovery consumption is not yet accepted.',
         asset_acceptance=False,manipulation_qualified=False))
     print(json.dumps(dict(supply_types=len(items),component_meshes=sum(i['geometry']['parts'] for i in items))))

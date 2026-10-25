@@ -124,6 +124,13 @@ def build_record(scene, readiness):
             allocations=allocations, required_resource_ids=resources,
             allocation_complete=False, qualified=False))
     rows = []
+    cutplan=json.loads((HERE/'stock_cutplan.json').read_text())
+    stock_allocations={}
+    for allocation in cutplan['component_allocations']:
+        resource=items[allocation['resource_id']]
+        component=next(c for c in resource['components'] if c['label']==allocation['component_label']) if allocation['component_label'] else resource['components'][0]
+        if not allocation['component_label']:assert len(resource['components'])==1
+        stock_allocations[component['id']]=allocation
     for requirement in items.values():
         for component in requirement['components']:
             pool = component_pool.get(component['id'])
@@ -133,13 +140,21 @@ def build_record(scene, readiness):
                                 members=[dict(asset_id=m) for m in pool['staged_unit_ids']])
             elif staged:
                 evidence = {k: staged[k] for k in ['unit', 'quantity', 'members', 'scope']}
+                # Bind stock to the current placed instances and actual named
+                # parts, even when a proposed inventory still lists a removed unit.
+                present=lambda m:m['asset_id'] in assets and set(m.get('parts',[]))<=set(assets[m['asset_id']]['part_names'])
+                evidence['missing_members']=[m for m in staged['members'] if not present(m)]
+                evidence['members']=[m for m in staged['members'] if present(m)]
+                evidence['quantity']=len(evidence['members'])
             else:
                 evidence = None
+            stock_quantity=stock_allocations.get(component['id'],{}).get('selected_required_stock_units')
+            required=pool['selected_required_units'] if pool else stock_quantity
             rows.append(dict(id=component['id'], resource_id=requirement['resource_id'], label=component['label'],
-                required_quantity=pool['selected_required_units'] if pool else None,
-                quantity_status='selected_unaccepted' if pool else 'unallocated',
+                required_quantity=required,
+                quantity_status='selected_unaccepted' if required is not None else 'unallocated',
                 staged_candidates=evidence,
-                quantity_deficit=pool['quantity_deficit'] if pool else None,
+                quantity_deficit=pool['quantity_deficit'] if pool else max(0,required-(evidence['quantity'] if evidence else 0)) if required is not None else None,
                 branch_ids=[b['id'] for b in branch_rows if requirement['resource_id'] in b['required_resource_ids']],
                 complete=False, qualification=False))
     return dict(schema_version=1, status='asset_allocation_draft',
@@ -147,7 +162,7 @@ def build_record(scene, readiness):
         visibility='author_and_reviewer_only_not_actor_input',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)), sha256=sha(p)) for p in
             [HERE/'scene.json', HERE/'readiness.json', HERE/'pilot_contract.json', TASK/'resources.json',
-             TASK/'branches.json', TASK/'material_cards.json', Path(__file__)]],
+             TASK/'branches.json', TASK/'material_cards.json', HERE/'stock_cutplan.json',Path(__file__)]],
         selected_policy=dict(apparatus_count=2, initial_completed_apparatus_count=0,
             configuration_reuse='Reuse the identified white/black pair for tracked and fixed branches; restore the same white apparatus before tracked mapping',
             historical_reuse_known=False, inferred_quantity_selection=True,
@@ -160,15 +175,15 @@ def build_record(scene, readiness):
                        raw_stock_allocation_complete=False,
                        configurations=['tracked_nano_PE', 'fixed_LDPE'], configuration_geometry_complete=False)
                    for c in ['white', 'black']],
-        physical_instances=physical, pools=pools, components=rows, branches=branch_rows,
+        physical_instances=physical, pools=pools, stock_allocation={'path':'assets/cooling_lab_v1/stock_cutplan.json','sha256':sha(HERE/'stock_cutplan.json')},components=rows, branches=branch_rows,
         remaining=[
-            dict(id='raw_stock', label='两台装置的原料切割分配', detail='铜、铝板／管、PE 支撑、泡沫、亚克力、紧固件与余料尚未逐件分配；完成态模型不能替代它们。'),
-            dict(id='fixed_pair', label='两套固定遮阳带与换装薄膜', detail='仅有一个白色固定构型展示模板；两台装置所需的独立换装件和返修／恢复库存未落实。'),
+            dict(id='raw_stock', label='原料下料与制造条件', detail='两台装置的主要板材、管材、保温层与薄膜已有逐件下料范围；80/20 型材、支杆、支架、紧固件、加工工具及表面处理仍未补全。范围能放进原料不等于已加工。'),
+            dict(id='fixed_pair', label='两套固定构型换装件', detail='已为两条遮阳带和四层 LDPE 预留原料，白色恢复另留两层 nano-PE；完整固定支架、换装连接和重复运行复位库存仍缺。'),
             dict(id='optical_specimens', label='光学试样与标准件', detail='至少需覆盖白／黑发射体、铝反射体、nano-PE 与 LDPE 五类材料；不同夹持口径是否可复用同一试片尚未证明，实际片数和尺寸未分配。'),
             dict(id='services', label='设备配套与连接', detail='记录器并不等于完整气象站；水刀、涂覆、湿区、光学安装、电源／数据和传感器线缆仍须逐项补全。'),
             dict(id='consumption', label='单次用量与重复运行复位', detail='薄膜、涂料、银浆、清洁材料、加工耗材及废物容量尚无完整用量预算；重试所需库存未计入。')],
         counts=dict(scene_instances=len(physical), reference_only_instances=sum(not p['initial_stock_credit'] for p in physical),
-            component_requirements=len(rows), selected_quantity_components=len(component_pool),
+            component_requirements=len(rows), selected_quantity_components=sum(r['required_quantity'] is not None for r in rows),
             components_with_staged_bindings=sum(r['staged_candidates'] is not None for r in rows),
             quantified_pool_deficit=sum(p['quantity_deficit'] for p in pools),
             unallocated_component_quantities=sum(r['required_quantity'] is None for r in rows),

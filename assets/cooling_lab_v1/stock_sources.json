@@ -4,27 +4,96 @@
     "path": "tasks/directional_cooling_operations_v3/material_cards.json",
     "sha256": "a58a222cb40fe37237fc0015678e3ab5b4adcda9701242ef0a23e20e90703507"
   },
-  "scope": "Raw-stock scene geometry, not processed specimens or a full campaign quantity allocation",
+  "scope": "Uncut stock and selected cut-envelope accounting for one paired apparatus campaign; no fabrication, material equivalence or owner acceptance",
   "source_thicknesses_m": {
     "copper_emitter_stock": 0.0005,
     "aluminum_track_stock": 0.0015,
     "foam_layer_stock": 0.025
   },
   "authored_dimensions_m": {
-    "sheet_width_depth": [
+    "copper_sheet": [
       0.3,
-      0.25
+      0.25,
+      0.0005
     ],
-    "acrylic_stock_thickness": 0.003
+    "aluminum_sheets": [
+      [
+        0.4,
+        0.3,
+        0.001
+      ],
+      [
+        0.4,
+        0.3,
+        0.0015
+      ],
+      [
+        0.3,
+        0.16,
+        0.0064
+      ]
+    ],
+    "foam_sheet": [
+      0.3,
+      0.25,
+      0.025
+    ],
+    "acrylic_sheets": {
+      "count": 2,
+      "size": [
+        0.35,
+        0.3,
+        0.006
+      ]
+    },
+    "pe_tubes": {
+      "count": 3,
+      "outer_diameter": 0.102,
+      "inner_diameter": 0.076,
+      "length": 0.1
+    },
+    "aluminum_tubes": {
+      "count": 2,
+      "outer_diameter": 0.152,
+      "inner_diameter": 0.14,
+      "length": 0.1
+    }
   },
   "authored_appearance": [
     "Foam colour and raw surface finishes are illustrative, not manufacturer colour measurements",
     "Acrylic is shown as an opaque review material, not a measured optical material"
   ],
   "changes": [
-    "Removed inconsistent 5 mm display thickness from copper and track aluminum stock",
-    "Raw sheets remain uncut and supported on the stock shelves",
-    "Added separate foam and acrylic sheets; no completed sample is inserted by this change"
+    "Replace the former 300 x 250 x 3 mm acrylic with two 350 x 300 x 6 mm candidates to cover the selected 305 x 280 x 6 mm bases",
+    "Separate copper, aluminum gauges, foam, acrylic and hollow tube stock into inspectable assets; no room-furniture substitution",
+    "Selected 100 mm tube lengths retain a genuine cutting allowance for the inferred 57 mm finished sections",
+    "Three 500 x 300 mm candidate foil pieces replace the undersized 160 mm squares; base and curved foil meshes use the same nominal thickness",
+    "Eight nano-PE and six LDPE sheets reserve fresh covers for first assembly, fixed conversion, white restoration and separate shortwave/infrared witness stock; final witness shapes remain unresolved"
   ],
-  "quantity_accepted": false
+  "quantity_accepted": false,
+  "selected_foil": {
+    "supplier": "Goodfellow",
+    "product": "ES30-MZ-000112",
+    "variant": "579-110-25",
+    "nominal_unrolled_size_m": [
+      0.5,
+      0.3
+    ],
+    "thickness_m": 0.000012,
+    "metallization": "One side, 30 nm aluminium",
+    "count": 3,
+    "url": "https://www.goodfellow-japan.jp/jp/product/polyethylene-terephthalate-metallised-film-ES30-MZ-000112.htm",
+    "inspected": "2026-10-25 manufacturer product page: 0.012 mm, 300 x 500 mm coil option and one-sided 30 nm aluminium. Selected stock is shown unrolled on interleaves.",
+    "direct_download": "curl failed with SSL_ERROR_SYSCALL; product facts were read through the web retrieval tool, no downloaded-HTML hash claimed",
+    "paper_product_identity_confirmed": false,
+    "material_equivalence_qualified": false,
+    "tolerances": {
+      "thickness_fraction": 0.1,
+      "length_fraction": [
+        -0.01,
+        0.02
+      ]
+    },
+    "limits": "Nominal shape only. Cutting allowances are engineering choices; material tolerances, optical properties and bonding are unqualified."
+  }
 }

@@ -79,7 +79,7 @@ def validate():
     rack_boxes=[b for name,b in access.items() if name.startswith('raw_stock_')]
     check('rack_open_interior_not_filled',len(rack_boxes)==9 and not any(np.all(np.array([1.3,.45,1.30])>b[0]) and np.all(np.array([1.3,.45,1.30])<b[1]) for b in rack_boxes))
     check('rack_shelf_board_remains_solid',any(np.all(np.array([1.3,.45,1.10])>b[0]) and np.all(np.array([1.3,.45,1.10])<b[1]) for b in rack_boxes))
-    check('rack_existing_stock_retained',{'stock_plate_stack','foam_acrylic_stock_stack','pe_stock'}<=set(access))
+    check('rack_stock_retained_as_separate_assets',{'copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock'}<={a['id'] for a in scene['assets']})
     check('floor_device_boxes_keep_identity',{'utility_cart','oily_waste_can','waterjet'}<=set(access))
     candidates=sum(r['result']['position_candidate'] for r in workspace['targets'])
     check('workspace_counts',workspace['counts']==dict(targets=len(workspace['targets']),position_candidates=candidates,needs_revision=len(workspace['targets'])-candidates))
@@ -117,7 +117,7 @@ def validate():
     check('active_component_and_geometry_counts',rc['active_component_requirements']==sum(len(r['components']) for r in active)==143 and rc['active_groups_without_geometry']==sum(not r['scene_instances'] and not r['authored_components'] for r in active)==1)
     for source in readiness['source_artifacts']:check('readiness_source_'+source['path'],sha(ROOT/source['path'])==source['sha256'])
     staged=[c for r in readiness['requirements'] for c in r['components'] if 'staged_candidates' in c]
-    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==31)
+    check('staged_supply_component_bindings',len(staged)==readiness['counts']['components_with_staged_unit_bindings']==37)
     check('staged_quantities_not_campaign_claims',all(c['required_quantity'] is None and not c['staged_candidates']['campaign_sufficiency_accepted'] and c['staged_candidates']['quantity']==len(c['staged_candidates']['members']) for c in staged))
     for c in staged:
         for unit_index,member in enumerate(c['staged_candidates']['members']):
@@ -143,10 +143,13 @@ def validate():
     check('waterjet_selected_envelope',np.allclose(actual,[1.004,1.054,1.435],atol=.002))
     stock=json.loads((HERE/'stock_sources.json').read_text())
     check('stock_source_identity',sha(ROOT/stock['source_artifact']['path'])==stock['source_artifact']['sha256'])
-    structure_parts={p['id']:p for p in scene['architecture']['part_records']}
-    for part,thickness in [('stock_sheet_0',.0005),('stock_sheet_1',.0015),('foam_stock_sheet',.025)]:
-        bounds=np.asarray(structure_parts[part]['bounds_m'])
-        check('source_stock_thickness_'+part,abs(bounds[1,2]-bounds[0,2]-thickness)<1e-7)
+    cut_checks=json.loads((HERE/'stock_cut_checks.json').read_text())
+    check('selected_stock_checks_passed_without_qualification',cut_checks['passed'] and not cut_checks['manufacturing_qualified'] and cut_checks['owner_acceptance'] is None)
+    for ref in cut_checks['source_artifacts']:check('stock_cut_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    for identity,part,thickness in [('copper_sheet_stock','raw_copper_sheet',.0005),('aluminum_sheet_stock','raw_aluminum_1_5mm',.0015),('foam_stock','raw_foam_sheet',.025)]:
+        a=next(a for a in scene['assets'] if a['id']==identity);stock_mesh=trimesh.load(ROOT/a['geometry'],force='scene')
+        matrix,key=stock_mesh.graph[part];m=stock_mesh.geometry[key].copy();m.apply_transform(matrix)
+        check('source_stock_thickness_'+part,abs(m.extents[2]-thickness)<1e-7)
     check('no_inferred_owner_acceptance',contract['owner_acceptance']['decision']=='pending' and all(g['status']=='open' for g in contract['gates']))
     check('no_new_manipulation_authority',not contract['new_manipulation_development_allowed'] and not scene['manipulation_development_allowed'])
     for gate in contract['gates']:

@@ -64,7 +64,7 @@ def validate():
         m=mesh('omega_smpw_cc_kit',node);hardware.extend(m.vertices)
     p=np.array(hardware)
     check('connector_contents_inside_tray',p[:,0].min()>-.1378 and p[:,0].max()<.1378 and p[:,1].min()>-.0878 and p[:,1].max()<.0878 and p[:,2].min()>=.001199 and p[:,2].max()<.050,bounds_m=[p.min(axis=0).tolist(),p.max(axis=0).tolist()])
-    for item,count,thickness in [('nano_pe_stock',4,.000016),('ldpe_stock',2,.00005),('mylar_stock',3,.000012)]:
+    for item,count,thickness in [('nano_pe_stock',8,.000016),('ldpe_stock',6,.00005),('mylar_stock',3,.000012)]:
         nodes=[n for n in scenes[item].graph.nodes_geometry if n.startswith('raw_film_')]
         check('film_quantity_'+item,len(nodes)==count)
         check('actual_film_thickness_'+item,all(abs(mesh(item,n).extents[2]-thickness)<1e-8 for n in nodes),thickness_m=thickness)

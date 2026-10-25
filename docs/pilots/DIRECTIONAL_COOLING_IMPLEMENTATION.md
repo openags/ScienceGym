@@ -77,7 +77,7 @@ guarantee of general reliability.
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
-  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 75-point station screen records
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 81-point station screen records
   each position-only IK result and external obstacle conflicts, including 24
   supply/service approaches. Shoulder alignment, unused-arm retraction and
   proposed-camera clearance are screened. The
@@ -130,20 +130,26 @@ guarantee of general reliability.
   staged on the optical bench; Nicolet mounts, retention and optical alignment
   remain open. Geometry sliders inspect the selected rigid carrier; they do not
   implement robot manipulation or a calibrated optical instrument.
-  The scene has 62 instances; compound requirements and full campaign quantities
-  remain incomplete. Thirty-one component requirements now bind to named staged
+  The scene has 68 instances; compound requirements and full campaign quantities
+  remain incomplete. Thirty-seven component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools
   remain the same physical instances. Staged assets are not executed preparation
   operations.
   Clamp installation/force and wire-tool compatibility remain unresolved.
 - The [campaign allocation](../../assets/cooling_lab_v1/campaign_allocation.json)
   covers all 143 component requirements and eleven branches, with selected
-  quantities for sixteen core components and unknown quantities for the remaining
-  127. Two independent heater candidates now match the paired power requirement.
+  quantities for sixteen core components and nine material components; quantities
+  for the remaining 118 are unknown. Two independent heater candidates now match the paired power requirement.
   Completed apparatus meshes and the fixed-configuration display are references,
-  not prebuilt starting stock. The selected pair is reused by identity; raw stock,
-  both fixed conversion sets, optical specimens, services and reset/consumption
-  budgets still need allocation. The [interactive review](../../viewer/lab_review_v1/allocation.html)
+  not prebuilt starting stock. The selected pair is reused by identity. The
+  [stock cut plan](../../assets/cooling_lab_v1/stock_cutplan.json) reserves 41
+  envelopes on 24 sheets and four tube sections using actual apparatus meshes.
+  Copper, aluminum, foam, acrylic and hollow-tube stock are separately inspectable.
+  The former undersized acrylic/Mylar and insufficient LDPE remain as rejected
+  evidence. Selected 12 μm foil now agrees between stock and custom apparatus;
+  the manufacturer's candidate is not identified as the paper's original Mylar.
+  Frame stock, connecting hardware, optical specimen formats, services and
+  reset/consumption budgets still need allocation. The [interactive review](../../viewer/lab_review_v1/allocation.html)
   exposes these limits and exact source versions; no new controller is introduced.
   In particular, the cutter's stated 0.2 mm minimum soft wire exceeds the
   finest thermocouple conductor. The meter leads have full entry-to-entry

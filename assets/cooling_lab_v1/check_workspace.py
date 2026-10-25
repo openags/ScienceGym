@@ -56,13 +56,14 @@ def build(target_ids=None, output_path=None):
     for key in ['wire_stripper','terminal_driver','tweezers_white','tweezers_black','fill_jug','ambient_rtd',
                 'tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
                 'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool',
-                'g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock']:
+                'g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock',
+                'copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock']:
         a=assets[key];bounds=np.array(a['normalized_bounds_m'])+a['position_m'];surface=surfaces[a['station']]
         reverse=key!='oily_waste_can';point=[float(bounds[:,0].mean()),float(bounds[1,1]+.04 if reverse else bounds[0,1]-.04),float(bounds[1,2]+.04)]
         basis='Authored upper-edge palm approach from the accessible aisle; not a grasp frame'
-        if key in ['nano_pe_stock','ldpe_stock','mylar_stock']:
+        if key in ['nano_pe_stock','ldpe_stock','mylar_stock','copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock']:
             point[2]=float(bounds[1,2]+.10)
-            basis='Authored 100 mm upper palm approach above film stock, reserving hand clearance from the shelf; requires an ordinary handling tool and separately qualified film contact'
+            basis='Authored 100 mm upper palm approach above stock, reserving hand clearance from the shelf; gripping, separation and material contact remain unqualified'
         if key=='utility_cart':
             point=(trimesh.transform_points([[.67348,0,.8964]],a['normalization_matrix'])[0]+a['position_m']+[0,0,.04]).tolist()
             basis='Authored 40 mm upper approach to the reconstructed cart handle centre; grip orientation and pushing are unqualified'

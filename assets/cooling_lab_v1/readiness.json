@@ -13,19 +13,19 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "297c000512b0ef212da55c1d59e33a71a9f76cc752614078468e80833ceda9cb"
+      "sha256": "3429e49ab9944914c9aba082f8be83d1a864f8704c6aa3ca37403cf0b8e459c0"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "d7f3c06a8fc37147079035ef4f49a04c2a02c55ae1ebc9c16d2638aa59b81822"
+      "sha256": "897f484325625e625308a7607b40b6ee3878139e3e8878fee4346187904bcbbc"
     },
     {
       "path": "assets/cooling_lab_v1/staged_supply_bindings.json",
-      "sha256": "67fc0f3f6f307d461e886941cb67ce1cafda314af9f002f926daa9b5ad8b676a"
+      "sha256": "6e578a848515b8c057be277f3ebd9c79a1fdbad49d90ddde344e44ca19f74f93"
     },
     {
       "path": "assets/cooling_lab_v1/angular_accessories.json",
-      "sha256": "dda9e773949706a854bd0083163b2763c792db3616edc97a010d29b8f6460ec6"
+      "sha256": "109a9dbc0f137b3ffd69e443dfcb8d10a8f67266987019cea7dacad6e6d7fd42"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -174,9 +174,9 @@
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 62,
+    "scene_instances": 68,
     "groups_with_partial_geometry": 62,
-    "components_with_staged_unit_bindings": 31,
+    "components_with_staged_unit_bindings": 37,
     "qualified_humanoid_branches": 0
   },
   "requirements": [
@@ -1714,13 +1714,29 @@
           "id": "consumables:consumable_01:component_1",
           "label": "copper sheet",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "plate",
+            "members": [
+              {
+                "asset_id": "copper_sheet_stock",
+                "parts": [
+                  "raw_copper_sheet"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_copper_sheet_stock.glb",
+                "geometry_sha256": "43bf6cbf0cdb98389f24e99d518984d1f5be35dbda0ec725fd2a8a78365d0395"
+              }
+            ],
+            "scope": "Identified uncut candidate stock. Dimensions are source facts or explicit selections; nominal cut envelopes do not qualify fabrication, tools, material grade or the complete campaign.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
-      "authored_components": [
-        "stock_plate_stack"
+      "scene_instances": [
+        "copper_sheet_stock"
       ],
+      "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,
@@ -1735,19 +1751,76 @@
           "id": "consumables:consumable_02:component_1",
           "label": "aluminum sheet stock",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 3,
+            "unit": "plate",
+            "members": [
+              {
+                "asset_id": "aluminum_sheet_stock",
+                "parts": [
+                  "raw_aluminum_1mm"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_aluminum_sheet_stock.glb",
+                "geometry_sha256": "5228e268f72b1d3f46f7b2c5c30e23c07c0dfbeccd3d9e43b338c3e123de67b7"
+              },
+              {
+                "asset_id": "aluminum_sheet_stock",
+                "parts": [
+                  "raw_aluminum_1_5mm"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_aluminum_sheet_stock.glb",
+                "geometry_sha256": "5228e268f72b1d3f46f7b2c5c30e23c07c0dfbeccd3d9e43b338c3e123de67b7"
+              },
+              {
+                "asset_id": "aluminum_sheet_stock",
+                "parts": [
+                  "raw_aluminum_6_4mm"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_aluminum_sheet_stock.glb",
+                "geometry_sha256": "5228e268f72b1d3f46f7b2c5c30e23c07c0dfbeccd3d9e43b338c3e123de67b7"
+              }
+            ],
+            "scope": "Identified uncut candidate stock. Dimensions are source facts or explicit selections; nominal cut envelopes do not qualify fabrication, tools, material grade or the complete campaign.",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "consumables:consumable_02:component_2",
           "label": "aluminum tube stock",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 2,
+            "unit": "tube",
+            "members": [
+              {
+                "asset_id": "aluminum_tube_stock",
+                "parts": [
+                  "raw_aluminum_tube_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_aluminum_tube_stock.glb",
+                "geometry_sha256": "d054db9ccaeae5d90d822d9ff6ce4103e3c9517903760c84b9b0cc1aa29a0256"
+              },
+              {
+                "asset_id": "aluminum_tube_stock",
+                "parts": [
+                  "raw_aluminum_tube_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_aluminum_tube_stock.glb",
+                "geometry_sha256": "d054db9ccaeae5d90d822d9ff6ce4103e3c9517903760c84b9b0cc1aa29a0256"
+              }
+            ],
+            "scope": "Identified uncut candidate stock. Dimensions are source facts or explicit selections; nominal cut envelopes do not qualify fabrication, tools, material grade or the complete campaign.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
-      "authored_components": [
-        "stock_plate_stack"
+      "scene_instances": [
+        "aluminum_sheet_stock",
+        "aluminum_tube_stock"
       ],
+      "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,
@@ -1762,13 +1835,45 @@
           "id": "consumables:consumable_03:component_1",
           "label": "solid PE tube",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 3,
+            "unit": "tube",
+            "members": [
+              {
+                "asset_id": "pe_tube_stock",
+                "parts": [
+                  "raw_pe_tube_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_pe_tube_stock.glb",
+                "geometry_sha256": "b24eab1f233bc2e1c84aa32aa1ad8a3e2008321c17085e5616cb132ec29fe259"
+              },
+              {
+                "asset_id": "pe_tube_stock",
+                "parts": [
+                  "raw_pe_tube_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_pe_tube_stock.glb",
+                "geometry_sha256": "b24eab1f233bc2e1c84aa32aa1ad8a3e2008321c17085e5616cb132ec29fe259"
+              },
+              {
+                "asset_id": "pe_tube_stock",
+                "parts": [
+                  "raw_pe_tube_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_pe_tube_stock.glb",
+                "geometry_sha256": "b24eab1f233bc2e1c84aa32aa1ad8a3e2008321c17085e5616cb132ec29fe259"
+              }
+            ],
+            "scope": "Identified uncut candidate stock. Dimensions are source facts or explicit selections; nominal cut envelopes do not qualify fabrication, tools, material grade or the complete campaign.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
-      "authored_components": [
-        "pe_stock"
+      "scene_instances": [
+        "pe_tube_stock"
       ],
+      "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,
@@ -1783,13 +1888,29 @@
           "id": "consumables:consumable_04:component_1",
           "label": "FOAMULAR 150",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "plate",
+            "members": [
+              {
+                "asset_id": "foam_stock",
+                "parts": [
+                  "raw_foam_sheet"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_foam_stock.glb",
+                "geometry_sha256": "9ca27e7e22f993a48369719bf8478f8f00139a56b8aae93de7e1a33010e8717c"
+              }
+            ],
+            "scope": "Identified uncut candidate stock. Dimensions are source facts or explicit selections; nominal cut envelopes do not qualify fabrication, tools, material grade or the complete campaign.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
-      "authored_components": [
-        "foam_acrylic_stock_stack"
+      "scene_instances": [
+        "foam_stock"
       ],
+      "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,
@@ -1806,7 +1927,7 @@
           "required_quantity": null,
           "quantity_status": "not_allocated",
           "staged_candidates": {
-            "quantity": 4,
+            "quantity": 8,
             "unit": "sheet",
             "members": [
               {
@@ -1815,7 +1936,7 @@
                   "raw_film_1"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
-                "geometry_sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+                "geometry_sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
               },
               {
                 "asset_id": "nano_pe_stock",
@@ -1823,7 +1944,7 @@
                   "raw_film_2"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
-                "geometry_sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+                "geometry_sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
               },
               {
                 "asset_id": "nano_pe_stock",
@@ -1831,7 +1952,7 @@
                   "raw_film_3"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
-                "geometry_sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+                "geometry_sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
               },
               {
                 "asset_id": "nano_pe_stock",
@@ -1839,10 +1960,42 @@
                   "raw_film_4"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
-                "geometry_sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+                "geometry_sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
+              },
+              {
+                "asset_id": "nano_pe_stock",
+                "parts": [
+                  "raw_film_5"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
+                "geometry_sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
+              },
+              {
+                "asset_id": "nano_pe_stock",
+                "parts": [
+                  "raw_film_6"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
+                "geometry_sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
+              },
+              {
+                "asset_id": "nano_pe_stock",
+                "parts": [
+                  "raw_film_7"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
+                "geometry_sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
+              },
+              {
+                "asset_id": "nano_pe_stock",
+                "parts": [
+                  "raw_film_8"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
+                "geometry_sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
               }
             ],
-            "scope": "Individual unprocessed sheets at stated/source-inferred thickness. Cutting losses, rejects and campaign consumption have not been allocated.",
+            "scope": "Selected uncut sheets for paired covers, white restoration where applicable, and reserved optical witness stock; final formats, handling and complete consumption remain unqualified",
             "campaign_sufficiency_accepted": false
           }
         }
@@ -1867,7 +2020,7 @@
           "required_quantity": null,
           "quantity_status": "not_allocated",
           "staged_candidates": {
-            "quantity": 2,
+            "quantity": 6,
             "unit": "sheet",
             "members": [
               {
@@ -1876,7 +2029,7 @@
                   "raw_film_1"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
-                "geometry_sha256": "1c6a41c27b8d342983a1d579bee3e2c5169101fa94e5d3779c5d1010b6ff5262"
+                "geometry_sha256": "590b4e1257ee8e64eeba7437ec27732a0bf9d59e24064f80e119bf3c7ae4809e"
               },
               {
                 "asset_id": "ldpe_stock",
@@ -1884,10 +2037,42 @@
                   "raw_film_2"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
-                "geometry_sha256": "1c6a41c27b8d342983a1d579bee3e2c5169101fa94e5d3779c5d1010b6ff5262"
+                "geometry_sha256": "590b4e1257ee8e64eeba7437ec27732a0bf9d59e24064f80e119bf3c7ae4809e"
+              },
+              {
+                "asset_id": "ldpe_stock",
+                "parts": [
+                  "raw_film_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
+                "geometry_sha256": "590b4e1257ee8e64eeba7437ec27732a0bf9d59e24064f80e119bf3c7ae4809e"
+              },
+              {
+                "asset_id": "ldpe_stock",
+                "parts": [
+                  "raw_film_4"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
+                "geometry_sha256": "590b4e1257ee8e64eeba7437ec27732a0bf9d59e24064f80e119bf3c7ae4809e"
+              },
+              {
+                "asset_id": "ldpe_stock",
+                "parts": [
+                  "raw_film_5"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
+                "geometry_sha256": "590b4e1257ee8e64eeba7437ec27732a0bf9d59e24064f80e119bf3c7ae4809e"
+              },
+              {
+                "asset_id": "ldpe_stock",
+                "parts": [
+                  "raw_film_6"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
+                "geometry_sha256": "590b4e1257ee8e64eeba7437ec27732a0bf9d59e24064f80e119bf3c7ae4809e"
               }
             ],
-            "scope": "Individual unprocessed sheets at stated/source-inferred thickness. Cutting losses, rejects and campaign consumption have not been allocated.",
+            "scope": "Selected uncut sheets for paired covers, white restoration where applicable, and reserved optical witness stock; final formats, handling and complete consumption remain unqualified",
             "campaign_sufficiency_accepted": false
           }
         }
@@ -2090,7 +2275,7 @@
                   "raw_film_1"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_mylar_stock.glb",
-                "geometry_sha256": "982afe7fd589db04bcf6f1c7f8b602dc7bdd15f503b07617f6d77435fca87915"
+                "geometry_sha256": "26f8ffea3d4fdd229afb06767fedf39d6f6a833afb3e50697d292add26e9d722"
               },
               {
                 "asset_id": "mylar_stock",
@@ -2098,7 +2283,7 @@
                   "raw_film_2"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_mylar_stock.glb",
-                "geometry_sha256": "982afe7fd589db04bcf6f1c7f8b602dc7bdd15f503b07617f6d77435fca87915"
+                "geometry_sha256": "26f8ffea3d4fdd229afb06767fedf39d6f6a833afb3e50697d292add26e9d722"
               },
               {
                 "asset_id": "mylar_stock",
@@ -2106,7 +2291,7 @@
                   "raw_film_3"
                 ],
                 "geometry_path": "assets/cooling_lab_v1/geometry/prepared_mylar_stock.glb",
-                "geometry_sha256": "982afe7fd589db04bcf6f1c7f8b602dc7bdd15f503b07617f6d77435fca87915"
+                "geometry_sha256": "26f8ffea3d4fdd229afb06767fedf39d6f6a833afb3e50697d292add26e9d722"
               }
             ],
             "scope": "Individual unprocessed sheets at stated/source-inferred thickness. Cutting losses, rejects and campaign consumption have not been allocated.",
@@ -2132,13 +2317,37 @@
           "id": "consumables:consumable_10:component_1",
           "label": "acrylic",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 2,
+            "unit": "plate",
+            "members": [
+              {
+                "asset_id": "acrylic_stock",
+                "parts": [
+                  "raw_acrylic_sheet_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_acrylic_stock.glb",
+                "geometry_sha256": "2a3f1c08cd36967be5c0b4ca2e9ec1090d02cba65713c43eb7f3d13f32431fda"
+              },
+              {
+                "asset_id": "acrylic_stock",
+                "parts": [
+                  "raw_acrylic_sheet_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_acrylic_stock.glb",
+                "geometry_sha256": "2a3f1c08cd36967be5c0b4ca2e9ec1090d02cba65713c43eb7f3d13f32431fda"
+              }
+            ],
+            "scope": "Identified uncut candidate stock. Dimensions are source facts or explicit selections; nominal cut envelopes do not qualify fabrication, tools, material grade or the complete campaign.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
-      "authored_components": [
-        "foam_acrylic_stock_stack"
+      "scene_instances": [
+        "acrylic_stock"
       ],
+      "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
       "instance_count_accepted": false,

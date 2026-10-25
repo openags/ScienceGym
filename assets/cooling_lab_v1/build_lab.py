@@ -149,18 +149,9 @@ def furniture():
     for x,y in [(4.2,.65),(7.8,9.2)]:
         box('emergency_post_'+str(x),[.10,.10,1.1],[x,y,.55],GRAY,'emergency_design',True)
         g.cylinder('emergency_stop_'+str(x),.035,.025,[x,y-.065,1.05],[182,39,41],axis=(0,1,0),role='emergency_design')
-    # Original stock and fixtures, with selected dimensions explicitly authored.
-    for i,(color,z,thickness) in enumerate([([181,105,67],.19775,.0005),(STEEL,.19875,.0015)]):
-        box('stock_sheet_'+str(i),[.30,.25,thickness],[1.05,.45,z],color,'raw_stock')
-    box('foam_stock_sheet',[.30,.25,.025],[1.05,.45,.6800],[202,145,162],'raw_stock')
-    box('acrylic_stock_sheet',[.30,.25,.003],[1.05,.45,.6940],[178,201,205],'raw_stock')
-    for i in range(3):g.ring('pe_tube_stock_'+str(i),.038,.051,.057,[1.6+i*.12,.45,.696],[221,221,201],role='raw_stock')
+    # Stock is now separately inspectable geometry, placed below in supplies().
     # Owner's 2026-10-24 constraint excludes robot-specific jigs and carriers.
     # Historical geometry remains in Git; ordinary tools are imported separately.
-    # The stack is checked as one supported group, not three floating plates.
-    component('stock_plate_stack',['stock_sheet_'],['consumables:consumable_01','consumables:consumable_02'],'raw_stock_shelf_0',True)
-    component('foam_acrylic_stock_stack',['foam_stock_','acrylic_stock_'],['consumables:consumable_04','consumables:consumable_10'],'raw_stock_shelf_1',True)
-    component('pe_stock',['pe_tube_stock_'],['consumables:consumable_03'],'raw_stock_shelf_1',True)
     component('room_shell',['indoor_floor','annex_floor','wall_','door_','window_','ceiling_','outdoor_access_path'],['facility:ROOM'])
     component('bench_frames',[s['id']+'_' for s in surfaces if '_shelf_' not in s['id']],['facility:BENCHES'])
     component('storage',['raw_stock_','specimens_','fabrication_storage_','coating_storage_'],['facility:STORAGE','tools:storage_supports'])
@@ -202,14 +193,16 @@ def devices():
           [8.55+(i%4)*.20,3.1+(i//4)*.23,.9],z_up=True,station='assembly_black',resource='equipment:TC',
           source_path='assets/omega_5tc_v1/sources.json',
           note='目录标称 1 m、36 AWG / 0.13 mm 导体。卷线姿态、护套和局部端头尺寸为推断；尚未装接，无柔性线缆、电路或温度测量实现。')
-    for key,label,prefix,position,station in [
-        ('cooler_white','白色辐射冷却装置','COOLER_WHITE__',[2.5,15.8,.9],'outdoor_white'),
-        ('cooler_black','黑色辐射冷却装置','COOLER_BLACK__',[9.5,15.8,.9],'outdoor_black'),
-        ('cooler_fixed','固定遮阳带构型','COOLER_FIXED_BAND__',[10.2,2.64,.90],'assembly_black'),
-        ('tracker','EKO STR-32G 跟踪器（待复核）','EKO_STR_32G__',[2.5,18.6,.9],'tracker_support')]:
-        asset(key,label,'assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',position,prefix=prefix,
-              station=station,resource='equipment:SOLAR_TRACKER' if key=='tracker' else 'equipment:COOLER',
-              note='从历史场景按原始部件 ID 提取；装置细节仍需逐项对照。',source_path='assets/cooling_scene_assets_v2/equipment_research.json')
+    apparatus=json.loads((HERE/'apparatus_stock_reconciliation.json').read_text())
+    for key,label,position,station in [
+        ('cooler_white','白色辐射冷却装置',[2.5,15.8,.9],'outdoor_white'),
+        ('cooler_black','黑色辐射冷却装置',[9.5,15.8,.9],'outdoor_black'),
+        ('cooler_fixed','固定遮阳带构型',[10.2,2.64,.90],'assembly_black')]:
+        record=next(r for r in apparatus['items'] if r['id']==key)
+        asset(key,label,record['geometry']['path'],position,z_up=True,station=station,resource='equipment:COOLER',
+              note='完成态参考：镀铝 PET 候选薄膜已与原料厚度对应，底板覆盖与搭接为明确推断；其余机构、支撑和材料等效性仍待核对。',source_path='assets/cooling_lab_v1/apparatus_stock_reconciliation.json')
+    asset('tracker','EKO STR-32G 跟踪器（待复核）','assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',[2.5,18.6,.9],prefix='EKO_STR_32G__',
+          station='tracker_support',resource='equipment:SOLAR_TRACKER',note='从历史场景按原始部件 ID 提取；待逐项对照。',source_path='assets/cooling_scene_assets_v2/equipment_research.json')
     for key,label,position,station,resource in [
         ('eko_ms56','EKO MS-56 直射辐射计（待安装）',[2.9,18.5,.9],'tracker_support','equipment:DNI'),
         ('eko_ms402','EKO MS-402 总辐射计（待安装）',[9.9,18.6,.9],'weather_service','equipment:GTI'),
@@ -261,9 +254,15 @@ def devices():
       ('fill_jug','buerkle_7102_2000',[1.74,6.08,.85],'calibration_dry'),
       ('ambient_rtd','omega_ambient_rtd',[9.58,18.78,.9],'weather_service'),
       ('tc_transition_kit','omega_smpw_cc_kit',[10.65,6.10,.85],'electrical_bench'),
-      ('nano_pe_stock','nano_pe_stock',[.80,.53,1.1175],'raw_stock_shelf_2'),
-      ('ldpe_stock','ldpe_stock',[1.30,.53,1.1175],'raw_stock_shelf_2'),
-      ('mylar_stock','mylar_stock',[1.80,.53,1.1175],'raw_stock_shelf_2'),
+      ('nano_pe_stock','nano_pe_stock',[.68,.53,1.1175],'raw_stock_shelf_2'),
+      ('ldpe_stock','ldpe_stock',[.88,.53,1.1175],'raw_stock_shelf_2'),
+      ('mylar_stock','mylar_stock',[1.76,.53,.6675],'raw_stock_shelf_1'),
+      ('copper_sheet_stock','copper_sheet_stock',[1.14,.53,1.1175],'raw_stock_shelf_2'),
+      ('aluminum_sheet_stock','aluminum_sheet_stock',[1.52,.53,1.1175],'raw_stock_shelf_2'),
+      ('foam_stock','foam_stock',[1.22,.53,.6675],'raw_stock_shelf_1'),
+      ('acrylic_stock','acrylic_stock',[.80,.53,.6675],'raw_stock_shelf_1'),
+      ('pe_tube_stock','pe_tube_stock',[1.88,.53,1.1175],'raw_stock_shelf_2'),
+      ('aluminum_tube_stock','aluminum_tube_stock',[-4.70,3.86,.6675],'fabrication_storage_shelf_1'),
       ('masking_tape','masking_tape',[-4.3,6.80,.90],'coating_prep'),
       ('coating_white_stock','krylon_51502',[-4.00,6.80,.90],'coating_prep'),
       ('coating_black_stock','krylon_51602',[-3.80,6.80,.90],'coating_prep'),

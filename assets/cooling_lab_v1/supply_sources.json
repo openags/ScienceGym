@@ -454,7 +454,7 @@
     },
     {
       "id": "nano_pe_stock",
-      "label": "Targray 类纳米多孔 PE 原料 · 4 张",
+      "label": "Targray 类纳米多孔 PE 原料 · 8 张",
       "resources": [
         "consumables:consumable_05"
       ],
@@ -467,19 +467,19 @@
       "facts": {
         "film_thickness_m": 0.000016
       },
-      "selected_quantity": 4,
+      "selected_quantity": 8,
       "inferred": [
         "160 x 160 mm raw-stock sheets and ordinary paper interleaves",
         "Colour and roughness; no pore microstructure or measured optical response"
       ],
       "limits": [
-        "Uncut stock, no assembled two-layer cover or accepted lot identity",
-        "Recovery and witness-coupon stock still require campaign allocation"
+        "Uncut stock: four layers for the pair, two fresh layers for white restoration, two reserved optical witness sheets; witness dimensions and every attachment remain unqualified",
+        "No accepted historical lot or trial/recovery consumption budget"
       ]
     },
     {
       "id": "ldpe_stock",
-      "label": "白色 LDPE 袋膜原料 · 2 张",
+      "label": "白色 LDPE 袋膜原料 · 6 张",
       "resources": [
         "consumables:consumable_06"
       ],
@@ -492,18 +492,19 @@
       "facts": {
         "film_thickness_m_approx": 0.00005
       },
-      "selected_quantity": 2,
+      "selected_quantity": 6,
       "inferred": [
         "160 x 160 mm blank allocation and paper interleaves",
         "Colour and appearance"
       ],
       "limits": [
-        "No film cutting, support, tension or deformation qualification"
+        "Four layers for the paired fixed configuration, two reserved optical witness sheets; no cutting, tension or deformation qualification",
+        "Separate witness formats are a conservative selected allocation, not a source-reported specimen count"
       ]
     },
     {
       "id": "mylar_stock",
-      "label": "镀铝 Mylar 原料 · 3 张（选定尺寸）",
+      "label": "镀铝 PET 候选 · Goodfellow ES30-MZ-000112 · 3 张",
       "resources": [
         "consumables:consumable_09"
       ],
@@ -511,16 +512,30 @@
         {
           "url": "https://doi.org/10.1038/s41467-018-07293-9",
           "locator": "Methods: aluminized Mylar base/lateral shielding"
+        },
+        {
+          "url": "https://www.goodfellow-japan.jp/jp/product/polyethylene-terephthalate-metallised-film-ES30-MZ-000112.htm",
+          "locator": "Product ES30-MZ-000112; coil variant 579-110-25"
         }
       ],
       "selected_quantity": 3,
       "inferred": [
-        "160 x 160 x 0.012 mm stock is an explicit demo selection; paper does not report this thickness",
-        "Reflective appearance is illustrative"
+        "Selected three unrolled stock pieces and paper interleaves",
+        "Illustrative reflective appearance; no measured optical response"
       ],
       "limits": [
-        "Product identity, adhesive/attachment method and full sheet consumption remain unallocated"
-      ]
+        "The paper's Mylar product/grade is unknown; Goodfellow metallized PET is a named candidate, not verified material equivalence",
+        "Cut envelopes account for both bases and curved wraps; adhesion, seams and material tolerances remain unqualified"
+      ],
+      "facts": {
+        "candidate_thickness_m": 0.000012,
+        "candidate_unrolled_size_m": [
+          0.5,
+          0.3
+        ],
+        "metallized_side_count": 1,
+        "nominal_aluminum_layer_m": 3e-8
+      }
     },
     {
       "id": "masking_tape",
@@ -775,6 +790,152 @@
         "Substrate, thermal and thermocouple compatibility not qualified; no heated curing selected",
         "Cap separation is an exploded review view, not validated unscrewing or robot contact",
         "Dispensing tool, allocation, viscosity, adhesion, ventilation and waste handling remain unresolved"
+      ]
+    },
+    {
+      "id": "copper_sheet_stock",
+      "label": "铜板原料 · 0.5 mm",
+      "resources": [
+        "consumables:consumable_01"
+      ],
+      "sources": [
+        {
+          "url": "https://doi.org/10.1038/s41467-018-07293-9",
+          "locator": "Supplementary Note 2; local material_cards.json and stock_sources.json"
+        }
+      ],
+      "facts": {
+        "source_thickness_m": 0.0005
+      },
+      "selected_quantity": 1,
+      "inferred": [
+        "300 x 250 mm selected sheet; paper specifies emitter thickness, not purchased stock dimensions"
+      ],
+      "limits": [
+        "Uncut candidate stock; no manufacturing, mechanical, safety or complete-campaign acceptance",
+        "Nominal geometric fit does not determine kerf, hold-down, cutting tool compatibility or achievable tolerance"
+      ]
+    },
+    {
+      "id": "aluminum_sheet_stock",
+      "label": "铝板原料 · 1 / 1.5 / 6.4 mm",
+      "resources": [
+        "consumables:consumable_02"
+      ],
+      "sources": [
+        {
+          "url": "https://doi.org/10.1038/s41467-018-07293-9",
+          "locator": "Supplementary Note 2; local material_cards.json and stock_sources.json"
+        }
+      ],
+      "facts": {
+        "source_track_thickness_m": 0.0015,
+        "source_ring_thickness_m": 0.0064
+      },
+      "selected_quantity": 3,
+      "inferred": [
+        "400 x 300 mm 1 and 1.5 mm sheets plus 300 x 160 mm 6.4 mm plate; the 1 mm gauge follows the unqualified disk/aperture reconstruction"
+      ],
+      "limits": [
+        "Uncut candidate stock; no manufacturing, mechanical, safety or complete-campaign acceptance",
+        "Nominal geometric fit does not determine kerf, hold-down, cutting tool compatibility or achievable tolerance"
+      ]
+    },
+    {
+      "id": "foam_stock",
+      "label": "FOAMULAR 150 类保温原料 · 25 mm",
+      "resources": [
+        "consumables:consumable_04"
+      ],
+      "sources": [
+        {
+          "url": "https://doi.org/10.1038/s41467-018-07293-9",
+          "locator": "Supplementary Note 2; local material_cards.json and stock_sources.json"
+        }
+      ],
+      "facts": {
+        "source_thickness_m": 0.025
+      },
+      "selected_quantity": 1,
+      "inferred": [
+        "300 x 250 mm selected sheet; unmeasured colour and surface texture"
+      ],
+      "limits": [
+        "Uncut candidate stock; no manufacturing, mechanical, safety or complete-campaign acceptance",
+        "Nominal geometric fit does not determine kerf, hold-down, cutting tool compatibility or achievable tolerance"
+      ]
+    },
+    {
+      "id": "acrylic_stock",
+      "label": "亚克力板原料 · 6 mm · 2 张",
+      "resources": [
+        "consumables:consumable_10"
+      ],
+      "sources": [
+        {
+          "url": "https://doi.org/10.1038/s41467-018-07293-9",
+          "locator": "Supplementary Note 2; local material_cards.json and stock_sources.json"
+        }
+      ],
+      "facts": {},
+      "selected_quantity": 2,
+      "inferred": [
+        "350 x 300 x 6 mm selected plates; 6 mm follows the custom apparatus candidate and is not a paper-reported thickness"
+      ],
+      "limits": [
+        "Uncut candidate stock; no manufacturing, mechanical, safety or complete-campaign acceptance",
+        "Nominal geometric fit does not determine kerf, hold-down, cutting tool compatibility or achievable tolerance"
+      ]
+    },
+    {
+      "id": "pe_tube_stock",
+      "label": "PE 空心管原料 · 100 mm · 3 段",
+      "resources": [
+        "consumables:consumable_03"
+      ],
+      "sources": [
+        {
+          "url": "https://doi.org/10.1038/s41467-018-07293-9",
+          "locator": "Supplementary Note 2; local material_cards.json and stock_sources.json"
+        }
+      ],
+      "facts": {
+        "source_inner_diameter_m": 0.076,
+        "source_outer_diameter_m": 0.102
+      },
+      "selected_quantity": 3,
+      "inferred": [
+        "Selected 100 mm lengths, two allocated to 57 mm supports and one held as unallocated reserve; stock vendor and material grade unresolved"
+      ],
+      "limits": [
+        "Uncut candidate stock; no manufacturing, mechanical, safety or complete-campaign acceptance",
+        "Nominal geometric fit does not determine kerf, hold-down, cutting tool compatibility or achievable tolerance"
+      ]
+    },
+    {
+      "id": "aluminum_tube_stock",
+      "label": "铝空心管原料 · 100 mm · 2 段",
+      "resources": [
+        "consumables:consumable_02"
+      ],
+      "sources": [
+        {
+          "url": "https://doi.org/10.1038/s41467-018-07293-9",
+          "locator": "Supplementary Note 2; local material_cards.json and stock_sources.json"
+        }
+      ],
+      "facts": {
+        "source_inner_diameter_m": 0.14,
+        "source_outer_diameter_m": 0.152,
+        "source_finished_height_m": 0.057
+      },
+      "selected_quantity": 2,
+      "inferred": [
+        "Selected 100 mm raw lengths; polishing, alloy, tolerance and machining route unqualified"
+      ],
+      "limits": [
+        "Uncut candidate stock; no manufacturing, mechanical, safety or complete-campaign acceptance",
+        "Nominal geometric fit does not determine kerf, hold-down, cutting tool compatibility or achievable tolerance"
       ]
     }
   ],

@@ -56,10 +56,15 @@ def run(url,browser):
         page.locator('button[data-view=indoor]').click();capture('full_walls');page.locator('#show-walls').uncheck()
         for identity in ['eko_ms56','eko_ms402','hobo_u30','cary','nicolet','bath','g1','caliper','driver','tray_white','waterjet','heater','heater_white','cooler_white','cooler_black','cooler_fixed','camera_head','camera_wrist_left','camera_wrist_right','tc_01',
             'wire_stripper','terminal_driver','tweezers_white','fill_jug','ambient_rtd','tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
-            'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock','harrick_hrs','spectratech_500']:
+            'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock','harrick_hrs','spectratech_500',
+            'copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock']:
             page.locator('#asset-select').select_option(identity);page.locator('#isolate').check();page.wait_for_timeout(200)
             check('inspect_'+identity,page.locator('html').get_attribute('data-selected-asset')==identity)
             closed=capture(identity+'_closed')
+            if identity in ['copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock']:
+                check('raw_stock_units_and_inferences_'+identity,'逐件候选' in page.locator('#asset-detail').inner_text() and '推断' in page.locator('#asset-detail').inner_text())
+                for direction in ['front','top']:
+                    page.locator('#asset-views [data-direction="'+direction+'"]').click();capture(identity+'_'+direction)
             if identity.startswith('cooler_'):
                 check('completed_reference_not_stock_'+identity,('不是第三台可用装置' if identity=='cooler_fixed' else '不是已经备好的初始装置') in page.locator('#asset-detail').inner_text())
             if identity in ['harrick_hrs','spectratech_500']:
@@ -119,7 +124,7 @@ def run(url,browser):
         check('inventory_filter_partition',placed+missing+historical==inventory_count and historical==3 and missing==1,with_geometry=placed,without_geometry=missing,historical=historical)
         page.locator('#filter').select_option('all')
         expected_workspace=json.loads((ROOT/'assets/cooling_lab_v1/workspace_checks.json').read_text())
-        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==75)
+        check('workspace_targets_visible',page.locator('#workspace-targets tr').count()==len(expected_workspace['targets'])==81)
         page.locator('button[data-target="cary_front"]').click();check('static_workspace_pose_selected',page.locator('html').get_attribute('data-workspace-pose')=='cary_front');capture('g1_cary_access')
         page.locator('#workspace-reset').click();check('static_workspace_pose_reset',page.locator('html').get_attribute('data-workspace-pose') is None)
         page.locator('#review-notes').fill('QA temporary comment; not acceptance')

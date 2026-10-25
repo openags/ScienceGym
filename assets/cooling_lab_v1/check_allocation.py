@@ -42,6 +42,14 @@ def inspect():
     failed_pid = next(b for b in deficit['branches'] if b['id'] == 'PID_POWER')
     roles = next(a for a in failed_pid['allocations'] if a['pool_id'] == 'heater')['roles']
     check('negative_missing_white_does_not_reassign_black', roles[0]['physical_id'] is None and roles[1]['physical_id'] == 'heater')
+    missing_stock=copy.deepcopy(scene)
+    missing_stock['assets']=[a for a in missing_stock['assets'] if a['id']!='acrylic_stock']
+    absent=next(c for c in build_record(missing_stock,readiness)['components'] if c['resource_id']=='consumables:consumable_10')
+    check('negative_removed_acrylic_exposes_two_plate_deficit',absent['quantity_deficit']==2 and absent['staged_candidates']['quantity']==0)
+    missing_sheet=copy.deepcopy(scene)
+    next(a for a in missing_sheet['assets'] if a['id']=='ldpe_stock')['part_names'].remove('raw_film_6')
+    absent=next(c for c in build_record(missing_sheet,readiness)['components'] if c['resource_id']=='consumables:consumable_06')
+    check('negative_removed_ldpe_sheet_exposes_deficit',absent['quantity_deficit']==1 and absent['staged_candidates']['quantity']==5)
     original = POOLS['heater']
     for name, units in [('duplicate_unit', ['heater', 'heater']), ('completed_stock', ['cooler_white', 'heater']), ('cross_pool_reuse', ['smu_white', 'heater']), ('wrong_resource_type', ['caliper', 'heater'])]:
         rejected = False
@@ -54,11 +62,11 @@ def inspect():
             POOLS['heater'] = original
         check('negative_'+name+'_rejected', rejected)
     result = dict(schema_version=1, passed=all(c['passed'] for c in checks), checks=checks,
-                  negative_cases=5, scope='Inventory identities and selected quantities only; no task or stock sufficiency acceptance',
+                  negative_cases=7, scope='Inventory identities and selected quantities only; no task or stock sufficiency acceptance',
                   source_artifacts=[dict(path=str(p.relative_to(ROOT)), sha256=sha(p)) for p in
                       [HERE/'campaign_allocation.json', HERE/'check_allocation.py']])
     write_json(HERE/'allocation_checks.json', result)
-    print(json.dumps(dict(passed=result['passed'], checks=len(checks), negative_cases=5)))
+    print(json.dumps(dict(passed=result['passed'], checks=len(checks), negative_cases=7)))
     return result
 
 

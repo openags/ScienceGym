@@ -41,6 +41,18 @@
         {
           "path": "assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb",
           "sha256": "cca184bc1fcbb3cfbd1c646ee403506a4d91a0fbd87eb86407454f6e569cd3f5"
+        },
+        {
+          "path": "assets/cooling_lab_v1/geometry/apparatus_cooler_white.glb",
+          "sha256": "36c5e9f8fb2dfe9aaf468855789b275466fc18ced68ba92b04cb75554923d541"
+        },
+        {
+          "path": "assets/cooling_lab_v1/geometry/apparatus_cooler_black.glb",
+          "sha256": "57ccd16cfbaf1c397dc93e035e964f7ecb982b63fc23fecee8ba76d77ea499d8"
+        },
+        {
+          "path": "assets/cooling_lab_v1/geometry/apparatus_cooler_fixed.glb",
+          "sha256": "0f7816f59bd660eddaf04effa59f8e4f94f21c9088152d71b6acf55bd492db64"
         }
       ],
       "discovery_status": "candidate_linked_for_review",
@@ -57,19 +69,19 @@
           "id": "cooler_white",
           "station": "outdoor_white",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_white.glb",
-          "sha256": "de1fd1508fae66c35359bbfa35a6930a067c11bffbec6b2f6d3f4469a3067abc"
+          "sha256": "322ac817a97fc48f026d11d388b2e999b470bf0b446f2bae784218d5ba4caeaa"
         },
         {
           "id": "cooler_black",
           "station": "outdoor_black",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_black.glb",
-          "sha256": "0608c513add424d91d3456667b46bed0cc7222917a377d9d783ca5384ded374a"
+          "sha256": "c1799c6a098440f12303845dd47e4456eb9faacb174d44e7de951656423a9842"
         },
         {
           "id": "cooler_fixed",
           "station": "assembly_black",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_cooler_fixed.glb",
-          "sha256": "e3777ba6fe148341e4627d71628172385f4b997db42c17508fc00f477125a68a"
+          "sha256": "12bb3419d2a557eb9ee4339cc875270d00c83c1fdb2555ca34c8c42fb5d1c21f"
         }
       ],
       "authored_scene_components": []
@@ -1280,27 +1292,30 @@
       "label": "copper sheet",
       "source_pointer": "/consumables/0",
       "source_value": "copper sheet",
-      "candidate_artifacts": [],
-      "discovery_status": "no_candidate_linked_in_initial_inventory",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/geometry/supply_copper_sheet_stock.glb",
+          "sha256": "7b9600acf88fe4b87712dc72e68b4d34e472eb4e6a3194f6b508f8c22d17f95d"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": {
-        "modeled_instances": 0,
+        "modeled_instances": 1,
         "required_instance_count_accepted": false
       },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": "partially_authored_pending_completeness_review",
-      "scene_instances": [],
-      "authored_scene_components": [
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
         {
-          "id": "stock_plate_stack",
-          "parts": [
-            "stock_sheet_0",
-            "stock_sheet_1"
-          ],
-          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+          "id": "copper_sheet_stock",
+          "station": "raw_stock_shelf_2",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_copper_sheet_stock.glb",
+          "sha256": "43bf6cbf0cdb98389f24e99d518984d1f5be35dbda0ec725fd2a8a78365d0395"
         }
-      ]
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_02",
@@ -1308,27 +1323,40 @@
       "label": "aluminum sheet/tube",
       "source_pointer": "/consumables/1",
       "source_value": "aluminum sheet/tube",
-      "candidate_artifacts": [],
-      "discovery_status": "no_candidate_linked_in_initial_inventory",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/geometry/supply_aluminum_sheet_stock.glb",
+          "sha256": "93ea0127a045f2177dd6156c3f26b8c4e0c3722f0d77a39ef0bf19ca49759bdb"
+        },
+        {
+          "path": "assets/cooling_lab_v1/geometry/supply_aluminum_tube_stock.glb",
+          "sha256": "a5d39c1c0335f4def857e6e91d82d46272cdf5affc49691429973b322d6fb2ae"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": {
-        "modeled_instances": 0,
+        "modeled_instances": 2,
         "required_instance_count_accepted": false
       },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": "partially_authored_pending_completeness_review",
-      "scene_instances": [],
-      "authored_scene_components": [
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
         {
-          "id": "stock_plate_stack",
-          "parts": [
-            "stock_sheet_0",
-            "stock_sheet_1"
-          ],
-          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+          "id": "aluminum_sheet_stock",
+          "station": "raw_stock_shelf_2",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_aluminum_sheet_stock.glb",
+          "sha256": "5228e268f72b1d3f46f7b2c5c30e23c07c0dfbeccd3d9e43b338c3e123de67b7"
+        },
+        {
+          "id": "aluminum_tube_stock",
+          "station": "fabrication_storage_shelf_1",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_aluminum_tube_stock.glb",
+          "sha256": "d054db9ccaeae5d90d822d9ff6ce4103e3c9517903760c84b9b0cc1aa29a0256"
         }
-      ]
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_03",
@@ -1336,28 +1364,30 @@
       "label": "solid PE tube",
       "source_pointer": "/consumables/2",
       "source_value": "solid PE tube",
-      "candidate_artifacts": [],
-      "discovery_status": "no_candidate_linked_in_initial_inventory",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/geometry/supply_pe_tube_stock.glb",
+          "sha256": "ea2c38baff48f853e80c03389c23420b7b5e8805b5fa038b235933421789adea"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": {
-        "modeled_instances": 0,
+        "modeled_instances": 1,
         "required_instance_count_accepted": false
       },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": "partially_authored_pending_completeness_review",
-      "scene_instances": [],
-      "authored_scene_components": [
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
         {
-          "id": "pe_stock",
-          "parts": [
-            "pe_tube_stock_0",
-            "pe_tube_stock_1",
-            "pe_tube_stock_2"
-          ],
-          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+          "id": "pe_tube_stock",
+          "station": "raw_stock_shelf_2",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_pe_tube_stock.glb",
+          "sha256": "b24eab1f233bc2e1c84aa32aa1ad8a3e2008321c17085e5616cb132ec29fe259"
         }
-      ]
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_04",
@@ -1365,27 +1395,30 @@
       "label": "FOAMULAR 150",
       "source_pointer": "/consumables/3",
       "source_value": "FOAMULAR 150",
-      "candidate_artifacts": [],
-      "discovery_status": "no_candidate_linked_in_initial_inventory",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/geometry/supply_foam_stock.glb",
+          "sha256": "4d2926b9854a15a31fa247ce78a5de80ca2e64fe4c23d7c4d89ebfb1830b0038"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": {
-        "modeled_instances": 0,
+        "modeled_instances": 1,
         "required_instance_count_accepted": false
       },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": "partially_authored_pending_completeness_review",
-      "scene_instances": [],
-      "authored_scene_components": [
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
         {
-          "id": "foam_acrylic_stock_stack",
-          "parts": [
-            "foam_stock_sheet",
-            "acrylic_stock_sheet"
-          ],
-          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+          "id": "foam_stock",
+          "station": "raw_stock_shelf_1",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_foam_stock.glb",
+          "sha256": "9ca27e7e22f993a48369719bf8478f8f00139a56b8aae93de7e1a33010e8717c"
         }
-      ]
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_05",
@@ -1396,7 +1429,7 @@
       "candidate_artifacts": [
         {
           "path": "assets/cooling_lab_v1/geometry/supply_nano_pe_stock.glb",
-          "sha256": "651432742c2bed7acd99ae2f1ee7a138c0af659958241a8491fb646bcb7e7ab5"
+          "sha256": "27b464e2f11dac80a53ab0661417af8ee515659e83563536259ab569ce2bad3b"
         }
       ],
       "discovery_status": "candidate_linked_for_review",
@@ -1413,7 +1446,7 @@
           "id": "nano_pe_stock",
           "station": "raw_stock_shelf_2",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb",
-          "sha256": "ef5614206bbab58fcdfa3b198df7e4c83080553d7f0ae2741a3c068225a340a0"
+          "sha256": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e"
         }
       ],
       "authored_scene_components": []
@@ -1427,7 +1460,7 @@
       "candidate_artifacts": [
         {
           "path": "assets/cooling_lab_v1/geometry/supply_ldpe_stock.glb",
-          "sha256": "90aff7ae61620e4149ac9a8ec1bef52e0148a7e8d3dbcad086d60dd59c49f923"
+          "sha256": "9bde03a1203af2de8cbb8965bd09a04a4883761e795c8b348993735028a2af5e"
         }
       ],
       "discovery_status": "candidate_linked_for_review",
@@ -1444,7 +1477,7 @@
           "id": "ldpe_stock",
           "station": "raw_stock_shelf_2",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb",
-          "sha256": "1c6a41c27b8d342983a1d579bee3e2c5169101fa94e5d3779c5d1010b6ff5262"
+          "sha256": "590b4e1257ee8e64eeba7437ec27732a0bf9d59e24064f80e119bf3c7ae4809e"
         }
       ],
       "authored_scene_components": []
@@ -1530,7 +1563,7 @@
       "candidate_artifacts": [
         {
           "path": "assets/cooling_lab_v1/geometry/supply_mylar_stock.glb",
-          "sha256": "1c2671a73236f574b89e549e468a167f5edde6a329586523724148344059e147"
+          "sha256": "7252b53f06936f83c2729e174926c0d9c473904d66e5967aa2ce41fc3d03564a"
         }
       ],
       "discovery_status": "candidate_linked_for_review",
@@ -1545,9 +1578,9 @@
       "scene_instances": [
         {
           "id": "mylar_stock",
-          "station": "raw_stock_shelf_2",
+          "station": "raw_stock_shelf_1",
           "geometry": "assets/cooling_lab_v1/geometry/prepared_mylar_stock.glb",
-          "sha256": "982afe7fd589db04bcf6f1c7f8b602dc7bdd15f503b07617f6d77435fca87915"
+          "sha256": "26f8ffea3d4fdd229afb06767fedf39d6f6a833afb3e50697d292add26e9d722"
         }
       ],
       "authored_scene_components": []
@@ -1558,27 +1591,30 @@
       "label": "acrylic",
       "source_pointer": "/consumables/9",
       "source_value": "acrylic",
-      "candidate_artifacts": [],
-      "discovery_status": "no_candidate_linked_in_initial_inventory",
-      "candidate_scope_note": "Candidate availability does not imply fidelity, completeness, installation or safe-use acceptance.",
+      "candidate_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/geometry/supply_acrylic_stock.glb",
+          "sha256": "e3d38f724984f443dd6a332d28dc2f8dc59b73bdd84146f0dd8ee0370436e872"
+        }
+      ],
+      "discovery_status": "candidate_linked_for_review",
+      "candidate_scope_note": "Exact scene instances bound below; source fidelity and complete instance allocation remain unaccepted.",
       "decomposition_status": "required_before_completeness_claim",
       "instance_allocation": {
-        "modeled_instances": 0,
+        "modeled_instances": 1,
         "required_instance_count_accepted": false
       },
       "asset_acceptance": "not_reviewed",
-      "scene_placement": "partially_authored_pending_completeness_review",
-      "scene_instances": [],
-      "authored_scene_components": [
+      "scene_placement": "modeled_candidate_pending_review",
+      "scene_instances": [
         {
-          "id": "foam_acrylic_stock_stack",
-          "parts": [
-            "foam_stock_sheet",
-            "acrylic_stock_sheet"
-          ],
-          "basis": "Original design dimensions; no claim of manufacturer product or accepted load rating"
+          "id": "acrylic_stock",
+          "station": "raw_stock_shelf_1",
+          "geometry": "assets/cooling_lab_v1/geometry/prepared_acrylic_stock.glb",
+          "sha256": "2a3f1c08cd36967be5c0b4ca2e9ec1090d02cba65713c43eb7f3d13f32431fda"
         }
-      ]
+      ],
+      "authored_scene_components": []
     },
     {
       "id": "consumables:consumable_11",
@@ -4715,7 +4751,7 @@
   ],
   "scene_artifact": {
     "path": "assets/cooling_lab_v1/scene.json",
-    "sha256": "297c000512b0ef212da55c1d59e33a71a9f76cc752614078468e80833ceda9cb"
+    "sha256": "3429e49ab9944914c9aba082f8be83d1a864f8704c6aa3ca37403cf0b8e459c0"
   },
   "added_sensor_requirement_rows": 3
 }
