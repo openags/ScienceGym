@@ -8,6 +8,7 @@ from shapely.geometry import Polygon,box,MultiPoint
 from shapely.affinity import translate
 from build_stock_cutplan import load_parts
 from geometry_tools import HERE,ROOT,sha,write_json,imported_scene
+from check_apparatus_frame import solid
 
 
 def sheet_errors(row,mesh):
@@ -33,6 +34,7 @@ def build():
         for s in artifact['source_artifacts']:check('source_'+s['path'],sha(ROOT/s['path'])==s['sha256'])
     by_asset={i['id']:i for i in supplies['items']};stock={a:load_parts(i['geometry']['path']) for a,i in by_asset.items()}
     frame=json.loads((HERE/'frame_stock.json').read_text());stock.update({i['id']:load_parts(i['geometry']['path']) for i in frame['items']})
+    cover_stock=json.loads((HERE/'cover_stock.json').read_text());stock.update({i['id']:load_parts(i['geometry']['path']) for i in cover_stock['items']})
     outputs={i['id']:load_parts(i['geometry']['path']) for i in apparatus['items']}
     seen=set()
     for row in plan['sheets']:
@@ -74,10 +76,12 @@ def build():
         changed={c['part'] for c in item['changes']}
         mounting=item['mounting'];changed.update(mounting['rebuilt_parts']+mounting['translated_parts'])
         frame=item['frame'];changed.update(frame['rebuilt_parts'])
+        cover=item['cover'];changed.update(cover['rebuilt_parts'])
         # GLB stores POSITION as float32; compare the exact serialized values,
         # not the float64 transforms used by the importer (up to 15 nm apart).
         expected=(set(original.geometry)-set(mounting['removed_legacy_parts']))|set(mounting['added_parts'])
         expected=(expected-set(frame['removed_legacy_parts']))|set(frame['added_parts'])
+        expected|=set(cover['added_parts'])
         check('only_declared_foil_mounting_and_frame_changed_'+identity,set(new)==expected and all(np.array_equal(new[n].vertices,original.geometry[n].vertices.astype(np.float32)) and np.array_equal(new[n].faces,original.geometry[n].faces) for n in set(new)&set(original.geometry)-changed))
         base=new[prefix+'acrylic_base'];foil=new[prefix+'mylar_base']
         check('full_base_coverage_'+identity,np.allclose(foil.bounds[:,:2],base.bounds[:,:2],atol=1e-7) and abs(foil.bounds[0,2]-base.bounds[1,2])<1e-8)
@@ -88,8 +92,10 @@ def build():
             # The fixed configuration is 1.65 m from the legacy origin, so its
             # float32 positions quantize more coarsely than the paired devices.
             quantization=float(np.spacing(np.float32(np.abs(m.vertices).max())))*2
-            base_radius=c['radius_m']+c['mesh_faceting_and_quantization_allowance_m']
-            check('wrap_gauge_and_lap_'+c['part'],m.is_watertight and radial.min()>=base_radius-quantization and abs(radial.max()-base_radius-.000024)<quantization and abs(m.extents[2]-under.extents[2])<quantization,position_quantization_m=quantization)
+            # The cover update replaces the old wrap with the independently
+            # checked, seam-separated template. Measure the current substrate.
+            radius=float(np.linalg.norm(under.vertices[:,:2]-center[:2],axis=1).max())
+            check('wrap_gauge_and_lap_'+c['part'],solid(m).is_volume and radial.min()>=radius-quantization and .000023<radial.max()-radial.min()<.000026 and abs(m.extents[2]-under.extents[2])<quantization,position_quantization_m=quantization)
             manager=trimesh.collision.CollisionManager();manager.add_object('substrate',under)
             check('foil_no_substrate_triangle_intersections_'+c['part'],not manager.in_collision_single(m))
         check('negative_legacy_thick_foil_'+identity,original.geometry[prefix+'mylar_base'].extents[2]>.0001)

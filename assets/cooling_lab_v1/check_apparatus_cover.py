@@ -106,7 +106,7 @@ def build():
     check('ring_has_geometric_path_to_platform',connected(edges,'film_spacer','lift_plate'))
     check('negative_no_invisible_support_without_lower_membrane',not connected(edges,'film_spacer','lift_plate',['cover_lower']))
     check('negative_no_hidden_ring_bond_without_lower_adhesive',not connected(edges,'film_spacer','lift_plate',['cover_lower_adhesive']))
-    check('candidate_not_installed_or_qualified',not record['integrated_in_lab'] and record['owner_acceptance'] is None and not record['details']['assembly_qualified'] and not record['details']['membrane_equilibrium_qualified'])
+    check('standalone_inspection_not_physical_qualification',record['standalone_inspection_artifact'] and record['owner_acceptance'] is None and not record['details']['assembly_qualified'] and not record['details']['membrane_equilibrium_qualified'])
     report=dict(passed=True,checks=checks,geometric_contacts=edges,solid_intersections=intersections,
         measured_lower_membrane_normal_gauge_m=gauges,physical_load_path_qualified=False,
         scope='Isolated nominal geometry, contact connectivity and retained failures only. No membrane equilibrium, adhesion, retention, dynamics or robot operation is established.',

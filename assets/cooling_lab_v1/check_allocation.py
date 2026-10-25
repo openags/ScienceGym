@@ -29,9 +29,13 @@ def inspect():
     check('pair_uses_two_distinct_initial_jacks',{r['physical_id'] for r in jacks}=={'lab_jack_white','lab_jack_black'})
     fasteners=next(c for c in report['components'] if c['label']=='height-adjuster mount fasteners')
     check('twenty_four_mount_fasteners_allocated',fasteners['required_quantity']==24 and fasteners['staged_candidates']['quantity']==24 and fasteners['quantity_deficit']==0)
-    for label,quantity in [('frame extrusion stock',4),('upright tube stock',4),('frame fasteners',84),('aluminum sheet stock',7)]:
+    for label,quantity in [('frame extrusion stock',4),('upright tube stock',4),('frame fasteners',84),('aluminum sheet stock',7),('aluminum angle stock',1),('shield attachment hardware',18),('film attachment adhesive stock',12)]:
         row=next(c for c in report['components'] if c['label']==label)
         check('actual_frame_stock_quantity_'+label,row['required_quantity']==quantity and row['staged_candidates']['quantity']==quantity and row['quantity_deficit']==0)
+    missing=copy.deepcopy(scene);asset=next(a for a in missing['assets'] if a['id']=='cover_adhesive_stock')
+    asset['part_names'].remove('raw_liner_12')
+    row=next(c for c in build_record(missing,readiness)['components'] if c['label']=='film attachment adhesive stock')
+    check('negative_missing_liner_invalidates_stock_unit',row['quantity_deficit']==1 and row['staged_candidates']['quantity']==11)
     missing=copy.deepcopy(scene);asset=next(a for a in missing['assets'] if a['id']=='frame_mount_hardware')
     asset['part_names'].remove('white_frame_bridge_left_1_tnut')
     row=next(c for c in build_record(missing,readiness)['components'] if c['label']=='frame fasteners')
@@ -85,7 +89,7 @@ def inspect():
             POOLS['heater'] = original
         check('negative_'+name+'_rejected', rejected)
     result = dict(schema_version=1, passed=all(c['passed'] for c in checks), checks=checks,
-                  negative_cases=11, scope='Inventory identities and selected quantities only; no task or stock sufficiency acceptance',
+                  negative_cases=12, scope='Inventory identities and selected quantities only; no task or stock sufficiency acceptance',
                   source_artifacts=[dict(path=str(p.relative_to(ROOT)), sha256=sha(p)) for p in
                       [HERE/'campaign_allocation.json', HERE/'check_allocation.py']])
     write_json(HERE/'allocation_checks.json', result)

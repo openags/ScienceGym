@@ -77,7 +77,7 @@ guarantee of general reliability.
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
-  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 87-point station screen records
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 90-point station screen records
   each position-only IK result and external obstacle conflicts, including 24
   supply/service approaches. Shoulder alignment, unused-arm retraction and
   proposed-camera clearance are screened. The
@@ -130,20 +130,20 @@ guarantee of general reliability.
   staged on the optical bench; Nicolet mounts, retention and optical alignment
   remain open. Geometry sliders inspect the selected rigid carrier; they do not
   implement robot manipulation or a calibrated optical instrument.
-  The scene has 74 instances; compound requirements and full campaign quantities
-  remain incomplete. Forty-two component requirements now bind to named staged
+  The scene has 77 instances; compound requirements and full campaign quantities
+  remain incomplete. Forty-five component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools
   remain the same physical instances. Staged assets are not executed preparation
   operations.
   Clamp installation/force and wire-tool compatibility remain unresolved.
 - The [campaign allocation](../../assets/cooling_lab_v1/campaign_allocation.json)
-  covers all 147 component requirements and eleven branches, with selected
-  quantities for seventeen core components and thirteen stock components; quantities
+  covers all 150 component requirements and eleven branches, with selected
+  quantities for seventeen core components and sixteen stock components; quantities
   for the remaining 117 are unknown. Two independent heater candidates now match the paired power requirement.
   Completed apparatus meshes and the fixed-configuration display are references,
   not prebuilt starting stock. The selected pair is reused by identity. The
-  [stock cut plan](../../assets/cooling_lab_v1/stock_cutplan.json) reserves 63
-  envelopes on 28 sheets/blanks, eight tube sections and four purchased profiles
+  [stock cut plan](../../assets/cooling_lab_v1/stock_cutplan.json) reserves 75
+  envelopes on 40 sheets/blanks, eight tube sections, four purchased profiles and six angle cuts
   using actual apparatus meshes.
   Copper, aluminum, foam, acrylic and hollow-tube stock are separately inspectable.
   The former undersized acrylic/Mylar and insufficient LDPE remain as rejected
@@ -231,7 +231,7 @@ guarantee of general reliability.
   a 51 mm PE support, film drape and 58 micrometre adhesive are explicit choices.
   All 29 candidate solids have positive closed geometry. The 205 geometric
   checks include actual film-normal gauge, contact connectivity, solid overlap
-  and section-hole checks; 25 browser checks retain 25 views. Neither membrane
+  and section-hole checks. The browser retains 25 views. Neither membrane
   equilibrium nor adhesion is qualified. The legacy invalid coating, copper
   winding and floating shield remain available for comparison. Actual section
   faces resolve misleading open-clipping interference without altering the
@@ -240,8 +240,15 @@ guarantee of general reliability.
   The selected platform grows to 180 mm square while retaining the jack bores.
   Its previous 170 mm size fails the foot-support counterexample. Nominal thread
   faceting intersections remain explicit, with no preload or physical retention
-  claim. This candidate is not integrated into the laboratory yet; initial
-  adhesive/angle/hardware stock, tools and all configurations remain next.
+  claim. All three laboratory display configurations now use the candidate,
+  with 50 μm LDPE in the fixed configuration and separate white/black coating
+  appearances. Thirty-one independent stock units include raw angle, eighteen
+  hardware pieces and twelve lined adhesive sheets for initial, fixed,
+  restoration and aperture attachments. Actual angle-cut containment and
+  film-normal gauge are checked. A retained failed world-coordinate export
+  demonstrates why thin meshes need local vertices and separate translations;
+  the prepared scene also checks for foil/substrate intersections. Ordinary
+  tools, adhesion, physical retention, reset stock and owner acceptance remain open.
 
 - A separate FTIR installation review now adds the 206 × 252 mm floor candidate
   and 38 ordinary mounting parts. Thermo site guide 269-158000 supplies the floor

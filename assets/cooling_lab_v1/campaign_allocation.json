@@ -6,11 +6,11 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "73ec681dcbde51293e70dba5a150a86a9278161fd6a2bf2d71fdf05a2166afba"
+      "sha256": "1549a51e8d5bc8d0948ad5d4ea21f49af2e5608873f59c3fba6ae7228b335f93"
     },
     {
       "path": "assets/cooling_lab_v1/readiness.json",
-      "sha256": "ee0e110efbdad56aa7671b31275aa93dbe581e48d5a985f0aff3e893d90bb1f4"
+      "sha256": "bf0fdbb16018fab43363c196ca9320fe886d921916de756b88ee060e5320299c"
     },
     {
       "path": "assets/cooling_lab_v1/pilot_contract.json",
@@ -30,7 +30,7 @@
     },
     {
       "path": "assets/cooling_lab_v1/stock_cutplan.json",
-      "sha256": "7ea303b18bc44a5c44cbf5edd7791cdf71f341ff12ba7ab9232830dd5a0d004b"
+      "sha256": "ad30418e10c551b82fc973e5d5661524f674a1066e5d7ef2989090bffebaf123"
     },
     {
       "path": "assets/cooling_lab_v1/build_campaign_allocation.py",
@@ -484,7 +484,7 @@
       "initial_state_qualified": false,
       "geometry": {
         "path": "assets/cooling_lab_v1/geometry/prepared_cooler_white.glb",
-        "sha256": "cf2480c109a782c0f986496a1b5094566bd9984278024f02320fa48218c40cbf"
+        "sha256": "d1c478d1e0db682c2fe9852af70a8e81959eca4889c9e1b10225662373058654"
       },
       "station": "outdoor_white",
       "position_m": [
@@ -502,7 +502,7 @@
       "initial_state_qualified": false,
       "geometry": {
         "path": "assets/cooling_lab_v1/geometry/prepared_cooler_black.glb",
-        "sha256": "a86e55181c6c285663ec6a95615b42fb4e6de12666187954de27abee20270240"
+        "sha256": "df8846d5dbaaeff2bc4ec5fbdb6e5cf5b2ff254c66aa2e367c53620f78ec196c"
       },
       "station": "outdoor_black",
       "position_m": [
@@ -520,7 +520,7 @@
       "initial_state_qualified": false,
       "geometry": {
         "path": "assets/cooling_lab_v1/geometry/prepared_cooler_fixed.glb",
-        "sha256": "54f9549b706311622d378420f6f36f40cc729285513390fffde612167667d048"
+        "sha256": "6bd26154967d610d61da59a94d326e2edc73532cdbc725f9a7a066228b16d06b"
       },
       "station": "assembly_black",
       "position_m": [
@@ -635,6 +635,60 @@
         -4.3,
         3.97,
         0.6675
+      ]
+    },
+    {
+      "id": "cover_angle_stock",
+      "role": "staged_candidate",
+      "label": "屏蔽罩固定角铝原料 · 250 mm 未加工角材",
+      "note": "已放置的候选实例；未验收配置、连接或物理行为",
+      "initial_stock_credit": true,
+      "initial_state_qualified": false,
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/prepared_cover_angle_stock.glb",
+        "sha256": "2a5119c6054a2018296c95c6528b2f49408fcc87b868b0ae9142cf19cac64a8d"
+      },
+      "station": "fabrication_storage_shelf_2",
+      "position_m": [
+        -4.61,
+        3.88,
+        1.1175
+      ]
+    },
+    {
+      "id": "cover_mount_hardware",
+      "role": "staged_candidate",
+      "label": "屏蔽罩普通紧固件 · 12 个 M3×6 螺钉 + 6 个垫圈",
+      "note": "已放置的候选实例；未验收配置、连接或物理行为",
+      "initial_stock_credit": true,
+      "initial_state_qualified": false,
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+        "sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+      },
+      "station": "fabrication_storage_shelf_1",
+      "position_m": [
+        -4.3,
+        3.86,
+        0.6675
+      ]
+    },
+    {
+      "id": "cover_adhesive_stock",
+      "role": "staged_candidate",
+      "label": "薄膜与顶盖连接胶膜 · 12 张带离型纸的待裁原料",
+      "note": "已放置的候选实例；未验收配置、连接或物理行为",
+      "initial_stock_credit": true,
+      "initial_state_qualified": false,
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+        "sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+      },
+      "station": "assembly_white",
+      "position_m": [
+        3.25,
+        3.38,
+        0.9
       ]
     },
     {
@@ -1742,7 +1796,7 @@
   ],
   "stock_allocation": {
     "path": "assets/cooling_lab_v1/stock_cutplan.json",
-    "sha256": "7ea303b18bc44a5c44cbf5edd7791cdf71f341ff12ba7ab9232830dd5a0d004b"
+    "sha256": "ad30418e10c551b82fc973e5d5661524f674a1066e5d7ef2989090bffebaf123"
   },
   "components": [
     {
@@ -4031,6 +4085,43 @@
       "qualification": false
     },
     {
+      "id": "consumables:consumable_02:component_3",
+      "resource_id": "consumables:consumable_02",
+      "label": "aluminum angle stock",
+      "required_quantity": 1,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "individual_length",
+        "quantity": 1,
+        "members": [
+          {
+            "asset_id": "cover_angle_stock",
+            "parts": [
+              "raw_angle_250mm"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_angle_stock.glb",
+            "geometry_sha256": "2a5119c6054a2018296c95c6528b2f49408fcc87b868b0ae9142cf19cac64a8d"
+          }
+        ],
+        "scope": "Supplier nominal 12.7 × 12.7 × 1.5875 mm 6063-T52 section; selected 250 mm cut stock is not a confirmed paper purchase. Six 10 mm cuts require cutting, deburring and drilling.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "branch_ids": [
+        "BUILD_PAIR",
+        "OPT_HEMISPHERICAL",
+        "OPT_ANGULAR",
+        "TRACKED_STAGNATION",
+        "PID_POWER",
+        "FIXED_LDPE",
+        "MAP_CLEAR_DAY",
+        "MAP_CLEAR_NIGHT",
+        "MAP_HAZY_NOON"
+      ],
+      "complete": false,
+      "qualification": false
+    },
+    {
       "id": "consumables:consumable_03:component_1",
       "resource_id": "consumables:consumable_03",
       "label": "solid PE tube",
@@ -6060,6 +6151,179 @@
       "qualification": false
     },
     {
+      "id": "consumables:consumable_12:component_5",
+      "resource_id": "consumables:consumable_12",
+      "label": "shield attachment hardware",
+      "required_quantity": 18,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "fastener_or_washer",
+        "quantity": 18,
+        "members": [
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_base_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_base_screw_2"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_base_screw_3"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_base_washer_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_base_washer_2"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_base_washer_3"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_side_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_side_screw_2"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "white_shield_side_screw_3"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_base_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_base_screw_2"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_base_screw_3"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_base_washer_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_base_washer_2"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_base_washer_3"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_side_screw_1"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_side_screw_2"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          },
+          {
+            "asset_id": "cover_mount_hardware",
+            "parts": [
+              "black_shield_side_screw_3"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+            "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+          }
+        ],
+        "scope": "18 independent starting-stock identities for the paired apparatus; no reuse of completed display objects or physical thread credit.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "branch_ids": [
+        "BUILD_PAIR",
+        "OPT_HEMISPHERICAL",
+        "OPT_ANGULAR",
+        "TRACKED_STAGNATION",
+        "PID_POWER",
+        "FIXED_LDPE",
+        "MAP_CLEAR_DAY",
+        "MAP_CLEAR_NIGHT",
+        "MAP_HAZY_NOON"
+      ],
+      "complete": false,
+      "qualification": false
+    },
+    {
       "id": "consumables:consumable_13:component_1",
       "resource_id": "consumables:consumable_13",
       "label": "masking tape",
@@ -7778,6 +8042,142 @@
       ],
       "complete": false,
       "qualification": false
+    },
+    {
+      "id": "additional_reconstructed_materials:film_attachment_stock:component_1",
+      "resource_id": "additional_reconstructed_materials:film_attachment_stock",
+      "label": "film attachment adhesive stock",
+      "required_quantity": 12,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "lined_adhesive_sheet",
+        "quantity": 12,
+        "members": [
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_01",
+              "raw_adhesive_01"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_02",
+              "raw_adhesive_02"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_03",
+              "raw_adhesive_03"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_04",
+              "raw_adhesive_04"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_05",
+              "raw_adhesive_05"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_06",
+              "raw_adhesive_06"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_07",
+              "raw_adhesive_07"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_08",
+              "raw_adhesive_08"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_09",
+              "raw_adhesive_09"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_10",
+              "raw_adhesive_10"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_11",
+              "raw_adhesive_11"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          },
+          {
+            "asset_id": "cover_adhesive_stock",
+            "parts": [
+              "raw_liner_12",
+              "raw_adhesive_12",
+              "additional_top_release_liner"
+            ],
+            "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+            "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+          }
+        ],
+        "scope": "Selected 160 × 160 mm cuts from 9471LE roll, not a manufacturer pre-cut SKU. 58 μm adhesive / 102 μm liner are typical TDS values. Top release cover and stacking are packaging hypotheses; porous-PE compatibility, application/removal and retry stock unqualified.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "branch_ids": [
+        "BUILD_PAIR",
+        "TRACKED_STAGNATION",
+        "PID_POWER",
+        "FIXED_LDPE",
+        "MAP_CLEAR_DAY",
+        "MAP_CLEAR_NIGHT",
+        "MAP_HAZY_NOON"
+      ],
+      "complete": false,
+      "qualification": false
     }
   ],
   "branches": [
@@ -7808,6 +8208,7 @@
         }
       ],
       "required_resource_ids": [
+        "additional_reconstructed_materials:film_attachment_stock",
         "additional_reconstructed_materials:reversible_emitter_jig",
         "consumables:consumable_01",
         "consumables:consumable_02",
@@ -8352,6 +8753,7 @@
         }
       ],
       "required_resource_ids": [
+        "additional_reconstructed_materials:film_attachment_stock",
         "additional_reconstructed_materials:reversible_emitter_jig",
         "consumables:consumable_01",
         "consumables:consumable_02",
@@ -8529,6 +8931,7 @@
         }
       ],
       "required_resource_ids": [
+        "additional_reconstructed_materials:film_attachment_stock",
         "additional_reconstructed_materials:reversible_emitter_jig",
         "consumables:consumable_01",
         "consumables:consumable_02",
@@ -8672,6 +9075,7 @@
         }
       ],
       "required_resource_ids": [
+        "additional_reconstructed_materials:film_attachment_stock",
         "additional_reconstructed_materials:reversible_emitter_jig",
         "consumables:consumable_01",
         "consumables:consumable_02",
@@ -8843,6 +9247,7 @@
         }
       ],
       "required_resource_ids": [
+        "additional_reconstructed_materials:film_attachment_stock",
         "additional_reconstructed_materials:fine_wire_transition",
         "additional_reconstructed_materials:reversible_emitter_jig",
         "consumables:consumable_01",
@@ -9015,6 +9420,7 @@
         }
       ],
       "required_resource_ids": [
+        "additional_reconstructed_materials:film_attachment_stock",
         "additional_reconstructed_materials:fine_wire_transition",
         "additional_reconstructed_materials:reversible_emitter_jig",
         "consumables:consumable_01",
@@ -9187,6 +9593,7 @@
         }
       ],
       "required_resource_ids": [
+        "additional_reconstructed_materials:film_attachment_stock",
         "additional_reconstructed_materials:fine_wire_transition",
         "additional_reconstructed_materials:reversible_emitter_jig",
         "consumables:consumable_01",
@@ -9265,11 +9672,11 @@
     }
   ],
   "counts": {
-    "scene_instances": 74,
+    "scene_instances": 77,
     "reference_only_instances": 4,
-    "component_requirements": 147,
-    "selected_quantity_components": 30,
-    "components_with_staged_bindings": 56,
+    "component_requirements": 150,
+    "selected_quantity_components": 33,
+    "components_with_staged_bindings": 59,
     "quantified_pool_deficit": 0,
     "unallocated_component_quantities": 117,
     "qualified_branches": 0,

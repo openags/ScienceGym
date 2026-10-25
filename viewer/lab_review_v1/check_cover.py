@@ -51,20 +51,20 @@ def run(url,browser):
         page.locator('#cover-section').check();restored=capture('candidate_section_restored')
         check('clipping_restores_same_pixels',np.max(abs(restored-clipped))<=1)
         text=page.locator('body').inner_text()
-        check('unaccepted_inference_scope_visible',all(t in text for t in ['尚未替换实验室模型','工程推断','不代表力学平衡','0.1 μm']))
+        check('unaccepted_inference_scope_visible',all(t in text for t in ['已接入三种展示构型','工程推断','不代表力学平衡','0.1 μm','50 μm LDPE']))
         page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(150)
         check('mobile_no_overflow',page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
         check('no_browser_errors',not errors)
-        for name,path in [('candidate','**/geometry/apparatus_cover_candidate.glb'),('sections','**/geometry/apparatus_cover_sections.glb'),('legacy','**/geometry/cover_legacy_rejected.glb'),('source','**/apparatus_cover_sources.json')]:
+        for name,path in [('candidate','**/geometry/apparatus_cover_candidate.glb'),('sections','**/geometry/apparatus_cover_sections.glb'),('legacy','**/geometry/cover_legacy_rejected.glb'),('source','**/apparatus_cover_sources.json'),('stock','**/cover_stock.json')]:
             page.route(path,lambda route:route.fulfill(status=200,body='stale content'));page.reload()
             page.wait_for_function('document.documentElement.dataset.coverLoaded === "error"')
             check('stale_'+name+'_fails_closed',page.locator('#lift-viewport canvas').count()==0 and bool(page.locator('#lift-error').inner_text()))
             page.unroute(path)
         b.close()
-    paths=[HERE/n for n in ['cover.html','cover.js','check_cover.py','lift.css','style.css']]+[ROOT/'assets/cooling_lab_v1'/n for n in ['apparatus_cover_candidate.json','apparatus_cover_checks.json','apparatus_cover_sources.json','cover_legacy_rejected.json']]
+    paths=[HERE/n for n in ['cover.html','cover.js','check_cover.py','lift.css','style.css']]+[ROOT/'assets/cooling_lab_v1'/n for n in ['apparatus_cover_candidate.json','apparatus_cover_checks.json','apparatus_cover_sources.json','cover_legacy_rejected.json','apparatus_stock_reconciliation.json','cover_stock_checks.json']]
     report=dict(passed=True,checks=checks,captures=captures,
         source_artifacts=[dict(path=str(f.relative_to(ROOT)),sha256=sha(f)) for f in paths],
-        scope='Isolated static cover review, clipping and failed-source handling only; not integrated laboratory or physical qualification')
+        scope='Static cover inspection with pinned three-configuration integration and stock evidence; clipping and failed-source handling only, not physical qualification')
     (HERE/'COVER_VERIFICATION.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(dict(passed=True,checks=len(checks),captures=len(captures))))
 

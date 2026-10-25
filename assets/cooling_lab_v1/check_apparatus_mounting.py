@@ -31,7 +31,7 @@ def build():
         lower,upper=[parts[prefix+f'L200_M__solid_{i:03d}'] for i in [1,0]]
         check('base_foil_jack_platform_contact_planes_'+identity,
               abs(base.bounds[1,2]-foil.bounds[0,2])<2e-7 and abs(foil.bounds[1,2]-lower.bounds[0,2])<2e-7 and abs(upper.bounds[1,2]-platform.bounds[0,2])<2e-7)
-        check('platform_still_170x170x5_'+identity,np.allclose(platform.extents,[.17,.17,.005],atol=2e-7))
+        check('platform_enlarged_for_ordinary_shield_angles_'+identity,np.allclose(platform.extents,[.18,.18,.005],atol=2e-7))
         check('foam_supported_by_new_platform_'+identity,abs(parts[prefix+'foam_1'].bounds[0,2]-platform.bounds[1,2])<2e-7)
         original=imported_scene('assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',prefix=prefix)
         if prefix+'solar_reflector' in parts:

@@ -15,8 +15,8 @@ INTERFACES={
  'coating':['tools:coating_station','consumables:consumable_07','consumables:consumable_13','facility:COATING','facility:WASTE'],
  'base':['equipment:COOLER','consumables:consumable_01','consumables:consumable_04','consumables:consumable_10','consumables:consumable_12','tools:fastener_driver'],
  'emitter':['equipment:COOLER','consumables:consumable_01','consumables:consumable_03','additional_reconstructed_materials:reversible_emitter_jig'],
- 'film':['equipment:COOLER','consumables:consumable_05','consumables:consumable_06','tools:film_jig'],
- 'shield':['equipment:COOLER','consumables:consumable_09','consumables:consumable_02'],
+ 'film':['equipment:COOLER','consumables:consumable_05','consumables:consumable_06','tools:film_jig','additional_reconstructed_materials:film_attachment_stock'],
+ 'shield':['equipment:COOLER','consumables:consumable_09','consumables:consumable_02','consumables:consumable_12','additional_reconstructed_materials:film_attachment_stock'],
  'reflector':['equipment:COOLER','consumables:consumable_02','tools:fastener_driver'],
  'bath_lid':['equipment:BATH'],
  'bath_fill':['equipment:BATH','additional_reconstructed_materials:bath_water_and_fill_vessel','facility:WET_SERVICES'],
@@ -60,10 +60,10 @@ DECOMPOSE={
  'tools:wire_stripper_and_driver':['fine-wire compatible stripping tool','terminal slotted driver','cutting tool','inspection tool'],
  'tools:cutting_fixture':['ordinary machine workholding','cutting tool','deburring tool'],
  'tools:storage_supports':['accepted sample storage','rejected sample storage','reference standard storage','caps and plugs'],
- 'consumables:consumable_02':['aluminum sheet stock','aluminum tube stock'],
+ 'consumables:consumable_02':['aluminum sheet stock','aluminum tube stock','aluminum angle stock'],
  'consumables:consumable_07':['white coating','black coating'],
  'consumables:consumable_11':['sensor leads','heater force/sense leads','instrument data cables','power leads'],
- 'consumables:consumable_12':['frame fasteners','accessory fasteners','electrical termination fasteners','height-adjuster mount fasteners'],
+ 'consumables:consumable_12':['frame fasteners','accessory fasteners','electrical termination fasteners','height-adjuster mount fasteners','shield attachment hardware'],
  'consumables:consumable_13':['masking tape','cleaning supplies','wipes','compatible waste containers'],
  'additional_reconstructed_materials:calibration_block_stock':['copper block raw stock','machined block state','drill tooling'],
  'additional_reconstructed_materials:fine_wire_transition':['compatible conductor pairs','K-type connector pairs or transition terminals','insulation and strain relief'],
@@ -145,6 +145,11 @@ def build():
         else:
             staged['bindings'].append(dict(resource_id=item['resource_id'],component_label=item['component_label'],unit='fastener_or_pad_package',
                 members=[dict(asset_id=item['id'],parts=u['parts']) for u in item['units']],scope=item['scope']))
+    cover_stock=json.loads((HERE/'cover_stock.json').read_text())
+    for item in cover_stock['items']:
+        staged['bindings'].append(dict(resource_id=item['resource_id'],component_label=item['component_label'],
+            unit='lined_adhesive_sheet' if item['id']=='cover_adhesive_stock' else 'individual_length' if item['id']=='cover_angle_stock' else 'fastener_or_washer',
+            members=[dict(asset_id=item['id'],parts=u['parts']) for u in item['units']],scope=item['scope']))
     by_component={(r['resource_id'],c['label']):c for r in requirements for c in r['components']}
     assets={a['id']:a for a in scene['assets']};seen=set()
     for binding in staged['bindings']:
@@ -175,7 +180,7 @@ def build():
               disposition='Inspect against ordinary-tool-only contract; old text remains historical, not current runtime authority'))
     branch_rows=[dict(id=b['id'],title=b['title'],manual_step_ids=[s['step_id'] for s in step_rows if s['operation_id'] in b['operation_ids']],
                      status='requirements_only_no_humanoid_execution',qualified_trials=0) for b in branches]
-    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',HERE/'lift_mount_stock.json',HERE/'frame_stock.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
+    source_paths=[HERE/'pilot_contract.json',ROOT/c['robot']['selection_record'],HERE/'scene.json',HERE/'inventory.json',HERE/'staged_supply_bindings.json',HERE/'angular_accessories.json',HERE/'lift_mount_stock.json',HERE/'frame_stock.json',HERE/'cover_stock.json',TASK/'operations.json',TASK/'interaction_contracts.json',TASK/'branches.json',Path(__file__)]
     active=[r for r in requirements if r['disposition']!='historical_embodiment_reference']
     out=dict(schema_version=1,status='asset_phase_incomplete',visibility='author_and_reviewer_only_not_actor_input',
       source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in source_paths],

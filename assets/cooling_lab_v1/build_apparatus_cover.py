@@ -200,13 +200,14 @@ def build():
     sections.update(plane_normal=[0,1,0],plane_offset_m=offset,source_geometry=geometry,items=cap_details,uncut_parts=uncut,
                     scope='Exact planar display sections of exported positive solids; not added physical parts')
     record=dict(schema_version=1,id='cover_candidate',geometry=geometry,sections=sections,
-        details=details,integrated_in_lab=False,owner_acceptance=None,
+        details=details,standalone_inspection_artifact=True,owner_acceptance=None,
+        laboratory_integration_record='assets/cooling_lab_v1/apparatus_stock_reconciliation.json',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in
             [Path(__file__),HERE/'apparatus_cover_sources.json',HERE/'cover_legacy_rejected.json',HERE/'build_apparatus_mounting.py',HERE/'build_stock_cutplan.py',HERE/'requirements.txt',
              HERE/'build_cover_retention.py',HERE/'build_apparatus_frame.py',HERE/'apparatus_frame_sources.json',HERE/'apparatus_mount_sources.json']],
         limits=ledger['remaining'])
     write_json(HERE/'apparatus_cover_candidate.json',record)
-    print(json.dumps(dict(parts=len(result),integrated_in_lab=False,assembly_qualified=False)))
+    print(json.dumps(dict(parts=len(result),standalone_inspection_artifact=True,assembly_qualified=False)))
 
 
 if __name__=='__main__':build()

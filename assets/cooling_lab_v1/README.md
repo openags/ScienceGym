@@ -10,7 +10,7 @@ cover and extraction controls. It retains failed fit results; it is not an
 accepted operating configuration or robot animation.
 The existing local server uses port 8769. The scene contains the complete
 official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
-selected OMAX ProtoMAX waterjet. Geometry sliders and the 87 per-point static
+selected OMAX ProtoMAX waterjet. Geometry sliders and the 90 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
@@ -18,7 +18,7 @@ inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
 The current derivative retains the official camera arms and replaces both
 collar halves, without rescaling the robot or cameras. Exact triangle checks
-screen rigid clearance at sampled finger configurations and all 87 station
+screen rigid clearance at sampled finger configurations and all 90 station
 postures. Compliant lining, preload, retention and cables remain unresolved, so
 these attachments are hidden by default and do not count as an installation.
 The viewer can display them for fit review, and records separate attachment
@@ -95,7 +95,7 @@ from displaying an unverified model.
 The three completed-state reference configurations now include the source-scale
 jack and a nominal central mounting. Four measured M3 source centers at
 X ±37.4904 / Y ±12.4968 mm connect a 6 mm acrylic base using M3×10 socket-head
-screws and 9 mm OD large washers; a 170 × 170 × 5 mm aluminum platform uses
+screws and 9 mm OD large washers; the cover candidate's 180 × 180 × 5 mm aluminum platform uses
 M3×8 ISO 10642 countersunk screws. Actual 3.4 mm through-holes and 6.72 mm
 countersinks are modeled. The acrylic has straight holes, not countersinks.
 The source plate thickness at these holes is 5.588 mm; nominal insertion is
@@ -175,7 +175,7 @@ is an exploded inspection, not the jack's travel or a robot operation.
   <chromium-executable>` against the same localhost server for browser evidence.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 87 separately tested palm-position targets, including staged supply approaches, two heater instances and two angular-accessory approaches, with proposed camera-clearance screening; records
+- `workspace_checks.json`: 90 separately tested palm-position targets, including staged supply approaches, two heater instances and two angular-accessory approaches, with proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
@@ -199,16 +199,16 @@ The latest selection is G1 29DoF + Inspire FTP, under the owner's Unitree-body /
 open-hand instruction. The lab now places that complete source-derived combination; H2 and Dex5-S
 remain unplaced historical inventory references.
 The official integrated candidate can be inspected at
-`viewer/robot_resource_review_v1/index.html`. The 66 inventory rows include
+`viewer/robot_resource_review_v1/index.html`. The 67 inventory rows include
 three superseded robot/hand references; these are not additional required robots.
-The active scope is 63 resource groups / 147 component needs. The viewer keeps
+The active scope is 64 resource groups / 150 component needs. The viewer keeps
 three historical choices in a separate filter and excludes them from current
-missing-asset counts. Of 63 active groups, 62 have partial geometry and one
+missing-asset counts. Of 64 active groups, 63 have partial geometry and one
 have none; this is not a completeness percentage.
 
 ## Added ordinary supplies and collar revision
 
-The scene now contains 74 placed instances. `supplies.json` binds twenty-eight
+The scene now contains 77 placed instances. `supplies.json` binds twenty-eight
 additional reconstruction types: ST-450, AA.SA.T.6 tweezers, Wiha 26015,
 Bürkle 7102-2000, the source-identified ambient RTD, eight separate K-connector
 pairs in an ordinary tray, three film-stock types, masking tape, unmachined
@@ -266,7 +266,7 @@ can target is a selected release approach above its rim, not a low rim grasp or
 a demonstrated pedal/lid/disposal sequence.
 
 `readiness.json` combines `staged_supply_bindings.json` with optical-accessory,
-jack and frame stock records to bind forty-two component needs to actual scene
+jack, frame and cover stock records to bind forty-five component needs to actual scene
 instances and named parts. Film sheets and connector pairs are counted
 individually; the same two tweezers are explicitly shared across handling roles.
 `readiness.json` pins these geometry identities and exposes staged quantities
@@ -299,8 +299,8 @@ The inspector links this comparison for each new asset. Associations are not
 accepted operation-to-part bindings. Missing reference views and all acceptance
 decisions remain explicit; CAD download listings are not downloaded CAD.
 
-`campaign_allocation.json` accounts for all 147 active component requirements
-and the eleven branches. Seventeen core equipment/probe components and thirteen stock
+`campaign_allocation.json` accounts for all 150 active component requirements
+and the eleven branches. Seventeen core equipment/probe components and sixteen stock
 components have explicit selected quantities; the other 117 retain
 unknown required quantities. These
 counts describe allocation work, not asset completeness. The paired power branch
@@ -317,8 +317,9 @@ it also reproduces the previous missing-second-heater deficit. The interactive
 review at `viewer/lab_review_v1/allocation.html` filters by branch, component and
 unallocated demand, and rejects a report whose source hashes have changed.
 
-`stock_cutplan.json` reserves 63 cut envelopes or witness regions on 28 actual
-stock sheets/blanks, eight hollow-tube sections and four purchased profiles. It measures the selected apparatus
+`stock_cutplan.json` reserves 75 cut envelopes or witness regions on 40 actual
+stock sheets/blanks, eight hollow-tube sections, four purchased profiles and six
+cuts from one angle length. It measures the selected apparatus
 meshes, keeps 1 mm edge/cut allowances, and separately reserves fresh nano-PE
 for white-apparatus restoration and film stock for optical witnesses. The
 allocation page displays each sheet to scale. These envelopes are not executable
@@ -402,11 +403,13 @@ These three stock assets are inspectable individually in the main viewer and
 their reservations appear in the allocation page. They add no assembly,
 campaign-success or asset-acceptance credit.
 
-## Isolated cover candidate
+## Cover candidate, configuration integration and stock
 
-`viewer/lab_review_v1/cover.html` compares an isolated 29-part candidate with
-the retained 14-part legacy thermal group. It has not replaced the laboratory
-apparatus. The source ledger preserves the published tube/ring diameters,
+`viewer/lab_review_v1/cover.html` compares a standalone 29-part inspection candidate with
+the retained 14-part legacy thermal group. The three laboratory apparatus now
+use that structure, retaining separate white/black coatings and rebuilding the
+fixed configuration at 50 μm LDPE instead of the tracked 16 μm films.
+The source ledger preserves the published tube/ring diameters,
 film gauge and 57 mm shield height. A 51 mm PE support and a lower membrane
 draping under the wider ring are explicit reconstruction choices. Selected
 58 micrometre 9471LE annular adhesive layers are not the paper's identified
@@ -440,9 +443,24 @@ thread-envelope pairs have small faceting intersections recorded separately;
 these do not establish helical contact, tapping, preload or retention. Flat
 angle legs bear tangentially on the curved shield; local deformation remains open.
 
-Run `build_apparatus_cover.py`, `check_apparatus_cover.py`, then
-`viewer/lab_review_v1/check_cover.py --browser <chromium-executable>` for this
-separate review. Current evidence contains 205 geometry checks and 25 browser
-checks with 25 captures. Physical shield/aperture retention, initial adhesive,
-angle and hardware stock, manufacturing tools, all configuration variants and laboratory integration
-remain to be completed. No owner or execution gate is closed by this candidate.
+`cover_stock.json` adds 31 independent stock units: a selected 250 mm angle
+length, twelve M3×6 screws, six large washers and twelve lined adhesive sheets.
+Six actual finished angle meshes fit separate 10 mm cuts with 1 mm allowances.
+The 160 mm adhesive squares reserve four initial film bonds, four LDPE
+replacement bonds, two white-restoration bonds and two aperture bonds. Typical
+58 μm adhesive and 102 μm liner values come from the selected TDS; cut-sheet
+format, stack packaging and an extra top release liner are explicit hypotheses.
+The adhesive requirement has its own source-bound inventory row. Removing one
+liner invalidates that stock unit rather than leaving the quantity sufficient.
+
+World-coordinate float32 export initially made the fixed configuration's foil
+intersect its foam. `cover_export_rejected.json` retains those actual failed
+meshes. Local vertices with separate node translations preserve precision in
+both apparatus and prepared scene exports; film gauge is unchanged. The stock
+and scene checks reject recurrence of the real intersection.
+
+Use `rebuild_review.py --browser <chromium-executable>` for dependency-ordered
+reconstruction, configuration/stock checks and browser evidence. Physical
+shield/aperture retention, ordinary manufacturing and application tools,
+membrane/contact/adhesive behaviour, repeat stock and owner acceptance remain
+open. No execution gate is closed by these static candidates.

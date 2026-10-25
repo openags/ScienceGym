@@ -13,11 +13,11 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "73ec681dcbde51293e70dba5a150a86a9278161fd6a2bf2d71fdf05a2166afba"
+      "sha256": "1549a51e8d5bc8d0948ad5d4ea21f49af2e5608873f59c3fba6ae7228b335f93"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "d9b8673d9d1ff19a560de158c784565de8ff1da9713aee30b1212efa5d353544"
+      "sha256": "07b4934dc801565d89a426a142e0c58c2cf08ad6facec0be13f584504548f038"
     },
     {
       "path": "assets/cooling_lab_v1/staged_supply_bindings.json",
@@ -29,11 +29,15 @@
     },
     {
       "path": "assets/cooling_lab_v1/lift_mount_stock.json",
-      "sha256": "db5ecc516a3a7f76c0002e226214988ed9380fded0e22b77c5dd1548c31e751e"
+      "sha256": "eb924957bdabc949125b093f2356964ab37dd06a74ad61d830208cfeee12b1b2"
     },
     {
       "path": "assets/cooling_lab_v1/frame_stock.json",
-      "sha256": "f33c552e56a220005f7e5d90bc8362c014cd3547988762ec8c158aecee1e7436"
+      "sha256": "fa1ff08d41d3dfac56a62af1776a8628c1082465a4eb0a4c9bc74ff9aae96774"
+    },
+    {
+      "path": "assets/cooling_lab_v1/cover_stock.json",
+      "sha256": "a8e841f4cc1e28be7146534f28635d24430624af4debc4f6b8bf3a04d115dfe1"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -49,7 +53,7 @@
     },
     {
       "path": "assets/cooling_lab_v1/build_readiness.py",
-      "sha256": "465d47d6a2887d303f799de366ff4f79bff7cb47cf197373bfd7103140977543"
+      "sha256": "8490afa0db8b1c8ae9d32b3ef4ed6b9bdcc8de204bef1b41a7984427f2313231"
     }
   ],
   "policy": {
@@ -173,18 +177,18 @@
     }
   },
   "counts": {
-    "requirement_groups": 66,
-    "decomposed_component_requirements": 150,
-    "active_requirement_groups": 63,
+    "requirement_groups": 67,
+    "decomposed_component_requirements": 153,
+    "active_requirement_groups": 64,
     "historical_requirement_groups": 3,
-    "active_component_requirements": 147,
+    "active_component_requirements": 150,
     "active_groups_without_geometry": 1,
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 74,
-    "groups_with_partial_geometry": 62,
-    "components_with_staged_unit_bindings": 42,
+    "scene_instances": 77,
+    "groups_with_partial_geometry": 63,
+    "components_with_staged_unit_bindings": 45,
     "qualified_humanoid_branches": 0
   },
   "requirements": [
@@ -2149,10 +2153,33 @@
             "scope": "Identified uncut candidate stock. Dimensions are source facts or explicit selections; nominal cut envelopes do not qualify fabrication, tools, material grade or the complete campaign.",
             "campaign_sufficiency_accepted": false
           }
+        },
+        {
+          "id": "consumables:consumable_02:component_3",
+          "label": "aluminum angle stock",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "individual_length",
+            "members": [
+              {
+                "asset_id": "cover_angle_stock",
+                "parts": [
+                  "raw_angle_250mm"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_angle_stock.glb",
+                "geometry_sha256": "2a5119c6054a2018296c95c6528b2f49408fcc87b868b0ae9142cf19cac64a8d"
+              }
+            ],
+            "scope": "Supplier nominal 12.7 × 12.7 × 1.5875 mm 6063-T52 section; selected 250 mm cut stock is not a confirmed paper purchase. Six 10 mm cuts require cutting, deburring and drilling.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
       "scene_instances": [
         "frame_machining_stock",
+        "cover_angle_stock",
         "aluminum_sheet_stock",
         "aluminum_tube_stock"
       ],
@@ -4077,11 +4104,170 @@
             "scope": "24 separately counted ordinary mounting pieces for the pair; no preload, thread or assembly qualification",
             "campaign_sufficiency_accepted": false
           }
+        },
+        {
+          "id": "consumables:consumable_12:component_5",
+          "label": "shield attachment hardware",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 18,
+            "unit": "fastener_or_washer",
+            "members": [
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_base_screw_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_base_screw_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_base_screw_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_base_washer_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_base_washer_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_base_washer_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_side_screw_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_side_screw_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "white_shield_side_screw_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_base_screw_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_base_screw_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_base_screw_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_base_washer_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_base_washer_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_base_washer_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_side_screw_1"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_side_screw_2"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              },
+              {
+                "asset_id": "cover_mount_hardware",
+                "parts": [
+                  "black_shield_side_screw_3"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb",
+                "geometry_sha256": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f"
+              }
+            ],
+            "scope": "18 independent starting-stock identities for the paired apparatus; no reuse of completed display objects or physical thread credit.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
       "scene_instances": [
         "lift_mount_hardware",
         "frame_mount_hardware",
+        "cover_mount_hardware",
         "workholding_kit"
       ],
       "authored_components": [],
@@ -5462,6 +5648,144 @@
       "instance_count_accepted": false,
       "completeness_accepted": false,
       "disposition": "review_required"
+    },
+    {
+      "resource_id": "additional_reconstructed_materials:film_attachment_stock",
+      "label": "film attachment adhesive stock",
+      "components": [
+        {
+          "id": "additional_reconstructed_materials:film_attachment_stock:component_1",
+          "label": "film attachment adhesive stock",
+          "required_quantity": null,
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 12,
+            "unit": "lined_adhesive_sheet",
+            "members": [
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_01",
+                  "raw_adhesive_01"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_02",
+                  "raw_adhesive_02"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_03",
+                  "raw_adhesive_03"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_04",
+                  "raw_adhesive_04"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_05",
+                  "raw_adhesive_05"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_06",
+                  "raw_adhesive_06"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_07",
+                  "raw_adhesive_07"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_08",
+                  "raw_adhesive_08"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_09",
+                  "raw_adhesive_09"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_10",
+                  "raw_adhesive_10"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_11",
+                  "raw_adhesive_11"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              },
+              {
+                "asset_id": "cover_adhesive_stock",
+                "parts": [
+                  "raw_liner_12",
+                  "raw_adhesive_12",
+                  "additional_top_release_liner"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb",
+                "geometry_sha256": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da"
+              }
+            ],
+            "scope": "Selected 160 × 160 mm cuts from 9471LE roll, not a manufacturer pre-cut SKU. 58 μm adhesive / 102 μm liner are typical TDS values. Top release cover and stacking are packaging hypotheses; porous-PE compatibility, application/removal and retry stock unqualified.",
+            "campaign_sufficiency_accepted": false
+          }
+        }
+      ],
+      "scene_instances": [
+        "cover_adhesive_stock"
+      ],
+      "authored_components": [],
+      "selected_minimum_quantity": null,
+      "quantity_basis": "Not yet allocated",
+      "instance_count_accepted": false,
+      "completeness_accepted": false,
+      "disposition": "review_required"
     }
   ],
   "manual_step_requirements": [
@@ -6015,7 +6339,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6039,7 +6364,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6063,7 +6389,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6087,7 +6414,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6110,7 +6438,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6134,7 +6464,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6157,7 +6488,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6180,7 +6513,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6595,7 +6930,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6619,7 +6956,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6831,7 +7169,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -6854,7 +7193,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -7873,7 +8214,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -7897,7 +8240,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8061,7 +8405,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8084,7 +8429,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8238,7 +8585,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8262,7 +8611,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8286,7 +8636,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8336,7 +8687,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8360,7 +8712,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8384,7 +8737,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8407,7 +8761,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8498,7 +8854,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8522,7 +8880,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8665,7 +9024,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -8688,7 +9048,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -9663,7 +10025,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -9687,7 +10051,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -9827,7 +10192,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -9850,7 +10216,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -10105,7 +10473,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -10129,7 +10499,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -10153,7 +10524,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -10177,7 +10549,8 @@
         "equipment:COOLER",
         "consumables:consumable_05",
         "consumables:consumable_06",
-        "tools:film_jig"
+        "tools:film_jig",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [
@@ -10200,7 +10573,9 @@
       "resource_requirements": [
         "equipment:COOLER",
         "consumables:consumable_09",
-        "consumables:consumable_02"
+        "consumables:consumable_02",
+        "consumables:consumable_12",
+        "additional_reconstructed_materials:film_attachment_stock"
       ],
       "missing_scene_resources": [],
       "embodiment_requirements": [

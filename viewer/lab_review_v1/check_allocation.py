@@ -18,7 +18,7 @@ def run(url, browser):
         b=p.chromium.launch(executable_path=browser,args=['--no-sandbox','--disable-dev-shm-usage'])
         page=b.new_page(viewport={'width':1440,'height':1000});page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(url);page.wait_for_function('document.documentElement.dataset.allocationLoaded === "true"')
-        check('all_components_visible',page.locator('#allocation-components tr').count()==147)
+        check('all_components_visible',page.locator('#allocation-components tr').count()==150)
         check('all_branches_available',page.locator('#allocation-branch option').count()==12)
         check('four_reference_models_excluded',page.locator('#allocation-references .risk-card').count()==4)
         check('unallocated_quantities_exposed','117 项用量待分配' in page.locator('#allocation-counts').inner_text())
@@ -26,13 +26,16 @@ def run(url, browser):
             path=HERE/'evidence'/('allocation_'+name+'.png');page.screenshot(path=str(path))
             captures.append(dict(path=str(path.relative_to(ROOT)),sha256=sha(path)))
         capture('overview')
-        check('stock_sheets_tubes_and_profiles_visible',page.locator('#stock-sheet option').count()==28 and page.locator('#stock-tubes p').count()==8 and page.locator('#stock-profiles p').count()==4)
-        for identity,count,label in [('acrylic_stock/raw_acrylic_sheet_1',1,'305 × 280'),('mylar_stock/raw_film_1',3,'底板贴膜'),('mylar_stock/raw_film_3',2,'支撑管包覆'),('aluminum_sheet_stock/raw_aluminum_1_5mm',4,'固定遮阳带'),('aluminum_sheet_stock/raw_aluminum_5mm',2,'170 × 170'),('nano_pe_stock/raw_film_5',1,'恢复用膜'),('ldpe_stock/raw_film_6',1,'红外光学试片预留')]:
+        check('stock_sheets_tubes_and_profiles_visible',page.locator('#stock-sheet option').count()==40 and page.locator('#stock-tubes p').count()==8 and page.locator('#stock-profiles p').count()==4 and page.locator('#stock-angles p').count()==6)
+        for identity,count,label in [('acrylic_stock/raw_acrylic_sheet_1',1,'305 × 280'),('mylar_stock/raw_film_1',3,'底板贴膜'),('mylar_stock/raw_film_3',2,'支撑管包覆'),('aluminum_sheet_stock/raw_aluminum_1_5mm',4,'固定遮阳带'),('aluminum_sheet_stock/raw_aluminum_5mm',2,'180 × 180'),('nano_pe_stock/raw_film_5',1,'恢复用膜'),('ldpe_stock/raw_film_6',1,'红外光学试片预留'),('cover_adhesive_stock/raw_adhesive_09',1,'恢复跟踪构型'),('cover_adhesive_stock/raw_adhesive_12',1,'顶盖胶环')]:
             page.locator('#stock-sheet').select_option(identity)
             check('stock_profile_'+identity,page.locator('#stock-plan polygon').count()==count and label in page.locator('#stock-cuts').inner_text())
             if identity=='mylar_stock/raw_film_1':
                 check('mylar_selected_dimensions','500 × 300 mm · 厚 0.012 mm' in page.locator('#stock-dimensions').inner_text())
                 page.locator('#stock-panel').scroll_into_view_if_needed();capture('mylar_cutplan')
+            if identity=='cover_adhesive_stock/raw_adhesive_12':
+                check('adhesive_nominal_gauge_visible','厚 0.058 mm' in page.locator('#stock-dimensions').inner_text())
+                page.locator('#stock-panel').scroll_into_view_if_needed();capture('aperture_adhesive')
         for identity,count,label in [('frame_machining_stock/frame_plate_3mm',10,'底板连接板'),('frame_machining_stock/frame_clamp_block_20mm',8,'立柱下夹块'),('frame_machining_stock/frame_carriage_plate_4mm',2,'需铣至 3.75 mm')]:
             page.locator('#stock-sheet').select_option(identity)
             check('frame_stock_profile_'+identity,page.locator('#stock-plan polygon').count()==count and label in page.locator('#stock-cuts').inner_text())
@@ -56,7 +59,7 @@ def run(url, browser):
         check('same_white_apparatus_reused','apparatus_white' in text and 'apparatus_black' not in text)
         check('seven_map_probes_named','白色发射体 → tc_01' in text and '热分布点 6 → tc_07' in text and 'tc_08' not in text)
         page.locator('#allocation-branch').select_option('all');page.locator('#allocation-filter').select_option('quantified')
-        check('selected_quantities_filter',page.locator('#allocation-components tr').count()==30)
+        check('selected_quantities_filter',page.locator('#allocation-components tr').count()==33)
         page.locator('#allocation-search').fill('heater_white')
         check('search_matches_physical_identity',page.locator('#allocation-components tr').count()==1 and 'equipment:HEATER' in page.locator('#allocation-components').inner_text())
         page.locator('#allocation-search').fill('');page.locator('#allocation-filter').select_option('unallocated')

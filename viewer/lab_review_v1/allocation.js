@@ -1,9 +1,10 @@
 const $=id=>document.getElementById(id),root='../../';let report,stockPlan;
-const stockLabels={copper_sheet_stock:'铜板',aluminum_sheet_stock:'铝板',foam_stock:'泡沫板',acrylic_stock:'亚克力板',mylar_stock:'镀铝 PET',nano_pe_stock:'纳米多孔 PE',ldpe_stock:'LDPE',frame_machining_stock:'框架加工铝坯'};
+const stockLabels={copper_sheet_stock:'铜板',aluminum_sheet_stock:'铝板',foam_stock:'泡沫板',acrylic_stock:'亚克力板',mylar_stock:'镀铝 PET',nano_pe_stock:'纳米多孔 PE',ldpe_stock:'LDPE',frame_machining_stock:'框架加工铝坯',cover_adhesive_stock:'带离型纸转移胶膜'};
 const unitLabels={instrument_or_probe:'台／支',tool:'件',vessel:'个',probe:'支',sheet:'张',plate:'块',tube:'段',roll:'卷',blank:'块',cart:'辆',tray:'个',connector_pair:'对',kit:'套',lead:'根','T-nut':'个','inspection asset':'件',individual_length:'根',fastener_or_pad_package:'件／包'};
 const mm=v=>Number((v*1000).toFixed(3));
 function cutLabel(c){
  const color=c.id.includes('white')?'白色装置':c.id.includes('black')?'黑色装置':'';
+ if(c.attachment_reservation){const r=c.attachment_reservation;return color+' · '+({BUILD_PAIR:'初装',FIXED_LDPE:'LDPE 换装',RESTORE_TRACKED:'恢复跟踪构型'}[r.stage])+' · '+({lower:'下层膜胶环',upper:'上层膜胶环',aperture:'顶盖胶环'}[r.location])}
  if(c.id.includes('witness'))return (c.id.includes('shortwave')?'短波':c.id.includes('infrared')?'红外':'铜质')+'光学试片预留，最终规格待定';
  if(c.id.includes('restore'))return '白色装置恢复用膜 · 第 '+c.id.at(-1)+' 层';
  if(c.id.includes('layer'))return color+'覆盖膜 · 第 '+c.id.at(-1)+' 层';
@@ -35,7 +36,7 @@ const poolLabels={heater:'加热片',smu:'电源／源表',probes:'K 型温度�
 const roleLabels={white_emitter:'白色发射体',black_emitter:'黑色发射体',white_heater_source:'白色加热通道',black_heater_source:'黑色加热通道',temperature_log:'温度记录',calibration_log:'校准记录',calibration_bath:'校准水浴',reference_readout:'参考读数',reference:'参考探头',ambient:'环境温度',solar_tracking:'太阳跟踪',direct_solar:'直射辐射',global_solar:'总辐射',weather_log:'气象记录',shortwave:'短波测量',shortwave_accessory:'短波附件',infrared:'红外测量',infrared_accessory:'红外附件'};
 const branchLabels={BUILD_PAIR:'制作白／黑成对装置',CALIBRATE:'校准温度探头',OPT_HEMISPHERICAL:'半球光学测量',OPT_ANGULAR:'角度光学测量',ENVIRONMENT:'环境监测',TRACKED_STAGNATION:'跟踪构型停滞温度',PID_POWER:'成对加热与冷却功率',FIXED_LDPE:'固定遮阳带与 LDPE 换装',MAP_CLEAR_DAY:'晴朗白天热分布',MAP_CLEAR_NIGHT:'晴朗夜间热分布',MAP_HAZY_NOON:'多云近午热分布'};
 poolLabels.lab_jacks='升降台';roleLabels.white_height_adjuster='白色装置升降台';roleLabels.black_height_adjuster='黑色装置升降台';
-unitLabels.catalog_lab_jack='台';unitLabels.fastener_or_washer='件';
+unitLabels.catalog_lab_jack='台';unitLabels.fastener_or_washer='件';unitLabels.lined_adhesive_sheet='张（带离型纸）';
 const roleName=role=>roleLabels[role]||(role.startsWith('map_')?'热分布点 '+role.slice(4):role.startsWith('calibration_probe_')?'校准探头 '+role.slice(18):role);
 function element(tag,text){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e}
 function card(target,title,detail){const e=element('div');e.className='risk-card';e.append(element('h3',title),element('p',detail));$(target).append(e)}
@@ -74,6 +75,7 @@ async function start(){
  const sheetNumbers={};for(const s of stockPlan.sheets){sheetNumbers[s.asset_id]=(sheetNumbers[s.asset_id]||0)+1;const o=element('option',stockLabels[s.asset_id]+' · 第 '+sheetNumbers[s.asset_id]+' 片 · 厚 '+mm(s.thickness_m)+' mm');o.value=s.id;$('stock-sheet').append(o)}
  for(const t of stockPlan.tubes)$('stock-tubes').append(element('p',(t.id.includes('white')?'白色':'黑色')+'装置 · '+(t.asset_id==='pe_tube_stock'?'PE':t.asset_id==='frame_profile_stock'?'立柱铝':'遮罩铝')+'管，内径 '+mm(t.inner_diameter_m)+' / 外径 '+mm(t.outer_diameter_m)+' mm：原长 '+mm(t.raw_length_m)+' → 成品 '+mm(t.finished_length_m)+' mm，另留 '+mm(t.cut_allowance_m)+' mm 切割余量。'));
  for(const p of stockPlan.profiles)$('stock-profiles').append(element('p',(p.id.includes('white')?'白色':'黑色')+'装置 · '+(p.id.endsWith('left')?'左':'右')+'侧 20-2020 型材，选定采购长度 '+mm(p.length_m)+' mm；未验收供应公差。'));
+ for(const c of stockPlan.angle_cuts)$('stock-angles').append(element('p',(c.id.includes('white')?'白色':'黑色')+'装置 · 第 '+c.id.at(-1)+' 个角铝固定片：切宽 '+mm(c.finished_length_m)+' mm，另留 '+mm(c.kerf_allowance_m)+' mm 切割余量；孔位加工未验收。'));
  $('stock-sheet').addEventListener('change',renderStock);renderStock();render();document.documentElement.dataset.allocationLoaded='true';
 }
 start().catch(e=>{$('allocation-error').textContent=String(e);document.documentElement.dataset.allocationLoaded='error'});

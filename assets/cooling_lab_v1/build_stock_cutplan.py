@@ -18,9 +18,11 @@ def load_parts(path):
 def derive():
     supplies=json.loads((HERE/'supplies.json').read_text());apparatus=json.loads((HERE/'apparatus_stock_reconciliation.json').read_text())
     frame_stock=json.loads((HERE/'frame_stock.json').read_text())
+    cover_stock=json.loads((HERE/'cover_stock.json').read_text())
     stock={i['id']:load_parts(i['geometry']['path']) for i in supplies['items'] if i['id'] in
            ['copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','nano_pe_stock','ldpe_stock','mylar_stock']}
     stock.update({i['id']:load_parts(i['geometry']['path']) for i in frame_stock['items']})
+    stock.update({i['id']:load_parts(i['geometry']['path']) for i in cover_stock['items']})
     built={i['id']:load_parts(i['geometry']['path']) for i in apparatus['items']};sheets=[]
     def sheet(asset,part):
         m=stock[asset][part]
@@ -61,8 +63,8 @@ def derive():
     foil=sheet('mylar_stock','raw_film_3')
     for i,color in enumerate(['white','black']):
         add(foil,color+'_support_wrap',box(0,0,.330,.060),[.01,.01+i*.08],.000012,
-            'Selected flat blank for a 102 mm diameter by 57 mm curved surface, 3 mm lap and trimming allowance',
-            wrapped_surface=dict(diameter_m=.102,height_m=.057,lap_m=.003))
+            'Selected flat blank for a 102 mm diameter by inferred 51 mm curved surface, 3 mm lap and trimming allowance',
+            wrapped_surface=dict(diameter_m=.102,height_m=.051,lap_m=.003))
     for asset,count,thickness in [('nano_pe_stock',8,.000016),('ldpe_stock',6,.000050)]:
         for i in range(1,count+1):
             target=sheet(asset,'raw_film_'+str(i))
@@ -79,8 +81,15 @@ def derive():
         for i,color in enumerate(['white','black'],1):
             name='raw_'+kind+'_tube_'+str(i);m=stock[asset][name]
             tube_rows.append(dict(id=color+'_'+kind+'_section',asset_id=asset,part=name,raw_length_m=float(m.extents[2]),
-                finished_length_m=.057,cut_allowance_m=.001,inner_diameter_m=inner,outer_diameter_m=outer,
-                basis='57 mm PE height is inherited from the selected apparatus; the aluminum shield height is source reported',qualified=False))
+                finished_length_m=.051 if kind=='pe' else .057,cut_allowance_m=.001,inner_diameter_m=inner,outer_diameter_m=outer,
+                output_template=dict(asset_id='cooler_'+color,part='COOLER_'+color.upper()+'__'+('PE_support' if kind=='pe' else 'radiation_shield')),
+                basis='PE height 51 mm is a cover reconstruction hypothesis; aluminum shield height 57 mm is source reported',qualified=False))
+    adhesive_stock=next(i for i in cover_stock['items'] if i['id']=='cover_adhesive_stock')
+    for reservation in adhesive_stock['reservations']:
+        target=sheet(adhesive_stock['id'],reservation['raw_part']);diameter=reservation['outer_diameter_m']
+        add(target,reservation['id'],box(0,0,diameter,diameter),[(.160-diameter)/2]*2,reservation['finished_gauge_m'],
+            'Conservative square envelope around one selected adhesive annulus; liner handling and actual cutting unqualified',
+            attachment_reservation=reservation)
     frame_sheets={name:sheet('frame_machining_stock',name) for name in ['frame_plate_3mm','frame_clamp_block_20mm','frame_carriage_plate_4mm']}
     used={name:0 for name in ['bridge','lower_clamp','upper_clamp','lower_carriage','upper_carriage']}
     for requirement in frame_stock['machining_requirements']:
@@ -104,14 +113,17 @@ def derive():
         ('consumables:consumable_01',None,'copper_sheet_stock',1),('consumables:consumable_02','aluminum sheet stock','aluminum_sheet_stock',7),
         ('equipment:COOLER','frame extrusion stock','frame_profile_stock',4),('equipment:COOLER','upright tube stock','frame_profile_stock',4),
         ('consumables:consumable_12','frame fasteners','frame_mount_hardware',84),
+        ('consumables:consumable_02','aluminum angle stock','cover_angle_stock',1),
+        ('consumables:consumable_12','shield attachment hardware','cover_mount_hardware',18),
+        ('additional_reconstructed_materials:film_attachment_stock','film attachment adhesive stock','cover_adhesive_stock',12),
         ('consumables:consumable_12','height-adjuster mount fasteners','lift_mount_hardware',24),
         ('consumables:consumable_02','aluminum tube stock','aluminum_tube_stock',2),('consumables:consumable_03',None,'pe_tube_stock',2),
         ('consumables:consumable_04',None,'foam_stock',1),('consumables:consumable_10',None,'acrylic_stock',2),
         ('consumables:consumable_05',None,'nano_pe_stock',8),('consumables:consumable_06',None,'ldpe_stock',6),('consumables:consumable_09',None,'mylar_stock',3)]
     return dict(schema_version=1,status='selected_cut_envelopes_not_manufacturing_or_campaign_acceptance',
-        sheets=sheets,tubes=tube_rows,profiles=profiles,component_allocations=[dict(resource_id=r,component_label=l,asset_id=a,selected_required_stock_units=q,
+        sheets=sheets,tubes=tube_rows,profiles=profiles,angle_cuts=next(i for i in cover_stock['items'] if i['id']=='cover_angle_stock')['cuts'],component_allocations=[dict(resource_id=r,component_label=l,asset_id=a,selected_required_stock_units=q,
             additional_asset_ids=['frame_machining_stock'] if l=='aluminum sheet stock' else []) for r,l,a,q in requirements],
-        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'supplies.json',HERE/'apparatus_stock_reconciliation.json',HERE/'stock_sources.json',HERE/'frame_stock.json']],
+        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'supplies.json',HERE/'apparatus_stock_reconciliation.json',HERE/'stock_sources.json',HERE/'frame_stock.json',HERE/'cover_stock.json']],
         limits=['Material identity, tolerances, kerf, ordinary workholding, tools, surface finishing and fabrication remain unqualified',
                 'Convex profiles reserve material; they are not executable tool paths, manipulation steps or fabricated parts',
                 'Optical witness stock is reserved separately, but holder-compatible sample formats and copper witness allocation remain unresolved',

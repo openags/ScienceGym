@@ -6,6 +6,7 @@ without scaling. Missing instruments are listed, not replaced by fake shells.
 import json
 import math
 import numpy as np
+import trimesh
 from geometry_tools import Geometry, HERE, ROOT, imported_scene, sha, write_json, transform
 from room_architecture import build_room
 from room_details import LaboratoryGeometry
@@ -95,12 +96,13 @@ def walls():
 
 
 def asset(key,label,path,position,*,prefix=None,z_up=False,station='',resource='',note='',source_path=None,origin_xy=None):
-    scene=imported_scene(path,prefix=prefix,z_up=z_up)
+    preserve_transforms=z_up and prefix is None and path.startswith('assets/cooling_lab_v1/geometry/apparatus_')
+    scene=trimesh.load(ROOT/path,force='scene') if preserve_transforms else imported_scene(path,prefix=prefix,z_up=z_up)
     bounds=scene.bounds.copy(); normalization=np.eye(4)
     normalization[:3,3]=[-(bounds[0,0]+bounds[1,0])/2,-(bounds[0,1]+bounds[1,1])/2,-bounds[0,2]]
     if origin_xy is not None:normalization[:2,3]=-np.asarray(origin_xy)
     scene.apply_transform(normalization)
-    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_','/apparatus_','/lift_mount_','/frame_','thorlabs_l200_v1']) else None))
+    dest=HERE/'geometry'/('prepared_'+key+'.glb');dest.write_bytes(scene.export(file_type='glb',include_normals=True if any(tag in path for tag in ['/supply_','/angular_','/apparatus_','/lift_mount_','/frame_','/cover_','thorlabs_l200_v1']) else None))
     # Original authoring coordinates are Z-up before this normalization.
     part_names=list(scene.graph.nodes_geometry)
     entry=dict(id=key,label=label,resource_id=resource,station=station,
@@ -200,7 +202,7 @@ def devices():
         ('cooler_fixed','固定遮阳带构型',[10.2,2.64,.90],'assembly_black')]:
         record=next(r for r in apparatus['items'] if r['id']==key)
         asset(key,label,record['geometry']['path'],position,z_up=True,station=station,resource='equipment:COOLER',
-              note='完成态参考：原尺寸 L200/M、真实型材槽、普通连接板、外侧立柱夹块和反射片夹板。框架零件是有来源或明确推断的名义候选；感温线未安装，罩体支撑、夹紧受力、公差和材料等效性仍待核对。',source_path='assets/cooling_lab_v1/apparatus_stock_reconciliation.json')
+              note='完成态参考：原尺寸 L200/M、真实型材槽、普通连接件、薄膜托环与角铝固定罩。白黑装置膜厚 16 μm，固定构型 LDPE 为 50 μm；51 mm 支承管高度和胶接方式是推断。感温线未安装，薄膜平衡、胶接、夹紧受力、公差和材料等效性仍待核对。',source_path='assets/cooling_lab_v1/apparatus_stock_reconciliation.json')
     jack=json.loads((ROOT/'assets/thorlabs_l200_v1/model.json').read_text())
     for color,x in [('white',-5.12),('black',-4.87)]:
         asset('lab_jack_'+color,'Thorlabs L200/M · '+('白色' if color=='white' else '黑色')+'装置用初始库存',
@@ -218,6 +220,14 @@ def devices():
         position,station=frame_positions[item['id']]
         asset(item['id'],item['label'],item['geometry']['path'],position,z_up=True,station=station,resource=item['resource_id'],
               source_path='assets/cooling_lab_v1/frame_stock.json',note='框架独立初始库存候选；数量、加工余量和摆放姿态含工程推断。不是已装好的框架；公差、加工、动态静置、存放约束与取用尚未合格。')
+    cover_stock=json.loads((HERE/'cover_stock.json').read_text())
+    cover_positions={'cover_angle_stock':([-4.61,3.88,1.1175],'fabrication_storage_shelf_2'),
+                     'cover_mount_hardware':([-4.3,3.86,.6675],'fabrication_storage_shelf_1'),
+                     'cover_adhesive_stock':([3.25,3.38,.9],'assembly_white')}
+    for item in cover_stock['items']:
+        position,station=cover_positions[item['id']]
+        asset(item['id'],item['label'],item['geometry']['path'],position,z_up=True,station=station,resource=item['resource_id'],
+              source_path='assets/cooling_lab_v1/cover_stock.json',note='罩体独立初始库存候选；原料定尺、胶膜包装和更换数量含工程推断。保留实际部件与离型纸，裁切、取用、粘接和紧固受力尚未合格。')
     asset('tracker','EKO STR-32G 跟踪器（待复核）','assets/cooling_scene_assets_v2/geometry/cooling_pilot.glb',[2.5,18.6,.9],prefix='EKO_STR_32G__',
           station='tracker_support',resource='equipment:SOLAR_TRACKER',note='从历史场景按原始部件 ID 提取；待逐项对照。',source_path='assets/cooling_scene_assets_v2/equipment_research.json')
     for key,label,position,station,resource in [

@@ -57,11 +57,11 @@ def build(target_ids=None, output_path=None):
                 'tc_transition_kit','nano_pe_stock','ldpe_stock','mylar_stock','masking_tape','calibration_block_stock','utility_cart','oily_waste_can',
                 'fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool',
                 'g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock',
-                'copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware']:
+                'copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware','cover_angle_stock','cover_mount_hardware','cover_adhesive_stock']:
         a=assets[key];bounds=np.array(a['normalized_bounds_m'])+a['position_m'];surface=surfaces[a['station']]
         reverse=key!='oily_waste_can';point=[float(bounds[:,0].mean()),float(bounds[1,1]+.04 if reverse else bounds[0,1]-.04),float(bounds[1,2]+.04)]
         basis='Authored upper-edge palm approach from the accessible aisle; not a grasp frame'
-        if key in ['nano_pe_stock','ldpe_stock','mylar_stock','copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware']:
+        if key in ['nano_pe_stock','ldpe_stock','mylar_stock','copper_sheet_stock','aluminum_sheet_stock','foam_stock','acrylic_stock','pe_tube_stock','aluminum_tube_stock','lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware','cover_angle_stock','cover_mount_hardware','cover_adhesive_stock']:
             point[2]=float(bounds[1,2]+.10)
             basis='Authored 100 mm upper palm approach above stock, reserving hand clearance from the shelf; gripping, separation and material contact remain unqualified'
         if key=='utility_cart':
@@ -70,7 +70,7 @@ def build(target_ids=None, output_path=None):
         if key=='oily_waste_can':
             point=[float(bounds[:,0].mean()),float(bounds[:,1].mean()),float(bounds[1,2]+.30)]
             basis='Authored release approach 300 mm above the closed-lid envelope; requires later lid opening and controlled disposal. Not rim grasp, pedal actuation or a verified drop'
-        source_path=a['sources'] if key in ['lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware'] else 'assets/cooling_lab_v1/supplies.json'
+        source_path=a['sources'] if key in ['lab_jack_white','lab_jack_black','lift_mount_hardware','frame_profile_stock','frame_machining_stock','frame_mount_hardware','cover_angle_stock','cover_mount_hardware','cover_adhesive_stock'] else 'assets/cooling_lab_v1/supplies.json'
         targets.append(dict(id=key+'_access',asset=key,station=a['station'],point_m=point,
             front_y_m=surface['xy_bounds_m'][3 if reverse else 1],approach='rear' if reverse else 'front',
             basis=basis,source=dict(path=source_path,sha256=sha(ROOT/source_path),source_record=a.get('source_record',key),dimensions_inferred=not key.startswith('lab_jack_'))))

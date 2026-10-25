@@ -68,6 +68,16 @@ def review():
       dict(path='assets/cary_5000_v1/sources.json'),dict(path='assets/nicolet_6700_v1/sources.json'),dict(path='assets/thermo_a25_ac150_v1/sources.json'),dict(path='assets/cooling_lab_v1/resource_followup.json')],
       safety_accepted=False,site_jurisdiction=None))
     inventory=json.loads((HERE/'inventory.json').read_text());by_resource={}
+    cover_stock=json.loads((HERE/'cover_stock.json').read_text())
+    for i,resource in enumerate(cover_stock['resource_requirements']):
+        row=next((r for r in inventory['items'] if r['id']==resource['id']),None)
+        if row is None:
+            row=dict(id=resource['id'],category='additional_reconstructed_materials',label=resource['label'],candidate_artifacts=[],
+                decomposition_status='required_before_completeness_claim',asset_acceptance='not_reviewed')
+            inventory['items'].append(row)
+        row.update(source_artifact=dict(path='assets/cooling_lab_v1/cover_stock.json',sha256=sha(HERE/'cover_stock.json')),
+            source_pointer='/resource_requirements/'+str(i),source_value=resource)
+    inventory['required_records']=len(inventory['items'])
     for a in scene['assets']:
         for resource in a.get('resource_ids',[a['resource_id']]):by_resource.setdefault(resource,[]).append(a)
     for row in inventory['items']:
@@ -122,6 +132,8 @@ def review():
     evidence['LAB-02']+=['assets/cooling_lab_v1/apparatus_mount_sources.json','assets/cooling_lab_v1/lift_mount_stock.json','assets/cooling_lab_v1/apparatus_mount_checks.json']
     evidence['LAB-02']+=['assets/cooling_lab_v1/apparatus_frame_sources.json','assets/cooling_lab_v1/apparatus_frame_checks.json','assets/cooling_lab_v1/frame_sharp_tnut_rejected.json']
     evidence['LAB-02']+=['assets/cooling_lab_v1/frame_stock.json','assets/cooling_lab_v1/frame_stock_checks.json']
+    evidence['LAB-02']+=['assets/cooling_lab_v1/apparatus_cover_sources.json','assets/cooling_lab_v1/apparatus_cover_candidate.json','assets/cooling_lab_v1/apparatus_cover_checks.json','assets/cooling_lab_v1/cover_stock.json','assets/cooling_lab_v1/cover_stock_checks.json']
+    evidence['LAB-07']+=['viewer/lab_review_v1/cover.html','viewer/lab_review_v1/cover.js']
     evidence['LAB-07']+=['viewer/lab_review_v1/ftir.html','viewer/lab_review_v1/ftir.js']
     evidence['LAB-07']+=['viewer/lab_review_v1/allocation.html','viewer/lab_review_v1/allocation.js','viewer/lab_review_v1/allocation.css']
     evidence['LAB-07']+=['viewer/lab_review_v1/sensors.js']
