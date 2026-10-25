@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **348**.
+Last screened: **2026-10-25**. Candidate count: **349**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3535,3 +3535,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [15-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74558-z/MediaObjects/41467_2026_74558_MOESM1_ESM.pdf) text accessible; selected reference-characterization and data-provenance captions screened. Spectra from dedicated exploratory instruments must remain distinct from full-system measurements. Figure pixels, remaining sections and request-only raw data were not fully reviewed.
 - Future scope requires qualified instrument and optical-safety review. Drug preparation, thermal processing, solvent handling and clinical use are excluded. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY 4.0**. Main HTML readable despite a cookie-error marker. Citation metadata and original commentary only.
+
+
+## Additional candidate: prepared-hologram optical metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Phase-probability shaping for speckle-free holographic lithography](https://www.nature.com/articles/s41467-025-64554-0) | Nature Communications / 2025 | 10.1038/s41467-025-64554-0 | Prepared holograms and reference patterns could support specimen exchange, calibration custody, repeated image acquisition and wavelength-dependent performance comparisons. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 9318 (2025), published **24 October 2025**. Selected experimental hologram-characterization Results screened. Algorithmic predictions, measured images and fabricated-pattern demonstrations remain distinct evidence categories.
+- Official [32-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-64554-0/MediaObjects/41467_2025_64554_MOESM1_ESM.pdf) text accessible; selected prepared-metasurface and patterned-device characterization sections screened. Figure pixels, remaining sections, external code and request-only raw data were not fully reviewed.
+- Future scope requires qualified optical-safety and instrument review. Fabrication, etching, resist processing and exposure operations are excluded. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML readable despite a cookie-error marker. Citation metadata and original commentary only; no publisher images, text extracts or adapted assets redistributed.
