@@ -112,16 +112,27 @@ def radiation_shield():
 
 
 def cable_mesh(points,radius,endpoint_tangents=None):
-    """One closed circular sweep; the stored rest shape is an explicit choice."""
+    """One closed sweep with parallel-transport frames and no reference flip.
+
+    Choosing a new reference axis at every ring twists polygonal sections when
+    a lead turns through a near-vertical direction. Transport the previous
+    normal by the shortest rotation between consecutive tangents instead.
+    """
     points=np.asarray(points);tangent=np.gradient(points,axis=0);tangent/=np.linalg.norm(tangent,axis=1)[:,None]
     if endpoint_tangents is not None:
         tangent[[0,-1]]=np.array(endpoint_tangents)/np.linalg.norm(endpoint_tangents,axis=1)[:,None]
-    vertices=[];previous=None
+    vertices=[];previous=None;previous_t=None
     for point,t in zip(points,tangent):
-        ref=np.array([0.,0.,1.]) if abs(t[2])<.9 else np.array([0.,1.,0.])
-        normal=np.cross(t,ref);normal/=np.linalg.norm(normal)
-        if previous is not None and normal@previous<0:normal=-normal
-        previous=normal;binormal=np.cross(t,normal)
+        if previous is None:
+            ref=np.eye(3)[np.argmin(np.abs(t))]
+            normal=np.cross(t,ref)
+        else:
+            axis=np.cross(previous_t,t);cosine=float(previous_t@t)
+            if cosine < -1+1e-8:raise ValueError('Cable tangent reverses within one segment')
+            # Rodrigues' shortest-arc rotation, including the parallel case.
+            normal=previous+np.cross(axis,previous)+np.cross(axis,np.cross(axis,previous))/(1+cosine)
+        normal-=t*(normal@t);normal/=np.linalg.norm(normal)
+        previous=normal;previous_t=t;binormal=np.cross(t,normal)
         vertices.extend(point+radius*(np.cos(a)*normal+np.sin(a)*binormal) for a in np.linspace(0,2*np.pi,12,endpoint=False))
     faces=[];n=12
     for i in range(len(points)-1):

@@ -18,8 +18,20 @@ shows an RS3 shield kit and S-THB-M002 probe with continuous 2.0 m / 0.5 m leads
 an inferred inline adapter and a selected RJ12 plug envelope. It retains source
 dimensions, cable/variant conflicts and unknown Onset terminal details. Actual
 solids, local cable bends, nonlocal separation and isolated head/shield clearance
-are checked. Wind sensor, support and complete installed routing remain open;
+are checked. Weather-station support and complete installed routing remain open;
 these components do not yet receive initial-stock or installation credit.
+
+The [wind sensor inspector](../../viewer/lab_review_v1/wind.html) adds 22 rigid
+parts, 14 external lead/adapter/plug parts, two optional wood screws and the
+supplied hex key. It checks actual openings, the selected 41 mm mast fit,
+complete rotor sweeps, 2.5 + 0.5 m continuous leads and detached key/socket fit.
+The Onset 108 mm cup-radius claim conflicts with its photograph and the related
+Davis 7905L single-rotor photo. A labeled 60 mm appearance hypothesis and a
+separate literal 108 mm rotor can be compared; neither resolves the source
+conflict or grants acceptance. Local adapter dimensions, cable rest shapes,
+threads and preload remain inferred or unmodeled. The 3 m / 12.2 m cable-source
+conflict is retained. These candidates have no laboratory stock or installation
+credit and do not qualify flexible cable handling or humanoid operation.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting

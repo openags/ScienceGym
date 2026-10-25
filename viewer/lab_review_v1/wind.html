@@ -1,0 +1,22 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ScienceGym · 风传感器结构检查</title>
+<script type="importmap">{"imports":{"three":"../../simulation/cooling_v1/vendor/three.module.js","three/addons/":"../../simulation/cooling_v1/vendor/addons/"}}</script><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="lift.css"></head><body><main>
+<p><a href="index.html">← 实验室</a> · <a href="weather.html">温湿度探头与防辐射罩</a></p><small>WIND SENSOR MECHANICAL REVIEW</small><h1>查看风杯、风向标与安装座。</h1>
+<p>Onset S-WCF-M003 的结构候选，参考其官方手册与相关 Davis 原型照片。可分别查看可拆部件、安装孔、转动范围、连续线缆、白色数字适配器及散装套件。整站安装仍未完成，尚未放入主场景库存。</p>
+<p class="finding">资料存在尺寸歧义：Onset 标示风杯转动半径 108 mm，官方单件照片却显示明显更短的辐条。当前外观候选采用明确标注的 60 mm 半径推断；“两种风杯尺寸对照”保留琥珀色的 108 mm 原文解释。厂家是否有误尚未确认，两者均未通过外观验收。</p>
+<div class="lift-grid panel"><div><div id="lift-viewport" aria-label="可旋转的风传感器机械模型"></div><p id="wind-status" class="legend" role="status">正在检查版本…</p></div><aside class="lift-controls">
+<label for="wind-select">部件</label><select id="wind-select" disabled><option value="all">整体与外接线缆</option><option value="mechanical">整体机械结构</option><option value="head">传感器头部</option><option value="cups">风杯、轴与紧定螺钉</option><option value="vane">风向标、D 形轴与紧定螺钉</option><option value="base">安装座与紧固件</option><option value="arm">中空弯管</option><option value="leads">线缆、适配器和插头</option><option value="adapter">白色筒形适配器</option><option value="plug">六触点插头</option><option value="route">安装座出线通道</option><option value="kit">散装木螺钉和扳手</option><option value="key">内六角扳手</option><option value="fit">分离螺钉与扳手插入检查</option><option value="comparison">两种风杯尺寸对照</option></select>
+<div id="wind-views"><button data-view="oblique" disabled>整体</button><button data-view="top" disabled>俯视</button><button data-view="side" disabled>侧面</button><button data-view="end" disabled>端面</button></div>
+<label for="wind-cup-angle">风杯几何角度 <output id="wind-cup-value">0°</output></label><input id="wind-cup-angle" type="range" min="0" max="360" value="0" disabled>
+<label for="wind-vane-angle">风向标几何角度 <output id="wind-vane-value">0°</output></label><input id="wind-vane-angle" type="range" min="0" max="360" value="0" disabled>
+<label><input id="wind-section" type="checkbox" disabled>剖开查看孔道</label><label><input id="wind-sweep" type="checkbox" disabled>显示整圈占用包络</label><p id="wind-size"></p><p>角度滑块只检查几何关系，没有驱动轴承、施加风力或执行机器人动作。转轴与对应转子一同转动。</p></aside></div>
+<section class="panel"><h2>结构与实际检查</h2><p id="wind-findings">读取检查记录…</p><p>风杯为开口薄壁曲面；弯管为空心管；安装座有真实槽孔、管套和线槽。所选 41 mm 支杆只作为独立配合检查对象。横向螺钉、U 形抱箍、垫圈和螺母分别建模。</p><p id="wind-orbit"></p><p id="wind-lead-findings"></p><p class="finding">静态净空通过不能证明安装牢固、轴承可用或机器人可操作。螺纹、垫圈预紧、线缆柔性、支架稳定性、整站布局和制造公差仍待完成。</p><a href="../../assets/cooling_lab_v1/wind_sensor_checks.json">完整实体与转动检查 ↗</a> · <a href="../../assets/cooling_lab_v1/wind_lead_checks.json">线长、弯曲与实体穿插检查 ↗</a></section>
+<section class="panel"><h2>厂家资料与推断</h2><div class="source-list">
+<a href="https://www.onsetcomp.com/sites/default/files/resources-documents/19877-B%20MAN-S-WCF.pdf">Onset S-WCF 官方手册：尺寸、组件及安装 ↗</a>
+<a href="https://www.davisinstruments.com/cdn/shop/products/06410_01_85ef64ca-327d-48cf-8b4f-cbcb3ddad232_1500x1127.jpg?v=1618469468">相关 Davis 原型整体照片 ↗</a>
+<a href="https://www.davisinstruments.com/cdn/shop/products/06410_02_1500x1127.jpg?v=1618469468">相关 Davis 原型拆分照片 ↗</a>
+<a href="https://www.davisinstruments.com/products/vantage-pro2-monitor-ii-and-wizard-iii-wind-cups-anemometers-2003-and-later">Davis 7905L 风杯外径 38.1 mm ↗</a>
+<a href="https://www.davisinstruments.com/cdn/shop/products/7905L_750x518_f32272a6-11cf-4d03-b85e-2c46d9d12975_750x518.jpg?v=1618465395">Davis 官方风杯单件照片 ↗</a>
+<a href="../../assets/cooling_lab_v1/wind_sensor_sources.json">来源、版本与资料冲突 ↗</a><a href="../../assets/cooling_lab_v1/wind_sensor_assets.json">逐部件几何与推断尺寸 ↗</a></div>
+<p>弯管走向、管壁、支架截面、轴承、螺纹和局部孔位没有厂家 CAD 支持，均为本次重建的假设。Davis 原型的 RJ11／约 12 m 接线与 Onset 的改装版本不同，未据此认定接口兼容。</p></section>
+<section class="panel"><h2>随附普通工具与可选紧固件</h2><p id="wind-kit-findings">读取套件检查…</p><p>1/4 × 3 英寸木螺钉用于可选木柱安装。当前选用金属支杆，因此散装保留，不把它们画成已安装零件。扳手腿长、弯曲半径和实际配合尺寸为推断。</p><a href="../../assets/cooling_lab_v1/wind_kit_checks.json">套件与独立插入检查 ↗</a></section>
+<div id="lift-error" role="alert"></div></main><script type="module" src="wind.js"></script></body></html>
