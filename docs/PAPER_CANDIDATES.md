@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **347**.
+Last screened: **2026-10-25**. Candidate count: **348**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3522,4 +3522,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **16**, 11530 (2025), published **21 November 2025**; version of record **29 December 2025**. Selected optical and mechanical characterization Results/Methods screened. Repeated readings within an area are distinct from independent specimens; optical and surface-mechanical outcomes do not establish clinical performance.
 - Official [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66560-8/MediaObjects/41467_2025_66560_MOESM1_ESM.pdf) text accessible; selected aesthetic and scratch-test captions screened. Caption terminology calls ceramic measurements biological replicates, so replication units need clarification before conversion. Figure pixels, remaining sections, raw data and reporting summary were not fully reviewed.
 - Future scope requires qualified instrument/contact review. Deposition, reactive precursors, acid exposure, cell culture and participant studies are excluded. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY 4.0**. Main HTML readable despite a cookie-error marker. Citation metadata and original commentary only.
+
+
+## Additional candidate: multimodal reference-sample spectroscopy (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Full vibrational spectroscopy for simultaneous mechanical, structural and chemical analysis](https://www.nature.com/articles/s41467-026-74558-z) | Nature Communications / 2026 | 10.1038/s41467-026-74558-z | Prepared reference specimens could support calibration custody, sample exchange, repeated spectral acquisition and co-registered mapping across complementary instruments. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 5632 (2026), published **7 July 2026**. Selected instrument, calibration and acquisition Results/Methods screened. Despite simultaneous/parallel framing, acquisition Methods describe sequential switching between spectrometers and gratings; timing and registration require clarification before conversion.
+- Official [15-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74558-z/MediaObjects/41467_2026_74558_MOESM1_ESM.pdf) text accessible; selected reference-characterization and data-provenance captions screened. Spectra from dedicated exploratory instruments must remain distinct from full-system measurements. Figure pixels, remaining sections and request-only raw data were not fully reviewed.
+- Future scope requires qualified instrument and optical-safety review. Drug preparation, thermal processing, solvent handling and clinical use are excluded. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY 4.0**. Main HTML readable despite a cookie-error marker. Citation metadata and original commentary only.
