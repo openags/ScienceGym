@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **346**.
+Last screened: **2026-10-25**. Candidate count: **347**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3511,3 +3511,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-58096-8/MediaObjects/41467_2025_58096_MOESM1_ESM.pdf) text accessible; water-absorption and quasi-static interface-measurement passages screened. The slow-detachment estimate is not a direct measurement of dynamic jumping losses. Figures, movies, remaining sections and raw data were not fully reviewed.
 - Future suitability requires qualified contact and instrument review. Synthesis, laser triggering, stored-energy release, jumping and pollutant handling are excluded. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY 4.0**. Citation metadata and original commentary only.
+
+
+## Additional candidate: prepared ceramic optical and surface metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Hybrid TiO2/Al2O3 nanolayer overcoating enhances dental lithium disilicate glass-ceramics acid resistance and surface mechanical properties](https://www.nature.com/articles/s41467-025-66560-8) | Nature Communications / 2025 | 10.1038/s41467-025-66560-8 | Prepared ceramic specimens could support calibration custody, specimen exchange, repeat color measurements and coordinated surface characterization. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 11530 (2025), published **21 November 2025**; version of record **29 December 2025**. Selected optical and mechanical characterization Results/Methods screened. Repeated readings within an area are distinct from independent specimens; optical and surface-mechanical outcomes do not establish clinical performance.
+- Official [19-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66560-8/MediaObjects/41467_2025_66560_MOESM1_ESM.pdf) text accessible; selected aesthetic and scratch-test captions screened. Caption terminology calls ceramic measurements biological replicates, so replication units need clarification before conversion. Figure pixels, remaining sections, raw data and reporting summary were not fully reviewed.
+- Future scope requires qualified instrument/contact review. Deposition, reactive precursors, acid exposure, cell culture and participant studies are excluded. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY 4.0**. Main HTML readable despite a cookie-error marker. Citation metadata and original commentary only.
