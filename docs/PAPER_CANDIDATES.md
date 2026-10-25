@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **342**.
+Last screened: **2026-10-25**. Candidate count: **343**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3462,4 +3462,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **16**, 10559 (2025), published/version of record **26 November 2025**. Selected imaging Results, experimental setup Methods and position-error evaluation were screened. Real-time tracking errors and delay-corrected scanning errors are distinct; positioning range, single-frame scan area and stitched coverage must not be conflated.
 - The official [30-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-65579-1/MediaObjects/41467_2025_65579_MOESM1_ESM.pdf) was text-accessible. Selected cross-coupling, resolution and sampling-region sections were screened. Sensor-resolution settings and smoothed positioning results have different range/response trade-offs. Figure pixels, videos, full-size data file, remaining sections and peer review were not fully reviewed.
 - Future scope requires qualified instrument and tip–sample interaction review; specimen handling and acquisition records remain separate from custom apparatus fabrication or controller deployment. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
+
+
+## Additional candidate: packaged optical-frequency detector calibration (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [On-chip real-time detection of optical frequency variations with ultrahigh resolution using the sine-cosine encoder approach](https://www.nature.com/articles/s41467-025-58251-1) | Nature Communications / 2025 | 10.1038/s41467-025-58251-1 | Packaged devices could support calibration-reference tracking, repeatability checks, coordinated optical/electronic acquisition and comparison of sensor interrogation records. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 3092 (2025), published/version of record **31 March 2025**. Selected calibration, scan-repeatability Results and equipment Methods were screened. Demonstrated measurements and projected electronics-dependent performance remain distinct. The main text and Figure 3 caption give different scan-period descriptions; this is not resolved into an operating setting.
+- The official [11-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-58251-1/MediaObjects/41467_2025_58251_MOESM1_ESM.pdf) was text-accessible. Selected upper/lower interferometer calibration sections were screened. Incremental frequency measurement, absolute-frequency estimation and wavelength-dependent calibration records must remain distinct; shared component-parameter assumptions require review. Figure pixels, remaining sections, Reporting Summary, peer review and raw data were not fully reviewed.
+- Future suitability is limited to qualified packaged-device metrology, not chip fabrication or unqualified optical alignment. Laser safety, calibration validity and instrument interfaces require separate review. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY-NC-ND 4.0**. Main HTML remained readable despite a cookie-error URL marker. Citation metadata and original screening commentary only.
