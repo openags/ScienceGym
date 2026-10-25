@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **345**.
+Last screened: **2026-10-25**. Candidate count: **346**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3499,3 +3499,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [4-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-66457-6/MediaObjects/41467_2025_66457_MOESM1_ESM.pdf) text accessible; calibration and silicon-wafer comparison sections screened. Calibration uses a different local oscillator; sample/reference noise limitations constrain interpretation. Figure pixels, other experimental branches and raw data were not fully reviewed.
 - Future scope requires qualified instrument and optical-safety review. Gas handling, vacuum operations, high-voltage operation and apparatus construction are excluded. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY 4.0**. Citation metadata and original screening commentary only.
+
+
+## Additional candidate: passive soft-material water-interface metrology (2026-10-25)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Beyond surface tension-dominated water surface jumping](https://www.nature.com/articles/s41467-025-58096-8) | Nature Communications / 2025 | 10.1038/s41467-025-58096-8 | Prepared passive pads could support sample exchange, wetting comparisons, force-sensor coordination and immersion-history tracking. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 3034 (2025), published **28 March 2025**. Selected passive-interface Results screened. Future scope is limited to passive specimen characterization, not the paper's jumping demonstrations.
+- Official [37-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-58096-8/MediaObjects/41467_2025_58096_MOESM1_ESM.pdf) text accessible; water-absorption and quasi-static interface-measurement passages screened. The slow-detachment estimate is not a direct measurement of dynamic jumping losses. Figures, movies, remaining sections and raw data were not fully reviewed.
+- Future suitability requires qualified contact and instrument review. Synthesis, laser triggering, stored-energy release, jumping and pollutant handling are excluded. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-25**; publisher license **CC BY 4.0**. Citation metadata and original commentary only.
