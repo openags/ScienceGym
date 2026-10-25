@@ -353,3 +353,24 @@ and shoulder/torso penetration. Both failed poses remain in
 `heater_access_rejected.json` and are replayed by the review validator. Targeted
 workspace diagnostics can use `check_workspace.py --targets <ids> --output
 <separate-path>`; they cannot overwrite or substitute for the complete report.
+
+The current frame is inspectable at `viewer/lab_review_v1/frame.html`. Its
+nominal 20-2020 cross-sections replace overlapping boxes; 305 mm inner spacing,
+base-side placement and outboard uprights follow the paper's topology. Public
+dimensions constrain the ordinary fasteners and adhesive feet. Bridge plates,
+split clamps, reflector backing plates, bore lobes and undimensioned blends
+are authored selections, not vendor CAD or confirmed historical parts.
+The selected 395 mm tracks fit the existing 400 mm stock after shifting their
+cut reservations to a 2 mm starting margin; the 1 mm edge allowance remains.
+
+`check_apparatus_frame.py` checks exported solids, actual holes, nominal bearing
+planes and solid intersections. The sharp T-nut envelope failed against the
+diagonal web; `frame_sharp_tnut_rejected.json` retains its real failed mesh.
+An explicitly inferred deep-side chamfer resolves nominal interference, but
+does not establish manufacturer tolerances or physical compatibility. The
+checker uses Manifold solid intersection volumes because FCL reported large
+depths for coincident planar contacts. Tiny screw/thread/seat tessellation
+intersections are separately recorded without force or installation credit.
+Frame stock and ordinary machining/tool allocation are still incomplete;
+clamp mechanics, adhesion, reflector travel, cover support and cable routing
+remain open before the complete scene can be submitted for owner acceptance.

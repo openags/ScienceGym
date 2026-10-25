@@ -34,6 +34,7 @@ def run(url,browser):
         check('open_hand_selection_visible','Inspire FTP' in page.locator('#pilot-policy').inner_text() and '场景已使用 G1' in page.locator('#pilot-policy').inner_text())
         check('new_robot_resource_preview_link',page.locator('a[href="../robot_resource_review_v1/index.html"]').count()==1)
         check('official_lift_source_review_link',page.locator('a[href="lift.html"]').count()==1)
+        check('actual_frame_connection_review_link',page.locator('a[href="frame.html"]').count()==1)
         check('sensor_only_policy_visible','传感器闭环' in page.locator('#pilot-policy').inner_text())
         check('branch_readiness_not_execution_credit',page.locator('#branch-progress tr').count()==11 and '通过 0 / 11' in page.locator('#pilot-counts').inner_text())
         def capture(name):

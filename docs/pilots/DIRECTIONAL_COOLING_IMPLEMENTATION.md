@@ -179,7 +179,7 @@ guarantee of general reliability.
   are initial stock; a separate 5 mm aluminum plate reserves both platforms.
   The [mounting checks](../../assets/cooling_lab_v1/apparatus_mount_checks.json)
   preserve nominal thread-envelope intersections and unresolved load, preload,
-  acrylic stress, tool access, frame and cover connections. Legacy disconnected
+  acrylic stress, tool access and cover connections. Legacy disconnected
   probe placeholders are removed. The actual core is inspectable in the browser;
   the upper thermal/reflector group follows the corrected source height.
   The first stock placement caused shoulder/shelf overlaps. Those poses remain
@@ -187,6 +187,28 @@ guarantee of general reliability.
   and are checked again with the same robot and collision screen.
   Manufacturer CAD and every composite containing it stay in ignored local cache/geometry directories;
   the repository distributes source pins, code and review evidence.
+
+- The [frame inspector](../../viewer/lab_review_v1/frame.html) now shows the
+  actual selected base, two 20-2020 nominal profiles, outboard hollow uprights,
+  ordinary bridge plates, split clamps, T-nuts and reflector clamp plates.
+  Rails follow the 305 mm inner span shown in SI Figure 1, with the acrylic
+  below their tops. Nominal slots and central bores replace overlapping box
+  geometry. Commercial identities, public dimensions and original machining
+  choices are separated in the [source ledger](../../assets/cooling_lab_v1/apparatus_frame_sources.json).
+  The track span is now 395 mm, with actual upper-clamp holes; its selected
+  curve and the paper's conflicting reflector-height statements remain open.
+  Flat underside connections and four ordinary feet keep screw heads clear
+  of the support plane. The reflector uses two screw-clamped backing plates,
+  with countersinks continuing through the thin disk into its upper plate.
+  The [frame checks](../../assets/cooling_lab_v1/apparatus_frame_checks.json)
+  inspect exported solids and use solid-intersection volume to distinguish
+  coplanar contacts from intersections; FCL contact depth alone was misleading
+  on coincident faces. A sharp T-nut envelope intersected the diagonal web;
+  that actual failed mesh is retained. Its inferred 0.25 mm edge break needs
+  manufacturer CAD/metrology confirmation before product-fit acceptance.
+  Clamp deformation, thread/seat forces, preload, tolerances, adhesion,
+  complete reflector travel, frame stock/tool allocation and robot assembly
+  remain unqualified. This is still asset work before owner acceptance.
 
 - A separate FTIR installation review now adds the 206 × 252 mm floor candidate
   and 38 ordinary mounting parts. Thermo site guide 269-158000 supplies the floor

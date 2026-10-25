@@ -62,9 +62,13 @@ def validate():
     mounts=json.loads((HERE/'apparatus_mount_checks.json').read_text());apparatus=json.loads((HERE/'apparatus_stock_reconciliation.json').read_text())
     for ref in mounts['source_artifacts']:check('mounting_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
     check('three_reference_mounts_checked_not_qualified',mounts['passed'] and len(mounts['items'])==3 and not mounts['physical_installation_qualified'] and mounts['owner_acceptance'] is None)
+    frame_checks=json.loads((HERE/'apparatus_frame_checks.json').read_text())
+    for ref in frame_checks['source_artifacts']:check('frame_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    check('three_reference_frames_checked_not_qualified',frame_checks['passed'] and len(frame_checks['items'])==3 and not frame_checks['physical_installation_qualified'] and frame_checks['owner_acceptance'] is None)
     for item in apparatus['items']:
         a=next(a for a in scene['assets'] if a['id']==item['id'])
         check('reference_contains_actual_jack_'+item['id'],len([n for n in a['part_names'] if 'L200_M__solid_' in n])==86 and a['source_artifact']['sha256']==item['geometry']['sha256'])
+        check('reference_contains_rebuilt_frame_'+item['id'],set(item['frame']['review_parts'])<=set(a['part_names']) and not set(item['frame']['removed_legacy_parts'])&set(a['part_names']))
     for role in camera_record['selected_roles']:
         placed=[a for a in scene['assets'] if role['resource_id'] in a.get('resource_ids',[a['resource_id']])]
         check('camera_staged_'+role['resource_id'],len(placed)==1 and placed[0]['station']==('circulation' if role['model']=='native_g1_d435i' else 'assembly_white'))

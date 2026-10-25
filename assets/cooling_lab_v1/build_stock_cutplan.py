@@ -44,7 +44,7 @@ def derive():
         for layer in [1,2]:part(foam,color+'_foam_'+str(layer),device,'foam_'+str(layer),[.01+(i*2+layer-1)*.065,.01])
         acrylic=sheet('acrylic_stock','raw_acrylic_sheet_'+str(i+1));part(acrylic,color+'_base',device,'acrylic_base',[.02,.01])
         part(al1,color+'_aperture',device,'aperture_plate',[.01+i*.18,.01]);part(al1,color+'_reflector',device,'solar_reflector',[.01+i*.08,.20])
-        part(al15,color+'_track',device,'reflector_track',[.01,.01+i*.05]);part(al15,color+'_fixed_band','cooler_fixed','fixed_reflector_band',[.01,.11+i*.095])
+        part(al15,color+'_track',device,'reflector_track',[.002,.01+i*.05]);part(al15,color+'_fixed_band','cooler_fixed','fixed_reflector_band',[.002,.11+i*.095])
         part(al64,color+'_spacer',device,'film_spacer',[.01+i*.145,.01])
         part(al5,color+'_lift_platform',device,'lift_plate',[.01+i*.19,.01])
     add(cu,'unallocated_copper_witness_reserve',box(0,0,.200,.100),[.01,.10],.0005,

@@ -200,7 +200,7 @@ def devices():
         ('cooler_fixed','固定遮阳带构型',[10.2,2.64,.90],'assembly_black')]:
         record=next(r for r in apparatus['items'] if r['id']==key)
         asset(key,label,record['geometry']['path'],position,z_up=True,station=station,resource='equipment:COOLER',
-              note='完成态参考：采用原尺寸 L200/M 升降台、实际安装孔和普通紧固件；平台与反射器共同调整高度。感温线未安装；框架连接、罩体支撑、螺纹受力和材料等效性仍待核对。',source_path='assets/cooling_lab_v1/apparatus_stock_reconciliation.json')
+              note='完成态参考：原尺寸 L200/M、真实型材槽、普通连接板、外侧立柱夹块和反射片夹板。框架零件是有来源或明确推断的名义候选；感温线未安装，罩体支撑、夹紧受力、公差和材料等效性仍待核对。',source_path='assets/cooling_lab_v1/apparatus_stock_reconciliation.json')
     jack=json.loads((ROOT/'assets/thorlabs_l200_v1/model.json').read_text())
     for color,x in [('white',-5.12),('black',-4.87)]:
         asset('lab_jack_'+color,'Thorlabs L200/M · '+('白色' if color=='white' else '黑色')+'装置用初始库存',

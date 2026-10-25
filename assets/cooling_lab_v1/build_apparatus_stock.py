@@ -10,6 +10,7 @@ import numpy as np
 import trimesh
 from geometry_tools import HERE,ROOT,sha,write_json,imported_scene
 from build_apparatus_mounting import apply_mount, build_stock
+from build_apparatus_frame import apply_frame
 
 THICKNESS=.000012
 LAP=.003
@@ -58,8 +59,9 @@ def build():
             changes.append(dict(part=prefix+foil,substrate=prefix+substrate,radius_m=radius,height_m=height,thickness_m=THICKNESS,lap_m=LAP,mesh_faceting_and_quantization_allowance_m=allowance,
                                 basis='Paper requires curved-surface coverage; thickness is the selected stock, seam and bending shape are engineering inferences'))
         mounting=apply_mount(g,prefix)
+        frame=apply_frame(g,prefix)
         path=HERE/'geometry'/('apparatus_'+identity+'.glb');path.write_bytes(g.export(file_type='glb',include_normals=True))
-        items.append(dict(id=identity,geometry=dict(path=str(path.relative_to(ROOT)),sha256=sha(path),parts=len(g.geometry)),changes=changes,mounting=mounting))
+        items.append(dict(id=identity,geometry=dict(path=str(path.relative_to(ROOT)),sha256=sha(path),parts=len(g.geometry)),changes=changes,mounting=mounting,frame=frame))
         if identity=='cooler_white':
             core=trimesh.Scene()
             for name in mounting['core_inspection_parts']:
@@ -68,15 +70,22 @@ def build():
             inspection=HERE/'geometry'/'apparatus_mount_inspection.glb';inspection.write_bytes(core.export(file_type='glb',include_normals=True))
             items[-1]['mounting_inspection']=dict(path=str(inspection.relative_to(ROOT)),sha256=sha(inspection),parts=len(core.geometry),
                 scope='Actual white candidate core; thermal, reflector and legacy frame parts are hidden to inspect the mounting')
+            frame_scene=trimesh.Scene()
+            for name in frame['review_parts']:
+                m=g.geometry[name].copy();m.apply_translation([-mounting['jack_translation_m'][0],-mounting['jack_translation_m'][1],0])
+                frame_scene.add_geometry(m,node_name=name,geom_name=name)
+            frame_path=HERE/'geometry'/'apparatus_frame_inspection.glb'
+            frame_path.write_bytes(frame_scene.export(file_type='glb',include_normals=True))
+            items[-1]['frame_inspection']=dict(path=str(frame_path.relative_to(ROOT)),sha256=sha(frame_path),parts=len(frame_scene.geometry))
     write_json(HERE/'apparatus_stock_reconciliation.json',dict(schema_version=1,items=items,
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [ROOT/source,Path(__file__),HERE/'stock_sources.json',TASK_MATERIALS,
-            HERE/'build_apparatus_mounting.py',HERE/'apparatus_mount_sources.json',HERE/'lift_mount_stock.json',ROOT/'assets/thorlabs_l200_v1/model.json',ROOT/'assets/thorlabs_l200_v1/checks.json']],
+            HERE/'build_apparatus_mounting.py',HERE/'apparatus_mount_sources.json',HERE/'lift_mount_stock.json',HERE/'build_apparatus_frame.py',HERE/'apparatus_frame_sources.json',ROOT/'assets/thorlabs_l200_v1/model.json',ROOT/'assets/thorlabs_l200_v1/checks.json']],
         accepted=False,scope='Selected foil and source-scale central mounting in completed-state reference geometry; not assembly qualification or initial stock',
         limitations=['Historical Mylar SKU/thickness is unspecified; selected Goodfellow metallized PET is a candidate, not proven material equivalence',
                      'Foil optics, flexure, seam bonding and attachment tools are unqualified; sub-micron mesh faceting allowance is not a physical adhesive layer',
                      'Central mounting has real holes and ordinary fastener envelopes; preload, thread contact and structural load capacity are not qualified',
                      'Legacy sensor-lead/contact placeholders are removed; sourced probes remain staged and are not installed',
-                     'Frame fasteners, upright/track retention and the cover load path retain unresolved reconstruction status']))
+                     'Nominal frame/base/upright/track connections are reconstructed; elastic clamps, stock/tool allocation, reflector carriage and cover load path remain unresolved']))
     print(json.dumps(dict(apparatus=len(items),reconciled_foil_parts=sum(len(i['changes']) for i in items))))
 
 
