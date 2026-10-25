@@ -120,12 +120,16 @@ guarantee of general reliability.
   Two angular-reflection candidates now include the Harrick HRS stage and its
   FTIR base, and the Spectra-Tech 500 rotary frame, four separate mirrors and
   the M4 sample/reference surface. The earlier extra M4 mirror plus separate
-  specimen is retained as a rejected topology fixture. The selected shared
-  M3/M4 rotor corrects the geometry, but finite-aperture misses remain at other
-  angles; normal directions alone do not qualify optical alignment.
+  specimen is retained as a rejected topology fixture. The former short-face
+  perpendicular rotor is also retained because it misses the finite reference.
+  A selected 105-degree tandem candidate uses extended M3 and reference faces,
+  with two edge stops that leave the grazing-angle exit clear. It passes 594
+  actual-triangle diagnostic rays across 66 angles, including all obstructions;
+  optical calibration and the manufacturer's exact mechanism remain unresolved.
   Source aperture sizes/ranges are distinct from inferred dimensions. They are
   staged on the optical bench; Nicolet mounts, retention and optical alignment
-  remain open. Geometry sliders do not implement a coupled optical mechanism.
+  remain open. Geometry sliders inspect the selected rigid carrier; they do not
+  implement robot manipulation or a calibrated optical instrument.
   The scene has 61 instances; compound requirements and full campaign quantities
   remain incomplete. Thirty-one component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools

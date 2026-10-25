@@ -21,16 +21,17 @@ def build():
         unresolved_differences=['The combined HRS/base assembly has no matched manufacturer photograph; the base is reconstructed from a legacy diagram',
             'Envelope, mirror curvature and positions, sockets, fasteners and counterbore dimensions are inferred',
             'No installed specimen, mounting adapter, removal force or calibrated 12-degree optical path is accepted']),
-      'spectratech_500':dict(source_ids=['SPECTRATECH_CATALOGUE','NICOLET_OPTICAL_LAYOUT'],
+      'spectratech_500':dict(source_ids=['SPECTRATECH_CATALOGUE','NICOLET_OPTICAL_LAYOUT','NRC_NEAR_RETRO_COMPARISON'],
         source_constrained_features=['Black chassis, separate source-side housing and its real circular port',
             'Rotary specimen assembly and 20–85 degree dial; 6/13 mm U-slot masks and alignment-mirror candidate',
             'M1/M2/M3/M5 independent mirrors, with M4 occupied by the removable specimen/reference, and the documented right-to-left beam direction'],
-        author_observations=['M3 and the M4 reference/sample holder share the selected rotor; both physical face normals change with rotation',
-            'The initial M1/M2/M3/M4-reference/M5 ray is checked against actual meshes; an alternative mask fits with the reference removed',
-            'Finite-aperture ray checks retain misses at other angles; the 20–85 degree label and infinite-plane normals cannot qualify optical coverage'],
+        author_observations=['Extended M3 and the M4 reference/sample holder share the selected 105-degree rotor; the unsupported large front knob is absent',
+            'Actual front surfaces and all intervening parts are traced from entry through M1/M2/M3/M4-reference/M5 to exit, at 66 angles with nine selected parallel rays each',
+            'Two lower edge stops leave the grazing-angle exit clear. The former perpendicular rotor and a full-width-stop counterexample remain rejected'],
         unresolved_differences=['Sample-frame shape, dial datum, mirror positions, support posts and housing depth remain authored hypotheses, not exact model-500 CAD',
             'The catalogue photograph has an unreported angle and perspective; these are comparison views, not a calibrated image registration',
-            'The selected common-rotor mechanism and pivot remain hypotheses; no claim of manufacturer optical prescription, spring forces, historical paper SKU or Nicolet adapter compatibility'])}
+            'The 105-degree corner and 15-degree incoming inclination are engineering hypotheses; NRC material demonstrates a related mechanism, not the model-500 prescription',
+            'No manufacturer beam/focus, spring-force, historical paper-SKU or Nicolet-adapter qualification'])}
     items=[]
     for a in model['items']:
         key=a['id'];instance=next(i for i in scene['assets'] if i['id']==key);note=findings[key]

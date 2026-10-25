@@ -46,7 +46,7 @@ def run(browser,url):
                 page.click('#mount-views [data-view="'+view+'"]');capture(identity,view)
             page.click('#mount-views [data-view="front"]')
             if identity=='spectratech_500':
-                check('initial_finite_ray_status_visible','命中 M3 与 M4' in page.locator('#mount-optics-status').inner_text())
+                check('initial_finite_ray_status_visible','经过五个反射面并到达出口' in page.locator('#mount-optics-status').inner_text())
                 state=cfg['accessory_inspection']
                 for angle in [35,50,65,85]:
                     page.select_option('#mount-angle',str(angle))
@@ -55,8 +55,12 @@ def run(browser,url):
                         expected.apply_transform(trimesh.transformations.rotation_matrix(-np.radians(angle-20),state['axis'],state['pivot_m']))
                         expected.apply_translation(cfg['accessory_translation_m'])
                         check(part+'_actual_linked_transform_'+str(angle),np.allclose(bounds('accessory:'+part),expected.bounds,atol=1e-7))
+                    actual=page.evaluate('()=>{const p=mountProbe.scene.getObjectByName("traced_center_ray");p.updateWorldMatrix(true,false);return Array.from({length:p.geometry.attributes.position.count},(_,i)=>new mountProbe.THREE.Vector3().fromBufferAttribute(p.geometry.attributes.position,i).applyMatrix4(p.matrixWorld).toArray())}')
+                    sample=next(s for s in cfg['finite_ray_review']['samples'] if s['dial_degrees']==angle)
+                    expected=np.array(sample['center_ray']['points_m'])+cfg['accessory_translation_m']
+                    check('displayed_actual_ray_path_'+str(angle),np.allclose(actual,expected,atol=1e-7))
                     capture(identity,'angle_'+str(angle))
-                check('finite_aperture_failure_not_hidden_by_angle_label','未通过' in page.locator('#mount-optics-status').inner_text())
+                check('finite_ray_pass_keeps_optical_qualification_open','仍未光学标定' in page.locator('#mount-optics-status').inner_text())
                 page.select_option('#mount-angle','20')
             for angle in [45,0]:
                 page.locator('#mount-cover').fill(str(angle));page.locator('#mount-cover').dispatch_event('input')

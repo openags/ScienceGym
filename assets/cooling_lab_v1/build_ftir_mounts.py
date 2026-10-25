@@ -96,10 +96,17 @@ def build():
         hardware=export_review(g,'ftir_mount_'+identity)
         loose=[m['part'] for m in model['details']['masks']]
         if not is_hrs:loose+=['blank_plate']
+        # The review page needs five inspected center paths, not a duplicate
+        # copy of every diagnostic trace. Pin the full source record separately.
+        full_ray=next((r for r in optical_checks['optical_coverage'] if r['asset']==identity),None)
+        ray_view=None if full_ray is None else {
+            **{k:full_ray[k] for k in ['samples','all_sampled_rays_hit','diagnostic_rays','probe','optics_qualified','limitation']},
+            'sampled_angle_count':len(full_ray['full_range_samples']),
+            'full_record':{'path':'assets/cooling_lab_v1/angular_accessory_checks.json','sha256':sha(HERE/'angular_accessory_checks.json')}}
         configs.append(dict(id=identity,label=model['label'],hardware=hardware,accessory_geometry=model['geometry'],
             accessory_inspection=model['details']['inspection'],
             optical_surface_sequence=model['details'].get('optical_surface_sequence'),
-            finite_ray_review=next((r for r in optical_checks['optical_coverage'] if r['asset']==identity),None),
+            finite_ray_review=ray_view,
             accessory_translation_m=translation,excluded_loose_parts=loose,fasteners=interfaces,
             plate_dimensions_m=[.200,.244,.006],standoff_height_m=0 if is_hrs else .017,
             sample_point_m=(np.array([0,-.009,.0901] if is_hrs else model['details']['sample_center_m'])+translation).tolist(),

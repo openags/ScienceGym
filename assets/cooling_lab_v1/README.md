@@ -77,9 +77,13 @@ It makes no source downloads and cannot silently switch robot models.
   The Spectra-Tech schematic labels M4 as the specimen/reference surface. The
   rejected extra-mirror topology is preserved in `angular_topology_rejected.json`.
   Its replacement has four independent mirrors and a removable M4 reference in
-  the actual holder. M3 and M4 share an explicitly inferred carrier. The initial
-  20-degree ray reaches both finite faces, while the other four inspected angles
-  miss; correct plane normals alone do not qualify the operating range.
+  the actual holder. M3 and M4 share an explicitly inferred 105-degree carrier,
+  with extended faces instead of mirrors centred on one initial ray hit.
+  The rejected perpendicular rotor remains in `angular_rotor_rejected.json`.
+  Actual-triangle tracing checks 594 selected parallel rays at 66 angles from
+  20 to 85 degrees, including intervening parts, front faces and the exit.
+  Missing-reference, blocked-port and full-width-stop counterexamples fail.
+  These probes do not establish the manufacturer's beam, focus or linkage.
 - `ftir_mount_sources.json`, `ftir_mounts.json`: manufacturer floor dimensions
   and optical/cover datums, a separate factory-floor candidate and two ordinary
   mounting hypotheses with 38 hardware parts. The original staged assets stay

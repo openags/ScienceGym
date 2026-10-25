@@ -47,6 +47,7 @@ def validate():
     optical=json.loads((HERE/'angular_accessories.json').read_text());optical_checks=json.loads((HERE/'angular_accessory_checks.json').read_text())
     check('angular_accessory_verification_current',optical_checks['passed'] and optical_checks['model_sha256']==sha(HERE/'angular_accessories.json') and optical_checks['validator_sha256']==sha(HERE/'check_angular_accessories.py'))
     for ref in optical['source_artifacts']:check('angular_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
+    for ref in optical_checks['source_artifacts']:check('angular_checker_source_'+ref['path'],sha(ROOT/ref['path'])==ref['sha256'])
     for item in optical['items']:
         a=next(a for a in scene['assets'] if a['id']==item['id'])
         check('angular_model_'+item['id'],a['source_artifact']=={'path':item['geometry']['path'],'sha256':item['geometry']['sha256']} and sha(ROOT/item['geometry']['path'])==item['geometry']['sha256'])

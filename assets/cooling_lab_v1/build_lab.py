@@ -361,7 +361,7 @@ def build():
          'HRS 水平架与 FTIR 底座分别重构，样品朝下。斜镜保持实体；照片中的圆形暗区解释为孔径反射。镜面曲率、支架、插接及紧固件为推断；尚无 6700 安装适配件和光学标定。'),
         ('spectratech_500',['SPECTRATECH_CATALOGUE','NICOLET_OPTICAL_LAYOUT'],
          '选定底座 180 × 100 × 8 mm、背板 170 × 6 × 175 mm；均为未实测推断。厂家确认 6 / 13 mm 槽宽与 20–85° 范围。',
-         '按型号 500 照片、右入左出及 M1→M2→M3→M4 样品／参考→M5 光路重构；原论文精确型号未知。M3 与 M4 共同转动为几何重构，有限镜面在部分角度仍接不到光束，原厂传动、安装、夹持和标定未验证。')]:
+         '按型号 500 照片、右入左出及 M1→M2→M3→M4 样品／参考→M5 光路重构；原论文精确型号未知。M3 与 M4 的 105° 共同转动结构为推断，66 个角度的选定几何射线已检查，原厂传动、光束、安装、夹持和标定未验证。')]:
         manifest['reference_comparisons'][key]=dict(dimensions_label=dimensions,dimensions_kind='inferred',model_scope=scope,
             sources=[dict(url=s['url'],label='厂家资料 · '+s['id'],scope=s['inspected']) for s in angular_sources['sources'] if s['id'] in source_ids])
     for a in placements:

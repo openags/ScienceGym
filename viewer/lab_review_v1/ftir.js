@@ -43,7 +43,9 @@ function update(){
   const rotation=new THREE.Matrix4().makeTranslation(...p.toArray()).multiply(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...state.axis),-(angle-20)*Math.PI/180)).multiply(new THREE.Matrix4().makeTranslation(...p.clone().negate().toArray()));
   for(const name of state.parts){const o=meshes.get('accessory:'+name);if(o){o.matrix.copy(rotation);o.matrixAutoUpdate=false}}
   const sample=config.finite_ray_review.samples.find(s=>s.dial_degrees===angle);
-  $('mount-optics-status').textContent=sample?.m4_reference_hit?'名义中心射线命中 M3 与 M4；尚无光学标定。':'当前候选的有限镜面未接到完整光路；该角度未通过。';
+  $('mount-optics-status').textContent=sample?.bundle_passed?'选定几何射线经过五个反射面并到达出口；仍未光学标定。':'当前候选的有限镜面未接到完整光路；该角度未通过。';
+  for(const child of [...guides.children])if(child.name==='traced_center_ray'){guides.remove(child);dispose(child)}
+  if(sample?.center_ray){const path=line(sample.center_ray.points_m.map(v=>v.map((x,i)=>x+config.accessory_translation_m[i])),sample.exit_ray_valid?0x9b5b00:0xcc2525);path.name='traced_center_ray';path.userData.followsAccessory=true}
   document.documentElement.dataset.mountAngle=String(angle);
  }
  guides.children.forEach(o=>{if(o.userData.followsAccessory)o.position.z=lift});
@@ -65,10 +67,10 @@ async function select(identity){
  line([[cx-.103,cy-.126,roof],[cx+.103,cy-.126,roof],[cx+.103,cy+.126,roof],[cx-.103,cy+.126,roof],[cx-.103,cy-.126,roof]],0x3976bd,true);
  $('mount-finding').textContent=identity==='harrick_hrs'?'名义闭盖空间可容纳当前候选；推断的前折转镜光轴相差 60 mm。若整体平移去对齐，该模型会穿过样品舱后方结构，不能作为已兼容的安装配置。':'按当前推断尺寸与光轴高度安装后，最高部件超出名义舱盖净空约 16 mm，闭盖时发生相交。开盖可查看结构，但不代表可以这样运行仪器。';
  const mm=x=>(x*1000).toFixed(1)+' mm';const rows=[['底板上表面 / 光束高度',mm(model.datums.factory_plate_top_m)+' / '+mm(focus[2])],['附件底面 / 最高点',mm(config.accessory_translation_m[2])+' / '+mm(selected.highest_accessory_z_m)],['名义舱盖余量',mm(selected.nominal_roof_margin_m)],['候选光轴 Y / Z 偏差',selected.nominal_input_ray_offset_yz_m.map(mm).join(' / ')],['闭盖几何',selected.closed_cover_fit?'当前名义尺寸下无相交':'不通过'],['开盖后垂直装入采样',selected.insertion_geometry_clear?'25 个静态采样未发现相交':'发现相交，见原始记录'],['厂家安装兼容 / 操作验收','均未通过']];
- if(config.optical_surface_sequence)rows.unshift(['反射面顺序','M1 → M2 → M3 → M4 样品／参考 → M5'],['有限镜面光路采样',config.finite_ray_review.samples.filter(s=>s.m4_reference_hit).length+' / '+config.finite_ray_review.samples.length+' 命中 M4；范围未通过']);
+ if(config.optical_surface_sequence)rows.unshift(['反射面顺序','M1 → M2 → M3 → M4 样品／参考 → M5'],['有限镜面几何采样',config.finite_ray_review.sampled_angle_count+' 个角度 / '+config.finite_ray_review.diagnostic_rays+' 条射线；不代表光学标定'],['选定机构假设','105° 夹角、镜面尺寸与入射位置均为推断，原厂机构待核对']);
  $('mount-metrics').replaceChildren(...rows.map(([label,value])=>{const row=document.createElement('tr'),th=document.createElement('th'),td=document.createElement('td');th.textContent=label;td.textContent=value;row.append(th,td);return row}));
  const blocked=selected.driver_access.filter(c=>!c.clear);$('mount-driver').textContent='附件固定螺钉的直线工具空间：'+(selected.driver_access.length-blocked.length)+' / '+selected.driver_access.length+' 处未发现相交。'+(blocked.length?'其余位置需要核对拆装顺序与真实壳体结构。':'手部方向、扭矩和接触尚未检查。');
- $('mount-conflicts').textContent=JSON.stringify({closed_cover:selected.closed_cover_penetration_pairs,open_instrument:selected.open_instrument_penetration_pairs,driver_access:blocked,limits:model.limits},null,2);
+ $('mount-conflicts').textContent=JSON.stringify({scope:'Cover, insertion and driver findings use the initial accessory pose; angle controls do not recompute them.',closed_cover:selected.closed_cover_penetration_pairs,open_instrument:selected.open_instrument_penetration_pairs,driver_access:blocked,limits:model.limits},null,2);
  $('mount-lift').value='0';$('mount-cover').value='90';$('mount-angle').value='20';$('mount-angle-controls').hidden=identity!=='spectratech_500';update();setView(view);document.documentElement.dataset.mountAsset=identity;document.documentElement.dataset.mountLoaded='true';
 }
 function error(e){$('mount-error').textContent=String(e);document.documentElement.dataset.mountLoaded='error';console.error(e)}

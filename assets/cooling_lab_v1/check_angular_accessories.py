@@ -1,9 +1,11 @@
 """Check real mask openings and mechanical inspection sweeps, not optics."""
+import copy
 import json
 from pathlib import Path
 import numpy as np
 import trimesh
 from geometry_tools import HERE, ROOT, sha, write_json
+from optical_ray_audit import inspect_angle
 
 
 def build():
@@ -78,7 +80,9 @@ def build():
                 reflected=incoming-2*np.dot(incoming,normal)*normal
                 check(item['part']+'_actual_face_reflects_nominal_fold',np.linalg.norm(reflected-item['outgoing'])<1e-5)
             m3_normal=mesh_normal(meshes['m3_face']);normal=mesh_normal(meshes['alignment_mirror_7004_001'])
-            check('selected_M3_M4_corner_orthogonal',abs(np.dot(m3_normal,normal))<1e-6)
+            measured=float(np.degrees(np.arccos(np.clip(abs(np.dot(m3_normal,normal)),-1,1))))
+            check('selected_near_retro_corner_actual_faces',abs(measured-75)<1e-4 and details['selected_corner_degrees']==105,
+                  acute_normal_angle_degrees=measured,scope='Selected 105-degree corner, not a manufacturer dimension')
             incoming=points[3]-points[2];incoming/=np.linalg.norm(incoming)
             angles=[]
             for degrees in [0,65]:
@@ -100,13 +104,26 @@ def build():
             support_overlap=float(frame.bounds[1,2]-mask.bounds[0,2])
             # FCL reports millimetre SAT depth on coplanar triangulated rim
             # edges even when the two solids are separated to float32 accuracy.
-            # Bound this ONE intended contact in the independent holder frame;
-            # all other guide/leaf/stop collisions retain the ordinary predicate.
-            unintended=[c for c in contacts if c.depth>.00005 and
-                not (set(c.names)=={'mask','sample_carrier_open_frame'} and abs(support_overlap)<3e-8)]
+            # Bound the frame and two end-stop contacts in the independent
+            # holder frame; guide/leaf collisions retain the ordinary predicate.
+            intended_touch={frozenset(['mask','sample_carrier_open_frame']):abs(support_overlap)<3e-8}
+            for name in names:
+                if name.startswith('sample_lower_stop_'):
+                    stop=meshes[name].copy();stop.apply_transform(local)
+                    overlap=float(stop.bounds[1,1]-mask.bounds[0,1])
+                    check(name+'_actual_end_contact',abs(overlap)<3e-8,end_overlap_m=overlap)
+                    intended_touch[frozenset(['mask',name])]=abs(overlap)<3e-8
+            unintended=[c for c in contacts if c.depth>.00005 and not intended_touch.get(frozenset(c.names),False)]
             check('alternative_slot_mask_seats_without_holder_penetration',not unintended and abs(support_overlap)<3e-8,
-                  support_overlap_m=support_overlap,scope='Reference removed. Only the intended coplanar support is classified by its independent normal bounds; no guide/retainer exemption')
-            check('negative_overinserted_mask_rejected',support_overlap+.002>.00005)
+                  support_overlap_m=support_overlap,scope='Reference removed. Coplanar frame/edge-stop contacts are classified by independent normal bounds within 30 nm; no guide/retainer exemption')
+            bad_mask=mask.copy();bad_mask.apply_translation([0,0,-.002])
+            bad_manager=trimesh.collision.CollisionManager();bad_manager.add_object('mask',bad_mask)
+            local_holder=trimesh.collision.CollisionManager();local_holder.add_object('frame',frame)
+            _,bad_contacts=bad_manager.in_collision_other(local_holder,return_data=True)
+            check('negative_overinserted_mask_rejected',frame.bounds[1,2]-bad_mask.bounds[0,2]>.0019 and any(c.depth>.00005 for c in bad_contacts))
+            stop=meshes['sample_lower_stop_1'].copy();stop.apply_transform(local)
+            slipped=mask.copy();slipped.apply_translation([0,-.002,0])
+            check('negative_past_end_stop_not_coplanar',stop.bounds[1,1]-slipped.bounds[0,1]>.0019)
             for side in [-1,1]:
                 guide=meshes['sample_guide_'+str(side*14.2)].copy();guide.apply_transform(local)
                 gap=(guide.bounds[0,0]-mask.bounds[1,0]) if side>0 else (mask.bounds[0,0]-guide.bounds[1,0])
@@ -118,6 +135,16 @@ def build():
             reference=meshes['alignment_mirror_7004_001'].copy();reference.apply_transform(local)
             check('displayed_M4_reference_is_supported',abs(reference.bounds[0,2]-frame.bounds[1,2])<3e-8)
             check('displayed_M4_reference_front_matches_sample_datum',abs(reference.bounds[1,2])<3e-8)
+            m3_parts=trimesh.collision.CollisionManager()
+            for name in ['m3_face','m3_back']:m3_parts.add_object(name,meshes[name])
+            specimen_parts=trimesh.collision.CollisionManager()
+            for name in names+['alignment_mirror_7004_001']:specimen_parts.add_object(name,meshes[name])
+            _,intersections=m3_parts.in_collision_other(specimen_parts,return_data=True)
+            check('rigid_carrier_internal_M3_holder_separation',not any(c.depth>.00005 for c in intersections))
+            long_guide=trimesh.creation.box([.004,.044,.004]);long_guide.apply_translation([.0142,0,.0008]);long_guide.apply_transform(details['sample_frame_transform_m'])
+            bad_holder=trimesh.collision.CollisionManager();bad_holder.add_object('extended_guide',long_guide)
+            _,intersections=m3_parts.in_collision_other(bad_holder,return_data=True)
+            check('negative_extended_guide_hits_M3',any(c.depth>.00005 for c in intersections))
             for index,(start,end) in enumerate(zip(points[:-1],points[1:])):
                 direction=end-start;length=np.linalg.norm(direction);direction/=length;obstructions=[]
                 for name,mesh in meshes.items():
@@ -127,23 +154,41 @@ def build():
                         if np.any((distances>.0021)&(distances<length-.0021)):obstructions.append(name)
                 check('nominal_fold_segment_'+str(index)+'_clear',not obstructions,obstructions=obstructions,
                       scope='Initial center ray only, excluding 2.1 mm endpoint mirror contact; no beam width, focus or spectral simulation')
-            coverage=[]
-            for degrees in [0,15,30,45,65]:
-                t=trimesh.transformations.rotation_matrix(-np.radians(degrees),[0,1,0],details['inspection']['pivot_m'])
-                mirror=meshes['m3_face'].copy();mirror.apply_transform(t)
-                ref=meshes['alignment_mirror_7004_001'].copy();ref.apply_transform(t)
-                ray_start=points[2]+incoming*.002
-                hits,_,_=mirror.ray.intersects_location([ray_start],[incoming])
-                hit_reference=False
-                if len(hits):
-                    point=hits[np.argmin(np.linalg.norm(hits-ray_start,axis=1))]
-                    n=t[:3,:3]@m3_normal;direction=incoming-2*np.dot(incoming,n)*n
-                    hit_reference=bool(ref.ray.intersects_any([point+direction*.002],[direction])[0])
-                coverage.append(dict(dial_degrees=20+degrees,m3_hit=bool(len(hits)),m4_reference_hit=hit_reference))
-            check('initial_finite_ray_hits_M3_and_M4',coverage[0]['m3_hit'] and coverage[0]['m4_reference_hit'])
-            optical_coverage.append(dict(asset=identity,samples=coverage,
-                all_sampled_rays_hit=all(s['m4_reference_hit'] for s in coverage),optics_qualified=False,
-                limitation='Selected rigid corner and finite faces do not establish manufacturer angle-dependent alignment or focus. Retain all misses; no qualification from normal angles alone.'))
+            probe=details['geometric_probe'];full=[];coverage=[]
+            for angle in range(20,86):
+                record=inspect_angle(meshes,details,angle,probe['y_offsets_m'],probe['z_offsets_m'])
+                bad=[r for r in record['rays'] if not r['passed']]
+                check('finite_five_surface_path_'+str(angle),not bad,failures=bad)
+                check('exit_direction_'+str(angle),all(np.linalg.norm(np.array(r['exit_direction'])-[-1,0,0])<1e-5 for r in record['rays']))
+                full.append(record)
+                if angle in [20,35,50,65,85]:
+                    center=next(r for r in record['rays'] if r['y_offset_m']==r['z_offset_m']==0)
+                    coverage.append(dict(dial_degrees=angle,m3_hit='m3_face' in center['hit_parts'],
+                        m4_reference_hit='alignment_mirror_7004_001' in center['hit_parts'],
+                        exit_ray_valid=center['passed'],bundle_passed=record['passed'],center_ray=center))
+            # Actual counterexamples exercise the same complete-path predicate.
+            removed={n:m for n,m in meshes.items() if n!='alignment_mirror_7004_001'}
+            check('negative_missing_M4_reference_rejected',not inspect_angle(removed,details,50)['passed'])
+            blocked={**meshes};slab=trimesh.creation.box([.001,.020,.020]);slab.apply_translation([.10,-.020,.067]);blocked['injected_port_block']=slab
+            bad=inspect_angle(blocked,details,50)
+            check('negative_blocked_source_port_rejected',not bad['passed'] and bad['rays'][0].get('obstruction')=='injected_port_block')
+            # Recreate the observed full-width stop defect with actual geometry.
+            stop=trimesh.creation.box([.028,.004,.004]);stop.apply_translation([0,-.019,.0008]);stop.apply_transform(details['sample_frame_transform_m'])
+            stopped={n:m for n,m in meshes.items() if not n.startswith('sample_lower_stop_')};stopped['sample_lower_stop']=stop
+            stopped_details=copy.deepcopy(details);stopped_details['inspection']['parts'].append('sample_lower_stop')
+            bad=inspect_angle(stopped,stopped_details,85)
+            check('negative_full_width_stop_blocks_grazing_exit',not bad['passed'] and bad['rays'][0].get('obstruction')=='sample_lower_stop',failure=bad)
+            old_record=json.loads((HERE/'angular_rotor_rejected.json').read_text())
+            check('rejected_corner_geometry_pinned',sha(ROOT/old_record['geometry']['path'])==old_record['geometry']['sha256'])
+            old_scene=trimesh.load(ROOT/old_record['geometry']['path'],force='scene');old_meshes={}
+            for n in old_scene.graph.nodes_geometry:
+                matrix,key=old_scene.graph[n];m=old_scene.geometry[key].copy();m.apply_transform(matrix);old_meshes[n]=m
+            old_fail=inspect_angle(old_meshes,old_record['details'],85)
+            check('negative_old_rotor_misses_full_path',not old_fail['passed'],failure=old_fail)
+            optical_coverage.append(dict(asset=identity,samples=coverage,full_range_samples=full,
+                all_sampled_rays_hit=all(s['passed'] for s in full),diagnostic_rays=sum(len(s['rays']) for s in full),
+                probe=probe,optics_qualified=False,rejected_previous_rotor=old_fail,
+                limitation='Triangle-level finite-path clearance for the selected parallel probe only. The inferred corner, manufacturer beam size, focusing, throughput, coatings and mounting are unqualified.'))
         state=details['inspection'];moving=trimesh.collision.CollisionManager();fixed=trimesh.collision.CollisionManager()
         # These bearing surfaces are the intended revolute interface, whose
         # fit tolerances and retention have not yet been specified.
@@ -171,6 +216,7 @@ def build():
     check('negative_solid_mask_rejected',closed.ray.intersects_any([[0,0,.02]],[[0,0,-1]])[0])
     result=dict(schema_version=1,passed=all(c['passed'] for c in checks),checks=checks,sweeps=sweeps,optical_coverage=optical_coverage,
         model_sha256=sha(HERE/'angular_accessories.json'),validator_sha256=sha(__file__),
+        source_artifacts=[dict(path=str((HERE/'optical_ray_audit.py').relative_to(ROOT)),sha256=sha(HERE/'optical_ray_audit.py'))],
         owner_acceptance=None,installed_compatibility_qualified=False,optics_qualified=False,
         limitations=['Outer dimensions and local mechanisms are inferred, not manufacturer CAD',
             'Sample retention, mounting adapters, fasteners and optical alignment remain open',
